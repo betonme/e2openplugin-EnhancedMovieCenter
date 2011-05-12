@@ -1,0 +1,60 @@
+<screen name="EMCMediaCenter" position="0,0" size="720,576" title="InfoBar" backgroundColor="#ffffffff" flags="wfNoBorder">
+	<!-- Background -->
+	<ePixmap position="0,406" zPosition="-1" size="720,150" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/EMCMoviePlayer/CoolInfobarSD.png" alphatest="on" />
+	<!-- Clock -->
+	<ePixmap pixmap="skin_default/icons/clock.png" position="580,530" zPosition="1" size="14,14" alphatest="on" />
+	<widget source="global.CurrentTime" render="Label" position="600,528" size="80,20" font="Regular;20" valign="top" halign="left" foregroundColor="#00e5b243" backgroundColor="#00000000" transparent="1">
+		<convert type="ClockToText">WithSeconds</convert>
+	</widget>
+	<!-- Movie title -->
+	<widget source="session.CurrentService" render="Label" position="30,414" size="660,23" font="Regular;23" halign="center" noWrap="1" backgroundColor="#00000000" transparent="1">
+		<convert type="ServiceName">Name</convert>
+	</widget>
+	<!-- Dolby Digital icon -->
+	<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/EMCMoviePlayer/dolby_off.png" position="332,528" size="57,20" zPosition="1" alphatest="blend" />
+	<widget source="session.CurrentService" render="Pixmap" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/EMCMoviePlayer/dolby_on.png" position="332,528" size="57,20" zPosition="2" alphatest="blend" >
+		<convert type="ServiceInfo">IsMultichannel</convert>
+		<convert type="ConditionalShowHide" />
+	</widget>
+	<!-- Widescreen icon -->
+	<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/EMCMoviePlayer/format_off.png" position="240,528" size="36,20" zPosition="1" alphatest="blend" />
+	<widget source="session.CurrentService" render="Pixmap" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/EMCMoviePlayer/format_on.png" position="240,528" size="36,20" zPosition="2" alphatest="blend" >
+		<convert type="ServiceInfo">IsWidescreen</convert>
+		<convert type="ConditionalShowHide" />
+	</widget>
+	<!-- Recording icon -->
+	<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/EMCMoviePlayer/rec_off.png" position="450,528" size="28,20" zPosition="1" alphatest="blend" />
+	<widget source="session.RecordState" render="Pixmap" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/EMCMoviePlayer/rec_on.png" position="450,528" size="28,20" zPosition="2" alphatest="blend">
+		<convert type="ConditionalShowHide">Blink</convert>
+	</widget>
+	<!-- Video size -->
+	<widget source="session.CurrentService" render="Label" font="Regular;18" position="23,529" size="55,18" halign="right" foregroundColor="#00e5b243" backgroundColor="#00000000" transparent="1">
+		<convert type="ServiceInfo">VideoWidth</convert>
+	</widget>
+	<eLabel text="x" font="Regular;18" position="80,529" size="10,18" halign="center" foregroundColor="#00e5b243" backgroundColor="#00000000" transparent="1" />
+	<widget source="session.CurrentService" render="Label" font="Regular;18" position="90,529" size="55,18" halign="left" foregroundColor="#00e5b243" backgroundColor="#00000000" transparent="1">
+		<convert type="ServiceInfo">VideoHeight</convert>
+	</widget>
+	<!-- Progressbar -->
+	<ePixmap position="50,465" size="620,24" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/EMCMoviePlayer/CoolSliderSD.png" zPosition="3" alphatest="blend" />
+	<ePixmap position="86,468" size="548,18" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/EMCMoviePlayer/CoolPointerBG.png" zPosition="1" alphatest="blend" />
+	<widget source="session.CurrentService" render="PositionGauge" position="86,456" size="548,28" zPosition="2" pointer="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/EMCMoviePlayer/CoolPointerSD.png:548,-3" transparent="1" >
+		<convert type="EMCServicePosition">Gauge</convert> <!-- EMC Converter needed, to display markers on not *.ts files -->
+	</widget>
+	<!-- Entire movie length -->
+	<widget source="session.CurrentService" render="Label" position="270,492" size="180,22" font="Regular;22" halign="center" valign="center" backgroundColor="#00000000" transparent="1">
+		<convert type="EMCServicePosition">Length,ShowHours</convert>
+	</widget>
+	<!-- Actual movie position -->
+	<widget source="session.CurrentService" render="Label" position="50,492" size="100,22" font="Regular;22" halign="left" valign="center" backgroundColor="#00000000" transparent="1">
+		<convert type="EMCServicePosition">Position,ShowHours</convert>
+	</widget>
+	<!-- Remaining movie time -->
+	<widget source="session.CurrentService" render="Label" position="595,492" size="100,22" font="Regular;22" halign="left" valign="center" backgroundColor="#00000000" transparent="1">
+		<convert type="EMCServicePosition">Remaining,Negate,ShowHours</convert>
+	</widget>
+	<!-- Chapter Label only for DVD -->	
+	<widget name="chapterLabel" position="50,446" size="500,19" font="Regular;19" halign="left" backgroundColor="#00000000" transparent="1" />
+	<!-- Audio Label only for DVD -->
+	<widget name="audioLabel" position="520,446" size="150,19" halign="right" font="Regular;19" backgroundColor="#00000000" zPosition="3" transparent="1" />
+</screen>
