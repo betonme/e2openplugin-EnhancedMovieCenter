@@ -465,8 +465,17 @@ msgstr "Film Änderungsliste"
 msgid "Enable daily trashcan cleanup"
 msgstr "Erlaube tägliche Papierkorb Leerung"
 
-msgid "Daily trashcan cleanup time"
-msgstr "Zeit für tägliche Papierkorb Leerung"
+msgid "Daily cleanup time"
+msgstr "Zeit für tägliche Leerung"
+
+msgid "No resume below 10 seconds"
+msgstr "Kein fortsetzten unterhalb von 10 Sekunden"
+
+msgid "Rewind finished movies before playing"
+msgstr "Kein fortsetzten bei Fertig geschauten Filmen"
+
+msgid "Always save last played progress as marker"
+msgstr "Speichere letzten Spielstand immer als Marker"
 
 msgid "Display directory reading text"
 msgstr "Zeige <lese Verzeichnis...> Text"
