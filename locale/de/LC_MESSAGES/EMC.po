@@ -466,16 +466,16 @@ msgid "Enable daily trashcan cleanup"
 msgstr "Erlaube tägliche Papierkorb Leerung"
 
 msgid "Daily cleanup time"
-msgstr "Zeit für tägliche Leerung"
+msgstr "Tägliche Reinigungszeit Papierkorb/Aufnahmeliste"
 
 msgid "No resume below 10 seconds"
-msgstr "Kein fortsetzten unterhalb von 10 Sekunden"
+msgstr "Ignoriere Start Marker unter 10 sek"
 
 msgid "Rewind finished movies before playing"
-msgstr "Kein fortsetzten bei Fertig geschauten Filmen"
+msgstr "Start am Anfand von fertig gespielten Aufnahmen"
 
 msgid "Always save last played progress as marker"
-msgstr "Speichere letzten Spielstand immer als Marker"
+msgstr "Letzte Abspielposition immer als Marker speichern"
 
 msgid "Display directory reading text"
 msgstr "Zeige <lese Verzeichnis...> Text"
