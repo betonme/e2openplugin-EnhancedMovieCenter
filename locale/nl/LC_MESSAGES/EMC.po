@@ -327,6 +327,12 @@ msgstr "Cursor na selectie verplaatsen"
 msgid "Show movie icons"
 msgstr "Iconen weergeven"
 
+msgid "Show movie progress"
+msgstr "Voortgang weergeven"
+
+msgid "Show date"
+msgstr "Datum weergeven"
+
 msgid "Show icon indication for non-watched"
 msgstr "Niet afgespeelde film met icoon kenmerken"
 
@@ -344,6 +350,9 @@ msgstr "EMC na openen altijd opnieuw inlezen"
 
 msgid "Show Cut-Nr if exist"
 msgstr "EMC toont Cut-Nr. indien beschikbaar"
+
+msgid "Show Movie Format"
+msgstr "Filmtype weergeven"
 
 msgid "Blue button function"
 msgstr "Functie van de blaue knop"
@@ -456,8 +465,17 @@ msgstr "Film manipulatielijst"
 msgid "Enable daily trashcan cleanup"
 msgstr "Prullebak dagelijks legen activeren"
 
-msgid "Daily trashcan cleanup time"
-msgstr "Tijdstip om dagelijks prullebak te legen"
+msgid "Daily cleanup time"
+msgstr "Tijdstip om dagelijks op te ruimen"
+
+msgid "No resume below 10 seconds"
+msgstr "Geen hervatten onder 10 sec."
+
+msgid "Rewind finished movies before playing"
+msgstr "Afgespeelde filmen terugspoelen voor het afspelen"
+
+msgid "Always save last played progress as marker"
+msgstr "Laatste afspeelpositie altijd als markeerpunt bewaren"
 
 msgid "Display directory reading text"
 msgstr "Bericht bij actualiseren overzicht weergeven"
@@ -474,17 +492,8 @@ msgstr "Hoofdmap films na starten"
 msgid "No DVD-Player found!"
 msgstr "Geen DVD-speler gevonden!"
 
-msgid "Show Movie Format"
-msgstr "Filmtype weergeven"
-
 msgid "Delete validation"
 msgstr "Bevestigen bij wissen"
-
-msgid "Show movie progress"
-msgstr "Voortgang weergeven"
-
-msgid "Show date"
-msgstr "Datum weergeven"
 
 msgid "Listbox is skin able"
 msgstr "Listbox is skinbaar"
