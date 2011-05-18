@@ -1,0 +1,522 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: EMC\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-11-10 16:35+0200\n"
+"PO-Revision-Date: 2011-03-15 22:10+0100\n"
+"Last-Translator: unknown <unknown>\n"
+"Language-Team: ANONLANGUAGE <anon@anon.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: Slovak\n"
+"X-Poedit-Country: SLOVAKIA\n"
+"X-Poedit-SourceCharset: utf-8\n"
+
+msgid "true"
+msgstr "áno"
+
+msgid "false"
+msgstr "nie"
+
+msgid "no override"
+msgstr "neprepísať"
+
+msgid "Directory"
+msgstr "Adresár"
+
+msgid "show event details"
+msgstr "Ukázať detaily udalosti"
+
+msgid "Stop playback"
+msgstr "Zastaviť prehrávanie"
+
+msgid "Open extensions menu"
+msgstr "Otvoriť menu rozšírení"
+
+msgid "Skipping movie, the file does not exist.\n"
+msgstr "Preskakujem film, súbor neexistuje.\n"
+
+msgid "Alpha sort"
+msgstr "Abecedne"
+
+msgid "Play selected movie(s)"
+msgstr "Prehrať vybraný/é film(y)"
+
+msgid "Close EMC"
+msgstr "Ukončiť EMC"
+
+msgid "Open menu"
+msgstr "Otvoriť menu"
+
+msgid "Show event info"
+msgstr "Ukázať info udalosti"
+
+msgid "Delete file or empty dir"
+msgstr "Zmazať súbor alebo vyprázdniť adresár"
+
+msgid "Toggle sort mode"
+msgstr "Prepnúť spôsob zoraďovania"
+
+msgid "Move selected movie(s)"
+msgstr "Presunúť vybraný/é film(y)"
+
+msgid "Movie home / Play last (configurable)"
+msgstr "Domov filmov/prehrať posledné (nastaviteľné)"
+
+msgid "Open bookmarks"
+msgstr "Favoriti"
+
+msgid "Move cursor page up"
+msgstr "Presun kurzoru o stranu hore"
+
+msgid "Move cursor page down"
+msgstr "Presun kurzoru o stranu dolu"
+
+msgid "Move cursor up"
+msgstr "Presun kurzoru hore"
+
+msgid "Move cursor down"
+msgstr "Presun kurzoru dolu"
+
+msgid "Move cursor 1/2 page up"
+msgstr "Presun kurzoru o 1/2 strany hore"
+
+msgid "Move cursor 1/2 page down"
+msgstr "Presun kurzoru o 1/2 strany dolu"
+
+msgid "Directory forward"
+msgstr "Adresár hore"
+
+msgid "Directory back"
+msgstr "Adresár dolu"
+
+msgid "Toggle service selection"
+msgstr "Prepnúť výber servisu"
+
+msgid "Available plugins menu"
+msgstr "Dostupné menu modulu"
+
+msgid "Reload movie file list"
+msgstr "Znovunačítať zoznam súborov filmov"
+
+msgid "Toggle viewed / not viewed"
+msgstr "Prepnúť videné/nevidené"
+
+msgid "Start / end multiselection"
+msgstr "Začiatok / koniec viacnasobného výberu"
+
+msgid "No functionality set..."
+msgstr "Nenastavená funkcionalita..."
+
+msgid "Delete"
+msgstr "Zmazať"
+
+msgid "Move"
+msgstr "Presunúť"
+
+msgid "Last played movie/playlist not available..."
+msgstr "Posledne hraný film/zoznam nedostupný"
+
+msgid "Permanently delete all files in trashcan?"
+msgstr "Zmazať všetky súbory v koši natrvalo?"
+
+msgid "Directory is not empty."
+msgstr "Adresár nie je prázdny."
+
+msgid "Cannot delete the parent directory."
+msgstr "Nemôžem zmazať nadradený adresár."
+
+msgid "File not available."
+msgstr "Súbor nie je k dispozícii."
+
+msgid "Stop ongoing recording?\n"
+msgstr "Zastaviť prebiehajúce nahrávanie?\n"
+
+msgid "Not stopping any repeating timers. Modify them with the timer editor."
+msgstr "Nezastavujem opakujúce časovače. Editujte ich editorom časovača."
+
+msgid " Deleting remotely recorded and it will display an rec-error dialog on the other DB."
+msgstr "Mazanie vzdialene nahratých a zobrazenie dialógu chyby nahrávania na druhom DB."
+
+msgid " permanently"
+msgstr "natrvalo"
+
+msgid " currently played?"
+msgstr "momentálne prehrávané?"
+
+msgid " all selected video files?"
+msgstr "všetky vybrané video súbory?"
+
+msgid " all selected video files? The currently playing movie is also one of the selections and its playback will be stopped."
+msgstr "všetky vybrané video súbory? Momentálne prehrávaný súbor je jedným z vybratých a jeho prehrávanie sa zastaví."
+
+msgid "Delete error:\n"
+msgstr "Chyba pri mazaní:\n"
+
+msgid "Delete failed because the trashcan directory does not exist. Attempt to create it now?"
+msgstr "Zmazanie zlyhalo, pretože kôš neexistuje. Mám sa pokúsiť ho vytvoriť teraz?"
+
+msgid "Date sort"
+msgstr "Podľa dátumu"
+
+msgid "Error: path '%s' not available!"
+msgstr "Chyba: cesta '%s' nedostupná!"
+
+msgid "*** Multiselection active ***"
+msgstr "*** Multivýber aktívny ***"
+
+msgid "How to move files:\n"
+msgstr "Ako presunúť súbory:\n"
+
+msgid "Select some movies with the VIDEO-button, move the cursor on top of the destination directory and press yellow."
+msgstr "Vyberte požadované filmy s tlačítkom VIDEO, presuňte kurzor na vrch cieľového adresára a zmačknite žlté tlačítko."
+
+msgid "Select Location"
+msgstr "Vybrať umiestnenie"
+
+msgid "Choose directory"
+msgstr "Vybrať adresár"
+
+msgid "Trashcan create failed. Check mounts and permissions."
+msgstr "Vytvorenie koša zlyhalo. Overte oprávnenia a pripojené body."
+
+msgid "Choose operation"
+msgstr "Výber operácie"
+
+msgid "Play last"
+msgstr "Prehrať posledné"
+
+msgid "Movie home"
+msgstr "Filmy - domov"
+
+msgid "Delete permanently"
+msgstr "Zmazať natrvalo"
+
+msgid "Empty trashcan"
+msgstr "Vyprázdniť kôš"
+
+msgid "Go to trashcan"
+msgstr "Prejsť ku košu"
+
+msgid "Remove rogue files"
+msgstr "Odstrániť osirelé súbory"
+
+msgid "Create link(s)"
+msgstr "Vytvoriť odkaz(y)"
+
+msgid "Create directory"
+msgstr "Vytvoriť adresár"
+
+msgid "Bookmark directory"
+msgstr "Adresár favoritov"
+
+msgid "Bookmarks"
+msgstr "Favoriti"
+
+msgid "Choose plugin"
+msgstr "Vybrať modul"
+
+msgid "Choose bookmark"
+msgstr "Vybrať favorita"
+
+msgid "Movie Selection Menu"
+msgstr "Menu pre zoznam filmov"
+
+msgid "Enter name for new directory."
+msgstr "Zadajte názov nového adresára."
+
+msgid "Directory "
+msgstr "Adresár"
+
+msgid "Locate rogue files and remove them? (permanently if no trashcan available, may take a minute or so)"
+msgstr "Lokalizovať osirelé súbory a odstániť ich? (natrvalo, ak nie je kôš k dispozícii, bude trvať okolo minúty)"
+
+msgid " files\n"
+msgstr " súborov\n"
+
+msgid "No rogue files found."
+msgstr "Osirelé súbory neboli nájdené"
+
+msgid "Found rogue files:\n"
+msgstr "Nájdené osirelé súbory:\n"
+
+msgid "Cancel"
+msgstr "Zrušiť"
+
+msgid "Save"
+msgstr "Uložiť"
+
+msgid "About"
+msgstr "O rozšírení"
+
+msgid "Start EMC with"
+msgstr "Ako spustiť EMC"
+
+msgid "Show plugin config in extensions menu"
+msgstr "Ukázať nastavenie rozšírenia v rozšírenom menu"
+
+msgid "Show EMC in extensions menu"
+msgstr "Ukázať EMC v rozšírenom menu"
+
+msgid "Preferred EPG language"
+msgstr "Preferovaný jazyk EPG"
+
+msgid "Primary playback subtitle language"
+msgstr "Primárny jazyk titulkov pri prehrávaní"
+
+msgid "Secondary playback subtitle language"
+msgstr "Sekundárny jazyk titulkov pri prehrávaní"
+
+msgid "Tertiary playback subtitle language"
+msgstr "Tretí jazyk titulkov pri prehrávaní"
+
+msgid "Enable playback auto-subtitling"
+msgstr "Povoliť titulky pri prehrávaní"
+
+msgid "Primary playback audio language"
+msgstr "Primárny jazyk zvuku pri prehrávaní"
+
+msgid "Secondary playback audio language"
+msgstr "Sekundárny jazyk zvuku pri prehrávaní"
+
+msgid "Tertiary playback audio language"
+msgstr "Tretí jazyk zvuku pri prehrávaní"
+
+msgid "Enable playback auto-language selection"
+msgstr "Povoliť automatický výber jazyka  pri prehrávaní"
+
+msgid "Leave Movie with Exit"
+msgstr "Ukončiť film s tlačítkom EXIT"
+
+msgid "Movie home auto-update perms (chmod)"
+msgstr "Automat. aktualizácia oprávnení Domovu filmov"
+
+msgid "Movie home chmod permission value"
+msgstr "chmod hodnota oprávnení Domovu filmov"
+
+msgid "Movie home home path"
+msgstr "Umiestnenie adresára Domov filmov"
+
+msgid "Trashcan path"
+msgstr "Umiestnenie koša"
+
+msgid "How many days files may remain in trashcan"
+msgstr "Koľko dní majú filmy zostať v koši?"
+
+msgid "Disable EMC"
+msgstr "Zakázať EMC"
+
+msgid "EMC path access limit"
+msgstr "Ohraničenie prístupu cesty EMC"
+
+msgid "Description field update delay"
+msgstr "Oneskorenie aktualizácie poľa popisu"
+
+msgid "File order reverse"
+msgstr "Filmový zoznam usporiadaný reverzne"
+
+msgid "EMC open with cursor on newest (TV mode)"
+msgstr "Otvoriť zoznam s kurzorom na najnovšom (TV režim)"
+
+msgid "EMC open with cursor on newest (player)"
+msgstr "Otvoriť zoznam s kurzorom na najnovšom (prehrávač)"
+
+msgid "Cursor predictive move after selection"
+msgstr "Kurzor zoznamu odhadne posun po výbere"
+
+msgid "Show movie icons"
+msgstr "Vo filmovom zozname sa zobrazia ikony filmov"
+
+msgid "Show icon indication for non-watched"
+msgstr "Zobraziť indikátor/ikonu pre dosiaľ neprehrané"
+
+msgid "Try to load titles from .meta files"
+msgstr "Pokúsiť sa načítať názvy z .meta súborov"
+
+msgid "EMC re-open list after STOP-press"
+msgstr "Znovu otvoriť filmový zoznam po stiskutí STOP"
+
+msgid "EMC re-open list after Movie end"
+msgstr "Znovu otvoriť filmový zoznam po stiskutí STOP"
+
+msgid "EMC always reload after open"
+msgstr "Vždy po otvoreni znovunačítať filmový zoznam"
+
+msgid "Show Cut-Nr if exist"
+msgstr "Zobraziť čísla rozdelení, ak existujú"
+
+msgid "Blue button function"
+msgstr "Funkcia modrého tlačítka"
+
+msgid "EMC cifs* files operation"
+msgstr "Operácie cifs* súborov filmového zoznamu"
+
+msgid "Hide movies being moved"
+msgstr "Ukryť presúvané filmy"
+
+msgid "Hide movies being deleted"
+msgstr "Ukryť zmazané filmy"
+
+msgid "Hide trashcan directory"
+msgstr "Ukryť adresár koša"
+
+msgid "Hide VLC directory"
+msgstr "Ukryť adresár VLC"
+
+msgid "Automatic timers list cleaning"
+msgstr "Automatické mazanie zoznamu časovačov"
+
+msgid "Enigma daily auto-restart"
+msgstr "Denný autoreštart enigmy"
+
+msgid "Enigma auto-restart window begin"
+msgstr "Okno autoreštartu enigmy začiatok"
+
+msgid "Enigma auto-restart window end"
+msgstr "Okno autoreštartu enigmy koniec"
+
+msgid "Force standby after auto-restart"
+msgstr "Vynútiť standby po autoreštarte"
+
+msgid "EMC output directory"
+msgstr "Výstupný adresár EMC"
+
+msgid "Enable EMC debug output"
+msgstr "Povoliť ladiace informácie"
+
+msgid "Debug output file name"
+msgstr "Názov súboru s ladiacimi informáciami"
+
+msgid "Key period value (50-900)"
+msgstr "Opakovacia doba tlačítka (50-900)"
+
+msgid "Key repeat value (250-900)"
+msgstr "Opakovacia frekvencia tlačítka (250-900)"
+
+msgid "Enable component video in A/V Settings"
+msgstr "Povoliť komponentné video v A/V nastavení"
+
+msgid "Given path %s does not exist. Please change."
+msgstr "Zadaná cesta %s neexistuje. Prosím, zmeňte ju."
+
+msgid "Some settings changes require GUI restart to take effect."
+msgstr "Niektoré zmeny nastavenia vyžadujú reštart GUI, aby sa prejavili."
+
+msgid "Next Enigma auto-restart in "
+msgstr "Nasledujúci štart enigmy o "
+
+msgid "Enigma auto-restart is currently not active."
+msgstr "Automatický reštart enigmy nie je momentálne aktívny."
+
+msgid "EMC Enigma2 auto-restart launching, continue? Select no to postpone by one hour."
+msgstr "Aktivuje sa automatický reštart enigmy, pokračovať? Zvoľte nie na odloženie o 1 hodinu."
+
+msgid "down"
+msgstr "dolu"
+
+msgid "up/down"
+msgstr "hore / dolu"
+
+msgid "off"
+msgstr "vypnuté"
+
+msgid "unhide"
+msgstr "odkryť"
+
+msgid "delete"
+msgstr "zmazať"
+
+msgid "do nothing"
+msgstr "neurobiť nič"
+
+msgid "No override"
+msgstr "neprepísať"
+
+msgid "Video-button"
+msgstr "tlačítko videa"
+
+msgid "TV-button"
+msgstr "tlačítko TV"
+
+msgid "Radio-button"
+msgstr "tlačítko rádií"
+
+msgid "Quick-button"
+msgstr "rýchlotlačítko "
+
+msgid "Timeshift-button"
+msgstr "tlačítko časového posunu"
+
+msgid "configuration"
+msgstr "nastavenie"
+
+msgid "movie manipulation list"
+msgstr "zoznam manipulovaných filmov"
+
+msgid "Enable daily trashcan cleanup"
+msgstr "Povoliť denné vyprázdnenie koša"
+
+msgid "Daily trashcan cleanup time"
+msgstr "Čas denného vyprázdnenia koša"
+
+msgid "Display directory reading text"
+msgstr "Zobraziť text načítavania adresára"
+
+msgid "Reading directory..."
+msgstr "Načítavam adresár..."
+
+msgid "Sort file A to Z at startup"
+msgstr "Zoradiť súbory pri štarte abecedne"
+
+msgid "Movie home at start"
+msgstr "Pri štarte začať v domove filmov"
+
+msgid "No DVD-Player found!"
+msgstr "DVD prehrávač nenájdený"
+
+msgid "Delete validation"
+msgstr "Zmazať overovanie"
+
+msgid "Show Movie Format"
+msgstr "Ukázať formát filmu"
+
+msgid "Show movie progress"
+msgstr "Ukázať progres filmu"
+
+msgid "Show date"
+msgstr "Ukázať dátum"
+
+msgid "Listbox is skin able"
+msgstr "Listbox je skinovateľný"
+
+msgid "Short watching percent"
+msgstr "Krátko pozrené v percentách"
+
+msgid "Finished watching percent"
+msgstr "Úplne pozrené v percentách"
+
+msgid "Mark all movies"
+msgstr "Označiť všetky filmy"
+
+msgid "Remove cut list marker"
+msgstr "Odstrániť značku zoznamu strihu"
+
+msgid "Remove all cut file marker permanently?"
+msgstr "Odstrániť všetky značky zoznamov strihu navždy?"
+
+msgid "Play ALL"
+msgstr "Prehrať všetky"
+
+msgid "IMDBSearch"
+msgstr "Vyhľadávanie v IMDB"
+
+msgid "Move cursor to the top"
+msgstr "Presunúť kurzor na začiatok"
+
+msgid "Move cursor to the end"
+msgstr "Presunúť kurzor na koniec"
+
+msgid "Remove service selection"
+msgstr "Odstrániť výber služieb"
+

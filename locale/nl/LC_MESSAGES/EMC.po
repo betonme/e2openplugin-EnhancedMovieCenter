@@ -1,0 +1,521 @@
+# Ducth language translation file for EnhancedMovieCenter plugin
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-11-10 16:35+0200\n"
+"PO-Revision-Date: \n"
+"Last-Translator: bschaar\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "true"
+msgstr "ja"
+
+msgid "false"
+msgstr "nee"
+
+msgid "no override"
+msgstr "niet overschrijven"
+
+msgid "Directory"
+msgstr "Map"
+
+msgid "show event details"
+msgstr "Laat details zien"
+
+msgid "Stop playback"
+msgstr "Afspelen stoppen"
+
+msgid "Open extensions menu"
+msgstr "Open extentie menu"
+
+msgid "Skipping movie, the file does not exist.\n"
+msgstr "Film overslaan, bestand bestaat niet.\n"
+
+msgid "Alpha sort"
+msgstr "Alfabetisch"
+
+msgid "Play selected movie(s)"
+msgstr "Geselecteerde film(s) afspelen"
+
+msgid "Close EMC"
+msgstr "Filmoverzicht sluiten"
+
+msgid "Open menu"
+msgstr "Menu openen"
+
+msgid "Show event info"
+msgstr "Toon event info"
+
+msgid "Delete file or empty dir"
+msgstr "Bestand of lege map verwijderen"
+
+msgid "Toggle sort mode"
+msgstr "Sorteer modus wisselen"
+
+msgid "Move selected movie(s)"
+msgstr "Geselecteerde film(s) verplaatsen"
+
+msgid "Movie home / Play last (configurable)"
+msgstr "Film hoofdmap / Laatst gespeelde (config.)"
+
+msgid "Open bookmarks"
+msgstr "Open markeringen"
+
+msgid "Move cursor page up"
+msgstr "Cursor pagina omhoog"
+
+msgid "Move cursor page down"
+msgstr "Cursor pagina omlaag"
+
+msgid "Move cursor up"
+msgstr "Cursor omhoog"
+
+msgid "Move cursor down"
+msgstr "Cursor omlaag"
+
+msgid "Move cursor 1/2 page up"
+msgstr "Cursor 1/2 pagina omhoog"
+
+msgid "Move cursor 1/2 page down"
+msgstr "Cursor 1/2 pagina omlaag"
+
+msgid "Directory forward"
+msgstr "Volgende map"
+
+msgid "Directory back"
+msgstr "Vorige map"
+
+msgid "Toggle service selection"
+msgstr "Verwissel zender selectie"
+
+msgid "Available plugins menu"
+msgstr "Menu beschikbare Plugins"
+
+msgid "Reload movie file list"
+msgstr "Filmoverzicht actualiseren"
+
+msgid "Toggle viewed / not viewed"
+msgstr "Verwissel gezien / niet gezien"
+
+msgid "Start / end multiselection"
+msgstr "Start / Stop multiselectie"
+
+msgid "No functionality set..."
+msgstr "Geen functie toegewezen..."
+
+msgid "Delete"
+msgstr "Verwijderen"
+
+msgid "Move"
+msgstr "Verplaatsen"
+
+msgid "Last played movie/playlist not available..."
+msgstr "Laatst afgespeelde film(lijst) niet beschikbaar..."
+
+msgid "Permanently delete all files in trashcan?"
+msgstr "Alle films uit de prullebak definitief verwijderen?"
+
+msgid "Directory is not empty."
+msgstr "Map is niet leeg."
+
+msgid "Cannot delete the parent directory."
+msgstr "Kan bovenliggende map niet verwijderen."
+
+msgid "File not available."
+msgstr "Bestand niet beschikbaar."
+
+msgid "Stop ongoing recording?\n"
+msgstr "Lopende opname stoppen?\n"
+
+msgid "Not stopping any repeating timers. Modify them with the timer editor."
+msgstr "Herhalingstimers werden niet gestopt. Bewerk ze met de Timer-Editor."
+
+msgid " Deleting remotely recorded and it will display an rec-error dialog on the other DB."
+msgstr "Verwijderen remote opnamen er zal een recording-fout worden getoond op de andere ontvanger."
+
+msgid " permanently"
+msgstr " definitief"
+
+msgid " currently played?"
+msgstr " actuele weergave?"
+
+msgid " all selected video files?"
+msgstr " alle geselecteerde videobestanden?"
+
+msgid " all selected video files? The currently playing movie is also one of the selections and its playback will be stopped."
+msgstr " alle geselecteerde videobestanden? De film die nu wordt afgespeeld behoort ook tot de selectie en de weergave zal worden gestopt."
+
+msgid "Delete error:\n"
+msgstr "Fout tijdens verwijderen:\n"
+
+msgid "Delete failed because the trashcan directory does not exist. Attempt to create it now?"
+msgstr "Verwijderen mislukt omdat de map met de prullebak niet is gevonden. Nu aanmaken?"
+
+msgid "Date sort"
+msgstr "Chronologisch"
+
+msgid "Error: path '%s' not available!"
+msgstr "Fout: Map %s niet beschikbaar!"
+
+msgid "*** Multiselection active ***"
+msgstr "*** Multiselectie actief ***"
+
+msgid "How to move files:\n"
+msgstr "Hoe bestanden verplaatsen:\n"
+
+msgid "Select some movies with the VIDEO-button, move the cursor on top of the destination directory and press yellow."
+msgstr "Film(s) selecteren met VIDEO-knop, beweeg de cursor op de doelmap en druk op de gele toets."
+
+msgid "Select Location"
+msgstr "Selecteer locatie"
+
+msgid "Choose directory"
+msgstr "Kies map"
+
+msgid "Trashcan create failed. Check mounts and permissions."
+msgstr "Aanmaken prullebak mislukt. Mounts en rechten controleren."
+
+msgid "Choose operation"
+msgstr "Kies functie"
+
+msgid "Play last"
+msgstr "Laatste film afspelen"
+
+msgid "Movie home"
+msgstr "Hoofdmap films"
+
+msgid "Delete permanently"
+msgstr "Definitief verwijderen"
+
+msgid "Empty trashcan"
+msgstr "Prullebak legen"
+
+msgid "Go to trashcan"
+msgstr "Ga naar prullebak"
+
+msgid "Remove rogue files"
+msgstr "Malafide (wees-)bestanden verwijderen"
+
+msgid "Create link(s)"
+msgstr "Symlink aanmaken"
+
+msgid "Create directory"
+msgstr "Map aanmaken"
+
+msgid "Bookmark directory"
+msgstr "Map markeren"
+
+msgid "Bookmarks"
+msgstr "Markeringen"
+
+msgid "Choose plugin"
+msgstr "Plugin kiezen"
+
+msgid "Choose bookmark"
+msgstr "Markering kiezen"
+
+msgid "Movie Selection Menu"
+msgstr "Film Selectie Menu"
+
+msgid "Enter name for new directory."
+msgstr "Geef naam voor nieuwe map."
+
+msgid "Directory "
+msgstr "Map "
+
+msgid "Locate rogue files and remove them? (permanently if no trashcan available, may take a minute or so)"
+msgstr "Malafide (wees-)bestanden zoeken en verwijderen? (Als er geen prullebak is worden deze meteen verwijderd - kan even duren)"
+
+msgid " files\n"
+msgstr " bestanden\n"
+
+msgid "No rogue files found."
+msgstr "Geen malafide (wees-)bestanden gevonden."
+
+msgid "Found rogue files:\n"
+msgstr "Malafide (wees-)bestanden zoeken:\n"
+
+msgid "Cancel"
+msgstr "Afbreken"
+
+msgid "Save"
+msgstr "Bewaren"
+
+msgid "About"
+msgstr "Over"
+
+msgid "Start EMC with"
+msgstr "Start EMC met"
+
+msgid "Show plugin config in extensions menu"
+msgstr "EMC Setup in extensie menu laten zien"
+
+msgid "Show EMC in extensions menu"
+msgstr "EMC in extensie menu laten zien"
+
+msgid "Preferred EPG language"
+msgstr "Voorkeur EPG taal"
+
+msgid "Primary playback subtitle language"
+msgstr "Eerste voorkeur voor ondertiteling"
+
+msgid "Secondary playback subtitle language"
+msgstr "Tweede voorkeur voor ondertiteling"
+
+msgid "Tertiary playback subtitle language"
+msgstr "Derde voorkeur voor ondertiteling"
+
+msgid "Enable playback auto-subtitling"
+msgstr "Ondertiteling autom. laten zien"
+
+msgid "Primary playback audio language"
+msgstr "Eerste voorkeur voor geluidsspoor"
+
+msgid "Secondary playback audio language"
+msgstr "Tweede voorkeur voor geluidsspoor"
+
+msgid "Tertiary playback audio language"
+msgstr "Derde voorkeur voor geluidsspoor"
+
+msgid "Enable playback auto-language selection"
+msgstr "Geluidsspoor autom. kiezen"
+
+msgid "Leave Movie with Exit"
+msgstr "Stop afspelen met Exit?"
+
+msgid "Movie home auto-update perms (chmod)"
+msgstr "Hoofdmap films: Autom. updaten van rechten (chmod)"
+
+msgid "Movie home chmod permission value"
+msgstr "Hoofdmap films: Chmod waarde"
+
+msgid "Movie home home path"
+msgstr "Pad hoofdmap films"
+
+msgid "Trashcan path"
+msgstr "Pad prullebak"
+
+msgid "How many days files may remain in trashcan"
+msgstr "Aantal dagen bestanden in de prullebak"
+
+msgid "Disable EMC"
+msgstr "EMC deactiveren"
+
+msgid "EMC path access limit"
+msgstr "EMC map beperkte toegang"
+
+msgid "Description field update delay"
+msgstr "Vertraging actualisatie beschrijving"
+
+msgid "File order reverse"
+msgstr "Sortering wisselen"
+
+msgid "EMC open with cursor on newest (TV mode)"
+msgstr "Cursor autom. naar de nieuwste (TV mode)"
+
+msgid "EMC open with cursor on newest (player)"
+msgstr "Cursor automatisch naar begin van de lijst (Player)"
+
+msgid "Cursor predictive move after selection"
+msgstr "Cursor na selectie verplaatsen"
+
+msgid "Show movie icons"
+msgstr "Iconen weergeven"
+
+msgid "Show icon indication for non-watched"
+msgstr "Niet afgespeelde film met icoon kenmerken"
+
+msgid "Try to load titles from .meta files"
+msgstr "Proberen om titels uit .meta-bestand te lezen"
+
+msgid "EMC re-open list after STOP-press"
+msgstr "EMC na op STOP gedrukt te hebben heropenen"
+
+msgid "EMC re-open list after Movie end"
+msgstr "EMC na einde van een film heropenen"
+
+msgid "EMC always reload after open"
+msgstr "EMC na openen altijd opnieuw inlezen"
+
+msgid "Show Cut-Nr if exist"
+msgstr "EMC toont Cut-Nr. indien beschikbaar"
+
+msgid "Blue button function"
+msgstr "Functie van de blaue knop"
+
+msgid "EMC cifs* files operation"
+msgstr "Cifs* bestandsoperaties"
+
+msgid "Hide movies being moved"
+msgstr "Verberg films die verplaatst worden"
+
+msgid "Hide movies being deleted"
+msgstr "Verberg films die gewist worden"
+
+msgid "Hide trashcan directory"
+msgstr "Prullebak verbergen"
+
+msgid "Hide VLC directory"
+msgstr "VLC map verbergen"
+
+msgid "Automatic timers list cleaning"
+msgstr "Automatisch timers opschonen"
+
+msgid "Enigma daily auto-restart"
+msgstr "Enigma2 dagelijks autom. herstarten"
+
+msgid "Enigma auto-restart window begin"
+msgstr "Enigma2 auto-herstart venster Start"
+
+msgid "Enigma auto-restart window end"
+msgstr "Enigma2 auto-herstart venster Eind"
+
+msgid "Force standby after auto-restart"
+msgstr "Forceer Standby status na een auto-herstart"
+
+msgid "EMC output directory"
+msgstr "EMC output map"
+
+msgid "Enable EMC debug output"
+msgstr "Debug output activeren"
+
+msgid "Debug output file name"
+msgstr "Debug output bestandsnaam"
+
+msgid "Key period value (50-900)"
+msgstr "Waarde v.d. toets (50-900)"
+
+msgid "Key repeat value (250-900)"
+msgstr "Waarde herhalingstoets (250-900)"
+
+msgid "Enable component video in A/V Settings"
+msgstr "Component Video in A/V instellingen activeren"
+
+msgid "Given path %s does not exist. Please change."
+msgstr "Opgegeven pad %s bestaat niet. Veranderen a.u.b."
+
+msgid "Some settings changes require GUI restart to take effect."
+msgstr "Sommige veranderingen eisen een herstart van de GUI, Enigma2 a.u.b. opnieuw starten."
+
+msgid "Next Enigma auto-restart in "
+msgstr "Volgende Enigma2 auto-herstart in "
+
+msgid "Enigma auto-restart is currently not active."
+msgstr "Enigma2 auto-herstart is nu niet actief."
+
+msgid "EMC Enigma2 auto-restart launching, continue? Select no to postpone by one hour."
+msgstr "EMC Enigma2 auto-herstart begint. Doorgaan? Kies NEE om dit een uur uit te stellen."
+
+msgid "down"
+msgstr "omlaag"
+
+msgid "up/down"
+msgstr "omhoog/omlaag"
+
+msgid "off"
+msgstr "uit"
+
+msgid "unhide"
+msgstr "tonen"
+
+msgid "delete"
+msgstr "verwijder"
+
+msgid "do nothing"
+msgstr "niks doen"
+
+msgid "No override"
+msgstr "Niet overschrijven"
+
+msgid "Video-button"
+msgstr "Video-knop"
+
+msgid "TV-button"
+msgstr "TV-knop"
+
+msgid "Radio-button"
+msgstr "Radio-knop"
+
+msgid "Quick-button"
+msgstr "Snel-toets"
+
+msgid "Timeshift-button"
+msgstr "Timeshift knop"
+
+msgid "configuration"
+msgstr "Configuratie"
+
+msgid "movie manipulation list"
+msgstr "Film manipulatielijst"
+
+msgid "Enable daily trashcan cleanup"
+msgstr "Prullebak dagelijks legen activeren"
+
+msgid "Daily trashcan cleanup time"
+msgstr "Tijdstip om dagelijks prullebak te legen"
+
+msgid "Display directory reading text"
+msgstr "Bericht bij actualiseren overzicht weergeven"
+
+msgid "Reading directory..."
+msgstr "Map lezen..."
+
+msgid "Sort file A to Z at startup"
+msgstr "Sorteer filmlijst van A tot Z na starten"
+
+msgid "Movie home at start"
+msgstr "Hoofdmap films na starten"
+
+msgid "No DVD-Player found!"
+msgstr "Geen DVD-speler gevonden!"
+
+msgid "Show Movie Format"
+msgstr "Filmtype weergeven"
+
+msgid "Delete validation"
+msgstr "Bevestigen bij wissen"
+
+msgid "Show movie progress"
+msgstr "Voortgang weergeven"
+
+msgid "Show date"
+msgstr "Datum weergeven"
+
+msgid "Listbox is skin able"
+msgstr "Listbox is skinbaar"
+
+msgid "Short watching percent"
+msgstr "Percent kort afspelen"
+
+msgid "Finished watching percent"
+msgstr "Percent volledig afgespeeld"
+
+msgid "Mark all movies"
+msgstr "Alle bestanden"
+
+msgid "Remove cut list marker"
+msgstr "Cut list marker verwijderen"
+
+msgid "Remove all cut file marker permanently?"
+msgstr "Alle cut list markers definitief verwijderen?"
+
+msgid "Play ALL"
+msgstr "Alles afspelen"
+
+msgid "IMDBSearch"
+msgstr "Zoeken via IMDB"
+
+msgid "Move cursor to the top"
+msgstr "Verplaats cursor naar begin"
+
+msgid "Move cursor to the end"
+msgstr "Verplaats cursor naar einde"
+
+msgid "Remove service selection"
+msgstr "Verwijder zender selectie"
+

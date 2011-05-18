@@ -1,0 +1,527 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: enigma2 - enhancedmoviecenter\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-11-10 16:35+0200\n"
+"PO-Revision-Date: 2011-04-10 23:32+0100\n"
+"Last-Translator: Spaeleus <spaeleus@croci.org>\n"
+"Language-Team: www.linsat.net <spaeleus@croci.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"X-Poedit-Language: Italian\n"
+"X-Poedit-Country: ITALY\n"
+"X-Poedit-SourceCharset: iso-8859-1\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: .\n"
+
+msgid "true"
+msgstr "Vero"
+
+msgid "false"
+msgstr "Falso"
+
+msgid "no override"
+msgstr "Non sovrascrivere"
+
+msgid "Directory"
+msgstr "Directory"
+
+msgid "show event details"
+msgstr "Mostrare i dettagli evento"
+
+msgid "Stop playback"
+msgstr "Arrestare la riproduzione"
+
+msgid "Open extensions menu"
+msgstr "Aprire menu estensioni"
+
+msgid "Skipping movie, the file does not exist.\n"
+msgstr "Video ignorato, il file non esiste!\n"
+
+msgid "Alpha sort"
+msgstr "Ordine alfab."
+
+msgid "Play selected movie(s)"
+msgstr "Riprodurre registrazione"
+
+msgid "Close EMC"
+msgstr "Chiudere EMC"
+
+msgid "Open menu"
+msgstr "Aprire menu"
+
+msgid "Show event info"
+msgstr "Mostrare info evento"
+
+msgid "Delete file or empty dir"
+msgstr "Cancellare file o directory vuota"
+
+msgid "Toggle sort mode"
+msgstr "Cambiare ordinamento"
+
+msgid "Move selected movie(s)"
+msgstr "Spostare registrazione"
+
+msgid "Movie home / Play last (configurable)"
+msgstr "Directory registrazioni/riprodurre l'ultima (configurabile)"
+
+msgid "Open bookmarks"
+msgstr "Aprire segnalibri"
+
+msgid "Move cursor page up"
+msgstr "Spostare il cursore 1 pagina sù"
+
+msgid "Move cursor page down"
+msgstr "Spostare il cursore 1 pagina giù"
+
+msgid "Move cursor up"
+msgstr "Cursore sù"
+
+msgid "Move cursor down"
+msgstr "Cursore giù"
+
+msgid "Move cursor 1/2 page up"
+msgstr "Spostare il cursore 1/2 pagina sù"
+
+msgid "Move cursor 1/2 page down"
+msgstr "Spostare il cursore 1/2 pagina giù"
+
+msgid "Directory forward"
+msgstr "Directory successiva "
+
+msgid "Directory back"
+msgstr "Directory precedente"
+
+msgid "Toggle service selection"
+msgstr "Selezione canali On/Off"
+
+msgid "Available plugins menu"
+msgstr "Menu plugin disponibili"
+
+msgid "Reload movie file list"
+msgstr "Ricaricare elenco registrazioni"
+
+msgid "Toggle viewed / not viewed"
+msgstr "Commutare visto/non visto"
+
+msgid "Start / end multiselection"
+msgstr "Avviare/arrestare selezione multipla"
+
+msgid "No functionality set..."
+msgstr "Nessuna funziona associata..."
+
+msgid "Delete"
+msgstr "Cancellare"
+
+msgid "Move"
+msgstr "Spostare"
+
+msgid "Last played movie/playlist not available..."
+msgstr "Ultima registrazione/playlist non disponibile..."
+
+msgid "Permanently delete all files in trashcan?"
+msgstr "Rimuovere definitivamente i file nel cestino?"
+
+msgid "Directory is not empty."
+msgstr "La directory non è vuota."
+
+msgid "Cannot delete the parent directory."
+msgstr "La directory padre non è cancellabile."
+
+msgid "File not available."
+msgstr "File non disponibile."
+
+msgid "Stop ongoing recording?\n"
+msgstr "Arrestare la registrazione in corso?\n"
+
+msgid "Not stopping any repeating timers. Modify them with the timer editor."
+msgstr "Non arrestare i timer ripetuti. Modificarli attraverso l'editor timer."
+
+msgid " Deleting remotely recorded and it will display an rec-error dialog on the other DB."
+msgstr " Cancellazione reg. remota in corso: un messaggio di errore sarà visualizzato sul DB remoto."
+
+msgid " permanently"
+msgstr " In modo permanente"
+
+msgid " currently played?"
+msgstr " attualmente in riproduzione?"
+
+msgid " all selected video files?"
+msgstr " tutti i file video selezionati?"
+
+msgid " all selected video files? The currently playing movie is also one of the selections and its playback will be stopped."
+msgstr " tutti i file video selezionati? Anche la riproduzione in corso è stata selezionata e verrà  arrestata."
+
+msgid "Delete error:\n"
+msgstr "Errore in cancellazione:\n"
+
+msgid "Delete failed because the trashcan directory does not exist. Attempt to create it now?"
+msgstr "Cancellazione fallita! La directory cestino non esiste. Crearla ora?"
+
+msgid "Date sort"
+msgstr "Ord. per data"
+
+msgid "Error: path '%s' not available!"
+msgstr "Errore: il percorso \"%s\" non è disponibile!"
+
+msgid "*** Multiselection active ***"
+msgstr "*** Multi selezione attiva ***"
+
+msgid "How to move files:\n"
+msgstr "Per spostare file:\n"
+
+msgid "Select some movies with the VIDEO-button, move the cursor on top of the destination directory and press yellow."
+msgstr "Selezionare i file con il tasto VIDEO, portare il cursore sulla directory destinazione e premere il tasto GIALLO."
+
+msgid "Select Location"
+msgstr "Scegliere la destinazione"
+
+msgid "Choose directory"
+msgstr "Scegliere la directory"
+
+msgid "Trashcan create failed. Check mounts and permissions."
+msgstr "Creazione cestino fallita! Controllare mount e permessi."
+
+msgid "Choose operation"
+msgstr "Scegliere operazione"
+
+msgid "Play last"
+msgstr "Riprodurre l'ultimo"
+
+msgid "Movie home"
+msgstr "Dir. registrazioni"
+
+msgid "Delete permanently"
+msgstr "Cancellare definitivamente"
+
+msgid "Empty trashcan"
+msgstr "Svuotare il cestino"
+
+msgid "Go to trashcan"
+msgstr "Andare al cestino"
+
+msgid "Remove rogue files"
+msgstr "Rimuovere file rogue"
+
+msgid "Create link(s)"
+msgstr "Creare link"
+
+msgid "Create directory"
+msgstr "Creare directory"
+
+msgid "Bookmark directory"
+msgstr "Etichettare la directory"
+
+msgid "Bookmarks"
+msgstr "Segnalibri"
+
+msgid "Choose plugin"
+msgstr "Scegliere il plugin"
+
+msgid "Choose bookmark"
+msgstr "Scegliere segnalibro"
+
+msgid "Movie Selection Menu"
+msgstr "Menu selezione registrazioni"
+
+msgid "Enter name for new directory."
+msgstr "Inserire un nome per la nuova directory."
+
+msgid "Directory "
+msgstr "Directory "
+
+msgid "Locate rogue files and remove them? (permanently if no trashcan available, may take a minute or so)"
+msgstr "Individuare file rougue e rimuoverli? (definitivamente se cestino non disponibile, occorrerà circa un minuto)"
+
+msgid " files\n"
+msgstr "File\n"
+
+msgid "No rogue files found."
+msgstr "Nessun file rogue individuato."
+
+msgid "Found rogue files:\n"
+msgstr "Individuati file rogue:\n"
+
+msgid "Cancel"
+msgstr "Annull."
+
+msgid "Save"
+msgstr "Salvare"
+
+msgid "About"
+msgstr "Informazioni"
+
+msgid "Start EMC with"
+msgstr "Avviare EMC con"
+
+msgid "Show plugin config in extensions menu"
+msgstr "Configurazione del plugin in Menu estensioni"
+
+msgid "Show EMC in extensions menu"
+msgstr "Mostrare EMC in Menu estensioni"
+
+msgid "Preferred EPG language"
+msgstr "Lingua EPG preferita"
+
+msgid "Primary playback subtitle language"
+msgstr "Lingua sottotitoli: opzione preferenziale"
+
+msgid "Secondary playback subtitle language"
+msgstr "Lingua sottotitoli: opzione secondaria"
+
+msgid "Tertiary playback subtitle language"
+msgstr "Lingua sottotitoli: terza opzione"
+
+msgid "Enable playback auto-subtitling"
+msgstr "Abilitare riproduzione con sottotitoli automatici"
+
+msgid "Primary playback audio language"
+msgstr "Lingua: opzione preferenziale"
+
+msgid "Secondary playback audio language"
+msgstr "Lingua: opzione secondaria"
+
+msgid "Tertiary playback audio language"
+msgstr "Lingua: terza opzione"
+
+msgid "Enable playback auto-language selection"
+msgstr "Abilitare la selezione automatica lingua"
+
+msgid "Leave Movie with Exit"
+msgstr "Abbandonare la riproduzione con Exit"
+
+msgid "Movie home auto-update perms (chmod)"
+msgstr "Movie Home: Auto-Update Rechte (chmod)"
+
+msgid "Movie home chmod permission value"
+msgstr "Valore chmod directory registrazioni"
+
+msgid "Movie home home path"
+msgstr "Percorso directory registrazioni"
+
+msgid "Trashcan path"
+msgstr "Percorso cestino"
+
+msgid "How many days files may remain in trashcan"
+msgstr "Permanenza file nel cestino (giorni)"
+
+msgid "Disable EMC"
+msgstr "Disabilitare EMC"
+
+msgid "EMC path access limit"
+msgstr "EMC: limiti accesso percorso"
+
+msgid "Description field update delay"
+msgstr "Ritardo aggiornamento campo descrizione"
+
+msgid "File order reverse"
+msgstr "Invertire l'ordine dei file"
+
+msgid "EMC open with cursor on newest (TV mode)"
+msgstr "EMC: in apertura cursore sul più recente (mod.  TV)"
+
+msgid "EMC open with cursor on newest (player)"
+msgstr "EMC: in apertura cursore sul più recente (player)"
+
+msgid "Cursor predictive move after selection"
+msgstr "Movimento cursore predittivo dopo la selezione"
+
+msgid "Show movie icons"
+msgstr "Mostrare le icone dei video"
+
+msgid "Show movie progress"
+msgstr "Mostrare il progresso riproduzione"
+
+msgid "Show date"
+msgstr "Mostrare la data"
+
+msgid "Show icon indication for non-watched"
+msgstr "Differenziare icone registrazioni non ancora viste"
+
+msgid "Try to load titles from .meta files"
+msgstr "Tentare caricamento dei titoli da file .meta"
+
+msgid "EMC re-open list after STOP-press"
+msgstr "EMC: riapertura elenco registrazioni su pressione STOP"
+
+msgid "EMC re-open list after Movie end"
+msgstr "EMC: riapertura elenco registrazioni su fine riproduzione"
+
+msgid "EMC always reload after open"
+msgstr "EMC: ricaricare sempre l'elenco all'avvio"
+
+msgid "Show Cut-Nr if exist"
+msgstr "Mostrare Cut-Nr, se esiste"
+
+msgid "Show Movie Format"
+msgstr "Mostrare formato registrazione"
+
+msgid "Blue button function"
+msgstr "Funzione del tasto BLU"
+
+msgid "EMC cifs* files operation"
+msgstr "Operazioni su file cifs*"
+
+msgid "Hide movies being moved"
+msgstr "Nascondere le registrazioni spostate"
+
+msgid "Hide movies being deleted"
+msgstr "Nascondere le registrazioni cancellate"
+
+msgid "Hide trashcan directory"
+msgstr "Nascondere la directory cestino"
+
+msgid "Hide VLC directory"
+msgstr "Nascondere la directory VLC"
+
+msgid "Automatic timers list cleaning"
+msgstr "Pulizia automatica dell'elenco timer"
+
+msgid "Enigma daily auto-restart"
+msgstr "Riavvio giornaliero di enigma2 (automatico)"
+
+msgid "Enigma auto-restart window begin"
+msgstr "Finestra di riavvio automatico enigma2: inizio"
+
+msgid "Enigma auto-restart window end"
+msgstr "Finestra di riavvio automatico enigma2: fine"
+
+msgid "Force standby after auto-restart"
+msgstr "Forzare lo standby dopo il riavvio automatico"
+
+msgid "EMC output directory"
+msgstr "EMC: directory di output"
+
+msgid "Enable EMC debug output"
+msgstr "EMC: abilitare debug output"
+
+msgid "Debug output file name"
+msgstr "Nome del file di output"
+
+msgid "Key period value (50-900)"
+msgstr "Ritardo ripetizione tasti (50-900)"
+
+msgid "Key repeat value (250-900)"
+msgstr "Velocità  ripetizione tasti (250-900)"
+
+msgid "Enable component video in A/V Settings"
+msgstr "Abilitare la voce  Component in configurazione A/V"
+
+msgid "Given path %s does not exist. Please change."
+msgstr "Il percorso %s non esiste. Cambiarlo."
+
+msgid "Some settings changes require GUI restart to take effect."
+msgstr "Per attivare le modifiche è necessario riavviare la GUI!"
+
+msgid "Next Enigma auto-restart in "
+msgstr "Riavvio automatico di enigma2  tra"
+
+msgid "Enigma auto-restart is currently not active."
+msgstr "Il riavvio automatico di enigma2 non è attivo."
+
+msgid "EMC Enigma2 auto-restart launching, continue? Select no to postpone by one hour."
+msgstr "EMC: riavvio automatico di enigma2 in attivazione: eseguirlo? Selezionando \"No\" verrà rimandato di un'ora."
+
+msgid "down"
+msgstr "Giù"
+
+msgid "up/down"
+msgstr "Sù/Giù"
+
+msgid "off"
+msgstr "Off"
+
+msgid "unhide"
+msgstr "Mostrare"
+
+msgid "delete"
+msgstr "Cancellare"
+
+msgid "do nothing"
+msgstr "Nulla"
+
+msgid "No override"
+msgstr "Non configurare"
+
+msgid "Video-button"
+msgstr "Tasto VIDEO"
+
+msgid "TV-button"
+msgstr "Tasto TV"
+
+msgid "Radio-button"
+msgstr "Tasto RADIO"
+
+msgid "Quick-button"
+msgstr "Quick-button"
+
+msgid "Timeshift-button"
+msgstr "Tasto timeshift"
+
+msgid "configuration"
+msgstr "Configurazione"
+
+msgid "movie manipulation list"
+msgstr "Elenco gestione registrazioni"
+
+msgid "Enable daily trashcan cleanup"
+msgstr "Abilitare svuotamento giornaliero cestino"
+
+msgid "Daily trashcan cleanup time"
+msgstr "Ora di svuotamento giornaliero cestino"
+
+msgid "Display directory reading text"
+msgstr "Mostrare la directory di lettura"
+
+msgid "Reading directory..."
+msgstr "Lettura directory..."
+
+msgid "Sort file A to Z at startup"
+msgstr "All'avvio, ordinare alfabeticamente"
+
+msgid "Movie home at start"
+msgstr "Avvio in \"home\" registrazioni"
+
+msgid "No DVD-Player found!"
+msgstr "Player DVD non trovato!"
+
+msgid "Delete validation"
+msgstr "Conferma cancellazione"
+
+msgid "Listbox is skin able"
+msgstr "La listbox può possedere skin"
+
+msgid "Short watching percent"
+msgstr "Limite anteprima (%)"
+
+msgid "Finished watching percent"
+msgstr "Limite visualizzazione completa (%)"
+
+msgid "Mark all movies"
+msgstr "Contrassegnare tutte le registrazioni"
+
+msgid "Remove cut list marker"
+msgstr "Rimuovere i contrassegni di taglio"
+
+msgid "Remove all cut file marker permanently?"
+msgstr "Rimuovere definitivamente i contrassegni di taglio?"
+
+msgid "Play ALL"
+msgstr "Riprodurre tutti"
+
+msgid "IMDBSearch"
+msgstr "Ricerca IMDB"
+
+msgid "Move cursor to the top"
+msgstr "Cursore all'inizio"
+
+msgid "Move cursor to the end"
+msgstr "Cursore alla fine"
+
+msgid "Remove service selection"
+msgstr "Rimuovere la selezione canali"
+
