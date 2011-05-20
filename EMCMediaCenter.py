@@ -431,6 +431,10 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 
 	def nextSubtitleTrack(self):
 		self.sendKey(iServiceKeys.keyUser+1)
+		if self.dvdScreen:
+			# Force show dvd screen
+			self.dvdScreen.hide()
+			self.dvdScreen.show()
 
 	def enterDVDAudioMenu(self):
 		self.sendKey(iServiceKeys.keyUser+2)
