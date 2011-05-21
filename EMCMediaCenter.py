@@ -81,7 +81,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 			{
 		# Disabled for tests
 		# If we enable them, the sound will be delayed for about 2 seconds ?
-		#		iPlayableService.evStart: self.__serviceStarted,
+				iPlayableService.evStart: self.__serviceStarted,
 				iPlayableService.evStopped: self.__serviceStopped,
 				#iPlayableService.evUser: self.__timeUpdated,
 				#iPlayableService.evUser+1: self.__statePlay,
