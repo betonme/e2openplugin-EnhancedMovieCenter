@@ -456,8 +456,17 @@ msgstr "lista manipulacji filmu"
 msgid "Enable daily trashcan cleanup"
 msgstr "Włącz codzienne czyszczenie kosza"
 
-msgid "Daily trashcan cleanup time"
-msgstr "Codzienne czyszczenie kosza o godzinie"
+msgid "Daily cleanup time"
+msgstr "Codzienne czyszczenie"
+
+msgid "No resume below 10 seconds"
+msgstr "Nie wznawaić poniżej 10 sekund."
+
+msgid "Rewind finished movies before playing"
+msgstr "Przewiń zakończone filmy przed odtwarzaniem"
+
+msgid "Always save last played progress as marker"
+msgstr "Zawsze zapisuj jako marker ostatnie odtwarzanie "
 
 msgid "Display directory reading text"
 msgstr "Wyświetla katalog czytania tekstu"
