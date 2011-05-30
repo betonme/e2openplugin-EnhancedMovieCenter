@@ -166,7 +166,7 @@ class InfoBarSupport(	InfoBarBase, \
 	def getSeekPlayPosition(self):
 		try:
 			# InfoBarCueSheetSupport
-			return self.cueGetCurrentPosition()
+			return self.cueGetCurrentPosition() or 0
 		except Exception, e:
 			emcDebugOut("[EMCMC] getSeekPlayPosition exception:" + str(e))
 			return 0
