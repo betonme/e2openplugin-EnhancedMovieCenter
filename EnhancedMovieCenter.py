@@ -61,6 +61,7 @@ def setupKeyResponseValues(dummy=None):
 	os.close(e1)
 	os.close(e2)
 
+# Only one trashclean instance is allowed
 trashCleanCall = None
 
 def trashCleanSetup(dummyparam=None):
@@ -68,7 +69,8 @@ def trashCleanSetup(dummyparam=None):
 		from MovieSelection import gMS
 		global trashCleanCall
 		if trashCleanCall is not None:
-			trashCleanCall.cancel()
+			if trashCleanCall.exists():
+				trashCleanCall.cancel()
 		if config.EMC.movie_trashcan_clean.value is True or config.EMC.movie_finished_clean.value is True:
 			from time import time
 			recordings = NavigationInstance.instance.getRecordings()
@@ -85,8 +87,9 @@ def trashCleanSetup(dummyparam=None):
 			else:
 				if seconds < 0:
 					seconds += 86400	# 24*60*60
-				trashCleanCall = DelayedFunction(1000*seconds, gMS.purgeExpired)
-				DelayedFunction(1000*seconds, trashCleanSetup) #recall Funktion
+				# Recall setup funktion
+				trashCleanCall = DelayedFunction(1000*seconds, trashCleanSetup)
+				# Execute trash cleaning
 				DelayedFunction(2000, gMS.purgeExpired)
 				emcDebugOut("Next trashcan cleanup in " + str(seconds/60) + " minutes")
 	except Exception, e:

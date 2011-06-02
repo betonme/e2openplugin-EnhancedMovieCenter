@@ -58,3 +58,14 @@ class DelayedFunction:
 			self.function(*self.params)
 		except Exception, e:
 			emcDebugOut("[spDF] timerLaunch exception:\n%s:%s" %(str(self.function),str(e)))
+
+	def exists(self):
+		global instanceTab
+		try:
+			i = instanceTab.index(self)
+		except ValueError:
+			i = -1 # no match
+		if i < 0:
+			return False
+		else:
+			return True
