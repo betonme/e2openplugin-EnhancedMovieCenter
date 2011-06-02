@@ -156,9 +156,10 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			}, prio=-1)
 			# give them a little more priority to win over baseclass buttons
 		self["actions"].csel = self
-
+		#self["actions"].setEnabled(True)
+		
 		HelpableScreen.__init__(self)
-
+		
 		self.currentPathSel = config.EMC.movie_homepath.value
 		self.tmpSelList = None
 		self.toggle = True
@@ -590,6 +591,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 	def onDialogShow(self):
 		if self.wasClosed:
 			self.wasClosed = False
+			#self["actions"].setEnabled(True)
 			self["key_red"].text = _("Delete")
 			
 			if config.EMC.needsreload.value:
@@ -832,8 +834,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			emcDebugOut("[EMCMS] setPlayerInstance exception:\n" + str(e))
 
 	def openPlayer(self, playlist, playall=False):
-		self.wasClosed = True
-		self.close(None)
+		#self["actions"].setEnabled(False)
 		# Force update of event info after playing movie 
 		self.resetEventInfo()
 		# Save service 
@@ -845,7 +846,10 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		if self.playerInstance is None:
 			Notifications.AddNotification(EMCMediaCenter, playlistcopy, self, playall)
 		else:
-			DelayedFunction(100, self.playerInstance.movieSelected, playlist, playall)
+			#DelayedFunction(10, self.playerInstance.movieSelected, playlist, playall)
+			self.playerInstance.movieSelected(playlist, playall)
+		self.wasClosed = True
+		self.close(None)
 
 	def entrySelected(self, playall=False):
 		try:

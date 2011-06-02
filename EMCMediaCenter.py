@@ -614,7 +614,8 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 	def showMovies(self):
 		try:
 			self.playerOpenedList = True
-			DelayedFunction(20, self.session.execDialog, self.recordings)
+			#DelayedFunction(20, self.session.execDialog, self.recordings)
+			self.session.execDialog(self.recordings)
 		except Exception, e:
 			emcDebugOut("[EMCPlayer] showMovies exception:\n" + str(e))
 
