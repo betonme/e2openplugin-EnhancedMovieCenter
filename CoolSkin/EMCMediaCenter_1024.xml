@@ -54,7 +54,9 @@
 		<convert type="EMCServicePosition">Remaining,Negate,ShowHours</convert>
 	</widget>
 	<!-- Chapter Label only for DVD -->	
-	<widget name="chapterLabel" position="64,446" size="500,19" font="Regular;19" halign="left" backgroundColor="#00000000" transparent="1" />
+	<widget name="chapterLabel" position="64,446" size="500,19" zPosition="1" halign="left" font="Regular;19"  backgroundColor="#00000000" transparent="1" />
 	<!-- Audio Label only for DVD -->
-	<widget name="audioLabel" position="814,446" size="150,19" halign="right" font="Regular;19" backgroundColor="#00000000" zPosition="3" transparent="1" />
+	<widget name="audioLabel" position="859,446" size="105,19" zPosition="1" halign="right" font="Regular;19" backgroundColor="#00000000" transparent="1" />
+	<!-- Subtitel Label only for DVD -->
+	<widget name="subtitleLabel" position="784,446" size="70,19" zPosition="1" halign="left" font="Regular;19" backgroundColor="#00000000" transparent="1" />
 </screen>
