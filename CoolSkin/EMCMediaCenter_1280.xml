@@ -42,6 +42,8 @@
 	<widget name="audioLabel" position="155,125" size="100,22" font="Regular;18" backgroundColor="#00000000" zPosition="3" transparent="1" />
 
 	<widget name="chapterLabel" position="350,125" size="580,30" font="Regular;22" halign="center" foregroundColor="#00e5b243" backgroundColor="#00000000" transparent="1" />
+	<!-- Subtitel Label only for DVD -->
+	<widget name="subtitleLabel" position="1009,125" size="70,22" zPosition="3" halign="right" font="Regular;18" backgroundColor="#00000000" transparent="1" />
 
 	<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/EMCMoviePlayer/rec_off.png" position="1104,125" size="28,20" zPosition="1" alphatest="on" />
 	<widget source="session.RecordState" render="Pixmap" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/EMCMoviePlayer/rec_on.png" position="1104,125" size="28,20" zPosition="2" alphatest="on">
