@@ -262,7 +262,10 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 				if service and service.type == serviceIdDVD:
 					# Only import DVDPlayer, if we want to play a DVDPlayer format
 					if fileExists(dvdPlayerPlg) or fileExists("%sc"%dvdPlayerPlg):
-						from Plugins.Extensions.DVDPlayer import servicedvd # load c++ part of dvd player plugin
+						try:
+							from Plugins.Extensions.DVDPlayer import servicedvd # load c++ part of dvd player plugin
+						except:
+							pass
 						from Plugins.Extensions.DVDPlayer.plugin import DVDOverlay
 						if not self.dvdScreen:
 							self.dvdScreen = self.session.instantiateDialog(DVDOverlay)
