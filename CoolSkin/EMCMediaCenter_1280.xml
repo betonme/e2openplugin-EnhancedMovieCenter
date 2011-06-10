@@ -12,7 +12,7 @@
 		<convert type="ServiceName">Name</convert>
 	</widget>
 	<widget source="global.CurrentTime" render="Label" position="1110,8" size="100,30" font="Regular;22" valign="top" halign="left" foregroundColor="#00e5b243" backgroundColor="#00000000" transparent="1">
-		<convert type="ClockToText">Format:%H:%M:%S</convert>
+		<convert type="EMCClockToText">Format:%H:%M:%S</convert>
 	</widget>
 
 	<ePixmap position="180,59" size="900,30" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/EMCMoviePlayer/CoolSlider.png" zPosition="3" alphatest="blend" />

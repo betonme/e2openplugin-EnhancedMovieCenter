@@ -4,7 +4,7 @@
 	<!-- Clock -->
 	<ePixmap pixmap="skin_default/icons/clock.png" position="869,530" zPosition="1" size="14,14" alphatest="on" />
 	<widget source="global.CurrentTime" render="Label" position="889,528" size="80,20" font="Regular;20" valign="top" halign="left" foregroundColor="#00e5b243" backgroundColor="#00000000" transparent="1">
-		<convert type="ClockToText">WithSeconds</convert>
+		<convert type="EMCClockToText">WithSeconds</convert>
 	</widget>
 	<!-- Movie title -->
 	<widget source="session.CurrentService" render="Label" position="30,414" size="964,23" font="Regular;23" halign="center" noWrap="1" backgroundColor="#00000000" transparent="1">
