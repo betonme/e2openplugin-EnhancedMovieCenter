@@ -146,7 +146,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 #				"EMCAUDIOL":	(self.unUsed,				"-"),
 				"EMCMENUL":	(self.openMenuPlugins,		_("Available plugins menu")),
 				"EMCTV":		(self.triggerReloadList,			_("Reload movie file list")),
-#				"EMCTVL":		(self.unUsed,				"-"),
+				"EMCTVL":		(self.CoolTimerList,			_("Open Timer List")),
 				"EMCRADIO":	(self.toggleProgress,			_("Toggle viewed / not viewed")),
 #				"EMCRADIOL":	(self.unUsed,				"-"),
 				"EMCTEXT":	(self.multiSelect,			_("Start / end multiselection")),
@@ -180,6 +180,10 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			self.moveToService(self.returnService)
 			self.returnService = None
 			self.tmpSelList = None
+
+	def CoolTimerList(self):
+		from Screens.TimerEdit import TimerEditList
+		self.session.open(TimerEditList)
 
 	def abort(self):
 		if config.EMC.CoolStartHome.value:
