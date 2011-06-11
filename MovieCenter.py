@@ -656,9 +656,14 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 			trashcan = False
 			subdirlist = []
 			filelist = []
-			dirlist = os.listdir(loadPath)	# only need to deal with spaces when executing in shell
+			dirlist = []
+			dirlistSource = os.listdir(loadPath)	# only need to deal with spaces when executing in shell 
 			# add sub directories to the list
-			if dirlist:
+			if dirlistSource:
+				exclude = ["Temporary Items", "Network Trash Folder", "Info"]
+				for p in dirlistSource:
+					if p[0:1] != "." and p not in exclude:
+						dirlist.append( p )
 				for p in dirlist:
 					pathname = os.path.join(loadPath, p)
 					dvdStruct = self.detectDVDStructure(pathname)
