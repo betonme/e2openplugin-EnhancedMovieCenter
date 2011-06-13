@@ -73,11 +73,16 @@ class MovieMenu(Screen):
 				if ext in tsExt:
 					# Only valid for ts files: CutListEditor, DVDBurn, ...
 					self.menu.extend([(p.description, boundFunction(self.execPlugin, p)) for p in plugins.getPlugins(PluginDescriptor.WHERE_MOVIELIST)])
+			# added: EMC Setup		
+			from Plugins.Extensions.EnhancedMovieCenter.plugin import pluginOpen as emcsetup
+			self.menu.append((_("EMC Setup"), boundFunction(self.execPlugin, emcsetup)))
+					
 		elif menumode == "plugins":
 			self["title"] = StaticText(_("Choose plugin"))
 			if self.service is not None:
 				for p in plugins.getPlugins(PluginDescriptor.WHERE_MOVIELIST):
 					self.menu.append((p.description, boundFunction(self.execPlugin, p)))
+					
 		elif menumode == "bookmarks":
 			self["title"] = StaticText(_("Choose bookmark"))
 			try:
