@@ -607,7 +607,9 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 
 	def detectDVDStructure(self, loadPath):
 		#TODO use a list
-		if not os.path.isdir(loadPath):
+		# added: no dvd structure scan for symlinked directories
+		#        to avoid wakeup of sleeping devices
+		if not os.path.isdir(loadPath) or os.path.islink(loadPath):
 			return None
 		elif fileExists(loadPath + "/VIDEO_TS.IFO"):
 			return loadPath + "/VIDEO_TS.IFO"
@@ -660,13 +662,24 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 			dirlistSource = os.listdir(loadPath)	# only need to deal with spaces when executing in shell 
 			# add sub directories to the list
 			if dirlistSource:
+			
+				# hide special folders and files
 				exclude = ["Temporary Items", "Network Trash Folder", "Info"]
 				for p in dirlistSource:
 					if p[0:1] != "." and p not in exclude:
 						dirlist.append( p )
+								
+				# suppress dvd structure scan in selected directories to 
+				# avoid wakeup of sleeping devices
+				noDVDScan = loadPath in ["/media/"]
+								
 				for p in dirlist:
 					pathname = os.path.join(loadPath, p)
-					dvdStruct = self.detectDVDStructure(pathname)
+					
+					dvdStruct = None
+					if not noDVDScan:
+						dvdStruct = self.detectDVDStructure(pathname)
+					
 					if os.path.isdir(pathname) and dvdStruct is None:
 						# Path found
 						if pathname == config.EMC.movie_trashpath.value:
