@@ -90,13 +90,14 @@ class EitList():
 		name = None
 		if service and isinstance(service, eServiceReference):
 			path = service.getPath()
-			if path.endswith(".iso"):
-				if not self.iso:
-					self.iso = IsoSupport(service, borg=True)
-				name = self.iso and self.iso.getIsoName()
-				if name and len(name):
-					path = "/home/root/dvd-" + name
-			elif os.path.isdir(path):
+			#if path.endswith(".iso"):
+			#	if not self.iso:
+			#		self.iso = IsoSupport(service, borg=True)
+			#	name = self.iso and self.iso.getIsoName()
+			#	if name and len(name):
+			#		path = "/home/root/dvd-" + name
+			#el
+			if os.path.isdir(path):
 				path += "/dvd"
 			else:
 				path = os.path.splitext(path)[0]
