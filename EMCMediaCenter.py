@@ -284,21 +284,26 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 					self["TeletextActions"].setEnabled(True)
 					self["DVDPlayerPlaybackActions"].setEnabled(False)
 				
+				# Is this really necessary 
+				# TEST for M2TS Audio problem
+				#self.session.nav.stopService() 
+				
 				# Start playing movie
-				#self.session.nav.stopService() # Is this really necessary
 				self.session.nav.playService(service)
 				
 				#Temp only
 				#self.service = self.session.nav.getCurrentService()
 				
 				if service and service.type == serviceIdDVD:
+					# Seek will cause problems with DVDPlayer!
 					# ServiceDVD needs this to start
 					subs = self.getServiceInterface("subtitle")
 					if subs and self.dvdScreen:
 						subs.enableSubtitles(self.dvdScreen.instance, None)
 				else:
-					# Seek will cause problems with DVDPlayer 
+					# TEST for M2TS Audio problem
 					#self.setSeekState(InfoBarSeek.SEEK_STATE_PLAY)
+					#TODO Do we need this
 					#self.doSeek(0)
 					#TODO AutoSelect subtitle for DVD Player is not implemented yet
 					DelayedFunction(200, self.setAudioTrack)

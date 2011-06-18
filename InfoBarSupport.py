@@ -165,10 +165,12 @@ class InfoBarSupport(	InfoBarBase, \
 		current_pos = current_pos+180000
 		# EMC enhancement: increase recording margin to make sure we get the correct mark
 		margin = config.recording.margin_before.value*60*90000 *2 or 20*60*90000
+		middle = self.getSeekLength() or 90*60*90000
+		middle /=2 
 		
 		for (pts, what) in self.cut_list:
 			if what == self.CUT_TYPE_MARK:
-				if pts != None and ( current_pos < pts and pts < margin ):
+				if pts != None and ( current_pos < pts and pts < margin and pts < middle ):
 					if firstMark == None or pts < firstMark: 
 						firstMark = pts
 		if firstMark is not None:
