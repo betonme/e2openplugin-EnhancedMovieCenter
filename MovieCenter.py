@@ -58,11 +58,12 @@ playerMP3  = audioExt | videoExt - playerDVB - playerM2TS - playerDVD		# Service
 
 serviceIdDVB = eServiceReference.idDVB	# eServiceFactoryDVB::id   enum { id = 0x1 }; 
 serviceIdDVD = 4369 										# eServiceFactoryDVD::id   enum { id = 0x1111 };
-serviceIdMP3 = 4097											# eServiceFactoryM2TS::id  enum { id = 0x1001 };
+serviceIdMP3 = 4097											# eServiceFactoryMP3::id   enum { id = 0x1001 };
 # For later purpose
 serviceIdM2TS = 3 											# eServiceFactoryM2TS::id  enum { id = 0x3 };
 #TODO
 #serviceIdXINE = 4112										# eServiceFactoryXine::id  enum { id = 0x1010 };
+#additionalExtensions = "4098:m3u 4098:e2pls 4098:pls"
 
 serviceIdsCuts = frozenset([serviceIdDVB, serviceIdDVD])
 
