@@ -298,8 +298,8 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 						subs.enableSubtitles(self.dvdScreen.instance, None)
 				else:
 					# Seek will cause problems with DVDPlayer 
-					self.setSeekState(InfoBarSeek.SEEK_STATE_PLAY)
-					self.doSeek(0)
+					#self.setSeekState(InfoBarSeek.SEEK_STATE_PLAY)
+					#self.doSeek(0)
 					#TODO AutoSelect subtitle for DVD Player is not implemented yet
 					DelayedFunction(200, self.setAudioTrack)
 					DelayedFunction(400, self.setSubtitleState, True)
@@ -649,6 +649,9 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 	def playLastCB(self, answer):
 		if answer == True:
 			self.doSeek(self.resume_point)
+		# From Merlin2
+		elif config.EMC.movie_jump_first_mark.value == True:
+			self.jumpToFirstMark()
 		if self.service and self.service.type == serviceIdDVD:
 			# DVDPlayer Workaround
 			self.pauseService()

@@ -97,7 +97,6 @@ class InfoBarSupport(	InfoBarBase, \
 							InfoBarSimpleEventView, \
 							InfoBarServiceNotifications, \
 							InfoBarPVRState, \
-							InfoBarCueSheetSupport, \
 							InfoBarMoviePlayerSummarySupport, \
 							InfoBarSubtitleSupport, \
 							InfoBarTeletextPlugin, \
@@ -105,12 +104,77 @@ class InfoBarSupport(	InfoBarBase, \
 							InfoBarExtensions, \
 							InfoBarPlugins, \
 							InfoBarNumberZap:
+							#InfoBarCueSheetSupport
 			x.__init__(self)
+			
+		# Initialize InfoBarCueSheetSupport because we cannot override __serviceStarted
+		#def __init__(self, actionmap = "InfobarCueSheetActions"):
+		actionmap = "InfobarCueSheetActions"
+		self["CueSheetActions"] = HelpableActionMap(self, actionmap,
+			{
+				"jumpPreviousMark": (self.jumpPreviousMark, _("jump to previous marked position")),
+				"jumpNextMark": (self.jumpNextMark, _("jump to next marked position")),
+				"toggleMark": (self.toggleMark, _("toggle a cut mark at the current position"))
+			}, prio=1)
+		self.cut_list = [ ]
+		self.is_closing = False
+		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
+			{
+				iPlayableService.evStart: self.__serviceStarted,
+			})
 
 	##############################################################################
 	## Override from InfoBarGenerics.py
 	
 	# InfoBarCueSheetSupport
+	def __serviceStarted(self):
+		if self.is_closing:
+			return
+		print "new service started! trying to download cuts!"
+		self.downloadCuesheet()
+		
+		# From Merlin2 InfoBarCueSheetSupport __serviceStarted
+		if config.usage.on_movie_start.value == "beginning" and config.EMC.movie_jump_first_mark.value == True:
+			self.jumpToFirstMark()
+			return
+		
+		if self.ENABLE_RESUME_SUPPORT:
+			last = None
+			
+			for (pts, what) in self.cut_list:
+				if what == self.CUT_TYPE_LAST:
+					last = pts
+					
+			if last is not None:
+				self.resume_point = last
+				l = last / 90000
+				if config.usage.on_movie_start.value == "ask":
+					Notifications.AddNotificationWithCallback(self.playLastCB, MessageBox, _("Do you want to resume this playback?") + "\n" + (_("Resume position at %s") % ("%d:%02d:%02d" % (l/3600, l%3600/60, l%60))), timeout=10)
+				elif config.usage.on_movie_start.value == "resume":
+					Notifications.AddNotificationWithCallback(self.playLastCB, MessageBox, _("Resuming playback"), timeout=2, type=MessageBox.TYPE_INFO)
+			elif config.EMC.movie_jump_first_mark.value == True:
+				self.jumpToFirstMark()
+		elif config.EMC.movie_jump_first_mark.value == True:
+			self.jumpToFirstMark()
+
+	# From Merlin2
+	def jumpToFirstMark(self):
+		firstMark = None
+		current_pos = self.cueGetCurrentPosition() or 0
+		#increase current_pos by 2 seconds to make sure we get the correct mark
+		current_pos = current_pos+180000
+		# EMC enhancement: increase recording margin to make sure we get the correct mark
+		margin = config.recording.margin_before.value*60*90000 *2 or 20*60*90000
+		
+		for (pts, what) in self.cut_list:
+			if what == self.CUT_TYPE_MARK:
+				if pts != None and ( current_pos < pts and pts < margin ):
+					if firstMark == None or pts < firstMark: 
+						firstMark = pts
+		if firstMark is not None:
+			self.start_point = firstMark
+			self.doSeek(self.start_point)
+
 	def jumpNextMark(self):
 		if not self.jumpPreviousNextMark(lambda x: x-90000):
 			# There is no further mark

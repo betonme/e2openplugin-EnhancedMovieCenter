@@ -176,6 +176,7 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 		self.list.append(getConfigListEntry(_("Show date"), config.EMC.movie_date, None, None))
 		self.list.append(getConfigListEntry(_("Show icon indication for non-watched"), config.EMC.movie_mark, None, None))
 		self.list.append(getConfigListEntry(_("No resume below 10 seconds"), config.EMC.movie_ignore_firstcuts, None, None))
+		self.list.append(getConfigListEntry(_("Jump to first mark when playing movie"), config.EMC.movie_jump_first_mark, None, None))
 		self.list.append(getConfigListEntry(_("Rewind finished movies before playing"), config.EMC.movie_rewind_finished, None, None))
 		self.list.append(getConfigListEntry(_("Always save last played progress as marker"), config.EMC.movie_save_lastplayed, None, None))
 		self.list.append(getConfigListEntry(_("Try to load titles from .meta files"), config.EMC.movie_metaload, None, None))

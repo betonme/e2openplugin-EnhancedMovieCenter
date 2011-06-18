@@ -471,6 +471,9 @@ msgstr "Tägliche Reinigungszeit Papierkorb/Aufnahmeliste"
 msgid "No resume below 10 seconds"
 msgstr "Ignoriere Start Marker unter 10 sek"
 
+msgid "Show icon indication for non-watched"
+msgstr "Automatisches Springen zur ersten Marke"
+
 msgid "Rewind finished movies before playing"
 msgstr "Start am Anfand von fertig gespielten Aufnahmen"
 

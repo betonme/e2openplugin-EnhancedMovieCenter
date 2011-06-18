@@ -78,6 +78,7 @@ config.EMC.movie_finished_percent = ConfigSelectionNumber(50, 100, 1, default = 
 config.EMC.movie_date = ConfigYesNo(default = True)
 config.EMC.movie_mark = ConfigYesNo(default = True)
 config.EMC.movie_ignore_firstcuts = ConfigYesNo(default = True)
+config.EMC.movie_jump_first_mark = ConfigYesNo(default = True)
 config.EMC.movie_rewind_finished = ConfigYesNo(default = True)
 config.EMC.movie_save_lastplayed = ConfigYesNo(default = False)
 config.EMC.movie_metaload = ConfigYesNo(default = True)
