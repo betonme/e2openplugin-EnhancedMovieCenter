@@ -86,7 +86,7 @@ class MovieMenu(Screen):
 		elif menumode == "bookmarks":
 			self["title"] = StaticText(_("Choose bookmark"))
 			try:
-				bmfile = open(config.EMC.folder.value + "/bookmarks.cfg", "r")
+				bmfile = open("/etc/enigma2/emc-bookmarks.cfg", "r")
 				#for x in bmfile.readline():
 				#	self.menu.append((x, boundFunction(self.close, x)))
 				for line in bmfile:
@@ -120,7 +120,7 @@ class MovieMenu(Screen):
 	def bookmarkDirCB(self, path):
 		try:
 			if path.endswith("/"):	path = path[:-1]
-			bmfile = open(config.EMC.folder.value + "/bookmarks.cfg", "a")
+			bmfile = open("/etc/enigma2/emc-bookmarks.cfg", "a")
 			bmfile.write(path + "\n")
 			bmfile.close()
 		except Exception, e:
@@ -132,7 +132,7 @@ class MovieMenu(Screen):
 		self.menu.remove(self["menu"].getCurrent())
 		self["menu"].setList(self.menu)
 		try:
-			bmfile = open(config.EMC.folder.value + "/bookmarks.cfg", "w")
+			bmfile = open("/etc/enigma2/emc-bookmarks.cfg", "w")
 			bmfile.writelines([ x[0] for x in self.menu ])
 			bmfile.close()
 		except Exception, e:
