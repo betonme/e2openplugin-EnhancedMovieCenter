@@ -94,7 +94,7 @@ class RecordingsControl:
 				if not filename in self.recList:
 					self.recList.append(filename)
 					inform = True
-					emcDebugOut("[spRC] REC START for: " + filename)
+					emcDebugOut("[emcRC] REC START for: " + filename)
 			else: #timer.state == timer.StateEnded:
 				if filename in self.recList:
 					#OLD 
@@ -102,29 +102,33 @@ class RecordingsControl:
 					#except: pass
 					self.recList.remove(filename)
 					inform = True
-					emcDebugOut("[spRC] REC END for: " + filename)
+					emcDebugOut("[emcRC] REC END for: " + filename)
 					try:
 						emcTasker.shellExecute(timer.fixMoveCmd)
-						emcDebugOut("[spRC] File had been moved while recording was in progress, moving left over files..")
+						emcDebugOut("[emcRC] File had been moved while recording was in progress, moving left over files..")
 					except: pass
-
 				if config.EMC.timer_autocln.value:
-					DelayedFunction(2000, NavigationInstance.instance.RecordTimer.cleanup)	# postpone to avoid crash in basic timer delete by user
+					DelayedFunction(2000, self.timerCleanup)	# postpone to avoid crash in basic timer delete by user
 			if inform:
 				self.recFileUpdate()
 				self.recStateChange(self.recList)
 				#DelayedFunction(500, self.recStateChange, self.recList)
-
 		except Exception, e:
-			emcDebugOut("[spRC] recEvent exception:\n" + str(e))
+			emcDebugOut("[emcRC] recEvent exception:\n" + str(e))
 
+	def timerCleanup(self):
+		try:
+			NavigationInstance.instance.RecordTimer.cleanup()
+		except:
+			emcDebugOut("[emcRC] timerCleanup exception:\n" + str(e))
+		
 	def isRecording(self, filename):
 		try:
 			if filename[0] == "/": 			filename = os.path.split(filename)[1]
 			if filename.endswith(".ts"):	filename = filename[:-3]
 			return filename in self.recList
 		except Exception, e:
-			emcDebugOut("[spRC] isRecording exception:\n" + str(e))
+			emcDebugOut("[emcRC] isRecording exception:\n" + str(e))
 			return False
 
 	def isRemoteRecording(self, filename):
@@ -133,7 +137,7 @@ class RecordingsControl:
 			if filename.endswith(".ts"):	filename = filename[:-3]
 			return filename in self.recRemoteList
 		except Exception, e:
-			emcDebugOut("[spRC] isRemoteRecording exception:\n" + str(e))
+			emcDebugOut("[emcRC] isRemoteRecording exception:\n" + str(e))
 			return False
 
 	def stopRecording(self, filename):
@@ -146,12 +150,12 @@ class RecordingsControl:
 						if timer.repeated: return False
 						timer.afterEvent = AFTEREVENT.NONE
 						NavigationInstance.instance.RecordTimer.removeEntry(timer)
-						emcDebugOut("[spRC] REC STOP for: " + filename)
+						emcDebugOut("[emcRC] REC STOP for: " + filename)
 						return True
 			else:
-				emcDebugOut("[spRC] OOPS stop REC for nonexistent: " + filename)
+				emcDebugOut("[emcRC] OOPS stop REC for nonexistent: " + filename)
 		except Exception, e:
-			emcDebugOut("[spRC] stopRecording exception:\n" + str(e))
+			emcDebugOut("[emcRC] stopRecording exception:\n" + str(e))
 		return False
 
 	def isCutting(self, filename):
@@ -161,7 +165,7 @@ class RecordingsControl:
 					return True 
 			return False
 		except Exception, e:
-			emcDebugOut("[spRC] isCutting exception:\n" + str(e))
+			emcDebugOut("[emcRC] isCutting exception:\n" + str(e))
 			return False
 
 	def fixTimerPath(self, old, new):
@@ -173,18 +177,18 @@ class RecordingsControl:
 					timer.dirname = os.path.split(new)[0] + "/"
 					timer.fixMoveCmd = 'mv "'+ timer.Filename +'."* "'+ timer.dirname +'"'
 					timer.Filename = new
-					emcDebugOut("[spRC] fixed path: " + new)
+					emcDebugOut("[emcRC] fixed path: " + new)
 					break
 
 		except Exception, e:
-			emcDebugOut("[spRC] fixTimerPath exception:\n" + str(e))
+			emcDebugOut("[emcRC] fixTimerPath exception:\n" + str(e))
 
 	def remoteInit(self, ip):
 		try:
 			if ip is not None:
 				self.recFile = config.EMC.folder.value + "/db_%s.rec" %str(ip).replace(", ", ".")[1:-1]
 		except Exception, e:
-			emcDebugOut("[spRC] remoteInit exception:\n" + str(e))
+			emcDebugOut("[emcRC] remoteInit exception:\n" + str(e))
 
 	def recFileUpdate(self):
 		try:
@@ -194,7 +198,7 @@ class RecordingsControl:
 			pickle.dump(self.recList, recf)
 			recf.close()
 		except Exception, e:
-			emcDebugOut("[spRC] recFileUpdate exception:\n" + str(e))
+			emcDebugOut("[emcRC] recFileUpdate exception:\n" + str(e))
 
 	def recFilesRead(self):
 		if self.recFile is None: self.recFileUpdate()
@@ -203,12 +207,12 @@ class RecordingsControl:
 		try:
 			for x in os.listdir(config.EMC.folder.value):
 				if x.endswith(".rec") and x != self.recFile.split("/")[-1]:
-#					emcDebugOut("[spRC] reading " + x)
+#					emcDebugOut("[emcRC] reading " + x)
 					recf = open(config.EMC.folder.value +"/"+ x, "rb")
 					self.recRemoteList += pickle.load(recf)
 					recf.close()
 #				else:
-#					emcDebugOut("[spRC] skipped " + x)
+#					emcDebugOut("[emcRC] skipped " + x)
 
 		except Exception, e:
-			emcDebugOut("[spRC] recFilesRead exception:\n" + str(e))
+			emcDebugOut("[emcRC] recFilesRead exception:\n" + str(e))
