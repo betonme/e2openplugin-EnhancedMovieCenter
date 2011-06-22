@@ -119,7 +119,7 @@ class RecordingsControl:
 	def timerCleanup(self):
 		try:
 			NavigationInstance.instance.RecordTimer.cleanup()
-		except:
+		except Exception, e:
 			emcDebugOut("[emcRC] timerCleanup exception:\n" + str(e))
 		
 	def isRecording(self, filename):
