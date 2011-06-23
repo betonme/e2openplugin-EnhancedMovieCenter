@@ -860,19 +860,20 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			current = self.getCurrent()
 			if current is not None:
 				if self["list"].currentSelIsLatest():
-					emcDebugOut("[EMCMS] entrySelected currentSelIsLatest")
+					#emcDebugOut("[EMCMS] entrySelected currentSelIsLatest")
 					entry = "Latest Recordings"
 					self.setNextPathSel(entry)
 				elif self["list"].currentSelIsDirectory(): # or currentSelIsVlc or currentSelIsVlcDir
 					# Open folder and reload movielist
-					emcDebugOut("[EMCMS] entrySelected currentSelIsDirectory")
+					#emcDebugOut("[EMCMS] entrySelected currentSelIsDirectory")
+					print "entrySelected " + str(self["list"].getCurrentSelDir())
 					self.setNextPathSel( self["list"].getCurrentSelDir() )
 				elif self["list"].currentSelIsVlc():
-					emcDebugOut("[EMCMS] entrySelected currentSelIsVlc")
+					#emcDebugOut("[EMCMS] entrySelected currentSelIsVlc")
 					entry = self["list"].list[ self["list"].getCurrentIndex() ]
 					self.vlcMovieSelected(entry)
 				else:
-					emcDebugOut("[EMCMS] entrySelected else")
+					#emcDebugOut("[EMCMS] entrySelected else")
 					playlist = self["list"].makeSelectionList()
 					if not self["list"].serviceBusy(playlist[0]):
 						self.openPlayer(playlist, playall)

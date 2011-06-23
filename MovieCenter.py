@@ -724,13 +724,14 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 					e2bookmarks = config.movielist and config.movielist.videodirs and config.movielist.videodirs.value[:] or []
 					if e2bookmarks:
 						for e2b in e2bookmarks:
-							print e2b
 							customlist.append( (e2b, "E2 "+os.path.basename(e2b[:-1])) )
-				#if config.EMC.emcbookmarks.value:
-				#	e2bookmarks = config.movielist and config.movielist.videodirs and config.movielist.videodirs.value[:] or []
-				#	for e2b in e2bookmarks:
-				#		customlist.append( (e2b, e2b) )
-
+				if config.EMC.emcbookmarks.value:
+					from MovieSelectionMenu import openEMCBookmarks
+					emcbookmarks = openEMCBookmarks()
+					if emcbookmarks:
+						for emcb in emcbookmarks:
+							customlist.append( (emcb.replace("\n",""), "EMC "+os.path.basename(emcb)) )
+			
 			subdirlist = customlist + subdirlist
 			return subdirlist, filelist
 		except Exception, e:

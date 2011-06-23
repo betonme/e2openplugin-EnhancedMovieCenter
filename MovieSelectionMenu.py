@@ -34,7 +34,20 @@ import os
 
 from EMCTasker import emcTasker, emcDebugOut
 from EnhancedMovieCenter import _
-			
+
+#Todo make a new class
+def openEMCBookmarks():
+	bm = []
+	try:
+		f = open("/etc/enigma2/emc-bookmarks.cfg", "r")
+		bm = f.readlines()
+	except Exception, e:
+		emcDebugOut("[EMCBookmarks] Exception in openEMCBookmarks: " + str(e))
+	finally:
+		if f is not None:
+			f.close()
+	return bm
+
 class MovieMenu(Screen):
 	def __init__(self, session, menumode, mlist, service, selections, currentPath):
 		Screen.__init__(self, session)
@@ -75,10 +88,10 @@ class MovieMenu(Screen):
 					self.menu.extend([(p.description, boundFunction(self.execPlugin, p)) for p in plugins.getPlugins(PluginDescriptor.WHERE_MOVIELIST)])
 			# added: EMC Setup		
 			from Plugins.Extensions.EnhancedMovieCenter.plugin import pluginOpen as emcsetup
-			self.menu.append((_("EMC Setup"), boundFunction(self.execPlugin, emcsetup)))
 			self.menu.append((_("E2 Bookmarks"), boundFunction(self.e2Bookmarks)))
 			self.menu.append((_("Open E2 Bookmark path"), boundFunction(self.openE2Bookmark)))
-		
+			self.menu.append((_("EMC Setup"), boundFunction(self.execPlugin, emcsetup)))
+			
 		elif menumode == "plugins":
 			self["title"] = StaticText(_("Choose plugin"))
 			if self.service is not None:
@@ -87,15 +100,10 @@ class MovieMenu(Screen):
 					
 		elif menumode == "bookmarks":
 			self["title"] = StaticText(_("Choose bookmark"))
-			try:
-				bmfile = open("/etc/enigma2/emc-bookmarks.cfg", "r")
-				#for x in bmfile.readline():
-				#	self.menu.append((x, boundFunction(self.close, x)))
-				for line in bmfile:
+			bm = openEMCBookmarks()
+			if bm:
+				for line in bm:
 					self.menu.append((line, boundFunction(self.close, line)))
-				bmfile.close()
-			except Exception, e:
-				emcDebugOut("[EMCMM] bookmarks mode exception:\n" + str(e))
 
 		self["menu"] = List(self.menu)
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"],
