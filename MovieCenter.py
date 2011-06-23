@@ -660,11 +660,14 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 			subdirlist = []
 			filelist = []
 			dirlist = []
+			customlist = []
+			e2bookmarks = []
 			dirlistSource = os.listdir(loadPath)	# only need to deal with spaces when executing in shell 
+			
 			# add sub directories to the list
 			if dirlistSource:
-			
 				# hide special folders and files
+				# TODO should be configurable
 				exclude = ["Temporary Items", "Network Trash Folder", "Info"]
 				for p in dirlistSource:
 					if p[0:1] != "." and p not in exclude:
@@ -705,17 +708,25 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 									date = strftime("%Y%m%d%H%M", fileDateTime)
 									filelist.append( (pathname, p, ext, date) )
 				subdirlist.sort(key=lambda x: x[0].lower())
+			
+			if loadPath != "/" and loadPath[:-1] != config.EMC.movie_pathlimit.value:
+				customlist.append( ("..", "..") )
+			
 			# Insert these entries always at last
 			if loadPath[:-1] == config.EMC.movie_homepath.value:
-				# Insert a virtual directory 'Latest Recordings
-				#TODO add config option
-				subdirlist.insert(0, ("Latest Recordings", "Latest Recordings"))
-				if os.path.exists("/usr/lib/enigma2/python/Plugins/Extensions/VlcPlayer") and not config.EMC.movie_vlc_hide.value:
-					subdirlist.insert(0, ("VLC servers", "VLC servers"))
 				if trashcan and not config.EMC.movie_trashcan_hide.value:
-					subdirlist.insert(0, (config.EMC.movie_trashpath.value, os.path.basename(config.EMC.movie_trashpath.value)))
-			if loadPath != "/" and loadPath[:-1] != config.EMC.movie_pathlimit.value:
-				subdirlist.insert(0, ("..", ".."))
+					customlist.append( (config.EMC.movie_trashpath.value, os.path.basename(config.EMC.movie_trashpath.value)) )
+				if not config.EMC.latest_recordings_hide.value:
+					customlist.append( ("Latest Recordings", "Latest Recordings") )
+				if os.path.exists("/usr/lib/enigma2/python/Plugins/Extensions/VlcPlayer") and not config.EMC.movie_vlc_hide.value:
+					customlist.append( ("VLC servers", "VLC servers") )
+			
+			#TODO add E2 Bookmarks
+			#config.movielist.videodirs
+			e2bookmarks = config.movielist and config.movielist.videodirs and config.movielist.videodirs.value[:] or []
+			print e2bookmarks
+			
+			subdirlist = customlist + subdirlist
 			return subdirlist, filelist
 		except Exception, e:
 			emcDebugOut("[MC] createDirlist exception:\n" + str(e))
@@ -852,7 +863,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 
 	def getPlayerService(self, path, name, ext=None):
 		if not name:
-			print "EMC TODO Not tested yet"
+			emcDebugOut("EMC TODO Not tested yet")
 			name = os.path.basename(path) 
 		if not ext:
 			ext = os.path.splitext(path)[1].lower()

@@ -195,6 +195,7 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 		self.list.append(getConfigListEntry(_("Show Cut-Nr if exist"), config.EMC.CoolMovieNr, None, None))
 		self.list.append(getConfigListEntry(_("Hide movies being moved"), config.EMC.movie_hide_mov, None, None))
 		self.list.append(getConfigListEntry(_("Hide movies being deleted"), config.EMC.movie_hide_del, None, None))
+		self.list.append(getConfigListEntry(_("Hide Latest Recordings directory"), config.EMC.latest_recordings_hide, None, None))
 		self.list.append(getConfigListEntry(_("Hide VLC directory"), config.EMC.movie_vlc_hide, None, None))
 		self.list.append(getConfigListEntry(_("Automatic timers list cleaning"), config.EMC.timer_autocln, None, None))
 		self.list.append(getConfigListEntry(_("Enigma daily auto-restart"), config.EMC.enigmarestart, self.autoRestartInfo, self.autoRestartInfo))
