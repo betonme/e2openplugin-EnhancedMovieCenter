@@ -223,19 +223,14 @@ class MovieMenu(Screen):
 
 	def e2Bookmarks(self):
 		path = self.currentPathSel+"/"
-		# Maybe we should use the MovieLocationBox because of inhibitDirs = ["/bin", "/boot", "/dev", "/etc", "/lib", "/proc", "/sbin", "/sys", "/usr", "/var"]
-		from Screens.LocationBox import LocationBox
-		self.session.open(LocationBox, text = _("Manage E2 Bookmarks"), filename = "", currDir = path, minFree = 100)
+		from Screens.LocationBox import MovieLocationBox
+		self.session.open(MovieLocationBox, text = _("Manage E2 Bookmarks"), filename = "", dir = path)
 		self.close(None)
 
 	def openE2Bookmark(self):
-		try:
-			path = self.currentPathSel+"/"
-			# Maybe we should use the MovieLocationBox because of inhibitDirs = ["/bin", "/boot", "/dev", "/etc", "/lib", "/proc", "/sbin", "/sys", "/usr", "/var"]
-			from Screens.LocationBox import LocationBox
-			self.session.openWithCallback(self.openE2BookmarkCB, LocationBox, text = _("Open E2 Bookmark path"), filename = "", currDir = path, minFree = 100)
-		except Exception, e:
-			emcDebugOut("[EMCMM] bookmarkDirCB exception:\n" + str(e))
+		path = self.currentPathSel+"/"
+		from Screens.MovieLocationBox import LocationBox
+		self.session.openWithCallback(self.openE2BookmarkCB, MovieLocationBox, text = _("Open E2 Bookmark path"), filename = "", dir = path)
 
 	def openE2BookmarkCB(self, path=None):
 		if path is not None:
