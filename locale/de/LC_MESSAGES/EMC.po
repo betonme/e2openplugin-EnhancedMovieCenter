@@ -300,9 +300,6 @@ msgstr "Movie Home: Stammverzeichnis"
 msgid "Trashcan path"
 msgstr "Papierkorbverzeichnis"
 
-msgid "How many days files may remain in trashcan"
-msgstr "Verbleib der Dateien im Papierkorb (Tage)"
-
 msgid "Disable EMC"
 msgstr "EMC deaktivieren"
 
@@ -467,6 +464,18 @@ msgstr "Erlaube tÃ¤gliche Papierkorb Leerung"
 
 msgid "Daily cleanup time"
 msgstr "TÃ¤gliche Reinigungszeit Papierkorb/Aufnahmeliste"
+
+msgid "How many days files may remain in trashcan"
+msgstr "Verbleib der Dateien im Papierkorb (Tage)"
+
+msgid "Move finished movies in trashcan (press OK)"
+msgstr "Verschiebe gesehene Filme in den Papierkorb (drücke OK)"
+
+msgid "Age of finished movies in movie folder (days)"
+msgstr "Alter der gesehenen Filme im Filmordner (Tage)"
+
+msgid "ATTENTION\n\nThis option will move all finished movies in Movie Home automatically to Your trashcan at the given time.\nAt next trashcan cleanup all movies will be deleted.\n\nConfirm this with the blue key followed by the green key."
+msgstr "ACHTUNG\n\nDiese Option verschiebt automatisch alle fertig gesehene Aufnahmen in Movie Home nach der eingestellten Zeit in den Papierkorb.\nBei der nächsten Papierkorb Leerung werden diese Aufnahmen dann gelöscht.\n\nBestätige dies mit der blauen Taste, gefolgt von der grünen Taste."
 
 msgid "No resume below 10 seconds"
 msgstr "Ignoriere Start Marker unter 10 sek"
