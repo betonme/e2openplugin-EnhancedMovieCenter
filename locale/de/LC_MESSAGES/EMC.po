@@ -366,8 +366,26 @@ msgstr "Film wÃ¤hrend dem lÃ¶schen ausblenden"
 msgid "Hide trashcan directory"
 msgstr "Papierkorb-Verzeichnis ausblenden"
 
-msgid "Hide VLC directory"
-msgstr "VLC Verzeichnis ausblenden"
+msgid "Show VLC directory"
+msgstr "VLC Verzeichnis anzeigen"
+
+msgid "Show Latest Recordings directory"
+msgstr "Ordner Neueste Aufnahmen anzeigen"
+
+msgid "Show E2 Bookmarks in movielist"
+msgstr "E2 Lesezeichen in Filmliste anzeigen"
+
+msgid "Show EMC Bookmarks in movielist"
+msgstr "EMC Lesezeichen in Filmliste anzeigen"
+
+msgid "Hide linked files"
+msgstr "Verlinkte Dateien ausblenden"
+
+msgid "Hide linked folders"
+msgstr "Verlinkte Ordner ausblenden"
+
+msgid "Check for DVD Struct folders"
+msgstr "Suche nach DVD Strukturen"
 
 msgid "Automatic timers list cleaning"
 msgstr "Automatische Timerlisten-Bereinigung"
@@ -548,3 +566,9 @@ msgstr "E2 Lesezeichen bearbeiten"
 
 msgid "Open E2 Bookmark path"
 msgstr "E2 Lesezeichen Ordner öffnen"
+
+msgid "Exclude folders and files"
+msgstr "Ordner und Dateien ausblenden"
+
+msgid "Suppress DVD structure scan in folders"
+msgstr "Unterdrücke DVD Strukturen Scan"

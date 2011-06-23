@@ -223,6 +223,8 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 		self.list.append(getConfigListEntry(_("Description field update delay"), config.EMC.movie_descdelay, None, None))
 		self.list.append(getConfigListEntry(_("Key period value (50-900)"), config.EMC.key_period, setupKeyResponseValues, None))
 		self.list.append(getConfigListEntry(_("Key repeat value (250-900)"), config.EMC.key_repeat, setupKeyResponseValues, None))
+		self.list.append(getConfigListEntry(_("Exclude folders and files"), config.EMC.item_exclude, None, None))
+		self.list.append(getConfigListEntry(_("Suppress DVD structure scan in folders"), config.EMC.scan_supress, None, None))
 		try:
 			self.list.append(getConfigListEntry(_("Enable component video in A/V Settings"), config.av.yuvenabled, self.needsRestart, None))
 		except: pass

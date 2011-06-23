@@ -120,6 +120,8 @@ config.EMC.moviecenter_gotonewestp = ConfigYesNo()
 config.EMC.moviecenter_selmove = ConfigSelection(default = "d", choices = [("d", _("down")), ("b", _("up/down")), ("o", _("off"))])
 config.EMC.moviecenter_loadtext = ConfigYesNo(default = True)
 config.EMC.timer_autocln = ConfigYesNo(default = False)
+config.EMC.item_exclude = ConfigText(default = "Temporary Items, Network Trash Folder, Info", fixed_size = False, visible_width = 22)
+config.EMC.scan_supress = ConfigText(default = "/media/", fixed_size = False, visible_width = 22)
 
 launch_choices = [	("None", _("No override")),
 					("showMovies", _("Video-button")),

@@ -667,15 +667,24 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 			# add sub directories to the list
 			if dirlistSource:
 				# hide special folders and files
-				# TODO should be configurable
-				exclude = ["Temporary Items", "Network Trash Folder", "Info"]
+				try:
+					exclude = [x.strip() for x in config.EMC.item_exclude.value.split(',')] #["Temporary Items", "Network Trash Folder", "Info"]
+				except Exception, e:
+					emcDebugOut("[MC] exclude exception:\n" + str(e))
+					exclude = []
+				
 				for p in dirlistSource:
 					if p[0:1] != "." and p not in exclude:
 						dirlist.append( p )
-								
+				
 				# suppress dvd structure scan in selected directories to 
 				# avoid wakeup of sleeping devices
-				noDVDScan = loadPath in ["/media/"]
+				try:
+					supress = [x.strip() for x in config.EMC.scan_supress.value.split(',')] #["/media/"]
+					noDVDScan = loadPath in supress
+				except Exception, e:
+					emcDebugOut("[MC] supress exception:\n" + str(e))
+					noDVDScan = False
 				
 				for p in dirlist:
 					pathname = os.path.join(loadPath, p)
