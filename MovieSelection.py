@@ -593,7 +593,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			self.moveToIndex(0)
 
 	def onDialogShow(self):
-		if self.wasClosed:
+		if self.wasClosed or config.EMC.needsreload.value:
 			self.wasClosed = False
 			#self["actions"].setEnabled(True)
 			self["key_red"].text = _("Delete")
