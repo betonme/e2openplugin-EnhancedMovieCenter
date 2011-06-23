@@ -542,3 +542,9 @@ msgstr "Entferne alle Markierungen"
 
 msgid "E2 Bookmarks"
 msgstr "E2 Lesezeichen"
+
+msgid "Manage E2 Bookmarks"
+msgstr "E2 Lesezeichen bearbeiten"
+
+msgid "Open E2 Bookmark path"
+msgstr "E2 Lesezeichen Ordner öffnen"

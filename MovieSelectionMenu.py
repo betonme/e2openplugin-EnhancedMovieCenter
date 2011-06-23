@@ -77,6 +77,7 @@ class MovieMenu(Screen):
 			from Plugins.Extensions.EnhancedMovieCenter.plugin import pluginOpen as emcsetup
 			self.menu.append((_("EMC Setup"), boundFunction(self.execPlugin, emcsetup)))
 			self.menu.append((_("E2 Bookmarks"), boundFunction(self.e2Bookmarks)))
+			self.menu.append((_("Open E2 Bookmark path"), boundFunction(self.openE2Bookmark)))
 		
 		elif menumode == "plugins":
 			self["title"] = StaticText(_("Choose plugin"))
@@ -221,9 +222,22 @@ class MovieMenu(Screen):
 		#self.close("reload")
 
 	def e2Bookmarks(self):
+		path = self.currentPathSel+"/"
+		# Maybe we should use the MovieLocationBox because of inhibitDirs = ["/bin", "/boot", "/dev", "/etc", "/lib", "/proc", "/sbin", "/sys", "/usr", "/var"]
+		from Screens.LocationBox import LocationBox
+		self.session.open(LocationBox, text = _("Manage E2 Bookmarks"), filename = "", currDir = path, minFree = 100)
+		self.close(None)
+
+	def openE2Bookmark(self):
 		try:
 			path = self.currentPathSel+"/"
+			# Maybe we should use the MovieLocationBox because of inhibitDirs = ["/bin", "/boot", "/dev", "/etc", "/lib", "/proc", "/sbin", "/sys", "/usr", "/var"]
 			from Screens.LocationBox import LocationBox
-			self.session.open(LocationBox, text = _("Choose directory"), filename = "", currDir = path, minFree = 100)
-		except:
-			pass
+			self.session.openWithCallback(self.openE2BookmarkCB, LocationBox, text = _("Open E2 Bookmark path"), filename = "", currDir = path, minFree = 100)
+		except Exception, e:
+			emcDebugOut("[EMCMM] bookmarkDirCB exception:\n" + str(e))
+
+	def openE2BookmarkCB(self, path=None):
+		if path is not None:
+			path = "bookmark" + path.replace("\n","")
+		self.close(path)

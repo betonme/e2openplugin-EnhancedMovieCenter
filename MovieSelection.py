@@ -970,7 +970,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 				return
 			path = self.currentPathSel
 			if os.path.exists(path) or path.find("Latest Recordings")>-1 or path.find("VLC servers")>-1 or self.browsingVLC():
-				emcDebugOut("[EMCMS] __reloadList")
+				#emcDebugOut("[EMCMS] __reloadList")
 				self["list"].reload(path + "/"*(path != "/"))
 			if initCursor:
 				self.initCursor()
