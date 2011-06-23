@@ -170,7 +170,9 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 		self.list.append(getConfigListEntry(_("Show VLC directory"), config.EMC.vlc, None, None))
 		self.list.append(getConfigListEntry(_("Show E2 Bookmarks in movielist"), config.EMC.e2bookmarks, None, None))
 		self.list.append(getConfigListEntry(_("Show EMC Bookmarks in movielist"), config.EMC.emcbookmarks, None, None))
-		#self.list.append(getConfigListEntry(_("Hide all links (files and folders)"), config.EMC.links_hide, None, None))
+		self.list.append(getConfigListEntry(_("Hide linked files"), config.EMC.hide_linkedfiles, None, None))
+		self.list.append(getConfigListEntry(_("Hide linked folders"), config.EMC.hide_linkedfolders, None, None))
+		#self.list.append(getConfigListEntry(_("Check for DVD Struct folders"), config.EMC.check_dvdstruct, None, None))
 		self.list.append(getConfigListEntry(_("Sort file A to Z at startup"), config.EMC.CoolStartAZ, None, None))
 		self.list.append(getConfigListEntry(_("File order reverse"), config.EMC.moviecenter_reversed, None, None))
 

@@ -676,21 +676,18 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 				# suppress dvd structure scan in selected directories to 
 				# avoid wakeup of sleeping devices
 				noDVDScan = loadPath in ["/media/"]
-								
+				
 				for p in dirlist:
 					pathname = os.path.join(loadPath, p)
 					
-					dvdStruct = None
-					if not noDVDScan:
-						dvdStruct = self.detectDVDStructure(pathname)
-					
-					if os.path.isdir(pathname) and dvdStruct is None:
-						# Path found
-						if pathname == config.EMC.movie_trashpath.value:
-							trashcan = True
-							continue
-						subdirlist.append( (pathname, p) )
-					else:
+					if os.path.isdir(pathname):
+						if config.EMC.hide_linkedfolders.value:
+							if os.path.islink(pathname):
+								#print "linkedfolders " + str(pathname)
+								continue
+						dvdStruct = None
+						if not noDVDScan: #and config.EMC.check_dvdstruct.value:
+							dvdStruct = self.detectDVDStructure(pathname)
 						if dvdStruct:
 							# DVD Structure found
 							pathname = os.path.dirname(dvdStruct)
@@ -699,14 +696,24 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 							date = strftime("%Y%m%d%H%M", fileDateTime)
 							filelist.append( (pathname, p, ext, date) )
 						else:
-							# Look for media files
-							if os.path.isfile(pathname):
-								ext = os.path.splitext(p)[1].lower()
-								global mediaExt
-								if ext in mediaExt:
-									fileDateTime = localtime(os.path.getmtime(pathname))
-									date = strftime("%Y%m%d%H%M", fileDateTime)
-									filelist.append( (pathname, p, ext, date) )
+							# Folder found
+							if pathname == config.EMC.movie_trashpath.value:
+								trashcan = True
+							else:
+								subdirlist.append( (pathname, p) )
+					else:
+						# Look for media files
+						#if os.path.isfile(pathname): # Avoid double checks
+						if config.EMC.hide_linkedfiles.value:
+							if os.path.islink(pathname):
+								#print "linkedfiles " + str(pathname)
+								continue
+						ext = os.path.splitext(p)[1].lower()
+						global mediaExt
+						if ext in mediaExt:
+							fileDateTime = localtime(os.path.getmtime(pathname))
+							date = strftime("%Y%m%d%H%M", fileDateTime)
+							filelist.append( (pathname, p, ext, date) )
 				subdirlist.sort(key=lambda x: x[0].lower())
 			
 			if loadPath != "/" and loadPath[:-1] != config.EMC.movie_pathlimit.value:
