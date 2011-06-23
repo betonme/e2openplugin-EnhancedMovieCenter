@@ -716,16 +716,21 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 			if loadPath[:-1] == config.EMC.movie_homepath.value:
 				if trashcan and not config.EMC.movie_trashcan_hide.value:
 					customlist.append( (config.EMC.movie_trashpath.value, os.path.basename(config.EMC.movie_trashpath.value)) )
-				if not config.EMC.latest_recordings_hide.value:
+				if config.EMC.latest_recordings.value:
 					customlist.append( ("Latest Recordings", "Latest Recordings") )
-				if os.path.exists("/usr/lib/enigma2/python/Plugins/Extensions/VlcPlayer") and not config.EMC.movie_vlc_hide.value:
+				if os.path.exists("/usr/lib/enigma2/python/Plugins/Extensions/VlcPlayer") and config.EMC.vlc.value:
 					customlist.append( ("VLC servers", "VLC servers") )
-			
-			#TODO add E2 Bookmarks
-			#config.movielist.videodirs
-			e2bookmarks = config.movielist and config.movielist.videodirs and config.movielist.videodirs.value[:] or []
-			print e2bookmarks
-			
+				if config.EMC.e2bookmarks.value:
+					e2bookmarks = config.movielist and config.movielist.videodirs and config.movielist.videodirs.value[:] or []
+					if e2bookmarks:
+						for e2b in e2bookmarks:
+							print e2b
+							customlist.append( (e2b, "E2 "+os.path.basename(e2b[:-1])) )
+				#if config.EMC.emcbookmarks.value:
+				#	e2bookmarks = config.movielist and config.movielist.videodirs and config.movielist.videodirs.value[:] or []
+				#	for e2b in e2bookmarks:
+				#		customlist.append( (e2b, e2b) )
+
 			subdirlist = customlist + subdirlist
 			return subdirlist, filelist
 		except Exception, e:
