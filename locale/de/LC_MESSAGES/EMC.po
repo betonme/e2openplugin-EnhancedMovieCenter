@@ -475,7 +475,7 @@ msgid "Jump to first mark when playing movie"
 msgstr "Automatisches Springen zur ersten Marke"
 
 msgid "Rewind finished movies before playing"
-msgstr "Start am Anfand von fertig gespielten Aufnahmen"
+msgstr "Start am Anfang von fertig gespielten Aufnahmen"
 
 msgid "Always save last played progress as marker"
 msgstr "Letzte Abspielposition immer als Marker speichern"
