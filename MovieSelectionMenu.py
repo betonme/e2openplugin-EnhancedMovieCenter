@@ -76,7 +76,8 @@ class MovieMenu(Screen):
 			# added: EMC Setup		
 			from Plugins.Extensions.EnhancedMovieCenter.plugin import pluginOpen as emcsetup
 			self.menu.append((_("EMC Setup"), boundFunction(self.execPlugin, emcsetup)))
-					
+			self.menu.append((_("E2 Bookmarks"), boundFunction(self.e2Bookmarks)))
+		
 		elif menumode == "plugins":
 			self["title"] = StaticText(_("Choose plugin"))
 			if self.service is not None:
@@ -218,3 +219,11 @@ class MovieMenu(Screen):
 		#self.hide()
 		plugin(session=self.session, service=self.service)
 		#self.close("reload")
+
+	def e2Bookmarks(self):
+		try:
+			path = self.currentPathSel+"/"
+			from Screens.LocationBox import LocationBox
+			self.session.open(LocationBox, text = _("Choose directory"), filename = "", currDir = path, minFree = 100)
+		except:
+			pass

@@ -540,3 +540,5 @@ msgstr "Cursor ganz nach unten"
 msgid "Remove service selection"
 msgstr "Entferne alle Markierungen"
 
+msgid "E2 Bookmarks"
+msgstr "E2 Lesezeichen"
