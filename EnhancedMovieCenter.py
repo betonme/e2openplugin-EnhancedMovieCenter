@@ -24,11 +24,16 @@ from Components.config import *
 from Components.Button import Button
 from Components.ConfigList import ConfigListScreen
 from Components.Language import *
+from Components.ActionMap import ActionMap
+from Components.Label import Label
+from Components.Pixmap import Pixmap
+from Components.Sources.StaticText import StaticText
+from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Screens.ServiceScan import *
 import Screens.Standby
 from Tools import Notifications
-from enigma import eServiceEvent
+from enigma import eServiceEvent, eActionMap
 import os, struct
 import NavigationInstance
 
@@ -64,7 +69,7 @@ def setupKeyResponseValues(dummy=None):
 # Only one trashclean instance is allowed
 trashCleanCall = None
 
-def trashCleanSetup(dummyparam=None):
+def cleanupSetup(dummyparam=None):
 	try:
 		from MovieSelection import gMS
 		global trashCleanCall
@@ -80,20 +85,19 @@ def trashCleanSetup(dummyparam=None):
 			ltime = lotime[3]*60 + lotime[4]
 			ctime = cltime[0]*60 + cltime[1]
 			seconds = 60 * (ctime - ltime)
-			
 			if recordings or rec_time > 0 and (rec_time - time()) < 600: # no more recordings exist
-				DelayedFunction(1800000, trashCleanSetup)
+				DelayedFunction(1800000, cleanupSetup)
 				emcDebugOut("recordings exist... so next trashcan cleanup in " + str(seconds/60) + " minutes")
 			else:
 				if seconds < 0:
 					seconds += 86400	# 24*60*60
 				# Recall setup funktion
-				trashCleanCall = DelayedFunction(1000*seconds, trashCleanSetup)
+				trashCleanCall = DelayedFunction(1000*seconds, cleanupSetup)
 				# Execute trash cleaning
 				DelayedFunction(2000, gMS.purgeExpired)
 				emcDebugOut("Next trashcan cleanup in " + str(seconds/60) + " minutes")
 	except Exception, e:
-		emcDebugOut("[sp] trashCleanSetup exception:\n" + str(e))
+		emcDebugOut("[sp] cleanupSetup exception:\n" + str(e))
 
 def EMCStartup(session):
 	if not os.path.exists(config.EMC.folder.value):
@@ -103,7 +107,7 @@ def EMCStartup(session):
 	if config.EMC.epglang.value:
 		eServiceEvent.setEPGLanguage(config.EMC.epglang.value)
 	setupKeyResponseValues()
-	DelayedFunction(5000, trashCleanSetup)
+	DelayedFunction(5000, cleanupSetup)
 
 	# Go into standby if the reason for restart was EMC auto-restart
 	if os.path.exists(config.EMC.folder.value + "/EMC_standby_flag.tmp"):
@@ -134,7 +138,7 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 			"green": 		self.keySaveNew,
 			"nextBouquet":	self.bouquetPlus,
 			"prevBouquet":	self.bouquetMinus,
-		}, -2)
+		}, -2) # higher priority
 
 		self["key_red"] = Button(_("Cancel"))
 		self["key_green"] = Button(_("Save"))
@@ -154,11 +158,11 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 		self.list.append(getConfigListEntry(_("Movie home at start"), config.EMC.CoolStartHome, None, None))
 		self.list.append(getConfigListEntry(_("Movie home home path"), config.EMC.movie_homepath, self.validatePath, self.openLocationBox))
 		self.list.append(getConfigListEntry(_("EMC path access limit"), config.EMC.movie_pathlimit, self.validatePath, self.openLocationBox))
-		self.list.append(getConfigListEntry(_("Enable daily trashcan cleanup"), config.EMC.movie_trashcan_clean, trashCleanSetup))
+		self.list.append(getConfigListEntry(_("Enable daily trashcan cleanup"), config.EMC.movie_trashcan_clean, self.trashCleanupSetup, None))
 		self.list.append(getConfigListEntry(_("How many days files may remain in trashcan"), config.EMC.movie_trashcan_limit, None, None))
-		self.list.append(getConfigListEntry(_("Enable daily movie folder cleanup"), config.EMC.movie_finished_clean, trashCleanSetup))
-		self.list.append(getConfigListEntry(_("Days before cleaning finished movies"), config.EMC.movie_finished_limit, None, None))
-		self.list.append(getConfigListEntry(_("Daily cleanup time"), config.EMC.movie_trashcan_ctime, trashCleanSetup))
+		self.list.append(getConfigListEntry(_("Move finished movies in trashcan (press OK)"), config.EMC.movie_finished_clean, self.trashCleanupSetup, self.movieCleanupSetup))
+		self.list.append(getConfigListEntry(_("Age of finished movies in movie folder (days)"), config.EMC.movie_finished_limit, self.trashCleanupSetup, None))
+		self.list.append(getConfigListEntry(_("Daily cleanup time"), config.EMC.movie_trashcan_ctime, self.trashCleanupSetup, None))
 		self.list.append(getConfigListEntry(_("Trashcan path"), config.EMC.movie_trashpath, self.validatePath, self.openLocationBox))
 		self.list.append(getConfigListEntry(_("Delete validation"), config.EMC.movie_trashcan_validation, None, None))
 		self.list.append(getConfigListEntry(_("Hide trashcan directory"), config.EMC.movie_trashcan_hide, None, None))
@@ -216,18 +220,19 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 		try:
 			self.list.append(getConfigListEntry(_("Enable component video in A/V Settings"), config.av.yuvenabled, self.needsRestart, None))
 		except: pass
-
+		
 		self.needsRestartFlag = False
+
+	def onDialogShow(self):
+		self.setTitle("Enhanced Movie Center "+ EMCVersion+ " (Setup)")
 
 	def autoRestartInfo(self, dummy=None):
 		emcTasker.ShowAutoRestartInfo()
 
 	def bouquetPlus(self):
-		#self["config"].setCurrentIndex( max(self["config"].getCurrentIndex()-16, 0) )
 		self["config"].instance.moveSelection(self["config"].instance.pageUp)
 
 	def bouquetMinus(self):
-		#self["config"].setCurrentIndex( min(self["config"].getCurrentIndex()+16, len(self.list)-1) )
 		self["config"].instance.moveSelection(self["config"].instance.pageDown)
 
 	def dbgChange(self, value):
@@ -291,7 +296,46 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 		if not os.path.exists(str(value)):
 			self.session.open(MessageBox, _("Given path %s does not exist. Please change." % str(value)), MessageBox.TYPE_ERROR)
 
-	def onDialogShow(self):
-		self.setTitle("Enhanced Movie Center "+ EMCVersion+ " (Setup)")
+	def trashCleanupSetup(self, value):
+		cleanupSetup()
 	
+	def movieCleanupSetup(self):
+		if not self["config"].getCurrent()[1].value:
+			self.session.openWithCallback(self.movieCleanupConfirmed, ConfirmBox, text=_("ATTENTION\n\nThis option will move all finished movies in Movie Home automatically to Your trashcan at the given time.\nAt next trashcan cleanup all movies will be deleted.\n\nConfirm this with the blue key followed by the green key."), type=MessageBox.TYPE_INFO)
+		else:
+			self["config"].getCurrent()[1].value = False
+			self["config"].invalidateCurrent()
 
+	def movieCleanupConfirmed(self, answer):
+		if answer:
+			self["config"].getCurrent()[1].value = True
+			self["config"].invalidateCurrent()
+			cleanupSetup()
+
+class ConfirmBox(MessageBox):
+	def __init__(self, session, text, type):
+		MessageBox.__init__(self, session, text=text, type=type, enable_input=False)
+		self.skinName = "MessageBox"
+		self["actions"] = ActionMap(["ConfirmBox"], 
+			{
+				"cancel": self.cancel,
+				"firstok": self.firstOk,
+				"secondok": self.secondOk,
+			}, -1)
+		self.firstKey = False
+		eActionMap.getInstance().bindAction('', 0x7FFFFFFF, self.action) #(name, prio, function) lowest prio
+
+	#this function is called on every keypress!
+	def action(self, key, flag):
+		if flag == 0:
+			self.firstKey = False
+
+	def cancel(self):
+		self.close(False)
+
+	def firstOk(self):
+		self.firstKey = True
+
+	def secondOk(self):
+		if self.firstKey:
+			self.close(True)

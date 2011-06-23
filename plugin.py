@@ -30,6 +30,12 @@ from Components.config import *
 from EMCTasker import emcTasker, emcDebugOut
 from EnhancedMovieCenter import _, EMCVersion, EMCStartup, EnhancedMovieCenterMenu
 
+yes_no_descriptions = {False: _("no"), True: _("yes")}
+class ConfigYesNoWOKeys(ConfigBoolean):
+	def __init__(self, default = False):
+		ConfigBoolean.__init__(self, default = default, descriptions = yes_no_descriptions)
+	def handleKey(self, key):
+		pass
 
 def langList():
 	newlist = []
@@ -94,7 +100,7 @@ config.EMC.movie_trashpath = ConfigText(default = "/hdd/movie/trashcan", fixed_s
 config.EMC.movie_trashcan_hide = ConfigYesNo(default = False)
 config.EMC.movie_trashcan_clean = ConfigYesNo(default = True)
 config.EMC.movie_trashcan_limit = ConfigSelectionNumber(0, 99, 1, default = 3)
-config.EMC.movie_finished_clean = ConfigYesNo(default = False)
+config.EMC.movie_finished_clean = ConfigYesNoWOKeys(default = False)
 config.EMC.movie_finished_limit = ConfigSelectionNumber(0, 99, 1, default = 10)
 config.EMC.movie_trashcan_ctime = ConfigClock(default = 0)
 config.EMC.movie_trashcan_validation = ConfigYesNo(default = True)
