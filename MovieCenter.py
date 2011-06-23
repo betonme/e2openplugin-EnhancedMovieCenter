@@ -686,7 +686,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 								#print "linkedfolders " + str(pathname)
 								continue
 						dvdStruct = None
-						if not noDVDScan: #and config.EMC.check_dvdstruct.value:
+						if not noDVDScan and config.EMC.check_dvdstruct.value:
 							dvdStruct = self.detectDVDStructure(pathname)
 						if dvdStruct:
 							# DVD Structure found
