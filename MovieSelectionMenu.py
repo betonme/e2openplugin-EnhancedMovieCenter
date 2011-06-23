@@ -224,13 +224,13 @@ class MovieMenu(Screen):
 	def e2Bookmarks(self):
 		path = self.currentPathSel+"/"
 		from Screens.LocationBox import MovieLocationBox
-		self.session.open(MovieLocationBox, text = _("Manage E2 Bookmarks"), filename = "", dir = path)
+		self.session.open(MovieLocationBox, text = _("Manage E2 Bookmarks"), dir = path)
 		self.close(None)
 
 	def openE2Bookmark(self):
 		path = self.currentPathSel+"/"
-		from Screens.MovieLocationBox import LocationBox
-		self.session.openWithCallback(self.openE2BookmarkCB, MovieLocationBox, text = _("Open E2 Bookmark path"), filename = "", dir = path)
+		from Screens.LocationBox import MovieLocationBox
+		self.session.openWithCallback(self.openE2BookmarkCB, MovieLocationBox, text = _("Open E2 Bookmark path"), dir = path)
 
 	def openE2BookmarkCB(self, path=None):
 		if path is not None:
