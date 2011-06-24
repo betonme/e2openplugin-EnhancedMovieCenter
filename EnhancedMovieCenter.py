@@ -289,8 +289,8 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 	def openLocationBox(self):
 		try:
 			path = self.list[ self["config"].getCurrentIndex() ][1].value + "/"
-			from Screens.LocationBox import LocationBox
-			self.session.openWithCallback(self.dirSelected, LocationBox, text = _("Choose directory"), filename = "", currDir = path, minFree = 100)
+			from Screens.LocationBox import MovieLocationBox
+			self.session.openWithCallback(self.dirSelected, MovieLocationBox, text = _("Choose directory"), dir = path, minFree = 100)
 		except:
 			pass
 

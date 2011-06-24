@@ -28,7 +28,7 @@ from Plugins.Plugin import PluginDescriptor
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Screens.InputBox import InputBox
-from Screens.LocationBox import LocationBox
+from Screens.LocationBox import MovieLocationBox
 from Tools.BoundFunction import boundFunction
 import os
 
@@ -125,7 +125,7 @@ class MovieMenu(Screen):
 		self.close(path)
 
 	def bookmarkDir(self):
-		self.session.openWithCallback(self.bookmarkDirCB, LocationBox, windowTitle= _("Select Location"), text = _("Choose directory"), filename = "", currDir = self.currentPathSel+"/", minFree = 0)
+		self.session.openWithCallback(self.bookmarkDirCB, MovieLocationBox, text = _("Choose directory"), dir = self.currentPathSel+"/", minFree = 0)
 
 	def bookmarkDirCB(self, path):
 		try:
@@ -167,7 +167,7 @@ class MovieMenu(Screen):
 			self.close(None)
 
 	def createLinks(self):
-		self.session.openWithCallback(self.createLinksCB, LocationBox, windowTitle= _("Select Location"), text = _("Choose directory"), filename = "", currDir = self.currentPathSel+"/", minFree = 0)
+		self.session.openWithCallback(self.createLinksCB, MovieLocationBox, text = _("Choose directory"), dir = self.currentPathSel+"/", minFree = 0)
 
 	def createLinksCB(self, targetPath):
 		try:
@@ -231,13 +231,11 @@ class MovieMenu(Screen):
 
 	def e2Bookmarks(self):
 		path = self.currentPathSel+"/"
-		from Screens.LocationBox import MovieLocationBox
 		self.session.open(MovieLocationBox, text = _("Manage E2 Bookmarks"), dir = path)
 		self.close(None)
 
 	def openE2Bookmark(self):
 		path = self.currentPathSel+"/"
-		from Screens.LocationBox import MovieLocationBox
 		self.session.openWithCallback(self.openE2BookmarkCB, MovieLocationBox, text = _("Open E2 Bookmark path"), dir = path)
 
 	def openE2BookmarkCB(self, path=None):
