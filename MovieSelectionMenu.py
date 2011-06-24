@@ -225,9 +225,8 @@ class MovieMenu(Screen):
 			self.close(None)
 			
 	def execPlugin(self, plugin):
-		#self.hide()
 		plugin(session=self.session, service=self.service)
-		#self.close("reload")
+		self.close("plugin")
 
 	def e2Bookmarks(self):
 		path = self.currentPathSel+"/"

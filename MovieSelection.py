@@ -369,6 +369,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			if selection == "Play last": self.playLast()
 			elif selection == "Movie home": self.changeDir(config.EMC.movie_homepath.value)
 			elif selection == "reload": self.reloadList()
+			elif selection == "plugin": self.onDialogShow()
 			elif selection == "ctrash": self.purgeExpired()
 			elif selection == "trash": self.changeDir(config.EMC.movie_trashpath.value)
 			elif selection == "delete": self.deleteFile(True)
@@ -598,8 +599,8 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			#self["actions"].setEnabled(True)
 			self["key_red"].text = _("Delete")
 			
-			if config.EMC.needsreload.value:
-				self["list"].setAlphaSort(config.EMC.CoolStartAZ.value)
+			#if config.EMC.needsreload.value:
+			#	self["list"].setAlphaSort(config.EMC.CoolStartAZ.value)
 			
 			if self["list"].getAlphaSort():
 				self["key_green"].text = _("Date sort")
