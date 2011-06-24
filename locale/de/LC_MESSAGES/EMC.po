@@ -255,6 +255,9 @@ msgstr "Starte EMC mit"
 msgid "Show plugin config in extensions menu"
 msgstr "EMC Setup im Erweiterungsmenü anzeigen"
 
+msgid "Do you want to resume this playback?"
+msgstr "Wiedergabe fortsetzen ?"
+
 msgid "Show EMC in extensions menu"
 msgstr "EMC im Erweiterungsmenü anzeigen"
 
