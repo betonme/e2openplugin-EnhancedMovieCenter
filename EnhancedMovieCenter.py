@@ -118,9 +118,10 @@ def EMCStartup(session):
 class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 	skin = """
 		<screen name="EnhancedMovieCenterMenu" position="center,center" size="620,470" title="EnhancedMovieCenterMenu">
-		<widget name="config" position="10,10" size="605,400" enableWrapAround="1" scrollbarMode="showOnDemand" />
+		<widget name="config" position="10,10" size="605,340" enableWrapAround="1" scrollbarMode="showOnDemand" />
 		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key-red.png" position="66,425" zPosition="0" size="140,40" transparent="1" alphatest="on" />
 		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key-green.png" position="412,425" zPosition="0" size="140,40" transparent="1" alphatest="on" />
+		<widget source="help" render="Label" position="10,360" size="605,55" font="Regular;21" />
 		<widget name="key_red" position="66,425" zPosition="1" size="140,40" font="Regular;20" valign="center" halign="center" backgroundColor="#9f1313" transparent="1" shadowColor="#000000" shadowOffset="-1,-1" />
 		<widget name="key_green" position="412,425" zPosition="1" size="140,40" font="Regular;20" valign="center" halign="center" backgroundColor="#1f771f" transparent="1" shadowColor="#000000" shadowOffset="-1,-1" />
 	</screen>"""
@@ -144,118 +145,144 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 		self["key_green"] = Button(_("Save"))
 #		self["key_yellow"] = Button(" ")
 #		self["key_blue"] = Button(" ")
+		self["help"] = StaticText()
 		
 		self.list = []
 		ConfigListScreen.__init__(self, self.list)
+		self.onShown.append(self.onDialogShow)
 		self.needsRestartFlag = False
 		self.createConfig()
-
+		def selectionChanged():
+			if self["config"].current:
+				self["config"].current[1].onDeselect(self.session)
+			self["config"].current = self["config"].getCurrent()
+			if self["config"].current:
+				self["config"].current[1].onSelect(self.session)
+			for x in self["config"].onSelectionChanged:
+				x()
+		self["config"].selectionChanged = selectionChanged
+		self["config"].onSelectionChanged.append(self.updateHelp)
+		
 	def createConfig(self):
-		self.list = []
-		self.list.append(getConfigListEntry(   _("About")                                         , config.EMC.about                    , None                  , self.showInfo         , _("") ) )
-		
-		self.list.append(getConfigListEntry(   _("Start EMC with")                                , config.EMC.movie_launch             , self.launchListSet    , None                  , _("") ) )
-		self.list.append(getConfigListEntry(   _("Show plugin config in extensions menu")         , config.EMC.extmenu_plugin           , self.needsRestart     , None                  , _("") ) )
-		self.list.append(getConfigListEntry(   _("Show EMC in extensions menu")                   , config.EMC.extmenu_list             , self.needsRestart     , None                  , _("") ) )
-		
-		if config.usage.setup_level.index >= 1: # intermediate+
-			self.list.append(getConfigListEntry(  _("Disable EMC")                                   , config.EMC.ml_disable               , self.needsRestart     , None                  , _("") ) )
-		
-		self.list.append(getConfigListEntry(   _("Movie home at start")                           , config.EMC.CoolStartHome            , None                  , None                  , _("") ) )
-		self.list.append(getConfigListEntry(   _("Movie home home path")                          , config.EMC.movie_homepath           , self.validatePath     , self.openLocationBox  , _("") ) )
-		
-		if config.usage.setup_level.index >= 1: # intermediate+
-			self.list.append(getConfigListEntry(  _("EMC path access limit")                         , config.EMC.movie_pathlimit          , self.validatePath     , self.openLocationBox  , _("") ) )
-		
-		#if config.usage.setup_level.index >= 1: # intermediate+
-		self.list.append(getConfigListEntry(   _("Enable daily trashcan cleanup")                 , config.EMC.movie_trashcan_clean     , self.trashCleanupSetup, None                  , _("") ) )
-		
-		#if self.list[ self["config"].getCurrentIndex() ][1].value == 
-		self.list.append(getConfigListEntry(   _("How many days files may remain in trashcan")    , config.EMC.movie_trashcan_limit     , None                  , None                  , _("") ) )
-		if config.usage.setup_level.index >= 2: # expert+
-			self.list.append(getConfigListEntry(  _("Move finished movies in trashcan (press OK)")   , config.EMC.movie_finished_clean     , self.trashCleanupSetup, self.movieCleanupSetup, _("") ) )
-			self.list.append(getConfigListEntry(  _("Age of finished movies in movie folder (days)") , config.EMC.movie_finished_limit     , self.trashCleanupSetup, None                  , _("") ) )
-		
-		self.list.append(getConfigListEntry(   _("Daily cleanup time")                            , config.EMC.movie_trashcan_ctime     , self.trashCleanupSetup, None                  , _("") ) )
-		self.list.append(getConfigListEntry(   _("Trashcan path")                                 , config.EMC.movie_trashpath          , self.validatePath     , self.openLocationBox  , _("") ) )
-		self.list.append(getConfigListEntry(   _("Delete validation")                             , config.EMC.movie_trashcan_validation, None                  , None                  , _("") ) )
-		self.list.append(getConfigListEntry(   _("Hide trashcan directory")                       , config.EMC.movie_trashcan_hide      , None                  , None                  , _("") ) )
-		self.list.append(getConfigListEntry(   _("Show Latest Recordings directory")              , config.EMC.latest_recordings        , None                  , None                  , _("") ) )
-		self.list.append(getConfigListEntry(   _("Show VLC directory")                            , config.EMC.vlc                      , None                  , None                  , _("") ) )
-		self.list.append(getConfigListEntry(   _("Show E2 Bookmarks in movielist")                , config.EMC.e2bookmarks              , None                  , None                  , _("") ) )
-		self.list.append(getConfigListEntry(   _("Show EMC Bookmarks in movielist")               , config.EMC.emcbookmarks             , None                  , None                  , _("") ) )
-		
-		if config.usage.setup_level.index >= 1: # intermediate+
-			self.list.append(getConfigListEntry(  _("Hide linked files")                             , config.EMC.hide_linkedfiles         , None                  , None                  , _("") ) )
-			self.list.append(getConfigListEntry(  _("Hide linked folders")                           , config.EMC.hide_linkedfolders       , None                  , None                  , _("") ) )
-			self.list.append(getConfigListEntry(  _("Check for DVD Struct folders")                  , config.EMC.check_dvdstruct          , None                  , None                  , _("") ) )
-		
-		self.list.append(getConfigListEntry(   _("Sort file A to Z at startup")                   , config.EMC.CoolStartAZ              , None                  , None                  , _("") ) )
-		self.list.append(getConfigListEntry(   _("File order reverse")                            , config.EMC.moviecenter_reversed     , None                  , None                  , _("") ) )
-		self.list.append(getConfigListEntry(   _("EMC open with cursor on newest (TV mode)")      , config.EMC.moviecenter_gotonewest   , None                  , None                  , _("") ) )
-		self.list.append(getConfigListEntry(   _("EMC open with cursor on newest (player)")       , config.EMC.moviecenter_gotonewestp  , None                  , None                  , _("") ) )
-		self.list.append(getConfigListEntry(   _("Cursor predictive move after selection")        , config.EMC.moviecenter_selmove      , None                  , None                  , _("") ) )
-		self.list.append(getConfigListEntry(   _("Listbox is skin able")                          , config.EMC.skin_able                , None                  , None                  , _("") ) )
-		self.list.append(getConfigListEntry(   _("Show movie icons")                              , config.EMC.movie_icons              , None                  , None                  , _("") ) )
-		self.list.append(getConfigListEntry(   _("Show movie progress")                           , config.EMC.movie_progress           , None                  , None                  , _("") ) )
-		self.list.append(getConfigListEntry(   _("Short watching percent")                        , config.EMC.movie_watching_percent   , None                  , None                  , _("") ) )
-		self.list.append(getConfigListEntry(   _("Finished watching percent")                     , config.EMC.movie_finished_percent   , None                  , None                  , _("") ) )
-		self.list.append(getConfigListEntry(   _("Show date")                                     , config.EMC.movie_date               , None                  , None                  , _("") ) )
-		self.list.append(getConfigListEntry(   _("Show icon indication for non-watched")          , config.EMC.movie_mark               , None                  , None                  , _("") ) )
-		
-		if config.usage.setup_level.index >= 1: # intermediate+
-			self.list.append(getConfigListEntry(  _("No resume below 10 seconds")                    , config.EMC.movie_ignore_firstcuts   , None                  , None                  , _("") ) )
-			self.list.append(getConfigListEntry(  _("Jump to first mark when playing movie")         , config.EMC.movie_jump_first_mark    , None                  , None                  , _("") ) )
-			self.list.append(getConfigListEntry(  _("Rewind finished movies before playing")         , config.EMC.movie_rewind_finished    , None                  , None                  , _("") ) )
-			self.list.append(getConfigListEntry(  _("Always save last played progress as marker")    , config.EMC.movie_save_lastplayed    , None                  , None                  , _("") ) )
-		
-		self.list.append(getConfigListEntry(   _("EMC always reload after open")                  , config.EMC.movie_reload             , None                  , None                  , _("") ) )
-		self.list.append(getConfigListEntry(   _("EMC re-open list after STOP-press")             , config.EMC.movie_reopen             , None                  , None                  , _("") ) )
-		self.list.append(getConfigListEntry(   _("EMC re-open list after Movie end")              , config.EMC.movie_reopenEOF          , None                  , None                  , _("") ) )
-		self.list.append(getConfigListEntry(   _("Display directory reading text")                , config.EMC.moviecenter_loadtext     , None                  , None                  , _("") ) )
-		self.list.append(getConfigListEntry(   _("Try to load titles from .meta files")           , config.EMC.movie_metaload           , None                  , None                  , _("") ) )
-		self.list.append(getConfigListEntry(   _("Show Movie Format")                             , config.EMC.CoolFormat               , None                  , None                  , _("") ) )
-		self.list.append(getConfigListEntry(   _("Show Cut-Nr if exist")                          , config.EMC.CoolMovieNr              , None                  , None                  , _("") ) )
-		
-		self.list.append(getConfigListEntry(   _("Leave Movie with Exit")                         , config.EMC.movie_exit               , None                  , None                  , _("") ) )
-		self.list.append(getConfigListEntry(   _("Blue button function")                          , config.EMC.movie_bluefunc           , None                  , None                  , _("") ) )
-		
-		self.list.append(getConfigListEntry(   _("Hide movies being moved")                       , config.EMC.movie_hide_mov           , None                  , None                  , _("") ) )
-		self.list.append(getConfigListEntry(   _("Hide movies being deleted")                     , config.EMC.movie_hide_del           , None                  , None                  , _("") ) )
-		
-		if config.usage.setup_level.index >= 1: # intermediate+
-			self.list.append(getConfigListEntry(  _("Automatic timers list cleaning")                , config.EMC.timer_autocln            , None                  , None                  , _("") ) )
-			self.list.append(getConfigListEntry(  _("Enigma daily auto-restart")                     , config.EMC.enigmarestart            , self.autoRestartInfo  , self.autoRestartInfo  , _("") ) )
-			self.list.append(getConfigListEntry(  _("Enigma auto-restart window begin")              , config.EMC.enigmarestart_begin      , self.autoRestartInfo  , self.autoRestartInfo  , _("") ) )
-			self.list.append(getConfigListEntry(  _("Enigma auto-restart window end")                , config.EMC.enigmarestart_end        , self.autoRestartInfo  , self.autoRestartInfo  , _("") ) )
-			self.list.append(getConfigListEntry(  _("Force standby after auto-restart")              , config.EMC.enigmarestart_stby       , None                  , None                  , _("") ) )
-		
-		if config.usage.setup_level.index >= 1: # intermediate+
-			self.list.append(getConfigListEntry(  _("Preferred EPG language")                        , config.EMC.epglang                  , setEPGLanguage        , None                  , _("") ) )
-			self.list.append(getConfigListEntry(  _("Primary playback subtitle language")            , config.EMC.sublang1                 , None                  , None                  , _("") ) )
-			self.list.append(getConfigListEntry(  _("Secondary playback subtitle language")          , config.EMC.sublang2                 , None                  , None                  , _("") ) )
-			self.list.append(getConfigListEntry(  _("Tertiary playback subtitle language")           , config.EMC.sublang3                 , None                  , None                  , _("") ) )
-			self.list.append(getConfigListEntry(  _("Enable playback auto-subtitling")               , config.EMC.autosubs                 , None                  , None                  , _("") ) )
-			self.list.append(getConfigListEntry(  _("Primary playback audio language")               , config.EMC.audlang1                 , None                  , None                  , _("") ) )
-			self.list.append(getConfigListEntry(  _("Secondary playback audio language")             , config.EMC.audlang2                 , None                  , None                  , _("") ) )
-			self.list.append(getConfigListEntry(  _("Tertiary playback audio language")              , config.EMC.audlang3                 , None                  , None                  , _("") ) )
-			self.list.append(getConfigListEntry(  _("Enable playback auto-language selection")       , config.EMC.autoaudio                , None                  , None                  , _("") ) )
-		
-		if config.usage.setup_level.index >= 2: # expert+
-			self.list.append(getConfigListEntry(  _("EMC output directory")                          , config.EMC.folder                   , self.validatePath     , self.openLocationBox  , _("") ) )
-			self.list.append(getConfigListEntry(  _("Enable EMC debug output")                       , config.EMC.debug                    , self.dbgChange        , None                  , _("") ) )
-			self.list.append(getConfigListEntry(  _("Debug output file name")                        , config.EMC.debugfile                , None                  , None                  , _("") ) )
-			self.list.append(getConfigListEntry(  _("Description field update delay")                , config.EMC.movie_descdelay          , None                  , None                  , _("") ) )
-			self.list.append(getConfigListEntry(  _("Key period value (50-900)")                     , config.EMC.key_period               , setupKeyResponseValues, None                  , _("") ) )
-			self.list.append(getConfigListEntry(  _("Key repeat value (250-900)")                    , config.EMC.key_repeat               , setupKeyResponseValues, None                  , _("") ) )
-			self.list.append(getConfigListEntry(  _("Exclude folders and files")                     , config.EMC.item_exclude             , None                  , None                  , _("") ) )
-			self.list.append(getConfigListEntry(  _("Suppress DVD structure scan in folders")        , config.EMC.scan_supress             , None                  , None                  , _("") ) )
-			try:
-				self.list.append(getConfigListEntry( _("Enable component video in A/V Settings")        , config.av.yuvenabled                , self.needsRestart     , None                  , _("") ) )
-			except: pass
+		try:
+			#self.list = [] # TODO Maybe later for dynamic config listing
+			self.list.append(getConfigListEntry(   _("About")                                         , config.EMC.about                    , None                  , self.showInfo         , _("Opens the About dialog box") ) )
+			
+			self.list.append(getConfigListEntry(   _("Start EMC with")                                , config.EMC.movie_launch             , self.launchListSet    , None                  , _("Test1") ) )
+			self.list.append(getConfigListEntry(   _("Show plugin config in extensions menu")         , config.EMC.extmenu_plugin           , self.needsRestart     , None                  , _("Test2") ) )
+			self.list.append(getConfigListEntry(   _("Show EMC in extensions menu")                   , config.EMC.extmenu_list             , self.needsRestart     , None                  , _("") ) )
+			
+			if config.usage.setup_level.index >= 1: # intermediate+
+				self.list.append(getConfigListEntry(  _("Disable EMC")                                   , config.EMC.ml_disable               , self.needsRestart     , None                  , _("") ) )
+			
+			self.list.append(getConfigListEntry(   _("Movie home at start")                           , config.EMC.CoolStartHome            , None                  , None                  , _("") ) )
+			self.list.append(getConfigListEntry(   _("Movie home home path")                          , config.EMC.movie_homepath           , self.validatePath     , self.openLocationBox  , _("") ) )
+			
+			if config.usage.setup_level.index >= 1: # intermediate+
+				self.list.append(getConfigListEntry(  _("EMC path access limit")                         , config.EMC.movie_pathlimit          , self.validatePath     , self.openLocationBox  , _("") ) )
+			
+			#if config.usage.setup_level.index >= 1: # intermediate+
+			self.list.append(getConfigListEntry(   _("Enable daily trashcan cleanup")                 , config.EMC.movie_trashcan_clean     , self.trashCleanupSetup, None                  , _("") ) )
+			
+			#if self.list[ self["config"].getCurrentIndex() ][1].value == 
+			self.list.append(getConfigListEntry(   _("How many days files may remain in trashcan")    , config.EMC.movie_trashcan_limit     , None                  , None                  , _("") ) )
+			if config.usage.setup_level.index >= 2: # expert+
+				self.list.append(getConfigListEntry(  _("Move finished movies in trashcan (press OK)")   , config.EMC.movie_finished_clean     , self.trashCleanupSetup, self.movieCleanupSetup, _("") ) )
+				self.list.append(getConfigListEntry(  _("Age of finished movies in movie folder (days)") , config.EMC.movie_finished_limit     , self.trashCleanupSetup, None                  , _("") ) )
+			
+			self.list.append(getConfigListEntry(   _("Daily cleanup time")                            , config.EMC.movie_trashcan_ctime     , self.trashCleanupSetup, None                  , _("") ) )
+			self.list.append(getConfigListEntry(   _("Trashcan path")                                 , config.EMC.movie_trashpath          , self.validatePath     , self.openLocationBox  , _("") ) )
+			self.list.append(getConfigListEntry(   _("Delete validation")                             , config.EMC.movie_trashcan_validation, None                  , None                  , _("") ) )
+			self.list.append(getConfigListEntry(   _("Hide trashcan directory")                       , config.EMC.movie_trashcan_hide      , None                  , None                  , _("") ) )
+			self.list.append(getConfigListEntry(   _("Show Latest Recordings directory")              , config.EMC.latest_recordings        , None                  , None                  , _("") ) )
+			self.list.append(getConfigListEntry(   _("Show VLC directory")                            , config.EMC.vlc                      , None                  , None                  , _("") ) )
+			self.list.append(getConfigListEntry(   _("Show E2 Bookmarks in movielist")                , config.EMC.e2bookmarks              , None                  , None                  , _("") ) )
+			self.list.append(getConfigListEntry(   _("Show EMC Bookmarks in movielist")               , config.EMC.emcbookmarks             , None                  , None                  , _("") ) )
+			
+			if config.usage.setup_level.index >= 1: # intermediate+
+				self.list.append(getConfigListEntry(  _("Hide linked files")                             , config.EMC.hide_linkedfiles         , None                  , None                  , _("") ) )
+				self.list.append(getConfigListEntry(  _("Hide linked folders")                           , config.EMC.hide_linkedfolders       , None                  , None                  , _("") ) )
+				self.list.append(getConfigListEntry(  _("Check for DVD Struct folders")                  , config.EMC.check_dvdstruct          , None                  , None                  , _("") ) )
+			
+			self.list.append(getConfigListEntry(   _("Sort file A to Z at startup")                   , config.EMC.CoolStartAZ              , None                  , None                  , _("") ) )
+			self.list.append(getConfigListEntry(   _("File order reverse")                            , config.EMC.moviecenter_reversed     , None                  , None                  , _("") ) )
+			self.list.append(getConfigListEntry(   _("EMC open with cursor on newest (TV mode)")      , config.EMC.moviecenter_gotonewest   , None                  , None                  , _("") ) )
+			self.list.append(getConfigListEntry(   _("EMC open with cursor on newest (player)")       , config.EMC.moviecenter_gotonewestp  , None                  , None                  , _("") ) )
+			self.list.append(getConfigListEntry(   _("Cursor predictive move after selection")        , config.EMC.moviecenter_selmove      , None                  , None                  , _("") ) )
+			self.list.append(getConfigListEntry(   _("Listbox is skin able")                          , config.EMC.skin_able                , None                  , None                  , _("") ) )
+			self.list.append(getConfigListEntry(   _("Show movie icons")                              , config.EMC.movie_icons              , None                  , None                  , _("") ) )
+			self.list.append(getConfigListEntry(   _("Show movie progress")                           , config.EMC.movie_progress           , None                  , None                  , _("") ) )
+			self.list.append(getConfigListEntry(   _("Short watching percent")                        , config.EMC.movie_watching_percent   , None                  , None                  , _("") ) )
+			self.list.append(getConfigListEntry(   _("Finished watching percent")                     , config.EMC.movie_finished_percent   , None                  , None                  , _("") ) )
+			self.list.append(getConfigListEntry(   _("Show date")                                     , config.EMC.movie_date               , None                  , None                  , _("") ) )
+			self.list.append(getConfigListEntry(   _("Show icon indication for non-watched")          , config.EMC.movie_mark               , None                  , None                  , _("") ) )
+			
+			if config.usage.setup_level.index >= 1: # intermediate+
+				self.list.append(getConfigListEntry(  _("No resume below 10 seconds")                    , config.EMC.movie_ignore_firstcuts   , None                  , None                  , _("") ) )
+				self.list.append(getConfigListEntry(  _("Jump to first mark when playing movie")         , config.EMC.movie_jump_first_mark    , None                  , None                  , _("") ) )
+				self.list.append(getConfigListEntry(  _("Rewind finished movies before playing")         , config.EMC.movie_rewind_finished    , None                  , None                  , _("") ) )
+				self.list.append(getConfigListEntry(  _("Always save last played progress as marker")    , config.EMC.movie_save_lastplayed    , None                  , None                  , _("") ) )
+			
+			self.list.append(getConfigListEntry(   _("EMC always reload after open")                  , config.EMC.movie_reload             , None                  , None                  , _("") ) )
+			self.list.append(getConfigListEntry(   _("EMC re-open list after STOP-press")             , config.EMC.movie_reopen             , None                  , None                  , _("") ) )
+			self.list.append(getConfigListEntry(   _("EMC re-open list after Movie end")              , config.EMC.movie_reopenEOF          , None                  , None                  , _("") ) )
+			self.list.append(getConfigListEntry(   _("Display directory reading text")                , config.EMC.moviecenter_loadtext     , None                  , None                  , _("") ) )
+			self.list.append(getConfigListEntry(   _("Try to load titles from .meta files")           , config.EMC.movie_metaload           , None                  , None                  , _("") ) )
+			self.list.append(getConfigListEntry(   _("Show Movie Format")                             , config.EMC.CoolFormat               , None                  , None                  , _("") ) )
+			self.list.append(getConfigListEntry(   _("Show Cut-Nr if exist")                          , config.EMC.CoolMovieNr              , None                  , None                  , _("") ) )
+			
+			self.list.append(getConfigListEntry(   _("Leave Movie with Exit")                         , config.EMC.movie_exit               , None                  , None                  , _("") ) )
+			self.list.append(getConfigListEntry(   _("Blue button function")                          , config.EMC.movie_bluefunc           , None                  , None                  , _("") ) )
+			
+			self.list.append(getConfigListEntry(   _("Hide movies being moved")                       , config.EMC.movie_hide_mov           , None                  , None                  , _("") ) )
+			self.list.append(getConfigListEntry(   _("Hide movies being deleted")                     , config.EMC.movie_hide_del           , None                  , None                  , _("") ) )
+			
+			if config.usage.setup_level.index >= 1: # intermediate+
+				self.list.append(getConfigListEntry(  _("Automatic timers list cleaning")                , config.EMC.timer_autocln            , None                  , None                  , _("") ) )
+				self.list.append(getConfigListEntry(  _("Enigma daily auto-restart")                     , config.EMC.enigmarestart            , self.autoRestartInfo  , self.autoRestartInfo  , _("") ) )
+				self.list.append(getConfigListEntry(  _("Enigma auto-restart window begin")              , config.EMC.enigmarestart_begin      , self.autoRestartInfo  , self.autoRestartInfo  , _("") ) )
+				self.list.append(getConfigListEntry(  _("Enigma auto-restart window end")                , config.EMC.enigmarestart_end        , self.autoRestartInfo  , self.autoRestartInfo  , _("") ) )
+				self.list.append(getConfigListEntry(  _("Force standby after auto-restart")              , config.EMC.enigmarestart_stby       , None                  , None                  , _("") ) )
+			
+			if config.usage.setup_level.index >= 1: # intermediate+
+				self.list.append(getConfigListEntry(  _("Preferred EPG language")                        , config.EMC.epglang                  , setEPGLanguage        , None                  , _("") ) )
+				self.list.append(getConfigListEntry(  _("Primary playback subtitle language")            , config.EMC.sublang1                 , None                  , None                  , _("") ) )
+				self.list.append(getConfigListEntry(  _("Secondary playback subtitle language")          , config.EMC.sublang2                 , None                  , None                  , _("") ) )
+				self.list.append(getConfigListEntry(  _("Tertiary playback subtitle language")           , config.EMC.sublang3                 , None                  , None                  , _("") ) )
+				self.list.append(getConfigListEntry(  _("Enable playback auto-subtitling")               , config.EMC.autosubs                 , None                  , None                  , _("") ) )
+				self.list.append(getConfigListEntry(  _("Primary playback audio language")               , config.EMC.audlang1                 , None                  , None                  , _("") ) )
+				self.list.append(getConfigListEntry(  _("Secondary playback audio language")             , config.EMC.audlang2                 , None                  , None                  , _("") ) )
+				self.list.append(getConfigListEntry(  _("Tertiary playback audio language")              , config.EMC.audlang3                 , None                  , None                  , _("") ) )
+				self.list.append(getConfigListEntry(  _("Enable playback auto-language selection")       , config.EMC.autoaudio                , None                  , None                  , _("") ) )
+			
+			if config.usage.setup_level.index >= 2: # expert+
+				self.list.append(getConfigListEntry(  _("EMC output directory")                          , config.EMC.folder                   , self.validatePath     , self.openLocationBox  , _("") ) )
+				self.list.append(getConfigListEntry(  _("Enable EMC debug output")                       , config.EMC.debug                    , self.dbgChange        , None                  , _("") ) )
+				self.list.append(getConfigListEntry(  _("Debug output file name")                        , config.EMC.debugfile                , None                  , None                  , _("") ) )
+				self.list.append(getConfigListEntry(  _("Description field update delay")                , config.EMC.movie_descdelay          , None                  , None                  , _("") ) )
+				self.list.append(getConfigListEntry(  _("Key period value (50-900)")                     , config.EMC.key_period               , setupKeyResponseValues, None                  , _("") ) )
+				self.list.append(getConfigListEntry(  _("Key repeat value (250-900)")                    , config.EMC.key_repeat               , setupKeyResponseValues, None                  , _("") ) )
+				self.list.append(getConfigListEntry(  _("Exclude folders and files")                     , config.EMC.item_exclude             , None                  , None                  , _("") ) )
+				self.list.append(getConfigListEntry(  _("Suppress DVD structure scan in folders")        , config.EMC.scan_supress             , None                  , None                  , _("") ) )
+				try:
+					self.list.append(getConfigListEntry( _("Enable component video in A/V Settings")        , config.av.yuvenabled                , self.needsRestart     , None                  , _("") ) )
+				except: pass
+		except Exception, e:
+			emcDebugOut("[EMCMS] create config exception:\n" + str(e))
 
 	def onDialogShow(self):
 		self.setTitle("Enhanced Movie Center "+ EMCVersion+ " (Setup)")
+
+#	def selectionChanged(self):
+#		print "EMC selectionChanged"
+#		ConfigList.selectionChanged(self)
+#		self.updateHelp()
+
+	def updateHelp(self):
+		print "EMC updateHelp"
+		cur = self["config"].getCurrent()
+		if cur:
+			self["help"].text = cur[4]
 
 	def autoRestartInfo(self, dummy=None):
 		emcTasker.ShowAutoRestartInfo()
@@ -283,8 +310,7 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 		try:
 			#self.list[self["config"].getCurrentIndex()][3]()
 			self["config"].getCurrent()[3]()
-		except:
-			pass
+		except: pass
 
 #	def keyCancel(self):
 #		for entry in self.list:
@@ -317,8 +343,7 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 			path = self["config"].getCurrent()[1].value + "/"
 			from Screens.LocationBox import MovieLocationBox
 			self.session.openWithCallback(self.dirSelected, MovieLocationBox, text = _("Choose directory"), dir = path, minFree = 100)
-		except:
-			pass
+		except: pass
 
 	def showRestart(self):
 		emcTasker.ShowAutoRestartInfo()
