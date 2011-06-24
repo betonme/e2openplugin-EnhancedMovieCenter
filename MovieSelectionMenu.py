@@ -88,7 +88,7 @@ class MovieMenu(Screen):
 					self.menu.extend([(p.description, boundFunction(self.execPlugin, p)) for p in plugins.getPlugins(PluginDescriptor.WHERE_MOVIELIST)])
 			# added: EMC Setup		
 			from Plugins.Extensions.EnhancedMovieCenter.plugin import pluginOpen as emcsetup
-			self.menu.append((_("E2 Bookmarks"), boundFunction(self.e2Bookmarks)))
+			#self.menu.append((_("Manage E2 Bookmarks"), boundFunction(self.e2Bookmarks)))
 			self.menu.append((_("Open E2 Bookmark path"), boundFunction(self.openE2Bookmark)))
 			self.menu.append((_("EMC Setup"), boundFunction(self.execPlugin, emcsetup)))
 			
