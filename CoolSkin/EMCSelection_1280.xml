@@ -46,5 +46,5 @@
 	<widget name="key_red" position="105,670" size="190,30" zPosition="1" font="Regular;18" halign="left" foregroundColor="#9F1313" backgroundColor="#000000" transparent="1" />
 	<widget name="key_green" position="410,670" size="190,30" zPosition="1" font="Regular;18" halign="left" foregroundColor="#00389416" backgroundColor="#000000" transparent="1" />
 		<widget name="key_yellow" position="715,670" size="190,30" zPosition="1" font="Regular;18" halign="left" foregroundColor="#B59E01" backgroundColor="#444444" transparent="1" /> 
-		<widget name="key_blue" position="1020,670" size="190,30" zPosition="1" font="Regular;18" halign="left" foregroundColor="#1E28B6" backgroundColor="#302d2d" transparent="1" /> 
+		<widget name="key_blue" position="1020,670" size="190,30" zPosition="1" font="Regular;18" halign="left" foregroundColor="#1E28B6" backgroundColor="#000000" shadowColor="#000000" transparent="1" /> 
 </screen>
