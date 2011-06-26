@@ -383,6 +383,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 				date, pixmap, color = "-- REC --", self.movie_rec, self.RecordingColor
 			elif self.recControl.isRemoteRecording(path):
 				date, pixmap, color = "-- rec --", self.movie_recrem, self.RecordingColor
+			#elif config.EMC.check_movie_cutting.value:
 			elif self.recControl.isCutting(path):
 				date, pixmap, color = "-- CUT --", self.movie_rec, self.RecordingColor
 			res = [ None ]
@@ -412,13 +413,12 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 				res.append(MultiContentEntryText(pos=(self.CoolMoviePos, 0), size=(self.CoolMovieSize, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text=moviestring))
 				return res
 				
-			if config.EMC.movie_progress.value != "Off":
-				if config.EMC.movie_progress.value == "PB":
-					res.append(MultiContentEntryProgress(pos=(offset, self.CoolBarHPos), size = (self.CoolBarSize.width(), self.CoolBarSize.height()), percent = progress, borderWidth = 1, backColorSelected = None, foreColor = color, backColor = color))
-					offset += self.CoolBarSize.width() + 10
-				else:
-					res.append(MultiContentEntryText(pos=(offset, 0), size=(progressWidth, globalHeight), font=usedFont, flags=RT_HALIGN_CENTER, text="%d%%" % (progress), color = color, color_sel = color, backcolor = self.BackColor, backcolor_sel = self.BackColorSel))
-					offset += progressWidth + 5
+			if config.EMC.movie_progress.value == "PB":
+				res.append(MultiContentEntryProgress(pos=(offset, self.CoolBarHPos), size = (self.CoolBarSize.width(), self.CoolBarSize.height()), percent = progress, borderWidth = 1, backColorSelected = None, foreColor = color, backColor = color))
+				offset += self.CoolBarSize.width() + 10
+			elif config.EMC.movie_progress.value == "P":
+				res.append(MultiContentEntryText(pos=(offset, 0), size=(progressWidth, globalHeight), font=usedFont, flags=RT_HALIGN_CENTER, text="%d%%" % (progress), color = color, color_sel = color, backcolor = self.BackColor, backcolor_sel = self.BackColorSel))
+				offset += progressWidth + 5
 				
 			if config.EMC.movie_date.value:
 				if date != "-- REC --" and date != "-- rec --" and date != "-- CUT --":
@@ -736,17 +736,17 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 					customlist.append( ("Latest Recordings", "Latest Recordings") )
 				if os.path.exists("/usr/lib/enigma2/python/Plugins/Extensions/VlcPlayer") and config.EMC.vlc.value:
 					customlist.append( ("VLC servers", "VLC servers") )
-				if config.EMC.e2bookmarks.value:
-					e2bookmarks = config.movielist and config.movielist.videodirs and config.movielist.videodirs.value[:] or []
-					if e2bookmarks:
-						for e2b in e2bookmarks:
-							customlist.append( (e2b, "E2 "+os.path.basename(e2b[:-1])) )
-				if config.EMC.emcbookmarks.value:
+				if config.EMC.bookmarks_e2.value:
+					bookmarks = config.movielist and config.movielist.videodirs and config.movielist.videodirs.value[:] or []
+					if bookmarks:
+						for bookmark in bookmarks:
+							customlist.append( (bookmark, "E2 "+os.path.basename(bookmark[:-1])) )
+				if config.EMC.bookmarks_emc.value:
 					from MovieSelectionMenu import openEMCBookmarks
-					emcbookmarks = openEMCBookmarks()
-					if emcbookmarks:
-						for emcb in emcbookmarks:
-							customlist.append( (emcb.replace("\n",""), "EMC "+os.path.basename(emcb)) )
+					bookmarks = openEMCBookmarks()
+					if bookmarks:
+						for bookmark in bookmarks:
+							customlist.append( (bookmark.replace("\n",""), "EMC "+os.path.basename(bookmark)) )
 			
 			subdirlist = customlist + subdirlist
 			return subdirlist, filelist

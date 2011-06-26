@@ -489,8 +489,8 @@ msgstr "Tägliche Reinigungszeit Papierkorb/Aufnahmeliste"
 msgid "How many days files may remain in trashcan"
 msgstr "Verbleib der Dateien im Papierkorb (Tage)"
 
-msgid "Move finished movies in trashcan (press OK)"
-msgstr "Verschiebe gesehene Filme in den Papierkorb (drücke OK)"
+msgid "Move finished movies in trashcan"
+msgstr "Verschiebe gesehene Filme in den Papierkorb"
 
 msgid "Age of finished movies in movie folder (days)"
 msgstr "Alter der gesehenen Filme im Filmordner (Tage)"

@@ -118,12 +118,4 @@
 		<key id="KEY_0" 			mapto="0" flags="m" />
 		<key id="KEY_7"				mapto="7" flags="m" />
 	</map>
-	<map context="ConfirmBox">
-		<key id="KEY_OK" mapto="cancel" flags="m" />
-		<key id="KEY_ENTER" mapto="cancel" flags="m" />
-		<key id="KEY_EXIT" mapto="cancel" flags="m" />
-		<key id="KEY_ESC" mapto="cancel" flags="m" />
-		<key id="KEY_BLUE" mapto="firstok" flags="m" />
-		<key id="KEY_GREEN" mapto="secondok" flags="m" />
-	</map>
 </keymap>
