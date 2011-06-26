@@ -211,7 +211,7 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 			(  _("Hide linked files")                             , config.EMC.hide_linkedfiles         , None                  , None                  , 1     , []        , _("") ),
 			(  _("Hide linked folders")                           , config.EMC.hide_linkedfolders       , None                  , None                  , 1     , []        , _("") ),
 			
-			(  _("Check for DVD Struct folders")                  , config.EMC.check_dvdstruct          , None                  , None                  , 1     , []        , _("") ),
+			(  _("Scan for DVD structures")                  , config.EMC.check_dvdstruct          , None                  , None                  , 1     , []        , _("") ),
 			
 			(  _("Sort file A to Z at startup")                   , config.EMC.CoolStartAZ              , None                  , None                  , 0     , []        , _("") ),
 			(  _("File order reverse")                            , config.EMC.moviecenter_reversed     , None                  , None                  , 0     , []        , _("") ),

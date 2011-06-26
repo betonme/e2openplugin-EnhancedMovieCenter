@@ -387,7 +387,7 @@ msgstr "Verlinkte Dateien ausblenden"
 msgid "Hide linked folders"
 msgstr "Verlinkte Ordner ausblenden"
 
-msgid "Check for DVD Struct folders"
+msgid "Scan for DVD structures"
 msgstr "Suche nach DVD Strukturen"
 
 msgid "Automatic timers list cleaning"

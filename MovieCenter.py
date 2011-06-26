@@ -607,10 +607,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 		self.l.invalidateEntry( idx ) # force redraw of the item
 
 	def detectDVDStructure(self, loadPath):
-		#TODO use a list
-		# added: no dvd structure scan for symlinked directories
-		#        to avoid wakeup of sleeping devices
-		if not os.path.isdir(loadPath) or os.path.islink(loadPath):
+		if not os.path.isdir(loadPath):
 			return None
 		elif fileExists(loadPath + "/VIDEO_TS.IFO"):
 			return loadPath + "/VIDEO_TS.IFO"
