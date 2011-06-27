@@ -211,7 +211,7 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 			(  _("Hide linked files")                             , config.EMC.hide_linkedfiles         , None                  , None                  , 1     , []        , _("") ),
 			(  _("Hide linked folders")                           , config.EMC.hide_linkedfolders       , None                  , None                  , 1     , []        , _("") ),
 			
-			(  _("Scan for DVD structures")                  , config.EMC.check_dvdstruct          , None                  , None                  , 1     , []        , _("") ),
+			(  _("Scan for DVD structures")                       , config.EMC.check_dvdstruct          , None                  , None                  , 1     , []        , _("") ),
 			
 			(  _("Sort file A to Z at startup")                   , config.EMC.CoolStartAZ              , None                  , None                  , 0     , []        , _("") ),
 			(  _("File order reverse")                            , config.EMC.moviecenter_reversed     , None                  , None                  , 0     , []        , _("") ),
@@ -273,7 +273,8 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 			(  _("Key repeat value (250-900)")                    , config.EMC.key_repeat               , setupKeyResponseValues, None                  , 2     , []        , _("") ),
 			
 			(  _("Exclude folders and files")                     , config.EMC.item_exclude             , None                  , None                  , 2     , []        , _("") ),
-			(  _("Suppress DVD structure scan in folders")        , config.EMC.scan_supress             , None                  , None                  , 2     , []        , _("") )
+			(  _("Suppress DVD structure scan in folders")        , config.EMC.scan_supress             , None                  , None                  , 2     , []        , _("") ),
+			(  _("No DVD structure scan in linked folders")       , config.EMC.nostructscan_linkeddirs  , None                  , None                  , 2     , []        , _("") )
 		]
 		
 		#TODO Later

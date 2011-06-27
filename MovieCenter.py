@@ -609,6 +609,8 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 	def detectDVDStructure(self, loadPath):
 		if not os.path.isdir(loadPath):
 			return None
+		elif config.EMC.nostructscan_linkeddirs.value and os.path.islink(loadPath):
+			return None
 		elif fileExists(loadPath + "/VIDEO_TS.IFO"):
 			return loadPath + "/VIDEO_TS.IFO"
 		elif fileExists(loadPath + "/VIDEO_TS/VIDEO_TS.IFO"):
