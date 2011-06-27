@@ -38,7 +38,7 @@ from EnhancedMovieCenter import _, EMCVersion, EMCStartup, EnhancedMovieCenterMe
 
 yes_no_descriptions = {False: _("no"), True: _("yes")}
 class ConfigYesNoWithConfirm(ConfigBoolean):
-	def __init__(self, text, default = False):
+	def __init__(self, text, key1, key2, default = False):
 		self.text = text
 		self.key1 = key1
 		self.key2 = key2
