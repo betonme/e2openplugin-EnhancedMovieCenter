@@ -38,6 +38,7 @@ from EnhancedMovieCenter import _
 #Todo make a new class
 def openEMCBookmarks():
 	bm = []
+	f = None
 	try:
 		f = open("/etc/enigma2/emc-bookmarks.cfg", "r")
 		bm = f.readlines()
