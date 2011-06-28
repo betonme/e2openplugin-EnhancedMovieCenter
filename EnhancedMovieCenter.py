@@ -116,13 +116,14 @@ def EMCStartup(session):
 
 class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 	skin = """
-		<screen name="EnhancedMovieCenterMenu" position="center,center" size="620,470" title="EnhancedMovieCenterMenu">
-		<widget name="config" position="10,10" size="605,340" enableWrapAround="1" scrollbarMode="showOnDemand" />
-		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key-red.png" position="66,425" zPosition="0" size="140,40" transparent="1" alphatest="on" />
-		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key-green.png" position="412,425" zPosition="0" size="140,40" transparent="1" alphatest="on" />
-		<widget source="help" render="Label" position="10,360" size="605,55" font="Regular;21" />
-		<widget name="key_red" position="66,425" zPosition="1" size="140,40" font="Regular;20" valign="center" halign="center" backgroundColor="#9f1313" transparent="1" shadowColor="#000000" shadowOffset="-1,-1" />
-		<widget name="key_green" position="412,425" zPosition="1" size="140,40" font="Regular;20" valign="center" halign="center" backgroundColor="#1f771f" transparent="1" shadowColor="#000000" shadowOffset="-1,-1" />
+		<screen name="EnhancedMovieCenterMenu" position="center,center" size="620,480" title="EnhancedMovieCenterMenu">
+		<widget name="config" position="10,10" size="605,353 " enableWrapAround="1" scrollbarMode="showOnDemand" />
+		<eLabel position="0,362" size="620,2" backgroundColor="#999999" zPosition="1" />
+		<widget source="help" render="Label" position="10,367" size="605,65" font="Regular;20" foregroundColor="#999999" />
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key-red.png" position="66,435" zPosition="0" size="140,40" transparent="1" alphatest="on" />
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key-green.png" position="412,435" zPosition="0" size="140,40" transparent="1" alphatest="on" />
+		<widget name="key_red" position="66,435" zPosition="1" size="140,40" font="Regular;20" valign="center" halign="center" backgroundColor="#9f1313" transparent="1" shadowColor="#000000" shadowOffset="-1,-1" />
+		<widget name="key_green" position="412,435" zPosition="1" size="140,40" font="Regular;20" valign="center" halign="center" backgroundColor="#1f771f" transparent="1" shadowColor="#000000" shadowOffset="-1,-1" />
 	</screen>"""
 
 	def __init__(self, session):
@@ -180,33 +181,33 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 #         _                                                 ,                                     ,                       ,                       ,       ,   a selection value "" is False 
 #         _                                                 ,                                     ,                       ,                       ,       ,           , _context sensitive help text
 		self.EMCConfig = [	
-			(  _("About")                                        , config.EMC.about                    , None                  , self.showInfo         , 0     , []        , _("Opens the About dialog box") ),
+			(  _("About")                                         , config.EMC.about                    , None                  , self.showInfo         , 0     , []        , _("Opens the About dialog box.") ),
 			
-			(  _("Start EMC with")                                , config.EMC.movie_launch             , self.launchListSet    , None                  , 0     , []        , _("Test1") ),
-			(  _("Show plugin config in extensions menu")         , config.EMC.extmenu_plugin           , self.needsRestart     , None                  , 0     , []        , _("Test2") ),
-			(  _("Show EMC in extensions menu")                   , config.EMC.extmenu_list             , self.needsRestart     , None                  , 0     , []        , _("") ),
+			(  _("Start EMC with")                                , config.EMC.movie_launch             , self.launchListSet    , None                  , 0     , []        , _("Set a direct key to open EMC.") ),
+			(  _("Show plugin config in extensions menu")         , config.EMC.extmenu_plugin           , self.needsRestart     , None                  , 0     , []        , _("Show or hide the EMC Config in the extensions menu.\n(The extension menu are normaly reach with the [blue] key.") ),
+			(  _("Show EMC in extensions menu")                   , config.EMC.extmenu_list             , self.needsRestart     , None                  , 0     , []        , _("Show or hide the EMC Pluginstart in the extensions menu.\n(The extension menu are normaly reach with the [blue] key.") ),
 			
-			(  _("Disable EMC")                                   , config.EMC.ml_disable               , self.needsRestart     , None                  , 1     , []        , _("") ),
+			(  _("Disable EMC")                                   , config.EMC.ml_disable               , self.needsRestart     , None                  , 1     , []        , _("Disable the EMC (MovieList) completly, but some special function like [Timerlist cleanup],[Trashcan clean] or [Auto restart] works in the background.") ),
 			
-			(  _("Movie home at start")                           , config.EMC.CoolStartHome            , None                  , None                  , 0     , []        , _("") ),
-			(  _("Movie home home path")                          , config.EMC.movie_homepath           , self.validatePath     , self.openLocationBox  , 0     , []        , _("") ),
+			(  _("Movie home at start")                           , config.EMC.CoolStartHome            , None                  , None                  , 0     , []        , _("EMC start always in the \"Movie home\" directory.\n(In the next row you can set the \"Movie home\" directory).") ),
+			(  _("Movie home home path")                          , config.EMC.movie_homepath           , self.validatePath     , self.openLocationBox  , 0     , []        , _("Set your \"Movie home\" path.") ),
 			
-			(  _("EMC path access limit")                         , config.EMC.movie_pathlimit          , self.validatePath     , self.openLocationBox  , 1     , []        , _("") ),
+			(  _("EMC path access limit")                         , config.EMC.movie_pathlimit          , self.validatePath     , self.openLocationBox  , 1     , []        , _("Limit your access path out from your \"Movie home\".\n(With the [<] and [>] buttons (next to the No.0 key) you can still go higher than this limit.") ),
 			
-			(  _("Trashcan path")                                 , config.EMC.movie_trashpath          , self.validatePath     , self.openLocationBox  , 0     , []        , _("") ),
-			(  _("Hide trashcan directory")                       , config.EMC.movie_trashcan_hide      , None                  , None                  , 0     , []        , _("") ),
-			(  _("Delete validation")                             , config.EMC.movie_trashcan_validation, None                  , None                  , 0     , []        , _("") ),
+			(  _("Trashcan path")                                 , config.EMC.movie_trashpath          , self.validatePath     , self.openLocationBox  , 0     , []        , _("Set your trashcan path.\n(There will move the recordings when you press [delete] and the trashcan is activated.") ),
+			(  _("Hide trashcan directory")                       , config.EMC.movie_trashcan_hide      , None                  , None                  , 0     , []        , _("When is activated you dont see the trashcan directory in EMC.\n(You can however reach the trashcan over the EMC [MENU])") ),
+			(  _("Delete validation")                             , config.EMC.movie_trashcan_validation, None                  , None                  , 0     , []        , _("When is activated and trashcan is using, EMC never will ask for a delete validation.") ),
 			
-			(  _("Enable daily trashcan cleanup")                 , config.EMC.movie_trashcan_clean     , self.trashCleanupSetup, None                  , 0     , []        , _("") ),
-			(  _("Daily cleanup time")                            , config.EMC.movie_trashcan_ctime     , self.trashCleanupSetup, None                  , 0     , [-1]      , _("") ),
-			(  _("How many days files may remain in trashcan")    , config.EMC.movie_trashcan_limit     , self.trashCleanupSetup, None                  , 0     , [-2]      , _("") ),
-			(  _("Move finished movies in trashcan (press OK)")   , config.EMC.movie_finished_clean     , self.trashCleanupSetup, None                  , 2     , [-3]      , _("") ),
-			(  _("Age of finished movies in movie folder (days)") , config.EMC.movie_finished_limit     , self.trashCleanupSetup, None                  , 2     , [-4,-1]   , _("") ),
+			(  _("Enable daily trashcan cleanup")                 , config.EMC.movie_trashcan_clean     , self.trashCleanupSetup, None                  , 0     , []        , _("EMC delete old files in your trashcan, when reach the age that you set in the next row.") ),
+			(  _("Daily cleanup time")                            , config.EMC.movie_trashcan_ctime     , self.trashCleanupSetup, None                  , 0     , [-1]      , _("Time when EMC delete all files in trashcan that had reach the remaining time.") ),
+			(  _("How many days files may remain in trashcan")    , config.EMC.movie_trashcan_limit     , self.trashCleanupSetup, None                  , 0     , [-2]      , _("Set how many days files may remain in trashcan before EMC delete them permanently.\n(When set to [0] the files will delete directly).") ),
+			(  _("Move finished movies in trashcan (press OK)")   , config.EMC.movie_finished_clean     , self.trashCleanupSetup, None                  , 2     , [-3]      , _("Move all finished (watched) recordings from \"Movie home\" to the trashcan that had reach the remaining time you have set in the next setup row.") ),
+			(  _("Age of finished movies in movie folder (days)") , config.EMC.movie_finished_limit     , self.trashCleanupSetup, None                  , 2     , [-4,-1]   , _("Set how many days finished (watched) recordings may remain in your \"Movie home\".") ),
 			
-			(  _("Show Latest Recordings directory")              , config.EMC.latest_recordings        , None                  , None                  , 0     , []        , _("") ),
-			(  _("Show VLC directory")                            , config.EMC.vlc                      , None                  , None                  , 0     , []        , _("") ),
-			(  _("Show E2 Bookmarks in movielist")                , config.EMC.bookmarks_e2             , None                  , None                  , 0     , []        , _("") ),
-			(  _("Show EMC Bookmarks in movielist")               , config.EMC.bookmarks_emc            , None                  , None                  , 0     , []        , _("") ),
+			(  _("Show Latest Recordings directory")              , config.EMC.latest_recordings        , None                  , None                  , 0     , []        , _("Display a virtual folder in your \"Movie home\" that list the latest recordings. Also from the subdirectories in your \"Movie home\".\n(Only one page)") ),
+			(  _("Show VLC directory")                            , config.EMC.vlc                      , None                  , None                  , 0     , []        , _("Show or hide the the VLC directory when is installed the VlcPlayerExtended Plugin.") ),
+			(  _("Show E2 Bookmarks in movielist")                , config.EMC.bookmarks_e2             , None                  , None                  , 0     , []        , _("Display virtual folders in your \"Movie home\" with your Enigma2 Bookmarks.") ),
+			(  _("Show EMC Bookmarks in movielist")               , config.EMC.bookmarks_emc            , None                  , None                  , 0     , []        , _("Display virtual folders in your \"Movie home\" with your EMC Bookmarks.") ),
 			
 			(  _("Hide linked files")                             , config.EMC.hide_linkedfiles         , None                  , None                  , 1     , []        , _("") ),
 			(  _("Hide linked folders")                           , config.EMC.hide_linkedfolders       , None                  , None                  , 1     , []        , _("") ),
