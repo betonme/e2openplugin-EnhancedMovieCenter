@@ -36,8 +36,19 @@ from __init__ import *
 from EMCTasker import emcTasker, emcDebugOut
 from EnhancedMovieCenter import _, EMCVersion, EMCStartup, EnhancedMovieCenterMenu
 
+
+class ConfigTextWOHelp(ConfigText):
+	def __init__(self, default = "", fixed_size = True, visible_width = False):
+		ConfigText.__init__(self, default, fixed_size, visible_width)
+
+	def onSelect(self, session):
+		ConfigText.onSelect(self, None)
+
+	def onDeselect(self, session):
+		ConfigText.onDeselect(self, None)
+
 yes_no_descriptions = {False: _("no"), True: _("yes")}
-class ConfigYesNoWithConfirm(ConfigBoolean):
+class ConfigYesNoConfirm(ConfigBoolean):
 	def __init__(self, text, key1, key2, default = False):
 		self.text = text
 		self.key1 = key1
@@ -140,8 +151,8 @@ config.EMC.enigmarestart_begin       = ConfigClock(default = 60 * 60 * 2)
 config.EMC.enigmarestart_end         = ConfigClock(default = 60 * 60 * 5)
 config.EMC.enigmarestart_stby        = ConfigYesNo(default = False)
 config.EMC.debug                     = ConfigYesNo(default = False)
-config.EMC.folder                    = ConfigText(default = "/hdd/EMC", fixed_size = False, visible_width= 22)
-config.EMC.debugfile                 = ConfigText(default = "output.txt", fixed_size = False, visible_width= 22)
+config.EMC.folder                    = ConfigTextWOHelp(default = "/hdd/EMC", fixed_size = False, visible_width= 22)
+config.EMC.debugfile                 = ConfigTextWOHelp(default = "output.txt", fixed_size = False, visible_width= 22)
 config.EMC.ml_disable                = ConfigYesNo()
 # Color keys selection list array dict: longdescription, shortdescription, functionpointer
 config.EMC.movie_bluefunc            = ConfigSelection(default = "Movie home", choices = [("Movie home", _("Movie home")), ("Play last", _("Play last"))])
@@ -168,13 +179,13 @@ config.EMC.movie_reopenEOF           = ConfigYesNo(default = True)
 config.EMC.movie_reload              = ConfigYesNo()
 config.EMC.CoolMovieNr               = ConfigYesNo(default = False)
 config.EMC.CoolFormat                = ConfigYesNo(default = True)
-config.EMC.movie_homepath            = ConfigText(default = "/hdd/movie", fixed_size  = False, visible_width= 22)
-config.EMC.movie_pathlimit           = ConfigText(default = "/hdd/movie", fixed_size = False, visible_width= 22)
-config.EMC.movie_trashpath           = ConfigText(default = "/hdd/movie/trashcan", fixed_size = False, visible_width= 22)
+config.EMC.movie_homepath            = ConfigTextWOHelp(default = "/hdd/movie", fixed_size  = False, visible_width= 22)
+config.EMC.movie_pathlimit           = ConfigTextWOHelp(default = "/hdd/movie", fixed_size = False, visible_width= 22)
+config.EMC.movie_trashpath           = ConfigTextWOHelp(default = "/hdd/movie/trashcan", fixed_size = False, visible_width= 22)
 config.EMC.movie_trashcan_hide       = ConfigYesNo(default = False)
 config.EMC.movie_trashcan_clean      = ConfigYesNo(default = True)
 config.EMC.movie_trashcan_limit      = ConfigSelectionNumber(0, 99, 1, default = 3)
-config.EMC.movie_finished_clean      = ConfigYesNoWithConfirm(default = False, text = _("ATTENTION\n\nThis option will move all finished movies in Movie Home automatically to Your trashcan at the given time.\nAt next trashcan cleanup all movies will be deleted.\n\nConfirm this with the blue key followed by the green key."), key1="blue", key2="green")
+config.EMC.movie_finished_clean      = ConfigYesNoConfirm(default = False, text = _("ATTENTION\n\nThis option will move all finished movies in Movie Home automatically to Your trashcan at the given time.\nAt next trashcan cleanup all movies will be deleted.\n\nConfirm this with the blue key followed by the green key."), key1="blue", key2="green")
 config.EMC.movie_finished_limit      = ConfigSelectionNumber(0, 99, 1, default = 10)
 config.EMC.movie_trashcan_ctime      = ConfigClock(default = 0)
 config.EMC.movie_trashcan_validation = ConfigYesNo(default = True)
@@ -195,8 +206,8 @@ config.EMC.moviecenter_gotonewestp   = ConfigYesNo()
 config.EMC.moviecenter_selmove       = ConfigSelection(default = "d", choices = [("d", _("down")), ("b", _("up/down")), ("o", _("off"))])
 config.EMC.moviecenter_loadtext      = ConfigYesNo(default = True)
 config.EMC.timer_autocln             = ConfigYesNo(default = False)
-config.EMC.item_exclude              = ConfigText(default = "Temporary Items, Network Trash Folder, Info", fixed_size= False, visible_width= 22)
-config.EMC.scan_supress              = ConfigText(default = "/media/", fixed_size = False, visible_width= 22)
+config.EMC.item_exclude              = ConfigTextWOHelp(default = "Temporary Items, Network Trash Folder, Info", fixed_size= False, visible_width= 22)
+config.EMC.scan_supress              = ConfigTextWOHelp(default = "/media/", fixed_size = False, visible_width= 22)
 config.EMC.movie_launch              = ConfigSelection(default = "showMovies", choices = launch_choices)
 config.EMC.nostructscan_linkeddirs   = ConfigYesNo(default = True)
 

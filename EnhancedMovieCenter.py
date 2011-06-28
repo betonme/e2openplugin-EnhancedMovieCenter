@@ -125,7 +125,6 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 		<widget name="key_red" position="66,435" zPosition="1" size="140,40" font="Regular;20" valign="center" halign="center" backgroundColor="#9f1313" transparent="1" shadowColor="#000000" shadowOffset="-1,-1" />
 		<widget name="key_green" position="412,435" zPosition="1" size="140,40" font="Regular;20" valign="center" halign="center" backgroundColor="#1f771f" transparent="1" shadowColor="#000000" shadowOffset="-1,-1" />
 	</screen>"""
-
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		self.skinName = "EnhancedMovieCenterMenu"
@@ -152,16 +151,16 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 		ConfigListScreen.__init__(self, self.list, session = session, on_change = self.changedEntry)
 		self.onShown.append(self.onDialogShow)
 		self.needsRestartFlag = False
-		
-		#TODO retest without def
 		self.defineConfig()
 		self.createConfig()
 		def selectionChanged():
-			if self["config"].current:
-				self["config"].current[1].onDeselect(self.session)
-			self["config"].current = self["config"].getCurrent()
-			if self["config"].current:
-				self["config"].current[1].onSelect(self.session)
+			current = self["config"].getCurrent()
+			if self["config"].current != current:
+				if self["config"].current:
+					self["config"].current[1].onDeselect(self.session)
+				if current:
+					current[1].onSelect(self.session)
+				self["config"].current = current
 			for x in self["config"].onSelectionChanged:
 				x()
 		self["config"].selectionChanged = selectionChanged
@@ -170,7 +169,7 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 	def defineConfig(self):
 #         _config list entry                                
 #         _                                                 , config variable                     
-#         _                                                 ,                                     , function called during validation
+#         _                                                 ,                                     , function called on save
 #         _                                                 ,                                     ,                       , function called if user has pressed OK
 #         _                                                 ,                                     ,                       ,                       , usage setup level from E2
 #         _                                                 ,                                     ,                       ,                       ,   0: simple+
@@ -201,7 +200,7 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 			(  _("Enable daily trashcan cleanup")                 , config.EMC.movie_trashcan_clean     , self.trashCleanupSetup, None                  , 0     , []        , _("EMC delete old files in your trashcan, when reach the age that you set in the next row.") ),
 			(  _("Daily cleanup time")                            , config.EMC.movie_trashcan_ctime     , self.trashCleanupSetup, None                  , 0     , [-1]      , _("Time when EMC delete all files in trashcan that had reach the remaining time.") ),
 			(  _("How many days files may remain in trashcan")    , config.EMC.movie_trashcan_limit     , self.trashCleanupSetup, None                  , 0     , [-2]      , _("Set how many days files may remain in trashcan before EMC delete them permanently.\n(When set to [0] the files will delete directly).") ),
-			(  _("Move finished movies in trashcan (press OK)")   , config.EMC.movie_finished_clean     , self.trashCleanupSetup, None                  , 2     , [-3]      , _("Move all finished (watched) recordings from \"Movie home\" to the trashcan that had reach the remaining time you have set in the next setup row.") ),
+			(  _("Move finished movies in trashcan")              , config.EMC.movie_finished_clean     , self.trashCleanupSetup, None                  , 2     , [-3]      , _("Move all finished (watched) recordings from \"Movie home\" to the trashcan that had reach the remaining time you have set in the next setup row.") ),
 			(  _("Age of finished movies in movie folder (days)") , config.EMC.movie_finished_limit     , self.trashCleanupSetup, None                  , 2     , [-4,-1]   , _("Set how many days finished (watched) recordings may remain in your \"Movie home\".") ),
 			
 			(  _("Show Latest Recordings directory")              , config.EMC.latest_recordings        , None                  , None                  , 0     , []        , _("Display a virtual folder in your \"Movie home\" that list the latest recordings. Also from the subdirectories in your \"Movie home\".\n(Only one page)") ),
