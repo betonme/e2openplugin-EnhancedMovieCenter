@@ -29,7 +29,7 @@ from Screens.HelpMenu import HelpableScreen
 from Screens.MessageBox import MessageBox
 from Screens.ChoiceBox import ChoiceBox
 from Tools import Notifications
-from enigma import getDesktop
+from enigma import getDesktop, eServiceReference
 import os
 
 from DelayedFunction import DelayedFunction
@@ -238,11 +238,12 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			# Move cursor to top of the list
 			self.moveUp()
 
-	def setNextPathSel(self, nextdir):
+	def setNextPathSel(self, nextdir, service = None):
 		if nextdir == "..":
 			# Open parent folder
 			if self.currentPathSel != "" and self.currentPathSel != "/":
 				# Parent folder
+				service = eServiceReference("2:0:1:0:0:0:0:0:0:0:" + self.currentPathSel)
 				nextdir = os.path.split(self.currentPathSel)[0]
 			else:
 				# No way to go folder up
@@ -252,7 +253,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			pass
 		self.forwardStack = []
 		self.backStack.append((self.currentPathSel, self["list"].getCurrent()))
-		self.changeDir(nextdir)
+		self.changeDir(nextdir, service)
 
 	def getCurrent(self):
 		return self["list"].getCurrent()
