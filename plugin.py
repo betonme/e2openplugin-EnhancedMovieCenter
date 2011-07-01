@@ -209,7 +209,9 @@ config.EMC.timer_autocln             = ConfigYesNo(default = False)
 config.EMC.item_exclude              = ConfigTextWOHelp(default = "Temporary Items, Network Trash Folder, Info", fixed_size= False, visible_width= 22)
 config.EMC.scan_supress              = ConfigTextWOHelp(default = "/media/", fixed_size = False, visible_width= 22)
 config.EMC.movie_launch              = ConfigSelection(default = "showMovies", choices = launch_choices)
-config.EMC.nostructscan_linkeddirs   = ConfigYesNo(default = True)
+config.EMC.noscan_linked 						 = ConfigYesNo(default = True)
+config.EMC.cfghide_enable   				 = ConfigYesNo(default = True)
+config.EMC.cfgnoscan_enable   			 = ConfigYesNo(default = True)
 
 gSession = None
 gRecordings = None

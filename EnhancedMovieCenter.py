@@ -208,10 +208,12 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 			(  _("Show E2 Bookmarks in movielist")                , config.EMC.bookmarks_e2             , None                  , None                  , 0     , []        , _("Display virtual folders in your \"Movie home\" with your Enigma2 Bookmarks.") ),
 			(  _("Show EMC Bookmarks in movielist")               , config.EMC.bookmarks_emc            , None                  , None                  , 0     , []        , _("Display virtual folders in your \"Movie home\" with your EMC Bookmarks.") ),
 			
+			(  _("Hide selected entries in movielist")            , config.EMC.cfghide_enable           , None                  , None                  , 1     , []        , _("HELP_cfghide_enable") ),
 			(  _("Hide linked files")                             , config.EMC.hide_linkedfiles         , None                  , None                  , 1     , []        , _("") ),
-			(  _("Hide linked folders")                           , config.EMC.hide_linkedfolders       , None                  , None                  , 1     , []        , _("") ),
-			
+			(  _("Hide linked folders")                           , config.EMC.hide_linkedfolders       , None                  , None                  , 1     , []        , _("") ),			
 			(  _("Scan for DVD structures")                       , config.EMC.check_dvdstruct          , None                  , None                  , 1     , []        , _("") ),
+			(  _("No structure scan in selected folders")         , config.EMC.cfgnoscan_enable         , None                  , None                  , 1     , []        , _("HELP_cfgnoscan_enable") ),
+			(  _("No structure scan in linked folders")           , config.EMC.noscan_linked            , None                  , None                  , 1     , []        , _("HELP_noscan_linked") ),
 			
 			(  _("Sort file A to Z at startup")                   , config.EMC.CoolStartAZ              , None                  , None                  , 0     , []        , _("") ),
 			(  _("File order reverse")                            , config.EMC.moviecenter_reversed     , None                  , None                  , 0     , []        , _("") ),
@@ -270,11 +272,7 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 			(  _("Debug output file name")                        , config.EMC.debugfile                , None                  , None                  , 2     , []        , _("") ),
 			(  _("Description field update delay")                , config.EMC.movie_descdelay          , None                  , None                  , 2     , []        , _("") ),
 			(  _("Key period value (50-900)")                     , config.EMC.key_period               , setupKeyResponseValues, None                  , 2     , []        , _("") ),
-			(  _("Key repeat value (250-900)")                    , config.EMC.key_repeat               , setupKeyResponseValues, None                  , 2     , []        , _("") ),
-			
-			(  _("Exclude folders and files")                     , config.EMC.item_exclude             , None                  , None                  , 2     , []        , _("") ),
-			(  _("Suppress DVD structure scan in folders")        , config.EMC.scan_supress             , None                  , None                  , 2     , []        , _("") ),
-			(  _("No DVD structure scan in linked folders")       , config.EMC.nostructscan_linkeddirs  , None                  , None                  , 2     , []        , _("") )
+			(  _("Key repeat value (250-900)")                    , config.EMC.key_repeat               , setupKeyResponseValues, None                  , 2     , []        , _("") )
 		]
 		
 		#TODO Later

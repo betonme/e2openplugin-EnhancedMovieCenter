@@ -68,6 +68,33 @@ serviceIdM2TS = 3 											# eServiceFactoryM2TS::id  enum { id = 0x3 };
 serviceIdsCuts = frozenset([serviceIdDVB, serviceIdDVD])
 
 
+#-------------------------------------------------
+# func: readBasicCfgFile( file )
+#
+# Reads the lines of a file in a list. Empty lines
+# or lines beginnig with '#' will be ignored.
+#-------------------------------------------------
+def readBasicCfgFile(file):
+	data = []
+	f = None
+	try:
+		f = open(file, "r")
+		lines = f.readlines()
+		for line in lines:
+			line = line.strip()
+			if len(line) == 0:					# no empty lines
+				continue
+			if line[0:1] == "#":				# no comment lines
+				continue
+			data.append( line )
+	except Exception, e:
+		emcDebugOut("[EMC] Exception in readBasicCfgFile: " + str(e))
+	finally:
+		if f is not None:
+			f.close()
+	return data
+
+
 class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 	instance = None
 	
@@ -138,6 +165,15 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 		self.link            = LoadPixmap(cached=True, path='/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/link.png')
 		self.virtualPic      = LoadPixmap(cached=True, path='/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/virtual.png')
 		self.onSelectionChanged = []
+
+		self.hideitemlist = []
+		if config.EMC.cfghide_enable.value:
+			self.hideitemlist = readBasicCfgFile("/etc/enigma2/emc-hide.cfg")
+					
+		self.nostructscan = []
+		if config.EMC.cfgnoscan_enable.value:
+			self.nostructscan = readBasicCfgFile("/etc/enigma2/emc-noscan.cfg")		
+
 
 	def applySkin(self, desktop, parent):
 		attribs = []
@@ -609,7 +645,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 	def detectDVDStructure(self, loadPath):
 		if not os.path.isdir(loadPath):
 			return None
-		elif config.EMC.nostructscan_linkeddirs.value and os.path.islink(loadPath):
+		elif config.EMC.noscan_linked.value and os.path.islink(loadPath):
 			return None
 		elif fileExists(loadPath + "/VIDEO_TS.IFO"):
 			return loadPath + "/VIDEO_TS.IFO"
@@ -661,31 +697,17 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 			dirlist = []
 			customlist = []
 			e2bookmarks = []
-			dirlistSource = os.listdir(loadPath)	# only need to deal with spaces when executing in shell 
-			
+
+			dirlist = os.listdir(loadPath)	# only need to deal with spaces when executing in shell 
+			noDVDScan = loadPath in self.nostructscan
+							
 			# add sub directories to the list
-			if dirlistSource:
-				# hide special folders and files
-				try:
-					exclude = [x.strip() for x in config.EMC.item_exclude.value.split(',')] #["Temporary Items", "Network Trash Folder", "Info"]
-				except Exception, e:
-					emcDebugOut("[MC] exclude exception:\n" + str(e))
-					exclude = []
-				
-				for p in dirlistSource:
-					if p[0:1] != "." and p not in exclude:
-						dirlist.append( p )
-				
-				# suppress dvd structure scan in selected directories to 
-				# avoid wakeup of sleeping devices
-				try:
-					supress = [x.strip() for x in config.EMC.scan_supress.value.split(',')] #["/media/"]
-					noDVDScan = loadPath in supress
-				except Exception, e:
-					emcDebugOut("[MC] supress exception:\n" + str(e))
-					noDVDScan = False
-				
+			if dirlist:							
 				for p in dirlist:
+
+					if p in self.hideitemlist or (".*" in self.hideitemlist and p[0:1] == "."):
+						continue
+
 					pathname = os.path.join(loadPath, p)
 					
 					if os.path.isdir(pathname):
