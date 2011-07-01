@@ -6,7 +6,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-11-10 16:35+0200\n"
 "PO-Revision-Date: \n"
-"Last-Translator: Swiss-MAD\n"
+"Last-Translator: Olli42 <olli42@no.ip>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -590,4 +590,25 @@ msgstr "Ordner und Dateien ausblenden"
 
 msgid "Suppress DVD structure scan in folders"
 msgstr "Unterdrücke DVD Strukturen Scan"
+
+msgid "Hide selected entries in movielist"
+msgstr "Ausblenden von speziellen Dateien und Ordnern"
+
+msgid "HELP_cfghide_enable"
+msgstr "Dateien und Ordner die in '/etc/enigma/emc-hide.cfg' gelistet sind werden nicht angezeigt. Das Ändern dieser Einstellung erfordert einen Neustart von Enigma!"
+
+msgid "No structure scan in selected folders"
+msgstr "Keine Medienstrutur Erkennung in speziellen Ordnern"
+
+msgid "HELP_cfgnoscan_enable"
+msgstr "Unterordner die in Verzeichnissen von '/etc/enigma/emc-noscan.cfg' stehen werden nicht auf Medienstrukturen (z.B. DVD) überprüft. Diese Einstellung kann das unbeabsichtige Aufwecken von Festplatten oder Netzlaufwerken verhindern. Das Ändern dieser Einstellung erfordert einen Neustart von Enigma!"
+
+msgid "No structure scan in linked folders"
+msgstr "Keine Medienstrutur Erkennung in Symlink-Ordnern"
+
+msgid "HELP_noscan_linked"
+msgstr "Symlinks auf Unterordner werden nicht auf Medienstrukturen (z.B. DVD) überprüft. Diese Einstellung kann das unbeabsichtige Aufwecken von Festplatten oder Netzlaufwerken verhindern."
+
+msgid "HELP_separator_hide&performance"
+msgstr "Einstellungen zum Ausblenden von Dateien/Ordern und Performance"
 
