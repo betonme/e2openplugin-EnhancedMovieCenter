@@ -116,6 +116,9 @@
 		<key id="KEY_CHANNELUP"		mapto="EMCBqtPlus" flags="m" />
 		<key id="KEY_CHANNELDOWN"	mapto="EMCBqtMnus" flags="m" />
 		<key id="KEY_0" 			mapto="0" flags="m" />
+		<key id="KEY_4" 			mapto="4" flags="m" />
 		<key id="KEY_7"				mapto="7" flags="m" />
+		<key id="KEY_8"				mapto="8" flags="m" />
+		<key id="KEY_9"				mapto="9" flags="m" />
 	</map>
 </keymap>

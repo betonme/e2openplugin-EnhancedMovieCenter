@@ -152,7 +152,10 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 				"EMCTEXT":	(self.multiSelect,			_("Start / end multiselection")),
 #				"EMCTEXTL":	(self.unUsed,				"-"),
 				"0": self.CoolKey0,
-				"7": self.CoolAVSwitch
+				"4": self.CoolAVSwitch,
+				"7": self.CoolTVGuide,
+				"8": self.CoolEasyGuide,
+				"9": self.CoolSingleGuide
 			}, prio=-1)
 			# give them a little more priority to win over baseclass buttons
 		self["actions"].csel = self
@@ -174,6 +177,24 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			config.av.policy_43.value = "scale"
 		else:
 			config.av.policy_43.value = "pillarbox"
+
+	def CoolTVGuide(self):
+		try:
+			from Plugins.Extensions.CoolTVGuide.plugin import main
+			main(self.session)
+		except: return
+
+	def CoolEasyGuide(self):
+		try:
+			from Plugins.Extensions.CoolTVGuide.CoolEasyGuide import CEGmain
+			CEGmain(self.session)
+		except: return
+
+	def CoolSingleGuide(self):
+		try:
+			from Plugins.Extensions.CoolTVGuide.CoolSingleGuide import CSGmain
+			CSGmain(self.session)
+		except: return
 
 	def CoolReturn(self):
 		if self.returnService:
