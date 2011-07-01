@@ -166,7 +166,11 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 		self["config"].selectionChanged = selectionChanged
 		self["config"].onSelectionChanged.append(self.updateHelp)
 
+
 	def defineConfig(self):
+		
+		separator = "".ljust(250,"-")
+		
 #         _config list entry                                
 #         _                                                 , config variable                     
 #         _                                                 ,                                     , function called on save
@@ -208,6 +212,7 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 			(  _("Show E2 Bookmarks in movielist")                , config.EMC.bookmarks_e2             , None                  , None                  , 0     , []        , _("Display virtual folders in your \"Movie home\" with your Enigma2 Bookmarks.") ),
 			(  _("Show EMC Bookmarks in movielist")               , config.EMC.bookmarks_emc            , None                  , None                  , 0     , []        , _("Display virtual folders in your \"Movie home\" with your EMC Bookmarks.") ),
 			
+			(  separator                                          , config.EMC.about                    , None                  , None                  , 1     , []        , _("HELP_separator_hide&performance") ),			
 			(  _("Hide selected entries in movielist")            , config.EMC.cfghide_enable           , None                  , None                  , 1     , []        , _("HELP_cfghide_enable") ),
 			(  _("Hide linked files")                             , config.EMC.hide_linkedfiles         , None                  , None                  , 1     , []        , _("") ),
 			(  _("Hide linked folders")                           , config.EMC.hide_linkedfolders       , None                  , None                  , 1     , []        , _("") ),			
@@ -215,6 +220,7 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 			(  _("No structure scan in selected folders")         , config.EMC.cfgnoscan_enable         , None                  , None                  , 1     , []        , _("HELP_cfgnoscan_enable") ),
 			(  _("No structure scan in linked folders")           , config.EMC.noscan_linked            , None                  , None                  , 1     , []        , _("HELP_noscan_linked") ),
 			
+			(  separator                                          , config.EMC.about                    , None                  , None                  , 0     , []        , _("") ),			
 			(  _("Sort file A to Z at startup")                   , config.EMC.CoolStartAZ              , None                  , None                  , 0     , []        , _("") ),
 			(  _("File order reverse")                            , config.EMC.moviecenter_reversed     , None                  , None                  , 0     , []        , _("") ),
 			(  _("EMC open with cursor on newest (TV mode)")      , config.EMC.moviecenter_gotonewest   , None                  , None                  , 0     , []        , _("") ),
@@ -257,6 +263,7 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 			(  _("Enigma auto-restart window end")                , config.EMC.enigmarestart_end        , self.autoRestartInfo  , self.autoRestartInfo  , 1     , [-2]      , _("") ),
 			(  _("Force standby after auto-restart")              , config.EMC.enigmarestart_stby       , None                  , None                  , 1     , [-3]      , _("") ),
 			
+			(  separator                                          , config.EMC.about                    , None                  , None                  , 1     , []        , _("") ),			
 			(  _("Preferred EPG language")                        , config.EMC.epglang                  , setEPGLanguage        , None                  , 1     , []        , _("") ),
 			(  _("Enable playback auto-subtitling")               , config.EMC.autosubs                 , None                  , None                  , 1     , []        , _("") ),
 			(  _("Primary playback subtitle language")            , config.EMC.sublang1                 , None                  , None                  , 1     , [-1]      , _("") ),
@@ -267,6 +274,7 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 			(  _("Secondary playback audio language")             , config.EMC.audlang2                 , None                  , None                  , 1     , [-2]      , _("") ),
 			(  _("Tertiary playback audio language")              , config.EMC.audlang3                 , None                  , None                  , 1     , [-3]      , _("") ),
 			
+			(  separator                                          , config.EMC.about                    , None                  , None                  , 2     , []        , _("") ),			
 			(  _("EMC output directory")                          , config.EMC.folder                   , self.validatePath     , self.openLocationBox  , 2     , []        , _("") ),
 			(  _("Enable EMC debug output")                       , config.EMC.debug                    , self.dbgChange        , None                  , 2     , []        , _("") ),
 			(  _("Debug output file name")                        , config.EMC.debugfile                , None                  , None                  , 2     , []        , _("") ),
