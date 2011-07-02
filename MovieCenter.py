@@ -711,10 +711,6 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 					pathname = os.path.join(loadPath, p)
 					
 					if os.path.isdir(pathname):
-						if config.EMC.hide_linkedfolders.value:
-							if os.path.islink(pathname):
-								#print "linkedfolders " + str(pathname)
-								continue
 						dvdStruct = None
 						if not noDVDScan and config.EMC.check_dvdstruct.value:
 							dvdStruct = self.detectDVDStructure(pathname)
@@ -733,11 +729,6 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 								subdirlist.append( (pathname, p) )
 					else:
 						# Look for media files
-						#if os.path.isfile(pathname): # Avoid double checks
-						if config.EMC.hide_linkedfiles.value:
-							if os.path.islink(pathname):
-								#print "linkedfiles " + str(pathname)
-								continue
 						ext = os.path.splitext(p)[1].lower()
 						global mediaExt
 						if ext in mediaExt:
