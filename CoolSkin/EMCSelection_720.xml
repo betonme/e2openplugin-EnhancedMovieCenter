@@ -21,13 +21,13 @@
 		<convert type="EMCServiceTime">StartTime</convert>
 		<convert type="EMCClockToText">Format:%d.%m.%y</convert>
 	</widget>
-	<widget source="Service" render="Label" position="383,389" size="55,20" foregroundColor="#32A834" backgroundColor="#18080911" font="Regular;18" halign="left" transparent="1">
+	<widget source="Service" render="Label" position="377,389" size="55,20" foregroundColor="#32A834" backgroundColor="#18080911" font="Regular;18" halign="left" transparent="1">
 		<convert type="EMCServiceTime">StartTime</convert>
-		<convert type="EMCClockToText">Format:[%H:%M </convert>
+		<convert type="EMCClockToText">Format:[%H:%M</convert>
 	</widget>
-	<widget source="Service" render="Label" position="430,389" size="70,20" foregroundColor="#32A834" backgroundColor="#18080911" font="Regular;18" halign="left" transparent="1">
+	<widget source="Service" render="Label" position="424,389" size="70,20" foregroundColor="#32A834" backgroundColor="#18080911" font="Regular;18" halign="left" transparent="1">
 		<convert type="EMCServiceTime">EndTime</convert>
-		<convert type="EMCClockToText">Format:- %H:%M]</convert>
+		<convert type="EMCClockToText">Format: - %H:%M]</convert>
 	</widget>
 	<widget source="Service" render="Label" position="492,388" size="100,20" font="Regular;20" halign="left" foregroundColor="#32A834" backgroundColor="#18080911" transparent="1">
 		<convert type="EMCServiceTime">Duration</convert>
