@@ -263,15 +263,19 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		if nextdir == "..":
 			# Open parent folder
 			if self.currentPathSel != "" and self.currentPathSel != "/":
-				# Parent folder
-				service = eServiceReference("2:0:1:0:0:0:0:0:0:0:" + self.currentPathSel)
-				nextdir = os.path.split(self.currentPathSel)[0]
+				if self.currentPathSel == "Latest Recordings":
+					nextdir = config.EMC.movie_homepath.value
+				else:
+					# Parent folder
+					service = eServiceReference("2:0:1:0:0:0:0:0:0:0:" + self.currentPathSel)
+					nextdir = os.path.split(self.currentPathSel)[0]
 			else:
 				# No way to go folder up
 				return
 		else:
 			# Open folder nextdir
 			pass
+
 		self.forwardStack = []
 		self.backStack.append((self.currentPathSel, self["list"].getCurrent()))
 		self.changeDir(nextdir, service)
