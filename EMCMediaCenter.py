@@ -152,7 +152,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 		
 		self["GeneralPlayerPlaybackActions"] = HelpableActionMap(self, "EMCGeneralPlayerActions",
 			{
-				"showExtensions": (self.showExtensionSelection, _("view extensions...")),	# InfobarExtensions
+				"showExtensions": (self.openExtensions, _("view extensions...")),
 			}, 2) # lower priority
 		
 		self["MenuActions"].prio = 2
@@ -433,6 +433,12 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 			
 	def keyBack(self):
 		self.leavePlayer()
+
+	def openExtensions(self):
+		try:
+			InfoBar.instance.showExtensionSelection()
+		except Exception, e:
+			emcDebugOut("[EMCPlayer] openExtensions exception:\n" + str(e))
 
 	def nextAudioTrack(self):
 		self.sendKey(iServiceKeys.keyUser)
