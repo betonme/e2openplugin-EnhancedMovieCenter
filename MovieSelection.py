@@ -395,6 +395,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			elif selection == "Movie home": self.changeDir(config.EMC.movie_homepath.value)
 			elif selection == "reload": self.reloadList()
 			elif selection == "plugin": self.onDialogShow()
+			elif selection == "setup": self.onDialogShow()
 			elif selection == "ctrash": self.purgeExpired()
 			elif selection == "trash": self.changeDir(config.EMC.movie_trashpath.value)
 			elif selection == "delete": self.deleteFile(True)
