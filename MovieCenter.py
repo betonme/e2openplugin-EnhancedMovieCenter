@@ -805,57 +805,62 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 					moviestring = ""
 					len = 0
 					
-					# filename handling
-					if filename[0:8].isdigit() and filename[9:13].isdigit() and not filename[8:1].isdigit():
-						date = filename[0:8] + filename[9:13]
-						if moviestring == "":
-							moviestring = filename[16:]	# skips "YYYYMMDD TIME - "
-							chlMarker = moviestring.find("_-_")
-							if chlMarker > 0: moviestring = moviestring[3+chlMarker:]
-							else:
-								chlMarker = moviestring.find(" - ")
-								if chlMarker > 0: moviestring = moviestring[3+chlMarker:]
-					
-					elif filename[0:2].isdigit() and filename[3:5].isdigit() and not filename[2:3].isdigit():
-						if moviestring == "":
-							moviestring = filename[11:]	# skips "YYYYMMDD TIME - "
-							chlMarker = moviestring.find("_-_")
-							if chlMarker > 0: moviestring = moviestring[3+chlMarker:]
-							else:
-								chlMarker = moviestring.find(" - ")
-								if chlMarker > 0: moviestring = moviestring[3+chlMarker:]
-					
-					elif filename[0:8].isdigit() and filename[8:11] == " - " or filename[0:8].isdigit() and filename[8:11] == "_-_":
-						date = filename[0:8] + "3333"
-						moviestring = filename[11:]
-					
-					else:
-						moviestring = filename[0:]
-					
-					# Very bad but there can be both encodings
-					# E2 recordings are always in utf8
-					# User files can be in cp1252
-					try:
-						moviestring.decode('utf-8')
-					except UnicodeDecodeError:
-						moviestring = moviestring and moviestring.decode("cp1252").encode("utf-8")
-					
-					# meta load
-					if config.EMC.CoolMovieNr.value is False:
-						if config.EMC.movie_metaload.value:
-							meta = MetaList(service)
-							moviestring = meta.getMetaName()
-							len = meta.getMetaLength()
-							if config.EMC.CoolFormat.value:
-								moviestring = moviestring and moviestring+ext
-					
-					sortkey = moviestring.lower() + date
-					
+					# Check config settings
 					if not (self.serviceMoving(service) and config.EMC.movie_hide_mov.value):
 						if not (self.serviceDeleting(service) and config.EMC.movie_hide_del.value):
+							
+							# filename handling
+							if filename[0:8].isdigit() and filename[9:13].isdigit() and not filename[8:1].isdigit():
+								date = filename[0:8] + filename[9:13]
+								if moviestring == "":
+									moviestring = filename[16:]	# skips "YYYYMMDD TIME - "
+									chlMarker = moviestring.find("_-_")
+									if chlMarker > 0: moviestring = moviestring[3+chlMarker:]
+									else:
+										chlMarker = moviestring.find(" - ")
+										if chlMarker > 0: moviestring = moviestring[3+chlMarker:]
+							
+							elif filename[0:2].isdigit() and filename[3:5].isdigit() and not filename[2:3].isdigit():
+								if moviestring == "":
+									moviestring = filename[11:]	# skips "YYYYMMDD TIME - "
+									chlMarker = moviestring.find("_-_")
+									if chlMarker > 0: moviestring = moviestring[3+chlMarker:]
+									else:
+										chlMarker = moviestring.find(" - ")
+										if chlMarker > 0: moviestring = moviestring[3+chlMarker:]
+							
+							elif filename[0:8].isdigit() and filename[8:11] == " - " or filename[0:8].isdigit() and filename[8:11] == "_-_":
+								date = filename[0:8] + "3333"
+								moviestring = filename[11:]
+							
+							else:
+								moviestring = filename[0:]
+							
+							# Very bad but there can be both encodings
+							# E2 recordings are always in utf8
+							# User files can be in cp1252
+							try:
+								moviestring.decode('utf-8')
+							except UnicodeDecodeError:
+								moviestring = moviestring and moviestring.decode("cp1252").encode("utf-8")
+							
+							# meta load
+							if config.EMC.CoolMovieNr.value is False:
+								if config.EMC.movie_metaload.value:
+									meta = MetaList(service)
+									moviestring = meta.getMetaName()
+									len = meta.getMetaLength()
+									if config.EMC.CoolFormat.value:
+										moviestring = moviestring and moviestring+ext
+							
+							# Create sortkey
+							sortkey = moviestring.lower() + date
+							
 							if not config.EMC.CoolFormat.value:
+								# Append file extension
 								if moviestring.lower().endswith(ext):
 									moviestring = os.path.splitext(moviestring)[0]
+							
 							tmplist.append((service, sortkey, date, moviestring, filename, 0, len, ext))
 			if self.alphaSort:
 				tmplist.sort(key=lambda x: x[1], reverse=config.EMC.moviecenter_reversed.value)
