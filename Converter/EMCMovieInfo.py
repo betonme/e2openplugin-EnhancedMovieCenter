@@ -50,43 +50,49 @@ class EMCMovieInfo(MovieInfo):
 				if NavigationInstance and NavigationInstance.instance:
 					service = NavigationInstance.instance.getCurrentlyPlayingServiceReference()
 
-			if info and service:
-				if self.type == self.MOVIE_SHORT_DESCRIPTION:
-					event = self.source.event
-					shortdesc = event and info.getInfoString(service, iServiceInformation.sDescription)
-					if not shortdesc:
-						shortdesc = event.getShortDescription()
-					if not shortdesc:
-						self.eit = EitList(service)
-						shortdesc = self.eit and self.eit.getEitDescription()
-					if not shortdesc:
-						self.meta = MetaList(service, borg=True)
-						shortdesc = self.meta and self.meta.getMetaDescription()
-					return shortdesc or ""
-							
-				elif self.type == self.MOVIE_META_DESCRIPTION:
-					extdesc = info.getInfoString(service, iServiceInformation.sDescription)
-					if not extdesc:
-						extdesc = event and event.getExtendedDescription()
-					if not extdesc:
-						#print "EMC EIT extdesc Meta"
-						self.meta = MetaList(service, borg=True)
-						extdesc = self.meta and self.meta.getMetaDescription()
-					if not extdesc:
-						#print "EMC EIT extdesc Eit"
-						self.eit = EitList(service)
-						extdesc = self.eit and self.eit.getEitDescription()
-					return extdesc or ""
-					
-				elif self.type == self.MOVIE_REC_SERVICE_NAME:
-					rec_ref_str = info.getInfoString(service, iServiceInformation.sServiceref)
-					return ServiceReference(rec_ref_str).getServiceName()
-					
-				elif self.type == self.MOVIE_REC_FILESIZE:
-					filesize = info.getInfoObject(service, iServiceInformation.sFileSize)
-					if filesize is not None:
-						return "%d MB" % (filesize / (1024*1024))
-								
+			if self.type == self.MOVIE_SHORT_DESCRIPTION:
+				event = self.source.event
+				shortdesc = event and info and service and info.getInfoString(service, iServiceInformation.sDescription)
+				if not shortdesc:
+					shortdesc = event and event.getShortDescription()
+				if not shortdesc:
+					self.eit = service and EitList(service)
+					shortdesc = self.eit and self.eit.getEitDescription()
+				if not shortdesc:
+					#self.meta = service and MetaList(service, borg=True)
+					#shortdesc = self.meta and self.meta.getMetaDescription()
+					# Test only
+					rec_ref_str = info and info.getInfoString(service, iServiceInformation.sServiceref)
+					shortdesc = rec_ref_str and ServiceReference(rec_ref_str).getServiceName()
+				return shortdesc or ""
+						
+			elif self.type == self.MOVIE_META_DESCRIPTION:
+				extdesc = info and service and info.getInfoString(service, iServiceInformation.sDescription)
+				if not extdesc:
+					extdesc = event and event.getExtendedDescription()
+				if not extdesc:
+					#print "EMC EIT extdesc Meta"
+					self.meta = service and MetaList(service, borg=True)
+					extdesc = self.meta and self.meta.getMetaDescription()
+				if not extdesc:
+					#print "EMC EIT extdesc Eit"
+					self.eit = service and EitList(service)
+					extdesc = self.eit and self.eit.getEitDescription()
+				if not extdesc:
+					# Test only
+					rec_ref_str = info and info.getInfoString(service, iServiceInformation.sServiceref)
+					extdesc = rec_ref_str and ServiceReference(rec_ref_str).getServiceName()
+				return extdesc or ""
+				
+			elif self.type == self.MOVIE_REC_SERVICE_NAME:
+				rec_ref_str = info.getInfoString(service, iServiceInformation.sServiceref)
+				return ServiceReference(rec_ref_str).getServiceName()
+				
+			elif self.type == self.MOVIE_REC_FILESIZE:
+				filesize = info.getInfoObject(service, iServiceInformation.sFileSize)
+				if filesize is not None:
+					return "%d MB" % (filesize / (1024*1024))
+				
 		except Exception, e:
 			print "[EMCMI] getText exception:" + str(e)
 
