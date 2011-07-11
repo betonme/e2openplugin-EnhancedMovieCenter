@@ -249,17 +249,34 @@ class InfoBarSupport(	InfoBarBase, \
 		return long(len[1])
 
 	# Handle EOF
+#	def doSeekEOF(self):
+#		try:
+#			# Stop one second before eof : 1 * 90 * 1000
+#			play = self.getSeekPlayPosition()
+#			end = self.getSeekLength() - 90000
+#			if play < end and 0 < end:
+#				# InfoBarSeek
+#				InfoBarSeek.doSeek(self, end)
+#			# Wait one second before signaling eof
+#			# Call private InfoBarSeek function
+#			DelayedFunction(1000, InfoBarSeek._InfoBarSeek__evEOF, self)
+#		except Exception, e:
+#			emcDebugOut("[EMCMC] doSeekEOF exception:" + str(e))
+	
 	def doSeekEOF(self):
 		try:
 			# Stop one second before eof : 1 * 90 * 1000
+			state = self.seekstate
 			play = self.getSeekPlayPosition()
 			end = self.getSeekLength() - 90000
+			
+			# Validate play eand end values
 			if play < end and 0 < end:
 				# InfoBarSeek
 				InfoBarSeek.doSeek(self, end)
-			# Wait one second before signaling eof
-			# Call private InfoBarSeek function
-			DelayedFunction(1000, InfoBarSeek._InfoBarSeek__evEOF, self)
+			
+			# If player is in pause mode do not call eof
+			if state != self.SEEK_STATE_PAUSE:
+				DelayedFunction(1000, InfoBarSeek._InfoBarSeek__evEOF, self)
 		except Exception, e:
 			emcDebugOut("[EMCMC] doSeekEOF exception:" + str(e))
-	
