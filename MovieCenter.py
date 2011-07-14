@@ -43,7 +43,8 @@ from MetaSupport import MetaList
 # Media types
 audioExt = frozenset([".ac3", ".dts", ".flac", ".m4a", ".mp2", ".mp3", ".ogg", ".wav"])
 videoExt = frozenset([".ts", ".avi", ".divx", ".f4v", ".flv", ".img", ".iso", ".m2ts", ".m3u", ".m4v", ".mkv", ".mov", ".mp4", ".mpeg", ".mpg", ".mts", ".vob"])
-mediaExt = audioExt | videoExt
+playlistExt = frozenset([".m3u"])
+mediaExt = audioExt | videoExt | playlistExt
 
 # Additional file types
 tsExt    = frozenset([".ts"])
@@ -54,7 +55,7 @@ dvdExt   = frozenset([".iso", ".img", ".ifo"])
 playerDVB  = tsExt																											# ServiceDVB
 playerM2TS = m2tsExt																										# ServiceM2TS
 playerDVD  = dvdExt																											# ServiceDVD
-playerMP3  = audioExt | videoExt - playerDVB - playerM2TS - playerDVD		# ServiceMP3 GStreamer
+playerMP3  = mediaExt - playerDVB - playerM2TS - playerDVD							# ServiceMP3 GStreamer
 
 serviceIdDVB = eServiceReference.idDVB	# eServiceFactoryDVB::id   enum { id = 0x1 }; 
 serviceIdDVD = 4369 										# eServiceFactoryDVD::id   enum { id = 0x1111 };
@@ -160,6 +161,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 		self.dvd_default     = LoadPixmap(cached=True, path='/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/dvd_default.png')
 		self.dvd_watching    = LoadPixmap(cached=True, path='/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/dvd_watching.png')
 		self.dvd_finished    = LoadPixmap(cached=True, path='/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/dvd_finished.png')
+		self.playlistPic     = LoadPixmap(cached=True, path='/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/playlist.png')
 		self.vlcPic          = LoadPixmap(cached=True, path='/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/vlc.png')
 		self.vlcdPic         = LoadPixmap(cached=True, path='/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/vlcdir.png')
 		self.link            = LoadPixmap(cached=True, path='/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/link.png')
@@ -275,7 +277,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 			color = self.DefaultColor
 		
 		# Icon
-		global audioExt, dvdExt, videoExt
+		global audioExt, dvdExt, videoExt, playlistExt
 		# audio
 		if ext in audioExt:
 			pixmap = self.mp3Pic
@@ -296,7 +298,10 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 			elif movieFinished:
 				pixmap = self.movie_finished
 			else:
-				pixmap = self.movie_default
+				pixmap = self.playlistPic
+		# playlists
+		elif ext in playlistExt:
+			pixmap = self.movie_default
 		# all others
 		else:
 			pixmap = self.movie_default
