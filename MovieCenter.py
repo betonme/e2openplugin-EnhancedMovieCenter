@@ -850,18 +850,20 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 								moviestring = moviestring and moviestring.decode("cp1252").encode("utf-8")
 							
 							# meta load
-							if config.EMC.CoolMovieNr.value is False:
+							if config.EMC.movie_show_cutnr.value is False:
 								if config.EMC.movie_metaload.value:
 									meta = MetaList(service)
-									moviestring = meta.getMetaName()
+									metamoviestring = meta.getMetaName()
 									len = meta.getMetaLength()
-									if config.EMC.CoolFormat.value:
-										moviestring = moviestring and moviestring+ext
+									if metamoviestring:
+										moviestring = metamoviestring
+										if config.EMC.movie_show_format.value:
+											moviestring += ext
 							
 							# Create sortkey
 							sortkey = moviestring.lower() + date
 							
-							if not config.EMC.CoolFormat.value:
+							if not config.EMC.movie_show_format.value:
 								# Append file extension
 								if moviestring.lower().endswith(ext):
 									moviestring = os.path.splitext(moviestring)[0]

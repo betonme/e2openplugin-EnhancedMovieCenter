@@ -228,8 +228,8 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 			(  _("Listbox is skin able")                          , config.EMC.skin_able                , None                  , None                  , 0     , []        , _("") ),
 			
 			(  _("Try to load titles from .meta files")           , config.EMC.movie_metaload           , None                  , None                  , 0     , []        , _("") ),
-			(  _("Show Movie Format")                             , config.EMC.CoolFormat               , None                  , None                  , 0     , []        , _("") ),
-			(  _("Show Cut-Nr if exist")                          , config.EMC.CoolMovieNr              , None                  , None                  , 0     , []        , _("") ),
+			(  _("Show Movie Format")                             , config.EMC.movie_show_format        , None                  , None                  , 0     , []        , _("") ),
+			(  _("Show Cut-Nr if exist")                          , config.EMC.movie_show_cutnr         , None                  , None                  , 0     , []        , _("") ),
 			(  _("Show date")                                     , config.EMC.movie_date               , None                  , None                  , 0     , []        , _("") ),
 			
 			(  _("Show movie icons")                              , config.EMC.movie_icons              , None                  , None                  , 0     , []        , _("") ),
