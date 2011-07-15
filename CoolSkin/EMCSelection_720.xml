@@ -15,7 +15,7 @@
 
 	<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/InfoBar.png" position="36,377" zPosition="-1" size="650,39" alphatest="blend" />
 	<widget source="Service" render="Label" position="42,388" size="263,20" font="Regular;20" halign="center" foregroundColor="#32A834" backgroundColor="#18080911" transparent="1">
-		<convert type="MovieInfo">RecordServiceName</convert>
+		<convert type="EMCMovieInfo">RecordServiceName</convert>
 	</widget>
 	<widget source="Service" render="Label" position="305,388" size="150,20" font="Regular;20" halign="left" foregroundColor="#32A834" backgroundColor="#18080911" transparent="1">
 		<convert type="EMCServiceTime">StartTime</convert>

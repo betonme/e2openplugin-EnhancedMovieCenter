@@ -33,7 +33,7 @@
 		<convert type="EMCEventName">ExtendedDescription</convert>
 	</widget>
 	<widget source="Service" render="Label" position="50,640" size="200,24" font="Regular;19" foregroundColor="#00bab329" halign="left" backgroundColor="#444444" transparent="1">
-		<convert type="MovieInfo">RecordServiceName</convert>
+		<convert type="EMCMovieInfo">RecordServiceName</convert>
 	</widget>
 	<widget source="Service" render="Label" position="210,640" size="300,24" font="Regular;19" foregroundColor="#00bab329" halign="right" backgroundColor="#444444" transparent="1">
 		<convert type="EMCServiceTime">StartTime</convert>
