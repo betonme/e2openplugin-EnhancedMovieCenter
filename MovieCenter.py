@@ -298,10 +298,10 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 			elif movieFinished:
 				pixmap = self.movie_finished
 			else:
-				pixmap = self.playlistPic
+				pixmap = self.movie_default
 		# playlists
 		elif ext in playlistExt:
-			pixmap = self.movie_default
+			pixmap = self.playlistPic
 		# all others
 		else:
 			pixmap = self.movie_default
