@@ -6,7 +6,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-11-10 16:35+0200\n"
 "PO-Revision-Date: \n"
-"Last-Translator: Olli42 <olli42@no.ip>\n"
+"Last-Translator: Swiss-MAD\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -337,7 +337,7 @@ msgid "Show icon indication for non-watched"
 msgstr "Nicht gesehener Film mit Icon kennzeichnen"
 
 msgid "Try to load titles from .meta files"
-msgstr "Versuche Titel aus .meta Dateien zu lesen"
+msgstr "Versuche Titel aus .eit oder .meta Dateien zu lesen"
 
 msgid "EMC re-open list after STOP-press"
 msgstr "EMC nach Filmstop wieder öffnen"
@@ -595,20 +595,42 @@ msgid "Hide selected entries in movielist"
 msgstr "Ausblenden von speziellen Dateien und Ordnern"
 
 msgid "HELP_cfghide_enable"
-msgstr "Dateien und Ordner die in '/etc/enigma/emc-hide.cfg' gelistet sind werden nicht angezeigt. Das Ändern dieser Einstellung erfordert einen Neustart von Enigma!"
+msgstr ""
+"Dateien und Ordner die in '/etc/enigma2/emc-hide.cfg' gelistet sind werden nicht angezeigt.\n"
+"Das ändern dieser Einstellung erfordert einen Enigma2 Neustart!"
 
 msgid "No structure scan in selected folders"
-msgstr "Keine Medienstrutur Erkennung in speziellen Ordnern"
+msgstr "Keine Medienstrutur Erkennung in speziellen Ordnern."
 
 msgid "HELP_cfgnoscan_enable"
-msgstr "Unterordner die in Verzeichnissen von '/etc/enigma/emc-noscan.cfg' stehen werden nicht auf Medienstrukturen (z.B. DVD) überprüft. Diese Einstellung kann das unbeabsichtige Aufwecken von Festplatten oder Netzlaufwerken verhindern. Das Ändern dieser Einstellung erfordert einen Neustart von Enigma!"
+msgstr "Unterordner die in Pfade von '/etc/enigma2/emc-noscan.cfg' stehen werden nicht auf Medienstrukturen (z.B. DVD) überprüft. Dies kann unbeabsichtiges Aufwecken von Festplatten oder Netzlaufwerken verhindern. Ändern dieser Einstellung erfordert E2 Neustart!"
 
 msgid "No structure scan in linked folders"
 msgstr "Keine Medienstrutur Erkennung in Symlink-Ordnern"
 
+msgid "HELP_Scan for DVD structures"
+msgstr ""
+"Hiermit kann die Suche nach DVD Strukturen in Verzeichnissen generell unterbunden werden.\n"
+"Dies kann unbeabsichtiges Aufwecken von Festplatten oder Netzlaufwerken verhindern."
+
 msgid "HELP_noscan_linked"
-msgstr "Symlinks auf Unterordner werden nicht auf Medienstrukturen (z.B. DVD) überprüft. Diese Einstellung kann das unbeabsichtige Aufwecken von Festplatten oder Netzlaufwerken verhindern."
+msgstr ""
+"Symlinks auf Unterordner werden nicht auf Medienstrukturen (z.B. DVD) überprüft.\n"
+"Dies kann unbeabsichtiges Aufwecken von Festplatten oder Netzlaufwerken verhindern."
 
 msgid "HELP_separator_hide&performance"
-msgstr "Einstellungen zum Ausblenden von Dateien/Ordern und Performance"
+msgstr "Einstellungen zum Ausblenden von Dateien/Ordern und Performance."
+
+msgid "HELP_Sort file A to Z at startup"
+msgstr "Die Filmliste wird beim öffnen immer nach Alphabet sortiert."
+
+msgid "HELP_File order reverse"
+msgstr ""
+"Die Filmliste wird immer in Umgekehrter Reihenfolge sortiert.\n"
+"Egal ob nach Datum oder Alphabet sortiert wird. "
+
+msgid "HELP_Cursor predictive move after selection"
+msgstr ""
+"Der Cursor wird beim selektieren mit der [VIDEO/PVR] Taste in die eingestellte Richtung weiterbewegt.\n"
+"Bei \"rauf/runter\" wird in die zuletzt bewegte Richtung gesprungen."
 
