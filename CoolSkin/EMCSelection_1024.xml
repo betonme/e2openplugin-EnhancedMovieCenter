@@ -35,7 +35,11 @@
 	</widget>
 	<widget name="FileSize" position="874,506" size="100,20" font="Regular;20" halign="right" foregroundColor="#32A834" backgroundColor="#18080911" transparent="1" />
 
-	<widget name="FileName" position="336,475" size="638,22" font="Regular;22" foregroundColor="#00bab329" backgroundColor="#18080911" halign="center" noWrap="1" transparent="1" />
+	<!-- <widget name="FileName" position="336,475" size="638,22" font="Regular;22" foregroundColor="#00bab329" backgroundColor="#18080911" halign="center" noWrap="1" transparent="1" /> -->
+	<!-- EMC Short Description(Genre) -->
+	<widget source="Service" render="Label" position="336,475" size="638,22" font="Regular; 20" foregroundColor="#00bab329" backgroundColor="#18080911" transparent="1" halign="center" >
+		<convert type="EMCMovieInfo">ShortDescription</convert>
+	</widget>
 	<widget source="Service" render="Label" position="50,217" size="280,307" font="Regular; 18" foregroundColor="#00bab329" backgroundColor="#18080911" transparent="1" halign="center" valign="top">
 		<convert type="EMCEventName">ExtendedDescription</convert>
 	</widget>

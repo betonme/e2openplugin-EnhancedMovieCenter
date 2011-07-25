@@ -42,15 +42,15 @@
 		<convert type="EMCServicePosition">Gauge</convert> <!-- EMC Converter needed, to display markers on not *.ts files -->
 	</widget>
 	<!-- Entire movie length -->
-	<widget source="session.CurrentService" render="Label" position="462,492" size="100,22" font="Regular;22" halign="center" valign="center" backgroundColor="#00000000" transparent="1">
+	<widget source="session.CurrentService" render="Label" position="462,492" size="100,22" font="Regular;22" halign="center" valign="center" backgroundColor="#00282828" transparent="1">
 		<convert type="EMCServicePosition">Length,ShowHours</convert>
 	</widget>
 	<!-- Actual movie position -->
-	<widget source="session.CurrentService" render="Label" position="64,492" size="100,22" font="Regular;22" halign="left" valign="center" backgroundColor="#00000000" transparent="1">
+	<widget source="session.CurrentService" render="Label" position="64,492" size="100,22" font="Regular;22" halign="left" valign="center" backgroundColor="#00444444" transparent="1">
 		<convert type="EMCServicePosition">Position,ShowHours</convert>
 	</widget>
 	<!-- Remaining movie time -->
-	<widget source="session.CurrentService" render="Label" position="889,492" size="100,22" font="Regular;22" halign="left" valign="center" backgroundColor="#00000000" transparent="1">
+	<widget source="session.CurrentService" render="Label" position="889,492" size="100,22" font="Regular;22" halign="left" valign="center" backgroundColor="#00282828" transparent="1">
 		<convert type="EMCServicePosition">Remaining,Negate,ShowHours</convert>
 	</widget>
 	<!-- Chapter Label only for DVD -->	
