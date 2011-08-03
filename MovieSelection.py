@@ -550,7 +550,6 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 				if forceProgress > -1:
 					progress = forceProgress
 			
-			if not preparePlayback:
 				if progress >= 100:
 					# 100% -> 0
 					# Don't care about preparePlayback, always reset to 0%
@@ -563,7 +562,8 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 					# 1-99% -> length
 					cuts.toggleLastCutList(cuts.CUT_TOGGLE_FINISHED)
 			else:
-				if progress >= 100 or config.EMC.movie_rewind_finished.value is True and progress >= int(config.EMC.movie_finished_percent.value):
+				if progress >= 100 \
+					or ( config.EMC.movie_rewind_finished.value is True and progress >= int(config.EMC.movie_finished_percent.value) ):
 					# 100% -> 0 or
 					# Start playback and rewind is set and movie progress > finished -> 0
 					# Don't save SavedMarker

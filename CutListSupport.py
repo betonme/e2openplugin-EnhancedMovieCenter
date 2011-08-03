@@ -269,7 +269,7 @@ class CutList():
 			elif toggle == self.CUT_TOGGLE_START_FOR_PLAY:
 				newLast = 0
 				savedLast = 0
-				oldLast = 0
+				#oldLast = oldLast
 			elif toggle == self.CUT_TOGGLE_FOR_PLAY:
 				newLast = oldLast
 				savedLast = 0
