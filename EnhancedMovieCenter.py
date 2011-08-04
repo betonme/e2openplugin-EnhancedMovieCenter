@@ -88,10 +88,10 @@ def cleanupSetup(dummyparam=None):
 				DelayedFunction(1800000, cleanupSetup)
 				emcDebugOut("recordings exist... so next trashcan cleanup in " + str(seconds/60) + " minutes")
 			else:
-				if seconds < 0:
+				if seconds <= 0:
 					seconds += 86400	# 24*60*60
 				# Recall setup funktion
-				trashCleanCall = DelayedFunction(1000*seconds, gMS.purgeExpired)
+				trashCleanCall = DelayedFunction(1000*seconds, cleanupSetup)
 				# Execute trash cleaning
 				DelayedFunction(2000, gMS.purgeExpired)
 				emcDebugOut("Next trashcan cleanup in " + str(seconds/60) + " minutes")
