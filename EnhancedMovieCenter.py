@@ -225,12 +225,12 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 			(  _("EMC open with cursor on newest (player)")       , config.EMC.moviecenter_gotonewestp  , None                  , None                  , 0     , []        , _("") ),
 			(  _("Cursor predictive move after selection")        , config.EMC.moviecenter_selmove      , None                  , None                  , 0     , []        , _("HELP_Cursor predictive move after selection") ),
 			
-			(  _("Listbox is skin able")                          , config.EMC.skin_able                , None                  , None                  , 0     , []        , _("") ),
+			(  _("Listbox is skin able")                          , config.EMC.skin_able                , None                  , None                  , 0     , []        , _("HELP_Listbox is skin able") ),
 			
-			(  _("Try to load titles from .meta files")           , config.EMC.movie_metaload           , None                  , None                  , 0     , []        , _("") ),
-			(  _("Show Movie Format")                             , config.EMC.movie_show_format        , None                  , None                  , 0     , []        , _("") ),
-			(  _("Show Cut-Nr if exist")                          , config.EMC.movie_show_cutnr         , None                  , None                  , 0     , []        , _("") ),
-			(  _("Show date")                                     , config.EMC.movie_date               , None                  , None                  , 0     , []        , _("") ),
+			(  _("Try to load titles from .meta files")           , config.EMC.movie_metaload           , None                  , None                  , 0     , []        , _("HELP_Try to load titles from .meta files") ),
+			(  _("Show Movie Format")                             , config.EMC.movie_show_format        , None                  , None                  , 0     , []        , _("HELP_Show Movie Format") ),
+			(  _("Show Cut-Nr if exist")                          , config.EMC.movie_show_cutnr         , None                  , None                  , 0     , []        , _("HELP_Show Cut-Nr if exist") ),
+			(  _("Show date")                                     , config.EMC.movie_date               , None                  , None                  , 0     , []        , _("HELP_Show date") ),
 			
 			(  _("Show movie icons")                              , config.EMC.movie_icons              , None                  , None                  , 0     , []        , _("") ),
 			(  _("Show movie progress")                           , config.EMC.movie_progress           , None                  , None                  , 0     , []        , _("") ),

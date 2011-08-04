@@ -634,3 +634,24 @@ msgstr ""
 "Der Cursor wird beim selektieren mit der [VIDEO/PVR] Taste in die eingestellte Richtung weiterbewegt.\n"
 "Bei \"rauf/runter\" wird in die zuletzt bewegte Richtung gesprungen."
 
+msgid "HELP_Listbox is skin able"
+msgstr ""
+"Das aussehen der Filmliste wird wenn vorhanden aus dem verwendeten Skin genommen (nur <widget name=\"list\").\n"
+"Ansonsten wie im EMC Setup eingestellt."
+
+msgid "HELP_Try to load titles from .meta files"
+msgstr ""
+"Titel wird wenn vorhanden aus der .meta oder .eit geladen.\n"
+"Ansonsten wird der Titel aus dem Dateinamen extrahiert."
+
+msgid "HELP_Show Movie Format"
+msgstr "Dateiendung (Dateiformat) wird dem Titel angehängt."
+
+msgid "HELP_Show Cut-Nr if exist"
+msgstr ""
+"Wenn Enigma2 während einer Aufnahme rebootet, wird die Aufnahme von E2 automatisch fortgesetzt und dabei der neuen Datei eine fotlaufende Nummer hinten angestellt.\n"
+"Hiermit wird diese Nummer dem Titel hinten angestellt."
+
+msgid "HELP_Show date"
+msgstr "In der Filmliste wird bei jeder Aufnahme auch das Aufnahmedatum angezeigt."
+
