@@ -231,12 +231,12 @@ class MovieMenu(Screen):
 			self.close("setup")
 
 	def e2Bookmarks(self):
-		path = self.currentPathSel+"/"
+		path = self.currentPathSel
 		self.session.open(MovieLocationBox, text = _("Manage E2 Bookmarks"), dir = path)
 		self.close(None)
 
 	def openE2Bookmark(self):
-		path = self.currentPathSel+"/"
+		path = self.currentPathSel
 		self.session.openWithCallback(self.openE2BookmarkCB, MovieLocationBox, text = _("Open E2 Bookmark path"), dir = path)
 
 	def openE2BookmarkCB(self, path=None):
