@@ -22,7 +22,7 @@
 import os, sys
 from Components.config import *
 from __init__ import _
-extensions = [".ts.ap", ".ts.cuts", ".ts.cutsr", ".ts.meta", ".ts.sc", ".eit", ".ts_mp.jpg"]
+extensions = [".ts.ap", ".ts.cuts", ".ts.cutsr", ".ts.meta", ".ts.sc", ".eit", ".ts_mp.jpg", ".ts.gm"]
 
 class RogueFileCheck:
 	def __init__(self, path, avoid=""):

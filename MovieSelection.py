@@ -532,6 +532,9 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			# Cut file handling
 			path = service.getPath()
 			cuts  = path +".cuts"
+			
+			# Only for compatibilty reasons
+			# Should be removed anytime
 			cutsr = path +".cutsr"
 			if os.path.exists(cutsr) and not os.path.exists(cuts):
 				# Rename file - to catch all old EMC revisions

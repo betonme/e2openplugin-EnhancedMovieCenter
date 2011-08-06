@@ -99,9 +99,6 @@ class RecordingsControl:
 					emcDebugOut("[emcRC] REC START for: " + filename)
 			else: #timer.state == timer.StateEnded:
 				if filename in self.recDict:
-					#OLD 
-					#try: os.rename(timer.Filename + ".ts.cuts", timer.Filename + ".ts.cutsr") # switch to unwatched
-					#except: pass
 					del self.recDict[filename]
 					inform = True
 					emcDebugOut("[emcRC] REC END for: " + filename)

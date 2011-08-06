@@ -255,7 +255,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 			path = service and service.getPath()
 			if os.path.exists(path): # or True: # is vlc
 				
-				# rename .cutsr to .cuts if user has toggled it
+				# prepare cut list
 				self.recordings.toggleProgress(service, True)
 				self.service = service
 				
