@@ -20,6 +20,7 @@
 #
 import math
 import os
+from time import time
 
 from Components.config import *
 from Components.GUIComponent import GUIComponent
@@ -131,6 +132,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 		self.WatchingColor = 0x3486F4
 		self.FinishedColor = 0x46D93A
 		self.RecordingColor = 0x9F1313
+		#IDEA self.CutColor
 
 		self.l = eListboxPythonMultiContent()
 		self.l.setFont(0, gFont("Regular", 22))
@@ -157,6 +159,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 		self.movie_finished  = LoadPixmap(cached=True, path='/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/movie_finished.png')
 		self.movie_rec       = LoadPixmap(cached=True, path='/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/movie_rec.png')
 		self.movie_recrem    = LoadPixmap(cached=True, path='/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/movie_recrem.png')
+		#IDEA self.movie_cut = LoadPixmap
 		self.mp3Pic          = LoadPixmap(cached=True, path='/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/music.png')
 		self.dvd_default     = LoadPixmap(cached=True, path='/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/dvd_default.png')
 		self.dvd_watching    = LoadPixmap(cached=True, path='/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/dvd_watching.png')
@@ -257,63 +260,104 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 		except Exception, e:
 			emcDebugOut("[MC] recStateChange exception:\n" + str(e))
 
-	def getFileInfo(self, ext, progress):
+	def getFileInfo(self, path, ext, progress, datesort):
 		pixmap = None
 		color = None
+		colordate = None
+		date = ""
 		
-		# Progress State
-		movieUnwatched = config.EMC.movie_mark.value and	progress < int(config.EMC.movie_watching_percent.value)
-		movieWatching  = config.EMC.movie_mark.value and	progress >= int(config.EMC.movie_watching_percent.value) and progress < int(config.EMC.movie_finished_percent.value)
-		movieFinished  = config.EMC.movie_mark.value and	progress >= int(config.EMC.movie_finished_percent.value)
-		
-		# Color
-		if movieUnwatched:
-			color = self.UnwatchedColor
-		elif movieWatching:
-			color = self.WatchingColor
-		elif movieFinished:
-			color = self.FinishedColor
-		else:
+		if datesort == "VLCs":
+			date = "VLC"
+			pixmap = self.vlcPic
 			color = self.DefaultColor
-		
-		# Icon
-		global audioExt, dvdExt, videoExt, playlistExt
-		# audio
-		if ext in audioExt:
-			pixmap = self.mp3Pic
-		# dvd iso or structure
-		elif ext in dvdExt: # or ext == "":  #Workaround for DVD folder
-			if movieWatching:
-				pixmap = self.dvd_watching
-			elif movieFinished:
-				pixmap = self.dvd_finished
+			if self.CoolDateColor == 0:
+				colordate = self.DateColor
 			else:
-				pixmap = self.dvd_default
-		# video
-		elif ext in videoExt:
-			if movieUnwatched:
-				pixmap = self.movie_unwatched
-			elif movieWatching:
-				pixmap = self.movie_watching
-			elif movieFinished:
-				pixmap = self.movie_finished
+				colordate = color
+		
+		elif self.recControl.isRecording(path):
+			date = "-- REC --"
+			pixmap = self.movie_rec
+			color = self.RecordingColor
+			colordate = self.RecordingColor
+		
+		#IDEA elif config.EMC.check_remote_recording.value:
+		elif self.recControl.isRemoteRecording(path):
+			date = "-- rec --"
+			pixmap = self.movie_recrem
+			color = self.RecordingColor
+			colordate = self.RecordingColor
+		
+		#IDEA elif config.EMC.check_movie_cutting.value:
+		elif self.recControl.isCutting(path):
+			date = "-- CUT --"
+			pixmap = self.movie_rec
+			color = self.RecordingColor
+			colordate = self.RecordingColor
+		
+		else:
+			# Progress State
+			movieUnwatched = config.EMC.movie_mark.value and	progress < int(config.EMC.movie_watching_percent.value)
+			movieWatching  = config.EMC.movie_mark.value and	progress >= int(config.EMC.movie_watching_percent.value) and progress < int(config.EMC.movie_finished_percent.value)
+			movieFinished  = config.EMC.movie_mark.value and	progress >= int(config.EMC.movie_finished_percent.value)
+			
+			# Icon
+			global audioExt, dvdExt, videoExt, playlistExt
+			# audio
+			if ext in audioExt:
+				pixmap = self.mp3Pic
+			# dvd iso or structure
+			elif ext in dvdExt: # or ext == "":  #Workaround for DVD folder
+				if movieWatching:
+					pixmap = self.dvd_watching
+				elif movieFinished:
+					pixmap = self.dvd_finished
+				else:
+					pixmap = self.dvd_default
+			# video
+			elif ext in videoExt:
+				if movieUnwatched:
+					pixmap = self.movie_unwatched
+				elif movieWatching:
+					pixmap = self.movie_watching
+				elif movieFinished:
+					pixmap = self.movie_finished
+				else:
+					pixmap = self.movie_default
+			# playlists
+			elif ext in playlistExt:
+				pixmap = self.playlistPic
+			# all others
 			else:
 				pixmap = self.movie_default
-		# playlists
-		elif ext in playlistExt:
-			pixmap = self.playlistPic
-		# all others
-		else:
-			pixmap = self.movie_default
+			
+			# Color
+			if movieUnwatched:
+				color = self.UnwatchedColor
+			elif movieWatching:
+				color = self.WatchingColor
+			elif movieFinished:
+				color = self.FinishedColor
+			else:
+				color = self.DefaultColor
+			
+			if self.CoolDateColor == 0:
+				colordate = self.DateColor
+			else:
+				colordate = color
+			
+			# Date
+			if not date:
+				date = datesort[6:8] + "." + datesort[4:6] + "." + datesort[0:4]
+		
+		return pixmap, color, colordate, date
 
-		return pixmap, color
-
-	def getProgress(self, service, len=0, last=0, forceRecalc=False, cuts=None):
+	def getProgress(self, service, length=0, last=0, forceRecalc=False, cuts=None):
 		# All calculations are done in seconds
 		try:
 			cuts = None
 			progress = 0
-			updlen = len
+			updlen = length
 			if last <= 0:
 				# Get last position from cut file
 				if cuts is None:
@@ -323,65 +367,86 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 			if last > 0 or forceRecalc:
 				# Valid position
 				# Recalc the movie length to calculate the progress status
-				if len <= 0: 
+				if length <= 0: 
 					if service:
-						len = self.getLengthFromServiceHandler(service)
-					#emcDebugOut("[MC] Service len:" + str(len))
-					if len <= 0: 
+						length = self.getLengthFromServiceHandler(service)
+					if length <= 0: 
 						if cuts is None:
 							cuts = CutList( service )
-						len = cuts.getCutListLength()
-						#emcDebugOut("[MC] Cuts length:" + str(len))
-						if len <= 0: 
-							# Set default file len if is not calculateable
+						length = cuts.getCutListLength()
+						if length <= 0: 
+							# Set default file length if is not calculateable
 							# 90 minutes = 90 * 60
-							len = 5400
+							length = 5400
 							# We only update the entry if we do not use the default value
 							updlen = 0
-							#emcDebugOut("[MC] getProgress No length: " + str(service.getPath()))
+							emcDebugOut("[MC] getProgress No length: " + str(service.getPath()))
 						else:
-							updlen = len
+							updlen = length
 					else:
-						updlen = len
+						updlen = length
 					if updlen:
-						# Update entry in list... so next time we don't need to recalc
-						idx = self.getIndexOfService(service)
-						if idx >= 0:
-							x = self.list[idx]
-							self.list[idx] = (x[0], x[1], x[2], x[3], x[4], x[5], updlen, x[7])
-				if len:
-					# Adjust the watched movie length (99% of movie length) 
-					# else we will never see the 100%
-					adjlength = len / 100.0 * 98.0
-					# Calculate progress and round up
-					progress = int( math.ceil ( float(last) / float(adjlength) * 100.0 ) )
-					# Normalize progress
-					if progress < 0: progress = 0
-					elif progress > 100: progress = 100
+						self.updateLength(service, updlen)
+				if length:
+					progress = self.calculateProgress(last, length)
 				else:
 					# This should never happen, we always have our default length
-					#emcDebugOut("[MC] getProgress(): Last without any length")
+					emcDebugOut("[MC] getProgress(): Last without any length")
 					progress = 100
 			else:
 				# No position implies progress is zero
 				progress = 0
-			return progress, len
+			emcDebugOut("[MC] getProgress name length progress: " + str(service.getPath()) +" " +str(length) +" " +str(progress) )
+			return progress
 		except Exception, e:
 			emcDebugOut("[MC] getProgress() Exception: " + str(e))
-			return 0, 0
+			return 0
 
-	def buildMovieCenterEntry(self, service, sortkey, datesort, moviestring, filename, selnum, len, ext):
+	def getRecordProgress(self, service, path, oldlength):
+		begin, end = self.recControl.getRecordingTimes(path)
+		last = time() - begin
+		length = end - begin
+		if oldlength != length:
+			self.updateLength(service, length)
+		return self.calculateProgress(last, length)
+
+	def calculateProgress(self, last, length):
+		progress = 0
+		if length:
+			# Adjust the watched movie length (98% of movie length) 
+			# else we will never see the 100%
+			adjlength = length / 100.0 * 98.0
+			# Calculate progress and round up
+			progress = int( math.ceil ( float(last) / float(adjlength) * 100.0 ) )
+			# Normalize progress
+			if progress < 0: progress = 0
+			elif progress > 100: progress = 100
+		return progress
+
+	def updateLength(self, service, length):
+		# Update entry in list... so next time we don't need to recalc
+		idx = self.getIndexOfService(service)
+		if idx >= 0:
+			x = self.list[idx]
+			if x[6] != length:
+				self.list[idx] = (x[0], x[1], x[2], x[3], x[4], x[5], length, x[7])
+
+	def buildMovieCenterEntry(self, service, sortkey, datesort, moviestring, filename, selnum, length, ext):
 		try:
+			offset = 0
+			progressWidth = 55
+			globalHeight = 40
+			
+			res = [ None ]
 			path = self.loadPath + filename
 			isLink = os.path.islink(path)
-			globalHeight = 40
+			
 			usedFont = 0
 			if config.EMC.skin_able.value:
 				usedFont = 1
 			
 			# Directory and vlc entries
 			if datesort is None:
-				res = [ None ]
 				if sortkey=="VLCd" or filename=="VLC servers":
 					pmap = self.vlcdPic
 					CoolPath=_("< VLC >")
@@ -404,33 +469,20 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 				return res
 			
 			# File entries
-			progress, len = self.getProgress(service, len)
-			pixmap, color = self.getFileInfo(ext, progress)
-
-			date = ""
-			if datesort == "VLCs":
-				date, pixmap = "VLC", self.vlcPic
-			else:
-				date = datesort[6:8] + "." + datesort[4:6] + "." + datesort[0:4]
-				
+			progress = self.getProgress(service, length)
+			pixmap, color, colordate, date = self.getFileInfo(path, ext, progress, datesort)
+			
+			#TODO Do I need the length ?
+			if not progress and date == "-- REC --":
+				progress = self.getRecordProgress(service, path, length)
+			
 			selnumtxt = None
 			if selnum == 9999: selnumtxt = "-->"
 			elif selnum == 9998: selnumtxt = "X"
 			elif selnum > 0: selnumtxt = "%02d" % selnum
 			if service in self.highlightsMov: selnumtxt = "-->"
 			elif service in self.highlightsDel: selnumtxt = "X"
-				
-			if self.recControl.isRecording(path):
-				date, pixmap, color = "-- REC --", self.movie_rec, self.RecordingColor
-			elif self.recControl.isRemoteRecording(path):
-				date, pixmap, color = "-- rec --", self.movie_recrem, self.RecordingColor
-			#elif config.EMC.check_movie_cutting.value:
-			elif self.recControl.isCutting(path):
-				date, pixmap, color = "-- CUT --", self.movie_rec, self.RecordingColor
-			res = [ None ]
-				
-			offset = 0
-			progressWidth = 55
+			
 			if config.EMC.movie_icons.value and selnumtxt is None:
 				res.append(MultiContentEntryPixmapAlphaTest(pos=(5,2), size=(24,24), png=pixmap, **{}))
 				if isLink:
@@ -446,10 +498,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 				if self.CoolProgressPos != -1:
 					res.append(MultiContentEntryText(pos=(self.CoolProgressPos, 0), size=(progressWidth, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text="%d%%" % (progress)))
 				if self.CoolDatePos != -1:
-					if date != "-- REC --" and date != "-- rec --" and date != "-- CUT --":
-						if self.CoolDateColor == 0:
-							color = self.DateColor
-					res.append(MultiContentEntryText(pos=(self.CoolDatePos, 2), size=(self.CoolDateWidth, globalHeight), font=4, text=date, color = color, color_sel = color, flags=RT_HALIGN_CENTER))
+					res.append(MultiContentEntryText(pos=(self.CoolDatePos, 2), size=(self.CoolDateWidth, globalHeight), font=4, text=date, color = colordate, color_sel = colordate, flags=RT_HALIGN_CENTER))
 					
 				res.append(MultiContentEntryText(pos=(self.CoolMoviePos, 0), size=(self.CoolMovieSize, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text=moviestring))
 				return res
@@ -462,11 +511,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 				offset += progressWidth + 5
 				
 			if config.EMC.movie_date.value:
-				if date != "-- REC --" and date != "-- rec --" and date != "-- CUT --":
-					if self.CoolDateColor == 0:
-						color = self.DateColor
-				# Datum
-				res.append(MultiContentEntryText(pos=(self.l.getItemSize().width() - self.CoolDateWidth, 0), size=(self.CoolDateWidth, globalHeight), font=4, color = color, color_sel = color, backcolor = self.BackColor, backcolor_sel = self.BackColorSel, flags=RT_HALIGN_CENTER, text=date))
+				res.append(MultiContentEntryText(pos=(self.l.getItemSize().width() - self.CoolDateWidth, 0), size=(self.CoolDateWidth, globalHeight), font=4, color = colordate, color_sel = colordate, backcolor = self.BackColor, backcolor_sel = self.BackColorSel, flags=RT_HALIGN_CENTER, text=date))
 			res.append(MultiContentEntryText(pos=(offset, 0), size=(self.l.getItemSize().width() - offset - self.CoolDateWidth -5, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text=moviestring))
 				
 			return res
@@ -707,12 +752,12 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 			noDVDScan = loadPath in self.nostructscan
 							
 			# add sub directories to the list
-			if dirlist:							
+			if dirlist:
 				for p in dirlist:
-
+					
 					if p in self.hideitemlist or (".*" in self.hideitemlist and p[0:1] == "."):
 						continue
-
+					
 					pathname = os.path.join(loadPath, p)
 					
 					if os.path.isdir(pathname):
@@ -808,7 +853,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 				for path, filename, ext, date in filelist:
 					service = self.getPlayerService(path, filename, ext)
 					moviestring = ""
-					len = 0
+					length = 0
 					
 					# Check config settings
 					if not (self.serviceMoving(service) and config.EMC.movie_hide_mov.value):
@@ -840,6 +885,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 							
 							else:
 								moviestring = filename[0:]
+
 							
 							# Very bad but there can be both encodings
 							# E2 recordings are always in utf8
@@ -854,7 +900,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 								if config.EMC.movie_metaload.value:
 									meta = MetaList(service)
 									metamoviestring = meta.getMetaName()
-									len = meta.getMetaLength()
+									length = meta.getMetaLength()
 									if metamoviestring:
 										moviestring = metamoviestring
 										if config.EMC.movie_show_format.value:
@@ -868,7 +914,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 								if moviestring.lower().endswith(ext):
 									moviestring = os.path.splitext(moviestring)[0]
 							
-							tmplist.append((service, sortkey, date, moviestring, filename, 0, len, ext))
+							tmplist.append((service, sortkey, date, moviestring, filename, 0, length, ext))
 			if self.alphaSort:
 				tmplist.sort(key=lambda x: x[1], reverse=config.EMC.moviecenter_reversed.value)
 			else:

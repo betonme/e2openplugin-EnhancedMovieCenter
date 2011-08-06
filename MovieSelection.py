@@ -540,8 +540,8 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			# All calculations are done in seconds
 			cuts = CutList( service )
 			last = cuts.getCutListLast()
-			len = self["list"].getLengthOfService(service)
-			progress, len = self["list"].getProgress(service, len=len, last=last, forceRecalc=True, cuts=cuts)
+			length = self["list"].getLengthOfService(service)
+			progress = self["list"].getProgress(service, length=length, last=last, forceRecalc=True, cuts=cuts)
 			
 			if not preparePlayback:
 				if first:
@@ -562,8 +562,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 					# 1-99% -> length
 					cuts.toggleLastCutList(cuts.CUT_TOGGLE_FINISHED)
 			else:
-				if progress >= 100 \
-					or ( config.EMC.movie_rewind_finished.value is True and progress >= int(config.EMC.movie_finished_percent.value) ):
+				if progress >= 100 or config.EMC.movie_rewind_finished.value is True and progress >= int(config.EMC.movie_finished_percent.value):
 					# 100% -> 0 or
 					# Start playback and rewind is set and movie progress > finished -> 0
 					# Don't save SavedMarker
@@ -1165,7 +1164,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 									#print "EMC move " + str(fullpath) + " " + str(movie)
 									service = self["list"].getPlayerService(fullpath, movie)
 									#print "EMC service " + str(service)
-									progress, len = self["list"].getProgress(service, forceRecalc=True)
+									progress = self["list"].getProgress(service, forceRecalc=True)
 									#print "EMC progress " + str(progress)
 									if progress >= int(config.EMC.movie_finished_percent.value):
 										print "EMC progress > finished " + str(fullpath)

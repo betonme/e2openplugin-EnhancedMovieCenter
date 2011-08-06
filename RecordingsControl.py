@@ -19,10 +19,12 @@
 #	<http://www.gnu.org/licenses/>.
 #
 
+import pickle, os
+from collections import defaultdict
+
 from Components.config import config
 from RecordTimer import AFTEREVENT
 import NavigationInstance
-import pickle, os
 
 from EMCTasker import emcTasker, emcDebugOut
 from DelayedFunction import DelayedFunction
@@ -73,7 +75,7 @@ class RecordingsControl:
 	def __init__(self, recStateChange):
 		self.recStateChange = recStateChange
 		self.recObserver = RecordEventObserver(self.recEvent)
-		self.recList = []
+		self.recDict = defaultdict(list)
 		self.recRemoteList = []
 		self.recFile = None
 		# if Enigma2 has crashed, we need to recreate the list of the ongoing recordings
@@ -87,20 +89,20 @@ class RecordingsControl:
 			inform = False
 			try: timer.Filename
 			except: timer.calculateFilename()
-
+			
 			filename = os.path.split(timer.Filename)[1]
 			if timer.state == timer.StatePrepared:	pass
 			elif timer.state == timer.StateRunning:	# timer.isRunning()
-				if not filename in self.recList:
-					self.recList.append(filename)
+				if not filename in self.recDict:
+					self.recDict[filename] = (timer.begin, timer.end)
 					inform = True
 					emcDebugOut("[emcRC] REC START for: " + filename)
 			else: #timer.state == timer.StateEnded:
-				if filename in self.recList:
+				if filename in self.recDict:
 					#OLD 
 					#try: os.rename(timer.Filename + ".ts.cuts", timer.Filename + ".ts.cutsr") # switch to unwatched
 					#except: pass
-					self.recList.remove(filename)
+					del self.recDict[filename]
 					inform = True
 					emcDebugOut("[emcRC] REC END for: " + filename)
 					try:
@@ -111,8 +113,8 @@ class RecordingsControl:
 					DelayedFunction(2000, self.timerCleanup)	# postpone to avoid crash in basic timer delete by user
 			if inform:
 				self.recFileUpdate()
-				self.recStateChange(self.recList)
-				#DelayedFunction(500, self.recStateChange, self.recList)
+				self.recStateChange(self.recDict)
+				#DelayedFunction(500, self.recStateChange, self.recDict)
 		except Exception, e:
 			emcDebugOut("[emcRC] recEvent exception:\n" + str(e))
 
@@ -126,7 +128,7 @@ class RecordingsControl:
 		try:
 			if filename[0] == "/": 			filename = os.path.split(filename)[1]
 			if filename.endswith(".ts"):	filename = filename[:-3]
-			return filename in self.recList
+			return filename in self.recDict
 		except Exception, e:
 			emcDebugOut("[emcRC] isRecording exception:\n" + str(e))
 			return False
@@ -140,11 +142,21 @@ class RecordingsControl:
 			emcDebugOut("[emcRC] isRemoteRecording exception:\n" + str(e))
 			return False
 
+	def getRecordingTimes(self, filename):
+		try:
+			if filename[0] == "/": 			filename = os.path.split(filename)[1]
+			if filename.endswith(".ts"):	filename = filename[:-3]
+			if filename in self.recDict:
+				return self.recDict[filename]
+		except Exception, e:
+			emcDebugOut("[emcRC] getRecordingTimes exception:\n" + str(e))
+			return False
+
 	def stopRecording(self, filename):
 		try:
 			if filename[0] == "/":			filename = os.path.split(filename)[1]
 			if filename.endswith(".ts"):	filename = filename[:-3]
-			if filename in self.recList:
+			if filename in self.recDict:
 				for timer in NavigationInstance.instance.RecordTimer.timer_list:
 					if timer.isRunning() and not timer.justplay and timer.Filename.find(filename)>=0:
 						if timer.repeated: return False
@@ -195,7 +207,7 @@ class RecordingsControl:
 			if self.recFile is None: self.remoteInit( spNET.whatIsMyIP() )
 			if self.recFile is None: return	# was not able to get IP
 			recf = open(self.recFile, "wb")
-			pickle.dump(self.recList, recf)
+			pickle.dump(self.recDict.keys(), recf)
 			recf.close()
 		except Exception, e:
 			emcDebugOut("[emcRC] recFileUpdate exception:\n" + str(e))
