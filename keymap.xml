@@ -109,8 +109,6 @@
 		<key id="KEY_RIGHT"			mapto="EMCRight" flags="mr" />
 		<key id="KEY_UP"			mapto="EMCUp" flags="mr" />
 		<key id="KEY_DOWN"			mapto="EMCDown" flags="mr" />
-		<key id="KEY_UP"			mapto="EMCUpB" flags="b" />
-		<key id="KEY_DOWN"			mapto="EMCDownB" flags="b" />
 		<key id="KEY_NEXT"			mapto="EMCArrowR" flags="mr" />
 		<key id="KEY_PREVIOUS"		mapto="EMCArrowL" flags="mr" />
 		<key id="KEY_CHANNELUP"		mapto="EMCBqtPlus" flags="m" />

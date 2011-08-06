@@ -396,7 +396,6 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 			else:
 				# No position implies progress is zero
 				progress = 0
-			emcDebugOut("[MC] getProgress name length progress: " + str(service.getPath()) +" " +str(length) +" " +str(progress) )
 			return progress
 		except Exception, e:
 			emcDebugOut("[MC] getProgress() Exception: " + str(e))
@@ -885,7 +884,9 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 							
 							else:
 								moviestring = filename[0:]
-
+							
+							# Replace underscores with spaces
+							#moviestring = moviestring.replace("_"," ")
 							
 							# Very bad but there can be both encodings
 							# E2 recordings are always in utf8

@@ -101,6 +101,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		self.lastPlayedMovies = None
 		self.multiSelectIdx = None
 		self.returnService = None
+		self.callUpdate = None
 		self.cursorDir = 0
 		self["wait"] = Label(_("Reading directory..."))
 		self["wait"].hide()
@@ -132,8 +133,6 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 				"EMCRight":	(self.pageDown,				_("Move cursor page down")),
 				"EMCUp":	(self.moveUp,			_("Move cursor up")),
 				"EMCDown":	(self.moveDown,			_("Move cursor down")),
-				"EMCUpB":	self.updateAfterKeyPress,
-				"EMCDownB": 	self.updateAfterKeyPress,
 				"EMCBqtPlus":	(self.moveTop,			_("Move cursor to the top")),
 				"EMCBqtMnus":	(self.moveEnd,			_("Move cursor to the end")),
 				"EMCArrowR":	(self.CoolForward,		_("Directory forward")),
@@ -285,12 +284,12 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 	def moveUp(self):
 		self.cursorDir = -1
 		self["list"].instance.moveSelection( self["list"].instance.moveUp )
-		self.updateAfterKeyPress(False)
+		self.updateAfterKeyPress()
 
 	def moveDown(self):
 		self.cursorDir = 1
 		self["list"].instance.moveSelection( self["list"].instance.moveDown )
-		self.updateAfterKeyPress(False)
+		self.updateAfterKeyPress()
 
 	def pageUp(self):
 		self.cursorDir = 0
@@ -310,13 +309,11 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		self["list"].instance.moveSelection( self["list"].instance.moveEnd )
 		self.updateAfterKeyPress()
 
-	def updateAfterKeyPress(self, updinfo=True):
-		if self.tmpSelList:
-			self.updateCoolCurrent()
+	def updateAfterKeyPress(self):
+		self.updateCoolCurrent()
 		if self.multiSelectIdx:
 			self.multiSelect( self.getCurrentIndex() )
-		if updinfo:
-			self.updateMovieInfo()
+		self.updateMovieInfo()
 
 	def updateCoolCurrent(self):
 		if self.returnService:
@@ -377,9 +374,6 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 						self.multiSelectIdx.remove(i)
 			else:
 				emcDebugOut("[EMCMS] multiSelect Not active")
-
-	#def moveTo(self):
-	#	self.updateMovieInfo()
 
 	def openBookmarks(self):
 		self.session.openWithCallback(self.openBookmarksCB, MovieMenu, "bookmarks", self["list"], None, self["list"].makeSelectionList(), self.currentPathSel)
@@ -444,9 +438,15 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		self.session.open(MessageBox, _("No functionality set..."), MessageBox.TYPE_INFO)
 
 	def updateMovieInfo(self):
-		DelayedFunction( int(config.EMC.movie_descdelay.value), self.updateTitle )
+		if self.callUpdate is not None:
+			if self.callUpdate.exists():
+				self.callUpdate.cancel()
+		self.callUpdate = DelayedFunction( int(config.EMC.movie_descdelay.value), self.updateMovieInfoDelayed )
+
+	def updateMovieInfoDelayed(self):
+		self.updateTitle()
 		if not self.browsingVLC():
-			DelayedFunction( int(config.EMC.movie_descdelay.value), self.updateEventInfo )
+			self.updateEventInfo()
 
 	def updateTitle(self):
 		if self.multiSelectIdx:
@@ -1164,11 +1164,8 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 								expTime = localtime(os.stat(fullpath).st_mtime + 24*60*60*int(config.EMC.movie_finished_limit.value))
 								if currTime > expTime:
 									# Check progress
-									#print "EMC move " + str(fullpath) + " " + str(movie)
 									service = self["list"].getPlayerService(fullpath, movie)
-									#print "EMC service " + str(service)
 									progress = self["list"].getProgress(service, forceRecalc=True)
-									#print "EMC progress " + str(progress)
 									if progress >= int(config.EMC.movie_finished_percent.value):
 										print "EMC progress > finished " + str(fullpath)
 										file = os.path.splitext(fullpath)[0]
