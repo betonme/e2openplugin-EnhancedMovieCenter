@@ -617,6 +617,8 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			self.moveToIndex(0)
 
 	def onDialogShow(self):
+		self.initButtons()
+		
 		if config.EMC.needsreload.value \
 			or config.EMC.movie_reload.value \
 			or len(self["list"]) == 0:
@@ -957,7 +959,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			self["list"].show()
 		self.loadingEventInfo(loading)
 
-	def initList(self):
+	def initButtons(self):
 		# Initialize buttons
 		self["key_red"].text = _("Delete")
 		if self["list"].getAlphaSort():
@@ -966,6 +968,8 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			self["key_green"].text = _("Alpha sort")
 		self["key_yellow"].text = _("Move")
 		self["key_blue"].text = _(config.EMC.movie_bluefunc.value)
+
+	def initList(self):
 		# Initialize list
 		self.reloadList()
 
