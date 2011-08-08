@@ -455,14 +455,14 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 	def toggleSort(self):
 		if self.browsingVLC(): return
 		service = self.getNextSelectedService(self.getCurrent())
+		self.returnService = service
 		if self["list"].getAlphaSort():
 			self["key_green"].text = _("Alpha sort")
 			self["list"].setAlphaSort(False)
 		else:
 			self["key_green"].text = _("Date sort")
 			self["list"].setAlphaSort(True)
-		self.returnService = service
-		self.reloadList()
+		self.initCursor()
 
 	def toggleSelectionList(self):
 		if self.toggle == False:

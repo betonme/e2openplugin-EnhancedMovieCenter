@@ -248,9 +248,29 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 
 	def setAlphaSort(self, trueOrFalse):
 		self.alphaSort = trueOrFalse
+		self.doAlphaSort()
 
 	def getAlphaSort(self):
 		return self.alphaSort
+
+	def doAlphaSort(self):
+		# Copy list
+		tmplist = self.list[:]
+		# Extract directories
+		self.list = filter(lambda x: x[1]==None, tmplist)
+		# Do list sort and assign it to the listbox
+		tmplist = self.doAlphaSortAlgorithm( tmplist[ len(self.list): ] )
+		# Append file list to directories
+		self.list.extend( tmplist )
+		# Assign list to listbox
+		self.l.setList( self.list )
+
+	def doAlphaSortAlgorithm(self, tmplist):
+		if self.alphaSort:
+			tmplist.sort( key=lambda x: x[1], reverse=config.EMC.moviecenter_reversed.value )
+		else:
+			tmplist.sort( key=lambda x: x[2], reverse=not config.EMC.moviecenter_reversed.value )
+		return tmplist
 
 	def recStateChange(self, recList):
 		try:
@@ -402,6 +422,12 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 			return 0
 
 	def getRecordProgress(self, service, path, oldlength):
+		# The progress of all recordings is updated
+		# - on show dialog
+		# - on reload list / change directory / movie home
+		# The progress of one recording is updated
+		# - if it will be highlighted the list
+		# Note: There is no auto update mechanism of the recording progress
 		begin, end = self.recControl.getRecordingTimes(path)
 		last = time() - begin
 		length = end - begin
@@ -471,6 +497,8 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 			progress = self.getProgress(service, length)
 			pixmap, color, colordate, date = self.getFileInfo(path, ext, progress, datesort)
 			
+			# Recordings status shows always the the progress of the recording, 
+			# Never the progress of the cut list marker to avoid misunderstandings
 			if date == "-- REC --":
 				progress = self.getRecordProgress(service, path, length)
 			
@@ -914,15 +942,16 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 									moviestring = os.path.splitext(moviestring)[0]
 							
 							tmplist.append((service, sortkey, date, moviestring, filename, 0, length, ext))
-			if self.alphaSort:
-				tmplist.sort(key=lambda x: x[1], reverse=config.EMC.moviecenter_reversed.value)
-			else:
-				tmplist.sort(key=lambda x: x[2], reverse=not config.EMC.moviecenter_reversed.value)
-			# Combine folders and files
+			
+			# Do list sort and assign it to the listbox
+			tmplist = self.doAlphaSortAlgorithm( tmplist )
+			
+			# Append file list to directories
 			self.list.extend( tmplist )
+			
 			# Assign list to listbox
-			self.l.setList(self.list)
-			#self.resetSelection()
+			self.l.setList( self.list )
+			
 		except Exception, e:
 			emcDebugOut("[MC] reload exception:\n" + str(e))
 
