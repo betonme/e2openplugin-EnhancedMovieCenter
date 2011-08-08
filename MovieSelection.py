@@ -96,7 +96,6 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			self.skin = Cool.read()
 			Cool.close()
 		
-		self.wasClosed = True
 		self.playerInstance = None
 		self.lastPlayedMovies = None
 		self.multiSelectIdx = None
@@ -195,12 +194,6 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			CSGmain(self.session)
 		except: return
 
-	def CoolReturn(self):
-		if self.returnService:
-			self.moveToService(self.returnService)
-			self.returnService = None
-			self.tmpSelList = None
-
 	def CoolTimerList(self):
 		from Screens.TimerEdit import TimerEditList
 		self.session.open(TimerEditList)
@@ -212,7 +205,6 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			self.playerInstance.movieSelected(None)
 		else:
 			config.av.policy_43.value = self.avPolicy43
-		self.wasClosed = True
 		self.close(None)
 
 	def blueFunc(self):
@@ -224,10 +216,8 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		# Isdir check is disabled because of VirtualViews
 		#if os.path.isdir(path):
 		self.currentPathSel = path
-		if service:
-			self.reloadList(moveToService=service)
-		else:
-			self.reloadList(cursorToLatest=True)
+		self.returnService = service
+		self.reloadList()
 
 	def CoolKey0(self):
 		# Movie home
@@ -310,18 +300,15 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		self.updateAfterKeyPress()
 
 	def updateAfterKeyPress(self):
-		self.updateCoolCurrent()
+		if self.returnService:
+			# Service was stored for a pending update,
+			# but user wants to move, copy, delete it,
+			# so we have to update returnService
+			if self.tmpSelList:
+				self.returnService = self.getNextSelectedService(self.getCurrent(), self.tmpSelList)
 		if self.multiSelectIdx:
 			self.multiSelect( self.getCurrentIndex() )
 		self.updateMovieInfo()
-
-	def updateCoolCurrent(self):
-		if self.returnService:
-			# Service was stored for a pending update,
-			# but user wants to move it,
-			# so we have to update self.returnService
-			if self.tmpSelList:
-				self.returnService = self.getNextSelectedService(self.getCurrent(), self.tmpSelList)
 
 	def multiSelect(self, index=-1):
 		if self.browsingVLC(): return
@@ -474,7 +461,8 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		else:
 			self["key_green"].text = _("Date sort")
 			self["list"].setAlphaSort(True)
-		self.reloadList(service)
+		self.returnService = service
+		self.reloadList()
 
 	def toggleSelectionList(self):
 		if self.toggle == False:
@@ -600,11 +588,18 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			self.session.open(EventViewSimple, evt, ServiceReference(self.getCurrent()))
 
 	def initCursor(self):
-		if self.playerInstance is None:	# detect movie player state (None == not open)
+		if self.returnService:
+			# Move to last played movie
+			self.moveToService(self.returnService)
+			self.returnService = None
+			self.tmpSelList = None
+		
+		elif self.playerInstance is None:	# detect movie player state (None == not open)
 			if config.EMC.moviecenter_gotonewest.value:
 				self.cursorToLatest()
 			else:
 				self.updateMovieInfo()
+		
 		else:
 			if config.EMC.moviecenter_gotonewestp.value:
 				self.cursorToLatest()
@@ -622,33 +617,15 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			self.moveToIndex(0)
 
 	def onDialogShow(self):
-		if self.wasClosed or config.EMC.needsreload.value:
-			self.wasClosed = False
-			#self["actions"].setEnabled(True)
-			self["key_red"].text = _("Delete")
-			
-			#if config.EMC.needsreload.value:
-			#	self["list"].setAlphaSort(config.EMC.CoolStartAZ.value)
-			
-			if self["list"].getAlphaSort():
-				self["key_green"].text = _("Date sort")
-			else:
-				self["key_green"].text = _("Alpha sort")
-				
-			self["key_yellow"].text = _("Move")
-			self["key_blue"].text = _(config.EMC.movie_bluefunc.value)
-			
-			if config.EMC.needsreload.value:
-				config.EMC.needsreload.value = False
-				DelayedFunction(50, self.initList)
-			elif self.returnService:
-				# Move to last played movie
-				self.CoolReturn()
-			else:
-				if config.EMC.movie_reload.value or self["list"].newRecordings or len(self["list"]) == 0:
-					DelayedFunction(50, self.initList)
-				else:
-					self.initCursor()
+		if config.EMC.needsreload.value \
+			or config.EMC.movie_reload.value \
+			or len(self["list"]) == 0:
+			config.EMC.needsreload.value = False
+			DelayedFunction(50, self.initList)
+		
+		else:
+			self.reloadRecordings()
+			self.initCursor()
 
 	def getCurrentIndex(self):
 		return self["list"].getCurrentIndex()
@@ -784,7 +761,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 					if s.getPath().split("/")[-1] == nowPlaying:
 						self.delCurrentlyPlaying = True
 						break
-					
+			
 			entrycount = len(selectedlist)
 			delStr = _("Delete") + _(" permanently")*self.permanentDel
 			if entrycount == 1:
@@ -881,7 +858,6 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		else:
 			#DelayedFunction(10, self.playerInstance.movieSelected, playlist, playall)
 			self.playerInstance.movieSelected(playlist, playall)
-		self.wasClosed = True
 		self.close(None)
 
 	def entrySelected(self, playall=False):
@@ -982,18 +958,28 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		self.loadingEventInfo(loading)
 
 	def initList(self):
-		self.reloadList(initCursor=True)
+		# Initialize buttons
+		self["key_red"].text = _("Delete")
+		if self["list"].getAlphaSort():
+			self["key_green"].text = _("Date sort")
+		else:
+			self["key_green"].text = _("Alpha sort")
+		self["key_yellow"].text = _("Move")
+		self["key_blue"].text = _(config.EMC.movie_bluefunc.value)
+		# Initialize list
+		self.reloadList()
 
 	def triggerReloadList(self):
-		self.reloadList(moveToService=self.getCurrent())
+		self.returnService = self.getCurrent()
+		self.reloadList()
 
-	def reloadList(self, moveToService=None, initCursor=False, cursorToLatest=False):
+	def reloadList(self):
 		self.multiSelectIdx = None
 		if config.EMC.moviecenter_loadtext.value:
 			self.loading()
-		DelayedFunction(5, self.__reloadList, moveToService, initCursor, cursorToLatest)
+		DelayedFunction(5, self.__reloadList)
 
-	def __reloadList(self, moveToService=None, initCursor=False, cursorToLatest=False):
+	def __reloadList(self):
 		try:
 			if self.currentPathSel is None:
 				emcDebugOut("[EMCMS] reloadList: currentPathSel is None")
@@ -1002,17 +988,15 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			if os.path.exists(path) or path.find("Latest Recordings")>-1 or path.find("VLC servers")>-1 or self.browsingVLC():
 				#emcDebugOut("[EMCMS] __reloadList")
 				self["list"].reload(path + "/"*(path != "/"))
-			if initCursor:
-				self.initCursor()
-			elif cursorToLatest:
-				self.cursorToLatest()
-			else:
-				self.moveToService(moveToService)
+			self.initCursor()
 		except Exception, e:
 			emcDebugOut("[EMCMS] reloadList exception:\n" + str(e))
 		finally:
 			if config.EMC.moviecenter_loadtext.value:
 				self.loading(False)
+
+	def reloadRecordings(self):
+		self["list"].reloadRecordings()
 
 	def moveCB(self, service):
 		self["list"].highlightService(False, "move", service)	# remove the highlight

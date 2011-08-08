@@ -48,7 +48,6 @@ class VlcPluginInterfaceSel():
 				self["list"].vlcServer.play(self, entry[4], entry[3], VlcFileListWrapper())
 			except:	# v2.6
 				self["list"].vlcServer.play(self.session, entry[4], entry[3], VlcFileListWrapper())
-			self.wasClosed = True
 			self.close()
 		except Exception, e:
 			emcDebugOut("[spVLC] vlcMovieSelected exception:\n" + str(e))

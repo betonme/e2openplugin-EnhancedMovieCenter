@@ -145,7 +145,6 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 		self.currentSelectionCount = 0		
 				
 		self.alphaSort = config.EMC.CoolStartAZ.value
-		self.newRecordings = False
 		self.selectionList = None
 		self.recControl = RecordingsControl(self.recStateChange)
 		self.highlightsMov = []
@@ -354,6 +353,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 
 	def getProgress(self, service, length=0, last=0, forceRecalc=False, cuts=None):
 		# All calculations are done in seconds
+		# The progress of a recording isn't correct, because we only get the actual length not the final
 		try:
 			cuts = None
 			progress = 0
@@ -471,8 +471,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 			progress = self.getProgress(service, length)
 			pixmap, color, colordate, date = self.getFileInfo(path, ext, progress, datesort)
 			
-			#TODO Do I need the length ?
-			if not progress and date == "-- REC --":
+			if date == "-- REC --":
 				progress = self.getRecordProgress(service, path, length)
 			
 			selnumtxt = None
@@ -821,7 +820,6 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 			self.loadPath = loadPath
 			self.selectionList = None
 			self.list = []
-			self.newRecordings = False
 			self.recControl.recFilesRead()	# get a list of current remote recordings
 			
 			emcDebugOut("[MC] LOAD PATH:\n" + loadPath)
@@ -927,6 +925,11 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 			#self.resetSelection()
 		except Exception, e:
 			emcDebugOut("[MC] reload exception:\n" + str(e))
+
+	def reloadRecordings(self):
+		for entry in self.list:
+			if self.recControl.isRecording(entry[0].getPath()):
+				self.invalidateService(entry[0])
 
 	def getNextService(self):
 		if not self.currentSelIsDirectory():

@@ -87,7 +87,7 @@ class EMCExecutioner:
 		sfile = open(self.executing, "r")
 		scr = sfile.read()
 		sfile.close()
-
+		
 		self.appContainer.execute("sh " + self.executing)
 		emcDebugOut("[emcTasker] executing " + self.executing + scr)
 		self.execCount += 1
@@ -103,8 +103,9 @@ class EMCExecutioner:
 					x[1](x[0])			# callback(service)
 			self.associated[ self.execCount-1 & 1 ][:] = []	# clear list
 			self.returnData = ""
-			gRecordings.CoolReturn()
-
+			# Set selection to return service
+			gRecordings.initCursor()
+			
 			if os.path.exists(self.scriptlut[ self.execCount & 1 ]):
 				emcDebugOut("[emcTasker] sh exec rebound")
 				self.execCurrent()
