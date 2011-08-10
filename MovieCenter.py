@@ -248,29 +248,31 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 
 	def setAlphaSort(self, trueOrFalse):
 		self.alphaSort = trueOrFalse
-		self.doAlphaSort()
+		self.list = self.doListSort(self.list)
+		self.l.setList( self.list )
 
 	def getAlphaSort(self):
 		return self.alphaSort
 
-	def doAlphaSort(self):
-		# Copy list
-		tmplist = self.list[:]
-		# Extract directories
-		self.list = filter(lambda x: x[1]==None, tmplist)
-		# Do list sort and assign it to the listbox
-		tmplist = self.doAlphaSortAlgorithm( tmplist[ len(self.list): ] )
-		# Append file list to directories
-		self.list.extend( tmplist )
-		# Assign list to listbox
-		self.l.setList( self.list )
-
-	def doAlphaSortAlgorithm(self, tmplist):
+	def doListSortAlgorithm(self, sortlist):
+		# Find index of first non directory / special folder entry
+		i=0
+		if len(sortlist):
+			for e in xrange(len(sortlist)):
+				if sortlist[e][1] != None:
+					i=e
+					break
+		# Copy non directories / special folders
+		tmplist = sortlist[:i]
+		# Extract list items to be sorted
+		sortlist = sortlist[i:]
+		# Sort list
 		if self.alphaSort:
-			tmplist.sort( key=lambda x: x[1], reverse=config.EMC.moviecenter_reversed.value )
+			sortlist.sort( key=lambda x: x[1], reverse=config.EMC.moviecenter_reversed.value )
 		else:
-			tmplist.sort( key=lambda x: x[2], reverse=not config.EMC.moviecenter_reversed.value )
-		return tmplist
+			sortlist.sort( key=lambda x: x[2], reverse=not config.EMC.moviecenter_reversed.value )
+		# Combine lists
+		return tmplist + sortlist
 
 	def recStateChange(self, recList):
 		try:
@@ -497,7 +499,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 			progress = self.getProgress(service, length)
 			pixmap, color, colordate, date = self.getFileInfo(path, ext, progress, datesort)
 			
-			# Recordings status shows always the the progress of the recording, 
+			# Recordings status shows always the progress of the recording, 
 			# Never the progress of the cut list marker to avoid misunderstandings
 			if date == "-- REC --":
 				progress = self.getRecordProgress(service, path, length)
@@ -773,10 +775,10 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 			dirlist = []
 			customlist = []
 			e2bookmarks = []
-
+			
 			dirlist = os.listdir(loadPath)	# only need to deal with spaces when executing in shell 
 			noDVDScan = loadPath in self.nostructscan
-							
+			
 			# add sub directories to the list
 			if dirlist:
 				for p in dirlist:
@@ -849,6 +851,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 			self.selectionList = None
 			self.list = []
 			self.recControl.recFilesRead()	# get a list of current remote recordings
+			tmplist = []
 			
 			emcDebugOut("[MC] LOAD PATH:\n" + loadPath)
 			if loadPath.endswith("VLC servers/"):
@@ -859,7 +862,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 				emcDebugOut("[MC] VLC Files")
 				self.reloadVlcFilelist()
 				return
-
+			
 			if loadPath.endswith("Latest Recordings/"):
 				# Read latest recordings
 				emcDebugOut("[MC] Latest Recordings")
@@ -871,9 +874,8 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 			# add sub directories to the list
 			if subdirlist is not None:
 				for path, name in subdirlist:
-					self.list.append((eServiceReference("2:0:1:0:0:0:0:0:0:0:" + path), None, None, None, name, 0, 0, ""))
+					tmplist.append((eServiceReference("2:0:1:0:0:0:0:0:0:0:" + path), None, None, None, name, 0, 0, ""))
 			
-			tmplist = []
 			if filelist is not None:
 				for path, filename, ext, date in filelist:
 					service = self.getPlayerService(path, filename, ext)
@@ -943,11 +945,8 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 							
 							tmplist.append((service, sortkey, date, moviestring, filename, 0, length, ext))
 			
-			# Do list sort and assign it to the listbox
-			tmplist = self.doAlphaSortAlgorithm( tmplist )
-			
-			# Append file list to directories
-			self.list.extend( tmplist )
+			# Do list sort
+			self.list = self.doListSortAlgorithm( tmplist )
 			
 			# Assign list to listbox
 			self.l.setList( self.list )
