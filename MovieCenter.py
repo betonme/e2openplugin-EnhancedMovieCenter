@@ -254,7 +254,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 	def getAlphaSort(self):
 		return self.alphaSort
 
-	def doListSortAlgorithm(self, sortlist):
+	def doListSort(self, sortlist):
 		# Find index of first non directory / special folder entry
 		i=0
 		if len(sortlist):
@@ -946,7 +946,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 							tmplist.append((service, sortkey, date, moviestring, filename, 0, length, ext))
 			
 			# Do list sort
-			self.list = self.doListSortAlgorithm( tmplist )
+			self.list = self.doListSort( tmplist )
 			
 			# Assign list to listbox
 			self.l.setList( self.list )
