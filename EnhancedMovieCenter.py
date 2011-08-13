@@ -99,12 +99,14 @@ def cleanupSetup(dummyparam=None):
 		emcDebugOut("[sp] cleanupSetup exception:\n" + str(e))
 
 def EMCStartup(session):
+	emcDebugOut("+++ EMC "+EMCVersion+" startup")
+	
 	if not os.path.exists(config.EMC.folder.value):
 		emcTasker.shellExecute("mkdir " + config.EMC.folder.value)
-	emcDebugOut("+++ EMC "+EMCVersion+" startup")
-
+	
 	if config.EMC.epglang.value:
 		eServiceEvent.setEPGLanguage(config.EMC.epglang.value)
+	
 	setupKeyResponseValues()
 	DelayedFunction(5000, cleanupSetup)
 

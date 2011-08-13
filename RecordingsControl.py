@@ -90,13 +90,14 @@ class RecordingsControl:
 			try: timer.Filename
 			except: timer.calculateFilename()
 			
-			filename = os.path.split(timer.Filename)[1]
+			filename = os.path.basename(timer.Filename)
 			if timer.state == timer.StatePrepared:	pass
 			elif timer.state == timer.StateRunning:	# timer.isRunning()
 				if not filename in self.recDict:
 					self.recDict[filename] = (timer.begin, timer.end)
 					inform = True
-					emcDebugOut("[emcRC] REC START for: " + filename)
+					#TODO
+					emcDebugOut("[emcRC] REC START for: " + filename + str(timer.service_ref))
 			else: #timer.state == timer.StateEnded:
 				if filename in self.recDict:
 					del self.recDict[filename]
@@ -110,7 +111,7 @@ class RecordingsControl:
 					DelayedFunction(2000, self.timerCleanup)	# postpone to avoid crash in basic timer delete by user
 			if inform:
 				self.recFileUpdate()
-				self.recStateChange(self.recDict)
+				self.recStateChange(timer)
 				#DelayedFunction(500, self.recStateChange, self.recDict)
 		except Exception, e:
 			emcDebugOut("[emcRC] recEvent exception:\n" + str(e))
@@ -123,7 +124,7 @@ class RecordingsControl:
 		
 	def isRecording(self, filename):
 		try:
-			if filename[0] == "/": 			filename = os.path.split(filename)[1]
+			if filename[0] == "/": 			filename = os.path.basename(filename)
 			if filename.endswith(".ts"):	filename = filename[:-3]
 			return filename in self.recDict
 		except Exception, e:
@@ -132,7 +133,7 @@ class RecordingsControl:
 
 	def isRemoteRecording(self, filename):
 		try:
-			if filename[0] == "/": 			filename = os.path.split(filename)[1]
+			if filename[0] == "/": 			filename = os.path.basename(filename)
 			if filename.endswith(".ts"):	filename = filename[:-3]
 			return filename in self.recRemoteList
 		except Exception, e:
@@ -141,7 +142,7 @@ class RecordingsControl:
 
 	def getRecordingTimes(self, filename):
 		try:
-			if filename[0] == "/": 			filename = os.path.split(filename)[1]
+			if filename[0] == "/": 			filename = os.path.basename(filename)
 			if filename.endswith(".ts"):	filename = filename[:-3]
 			if filename in self.recDict:
 				return self.recDict[filename]
@@ -151,7 +152,7 @@ class RecordingsControl:
 
 	def stopRecording(self, filename):
 		try:
-			if filename[0] == "/":			filename = os.path.split(filename)[1]
+			if filename[0] == "/":			filename = os.path.basename(filename)
 			if filename.endswith(".ts"):	filename = filename[:-3]
 			if filename in self.recDict:
 				for timer in NavigationInstance.instance.RecordTimer.timer_list:
@@ -183,7 +184,7 @@ class RecordingsControl:
 			if new.endswith(".ts"):	new = new[:-3]
 			for timer in NavigationInstance.instance.RecordTimer.timer_list:
 				if timer.isRunning() and not timer.justplay and timer.Filename == old:
-					timer.dirname = os.path.split(new)[0] + "/"
+					timer.dirname = os.path.dirname(new) + "/"
 					timer.fixMoveCmd = 'mv "'+ timer.Filename +'."* "'+ timer.dirname +'"'
 					timer.Filename = new
 					emcDebugOut("[emcRC] fixed path: " + new)

@@ -50,58 +50,59 @@ class VlcPluginInterfaceSel():
 				self["list"].vlcServer.play(self.session, entry[4], entry[3], VlcFileListWrapper())
 			self.close()
 		except Exception, e:
-			emcDebugOut("[spVLC] vlcMovieSelected exception:\n" + str(e))
+			emcDebugOut("[EMC_VLC] vlcMovieSelected exception:\n" + str(e))
 
 
 class VlcPluginInterfaceList():
 	def currentSelIsVlc(self):
+		#TODO
 		try:	return self.list[self.getCurrentIndex()][2] == "VLCs"
 		except:	return False
 
 	def currentSelIsVlcDir(self):
-		try:	return self.list[self.getCurrentIndex()][1] == "VLCd"
+		#TODO
+		try:	return self.list[self.getCurrentIndex()][2] == "VLCd"
 		except:	return False
 
-	def reloadVlcServers(self):
+	def createVlcServerList(self):
 		try:
+			vlcserverlist = []
 			from Plugins.Extensions.VlcPlayer.VlcServerConfig import vlcServerConfig
-			self.vlcServers = vlcServerConfig.getServerlist()	# settings change requires running this
-			self.list = []
+			# Settings change requires running this
+			#IDEA: Can the change be detected to avoid unnecessary reloads
+			self.vlcServers = vlcServerConfig.getServerlist()
 			if self.vlcServers:
 				for srv in self.vlcServers:
 					srvName = srv.getName()
-					emcDebugOut("[spML] srvName = " + str(srvName))
-					sref = eServiceReference("2:0:1:0:0:0:0:0:0:0:" + self.loadPath+srvName)	# dummy ref
-					self.list.append((sref, "VLCd", None, None, srvName, None, 0, ""))
-			self.list.sort(key=lambda x: x[4],reverse=False)
-			# Insert the back entry
-			sref = eServiceReference("2:0:1:0:0:0:0:0:0:0:" + "..")	# dummy ref
-			self.list.insert(0, (sref, None, None, None, "..", None, 0, ""))
-			# Assign list to listbox
-			self.l.setList(self.list)
-		except:	pass
+					emcDebugOut("[EMC_VLC] srvName = " + str(srvName))
+					#TODO Problem date = VLCd
+					#sref = eServiceReference("2:0:1:0:0:0:0:0:0:0:" + self.loadPath+srvName)	# dummy ref
+					#vlcserverlist.append((sref, (None, None), "VLCd", None, srvName, None, 0, ""))
+					vlcserverlist.append( ((self.loadPath+srvName), srvName) )
+			return vlcserverlist
+		except:
+			pass
 
-	def reloadVlcFilelist(self):
-		self.list = []
-		tmplist = []
-		loadPath = self.loadPath
+	def createVlcFileList(self, loadPath):
+		vlcdirlist = []
+		vlcfilelist = []
 		vlcPath = loadPath[loadPath.find("VLC servers/")+12:]	# server/dir/name/
 		serverName = vlcPath.split("/")[0]
-		emcDebugOut("[spML] path on %s = %s" %(serverName, vlcPath))
+		emcDebugOut("[EMC_VLC] path on %s = %s" %(serverName, vlcPath))
 		server = None
 		self.vlcServer = None
 		if self.vlcServers:
 			for srv in self.vlcServers:
 				if srv.getName() == serverName: 
-					#emcDebugOut("[spML] srv = " + str(srv))
+					#emcDebugOut("[EMC_VLC] srv = " + str(srv))
 					server = srv	# find the server
 		if server is not None:
 			try:
 				self.vlcServer = server
 				baseDir = server.getBasedir()
-				emcDebugOut("[spML] baseDir = " + baseDir)
+				emcDebugOut("[EMC_VLC] baseDir = " + baseDir)
 				vlcPath = vlcPath[len(serverName):]
-				emcDebugOut("[spML] vlcPath = " + vlcPath)
+				emcDebugOut("[EMC_VLC] vlcPath = " + vlcPath)
 				# Build path
 				if baseDir.startswith("/"):
 					baseDir = baseDir[1:]
@@ -121,19 +122,20 @@ class VlcPluginInterfaceList():
 					else:
 						path = baseDir+"/"+vlcPath
 				# Load path
-				emcDebugOut("[spML] path = " + path)
+				emcDebugOut("[EMC_VLC] path = " + path)
 				(vlcFiles, vlcDirs) = server.getFilesAndDirs(path, None)
-				emcDebugOut("[spML] got files and dirs...")
+				emcDebugOut("[EMC_VLC] got files and dirs...")
 				if vlcDirs:
 					for d in vlcDirs:
-						if d[0] == "..": continue
-						emcDebugOut("[spML] d[0] = " + str(d[0]) + d[0])
+						#if d[0] == "..": continue
+						emcDebugOut("[EMC_VLC] d[0] = " + str(d[0]) + d[0])
 						#sref = eServiceReference("2:0:1:0:0:0:0:0:0:0" + loadPath+d[0])	# dummy ref
-						sref = eServiceReference("2:0:1:0:0:0:0:0:0:0") #:")# + loadPath+d[0])	# dummy ref
-						sref.setPath(loadPath+d[0])
-						emcDebugOut("[spML] sref = " + sref.getPath())
-						self.list.append((sref, "VLCd", None, None, d[0], None, 0, ""))
-					self.list.sort(key=lambda x: x[4],reverse=False)
+						#sref = eServiceReference("2:0:1:0:0:0:0:0:0:0") #:")# + loadPath+d[0])	# dummy ref
+						#sref.setPath(loadPath+d[0])
+						#emcDebugOut("[EMC_VLC] sref = " + loadPath+d[0])
+						#self.list.append((sref, (None, None), "VLCd", None, d[0], None, 0, ""))
+						vlcdirlist.append( (loadPath+d[0], srvName) )
+					#self.list.sort(key=lambda x: x[4],reverse=False)
 				if vlcFiles:
 					for f in vlcFiles:
 						from Plugins.Extensions.VlcPlayer.VlcFileList import MEDIA_EXTENSIONS
@@ -141,19 +143,18 @@ class VlcPluginInterfaceList():
 						global mediaExt
 						ext = os.path.splitext(f[0])[1].lower()
 						if MEDIA_EXTENSIONS.has_key(ext) or ext in mediaExt:
-							emcDebugOut("[spML] f[0] = " + str(f[0]))
-							sref = eServiceReference("2:0:1:0:0:0:0:0:0:0") #:" + loadPath+f[0])	# dummy ref
-							sref.setPath(loadPath+f[0])
+							emcDebugOut("[EMC_VLC] f[0] = " + str(f[0]))
+							emcDebugOut("[EMC_VLC] f[1] = " + str(f[1]))
+							#sref = eServiceReference("2:0:1:0:0:0:0:0:0:0") 		#:" + loadPath+f[0])	# dummy ref
+							#sref.setPath(loadPath+f[0])
 							#sref.setPath(path+f[0])
-							tmplist.append((sref, None, "VLCs", f[0], f[1], None, 0, ext))
-					tmplist.sort(key=lambda x: x[4],reverse=False)
+							#tmplist.append((sref, (None, None), "VLCs", f[0], f[1], None, 0, ext))
+							#fileDateTime = localtime(os.path.getmtime(pathname))
+							#date = strftime("%Y%m%d%H%M", fileDateTime)
+							vlcfilelist.append( (loadPath+f[0], f[1], ext, "VLCs") )
+					#tmplist.sort(key=lambda x: x[4],reverse=False)
 			except Exception, e:
-				emcDebugOut("[spML] reloadVlcFilelist exception:\n" + str(e))
-		# Insert the back entry
-		sref = eServiceReference("2:0:1:0:0:0:0:0:0:0:" + "..")	# dummy ref
-		self.list.insert(0, (sref, None, None, None, "..", None, 0, ""))
-		# Combine folders and files
-		self.list.extend( tmplist )
-		# Assign list to listbox
-		self.l.setList(self.list)
+				emcDebugOut("[EMC_VLC] reloadVlcFilelist exception:\n" + str(e))
+		
+		return vlcdirlist, vlcfilelist
 
