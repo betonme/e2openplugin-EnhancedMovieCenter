@@ -650,7 +650,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		curSerRef = None
 		if current is None:
 			curSerRef = None
-		elif len(self["list"]) == 0:
+		elif not self["list"]:
 			# Selectedlist is empty
 			curSerRef = None
 		elif selectedlist is None:

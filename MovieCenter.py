@@ -86,7 +86,7 @@ def readBasicCfgFile(file):
 		lines = f.readlines()
 		for line in lines:
 			line = line.strip()
-			if len(line) == 0:					# no empty lines
+			if not line:					# no empty lines
 				continue
 			if line[0:1] == "#":				# no comment lines
 				continue
@@ -101,19 +101,59 @@ def readBasicCfgFile(file):
 def getMovieName(filename, ext, service=None):
 	try:
 		moviestring = ""
-		length = 0
+		date = ""
+		datesort = ""
 		cutnr = ""
+		length = 0
 		
-		cutnr = os.path.splitext(filename)[0]
-		if len(cutnr)>4 and cutnr[-4] == "_" and cutnr[-3:].isdigit():
+		# Remove extension
+		filename = os.path.splitext(filename)[0]
+		
+		# Get cut number
+		if filename[-4:-3] == "_" and filename[-3:].isdigit():
 			cutnr = cutnr[-4:]
+			# Remove cut number
+			filename = filename[:-4]
+		
+		# Replace underscores with spaces
+		filename = filename.replace("_"," ")
+		
+		# Derived from RecordTimer
+		# This is everywhere so test it first
+		if filename[0:2].isdigit():
+			if filename[2:8].isdigit():
+				if filename[9:13].isdigit():
+				#if not filename[8:9].isdigit() and filename[9:13].isdigit():
+					# Default: filename = YYYYMMDD TIME - service_name
+					datesort = filename[0:8] + filename[9:13]		# "YYYYMMDD TIME - " -> "YYYYMMDDTIME"
+					moviestring = filename[16:]									# skips "YYYYMMDD TIME - "
+					
+					# Standard: filename = YYYYMMDD TIME - service_name - name
+					# Long Composition: filename = YYYYMMDD TIME - service_name - name - description
+					# Standard: filename = YYYYMMDD TIME - service_name - name
+					# Skip service_name, extract name
+					moviestring = str.split(moviestring, " - ")
+					moviestring = moviestring[1:]								# To remove the description use [1:len(moviestring)-1]
+					moviestring = ' - '.join(str(n) for n in moviestring)
+					
+				elif filename[8:11] == " - ":
+					# Short Composition: filename = YYYYMMDD - name
+					datesort = filename[0:8] + "3333"						# "YYYYMMDD" + DUMMY_TIME
+					moviestring = filename[11:]									# skips "YYYYMMDD - "
+			
+			#QUESTION Where is this used / defined?
+			#elif filename[3:5].isdigit():
+			##elif filename[3:5].isdigit() and not filename[2:3].isdigit():
+			#	#datesort = filename[0:2] + filename[3:5]
+			#	moviestring = filename[11:]
+		
 		else:
-			cutnr = ""
+			moviestring = filename[:]
 		
 		if config.EMC.movie_metaload.value and service:
 			# read title from META
 			meta = MetaList(service)
-			moviestring = meta and meta.getMetaName()
+			moviestring = meta and meta.getMetaName() or moviestring
 			# Improve performance and avoid calculation of movie length
 			length = meta and meta.getMetaLength()
 			
@@ -121,9 +161,7 @@ def getMovieName(filename, ext, service=None):
 #			#if config.EMC.movie_eitload:
 #				# read title from EIT
 #				eit = EitList(service)
-#				eitmoviestring = eit and eit.getEitName()
-#				if eitmoviestring:
-#					moviestring = eitmoviestring
+#				moviestring = eit and eit.getEitName() or moviestring
 #				#if not length:
 #				eitlen = eit and eit.getEitDuration()
 #				#TEST EIT len
@@ -131,42 +169,6 @@ def getMovieName(filename, ext, service=None):
 #				#TODO we need len in pts = s*90000 see cutlist_support
 #				#length = eitlen * 90000
 		
-		if not moviestring:
-			#TODO filename isdigit necessary better way?
-			if filename[0:8].isdigit() and filename[9:13].isdigit() and not filename[8:1].isdigit():
-				#date = filename[0:8] + filename[9:13]
-				moviestring = filename[16:]	# skips "YYYYMMDD TIME - "
-				chlMarker = moviestring.find("_-_")
-				if chlMarker > 0: moviestring = moviestring[3+chlMarker:]
-				else:
-					chlMarker = moviestring.find(" - ")
-					if chlMarker > 0: moviestring = moviestring[3+chlMarker:]
-			
-			elif filename[0:2].isdigit() and filename[3:5].isdigit() and not filename[2:3].isdigit():
-				#date = filename[0:2] + filename[3:5]
-				moviestring = filename[11:]	
-				chlMarker = moviestring.find("_-_")
-				if chlMarker > 0: moviestring = moviestring[3+chlMarker:]
-				else:
-					chlMarker = moviestring.find(" - ")
-					if chlMarker > 0: moviestring = moviestring[3+chlMarker:]
-			
-			elif filename[0:8].isdigit() and filename[8:11] == " - " or filename[0:8].isdigit() and filename[8:11] == "_-_":
-				#date = filename[0:8] + "3333"
-				moviestring = filename[11:]
-			
-			else:
-				moviestring = filename[:]
-		
-			# Remove extension
-			moviestring = os.path.splitext(moviestring)[0]
-			
-			# Remove cut number
-			if cutnr:
-				moviestring = moviestring[:-4]
-			
-			# Replace underscores with spaces
-			moviestring = moviestring.replace("_"," ")
 		
 		# Very bad but there can be both encodings
 		# E2 recordings are always in utf8
@@ -177,13 +179,17 @@ def getMovieName(filename, ext, service=None):
 			moviestring = moviestring and moviestring.decode("cp1252").encode("utf-8")
 		####moviestring = moviestring and unicode(moviestring, 'utf-8' ,'ignore')
 		
+		#TEST
+		#from Tools import ASCIItranslit
+		#filename = ASCIItranslit.legacyEncode(filename)
+		
 		if config.EMC.movie_show_cutnr.value:
 			moviestring += " "+cutnr[1:]
 		
 		if config.EMC.movie_show_format.value:
 			moviestring += " "+ext[1:]
 		
-		return moviestring, length
+		return moviestring, length, datesort
 	except Exception, e:
 		emcDebugOut("[MC] reload exception:\n" + str(e))
 
@@ -371,7 +377,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 			#if timer and timer.dirname == self.loadPath:
 				# EMC shows the directory which contains the recording
 				if timer.state == TimerEntry.StateRunning:
-					if len(self.list) == 0:
+					if not self.list:
 						# Empty list it will be better to reload it complete
 						# Maybe EMC was never started before
 						DelayedFunction(3000, self.reload, self.loadPath)
@@ -963,6 +969,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 			trashcan = False
 			service = None
 			moviestring, date = "", ""
+			date, datesort = "", ""
 			length = 0
 			moviestringlower = ""
 			sortkeyalpha, sortkeydate = "", ""
@@ -1011,9 +1018,11 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 						if not (movie_hide_del and self.serviceDeleting(service)):
 							
 							# filename handling
-							moviestring, length = getMovieName(filename, ext, service)
+							moviestring, length, datesort = getMovieName(filename, ext, service)
 							
 							# Create sortkeys
+							if not datesort:
+								datesort = date
 							moviestringlower = moviestring.lower()
 							sortkeyalpha = moviestringlower + date
 							sortkeydate = date + moviestringlower
