@@ -111,7 +111,7 @@ def getMovieName(filename, ext, service=None):
 		
 		# Get cut number
 		if filename[-4:-3] == "_" and filename[-3:].isdigit():
-			cutnr = cutnr[-4:]
+			cutnr = filename[-4:]
 			# Remove cut number
 			filename = filename[:-4]
 		
@@ -133,7 +133,7 @@ def getMovieName(filename, ext, service=None):
 					# Standard: filename = YYYYMMDD TIME - service_name - name
 					# Skip service_name, extract name
 					moviestring = str.split(moviestring, " - ")
-					moviestring = moviestring[1:]								# To remove the description use [1:len(moviestring)-1]
+					moviestring = moviestring[1:]								# To remove the description use [1:len(moviestring)-1] But the description must be there
 					moviestring = ' - '.join(str(n) for n in moviestring)
 					
 				elif filename[8:11] == " - ":
@@ -1074,9 +1074,11 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 				if not (config.EMC.movie_hide_del.value and self.serviceDeleting(service)):
 					
 					# filename handling
-					moviestring, length = getMovieName(filename, ext, service)
+					moviestring, length, datesort = getMovieName(filename, ext, service)
 					
 					# Create sortkeys
+					if not datesort:
+						datesort = date
 					moviestringlower = moviestring.lower()
 					sortkeyalpha = moviestringlower + date
 					sortkeydate = date + moviestringlower
