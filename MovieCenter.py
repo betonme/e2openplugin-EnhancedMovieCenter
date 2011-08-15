@@ -98,20 +98,19 @@ def readBasicCfgFile(file):
 			f.close()
 	return data
 
-def getMovieName(filename, ext, service=None):
+def getMovieName(filename, service=None, date=""):
 	try:
 		moviestring = ""
-		date = ""
-		datesort = ""
 		cutnr = ""
 		length = 0
+		sortmoviestring = ""
 		
 		# Remove extension
-		filename = os.path.splitext(filename)[0]
+		filename, ext = os.path.splitext(filename)
 		
 		# Get cut number
 		if filename[-4:-3] == "_" and filename[-3:].isdigit():
-			cutnr = filename[-4:]
+			cutnr = filename[-3:]
 			# Remove cut number
 			filename = filename[:-4]
 		
@@ -120,32 +119,25 @@ def getMovieName(filename, ext, service=None):
 		
 		# Derived from RecordTimer
 		# This is everywhere so test it first
-		if filename[0:2].isdigit():
-			if filename[2:8].isdigit():
-				if filename[9:13].isdigit():
-				#if not filename[8:9].isdigit() and filename[9:13].isdigit():
-					# Default: filename = YYYYMMDD TIME - service_name
-					datesort = filename[0:8] + filename[9:13]		# "YYYYMMDD TIME - " -> "YYYYMMDDTIME"
-					moviestring = filename[16:]									# skips "YYYYMMDD TIME - "
+		if filename[0:8].isdigit():
+			if filename[9:13].isdigit():
+			#if not filename[8:9].isdigit() and filename[9:13].isdigit():
+				# Default: filename = YYYYMMDD TIME - service_name
+				date = filename[0:8] + filename[9:13]		# "YYYYMMDD TIME - " -> "YYYYMMDDTIME"
+				moviestring = filename[16:]									# skips "YYYYMMDD TIME - "
+				
+				# Standard: filename = YYYYMMDD TIME - service_name - name
+				# Long Composition: filename = YYYYMMDD TIME - service_name - name - description
+				# Standard: filename = YYYYMMDD TIME - service_name - name
+				# Skip service_name, extract name
+				moviestring = str.split(moviestring, " - ")
+				moviestring = moviestring[1:]								# To remove the description use [1:len(moviestring)-1] But the description must be there
+				moviestring = ' - '.join(str(n) for n in moviestring)
 					
-					# Standard: filename = YYYYMMDD TIME - service_name - name
-					# Long Composition: filename = YYYYMMDD TIME - service_name - name - description
-					# Standard: filename = YYYYMMDD TIME - service_name - name
-					# Skip service_name, extract name
-					moviestring = str.split(moviestring, " - ")
-					moviestring = moviestring[1:]								# To remove the description use [1:len(moviestring)-1] But the description must be there
-					moviestring = ' - '.join(str(n) for n in moviestring)
-					
-				elif filename[8:11] == " - ":
-					# Short Composition: filename = YYYYMMDD - name
-					datesort = filename[0:8] + "3333"						# "YYYYMMDD" + DUMMY_TIME
-					moviestring = filename[11:]									# skips "YYYYMMDD - "
-			
-			#QUESTION Where is this used / defined?
-			#elif filename[3:5].isdigit():
-			##elif filename[3:5].isdigit() and not filename[2:3].isdigit():
-			#	#datesort = filename[0:2] + filename[3:5]
-			#	moviestring = filename[11:]
+			elif filename[8:11] == " - ":
+				# Short Composition: filename = YYYYMMDD - name
+				date = filename[0:8] + "3333"						# "YYYYMMDD" + DUMMY_TIME
+				moviestring = filename[11:]									# skips "YYYYMMDD - "
 		
 		else:
 			moviestring = filename[:]
@@ -169,7 +161,6 @@ def getMovieName(filename, ext, service=None):
 #				#TODO we need len in pts = s*90000 see cutlist_support
 #				#length = eitlen * 90000
 		
-		
 		# Very bad but there can be both encodings
 		# E2 recordings are always in utf8
 		# User files can be in cp1252
@@ -177,19 +168,28 @@ def getMovieName(filename, ext, service=None):
 			moviestring.decode('utf-8')
 		except UnicodeDecodeError:
 			moviestring = moviestring and moviestring.decode("cp1252").encode("utf-8")
-		####moviestring = moviestring and unicode(moviestring, 'utf-8' ,'ignore')
 		
-		#TEST
+		#TEST1
+		#unicode_name = unicode(filename, "utf-8", errors="ignore")
+		#moviestring = moviestring and unicode(moviestring, 'utf-8' ,'ignore')
+		
+		#TEST2
 		#from Tools import ASCIItranslit
 		#filename = ASCIItranslit.legacyEncode(filename)
 		
+		# Create sortkeys
+		sortmoviestring = moviestring.lower()
+		sortkeyalpha = sortmoviestring + date + cutnr
+		sortkeydate = date + sortmoviestring + str( 999 - int(cutnr or 0) )
+		sortingkeys = (sortkeyalpha, sortkeydate)
+		
 		if config.EMC.movie_show_cutnr.value:
-			moviestring += " "+cutnr[1:]
+			moviestring += " "+cutnr
 		
 		if config.EMC.movie_show_format.value:
 			moviestring += " "+ext[1:]
 		
-		return moviestring, length, datesort
+		return moviestring, length, sortingkeys
 	except Exception, e:
 		emcDebugOut("[MC] reload exception:\n" + str(e))
 
@@ -277,7 +277,9 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 		# Initially load the movielist
 		# So it must not be done when the user it opens the first time
 		#MAYBE this should be configurable
-		DelayedFunction(3000, self.reload, self.loadPath)
+		#TEST
+		emcDebugOut("[EMC_MC] test delayed reload ")
+		DelayedFunction(10000, self.reload, self.loadPath)
 
 	def applySkin(self, desktop, parent):
 		attribs = []
@@ -380,13 +382,16 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 					if not self.list:
 						# Empty list it will be better to reload it complete
 						# Maybe EMC was never started before
+						emcDebugOut("[MC] Timer started")
 						DelayedFunction(3000, self.reload, self.loadPath)
 					else:
 						# We have to add the new recording
-						DelayedFunction(3000, self.addNewRecording, timer.Filename)
+						emcDebugOut("[MC] Timer started - reload")
+						DelayedFunction(3000, self.reload, self.loadPath, timer.Filename)
 				elif timer.state == TimerEntry.StateEnded:
 					#MAYBE Just refresh the ended record
 					# But it is fast enough
+					emcDebugOut("[MC] Timer ended")
 					DelayedFunction(3000, self.invalidateList)
 					pass
 
@@ -856,10 +861,11 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 			
 			filelist.sort(key=lambda x: x[3].lower(), reverse=True)
 			
+			#TODO
 			#QUESTION Should we set date related sorting
 			# if we dont set it the list will be sorted according to the actual sort mode
 			# but if we change the sort mode then we have to update the MovieSelection color buttons
-			#TODO self.alphaSort = False
+			self.alphaSort = False
 			
 			del append
 			
@@ -954,14 +960,13 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 		del append
 		return customlist
 
-	def reload(self, loadPath):
+	def reload(self, loadPath, addRecording=None):
 		#TODO no try needed after development
 		try:
 			self.currentSelectionCount = 0
 			if not loadPath.endswith("/"): loadPath += "/"
 			self.loadPath = loadPath
 			self.selectionList = None
-			self.list = []
 			self.recControl.recFilesRead()	# get a list of current remote recordings
 			customlist, subdirlist, filelist = [], [], []
 			tmplist = []
@@ -972,11 +977,20 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 			date, datesort = "", ""
 			length = 0
 			moviestringlower = ""
-			sortkeyalpha, sortkeydate = "", ""
+			sortingkeys = []
 			
 			# Create listings
-			emcDebugOut("[MC] LOAD PATH:\n" + loadPath)
-			if loadPath.endswith("VLC servers/"):
+			emcDebugOut("[MC] LOAD PATH:\n" + str(loadPath) + " " + str(addRecording))
+			if addRecording:
+				pathname = addRecording + ".ts"
+				if not os.path.isfile(pathname):
+					return
+				p = os.path.basename(pathname)
+				ext = os.path.splitext(p)[1].lower()
+				date = strftime( "%Y%m%d%H%M", localtime(os.path.getmtime(pathname)) )
+				filelist.append( (pathname, p, ext, date) )
+				
+			elif loadPath.endswith("VLC servers/"):
 				emcDebugOut("[MC] VLC Server")
 				subdirlist = self.createVlcServerList()
 				customlist = self.createCustomEntriesList(loadPath, extend=False) or []
@@ -1018,23 +1032,22 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 						if not (movie_hide_del and self.serviceDeleting(service)):
 							
 							# filename handling
-							moviestring, length, datesort = getMovieName(filename, ext, service)
-							
-							# Create sortkeys
-							if not datesort:
-								datesort = date
-							moviestringlower = moviestring.lower()
-							sortkeyalpha = moviestringlower + date
-							sortkeydate = date + moviestringlower
+							moviestring, length, sortingkeys = getMovieName(filename, service, date)
 							
 							# Correct date string
 							#IDEA: What about displaying the time optionally
 							date = date[6:8] + "." + date[4:6] + "." + date[0:4]
 							
-							append((service, (sortkeyalpha, sortkeydate), date, moviestring, filename, 0, length, ext))
+							append((service, sortingkeys, date, moviestring, filename, 0, length, ext))
 			
-			# Do list sort
-			self.list = self.doListSort( tmplist )
+			if addRecording:
+				tmplist = self.list + tmplist
+			else:
+				self.list = []
+			
+			if not loadPath.endswith("Latest Recordings/"):
+				# Do list sort
+				self.list = self.doListSort( tmplist )
 			
 			# Assign list to listbox
 			self.l.setList( self.list )
@@ -1046,55 +1059,20 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 	def invalidateList(self):
 		# Just invalidate the whole list to force rebuild the entries 
 		# Update the progress of all entries
-		for entry in self.list:
-			self.invalidateService(entry[0])
+		#for entry in self.list:
+		#	self.invalidateService(entry[0])
+		#TEST
+		self.l.invalidate()
 
 	def refreshRecordings(self):
 		# Just for updating the progress of the recordings
 		#IDEA Extend the list and mark the recordings 
 		# so we don't have to go through the whole list
-		for entry in self.list:
-			if self.recControl.isRecording(entry[0].getPath()):
-				self.invalidateService(entry[0])
-
-	def addNewRecording(self, path):
-		try:
-			#TODO integrate in reload function - So we use only one code base
-			path += ".ts"
-			if not os.path.isfile(path):
-				return
-			filename = os.path.basename(path)
-			
-			date = strftime( "%Y%m%d%H%M", localtime(os.path.getmtime(path)) )
-			ext = os.path.splitext(filename)[1].lower()
-			service = self.getPlayerService(path, filename, ext)
-			
-			# Check config settings
-			if not (config.EMC.movie_hide_mov.value and self.serviceMoving(service)):
-				if not (config.EMC.movie_hide_del.value and self.serviceDeleting(service)):
-					
-					# filename handling
-					moviestring, length, datesort = getMovieName(filename, ext, service)
-					
-					# Create sortkeys
-					if not datesort:
-						datesort = date
-					moviestringlower = moviestring.lower()
-					sortkeyalpha = moviestringlower + date
-					sortkeydate = date + moviestringlower
-					
-					# Correct date string
-					date = date[6:8] + "." + date[4:6] + "." + date[0:4]
-					
-					tmplist = self.list
-					tmplist.append((service, (sortkeyalpha, sortkeydate), date, moviestring, filename, 0, length, ext))
-					
-					self.list = self.doListSort( tmplist )
-					
-					# Assign list to listbox
-					self.l.setList( self.list )
-		except Exception, e:
-			emcDebugOut("[MC] reload exception:\n" + str(e))
+		#for entry in self.list:
+		#	if self.recControl.isRecording(entry[0].getPath()):
+		#		self.invalidateService(entry[0])
+		#TEST
+		self.l.invalidate()
 
 	def getNextService(self):
 		if not self.currentSelIsDirectory():
@@ -1129,14 +1107,11 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 								ext = os.path.splitext(name)[1].lower()
 								if ext in mediaExt:
 									path = os.path.join(root, name)
-									ext = os.path.splitext(name)[1].lower()
 									yield self.getPlayerService(path, name, ext)
 
 	def getPlayerService(self, path, name, ext=None):
 		global playerDVB, playerDVD, serviceIdDVB, serviceIdDVD, serviceIdMP3 #, playerMP3
 		if not ext:
-			#TODO
-			#ext = os.path.splitext(path)[1].lower()
 			service = eServiceReference("2:0:1:0:0:0:0:0:0:0:" + path)
 		elif ext in playerDVB:
 			service = eServiceReference(serviceIdDVB, 0, path)

@@ -710,8 +710,6 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		if current is not None:
 			selectedlist = self["list"].makeSelectionList()[:]
 			for service in selectedlist:
-				path = service.getPath()
-				ext = os.path.splitext(path)[1].lower()
 				cuts = CutList( service )
 				cuts.removeMarksCutList()
 				self["list"].unselectService(service)

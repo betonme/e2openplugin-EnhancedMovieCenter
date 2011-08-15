@@ -96,16 +96,16 @@ class RecordingsControl:
 				if not filename in self.recDict:
 					self.recDict[filename] = (timer.begin, timer.end)
 					inform = True
-					#TODO
-					emcDebugOut("[emcRC] REC START for: " + filename + str(timer.service_ref))
+					emcDebugOut("[emcRC] REC START for: " + filename)
 			else: #timer.state == timer.StateEnded:
 				if filename in self.recDict:
 					del self.recDict[filename]
 					inform = True
 					emcDebugOut("[emcRC] REC END for: " + filename)
 					try:
-						emcTasker.shellExecute(timer.fixMoveCmd)
-						emcDebugOut("[emcRC] File had been moved while recording was in progress, moving left over files..")
+						if hasattr(timer, "fixMoveCmd"):
+							emcTasker.shellExecute(timer.fixMoveCmd)
+							emcDebugOut("[emcRC] File had been moved while recording was in progress, moving left over files..")
 					except: pass
 				if config.EMC.timer_autocln.value:
 					DelayedFunction(2000, self.timerCleanup)	# postpone to avoid crash in basic timer delete by user
