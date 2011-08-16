@@ -1,15 +1,12 @@
-# German language translation file for EnhancedMovieCenter plugin
-#
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-11-10 16:35+0200\n"
+"POT-Creation-Date: \n"
 "PO-Revision-Date: \n"
 "Last-Translator: Swiss-MAD\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=iso-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 msgid "true"
@@ -19,7 +16,7 @@ msgid "false"
 msgstr "nein"
 
 msgid "no override"
-msgstr "Nicht Ã¼berschreiben"
+msgstr "Nicht überschreiben"
 
 msgid "Directory"
 msgstr "Verzeichnis"
@@ -31,10 +28,10 @@ msgid "Stop playback"
 msgstr "Wiedergabe stoppen"
 
 msgid "Open extensions menu"
-msgstr "ErweiterungsmenÃ¼ Ã¶ffnen"
+msgstr "Erweiterungsmenü öffnen"
 
 msgid "Skipping movie, the file does not exist.\n"
-msgstr "Film Ã¼bersprungen, Datei existiert nicht.\n"
+msgstr "Film übersprungen, Datei existiert nicht.\n"
 
 msgid "Alpha sort"
 msgstr "Alpha. Sort."
@@ -43,16 +40,16 @@ msgid "Play selected movie(s)"
 msgstr "Ausgew. Film(e) abspielen"
 
 msgid "Close EMC"
-msgstr "EMC schlieÃŸen"
+msgstr "EMC schließen"
 
 msgid "Open menu"
-msgstr "MenÃ¼ Ã¶ffnen"
+msgstr "Menü öffnen"
 
 msgid "Show event info"
 msgstr "Ereignisinfo anzeigen"
 
 msgid "Delete file or empty dir"
-msgstr "Datei o. leeres Verz. lÃ¶schen"
+msgstr "Datei o. leeres Verz. löschen"
 
 msgid "Toggle sort mode"
 msgstr "Sortierung umschalten"
@@ -64,7 +61,7 @@ msgid "Movie home / Play last (configurable)"
 msgstr "Movie Home / Letzte Wiedergabe (konfig.)"
 
 msgid "Open bookmarks"
-msgstr "Lesezeichen Ã¶ffnen"
+msgstr "Lesezeichen öffnen"
 
 msgid "Move cursor page up"
 msgstr "Cursor Bild hoch"
@@ -88,16 +85,16 @@ msgid "Directory forward"
 msgstr "vorheriges Verzeichnis"
 
 msgid "Directory back"
-msgstr "Verzeichnisebene zurÃ¼ck"
+msgstr "Verzeichnisebene zurück"
 
 msgid "Toggle service selection"
 msgstr "Service-Auswahl tauschen"
 
 msgid "Available plugins menu"
-msgstr "MenÃ¼ 'VerfÃ¼gbare Plugins'"
+msgstr "Menü 'Verfügbare Plugins'"
 
 msgid "Reload movie file list"
-msgstr "FilmÃ¼bersicht aktualisieren"
+msgstr "Filmübersicht aktualisieren"
 
 msgid "Toggle viewed / not viewed"
 msgstr "Umschalten Gesehen / Nicht gesehen"
@@ -109,22 +106,22 @@ msgid "No functionality set..."
 msgstr "Keine Funktion eingestellt..."
 
 msgid "Delete"
-msgstr "LÃ¶schen"
+msgstr "Löschen"
 
 msgid "Move"
 msgstr "Verschieben"
 
 msgid "Last played movie/playlist not available..."
-msgstr "Letzte Wiedergabe/Playlist nicht verfÃ¼gbar..."
+msgstr "Letzte Wiedergabe/Playlist nicht verfügbar..."
 
 msgid "Permanently delete all files in trashcan?"
-msgstr "Alle Dateien endgÃ¼ltig aus Papierkorb entfernen?"
+msgstr "Alle Dateien endgültig aus Papierkorb entfernen?"
 
 msgid "Directory is not empty."
 msgstr "Verzeichnis ist nicht leer."
 
 msgid "Cannot delete the parent directory."
-msgstr "Kann Ã¼bergeord. Verzeichnis nicht lÃ¶schen."
+msgstr "Kann übergeord. Verzeichnis nicht löschen."
 
 msgid "File not available."
 msgstr "Datei nicht vorhanden."
@@ -139,7 +136,7 @@ msgid " Deleting remotely recorded and it will display an rec-error dialog on th
 msgstr " Deleting remotely recorded and it will display an rec-error dialog on the other DB."
 
 msgid " permanently"
-msgstr " endgÃ¼ltig"
+msgstr " endgültig"
 
 msgid " currently played?"
 msgstr " akt. Wiedergabe?"
@@ -151,16 +148,16 @@ msgid " all selected video files? The currently playing movie is also one of the
 msgstr " alle ausgew. Videodateien? Der aktuelle Film ist ebenfalls in der Auswahl enthalten. Wiedergabe wird beendet."
 
 msgid "Delete error:\n"
-msgstr "Fehler beim LÃ¶schen:\n"
+msgstr "Fehler beim Löschen:\n"
 
 msgid "Delete failed because the trashcan directory does not exist. Attempt to create it now?"
-msgstr "LÃ¶schen fehlgeschlagen da das Papierkorb-Verzeichnis nicht existert. Jetzt erstellen?"
+msgstr "Löschen fehlgeschlagen da das Papierkorb-Verzeichnis nicht existert. Jetzt erstellen?"
 
 msgid "Date sort"
 msgstr "Sort. n. Datum"
 
 msgid "Error: path '%s' not available!"
-msgstr "Fehler: Verzeichnis %s nicht verfÃ¼gbar!"
+msgstr "Fehler: Verzeichnis %s nicht verfügbar!"
 
 msgid "*** Multiselection active ***"
 msgstr "*** Mehrfachauswahl aktiv ***"
@@ -169,19 +166,19 @@ msgid "How to move files:\n"
 msgstr "Dateien verschieben (Howto):\n"
 
 msgid "Select some movies with the VIDEO-button, move the cursor on top of the destination directory and press yellow."
-msgstr "Filme mit VIDEO-Taste auswÃ¤hlen, mit Cursor das Zielverzeichnis wÃ¤hlen und gelbe Taste drÃ¼cken."
+msgstr "Filme mit VIDEO-Taste auswählen, mit Cursor das Zielverzeichnis wählen und gelbe Taste drücken."
 
 msgid "Select Location"
-msgstr "Speicherort wÃ¤hlen"
+msgstr "Speicherort wählen"
 
 msgid "Choose directory"
-msgstr "Verzeichnis wÃ¤hlen"
+msgstr "Verzeichnis wählen"
 
 msgid "Trashcan create failed. Check mounts and permissions."
-msgstr "Papierkorb erst. fehlgeschlagen. Mounts und Rechte prÃ¼fen."
+msgstr "Papierkorb erst. fehlgeschlagen. Mounts und Rechte prüfen."
 
 msgid "Choose operation"
-msgstr "Funktion auswÃ¤hlen"
+msgstr "Funktion auswählen"
 
 msgid "Play last"
 msgstr "letzter Film"
@@ -190,13 +187,13 @@ msgid "Movie home"
 msgstr "Movie Home"
 
 msgid "Delete permanently"
-msgstr "EndgÃ¼ltig lÃ¶schen"
+msgstr "Endgültig löschen"
 
 msgid "Empty trashcan"
 msgstr "Papierkorb leeren"
 
 msgid "Go to trashcan"
-msgstr "Papierkorb Ã¶ffnen"
+msgstr "Papierkorb öffnen"
 
 msgid "Remove rogue files"
 msgstr "Verwaiste Dateien entfernen"
@@ -208,28 +205,28 @@ msgid "Create directory"
 msgstr "Verzeichnis erstellen"
 
 msgid "Bookmark directory"
-msgstr "Lesezeichen hinzufÃ¼gen"
+msgstr "Lesezeichen hinzufügen"
 
 msgid "Bookmarks"
 msgstr "Lesezeichen"
 
 msgid "Choose plugin"
-msgstr "Erweiterung auswÃ¤hlen"
+msgstr "Erweiterung auswählen"
 
 msgid "Choose bookmark"
-msgstr "Lesezeichen auswÃ¤hlen"
+msgstr "Lesezeichen auswählen"
 
 msgid "Movie Selection Menu"
-msgstr "MenÃ¼ 'Filmauswahl'"
+msgstr "Menü 'Filmauswahl'"
 
 msgid "Enter name for new directory."
-msgstr "Name fÃ¼r neues Verzeichnis eingeben."
+msgstr "Name für neues Verzeichnis eingeben."
 
 msgid "Directory "
 msgstr "Verzeichnis "
 
 msgid "Locate rogue files and remove them? (permanently if no trashcan available, may take a minute or so)"
-msgstr "Verwaiste Dateien ermitteln und lÃ¶schen ? (Wenn kein Papierkorb vorhanden wird sofort gelÃ¶scht, das kann etwas dauern)"
+msgstr "Verwaiste Dateien ermitteln und löschen ? (Wenn kein Papierkorb vorhanden wird sofort gelöscht, das kann etwas dauern)"
 
 msgid " files\n"
 msgstr " Dateien\n"
@@ -247,19 +244,19 @@ msgid "Save"
 msgstr "Speichern"
 
 msgid "About"
-msgstr "Ãœber"
+msgstr "Über"
 
 msgid "Start EMC with"
 msgstr "Starte EMC mit"
 
 msgid "Show plugin config in extensions menu"
-msgstr "EMC Setup im ErweiterungsmenÃ¼ anzeigen"
+msgstr "EMC Setup im Erweiterungsmenü anzeigen"
 
 msgid "Do you want to resume this playback?"
 msgstr "Wiedergabe fortsetzen ?"
 
 msgid "Show EMC in extensions menu"
-msgstr "EMC im ErweiterungsmenÃ¼ anzeigen"
+msgstr "EMC im Erweiterungsmenü anzeigen"
 
 msgid "Preferred EPG language"
 msgstr "Bevorzugte EPG Sprache"
@@ -286,7 +283,7 @@ msgid "Tertiary playback audio language"
 msgstr "Dritte Audiospur"
 
 msgid "Enable playback auto-language selection"
-msgstr "Audiospur automatisch auswÃ¤hlen"
+msgstr "Audiospur automatisch auswählen"
 
 msgid "Leave Movie with Exit"
 msgstr "Stoppe Wiedergabe mit Exit"
@@ -307,16 +304,16 @@ msgid "Disable EMC"
 msgstr "EMC deaktivieren"
 
 msgid "EMC path access limit"
-msgstr "Verzeichnis ZugriffsbeschrÃ¤nkung"
+msgstr "Verzeichnis Zugriffsbeschränkung"
 
 msgid "Description field update delay"
-msgstr "Beschreibungsfeld UpdateverzÃ¶gerung"
+msgstr "Beschreibungsfeld Updateverzögerung"
 
 msgid "File order reverse"
 msgstr "Dateisortierung umkehren"
 
 msgid "EMC open with cursor on newest (TV mode)"
-msgstr "Cursor automatisch zum Listenanfang (FilmÃ¼bersicht)"
+msgstr "Cursor automatisch zum Listenanfang (Filmübersicht)"
 
 msgid "EMC open with cursor on newest (player)"
 msgstr "Cursor automatisch zum Listenanfang (Player)"
@@ -340,13 +337,13 @@ msgid "Try to load titles from .meta files"
 msgstr "Versuche Titel aus .eit oder .meta Dateien zu lesen"
 
 msgid "EMC re-open list after STOP-press"
-msgstr "EMC nach Filmstop wieder Ã¶ffnen"
+msgstr "EMC nach Filmstop wieder öffnen"
 
 msgid "EMC re-open list after Movie end"
-msgstr "EMC nach Filmende wieder Ã¶ffnen"
+msgstr "EMC nach Filmende wieder öffnen"
 
 msgid "EMC always reload after open"
-msgstr "Beim Ã¶ffnen von EMC immer neu einlesen"
+msgstr "Beim öffnen von EMC immer neu einlesen"
 
 msgid "Show Cut-Nr if exist"
 msgstr "Zeige Schnitt-Nr. falls vorhanden"
@@ -361,10 +358,10 @@ msgid "EMC cifs* files operation"
 msgstr "Cifs* Dateioperationen"
 
 msgid "Hide movies being moved"
-msgstr "Film wÃ¤hrend dem verschieben ausblenden"
+msgstr "Film während dem verschieben ausblenden"
 
 msgid "Hide movies being deleted"
-msgstr "Film wÃ¤hrend dem lÃ¶schen ausblenden"
+msgstr "Film während dem löschen ausblenden"
 
 msgid "Hide trashcan directory"
 msgstr "Papierkorb-Verzeichnis ausblenden"
@@ -394,7 +391,7 @@ msgid "Automatic timers list cleaning"
 msgstr "Automatische Timerlisten-Bereinigung"
 
 msgid "Enigma daily auto-restart"
-msgstr "TÃ¤glicher Enigma Auto-Neustart"
+msgstr "Täglicher Enigma Auto-Neustart"
 
 msgid "Enigma auto-restart window begin"
 msgstr "Enigma Auto-Neustart-Fenster Start"
@@ -424,19 +421,19 @@ msgid "Enable component video in A/V Settings"
 msgstr "Component Video in A/V Einstellungen aktivieren"
 
 msgid "Given path %s does not exist. Please change."
-msgstr "GewÃ¤hltes Verzeichnis %s existiert nicht. Bitte Ã¤ndern."
+msgstr "Gewähltes Verzeichnis %s existiert nicht. Bitte ändern."
 
 msgid "Some settings changes require GUI restart to take effect."
 msgstr "Damit die Einstellungen wirksam werden, bitte Enigma2 neustarten !"
 
 msgid "Next Enigma auto-restart in "
-msgstr "NÃ¤chster Enigma Auto-Neustart in "
+msgstr "Nächster Enigma Auto-Neustart in "
 
 msgid "Enigma auto-restart is currently not active."
 msgstr "Enigma Auto-Neustart ist derzeit nicht aktiv."
 
 msgid "EMC Enigma2 auto-restart launching, continue? Select no to postpone by one hour."
-msgstr "EMC Enigma2 Auto-Neustart beginnt. Fortsetzen? NEIN wÃ¤hlen um den Neutstart eine Stunde zu verzÃ¶gern."
+msgstr "EMC Enigma2 Auto-Neustart beginnt. Fortsetzen? NEIN wählen um den Neutstart eine Stunde zu verzögern."
 
 msgid "down"
 msgstr "runter"
@@ -451,13 +448,13 @@ msgid "unhide"
 msgstr "Einblenden"
 
 msgid "delete"
-msgstr "LÃ¶schen"
+msgstr "Löschen"
 
 msgid "do nothing"
 msgstr "Nichts tun"
 
 msgid "No override"
-msgstr "Nicht Ã¼berschreiben"
+msgstr "Nicht überschreiben"
 
 msgid "Video-button"
 msgstr "Video-Taste"
@@ -478,13 +475,13 @@ msgid "configuration"
 msgstr "Konfiguration"
 
 msgid "movie manipulation list"
-msgstr "Film Ã„nderungsliste"
+msgstr "Film Änderungsliste"
 
 msgid "Enable daily trashcan cleanup"
-msgstr "Erlaube tÃ¤gliche Papierkorb Leerung"
+msgstr "Erlaube tägliche Papierkorb Leerung"
 
 msgid "Daily cleanup time"
-msgstr "TÃ¤gliche Reinigungszeit Papierkorb/Aufnahmeliste"
+msgstr "Tägliche Reinigungszeit Papierkorb/Aufnahmeliste"
 
 msgid "How many days files may remain in trashcan"
 msgstr "Verbleib der Dateien im Papierkorb (Tage)"
@@ -506,9 +503,9 @@ msgstr ""
 "ACHTUNG\n"
 "\n"
 "Diese Option verschiebt automatisch alle fertig gesehene Aufnahmen in Movie Home nach der eingestellten Zeit in den Papierkorb.\n"
-"Bei der nÃ¤chsten Papierkorb Leerung werden diese Aufnahmen dann gelÃ¶scht.\n"
+"Bei der nächsten Papierkorb Leerung werden diese Aufnahmen dann gelöscht.\n"
 "\n"
-"BestÃ¤tige dies mit der blauen Taste, gefolgt von der grÃ¼nen Taste."
+"Bestätige dies mit der blauen Taste, gefolgt von der grünen Taste."
 
 msgid "No resume below 10 seconds"
 msgstr "Ignoriere Start Marker unter 10 sek"
@@ -538,16 +535,16 @@ msgid "No DVD-Player found!"
 msgstr "DVD-Player nicht gefunden!"
 
 msgid "Delete validation"
-msgstr "LÃ¶schbestÃ¤tigung bei aktivem Papierkorb"
+msgstr "Löschbestätigung bei aktivem Papierkorb"
 
 msgid "Listbox is skin able"
 msgstr "Filmliste ist Skinbar"
 
 msgid "Short watching percent"
-msgstr "Vorlauffarbe fÃ¼r ungesehen in %"
+msgstr "Vorlauffarbe für ungesehen in %"
 
 msgid "Finished watching percent"
-msgstr "Nachlauffarbe fÃ¼r gesehen in %"
+msgstr "Nachlauffarbe für gesehen in %"
 
 msgid "Mark all movies"
 msgstr "Alle Filme markieren"
@@ -556,7 +553,7 @@ msgid "Remove cut list marker"
 msgstr "Entferne alle Film-Marker"
 
 msgid "Remove all cut file marker permanently?"
-msgstr "Entferne alle Film-Marker entgÃ¼ltig?"
+msgstr "Entferne alle Film-Marker entgültig?"
 
 msgid "Play ALL"
 msgstr "Alles abspielen"
@@ -580,33 +577,108 @@ msgid "Manage E2 Bookmarks"
 msgstr "E2 Lesezeichen bearbeiten"
 
 msgid "Open E2 Bookmark path"
-msgstr "E2 Lesezeichen Ordner Ã¶ffnen"
+msgstr "E2 Lesezeichen Ordner öffnen"
 
 msgid "Open Timer List"
-msgstr "Ã–ffne Timerliste"
+msgstr "Öffne Timerliste"
 
 msgid "Exclude folders and files"
 msgstr "Ordner und Dateien ausblenden"
 
 msgid "Suppress DVD structure scan in folders"
-msgstr "UnterdrÃ¼cke DVD Strukturen Scan"
+msgstr "Unterdrücke DVD Strukturen Scan"
 
 msgid "Hide selected entries in movielist"
 msgstr "Ausblenden von speziellen Dateien und Ordnern"
 
-msgid "HELP_cfghide_enable"
-msgstr ""
-"Dateien und Ordner die in '/etc/enigma2/emc-hide.cfg' gelistet sind werden nicht angezeigt.\n"
-"Das Ã¤ndern dieser Einstellung erfordert einen Enigma2 Neustart!"
-
 msgid "No structure scan in selected folders"
-msgstr "Keine Medienstrutur Erkennung in speziellen Ordnern."
-
-msgid "HELP_cfgnoscan_enable"
-msgstr "Unterordner die in Pfade von '/etc/enigma2/emc-noscan.cfg' stehen werden nicht auf Medienstrukturen (z.B. DVD) Ã¼berprÃ¼ft. Dies kann unbeabsichtiges Aufwecken von Festplatten oder Netzlaufwerken verhindern. Ã„ndern dieser Einstellung erfordert E2 Neustart!"
+msgstr "Keine Medienstrutur Erkennung in speziellen Ordnern"
 
 msgid "No structure scan in linked folders"
 msgstr "Keine Medienstrutur Erkennung in Symlink-Ordnern"
+
+# EMC Setup Helptext
+msgid "HELP_About"
+msgstr "Öffnet das \"Über\" Fenster."
+
+msgid "HELP_Start EMC with"
+msgstr "Setzte eine Start-Taste für EMC."
+
+msgid "HELP_Show plugin config in extensions menu"
+msgstr ""
+"Einblenden des EMC Setup im Extensions Menu.\n"
+"(Das Extension Menu ist im Normalfall unter der Taste [blau] zu erreichen)."
+
+msgid "HELP_Show EMC in extensions menu"
+msgstr ""
+"Einblenden des EMC Plugins im Extensions Menu.\n"
+"(Das Extension Menu ist im Normalfall unter der Taste [blau] zu erreichen)."
+
+msgid "HELP_Disable EMC"
+msgstr "Deaktiviert die Filmliste von EMC komplett. Jedoch spezielle Funktionen wie [Timerlisten bereinigung, [Papierkorb Leerung] oder [autom. E2 Neustart] arbeiten im Hintergrund weiter."
+
+msgid "HELP_Movie home at start"
+msgstr ""
+"EMC startet immer im \"Movie home\" Verzeichnis.\n"
+"(In der nächsten Zeile kann man das \"Movie home\" Verzeichnis setzten)."
+
+msgid "HELP_Movie home home path"
+msgstr "Hier wird der Pfad für \"Movie home\" gesetzt."
+
+msgid "HELP_EMC path access limit"
+msgstr ""
+"Hiermit kann begrenzt werden wie weit in der Verzeichnisstruktur weiter zurück von \"Movie home\" aus navigiert werden kann.\n"
+"(Mit den Tasten [<] und [>] (neben der Nr.0 Taste) kann dennoch weiter zurück navigiert werden als diese Begrenzung."
+
+msgid "HELP_Trashcan path"
+msgstr ""
+"Set your trashcan path.\n"
+"(There will move the recordings when you press [delete] and the trashcan is activated."
+
+msgid "HELP_Delete validation"
+msgstr "When is activated and trashcan is using, EMC never will ask for a delete validation."
+
+msgid "HELP_Enable daily trashcan cleanup"
+msgstr "EMC delete old files in your trashcan, when reach the age that you set in the next row."
+
+msgid "HELP_Daily cleanup time"
+msgstr "Time when EMC delete all files in trashcan that had reach the remaining time."
+
+msgid "HELP_How many days files may remain in trashcan"
+msgstr ""
+"Set how many days files may remain in trashcan before EMC delete them permanently.\n"
+"(When set to [0] the files will delete directly)."
+
+msgid "HELP_Move finished movies in trashcan"
+msgstr "Move all finished (watched) recordings from \"Movie home\" to the trashcan that had reach the remaining time you have set in the next setup row."
+
+msgid "HELP_Age of finished movies in movie folder (days)"
+msgstr "Set how many days finished (watched) recordings may remain in your \"Movie home\"."
+
+msgid "HELP_Show Latest Recordings directory"
+msgstr ""
+"Display a virtual folder in your \"Movie home\" that list the latest recordings. Also from the subdirectories in your \"Movie home\".\n"
+"(Only one page)"
+
+msgid "HELP_Show VLC directory"
+msgstr "Show or hide the the VLC directory when is installed the VlcPlayerExtended Plugin."
+
+msgid "HELP_Show E2 Bookmarks in movielist"
+msgstr "Display virtual folders in your \"Movie home\" with your Enigma2 Bookmarks."
+
+msgid "HELP_Show EMC Bookmarks in movielist"
+msgstr "Display virtual folders in your \"Movie home\" with your EMC Bookmarks."
+
+msgid "HELP_separator_hide&performance"
+msgstr "Einstellungen zum Ausblenden von Dateien/Ordern und Performance."
+
+msgid "HELP_cfghide_enable"
+msgstr ""
+"Dateien und Ordner die in '/etc/enigma2/emc-hide.cfg' gelistet sind werden nicht angezeigt.\n"
+"Das ändern dieser Einstellung erfordert einen Enigma2 Neustart!"
+
+msgid "HELP_cfgnoscan_enable"
+msgstr "Unterordner die in Pfade von '/etc/enigma2/emc-noscan.cfg' stehen werden nicht auf Medienstrukturen (z.B. DVD) überprüft. Dies kann unbeabsichtiges Aufwecken von Festplatten oder Netzlaufwerken verhindern. Ändern dieser Einstellung erfordert E2 Neustart!"
 
 msgid "HELP_Scan for DVD structures"
 msgstr ""
@@ -615,14 +687,11 @@ msgstr ""
 
 msgid "HELP_noscan_linked"
 msgstr ""
-"Symlinks auf Unterordner werden nicht auf Medienstrukturen (z.B. DVD) Ã¼berprÃ¼ft.\n"
+"Symlinks auf Unterordner werden nicht auf Medienstrukturen (z.B. DVD) überprüft.\n"
 "Dies kann unbeabsichtiges Aufwecken von Festplatten oder Netzlaufwerken verhindern."
 
-msgid "HELP_separator_hide&performance"
-msgstr "Einstellungen zum Ausblenden von Dateien/Ordern und Performance."
-
 msgid "HELP_Sort file A to Z at startup"
-msgstr "Die Filmliste wird beim Ã¶ffnen immer nach Alphabet sortiert."
+msgstr "Die Filmliste wird beim öffnen immer nach Alphabet sortiert."
 
 msgid "HELP_File order reverse"
 msgstr ""
@@ -645,13 +714,105 @@ msgstr ""
 "Ansonsten wird der Titel aus dem Dateinamen extrahiert."
 
 msgid "HELP_Show Movie Format"
-msgstr "Dateiendung (Dateiformat) wird dem Titel angehÃ¤ngt."
+msgstr "Dateiendung (Dateiformat) wird dem Titel angehängt."
 
 msgid "HELP_Show Cut-Nr if exist"
 msgstr ""
-"Wenn Enigma2 wÃ¤hrend einer Aufnahme rebootet, wird die Aufnahme von E2 automatisch fortgesetzt und dabei der neuen Datei eine fotlaufende Nummer hinten angestellt.\n"
+"Wenn Enigma2 während einer Aufnahme rebootet, wird die Aufnahme von E2 automatisch fortgesetzt und dabei der neuen Datei eine fotlaufende Nummer hinten angestellt.\n"
 "Hiermit wird diese Nummer dem Titel hinten angestellt."
 
 msgid "HELP_Show date"
 msgstr "In der Filmliste wird bei jeder Aufnahme auch das Aufnahmedatum angezeigt."
+
+msgid "HELP_Show movie icons"
+msgstr "In der Filmliste wird bei jeder Aufnahme ein passendes Icon vorne angestellt."
+
+msgid "HELP_Show movie progress"
+msgstr "In der Filmliste wird jeder Aufnahme eine Fortschrittsanzeige vorne angestellt."
+
+msgid "HELP_Short watching percent"
+msgstr ""
+"Gibt an ab wieviel Prozent der Filmfortschritt als angespielt gilt.\n"
+"Die Fortschrittsanzeige wechselt dann die Farbe auf blau."
+
+msgid "HELP_Finished watching percent"
+msgstr ""
+"Gibt an ab wieviel Prozent der Filmfortschritt als fertig gespielt gilt.\n"
+"Die Fortschrittsanzeige wechselt dann die Farbe auf grün."
+
+msgid "HELP_Show icon indication for non-watched"
+msgstr "Noch nicht gestartete Aufnahmen werden mit einem eigenen Icon gekennzeichnet."
+
+msgid "HELP_No resume below 10 seconds"
+msgstr ""
+"Ignoriert den Start Marker unterhalb von 10 Sekunden.\n"
+"Wird innerhalb der ersten 10sec. gestoppt, wird kein Resume beim nächsten abspielen angeboten."
+
+msgid "HELP_Jump to first mark when playing movie"
+msgstr ""
+"Springt beim Filmstart automatisch zum ersten Marker, wenn dieser am Anfang der Aufnahme liegt.\n"
+"(Hilft manchmal um die Vorlaufzeit automatisch zu überspringen.)"
+
+msgid "HELP_Rewind finished movies before playing"
+msgstr "Wurde eine Aufnahme fertig gespielt (Abspielstatus \"fertig gesehen\", Einstellung bei \"Nachlauffarbe\"), wird die Aufnahme beim nächsten Start wieder von Anfang abgespielt."
+
+msgid "HELP_Always save last played progress as marker"
+msgstr ""
+"Hiermit wird bei jedem stoppen des Abspielvorgangs die aktuelle Abspielposition als Marker speichern.\n"
+"Und kann später dann direkt mit den < > Tasten angesprungen werden. (Unabhängig von der Resume Funktion)"
+
+msgid "HELP_Display directory reading text"
+msgstr "Blendet während dem Verzeichnis einlesen den Text \"Lese Verzeichnis...\" ein."
+
+msgid "HELP_EMC always reload after open"
+msgstr ""
+"Verzeichnis wird beim jedem öffnen von EMC neu einlesen\n"
+"(Ansonsten wird das Verzeichniss nach dem 2. öffnen aus dem Buffer gelesen.)"
+
+msgid "HELP_EMC re-open list after STOP-press"
+msgstr ""
+"Wird das abspielen gestoppt, erscheint wieder die EMC Filmliste.\n"
+"(Ansonsten ist man wieder im TV Modus.)"
+
+msgid "HELP_EMC re-open list after Movie end"
+msgstr ""
+"Wird eine Aufnahme bis zum Ende gespielt, erscheint wieder die EMC Filmliste.\n"
+"(Ansonsten ist man wieder im TV Modus.)"
+
+msgid "HELP_Leave Movie with Exit"
+msgstr "Das Abspielen einer Aufnahme kann zusätzlich zur Stopp Taste auch mit EXIT beendet werden."
+
+msgid "HELP_Blue button function"
+msgstr "Der blauen Taste kann eine zur Auswahl stehenden Funktion zugeordnet werden."
+
+msgid "HELP_Hide movies being moved"
+msgstr ""
+"Die Aufnahme wird schon während des verschiebens in der Filmliste ausgeblendet.\n"
+"(Es wird aber in jedem Fall im Hintergrund verschoben.)"
+
+msgid "HELP_Hide movies being deleted"
+msgstr ""
+"Die Aufnahme wird schon während des löschens in der Filmliste ausgeblendet.\n"
+"(Es wird aber in jedem Fall im Hintergrund gelöscht.)"
+
+msgid "HELP_Automatic timers list cleaning"
+msgstr "Beendete Timer werden automatisch aus der Timerliste entfernt."
+
+msgid "HELP_Enigma daily auto-restart"
+msgstr "Enigma2 wird täglich im eingestellten Zeitfenster einmal neu gestartet."
+
+msgid "HELP_Enigma auto-restart window begin"
+msgstr "Beginn des Zeitfenster für den automatischen Enigma2 Neustart."
+
+msgid "HELP_Enigma auto-restart window end"
+msgstr "Ende des Zeitfenster für den automatischen Enigma2 Neustart."
+
+msgid "HELP_Force standby after auto-restart"
+msgstr "Nach einem automatischen Enigma2 Neustart, wird die Dreambox in Standby versetzt."
+
+msgid "HELP_Language Separator"
+msgstr "Spracheinstellungen"
+
+msgid "HELP_Preferred EPG language"
+msgstr "Hier kann die bevorzugte Sprache des EPG's eingestellt werden."
 
