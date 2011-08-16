@@ -1,0 +1,10 @@
+Package: enigma2-plugin-extensions-enhancedmoviecenter
+Version: 2.0.2beta137
+Description: Enhanced Movie Center by Coolman & Swiss-MAD
+Section: extra
+Priority: optional
+Maintainer: Coolman & Swiss-MAD
+Architecture: all
+OE: EnhancedMovieCenter_V2.0.2beta137
+Homepage: http://www.i-have-a-dreambox.com/wbb2/thread.php?threadid=156282
+
