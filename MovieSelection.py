@@ -62,7 +62,7 @@ class SelectionEventInfo:
 					self["FileName"].setText(self["list"].getCurrentSelName())
 					path = service.getPath()
 					if os.path.exists(path):
-						self["FileSize"].setText("(%d MB)" %(os.path.getsize(path)/1048576))  # 1048576 = 1024 * 1024
+						self["FileSize"].setText("(%d MB)" %(os.stat(service.getPath()).st_size/1048576))  # 1048576 = 1024 * 1024
 		except Exception, e:
 			emcDebugOut("[EMCMS] updateEventInfo exception:\n" + str(e))
 
