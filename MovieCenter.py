@@ -138,8 +138,10 @@ def getMovieName(filename, service=None, date=""):
 				# Short Composition: filename = YYYYMMDD - name
 				date = filename[0:8] + "3333"						# "YYYYMMDD" + DUMMY_TIME
 				moviestring = filename[11:]									# skips "YYYYMMDD - "
-		
 		else:
+			# Calculate date string for sorting
+			# YYYYMMDD HHMM to DD.MM.YYYY HH:MM
+			date = date[6:10] + date[3:5] + date[0:2] + date[11:13] + date[14:]
 			moviestring = filename[:]
 		
 		if config.EMC.movie_metaload.value and service:
@@ -164,18 +166,11 @@ def getMovieName(filename, service=None, date=""):
 		# Very bad but there can be both encodings
 		# E2 recordings are always in utf8
 		# User files can be in cp1252
+		# Is there no other way?
 		try:
 			moviestring.decode('utf-8')
 		except UnicodeDecodeError:
 			moviestring = moviestring and moviestring.decode("cp1252").encode("utf-8")
-		
-		#TEST1
-		#unicode_name = unicode(filename, "utf-8", errors="ignore")
-		#moviestring = moviestring and unicode(moviestring, 'utf-8' ,'ignore')
-		
-		#TEST2
-		#from Tools import ASCIItranslit
-		#filename = ASCIItranslit.legacyEncode(filename)
 		
 		# Create sortkeys
 		sortmoviestring = moviestring.lower()
@@ -277,7 +272,6 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 		# Initially load the movielist
 		# So it must not be done when the user it opens the first time
 		#MAYBE this should be configurable
-		#TEST
 		emcDebugOut("[EMC_MC] test delayed reload ")
 		DelayedFunction(10000, self.reload, self.loadPath)
 
@@ -478,7 +472,9 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 		if idx >= 0:
 			x = self.list[idx]
 			if x[6] != length:
-				self.list[idx] = (x[0], x[1], x[2], x[3], x[4], x[5], length, x[7])
+				l = list(x)
+				l[6] = length
+				self.list[idx] = tuple(l)
 
 	def buildMovieCenterEntry(self, service, sortkeys, date, moviestring, filename, selnum, length, ext):
 		try:
@@ -771,12 +767,16 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 						self.selectionList.remove(x[0]) # remove service
 					for i in self.list:
 						if i[5] > x[5]:
-							self.list[count] = (i[0], i[1], i[2], i[3], i[4], i[5]-1, i[6], i[7])
+							l = list(i)
+							l[5] = i[5]-1
+							self.list[count] = tuple(l)
 							self.l.invalidateEntry(count) # force redraw
 						count += 1
 			else:
 				newselnum = overrideNum * (newselnum == 0)
-			self.list[index] = (x[0], x[1], x[2], x[3], x[4], newselnum, x[6], x[7])
+			l = list(x)
+			l[5] = newselnum
+			self.list[index] = tuple(l)
 			self.l.invalidateEntry(index) # force redraw of the modified item
 		except Exception, e:
 			emcDebugOut("[MC] buildMovieCenterEntry exception:\n" + str(e))
@@ -856,7 +856,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 					if os.path.isfile(pathname):
 						ext = os.path.splitext(p)[1].lower()
 						if ext in mediaExt:
-							date = strftime( "%Y%m%d%H%M", localtime(os.path.getmtime(pathname)) )
+							date = strftime( "%d.%m.%Y %H:%M", localtime(os.path.getmtime(pathname)) )
 							append( (pathname, p, ext, date) )
 			
 			filelist.sort(key=lambda x: x[3].lower(), reverse=True)
@@ -905,7 +905,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 							# DVD Structure found
 							pathname = os.path.dirname(dvdStruct)
 							ext = os.path.splitext(dvdStruct)[1].lower()
-							date = strftime( "%Y%m%d%H%M", localtime(os.path.getmtime(dvdStruct)) )
+							date = strftime( "%d.%m.%Y %H:%M", localtime(os.path.getmtime(dvdStruct)) )
 							fappend( (pathname, p, ext, date) )
 							continue
 					
@@ -919,7 +919,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 					# Look for media files
 					ext = os.path.splitext(p)[1].lower()
 					if ext in mediaExt:
-						date = strftime( "%Y%m%d%H%M", localtime(os.path.getmtime(pathname)) )
+						date = strftime( "%d.%m.%Y %H:%M", localtime(os.path.getmtime(pathname)) )
 						fappend( (pathname, p, ext, date) )
 		
 		del dappend
@@ -987,7 +987,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 					return
 				p = os.path.basename(pathname)
 				ext = os.path.splitext(p)[1].lower()
-				date = strftime( "%Y%m%d%H%M", localtime(os.path.getmtime(pathname)) )
+				date = strftime( "%d.%m.%Y %H:%M", localtime(os.path.getmtime(pathname)) )
 				filelist.append( (pathname, p, ext, date) )
 				
 			elif loadPath.endswith("VLC servers/"):
@@ -1034,9 +1034,10 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 							# filename handling
 							moviestring, length, sortingkeys = getMovieName(filename, service, date)
 							
-							# Correct date string
+							# Correct date string to get only YYYYMMDD
 							#IDEA: What about displaying the time optionally
-							date = date[6:8] + "." + date[4:6] + "." + date[0:4]
+							#OLD date = date[6:8] + "." + date[4:6] + "." + date[0:4]
+							date = date[0:8]
 							
 							append((service, sortingkeys, date, moviestring, filename, 0, length, ext))
 			
@@ -1059,19 +1060,21 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 	def invalidateList(self):
 		# Just invalidate the whole list to force rebuild the entries 
 		# Update the progress of all entries
+		
+		#TEST Performance
 		#for entry in self.list:
 		#	self.invalidateService(entry[0])
-		#TEST
 		self.l.invalidate()
 
 	def refreshRecordings(self):
 		# Just for updating the progress of the recordings
 		#IDEA Extend the list and mark the recordings 
 		# so we don't have to go through the whole list
+		
+		#TEST Performance
 		#for entry in self.list:
 		#	if self.recControl.isRecording(entry[0].getPath()):
 		#		self.invalidateService(entry[0])
-		#TEST
 		self.l.invalidate()
 
 	def getNextService(self):
