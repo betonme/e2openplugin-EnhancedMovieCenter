@@ -47,7 +47,9 @@ from MovieSelectionMenu import openEMCBookmarks
 audioExt = frozenset([".ac3", ".dts", ".flac", ".m4a", ".mp2", ".mp3", ".ogg", ".wav"])
 videoExt = frozenset([".ts", ".avi", ".divx", ".f4v", ".flv", ".img", ".iso", ".m2ts", ".m4v", ".mkv", ".mov", ".mp4", ".mpeg", ".mpg", ".mts", ".vob"])
 playlistExt = frozenset([".m3u"])
+dirExt = frozenset([""])
 mediaExt = audioExt | videoExt | playlistExt
+listExt = mediaExt | dirExt
 
 # Additional file types
 tsExt    = frozenset([".ts"])
@@ -875,22 +877,22 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 			emcDebugOut("[MC] reload exception:\n" + str(e))
 
 	def createDirList(self, loadPath):
-		global mediaExt
+		global listExt, mediaExt
 		trashcan = False
 		dirlist, subdirlist, filelist = [], [], []
 		dappend = subdirlist.append
 		fappend = filelist.append
 		dvdStruct = None
 		pathname, ext, date = "", "", ""
-		
-		dirlist = os.listdir(loadPath)	# only need to deal with spaces when executing in shell 
 		check_dvdstruct = config.EMC.check_dvdstruct.value and loadPath not in self.nostructscan
 		
-		# Improve performance and avoid dots
-		movie_trashpath = config.EMC.movie_trashpath.value
+		# Get directory listing
+		# only need to deal with spaces when executing in shell 
+		dirlist = [s for s in os.listdir(loadPath) if os.path.splitext(s)[1].lower() in listExt]
 		
 		# add sub directories to the list
 		if dirlist:
+			
 			for p in dirlist:
 				
 				if p in self.hideitemlist or (".*" in self.hideitemlist and p[0:1] == "."):
@@ -910,14 +912,14 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 							continue
 					
 					# Folder found
-					if pathname == movie_trashpath:
+					if pathname == config.EMC.movie_trashpath.value:
 						trashcan = True
 					else:
 						dappend( (pathname, p) )
 				
 				else:
 					# Look for media files
-					ext = os.path.splitext(p)[1].lower()
+					#ext = os.path.splitext(p)[1].lower()
 					if ext in mediaExt:
 						date = strftime( "%d.%m.%Y %H:%M", localtime(os.path.getmtime(pathname)) )
 						fappend( (pathname, p, ext, date) )
@@ -1008,7 +1010,14 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 			
 			else:
 				# Read subdirectories and filenames
+				
+				#TEST
+				t = time()
+				
 				subdirlist, filelist, trashcan = self.createDirList(loadPath)
+				
+				print "EMC createdirlist time " + str( time() - t )
+				
 				customlist = self.createCustomEntriesList(loadPath, trashcan) or []
 			
 			# Add custom entries and sub directories to the list
