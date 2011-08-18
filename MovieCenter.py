@@ -888,12 +888,20 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 		
 		# Get directory listing
 		# only need to deal with spaces when executing in shell 
-		dirlist = [s for s in os.listdir(loadPath) if os.path.splitext(s)[1].lower() in listExt]
+		dirlist = os.listdir(loadPath)
 		
 		# add sub directories to the list
 		if dirlist:
 			
+			#TEST
+			#import glob
+			#for f in glob.glob("*.f"):
+			
 			for p in dirlist:
+				
+				ext = os.path.splitext(p)[1].lower()
+				if ext not in listExt:
+					continue
 				
 				if p in self.hideitemlist or (".*" in self.hideitemlist and p[0:1] == "."):
 					continue
@@ -919,7 +927,6 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 				
 				else:
 					# Look for media files
-					#ext = os.path.splitext(p)[1].lower()
 					if ext in mediaExt:
 						date = strftime( "%d.%m.%Y %H:%M", localtime(os.path.getmtime(pathname)) )
 						fappend( (pathname, p, ext, date) )
@@ -1010,14 +1017,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 			
 			else:
 				# Read subdirectories and filenames
-				
-				#TEST
-				t = time()
-				
 				subdirlist, filelist, trashcan = self.createDirList(loadPath)
-				
-				print "EMC createdirlist time " + str( time() - t )
-				
 				customlist = self.createCustomEntriesList(loadPath, trashcan) or []
 			
 			# Add custom entries and sub directories to the list
@@ -1045,7 +1045,6 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 							
 							# Correct date string to get only YYYYMMDD
 							#IDEA: What about displaying the time optionally
-							#OLD date = date[6:8] + "." + date[4:6] + "." + date[0:4]
 							date = date[0:8]
 							
 							append((service, sortingkeys, date, moviestring, filename, 0, length, ext))
