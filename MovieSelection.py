@@ -31,6 +31,7 @@ from Screens.ChoiceBox import ChoiceBox
 from Tools import Notifications
 from enigma import getDesktop, eServiceReference
 import os
+from time import time
 
 from DelayedFunction import DelayedFunction
 from EnhancedMovieCenter import _
@@ -52,19 +53,16 @@ class SelectionEventInfo:
 		self["FileSize"] = Label("")
 
 	def updateEventInfo(self):
-		try:
-			if self["list"].currentSelIsDirectory() or self["list"].currentSelIsLatest() or self["list"].currentSelIsVlc() or self.getCurrent() is None:
-				self.resetEventInfo()
-			else:
-				service = self.getCurrent()
-				if service:
-					self["Service"].newService(service)
-					self["FileName"].setText(self["list"].getCurrentSelName())
-					path = service.getPath()
-					if os.path.exists(path):
-						self["FileSize"].setText("(%d MB)" %(os.stat(service.getPath()).st_size/1048576))  # 1048576 = 1024 * 1024
-		except Exception, e:
-			emcDebugOut("[EMCMS] updateEventInfo exception:\n" + str(e))
+		if self["list"].currentSelIsDirectory() or self["list"].currentSelIsLatest() or self["list"].currentSelIsVlc() or self.getCurrent() is None:
+			self.resetEventInfo()
+		else:
+			service = self.getCurrent()
+			if service:
+				self["Service"].newService(service)
+				self["FileName"].setText(self["list"].getCurrentSelName())
+				path = service.getPath()
+				if os.path.exists(path):
+					self["FileSize"].setText("(%d MB)" %(os.stat(service.getPath()).st_size/1048576))  # 1048576 = 1024 * 1024
 
 	def loadingEventInfo(self, loading=True):
 		if loading:
@@ -492,82 +490,75 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		if self.multiSelectIdx:
 			self.multiSelectIdx = None
 			self.updateTitle()
-		try:
-			if service is None:
-				first = False
-				forceProgress = -1
-				current = self.getCurrent()
-				if current is not None:
-					# Force copy of selectedlist
-					selectedlist = self["list"].makeSelectionList()[:]
-					if len(selectedlist)>1 and not preparePlayback:
-						first = True
-					for sel in selectedlist:
-						progress = self.__toggleProgressService(sel, preparePlayback, forceProgress, first)
-						first = False
-						if not preparePlayback:
-							forceProgress = progress
-			else:
-				self.__toggleProgressService(service, preparePlayback)
-		except Exception, e:
-			emcDebugOut("[EMCMS] toggleProgress exception:\n" + str(e))
+		if service is None:
+			first = False
+			forceProgress = -1
+			current = self.getCurrent()
+			if current is not None:
+				# Force copy of selectedlist
+				selectedlist = self["list"].makeSelectionList()[:]
+				if len(selectedlist)>1 and not preparePlayback:
+					first = True
+				for sel in selectedlist:
+					progress = self.__toggleProgressService(sel, preparePlayback, forceProgress, first)
+					first = False
+					if not preparePlayback:
+						forceProgress = progress
+		else:
+			self.__toggleProgressService(service, preparePlayback)
 	
 	def __toggleProgressService(self, service, preparePlayback, forceProgress=-1, first=False):
-		try:
-			if service is None:
-				return
+		if service is None:
+			return
+		
+		# Cut file handling
+		path = service.getPath()
+		cuts  = path +".cuts"
+		
+		# Only for compatibilty reasons
+		# Should be removed anytime
+		cutsr = path +".cutsr"
+		if os.path.exists(cutsr) and not os.path.exists(cuts):
+			# Rename file - to catch all old EMC revisions
+			os.rename(cutsr, cuts)	
 			
-			# Cut file handling
-			path = service.getPath()
-			cuts  = path +".cuts"
-			
-			# Only for compatibilty reasons
-			# Should be removed anytime
-			cutsr = path +".cutsr"
-			if os.path.exists(cutsr) and not os.path.exists(cuts):
-				# Rename file - to catch all old EMC revisions
-				os.rename(cutsr, cuts)	
-				
-			# All calculations are done in seconds
-			cuts = CutList( service )
-			last = cuts.getCutListLast()
-			length = self["list"].getLengthOfService(service)
-			progress = self["list"].getProgress(service, length=length, last=last, forceRecalc=True, cuts=cuts)
-			
-			if not preparePlayback:
-				if first:
-					if progress < 100: forceProgress = 50		# force next state 100
-					else: forceProgress = 100 							# force next state 0
-				if forceProgress > -1:
-					progress = forceProgress
-			
-				if progress >= 100:
-					# 100% -> 0
-					# Don't care about preparePlayback, always reset to 0%
-					# Save last marker
-					cuts.toggleLastCutList(cuts.CUT_TOGGLE_START)
-				elif progress <= 0:
-					# 0% -> SAVEDLAST or length
-					cuts.toggleLastCutList(cuts.CUT_TOGGLE_RESUME)
-				else:
-					# 1-99% -> length
-					cuts.toggleLastCutList(cuts.CUT_TOGGLE_FINISHED)
+		# All calculations are done in seconds
+		cuts = CutList( service )
+		last = cuts.getCutListLast()
+		length = self["list"].getLengthOfService(service)
+		progress = self["list"].getProgress(service, length=length, last=last, forceRecalc=True, cuts=cuts)
+		
+		if not preparePlayback:
+			if first:
+				if progress < 100: forceProgress = 50		# force next state 100
+				else: forceProgress = 100 							# force next state 0
+			if forceProgress > -1:
+				progress = forceProgress
+		
+			if progress >= 100:
+				# 100% -> 0
+				# Don't care about preparePlayback, always reset to 0%
+				# Save last marker
+				cuts.toggleLastCutList(cuts.CUT_TOGGLE_START)
+			elif progress <= 0:
+				# 0% -> SAVEDLAST or length
+				cuts.toggleLastCutList(cuts.CUT_TOGGLE_RESUME)
 			else:
-				if progress >= 100 or config.EMC.movie_rewind_finished.value is True and progress >= int(config.EMC.movie_finished_percent.value):
-					# 100% -> 0 or
-					# Start playback and rewind is set and movie progress > finished -> 0
-					# Don't save SavedMarker
-					cuts.toggleLastCutList(cuts.CUT_TOGGLE_START_FOR_PLAY)
-				else:
-					# Delete SavedMarker
-					cuts.toggleLastCutList(cuts.CUT_TOGGLE_FOR_PLAY)
-			
-			# Update movielist entry
-			self["list"].invalidateService(service)
-			return progress
-		except Exception, e:
-			emcDebugOut("[EMCMS] toggleProgressService exception:\n" + str(e))
-			return None
+				# 1-99% -> length
+				cuts.toggleLastCutList(cuts.CUT_TOGGLE_FINISHED)
+		else:
+			if progress >= 100 or config.EMC.movie_rewind_finished.value is True and progress >= int(config.EMC.movie_finished_percent.value):
+				# 100% -> 0 or
+				# Start playback and rewind is set and movie progress > finished -> 0
+				# Don't save SavedMarker
+				cuts.toggleLastCutList(cuts.CUT_TOGGLE_START_FOR_PLAY)
+			else:
+				# Delete SavedMarker
+				cuts.toggleLastCutList(cuts.CUT_TOGGLE_FOR_PLAY)
+		
+		# Update movielist entry
+		self["list"].invalidateService(service)
+		return progress
 	
 	def IMDbSearch(self):
 		name = ''
@@ -865,31 +856,28 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		self.close(None)
 
 	def entrySelected(self, playall=False):
-		try:
-			current = self.getCurrent()
-			if current is not None:
-				if self["list"].currentSelIsLatest():
-					#emcDebugOut("[EMCMS] entrySelected currentSelIsLatest")
-					entry = "Latest Recordings"
-					self.setNextPathSel(entry)
-				elif self["list"].currentSelIsDirectory(): # or currentSelIsVlc or currentSelIsVlcDir
-					# Open folder and reload movielist
-					#emcDebugOut("[EMCMS] entrySelected currentSelIsDirectory")
-					print "entrySelected " + str(self["list"].getCurrentSelDir())
-					self.setNextPathSel( self["list"].getCurrentSelDir() )
-				elif self["list"].currentSelIsVlc():
-					#emcDebugOut("[EMCMS] entrySelected currentSelIsVlc")
-					entry = self["list"].list[ self["list"].getCurrentIndex() ]
-					self.vlcMovieSelected(entry)
+		current = self.getCurrent()
+		if current is not None:
+			if self["list"].currentSelIsLatest():
+				#emcDebugOut("[EMCMS] entrySelected currentSelIsLatest")
+				entry = "Latest Recordings"
+				self.setNextPathSel(entry)
+			elif self["list"].currentSelIsDirectory(): # or currentSelIsVlc or currentSelIsVlcDir
+				# Open folder and reload movielist
+				#emcDebugOut("[EMCMS] entrySelected currentSelIsDirectory")
+				print "entrySelected " + str(self["list"].getCurrentSelDir())
+				self.setNextPathSel( self["list"].getCurrentSelDir() )
+			elif self["list"].currentSelIsVlc():
+				#emcDebugOut("[EMCMS] entrySelected currentSelIsVlc")
+				entry = self["list"].list[ self["list"].getCurrentIndex() ]
+				self.vlcMovieSelected(entry)
+			else:
+				#emcDebugOut("[EMCMS] entrySelected else")
+				playlist = self["list"].makeSelectionList()
+				if not self["list"].serviceBusy(playlist[0]):
+					self.openPlayer(playlist, playall)
 				else:
-					#emcDebugOut("[EMCMS] entrySelected else")
-					playlist = self["list"].makeSelectionList()
-					if not self["list"].serviceBusy(playlist[0]):
-						self.openPlayer(playlist, playall)
-					else:
-						self.session.open(MessageBox, _("File not available."), MessageBox.TYPE_ERROR, 10)
-		except Exception, e:
-			emcDebugOut("[EMCMS] entrySelected exception:\n" + str(e))
+					self.session.open(MessageBox, _("File not available."), MessageBox.TYPE_ERROR, 10)
 
 	def playLast(self):
 		if self.multiSelectIdx:
@@ -986,19 +974,22 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		DelayedFunction(5, self.__reloadList)
 
 	def __reloadList(self):
-		try:
-			if self.currentPathSel is None:
-				emcDebugOut("[EMCMS] reloadList: currentPathSel is None")
-				return
-			path = self.currentPathSel
-			if os.path.exists(path) or path.find("Latest Recordings")>-1 or path.find("VLC servers")>-1 or self.browsingVLC():
-				self["list"].reload(path + "/"*(path != "/"))
-			self.initCursor()
-		except Exception, e:
-			emcDebugOut("[EMCMS] reloadList exception:\n" + str(e))
-		finally:
-			if config.EMC.moviecenter_loadtext.value:
-				self.loading(False)
+		if self.currentPathSel is None:
+			emcDebugOut("[EMCMS] reloadList: currentPathSel is None")
+			return
+		path = self.currentPathSel
+		
+		# The try here is a nice idea, but it costs us a lot of time
+		#try:
+		if os.path.exists(path) or path.find("Latest Recordings")>-1 or path.find("VLC servers")>-1 or self.browsingVLC():
+			self["list"].reload(path + "/"*(path != "/"))
+		#except Exception, e:
+		#	emcDebugOut("[EMCMS] reloadList exception:\n" + str(e))
+		#finally:
+		
+		self.initCursor()
+		if config.EMC.moviecenter_loadtext.value:
+			self.loading(False)
 
 	def refreshRecordings(self):
 		self["list"].refreshRecordings()
