@@ -42,7 +42,7 @@ from DelayedFunction import DelayedFunction
 from EMCTasker import emcTasker, emcDebugOut
 
 EMCVersion = "V2.1.0"
-EMCAbout = "\n   Enhanced Movie Center " +EMCVersion+ ".\n\n   Plugin's usage is free.\n\n   and the source is licensed under GPL.\n\n   by .\n\n   Coolman, Betonme & Swiss-MAD"
+EMCAbout = "\n   Enhanced Movie Center " +EMCVersion+ ".\n\n   Plugin's usage is free.\n\n   by .\n\n   Coolman, Betonme & Swiss-MAD"
 
 def setEPGLanguage(dummy=None):
 	if config.EMC.epglang.value:
@@ -223,8 +223,8 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 			(  separator                                          , config.EMC.about                    , None                  , None                  , 0     , []        , _("") ),			
 			(  _("Sort file A to Z at startup")                   , config.EMC.CoolStartAZ              , None                  , None                  , 0     , []        , _("HELP_Sort file A to Z at startup") ),
 			(  _("File order reverse")                            , config.EMC.moviecenter_reversed     , None                  , None                  , 0     , []        , _("HELP_File order reverse") ),
-			(  _("EMC open with cursor on newest (TV mode)")      , config.EMC.moviecenter_gotonewest   , None                  , None                  , 0     , []        , _("") ),
-			(  _("EMC open with cursor on newest (player)")       , config.EMC.moviecenter_gotonewestp  , None                  , None                  , 0     , []        , _("") ),
+			(  _("EMC open with cursor on newest (TV mode)")      , config.EMC.moviecenter_gotonewest   , None                  , None                  , 0     , []        , _("HELP_EMC open with cursor on newest (TV mode)") ),
+			(  _("EMC open with cursor on newest (player)")       , config.EMC.moviecenter_gotonewestp  , None                  , None                  , 0     , []        , _("HELP_EMC open with cursor on newest (player)") ),
 			(  _("Cursor predictive move after selection")        , config.EMC.moviecenter_selmove      , None                  , None                  , 0     , []        , _("HELP_Cursor predictive move after selection") ),
 			
 			(  _("Listbox is skin able")                          , config.EMC.skin_able                , None                  , None                  , 0     , []        , _("HELP_Listbox is skin able") ),
@@ -265,22 +265,22 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 			
 			(  separator                                          , config.EMC.about                    , None                  , None                  , 1     , []        , _("HELP_Language Separator") ),			
 			(  _("Preferred EPG language")                        , config.EMC.epglang                  , setEPGLanguage        , None                  , 1     , []        , _("HELP_Preferred EPG language") ),
-			(  _("Enable playback auto-subtitling")               , config.EMC.autosubs                 , None                  , None                  , 1     , []        , _("") ),
-			(  _("Primary playback subtitle language")            , config.EMC.sublang1                 , None                  , None                  , 1     , [-1]      , _("") ),
-			(  _("Secondary playback subtitle language")          , config.EMC.sublang2                 , None                  , None                  , 1     , [-2]      , _("") ),
-			(  _("Tertiary playback subtitle language")           , config.EMC.sublang3                 , None                  , None                  , 1     , [-3]      , _("") ),
-			(  _("Enable playback auto-language selection")       , config.EMC.autoaudio                , None                  , None                  , 1     , []        , _("") ),
-			(  _("Primary playback audio language")               , config.EMC.audlang1                 , None                  , None                  , 1     , [-1]      , _("") ),
-			(  _("Secondary playback audio language")             , config.EMC.audlang2                 , None                  , None                  , 1     , [-2]      , _("") ),
-			(  _("Tertiary playback audio language")              , config.EMC.audlang3                 , None                  , None                  , 1     , [-3]      , _("") ),
+			(  _("Enable playback auto-subtitling")               , config.EMC.autosubs                 , None                  , None                  , 1     , []        , _("HELP_Enable playback auto-subtitling") ),
+			(  _("Primary playback subtitle language")            , config.EMC.sublang1                 , None                  , None                  , 1     , [-1]      , _("HELP_Primary playback subtitle language") ),
+			(  _("Secondary playback subtitle language")          , config.EMC.sublang2                 , None                  , None                  , 1     , [-2]      , _("HELP_Secondary playback subtitle language") ),
+			(  _("Tertiary playback subtitle language")           , config.EMC.sublang3                 , None                  , None                  , 1     , [-3]      , _("HELP_Tertiary playback subtitle language") ),
+			(  _("Enable playback auto-language selection")       , config.EMC.autoaudio                , None                  , None                  , 1     , []        , _("HELP_Enable playback auto-language selection") ),
+			(  _("Primary playback audio language")               , config.EMC.audlang1                 , None                  , None                  , 1     , [-1]      , _("HELP_Primary playback audio language") ),
+			(  _("Secondary playback audio language")             , config.EMC.audlang2                 , None                  , None                  , 1     , [-2]      , _("HELP_Secondary playback audio language") ),
+			(  _("Tertiary playback audio language")              , config.EMC.audlang3                 , None                  , None                  , 1     , [-3]      , _("HELP_Tertiary playback audio language") ),
 			
-			(  separator                                          , config.EMC.about                    , None                  , None                  , 2     , []        , _("") ),			
-			(  _("EMC output directory")                          , config.EMC.folder                   , self.validatePath     , self.openLocationBox  , 2     , []        , _("") ),
-			(  _("Enable EMC debug output")                       , config.EMC.debug                    , self.dbgChange        , None                  , 2     , []        , _("") ),
-			(  _("Debug output file name")                        , config.EMC.debugfile                , None                  , None                  , 2     , []        , _("") ),
-			(  _("Description field update delay")                , config.EMC.movie_descdelay          , None                  , None                  , 2     , []        , _("") ),
-			(  _("Key period value (50-900)")                     , config.EMC.key_period               , setupKeyResponseValues, None                  , 2     , []        , _("") ),
-			(  _("Key repeat value (250-900)")                    , config.EMC.key_repeat               , setupKeyResponseValues, None                  , 2     , []        , _("") )
+			(  separator                                          , config.EMC.about                    , None                  , None                  , 2     , []        , _("HELP_Advanced options separator") ),			
+			(  _("Enable EMC debug output")                       , config.EMC.debug                    , self.dbgChange        , None                  , 2     , []        , _("HELP_Enable EMC debug output") ),
+			(  _("EMC output directory")                          , config.EMC.folder                   , self.validatePath     , self.openLocationBox  , 2     , []        , _("HELP_EMC output directory") ),
+			(  _("Debug output file name")                        , config.EMC.debugfile                , None                  , None                  , 2     , []        , _("HELP_Debug output file name") ),
+			(  _("Description field update delay")                , config.EMC.movie_descdelay          , None                  , None                  , 2     , []        , _("HELP_Description field update delay") ),
+			(  _("Key period value (50-900)")                     , config.EMC.key_period               , setupKeyResponseValues, None                  , 2     , []        , _("HELP_Key period value (50-900)") ),
+			(  _("Key repeat value (250-900)")                    , config.EMC.key_repeat               , setupKeyResponseValues, None                  , 2     , []        , _("HELP_Key repeat value (250-900)") )
 		]
 		
 		#TODO Later

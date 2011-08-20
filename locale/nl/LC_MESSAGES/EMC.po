@@ -6,7 +6,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-11-10 16:35+0200\n"
 "PO-Revision-Date: \n"
-"Last-Translator: bschaar\n"
+"Last-Translator: Swiss-MAD\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -527,4 +527,278 @@ msgstr "Verplaats cursor naar einde"
 
 msgid "Remove service selection"
 msgstr "Verwijder zender selectie"
+
+msgid "HELP_About"
+msgstr "Opent het \"Over\" venster."
+
+msgid "HELP_Start EMC with"
+msgstr "Knop voor het opstarten van EMC instellen."
+
+msgid "HELP_Show plugin config in extensions menu"
+msgstr ""
+"EMC-instellingen verbergen of weergeven in het extentie-menu.\n"
+"Het extentie-menu wordt normaal via de [Blauwe] knop opgeroepen."
+
+msgid "HELP_Show EMC in extensions menu"
+msgstr ""
+"EMC-plugin verbergen of weergeven in het extentie-menu.\n"
+"Het extentie-menu wordt normaal via de [Blauwe] knop opgeroepen."
+
+msgid "HELP_Disable EMC"
+msgstr "EMC (FilmLijst) uitschakelen. Bepaalde speciale functies zoals [Timers opschonen],[Prullebak ledigen] en [Auto-herstart] blijven actief op de achtergrond."
+
+msgid "HELP_Movie home at start"
+msgstr ""
+"EMC start steeds in de hoofdmap \"Movie home\".\n"
+"(In de volgende regel kan de hoofdmap \"Movie home\" ingesteld worden)."
+
+msgid "HELP_Movie home home path"
+msgstr "Instellen hoofdmap \"Movie home\"."
+
+msgid "HELP_EMC path access limit"
+msgstr ""
+"Limiteer de toegang buiten de hoofdmap \"Movie home\".\n"
+"Met de [<] en [>] knoppen (naast de Nr.0 knop) is het mogelijk deze beperking te overschrijden."
+
+msgid "HELP_Trashcan path"
+msgstr ""
+"Instellen van de prullebak.\n"
+"Drukken op [verwijderen] zal de opnames naar de prullebak verplaatsen i.p.v. deze onmiddellijk te verwijderen."
+
+msgid "HELP_Hide trashcan directory"
+msgstr ""
+"Indien actief wordt de prullebak verborgen in EMC.\n"
+"(Maar, het blijft mogelijk om de prullebak te openen via EMC [MENU])"
+
+msgid "HELP_Delete validation"
+msgstr "Indien actief en de prullebak is in gebruik zal EMC nooit een bevestiging vragen."
+
+msgid "HELP_Enable daily trashcan cleanup"
+msgstr "EMC verwijderd oude bestanden uit de prullebak, van zodra ze de limiet bereiken die in de volgende regel ingesteld wordt."
+
+msgid "HELP_Daily cleanup time"
+msgstr "Tijdstip waarop EMC alle bestanden uit de prullebak verwijderd die de limiet overschrijden."
+
+msgid "HELP_How many days files may remain in trashcan"
+msgstr ""
+"Instellen hoeveel dagen de bestanden in de prullebak blijven alvorens EMC deze definitief verwijderd.\n"
+"(Indien ingesteld op [0] worden de bestanden onmiddellijk verwijderd)."
+
+msgid "HELP_Move finished movies in trashcan"
+msgstr "Verplaats alle afgespeelde (geziene) opnames van \"Movie home\" naar de prullebak, van zodra ze de limiet bereiken die in de volgende regel ingesteld wordt."
+
+msgid "HELP_Age of finished movies in movie folder (days)"
+msgstr "Instellen hoeveel dagen de afgespeelde opnames in \"Movie home\" blijven."
+
+msgid "HELP_Show Latest Recordings directory"
+msgstr ""
+"Een virtuele map weergeven in \"Movie home\" met een lijst van de recentste opnames. Eveneens voor de submappen van \"Movie home\".\n"
+"(Enkel 1 pagina)"
+
+msgid "HELP_Show VLC directory"
+msgstr "VLC map verbergen of weergeven, enkel indien VlcPlayerExtended Plugin geïnstalleerd is."
+
+msgid "HELP_Show E2 Bookmarks in movielist"
+msgstr "Virtuele mappen weergeven in \"Movie home\" voor de beschikbare Enigma2 Bookmarks."
+
+msgid "HELP_Show EMC Bookmarks in movielist"
+msgstr "Virtuele mappen weergeven in \"Movie home\" voor de beschikbare EMC Bookmarks."
+
+msgid "HELP_separator_hide&performance"
+msgstr "Instellingen voor het verbergen of weergeven van mappen/bestanden en de prestaties."
+
+msgid "HELP_cfghide_enable"
+msgstr ""
+"Verberg bestanden en mappen die opgenomen zijn in '/etc/enigma2/emc-hide.cfg'.\n"
+"Het aanpassen van deze instelling vereist een herstart van Enigma2!"
+
+msgid "HELP_cfgnoscan_enable"
+msgstr ""
+"Niet zoeken naar DVD-structuren in mappen waarvan de paden opgenomen zijn in '/etc/enigma2/emc-hide.cfg'.  Dit voorkomt het ongewenst opstarten van (netwerk)schijven.\n"
+"Het aanpassen van deze instelling vereist een herstart van Enigma2!"
+
+msgid "HELP_Scan for DVD structures"
+msgstr ""
+"In geen enkele map naar DVD-structuren zoeken.\n"
+"Dit voorkomt het ongewenst opstarten van (netwerk)schijven."
+
+msgid "HELP_noscan_linked"
+msgstr ""
+"In geen enkele Symlink DVD-structuren zoeken.\n"
+"Dit voorkomt het ongewenst opstarten van (netwerk)schijven."
+
+msgid "HELP_Sort file A to Z at startup"
+msgstr "De FilmLijst wordt alfabetisch gesorteerd."
+
+msgid "HELP_File order reverse"
+msgstr ""
+"De FilmLijst wordt omgekeerd gesorteerd.\n"
+"Zowel bij chronologische als alfabetische sortering. "
+
+msgid "HELP_Cursor predictive move after selection"
+msgstr ""
+"Na een selectie met de [VIDEO/PVR] knop wordt de cursor verplaatst in de richting zoals ingesteld.\n"
+"Met \"omhoog/omlaag\" verplaatst de cursor zich in de richting van de laatst uitgevoerde beweging."
+
+msgid "HELP_Listbox is skin able"
+msgstr ""
+"De visuele weergave van de FilmLijst volgens de Skin (indien beschikbaar) wordt toegepast (enkel <widget name=\"list\").\n"
+"Voor het overige worden de EMC-instellingen toegepast."
+
+msgid "HELP_Try to load titles from .meta files"
+msgstr ""
+"Titels worden van de .meta- of .eit-bestanden geladen indien beschikbaar.\n"
+"In andere gevallen wordt de titel uit de bestandsnaam afgeleid."
+
+msgid "HELP_Show Movie Format"
+msgstr "De bestandsextentie (bestandsformaat) wordt aan de titel toegevoegd."
+
+msgid "HELP_Show Cut-Nr if exist"
+msgstr ""
+"Indien Enigma2 herstart tijdens een opname, wordt de opname automatisch hervat met een indexnummer aan het einde van de bestandsnaam.\n"
+"Met deze optie wordt deze indexnummer aan de titel toegevoegd."
+
+msgid "HELP_Show date"
+msgstr "De opnamedatum wordt weergegeven in de FilmLijst."
+
+msgid "HELP_Show movie icons"
+msgstr "Een overeenstemmend icon wordt weergegeven in de FilmLijst."
+
+msgid "HELP_Show movie progress"
+msgstr "Een voortgangsbalk wordt weergegeven in de FilmLijst voor de filmnaam."
+
+msgid "HELP_Short watching percent"
+msgstr ""
+"Specifieer welk percentage voortgang aanzien wordt als \"wordt afgespeeld\". \n"
+"De voortgangsbalk wordt blauw."
+
+msgid "HELP_Finished watching percent"
+msgstr ""
+"Specifieer welk percentage voortgang aanzien wordt als \"gezien\". \n"
+"De voortgangsbalk wordt groen."
+
+msgid "HELP_Show icon indication for non-watched"
+msgstr "Een overeenstemmend icon wordt weergegeven voor ongeziene opnames."
+
+msgid "HELP_No resume below 10 seconds"
+msgstr ""
+"Markeerpunten onder 10 seconden negeren.\n"
+"Indien het afspelen tijdens de eerste 10 seconden onderbroken wordt, zal bij het volgende afspelen geen \"hervatten\" voorgesteld worden."
+
+msgid "HELP_Jump to first mark when playing movie"
+msgstr ""
+"Automatisch naar het eerste markeerpunt springen indien beschikbaar in het begin van een opname.\n"
+"(Kan helpen om de voorlooptijd automatisch te overbruggen.)"
+
+msgid "HELP_Rewind finished movies before playing"
+msgstr "Indien een opname met de status \"gezien\" herstart wordt, automatisch afspelen vanaf het begin."
+
+msgid "HELP_Always save last played progress as marker"
+msgstr ""
+"Met deze optie wordt een markeerpunt op de afspeelpositie toegevoegd als het afspelen onderbroken wordt.\n"
+"Bij het hervatten van het afspelen kan met < > knoppen gesprongen worden naar deze posities (onafhankelijk van de functie \"afspelen hervatten\")."
+
+msgid "HELP_Display directory reading text"
+msgstr "Bericht weergeven \"Mappen inlezen...\" tijdens het inlezen van mappen."
+
+msgid "HELP_EMC always reload after open"
+msgstr ""
+"Mappen opnieuw inlezen bij elke start van EMC.\n"
+"(Anders worden de gegevens uit een buffer ingelezen vanaf de 2de start.)"
+
+msgid "HELP_EMC re-open list after STOP-press"
+msgstr ""
+"Indien het afspelen afgebroken wordt, de EMC FilmLijst opnieuw weergeven.\n"
+"(Anders wordt de TV-mode terug actief.)"
+
+msgid "HELP_EMC re-open list after Movie end"
+msgstr ""
+"Indien het afspelen het einde bereikt, de EMC FilmLijst opnieuw weergeven.\n"
+"(Anders wordt de TV-mode terug actief.)"
+
+msgid "HELP_Leave Movie with Exit"
+msgstr "Het afspelen van een opname kan afgebroken worden met de EXIT knop, bijkomend bij de STOP knop."
+
+msgid "HELP_Blue button function"
+msgstr "Een keuzelijst voor het toewijzen van een functie aan de blauwe knop."
+
+msgid "HELP_Hide movies being moved"
+msgstr ""
+"De opname wordt verborgen tijdens het verplaatsen.\n"
+"(Het verplaatsen wordt altijd in achtergrond uitgevoerd.)"
+
+msgid "HELP_Hide movies being deleted"
+msgstr ""
+"De opname wordt verborgen tijdens het verwijderen.\n"
+"(Het verwijderen wordt altijd in achtergrond uitgevoerd.)"
+
+msgid "HELP_Automatic timers list cleaning"
+msgstr "Uitgevoerde Timers worden automatisch uit de TimerLijst verwijderd."
+
+msgid "HELP_Enigma daily auto-restart"
+msgstr "Enigma2 wordt dagelijks herstart tijdens het aangegeven tijdsbestek."
+
+msgid "HELP_Enigma auto-restart window begin"
+msgstr "Start van het tijdsbestek voor de automatische Enigma2 herstart."
+
+msgid "HELP_Enigma auto-restart window end"
+msgstr "Einde van het tijdsbestek voor de automatische Enigma2 herstart."
+
+msgid "HELP_Force standby after auto-restart"
+msgstr "Na de automatische Enigma2 herstart, de Dreambox in Standby schakelen."
+
+msgid "HELP_Language Separator"
+msgstr "Taalinstellingen"
+
+msgid "HELP_Preferred EPG language"
+msgstr "Hier kan de voorkeurstaal voor de EPG ingesteld worden."
+
+msgid "HELP_Enable playback auto-subtitling"
+msgstr "Die automatischen Auswahl der eingestellen Untertitel Sprachen wird aktivieren."
+
+msgid "HELP_Primary playback subtitle language"
+msgstr "Erste Untertitel Sprache die gewählt werden soll, sofern vorhanden."
+
+msgid "HELP_Secondary playback subtitle language"
+msgstr "Zweite Untertitel Sprache die gewählt werden soll, sofern vorhanden."
+
+msgid "HELP_Tertiary playback subtitle language"
+msgstr "Dritte Untertitel Sprache die gewählt werden soll, sofern vorhanden."
+
+msgid "HELP_Enable playback auto-language selection"
+msgstr "Die automatischen Auswahl der eingestellen Tonspur wird aktivieren."
+
+msgid "HELP_Primary playback audio language"
+msgstr "Erste Tonspur die gewählt werden soll, sofern vorhanden."
+
+msgid "HELP_Secondary playback audio language"
+msgstr "Zweite Tonspur die gewählt werden soll, sofern vorhanden."
+
+msgid "HELP_Tertiary playback audio language"
+msgstr "Dritte Tonspur die gewählt werden soll, sofern vorhanden."
+
+msgid "HELP_Advanced options separator"
+msgstr "Erweiterte Einstellungen"
+
+msgid "HELP_Enable EMC debug output"
+msgstr ""
+"Debug Ausgabe von EMC aktivieren. Logfile wird in den unter \"EMC Ausgabeverzeichnis\" eingestellent Pfad geschrieben.\n"
+"NUR ZUR FEHLERSUCHE AKTIVIEREN !!!"
+
+msgid "HELP_EMC output directory"
+msgstr "Debug Ausgabe Verzieichnis von EMC bestimmten."
+
+msgid "HELP_Debug output file name"
+msgstr "Dateiname des Debug Log-Files."
+
+msgid "HELP_Description field update delay"
+msgstr ""
+"Anzeigeverzögerung des Beschreibungsfelds in der Filmliste.\n"
+"(Beschleunigt das mehrfache drücken der auf/ab Pfeiltasten weil die Filmbeschreibung erst nach der eingestellten Verzögerung gelesen wird.)"
+
+msgid "HELP_Key period value (50-900)"
+msgstr "Dauer bis zum wiederholten senden der Taste wenn sie gehalten wird. "
+
+msgid "HELP_Key repeat value (250-900)"
+msgstr "Geschwindigkeit der Tastenwiederholung beim halten der Taste."
 

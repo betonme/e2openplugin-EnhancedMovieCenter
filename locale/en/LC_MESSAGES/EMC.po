@@ -1,4 +1,3 @@
-# English language translation file for EnhancedMovieCenter plugin
 #
 msgid ""
 msgstr ""
@@ -21,20 +20,20 @@ msgstr "Set a direct key to open EMC."
 msgid "HELP_Show plugin config in extensions menu"
 msgstr ""
 "Show or hide the EMC Config in the extensions menu.\n"
-"(The extension menu are normaly reach with the [blue] key."
+"The extensions menu is normally accessed with the [blue] key."
 
 msgid "HELP_Show EMC in extensions menu"
 msgstr ""
 "Show or hide the EMC Pluginstart in the extensions menu.\n"
-"(The extension menu are normaly reach with the [blue] key."
+"The extensions menu is normally accessed with the [blue] key."
 
 msgid "HELP_Disable EMC"
-msgstr "Disable the EMC (MovieList) completly, but some special function like [Timerlist cleanup],[Trashcan clean] or [Auto restart] works in the background."
+msgstr "Disable the EMC (MovieList) completely. Some special functions like [Timerlist cleanup],[Trashcan clean] and [Auto restart] remain active in the background."
 
 msgid "HELP_Movie home at start"
 msgstr ""
-"EMC start always in the \"Movie home\" directory.\n"
-"(In the next row you can set the \"Movie home\" directory)."
+"EMC starts always in the \"Movie home\" directory.\n"
+"(In the next entry you can set the \"Movie home\" directory)."
 
 msgid "HELP_Movie home home path"
 msgstr "Set your \"Movie home\" path."
@@ -42,196 +41,247 @@ msgstr "Set your \"Movie home\" path."
 msgid "HELP_EMC path access limit"
 msgstr ""
 "Limit your access path out from your \"Movie home\".\n"
-"(With the [<] and [>] buttons (next to the No.0 key) you can still go higher than this limit."
+"With the [<] and [>] buttons (next to the No.0 key) it is possible to override this limit."
 
 msgid "HELP_Trashcan path"
 msgstr ""
 "Set your trashcan path.\n"
-"(There will move the recordings when you press [delete] and the trashcan is activated."
+"Pressing [delete] will move the recordings to the activated trashcan instead of deleting the files immediately."
 
 msgid "HELP_Hide trashcan directory"
 msgstr ""
-"When is activated you dont see the trashcan directory in EMC.\n"
-"(You can however reach the trashcan over the EMC [MENU])"
+"When activated the trashcan directory is hidden in EMC.\n"
+"(However, you can access the trashcan over the EMC [MENU])"
 
 msgid "HELP_Delete validation"
-msgstr "When is activated and trashcan is using, EMC never will ask for a delete validation."
+msgstr "When activated and the trashcan is used, EMC will never ask for a confirmation."
 
 msgid "HELP_Enable daily trashcan cleanup"
-msgstr "EMC delete old files in your trashcan, when reach the age that you set in the next row."
+msgstr "EMC deletes old files in your trashcan, when they reach the expiration limit you set in the next entry."
 
 msgid "HELP_Daily cleanup time"
-msgstr "Time when EMC delete all files in trashcan that had reach the remaining time."
+msgstr "Time when EMC deletes all files in the trashcan beyond the expiration limit."
 
 msgid "HELP_How many days files may remain in trashcan"
 msgstr ""
-"Set how many days files may remain in trashcan before EMC delete them permanently.\n"
-"(When set to [0] the files will delete directly)."
+"Set how many days files may remain in trashcan before EMC deletes them permanently.\n"
+"(When set to [0] the files will deleted immediately)."
 
 msgid "HELP_Move finished movies in trashcan"
-msgstr "Move all finished (watched) recordings from \"Movie home\" to the trashcan that had reach the remaining time you have set in the next setup row."
+msgstr "Move all finished (watched) recordings from \"Movie home\" to the trashcan, when they reach the expiration limit you set in the next entry."
 
 msgid "HELP_Age of finished movies in movie folder (days)"
 msgstr "Set how many days finished (watched) recordings may remain in your \"Movie home\"."
 
 msgid "HELP_Show Latest Recordings directory"
 msgstr ""
-"Display a virtual folder in your \"Movie home\" that list the latest recordings. Also from the subdirectories in your \"Movie home\".\n"
+"Display a virtual folder in your \"Movie home\" with a list of the latest recordings. Also from the subdirectories in your \"Movie home\".\n"
 "(Only one page)"
 
 msgid "HELP_Show VLC directory"
-msgstr "Show or hide the the VLC directory when is installed the VlcPlayerExtended Plugin."
+msgstr "Show or hide the the VLC directory, if the VlcPlayerExtended Plugin is installed."
 
 msgid "HELP_Show E2 Bookmarks in movielist"
-msgstr "Display virtual folders in your \"Movie home\" with your Enigma2 Bookmarks."
+msgstr "Display virtual folders in your \"Movie home\" representing your Enigma2 Bookmarks."
 
 msgid "HELP_Show EMC Bookmarks in movielist"
-msgstr "Display virtual folders in your \"Movie home\" with your EMC Bookmarks."
+msgstr "Display virtual folders in your \"Movie home\" representing your EMC Bookmarks."
 
 msgid "HELP_separator_hide&performance"
 msgstr "Settings for hide files/folders and performance."
 
 msgid "HELP_cfghide_enable"
 msgstr ""
-"Dateien und Ordner die in '/etc/enigma2/emc-hide.cfg' gelistet sind werden nicht angezeigt.\n"
-"Das ändern dieser Einstellung erfordert einen Enigma2 Neustart!"
+"Hide files and directories listed in '/etc/enigma2/emc-hide.cfg'.\n"
+"Changing this setting requires a Enigma2 restart!"
 
 msgid "HELP_cfgnoscan_enable"
-msgstr "Unterordner die in Pfade von '/etc/enigma2/emc-noscan.cfg' stehen werden nicht auf Medienstrukturen (z.B. DVD) überprüft. Dies kann unbeabsichtiges Aufwecken von Festplatten oder Netzlaufwerken verhindern. Ändern dieser Einstellung erfordert E2 Neustart!"
+msgstr ""
+"Don't parse for DVD-structures in subdirectories from paths listed in '/etc/enigma2/emc-noscan.cfg'. This avoids unwanted wake up of (network)disks.\n"
+"Changing this setting requires a Enigma2 restart!"
 
 msgid "HELP_Scan for DVD structures"
 msgstr ""
-"Hiermit kann die Suche nach DVD Strukturen in Verzeichnissen generell unterbunden werden.\n"
-"Dies kann unbeabsichtiges Aufwecken von Festplatten oder Netzlaufwerken verhindern."
+"Disable the parsing for DVD-structures in all directories.\n"
+"This avoids unwanted wake up of (network)disks."
 
 msgid "HELP_noscan_linked"
 msgstr ""
-"Symlinks auf Unterordner werden nicht auf Medienstrukturen (z.B. DVD) überprüft.\n"
-"Dies kann unbeabsichtiges Aufwecken von Festplatten oder Netzlaufwerken verhindern."
+"Disable the parsing for DVD-structures in Symlinks refering to subdirectories.\n"
+"This avoids unwanted wake up of (network)disks."
 
 msgid "HELP_Sort file A to Z at startup"
-msgstr "Die Filmliste wird beim öffnen immer nach Alphabet sortiert."
+msgstr "The MovieList will be sorted alphabetically."
 
 msgid "HELP_File order reverse"
 msgstr ""
-"Die Filmliste wird immer in Umgekehrter Reihenfolge sortiert.\n"
-"Egal ob nach Datum oder Alphabet sortiert wird. "
+"The MovieList will be reverse sorted.\n"
+"No matter if chronologically or alphabetically mode is selected. "
 
 msgid "HELP_Cursor predictive move after selection"
 msgstr ""
-"Der Cursor wird beim selektieren mit der [VIDEO/PVR] Taste in die eingestellte Richtung weiterbewegt.\n"
-"Bei \"rauf/runter\" wird in die zuletzt bewegte Richtung gesprungen."
+"After selecting with the [VIDEO/PVR] button the cursor will move in the direction specified.\n"
+"With \"up/down\" the cursor will follow the last direction applied."
 
 msgid "HELP_Listbox is skin able"
 msgstr ""
-"Das aussehen der Filmliste wird wenn vorhanden aus dem verwendeten Skin genommen (nur <widget name=\"list\").\n"
-"Ansonsten wie im EMC Setup eingestellt."
+"The visual display of the MovieList from the Skin (if availiable) will be used (only <widget name=\"list\").\n"
+"Otherwise the EMC Setup will be applied."
 
 msgid "HELP_Try to load titles from .meta files"
 msgstr ""
-"Titel wird wenn vorhanden aus der .meta oder .eit geladen.\n"
-"Ansonsten wird der Titel aus dem Dateinamen extrahiert."
+"Titles will be loaded from the .meta or .eit if availiable.\n"
+"Otherwise the title will be extracted from the filename."
 
 msgid "HELP_Show Movie Format"
-msgstr "Dateiendung (Dateiformat) wird dem Titel angehängt."
+msgstr "The file extention (file format) will be appended to the title."
 
 msgid "HELP_Show Cut-Nr if exist"
 msgstr ""
-"Wenn Enigma2 während einer Aufnahme rebootet, wird die Aufnahme von E2 automatisch fortgesetzt und dabei der neuen Datei eine fotlaufende Nummer hinten angestellt.\n"
-"Hiermit wird diese Nummer dem Titel hinten angestellt."
+"If Enigma2 reboots during a recording the recording is continued automatically with an index number at the end of the filename.\n"
+"With this option the index is appended to the title."
 
 msgid "HELP_Show date"
-msgstr "In der Filmliste wird bei jeder Aufnahme auch das Aufnahmedatum angezeigt."
+msgstr "The recording date is displayed in the MovieList."
 
 msgid "HELP_Show movie icons"
-msgstr "In der Filmliste wird bei jeder Aufnahme ein passendes Icon vorne angestellt."
+msgstr "A corresponding icon is displayed in the MovieList."
 
 msgid "HELP_Show movie progress"
-msgstr "In der Filmliste wird jeder Aufnahme eine Fortschrittsanzeige vorne angestellt."
+msgstr "A progress bar in front of the movies is displayed in the MovieList."
 
 msgid "HELP_Short watching percent"
 msgstr ""
-"Gibt an ab wieviel Prozent der Filmfortschritt als angespielt gilt.\n"
-"Die Fortschrittsanzeige wechselt dann die Farbe auf blau."
+"Specifies what percentage of progress is classified as \"being watched\". \n"
+"The progress bar will change to blue."
 
 msgid "HELP_Finished watching percent"
 msgstr ""
-"Gibt an ab wieviel Prozent der Filmfortschritt als fertig gespielt gilt.\n"
-"Die Fortschrittsanzeige wechselt dann die Farbe auf grün."
+"Specifies what percentage of progress is classified as \"seen\". \n"
+"The progress bar will change to green."
 
 msgid "HELP_Show icon indication for non-watched"
-msgstr "Noch nicht gestartete Aufnahmen werden mit einem eigenen Icon gekennzeichnet."
+msgstr "A corresponding icon is displayed for non watched movies."
 
 msgid "HELP_No resume below 10 seconds"
 msgstr ""
-"Ignoriert den Start Marker unterhalb von 10 Sekunden.\n"
-"Wird innerhalb der ersten 10sec. gestoppt, wird kein Resume beim nächsten abspielen angeboten."
+"Ignores the Start Marker below 10 seconds.\n"
+"If playback is stopped during the first 10 seconds, no Resume will be proposed at next playback."
 
 msgid "HELP_Jump to first mark when playing movie"
 msgstr ""
-"Springt beim Filmstart automatisch zum ersten Marker, wenn dieser am Anfang der Aufnahme liegt.\n"
-"(Hilft manchmal um die Vorlaufzeit automatisch zu überspringen.)"
+"Jumps automatically to the first Marker if availiable in the beginning of a recording.\n"
+"(Can help to skip the lead time automatically.)"
 
 msgid "HELP_Rewind finished movies before playing"
-msgstr "Wurde eine Aufnahme fertig gespielt (Abspielstatus \"fertig gesehen\", Einstellung bei \"Nachlauffarbe\"), wird die Aufnahme beim nächsten Start wieder von Anfang abgespielt."
+msgstr "If a recording with status \"seen\" is restarted, the movie will be replayed from the beginning."
 
 msgid "HELP_Always save last played progress as marker"
 msgstr ""
-"Hiermit wird bei jedem stoppen des Abspielvorgangs die aktuelle Abspielposition als Marker speichern.\n"
-"Und kann später dann direkt mit den < > Tasten angesprungen werden. (Unabhängig von der Resume Funktion)"
+"With this option a marker is set for the position every time the playback is stopped.\n"
+"When restarting the playback the < > buttons can be used to jump to this position (independent from the resume function)."
 
 msgid "HELP_Display directory reading text"
-msgstr "Blendet während dem Verzeichnis einlesen den Text \"Lese Verzeichnis...\" ein."
+msgstr "Display the message \"Reading directory...\" during the directory reading."
 
 msgid "HELP_EMC always reload after open"
 msgstr ""
-"Verzeichnis wird beim jedem öffnen von EMC neu einlesen\n"
-"(Ansonsten wird das Verzeichniss nach dem 2. öffnen aus dem Buffer gelesen.)"
+"Directory is reread with every start of EMC.\n"
+"(Otherwise the directory is read from cache onwards the 2nd start.)"
 
 msgid "HELP_EMC re-open list after STOP-press"
 msgstr ""
-"Wird das abspielen gestoppt, erscheint wieder die EMC Filmliste.\n"
-"(Ansonsten ist man wieder im TV Modus.)"
+"If playback is stopped, the EMC MovieList is displayed again.\n"
+"(Otherwise TV Modus gets active again.)"
 
 msgid "HELP_EMC re-open list after Movie end"
 msgstr ""
-"Wird eine Aufnahme bis zum Ende gespielt, erscheint wieder die EMC Filmliste.\n"
-"(Ansonsten ist man wieder im TV Modus.)"
+"If playback reaches the end, the EMC MovieList is displayed again.\n"
+"(Otherwise TV Modus gets active again.)"
 
 msgid "HELP_Leave Movie with Exit"
-msgstr "Das Abspielen einer Aufnahme kann zusätzlich zur Stopp Taste auch mit EXIT beendet werden."
+msgstr "The playback of a recording can be stopped with the EXIT button, additional to the Stop button."
 
 msgid "HELP_Blue button function"
-msgstr "Der blauen Taste kann eine zur Auswahl stehenden Funktion zugeordnet werden."
+msgstr "A selection of functions can be assigned to the blue button."
 
 msgid "HELP_Hide movies being moved"
 msgstr ""
-"Die Aufnahme wird schon während des verschiebens in der Filmliste ausgeblendet.\n"
-"(Es wird aber in jedem Fall im Hintergrund verschoben.)"
+"The recording will be hidden from the MovieList while moving.\n"
+"(Anyhow the move action will be executed in background.)"
 
 msgid "HELP_Hide movies being deleted"
 msgstr ""
-"Die Aufnahme wird schon während des löschens in der Filmliste ausgeblendet.\n"
-"(Es wird aber in jedem Fall im Hintergrund gelöscht.)"
+"The recording will be hidden from the MovieList while deleting.\n"
+"(Anyhow the delete action will be executed in background.)"
 
 msgid "HELP_Automatic timers list cleaning"
-msgstr "Beendete Timer werden automatisch aus der Timerliste entfernt."
+msgstr "Finished Timers will be removed from the TimerList automatically."
 
 msgid "HELP_Enigma daily auto-restart"
-msgstr "Enigma2 wird täglich im eingestellten Zeitfenster einmal neu gestartet."
+msgstr "Enigma2 will be restarted daily during the defined time frame."
 
 msgid "HELP_Enigma auto-restart window begin"
-msgstr "Beginn des Zeitfenster für den automatischen Enigma2 Neustart."
+msgstr "Start of the time frame for the automatic Enigma2 restart."
 
 msgid "HELP_Enigma auto-restart window end"
-msgstr "Ende des Zeitfenster für den automatischen Enigma2 Neustart."
+msgstr "End of the time frame for the automatic Enigma2 restart."
 
 msgid "HELP_Force standby after auto-restart"
-msgstr "Nach einem automatischen Enigma2 Neustart, wird die Dreambox in Standby versetzt."
+msgstr "After the automatic Enigma2 restart, the Dreambox will be switched to Standby."
 
 msgid "HELP_Language Separator"
-msgstr "Spracheinstellungen"
+msgstr "Language settings"
 
 msgid "HELP_Preferred EPG language"
-msgstr "Hier kann die bevorzugte Sprache des EPG's eingestellt werden."
+msgstr "Here you can specify the prefered language for the EPG."
+
+msgid "HELP_Enable playback auto-subtitling"
+msgstr "Die automatischen Auswahl der eingestellen Untertitel Sprachen wird aktivieren."
+
+msgid "HELP_Primary playback subtitle language"
+msgstr "Erste Untertitel Sprache die gewählt werden soll, sofern vorhanden."
+
+msgid "HELP_Secondary playback subtitle language"
+msgstr "Zweite Untertitel Sprache die gewählt werden soll, sofern vorhanden."
+
+msgid "HELP_Tertiary playback subtitle language"
+msgstr "Dritte Untertitel Sprache die gewählt werden soll, sofern vorhanden."
+
+msgid "HELP_Enable playback auto-language selection"
+msgstr "Die automatischen Auswahl der eingestellen Tonspur wird aktivieren."
+
+msgid "HELP_Primary playback audio language"
+msgstr "Erste Tonspur die gewählt werden soll, sofern vorhanden."
+
+msgid "HELP_Secondary playback audio language"
+msgstr "Zweite Tonspur die gewählt werden soll, sofern vorhanden."
+
+msgid "HELP_Tertiary playback audio language"
+msgstr "Dritte Tonspur die gewählt werden soll, sofern vorhanden."
+
+msgid "HELP_Advanced options separator"
+msgstr "Erweiterte Einstellungen"
+
+msgid "HELP_Enable EMC debug output"
+msgstr ""
+"Debug Ausgabe von EMC aktivieren. Logfile wird in den unter \"EMC Ausgabeverzeichnis\" eingestellent Pfad geschrieben.\n"
+"NUR ZUR FEHLERSUCHE AKTIVIEREN !!!"
+
+msgid "HELP_EMC output directory"
+msgstr "Debug Ausgabe Verzieichnis von EMC bestimmten."
+
+msgid "HELP_Debug output file name"
+msgstr "Dateiname des Debug Log-Files."
+
+msgid "HELP_Description field update delay"
+msgstr ""
+"Anzeigeverzögerung des Beschreibungsfelds in der Filmliste.\n"
+"(Beschleunigt das mehrfache drücken der auf/ab Pfeiltasten weil die Filmbeschreibung erst nach der eingestellten Verzögerung gelesen wird.)"
+
+msgid "HELP_Key period value (50-900)"
+msgstr "Dauer bis zum wiederholten senden der Taste wenn sie gehalten wird. "
+
+msgid "HELP_Key repeat value (250-900)"
+msgstr "Geschwindigkeit der Tastenwiederholung beim halten der Taste."
 
