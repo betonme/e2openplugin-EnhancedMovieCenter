@@ -50,8 +50,7 @@ class RogueFileCheck:
 				try: self.checkPath(fullpath)
 				except: pass
 			else:
-				# Don't touch links
-				if not os.path.islink(fullpath):
+				if os.path.exists(fullpath):
 					# Is there an alternative to avoid a for loop in a for loop
 					# Maybe we can use a dict e.x.: .ap = .ts.ap
 					for ext in rogueExt:

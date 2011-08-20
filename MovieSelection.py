@@ -1119,8 +1119,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 					for movie in dirlist:
 						fullpath = config.EMC.movie_trashpath.value +"/"+ movie
 						currTime = localtime()
-						# Don't touch links
-						if not os.path.islink(fullpath):
+						if os.path.exists(fullpath):
 							expTime = localtime(os.stat(fullpath).st_mtime + 24*60*60*int(config.EMC.movie_trashcan_limit.value))
 							if currTime > expTime:
 								print "EMC purge " + str(fullpath)
@@ -1143,8 +1142,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 							# Only check media files
 							if os.path.splitext(filename)[1] in mediaExt:
 								fullpath = config.EMC.movie_homepath.value +"/"+ movie
-								# Don't touch links
-								if not os.path.islink(fullpath):
+								if os.path.exists(fullpath):
 									currTime = localtime()
 									expTime = localtime(os.stat(fullpath).st_mtime + 24*60*60*int(config.EMC.movie_finished_limit.value))
 									if currTime > expTime:
