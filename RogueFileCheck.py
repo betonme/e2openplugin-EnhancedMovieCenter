@@ -45,20 +45,22 @@ class RogueFileCheck:
 		if not path.endswith("/"): path += "/"
 		
 		for p in os.listdir(path):
-			
-			if os.path.isdir(path + p):
-				try: self.checkPath(path + p)
+			fullpath = path + p
+			if os.path.isdir(fullpath):
+				try: self.checkPath(fullpath)
 				except: pass
 			else:
-				# Is there an alternative to avoid a for loop in a for loop
-				# Maybe we can use a dict e.x.: .ap = .ts.ap
-				for ext in rogueExt:
-					if p.endswith(ext):
-						if not os.path.exists( path + p.replace(ext, ".ts") ):
-							try:    self.found[ext] += 1
-							except: self.found[ext] = 1
-							self.files.append(path+p)
-						break
+				# Don't touch links
+				if not os.path.islink(fullpath):
+					# Is there an alternative to avoid a for loop in a for loop
+					# Maybe we can use a dict e.x.: .ap = .ts.ap
+					for ext in rogueExt:
+						if p.endswith(ext):
+							if not os.path.exists( fullpath.replace(ext, ".ts") ):
+								try:    self.found[ext] += 1
+								except: self.found[ext] = 1
+								self.files.append(fullpath)
+							break
 
 	def getDelFilesScript(self):
 		strg = ""
