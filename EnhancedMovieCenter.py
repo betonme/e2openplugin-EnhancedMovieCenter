@@ -42,7 +42,7 @@ from DelayedFunction import DelayedFunction
 from EMCTasker import emcTasker, emcDebugOut
 
 EMCVersion = "V2.1.0"
-EMCAbout = "\n   Enhanced Movie Center " +EMCVersion+ ".\n\n   Plugin's usage is free.\n\n   by .\n\n   Coolman, Betonme & Swiss-MAD"
+EMCAbout = "\n   Enhanced Movie Center " +EMCVersion+ ".\n\n   Copyright (C) 2011\n\n   by .\n\n   Coolman, Betonme & Swiss-MAD"
 
 def setEPGLanguage(dummy=None):
 	if config.EMC.epglang.value:
