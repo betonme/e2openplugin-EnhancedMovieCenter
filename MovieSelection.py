@@ -1135,21 +1135,22 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 					# Movie folder cleanup
 					# Start only if dreambox is in standby
 					import Screens.Standby
-					if Screens.Standby.inStandby:
+					if not Screens.Standby.inStandby:
 						from MovieCenter import mediaExt
 						global mediaExt
 						mvCmd = ""
 						dirlist = os.listdir(config.EMC.movie_homepath.value)
 						for movie in dirlist:
 							# Only check media files
-							if os.path.splitext(movie)[1] in mediaExt:
+							ext = os.path.splitext(movie)[1]
+							if ext in mediaExt:
 								fullpath = config.EMC.movie_homepath.value +"/"+ movie
 								if os.path.exists(fullpath):
 									currTime = localtime()
 									expTime = localtime(os.stat(fullpath).st_mtime + 24*60*60*int(config.EMC.movie_finished_limit.value))
 									if currTime > expTime:
 										# Check progress
-										service = self["list"].getPlayerService(fullpath, movie)
+										service = self["list"].getPlayerService(fullpath, movie, ext)
 										progress = self["list"].getProgress(service, forceRecalc=True)
 										if progress >= int(config.EMC.movie_finished_percent.value):
 											print "EMC purge progress > finished " + str(fullpath)
