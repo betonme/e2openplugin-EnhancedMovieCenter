@@ -1113,7 +1113,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		try:
 			if os.path.exists(config.EMC.movie_trashpath.value):
 				if config.EMC.movie_trashcan_clean.value is True:
-					# trashcan cleanup
+					# Trashcan cleanup
 					purgeCmd = ""
 					dirlist = os.listdir(config.EMC.movie_trashpath.value)
 					for movie in dirlist:
@@ -1132,15 +1132,17 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 					else:
 						emcDebugOut("[EMCMS] trashcan cleanup: nothing to delete...")
 				if config.EMC.movie_finished_clean.value is True:
-					# movie folder cleanup
+					# Movie folder cleanup
+					# Start only if dreambox is in standby
 					import Screens.Standby
 					if Screens.Standby.inStandby:
+						from MovieCenter import mediaExt
 						global mediaExt
 						mvCmd = ""
 						dirlist = os.listdir(config.EMC.movie_homepath.value)
 						for movie in dirlist:
 							# Only check media files
-							if os.path.splitext(filename)[1] in mediaExt:
+							if os.path.splitext(movie)[1] in mediaExt:
 								fullpath = config.EMC.movie_homepath.value +"/"+ movie
 								if os.path.exists(fullpath):
 									currTime = localtime()
