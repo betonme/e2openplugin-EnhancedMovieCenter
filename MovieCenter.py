@@ -420,7 +420,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 						length = 5400
 						# We only update the entry if we do not use the default value
 						updlen = 0
-						emcDebugOut("[MC] getProgress No length: " + str(service.getPath()))
+						#emcDebugOut("[MC] getProgress No length: " + str(service.getPath()))
 					else:
 						updlen = length
 				else:
@@ -431,14 +431,14 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 				progress = self.calculateProgress(last, length)
 			else:
 				# This should never happen, we always have our default length
-				emcDebugOut("[MC] getProgress(): Last without any length")
 				progress = 100
+				#emcDebugOut("[MC] getProgress(): Last without any length")
 		else:
 			# No position implies progress is zero
 			progress = 0
 		return progress
 
-	def getRecordProgress(self, service, path, oldlength):
+	def getRecordProgress(self, service, path):
 		# The progress of all recordings is updated
 		# - on show dialog
 		# - on reload list / change directory / movie home
@@ -448,8 +448,6 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 		begin, end = self.recControl.getRecordingTimes(path)
 		last = time() - begin
 		length = end - begin
-		if oldlength != length:
-			self.updateLength(service, length)
 		return self.calculateProgress(last, length)
 
 	def calculateProgress(self, last, length):
@@ -534,7 +532,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 				colordate = self.RecordingColor
 				# Recordings status shows always the progress of the recording, 
 				# Never the progress of the cut list marker to avoid misunderstandings
-				progress = service and self.getRecordProgress(service, path, length) or 0
+				progress = service and self.getRecordProgress(service, path) or 0
 			
 			#IDEA elif config.EMC.check_remote_recording.value:
 			elif self.recControl.isRemoteRecording(path):
@@ -603,7 +601,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 			else:
 				colordate = color
 		
-			selnumtxt = ""
+			selnumtxt = None
 			if selnum == 9999: selnumtxt = "-->"
 			elif selnum == 9998: selnumtxt = "X"
 			elif selnum > 0: selnumtxt = "%02d" % selnum
@@ -855,6 +853,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 					continue
 				
 				#MAYBE: Take a look into dirs  and dvdstruct folder -> Missing
+				#TODO: Filter trashcan
 				
 				pathname = os.path.join(root, p)
 				if os.path.isfile(pathname):
@@ -964,10 +963,10 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 					append( (config.EMC.movie_trashpath.value, os.path.basename(config.EMC.movie_trashpath.value)) )
 				
 				if config.EMC.latest_recordings.value:
-					append( ("Latest Recordings", "Latest Recordings") )
+					append( (loadPath+"Latest Recordings", "Latest Recordings") )
 				
 				if config.EMC.vlc.value and os.path.exists("/usr/lib/enigma2/python/Plugins/Extensions/VlcPlayer"):
-					append( ("VLC servers", "VLC servers") )
+					append( (loadPath+"VLC servers", "VLC servers") )
 				
 				if config.EMC.bookmarks_e2.value:
 					bookmarks = config.movielist and config.movielist.videodirs and config.movielist.videodirs.value[:]
@@ -1040,18 +1039,17 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 			self.loadPath = loadPath
 			
 			if loadPath.endswith("VLC servers/"):
-				emcDebugOut("[MC] VLC Server")
-				subdirlist = self.createVlcServerList()
+				emcDebugOut("[EMC] VLC Server")
+				subdirlist = self.createVlcServerList(loadPath)
 				customlist = self.createCustomList(loadPath, extend=False) or []
 			
 			elif loadPath.find("VLC servers/")>-1:
-				emcDebugOut("[MC] VLC Files")
+				emcDebugOut("[EMC] VLC Files")
 				subdirlist, filelist = self.createVlcFileList(loadPath)
-				customlist = self.createCustomList(loadPath, extend=False) or []
 			
 			elif loadPath.endswith("Latest Recordings/"):
 				dosort = False
-				emcDebugOut("[MC] Latest Recordings")
+				emcDebugOut("[EMC] Latest Recordings")
 				filelist = self.createLatestRecordingsList()
 				customlist = self.createCustomList(loadPath, extend=False) or []
 		
@@ -1098,7 +1096,9 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 		if dosort:
 			# Do list sort
 			self.list = self.doListSort( tmplist )
-		
+		else:
+			self.list = tmplist
+			
 		# Assign list to listbox
 		self.l.setList( self.list )
 		

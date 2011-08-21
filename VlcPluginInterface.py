@@ -64,7 +64,7 @@ class VlcPluginInterfaceList():
 		try:	return self.list[self.getCurrentIndex()][2] == "VLCd"
 		except:	return False
 
-	def createVlcServerList(self):
+	def createVlcServerList(self, loadPath):
 		try:
 			vlcserverlist = []
 			from Plugins.Extensions.VlcPlayer.VlcServerConfig import vlcServerConfig
@@ -78,7 +78,7 @@ class VlcPluginInterfaceList():
 					#TODO Problem date = VLCd
 					#sref = eServiceReference("2:0:1:0:0:0:0:0:0:0:" + self.loadPath+srvName)	# dummy ref
 					#vlcserverlist.append((sref, (None, None), "VLCd", None, srvName, None, 0, ""))
-					vlcserverlist.append( ((self.loadPath+srvName), srvName) )
+					vlcserverlist.append( (loadPath+srvName, srvName) )
 			return vlcserverlist
 		except:
 			pass
@@ -134,7 +134,7 @@ class VlcPluginInterfaceList():
 						#sref.setPath(loadPath+d[0])
 						#emcDebugOut("[EMC_VLC] sref = " + loadPath+d[0])
 						#self.list.append((sref, (None, None), "VLCd", None, d[0], None, 0, ""))
-						vlcdirlist.append( (loadPath+d[0], srvName) )
+						vlcdirlist.append( (loadPath+d[0], d[0]) )
 					#self.list.sort(key=lambda x: x[4],reverse=False)
 				if vlcFiles:
 					for f in vlcFiles:

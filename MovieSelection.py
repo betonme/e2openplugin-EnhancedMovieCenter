@@ -248,10 +248,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 
 	def setNextPathSel(self, nextdir, service = None):
 		if nextdir == "..":
-			if self.currentPathSel == "Latest Recordings":
-				# Open Movie Home
-				nextdir = config.EMC.movie_homepath.value
-			elif self.currentPathSel != "" and self.currentPathSel != "/":
+			if self.currentPathSel != "" and self.currentPathSel != "/":
 				# Open Parent folder
 				service = eServiceReference("2:0:1:0:0:0:0:0:0:0:" + self.currentPathSel)
 				nextdir = os.path.dirname(self.currentPathSel)
@@ -858,21 +855,14 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 	def entrySelected(self, playall=False):
 		current = self.getCurrent()
 		if current is not None:
-			if self["list"].currentSelIsLatest():
-				#emcDebugOut("[EMCMS] entrySelected currentSelIsLatest")
-				entry = "Latest Recordings"
-				self.setNextPathSel(entry)
-			elif self["list"].currentSelIsDirectory(): # or currentSelIsVlc or currentSelIsVlcDir
+			if self["list"].currentSelIsDirectory():
 				# Open folder and reload movielist
-				#emcDebugOut("[EMCMS] entrySelected currentSelIsDirectory")
-				print "entrySelected " + str(self["list"].getCurrentSelDir())
 				self.setNextPathSel( self["list"].getCurrentSelDir() )
 			elif self["list"].currentSelIsVlc():
-				#emcDebugOut("[EMCMS] entrySelected currentSelIsVlc")
 				entry = self["list"].list[ self["list"].getCurrentIndex() ]
+				# TODO full integration of the VLC Player
 				self.vlcMovieSelected(entry)
 			else:
-				#emcDebugOut("[EMCMS] entrySelected else")
 				playlist = self["list"].makeSelectionList()
 				if not self["list"].serviceBusy(playlist[0]):
 					self.openPlayer(playlist, playall)
