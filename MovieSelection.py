@@ -1135,7 +1135,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 					# Movie folder cleanup
 					# Start only if dreambox is in standby
 					import Screens.Standby
-					if not Screens.Standby.inStandby:
+					if Screens.Standby.inStandby:
 						from MovieCenter import mediaExt
 						global mediaExt
 						mvCmd = ""
