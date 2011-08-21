@@ -6,7 +6,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-11-10 16:35+0200\n"
 "PO-Revision-Date: \n"
-"Last-Translator: Swiss-MAD\n"
+"Last-Translator: bschaar\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -754,51 +754,51 @@ msgid "HELP_Preferred EPG language"
 msgstr "Hier kan de voorkeurstaal voor de EPG ingesteld worden."
 
 msgid "HELP_Enable playback auto-subtitling"
-msgstr "Die automatischen Auswahl der eingestellen Untertitel Sprachen wird aktivieren."
+msgstr "De automatische selectie van de ondertitels activeren."
 
 msgid "HELP_Primary playback subtitle language"
-msgstr "Erste Untertitel Sprache die gewählt werden soll, sofern vorhanden."
+msgstr "Eerste taal ondertitels, indien beschikbaar, die gekozen moeten worden."
 
 msgid "HELP_Secondary playback subtitle language"
-msgstr "Zweite Untertitel Sprache die gewählt werden soll, sofern vorhanden."
+msgstr "Tweede taal ondertitels, indien beschikbaar, die gekozen moeten worden."
 
 msgid "HELP_Tertiary playback subtitle language"
-msgstr "Dritte Untertitel Sprache die gewählt werden soll, sofern vorhanden."
+msgstr "Derde taal ondertitels, indien beschikbaar, die gekozen moeten worden."
 
 msgid "HELP_Enable playback auto-language selection"
-msgstr "Die automatischen Auswahl der eingestellen Tonspur wird aktivieren."
+msgstr "De automatische selectie van het geluidskanaal activeren."
 
 msgid "HELP_Primary playback audio language"
-msgstr "Erste Tonspur die gewählt werden soll, sofern vorhanden."
+msgstr "Eerste geluidskanaal, indien beschikbaar, dat gekozen moet worden."
 
 msgid "HELP_Secondary playback audio language"
-msgstr "Zweite Tonspur die gewählt werden soll, sofern vorhanden."
+msgstr "Tweede geluidskanaal, indien beschikbaar, dat gekozen moet worden."
 
 msgid "HELP_Tertiary playback audio language"
-msgstr "Dritte Tonspur die gewählt werden soll, sofern vorhanden."
+msgstr "Derde geluidskanaal, indien beschikbaar, dat gekozen moet worden."
 
 msgid "HELP_Advanced options separator"
-msgstr "Erweiterte Einstellungen"
+msgstr "Geavanceerde instellingen"
 
 msgid "HELP_Enable EMC debug output"
 msgstr ""
-"Debug Ausgabe von EMC aktivieren. Logfile wird in den unter \"EMC Ausgabeverzeichnis\" eingestellent Pfad geschrieben.\n"
-"NUR ZUR FEHLERSUCHE AKTIVIEREN !!!"
+"Debuggen van EMC activeren. Het logbestand wordt in de map ingestelde \"EMC map\" geschreven.\n"
+"ENKEL BIJ PROBLEMEN ACTIVEREN !!!"
 
 msgid "HELP_EMC output directory"
-msgstr "Debug Ausgabe Verzieichnis von EMC bestimmten."
+msgstr "Map voor het schrijven van EMC-debuginformatie instellen."
 
 msgid "HELP_Debug output file name"
-msgstr "Dateiname des Debug Log-Files."
+msgstr "Bestandsnaam van het logbestand voor het debuggen."
 
 msgid "HELP_Description field update delay"
 msgstr ""
-"Anzeigeverzögerung des Beschreibungsfelds in der Filmliste.\n"
-"(Beschleunigt das mehrfache drücken der auf/ab Pfeiltasten weil die Filmbeschreibung erst nach der eingestellten Verzögerung gelesen wird.)"
+"Vertraging voor het weergeven van de filmbeschrijving.\n"
+"(Versneld het snel bladeren met de omhoog/omlaag-knop in de filmlijst omdat de beschrijving later ingelezen wordt.)"
 
 msgid "HELP_Key period value (50-900)"
-msgstr "Dauer bis zum wiederholten senden der Taste wenn sie gehalten wird. "
+msgstr "Tijd tot de knopdruk herhaald wordt bij blijvend indrukken van de knop."
 
 msgid "HELP_Key repeat value (250-900)"
-msgstr "Geschwindigkeit der Tastenwiederholung beim halten der Taste."
+msgstr "Snelheid waarmee de knopdruk herhaald wordt bij blijvend indrukken van de knop."
 
