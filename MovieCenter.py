@@ -351,6 +351,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 
 	def doListSort(self, sortlist):
 		# If [7] = ext = None then it is a directory or special folder entry
+		#TODO should be [2] = date = None - but vlc part has to be changed
 		tmplist = [i for i in sortlist if i[7] is None]
 		
 		# Extract list items to be sorted
@@ -533,8 +534,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 				colordate = self.RecordingColor
 				# Recordings status shows always the progress of the recording, 
 				# Never the progress of the cut list marker to avoid misunderstandings
-				#TEST service None
-				progress = service and self.getRecordProgress(service, path, length)
+				progress = service and self.getRecordProgress(service, path, length) or 0
 			
 			#IDEA elif config.EMC.check_remote_recording.value:
 			elif self.recControl.isRemoteRecording(path):
@@ -551,8 +551,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 				colordate = self.RecordingColor
 			
 			else:
-				#TEST service None
-				progress = service and self.getProgress(service, length)
+				progress = service and self.getProgress(service, length) or 0
 				
 				# Progress State
 				movieUnwatched = config.EMC.movie_mark.value and	progress < int(config.EMC.movie_watching_percent.value)
@@ -604,7 +603,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 			else:
 				colordate = color
 		
-			selnumtxt = None
+			selnumtxt = ""
 			if selnum == 9999: selnumtxt = "-->"
 			elif selnum == 9998: selnumtxt = "X"
 			elif selnum > 0: selnumtxt = "%02d" % selnum
@@ -891,14 +890,17 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 		splitext = os.path.splitext
 		
 		# Get directory listing
-		# only need to deal with spaces when executing in shell 
+		# only need to deal with spaces when executing in shell
+		# Takes 0.1-1s 
 		dirlist = os.listdir(loadPath)
+		
 		# Maybe someone wants to test and compare performance later glob vs listdir
 		#import glob #for f in glob.glob("*.f"):
 		
 		# add sub directories to the list
 		if dirlist:
 			
+			# Takes 0.5s
 			for p in dirlist:
 				
 				# This will increase the function execution time massively
@@ -906,12 +908,20 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 				if ext not in listExt:
 					continue
 				
-				if p in self.hideitemlist or (".*" in self.hideitemlist and p[0:1] == "."):
+				if p in self.hideitemlist or (p[0:1] == "." and ".*" in self.hideitemlist):
 					continue
 				
 				pathname = os.path.join(loadPath, p)
 				
-				if os.path.isdir(pathname):
+				if os.path.isfile(pathname):
+					# Media file found
+					# Check is done implizit with in listDir, avoid retesting ( if ext in mediaExt )
+					# Check if file exists, to hide dead links
+					#if os.path.exists(pathname):
+					date = strftime( "%d.%m.%Y %H:%M", localtime(getmtime(pathname)) )
+					fappend( (pathname, p, ext, date) )
+				
+				elif os.path.isdir(pathname):
 					if check_dvdstruct:
 						dvdStruct = self.detectDVDStructure(pathname)
 						if dvdStruct:
@@ -930,12 +940,6 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 						#BUT sorting depends on ext is none
 						#TODO Use date additionally
 						dappend( (pathname, p) )
-				
-				else:
-					# Look for media files
-					if ext in mediaExt:
-						date = strftime( "%d.%m.%Y %H:%M", localtime(getmtime(pathname)) )
-						fappend( (pathname, p, ext, date) )
 		
 		del dappend
 		del fappend
@@ -1006,7 +1010,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 		self.currentSelectionCount = 0
 		self.selectionList = None
 		
-		#TODO should be configurable
+		#TODO should be configurable Takes about 100ms
 		self.recControl.recFilesRead()	# get a list of current remote recordings
 		
 		# Create listings
@@ -1018,7 +1022,9 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 			self.loadPath = loadPath
 			
 			# Read subdirectories and filenames
+			# Takes 0.6 - 2s
 			subdirlist, filelist, trashcan = self.createDirList(loadPath)
+			
 			customlist = self.createCustomList(loadPath, trashcan) or []
 		
 		elif os.path.isfile(loadPath):
@@ -1049,12 +1055,10 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 				filelist = self.createLatestRecordingsList()
 				customlist = self.createCustomList(loadPath, extend=False) or []
 		
-		
 		# Add custom entries and sub directories to the list
 		customlist += subdirlist
 		if customlist is not None:
 			for path, filename in customlist:
-				#TEST service None -> disable getPlayerService
 				service = self.getPlayerService(path, filename)
 				#TODO
 				#moviestring, sortingkeys = getDirectoryName(filename, service, date)
@@ -1067,7 +1071,6 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 		# Add file entries to the list
 		if filelist is not None:
 			for path, filename, ext, date in filelist:
-				#TEST service None -> disable getPlayerService
 				service = self.getPlayerService(path, filename, ext)
 				
 				# Check config settings
@@ -1076,12 +1079,14 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 						or (movie_hide_del and self.serviceDeleting(service)):
 						continue
 				
-				# filename handling
+				# Filename handling
+				# Takes 0.5s
+				# Takes 5s with reading from META
 				moviestring, length, sortingkeys = getMovieName(filename, service, date)
 				
-				# Correct date string to get only YYYYMMDD
+				# Correct date string to get only DD.MM.YY
 				#IDEA: What about displaying the time optionally
-				date = date[0:8]
+				date = date[0:6]+date[8:10]
 				
 				append((service, sortingkeys, date, moviestring, filename, 0, length, ext))
 		
