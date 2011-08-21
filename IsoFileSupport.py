@@ -94,6 +94,8 @@ class IsoSupport():
 					f = None
 					try:
 						f = open(path, 'rb')
+						# This is very slow
+						# Any ideas do speed up
 						f.seek(0x10019)
 						name = f.readline()
 					except Exception, e:

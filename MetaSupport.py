@@ -126,46 +126,54 @@ class MetaList():
 	##############################################################################
 	## File IO Functions
 	def __readMetaFile(self):
-		try:
-			lines = []
-			path = self.meta_file
-			if path and os.path.exists(path):
-				mtime = os.path.getmtime(path)
-				if self.meta_mtime == mtime:
-					# File has not changed
-					pass
-					
-				else:
-					# New Service or file has changed
-					self.meta_mtime = mtime
-					
-					# Read data from file
-					# OE1.6 with Pyton 2.6
-					#with open(self.meta_file, 'r') as file: lines = file.readlines()	
-					f = None
-					try:
-						f = open(path, 'r')
-						lines = f.readlines()
-					except Exception, e:
-						emcDebugOut("[META] Exception in readMetaFile: " + str(e))
-					finally:
-						if f is not None:
-							f.close()
-						
-					# Parse the lines
-					if lines:
-						# Strip lines
-						lines = map(lambda l: l.rstrip("\r\n"), lines)
-						# Extract information
-						self.meta[0:len(lines)] = lines[0:len(lines)]
-					else:
-						# No date clear all
-						self.meta = [""]*len(METAID)
-						
+		lines = []
+		path = self.meta_file
+		if path and os.path.exists(path):
+			mtime = os.path.getmtime(path)
+			if self.meta_mtime == mtime:
+				# File has not changed
+				pass
+				
 			else:
-				# No path or no file clear all
-				self.meta = [""]*len(METAID)
-						
-		except Exception, e:
-			emcDebugOut("[META] Exception in readMetaFile: " + str(e))
-		
+				# New Service or file has changed
+				self.meta_mtime = mtime
+				
+				# Read data from file
+				# OE1.6 with Pyton 2.6
+				#with open(self.meta_file, 'r') as file: lines = file.readlines()	
+				f = None
+				try:
+					f = open(path, 'r')
+					lines = f.readlines()
+				except Exception, e:
+					emcDebugOut("[META] Exception in readMetaFile: " + str(e))
+				finally:
+					if f is not None:
+						f.close()
+					
+				# Parse the lines
+				if lines:
+					# Strip lines
+					lines = map(lambda l: l.rstrip("\r\n"), lines)
+					# Extract information
+					self.meta[0:len(lines)] = lines[0:len(lines)]
+				else:
+					# No date clear all
+					self.meta = [""]*len(METAID)
+					
+		else:
+			# No path or no file clear all
+			self.meta = [""]*len(METAID)
+
+#MAYBE
+#	def __writeMetaFile(self):
+#		# Generate and pack data
+#		data = ""
+#		if self.meta_file:
+#TODO
+#			pass
+#		# Write data to file
+#		if os.path.exists(self.meta_file):
+#TODO w or wb
+#			with open(self.meta_file, 'wb') as file:
+#				file.write(data)

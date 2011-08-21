@@ -148,105 +148,101 @@ class EitList():
 	##############################################################################
 	## File IO Functions
 	def __readEitFile(self):
-		try:
-			data = ""
-			path = self.eit_file
-			if path and os.path.exists(path):
-				mtime = os.path.getmtime(path)
-				if self.eit_mtime == mtime:
-					# File has not changed
-					pass
+		data = ""
+		path = self.eit_file
+		if path and os.path.exists(path):
+			mtime = os.path.getmtime(path)
+			if self.eit_mtime == mtime:
+				# File has not changed
+				pass
+				
+			else:
+				# New Service or file has changed
+				self.eit_mtime = mtime
+				
+				# Read data from file
+				# OE1.6 with Pyton 2.6
+				#with open(self.eit_file, 'r') as file: lines = file.readlines()	
+				f = None
+				try:
+					f = open(path, 'rb')
+					#lines = f.readlines()
+					data = f.read()
+				except Exception, e:
+					emcDebugOut("[META] Exception in readEitFile: " + str(e))
+				finally:
+					if f is not None:
+						f.close()
+					
+				# Parse the data
+				if data and 12 <= len(data):
+					# go through events
+					pos = 0
+					e = struct.unpack(">HHBBBBBBH", data[pos:pos+12])
+					event_id = e[0]
+					date     = parseMJD(e[1])                         # Y, M, D
+					time     = unBCD(e[2]), unBCD(e[3]), unBCD(e[4])  # HH, MM, SS
+					duration = unBCD(e[5]), unBCD(e[6]), unBCD(e[7])  # HH, MM, SS
+					running_status  = (e[8] & 0xe000) >> 13
+					free_CA_mode    = e[8] & 0x1000
+					descriptors_len = e[8] & 0x0fff
+					
+					if running_status in [1,2]:
+						self.eit['when'] = "NEXT"
+					elif running_status in [3,4]:
+						self.eit['when'] = "NOW"
+					
+					self.eit['startdate'] = date
+					self.eit['starttime'] = time
+					self.eit['duration'] = duration
+					
+					pos = pos + 12
+					short_event_descriptor = []
+					extended_event_descriptor = []
+					component_descriptor = []
+					content_descriptor = []
+					linkage_descriptor = []
+					parental_rating_descriptor = []
+					while pos < len(data):
+						rec = ord(data[pos])
+						length = ord(data[pos+1]) + 2
+						if rec == 0x4D:
+							#descriptor_tag = ord(data[pos+1])
+							#descriptor_length = ord(data[pos+2])
+							#ISO_639_language_code = str(data[pos+3:pos+3])
+							event_name_length = ord(data[pos+5])
+							short_event_descriptor.append(data[pos+6:pos+6+event_name_length]) 
+							short_event_descriptor.append("\n\n")
+							text_length = pos+6+event_name_length
+							short_event_descriptor.append(data[pos+7+event_name_length:pos+8+text_length])
+						elif rec == 0x4E:
+							extended_event_descriptor.append(data[pos+8:pos+length]) 
+						elif rec == 0x50:
+							component_descriptor.append(data[pos+8:pos+length])
+						elif rec == 0x54:
+							content_descriptor.append(data[pos+8:pos+length])
+						elif rec == 0x4A:
+							linkage_descriptor.append(data[pos+8:pos+length])
+						elif rec == 0x55:
+							parental_rating_descriptor.append(data[pos+2:pos+length])
+						else:
+							#print "unsopported descriptor: %x %x" %(rec, pos + 12)
+							#print data[pos:pos+length]
+							pass 
+						pos += length
+						
+					self.eit['name'] = "".join(short_event_descriptor).decode("cp1252").encode("utf-8")
+					self.eit['description'] = "".join(extended_event_descriptor).decode("cp1252").encode("utf-8")
 					
 				else:
-					# New Service or file has changed
-					self.eit_mtime = mtime
-					
-					# Read data from file
-					# OE1.6 with Pyton 2.6
-					#with open(self.eit_file, 'r') as file: lines = file.readlines()	
-					f = None
-					try:
-						f = open(path, 'rb')
-						#lines = f.readlines()
-						data = f.read()
-					except Exception, e:
-						emcDebugOut("[META] Exception in readEitFile: " + str(e))
-					finally:
-						if f is not None:
-							f.close()
-						
-					# Parse the data
-					if data and 12 <= len(data):
-						# go through events
-						pos = 0
-						e = struct.unpack(">HHBBBBBBH", data[pos:pos+12])
-						event_id = e[0]
-						date     = parseMJD(e[1])                         # Y, M, D
-						time     = unBCD(e[2]), unBCD(e[3]), unBCD(e[4])  # HH, MM, SS
-						duration = unBCD(e[5]), unBCD(e[6]), unBCD(e[7])  # HH, MM, SS
-						running_status  = (e[8] & 0xe000) >> 13
-						free_CA_mode    = e[8] & 0x1000
-						descriptors_len = e[8] & 0x0fff
-						
-						if running_status in [1,2]:
-							self.eit['when'] = "NEXT"
-						elif running_status in [3,4]:
-							self.eit['when'] = "NOW"
-						
-						self.eit['startdate'] = date
-						self.eit['starttime'] = time
-						self.eit['duration'] = duration
-						
-						pos = pos + 12
-						short_event_descriptor = []
-						extended_event_descriptor = []
-						component_descriptor = []
-						content_descriptor = []
-						linkage_descriptor = []
-						parental_rating_descriptor = []
-						while pos < len(data):
-							rec = ord(data[pos])
-							length = ord(data[pos+1]) + 2
-							if rec == 0x4D:
-								#descriptor_tag = ord(data[pos+1])
-								#descriptor_length = ord(data[pos+2])
-								#ISO_639_language_code = str(data[pos+3:pos+3])
-								event_name_length = ord(data[pos+5])
-								short_event_descriptor.append(data[pos+6:pos+6+event_name_length]) 
-								short_event_descriptor.append("\n\n")
-								text_length = pos+6+event_name_length
-								short_event_descriptor.append(data[pos+7+event_name_length:pos+8+text_length])
-							elif rec == 0x4E:
-								extended_event_descriptor.append(data[pos+8:pos+length]) 
-							elif rec == 0x50:
-								component_descriptor.append(data[pos+8:pos+length])
-							elif rec == 0x54:
-								content_descriptor.append(data[pos+8:pos+length])
-							elif rec == 0x4A:
-								linkage_descriptor.append(data[pos+8:pos+length])
-							elif rec == 0x55:
-								parental_rating_descriptor.append(data[pos+2:pos+length])
-							else:
-								#print "unsopported descriptor: %x %x" %(rec, pos + 12)
-								#print data[pos:pos+length]
-								pass 
-							pos += length
-							
-						self.eit['name'] = "".join(short_event_descriptor).decode("cp1252").encode("utf-8")
-						self.eit['description'] = "".join(extended_event_descriptor).decode("cp1252").encode("utf-8")
-						
-					else:
-						# No date clear all
-						self.eit = {}
-					
-			else:
-				# No path or no file clear all
-				self.eit = {}
+					# No date clear all
+					self.eit = {}
 				
-		except Exception, e:
-			emcDebugOut("[META] Exception in readEitFile: " + str(e))
+		else:
+			# No path or no file clear all
+			self.eit = {}
 
-
+#MAYBE
 #	def __writeEitFile(self):
 #		# Generate and pack data
 #		data = ""
@@ -258,4 +254,3 @@ class EitList():
 #TODO w or wb
 #			with open(self.eit_file, 'wb') as file:
 #				file.write(data)
-
