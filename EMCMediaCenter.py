@@ -253,7 +253,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 			self.playcount += 1
 			service = self.playlist[self.playcount]
 			path = service and service.getPath()
-			if os.path.exists(path): # or True: # is vlc
+			if os.path.exists(path): #TODO use ext != vlc but must be prepared first
 				
 				# prepare cut list
 				self.recordings.toggleProgress(service, True)
