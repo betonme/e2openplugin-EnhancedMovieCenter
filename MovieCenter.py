@@ -387,7 +387,8 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 						# We have to add the new recording
 						emcDebugOut("[MC] Timer started - add recording")
 						# Timer filname is without extension
-						DelayedFunction(3000, self.reload, timer.Filename.join(".ts"))
+						filename = timer.Filename + ".ts"
+						DelayedFunction(3000, self.reload, filename)
 				elif timer.state == TimerEntry.StateEnded:
 					#MAYBE Just refresh the ended record
 					# But it is fast enough
@@ -1023,8 +1024,6 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 		self.currentSelectionCount = 0
 		self.selectionList = None
 		
-		if not loadPath.endswith("/"): loadPath += "/"
-		
 		if config.EMC.remote_recordings.value:
 			# get a list of current remote recordings
 			self.recControl.recFilesRead()
@@ -1033,7 +1032,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 		if os.path.isdir(loadPath):
 			# Found directory
 			resetlist = True
-			
+			if not loadPath.endswith("/"): loadPath += "/"
 			self.loadPath = loadPath
 			
 			# Read subdirectories and filenames
@@ -1050,6 +1049,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 		else:
 			# Found virtual directory
 			resetlist = True
+			if not loadPath.endswith("/"): loadPath += "/"
 			
 			if loadPath.endswith("VLC servers/"):
 				emcDebugOut("[EMC] VLC Server")

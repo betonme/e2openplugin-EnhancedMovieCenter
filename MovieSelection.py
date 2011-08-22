@@ -246,7 +246,6 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			self.moveUp()
 
 	def setNextPathSel(self, nextdir, service = None):
-		print "EMC setNextPathSel "+str(nextdir)
 		if nextdir == "..":
 			if self.currentPathSel != "" and self.currentPathSel != "/":
 				# Open Parent folder
