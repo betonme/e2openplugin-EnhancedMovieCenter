@@ -123,35 +123,35 @@ class CutList():
 
 	# InfoBarCueSheetSupport
 	def downloadCuesheet(self):
-		try:
-			# Is there native cuesheet support
-			cue = InfoBarCueSheetSupport._InfoBarCueSheetSupport__getCuesheet(self)
-			if cue:
-				# Native cuesheet support
-				self.cut_list = cue.getCutList()
-			else:
-				# No native cuesheet support
-				self.__newService(self.service)
-				self.__readCutFile()
-		except Exception, e:
-			emcDebugOut("[CUTS] downloadCutList exception:" + str(e))
+		# Is there native cuesheet support
+		cue = InfoBarCueSheetSupport._InfoBarCueSheetSupport__getCuesheet(self)
+		if cue:
+			# Native cuesheet support
+			self.cut_list = cue.getCutList()
+		else:
+			# No native cuesheet support
+			self.__newService(self.service)
+			self.__readCutFile()
+		#MAYBE: If the cutlist is empty we can check the EPG NowNext Events
+		#print "downloadCuesheet cutlist " + str(self.cut_list)
+		#self.__verifyCutList()
 
 	# InfoBarCueSheetSupport
 	def uploadCuesheet(self):
-		try:
-			self.__saveOldLast( self.__getCutListLast() )
-			# Is there native cuesheet support
-			cue = InfoBarCueSheetSupport._InfoBarCueSheetSupport__getCuesheet(self)
-			#print "uploadCuesheet cutlist " + str(self.cut_list)
-			if cue:
-				# Native cuesheet support
-				cue.setCutList(self.cut_list)
-			else:
-				# No native cuesheet support
-				self.__newService(self.service)
-				self.__writeCutFile()
-		except Exception, e:
-			emcDebugOut("[CUTS] uploadCutList exception:" + str(e))
+		# Always save the last marker
+		self.__saveOldLast( self.__getCutListLast() )
+		# Update local cut list, maybe there is a newer one
+		self.__readCutFile(True)
+		# Is there native cuesheet support
+		cue = InfoBarCueSheetSupport._InfoBarCueSheetSupport__getCuesheet(self)
+		#print "uploadCuesheet cutlist " + str(self.cut_list)
+		if cue:
+			# Native cuesheet support
+			cue.setCutList(self.cut_list)
+		else:
+			# No native cuesheet support
+			self.__newService(self.service)
+			self.__writeCutFile()
 
 	def updateCuesheet(self):
 		try:
@@ -252,47 +252,38 @@ class CutList():
 				self.__insort(last, self.CUT_TYPE_MARK)
 
 	def __toggleLast(self, toggle):
-		try:
-			oldLast = self.__getCutListLast()
-			savedLast = self.__getCutListSavedLast()
-			self.__removeSavedLast(savedLast)
+		oldLast = self.__getCutListLast()
+		savedLast = self.__getCutListSavedLast()
+		self.__removeSavedLast(savedLast)
+		newLast = 0
+		newSaved = 0
+		
+		#if savedLast == oldLast:
+		#	print "Cutlist if savedLast == oldLast: " + str(savedLast) + " toggle: " + str(toggle) + " " + str(self.cut_file)
+		
+		if toggle == self.CUT_TOGGLE_START:
 			newLast = 0
-			newSaved = 0
-			
-			#if savedLast == oldLast:
-			#	print "Cutlist if savedLast == oldLast: " + str(savedLast) + " toggle: " + str(toggle) + " " + str(self.cut_file)
-			
-			if toggle == self.CUT_TOGGLE_START:
-				newLast = 0
-			elif toggle == self.CUT_TOGGLE_RESUME:
-				#if savedLast == oldLast: # 0:
-				#	newLast = self.MOVIE_FINISHED
-				#else:
-				newLast = savedLast or self.MOVIE_FINISHED
-			elif toggle == self.CUT_TOGGLE_FINISHED:
-				newLast = self.MOVIE_FINISHED
-			elif toggle == self.CUT_TOGGLE_START_FOR_PLAY:
-				newLast = 0
-				savedLast = 0
-				#oldLast = oldLast
-			elif toggle == self.CUT_TOGGLE_FOR_PLAY:
-				newLast = oldLast
-				savedLast = 0
-				oldLast = 0
-			
-			newSaved = savedLast or oldLast
-			self.__replaceLast(newLast)
-			self.__insortSavedLast(newSaved)
-		except Exception, e:
-			emcDebugOut("[CUTS] uploadCuesheet exception:" + str(e))
-
-	def __update(self, pts, what):
-		if what == self.CUT_TYPE_LAST:
-			what = self.CUT_TYPE_MARK
-		self.__insort(pts, what)
+		elif toggle == self.CUT_TOGGLE_RESUME:
+			#if savedLast == oldLast: # 0:
+			#	newLast = self.MOVIE_FINISHED
+			#else:
+			newLast = savedLast or self.MOVIE_FINISHED
+		elif toggle == self.CUT_TOGGLE_FINISHED:
+			newLast = self.MOVIE_FINISHED
+		elif toggle == self.CUT_TOGGLE_START_FOR_PLAY:
+			newLast = 0
+			savedLast = 0
+			#oldLast = oldLast
+		elif toggle == self.CUT_TOGGLE_FOR_PLAY:
+			newLast = oldLast
+			savedLast = 0
+			oldLast = 0
+		
+		newSaved = savedLast or oldLast
+		self.__replaceLast(newLast)
+		self.__insortSavedLast(newSaved)
 
 	def __insort(self, pts, what):
-		#if self.cut_list:
 		if (pts, what) not in self.cut_list:
 			insort(self.cut_list, (pts, what))
 
@@ -327,83 +318,76 @@ class CutList():
 	##############################################################################
 	## File IO Functions
 	def __readCutFile(self, update=False):
-		try:
-			data = ""
-			path = self.cut_file
-			if path and os.path.exists(path):
-				mtime = os.path.getmtime(path)
-				if self.cut_mtime == mtime:
-					# File has not changed
-					#print "[EMC CUTS] __readCutFile PASS " + str(path)
-					pass
-					
-				else:
-					# New Service or file has changed
-					#print "[EMC CUTS] __readCutFile " + str(path) + " " + str(self.cut_mtime) + " " + str(mtime)
-					self.cut_mtime = mtime
-					
-					if not update:
-						# Clear all
-						self.cut_list = []
-					
-					# Read data from file
-					# OE1.6 with Pyton 2.6
-					#with open(path, 'rb') as f: data = f.read()	
-					f = None
-					try:
-						f = open(path, 'rb')
-						data = f.read()
-					except Exception, e:
-						emcDebugOut("[CUTS] Exception in __readCutFile: " + str(e))
-					finally:
-						if f is not None:
-							f.close()
-							
-					# Parse and unpack data
-					if data:
-						pos = 0
-						while pos+12 <= len(data):
-							# Unpack
-							(pts, what) = struct.unpack('>QI', data[pos:pos+12])
-							if not update:
-								self.__insort(long(pts), what)
-							else:
-								self.__update(long(pts), what)
-							# Next cut_list entry
-							pos += 12
-			
-		except Exception, e:
-			emcDebugOut("[CUTS] __readCutFile exception:" + str(e))
-
-	def __writeCutFile(self):
-		try:
-			data = ""
-			path = self.cut_file
-			if path:
-			
-				# Generate and pack data
-				if self.cut_list:
-					for (pts, what) in self.cut_list:
-						data += struct.pack('>QI', pts, what)
-						
-				# Write data to file
+		data = ""
+		path = self.cut_file
+		if path and os.path.exists(path):
+			mtime = os.path.getmtime(path)
+			if self.cut_mtime == mtime:
+				# File has not changed
+				#print "[EMC CUTS] __readCutFile PASS " + str(path)
+				pass
+				
+			else:
+				# New Service or file has changed
+				self.cut_mtime = mtime
+				
+				if not update:
+					# No update clear all
+					self.cut_list = []
+				
+				# Read data from file
 				# OE1.6 with Pyton 2.6
-				#with open(path, 'wb') as f: f.write(data)
+				#with open(path, 'rb') as f: data = f.read()	
 				f = None
 				try:
-					f = open(path, 'wb')
-					if data:
-						f.write(data)
+					f = open(path, 'rb')
+					data = f.read()
 				except Exception, e:
-					emcDebugOut("[CUTS] Exception in __writeCutFile: " + str(e))
+					emcDebugOut("[CUTS] Exception in __readCutFile: " + str(e))
 				finally:
 					if f is not None:
 						f.close()
-				
-				# Save file timestamp
-				if path and os.path.exists(path):
-					self.cut_mtime = os.path.getmtime(path)
-				
-		except Exception, e:
-			emcDebugOut("[CUTS] __writeCutFile exception:" + str(e))
+						
+				# Parse and unpack data
+				if data:
+					pos = 0
+					while pos+12 <= len(data):
+						# Unpack
+						(pts, what) = struct.unpack('>QI', data[pos:pos+12])
+						if not update:
+							self.__insort(long(pts), what)
+						else:
+							self.__update(long(pts), what)
+						# Next cut_list entry
+						pos += 12
+		else:
+			# No path or no file clear all
+			self.cut_list = []
+
+	def __writeCutFile(self):
+		data = ""
+		path = self.cut_file
+		if path:
+		
+			# Generate and pack data
+			if self.cut_list:
+				for (pts, what) in self.cut_list:
+					data += struct.pack('>QI', pts, what)
+					
+			# Write data to file
+			# OE1.6 with Pyton 2.6
+			#with open(path, 'wb') as f: f.write(data)
+			f = None
+			try:
+				f = open(path, 'wb')
+				if data:
+					f.write(data)
+			except Exception, e:
+				emcDebugOut("[CUTS] Exception in __writeCutFile: " + str(e))
+			finally:
+				if f is not None:
+					f.close()
 			
+			# Save file timestamp
+			if path and os.path.exists(path):
+				self.cut_mtime = os.path.getmtime(path)
