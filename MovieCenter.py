@@ -142,7 +142,7 @@ def getMovieName(filename, service=None, date=""):
 	
 	if moviestring == "":
 		# Calculate date string for sorting
-		# YYYYMMDD HHMM to DD.MM.YYYY HH:MM
+		# YYYYMMDD HHMM from DD.MM.YYYY HH:MM
 		date = date[6:10] + date[3:5] + date[0:2] + date[11:13] + date[14:]
 		moviestring = filename[:]
 	
@@ -195,7 +195,9 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 		MovieCenter.instance = self
 		self.list = []
 		GUIComponent.__init__(self)
-		self.loadPath = config.EMC.movie_homepath.value + "/"
+		VlcPluginInterfaceList.__init__(self)
+		self.loadPath = config.EMC.movie_homepath.value
+		if not self.loadPath.endswith("/"): self.loadPath += "/"
 		self.serviceHandler = eServiceCenter.getInstance()
 		
 		self.CoolFont = parseFont("Regular;20", ((1,1),(1,1)))
@@ -838,10 +840,11 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 	
 	def createLatestRecordingsList(self):
 		global listExt, mediaExt
-		# Make loadpath more flexible
+		# Make loadPath more flexible
 		#MAYBE: What about using current folder for latest recording lookup?
-		loadpath = config.EMC.movie_homepath.value + "/"
-		emcDebugOut("[MC] reloadLatestRecordings, loadpath: " + loadpath)
+		loadPath = config.EMC.movie_homepath.value
+		if not loadPath.endswith("/"): loadPath += "/"
+		emcDebugOut("[MC] reloadLatestRecordings, loadPath: " + loadPath)
 		trashcan = False
 		filelist = []
 		append = filelist.append
@@ -850,7 +853,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 		# walk through entire tree below movie home. Might take a bit long und huge disks... 
 		# think about doing a manual recursive search via listdir() and stop at 2nd level, 
 		# but include folders used in timers, auto timers and bookmarks
-		for root, dirs, files in os.walk(loadpath):
+		for root, dirs, files in os.walk(loadPath):
 			
 			#MAYBE we should call here createDirList and reuse the directory and file handling
 			
@@ -867,10 +870,12 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 				pathname = os.path.join(root, p)
 				if os.path.isfile(pathname):
 					# Media extension check is done implizit - avoid retest ( if ext in mediaExt: )
-					date = strftime( "%d.%m.%Y %H:%M", localtime(os.path.getmtime(pathname)) )
+					date = strftime( "%Y%m%d %H%M", localtime(os.path.getmtime(pathname)) )
 					append( (pathname, p, ext, date) )
 		
-		filelist.sort(key=lambda x: x[3].lower(), reverse=True)
+		filelist.sort(key=lambda x: x[3], reverse=True)
+		filelist = filelist[:12]
+		filelist = [(i[0], i[1], i[2], strftime( "%d.%m.%Y %H:%M", localtime(os.path.getmtime(i[0])))) for i in filelist]
 		
 		#TODO
 		#QUESTION Should we set date related sorting
@@ -881,7 +886,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 		del append
 		
 		# Return the 12 latest recordings
-		return filelist[:12]
+		return filelist
 
 	def createDirList(self, loadPath):
 		global listExt, mediaExt
@@ -924,8 +929,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 				if os.path.isfile(pathname):
 					# Media file found
 					# Check is done implizit with in listDir, avoid retesting ( if ext in mediaExt )
-					# Check if file exists, to hide dead links
-					#if os.path.exists(pathname):
+					#MAYBE Check if file exists, to hide dead links ( if os.path.exists(pathname) )
 					date = strftime( "%d.%m.%Y %H:%M", localtime(getmtime(pathname)) )
 					fappend( (pathname, p, ext, date) )
 				
@@ -972,15 +976,16 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 					append( (config.EMC.movie_trashpath.value, os.path.basename(config.EMC.movie_trashpath.value)) )
 				
 				if config.EMC.latest_recordings.value:
-					append( (loadPath+"Latest Recordings", "Latest Recordings") )
+					append( (loadPath+"Latest Recordings/", "Latest Recordings") )
 				
 				if config.EMC.vlc.value and os.path.exists("/usr/lib/enigma2/python/Plugins/Extensions/VlcPlayer"):
-					append( (loadPath+"VLC servers", "VLC servers") )
+					append( (loadPath+"VLC servers/", "VLC servers") )
 				
 				if config.EMC.bookmarks_e2.value:
 					bookmarks = config.movielist and config.movielist.videodirs and config.movielist.videodirs.value[:]
 					if bookmarks:
 						for bookmark in bookmarks:
+							#TODO ext = bm
 							append( (bookmark, "E2 "+os.path.basename(bookmark[:-1])) )
 				
 				if config.EMC.bookmarks_emc.value:
@@ -1018,6 +1023,8 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 		self.currentSelectionCount = 0
 		self.selectionList = None
 		
+		if not loadPath.endswith("/"): loadPath += "/"
+		
 		if config.EMC.remote_recordings.value:
 			# get a list of current remote recordings
 			self.recControl.recFilesRead()
@@ -1027,7 +1034,6 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 			# Found directory
 			resetlist = True
 			
-			if not loadPath.endswith("/"): loadPath += "/"
 			self.loadPath = loadPath
 			
 			# Read subdirectories and filenames
@@ -1045,9 +1051,6 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 			# Found virtual directory
 			resetlist = True
 			
-			if not loadPath.endswith("/"): loadPath += "/"
-			self.loadPath = loadPath
-			
 			if loadPath.endswith("VLC servers/"):
 				emcDebugOut("[EMC] VLC Server")
 				subdirlist = self.createVlcServerList(loadPath)
@@ -1058,10 +1061,15 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 				subdirlist, filelist = self.createVlcFileList(loadPath)
 			
 			elif loadPath.endswith("Latest Recordings/"):
-				dosort = False
 				emcDebugOut("[EMC] Latest Recordings")
+				dosort = False
 				filelist = self.createLatestRecordingsList()
 				customlist = self.createCustomList(loadPath, extend=False) or []
+			
+			else:
+				raise Exception(_("[EMC] Reload error"))
+		
+		self.loadPath = loadPath
 		
 		# Add custom entries and sub directories to the list
 		customlist += subdirlist
@@ -1092,9 +1100,9 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 				# Takes 5s with reading from META
 				moviestring, length, sortingkeys = getMovieName(filename, service, date)
 				
-				# Correct date string to get only DD.MM.YY
+				# Correct date string to get only DD.MM.YYYY
 				#IDEA: What about displaying the time optionally
-				date = date[0:6]+date[8:10]
+				date = date[0:10]
 				
 				append((service, sortingkeys, date, moviestring, filename, 0, length, ext))
 		
@@ -1194,11 +1202,11 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 		except:	return False
 
 	def currentSelIsDirectory(self):
-		try:	return self.list[self.getCurrentIndex()][2] is None #or self.currentSelIsVlcDir()
+		try:	return self.list[self.getCurrentIndex()][2] is None
 		except:	return False
 
 	def indexIsDirectory(self, index):
-		try:	return self.list[index][2] is None #or self.currentSelIsVlcDir()
+		try:	return self.list[index][2] is None
 		except:	return False
 
 	def getCurrentSelDir(self):

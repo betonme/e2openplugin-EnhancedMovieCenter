@@ -53,7 +53,8 @@ class SelectionEventInfo:
 		self["FileSize"] = Label("")
 
 	def updateEventInfo(self):
-		if self["list"].currentSelIsDirectory() or self["list"].currentSelIsLatest() or self["list"].currentSelIsVlc() or self.getCurrent() is None:
+		if self["list"].currentSelIsDirectory() or self["list"].currentSelIsLatest() or self["list"].currentSelIsVlc() or self.getCurrent() is None: #self.browsingVLC()
+			#IDEA Display the path of the selected bookmark #TODO ext = bm
 			self.resetEventInfo()
 		else:
 			service = self.getCurrent()
@@ -160,6 +161,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		HelpableScreen.__init__(self)
 		
 		self.currentPathSel = config.EMC.movie_homepath.value
+		if not self.currentPathSel.endswith("/"): self.currentPathSel += "/"
 		self.tmpSelList = None
 		self.toggle = True
 		self.backStack = []
@@ -211,11 +213,8 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		else: self.playLast()
 
 	def changeDir(self, path, service=None):
-		# Isdir check is disabled because of VirtualViews
-		#if os.path.isdir(path):
-		self.currentPathSel = path
 		self.returnService = service
-		self.reloadList()
+		self.reloadList(path)
 
 	def CoolKey0(self):
 		# Movie home
@@ -238,7 +237,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			(path, service) = self.backStack.pop()
 		else:
 			# Parent folder
-			path = os.path.dirname(self.currentPathSel)
+			path = os.path.dirname(self.currentPathSel[:-1])
 		if path != self.currentPathSel:
 			self.forwardStack.append((self.currentPathSel, self["list"].getCurrent()))
 			self.changeDir(path, service)
@@ -247,11 +246,13 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			self.moveUp()
 
 	def setNextPathSel(self, nextdir, service = None):
+		print "EMC setNextPathSel "+str(nextdir)
 		if nextdir == "..":
 			if self.currentPathSel != "" and self.currentPathSel != "/":
 				# Open Parent folder
 				service = eServiceReference("2:0:1:0:0:0:0:0:0:0:" + self.currentPathSel)
-				nextdir = os.path.dirname(self.currentPathSel)
+				#nextdir = os.path.split(self.currentPathSel)[0]
+				nextdir = os.path.dirname(self.currentPathSel[:-1])
 			else:
 				# No way to go folder up
 				return
@@ -444,7 +445,9 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			else:
 				title = "(%d MB) " %(free)
 		title += self.currentPathSel + (self.currentPathSel=="")*"/"
-		title = title.replace(config.EMC.movie_homepath.value+"/", ".../")
+		path = config.EMC.movie_homepath.value
+		if not path.endswith("/"): path += "/"
+		title = title.replace(path, ".../")
 		self.setTitle(title)
 
 	def toggleSort(self):
@@ -957,30 +960,29 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		self.returnService = self.getCurrent()
 		self.reloadList()
 
-	def reloadList(self):
+	def reloadList(self, path=None):
 		self.multiSelectIdx = None
 		if config.EMC.moviecenter_loadtext.value:
 			self.loading()
-		DelayedFunction(5, self.__reloadList)
+		DelayedFunction(5, self.__reloadList, path)
 
-	def __reloadList(self):
-		if self.currentPathSel is None:
-			emcDebugOut("[EMCMS] reloadList: currentPathSel is None")
-			return
-		path = self.currentPathSel
+	def __reloadList(self, path):
+		if path is None:
+			path = self.currentPathSel
 		
 		# The try here is a nice idea, but it costs us a lot of time
 		# Maybe it should be implemented with a timer
-		#try:
-		if os.path.exists(path) or path.find("Latest Recordings")>-1 or path.find("VLC servers")>-1 or self.browsingVLC():
-			self["list"].reload(path + "/"*(path != "/"))
-		#except Exception, e:
-		#	emcDebugOut("[EMCMS] reloadList exception:\n" + str(e))
-		#finally:
-		
-		self.initCursor()
-		if config.EMC.moviecenter_loadtext.value:
-			self.loading(False)
+		try:
+			#if os.path.exists(path) or path.find("Latest Recordings")>-1 or path.find("VLC servers")>-1 or self.browsingVLC():
+			if not path.endswith("/"): path += "/"
+			self["list"].reload(path)
+			self.currentPathSel = path
+		except Exception, e:
+			emcDebugOut("[EMCMS] reloadList exception:\n" + str(e))
+		finally:
+			self.initCursor()
+			if config.EMC.moviecenter_loadtext.value:
+				self.loading(False)
 
 	def refreshRecordings(self):
 		self["list"].refreshRecordings()
@@ -1104,13 +1106,17 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 
 	def purgeExpired(self):
 		try:
+			movie_trashpath = config.EMC.movie_trashpath.value
+			if not movie_trashpath.endswith("/"): movie_trashpath += "/"
+			movie_homepath = config.EMC.movie_homepath.value
+			if not movie_homepath.endswith("/"): movie_homepath += "/"
 			if os.path.exists(config.EMC.movie_trashpath.value):
 				if config.EMC.movie_trashcan_clean.value is True:
 					# Trashcan cleanup
 					purgeCmd = ""
-					dirlist = os.listdir(config.EMC.movie_trashpath.value)
+					dirlist = os.listdir(movie_trashpath)
 					for movie in dirlist:
-						fullpath = config.EMC.movie_trashpath.value +"/"+ movie
+						fullpath = movie_trashpath + movie
 						currTime = localtime()
 						if os.path.exists(fullpath):
 							expTime = localtime(os.stat(fullpath).st_mtime + 24*60*60*int(config.EMC.movie_trashcan_limit.value))
@@ -1132,12 +1138,12 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 						from MovieCenter import mediaExt
 						global mediaExt
 						mvCmd = ""
-						dirlist = os.listdir(config.EMC.movie_homepath.value)
+						dirlist = os.listdir(movie_homepath)
 						for movie in dirlist:
 							# Only check media files
 							ext = os.path.splitext(movie)[1]
 							if ext in mediaExt:
-								fullpath = config.EMC.movie_homepath.value +"/"+ movie
+								fullpath = movie_homepath+ movie
 								if os.path.exists(fullpath):
 									currTime = localtime()
 									expTime = localtime(os.stat(fullpath).st_mtime + 24*60*60*int(config.EMC.movie_finished_limit.value))
@@ -1152,7 +1158,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 											mvCmd += '; touch "'+ file +'."*'
 											# move movie into the trashcan
 											#old mvCmd += "; mv \"%s\"*" % fullpath.replace(".*","") #"'+ targetPath +'/"'
-											mvCmd += '; mv "'+ file +'."* "'+ config.EMC.movie_trashpath.value +'/"'
+											mvCmd += '; mv "'+ file +'."* "'+ movie_trashpath +'"'
 						if mvCmd != "":
 							emcTasker.shellExecute(mvCmd[2:])
 							emcDebugOut("[EMCMS] finished movie cleanup activated")

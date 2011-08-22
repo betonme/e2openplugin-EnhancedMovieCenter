@@ -54,15 +54,18 @@ class VlcPluginInterfaceSel():
 
 
 class VlcPluginInterfaceList():
+	def __init__(self):
+		self.vlcServers = None
+		self.vlcServer = None
+
 	def currentSelIsVlc(self):
-		#TODO
 		try:	return self.list[self.getCurrentIndex()][2] == "VLCs"
 		except:	return False
 
-	def currentSelIsVlcDir(self):
-		#TODO
-		try:	return self.list[self.getCurrentIndex()][2] == "VLCd"
-		except:	return False
+	#TODO This doesn't work anymore
+	#def currentSelIsVlcDir(self):
+	#	try:	return self.list[self.getCurrentIndex()][2] == "VLCd"
+	#	except:	return False
 
 	def createVlcServerList(self, loadPath):
 		try:
