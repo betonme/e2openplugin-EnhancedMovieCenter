@@ -29,10 +29,11 @@ from Components.Converter.Converter import Converter
 from Components.Converter.MovieInfo import MovieInfo
 from Components.Element import cached, ElementError
 from enigma import iServiceInformation, eServiceReference
+from ServiceReference import ServiceReference
 
 from Plugins.Extensions.EnhancedMovieCenter.MetaSupport import MetaList
 from Plugins.Extensions.EnhancedMovieCenter.EitSupport import EitList
-
+from Plugins.Extensions.EnhancedMovieCenter.MovieCenter import getMovieName
 
 class EMCMovieInfo(MovieInfo):
 	def __init__(self, type):
@@ -49,48 +50,38 @@ class EMCMovieInfo(MovieInfo):
 			if service and not isinstance(service, eServiceReference):
 				if NavigationInstance and NavigationInstance.instance:
 					service = NavigationInstance.instance.getCurrentlyPlayingServiceReference()
-
+			
 			if self.type == self.MOVIE_SHORT_DESCRIPTION:
-				event = self.source.event
-				shortdesc = event and info and service and info.getInfoString(service, iServiceInformation.sDescription)
+				shortdesc = info and service and info.getInfoString(service, iServiceInformation.sDescription)
 				print "EMC shortdesc1 " + str(shortdesc)
 				if not shortdesc:
+					self.meta = service and MetaList(service)
+					shortdesc = self.meta and self.meta.getMetaDescription()
+					print "EMC shortdesc1a " + str(shortdesc)
+				if not shortdesc:
+					event = self.source.event
 					shortdesc = event and event.getShortDescription()
-				print "EMC shortdesc2 " + str(shortdesc)
+					print "EMC shortdesc2 " + str(shortdesc)
 				if not shortdesc:
 					self.eit = service and EitList(service)
-					shortdesc = self.eit and self.eit.getEitDescription()
-				print "EMC shortdesc3 " + str(shortdesc)
+					shortdesc = self.eit and self.eit.getEitShortDescription()
+					print "EMC shortdesc3 " + str(shortdesc)
+				#TODO Movie title
 				if not shortdesc:
-					#self.meta = service and MetaList(service, borg=True)
-					#shortdesc = self.meta and self.meta.getMetaDescription()
-					# Test only
-					rec_ref_str = info and info.getInfoString(service, iServiceInformation.sServiceref)
-					shortdesc = rec_ref_str and ServiceReference(rec_ref_str).getServiceName()
-				print "EMC shortdesc4 " + str(shortdesc)
+					filename, ext = os.path.splitext(service.getPath())
+					shortdesc = getMovieName(filename, service, "")
+					#	rec_ref_str = info and info.getInfoString(service, iServiceInformation.sServiceref)
+					#	shortdesc = rec_ref_str and ServiceReference(rec_ref_str).getServiceName()
+					print "EMC shortdesc4 getMovieName " + str(shortdesc)
 				return shortdesc or ""
 						
 			elif self.type == self.MOVIE_META_DESCRIPTION:
 				extdesc = info and service and info.getInfoString(service, iServiceInformation.sDescription)
 				print "EMC extdesc1 " + str(extdesc)
 				if not extdesc:
-					extdesc = event and event.getExtendedDescription()
-				print "EMC extdesc2 " + str(extdesc)
-				if not extdesc:
-					#print "EMC EIT extdesc Meta"
 					self.meta = service and MetaList(service, borg=True)
 					extdesc = self.meta and self.meta.getMetaDescription()
-				print "EMC extdesc3 " + str(extdesc)
-				if not extdesc:
-					#print "EMC EIT extdesc Eit"
-					self.eit = service and EitList(service)
-					extdesc = self.eit and self.eit.getEitDescription()
-				print "EMC extdesc4 " + str(extdesc)
-				if not extdesc:
-					# Test only
-					rec_ref_str = info and info.getInfoString(service, iServiceInformation.sServiceref)
-					extdesc = rec_ref_str and ServiceReference(rec_ref_str).getServiceName()
-				print "EMC extdesc5 " + str(extdesc)
+					print "EMC extdesc3 " + str(extdesc)
 				return extdesc or ""
 				
 			elif self.type == self.MOVIE_REC_SERVICE_NAME:
@@ -101,17 +92,6 @@ class EMCMovieInfo(MovieInfo):
 				filesize = info.getInfoObject(service, iServiceInformation.sFileSize)
 				if filesize is not None:
 					return "%d MB" % (filesize / (1024*1024))
-				
-				# Temp only
-#				if isinstance(service, iPlayableServicePtr):
-#					info = service and service.info()
-#					ref = None
-#				else: # reference
-#					info = service and self.source and self.source.info
-#					ref = service
-#				name = ref and info and info.getName(ref)
-#				if name is None:
-#					name = info.getName()
 				
 		except Exception, e:
 			print "[EMCMI] getText exception:" + str(e)
