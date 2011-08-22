@@ -997,6 +997,8 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			self["list"].removeService(service)
 		self.updateMovieInfo()
 
+#Think about: All file operations should be in MovieCenter.py 
+
 	def execFileOp(self, targetPath, current, selectedlist, op="move", purgeTrash=False):
 		self.returnService = self.getNextSelectedService(current, selectedlist)
 		mvCmd = ""

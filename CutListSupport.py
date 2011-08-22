@@ -133,8 +133,6 @@ class CutList():
 				# No native cuesheet support
 				self.__newService(self.service)
 				self.__readCutFile()
-			#print "downloadCuesheet cutlist " + str(self.cut_list)
-			#self.__verifyCutList()
 		except Exception, e:
 			emcDebugOut("[CUTS] downloadCutList exception:" + str(e))
 
@@ -154,6 +152,13 @@ class CutList():
 				self.__writeCutFile()
 		except Exception, e:
 			emcDebugOut("[CUTS] uploadCutList exception:" + str(e))
+
+	def updateCuesheet(self):
+		try:
+			# Use non native cuesheet support
+			self.__readCutFile(True)
+		except Exception, e:
+			emcDebugOut("[CUTS] updateCuesheet exception:" + str(e))
 
 	##############################################################################
 	## Get Functions
@@ -281,12 +286,15 @@ class CutList():
 		except Exception, e:
 			emcDebugOut("[CUTS] uploadCuesheet exception:" + str(e))
 
+	def __update(self, pts, what):
+		if what == self.CUT_TYPE_LAST:
+			what = self.CUT_TYPE_MARK
+		self.__insort(pts, what)
+
 	def __insort(self, pts, what):
 		#if self.cut_list:
 		if (pts, what) not in self.cut_list:
 			insort(self.cut_list, (pts, what))
-		#else:
-		#	insort(self.cut_list, (pts, what))
 
 	def __insortSavedLast(self, pts):
 		if pts > 0 and pts < self.MOVIE_FINISHED:
@@ -318,7 +326,7 @@ class CutList():
 
 	##############################################################################
 	## File IO Functions
-	def __readCutFile(self):
+	def __readCutFile(self, update=False):
 		try:
 			data = ""
 			path = self.cut_file
@@ -333,6 +341,10 @@ class CutList():
 					# New Service or file has changed
 					#print "[EMC CUTS] __readCutFile " + str(path) + " " + str(self.cut_mtime) + " " + str(mtime)
 					self.cut_mtime = mtime
+					
+					if not update:
+						# Clear all
+						self.cut_list = []
 					
 					# Read data from file
 					# OE1.6 with Pyton 2.6
@@ -353,18 +365,13 @@ class CutList():
 						while pos+12 <= len(data):
 							# Unpack
 							(pts, what) = struct.unpack('>QI', data[pos:pos+12])
-							insort(self.cut_list, (long(pts), what))
+							if not update:
+								self.__insort(long(pts), what)
+							else:
+								self.__update(long(pts), what)
 							# Next cut_list entry
 							pos += 12
-					else:
-						# No date clear all
-						self.cut_list = []
-						#print "[EMC CUTS] __readCutFile NO DATA " + str(path)
-			else:
-				# No path or no file clear all
-				self.cut_list = []
-				#print "[EMC CUTS] __readCutFile NO FILE " + str(path)
-				
+			
 		except Exception, e:
 			emcDebugOut("[CUTS] __readCutFile exception:" + str(e))
 

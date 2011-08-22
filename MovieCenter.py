@@ -139,7 +139,8 @@ def getMovieName(filename, service=None, date=""):
 			# Short Composition: filename = YYYYMMDD - name
 			date = filename[0:8] + "3333"						# "YYYYMMDD" + DUMMY_TIME
 			moviestring = filename[11:]									# skips "YYYYMMDD - "
-	else:
+	
+	if moviestring == "":
 		# Calculate date string for sorting
 		# YYYYMMDD HHMM to DD.MM.YYYY HH:MM
 		date = date[6:10] + date[3:5] + date[0:2] + date[11:13] + date[14:]
@@ -390,7 +391,16 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 					# But it is fast enough
 					emcDebugOut("[MC] Timer ended")
 					DelayedFunction(3000, self.invalidateList)
-					pass
+# 			#WORKAROUND Player is running during a record ends
+# 			# We should find a more flexible universal solution
+# 			from MovieSelection import gMS
+# 			if gMS and gMS.playerInstance is not None:
+# 				DelayedFunction(3000, self.updatePlayer)
+# 
+# 	def updatePlayer(self):
+# 		from MovieSelection import gMS
+# 		if gMS and gMS.playerInstance is not None:
+# 			gMS.playerInstance.updateCuesheet(gMS)
 
 	def getProgress(self, service, length=0, last=0, forceRecalc=False, cuts=None):
 		# All calculations are done in seconds
