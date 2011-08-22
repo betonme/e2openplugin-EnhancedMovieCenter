@@ -359,7 +359,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 		
 		# Sort list
 		# Using itemgetter is slightly faster but not as flexible
-		# Then the list has to be flat, no sub tuples allowed (key=itemgetter(x))
+		# Then the list has to be flat, no sub tuples were allowed (key=itemgetter(x))
 		if self.alphaSort:
 			sortlist.sort( key=lambda x: (x[1][0]), reverse=config.EMC.moviecenter_reversed.value )
 		else:
@@ -534,8 +534,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 				# Never the progress of the cut list marker to avoid misunderstandings
 				progress = service and self.getRecordProgress(service, path) or 0
 			
-			#IDEA elif config.EMC.check_remote_recording.value:
-			elif self.recControl.isRemoteRecording(path):
+			elif config.EMC.remote_recordings.value and self.recControl.isRemoteRecording(path):
 				date = "-- rec --"
 				pixmap = self.movie_recrem
 				color = self.RecordingColor
@@ -1009,8 +1008,9 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 		self.currentSelectionCount = 0
 		self.selectionList = None
 		
-		#TODO should be configurable Takes about 100ms
-		self.recControl.recFilesRead()	# get a list of current remote recordings
+		if config.EMC.remote_recordings.value:
+			# get a list of current remote recordings
+			self.recControl.recFilesRead()
 		
 		# Create listings
 		if os.path.isdir(loadPath):

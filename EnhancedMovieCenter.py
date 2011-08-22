@@ -256,6 +256,7 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 			(  _("Hide movies being moved")                       , config.EMC.movie_hide_mov           , None                  , None                  , 1     , []        , _("HELP_Hide movies being moved") ),
 			(  _("Hide movies being deleted")                     , config.EMC.movie_hide_del           , None                  , None                  , 1     , []        , _("HELP_Hide movies being deleted") ),
 			
+			(  _("Enable remote recordings")                      , config.EMC.remote_recordings        , None                  , None                  , 1     , []        , _("HELP_Enable remote recordings") ),
 			(  _("Automatic timers list cleaning")                , config.EMC.timer_autocln            , None                  , None                  , 1     , []        , _("HELP_Automatic timers list cleaning") ),
 			
 			(  _("Enigma daily auto-restart")                     , config.EMC.enigmarestart            , self.autoRestartInfo  , self.autoRestartInfo  , 1     , []        , _("HELP_Enigma daily auto-restart") ),

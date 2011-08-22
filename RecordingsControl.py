@@ -110,7 +110,8 @@ class RecordingsControl:
 				if config.EMC.timer_autocln.value:
 					DelayedFunction(2000, self.timerCleanup)	# postpone to avoid crash in basic timer delete by user
 			if inform:
-				self.recFileUpdate()
+				if config.EMC.remote_recordings.value:
+					self.recFileUpdate()
 				self.recStateChange(timer)
 				#DelayedFunction(500, self.recStateChange, self.recDict)
 		except Exception, e:
@@ -217,12 +218,8 @@ class RecordingsControl:
 		try:
 			for x in os.listdir(config.EMC.folder.value):
 				if x.endswith(".rec") and x != self.recFile.split("/")[-1]:
-#					emcDebugOut("[emcRC] reading " + x)
 					recf = open(config.EMC.folder.value +"/"+ x, "rb")
 					self.recRemoteList += pickle.load(recf)
 					recf.close()
-#				else:
-#					emcDebugOut("[emcRC] skipped " + x)
-
 		except Exception, e:
 			emcDebugOut("[emcRC] recFilesRead exception:\n" + str(e))

@@ -732,7 +732,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 						path = service.getPath()
 						if self["list"].recControl.isRecording(path):
 							self.recsToStop.append(path)
-						if self["list"].recControl.isRemoteRecording(path):
+						if config.EMC.remote_recordings.value and self["list"].recControl.isRemoteRecording(path):
 							self.remRecsToStop = True
 					if len(self.recsToStop)>0:
 						self.stopRecordQ()
@@ -970,6 +970,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		path = self.currentPathSel
 		
 		# The try here is a nice idea, but it costs us a lot of time
+		# Maybe it should be implemented with a timer
 		#try:
 		if os.path.exists(path) or path.find("Latest Recordings")>-1 or path.find("VLC servers")>-1 or self.browsingVLC():
 			self["list"].reload(path + "/"*(path != "/"))

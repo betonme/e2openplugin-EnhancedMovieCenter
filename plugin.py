@@ -206,9 +206,10 @@ config.EMC.moviecenter_selmove       = ConfigSelection(default = "d", choices = 
 config.EMC.moviecenter_loadtext      = ConfigYesNo(default = True)
 config.EMC.timer_autocln             = ConfigYesNo(default = False)
 config.EMC.movie_launch              = ConfigSelection(default = "showMovies", choices = launch_choices)
-config.EMC.noscan_linked 						 = ConfigYesNo(default = True)
-config.EMC.cfghide_enable   				 = ConfigYesNo(default = True)
-config.EMC.cfgnoscan_enable   			 = ConfigYesNo(default = True)
+config.EMC.noscan_linked             = ConfigYesNo(default = True)
+config.EMC.cfghide_enable            = ConfigYesNo(default = True)
+config.EMC.cfgnoscan_enable          = ConfigYesNo(default = True)
+config.EMC.remote_recordings         = ConfigYesNo(default = False)
 
 gSession = None
 gRecordings = None
