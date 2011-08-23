@@ -111,10 +111,11 @@ def EMCStartup(session):
 	DelayedFunction(5000, cleanupSetup)
 
 	# Go into standby if the reason for restart was EMC auto-restart
-	if os.path.exists(config.EMC.folder.value + "/EMC_standby_flag.tmp"):
-		emcDebugOut("+++ Going into Standby mode after auto-restart")
-		Notifications.AddNotification(Screens.Standby.Standby)
-		emcTasker.shellExecute("rm -f " + config.EMC.folder.value + "/EMC_standby_flag.tmp")
+	if config.EMC.enigmarestart.value:
+		if os.path.exists(config.EMC.folder.value + "/EMC_standby_flag.tmp"):
+			emcDebugOut("+++ Going into Standby mode after auto-restart")
+			Notifications.AddNotification(Screens.Standby.Standby)
+			emcTasker.shellExecute("rm -f " + config.EMC.folder.value + "/EMC_standby_flag.tmp")
 
 class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 	skin = """
