@@ -597,6 +597,9 @@ msgstr "Keine Medienstrutur Erkennung in speziellen Ordnern"
 msgid "No structure scan in linked folders"
 msgstr "Keine Medienstrutur Erkennung in Symlink-Ordnern"
 
+msgid "Enable remote recordings"
+msgstr "Aktiviere Erkennung für remote Aufnahmen"
+
 # EMC Setup Helptext
 msgid "HELP_About"
 msgstr "Öffnet das \"Über\" Fenster."
@@ -634,6 +637,11 @@ msgid "HELP_Trashcan path"
 msgstr ""
 "Pfad für den Papierkorb einstellen.\n"
 "(Wenn der Papierkobr aktiviert ist, werden beim löschen alle Files erst hier hin verschoben.)"
+
+msgid "HELP_Hide trashcan directory"
+msgstr ""
+"Der Papierkorb wird in der Filmliste verborgen.\n"
+"(Er kann aber dennoch über das EMC [MENU] geöffnet werden."
 
 msgid "HELP_Delete validation"
 msgstr ""
@@ -694,12 +702,6 @@ msgstr ""
 
 msgid "HELP_Sort file A to Z at startup"
 msgstr "Die Filmliste wird beim öffnen immer nach Alphabet sortiert."
-
-msgid "HELP_EMC open with cursor on newest (TV mode)"
-msgstr ""
-
-msgid "HELP_EMC open with cursor on newest (player)"
-msgstr ""
 
 msgid "HELP_File order reverse"
 msgstr ""
@@ -802,6 +804,11 @@ msgid "HELP_Hide movies being deleted"
 msgstr ""
 "Die Aufnahme wird schon während des löschens in der Filmliste ausgeblendet.\n"
 "(Es wird aber in jedem Fall im Hintergrund gelöscht.)"
+
+msgid "HELP_Enable remote recordings"
+msgstr ""
+"Erkennt beim nutzen eines gemeinsamen Datenträgers, wenn eine andere Dreambox aufnimmt.\n"
+"Die Aufnahme hat während dem ein eigenes Icon"
 
 msgid "HELP_Automatic timers list cleaning"
 msgstr "Beendete Timer werden automatisch aus der Timerliste entfernt."

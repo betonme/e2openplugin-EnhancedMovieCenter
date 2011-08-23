@@ -528,6 +528,9 @@ msgstr "Verplaats cursor naar einde"
 msgid "Remove service selection"
 msgstr "Verwijder zender selectie"
 
+msgid "Enable remote recordings"
+msgstr "Activeer herkenning opnames van andere Box."
+
 msgid "HELP_About"
 msgstr "Opent het \"Over\" venster."
 
@@ -731,6 +734,11 @@ msgid "HELP_Hide movies being deleted"
 msgstr ""
 "De opname wordt verborgen tijdens het verwijderen.\n"
 "(Het verwijderen wordt altijd in achtergrond uitgevoerd.)"
+
+msgid "HELP_Enable remote recordings"
+msgstr ""
+"Detecteer opnames van een andere Dreambox op een gemeenschappelijk volume.\n"
+"Deze opnames krijgen een specifiek icoon."
 
 msgid "HELP_Automatic timers list cleaning"
 msgstr "Uitgevoerde Timers worden automatisch uit de TimerLijst verwijderd."
