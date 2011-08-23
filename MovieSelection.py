@@ -53,7 +53,7 @@ class SelectionEventInfo:
 		self["FileSize"] = Label("")
 
 	def updateEventInfo(self):
-		if self["list"].currentSelIsDirectory() or self["list"].currentSelIsLatest() or self["list"].currentSelIsVlc() or self.getCurrent() is None: #self.browsingVLC()
+		if self["list"].currentSelIsDirectory() or self["list"].currentSelIsVlc() or self.getCurrent() is None: #or self.browsingVLC()
 			#IDEA Display the path of the selected bookmark #TODO ext = bm
 			self.resetEventInfo()
 		else:
@@ -599,13 +599,6 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			else:
 				self.updateMovieInfo()
 
-	def cursorToLatest(self):
-		if config.EMC.moviecenter_reversed.value:
-			self.moveToIndex(len(self["list"]())-1)
-		else:
-			self.moveToIndex(0)
-		self.updateMovieInfo()
-
 	def onDialogShow(self):
 		self.initButtons()
 		
@@ -968,11 +961,12 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		# The try here is a nice idea, but it costs us a lot of time
 		# Maybe it should be implemented with a timer
 		try:
-			#if os.path.exists(path) or path.find("Latest Recordings")>-1 or path.find("VLC servers")>-1 or self.browsingVLC():
 			if not path.endswith("/"): path += "/"
 			self["list"].reload(path)
+			# Only set new path if reload was successful
 			self.currentPathSel = path
 		except Exception, e:
+			#MAYBE: Display MessageBox
 			emcDebugOut("[EMCMS] reloadList exception:\n" + str(e))
 		finally:
 			self.initCursor()
