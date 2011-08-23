@@ -339,6 +339,9 @@ msgstr "Niet afgespeelde film met icoon kenmerken"
 msgid "Try to load titles from .meta files"
 msgstr "Proberen om titels uit .meta-bestand te lezen"
 
+msgid "Try to load titles from .eit files"
+msgstr "Proberen om titels uit .eit-bestand te lezen"
+
 msgid "EMC re-open list after STOP-press"
 msgstr "EMC na op STOP gedrukt te hebben heropenen"
 
@@ -650,8 +653,15 @@ msgstr ""
 
 msgid "HELP_Try to load titles from .meta files"
 msgstr ""
-"Titels worden van de .meta- of .eit-bestanden geladen indien beschikbaar.\n"
-"In andere gevallen wordt de titel uit de bestandsnaam afgeleid."
+"Titels worden van het .meta-bestand geladen indien beschikbaar.\n"
+"In andere gevallen wordt de titel uit de bestandsnaam afgeleid.\n"
+"(Is .meta en .eit geactiveerd wordt eerst de .meta gelezen.)"
+
+msgid "HELP_Try to load titles from .eit files"
+msgstr ""
+"Titels worden van het .eit-bestand geladen indien beschikbaar.\n"
+"In andere gevallen wordt de titel uit de bestandsnaam afgeleid.\n"
+"(Is .meta en .eit geactiveerd wordt eerst de .meta gelezen.)"
 
 msgid "HELP_Show Movie Format"
 msgstr "De bestandsextentie (bestandsformaat) wordt aan de titel toegevoegd."

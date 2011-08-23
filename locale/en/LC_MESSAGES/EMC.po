@@ -130,8 +130,15 @@ msgstr ""
 
 msgid "HELP_Try to load titles from .meta files"
 msgstr ""
-"Titles will be loaded from the .meta or .eit if availiable.\n"
-"Otherwise the title will be extracted from the filename."
+"Titles will be loaded from the .meta if availiable.\n"
+"Otherwise the title will be extracted from the filename.\n"
+"(Is .meta and .eit activatetd, the .meta will be read first.)"
+
+msgid "HELP_Try to load titles from .eit files"
+msgstr ""
+"Titles will be loaded from the .eit if availiable.\n"
+"Otherwise the title will be extracted from the filename.\n"
+"(Is .meta and .eit activatetd, the .meta will be read first.)"
 
 msgid "HELP_Show Movie Format"
 msgstr "The file extention (file format) will be appended to the title."

@@ -334,7 +334,10 @@ msgid "Show icon indication for non-watched"
 msgstr "Nicht gesehener Film mit Icon kennzeichnen"
 
 msgid "Try to load titles from .meta files"
-msgstr "Versuche Titel aus .eit oder .meta Dateien zu lesen"
+msgstr "Versuche Titel aus .meta Dateien zu lesen"
+
+msgid "Try to load titles from .eit files"
+msgstr "Versuche Titel aus .eit Dateien zu lesen"
 
 msgid "EMC re-open list after STOP-press"
 msgstr "EMC nach Filmstop wieder öffnen"
@@ -720,8 +723,15 @@ msgstr ""
 
 msgid "HELP_Try to load titles from .meta files"
 msgstr ""
-"Titel wird wenn vorhanden aus der .meta oder .eit geladen.\n"
-"Ansonsten wird der Titel aus dem Dateinamen extrahiert."
+"Titel wird wenn vorhanden aus der .meta geladen.\n"
+"Ansonsten wird der Titel aus dem Dateinamen extrahiert.\n"
+"(Ist .meta und .eit aktiviert, wird erst die .meta gelesen.)"
+
+msgid "HELP_Try to load titles from .eit files"
+msgstr ""
+"Titel wird wenn vorhanden aus der .eit geladen.\n"
+"Ansonsten wird der Titel aus dem Dateinamen extrahiert.\n"
+"(Ist .meta und .eit aktiviert, wird erst die .meta gelesen.)"
 
 msgid "HELP_Show Movie Format"
 msgstr "Dateiendung (Dateiformat) wird dem Titel angehängt."
