@@ -146,7 +146,7 @@ class EitList():
 
 	def getEitLengthInSeconds(self):
 		length = self.eit.get('duration', "")
-		return length #(length[0]*60 + length[1])*60 + length[2]
+		return (length[0]*60 + length[1])*60 + length[2]
 
 	##############################################################################
 	## File IO Functions
