@@ -113,7 +113,6 @@ class RecordingsControl:
 				if config.EMC.remote_recordings.value:
 					self.recFileUpdate()
 				self.recStateChange(timer)
-				#DelayedFunction(500, self.recStateChange, self.recDict)
 		except Exception, e:
 			emcDebugOut("[emcRC] recEvent exception:\n" + str(e))
 

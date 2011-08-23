@@ -275,7 +275,6 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 		# Initially load the movielist
 		# So it must not be done when the user it opens the first time
 		#MAYBE this should be configurable
-		emcDebugOut("[EMC_MC] test delayed reload ")
 		DelayedFunction(10000, self.reload, self.loadPath)
 
 	def applySkin(self, desktop, parent):
@@ -831,14 +830,15 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 		self.l.invalidateEntry( idx ) # force redraw of the item
 
 	def detectDVDStructure(self, loadPath):
+		print "EMC dvd " + str (loadPath)
 		if not os.path.isdir(loadPath):
 			return None
 		elif config.EMC.noscan_linked.value and os.path.islink(loadPath):
 			return None
-		elif fileExists(loadPath + "/VIDEO_TS.IFO"):
-			return loadPath + "/VIDEO_TS.IFO"
-		elif fileExists(loadPath + "/VIDEO_TS/VIDEO_TS.IFO"):
-			return loadPath + "/VIDEO_TS/VIDEO_TS.IFO"
+		elif fileExists(loadPath + "VIDEO_TS.IFO"):
+			return loadPath + "VIDEO_TS.IFO"
+		elif fileExists(loadPath + "VIDEO_TS/VIDEO_TS.IFO"):
+			return loadPath + "VIDEO_TS/VIDEO_TS.IFO"
 		return None
 	
 	def createLatestRecordingsList(self):
@@ -942,8 +942,8 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 							pathname = os.path.dirname(dvdStruct)
 							ext = splitext(dvdStruct)[1].lower()
 							date = strftime( "%d.%m.%Y %H:%M", localtime(getmtime(dvdStruct)) )
-							fappend( (pathname, p, ext, date) )
-							#fappend( (dvdStruct, p, ext, date) )
+							#fappend( (pathname, p, ext, date) )
+							fappend( (dvdStruct, p, ext, date) )
 							continue
 					
 					# Folder found
@@ -993,13 +993,9 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 
 	def createFileInfo(self, pathname):
 		# Create info for new record
-		#filelist = []
 		p = os.path.basename(pathname)
 		ext = os.path.splitext(p)[1].lower()
 		date = strftime( "%d.%m.%Y %H:%M", localtime(os.path.getmtime(pathname)) )
-		#filelist.append( (pathname, p, ext, date) )
-		#return filelist
-		#TEST
 		return [ (pathname, p, ext, date) ]
 
 	def reload(self, loadPath):
@@ -1033,7 +1029,8 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 			# Found file
 			resetlist = False
 			filelist = self.createFileInfo(loadPath)
-		
+			loadPath = None
+			
 		else:
 			# Found virtual directory
 			
@@ -1095,7 +1092,9 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 		# If we are here, there is no way back
 		self.currentSelectionCount = 0
 		self.selectionList = None
-		self.loadPath = loadPath
+		
+		if loadPath is not None:
+			self.loadPath = loadPath
 		
 		if self.returnSort is not None:
 			print "EMC test returnSort " + str(self.returnSort)
