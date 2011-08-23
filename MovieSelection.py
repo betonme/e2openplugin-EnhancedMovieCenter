@@ -587,21 +587,17 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		elif first:
 			self.moveToIndex(0)
 		
-		elif self.playerInstance is None:	# detect movie player state (None == not open)
-			if config.EMC.moviecenter_gotonewest.value:
-				self.cursorToLatest()
-			else:
-				self.updateMovieInfo()
+		elif self.playerInstance is None:
+			# No movie player (None == not open)
+			self.updateMovieInfo()
 		
 		else:
-			if config.EMC.moviecenter_gotonewestp.value:
-				self.cursorToLatest()
+			# Get current service from movie player
+			service = self.playerInstance.currentlyPlayedMovie()
+			if service is not None:
+				self.moveToService(service)
 			else:
-				service = self.playerInstance.currentlyPlayedMovie()
-				if service is not None:
-					self.moveToService(service)
-				else:
-					self.updateMovieInfo()
+				self.updateMovieInfo()
 
 	def cursorToLatest(self):
 		if config.EMC.moviecenter_reversed.value:

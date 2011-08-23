@@ -223,8 +223,6 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 			(  separator                                          , config.EMC.about                    , None                  , None                  , 0     , []        , _("") ),			
 			(  _("Sort file A to Z at startup")                   , config.EMC.CoolStartAZ              , None                  , None                  , 0     , []        , _("HELP_Sort file A to Z at startup") ),
 			(  _("File order reverse")                            , config.EMC.moviecenter_reversed     , None                  , None                  , 0     , []        , _("HELP_File order reverse") ),
-			(  _("EMC open with cursor on newest (TV mode)")      , config.EMC.moviecenter_gotonewest   , None                  , None                  , 0     , []        , _("HELP_EMC open with cursor on newest (TV mode)") ),
-			(  _("EMC open with cursor on newest (player)")       , config.EMC.moviecenter_gotonewestp  , None                  , None                  , 0     , []        , _("HELP_EMC open with cursor on newest (player)") ),
 			(  _("Cursor predictive move after selection")        , config.EMC.moviecenter_selmove      , None                  , None                  , 0     , []        , _("HELP_Cursor predictive move after selection") ),
 			
 			(  _("Listbox is skin able")                          , config.EMC.skin_able                , None                  , None                  , 0     , []        , _("HELP_Listbox is skin able") ),
