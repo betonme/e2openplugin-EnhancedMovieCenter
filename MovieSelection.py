@@ -453,12 +453,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		if self.browsingVLC(): return
 		service = self.getNextSelectedService(self.getCurrent())
 		self.returnService = service
-		if self["list"].getAlphaSort():
-			self["key_green"].text = _("Alpha sort")
-			self["list"].setAlphaSort(False)
-		else:
-			self["key_green"].text = _("Date sort")
-			self["list"].setAlphaSort(True)
+		self.initButtons()
 		self.initCursor()
 
 	def toggleSelectionList(self):
@@ -965,6 +960,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			self["list"].reload(path)
 			# Only set new path if reload was successful
 			self.currentPathSel = path
+			self.initButtons()
 		except Exception, e:
 			#MAYBE: Display MessageBox
 			emcDebugOut("[EMCMS] reloadList exception:\n" + str(e))

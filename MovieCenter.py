@@ -200,7 +200,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 		self.loadPath = config.EMC.movie_homepath.value
 		if not self.loadPath.endswith("/"): self.loadPath += "/"
 		self.serviceHandler = eServiceCenter.getInstance()
-		
+		self.returnSort = None
 		self.CoolFont = parseFont("Regular;20", ((1,1),(1,1)))
 		self.CoolSelectFont = parseFont("Regular;20", ((1,1),(1,1)))
 		self.CoolDateFont = parseFont("Regular;20", ((1,1),(1,1)))
@@ -346,6 +346,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 				emcDebugOut("[MC] External observer exception: \n" + str(e))
 
 	def setAlphaSort(self, trueOrFalse):
+		self.returnSort == None
 		self.alphaSort = trueOrFalse
 		self.list = self.doListSort(self.list)
 		self.l.setList( self.list )
@@ -884,12 +885,6 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 		filelist = filelist[:12]
 		filelist = [(i[0], i[1], i[2], strftime( "%d.%m.%Y %H:%M", localtime(os.path.getmtime(i[0])))) for i in filelist]
 		
-		#TODO
-		#QUESTION Should we set date related sorting
-		# if we dont set it the list will be sorted according to the actual sort mode
-		#TODO but if we change the sort mode then we have to update the MovieSelection color buttons -> Missing
-		self.alphaSort = False
-		
 		del append
 		
 		# Return the 12 latest recordings
@@ -1010,16 +1005,13 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 		emcDebugOut("[MC] LOAD PATH:\n" + str(loadPath))
 		customlist, subdirlist, filelist, tmplist = [], [], [], []
 		append = tmplist.append
-		trashcan = False
 		service = None
 		moviestring, date = "", ""
 		length = 0
-		resetlist = False
+		resetlist = True
 		dosort = True
 		sortingkeys = []
-		
-		self.currentSelectionCount = 0
-		self.selectionList = None
+		alphaSort = None
 		
 		if config.EMC.remote_recordings.value:
 			# get a list of current remote recordings
@@ -1028,9 +1020,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 		# Create listings
 		if os.path.isdir(loadPath):
 			# Found directory
-			resetlist = True
 			if not loadPath.endswith("/"): loadPath += "/"
-			self.loadPath = loadPath
 			
 			# Read subdirectories and filenames
 			# Takes 0.6 - 2s
@@ -1045,8 +1035,6 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 		
 		else:
 			# Found virtual directory
-			resetlist = True
-			if not loadPath.endswith("/"): loadPath += "/"
 			
 			if loadPath.endswith("VLC servers/"):
 				emcDebugOut("[EMC] VLC Server")
@@ -1062,11 +1050,10 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 				dosort = False
 				filelist = self.createLatestRecordingsList()
 				customlist = self.createCustomList(loadPath, extend=False) or []
+				alphaSort = False
 			
 			else:
 				raise Exception(_("[EMC] Reload error"))
-		
-		self.loadPath = loadPath
 		
 		# Add custom entries and sub directories to the list
 		customlist += subdirlist
@@ -1102,6 +1089,22 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 				date = date[0:10]
 				
 				append((service, sortingkeys, date, moviestring, filename, 0, length, ext))
+		
+		# If we are here, there is no way back
+		self.currentSelectionCount = 0
+		self.selectionList = None
+		self.loadPath = loadPath
+		
+		if self.returnSort:
+			# Restore sorting mode
+			self.alphaSort = self.returnSort
+			self.returnSort =None
+		
+		if alphaSort:
+			# Backup the actual sorting mode
+			self.returnSort = self.alphaSort
+			# Set new sorting mode
+			self.alphaSort = alphaSort
 		
 		if resetlist:
 			self.list = []
