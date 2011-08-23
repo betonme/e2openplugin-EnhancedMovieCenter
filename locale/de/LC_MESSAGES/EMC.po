@@ -34,7 +34,7 @@ msgid "Skipping movie, the file does not exist.\n"
 msgstr "Film übersprungen, Datei existiert nicht.\n"
 
 msgid "Alpha sort"
-msgstr "Alpha. Sort."
+msgstr "Alpha Sort"
 
 msgid "Play selected movie(s)"
 msgstr "Ausgew. Film(e) abspielen"
@@ -154,7 +154,7 @@ msgid "Delete failed because the trashcan directory does not exist. Attempt to c
 msgstr "Löschen fehlgeschlagen da das Papierkorb-Verzeichnis nicht existert. Jetzt erstellen?"
 
 msgid "Date sort"
-msgstr "Sort. n. Datum"
+msgstr "Datum Sort"
 
 msgid "Error: path '%s' not available!"
 msgstr "Fehler: Verzeichnis %s nicht verfügbar!"
