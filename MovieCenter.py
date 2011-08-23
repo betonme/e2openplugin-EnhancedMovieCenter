@@ -41,6 +41,8 @@ from CutListSupport import CutList
 from MetaSupport import MetaList
 from EitSupport import EitList
 
+global audioExt, dvdExt, videoExt, playlistExt, listExt, mediaExt
+global playerDVB, playerDVD, serviceIdDVB, serviceIdDVD, serviceIdMP3, playerMP3
 
 # Media types
 audioExt = frozenset([".ac3", ".dts", ".flac", ".m4a", ".mp2", ".mp3", ".ogg", ".wav"])
@@ -570,7 +572,6 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 				movieFinished  = config.EMC.movie_mark.value and	progress >= int(config.EMC.movie_finished_percent.value)
 				
 				# Icon
-				global audioExt, dvdExt, videoExt, playlistExt
 				# video
 				if ext in videoExt:
 					if movieUnwatched:
@@ -841,7 +842,6 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 		return None
 	
 	def createLatestRecordingsList(self):
-		global listExt, mediaExt
 		# Make loadPath more flexible
 		#MAYBE: What about using current folder for latest recording lookup?
 		loadPath = config.EMC.movie_homepath.value
@@ -869,8 +869,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 					continue
 				
 				# Filter trashcan
-				print "EMC filter " +str(root)
-				if p.find(movie_trashpath)>-1:
+				if root.find(movie_trashpath)>-1:
 					continue
 				
 				#MAYBE: Take a look into dirs  and dvdstruct folder -> Missing
@@ -891,7 +890,6 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 		return filelist
 
 	def createDirList(self, loadPath):
-		global listExt, mediaExt
 		dirlist, subdirlist, filelist = [], [], []
 		dvdStruct = None
 		pathname, ext, date = "", "", ""
@@ -1169,14 +1167,12 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 									yield self.getPlayerService(path, dir, ext)
 						if files:
 							for name in files:
-								global mediaExt
 								ext = os.path.splitext(name)[1].lower()
 								if ext in mediaExt:
 									path = os.path.join(root, name)
 									yield self.getPlayerService(path, name, ext)
 
 	def getPlayerService(self, path, name, ext=None):
-		global playerDVB, playerDVD, serviceIdDVB, serviceIdDVD, serviceIdMP3, playerMP3
 		if not ext:
 			service = eServiceReference("2:0:1:0:0:0:0:0:0:0:" + path)
 		elif ext in playerDVB:
