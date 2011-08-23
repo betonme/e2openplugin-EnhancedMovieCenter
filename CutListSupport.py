@@ -141,7 +141,8 @@ class CutList():
 		# Always save the last marker
 		self.__saveOldLast( self.__getCutListLast() )
 		# Update local cut list, maybe there is a newer one
-		self.__readCutFile(True)
+		#TODO Not working yet
+		#self.__readCutFile(True)
 		# Is there native cuesheet support
 		cue = InfoBarCueSheetSupport._InfoBarCueSheetSupport__getCuesheet(self)
 		#print "uploadCuesheet cutlist " + str(self.cut_list)
