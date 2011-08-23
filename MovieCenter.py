@@ -152,6 +152,7 @@ def getMovieName(filename, service=None, date=""):
 		metastring = meta and meta.getMetaName()
 		# Improve performance and avoid calculation of movie length
 		length = meta and meta.getMetaLength()
+		# Maybe read also the rectime
 		
 	if not metastring and config.EMC.movie_eitload.value and service:
 			# read title from EIT
@@ -161,6 +162,7 @@ def getMovieName(filename, service=None, date=""):
 				length = eit and eit.getEitLengthInSeconds()
 				#TEST EIT len
 				print "EMC eit length: " + str(moviestring) + " " + str(length)
+				# Maybe read also the start date / time
 	
 	moviestring = metastring or eitstring or moviestring
 	
@@ -849,6 +851,8 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 		filelist = []
 		append = filelist.append
 		pathname, ext, date = "", "", ""
+		# Improve performance and avoid dots
+		movie_trashpath = config.EMC.movie_trashpath.value
 		
 		# walk through entire tree below movie home. Might take a bit long und huge disks... 
 		# think about doing a manual recursive search via listdir() and stop at 2nd level, 
@@ -864,8 +868,11 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 				if ext not in listExt:
 					continue
 				
+				# Filter trashcan
+				if p.find(movie_trashpath)>-1:
+					continue
+				
 				#MAYBE: Take a look into dirs  and dvdstruct folder -> Missing
-				#TODO: Filter trashcan
 				
 				pathname = os.path.join(root, p)
 				if os.path.isfile(pathname):
@@ -890,7 +897,6 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 
 	def createDirList(self, loadPath):
 		global listExt, mediaExt
-		trashcan = False
 		dirlist, subdirlist, filelist = [], [], []
 		dvdStruct = None
 		pathname, ext, date = "", "", ""
@@ -945,9 +951,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 							continue
 					
 					# Folder found
-					if pathname == movie_trashpath:
-						trashcan = True
-					else:
+					if pathname != movie_trashpath:
 						#TODO Maybe we should use ext = "DIR"
 						#BUT sorting depends on ext is none
 						#TODO Use date additionally
@@ -957,7 +961,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 		del fappend
 		del splitext
 		del getmtime
-		return subdirlist, filelist, trashcan
+		return subdirlist, filelist
 
 	def createCustomList(self, loadPath, trashcan=True, extend=True):
 		customlist = []
@@ -1030,9 +1034,9 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 			
 			# Read subdirectories and filenames
 			# Takes 0.6 - 2s
-			subdirlist, filelist, trashcan = self.createDirList(loadPath)
+			subdirlist, filelist = self.createDirList(loadPath)
 			
-			customlist = self.createCustomList(loadPath, trashcan) or []
+			customlist = self.createCustomList(loadPath) or []
 		
 		elif os.path.isfile(loadPath):
 			# Found file
@@ -1189,10 +1193,6 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 		else:
 			service = None
 		return service
-
-	def currentSelIsLatest(self):
-		try:	return self.list[self.getCurrentIndex()][4].startswith("Latest Recordings")
-		except:	return False
 
 	def currentSelIsDirectory(self):
 		try:	return self.list[self.getCurrentIndex()][2] is None
