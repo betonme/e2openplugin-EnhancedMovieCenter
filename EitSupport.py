@@ -237,6 +237,7 @@ class EitList():
 					# Very bad but there can be both encodings
 					# User files can be in cp1252
 					# Is there no other way?
+					short_event_descriptor = "".join(short_event_descriptor)
 					try:
 						short_event_descriptor.decode('utf-8')
 					except UnicodeDecodeError:
@@ -246,6 +247,7 @@ class EitList():
 					# Very bad but there can be both encodings
 					# User files can be in cp1252
 					# Is there no other way?
+					extended_event_descriptor = "".join(extended_event_descriptor)
 					try:
 						extended_event_descriptor.decode('utf-8')
 					except UnicodeDecodeError:
