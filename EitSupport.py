@@ -146,7 +146,7 @@ class EitList():
 
 	def getEitLengthInSeconds(self):
 		length = self.eit.get('duration', "")
-		return (length[0]*60 + length[1])*60 + length[2]
+		return length #(length[0]*60 + length[1])*60 + length[2]
 
 	##############################################################################
 	## File IO Functions
@@ -233,9 +233,24 @@ class EitList():
 							#print data[pos:pos+length]
 							pass 
 						pos += length
-						
-					self.eit['name'] = "".join(short_event_descriptor).decode("cp1252").encode("utf-8")
-					self.eit['description'] = "".join(extended_event_descriptor).decode("cp1252").encode("utf-8")
+					
+					# Very bad but there can be both encodings
+					# User files can be in cp1252
+					# Is there no other way?
+					try:
+						short_event_descriptor.decode('utf-8')
+					except UnicodeDecodeError:
+						short_event_descriptor = short_event_descriptor and short_event_descriptor.decode("cp1252").encode("utf-8")
+					self.eit['name'] = short_event_descriptor
+					
+					# Very bad but there can be both encodings
+					# User files can be in cp1252
+					# Is there no other way?
+					try:
+						extended_event_descriptor.decode('utf-8')
+					except UnicodeDecodeError:
+						extended_event_descriptor = extended_event_descriptor and extended_event_descriptor.decode("cp1252").encode("utf-8")
+					self.eit['description'] = extended_event_descriptor
 					
 				else:
 					# No date clear all
