@@ -830,15 +830,14 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 		self.l.invalidateEntry( idx ) # force redraw of the item
 
 	def detectDVDStructure(self, loadPath):
-		print "EMC dvd " + str (loadPath)
 		if not os.path.isdir(loadPath):
 			return None
 		elif config.EMC.noscan_linked.value and os.path.islink(loadPath):
 			return None
-		elif fileExists(loadPath + "VIDEO_TS.IFO"):
-			return loadPath + "VIDEO_TS.IFO"
-		elif fileExists(loadPath + "VIDEO_TS/VIDEO_TS.IFO"):
-			return loadPath + "VIDEO_TS/VIDEO_TS.IFO"
+		elif fileExists(loadPath + "/VIDEO_TS.IFO"):
+			return loadPath + "/VIDEO_TS.IFO"
+		elif fileExists(loadPath + "/VIDEO_TS/VIDEO_TS.IFO"):
+			return loadPath + "/VIDEO_TS/VIDEO_TS.IFO"
 		return None
 	
 	def createLatestRecordingsList(self):
@@ -870,6 +869,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 					continue
 				
 				# Filter trashcan
+				print "EMC filter " +str(root)
 				if p.find(movie_trashpath)>-1:
 					continue
 				
@@ -942,8 +942,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 							pathname = os.path.dirname(dvdStruct)
 							ext = splitext(dvdStruct)[1].lower()
 							date = strftime( "%d.%m.%Y %H:%M", localtime(getmtime(dvdStruct)) )
-							#fappend( (pathname, p, ext, date) )
-							fappend( (dvdStruct, p, ext, date) )
+							fappend( (pathname, p, ext, date) )
 							continue
 					
 					# Folder found
