@@ -126,7 +126,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 #				"EMCRedL":	(self.unUsed,				"-"),
 #				"EMCGreenL":	(self.unUsed,				"-"),
 #				"EMCYellowL":	(self.unUsed,				"-"),
-				"EMCBlueL":	(self.openBookmarks,		_("Open bookmarks")),
+				"EMCBlueL":	(self.openE2Bookmark,		_("Open E2 bookmarks")),
 				"EMCLeft":	(self.pageUp,				_("Move cursor page up")),
 				"EMCRight":	(self.pageDown,				_("Move cursor page down")),
 				"EMCUp":	(self.moveUp,			_("Move cursor up")),
@@ -357,10 +357,10 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			else:
 				emcDebugOut("[EMCMS] multiSelect Not active")
 
-	def openBookmarks(self):
-		self.session.openWithCallback(self.openBookmarksCB, MovieMenu, "bookmarks", self["list"], None, self["list"].makeSelectionList(), self.currentPathSel)
+	def openE2Bookmark(self):
+		self.session.openWithCallback(self.openE2BookmarkCB, MovieLocationBox, text = _("Open E2 Bookmark path"), dir = self.currentPathSel)
 
-	def openBookmarksCB(self, path=None):
+	def openE2BookmarkCB(self, path=None):
 		if path is not None:
 			path = "bookmark" + path.replace("\n","")
 			self.menuCallback(path)

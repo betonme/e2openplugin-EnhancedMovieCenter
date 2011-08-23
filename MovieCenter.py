@@ -40,7 +40,6 @@ from operator import itemgetter
 from CutListSupport import CutList
 from MetaSupport import MetaList
 from EitSupport import EitList
-from MovieSelectionMenu import openEMCBookmarks
 
 
 # Media types
@@ -988,12 +987,6 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 						for bookmark in bookmarks:
 							#TODO ext = bm
 							append( (bookmark, "E2 "+os.path.basename(bookmark[:-1])) )
-				
-				if config.EMC.bookmarks_emc.value:
-					bookmarks = openEMCBookmarks()
-					if bookmarks:
-						for bookmark in bookmarks:
-							append( (bookmark[:-1], "EMC "+os.path.basename(bookmark[:-1])) )
 		
 		del append
 		return customlist

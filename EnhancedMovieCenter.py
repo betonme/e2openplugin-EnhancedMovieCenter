@@ -212,7 +212,6 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 			(  _("Show Latest Recordings directory")              , config.EMC.latest_recordings        , None                  , None                  , 0     , []        , _("HELP_Show Latest Recordings directory") ),
 			(  _("Show VLC directory")                            , config.EMC.vlc                      , None                  , None                  , 0     , []        , _("HELP_Show VLC directory") ),
 			(  _("Show E2 Bookmarks in movielist")                , config.EMC.bookmarks_e2             , None                  , None                  , 0     , []        , _("HELP_Show E2 Bookmarks in movielist") ),
-			(  _("Show EMC Bookmarks in movielist")               , config.EMC.bookmarks_emc            , None                  , None                  , 0     , []        , _("HELP_Show EMC Bookmarks in movielist") ),
 			
 			(  separator                                          , config.EMC.about                    , None                  , None                  , 1     , []        , _("HELP_separator_hide&performance") ),			
 			(  _("Hide selected entries in movielist")            , config.EMC.cfghide_enable           , None                  , None                  , 1     , []        , _("HELP_cfghide_enable") ),

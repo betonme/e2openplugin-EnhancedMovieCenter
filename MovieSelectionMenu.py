@@ -36,20 +36,6 @@ from EMCTasker import emcTasker, emcDebugOut
 from EnhancedMovieCenter import _
 from Plugins.Extensions.EnhancedMovieCenter.plugin import pluginOpen as emcsetup
 
-#Todo make a new class
-def openEMCBookmarks():
-	bm = []
-	f = None
-	try:
-		f = open("/etc/enigma2/emc-bookmarks.cfg", "r")
-		bm = f.readlines()
-	except Exception, e:
-		emcDebugOut("[EMCBookmarks] Exception in openEMCBookmarks: " + str(e))
-	finally:
-		if f is not None:
-			f.close()
-	return bm
-
 class MovieMenu(Screen):
 	def __init__(self, session, menumode, mlist, service, selections, currentPath):
 		Screen.__init__(self, session)
@@ -58,7 +44,7 @@ class MovieMenu(Screen):
 		self.service = service
 		self.selections = selections
 		self.currentPathSel = currentPath
-
+		
 		self.menu = []
 		if menumode == "normal":
 			self["title"] = StaticText(_("Choose operation"))
@@ -66,7 +52,7 @@ class MovieMenu(Screen):
 				self.menu.append((_("Play last"), boundFunction(self.close, "Play last")))
 			else:
 				self.menu.append((_("Movie home"), boundFunction(self.close, "Movie home")))
-
+			
 			if os.path.exists(config.EMC.movie_trashpath.value):
 				if self.service:
 					self.menu.append((_("Delete permanently"), boundFunction(self.close, "delete")))
@@ -77,8 +63,6 @@ class MovieMenu(Screen):
 			self.menu.append((_("Remove rogue files"), boundFunction(self.remRogueFiles)))
 			self.menu.append((_("Create link(s)"), boundFunction(self.createLinks)))
 			self.menu.append((_("Create directory"), boundFunction(self.createDir)))
-			self.menu.append((_("Bookmark directory"), boundFunction(self.bookmarkDir)))
-			self.menu.append((_("Bookmarks"), boundFunction(self.openBookmark)))
 			if self.service or self.selections:
 				self.menu.append((_("Remove cut list marker"), boundFunction(self.remCutListMarker)))
 			if self.service:
@@ -88,7 +72,7 @@ class MovieMenu(Screen):
 				if ext in tsExt:
 					# Only valid for ts files: CutListEditor, DVDBurn, ...
 					self.menu.extend([(p.description, boundFunction(self.execPlugin, p)) for p in plugins.getPlugins(PluginDescriptor.WHERE_MOVIELIST)])
-			#self.menu.append((_("Manage E2 Bookmarks"), boundFunction(self.e2Bookmarks)))
+			self.menu.append((_("Manage E2 Bookmarks"), boundFunction(self.e2Bookmarks)))
 			self.menu.append((_("Open E2 Bookmark path"), boundFunction(self.openE2Bookmark)))
 			self.menu.append((_("EMC Setup"), boundFunction(self.execPlugin, emcsetup)))
 			
@@ -97,56 +81,15 @@ class MovieMenu(Screen):
 			if self.service is not None:
 				for p in plugins.getPlugins(PluginDescriptor.WHERE_MOVIELIST):
 					self.menu.append((p.description, boundFunction(self.execPlugin, p)))
-					
-		elif menumode == "bookmarks":
-			self["title"] = StaticText(_("Choose bookmark"))
-			bm = openEMCBookmarks()
-			if bm:
-				for line in bm:
-					self.menu.append((line, boundFunction(self.close, line)))
-
+		
 		self["menu"] = List(self.menu)
-		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"],
+		self["actions"] = ActionMap(["OkCancelActions"],
 			{
 				"ok":		self.okButton,
 				"cancel":	self.close,
-				"red":		self.redButton,
 			})
 		self.skinName = "Menu"
 		self.onShown.append(self.onDialogShow)
-
-	def openBookmark(self):
-		self.hide()
-		self.session.openWithCallback(self.openBookmarkCB, MovieMenu, "bookmarks", self.mlist, self.service, self.mlist.makeSelectionList(), self.currentPathSel)
-
-	def openBookmarkCB(self, path=None):
-		if path is not None:
-			path = "bookmark" + path.replace("\n","")
-		self.close(path)
-
-	def bookmarkDir(self):
-		self.session.openWithCallback(self.bookmarkDirCB, MovieLocationBox, text = _("Choose directory"), dir = self.currentPathSel+"/", minFree = 0)
-
-	def bookmarkDirCB(self, path):
-		try:
-			if path.endswith("/"):	path = path[:-1]
-			bmfile = open("/etc/enigma2/emc-bookmarks.cfg", "a")
-			bmfile.write(path + "\n")
-			bmfile.close()
-		except Exception, e:
-			emcDebugOut("[EMCMM] bookmarkDirCB exception:\n" + str(e))
-		self.close(None)
-
-	def redButton(self):
-		if self.mode != "bookmarks": return
-		self.menu.remove(self["menu"].getCurrent())
-		self["menu"].setList(self.menu)
-		try:
-			bmfile = open("/etc/enigma2/emc-bookmarks.cfg", "w")
-			bmfile.writelines([ x[0] for x in self.menu ])
-			bmfile.close()
-		except Exception, e:
-			emcDebugOut("[EMCMM] redButton exception:\n" + str(e))
 
 	def createDir(self):
 		self.hide()
@@ -231,13 +174,11 @@ class MovieMenu(Screen):
 			self.close("setup")
 
 	def e2Bookmarks(self):
-		path = self.currentPathSel
-		self.session.open(MovieLocationBox, text = _("Manage E2 Bookmarks"), dir = path)
+		self.session.open(MovieLocationBox, text = _("Manage E2 Bookmarks"), dir = self.currentPathSel)
 		self.close(None)
 
 	def openE2Bookmark(self):
-		path = self.currentPathSel
-		self.session.openWithCallback(self.openE2BookmarkCB, MovieLocationBox, text = _("Open E2 Bookmark path"), dir = path)
+		self.session.openWithCallback(self.openE2BookmarkCB, MovieLocationBox, text = _("Open E2 Bookmark path"), dir = self.currentPathSel)
 
 	def openE2BookmarkCB(self, path=None):
 		if path is not None:
