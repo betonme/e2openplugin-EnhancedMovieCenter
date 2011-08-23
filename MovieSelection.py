@@ -28,6 +28,7 @@ from Screens.Screen import Screen
 from Screens.HelpMenu import HelpableScreen
 from Screens.MessageBox import MessageBox
 from Screens.ChoiceBox import ChoiceBox
+from Screens.LocationBox import MovieLocationBox
 from Tools import Notifications
 from enigma import getDesktop, eServiceReference
 import os
