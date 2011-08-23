@@ -1100,7 +1100,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 			self.alphaSort = self.returnSort
 			self.returnSort =None
 		
-		if alphaSort:
+		if alphaSort is not None:
 			# Backup the actual sorting mode
 			self.returnSort = self.alphaSort
 			# Set new sorting mode
