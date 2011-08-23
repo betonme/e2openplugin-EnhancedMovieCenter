@@ -28,19 +28,18 @@ from EMCTasker import emcDebugOut
 from IsoFileSupport import IsoSupport
 
 
-# Enumeration
-class METAENUM:
-	SERVICE, NAME, DESC, RECTIME, TAGS, LENGTH, FILESIZE = xrange(7)
-	def __len__(self):
-		return 7
-
-METAID = METAENUM()
-
 # Meta File support class
 # Description
 # http://git.opendreambox.org/?p=enigma2.git;a=blob;f=doc/FILEFORMAT
 class MetaList():
 	#__shared_state = {}
+	SERVICE = 0
+	NAME = 1
+	DESC = 2
+	RECTIME = 3
+	TAGS = 4
+	LENGTH = 5
+	FILESIZE = 6
 	
 	def __init__(self, service=None, borg=False):
 		#if borg:
@@ -50,7 +49,7 @@ class MetaList():
 			self._ready = True
 			self.meta_file = None
 			self.meta_mtime = 0
-			self.meta = [""]*len(METAID)
+			self.meta = ["","","","","","",""]
 			self.iso = None
 
 		self.__newService(service)
@@ -87,7 +86,6 @@ class MetaList():
 		return pts / 90 / 1000
 
 	def __mk_int(self, s):
-		s = s.strip()
 		return int(s) if s else 0
 
 	##############################################################################
@@ -99,29 +97,29 @@ class MetaList():
 		return self.meta_mtime
 		
 	def	getMetaServiceReference(self):
-		return self.meta[METAID.SERVICE]
+		return self.meta[self.SERVICE]
 
 	def	getMetaName(self):
-		return self.meta[METAID.NAME]
+		return self.meta[self.NAME]
 
 	def	getMetaDescription(self):
-		return self.meta[METAID.DESC]
+		return self.meta[self.DESC]
 
 	def	getMetaRecordingTime(self):
-		return self.meta[METAID.RECTIME]
+		return self.meta[self.RECTIME]
 
 	def	getMetaTags(self):
-		return self.meta[METAID.TAGS]
+		return self.meta[self.TAGS]
 
 	def	getMetaLength(self):
 		return self.__ptsToSeconds( self.__getMetaLength() )
 		
 	def	getMetaFileSize(self):
-		return self.__mk_int( self.meta[METAID.FILESIZE] )
+		return self.__mk_int( self.meta[self.FILESIZE] )
 
 	# Intenal from metalist in pts
 	def	__getMetaLength(self):
-		return self.__mk_int( self.meta[METAID.LENGTH] )
+		return self.__mk_int( self.meta[self.LENGTH] )
 
 	##############################################################################
 	## File IO Functions
@@ -154,16 +152,19 @@ class MetaList():
 				# Parse the lines
 				if lines:
 					# Strip lines
-					lines = map(lambda l: l.rstrip("\r\n"), lines)
+					#lines = map(lambda l: l.rstrip("\r\n"), lines)
 					# Extract information
-					self.meta[0:len(lines)] = lines[0:len(lines)]
+					#self.meta[0:len(lines)] = lines[0:len(lines)]
+					lines = [l.strip() for l in lines]
+					le = len(lines)
+					self.meta[0:le] = lines[0:le]
 				else:
 					# No date clear all
-					self.meta = [""]*len(METAID)
+					self.meta = ["","","","","","",""]
 					
 		else:
 			# No path or no file clear all
-			self.meta = [""]*len(METAID)
+			self.meta = ["","","","","","",""]
 
 #MAYBE
 #	def __writeMetaFile(self):
