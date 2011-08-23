@@ -454,6 +454,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		if self.browsingVLC(): return
 		service = self.getNextSelectedService(self.getCurrent())
 		self.returnService = service
+		self["list"].setAlphaSort( not self["list"].getAlphaSort() )
 		self.initButtons()
 		self.initCursor()
 
@@ -929,10 +930,12 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 	def initButtons(self):
 		# Initialize buttons
 		self["key_red"].text = _("Delete")
-		if self["list"].getAlphaSort():
-			self["key_green"].text = _("Date sort")
-		else:
+		print "EMC self[list].getAlphaSort(): " + str(self["list"].getAlphaSort())
+		#TODO get color from MovieCenter
+		if not self["list"].getAlphaSort():
 			self["key_green"].text = _("Alpha sort")
+		else:
+			self["key_green"].text = _("Date sort")
 		self["key_yellow"].text = _("Move")
 		self["key_blue"].text = _(config.EMC.movie_bluefunc.value)
 

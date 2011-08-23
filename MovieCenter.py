@@ -346,7 +346,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 				emcDebugOut("[MC] External observer exception: \n" + str(e))
 
 	def setAlphaSort(self, trueOrFalse):
-		self.returnSort == None
+		self.returnSort = None
 		self.alphaSort = trueOrFalse
 		self.list = self.doListSort(self.list)
 		self.l.setList( self.list )
@@ -943,6 +943,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 							ext = splitext(dvdStruct)[1].lower()
 							date = strftime( "%d.%m.%Y %H:%M", localtime(getmtime(dvdStruct)) )
 							fappend( (pathname, p, ext, date) )
+							#fappend( (dvdStruct, p, ext, date) )
 							continue
 					
 					# Folder found
@@ -1047,9 +1048,10 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 			
 			elif loadPath.endswith("Latest Recordings/"):
 				emcDebugOut("[EMC] Latest Recordings")
-				dosort = False
+				#dosort = False
 				filelist = self.createLatestRecordingsList()
 				customlist = self.createCustomList(loadPath, extend=False) or []
+				# Set date sort mode
 				alphaSort = False
 			
 			else:
@@ -1095,12 +1097,14 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 		self.selectionList = None
 		self.loadPath = loadPath
 		
-		if self.returnSort:
+		if self.returnSort is not None:
+			print "EMC test returnSort " + str(self.returnSort)
 			# Restore sorting mode
 			self.alphaSort = self.returnSort
-			self.returnSort =None
+			self.returnSort = None
 		
 		if alphaSort is not None:
+			print "EMC test alphaSort " + str(alphaSort)
 			# Backup the actual sorting mode
 			self.returnSort = self.alphaSort
 			# Set new sorting mode
