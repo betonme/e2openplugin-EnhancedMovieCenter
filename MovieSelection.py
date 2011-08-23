@@ -54,12 +54,13 @@ class SelectionEventInfo:
 		self["FileSize"] = Label("")
 
 	def updateEventInfo(self):
-		if self["list"].currentSelIsDirectory() or self["list"].currentSelIsVlc() or self.getCurrent() is None: #or self.browsingVLC()
+		if self["list"].currentSelIsDirectory() or self["list"].currentSelIsVlc() or self.getCurrent() is None or self.browsingVLC():
 			#IDEA Display the path of the selected bookmark #TODO ext = bm
 			self.resetEventInfo()
 		else:
 			service = self.getCurrent()
 			if service:
+				print "EMC service " + str(service.getPath())
 				self["Service"].newService(service)
 				self["FileName"].setText(self["list"].getCurrentSelName())
 				path = service.getPath()
@@ -428,8 +429,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 
 	def updateMovieInfoDelayed(self):
 		self.updateTitle()
-		if not self.browsingVLC():
-			self.updateEventInfo()
+		self.updateEventInfo()
 
 	def updateTitle(self):
 		if self.multiSelectIdx:
@@ -930,7 +930,6 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 	def initButtons(self):
 		# Initialize buttons
 		self["key_red"].text = _("Delete")
-		print "EMC self[list].getAlphaSort(): " + str(self["list"].getAlphaSort())
 		#TODO get color from MovieCenter
 		if not self["list"].getAlphaSort():
 			self["key_green"].text = _("Alpha sort")
@@ -951,7 +950,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		self.multiSelectIdx = None
 		if config.EMC.moviecenter_loadtext.value:
 			self.loading()
-		DelayedFunction(5, self.__reloadList, path)
+		DelayedFunction(10, self.__reloadList, path)
 
 	def __reloadList(self, path):
 		if path is None:
@@ -959,6 +958,9 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		
 		# The try here is a nice idea, but it costs us a lot of time
 		# Maybe it should be implemented with a timer
+		
+		t = time()
+		
 		try:
 			if not path.endswith("/"): path += "/"
 			self["list"].reload(path)
@@ -972,6 +974,8 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			self.initCursor()
 			if config.EMC.moviecenter_loadtext.value:
 				self.loading(False)
+		
+		print "EMC After reload " + str(time() - t)
 
 	def refreshRecordings(self):
 		self["list"].refreshRecordings()
@@ -1110,7 +1114,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 						if os.path.exists(fullpath):
 							expTime = localtime(os.stat(fullpath).st_mtime + 24*60*60*int(config.EMC.movie_trashcan_limit.value))
 							if currTime > expTime:
-								print "EMC purge " + str(fullpath)
+								#print "EMC purge " + str(fullpath)
 								#purgeCmd += "; rm -f \"%s\"*" % fullpath.replace(".*","")
 								#purgeCmd += "; rm -f \"%s\"*" % os.path.splitext(fullpath)[0]
 								purgeCmd += '; rm -f "'+ os.path.splitext(fullpath)[0] +'."*'
@@ -1141,7 +1145,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 										service = self["list"].getPlayerService(fullpath, movie, ext)
 										progress = self["list"].getProgress(service, forceRecalc=True)
 										if progress >= int(config.EMC.movie_finished_percent.value):
-											print "EMC purge progress > finished " + str(fullpath)
+											#print "EMC purge progress > finished " + str(fullpath)
 											file = os.path.splitext(fullpath)[0]
 											# create a time stamp with touch
 											mvCmd += '; touch "'+ file +'."*'
