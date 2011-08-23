@@ -101,6 +101,8 @@ def readBasicCfgFile(file):
 
 def getMovieName(filename, service=None, date=""):
 	moviestring = ""
+	metastring = ""
+	eitstring = ""
 	cutnr = ""
 	length = 0
 	sortmoviestring = ""
@@ -120,11 +122,10 @@ def getMovieName(filename, service=None, date=""):
 	# Derived from RecordTimer
 	# This is everywhere so test it first
 	if filename[0:8].isdigit():
-		if filename[9:13].isdigit():
-		#if not filename[8:9].isdigit() and filename[9:13].isdigit():
+		if filename[9:13].isdigit() and not filename[8:9].isdigit():
 			# Default: filename = YYYYMMDD TIME - service_name
 			date = filename[0:8] + filename[9:13]		# "YYYYMMDD TIME - " -> "YYYYMMDDTIME"
-			moviestring = filename[16:]									# skips "YYYYMMDD TIME - "
+			moviestring = filename[16:]							# skips "YYYYMMDD TIME - "
 			
 			# Standard: filename = YYYYMMDD TIME - service_name - name
 			# Long Composition: filename = YYYYMMDD TIME - service_name - name - description
@@ -137,9 +138,9 @@ def getMovieName(filename, service=None, date=""):
 		elif filename[8:11] == " - ":
 			# Short Composition: filename = YYYYMMDD - name
 			date = filename[0:8] + "3333"						# "YYYYMMDD" + DUMMY_TIME
-			moviestring = filename[11:]									# skips "YYYYMMDD - "
+			moviestring = filename[11:]							# skips "YYYYMMDD - "
 	
-	if moviestring == "":
+	if not moviestring:
 		# Calculate date string for sorting
 		# YYYYMMDD HHMM from DD.MM.YYYY HH:MM
 		date = date[6:10] + date[3:5] + date[0:2] + date[11:13] + date[14:]
@@ -148,21 +149,20 @@ def getMovieName(filename, service=None, date=""):
 	if config.EMC.movie_metaload.value and service:
 		# read title from META
 		meta = MetaList(service)
-		moviestring = meta and meta.getMetaName() or moviestring
+		metastring = meta and meta.getMetaName()
 		# Improve performance and avoid calculation of movie length
 		length = meta and meta.getMetaLength()
 		
-#			if not moviestring:
-#			#if config.EMC.movie_eitload:
-#				# read title from EIT
-#				eit = EitList(service)
-#				moviestring = eit and eit.getEitName() or moviestring
-#				#if not length:
-#				eitlen = eit and eit.getEitDuration()
-#				#TEST EIT len
-#				print "EMC eit duration: " + str(moviestring) + " " + str(eitlen) # HH, MM, SS ?
-#				#TODO we need len in pts = s*90000 see cutlist_support
-#				#length = eitlen * 90000
+	if not metastring and config.EMC.movie_eitload.value and service:
+			# read title from EIT
+			eit = EitList(service)
+			eitstring = eit and eit.getEitName()
+			if not length:
+				length = eit and eit.getEitLengthInSeconds()
+				#TEST EIT len
+				print "EMC eit length: " + str(moviestring) + " " + str(length)
+	
+	moviestring = metastring or eitstring or moviestring
 	
 	# Very bad but there can be both encodings
 	# E2 recordings are always in utf8

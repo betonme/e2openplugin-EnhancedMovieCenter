@@ -109,7 +109,6 @@ class EitList():
 			# No service or no eServiceReference
 			self.eit_file = None
 			self.eit_mtime = 0
-			#self.eit = [""]*len(METAID)
 			self.iso = None
 
 	##############################################################################
@@ -144,6 +143,10 @@ class EitList():
 
 	def getEitExtendedDescription(self):
 		return self.getEitDescription()
+
+	def getEitLengthInSeconds(self):
+		length = self.eit.get('duration', "")
+		return (length[0]*60 + length[1])*60 + length[2]
 
 	##############################################################################
 	## File IO Functions
