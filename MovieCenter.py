@@ -609,11 +609,11 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 					color = self.FinishedColor
 				else:
 					color = self.DefaultColor
-				
-			if self.CoolDateColor == 0:
-				colordate = self.DateColor
-			else:
-				colordate = color
+					
+				if self.CoolDateColor == 0:
+					colordate = self.DateColor
+				else:
+					colordate = color
 		
 			selnumtxt = None
 			if selnum == 9999: selnumtxt = "-->"
