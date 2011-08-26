@@ -22,9 +22,11 @@
 import os, sys
 from Components.config import *
 from __init__ import _
-rogueExt = frozenset([".ts.ap", ".ts.cuts", ".ts.cutsr", ".ts.meta", ".ts.sc", ".eit", ".ts_mp.jpg", ".ts.gm", "dvd.cuts"])
-dirExt = frozenset([""])
-listExt = rogueExt | dirExt
+
+global extRogue
+
+extRogue = frozenset([".ts.ap", ".ts.cuts", ".ts.cutsr", ".ts.meta", ".ts.sc", ".eit", ".ts_mp.jpg", ".ts.gm", "dvd.cuts"])
+
 
 class RogueFileCheck:
 	def __init__(self, path, avoid=""):
@@ -53,7 +55,7 @@ class RogueFileCheck:
 				if os.path.exists(fullpath):
 					# Is there an alternative to avoid a for loop in a for loop
 					# Maybe we can use a dict e.x.: .ap = .ts.ap
-					for ext in rogueExt:
+					for ext in extRogue:
 						if p.endswith(ext):
 							if not os.path.exists( fullpath.replace(ext, ".ts") ):
 								try:    self.found[ext] += 1

@@ -36,6 +36,9 @@ from EMCTasker import emcTasker, emcDebugOut
 from EnhancedMovieCenter import _
 from Plugins.Extensions.EnhancedMovieCenter.plugin import pluginOpen as emcsetup
 
+from MovieCenter import extTS
+global extTS
+
 class MovieMenu(Screen):
 	def __init__(self, session, menumode, mlist, service, selections, currentPath):
 		Screen.__init__(self, session)
@@ -66,10 +69,8 @@ class MovieMenu(Screen):
 			if self.service or self.selections:
 				self.menu.append((_("Remove cut list marker"), boundFunction(self.remCutListMarker)))
 			if self.service:
-				from MovieCenter import tsExt
-				global txExt
 				ext = os.path.splitext(self.service.getPath())[1].lower()
-				if ext in tsExt:
+				if ext in extTS:
 					# Only valid for ts files: CutListEditor, DVDBurn, ...
 					self.menu.extend([(p.description, boundFunction(self.execPlugin, p)) for p in plugins.getPlugins(PluginDescriptor.WHERE_MOVIELIST)])
 			self.menu.append((_("Manage E2 Bookmarks"), boundFunction(self.e2Bookmarks)))

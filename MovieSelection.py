@@ -44,6 +44,9 @@ from RogueFileCheck import RogueFileCheck
 from VlcPluginInterface import VlcPluginInterfaceSel
 from CutListSupport import CutList
 
+from MovieCenter import extMedia
+global extMedia
+
 gMS = None
 
 
@@ -54,13 +57,18 @@ class SelectionEventInfo:
 		self["FileSize"] = Label("")
 
 	def updateEventInfo(self):
-		if self["list"].currentSelIsDirectory() or self["list"].currentSelIsVlc() or self.getCurrent() is None or self.browsingVLC():
-			#IDEA Display the path of the selected bookmark #TODO ext = bm
+		# Think about: Is the if really necessary, it should work for all service instances
+		if self.getCurrent() is None or self.browsingVLC():
 			self.resetEventInfo()
+		elif self["list"].currentSelIsBookmark() or self["list"].currentSelIsDirectory():
+			# Display the path of the selected bookmark
+			self.resetEventInfo()
+			service = self.getCurrent()
+			if service:
+				self["FileName"].setText(service.getPath())
 		else:
 			service = self.getCurrent()
 			if service:
-				print "EMC service " + str(service.getPath())
 				self["Service"].newService(service)
 				self["FileName"].setText(self["list"].getCurrentSelName())
 				path = service.getPath()
@@ -251,7 +259,8 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		if nextdir == "..":
 			if self.currentPathSel != "" and self.currentPathSel != "/":
 				# Open Parent folder
-				service = eServiceReference("2:0:1:0:0:0:0:0:0:0:" + self.currentPathSel)
+				#service = eServiceReference("2:0:1:0:0:0:0:0:0:0:" + self.currentPathSel)
+				service = self["list"].getPlayerService(self.currentPathSel)
 				#nextdir = os.path.split(self.currentPathSel)[0]
 				nextdir = os.path.dirname(self.currentPathSel[:-1])
 			else:
@@ -259,7 +268,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 				return
 		else:
 			# Open folder nextdir
-			service = eServiceReference("2:0:1:0:0:0:0:0:0:0:" + "..")
+			service = self["list"].getPlayerService("..")
 		
 		self.forwardStack = []
 		self.backStack.append((self.currentPathSel, self["list"].getCurrent()))
@@ -383,12 +392,12 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 
 	def openMenu(self):
 		current = self.getCurrent()
-		if self["list"].currentSelIsDirectory() or self.browsingVLC(): current = None
+		if not self["list"].currentSelIsPlayable(): current = None
 		self.session.openWithCallback(self.menuCallback, MovieMenu, "normal", self["list"], current, self["list"].makeSelectionList(), self.currentPathSel)
 
 	def openMenuPlugins(self):
 		current = self.getCurrent()
-		if not self["list"].currentSelIsDirectory() and not self.browsingVLC():
+		if self["list"].currentSelIsPlayable():
 			self.session.openWithCallback(self.menuCallback, MovieMenu, "plugins", self["list"], current, self["list"].makeSelectionList(), self.currentPathSel)
 
 	def openScriptMenu(self):
@@ -463,7 +472,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			self.toggle = True
 			return
 		if self.toggle:
-			if not self["list"].currentSelIsDirectory() and not self.browsingVLC():
+			if self["list"].currentSelIsPlayable():
 				self["list"].toggleSelection()
 			# Move cursor
 			if config.EMC.moviecenter_selmove.value != "o":
@@ -606,7 +615,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			DelayedFunction(50, self.initList)
 		
 		else:
-			self.refreshRecordings()
+			self["list"].refreshList()
 			self.initCursor()
 
 	def getCurrentIndex(self):
@@ -843,12 +852,16 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 	def entrySelected(self, playall=False):
 		current = self.getCurrent()
 		if current is not None:
-			if self["list"].currentSelIsDirectory():
+			# Think about MovieSelection should only know about directories and files
+			# All other things should be in the MovieCenter
+			if self["list"].currentSelIsVirtual():
 				# Open folder and reload movielist
 				self.setNextPathSel( self["list"].getCurrentSelDir() )
-			elif self["list"].currentSelIsVlc():
-				entry = self["list"].list[ self["list"].getCurrentIndex() ]
+			elif self.browsingVLC():
 				# TODO full integration of the VLC Player
+				#entry = self["list"].list[ self["list"].getCurrentIndex() ]
+				#TEST this later
+				entry = self["list"].list.getCurrentSelection()
 				self.vlcMovieSelected(entry)
 			else:
 				playlist = self["list"].makeSelectionList()
@@ -943,6 +956,9 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		self.reloadList()
 
 	def triggerReloadList(self):
+		#IDEA:
+		# Short blue refresh list - reloads only progress
+		# Long blue reload  list - finds new movies 
 		self.returnService = self.getCurrent()
 		self.reloadList()
 
@@ -961,24 +977,20 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		
 		t = time()
 		
-		try:
-			if not path.endswith("/"): path += "/"
-			self["list"].reload(path)
-			# Only set new path if reload was successful
-			self.currentPathSel = path
-			self.initButtons()
-		except Exception, e:
-			#MAYBE: Display MessageBox
-			emcDebugOut("[EMCMS] reloadList exception:\n" + str(e))
-		finally:
-			self.initCursor()
-			if config.EMC.moviecenter_loadtext.value:
-				self.loading(False)
+		#try:
+		if not path.endswith("/"): path += "/"
+		path = self["list"].reload(path)
+		self.currentPathSel = path
+		self.initButtons()
+		#except Exception, e:
+		#	#MAYBE: Display MessageBox
+		#	emcDebugOut("[EMCMS] reloadList exception:\n" + str(e))
+		#finally:
+		self.initCursor()
+		if config.EMC.moviecenter_loadtext.value:
+			self.loading(False)
 		
 		print "EMC After reload " + str(time() - t)
-
-	def refreshRecordings(self):
-		self["list"].refreshRecordings()
 
 	def moveCB(self, service):
 		self["list"].highlightService(False, "move", service)	# remove the highlight
@@ -1128,14 +1140,12 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 					# Start only if dreambox is in standby
 					import Screens.Standby
 					if Screens.Standby.inStandby:
-						from MovieCenter import mediaExt
-						global mediaExt
 						mvCmd = ""
 						dirlist = os.listdir(movie_homepath)
 						for movie in dirlist:
 							# Only check media files
 							ext = os.path.splitext(movie)[1]
-							if ext in mediaExt:
+							if ext in extMedia:
 								fullpath = movie_homepath+ movie
 								if os.path.exists(fullpath):
 									currTime = localtime()

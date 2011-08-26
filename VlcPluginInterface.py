@@ -24,6 +24,13 @@ import os
 from enigma import eServiceReference
 from EMCTasker import emcDebugOut
 
+global vlcSrv, vlcDir, vlcFil
+
+# VLC types
+vlcSrv  = "VLCS"
+vlcDir  = "VLCD"
+vlcFil  = "VLCF"
+
 
 class VlcFileListWrapper:
 	def __init__(self):
@@ -40,15 +47,13 @@ class VlcPluginInterfaceSel():
 
 	def vlcMovieSelected(self, entry):
 		try:
-			self.hide()
-#			from Plugins.Extensions.VlcPlayer.VlcPlayer import VlcPlayer
-#			dlg = self.session.open(VlcPlayer, self["list"].vlcServer, VlcFileListWrapper())
-#			dlg.playfile(entry[4], entry[3])
-			try:	# v2.5
-				self["list"].vlcServer.play(self, entry[4], entry[3], VlcFileListWrapper())
-			except:	# v2.6
-				self["list"].vlcServer.play(self.session, entry[4], entry[3], VlcFileListWrapper())
-			self.close()
+			if entry:
+				self.hide()
+				try:	# v2.5
+					self["list"].vlcServer.play(self, entry[4], entry[3], VlcFileListWrapper())
+				except:	# v2.6
+					self["list"].vlcServer.play(self.session, entry[4], entry[3], VlcFileListWrapper())
+				self.close()
 		except Exception, e:
 			emcDebugOut("[EMC_VLC] vlcMovieSelected exception:\n" + str(e))
 
@@ -57,15 +62,6 @@ class VlcPluginInterfaceList():
 	def __init__(self):
 		self.vlcServers = None
 		self.vlcServer = None
-
-	def currentSelIsVlc(self):
-		try:	return self.list[self.getCurrentIndex()][2] == "VLCs"
-		except:	return False
-
-	#TODO This doesn't work anymore
-	#def currentSelIsVlcDir(self):
-	#	try:	return self.list[self.getCurrentIndex()][2] == "VLCd"
-	#	except:	return False
 
 	def createVlcServerList(self, loadPath):
 		try:
@@ -78,10 +74,7 @@ class VlcPluginInterfaceList():
 				for srv in self.vlcServers:
 					srvName = srv.getName()
 					emcDebugOut("[EMC_VLC] srvName = " + str(srvName))
-					#TODO Problem date = VLCd
-					#sref = eServiceReference("2:0:1:0:0:0:0:0:0:0:" + self.loadPath+srvName)	# dummy ref
-					#vlcserverlist.append((sref, (None, None), "VLCd", None, srvName, None, 0, ""))
-					vlcserverlist.append( (loadPath+srvName, srvName) )
+					vlcserverlist.append( (loadPath+srvName, srvName, vlcSrv) )
 			return vlcserverlist
 		except:
 			pass
@@ -89,7 +82,8 @@ class VlcPluginInterfaceList():
 	def createVlcFileList(self, loadPath):
 		vlcdirlist = []
 		vlcfilelist = []
-		vlcPath = loadPath[loadPath.find("VLC servers/")+12:]	# server/dir/name/
+		# Extract server/dir/name/
+		vlcPath = loadPath[loadPath.find("VLC servers/")+12:]
 		serverName = vlcPath.split("/")[0]
 		emcDebugOut("[EMC_VLC] path on %s = %s" %(serverName, vlcPath))
 		server = None
@@ -97,7 +91,7 @@ class VlcPluginInterfaceList():
 		if self.vlcServers:
 			for srv in self.vlcServers:
 				if srv.getName() == serverName: 
-					#emcDebugOut("[EMC_VLC] srv = " + str(srv))
+					emcDebugOut("[EMC_VLC] srv = " + str(srv))
 					server = srv	# find the server
 		if server is not None:
 			try:
@@ -128,34 +122,21 @@ class VlcPluginInterfaceList():
 				emcDebugOut("[EMC_VLC] path = " + path)
 				(vlcFiles, vlcDirs) = server.getFilesAndDirs(path, None)
 				emcDebugOut("[EMC_VLC] got files and dirs...")
+				print str(vlcFiles)
+				print str(vlcDirs)
 				if vlcDirs:
-					for d in vlcDirs:
-						#if d[0] == "..": continue
-						emcDebugOut("[EMC_VLC] d[0] = " + str(d[0]) + d[0])
-						#sref = eServiceReference("2:0:1:0:0:0:0:0:0:0" + loadPath+d[0])	# dummy ref
-						#sref = eServiceReference("2:0:1:0:0:0:0:0:0:0") #:")# + loadPath+d[0])	# dummy ref
-						#sref.setPath(loadPath+d[0])
-						#emcDebugOut("[EMC_VLC] sref = " + loadPath+d[0])
-						#self.list.append((sref, (None, None), "VLCd", None, d[0], None, 0, ""))
-						vlcdirlist.append( (loadPath+d[0], d[0]) )
-					#self.list.sort(key=lambda x: x[4],reverse=False)
+					for name, path in vlcDirs:
+						emcDebugOut("[EMC_VLC] name = " + str(name))
+						vlcdirlist.append( (loadPath+name, name, vlcDir) )
 				if vlcFiles:
-					for f in vlcFiles:
+					for name, path in vlcFiles:
 						from Plugins.Extensions.VlcPlayer.VlcFileList import MEDIA_EXTENSIONS
-						from MovieCenter import mediaExt
-						global mediaExt
-						ext = os.path.splitext(f[0])[1].lower()
-						if MEDIA_EXTENSIONS.has_key(ext) or ext in mediaExt:
-							emcDebugOut("[EMC_VLC] f[0] = " + str(f[0]))
-							emcDebugOut("[EMC_VLC] f[1] = " + str(f[1]))
-							#sref = eServiceReference("2:0:1:0:0:0:0:0:0:0") 		#:" + loadPath+f[0])	# dummy ref
-							#sref.setPath(loadPath+f[0])
-							#sref.setPath(path+f[0])
-							#tmplist.append((sref, (None, None), "VLCs", f[0], f[1], None, 0, ext))
-							#fileDateTime = localtime(os.path.getmtime(pathname))
-							#date = strftime("%Y%m%d%H%M", fileDateTime)
-							vlcfilelist.append( (loadPath+f[0], f[1], ext, "VLCs") )
-					#tmplist.sort(key=lambda x: x[4],reverse=False)
+						ext = os.path.splitext(name)[1].lower()
+						if MEDIA_EXTENSIONS.has_key(ext):
+							emcDebugOut("[EMC_VLC] name = " + str(name))
+							emcDebugOut("[EMC_VLC] path = " + str(path))
+							# Maybe later return real file extension
+							vlcfilelist.append( (loadPath+name, path, vlcFil) )
 			except Exception, e:
 				emcDebugOut("[EMC_VLC] reloadVlcFilelist exception:\n" + str(e))
 		

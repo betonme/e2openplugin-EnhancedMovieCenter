@@ -214,15 +214,15 @@ class CutList():
 		self.__writeCutFile()
 
 	def updateCutList(self, service, play, length):
-		from MovieCenter import serviceIdsCuts
-		global serviceIdsCuts
+		from MovieCenter import sidsCuts
+		global sidsCuts
 		last = self.__getCutListLast()
-		if service.type not in serviceIdsCuts:
+		if service.type not in sidsCuts:
 			self.__removeSavedLast( self.__getCutListSavedLast() )
 			self.__replaceLast( play )
 			self.__replaceOut( length )
 		self.__saveOldLast( last )
-		#if service.type not in serviceIdsCuts:
+		#if service.type not in sidsCuts:
 		#	self.__writeCutFile()
 		self.uploadCuesheet()
 

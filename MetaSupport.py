@@ -117,7 +117,7 @@ class MetaList():
 	def	getMetaFileSize(self):
 		return self.__mk_int( self.meta[self.FILESIZE] if len(self.meta) > self.FILESIZE else "" )
 
-	# Intenal from metalist in pts
+	# Internal from metalist in pts
 	def	__getMetaLength(self):
 		return self.__mk_int( self.meta[self.LENGTH] if len(self.meta) > self.LENGTH else "" )
 

@@ -113,7 +113,7 @@ class EitList():
 
 	##############################################################################
 	## Get Functions
-	def getEitServiceId(self):
+	def getEitsid(self):
 		return self.eit.get('service', "")
 
 	def getEitTsId(self):

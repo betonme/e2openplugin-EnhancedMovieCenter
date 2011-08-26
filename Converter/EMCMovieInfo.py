@@ -52,6 +52,7 @@ class EMCMovieInfo(MovieInfo):
 					service = NavigationInstance.instance.getCurrentlyPlayingServiceReference()
 			
 			if self.type == self.MOVIE_SHORT_DESCRIPTION:
+				# Maybe call only if ts file
 				shortdesc = info and service and info.getInfoString(service, iServiceInformation.sDescription)
 				print "EMC shortdesc1 " + str(shortdesc)
 				if not shortdesc:
@@ -59,6 +60,7 @@ class EMCMovieInfo(MovieInfo):
 					shortdesc = self.meta and self.meta.getMetaDescription()
 					print "EMC shortdesc1a " + str(shortdesc)
 				if not shortdesc:
+					# Maybe call only if ts file
 					event = self.source.event
 					shortdesc = event and event.getShortDescription()
 					print "EMC shortdesc2 " + str(shortdesc)
@@ -68,14 +70,15 @@ class EMCMovieInfo(MovieInfo):
 					print "EMC shortdesc3 " + str(shortdesc)
 				#TODO Movie title
 				if not shortdesc:
-					filename, ext = os.path.splitext(service.getPath())
-					shortdesc = getMovieName(filename, service, "")
+					filename = os.path.basename(service.getPath())
+					shortdesc = getMovieName(filename, service)[0]
 					#	rec_ref_str = info and info.getInfoString(service, iServiceInformation.sServiceref)
 					#	shortdesc = rec_ref_str and ServiceReference(rec_ref_str).getServiceName()
 					print "EMC shortdesc4 getMovieName " + str(shortdesc)
 				return shortdesc or ""
 						
 			elif self.type == self.MOVIE_META_DESCRIPTION:
+				# Maybe call only if ts file
 				extdesc = info and service and info.getInfoString(service, iServiceInformation.sDescription)
 				print "EMC extdesc1 " + str(extdesc)
 				if not extdesc:
@@ -85,8 +88,13 @@ class EMCMovieInfo(MovieInfo):
 				return extdesc or ""
 				
 			elif self.type == self.MOVIE_REC_SERVICE_NAME:
+				# Maybe call only if ts file
 				rec_ref_str = info.getInfoString(service, iServiceInformation.sServiceref)
-				return ServiceReference(rec_ref_str).getServiceName()
+				recsername = ServiceReference(rec_ref_str).getServiceName()
+				if not recsername:
+					filename = os.path.basename(service.getPath())
+					recsername = getMovieName(filename, service)[0]
+				return recsername or ""
 				
 			elif self.type == self.MOVIE_REC_FILESIZE:
 				filesize = info.getInfoObject(service, iServiceInformation.sFileSize)

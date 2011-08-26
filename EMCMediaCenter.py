@@ -41,8 +41,8 @@ from DelayedFunction import DelayedFunction
 from CutListSupport import CutList
 from InfoBarSupport import InfoBarSupport
 
-from MovieCenter import serviceIdDVD
-global serviceIdDVD
+from MovieCenter import sidDVD
+global sidDVD
 
 dvdPlayerPlg = "%s%s"%(resolveFilename(SCOPE_PLUGINS), "Extensions/DVDPlayer/plugin.py")
 
@@ -259,7 +259,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 				self.recordings.toggleProgress(service, True)
 				self.service = service
 				
-				if service and service.type == serviceIdDVD:
+				if service and service.type == sidDVD:
 					# Only import DVDPlayer, if we want to play a DVDPlayer format
 					if fileExists(dvdPlayerPlg) or fileExists("%sc"%dvdPlayerPlg):
 						try:
@@ -294,7 +294,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 				#Temp only
 				#self.service = self.session.nav.getCurrentService()
 				
-				if service and service.type == serviceIdDVD:
+				if service and service.type == sidDVD:
 					# Seek will cause problems with DVDPlayer!
 					# ServiceDVD needs this to start
 					subs = self.getServiceInterface("subtitle")
@@ -484,7 +484,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 		self.sendKey(iServiceKeys.keyUser+8)
 
 	def sendKey(self, key):
-		if self.service and self.service.type != serviceIdDVD: return None
+		if self.service and self.service.type != sidDVD: return None
 		keys = self.getServiceInterface("keys")
 		if keys:
 			keys.keyPressed(key)
@@ -604,7 +604,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 
 	# Not used yet
 	#def createSummary(self):
-	#	if self.service and self.service.type == serviceIdDVD:
+	#	if self.service and self.service.type == sidDVD:
 	#		if fileExists(dvdPlayerPlg) or fileExists("%sc"%dvdPlayerPlg):
 	#			from Plugins.Extensions.DVDPlayer.plugin import DVDSummary
 	#			return DVDSummary
@@ -663,7 +663,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 		# From Merlin2
 		elif config.EMC.movie_jump_first_mark.value == True:
 			self.jumpToFirstMark()
-		if self.service and self.service.type == serviceIdDVD:
+		if self.service and self.service.type == sidDVD:
 			# DVDPlayer Workaround
 			self.pauseService()
 			self.unPauseService()
@@ -671,7 +671,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 
 	# InfoBarNumberZap
 	def keyNumberGlobal(self, number):
-		if self.service and self.service.type == serviceIdDVD:
+		if self.service and self.service.type == sidDVD:
 			if fileExists(dvdPlayerPlg) or fileExists("%sc"%dvdPlayerPlg):
 				from Plugins.Extensions.DVDPlayer.plugin import ChapterZap
 				self.session.openWithCallback(self.numberEntered, ChapterZap, "0")
