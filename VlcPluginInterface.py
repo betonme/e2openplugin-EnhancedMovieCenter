@@ -46,6 +46,7 @@ class VlcPluginInterfaceSel():
 		return self.currentPathSel.find("VLC servers") > -1
 
 	def vlcMovieSelected(self, entry):
+		# TODO full integration of the VLC Player
 		try:
 			if entry:
 				self.hide()
@@ -122,8 +123,6 @@ class VlcPluginInterfaceList():
 				emcDebugOut("[EMC_VLC] path = " + path)
 				(vlcFiles, vlcDirs) = server.getFilesAndDirs(path, None)
 				emcDebugOut("[EMC_VLC] got files and dirs...")
-				print str(vlcFiles)
-				print str(vlcDirs)
 				if vlcDirs:
 					for name, path in vlcDirs:
 						emcDebugOut("[EMC_VLC] name = " + str(name))
@@ -132,11 +131,10 @@ class VlcPluginInterfaceList():
 					for name, path in vlcFiles:
 						from Plugins.Extensions.VlcPlayer.VlcFileList import MEDIA_EXTENSIONS
 						ext = os.path.splitext(name)[1].lower()
-						if MEDIA_EXTENSIONS.has_key(ext):
-							emcDebugOut("[EMC_VLC] name = " + str(name))
+						if MEDIA_EXTENSIONS.has_key(ext[1:]):
 							emcDebugOut("[EMC_VLC] path = " + str(path))
 							# Maybe later return real file extension
-							vlcfilelist.append( (loadPath+name, path, vlcFil) )
+							vlcfilelist.append( (loadPath+name, name, vlcFil) )
 			except Exception, e:
 				emcDebugOut("[EMC_VLC] reloadVlcFilelist exception:\n" + str(e))
 		

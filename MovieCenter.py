@@ -21,6 +21,7 @@
 import math
 import os
 from time import time
+from datetime import datetime
 
 from Components.config import *
 from Components.GUIComponent import GUIComponent
@@ -157,22 +158,21 @@ def getMovieName(filename, service, ext=None):
 	if moviestring[0:8].isdigit():
 		if not moviestring[8:9].isdigit() and moviestring[9:13].isdigit():
 			# Default: filename = YYYYMMDD TIME - service_name
-			date = moviestring[0:8] + moviestring[9:13]		# "YYYYMMDD TIME - " -> "YYYYMMDDTIME"
-			moviestring = moviestring[16:]							# skips "YYYYMMDD TIME - "
+			#date = moviestring[0:8] + moviestring[9:13]		# "YYYYMMDD TIME - " -> "YYYYMMDDTIME"
+			date = moviestring[0:13]												# "YYYYMMDD TIME - " -> "YYYYMMDD TIME"
+			moviestring = moviestring[16:]									# skips "YYYYMMDD TIME - "
 			
 			# Standard: filename = YYYYMMDD TIME - service_name - name
 			# Long Composition: filename = YYYYMMDD TIME - service_name - name - description
 			# Standard: filename = YYYYMMDD TIME - service_name - name
 			# Skip service_name, extract name
-			moviestring = moviestring.split(" - ")
-			# To remove the description use [1:len(moviestring)-1],
-			# but it can happen that the movie name will be cut
-			moviestring = moviestring[1:]
-			moviestring = ' - '.join(str(n) for n in moviestring)
-				
+			split = moviestring.find(" - ")
+			if split > 0: moviestring = moviestring[3+split:]
+			
 		elif moviestring[8:11] == " - ":
 			# Short Composition: filename = YYYYMMDD - name
-			date = moviestring[0:8] + "2000"						# "YYYYMMDD" + DUMMY_TIME
+			#date = moviestring[0:8] + "2000"						# "YYYYMMDD" + DUMMY_TIME
+			date = moviestring[0:8] + " 2000"						# "YYYYMMDD" + " " + DUMMY_TIME
 			moviestring = moviestring[11:]							# skips "YYYYMMDD - "
 	
 	# If the user wants it, extract information from the meta and eit files
@@ -224,26 +224,36 @@ def getMovieName(filename, service, ext=None):
 	
 	# Set date priority here
 	date = date or metadate or eitdate
-	if not date and service:
+	if date:
+		# Datetime from YYYYMMDD HHMM
+		# That is the fastest way: 
+		# strptime is very slow
+		# converting every single part to integer is also very slow
+		time = int(date[9:13])
+		date = int(date[0:8])
+		date = datetime(date/10000, date%10000/100, date%100, time/100, time%100)
+	else:
 		# Fallback: Very slow
 		# Get date from filesystem
 		# Attention date is used for sorting, so take care on the format
-		path = service.getPath()
+		path = service and service.getPath()
 		if os.path.exists(path):
-			date = strftime( "%Y%m%d %H%M", localtime(os.path.getmtime(path)) )
+			date = datetime.fromtimestamp( os.path.getmtime(path) )
+			#date = strftime( "%Y%m%d %H%M", localtime(os.path.getmtime(path)) )
 			#date = strftime( "%d.%m.%Y %H:%M", localtime(os.path.getmtime(path)) )
 		else:
 			#TODO Just for compatibility reasons, should be removed later
 			# Avoid is directory false detection of VLC Files
-			date = "19700101 2000" # Dummy
+			#date = "19700101 2000" # Dummy
+			date = datetime(1970, 1, 1, 20, 00)
 	
 	# Transform date string for screen displaying
-	#IDEA: Return a date object, so everyone could specify their own format
-	#TODO DATE OBJECT
 	# DD.MM.YYYY from YYYYMMDD HHMM
-	date = date[6:8] + "." + date[4:6] + "." + date[0:4]
+	#date = date[6:8] + "." + date[4:6] + "." + date[0:4]
+	
 	# DD.MM.YYYY HH:MM from YYYYMMDD HHMM
 	#date = date[6:8] + "." + date[4:6] + "." + date[0:4] + " " + date[9:11] + ":" + date[11:13]
+	
 	# YYYYMMDD HHMM from DD.MM.YYYY HH:MM
 	#date = date[6:10] + date[3:5] + date[0:2] + date[11:13] + date[14:]
 	
@@ -616,6 +626,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 			
 			else:
 				# Media file
+				date = date.strftime( "%d.%m %H:%M" ) #( "%d.%m.%Y %H:%M" ) #( "%Y.%m.%d %H:%M" )
 				progress = service and self.getProgress(service, length) or 0
 				
 				# Progress State
@@ -1083,7 +1094,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 		moviestring, date = "", ""
 		cutnr = ""
 		length = 0
-		sortstring = ""
+		sorttitle, sortdate = "", ""
 		sortkeyalpha = ""
 		sortkeydate = ""
 		sortingkeys = []
@@ -1166,9 +1177,10 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 				moviestring, length, date, cutnr = getMovieName(filename, service, ext)
 				
 				# Create sortkeys
-				sortstring = moviestring.lower()
-				sortkeyalpha = sortstring + cutnr + date
-				sortkeydate = date + sortstring + str( 999 - int(cutnr or 0) )
+				sorttitle = moviestring.lower()
+				sortdate = date.strftime( "%Y%m%d%H%M" )
+				sortkeyalpha = sorttitle + cutnr + sortdate
+				sortkeydate = sortdate + sorttitle + str( 999 - int(cutnr or 0) )
 				sortingkeys = (sortkeyalpha, sortkeydate)
 				
 				# combine information regarding the emc config

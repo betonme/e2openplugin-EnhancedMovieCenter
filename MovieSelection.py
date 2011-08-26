@@ -859,9 +859,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 				self.setNextPathSel( self["list"].getCurrentSelDir() )
 			elif self.browsingVLC():
 				# TODO full integration of the VLC Player
-				#entry = self["list"].list[ self["list"].getCurrentIndex() ]
-				#TEST this later
-				entry = self["list"].list.getCurrentSelection()
+				entry = self["list"].list[ self["list"].getCurrentIndex() ]
 				self.vlcMovieSelected(entry)
 			else:
 				playlist = self["list"].makeSelectionList()
