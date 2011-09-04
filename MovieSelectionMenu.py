@@ -35,7 +35,7 @@ import os
 from EMCTasker import emcTasker, emcDebugOut
 from EnhancedMovieCenter import _
 from Plugins.Extensions.EnhancedMovieCenter.plugin import pluginOpen as emcsetup
-
+from PermanentSort import PermanentSort
 from MovieCenter import extTS
 global extTS
 
@@ -46,7 +46,7 @@ class MovieMenu(Screen):
 		self.mlist = mlist
 		self.service = service
 		self.selections = selections
-		self.currentPathSel = currentPath
+		self.currentPath = currentPath
 		
 		self.menu = []
 		if menumode == "normal":
@@ -73,8 +73,15 @@ class MovieMenu(Screen):
 				if ext in extTS:
 					# Only valid for ts files: CutListEditor, DVDBurn, ...
 					self.menu.extend([(p.description, boundFunction(self.execPlugin, p)) for p in plugins.getPlugins(PluginDescriptor.WHERE_MOVIELIST)])
-			self.menu.append((_("Manage E2 Bookmarks"), boundFunction(self.e2Bookmarks)))
-			self.menu.append((_("Open E2 Bookmark path"), boundFunction(self.openE2Bookmark)))
+			self.menu.append((_("Open E2 Bookmark path"), boundFunction(self.openBookmark)))
+			self.menu.append((_("Add E2 Bookmark"), boundFunction(self.addBookmark)))
+			self.menu.append((_("Set permanent sort"), boundFunction(self.setPermanentSort, currentPath, mlist.alphaSort)))
+			if mlist.hasFolderPermanentSort(currentPath):
+				self.menu.append((_("Remove permanent sort"), boundFunction(self.removePermanentSort, currentPath)))
+			else:
+				path = mlist.hasParentPermanentSort(currentPath)
+				if path:
+					self.menu.append((_("Remove permanent sort from parent"), boundFunction(self.removePermanentSort, path)))
 			self.menu.append((_("EMC Setup"), boundFunction(self.execPlugin, emcsetup)))
 			
 		elif menumode == "plugins":
@@ -98,7 +105,7 @@ class MovieMenu(Screen):
 
 	def createDirCB(self, name):
 		if name is not None:
-			name = self.currentPathSel+ "/" + name
+			name = os.path.join(self.currentPath, name)
 			if os.path.exists(name):
 				self.session.open(MessageBox, _("Directory "+name+" already exists."), MessageBox.TYPE_ERROR)
 			else:
@@ -111,15 +118,16 @@ class MovieMenu(Screen):
 			self.close(None)
 
 	def createLinks(self):
-		self.session.openWithCallback(self.createLinksCB, MovieLocationBox, text = _("Choose directory"), dir = self.currentPathSel+"/", minFree = 0)
+		self.session.openWithCallback(self.createLinksCB, MovieLocationBox, text = _("Choose directory"), dir = str(self.currentPath)+"/", minFree = 0)
 
 	def createLinksCB(self, targetPath):
 		try:
-			if self.currentPathSel == targetPath or targetPath == None: return
+			if self.currentPath == targetPath or targetPath == None: return
 			cmd = ""
 			for x in self.selections:
-				name = self.mlist.getFileNameOfService(x)
-				cmd += '; ln -s "'+ self.currentPathSel +"/"+ name +'" "'+ targetPath + name +'"'
+				path = self.mlist.getFilePathOfService(x)
+				name = os.path.basename(path)
+				cmd += '; ln -s "'+ path +'" "'+ targetPath + name +'"'
 			if cmd != "":
 				emcTasker.shellExecute(cmd[2:])	# first move, then delete if expiration limit is 0
 				self.close(None)
@@ -132,6 +140,7 @@ class MovieMenu(Screen):
 
 	def emptyTrashCB(self, confirmed):
 		if confirmed:
+			# TODO append callback refreshlist
 			emcTasker.shellExecute("rm -f %s/*"%config.EMC.movie_trashpath.value)
 		self.close(None)
 
@@ -174,14 +183,36 @@ class MovieMenu(Screen):
 			# Close the Menü and reload the movielist
 			self.close("setup")
 
-	def e2Bookmarks(self):
-		self.session.open(MovieLocationBox, text = _("Manage E2 Bookmarks"), dir = self.currentPathSel)
+	def openBookmark(self):
+		self.session.openWithCallback(self.openBookmarkCB, MovieLocationBox, text = _("Open E2 Bookmark path"), dir = str(self.currentPath)+"/")
+
+	def openBookmarkCB(self, path=None):
+		if path is not None:
+			self.close("bookmark", path)
+		else:
+			self.close(None)
+
+	def addBookmark(self):
+		bookmark = self.currentPath
+		if bookmark and config.movielist and config.movielist.videodirs:
+			bookmarks = [os.path.normpath(e2bm) for e2bm in config.movielist.videodirs.value]
+			if bookmark not in bookmarks:
+				bookmarks.append(bookmark)
+				bookmarks.sort()
+				config.movielist.videodirs.value = bookmarks
+				config.movielist.videodirs.save()
+				if config.EMC.bookmarks_e2.value:
+					#TODO Avoid reload
+					# If the custom entry has sortingkeys, maybe an addService will do it
+					self.close("reload")
+				else:
+					self.close(None)
+
+	def setPermanentSort(self, path, sort):
+		self.mlist.setPermanentSort(path, sort)
 		self.close(None)
 
-	def openE2Bookmark(self):
-		self.session.openWithCallback(self.openE2BookmarkCB, MovieLocationBox, text = _("Open E2 Bookmark path"), dir = self.currentPathSel)
-
-	def openE2BookmarkCB(self, path=None):
-		if path is not None:
-			path = "bookmark" + path.replace("\n","")
-		self.close(path)
+	def removePermanentSort(self, path):
+		self.mlist.removePermanentSort(path)
+		self.close(None)
+	

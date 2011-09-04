@@ -57,7 +57,7 @@ class EMCServicePosition(ServicePosition):
 					if NavigationInstance and NavigationInstance.instance:
 						service = NavigationInstance.instance.getCurrentlyPlayingServiceReference()
 				if service:
-					self.cuts = CutList(service, borg=True)
+					self.cuts = CutList( service.getPath() )
 					cutlist = self.cuts and self.cuts.getCutList()
 			return cutlist or []
 			

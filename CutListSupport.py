@@ -25,7 +25,6 @@ import struct
 from bisect import insort
 
 from Components.config import *
-from enigma import eServiceReference
 from Screens.InfoBarGenerics import InfoBarCueSheetSupport, InfoBarSeek
 
 from EMCTasker import emcDebugOut
@@ -36,15 +35,14 @@ from IsoFileSupport import IsoSupport
 # Description
 # http://git.opendreambox.org/?p=enigma2.git;a=blob;f=doc/FILEFORMAT
 class CutList():
-	#__shared_state = {}
-	
+
 	# InfoBarCueSheetSupport types
 	CUT_TYPE_IN = 0
 	CUT_TYPE_OUT = 1
 	CUT_TYPE_MARK = 2
 	CUT_TYPE_LAST = 3
-	# Additional types
-	# Has to be remove before starting a service
+	# Additional custom EMC specific types
+	# Has to be remove before starting a player
 	CUT_TYPE_SAVEDLAST = 4
 	
 	# Toggle Types
@@ -62,34 +60,27 @@ class CutList():
 	ENABLE_RESUME_SUPPORT = True
 	MOVIE_FINISHED = 0xFFFFFFFFFFFFFFFF
 
-	def __init__(self, service=None, borg=False):
-		#if borg:
-		#	self.__dict__ = self.__shared_state
-		if not '_ready' in dir(self):
-			# Very first one time initialization
-			self._ready = True
-			
-			# Is already initialized in InfoBar and EMCMediaCenter
-			#InfoBarCueSheetSupport.__init__(self)
-			#InfoBarSeek.__init__(self)
-						
-			self.cut_file = None
-			self.cut_mtime = 0
-			self.cut_list = []
-			self.iso = None
+	def __init__(self, path=None):
+		# Is already initialized in InfoBar and EMCMediaCenter
+		#InfoBarCueSheetSupport.__init__(self)
+		#InfoBarSeek.__init__(self)
+					
+		self.cut_file = None
+		self.cut_mtime = 0
+		self.cut_list = []
+		self.iso = None
 		
-		self.__newService(service)
+		self.__newPath(path)
 		self.__readCutFile()
 		self.__verifyCutList()
 
-	def __newService(self, service):
-		path = None
+	def __newPath(self, path):
 		name = None
-		if service and isinstance(service, eServiceReference):
-			path = service.getPath()
+		if path:
+			#TODO very slow
 			if path.endswith(".iso"):
 				if not self.iso:
-					self.iso = IsoSupport(service, borg=True)
+					self.iso = IsoSupport(path)
 				name = self.iso and self.iso.getIsoName()
 				if name and len(name):
 					path = "/home/root/dvd-" + name
@@ -97,18 +88,8 @@ class CutList():
 				path += "/dvd"
 			path += ".cuts"
 			if self.cut_file != path:
-				#print "[EMC CUTS] __newService IF " + str(path)
 				self.cut_file = path
 				self.cut_mtime = 0
-			#else:
-			#	print "[EMC CUTS] __newService ELSE " + str(path)
-		else:
-			# No service or no eServiceReference
-			#print "[EMC CUTS] __newService No service or no eServiceReference" + str(service)
-			self.cut_file = None
-			self.cut_mtime = 0
-			self.cut_list = []
-			self.iso = None
 
 	def __ptsToSeconds(self, pts):
 		# Cut files are using the presentation time stamp time format
@@ -130,8 +111,10 @@ class CutList():
 			self.cut_list = cue.getCutList()
 		else:
 			# No native cuesheet support
-			self.__newService(self.service)
-			self.__readCutFile()
+			if self.service:
+				path = self.service.getPath()
+				self.__newPath(path)
+				self.__readCutFile()
 		#MAYBE: If the cutlist is empty we can check the EPG NowNext Events
 		#print "downloadCuesheet cutlist " + str(self.cut_list)
 		#self.__verifyCutList()
@@ -151,8 +134,10 @@ class CutList():
 			cue.setCutList(self.cut_list)
 		else:
 			# No native cuesheet support
-			self.__newService(self.service)
-			self.__writeCutFile()
+			if self.service:
+				path = self.service.getPath()
+				self.__newPath(path)
+				self.__writeCutFile()
 
 	def updateCuesheet(self):
 		try:
@@ -213,17 +198,15 @@ class CutList():
 		#print "toggleLastCutList " + str(toggle) + " cutlist " + str(self.cut_list)
 		self.__writeCutFile()
 
-	def updateCutList(self, service, play, length):
+	def updateCutList(self, play, length):
 		from MovieCenter import sidsCuts
 		global sidsCuts
 		last = self.__getCutListLast()
-		if service.type not in sidsCuts:
+		if self.service.type not in sidsCuts:
 			self.__removeSavedLast( self.__getCutListSavedLast() )
 			self.__replaceLast( play )
 			self.__replaceOut( length )
 		self.__saveOldLast( last )
-		#if service.type not in sidsCuts:
-		#	self.__writeCutFile()
 		self.uploadCuesheet()
 
 	def removeMarksCutList(self):
@@ -325,11 +308,10 @@ class CutList():
 			mtime = os.path.getmtime(path)
 			if self.cut_mtime == mtime:
 				# File has not changed
-				#print "[EMC CUTS] __readCutFile PASS " + str(path)
 				pass
 				
 			else:
-				# New Service or file has changed
+				# New path or file has changed
 				self.cut_mtime = mtime
 				
 				if not update:

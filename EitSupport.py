@@ -24,8 +24,6 @@ import os
 import struct
 import time
 
-from enigma import eServiceReference
-
 from EMCTasker import emcDebugOut
 from IsoFileSupport import IsoSupport
 
@@ -66,33 +64,25 @@ class EitList():
 	EIT_SHORT_EVENT_DESCRIPTOR 		= 0x4d
 	EIT_EXTENDED_EVENT_DESCRIPOR 	=	0x4e
 	
-	def __init__(self, service=None):
-		#self.serviceReference = service
-		#if service:
-			#self.eit_file = service.getPath() + ".eit"
-			#self.readEitFile()
-		#if borg:
-		#	self.__dict__ = self.__shared_state
-		if not '_ready' in dir(self):
-			# Very first one time initialization
-			self._ready = True
-			self.eit_file = None
-			self.eit_mtime = 0
-			#self.eit = [""]*len(METAID)
-			self.eit = {}
-			self.iso = None
-
-		self.__newService(service)
+	def __init__(self, path=None):
+		self.eit_file = None
+		self.eit_mtime = 0
+		
+		#TODO
+		# The dictionary implementation could be very slow
+		self.eit = {}
+		self.iso = None
+		
+		self.__newPath(path)
 		self.__readEitFile()
 
-	def __newService(self, service):
-		path = None
+	def __newPath(self, path):
 		name = None
-		if service and isinstance(service, eServiceReference):
-			path = service.getPath()
+		if path:
+			#TODO Too slow
 			#if path.endswith(".iso"):
 			#	if not self.iso:
-			#		self.iso = IsoSupport(service, borg=True)
+			#		self.iso = IsoSupport(path)
 			#	name = self.iso and self.iso.getIsoName()
 			#	if name and len(name):
 			#		path = "/home/root/dvd-" + name
@@ -101,23 +91,23 @@ class EitList():
 				path += "/dvd"
 			else:
 				path = os.path.splitext(path)[0]
+			if not os.path.exists(path + ".eit"):
+				# Strip existing cut number
+				if path[-4:-3] == "_" and path[-3:].isdigit():
+					path = path[:-4]
 			path += ".eit"
 			if self.eit_file != path:
 				self.eit_file = path
 				self.eit_mtime = 0
-		else:
-			# No service or no eServiceReference
-			self.eit_file = None
-			self.eit_mtime = 0
-			self.iso = None
+			print "EMC TODO eit path " +str(path)
 
 	##############################################################################
 	## Get Functions
 	def getEitsid(self):
-		return self.eit.get('service', "")
+		return self.eit.get('service', "") #TODO
 
 	def getEitTsId(self):
-		return self.eit.get('transportstream', "")
+		return self.eit.get('transportstream', "") #TODO
 
 	def getEitWhen(self):
 		return self.eit.get('when', "")
@@ -160,7 +150,7 @@ class EitList():
 				pass
 				
 			else:
-				# New Service or file has changed
+				# New path or file has changed
 				self.eit_mtime = mtime
 				
 				# Read data from file

@@ -48,27 +48,28 @@ class EMCServiceTime(ServiceTime):
 				if NavigationInstance and NavigationInstance.instance:
 					service = NavigationInstance.instance.getCurrentlyPlayingServiceReference()
 			if service:
-				self.cuts = CutList(service, borg=True)
+				self.cuts = CutList( service.getPath() )
 				begin = self.cuts and self.cuts.getCutListMTime()
 		return begin or 0
 
 	def getLength(self, info, service):
-		len = info and service and info.getLength(service)
-		if not len or len < 0:
+		length = info and service and info.getLength(service)
+		if not length or length < 0:
 			if service:
 				info = self.serviceHandler.info(service)
-				len = info and info.getLength(service)
-			if len <= 0:
-				if service and not isinstance(service, eServiceReference):
-					if NavigationInstance and NavigationInstance.instance:
-						service = NavigationInstance.instance.getCurrentlyPlayingServiceReference()
-				if service:
-					self.meta = MetaList(service, borg=True)
-					len = self.meta and self.meta.getMetaLength()
-					if len <= 0:
-						self.cuts = CutList(service, borg=True)
-						len = self.cuts and self.cuts.getCutListLength()
-		return len or 0
+				length = info and info.getLength(service)
+		if length <= 0:
+			if service and not isinstance(service, eServiceReference):
+				if NavigationInstance and NavigationInstance.instance:
+					service = NavigationInstance.instance.getCurrentlyPlayingServiceReference()
+			if service:
+				path = service.getPath()
+				self.meta = MetaList(path)
+				length = self.meta and self.meta.getMetaLength()
+				if length <= 0:
+					self.cuts = CutList(path)
+					length = self.cuts and self.cuts.getCutListLength()
+		return length or 0
 
 	@cached
 	def getTime(self):
@@ -77,15 +78,18 @@ class EMCServiceTime(ServiceTime):
 			info = self.source.info
 					
 			if self.type == self.STARTTIME:
-				return self.getStart(info, service)
+				#TODO con print "EMC STs " +str(self.getStart(info, service))
+				return self.getStart(info, service) #or None
 				
 			elif self.type == self.ENDTIME:
 				begin = self.getStart(info, service)
-				len = self.getLength(info, service)
-				return begin + len
+				length = self.getLength(info, service)
+				#TODO con print "EMC STe " +str(begin) + " " + str(length)
+				return begin + length #or None
 				
 			elif self.type == self.DURATION:
-				return self.getLength(info, service)
+				#TODO con print "EMC STl " +str(self.getLength(info, service))
+				return self.getLength(info, service) #or None
 		
 		except Exception, e:
 			print "[EMCST] getTime exception:" + str(e)

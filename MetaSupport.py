@@ -22,7 +22,7 @@
 
 import os
 
-from enigma import eServiceReference
+from datetime import datetime
 
 from EMCTasker import emcDebugOut
 from IsoFileSupport import IsoSupport
@@ -32,7 +32,7 @@ from IsoFileSupport import IsoSupport
 # Description
 # http://git.opendreambox.org/?p=enigma2.git;a=blob;f=doc/FILEFORMAT
 class MetaList():
-	#__shared_state = {}
+
 	SERVICE = 0
 	NAME = 1
 	DESC = 2
@@ -41,45 +41,38 @@ class MetaList():
 	LENGTH = 5
 	FILESIZE = 6
 	
-	def __init__(self, service=None, borg=False):
-		#if borg:
-		#	self.__dict__ = self.__shared_state
-		if not '_ready' in dir(self):
-			# Very first one time initialization
-			self._ready = True
-			self.meta_file = None
-			self.meta_mtime = 0
-			self.meta = []
-			self.iso = None
+	def __init__(self, path=None):
+		self.meta_file = None
+		self.meta_mtime = 0
+		self.meta = []
+		self.iso = None
 
-		self.__newService(service)
+		self.__newPath(path)
 		self.__readMetaFile()
 
-	def __newService(self, service):
-		path = None
+	def __newPath(self, path):
 		name = None
-		if service and isinstance(service, eServiceReference):
-			path = service.getPath()
+		if path:
+			#TODO Too slow
 			#if path.endswith(".iso"):
 			#	if not self.iso:
-			#		self.iso = IsoSupport(service, borg=True)
+			#		self.iso = IsoSupport(path)
 			#	name = self.iso and self.iso.getIsoName()
 			#	if name and len(name):
 			#		path = "/home/root/dvd-" + name
 			#el
 			if os.path.isdir(path):
 				path += "/dvd"
+			if not os.path.exists(path + ".meta"):
+				path, ext = os.path.splitext(path)
+				# Strip existing cut number
+				if path[-4:-3] == "_" and path[-3:].isdigit():
+					path = path[:-4] + ext
 			path += ".meta"
 			if self.meta_file != path:
 				self.meta_file = path
 				self.meta_mtime = 0
-		else:
-			# No service or no eServiceReference
-			self.meta_file = None
-			self.meta_mtime = 0
-			self.meta = [""]*len(METAID)
-			self.iso = None
-
+	
 	def __ptsToSeconds(self, pts):
 		# Meta files are using the presentation time stamp time format
 		# pts has a resolution of 90kHz
@@ -87,6 +80,9 @@ class MetaList():
 
 	def __mk_int(self, s):
 		return int(s) if s else 0
+
+	def __secondsToDate(self, i):
+		return datetime.fromtimestamp(i)
 
 	##############################################################################
 	## Get Functions
@@ -106,7 +102,7 @@ class MetaList():
 		return self.meta[self.DESC] if len(self.meta) > self.DESC else ""
 
 	def	getMetaRecordingTime(self):
-		return self.meta[self.RECTIME] if len(self.meta) > self.RECTIME else ""
+		return self.__secondsToDate( self.__getMetaRecordingTime() )
 
 	def	getMetaTags(self):
 		return self.meta[self.TAGS] if len(self.meta) > self.TAGS else ""
@@ -118,6 +114,9 @@ class MetaList():
 		return self.__mk_int( self.meta[self.FILESIZE] if len(self.meta) > self.FILESIZE else "" )
 
 	# Internal from metalist in pts
+	def	__getMetaRecordingTime(self):
+		return self.__mk_int( self.meta[self.RECTIME] if len(self.meta) > self.RECTIME else "" )
+
 	def	__getMetaLength(self):
 		return self.__mk_int( self.meta[self.LENGTH] if len(self.meta) > self.LENGTH else "" )
 
@@ -133,7 +132,7 @@ class MetaList():
 				pass
 				
 			else:
-				# New Service or file has changed
+				# New path or file has changed
 				self.meta_mtime = mtime
 				
 				# Read data from file

@@ -33,7 +33,7 @@ from ServiceReference import ServiceReference
 
 from Plugins.Extensions.EnhancedMovieCenter.MetaSupport import MetaList
 from Plugins.Extensions.EnhancedMovieCenter.EitSupport import EitList
-from Plugins.Extensions.EnhancedMovieCenter.MovieCenter import getMovieName
+
 
 class EMCMovieInfo(MovieInfo):
 	def __init__(self, type):
@@ -54,37 +54,50 @@ class EMCMovieInfo(MovieInfo):
 			if self.type == self.MOVIE_SHORT_DESCRIPTION:
 				# Maybe call only if ts file
 				shortdesc = info and service and info.getInfoString(service, iServiceInformation.sDescription)
-				print "EMC shortdesc1 " + str(shortdesc)
+				#TODO con print "EMC mi shortdesc1 " + str(shortdesc)
 				if not shortdesc:
-					self.meta = service and MetaList(service)
-					shortdesc = self.meta and self.meta.getMetaDescription()
-					print "EMC shortdesc1a " + str(shortdesc)
-				if not shortdesc:
-					# Maybe call only if ts file
-					event = self.source.event
-					shortdesc = event and event.getShortDescription()
-					print "EMC shortdesc2 " + str(shortdesc)
-				if not shortdesc:
-					self.eit = service and EitList(service)
-					shortdesc = self.eit and self.eit.getEitShortDescription()
-					print "EMC shortdesc3 " + str(shortdesc)
-				#TODO Movie title
-				if not shortdesc:
-					filename = os.path.basename(service.getPath())
-					shortdesc = getMovieName(filename, service)[0]
-					#	rec_ref_str = info and info.getInfoString(service, iServiceInformation.sServiceref)
-					#	shortdesc = rec_ref_str and ServiceReference(rec_ref_str).getServiceName()
-					print "EMC shortdesc4 getMovieName " + str(shortdesc)
+					if service:
+						path = service.getPath()
+						self.meta = service and MetaList(path)
+						shortdesc = self.meta and self.meta.getMetaDescription()
+						#TODO con print "EMC mi shortdesc1a " + str(shortdesc)
+						if not shortdesc:
+							# Maybe call only if ts file
+							event = self.source.event
+							shortdesc = event and event.getShortDescription()
+							#TODO con print "EMC mi shortdesc2 " + str(shortdesc)
+						if not shortdesc:
+							self.eit = service and EitList(path)
+							shortdesc = self.eit and self.eit.getEitShortDescription()
+							#TODO con print "EMC mi shortdesc3 " + str(shortdesc)
+						if not shortdesc:
+							#1
+							#	rec_ref_str = info and info.getInfoString(service, iServiceInformation.sServiceref)
+							#	shortdesc = rec_ref_str and ServiceReference(rec_ref_str).getServiceName()
+							#2
+							# filename = os.path.basename(service.getPath())
+							# shortdesc = getFileTitle(filename, service)[0]
+							#3
+							shortdesc = service.getName()
+							#TODO con print "EMC mi shortdesc4 Service getName " + str(shortdesc)
+							#Fallback basename path
 				return shortdesc or ""
 						
 			elif self.type == self.MOVIE_META_DESCRIPTION:
 				# Maybe call only if ts file
 				extdesc = info and service and info.getInfoString(service, iServiceInformation.sDescription)
-				print "EMC extdesc1 " + str(extdesc)
+				#TODO con print "EMC mi extdesc1 " + str(extdesc)
 				if not extdesc:
-					self.meta = service and MetaList(service, borg=True)
-					extdesc = self.meta and self.meta.getMetaDescription()
-					print "EMC extdesc3 " + str(extdesc)
+					if service:
+						path = service.getPath()
+						self.meta = service and MetaList(path)
+						extdesc = self.meta and self.meta.getMetaDescription()
+						#TODO con print "EMC mi extdesc3 " + str(extdesc)
+						if not extdesc:
+							if os.path.isdir(path) and path != "..":
+								# Resolve symbolic link
+								extdesc = os.path.realpath(path)
+							#TODO con print "EMC mi extdesc4 " + str(extdesc)
 				return extdesc or ""
 				
 			elif self.type == self.MOVIE_REC_SERVICE_NAME:
@@ -92,14 +105,19 @@ class EMCMovieInfo(MovieInfo):
 				rec_ref_str = info.getInfoString(service, iServiceInformation.sServiceref)
 				recsername = ServiceReference(rec_ref_str).getServiceName()
 				if not recsername:
-					filename = os.path.basename(service.getPath())
-					recsername = getMovieName(filename, service)[0]
+					#filename = os.path.basename(service.getPath())
+					#recsername = getFileTitle(filename, service)[0]
+					recsername = service.getName()
+					#TODO con print "EMC mi recsername Service getName " + str(recsername)
+					#Fallback basename path
 				return recsername or ""
 				
 			elif self.type == self.MOVIE_REC_FILESIZE:
 				filesize = info.getInfoObject(service, iServiceInformation.sFileSize)
+				#TODO con print "EMC mi filesize " + str(filesize)
 				if filesize is not None:
 					return "%d MB" % (filesize / (1024*1024))
+				return ""
 				
 		except Exception, e:
 			print "[EMCMI] getText exception:" + str(e)

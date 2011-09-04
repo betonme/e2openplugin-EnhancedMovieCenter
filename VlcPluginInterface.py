@@ -23,6 +23,7 @@ import os
 
 from enigma import eServiceReference
 from EMCTasker import emcDebugOut
+from Screens.MessageBox import MessageBox
 
 global vlcSrv, vlcDir, vlcFil
 
@@ -43,7 +44,7 @@ class VlcFileListWrapper:
 
 class VlcPluginInterfaceSel():
 	def browsingVLC(self):
-		return self.currentPathSel.find("VLC servers") > -1
+		return self.currentPath.find("VLC servers") > -1
 
 	def vlcMovieSelected(self, entry):
 		# TODO full integration of the VLC Player
@@ -75,7 +76,7 @@ class VlcPluginInterfaceList():
 				for srv in self.vlcServers:
 					srvName = srv.getName()
 					emcDebugOut("[EMC_VLC] srvName = " + str(srvName))
-					vlcserverlist.append( (loadPath+srvName, srvName, vlcSrv) )
+					vlcserverlist.append( (os.path.join(loadPath, srvName), srvName, vlcSrv) )
 			return vlcserverlist
 		except:
 			pass
@@ -84,8 +85,10 @@ class VlcPluginInterfaceList():
 		vlcdirlist = []
 		vlcfilelist = []
 		# Extract server/dir/name/
+		#TODO Find a more stable variant
 		vlcPath = loadPath[loadPath.find("VLC servers/")+12:]
 		serverName = vlcPath.split("/")[0]
+		vlcPath = vlcPath[len(serverName)+1:]
 		emcDebugOut("[EMC_VLC] path on %s = %s" %(serverName, vlcPath))
 		server = None
 		self.vlcServer = None
@@ -99,42 +102,34 @@ class VlcPluginInterfaceList():
 				self.vlcServer = server
 				baseDir = server.getBasedir()
 				emcDebugOut("[EMC_VLC] baseDir = " + baseDir)
-				vlcPath = vlcPath[len(serverName):]
+				#vlcPath = vlcPath[len(serverName):]
 				emcDebugOut("[EMC_VLC] vlcPath = " + vlcPath)
 				# Build path
-				if baseDir.startswith("/"):
-					baseDir = baseDir[1:]
-				if baseDir == "":
-					if vlcPath.startswith("/"):
-						path = vlcPath[1:]
-					else:
-						path = vlcPath
-				elif baseDir.endswith("/"):
-					if vlcPath.startswith("/"):
-						path = baseDir[:-1]+vlcPath
-					else:
-						path = baseDir+vlcPath
-				else:
-					if vlcPath.startswith("/"):
-						path = baseDir+vlcPath
-					else:
-						path = baseDir+"/"+vlcPath
+				path = os.path.join(baseDir, vlcPath)
 				# Load path
 				emcDebugOut("[EMC_VLC] path = " + path)
-				(vlcFiles, vlcDirs) = server.getFilesAndDirs(path, None)
-				emcDebugOut("[EMC_VLC] got files and dirs...")
+				try: 
+					(vlcFiles, vlcDirs) = server.getFilesAndDirs(path, None)
+				except URLError:
+					self.session.open(MessageBox, _("VLC Server not reachable"), MessageBox.TYPE_ERROR)
+				emcDebugOut("[EMC_VLC] got dirs and files...")
 				if vlcDirs:
 					for name, path in vlcDirs:
-						emcDebugOut("[EMC_VLC] name = " + str(name))
-						vlcdirlist.append( (loadPath+name, name, vlcDir) )
+						emcDebugOut("[EMC_VLC] dir = " + str(name))
+						vlcdirlist.append( (os.path.join(loadPath, name), name, vlcDir) )
+						#vlcdirlist.append( (os.path.join(loadPath, path), name, vlcDir) )
+						#vlcdirlist.append( (path, name, vlcDir) )
 				if vlcFiles:
 					for name, path in vlcFiles:
 						from Plugins.Extensions.VlcPlayer.VlcFileList import MEDIA_EXTENSIONS
-						ext = os.path.splitext(name)[1].lower()
-						if MEDIA_EXTENSIONS.has_key(ext[1:]):
-							emcDebugOut("[EMC_VLC] path = " + str(path))
+						ext = os.path.splitext(name)[1].lower()[1:]
+						#TODO all media extensions should be indicated by the vlc player
+						if MEDIA_EXTENSIONS.has_key(ext):
 							# Maybe later return real file extension
-							vlcfilelist.append( (loadPath+name, name, vlcFil) )
+							emcDebugOut("[EMC_VLC] media file = " + str(name))
+							vlcfilelist.append( (path, name, vlcFil) )
+						else:
+							emcDebugOut("[EMC_VLC] file = " + str(name))
 			except Exception, e:
 				emcDebugOut("[EMC_VLC] reloadVlcFilelist exception:\n" + str(e))
 		

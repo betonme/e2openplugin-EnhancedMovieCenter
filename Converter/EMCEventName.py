@@ -49,33 +49,55 @@ class EMCEventName(EventName):
 			if service and not isinstance(service, eServiceReference):
 				if NavigationInstance and NavigationInstance.instance:
 					service = NavigationInstance.instance.getCurrentlyPlayingServiceReference()
-					
+			
 			if self.type == self.NAME:
 				name = event and event.getEventName()
 				return name or ""
 			
 			elif self.type == self.SHORT_DESCRIPTION:
 				shortdesc = event and event.getShortDescription()
+				#TODO con print "EMC en shortdesc1 " + str(shortdesc)
 				if not shortdesc:
-					#print "EMC shortdesc Eit"
-					self.eit = EitList(service)
-					shortdesc = self.eit and self.eit.getEitDescription()
-				if not shortdesc:
-					#print "EMC shortdesc Meta"
-					self.meta = MetaList(service, borg=True)
-					shortdesc = self.meta and self.meta.getMetaDescription()
+					if service:
+						path = service.getPath()
+						self.eit = EitList(path)
+						shortdesc = self.eit and self.eit.getEitDescription()
+						#TODO con print "EMC en shortdesc2 " + str(shortdesc)
+						if not shortdesc:
+							self.meta = MetaList(path)
+							shortdesc = self.meta and self.meta.getMetaDescription()
+							#TODO con print "EMC en shortdesc3 " + str(shortdesc)
+						if not shortdesc:
+							#1
+							#	rec_ref_str = info and info.getInfoString(service, iServiceInformation.sServiceref)
+							#	shortdesc = rec_ref_str and ServiceReference(rec_ref_str).getServiceName()
+							#2
+							# filename = os.path.basename(service.getPath())
+							# shortdesc = getFileTitle(filename, service)[0]
+							#3
+							shortdesc = service.getName()
+							#TODO con print "EMC en shortdesc4 " + str(shortdesc)
+							#Fallback basename path
 				return shortdesc or ""
 			
 			elif self.type == self.EXTENDED_DESCRIPTION:
 				extdesc = event and event.getExtendedDescription()
+				#TODO con print "EMC en extdesc1 " + str(extdesc)
 				if not extdesc:
-					#print "EMC EIT extdesc Meta"
-					self.meta = MetaList(service, borg=True)
-					extdesc = self.meta and self.meta.getMetaDescription()
-				if not extdesc:
-					#print "EMC EIT extdesc Eit"
-					self.eit = EitList(service)
-					extdesc = self.eit and self.eit.getEitDescription()
+					if service:
+						path = service.getPath()
+						self.eit = EitList(path)
+						extdesc = self.eit and self.eit.getEitDescription()
+						#TODO con print "EMC en extdesc3 " + str(extdesc)
+						if not extdesc:
+							self.meta = MetaList(path)
+							extdesc = self.meta and self.meta.getMetaDescription()
+							#TODO con print "EMC en extdesc2 " + str(extdesc)
+							if not extdesc:
+								if os.path.isdir(path) and path != "..":
+									# Resolve symbolic link
+									extdesc = os.path.realpath(path)
+									#TODO con print "EMC en extdesc4 " + str(extdesc)
 				return extdesc or ""
 			
 			elif self.type == self.ID:

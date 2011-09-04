@@ -31,7 +31,7 @@ def emcDebugOut(outtxt, outfile=None, fmode="aw", forced=False):
 	try:	# fails if called too early during Enigma startup
 		if config.EMC.debug.value or forced:
 			if outfile is None:
-				outfile = config.EMC.folder.value +"/"+ config.EMC.debugfile.value
+				outfile = os.path.join(config.EMC.folder.value, config.EMC.debugfile.value)
 				ltim = localtime()
 				headerstr = "%04d%02d%02d %02d:%02d " %(ltim[0],ltim[1],ltim[2],ltim[3],ltim[4])
 				outtxt = headerstr + outtxt
@@ -104,7 +104,8 @@ class EMCExecutioner:
 			self.associated[ self.execCount-1 & 1 ][:] = []	# clear list
 			self.returnData = ""
 			# Set selection to return service
-			gRecordings.initCursor()
+			#TODO use a callback funtion
+			gRecordings.initCursor(False)
 			
 			if os.path.exists(self.scriptlut[ self.execCount & 1 ]):
 				emcDebugOut("[emcTasker] sh exec rebound")
@@ -175,10 +176,11 @@ class EMCTasker:
 	def LaunchRestart(self, confirmFlag=True):
 		if confirmFlag:
 			emcDebugOut("+++ Enigma restart NOW")
+			flag = os.path.join(config.EMC.folder.value, "EMC_standby_flag.tmp")
 			if Screens.Standby.inStandby or config.EMC.enigmarestart_stby.value:
-				emcDebugOut("!", config.EMC.folder.value + "/EMC_standby_flag.tmp", fmode="w", forced=True)
+				emcDebugOut("!", flag, fmode="w", forced=True)
 			else:
-				self.shellExecute("rm -rf " + config.EMC.folder.value + "/EMC_standby_flag.tmp")
+				self.shellExecute("rm -rf " + flag)
 			self.session.open(TryQuitMainloop, 3)
 			# this means that we're going to be re-instantiated after Enigma has restarted
 		else:

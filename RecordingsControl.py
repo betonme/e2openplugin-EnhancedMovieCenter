@@ -196,29 +196,37 @@ class RecordingsControl:
 	def remoteInit(self, ip):
 		try:
 			if ip is not None:
-				self.recFile = config.EMC.folder.value + "/db_%s.rec" %str(ip).replace(", ", ".")[1:-1]
+				rec = "/db_%s.rec" %str(ip).replace(", ", ".")[1:-1]
+				self.recFile = os.path.join(config.EMC.folder.value, rec)
 		except Exception, e:
 			emcDebugOut("[emcRC] remoteInit exception:\n" + str(e))
 
 	def recFileUpdate(self):
+		recf = None
 		try:
 			if self.recFile is None: self.remoteInit( spNET.whatIsMyIP() )
 			if self.recFile is None: return	# was not able to get IP
 			recf = open(self.recFile, "wb")
 			pickle.dump(self.recDict.keys(), recf)
-			recf.close()
 		except Exception, e:
 			emcDebugOut("[emcRC] recFileUpdate exception:\n" + str(e))
+		finally:
+			if recf is not None:
+				recf.close()
 
 	def recFilesRead(self):
 		if self.recFile is None: self.recFileUpdate()
 		if self.recFile is None: return
 		self.recRemoteList = []
+		recf = None
 		try:
 			for x in os.listdir(config.EMC.folder.value):
-				if x.endswith(".rec") and x != self.recFile.split("/")[-1]:
-					recf = open(config.EMC.folder.value +"/"+ x, "rb")
+				path = os.path.join(config.EMC.folder.value, x)
+				if x.endswith(".rec") and path != self.recFile:
+					recf = open( path, "rb" )
 					self.recRemoteList += pickle.load(recf)
-					recf.close()
 		except Exception, e:
 			emcDebugOut("[emcRC] recFilesRead exception:\n" + str(e))
+		finally:
+			if recf is not None:
+				recf.close()

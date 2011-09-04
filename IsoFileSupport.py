@@ -22,32 +22,22 @@
 
 import os
 
-from enigma import eServiceReference
-
 from EMCTasker import emcDebugOut
 
 
 class IsoSupport():
-	#__shared_state = {}
 
-	def __init__(self, service=None, borg=False):
-		#if borg:
-		#	self.__dict__ = self.__shared_state
-		if not '_ready' in dir(self):
-			# Very first one time initialization
-			self._ready = True
-			self.iso_file = None
-			self.iso_mtime = 0
-			self.iso_name = ""
+	def __init__(self, path=None):
+		self.iso_file = None
+		self.iso_mtime = 0
+		self.iso_name = ""
 					
-		self.__newService(service)
-		# Temporary deactivated
+		self.__newPath(path)
+		#TODO Temporary deactivated because of massive performance issues
 		#self.__readISOFile()
 
-	def __newService(self, service):
-		path = None
-		if service and isinstance(service, eServiceReference):
-			path = service.getPath()
+	def __newPath(self, path):
+		if path:
 			if path.endswith(".iso"):
 				if self.iso_file == path:
 					# Same file
@@ -62,11 +52,6 @@ class IsoSupport():
 				self.iso_file = None
 				self.iso_mtime = 0
 				self.iso_name = ""
-		else:
-			# No service or no eServiceReference
-			self.iso_file = None
-			self.iso_mtime = 0
-			self.iso_name = ""
 
 	##############################################################################
 	## Get Function
@@ -87,7 +72,7 @@ class IsoSupport():
 					pass
 					
 				else:
-					# New Service or file has changed
+					# New path or file has changed
 					self.iso_mtime = mtime
 					
 					# Read data from file

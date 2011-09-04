@@ -123,12 +123,18 @@ def langListSel():
 		newlist.append( _(e[1][0]) )
 	return newlist
 
-launch_choices = [	("None", _("No override")),
-										("showMovies", _("Video-button")),
-										("showTv", _("TV-button")),
-										("showRadio", _("Radio-button")),
-										("openQuickbutton", _("Quick-button")),
-										("timeshiftStart", _("Timeshift-button"))]
+launch_choices = [	("None",						_("No override")),
+										("showMovies",			_("Video-button")),
+										("showTv",					_("TV-button")),
+										("showRadio",				_("Radio-button")),
+										("openQuickbutton",	_("Quick-button")),
+										("timeshiftStart",	_("Timeshift-button")) ]
+
+# Date format is implemented using datetime.strftime
+date_choices = [	("%d.%m.%Y",					_("DD.MM.YYYY")),
+									("%m.%d %H:%M",				_("MM.DD HH:MM")),
+									("%Y.%m.%d",					_("YYYY.MM.DD")),
+									("%m.%d %H:%M",				_("MM.DD HH:MM")) ]
 
 config.EMC                           = ConfigSubsection()
 config.EMC.needsreload               = ConfigYesNo(default = False)
@@ -167,6 +173,7 @@ config.EMC.movie_progress            = ConfigSelection(default = "PB", choices =
 config.EMC.movie_watching_percent    = ConfigSelectionNumber(0, 30, 1, default = 5)
 config.EMC.movie_finished_percent    = ConfigSelectionNumber(50, 100, 1, default = 80)
 config.EMC.movie_date                = ConfigYesNo(default = True)
+config.EMC.movie_date_format         = ConfigSelection(default = "%d.%m.%Y", choices = date_choices)
 config.EMC.movie_mark                = ConfigYesNo(default = True)
 config.EMC.movie_ignore_firstcuts    = ConfigYesNo(default = True)
 config.EMC.movie_jump_first_mark     = ConfigYesNo(default = True)
@@ -184,6 +191,7 @@ config.EMC.movie_homepath            = ConfigTextWOHelp(default = "/hdd/movie", 
 config.EMC.movie_pathlimit           = ConfigTextWOHelp(default = "/hdd/movie", fixed_size = False, visible_width= 22)
 config.EMC.movie_trashpath           = ConfigTextWOHelp(default = "/hdd/movie/trashcan", fixed_size = False, visible_width= 22)
 config.EMC.movie_trashcan_hide       = ConfigYesNo(default = False)
+config.EMC.movie_trashcan_dynamic    = ConfigYesNo(default = True)
 config.EMC.movie_trashcan_clean      = ConfigYesNo(default = True)
 config.EMC.movie_trashcan_limit      = ConfigSelectionNumber(0, 99, 1, default = 3)
 config.EMC.movie_finished_clean      = ConfigYesNoConfirm(default = False, text = _("ATTENTION\n\nThis option will move all finished movies in Movie Home automatically to Your trashcan at the given time.\nAt next trashcan cleanup all movies will be deleted.\n\nConfirm this with the blue key followed by the green key."), key1="blue", key2="green")
@@ -197,6 +205,7 @@ config.EMC.check_dvdstruct           = ConfigYesNo(default = True)
 #config.EMC.check_movie_cutting      = ConfigYesNo(default = True)
 config.EMC.movie_hide_mov            = ConfigYesNo(default = False)
 config.EMC.movie_hide_del            = ConfigYesNo(default = False)
+#TODO should be a ConfigSelection sorting date_down az_down 
 config.EMC.CoolStartAZ               = ConfigYesNo(default = False)
 config.EMC.moviecenter_reversed      = ConfigYesNo(default = False)
 config.EMC.moviecenter_selmove       = ConfigSelection(default = "d", choices = [("d", _("down")), ("b", _("up/down")), ("o", _("off"))])

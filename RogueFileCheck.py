@@ -44,10 +44,8 @@ class RogueFileCheck:
 
 	def checkPath(self, path, avoid=""):
 		if not os.path.exists(path) or path is avoid: return
-		if not path.endswith("/"): path += "/"
-		
 		for p in os.listdir(path):
-			fullpath = path + p
+			fullpath = os.path.join(path, p)
 			if os.path.isdir(fullpath):
 				try: self.checkPath(fullpath)
 				except: pass
@@ -70,7 +68,6 @@ class RogueFileCheck:
 		return strg
 
 	def getScript(self, path):
-		if not path.endswith("/"): path += "/"
 		strg = ""
 		if os.path.exists(path) and int(config.EMC.movie_trashcan_limit.value) != 0:	# check if the trashcan exists
 			for file in self.files:

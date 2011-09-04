@@ -54,7 +54,6 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 	
 	def __init__(self, session, playlist, recordings, playall=False):
 		
-		# Attention because of the borg pattern:
 		# The CutList must be initialized very first  
 		CutList.__init__(self)
 		Screen.__init__(self, session)
@@ -216,7 +215,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 
 	def __playerClosed(self):
 		if self.service:
-			self.updateCutList( self.service, self.getSeekPlayPosition(), self.getSeekLength() )
+			self.updateCutList( self.getSeekPlayPosition(), self.getSeekLength() )
 
 	def __onClose(self):
 	#def __del__(self): needs stopped, closed, playeropened as globals
@@ -252,6 +251,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 		if (self.playcount + 1) < len(self.playlist):
 			self.playcount += 1
 			service = self.playlist[self.playcount]
+			#TODO Problem with VLC
 			path = service and service.getPath()
 			if os.path.exists(path): #TODO use ext != vlc but must be prepared first
 				
@@ -335,11 +335,12 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 	def removeFromPlaylist(self, deletedlist):
 		callEOF = False
 		for x in deletedlist:
-			xp = x.getPath().split("/")[-1]
-			if xp == self.service.getPath().split("/")[-1]:
+			#TEST
+			xp = os.path.basename( x.getPath() )
+			if xp == os.path.basename( self.service.getPath() ):
 				callEOF = True
 			for p in self.playlist:
-				if xp == p.getPath().split("/")[-1]:
+				if xp == os.path.basename( p.getPath() ):
 					self.playlist.remove(p)
 		if callEOF:
 			self.playcount -= 1	# need to go one back since the current was removed

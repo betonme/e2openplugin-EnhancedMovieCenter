@@ -20,6 +20,7 @@
 #
 import math
 import os
+from collections import defaultdict
 from time import time
 from datetime import datetime
 
@@ -41,6 +42,7 @@ from operator import itemgetter
 from CutListSupport import CutList
 from MetaSupport import MetaList
 from EitSupport import EitList
+from PermanentSort import PermanentSort
 
 
 global extAudio, extDvd, extVideo, extPlaylist, extList, extMedia
@@ -128,138 +130,8 @@ def readBasicCfgFile(file):
 			f.close()
 	return data
 
-#Maybe write a wrapper for building movie title regarding emc config (cutnr, ext)
-def getMovieName(filename, service, ext=None):
-	moviestring, date = "", ""
-	metastring, eitstring = "", ""
-	metadate, eitdate = "", ""
-	cutnr = ""
-	length = 0
-	
-	# First we extract as much as possible informations from the filename
-	
-	# Remove extension
-	if not ext:
-		# Avoid splitext it is very slow
-		filename, ext = os.path.splitext(filename)
-	else:
-		filename = filename[:-len(ext)]
-		
-	# Get cut number
-	if filename[-4:-3] == "_" and filename[-3:].isdigit():
-		cutnr = filename[-3:]
-		filename = filename[:-4]
-	
-	# Replace underscores with spaces
-	moviestring = filename.replace("_"," ")
-	
-	# Derived from RecordTimer
-	# This is everywhere so test it first
-	if moviestring[0:8].isdigit():
-		if not moviestring[8:9].isdigit() and moviestring[9:13].isdigit():
-			# Default: filename = YYYYMMDD TIME - service_name
-			#date = moviestring[0:8] + moviestring[9:13]		# "YYYYMMDD TIME - " -> "YYYYMMDDTIME"
-			date = moviestring[0:13]												# "YYYYMMDD TIME - " -> "YYYYMMDD TIME"
-			moviestring = moviestring[16:]									# skips "YYYYMMDD TIME - "
-			
-			# Standard: filename = YYYYMMDD TIME - service_name - name
-			# Long Composition: filename = YYYYMMDD TIME - service_name - name - description
-			# Standard: filename = YYYYMMDD TIME - service_name - name
-			# Skip service_name, extract name
-			split = moviestring.find(" - ")
-			if split > 0: moviestring = moviestring[3+split:]
-			
-		elif moviestring[8:11] == " - ":
-			# Short Composition: filename = YYYYMMDD - name
-			#date = moviestring[0:8] + "2000"						# "YYYYMMDD" + DUMMY_TIME
-			date = moviestring[0:8] + " 2000"						# "YYYYMMDD" + " " + DUMMY_TIME
-			moviestring = moviestring[11:]							# skips "YYYYMMDD - "
-	
-	# If the user wants it, extract information from the meta and eit files
-	
-	if config.EMC.movie_metaload.value and service:
-		# read title from META
-		meta = MetaList(service)
-		if meta:
-			metastring = meta.getMetaName()
-			print "EMC Meta metastring " +str(metastring)
-			#TEST date
-			#if not date:
-			metadate = meta.getMetaRecordingTime()
-			print "EMC Meta rectime " +str(metadate)
-			# Improve performance and avoid calculation of movie length
-			length = meta.getMetaLength()
-			print "EMC Meta length  " +str(length)
-	
-	if not metastring and config.EMC.movie_eitload.value and service:
-			# read title from EIT
-			eit = EitList(service)
-			if eit:
-				eitstring = eit.getEitName()
-				print "EMC eit eitstring: " + str(eitstring)
-				#if not date:
-				eitdate = eit.getEitWhen()+" "+eit.getEitStartDate()+" "+eit.getEitStartTime()
-				print "EMC eit eitdate " +str(eitdate)
-				#if not length:
-				length = eit.getEitLengthInSeconds()
-				print "EMC eit length: " + str(length)
-	
-	# Priority and fallback handling
-	
-	# Set title priority here
-	moviestring = metastring or eitstring or moviestring
-	#if not moviestring:
-	#	# Fallback
-	#	# Use complete filename
-	#	moviestring = filename
-	
-	# Very bad but there can be both encodings
-	# E2 recordings are always in utf8
-	# User files can be in cp1252
-	# Is there no other way?
-	try:
-		moviestring.decode('utf-8')
-	except UnicodeDecodeError:
-		moviestring = moviestring and moviestring.decode("cp1252").encode("utf-8")
-	
-	# Set date priority here
-	date = date or metadate or eitdate
-	if date:
-		# Datetime from YYYYMMDD HHMM
-		# That is the fastest way: 
-		# strptime is very slow
-		# converting every single part to integer is also very slow
-		time = int(date[9:13])
-		date = int(date[0:8])
-		date = datetime(date/10000, date%10000/100, date%100, time/100, time%100)
-	else:
-		# Fallback: Very slow
-		# Get date from filesystem
-		# Attention date is used for sorting, so take care on the format
-		path = service and service.getPath()
-		if os.path.exists(path):
-			date = datetime.fromtimestamp( os.path.getmtime(path) )
-			#date = strftime( "%Y%m%d %H%M", localtime(os.path.getmtime(path)) )
-			#date = strftime( "%d.%m.%Y %H:%M", localtime(os.path.getmtime(path)) )
-		else:
-			#TODO Just for compatibility reasons, should be removed later
-			# Avoid is directory false detection of VLC Files
-			#date = "19700101 2000" # Dummy
-			date = datetime(1970, 1, 1, 20, 00)
-	
-	# Transform date string for screen displaying
-	# DD.MM.YYYY from YYYYMMDD HHMM
-	#date = date[6:8] + "." + date[4:6] + "." + date[0:4]
-	
-	# DD.MM.YYYY HH:MM from YYYYMMDD HHMM
-	#date = date[6:8] + "." + date[4:6] + "." + date[0:4] + " " + date[9:11] + ":" + date[11:13]
-	
-	# YYYYMMDD HHMM from DD.MM.YYYY HH:MM
-	#date = date[6:10] + date[3:5] + date[0:2] + date[11:13] + date[14:]
-	
-	return moviestring, length, date, cutnr
 
-class MovieCenter(GUIComponent, VlcPluginInterfaceList):
+class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort):
 	instance = None
 	
 	def __init__(self):
@@ -267,10 +139,13 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 		self.list = []
 		GUIComponent.__init__(self)
 		VlcPluginInterfaceList.__init__(self)
+		PermanentSort.__init__(self)
 		self.loadPath = config.EMC.movie_homepath.value
-		if not self.loadPath.endswith("/"): self.loadPath += "/"
 		self.serviceHandler = eServiceCenter.getInstance()
+		
+		self.alphaSort = config.EMC.CoolStartAZ.value
 		self.returnSort = None
+		
 		self.CoolFont = parseFont("Regular;20", ((1,1),(1,1)))
 		self.CoolSelectFont = parseFont("Regular;20", ((1,1),(1,1)))
 		self.CoolDateFont = parseFont("Regular;20", ((1,1),(1,1)))
@@ -292,6 +167,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 		self.DefaultColor = 0xFFFFFF
 		self.BackColor = None
 		self.BackColorSel = 0x000000
+		self.FrontColorSel = 0xFFFFFF
 		self.UnwatchedColor = 0xFFFFFF
 		self.WatchingColor = 0x3486F4
 		self.FinishedColor = 0x46D93A
@@ -308,7 +184,6 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 		self.l.setItemHeight(28)
 		self.currentSelectionCount = 0		
 		
-		self.alphaSort = config.EMC.CoolStartAZ.value
 		self.selectionList = None
 		self.recControl = RecordingsControl(self.recStateChange)
 		self.highlightsMov = []
@@ -322,9 +197,10 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 		self.pic_movie_finished  = LoadPixmap(cached=True, path='/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/movie_finished.png')
 		self.pic_movie_rec       = LoadPixmap(cached=True, path='/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/movie_rec.png')
 		self.pic_movie_recrem    = LoadPixmap(cached=True, path='/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/movie_recrem.png')
-		#IDEA self.pic_movie_cut = LoadPixmap
-		self.pic_bookmark        = LoadPixmap(cached=True, path='/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/virtual.png')
-		#IDEA self.pic_trashcan  = LoadPixmap
+		self.pic_movie_cut       = LoadPixmap(cached=True, path='/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/movie_cut.png')
+		self.pic_bookmark        = LoadPixmap(cached=True, path='/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/bookmark.png')
+		self.pic_trashcan        = LoadPixmap(cached=True, path='/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/trashcan.png')
+		self.pic_trashcan_full   = LoadPixmap(cached=True, path='/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/trashcan_full.png')
 		self.pic_mp3             = LoadPixmap(cached=True, path='/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/music.png')
 		self.pic_dvd_default     = LoadPixmap(cached=True, path='/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/dvd_default.png')
 		self.pic_dvd_watching    = LoadPixmap(cached=True, path='/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/dvd_watching.png')
@@ -333,7 +209,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 		self.pic_vlc             = LoadPixmap(cached=True, path='/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/vlc.png')
 		self.pic_vlc_dir         = LoadPixmap(cached=True, path='/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/vlcdir.png')
 		self.pic_link            = LoadPixmap(cached=True, path='/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/link.png')
-		self.pic_virtual         = LoadPixmap(cached=True, path='/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/virtual.png')
+		self.pic_latest          = LoadPixmap(cached=True, path='/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/virtual.png')
 		
 		self.onSelectionChanged = []
 		self.hideitemlist = []
@@ -395,6 +271,8 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 					self.BackColor = parseColor(value).argb()
 				elif attrib == "BackColorSel":
 					self.BackColorSel = parseColor(value).argb()
+				elif attrib == "FrontColorSel":
+					self.FrontColorSel = parseColor(value).argb()
 				elif attrib == "UnwatchedColor":
 					self.UnwatchedColor = parseColor(value).argb()
 				elif attrib == "WatchingColor":
@@ -415,14 +293,19 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 			except Exception, e:
 				emcDebugOut("[MC] External observer exception: \n" + str(e))
 
-	def setAlphaSort(self, trueOrFalse):
+	def setSorting(self, trueOrFalse):
 		self.returnSort = None
 		self.alphaSort = trueOrFalse
+		
 		self.list = self.doListSort(self.list)
 		self.l.setList( self.list )
 
-	def getAlphaSort(self):
-		return self.alphaSort
+	def getSorting(self):
+		perm = self.getPermanentSort(self.loadPath)
+		if perm is not None:
+			perm = self.alphaSort == perm
+		# Return the actual sorting mode and if the current sorting mode is set as the permanent one
+		return ( self.alphaSort, perm )
 
 	def doListSort(self, sortlist):
 		# This will find all unsortable items
@@ -450,8 +333,21 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 		if self.alphaSort:
 			sortlist.sort( key=lambda x: (x[1][0]), reverse=config.EMC.moviecenter_reversed.value )
 		else:
-			sortlist.sort( key=lambda x: (x[1][1])) #, reverse=not config.EMC.moviecenter_reversed.value )
-			sortlist.reverse()
+			sortlist.sort( key=lambda x: (x[1][1]), reverse=not config.EMC.moviecenter_reversed.value )
+			#Faster if separate? sortlist.reverse()
+			
+			#TEST
+				# Create sortkeys
+				#sorttitle = title.lower()
+				#sortkeyalpha = sorttitle + cutnr + sortdate
+				#cutnrreverse = str( 999 - int(cutnr or 0) )
+				
+				#sorttitle = title.lower() #without cut_nr
+				#cutnr = int(cutnr or 0)
+				#append((service, sorttitle, date, title, path, 0, length, ext)) ,cutnr
+				
+				#sortkeydate = date + sorttitle + str( 999 - int(cutnr or 0) 
+			#sortlist.sort( key=lambda x: (x[2],x[1],-x[8]))
 		
 		# Combine lists
 		return tmplist + sortlist
@@ -459,8 +355,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 	def recStateChange(self, timer):
 		if timer:
 			path = os.path.dirname(timer.Filename)
-			if path == self.loadPath[:-1]:
-			#if timer and timer.dirname == self.loadPath:
+			if path == self.loadPath:
 				# EMC shows the directory which contains the recording
 				if timer.state == TimerEntry.StateRunning:
 					if not self.list:
@@ -499,7 +394,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 		if last <= 0:
 			# Get last position from cut file
 			if cuts is None:
-				cuts = CutList( service )
+				cuts = CutList( service.getPath() )
 			last = cuts.getCutListLast()
 		# Check for valid position
 		if last > 0 or forceRecalc:
@@ -510,7 +405,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 					length = self.getLengthFromServiceHandler(service)
 				if length <= 0: 
 					if cuts is None:
-						cuts = CutList( service )
+						cuts = CutList( service.getPath() )
 					length = cuts.getCutListLength()
 					if length <= 0: 
 						# Set default file length if is not calculateable
@@ -518,7 +413,6 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 						length = 5400
 						# We only update the entry if we do not use the default value
 						updlen = 0
-						#emcDebugOut("[MC] getProgress No length: " + str(service.getPath()))
 					else:
 						updlen = length
 				else:
@@ -536,7 +430,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 			progress = 0
 		return progress
 
-	def getRecordProgress(self, service, path):
+	def getRecordProgress(self, path):
 		# The progress of all recordings is updated
 		# - on show dialog
 		# - on reload list / change directory / movie home
@@ -571,190 +465,217 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 				l[6] = length
 				self.list[idx] = tuple(l)
 
-	def buildMovieCenterEntry(self, service, sortkeys, date, moviestring, filename, selnum, length, ext):
-		offset = 0
-		progressWidth = 55
-		globalHeight = 40
-		progress = 0
-		pixmap = None
-		color = None
-		colordate = None
-		
-		res = [ None ]
-		append = res.append
-		
-		path = self.loadPath + filename
-		isLink = os.path.islink(path)
-		usedFont = int(config.EMC.skin_able.value)
-		
-		if ext in plyAll:
-			# Playable files
+	def buildMovieCenterEntry(self, service, sortkeys, date, title, path, selnum, length, ext):
+		try:
+			offset = 0
+			progressWidth = 55
+			globalHeight = 40
+			progress = 0
+			pixmap = None
+			color = None
+			colordate = None
 			
-			#TODO DATE OBJECT
-			#isRecording isRemoteRecording only if date is in the last two days
-			#with a date object it will be very easy
-			if self.recControl.isRecording(path):
-				date = "-- REC --"
-				pixmap = self.pic_movie_rec
-				color = self.RecordingColor
-				colordate = self.RecordingColor
-				# Recordings status shows always the progress of the recording, 
-				# Never the progress of the cut list marker to avoid misunderstandings
-				progress = service and self.getRecordProgress(service, path) or 0
+			res = [ None ]
+			append = res.append
 			
-			elif config.EMC.remote_recordings.value and self.recControl.isRemoteRecording(path):
-				date = "-- rec --"
-				pixmap = self.pic_movie_recrem
-				color = self.RecordingColor
-				colordate = self.RecordingColor
+			isLink = os.path.islink(path)
+			usedFont = int(config.EMC.skin_able.value)
 			
-			#IDEA elif config.EMC.check_movie_cutting.value:
-			elif self.recControl.isCutting(path):
-				date = "-- CUT --"
-				pixmap = self.pic_movie_rec  #self.pic_movie_cut
-				color = self.RecordingColor
-				colordate = self.RecordingColor
+			#TODO ret print "EMC bldSer " +str(service.toString())
 			
-			elif ext in plyVLC:
-				date = "   VLC   "
-				pixmap = self.pic_vlc
-				color = self.DefaultColor
-				if self.CoolDateColor == 0:
-					colordate = self.DateColor
+			if ext in plyAll:
+				# Playable files
+				latest = date and (datetime.today()-date).days < 1
+				
+				# Check for recording only if date is within the last day
+				if latest and self.recControl.isRecording(path):
+					date = "-- REC --"
+					pixmap = self.pic_movie_rec
+					color = self.RecordingColor
+					colordate = self.RecordingColor
+					# Recordings status shows always the progress of the recording, 
+					# Never the progress of the cut list marker to avoid misunderstandings
+					progress = service and self.getRecordProgress(path) or 0
+				
+				elif latest and config.EMC.remote_recordings.value and self.recControl.isRemoteRecording(path):
+					date = "-- rec --"
+					pixmap = self.pic_movie_recrem
+					color = self.RecordingColor
+					colordate = self.RecordingColor
+				
+				#IDEA elif config.EMC.check_movie_cutting.value:
+				elif self.recControl.isCutting(path):
+					date = "-- CUT --"
+					pixmap = self.pic_movie_cut
+					color = self.RecordingColor
+					colordate = self.RecordingColor
+				
+				elif ext in plyVLC:
+					date = "   VLC   "
+					pixmap = self.pic_vlc
+					color = self.DefaultColor
+					if self.CoolDateColor == 0:
+						colordate = self.DateColor
+					else:
+						colordate = color
+				
 				else:
-					colordate = color
-			
-			else:
-				# Media file
-				date = date.strftime( "%d.%m %H:%M" ) #( "%d.%m.%Y %H:%M" ) #( "%Y.%m.%d %H:%M" )
-				progress = service and self.getProgress(service, length) or 0
-				
-				# Progress State
-				movieUnwatched = config.EMC.movie_mark.value and	progress < int(config.EMC.movie_watching_percent.value)
-				movieWatching  = config.EMC.movie_mark.value and	progress >= int(config.EMC.movie_watching_percent.value) and progress < int(config.EMC.movie_finished_percent.value)
-				movieFinished  = config.EMC.movie_mark.value and	progress >= int(config.EMC.movie_finished_percent.value)
-				
-				# Icon
-				# video
-				if ext in extVideo:
-					if movieUnwatched:
-						pixmap = self.pic_movie_unwatched
-					elif movieWatching:
-						pixmap = self.pic_movie_watching
-					elif movieFinished:
-						pixmap = self.pic_movie_finished
+					# Media file
+					date = date.strftime( config.EMC.movie_date_format.value )
+					progress = service and self.getProgress(service, length) or 0
+					
+					# Progress State
+					movieUnwatched = config.EMC.movie_mark.value and	progress < int(config.EMC.movie_watching_percent.value)
+					movieWatching  = config.EMC.movie_mark.value and	progress >= int(config.EMC.movie_watching_percent.value) and progress < int(config.EMC.movie_finished_percent.value)
+					movieFinished  = config.EMC.movie_mark.value and	progress >= int(config.EMC.movie_finished_percent.value)
+					
+					# Icon
+					# video
+					if ext in extVideo:
+						if movieUnwatched:
+							if not latest:
+								pixmap = self.pic_movie_unwatched
+							else:
+								pixmap = self.pic_latest
+						elif movieWatching:
+							pixmap = self.pic_movie_watching
+						elif movieFinished:
+							pixmap = self.pic_movie_finished
+						else:
+							pixmap = self.pic_movie_default
+					# audio
+					elif ext in extAudio:
+						pixmap = self.pic_mp3
+					# dvd iso or structure
+					elif ext in extDvd:
+						if movieWatching:
+							pixmap = self.pic_dvd_watching
+						elif movieFinished:
+							pixmap = self.pic_dvd_finished
+						else:
+							pixmap = self.pic_dvd_default
+					# playlists
+					elif ext in extPlaylist:
+						pixmap = self.pic_playlist
+					# all others
 					else:
 						pixmap = self.pic_movie_default
-				# audio
-				elif ext in extAudio:
-					pixmap = self.pic_mp3
-				# dvd iso or structure
-				elif ext in extDvd:
-					if movieWatching:
-						pixmap = self.pic_dvd_watching
-					elif movieFinished:
-						pixmap = self.pic_dvd_finished
-					else:
-						pixmap = self.pic_dvd_default
-				# playlists
-				elif ext in extPlaylist:
-					pixmap = self.pic_playlist
-				# all others
-				else:
-					pixmap = self.pic_movie_default
-				
-				# Color
-				if movieUnwatched:
-					color = self.UnwatchedColor
-				elif movieWatching:
-					color = self.WatchingColor
-				elif movieFinished:
-					color = self.FinishedColor
-				else:
-					color = self.DefaultColor
 					
-				if self.CoolDateColor == 0:
-					colordate = self.DateColor
-				else:
-					colordate = color
-		
-			selnumtxt = None
-			if selnum == 9999: selnumtxt = "-->"
-			elif selnum == 9998: selnumtxt = "X"
-			elif selnum > 0: selnumtxt = "%02d" % selnum
-			if service in self.highlightsMov: selnumtxt = "-->"
-			elif service in self.highlightsDel: selnumtxt = "X"
+					# Color
+					if movieUnwatched:
+						color = self.UnwatchedColor
+					elif movieWatching:
+						color = self.WatchingColor
+					elif movieFinished:
+						color = self.FinishedColor
+					else:
+						color = self.DefaultColor
+					
+					if self.CoolDateColor == 0:
+						colordate = self.DateColor
+					else:
+						colordate = color
+				
+				# Get entry selection number
+				selnumtxt = None
+				if selnum == 9999: selnumtxt = "-->"
+				elif selnum == 9998: selnumtxt = "X"
+				elif selnum > 0: selnumtxt = "%02d" % selnum
+				if service in self.highlightsMov: selnumtxt = "-->"
+				elif service in self.highlightsDel: selnumtxt = "X"
+				
+				# Is there any way to combine it for both files and directories?
+				if config.EMC.movie_icons.value and selnumtxt is None:
+					append(MultiContentEntryPixmapAlphaTest(pos=(5,2), size=(24,24), png=pixmap, **{}))
+					if isLink:
+						append(MultiContentEntryPixmapAlphaTest(pos=(7,13), size=(9,10), png=self.pic_link, **{}))
+					offset = 35
+				if selnumtxt is not None:
+					append(MultiContentEntryText(pos=(5, 0), size=(26, globalHeight), font=3, flags=RT_HALIGN_LEFT, text=selnumtxt))
+					offset += 35
+				
+				if config.EMC.skin_able.value:
+					if self.CoolBarPos != -1:
+						append(MultiContentEntryProgress(pos=(self.CoolBarPos, self.CoolBarHPos -2), size = (self.CoolBarSizeSa.width(), self.CoolBarSizeSa.height()), percent = progress, borderWidth = 1, foreColor = color, backColor = color))
+					if self.CoolProgressPos != -1:
+						append(MultiContentEntryText(pos=(self.CoolProgressPos, 0), size=(progressWidth, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text="%d%%" % (progress)))
+					if self.CoolDatePos != -1:
+						append(MultiContentEntryText(pos=(self.CoolDatePos, 2), size=(self.CoolDateWidth, globalHeight), font=4, text=date, color = colordate, color_sel = self.FrontColorSel, flags=RT_HALIGN_CENTER))
+						
+					append(MultiContentEntryText(pos=(self.CoolMoviePos, 0), size=(self.CoolMovieSize, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text=title, color = color, color_sel = self.FrontColorSel))
+					return res
+				
+				if config.EMC.movie_progress.value == "PB":
+					append(MultiContentEntryProgress(pos=(offset, self.CoolBarHPos), size = (self.CoolBarSize.width(), self.CoolBarSize.height()), percent = progress, borderWidth = 1, backColorSelected = None, foreColor = color, backColor = color))
+					offset += self.CoolBarSize.width() + 10
+				elif config.EMC.movie_progress.value == "P":
+					append(MultiContentEntryText(pos=(offset, 0), size=(progressWidth, globalHeight), font=usedFont, flags=RT_HALIGN_CENTER, text="%d%%" % (progress), color = color, color_sel = self.FrontColorSel, backcolor = self.BackColor, backcolor_sel = self.BackColorSel))
+					offset += progressWidth + 5
+				
+				if config.EMC.movie_date.value:
+					append(MultiContentEntryText(pos=(self.l.getItemSize().width() - self.CoolDateWidth, 0), size=(self.CoolDateWidth, globalHeight), font=4, color = colordate, color_sel = self.FrontColorSel, backcolor = self.BackColor, backcolor_sel = self.BackColorSel, flags=RT_HALIGN_CENTER, text=date))
+				append(MultiContentEntryText(pos=(offset, 0), size=(self.l.getItemSize().width() - offset - self.CoolDateWidth -5, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text=title, color = color, color_sel = self.FrontColorSel))
 			
-			# Is there any way to combine it for both files and directories?
-			if config.EMC.movie_icons.value and selnumtxt is None:
+			else:
+				# Directory and vlc directories
+				
+				if ext == cmtVLC:
+					date = _("VLC")
+					pixmap = self.pic_vlc
+				elif ext == vlcSrv:
+					date = _("VLC-Server")
+					pixmap = self.pic_vlc
+				elif ext == vlcDir:
+					date = _("VLC-Dir")
+					pixmap = self.pic_vlc_dir
+				elif ext == cmtLRec:
+					date = _("Latest")
+					pixmap = self.pic_latest
+				elif ext == cmtUp:
+					date = _("Up")
+					pixmap = self.pic_back
+				elif ext in cmtTrash:
+					if config.EMC.movie_trashcan_dynamic.value and os.path.exists(config.EMC.movie_trashpath.value):
+						garbage = 0
+						for g in os.listdir(config.EMC.movie_trashpath.value):
+							gext = os.path.splitext(g)[1]
+							if gext in extList:
+								garbage += 1
+						if garbage:
+							# Trashcan contains garbage
+							pixmap = self.pic_trashcan_full
+							date = " ( %d ) " % (garbage)
+						else:
+							# Trashcan is empty
+							pixmap = self.pic_trashcan
+							date = " ( 0 ) "
+					else:
+						pixmap = self.pic_trashcan
+						date = "Trashcan"
+				elif ext == cmtBM:
+					date = _("Bookmark")
+					pixmap = self.pic_bookmark
+				else:
+					if not isLink:
+						date = _("Directory")
+					else:
+						#QUESTION Show text also for bookmarks
+						date = _("Link")
+					pixmap = self.pic_directory
+				
+				# Is there any way to combine it for both files and directories?
 				append(MultiContentEntryPixmapAlphaTest(pos=(5,2), size=(24,24), png=pixmap, **{}))
 				if isLink:
 					append(MultiContentEntryPixmapAlphaTest(pos=(7,13), size=(9,10), png=self.pic_link, **{}))
-				offset = 35
-			if selnumtxt is not None:
-				append(MultiContentEntryText(pos=(5, 0), size=(26, globalHeight), font=3, flags=RT_HALIGN_LEFT, text=selnumtxt))
-				offset += 35
+				# Directory left side
+				append(MultiContentEntryText(pos=(30, 0), size=(self.CoolFolderSize, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text=title))
+				# Directory right side
+				append(MultiContentEntryText(pos=(self.l.getItemSize().width() - self.CoolDateWidth, 0), size=(self.CoolDateWidth, globalHeight), font=2, flags=RT_HALIGN_CENTER, text=date))
 			
-			if config.EMC.skin_able.value:
-				if self.CoolBarPos != -1:
-					append(MultiContentEntryProgress(pos=(self.CoolBarPos, self.CoolBarHPos -2), size = (self.CoolBarSizeSa.width(), self.CoolBarSizeSa.height()), percent = progress, borderWidth = 1, foreColor = color, backColor = color))
-				if self.CoolProgressPos != -1:
-					append(MultiContentEntryText(pos=(self.CoolProgressPos, 0), size=(progressWidth, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text="%d%%" % (progress)))
-				if self.CoolDatePos != -1:
-					append(MultiContentEntryText(pos=(self.CoolDatePos, 2), size=(self.CoolDateWidth, globalHeight), font=4, text=date, color = colordate, color_sel = colordate, flags=RT_HALIGN_CENTER))
-					
-				append(MultiContentEntryText(pos=(self.CoolMoviePos, 0), size=(self.CoolMovieSize, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text=moviestring))
-				return res
-			
-			if config.EMC.movie_progress.value == "PB":
-				append(MultiContentEntryProgress(pos=(offset, self.CoolBarHPos), size = (self.CoolBarSize.width(), self.CoolBarSize.height()), percent = progress, borderWidth = 1, backColorSelected = None, foreColor = color, backColor = color))
-				offset += self.CoolBarSize.width() + 10
-			elif config.EMC.movie_progress.value == "P":
-				append(MultiContentEntryText(pos=(offset, 0), size=(progressWidth, globalHeight), font=usedFont, flags=RT_HALIGN_CENTER, text="%d%%" % (progress), color = color, color_sel = color, backcolor = self.BackColor, backcolor_sel = self.BackColorSel))
-				offset += progressWidth + 5
-			
-			if config.EMC.movie_date.value:
-				append(MultiContentEntryText(pos=(self.l.getItemSize().width() - self.CoolDateWidth, 0), size=(self.CoolDateWidth, globalHeight), font=4, color = colordate, color_sel = colordate, backcolor = self.BackColor, backcolor_sel = self.BackColorSel, flags=RT_HALIGN_CENTER, text=date))
-			append(MultiContentEntryText(pos=(offset, 0), size=(self.l.getItemSize().width() - offset - self.CoolDateWidth -5, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text=moviestring))
-		
-		else:
-			# Directory and vlc directories
-			
-			if ext == cmtVLC:
-				pixmap = self.pic_vlc
-				date = _("< VLC >")
-			elif ext == vlcSrv:
-				pixmap = self.pic_vlc
-				date = _("VLC-Server")
-			elif ext == vlcDir:
-				pixmap = self.pic_vlc_dir
-				date = _("VLC-Dir")
-			elif ext == cmtLRec:
-				pixmap = self.pic_virtual
-				date = _("< Latest >")
-			elif ext == cmtUp:
-				pixmap = self.pic_back
-			#elif ext in cmtTrash:
-			#pixmap = self.pic_trashcan
-			elif ext == cmtBM:
-				pixmap = self.pic_bookmark
-				date = _("Bookmark")
-			else:
-				pixmap = self.pic_directory
-				date = _("Directory")
-			
-			# Is there any way to combine it for both files and directories?
-			append(MultiContentEntryPixmapAlphaTest(pos=(5,2), size=(24,24), png=pixmap, **{}))
-			if isLink:
-				date = _("< Link >")
-				append(MultiContentEntryPixmapAlphaTest(pos=(7,13), size=(9,10), png=self.pic_link, **{}))
-			# Directory left side
-			append(MultiContentEntryText(pos=(30, 0), size=(self.CoolFolderSize, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text=moviestring))
-			# Directory right side
-			append(MultiContentEntryText(pos=(self.l.getItemSize().width() - self.CoolDateWidth, 0), size=(self.CoolDateWidth, globalHeight), font=2, flags=RT_HALIGN_CENTER, text=date))
-		
-		del append
-		return res
+			del append
+			return res
+		except Exception, e:
+			emcDebugOut("[EMCMS] build exception:\n" + str(e))
 
 	def getCurrent(self):
 		l = self.l.getCurrentSelection()
@@ -782,6 +703,11 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 				if l[0] == service:
 					self.list.remove(l)
 			self.l.setList(self.list)
+
+	def addService(self, service):
+		#TODO
+		# Actually You can only use reload with filname
+		pass
 
 	def serviceBusy(self, service):
 		return service in self.highlightsMov or service in self.highlightsDel
@@ -896,11 +822,18 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 		else:
 			return 0
 
-	def getFileNameOfService(self, service):
+	def getFilePathOfService(self, service):
 		if service:
 			for entry in self.list:
 				if entry[0] == service:
 					return entry[4]
+		return ""
+
+	def getNameOfService(self, service):
+		if service:
+			for entry in self.list:
+				if entry[0] == service:
+					return entry[3]
 		return ""
 
 	def getLengthOfService(self, service):
@@ -930,19 +863,21 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 		if idx < 0: return
 		self.l.invalidateEntry( idx ) # force redraw of the item
 
-	def detectDVDStructure(self, loadPath):
-		if not os.path.isdir(loadPath):
+	def detectDVDStructure(self, checkPath):
+		if not os.path.isdir(checkPath):
 			return None
-		elif config.EMC.noscan_linked.value and os.path.islink(loadPath):
+		elif config.EMC.noscan_linked.value and os.path.islink(checkPath):
 			return None
-		elif fileExists(loadPath + "/VIDEO_TS.IFO"):
-			return loadPath + "/VIDEO_TS.IFO"
-		elif fileExists(loadPath + "/VIDEO_TS/VIDEO_TS.IFO"):
-			return loadPath + "/VIDEO_TS/VIDEO_TS.IFO"
+		dvdpath = os.path.join(checkPath, "VIDEO_TS.IFO")
+		if fileExists( dvdpath ):
+			return dvdpath
+		dvdpath = os.path.join(checkPath, "VIDEO_TS/VIDEO_TS.IFO")
+		if fileExists( dvdpath ):
+			return dvdpath
 		return None
 	
 	def createDirList(self, loadPath):
-		dirlist, subdirlist, filelist = [], [], []
+		subdirlist, filelist = [], []
 		dvdStruct = None
 		pathname, ext = "", ""
 		
@@ -959,22 +894,12 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 		pathisfile = os.path.isfile
 		pathisdir = os.path.isdir
 		
-		# Get directory listing
-		# only need to deal with spaces when executing in shell
-		# Takes 0.1-1s 
 		if os.path.exists(loadPath):
-			dirlist = os.listdir(loadPath)
-		
-		# Maybe someone wants to test and compare performance later glob vs listdir
-		#import glob #for f in glob.glob("*.f"):
-		
-		# add sub directories to the list
-		if dirlist:
 			
-			# Takes 0.5s
-			for p in dirlist:
+			# Get directory listing
+			for p in os.listdir(loadPath):
 				
-				# This will increase the function execution time massively
+				# This will decrease the function execution time massively
 				ext = splitext(p)[1].lower()
 				if ext not in localExtList:
 					continue
@@ -991,8 +916,11 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 					# Avoid retesting ( if ext in extMedia )
 					fappend( (pathname, p, ext) )
 				
-				else:
-				#elif pathisdir(pathname): # Avoid rechecks
+				elif pathisdir(pathname):
+					
+					# Display folders capitalized
+					p.capitalize()
+					
 					if check_dvdstruct:
 						dvdStruct = self.detectDVDStructure(pathname)
 						if dvdStruct:
@@ -1005,6 +933,12 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 					# Folder found
 					if pathname != movie_trashpath:
 						dappend( (pathname, p, cmtDir) )
+				
+				else:
+					# We have found a dead link
+					# Can be a file or folder
+					#IDEA: Display them optionally?
+					pass
 		
 		del dappend
 		del fappend
@@ -1017,38 +951,26 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 	def createLatestRecordingsList(self):
 		# Make loadPath more flexible
 		#MAYBE: What about using current folder for latest recording lookup?
-		dirlist, subdirlist, filelist, subfilelist = [], [], [], []
+		dirstack, subdirlist, filelist, subfilelist = [], [], [], []
 		
 		# walk through entire tree below movie home. Might take a bit long on huge disks...
 		# think about breaking at 2nd level,
 		# but include folders used in timers, auto timers and bookmarks
-		dirlist.append(config.EMC.movie_homepath.value)
+		dirstack.append(config.EMC.movie_homepath.value)
 		
 		# Search files through all given paths
-		for loadPath in dirlist:
-			
-			#TEST Filter trashcan should not be necessary
-			#movie_trashpath = config.EMC.movie_trashpath.value
-			#if loadPath.find(movie_trashpath)>-1:
-			#	continue
+		while dirstack:
 			
 			# Get entries
-			subdirlist, subfilelist = self.createDirList(loadPath)
+			subdirlist, subfilelist = self.createDirList( dirstack.pop() )
 			
 			# Found new directories to search within, use only their path
-			print str([i[0] for i in subdirlist])
-			dirlist.extend( [i[0] for i in subdirlist] )
+			dirstack.extend( [i[0] for i in subdirlist] )
 			
 			# Store the media files
-			filelist.extend(subfilelist)
+			filelist.extend( subfilelist )
 		
-		# Sorting is done through our default sroting algorithm
-		#TODO
-		#filelist.sort(key=lambda x: x[3], reverse=True)
-		# Return the 12 latest recordings
-		#filelist = filelist[:12]
-		#filelist = [(i[0], i[1], i[2], strftime( "%d.%m.%Y %H:%M", localtime(os.path.getmtime(i[0])))) for i in filelist]
-		
+		# Sorting is done through our default sorting algorithm
 		return filelist
 
 	def createFileInfo(self, pathname):
@@ -1059,54 +981,54 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 
 	def createCustomList(self, loadPath, trashcan=True, extend=True):
 		customlist = []
+		path, name = "", ""
 		append = customlist.append
+		pathjoin = os.path.join
+		pathnormpath = os.path.normpath
+		pathbasename = os.path.basename
 		
-		if not loadPath.endswith("/"): loadPath += "/"
-		if loadPath != "/" and loadPath[:-1] != config.EMC.movie_pathlimit.value:
+		if loadPath != "" and loadPath != config.EMC.movie_pathlimit.value:
 			append( ("..", "..", cmtUp) )
 		
 		if extend:
 			# Insert these entries always at last
-			if loadPath[:-1] == config.EMC.movie_homepath.value:
+			if loadPath == config.EMC.movie_homepath.value:
 				if trashcan and not config.EMC.movie_trashcan_hide.value:
-					append( (config.EMC.movie_trashpath.value, os.path.basename(config.EMC.movie_trashpath.value), cmtTrash) )
+					append( (	config.EMC.movie_trashpath.value,
+										(pathbasename(config.EMC.movie_trashpath.value)).capitalize(),
+										cmtTrash) )
 				
 				if config.EMC.latest_recordings.value:
-					append( (loadPath+"Latest Recordings/", "Latest Recordings", cmtLRec) )
+					append( (	pathjoin(loadPath, "Latest Recordings"),
+										"Latest Recordings",
+										cmtLRec) )
 				
 				if config.EMC.vlc.value and os.path.exists("/usr/lib/enigma2/python/Plugins/Extensions/VlcPlayer"):
-					append( (loadPath+"VLC servers/", "VLC servers", cmtVLC) )
+					append( (	pathjoin(loadPath, "VLC servers"),
+										"VLC servers",
+										cmtVLC) )
 				
 				if config.EMC.bookmarks_e2.value:
-					bookmarks = config.movielist and config.movielist.videodirs and config.movielist.videodirs.value[:]
-					if bookmarks:
-						for bookmark in bookmarks:
-							append( (bookmark, "E2 "+os.path.basename(bookmark[:-1]), cmtBM) )
+					if config.movielist and config.movielist.videodirs:
+						bookmarks = [pathnormpath(e2bm) for e2bm in config.movielist.videodirs.value]
+						if bookmarks:
+							for bookmark in bookmarks:
+								append( (	bookmark,
+													"E2 "+(pathbasename(bookmark).capitalize()),
+													cmtBM) )
 		
 		del append
+		del pathjoin
+		del pathnormpath
+		del pathbasename
 		return customlist
 
-	def reload(self, loadPath):
+	def reload(self, loadPath, simulate=False):
 		emcDebugOut("[MC] LOAD PATH:\n" + str(loadPath))
 		customlist, subdirlist, filelist, tmplist = [], [], [], []
-		append = tmplist.append
-		service = None
-		moviestring, date = "", ""
-		cutnr = ""
-		length = 0
-		sorttitle, sortdate = "", ""
-		sortkeyalpha = ""
-		sortkeydate = ""
-		sortingkeys = []
-		resetlist = True
+		resetlist = True 
 		dosort = True
 		alphaSort = None
-		
-		# Improve performance and avoid dots
-		movie_hide_mov = config.EMC.movie_hide_mov.value
-		movie_hide_del = config.EMC.movie_hide_del.value
-		movie_show_cutnr = config.EMC.movie_show_cutnr.value
-		movie_show_format = config.EMC.movie_show_format.value
 		
 		if config.EMC.remote_recordings.value:
 			# get a list of current remote recordings
@@ -1115,16 +1037,14 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 		# Create listings
 		if os.path.isdir(loadPath):
 			# Found directory
-			if not loadPath.endswith("/"): loadPath += "/"
 			
 			# Read subdirectories and filenames
-			# Takes 0.6 - 2s
 			subdirlist, filelist = self.createDirList(loadPath)
-			# Takes nearly nothing
 			customlist = self.createCustomList(loadPath)
 		
 		elif os.path.isfile(loadPath):
 			# Found file
+			
 			filelist = self.createFileInfo(loadPath)
 			resetlist = False
 			loadPath = None
@@ -1132,16 +1052,16 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 		else:
 			# Found virtual directory
 			
-			if loadPath.endswith("VLC servers/"):
+			if loadPath.endswith("VLC servers"):
 				emcDebugOut("[EMC] VLC Server")
 				subdirlist = self.createVlcServerList(loadPath)
 				customlist = self.createCustomList(loadPath, extend=False)
 			
-			elif loadPath.find("VLC servers/")>-1:
+			elif loadPath.find("VLC servers")>-1:
 				emcDebugOut("[EMC] VLC Files")
 				subdirlist, filelist = self.createVlcFileList(loadPath)
 			
-			elif loadPath.endswith("Latest Recordings/"):
+			elif loadPath.endswith("Latest Recordings"):
 				emcDebugOut("[EMC] Latest Recordings")
 				filelist = self.createLatestRecordingsList()
 				customlist = self.createCustomList(loadPath, extend=False)
@@ -1149,82 +1069,211 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 				alphaSort = False
 			
 			else:
-				# Error no changes done
-				return self.loadPath
+				# No changes done
+				return False
+		
+		# Local variables
+		movie_metaload = config.EMC.movie_metaload.value
+		movie_eitload = config.EMC.movie_eitload.value
+		movie_hide_mov = config.EMC.movie_hide_mov.value
+		movie_hide_del = config.EMC.movie_hide_del.value
+		movie_show_cutnr = config.EMC.movie_show_cutnr.value
+		movie_show_format = config.EMC.movie_show_format.value
+		
+		# Avoid dots
+		append = tmplist.append
+		pathexists = os.path.exists
+		pathgetmtime = os.path.getmtime
 		
 		# Add custom entries and sub directories to the list
 		customlist += subdirlist
 		if customlist is not None:
 			for path, filename, ext in customlist:
-				service = self.getPlayerService(path)
-				#TODO
-				#moviestring, sortingkeys = getDirectoryName(filename, service)
-				append((service, (None, None), None, filename, filename, 0, 0, ext))
+				service = self.getPlayerService(path, filename)
+				#TODO sorting keys
+				append((service, (None, None), None, filename, path, 0, 0, ext))
 		
 		# Add file entries to the list
 		if filelist is not None:
 			for path, filename, ext in filelist:
-				service = self.getPlayerService(path, filename, ext)
+				# Filename, Title, Date, Sortingkeys handling
+				# First we extract as much as possible informations from the filename
+				service = None
+				title, date, time, cutnr = "", "", "", ""
+				length = 0
+				metastring, eitstring = "", ""
+				metadate, eitdate = "", ""
+				sorttitle, sortdate = "", ""
+				sortkeyalpha, sortkeydate = "", ""
+				
+				# Remove extension
+				if not ext:
+					# Avoid splitext it is very slow compared to a slice
+					title, ext = os.path.splitext(filename)
+				else:
+					#TODO Should not be necessary
+					# If there is an ext filename is already the shortname without the extension
+					title = filename[:-len(ext)]
+					
+				# Get cut number
+				if title[-4:-3] == "_" and title[-3:].isdigit():
+					cutnr = title[-3:]
+					title = title[:-4]
+				
+				# Replace underscores with spaces
+				title = title.replace("_"," ")
+				
+				# Derived from RecordTimer
+				# This is everywhere so test it first
+				if title[0:8].isdigit():
+					if not title[8:9].isdigit() and title[9:13].isdigit():
+						# Default: filename = YYYYMMDD TIME - service_name
+						sortdate = title[0:13]							# "YYYYMMDD TIME - " -> "YYYYMMDD TIME"
+						title = title[16:]									# skips "YYYYMMDD TIME - "
+						
+						# Standard: filename = YYYYMMDD TIME - service_name - name
+						# Long Composition: filename = YYYYMMDD TIME - service_name - name - description
+						# Standard: filename = YYYYMMDD TIME - service_name - name
+						# Skip service_name, extract name
+						split = title.find(" - ")
+						if split > 0: title = title[3+split:]
+						
+					elif title[8:11] == " - ":
+						# Short Composition: filename = YYYYMMDD - name
+						sortdate = title[0:8] + " 2000"			# "YYYYMMDD" + " " + DUMMY_TIME
+						title = title[11:]									# skips "YYYYMMDD - "
+					
+					time = int(sortdate[9:13])
+					date = int(sortdate[0:8])
+					date = datetime(date/10000, date%10000/100, date%100, time/100, time%100)
+				
+				# If the user wants it, extract information from the meta and eit files
+				
+				if movie_metaload and service:
+					# read title from META
+					meta = MetaList(path)
+					if meta:
+						metastring = meta.getMetaName()
+						print "EMC Meta metastring " +str(metastring)
+						#TEST date
+						#if not date:
+						metadate = meta.getMetaRecordingTime()  # Time in seconds since 1970
+						print "EMC Meta rectime " +str(metadate)
+						# Improve performance and avoid calculation of movie length
+						length = meta.getMetaLength()
+						print "EMC Meta length  " +str(length)
+				
+				if not metastring and movie_eitload and service:
+						# read title from EIT
+						eit = EitList(path)
+						if eit:
+							eitstring = eit.getEitName()
+							print "EMC eit eitstring: " + str(eitstring)
+							#if not date:
+							eitdate = eit.getEitWhen()+" "+eit.getEitStartDate()+" "+eit.getEitStartTime()  # Time in seconds since 1970 ?!?
+							print "EMC eit eitdate " +str(eitdate)
+							#if not length:
+							length = eit.getEitLengthInSeconds()
+							print "EMC eit length: " + str(length)
+				
+				# Priority and fallback handling
+				
+				# Set title priority here
+				# Fallback is the filename
+				title = metastring or eitstring or title or filename
+				
+				# Very bad but there can be both encodings
+				# E2 recordings are always in utf8
+				# User files can be in cp1252
+				# Is there no other way?
+				try:
+					title.decode('utf-8')
+				except UnicodeDecodeError:
+					title = title and title.decode("cp1252").encode("utf-8")
+				
+				# Set date priority here
+				# Fallback get date from filesystem, but it is very slow
+				#date = date #TODO or metadate or eitdate or os.path.exists(path) and datetime.fromtimestamp( os.path.getmtime(path) ) or None
+				date = date or metadate or (pathexists(path) and datetime.fromtimestamp( pathgetmtime(path) )) or None
+				
+				# Create sortkeys
+				if not sortdate: sortdate = date and date.strftime( "%Y%m%d%H%M" ) or ""
+				sorttitle = title.lower()
+				sortkeyalpha = sorttitle + cutnr + sortdate
+				#cutnrreverse = str( 999 - int(cutnr or 0) )
+				sortkeydate = sortdate + sorttitle + str( 999 - int(cutnr or 0) )
+				
+				# combine information regarding the emc config
+				if movie_show_cutnr:
+					title += " "+cutnr
+				
+				if movie_show_format:
+					title += " "+ext[1:]
+				
+				# Get player service and set formatted title
+				service = self.getPlayerService(path, title, ext)
 				
 				# Check config settings
+				#TODO These checks should be done earlier but there we don't have the service yet
 				if (movie_hide_mov and self.serviceMoving(service)) \
 					or (movie_hide_del and self.serviceDeleting(service)):
 					continue
 				
-				# Filename handling
-				# Takes 0.5s
-				# Takes 1.5s with reading from META
-				moviestring, length, date, cutnr = getMovieName(filename, service, ext)
-				
-				# Create sortkeys
-				sorttitle = moviestring.lower()
-				sortdate = date.strftime( "%Y%m%d%H%M" )
-				sortkeyalpha = sorttitle + cutnr + sortdate
-				sortkeydate = sortdate + sorttitle + str( 999 - int(cutnr or 0) )
-				sortingkeys = (sortkeyalpha, sortkeydate)
-				
-				# combine information regarding the emc config
-				if movie_show_cutnr:
-					moviestring += " "+cutnr
-				if movie_show_format:
-					moviestring += " "+ext[1:]
-				
-				append((service, sortingkeys, date, moviestring, filename, 0, length, ext))
+				append((service, (sortkeyalpha, sortkeydate), date, title, path, 0, length, ext))
 		
-		# If we are here, there is no way back
-		self.currentSelectionCount = 0
-		self.selectionList = None
-		
-		if loadPath is not None:
-			self.loadPath = loadPath
-		
-		if self.returnSort is not None:
-			# Restore sorting mode
-			self.alphaSort = self.returnSort
-			self.returnSort = None
-		
-		if alphaSort is not None:
-			# Backup the actual sorting mode
-			self.returnSort = self.alphaSort
-			# Set new sorting mode
-			self.alphaSort = alphaSort
-		
-		if resetlist:
-			self.list = []
-		else:
-			tmplist = self.list + tmplist
-		
-		if dosort:
-			# Do list sort
-			self.list = self.doListSort( tmplist )
-		else:
-			self.list = tmplist
-			
-		# Assign list to listbox
-		self.l.setList( self.list )
-		
+		# Cleanup before continue
 		del append
-		return self.loadPath
+		del pathexists
+		del pathgetmtime
+		
+		if not simulate:
+			# If we are here, there is no way back
+			self.currentSelectionCount = 0
+			self.selectionList = None
+			
+			if loadPath is not None:
+				self.loadPath = loadPath
+			
+			# Lookup for a permanent sorting mode
+			permSort = self.getPermanentSort(loadPath)
+			if permSort is not None:
+				# Backup the actual sorting mode
+				if self.returnSort is None:
+					self.returnSort = self.alphaSort
+				self.alphaSort = permSort
+			
+			elif self.returnSort is not None:
+				# Restore sorting mode
+				self.alphaSort = self.returnSort
+				self.returnSort = None
+			
+			if alphaSort is not None:
+				# Backup the actual sorting mode
+				if self.returnSort is None:
+					self.returnSort = self.alphaSort
+				# Set new sorting mode
+				self.alphaSort = alphaSort
+		
+			if resetlist:
+				self.list = []
+			else:
+				tmplist = self.list + tmplist
+		
+			if dosort:
+				# Do list sort
+				self.list = self.doListSort( tmplist )
+			else:
+				self.list = tmplist
+			
+			# Assign list to listbox
+			self.l.setList( self.list )
+		
+		else:
+			# Simulate only
+			tmplist = self.doListSort( tmplist )
+			return tmplist
+		
+		return True
 
 	def refreshList(self):
 		# Just invalidate the whole list to force rebuild the entries 
@@ -1233,8 +1282,9 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 		# so we don't have to go through the whole list
 		#TEST Performance for recordings only updating
 		#     Separate function for updating recordings only
+		#     Check for recording only if date is within the last day
 		#for entry in self.list:
-		#	if self.recControl.isRecording(entry[0].getPath()):
+		#	if self.recControl.isRecording(entry[4]):
 		#		self.invalidateService(entry[0])
 		self.l.invalidate()
 
@@ -1249,30 +1299,39 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 				if entry:
 					if entry[2]: 
 						# Entry is no directory
-						yield entry[0]
-		else:
+						service = entry[0]
+						if not self.serviceMoving(service) and not self.serviceDeleting(service):
+							yield service
+		elif self.currentSelIsDirectory():
 			# Cursor marks a directory
 			#IDEA: Optionally play also the following movielist items (folders and movies)
-			service = self.getCurrent()
-			if service:
-				path = service.getPath()
-				# Don't play movies from the trash folder or ".."
-				if path != config.EMC.movie_trashpath.value and not self.getCurrentSelName() == "..":
-					for root, dirs, files in os.walk(path): #,False):
-						if dirs:
-							for dir in dirs:
-								path = os.path.join(root, dir)
-								dvdStruct = self.detectDVDStructure( path )
-								if dvdStruct:
-									path = os.path.dirname(dvdStruct)
-									ext = os.path.splitext(dvdStruct)[1].lower()
-									yield self.getPlayerService(path, dir, ext)
-						if files:
-							for name in files:
-								ext = os.path.splitext(name)[1].lower()
-								if ext in extMedia:
-									path = os.path.join(root, name)
-									yield self.getPlayerService(path, name, ext)
+			path = self.getCurrentSelDir()
+			# Don't play movies from the trash folder or ".."
+			if path != config.EMC.movie_trashpath.value and path != "..":
+				#IDEA Is there a way to reuse the reload or createdirlist function
+					#TODO Then the files are sorted and played in their correct order
+					# So we don't have the whole dir and file recognition handling twice
+					# Simulate reload:	tmplist = self.reload(path, True)
+				for root, dirs, files in os.walk(path): #,False):
+					if dirs:
+						for dir in dirs:
+							path = os.path.join(root, dir)
+							dvdStruct = self.detectDVDStructure( path )
+							if dvdStruct:
+								path = os.path.dirname(dvdStruct)
+								ext = os.path.splitext(dvdStruct)[1].lower()
+								service = self.getPlayerService(path, dir, ext)
+								if not self.serviceMoving(service) and not self.serviceDeleting(service):
+									yield service
+					if files:
+						for name in files:
+							ext = os.path.splitext(name)[1].lower()
+							if ext in extMedia:
+								path = os.path.join(root, name)
+								#TODO get formatted Name
+								service = self.getPlayerService(path, name, ext)
+								if not self.serviceMoving(service) and not self.serviceDeleting(service):
+									yield service
 
 	def getPlayerService(self, path, name="", ext=None):
 		if ext in plyDVB:
@@ -1281,18 +1340,26 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 			service = eServiceReference(sidMP3, 0, path)
 		elif ext in plyDVD:
 			service = eServiceReference(sidDVD, 0, path)
+			#QUESTION Is the special name handling really necessary
 			if service:
-				if service.toString().endswith("/VIDEO_TS") or service.toString().endswith("/"):
+				# Copied from dvd player
+				if path.endswith("/VIDEO_TS") or path.endswith("/"):
 					names = service.toString().rsplit("/",3)
 					if names[2].startswith("Disk ") or names[2].startswith("DVD "):
-						name = str(names[1]) + " - " + str(names[2])
+						#TEST name = str(names[1]) + " - " + str(names[2])
+						name = names[1] + " - " + names[2]
 					else:
 						name = names[2]
-					service.setName(str(name))
+					#TEST service.setName(str(name))
+					#service.setName(name)
 		elif ext in plyM2TS:
 			service = eServiceReference(sidM2TS, 0, path)
 		else:
 			service = eServiceReference("2:0:1:0:0:0:0:0:0:0:" + path)
+		if name:
+			service.setName(name)
+		else:
+			service.setName( os.path.basename(path).capitalize() )
 		return service
 
 	def currentSelIsPlayable(self):
@@ -1312,29 +1379,23 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList):
 		except:	return False
 
 	def indexIsDirectory(self, index):
-		try:	return self.list[index][2] is None
+		try:	return self.list[index][7] == cmtDir
 		except:	return False
 
 	def getCurrentSelDir(self):
-		service = self.getCurrent()
-		return service and service.getPath()
+		try:	return self.list[self.getCurrentIndex()][4]
+		except:	return False
 
 	def getCurrentSelName(self):
 		try: return self.list[self.getCurrentIndex()][3]
 		except: return "none"
 
-	def getCurrentSelPath(self):
-		return self.loadPath + self.list[self.getCurrentIndex()][4] + (self.list[self.getCurrentIndex()][2] is None) * "/"
-
 	def moveToIndex(self, index):
 		self.instance.moveSelectionTo(index)
 
 	def moveToService(self, service):
-		found = 0
 		if service:
-			count = 0
-			for x in self.list:
+			for c, x in enumerate(self.list):
 				if x[0] == service:
-					found = count
-				count += 1
-		self.instance.moveSelectionTo(found)
+					self.instance.moveSelectionTo(c)
+					break
