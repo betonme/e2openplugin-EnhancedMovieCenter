@@ -1233,26 +1233,26 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort):
 			
 			if loadPath is not None:
 				self.loadPath = loadPath
-			
-			# Lookup for a permanent sorting mode
-			permSort = self.getPermanentSort(loadPath)
-			if permSort is not None:
-				# Backup the actual sorting mode
-				if self.returnSort is None:
-					self.returnSort = self.alphaSort
-				self.alphaSort = permSort
-			
-			elif self.returnSort is not None:
-				# Restore sorting mode
-				self.alphaSort = self.returnSort
-				self.returnSort = None
-			
-			if alphaSort is not None:
-				# Backup the actual sorting mode
-				if self.returnSort is None:
-					self.returnSort = self.alphaSort
-				# Set new sorting mode
-				self.alphaSort = alphaSort
+				
+				# Lookup for a permanent sorting mode
+				permSort = self.getPermanentSort(loadPath)
+				if permSort is not None:
+					# Backup the actual sorting mode
+					if self.returnSort is None:
+						self.returnSort = self.alphaSort
+					self.alphaSort = permSort
+				
+				elif self.returnSort is not None:
+					# Restore sorting mode
+					self.alphaSort = self.returnSort
+					self.returnSort = None
+				
+				if alphaSort is not None:
+					# Backup the actual sorting mode
+					if self.returnSort is None:
+						self.returnSort = self.alphaSort
+					# Set new sorting mode
+					self.alphaSort = alphaSort
 		
 			if resetlist:
 				self.list = []
