@@ -157,6 +157,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort):
 		self.CoolDatePos = -1
 		self.CoolDateWidth = 110
 		self.CoolDateColor = 0
+		self.CoolHighlightColor = 0
 		self.CoolProgressPos = -1
 		self.CoolBarPos = -1
 		self.CoolBarHPos = 8
@@ -255,6 +256,8 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort):
 					self.CoolDateWidth = int(value)
 				elif attrib == "CoolDateColor":
 					self.CoolDateColor = int(value)
+				elif attrib == "CoolHighlightColor":
+					self.CoolHighlightColor = int(value)
 				elif attrib == "CoolTimePos":
 					pass
 				
@@ -579,6 +582,11 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort):
 				else:
 					colordate = color
 				
+				if self.CoolHighlightColor == 0:
+					colorhighlight = self.FrontColorSel
+				else:
+					colorhighlight = color
+				
 				# Get entry selection number
 				selnumtxt = None
 				if selnum == 9999: selnumtxt = "-->"
@@ -603,21 +611,21 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort):
 					if self.CoolProgressPos != -1:
 						append(MultiContentEntryText(pos=(self.CoolProgressPos, 0), size=(progressWidth, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text="%d%%" % (progress)))
 					if self.CoolDatePos != -1:
-						append(MultiContentEntryText(pos=(self.CoolDatePos, 2), size=(self.CoolDateWidth, globalHeight), font=4, text=date, color = colordate, color_sel = self.FrontColorSel, flags=RT_HALIGN_CENTER))
+						append(MultiContentEntryText(pos=(self.CoolDatePos, 2), size=(self.CoolDateWidth, globalHeight), font=4, text=date, color = colordate, color_sel = colorhighlight, flags=RT_HALIGN_CENTER))
 						
-					append(MultiContentEntryText(pos=(self.CoolMoviePos, 0), size=(self.CoolMovieSize, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text=title, color = color, color_sel = self.FrontColorSel))
+					append(MultiContentEntryText(pos=(self.CoolMoviePos, 0), size=(self.CoolMovieSize, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text=title, color = color, color_sel = colorhighlight))
 					return res
 				
 				if config.EMC.movie_progress.value == "PB":
 					append(MultiContentEntryProgress(pos=(offset, self.CoolBarHPos), size = (self.CoolBarSize.width(), self.CoolBarSize.height()), percent = progress, borderWidth = 1, backColorSelected = None, foreColor = color, backColor = color))
 					offset += self.CoolBarSize.width() + 10
 				elif config.EMC.movie_progress.value == "P":
-					append(MultiContentEntryText(pos=(offset, 0), size=(progressWidth, globalHeight), font=usedFont, flags=RT_HALIGN_CENTER, text="%d%%" % (progress), color = color, color_sel = self.FrontColorSel, backcolor = self.BackColor, backcolor_sel = self.BackColorSel))
+					append(MultiContentEntryText(pos=(offset, 0), size=(progressWidth, globalHeight), font=usedFont, flags=RT_HALIGN_CENTER, text="%d%%" % (progress), color = color, color_sel = colorhighlight, backcolor = self.BackColor, backcolor_sel = self.BackColorSel))
 					offset += progressWidth + 5
 				
 				if config.EMC.movie_date.value:
-					append(MultiContentEntryText(pos=(self.l.getItemSize().width() - self.CoolDateWidth, 0), size=(self.CoolDateWidth, globalHeight), font=4, color = colordate, color_sel = self.FrontColorSel, backcolor = self.BackColor, backcolor_sel = self.BackColorSel, flags=RT_HALIGN_CENTER, text=date))
-				append(MultiContentEntryText(pos=(offset, 0), size=(self.l.getItemSize().width() - offset - self.CoolDateWidth -5, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text=title, color = color, color_sel = self.FrontColorSel))
+					append(MultiContentEntryText(pos=(self.l.getItemSize().width() - self.CoolDateWidth, 0), size=(self.CoolDateWidth, globalHeight), font=4, color = colordate, color_sel = colorhighlight, backcolor = self.BackColor, backcolor_sel = self.BackColorSel, flags=RT_HALIGN_CENTER, text=date))
+				append(MultiContentEntryText(pos=(offset, 0), size=(self.l.getItemSize().width() - offset - self.CoolDateWidth -5, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text=title, color = color, color_sel = colorhighlight, backcolor = self.BackColor, backcolor_sel = self.BackColorSel))
 			
 			else:
 				# Directory and vlc directories
