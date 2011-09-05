@@ -32,9 +32,7 @@ class DirectoryStack():
 	
 	def __init__(self):
 		self.stackForward = deque()
-		
-		self.stackBackward = deque()
-		self.stackBackward.maxlen = 10
+		self.stackBackward = deque( maxlen = 10 )
 
 	def isStackForwardAvailable(self):
 		return len(self.stackForward) > 0
@@ -44,7 +42,7 @@ class DirectoryStack():
 
 	def setStackNextDirectory(self, curdir, curservice):
 		# Clear forward stack
-		self.forwardStack.clear()
+		self.stackForward.clear()
 		if curdir and curservice:
 			# Set backward
 			self.stackBackward.append( (curdir, curservice) )

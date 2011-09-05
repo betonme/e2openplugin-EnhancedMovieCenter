@@ -96,6 +96,7 @@ class EMCMovieInfo(MovieInfo):
 						if not extdesc:
 							if path == "..":
 								# Resolve symbolic link of dirname
+								#TODO where to get the directory
 								extdesc = os.path.realpath( os.path.dirname(path) )
 								#TODO con print "EMC en extdesc3a " + str(extdesc)
 							elif os.path.isdir(path):

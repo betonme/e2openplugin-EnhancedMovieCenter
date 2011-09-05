@@ -94,6 +94,8 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		SelectionEventInfo.__init__(self)
+		VlcPluginInterfaceSel.__init__(self)
+		DirectoryStack.__init__(self)
 		self.avPolicy43 = config.av.policy_43.value
 
 		self.skinName = "EMCSelection"

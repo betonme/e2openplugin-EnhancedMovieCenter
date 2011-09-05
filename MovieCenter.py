@@ -480,7 +480,6 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort):
 			progress = 0
 			pixmap = None
 			color = None
-			colordate = None
 			
 			res = [ None ]
 			append = res.append
@@ -491,6 +490,11 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort):
 			#TODO ret print "EMC bldSer " +str(service.toString())
 			
 			if ext in plyAll:
+				colortitle = None
+				colordate = None
+				colorhighlight = None
+				selnumtxt = None
+				
 				# Playable files
 				latest = date and (datetime.today()-date).days < 1
 				
@@ -499,7 +503,6 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort):
 					date = "-- REC --"
 					pixmap = self.pic_movie_rec
 					color = self.RecordingColor
-					#colordate = self.RecordingColor
 					# Recordings status shows always the progress of the recording, 
 					# Never the progress of the cut list marker to avoid misunderstandings
 					progress = service and self.getRecordProgress(path) or 0
@@ -508,14 +511,12 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort):
 					date = "-- rec --"
 					pixmap = self.pic_movie_recrem
 					color = self.RecordingColor
-					#colordate = self.RecordingColor
 				
 				#IDEA elif config.EMC.check_movie_cutting.value:
 				elif self.recControl.isCutting(path):
 					date = "-- CUT --"
 					pixmap = self.pic_movie_cut
 					color = self.RecordingColor
-					#colordate = self.RecordingColor
 				
 				elif ext in plyVLC:
 					date = "   VLC   "
@@ -573,9 +574,12 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort):
 						color = self.FinishedColor
 					else:
 						color = self.DefaultColor
-					
+				
+				# Skin color handling
 				if self.CoolTitleColor == 0:
-					color = self.DefaultColor
+					colortitle = self.DefaultColor
+				else:
+					colortitle = color
 				
 				if self.CoolDateColor == 0:
 					colordate = self.DateColor
@@ -588,7 +592,6 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort):
 					colorhighlight = color
 				
 				# Get entry selection number
-				selnumtxt = None
 				if selnum == 9999: selnumtxt = "-->"
 				elif selnum == 9998: selnumtxt = "X"
 				elif selnum > 0: selnumtxt = "%02d" % selnum
@@ -613,7 +616,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort):
 					if self.CoolDatePos != -1:
 						append(MultiContentEntryText(pos=(self.CoolDatePos, 2), size=(self.CoolDateWidth, globalHeight), font=4, text=date, color = colordate, color_sel = colorhighlight, flags=RT_HALIGN_CENTER))
 						
-					append(MultiContentEntryText(pos=(self.CoolMoviePos, 0), size=(self.CoolMovieSize, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text=title, color = color, color_sel = colorhighlight))
+					append(MultiContentEntryText(pos=(self.CoolMoviePos, 0), size=(self.CoolMovieSize, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text=title, color = colortitle, color_sel = colorhighlight))
 					return res
 				
 				if config.EMC.movie_progress.value == "PB":
@@ -625,7 +628,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort):
 				
 				if config.EMC.movie_date.value:
 					append(MultiContentEntryText(pos=(self.l.getItemSize().width() - self.CoolDateWidth, 0), size=(self.CoolDateWidth, globalHeight), font=4, color = colordate, color_sel = colorhighlight, backcolor = self.BackColor, backcolor_sel = self.BackColorSel, flags=RT_HALIGN_CENTER, text=date))
-				append(MultiContentEntryText(pos=(offset, 0), size=(self.l.getItemSize().width() - offset - self.CoolDateWidth -5, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text=title, color = color, color_sel = colorhighlight, backcolor = self.BackColor, backcolor_sel = self.BackColorSel))
+				append(MultiContentEntryText(pos=(offset, 0), size=(self.l.getItemSize().width() - offset - self.CoolDateWidth -5, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text=title, color = colortitle, color_sel = colorhighlight, backcolor = self.BackColor, backcolor_sel = self.BackColorSel))
 			
 			else:
 				# Directory and vlc directories

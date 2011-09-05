@@ -43,6 +43,9 @@ class VlcFileListWrapper:
 
 
 class VlcPluginInterfaceSel():
+	def __init__(self):
+		pass
+
 	def browsingVLC(self):
 		return self.currentPath.find("VLC servers") > -1
 
