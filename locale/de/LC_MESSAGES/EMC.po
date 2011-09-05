@@ -738,7 +738,7 @@ msgstr "Dateiendung (Dateiformat) wird dem Titel angehängt."
 
 msgid "HELP_Show Cut-Nr if exist"
 msgstr ""
-"Wenn Enigma2 während einer Aufnahme rebootet, wird die Aufnahme von E2 automatisch fortgesetzt und dabei der neuen Datei eine fotlaufende Nummer hinten angestellt.\n"
+"Wenn Enigma2 während einer Aufnahme rebootet, wird die Aufnahme von E2 automatisch fortgesetzt und dabei der neuen Datei eine fortlaufende Nummer hinten angestellt.\n"
 "Hiermit wird diese Nummer dem Titel hinten angestellt."
 
 msgid "HELP_Show date"
