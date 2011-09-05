@@ -153,6 +153,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort):
 		self.CoolMoviePos = 100
 		self.CoolMovieSize = 490
 		self.CoolFolderSize = 550
+		self.CoolTitleColor = 0
 		self.CoolDatePos = -1
 		self.CoolDateWidth = 110
 		self.CoolDateColor = 0
@@ -246,6 +247,8 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort):
 					self.CoolMovieSize = int(value)
 				elif attrib == "CoolFolderSize":
 					self.CoolFolderSize = int(value)
+				elif attrib == "CoolTitleColor":
+					self.CoolTitleColor = int(value)
 				elif attrib == "CoolDatePos":
 					self.CoolDatePos = int(value)
 				elif attrib == "CoolDateWidth":
@@ -466,6 +469,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort):
 				self.list[idx] = tuple(l)
 
 	def buildMovieCenterEntry(self, service, sortkeys, date, title, path, selnum, length, ext):
+		#TODO remove before release
 		try:
 			offset = 0
 			progressWidth = 55
@@ -492,7 +496,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort):
 					date = "-- REC --"
 					pixmap = self.pic_movie_rec
 					color = self.RecordingColor
-					colordate = self.RecordingColor
+					#colordate = self.RecordingColor
 					# Recordings status shows always the progress of the recording, 
 					# Never the progress of the cut list marker to avoid misunderstandings
 					progress = service and self.getRecordProgress(path) or 0
@@ -501,23 +505,19 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort):
 					date = "-- rec --"
 					pixmap = self.pic_movie_recrem
 					color = self.RecordingColor
-					colordate = self.RecordingColor
+					#colordate = self.RecordingColor
 				
 				#IDEA elif config.EMC.check_movie_cutting.value:
 				elif self.recControl.isCutting(path):
 					date = "-- CUT --"
 					pixmap = self.pic_movie_cut
 					color = self.RecordingColor
-					colordate = self.RecordingColor
+					#colordate = self.RecordingColor
 				
 				elif ext in plyVLC:
 					date = "   VLC   "
 					pixmap = self.pic_vlc
 					color = self.DefaultColor
-					if self.CoolDateColor == 0:
-						colordate = self.DateColor
-					else:
-						colordate = color
 				
 				else:
 					# Media file
@@ -571,10 +571,13 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort):
 					else:
 						color = self.DefaultColor
 					
-					if self.CoolDateColor == 0:
-						colordate = self.DateColor
-					else:
-						colordate = color
+				if self.CoolTitleColor == 0:
+					color = self.DefaultColor
+				
+				if self.CoolDateColor == 0:
+					colordate = self.DateColor
+				else:
+					colordate = color
 				
 				# Get entry selection number
 				selnumtxt = None
@@ -618,6 +621,9 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort):
 			
 			else:
 				# Directory and vlc directories
+				
+				#TODO Color not used yet for folders
+				#color = self.DefaultColor
 				
 				if ext == cmtVLC:
 					date = _("VLC")
