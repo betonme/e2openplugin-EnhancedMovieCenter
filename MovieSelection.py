@@ -44,6 +44,7 @@ from EMCMediaCenter import EMCMediaCenter
 from RogueFileCheck import RogueFileCheck
 from VlcPluginInterface import VlcPluginInterfaceSel
 from CutListSupport import CutList
+from DirectoryStack import DirectoryStack
 
 from MovieCenter import extMedia
 global extMedia
@@ -89,7 +90,7 @@ class SelectionEventInfo:
 		self["FileSize"].setText("")
 
 
-class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfaceSel):
+class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfaceSel, DirectoryStack):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		SelectionEventInfo.__init__(self)
@@ -178,11 +179,6 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		self.tmpSelList = None
 		self.toggle = True
 		
-		#TODO when to clear the forward / backward stack
-		# on long press buttons "<" / ">" ?
-		self.backStack = []
-		self.forwardStack = []
-		
 		self.onExecBegin.append(self.onDialogShow)
 
 	def CoolAVSwitch(self):
@@ -241,34 +237,25 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 
 	def CoolKey0(self):
 		# Movie home
-		del self.forwardStack[:]
-		self.backStack.append( (self.currentPath, self["list"].getCurrent()) )
+		self.setStackNextDirectory( self.currentPath, self["list"].getCurrent() )
 		self.changeDir(config.EMC.movie_homepath.value)
 
 	def CoolForward(self):
-		if self.forwardStack:
+		path, service = self.popStackForward( self.currentPath, self["list"].getCurrent() )
+		if path and service:
 			# Actually we are in a history folder - go forward
-			(path, service) = self.forwardStack.pop()
-			self.backStack.append( (self.currentPath, self["list"].getCurrent()) )
 			self.changeDir(path, service)
 		else:
 			# No entry on stack
 			pass
 
 	def CoolBack(self):
-		path = None
-		service = None
-		if self.backStack:
+		path, service = self.popStackBackward( self.currentPath, self["list"].getCurrent() )
+		if path and service:
 			# History folder is available - go back 
-			(path, service) = self.backStack.pop()
-			self.forwardStack.append( (self.currentPath, self["list"].getCurrent()) )
 			self.changeDir(path, service)
-		elif self.currentPath != "" and self.currentPath != "/":
-			# No history folder is available - open parent folder
-			self.setNextPath()
 		else:
-			# Move cursor to top of the list
-			self.moveTop()
+			self.DirectoryUp()
 
 	def DirectoryUp(self):
 		path = None
@@ -293,8 +280,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			# Open folder nextdir and select given or first entry
 			pass
 		
-		del self.forwardStack[:]
-		self.backStack.append( (self.currentPath, self["list"].getCurrent()) )
+		self.setStackNextDirectory( self.currentPath, self["list"].getCurrent() )
 		self.changeDir(nextdir, service)
 
 	def getCurrent(self):
