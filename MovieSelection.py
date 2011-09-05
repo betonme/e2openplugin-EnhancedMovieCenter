@@ -243,7 +243,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		self.changeDir(config.EMC.movie_homepath.value)
 
 	def CoolForward(self):
-		path, service = self.popStackForward( self.currentPath, self["list"].getCurrent() )
+		path, service = self.goForward( self.currentPath, self["list"].getCurrent() )
 		if path and service:
 			# Actually we are in a history folder - go forward
 			self.changeDir(path, service)
@@ -252,7 +252,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			pass
 
 	def CoolBack(self):
-		path, service = self.popStackBackward( self.currentPath, self["list"].getCurrent() )
+		path, service = self.goBackward( self.currentPath, self["list"].getCurrent() )
 		if path and service:
 			# History folder is available - go back 
 			self.changeDir(path, service)

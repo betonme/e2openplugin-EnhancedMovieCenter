@@ -94,15 +94,19 @@ class EMCEventName(EventName):
 							extdesc = self.meta and self.meta.getMetaDescription()
 							#TODO con print "EMC en extdesc2 " + str(extdesc)
 							if not extdesc:
-								if path == "..":
-									# Resolve symbolic link of dirname
-									#TODO where to get the directory
-									extdesc = os.path.realpath( os.path.dirname(path) )
-									#TODO con print "EMC en extdesc3a " + str(extdesc)
-								elif os.path.isdir(path):
+								if not os.path.isfile(path):
 									# Resolve symbolic link
 									extdesc = os.path.realpath(path)
 									#TODO con print "EMC en extdesc4 " + str(extdesc)
+#								elif path == "..":
+#									# Resolve symbolic link of dirname
+#									#TODO where to get the directory
+#									extdesc = os.path.realpath( os.path.dirname(path) )
+#									#TODO con print "EMC en extdesc3a " + str(extdesc)
+#								elif os.path.isdir(path):
+#									# Resolve symbolic link
+#									extdesc = os.path.realpath(path)
+#									#TODO con print "EMC en extdesc4 " + str(extdesc)
 				return extdesc or ""
 			
 			elif self.type == self.ID:

@@ -47,7 +47,7 @@ class DirectoryStack():
 			# Set backward
 			self.stackBackward.append( (curdir, curservice) )
 
-	def popStackForward(self, curdir, curservice):
+	def goForward(self, curdir, curservice):
 		if self.stackForward:
 			# Go forwards
 			if curdir and curservice:
@@ -58,7 +58,7 @@ class DirectoryStack():
 			# Forward isn't possible
 			return (None, None)
 
-	def popStackBackward(self, curdir, curservice):
+	def goBackward(self, curdir, curservice):
 		if self.stackBackward:
 			# Go backwards
 			if curdir and curservice:

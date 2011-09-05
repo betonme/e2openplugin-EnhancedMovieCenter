@@ -94,15 +94,19 @@ class EMCMovieInfo(MovieInfo):
 						extdesc = self.meta and self.meta.getMetaDescription()
 						#TODO con print "EMC mi extdesc3 " + str(extdesc)
 						if not extdesc:
-							if path == "..":
-								# Resolve symbolic link of dirname
-								#TODO where to get the directory
-								extdesc = os.path.realpath( os.path.dirname(path) )
-								#TODO con print "EMC en extdesc3a " + str(extdesc)
-							elif os.path.isdir(path):
-								# Resolve symbolic link
-								extdesc = os.path.realpath(path)
-							#TODO con print "EMC mi extdesc4 " + str(extdesc)
+								if not os.path.isfile(path):
+									# Resolve symbolic link
+									extdesc = os.path.realpath(path)
+									#TODO con print "EMC en extdesc4 " + str(extdesc)
+#								elif path == "..":
+#									# Resolve symbolic link of dirname
+#									#TODO where to get the directory
+#									extdesc = os.path.realpath( os.path.dirname(path) )
+#									#TODO con print "EMC en extdesc3a " + str(extdesc)
+#								elif os.path.isdir(path):
+#									# Resolve symbolic link
+#									extdesc = os.path.realpath(path)
+#									#TODO con print "EMC en extdesc4 " + str(extdesc)
 				return extdesc or ""
 				
 			elif self.type == self.MOVIE_REC_SERVICE_NAME:

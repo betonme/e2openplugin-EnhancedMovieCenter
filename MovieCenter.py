@@ -1005,7 +1005,9 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort):
 		pathbasename = os.path.basename
 		
 		if loadPath != "" and loadPath != config.EMC.movie_pathlimit.value:
-			append( ("..", "..", cmtUp) )
+			append( (	pathjoin(loadPath, ".."),
+								"..",
+								cmtUp) )
 		
 		if extend:
 			# Insert these entries always at last

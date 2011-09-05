@@ -292,39 +292,38 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 		]
 
 	def createConfig(self):
-		try:
-			list = []
-			for i, conf in enumerate( self.EMCConfig ):
-				# 0 entry text
-				# 1 variable
-				# 2 validation
-				# 3 pressed ok
-				# 4 setup level
-				# 5 parent entries
-				# 6 help text
-				# Config item must be valid for current usage setup level
-				if config.usage.setup_level.index >= conf[4]:
-					# Parent entries must be true
-					for parent in conf[5]:
-						if not self.EMCConfig[i+parent][1].value:
-							break
-					else:
-						# loop fell through without a break
-						list.append( getConfigListEntry( conf[0], conf[1], conf[2], conf[3], conf[4], conf[5], conf[6] ) )
+		list = []
+		for i, conf in enumerate( self.EMCConfig ):
+			# 0 entry text
+			# 1 variable
+			# 2 validation
+			# 3 pressed ok
+			# 4 setup level
+			# 5 parent entries
+			# 6 help text
+			# Config item must be valid for current usage setup level
+			if config.usage.setup_level.index >= conf[4]:
+				# Parent entries must be true
+				for parent in conf[5]:
+					if not self.EMCConfig[i+parent][1].value:
+						break
+				else:
+					# loop fell through without a break
+					list.append( getConfigListEntry( conf[0], conf[1], conf[2], conf[3], conf[4], conf[5], conf[6] ) )
 #			try:
 #				list.append( getConfigListEntry( _("Enable component video in A/V Settings"), config.av.yuvenabled, self.needsRestart, None, 2, [], _("") ) )
 #			except: pass
-			self.list = list
-			self["config"].setList(self.list)
-		except Exception, e:
-			emcDebugOut("[EMCMS] create config exception:\n" + str(e))
+		self.list = list
+		self["config"].setList(self.list)
 
 	def onDialogShow(self):
 		self.setTitle("Enhanced Movie Center "+ EMCVersion + " (Setup)")
 
 	# Overwrite Screen close function
 	def close(self):
-		self.hide()
+		#self.hide()
+		if self.needsRestartFlag:
+			self.session.open(MessageBox, _("Some settings changes require GUI restart to take effect."), MessageBox.TYPE_INFO, 10)
 		self.session.openWithCallback(self.closeConfirm, MessageBox, EMCAbout, MessageBox.TYPE_INFO)
 
 	def closeConfirm(self, dummy=None):
@@ -373,8 +372,6 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 						# Stop exiting, user has to correct the config
 						return
 				entry[1].save()
-		if self.needsRestartFlag:
-			self.session.open(MessageBox, _("Some settings changes require GUI restart to take effect."), MessageBox.TYPE_INFO, 10)
 		self.keySave()
 		self.close()
 
