@@ -16,6 +16,7 @@ echo "Kopiere Config Dateien aus /etc/enigma2/ nach /tmp/temp/"
 mkdir -p /tmp/temp/etc/enigma2/
 cp -r /etc/enigma2/emc-hide.cfg /tmp/temp/etc/enigma2/
 cp -r /etc/enigma2/emc-noscan.cfg /tmp/temp/etc/enigma2/
+cp -r /etc/enigma2/emc-permsort.cfg /tmp/temp/etc/enigma2/
 
 echo "Lösche alle *.py unter /tmp/temp/"
 rm -r /tmp/temp/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/*.py
