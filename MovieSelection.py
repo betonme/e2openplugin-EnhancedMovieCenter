@@ -225,7 +225,10 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		self.close(None)
 
 	def blueFunc(self):
-		if config.EMC.movie_bluefunc.value == "Movie home": 
+		if config.EMC.movie_bluefunc.value == "Movie home":
+			self.returnService = None
+			self["list"].alphaSort = config.EMC.CoolStartAZ.value
+			self["list"].returnSort = None
 			self.changeDir(config.EMC.movie_homepath.value)
 		else:
 			self.playLast()
