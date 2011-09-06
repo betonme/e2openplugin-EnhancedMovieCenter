@@ -133,8 +133,8 @@ launch_choices = [	("None",						_("No override")),
 # Date format is implemented using datetime.strftime
 date_choices = [	("%d.%m.%Y",					_("DD.MM.YYYY")),
 									("%m.%d %H:%M",				_("MM.DD HH:MM")),
-									("%Y.%m.%d",					_("YYYY.MM.DD")),
-									("%m.%d %H:%M",				_("MM.DD HH:MM")) ]
+									("%Y/%m/%d",					_("YYYY/MM/DD")),
+									("%m/%d %H:%M",				_("MM/DD HH:MM")) ]
 
 config.EMC                           = ConfigSubsection()
 config.EMC.needsreload               = ConfigYesNo(default = False)
