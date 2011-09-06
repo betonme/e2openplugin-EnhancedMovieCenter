@@ -773,7 +773,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 				service = selectedlist[0]
 				name = self["list"].getNameOfService(service)
 				if not self.delCurrentlyPlaying:
-					if config.EMC.movie_trashcan_validation.value or int(config.EMC.movie_trashcan_limit.value) == 0 or self.permanentDel:
+					if config.EMC.movie_trashcan_validation.value or not config.EMC.movie_trashcan_enable.value or self.permanentDel:
 						self.session.openWithCallback(self.deleteMovieConfimation, MessageBox, delStr + "?\n" + rm_add + name, MessageBox.TYPE_YESNO)
 					else:
 						self.deleteMovieConfimation(True)
@@ -793,7 +793,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 							name = name[:48] + "..."	# limit the name string
 						movienames += name + "\n"*(i<entrycount)
 					if not self.delCurrentlyPlaying:
-						if config.EMC.movie_trashcan_validation.value or int(config.EMC.movie_trashcan_limit.value) == 0 or self.permanentDel:
+						if config.EMC.movie_trashcan_validation.value or not config.EMC.movie_trashcan_enable.value or self.permanentDel:
 							self.session.openWithCallback(self.deleteMovieConfimation, MessageBox, delStr + _(" all selected video files?") + "\n" + rm_add + movienames, MessageBox.TYPE_YESNO)
 						else:
 							self.deleteMovieConfimation(True)

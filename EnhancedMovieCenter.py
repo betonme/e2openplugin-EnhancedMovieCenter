@@ -204,17 +204,18 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 			(  _("EMC path access limit")                         , config.EMC.movie_pathlimit          , self.validatePath     , self.openLocationBox  , 1     , []        , _("HELP_EMC path access limit") ),
 			
 			(  separator                                          , config.EMC.about                    , None                  , None                  , 0     , []        , _("") ),
-			(  _("Trashcan path")                                 , config.EMC.movie_trashpath          , self.validatePath     , self.openLocationBox  , 0     , []        , _("HELP_Trashcan path") ),
 			(  _("Delete validation")                             , config.EMC.movie_trashcan_validation, None                  , None                  , 0     , []        , _("HELP_Delete validation") ),
 
-			(  _("Show trashcan directory")                       , config.EMC.movie_trashcan_show      , None                  , None                  , 0     , []        , _("HELP_Show trashcan directory") ),
-			(  _("Dynamic Trashcan")                              , config.EMC.movie_trashcan_dynamic   , None                  , None                  , 0     , [-1]        , _("HELP_Dynamic trashcan") ),
+			(  _("Trashcan enable")                               , config.EMC.movie_trashcan_enable    , None                  , self.openLocationBox  , 0     , []        , _("HELP_Trashcan enable") ),
+			(  _("Trashcan path")                                 , config.EMC.movie_trashpath          , self.validatePath     , self.openLocationBox  , 0     , [-1]        , _("HELP_Trashcan path") ),
+			(  _("Show trashcan directory")                       , config.EMC.movie_trashcan_show      , None                  , None                  , 0     , [-2]        , _("HELP_Show trashcan directory") ),
+			(  _("Dynamic Trashcan")                              , config.EMC.movie_trashcan_dynamic   , None                  , None                  , 0     , [-3,-1]        , _("HELP_Dynamic trashcan") ),
 			
-			(  _("Enable daily trashcan cleanup")                 , config.EMC.movie_trashcan_clean     , self.trashCleanupSetup, None                  , 0     , []        , _("HELP_Enable daily trashcan cleanup") ),
-			(  _("Daily cleanup time")                            , config.EMC.movie_trashcan_ctime     , None                  , None                  , 0     , [-1]      , _("HELP_Daily cleanup time") ),
-			(  _("How many days files may remain in trashcan")    , config.EMC.movie_trashcan_limit     , None                  , None                  , 0     , [-2]      , _("HELP_How many days files may remain in trashcan") ),
-			(  _("Move finished movies in trashcan")              , config.EMC.movie_finished_clean     , None                  , None                  , 2     , [-3]      , _("HELP_Move finished movies in trashcan") ),
-			(  _("Age of finished movies in movie folder (days)") , config.EMC.movie_finished_limit     , None                  , None                  , 2     , [-4,-1]   , _("HELP_Age of finished movies in movie folder (days)") ),
+			(  _("Enable daily trashcan cleanup")                 , config.EMC.movie_trashcan_clean     , self.trashCleanupSetup, None                  , 0     , [-4]        , _("HELP_Enable daily trashcan cleanup") ),
+			(  _("Daily cleanup time")                            , config.EMC.movie_trashcan_ctime     , None                  , None                  , 0     , [-5,-1]      , _("HELP_Daily cleanup time") ),
+			(  _("How many days files may remain in trashcan")    , config.EMC.movie_trashcan_limit     , None                  , None                  , 0     , [-6,-2]      , _("HELP_How many days files may remain in trashcan") ),
+			(  _("Move finished movies in trashcan")              , config.EMC.movie_finished_clean     , None                  , None                  , 2     , [-7,-3]      , _("HELP_Move finished movies in trashcan") ),
+			(  _("Age of finished movies in movie folder (days)") , config.EMC.movie_finished_limit     , None                  , None                  , 2     , [-8,-4,-1]   , _("HELP_Age of finished movies in movie folder (days)") ),
 			
 			(  separator                                          , config.EMC.about                    , None                  , None                  , 0     , []        , _("") ),
 			(  _("Show Latest Recordings directory")              , config.EMC.latest_recordings        , None                  , None                  , 0     , []        , _("HELP_Show Latest Recordings directory") ),
