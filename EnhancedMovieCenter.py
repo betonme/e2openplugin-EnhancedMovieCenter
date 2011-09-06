@@ -211,10 +211,10 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 			(  _("Dynamic Trashcan")                              , config.EMC.movie_trashcan_dynamic   , None                  , None                  , 0     , [-1]        , _("HELP_Dynamic trashcan") ),
 			
 			(  _("Enable daily trashcan cleanup")                 , config.EMC.movie_trashcan_clean     , self.trashCleanupSetup, None                  , 0     , []        , _("HELP_Enable daily trashcan cleanup") ),
-			(  _("Daily cleanup time")                            , config.EMC.movie_trashcan_ctime     , self.trashCleanupSetup, None                  , 0     , [-1]      , _("HELP_Daily cleanup time") ),
-			(  _("How many days files may remain in trashcan")    , config.EMC.movie_trashcan_limit     , self.trashCleanupSetup, None                  , 0     , [-2]      , _("HELP_How many days files may remain in trashcan") ),
-			(  _("Move finished movies in trashcan")              , config.EMC.movie_finished_clean     , self.trashCleanupSetup, None                  , 2     , [-3]      , _("HELP_Move finished movies in trashcan") ),
-			(  _("Age of finished movies in movie folder (days)") , config.EMC.movie_finished_limit     , self.trashCleanupSetup, None                  , 2     , [-4,-1]   , _("HELP_Age of finished movies in movie folder (days)") ),
+			(  _("Daily cleanup time")                            , config.EMC.movie_trashcan_ctime     , None                  , None                  , 0     , [-1]      , _("HELP_Daily cleanup time") ),
+			(  _("How many days files may remain in trashcan")    , config.EMC.movie_trashcan_limit     , None                  , None                  , 0     , [-2]      , _("HELP_How many days files may remain in trashcan") ),
+			(  _("Move finished movies in trashcan")              , config.EMC.movie_finished_clean     , None                  , None                  , 2     , [-3]      , _("HELP_Move finished movies in trashcan") ),
+			(  _("Age of finished movies in movie folder (days)") , config.EMC.movie_finished_limit     , None                  , None                  , 2     , [-4,-1]   , _("HELP_Age of finished movies in movie folder (days)") ),
 			
 			(  separator                                          , config.EMC.about                    , None                  , None                  , 0     , []        , _("") ),
 			(  _("Show Latest Recordings directory")              , config.EMC.latest_recordings        , None                  , None                  , 0     , []        , _("HELP_Show Latest Recordings directory") ),
@@ -268,8 +268,8 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 			(  _("Automatic timers list cleaning")                , config.EMC.timer_autocln            , None                  , None                  , 1     , []        , _("HELP_Automatic timers list cleaning") ),
 			
 			(  _("Enigma daily auto-restart")                     , config.EMC.enigmarestart            , self.autoRestartInfo  , self.autoRestartInfo  , 1     , []        , _("HELP_Enigma daily auto-restart") ),
-			(  _("Enigma auto-restart window begin")              , config.EMC.enigmarestart_begin      , self.autoRestartInfo  , self.autoRestartInfo  , 1     , [-1]      , _("HELP_Enigma auto-restart window begin") ),
-			(  _("Enigma auto-restart window end")                , config.EMC.enigmarestart_end        , self.autoRestartInfo  , self.autoRestartInfo  , 1     , [-2]      , _("HELP_Enigma auto-restart window end") ),
+			(  _("Enigma auto-restart window begin")              , config.EMC.enigmarestart_begin      , None                  , None                  , 1     , [-1]      , _("HELP_Enigma auto-restart window begin") ),
+			(  _("Enigma auto-restart window end")                , config.EMC.enigmarestart_end        , None                  , None                  , 1     , [-2]      , _("HELP_Enigma auto-restart window end") ),
 			(  _("Force standby after auto-restart")              , config.EMC.enigmarestart_stby       , None                  , None                  , 1     , [-3]      , _("HELP_Force standby after auto-restart") ),
 			
 			(  separator                                          , config.EMC.about                    , None                  , None                  , 1     , []        , _("HELP_Language Separator") ),
@@ -286,7 +286,7 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 			(  separator                                          , config.EMC.about                    , None                  , None                  , 2     , []        , _("HELP_Advanced options separator") ),
 			(  _("Enable EMC debug output")                       , config.EMC.debug                    , self.dbgChange        , None                  , 2     , []        , _("HELP_Enable EMC debug output") ),
 			(  _("EMC output directory")                          , config.EMC.folder                   , self.validatePath     , self.openLocationBox  , 2     , [-1]      , _("HELP_EMC output directory") ),
-			(  _("Debug output file name")                        , config.EMC.debugfile                , None                  , None                  , 2     , [-2]      , _("HELP_Debug output file name") ),
+			(  _("Debug output file name")                        , config.EMC.debugfile                , self.validatePath     , None                  , 2     , [-2]      , _("HELP_Debug output file name") ),
 			(  _("Description field update delay")                , config.EMC.movie_descdelay          , None                  , None                  , 2     , []        , _("HELP_Description field update delay") ),
 			(  _("Key period value (50-900)")                     , config.EMC.key_period               , setupKeyResponseValues, None                  , 2     , []        , _("HELP_Key period value (50-900)") ),
 			(  _("Key repeat value (250-900)")                    , config.EMC.key_repeat               , setupKeyResponseValues, None                  , 2     , []        , _("HELP_Key repeat value (250-900)") )
@@ -369,9 +369,17 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 		for entry in self.list:
 			if entry[1].isChanged():
 				if entry[2] is not None:
-					if entry[2](entry[1]) is not None:	# execute value changed -function
+					# execute value changed -function
+					if entry[2](entry[1]) is not None:	
 						# Stop exiting, user has to correct the config
 						return
+				# Check parent entries
+				for parent in entry[5]:
+					if not self.EMCConfig[parent][2].value is not None:
+						# execute parent value changed -function
+						if self.EMCConfig[parent][2].value(self.EMCConfig[parent][1].value) is not None:	
+							# Stop exiting, user has to correct the config
+							return
 				entry[1].save()
 		self.keySave()
 		self.close()
