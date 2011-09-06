@@ -1012,7 +1012,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort):
 		if extend:
 			# Insert these entries always at last
 			if loadPath == config.EMC.movie_homepath.value:
-				if trashcan and not config.EMC.movie_trashcan_hide.value:
+				if trashcan and config.EMC.movie_trashcan_show.value:
 					append( (	config.EMC.movie_trashpath.value,
 										(pathbasename(config.EMC.movie_trashpath.value)).capitalize(),
 										cmtTrash) )

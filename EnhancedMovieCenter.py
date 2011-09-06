@@ -205,9 +205,10 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 			
 			(  separator                                          , config.EMC.about                    , None                  , None                  , 0     , []        , _("") ),
 			(  _("Trashcan path")                                 , config.EMC.movie_trashpath          , self.validatePath     , self.openLocationBox  , 0     , []        , _("HELP_Trashcan path") ),
-			(  _("Hide trashcan directory")                       , config.EMC.movie_trashcan_hide      , None                  , None                  , 0     , []        , _("HELP_Hide trashcan directory") ),
-			(  _("Dynamic Trashcan")                              , config.EMC.movie_trashcan_dynamic   , None                  , None                  , 0     , []        , _("HELP_Dynamic trashcan") ),
 			(  _("Delete validation")                             , config.EMC.movie_trashcan_validation, None                  , None                  , 0     , []        , _("HELP_Delete validation") ),
+
+			(  _("Show trashcan directory")                       , config.EMC.movie_trashcan_show      , None                  , None                  , 0     , []        , _("HELP_Show trashcan directory") ),
+			(  _("Dynamic Trashcan")                              , config.EMC.movie_trashcan_dynamic   , None                  , None                  , 0     , [-1]        , _("HELP_Dynamic trashcan") ),
 			
 			(  _("Enable daily trashcan cleanup")                 , config.EMC.movie_trashcan_clean     , self.trashCleanupSetup, None                  , 0     , []        , _("HELP_Enable daily trashcan cleanup") ),
 			(  _("Daily cleanup time")                            , config.EMC.movie_trashcan_ctime     , self.trashCleanupSetup, None                  , 0     , [-1]      , _("HELP_Daily cleanup time") ),
