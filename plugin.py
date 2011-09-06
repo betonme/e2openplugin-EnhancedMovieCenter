@@ -136,6 +136,11 @@ date_choices = [	("%d.%m.%Y",					_("DD.MM.YYYY")),
 									("%Y/%m/%d",					_("YYYY/MM/DD")),
 									("%m/%d %H:%M",				_("MM/DD HH:MM")) ]
 
+dirinfo_choices = [	("Off",						_("Directory")),
+										("Count",					_("( # )")),
+										("CountSize",			_("( # / GB )")),
+										("Size",					_("( GB )")) ]
+
 config.EMC                           = ConfigSubsection()
 config.EMC.needsreload               = ConfigYesNo(default = False)
 config.EMC.about                     = ConfigSelection(default = "1", choices = [("1", " ")])
@@ -192,7 +197,7 @@ config.EMC.movie_pathlimit           = ConfigTextWOHelp(default = "/hdd/movie", 
 config.EMC.movie_trashcan_enable     = ConfigYesNo(default = True)
 config.EMC.movie_trashcan_path       = ConfigTextWOHelp(default = "/hdd/movie/trashcan", fixed_size = False, visible_width= 22)
 config.EMC.movie_trashcan_show       = ConfigYesNo(default = True)
-config.EMC.movie_trashcan_info       = ConfigYesNo(default = True)
+config.EMC.movie_trashcan_info       = ConfigSelection(default = "Count", choices = dirinfo_choices)
 config.EMC.movie_trashcan_clean      = ConfigYesNo(default = True)
 config.EMC.movie_trashcan_limit      = ConfigSelectionNumber(1, 99, 1, default = 3)
 config.EMC.movie_finished_clean      = ConfigYesNoConfirm(default = False, text = _("ATTENTION\n\nThis option will move all finished movies in Movie Home automatically to Your trashcan at the given time.\nAt next trashcan cleanup all movies will be deleted.\n\nConfirm this with the blue key followed by the green key."), key1="blue", key2="green")
@@ -200,7 +205,7 @@ config.EMC.movie_finished_limit      = ConfigSelectionNumber(1, 99, 1, default =
 config.EMC.movie_trashcan_ctime      = ConfigClock(default = 0)
 config.EMC.movie_trashcan_validation = ConfigYesNo(default = True)
 config.EMC.directories_show          = ConfigYesNo(default = True)
-config.EMC.directories_info          = ConfigYesNo(default = False)
+config.EMC.directories_info          = ConfigSelection(default = "Off", choices = dirinfo_choices)
 config.EMC.latest_recordings         = ConfigYesNo(default = True)
 config.EMC.vlc                       = ConfigYesNo(default = True)
 config.EMC.bookmarks_e2              = ConfigYesNo(default = True)

@@ -471,14 +471,27 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort):
 				l[6] = length
 				self.list[idx] = tuple(l)
 
-	def dirInfo(self, path):
+	def dirInfo(self, folder, bsize=False):
+		#TODO Improve performance
 		count = 0
-		if os.path.exists(path):
-			for p in os.listdir(path):
-				pext = os.path.splitext(p)[1]
-				if pext in extList:
+		size = 0
+		if os.path.exists(folder):
+			#for m in os.listdir(path):
+			for (path, dirs, files) in os.walk(folder):
+				for d in dirs:
 					count += 1
-		return count
+				for m in files:
+					if os.path.splitext(m)[1] in extList:
+						count += 1
+						if bsize:
+							# Only retrieve the file size if it is requested,
+							# because it costs a lot of time
+							filename = os.path.join(path, file)
+							if os.path.exists(filename):
+								size += os.path.getsize(filename)
+		if size:
+			size / 1024.0 / 1024.0 / 1024.0
+		return count, size
 
 	def buildMovieCenterEntry(self, service, sortkeys, date, title, path, selnum, length, ext):
 		#TODO remove before release
@@ -664,26 +677,47 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort):
 					date = _("Bookmark")
 					pixmap = self.pic_bookmark
 				elif ext in cmtTrash:
-					if config.EMC.movie_trashcan_info.value:
-						count = self.dirInfo(path)
+					if config.EMC.movie_trashcan_info.value != "Off":
+						#TODO Improve performance
+						count = 0
+						if config.EMC.movie_trashcan_info.value == "Count":
+							count, size = self.dirInfo(path)
+							date = " ( %d ) " % (count)
+						elif config.EMC.movie_trashcan_info.value == "CountSize":
+							count, size = self.dirInfo(path, bsize=True)
+							date = " ( %d / %.2f GB ) " % (count, size)
+						elif config.EMC.movie_trashcan_info.value == "Size":
+							count, size = self.dirInfo(path, bsize=True)
+							date = " ( %.2f GB ) " % (size)
+						else:
+							# Should never happen
+							date = "Trashcan"
 						if count:
 							# Trashcan contains garbage
 							pixmap = self.pic_trashcan_full
 						else:
 							# Trashcan is empty
 							pixmap = self.pic_trashcan
-						date = " ( %d ) " % (count)
 					else:
 						pixmap = self.pic_trashcan
 						date = "Trashcan"
 				elif ext == cmtDir:
-					if config.EMC.directories_info.value:
-						count = self.dirInfo(path)
-						date = " ( %d ) " % (count)
-					else:
-						date = _("Directory")
+					if config.EMC.directories_info.value != "Off":
+						if config.EMC.directories_info.value == "Count":
+							count, size = self.dirInfo(path)
+							date = " ( %d ) " % (count)
+						elif config.EMC.directories_info.value == "CountSize":
+							count, size = self.dirInfo(path, bsize=True)
+							date = " ( %d / %.2f GB ) " % (count, size)
+						elif config.EMC.directories_info.value == "Size":
+							count, size = self.dirInfo(path, bsize=True)
+							date = " ( %.2f GB ) " % (size)
+						else:
+							# Should never happen
+							date = _("Directory")
 					pixmap = self.pic_directory
 				else:
+					# Should never happen
 					pixmap = self.pic_directory
 					date = _("UNKNOWN")
 									
