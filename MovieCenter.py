@@ -471,6 +471,15 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort):
 				l[6] = length
 				self.list[idx] = tuple(l)
 
+	def dirInfo(self, path):
+		count = 0
+		if os.path.exists(path):
+			for p in os.listdir(path):
+				pext = os.path.splitext(p)[1]
+				if pext in extList:
+					count += 1
+		return count
+
 	def buildMovieCenterEntry(self, service, sortkeys, date, title, path, selnum, length, ext):
 		#TODO remove before release
 		try:
@@ -651,35 +660,33 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort):
 				elif ext == cmtUp:
 					date = _("Up")
 					pixmap = self.pic_back
-				elif ext in cmtTrash:
-					if config.EMC.movie_trashcan_dynamic.value and os.path.exists(config.EMC.movie_trashpath.value):
-						garbage = 0
-						for g in os.listdir(config.EMC.movie_trashpath.value):
-							gext = os.path.splitext(g)[1]
-							if gext in extList:
-								garbage += 1
-						if garbage:
-							# Trashcan contains garbage
-							pixmap = self.pic_trashcan_full
-							date = " ( %d ) " % (garbage)
-						else:
-							# Trashcan is empty
-							pixmap = self.pic_trashcan
-							date = " ( 0 ) "
-					else:
-						pixmap = self.pic_trashcan
-						date = "Trashcan"
 				elif ext == cmtBM:
 					date = _("Bookmark")
 					pixmap = self.pic_bookmark
-				else:
-					if not isLink:
-						date = _("Directory")
+				elif ext in cmtTrash:
+					if config.EMC.movie_trashcan_dynamic.value:
+						count = self.dirInfo(path)
+						if count:
+							# Trashcan contains garbage
+							pixmap = self.pic_trashcan_full
+						else:
+							# Trashcan is empty
+							pixmap = self.pic_trashcan
+						date = " ( %d ) " % (count)
 					else:
-						#QUESTION Show text also for bookmarks
-						date = _("Link")
+						pixmap = self.pic_trashcan
+						date = "Trashcan"
+				elif ext == cmtDir:
+					if config.EMC.directories_info.value:
+						count = self.dirInfo(path)
+						date = " ( %d ) " % (count)
+					else:
+						date = _("Directory")
 					pixmap = self.pic_directory
-				
+				else:
+					pixmap = self.pic_directory
+					date = _("UNKNOWN")
+									
 				# Is there any way to combine it for both files and directories?
 				append(MultiContentEntryPixmapAlphaTest(pos=(5,2), size=(24,24), png=pixmap, **{}))
 				if isLink:
