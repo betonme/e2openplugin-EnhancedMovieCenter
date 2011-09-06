@@ -437,7 +437,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 
 	def openExtensions(self):
 		try:
-			InfoBar.instance.showExtensionSelection()
+			InfoBar.instance and InfoBar.instance.showExtensionSelection()
 		except Exception, e:
 			emcDebugOut("[EMCPlayer] openExtensions exception:\n" + str(e))
 

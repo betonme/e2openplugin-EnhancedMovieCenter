@@ -51,7 +51,7 @@ class MovieMenu(Screen):
 		self.menu = []
 		if menumode == "normal":
 			self["title"] = StaticText(_("Choose operation"))
-			if config.EMC.movie_bluefunc.value == "Movie home":
+			if config.EMC.movie_bluefunc.value == "MH":
 				self.menu.append((_("Play last"), boundFunction(self.close, "Play last")))
 			else:
 				self.menu.append((_("Movie home"), boundFunction(self.close, "Movie home")))

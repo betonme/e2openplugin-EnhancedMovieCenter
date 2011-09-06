@@ -197,6 +197,7 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 			(  _("Show plugin config in extensions menu")         , config.EMC.extmenu_plugin           , self.needsRestart     , None                  , 0     , []        , _("HELP_Show plugin config in extensions menu") ),
 			(  _("Show EMC in extensions menu")                   , config.EMC.extmenu_list             , self.needsRestart     , None                  , 0     , []        , _("HELP_Show EMC in extensions menu") ),
 			
+			(  separator                                          , config.EMC.about                    , None                  , None                  , 0     , []        , _("") ),
 			(  _("Movie home at start")                           , config.EMC.CoolStartHome            , None                  , None                  , 0     , []        , _("HELP_Movie home at start") ),
 			(  _("Sort file A to Z at startup")                   , config.EMC.CoolStartAZ              , None                  , None                  , 0     , []        , _("HELP_Sort file A to Z at startup") ),
 			(  _("File order reverse")                            , config.EMC.moviecenter_reversed     , None                  , None                  , 0     , []        , _("HELP_File order reverse") ),
@@ -208,7 +209,7 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 			
 			(  separator                                          , config.EMC.about                    , None                  , None                  , 0     , []        , _("") ),
 			(  _("Show directories")                              , config.EMC.directories_show         , None                  , None                  , 0     , []        , _("HELP_Show directories") ),		
-			(  _("Show directories information")                  , config.EMC.directories_info         , None                  , None                  , 0     , []        , _("HELP_Show directories information") ),		
+			(  _("Show directories information")                  , config.EMC.directories_info         , None                  , None                  , 0     , [-1]        , _("HELP_Show directories information") ),		
 			(  _("Show Latest Recordings directory")              , config.EMC.latest_recordings        , None                  , None                  , 0     , []        , _("HELP_Show Latest Recordings directory") ),
 			(  _("Show VLC directory")                            , config.EMC.vlc                      , None                  , None                  , 0     , []        , _("HELP_Show VLC directory") ),
 			(  _("Show E2 Bookmarks in movielist")                , config.EMC.bookmarks_e2             , None                  , None                  , 0     , []        , _("HELP_Show E2 Bookmarks in movielist") ),
@@ -378,14 +379,13 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 						return
 				# Check parent entries
 				for parent in entry[5]:
-					if not self.EMCConfig[parent][2].value is not None:
+					if self.EMCConfig[parent][2] is not None:
 						# execute parent value changed -function
-						if self.EMCConfig[parent][2].value(self.EMCConfig[parent][1].value) is not None:	
+						if self.EMCConfig[parent][2](self.EMCConfig[parent][1]) is not None:	
 							# Stop exiting, user has to correct the config
 							return
 				entry[1].save()
 		self.keySave()
-		self.close()
 
 	def launchListSet(self, element):
 		if element is not None:

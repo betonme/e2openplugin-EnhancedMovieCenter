@@ -131,28 +131,27 @@ launch_choices = [	("None",						_("No override")),
 										("timeshiftStart",	_("Timeshift-button")) ]
 
 # Date format is implemented using datetime.strftime
-#TODO implement off ?
-date_choices = [	("",									_("Off")),
-									("%d.%m.%Y",					_("DD.MM.YYYY")),
-									("%m.%d %H:%M",				_("MM.DD HH:MM")),
-									("%Y/%m/%d",					_("YYYY/MM/DD")),
-									("%m/%d %H:%M",				_("MM/DD HH:MM")) ]
+date_choices = [	("",								_("Off")),
+									("%d.%m.%Y",				_("DD.MM.YYYY")),
+									("%m.%d %H:%M",			_("MM.DD HH:MM")),
+									("%Y/%m/%d",				_("YYYY/MM/DD")),
+									("%m/%d %H:%M",			_("MM/DD HH:MM")) ]
 
-dirinfo_choices = [	("",							_("Directory")),
-										("Count",					_("( # )")),
-										("CountSize",			_("( # / GB )")),
-										("Size",					_("( GB )")) ]
+dirinfo_choices = [	("",							_("Off")),
+										("C",							_("( # )")),						# Count
+										("CS",						_("( # / GB )")),				# Count / Size
+										("S",							_("( GB )")) ]					# Size
 
-progress_choices = [	("PB", _("ProgressBar")),
-											("P", _("Percent (%)")),
-											("", _("Off")) ]
+progress_choices = [	("PB",					_("ProgressBar")),
+											("P",						_("Percent (%)")),
+											("",						_("Off")) ]
 
-blue_choices = [	("Movie home", _("Movie home")),
-									("Play last", _("Play last")) ]
+blue_choices = [	("MH",							_("Movie home")),
+									("PL",							_("Play last")) ]
 
-move_choices = [	("d", _("down")),
-									("b", _("up/down")),
-									("o", _("off")) ]
+move_choices = [	("d",								_("down")),
+									("b",								_("up/down")),
+									("o",								_("off")) ]
 
 config.EMC                           = ConfigSubsection()
 config.EMC.needsreload               = ConfigYesNo(default = False)
@@ -179,7 +178,7 @@ config.EMC.folder                    = ConfigTextWOHelp(default = "/hdd/EMC", fi
 config.EMC.debugfile                 = ConfigTextWOHelp(default = "output.txt", fixed_size = False, visible_width= 22)
 config.EMC.ml_disable                = ConfigYesNo()
 # Color keys selection list array dict: longdescription, shortdescription, functionpointer
-config.EMC.movie_bluefunc            = ConfigSelection(default = "Movie home", choices = blue_choices)
+config.EMC.movie_bluefunc            = ConfigSelection(default = "MH", choices = blue_choices)
 #config.EMC.movie_redfunc 
 #config.EMC.movie_greenfunc 
 #config.EMC.movie_yellowfunc 
@@ -208,7 +207,7 @@ config.EMC.movie_pathlimit           = ConfigTextWOHelp(default = "/hdd/movie", 
 config.EMC.movie_trashcan_enable     = ConfigYesNo(default = True)
 config.EMC.movie_trashcan_path       = ConfigTextWOHelp(default = "/hdd/movie/trashcan", fixed_size = False, visible_width= 22)
 config.EMC.movie_trashcan_show       = ConfigYesNo(default = True)
-config.EMC.movie_trashcan_info       = ConfigSelection(default = "Count", choices = dirinfo_choices)
+config.EMC.movie_trashcan_info       = ConfigSelection(default = "C", choices = dirinfo_choices)
 config.EMC.movie_trashcan_clean      = ConfigYesNo(default = True)
 config.EMC.movie_trashcan_limit      = ConfigSelectionNumber(1, 99, 1, default = 3)
 config.EMC.movie_finished_clean      = ConfigYesNoConfirm(default = False, text = _("ATTENTION\n\nThis option will move all finished movies in Movie Home automatically to Your trashcan at the given time.\nAt next trashcan cleanup all movies will be deleted.\n\nConfirm this with the blue key followed by the green key."), key1="blue", key2="green")
@@ -216,7 +215,7 @@ config.EMC.movie_finished_limit      = ConfigSelectionNumber(1, 99, 1, default =
 config.EMC.movie_trashcan_ctime      = ConfigClock(default = 0)
 config.EMC.movie_trashcan_validation = ConfigYesNo(default = True)
 config.EMC.directories_show          = ConfigYesNo(default = True)
-config.EMC.directories_info          = ConfigSelection(default = "Off", choices = dirinfo_choices)
+config.EMC.directories_info          = ConfigSelection(default = "", choices = dirinfo_choices)
 config.EMC.latest_recordings         = ConfigYesNo(default = True)
 config.EMC.vlc                       = ConfigYesNo(default = True)
 config.EMC.bookmarks_e2              = ConfigYesNo(default = True)

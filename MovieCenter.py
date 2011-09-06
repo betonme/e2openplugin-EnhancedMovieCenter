@@ -479,15 +479,14 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort):
 		if os.path.exists(folder):
 			#for m in os.listdir(path):
 			for (path, dirs, files) in os.walk(folder):
-				for d in dirs:
-					count += 1
+				count += len(dirs)
 				for m in files:
 					if os.path.splitext(m)[1] in extList:
 						count += 1
 						if bsize:
 							# Only retrieve the file size if it is requested,
 							# because it costs a lot of time
-							filename = os.path.join(path, file)
+							filename = os.path.join(path, m)
 							if os.path.exists(filename):
 								size += os.path.getsize(filename)
 		if size:
@@ -555,12 +554,13 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort):
 					progress = service and self.getProgress(service, length) or 0
 					
 					# Progress State
-					movieUnwatched = config.EMC.movie_mark.value and	progress < int(config.EMC.movie_watching_percent.value)
-					movieWatching  = config.EMC.movie_mark.value and	progress >= int(config.EMC.movie_watching_percent.value) and progress < int(config.EMC.movie_finished_percent.value)
-					movieFinished  = config.EMC.movie_mark.value and	progress >= int(config.EMC.movie_finished_percent.value)
+					movieUnwatched = config.EMC.movie_progress.value and	progress < int(config.EMC.movie_watching_percent.value)
+					movieWatching  = config.EMC.movie_progress.value and	progress >= int(config.EMC.movie_watching_percent.value) and progress < int(config.EMC.movie_finished_percent.value)
+					movieFinished  = config.EMC.movie_progress.value and	progress >= int(config.EMC.movie_finished_percent.value)
 					
 					# Icon
 					if config.EMC.movie_icons.value:
+						# TODO Is it possible to speed up the buildentry with using movie_progress
 						# video
 						if ext in extVideo:
 							if movieUnwatched:
@@ -694,13 +694,13 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort):
 					if config.EMC.movie_trashcan_info.value:
 						#TODO Improve performance
 						count = 0
-						if config.EMC.movie_trashcan_info.value == "Count":
+						if config.EMC.movie_trashcan_info.value == "C":
 							count, size = self.dirInfo(path)
 							datetext = " ( %d ) " % (count)
-						elif config.EMC.movie_trashcan_info.value == "CountSize":
+						elif config.EMC.movie_trashcan_info.value == "CS":
 							count, size = self.dirInfo(path, bsize=True)
 							datetext = " ( %d / %.2f GB ) " % (count, size)
-						elif config.EMC.movie_trashcan_info.value == "Size":
+						elif config.EMC.movie_trashcan_info.value == "S":
 							count, size = self.dirInfo(path, bsize=True)
 							datetext = " ( %.2f GB ) " % (size)
 						else:
@@ -717,13 +717,13 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort):
 						datetext = "Trashcan"
 				elif ext == cmtDir:
 					if config.EMC.directories_info.value:
-						if config.EMC.directories_info.value == "Count":
+						if config.EMC.directories_info.value == "C":
 							count, size = self.dirInfo(path)
 							datetext = " ( %d ) " % (count)
-						elif config.EMC.directories_info.value == "CountSize":
+						elif config.EMC.directories_info.value == "CS":
 							count, size = self.dirInfo(path, bsize=True)
 							datetext = " ( %d / %.2f GB ) " % (count, size)
-						elif config.EMC.directories_info.value == "Size":
+						elif config.EMC.directories_info.value == "S":
 							count, size = self.dirInfo(path, bsize=True)
 							datetext = " ( %.2f GB ) " % (size)
 						else:
