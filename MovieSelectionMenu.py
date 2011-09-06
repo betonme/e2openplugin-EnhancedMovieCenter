@@ -56,7 +56,7 @@ class MovieMenu(Screen):
 			else:
 				self.menu.append((_("Movie home"), boundFunction(self.close, "Movie home")))
 			
-			if os.path.exists(config.EMC.movie_trashpath.value):
+			if os.path.exists(config.EMC.movie_trashcan_path.value):
 				if self.service:
 					self.menu.append((_("Delete permanently"), boundFunction(self.close, "delete")))
 #				self.menu.append((_("Cleanup trashcan"), boundFunction(self.cleanTrash)))
@@ -141,7 +141,7 @@ class MovieMenu(Screen):
 	def emptyTrashCB(self, confirmed):
 		if confirmed:
 			# TODO append callback refreshlist
-			emcTasker.shellExecute("rm -f %s/*"%config.EMC.movie_trashpath.value)
+			emcTasker.shellExecute("rm -f %s/*"%config.EMC.movie_trashcan_path.value)
 		self.close(None)
 
 	def onDialogShow(self):

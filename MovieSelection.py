@@ -395,7 +395,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			elif selection == "plugin": self.onDialogShow()
 			elif selection == "setup": self.onDialogShow()
 			elif selection == "ctrash": self.purgeExpired()
-			elif selection == "trash": self.changeDir(config.EMC.movie_trashpath.value)
+			elif selection == "trash": self.changeDir(config.EMC.movie_trashcan_path.value)
 			elif selection == "delete": self.deleteFile(True)
 			elif selection == "rogue": self.rogueFiles()
 			elif selection == "cutlistmarker": self.removeCutListMarker()
@@ -727,8 +727,8 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			self.updateTitle()
 		if self.browsingVLC(): return
 		self.permanentDel  = permanently or int(config.EMC.movie_trashcan_limit.value) == 0
-		self.permanentDel |= self.currentPath == config.EMC.movie_trashpath.value
-		self.permanentDel |= self.mountpoint(self.currentPath) != self.mountpoint(config.EMC.movie_trashpath.value)
+		self.permanentDel |= self.currentPath == config.EMC.movie_trashcan_path.value
+		self.permanentDel |= self.mountpoint(self.currentPath) != self.mountpoint(config.EMC.movie_trashcan_path.value)
 		current = self.getCurrent()	# make sure there is atleast one entry in the list
 		if current is not None:
 			selectedlist = self["list"].makeSelectionList()[:]
@@ -810,9 +810,9 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 				if self.playerInstance is not None:
 					self.playerInstance.removeFromPlaylist(self.tmpSelList)
 			delete = int(config.EMC.movie_trashcan_limit.value)==0 or self.permanentDel
-			if os.path.exists(config.EMC.movie_trashpath.value) or delete:
+			if os.path.exists(config.EMC.movie_trashcan_path.value) or delete:
 				# if the user doesn't want to keep the movies in the trash, purge immediately
-				self.execFileOp(config.EMC.movie_trashpath.value, current, self.tmpSelList, op="delete", purgeTrash=delete)
+				self.execFileOp(config.EMC.movie_trashcan_path.value, current, self.tmpSelList, op="delete", purgeTrash=delete)
 				for x in self.tmpSelList:
 					self.lastPlayedCheck(x)
 				self["list"].resetSelection()
@@ -861,8 +861,8 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 				self["list"].removeService(service)
 
 	def rogueFiles(self):
-		check = RogueFileCheck(config.EMC.movie_homepath.value, config.EMC.movie_trashpath.value)
-		emcTasker.shellExecute( check.getScript(config.EMC.movie_trashpath.value) )
+		check = RogueFileCheck(config.EMC.movie_homepath.value, config.EMC.movie_trashcan_path.value)
+		emcTasker.shellExecute( check.getScript(config.EMC.movie_trashcan_path.value) )
 		self.session.open(MessageBox, check.getStatistics(), MessageBox.TYPE_INFO)
 
 	def setPlayerInstance(self, player):
@@ -930,7 +930,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		env = "export EMC_OUTDIR=%s"%config.EMC.folder.value
 		env += " EMC_HOME=%s"%config.EMC.movie_homepath.value
 		env += " EMC_PATH_LIMIT=%s"%config.EMC.movie_pathlimit.value
-		env += " EMC_TRASH=%s"%config.EMC.movie_trashpath.value
+		env += " EMC_TRASH=%s"%config.EMC.movie_trashcan_path.value
 		env += " EMC_TRASH_DAYS=%s"%int(config.EMC.movie_trashcan_limit.value)
 		
 		if self["list"].currentSelIsPlayable() or self["list"].currentSelIsDirectory():
@@ -1151,8 +1151,8 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 
 	def trashcanCreate(self, confirmed):
 		try:
-			os.makedirs(config.EMC.movie_trashpath.value)
-			if self.currentPath == os.path.dirname(config.EMC.movie_trashpath.value):
+			os.makedirs(config.EMC.movie_trashcan_path.value)
+			if self.currentPath == os.path.dirname(config.EMC.movie_trashcan_path.value):
 				# reload to show the trashcan only if the current path will contain the trashcan
 				self.reloadList()
 		except Exception, e:
@@ -1162,13 +1162,13 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 	# Move all trashcan operations to a separate class
 	def purgeExpired(self):
 		try:
-			movie_trashpath = config.EMC.movie_trashpath.value
+			movie_trashpath = config.EMC.movie_trashcan_path.value
 			movie_homepath = config.EMC.movie_homepath.value
-			if os.path.exists(config.EMC.movie_trashpath.value):
+			if os.path.exists(movie_trashpath):
 				if config.EMC.movie_trashcan_clean.value is True:
 					# Trashcan cleanup
 					purgeCmd = ""
-					# No subdirectory handling
+					#TODO No subdirectory handling
 					dirlist = os.listdir(movie_trashpath)
 					for movie in dirlist:
 						# Only check media files

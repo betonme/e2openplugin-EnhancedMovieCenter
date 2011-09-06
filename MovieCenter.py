@@ -664,7 +664,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort):
 					date = _("Bookmark")
 					pixmap = self.pic_bookmark
 				elif ext in cmtTrash:
-					if config.EMC.movie_trashcan_dynamic.value:
+					if config.EMC.movie_trashcan_info.value:
 						count = self.dirInfo(path)
 						if count:
 							# Trashcan contains garbage
@@ -906,7 +906,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort):
 		pathname, ext = "", ""
 		
 		# Improve performance and avoid dots
-		movie_trashpath = config.EMC.movie_trashpath.value
+		movie_trashpath = config.EMC.movie_trashcan_path.value
 		check_dvdstruct = config.EMC.check_dvdstruct.value and loadPath not in self.nostructscan
 		hideitemlist = self.hideitemlist
 		localExtList = extList
@@ -1020,8 +1020,8 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort):
 			# Insert these entries always at last
 			if loadPath == config.EMC.movie_homepath.value:
 				if trashcan and config.EMC.movie_trashcan_enable.value and config.EMC.movie_trashcan_show.value:
-					append( (	config.EMC.movie_trashpath.value,
-										(pathbasename(config.EMC.movie_trashpath.value)).capitalize(),
+					append( (	config.EMC.movie_trashcan_path.value,
+										(pathbasename(config.EMC.movie_trashcan_path.value)).capitalize(),
 										cmtTrash) )
 				
 				if config.EMC.latest_recordings.value:
@@ -1333,7 +1333,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort):
 			#IDEA: Optionally play also the following movielist items (folders and movies)
 			path = self.getCurrentSelDir()
 			# Don't play movies from the trash folder or ".."
-			if path != config.EMC.movie_trashpath.value and path != "..":
+			if path != config.EMC.movie_trashcan_path.value and path != "..":
 				#IDEA Is there a way to reuse the reload or createdirlist function
 					#TODO Then the files are sorted and played in their correct order
 					# So we don't have the whole dir and file recognition handling twice
