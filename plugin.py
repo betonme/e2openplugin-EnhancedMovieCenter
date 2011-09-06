@@ -131,15 +131,28 @@ launch_choices = [	("None",						_("No override")),
 										("timeshiftStart",	_("Timeshift-button")) ]
 
 # Date format is implemented using datetime.strftime
-date_choices = [	("%d.%m.%Y",					_("DD.MM.YYYY")),
+#TODO implement off ?
+date_choices = [	("",									_("Off")),
+									("%d.%m.%Y",					_("DD.MM.YYYY")),
 									("%m.%d %H:%M",				_("MM.DD HH:MM")),
 									("%Y/%m/%d",					_("YYYY/MM/DD")),
 									("%m/%d %H:%M",				_("MM/DD HH:MM")) ]
 
-dirinfo_choices = [	("Off",						_("Directory")),
+dirinfo_choices = [	("",							_("Directory")),
 										("Count",					_("( # )")),
 										("CountSize",			_("( # / GB )")),
 										("Size",					_("( GB )")) ]
+
+progress_choices = [	("PB", _("ProgressBar")),
+											("P", _("Percent (%)")),
+											("", _("Off")) ]
+
+blue_choices = [	("Movie home", _("Movie home")),
+									("Play last", _("Play last")) ]
+
+move_choices = [	("d", _("down")),
+									("b", _("up/down")),
+									("o", _("off")) ]
 
 config.EMC                           = ConfigSubsection()
 config.EMC.needsreload               = ConfigYesNo(default = False)
@@ -166,7 +179,7 @@ config.EMC.folder                    = ConfigTextWOHelp(default = "/hdd/EMC", fi
 config.EMC.debugfile                 = ConfigTextWOHelp(default = "output.txt", fixed_size = False, visible_width= 22)
 config.EMC.ml_disable                = ConfigYesNo()
 # Color keys selection list array dict: longdescription, shortdescription, functionpointer
-config.EMC.movie_bluefunc            = ConfigSelection(default = "Movie home", choices = [("Movie home", _("Movie home")), ("Play last", _("Play last"))])
+config.EMC.movie_bluefunc            = ConfigSelection(default = "Movie home", choices = blue_choices)
 #config.EMC.movie_redfunc 
 #config.EMC.movie_greenfunc 
 #config.EMC.movie_yellowfunc 
@@ -174,12 +187,10 @@ config.EMC.CoolStartHome             = ConfigYesNo(default = False)
 config.EMC.movie_descdelay           = ConfigSelectionNumber(50, 1000, 50, default= 200)
 config.EMC.skin_able                 = ConfigYesNo(default = False)
 config.EMC.movie_icons               = ConfigYesNo(default = True)
-config.EMC.movie_progress            = ConfigSelection(default = "PB", choices = [("PB", _("ProgressBar")), ("P", _("Percent (%)")), ("", _("Off"))])
+config.EMC.movie_progress            = ConfigSelection(default = "PB", choices = progress_choices)
 config.EMC.movie_watching_percent    = ConfigSelectionNumber(0, 30, 1, default = 5)
 config.EMC.movie_finished_percent    = ConfigSelectionNumber(50, 100, 1, default = 80)
-config.EMC.movie_date                = ConfigYesNo(default = True)
 config.EMC.movie_date_format         = ConfigSelection(default = "%d.%m.%Y", choices = date_choices)
-config.EMC.movie_mark                = ConfigYesNo(default = True)
 config.EMC.movie_ignore_firstcuts    = ConfigYesNo(default = True)
 config.EMC.movie_jump_first_mark     = ConfigYesNo(default = True)
 config.EMC.movie_rewind_finished     = ConfigYesNo(default = True)
@@ -216,7 +227,7 @@ config.EMC.movie_hide_del            = ConfigYesNo(default = False)
 #TODO should be a ConfigSelection sorting date_down az_down 
 config.EMC.CoolStartAZ               = ConfigYesNo(default = False)
 config.EMC.moviecenter_reversed      = ConfigYesNo(default = False)
-config.EMC.moviecenter_selmove       = ConfigSelection(default = "d", choices = [("d", _("down")), ("b", _("up/down")), ("o", _("off"))])
+config.EMC.moviecenter_selmove       = ConfigSelection(default = "d", choices = move_choices)
 config.EMC.moviecenter_loadtext      = ConfigYesNo(default = True)
 config.EMC.timer_autocln             = ConfigYesNo(default = False)
 config.EMC.movie_launch              = ConfigSelection(default = "showMovies", choices = launch_choices)

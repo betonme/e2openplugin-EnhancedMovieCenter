@@ -150,6 +150,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort):
 		self.CoolSelectFont = parseFont("Regular;20", ((1,1),(1,1)))
 		self.CoolDateFont = parseFont("Regular;20", ((1,1),(1,1)))
 		
+		#IDEA self.CoolIconPos
 		self.CoolMoviePos = 100
 		self.CoolMovieSize = 490
 		self.CoolFolderSize = 550
@@ -502,6 +503,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort):
 			progress = 0
 			pixmap = None
 			color = None
+			datetext = ""
 			
 			res = [ None ]
 			append = res.append
@@ -522,7 +524,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort):
 				
 				# Check for recording only if date is within the last day
 				if latest and self.recControl.isRecording(path):
-					date = "-- REC --"
+					datetext = "-- REC --"
 					pixmap = self.pic_movie_rec
 					color = self.RecordingColor
 					# Recordings status shows always the progress of the recording, 
@@ -530,24 +532,26 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort):
 					progress = service and self.getRecordProgress(path) or 0
 				
 				elif latest and config.EMC.remote_recordings.value and self.recControl.isRemoteRecording(path):
-					date = "-- rec --"
+					datetext = "-- rec --"
 					pixmap = self.pic_movie_recrem
 					color = self.RecordingColor
 				
 				#IDEA elif config.EMC.check_movie_cutting.value:
 				elif self.recControl.isCutting(path):
-					date = "-- CUT --"
+					datetext = "-- CUT --"
 					pixmap = self.pic_movie_cut
 					color = self.RecordingColor
 				
 				elif ext in plyVLC:
-					date = "   VLC   "
+					datetext = "   VLC   "
 					pixmap = self.pic_vlc
 					color = self.DefaultColor
 				
 				else:
 					# Media file
-					date = date.strftime( config.EMC.movie_date_format.value )
+					if config.EMC.movie_date_format.value:
+						datetext = date.strftime( config.EMC.movie_date_format.value )
+					
 					progress = service and self.getProgress(service, length) or 0
 					
 					# Progress State
@@ -556,36 +560,37 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort):
 					movieFinished  = config.EMC.movie_mark.value and	progress >= int(config.EMC.movie_finished_percent.value)
 					
 					# Icon
-					# video
-					if ext in extVideo:
-						if movieUnwatched:
-							if not latest:
-								pixmap = self.pic_movie_unwatched
+					if config.EMC.movie_icons.value:
+						# video
+						if ext in extVideo:
+							if movieUnwatched:
+								if not latest:
+									pixmap = self.pic_movie_unwatched
+								else:
+									pixmap = self.pic_latest
+							elif movieWatching:
+								pixmap = self.pic_movie_watching
+							elif movieFinished:
+								pixmap = self.pic_movie_finished
 							else:
-								pixmap = self.pic_latest
-						elif movieWatching:
-							pixmap = self.pic_movie_watching
-						elif movieFinished:
-							pixmap = self.pic_movie_finished
+								pixmap = self.pic_movie_default
+						# audio
+						elif ext in extAudio:
+							pixmap = self.pic_mp3
+						# dvd iso or structure
+						elif ext in extDvd:
+							if movieWatching:
+								pixmap = self.pic_dvd_watching
+							elif movieFinished:
+								pixmap = self.pic_dvd_finished
+							else:
+								pixmap = self.pic_dvd_default
+						# playlists
+						elif ext in extPlaylist:
+							pixmap = self.pic_playlist
+						# all others
 						else:
 							pixmap = self.pic_movie_default
-					# audio
-					elif ext in extAudio:
-						pixmap = self.pic_mp3
-					# dvd iso or structure
-					elif ext in extDvd:
-						if movieWatching:
-							pixmap = self.pic_dvd_watching
-						elif movieFinished:
-							pixmap = self.pic_dvd_finished
-						else:
-							pixmap = self.pic_dvd_default
-					# playlists
-					elif ext in extPlaylist:
-						pixmap = self.pic_playlist
-					# all others
-					else:
-						pixmap = self.pic_movie_default
 					
 					# Color
 					if movieUnwatched:
@@ -597,21 +602,9 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort):
 					else:
 						color = self.DefaultColor
 				
-				# Skin color handling
-				if self.CoolTitleColor == 0:
-					colortitle = self.DefaultColor
-				else:
-					colortitle = color
-				
-				if self.CoolDateColor == 0:
-					colordate = self.DateColor
-				else:
-					colordate = color
-				
-				if self.CoolHighlightColor == 0:
-					colorhighlight = self.FrontColorSel
-				else:
-					colorhighlight = color
+				colortitle = color
+				colordate = color
+				colorhighlight = color
 				
 				# Get entry selection number
 				if selnum == 9999: selnumtxt = "-->"
@@ -620,7 +613,6 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort):
 				if service in self.highlightsMov: selnumtxt = "-->"
 				elif service in self.highlightsDel: selnumtxt = "X"
 				
-				# Is there any way to combine it for both files and directories?
 				if config.EMC.movie_icons.value and selnumtxt is None:
 					append(MultiContentEntryPixmapAlphaTest(pos=(5,2), size=(24,24), png=pixmap, **{}))
 					if isLink:
@@ -630,68 +622,90 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort):
 					append(MultiContentEntryText(pos=(5, 0), size=(26, globalHeight), font=3, flags=RT_HALIGN_LEFT, text=selnumtxt))
 					offset += 35
 				
-				if config.EMC.skin_able.value:
+				if not config.EMC.skin_able.value:
+					if config.EMC.movie_progress.value == "PB":
+						append(MultiContentEntryProgress(pos=(offset, self.CoolBarHPos), size = (self.CoolBarSize.width(), self.CoolBarSize.height()), percent = progress, borderWidth = 1, backColorSelected = None, foreColor = color, backColor = color))
+						offset += self.CoolBarSize.width() + 10
+					elif config.EMC.movie_progress.value == "P":
+						append(MultiContentEntryText(pos=(offset, 0), size=(progressWidth, globalHeight), font=usedFont, flags=RT_HALIGN_CENTER, text="%d%%" % (progress), color = color, color_sel = colorhighlight, backcolor = self.BackColor, backcolor_sel = self.BackColorSel))
+						offset += progressWidth + 5
+					
+					if config.EMC.movie_date_format.value:
+						append(MultiContentEntryText(pos=(self.l.getItemSize().width() - self.CoolDateWidth, 0), size=(self.CoolDateWidth, globalHeight), font=4, color = colordate, color_sel = colorhighlight, backcolor = self.BackColor, backcolor_sel = self.BackColorSel, flags=RT_HALIGN_CENTER, text=datetext))
+					append(MultiContentEntryText(pos=(offset, 0), size=(self.l.getItemSize().width() - offset - self.CoolDateWidth -5, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text=title, color = colortitle, color_sel = colorhighlight, backcolor = self.BackColor, backcolor_sel = self.BackColorSel))
+				
+				else:
+					# Skin can overwrite show column date, progress and progressbar
+					# Show Icon always depends on EMC config 
+					
+					# Skin color overwrite handling
+					if self.CoolTitleColor == 0:
+						colortitle = self.TitlColor
+					if self.CoolDateColor == 0:
+						colordate = self.DateColor
+					if self.CoolHighlightColor == 0:
+						colorhighlight = self.FrontColorSel
+					
+					# If no date format is specified, the date column is switched off
+					if not config.EMC.movie_date_format.value:
+						self.CoolDatePos = -1
+					
+					#If show movie progress is off, the progress columns are switched off
+					if not config.EMC.movie_progress.value:
+						self.CoolBarPos = -1
+						self.CoolProgressPos = -1
+					
 					if self.CoolBarPos != -1:
 						append(MultiContentEntryProgress(pos=(self.CoolBarPos, self.CoolBarHPos -2), size = (self.CoolBarSizeSa.width(), self.CoolBarSizeSa.height()), percent = progress, borderWidth = 1, foreColor = color, backColor = color))
 					if self.CoolProgressPos != -1:
 						append(MultiContentEntryText(pos=(self.CoolProgressPos, 0), size=(progressWidth, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text="%d%%" % (progress)))
 					if self.CoolDatePos != -1:
-						append(MultiContentEntryText(pos=(self.CoolDatePos, 2), size=(self.CoolDateWidth, globalHeight), font=4, text=date, color = colordate, color_sel = colorhighlight, flags=RT_HALIGN_CENTER))
-						
+						append(MultiContentEntryText(pos=(self.CoolDatePos, 2), size=(self.CoolDateWidth, globalHeight), font=4, text=datetext, color = colordate, color_sel = colorhighlight, flags=RT_HALIGN_CENTER))
 					append(MultiContentEntryText(pos=(self.CoolMoviePos, 0), size=(self.CoolMovieSize, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text=title, color = colortitle, color_sel = colorhighlight))
-					return res
-				
-				if config.EMC.movie_progress.value == "PB":
-					append(MultiContentEntryProgress(pos=(offset, self.CoolBarHPos), size = (self.CoolBarSize.width(), self.CoolBarSize.height()), percent = progress, borderWidth = 1, backColorSelected = None, foreColor = color, backColor = color))
-					offset += self.CoolBarSize.width() + 10
-				elif config.EMC.movie_progress.value == "P":
-					append(MultiContentEntryText(pos=(offset, 0), size=(progressWidth, globalHeight), font=usedFont, flags=RT_HALIGN_CENTER, text="%d%%" % (progress), color = color, color_sel = colorhighlight, backcolor = self.BackColor, backcolor_sel = self.BackColorSel))
-					offset += progressWidth + 5
-				
-				if config.EMC.movie_date.value:
-					append(MultiContentEntryText(pos=(self.l.getItemSize().width() - self.CoolDateWidth, 0), size=(self.CoolDateWidth, globalHeight), font=4, color = colordate, color_sel = colorhighlight, backcolor = self.BackColor, backcolor_sel = self.BackColorSel, flags=RT_HALIGN_CENTER, text=date))
-				append(MultiContentEntryText(pos=(offset, 0), size=(self.l.getItemSize().width() - offset - self.CoolDateWidth -5, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text=title, color = colortitle, color_sel = colorhighlight, backcolor = self.BackColor, backcolor_sel = self.BackColorSel))
 			
 			else:
 				# Directory and vlc directories
 				
-				#TODO Color not used yet for folders
-				#color = self.DefaultColor
+				#TODO Is there any way to combine it for both files and directories?
+				#TODO Color not used yet for folders color = self.DefaultColor
+				#TODO config.EMC.movie_icons.value not used here
+				#TODO Skin config.EMC.skin_able.value not used here
+				#TODO config.EMC.movie_date_format.value not used here
 				
 				if ext == cmtVLC:
-					date = _("VLC")
+					datetext = _("VLC")
 					pixmap = self.pic_vlc
 				elif ext == vlcSrv:
-					date = _("VLC-Server")
+					datetext = _("VLC-Server")
 					pixmap = self.pic_vlc
 				elif ext == vlcDir:
-					date = _("VLC-Dir")
+					datetext = _("VLC-Dir")
 					pixmap = self.pic_vlc_dir
 				elif ext == cmtLRec:
-					date = _("Latest")
+					datetext = _("Latest")
 					pixmap = self.pic_latest
 				elif ext == cmtUp:
-					date = _("Up")
+					datetext = _("Up")
 					pixmap = self.pic_back
 				elif ext == cmtBM:
-					date = _("Bookmark")
+					datetext = _("Bookmark")
 					pixmap = self.pic_bookmark
 				elif ext in cmtTrash:
-					if config.EMC.movie_trashcan_info.value != "Off":
+					if config.EMC.movie_trashcan_info.value:
 						#TODO Improve performance
 						count = 0
 						if config.EMC.movie_trashcan_info.value == "Count":
 							count, size = self.dirInfo(path)
-							date = " ( %d ) " % (count)
+							datetext = " ( %d ) " % (count)
 						elif config.EMC.movie_trashcan_info.value == "CountSize":
 							count, size = self.dirInfo(path, bsize=True)
-							date = " ( %d / %.2f GB ) " % (count, size)
+							datetext = " ( %d / %.2f GB ) " % (count, size)
 						elif config.EMC.movie_trashcan_info.value == "Size":
 							count, size = self.dirInfo(path, bsize=True)
-							date = " ( %.2f GB ) " % (size)
+							datetext = " ( %.2f GB ) " % (size)
 						else:
 							# Should never happen
-							date = "Trashcan"
+							datetext = "Trashcan"
 						if count:
 							# Trashcan contains garbage
 							pixmap = self.pic_trashcan_full
@@ -700,26 +714,26 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort):
 							pixmap = self.pic_trashcan
 					else:
 						pixmap = self.pic_trashcan
-						date = "Trashcan"
+						datetext = "Trashcan"
 				elif ext == cmtDir:
-					if config.EMC.directories_info.value != "Off":
+					if config.EMC.directories_info.value:
 						if config.EMC.directories_info.value == "Count":
 							count, size = self.dirInfo(path)
-							date = " ( %d ) " % (count)
+							datetext = " ( %d ) " % (count)
 						elif config.EMC.directories_info.value == "CountSize":
 							count, size = self.dirInfo(path, bsize=True)
-							date = " ( %d / %.2f GB ) " % (count, size)
+							datetext = " ( %d / %.2f GB ) " % (count, size)
 						elif config.EMC.directories_info.value == "Size":
 							count, size = self.dirInfo(path, bsize=True)
-							date = " ( %.2f GB ) " % (size)
+							datetext = " ( %.2f GB ) " % (size)
 						else:
 							# Should never happen
-							date = _("Directory")
+							datetext = _("Directory")
 					pixmap = self.pic_directory
 				else:
 					# Should never happen
 					pixmap = self.pic_directory
-					date = _("UNKNOWN")
+					datetext = _("UNKNOWN")
 									
 				# Is there any way to combine it for both files and directories?
 				append(MultiContentEntryPixmapAlphaTest(pos=(5,2), size=(24,24), png=pixmap, **{}))
@@ -728,7 +742,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort):
 				# Directory left side
 				append(MultiContentEntryText(pos=(30, 0), size=(self.CoolFolderSize, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text=title))
 				# Directory right side
-				append(MultiContentEntryText(pos=(self.l.getItemSize().width() - self.CoolDateWidth, 0), size=(self.CoolDateWidth, globalHeight), font=2, flags=RT_HALIGN_CENTER, text=date))
+				append(MultiContentEntryText(pos=(self.l.getItemSize().width() - self.CoolDateWidth, 0), size=(self.CoolDateWidth, globalHeight), font=2, flags=RT_HALIGN_CENTER, text=datetext))
 			
 			del append
 			return res
