@@ -199,6 +199,7 @@ config.EMC.movie_finished_clean      = ConfigYesNoConfirm(default = False, text 
 config.EMC.movie_finished_limit      = ConfigSelectionNumber(1, 99, 1, default = 10)
 config.EMC.movie_trashcan_ctime      = ConfigClock(default = 0)
 config.EMC.movie_trashcan_validation = ConfigYesNo(default = True)
+config.EMC.directories_show          = ConfigYesNo(default = True)
 config.EMC.latest_recordings         = ConfigYesNo(default = True)
 config.EMC.vlc                       = ConfigYesNo(default = True)
 config.EMC.bookmarks_e2              = ConfigYesNo(default = True)

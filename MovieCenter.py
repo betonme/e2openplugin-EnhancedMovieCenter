@@ -948,7 +948,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort):
 							continue
 					
 					# Folder found
-					if pathname != movie_trashpath:
+					if pathname != movie_trashpath and config.EMC.directories_show.value:
 						dappend( (pathname, p, cmtDir) )
 				
 				else:

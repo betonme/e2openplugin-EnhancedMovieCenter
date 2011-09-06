@@ -218,6 +218,7 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 			(  _("Age of finished movies in movie folder (days)") , config.EMC.movie_finished_limit     , None                  , None                  , 2     , [-8,-4,-1]   , _("HELP_Age of finished movies in movie folder (days)") ),
 			
 			(  separator                                          , config.EMC.about                    , None                  , None                  , 0     , []        , _("") ),
+			(  _("Show Directories")                              , config.EMC.directories_show         , None                  , None                  , 0     , []        , _("HELP_Show directories") ),		
 			(  _("Show Latest Recordings directory")              , config.EMC.latest_recordings        , None                  , None                  , 0     , []        , _("HELP_Show Latest Recordings directory") ),
 			(  _("Show VLC directory")                            , config.EMC.vlc                      , None                  , None                  , 0     , []        , _("HELP_Show VLC directory") ),
 			(  _("Show E2 Bookmarks in movielist")                , config.EMC.bookmarks_e2             , None                  , None                  , 0     , []        , _("HELP_Show E2 Bookmarks in movielist") ),
