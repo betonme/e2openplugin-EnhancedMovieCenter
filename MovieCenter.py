@@ -490,7 +490,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort):
 							if os.path.exists(filename):
 								size += os.path.getsize(filename)
 		if size:
-			size / 1024.0 / 1024.0 / 1024.0
+			size /= (1024.0 * 1024.0 * 1024.0)
 		return count, size
 
 	def buildMovieCenterEntry(self, service, sortkeys, date, title, path, selnum, length, ext):
@@ -699,7 +699,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort):
 							datetext = " ( %d ) " % (count)
 						elif config.EMC.movie_trashcan_info.value == "CS":
 							count, size = self.dirInfo(path, bsize=True)
-							datetext = " ( %d / %.2f GB ) " % (count, size)
+							datetext = " (%d / %.0f GB) " % (count, size)
 						elif config.EMC.movie_trashcan_info.value == "S":
 							count, size = self.dirInfo(path, bsize=True)
 							datetext = " ( %.2f GB ) " % (size)
@@ -722,13 +722,15 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort):
 							datetext = " ( %d ) " % (count)
 						elif config.EMC.directories_info.value == "CS":
 							count, size = self.dirInfo(path, bsize=True)
-							datetext = " ( %d / %.2f GB ) " % (count, size)
+							datetext = " (%d / %.0f GB) " % (count, size)
 						elif config.EMC.directories_info.value == "S":
 							count, size = self.dirInfo(path, bsize=True)
 							datetext = " ( %.2f GB ) " % (size)
 						else:
 							# Should never happen
 							datetext = _("Directory")
+					else:
+						datetext = _("Directory")
 					pixmap = self.pic_directory
 				else:
 					# Should never happen

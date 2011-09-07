@@ -993,7 +993,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			green += _(" (P)")
 		self["key_green"].text = green
 		self["key_yellow"].text = _("Move")
-		self["key_blue"].text = _(config.EMC.movie_bluefunc.value)
+		self["key_blue"].text = _(config.EMC.movie_bluefunc.description[config.EMC.movie_bluefunc.value])
 
 	def initList(self):
 		# Initialize list

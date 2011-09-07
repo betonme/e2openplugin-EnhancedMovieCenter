@@ -411,7 +411,7 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 	def validatePath(self, element):
 		element.value = os.path.normpath( element.value )
 		if not os.path.exists(element.value):
-			self.session.open(MessageBox, _("Given path %s does not exist. Please change." % str(value)), MessageBox.TYPE_ERROR)
+			self.session.open(MessageBox, _("Given path %s does not exist. Please change." % str(element.value)), MessageBox.TYPE_ERROR)
 			return False
 
 	def trashCleanupSetup(self, dummy=None):
