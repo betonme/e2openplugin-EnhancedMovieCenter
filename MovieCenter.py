@@ -673,22 +673,22 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort):
 				#TODO config.EMC.movie_date_format.value not used here
 				
 				if ext == cmtVLC:
-					datetext = _("VLC")
+					#datetext = _("VLC")
 					pixmap = self.pic_vlc
 				elif ext == vlcSrv:
-					datetext = _("VLC-Server")
+					#datetext = _("VLC-Server")
 					pixmap = self.pic_vlc
 				elif ext == vlcDir:
-					datetext = _("VLC-Dir")
+					#datetext = _("VLC-Dir")
 					pixmap = self.pic_vlc_dir
 				elif ext == cmtLRec:
-					datetext = _("Latest")
+					#datetext = _("Latest")
 					pixmap = self.pic_latest
 				elif ext == cmtUp:
-					datetext = _("Up")
+					#datetext = _("Up")
 					pixmap = self.pic_back
 				elif ext == cmtBM:
-					datetext = _("Bookmark")
+					#datetext = _("Bookmark")
 					pixmap = self.pic_bookmark
 				elif ext in cmtTrash:
 					if config.EMC.movie_trashcan_info.value:
@@ -705,7 +705,8 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort):
 							datetext = " ( %.2f GB ) " % (size)
 						else:
 							# Should never happen
-							datetext = "Trashcan"
+							#datetext = "Trashcan"
+							pass
 						if count:
 							# Trashcan contains garbage
 							pixmap = self.pic_trashcan_full
@@ -714,7 +715,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort):
 							pixmap = self.pic_trashcan
 					else:
 						pixmap = self.pic_trashcan
-						datetext = "Trashcan"
+						#datetext = "Trashcan"
 				elif ext == cmtDir:
 					if config.EMC.directories_info.value:
 						if config.EMC.directories_info.value == "C":
@@ -728,14 +729,16 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort):
 							datetext = " ( %.2f GB ) " % (size)
 						else:
 							# Should never happen
-							datetext = _("Directory")
+							#datetext = _("Directory")
+							pass
 					else:
-						datetext = _("Directory")
+						#datetext = _("Directory")
+						pass
 					pixmap = self.pic_directory
 				else:
 					# Should never happen
 					pixmap = self.pic_directory
-					datetext = _("UNKNOWN")
+					#datetext = _("UNKNOWN")
 									
 				# Is there any way to combine it for both files and directories?
 				append(MultiContentEntryPixmapAlphaTest(pos=(5,2), size=(24,24), png=pixmap, **{}))
