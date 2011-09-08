@@ -43,6 +43,7 @@ from CutListSupport import CutList
 from MetaSupport import MetaList
 from EitSupport import EitList
 from PermanentSort import PermanentSort
+from E2Bookmarks import E2Bookmarks
 
 
 global extAudio, extDvd, extVideo, extPlaylist, extList, extMedia
@@ -131,7 +132,7 @@ def readBasicCfgFile(file):
 	return data
 
 
-class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort):
+class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmarks):
 	instance = None
 	
 	def __init__(self):
@@ -1085,13 +1086,12 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort):
 										cmtVLC) )
 				
 				if config.EMC.bookmarks_e2.value:
-					if config.movielist and config.movielist.videodirs:
-						bookmarks = [pathnormpath(e2bm) for e2bm in config.movielist.videodirs.value]
-						if bookmarks:
-							for bookmark in bookmarks:
-								append( (	bookmark,
-													"E2 "+(pathbasename(bookmark).capitalize()),
-													cmtBM) )
+					bookmarks = self.getBookmarks()
+					if bookmarks:
+						for bookmark in bookmarks:
+							append( (	bookmark,
+												"E2 "+(pathbasename(bookmark).capitalize()),
+												cmtBM) )
 		
 		del append
 		del pathjoin

@@ -45,6 +45,7 @@ from RogueFileCheck import RogueFileCheck
 from VlcPluginInterface import VlcPluginInterfaceSel
 from CutListSupport import CutList
 from DirectoryStack import DirectoryStack
+from E2Bookmarks import E2Bookmarks
 
 from MovieCenter import extMedia
 global extMedia
@@ -90,7 +91,7 @@ class SelectionEventInfo:
 		self["FileSize"].setText("")
 
 
-class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfaceSel, DirectoryStack):
+class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfaceSel, DirectoryStack, E2Bookmarks):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		SelectionEventInfo.__init__(self)
@@ -738,7 +739,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 					self["list"].removeService(selectedlist[0])
 			elif self["list"].currentSelIsBookmark() and len(selectedlist) == 1 and current==selectedlist[0]:
 				# Delete a single bookmark
-				self.removeBookmark(current)
+				self.removeBookmark(current, self.removeBookmarkCallback)
 			else:
 				if self["list"].serviceBusy(selectedlist[0]): return
 				if selectedlist and len(selectedlist)>0:
@@ -754,6 +755,9 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 						self.stopRecordQ()
 					else:
 						self.deleteMovieQ(selectedlist, self.remRecsToStop)
+
+	def removeBookmarkCallback(self, service):
+		self["list"].removeService(service)
 
 	def deleteMovieQ(self, selectedlist, remoteRec):
 		try:
@@ -834,31 +838,6 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		else:
 			self.session.open(MessageBox, _("Cannot delete the parent directory."), MessageBox.TYPE_ERROR, 10)
 		return False
-
-	def removeBookmark(self, service):
-		try:
-			if service and config.movielist and config.movielist.videodirs:
-				bookmark = os.path.normpath(service.getPath())
-				bookmarks = [os.path.normpath(e2bm) for e2bm in config.movielist.videodirs.value]
-				if bookmark in bookmarks:
-					# Adapted from LocationBox
-					self.session.openWithCallback(
-						boundFunction(self.removeBookmarkConfirmed, service),
-						MessageBox,
-						_("Do you really want to remove your bookmark of %s?") % (bookmark) )
-		except Exception, e:
-			emcDebugOut("[EMCMS] stopRecordQ exception:\n" + str(e))
-
-	def removeBookmarkConfirmed(self, service, confirm):
-		if confirm:
-			bookmark = os.path.normpath(service.getPath())
-			bookmarks = [os.path.normpath(e2bm) for e2bm in config.movielist.videodirs.value]
-			if bookmark in bookmarks:
-				bookmarks.remove(bookmark)
-				bookmarks.sort()
-				config.movielist.videodirs.value = bookmarks
-				config.movielist.videodirs.save()
-				self["list"].removeService(service)
 
 	def rogueFiles(self):
 		check = RogueFileCheck(config.EMC.movie_homepath.value, config.EMC.movie_trashcan_path.value)
