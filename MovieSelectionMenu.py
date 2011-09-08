@@ -58,7 +58,7 @@ class MovieMenu(Screen, E2Bookmarks):
 			else:
 				self.menu.append((_("Movie home"), boundFunction(self.close, "Movie home")))
 			
-			if os.path.exists(config.EMC.movie_trashcan_path.value):
+			if config.EMC.movie_trashcan_enable.value and os.path.exists(config.EMC.movie_trashcan_path.value):
 				if self.service:
 					self.menu.append((_("Delete permanently"), boundFunction(self.close, "delete")))
 				self.menu.append((_("Empty trashcan"), boundFunction(self.emptyTrash)))
@@ -75,6 +75,7 @@ class MovieMenu(Screen, E2Bookmarks):
 					# Only valid for ts files: CutListEditor, DVDBurn, ...
 					self.menu.extend([(p.description, boundFunction(self.execPlugin, p)) for p in plugins.getPlugins(PluginDescriptor.WHERE_MOVIELIST)])
 			self.menu.append((_("Open E2 Bookmark path"), boundFunction(self.openE2Bookmark)))
+			#TODO check if it exists already
 			self.menu.append((_("Add E2 Bookmark"), boundFunction(self.addE2Bookmark)))
 			self.menu.append((_("Set permanent sort"), boundFunction(self.setPermanentSort, currentPath, mlist.alphaSort)))
 			if mlist.hasFolderPermanentSort(currentPath):
@@ -160,7 +161,8 @@ class MovieMenu(Screen, E2Bookmarks):
 	def remRogueFilesCB(self, confirmed):
 		if confirmed:
 			check = RogueFileCheck(self.currentPath)
-			emcTasker.shellExecute( check.getScript(config.EMC.movie_trashcan_path.value) )
+			path = config.EMC.movie_trashcan_enable.value and config.EMC.movie_trashcan_path.value
+			emcTasker.shellExecute( check.getScript(path) )
 			self.session.open(MessageBox, check.getStatistics(), MessageBox.TYPE_INFO)
 		self.close(None)
 

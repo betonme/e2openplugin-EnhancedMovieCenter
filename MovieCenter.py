@@ -692,7 +692,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 					datetext = _("Bookmark")
 					pixmap = self.pic_bookmark
 				elif ext in cmtTrash:
-					if config.EMC.movie_trashcan_info.value:
+					if config.EMC.movie_trashcan_enable.value and config.EMC.movie_trashcan_info.value:
 						#TODO Improve performance
 						count = 0
 						if config.EMC.movie_trashcan_info.value == "C":
@@ -957,7 +957,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 		pathname, ext = "", ""
 		
 		# Improve performance and avoid dots
-		movie_trashpath = config.EMC.movie_trashcan_path.value
+		movie_trashpath = config.EMC.movie_trashcan_enable.value and config.EMC.movie_trashcan_path.value
 		check_dvdstruct = config.EMC.check_dvdstruct.value and loadPath not in self.nostructscan
 		hideitemlist = self.hideitemlist
 		localExtList = extList

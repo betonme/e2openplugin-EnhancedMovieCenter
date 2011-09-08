@@ -417,5 +417,11 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 			return False
 
 	def trashCleanupSetup(self, dummy=None):
+		if not os.path.exists(config.EMC.movie_trashcan_path.value):
+			try:
+				os.makedirs(config.EMC.movie_trashcan_path.value)
+			except Exception, e:
+				self.session.open(MessageBox, _("Trashcan create failed. Check mounts and permissions."), MessageBox.TYPE_ERROR)
+				emcDebugOut("[EMCMS] trashcanCreate exception:\n" + str(e))
 		cleanupSetup()
 	

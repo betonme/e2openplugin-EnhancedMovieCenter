@@ -725,7 +725,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			self.multiSelectIdx = None
 			self.updateTitle()
 		if self.browsingVLC(): return
-		self.permanentDel  = permanently or int(config.EMC.movie_trashcan_limit.value) == 0
+		self.permanentDel  = permanently or not config.EMC.movie_trashcan_enable.value
 		self.permanentDel |= self.currentPath == config.EMC.movie_trashcan_path.value
 		self.permanentDel |= self.mountpoint(self.currentPath) != self.mountpoint(config.EMC.movie_trashcan_path.value)
 		current = self.getCurrent()	# make sure there is atleast one entry in the list
@@ -775,7 +775,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 				service = selectedlist[0]
 				name = self["list"].getNameOfService(service)
 				if not self.delCurrentlyPlaying:
-					if config.EMC.movie_trashcan_validation.value or not config.EMC.movie_trashcan_enable.value or self.permanentDel:
+					if not config.EMC.movie_trashcan_enable.value or config.EMC.movie_trashcan_validation.value  or self.permanentDel:
 						self.session.openWithCallback(self.deleteMovieConfimation, MessageBox, delStr + "?\n" + rm_add + name, MessageBox.TYPE_YESNO)
 					else:
 						self.deleteMovieConfimation(True)
@@ -795,7 +795,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 							name = name[:48] + "..."	# limit the name string
 						movienames += name + "\n"*(i<entrycount)
 					if not self.delCurrentlyPlaying:
-						if config.EMC.movie_trashcan_validation.value or not config.EMC.movie_trashcan_enable.value or self.permanentDel:
+						if not config.EMC.movie_trashcan_enable.value or config.EMC.movie_trashcan_validation.value or self.permanentDel:
 							self.session.openWithCallback(self.deleteMovieConfimation, MessageBox, delStr + _(" all selected video files?") + "\n" + rm_add + movienames, MessageBox.TYPE_YESNO)
 						else:
 							self.deleteMovieConfimation(True)
@@ -811,7 +811,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			if self.delCurrentlyPlaying:
 				if self.playerInstance is not None:
 					self.playerInstance.removeFromPlaylist(self.tmpSelList)
-			delete = int(config.EMC.movie_trashcan_limit.value)==0 or self.permanentDel
+			delete = not config.EMC.movie_trashcan_enable.value or self.permanentDel
 			if os.path.exists(config.EMC.movie_trashcan_path.value) or delete:
 				# if the user doesn't want to keep the movies in the trash, purge immediately
 				self.execFileOp(config.EMC.movie_trashcan_path.value, current, self.tmpSelList, op="delete", purgeTrash=delete)
