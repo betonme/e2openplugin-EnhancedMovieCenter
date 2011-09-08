@@ -65,8 +65,8 @@ class MovieMenu(Screen, E2Bookmarks):
 				self.menu.append((_("Go to trashcan"), boundFunction(self.close, "trash")))
 			self.menu.append((_("Mark all movies"), boundFunction(self.markAllMovies)))
 			self.menu.append((_("Remove rogue files"), boundFunction(self.remRogueFiles)))
-			self.menu.append((_("Create link(s)"), boundFunction(self.createLinks)))
-			self.menu.append((_("Create directory"), boundFunction(self.createDir)))
+			self.menu.append((_("Create link"), boundFunction(self.createLink, currentPath)))
+			self.menu.append((_("Create directory"), boundFunction(self.createDir, currentPath)))
 			if self.service or self.selections:
 				self.menu.append((_("Remove cut list marker"), boundFunction(self.remCutListMarker)))
 			if service:
@@ -105,13 +105,17 @@ class MovieMenu(Screen, E2Bookmarks):
 		self.skinName = "Menu"
 		self.onShown.append(self.onDialogShow)
 
-	def createDir(self):
+	def createDir(self, currentPath):
 		self.hide()
-		self.session.openWithCallback(self.createDirCB, InputBox, title=_("Enter name for new directory."), windowTitle=_("Create directory"))
+		self.session.openWithCallback(
+				boundFunction(self.createDirCB, currentPath),
+				InputBox,
+				title=_("Enter name for new directory."),
+				windowTitle=_("Create directory") )
 
-	def createDirCB(self, name):
+	def createDirCB(self, currentPath, name):
 		if name is not None:
-			name = os.path.join(self.currentPath, name)
+			name = os.path.join(currentPath, name)
 			if os.path.exists(name):
 				self.session.open(MessageBox, _("Directory "+name+" already exists."), MessageBox.TYPE_ERROR)
 			else:
@@ -123,26 +127,35 @@ class MovieMenu(Screen, E2Bookmarks):
 		else:
 			self.close(None)
 
-	def createLinks(self):
-		self.session.openWithCallback(self.createLinksCB, MovieLocationBox, text = _("Choose directory"), dir = str(self.currentPath)+"/", minFree = 0)
+	def createLink(self, currentPath):
+		self.session.openWithCallback(
+				boundFunction(self.createLinkCB, currentPath),
+				MovieLocationBox,
+				text = _("Choose directory"),
+				dir = str(self.currentPath)+"/",
+				minFree = 0)
 
-	def createLinksCB(self, targetPath):
+	def createLinkCB(self, currentPath, linkPath):
 		try:
-			if self.currentPath == targetPath or targetPath == None: return
-			cmd = ""
-			for x in self.selections:
-				path = self.mlist.getFilePathOfService(x)
-				name = os.path.basename(path)
-				cmd += '; ln -s "'+ path +'" "'+ targetPath + name +'"'
+			if currentPath == linkPath or linkPath == None: return
+			name = os.path.basename(linkPath)
+			cmd = 'ln -s "'+ linkPath +'" "'+ os.path.join(currentPath, name) +'"'
 			if cmd != "":
 				emcTasker.shellExecute(cmd[2:])	# first move, then delete if expiration limit is 0
-				self.close(None)
 		except Exception, e:
 			emcDebugOut("[EMCMM] createLinks exception:\n" + str(e))
+			self.close(None)
+		else:
+			#TODO Avoid reload
+			self.close(reload)
 
 	def emptyTrash(self):
 		self.hide()
-		self.session.openWithCallback(self.emptyTrashCB, MessageBox, _("Permanently delete all files in trashcan?"), MessageBox.TYPE_YESNO)
+		self.session.openWithCallback(
+				self.emptyTrashCB,
+				MessageBox,
+				_("Permanently delete all files in trashcan?"),
+				MessageBox.TYPE_YESNO )
 
 	def emptyTrashCB(self, confirmed):
 		if confirmed:
@@ -160,7 +173,11 @@ class MovieMenu(Screen, E2Bookmarks):
 
 	def remRogueFiles(self):
 		self.hide()
-		self.session.openWithCallback(self.remRogueFilesCB, MessageBox, _("Locate rogue files and remove them? (permanently if no trashcan available, may take a minute or so)"), MessageBox.TYPE_YESNO)
+		self.session.openWithCallback(
+				self.remRogueFilesCB,
+				MessageBox,
+				_("Locate rogue files and remove them? (permanently if no trashcan available, may take a minute or so)"),
+				MessageBox.TYPE_YESNO )
 
 	def remRogueFilesCB(self, confirmed):
 		if confirmed:
@@ -177,7 +194,11 @@ class MovieMenu(Screen, E2Bookmarks):
 
 	def remCutListMarker(self):
 		self.hide()
-		self.session.openWithCallback(self.remCutListMarkerCB, MessageBox, _("Remove all cut file marker permanently?"), MessageBox.TYPE_YESNO)
+		self.session.openWithCallback(
+				self.remCutListMarkerCB,
+				MessageBox,
+				_("Remove all cut file marker permanently?"),
+				MessageBox.TYPE_YESNO )
 
 	def remCutListMarkerCB(self, confirm):
 		if confirm:
