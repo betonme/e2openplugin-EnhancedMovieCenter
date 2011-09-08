@@ -249,7 +249,8 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			self.changeDir(path, service)
 		else:
 			# No entry on stack
-			pass
+			# Move cursor to top of the list
+			self.moveTop()
 
 	def CoolBack(self):
 		path, service = self.goBackward( self.currentPath, self["list"].getCurrent() )
@@ -266,6 +267,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			# Open parent folder
 			self.setNextPath()
 		else:
+			# No entry on stack
 			# Move cursor to top of the list
 			self.moveTop()
 
@@ -403,7 +405,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 
 	def openMenu(self):
 		current = self.getCurrent()
-		if not self["list"].currentSelIsPlayable(): current = None
+		#if not self["list"].currentSelIsPlayable(): current = None
 		self.session.openWithCallback(self.menuCallback, MovieMenu, "normal", self["list"], current, self["list"].makeSelectionList(), self.currentPath)
 
 	def openMenuPlugins(self):
@@ -734,8 +736,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			selectedlist = self["list"].makeSelectionList()[:]
 			if self["list"].currentSelIsDirectory() and len(selectedlist) == 1 and current==selectedlist[0]:
 				# try to delete an empty directory
-				if self.delPathSel(self["list"].getCurrentSelDir()):
-					self["list"].removeService(selectedlist[0])
+				self.delPathSel(current)
 			elif self["list"].currentSelIsBookmark() and len(selectedlist) == 1 and current==selectedlist[0]:
 				# Delete a single bookmark
 				self.removeBookmark(current)
@@ -839,20 +840,25 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 				self.session.openWithCallback(self.trashcanCreate, MessageBox, _("Delete failed because the trashcan directory does not exist. Attempt to create it now?"), MessageBox.TYPE_YESNO)
 			emcDebugOut("[EMCMS] deleteMovie")
 
-	def delPathSel(self, path):
-		if path != "..":
-			if os.path.islink(path):
-				emcTasker.shellExecute("rm -f '" + path + "'")
-				return True
-			elif os.path.exists(path):
-				if len(os.listdir(path))>0:
-					self.session.open(MessageBox, _("Directory is not empty."), MessageBox.TYPE_ERROR, 10)
-				else:
-					emcTasker.shellExecute('rmdir "' + path +'"')
-					return True
-		else:
-			self.session.open(MessageBox, _("Cannot delete the parent directory."), MessageBox.TYPE_ERROR, 10)
-		return False
+	def delPathSel(self, service):
+		if config.EMC.movie_delete_validation.value:
+			pass
+
+	def delPathSelConfirmed(self, service, confirm):
+		if confirm and service:
+			path = service.getPath()
+			if path != "..":
+				if os.path.islink(path):
+					emcTasker.shellExecute("rm -f '" + path + "'")
+					self["list"].removeService(service)
+				elif os.path.exists(path):
+					if len(os.listdir(path))>0:
+						self.session.open(MessageBox, _("Directory is not empty."), MessageBox.TYPE_ERROR, 10)
+					else:
+						emcTasker.shellExecute('rmdir "' + path +'"')
+						self["list"].removeService(service)
+			else:
+				self.session.open(MessageBox, _("Cannot delete the parent directory."), MessageBox.TYPE_ERROR, 10)
 
 	def setPlayerInstance(self, player):
 		try:

@@ -27,7 +27,7 @@ from Components.config import *
 from EMCTasker import emcTasker, emcDebugOut
 
 
-class E2Bookmarks(Screen):
+class E2Bookmarks():
 	def __init__(self):
 		pass
 
@@ -37,7 +37,7 @@ class E2Bookmarks(Screen):
 			bookmark = os.path.normpath(path)+"/"
 			bookmarks = [os.path.normpath(e2bm)+"/" for e2bm in config.movielist.videodirs.value]
 			if bookmark in bookmarks:
-				return true
+				return True
 		return False
 
 	# Returns the E2 bookmarks as a list
@@ -67,7 +67,7 @@ class E2Bookmarks(Screen):
 	# Returns False on already in bookmarklist or failure
 	def removeE2Bookmark(self, path):
 		if path and config.movielist and config.movielist.videodirs:
-			bookmark = os.path.normpath(service.getPath())+"/"
+			bookmark = os.path.normpath(path)+"/"
 			bookmarks = [os.path.normpath(e2bm)+"/" for e2bm in config.movielist.videodirs.value]
 			if bookmark in bookmarks:
 				# Adapted from LocationBox

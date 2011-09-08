@@ -141,13 +141,13 @@ class MovieMenu(Screen, E2Bookmarks):
 			name = os.path.basename(linkPath)
 			cmd = 'ln -s "'+ linkPath +'" "'+ os.path.join(currentPath, name) +'"'
 			if cmd != "":
-				emcTasker.shellExecute(cmd[2:])	# first move, then delete if expiration limit is 0
+				emcTasker.shellExecute(cmd)	# first move, then delete if expiration limit is 0
 		except Exception, e:
-			emcDebugOut("[EMCMM] createLinks exception:\n" + str(e))
+			emcDebugOut("[EMCMM] createLink exception:\n" + str(e))
 			self.close(None)
 		else:
 			#TODO Avoid reload
-			self.close(reload)
+			self.close("reload")
 
 	def emptyTrash(self):
 		self.hide()

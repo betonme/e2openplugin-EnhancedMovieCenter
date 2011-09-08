@@ -290,7 +290,7 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 			(  separator                                          , config.EMC.about                    , None                  , None                  , 2     , []        , _("HELP_Advanced options separator") ),
 			(  _("Description field update delay")                , config.EMC.movie_descdelay          , None                  , None                  , 2     , []        , _("HELP_Description field update delay") ),
 			(  _("Key period value (50-900)")                     , config.EMC.key_period               , setupKeyResponseValues, None                  , 2     , []        , _("HELP_Key period value (50-900)") ),
-			(  _("Key repeat value (250-900)")                    , config.EMC.key_repeat               , setupKeyResponseValues, None                  , 2     , []        , _("HELP_Key repeat value (250-900)") )
+			(  _("Key repeat value (250-900)")                    , config.EMC.key_repeat               , setupKeyResponseValues, None                  , 2     , []        , _("HELP_Key repeat value (250-900)") ),
 			
 			(  separator                                          , config.EMC.about                    , None                  , None                  , 2     , []        , _("HELP_Advanced options separator") ),
 			(  _("Enable EMC debug output")                       , config.EMC.debug                    , self.dbgChange        , None                  , 2     , []        , _("HELP_Enable EMC debug output") ),
@@ -383,6 +383,7 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 				for parent in entry[5]:
 					if self.list[i+parent][2] is not None:
 						# execute parent value changed -function
+						print "keysavenew" + str(self.list[i+parent])
 						if self.list[i+parent][2](self.EMCConfig[i+parent][1]) is not None:	
 							# Stop exiting, user has to correct the config
 							return
