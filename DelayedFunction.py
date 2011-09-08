@@ -19,6 +19,8 @@
 #	<http://www.gnu.org/licenses/>.
 #
 
+from operator import isCallable
+
 from enigma import eTimer
 from EMCTasker import emcDebugOut
 
@@ -27,14 +29,15 @@ instanceTab = []	# just seems to be required to keep the instances alive long en
 class DelayedFunction:
 	def __init__(self, delay, function, *params):
 		try:
-			global instanceTab
-			instanceTab.append(self)
-			self.function = function
-			self.params = params
-			self.timer = None
-			self.timer = eTimer()
-			self.timer.timeout.get().append(self.timerLaunch)
-			self.timer.start(delay, False)
+			if isCallable(function):
+				global instanceTab
+				instanceTab.append(self)
+				self.function = function
+				self.params = params
+				self.timer = None
+				self.timer = eTimer()
+				self.timer.timeout.get().append(self.timerLaunch)
+				self.timer.start(delay, False)
 		except Exception, e:
 			emcDebugOut("[spDF] __init__ exception:\n%s:%s" %(str(self.function),str(e)))
 
