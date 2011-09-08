@@ -213,7 +213,7 @@ config.EMC.movie_trashcan_limit      = ConfigSelectionNumber(1, 99, 1, default =
 config.EMC.movie_finished_clean      = ConfigYesNoConfirm(default = False, text = _("ATTENTION\n\nThis option will move all finished movies in Movie Home automatically to Your trashcan at the given time.\nAt next trashcan cleanup all movies will be deleted.\n\nConfirm this with the blue key followed by the green key."), key1="blue", key2="green")
 config.EMC.movie_finished_limit      = ConfigSelectionNumber(1, 99, 1, default = 10)
 config.EMC.movie_trashcan_ctime      = ConfigClock(default = 0)
-config.EMC.movie_trashcan_validation = ConfigYesNo(default = True)
+config.EMC.movie_delete_validation   = ConfigYesNo(default = True)
 config.EMC.directories_show          = ConfigYesNo(default = True)
 config.EMC.directories_info          = ConfigSelection(default = "", choices = dirinfo_choices)
 config.EMC.latest_recordings         = ConfigYesNo(default = True)

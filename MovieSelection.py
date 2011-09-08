@@ -759,10 +759,13 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		if service:
 			path = service.getPath()
 			if self.isE2Bookmark(path):
-				self.session.openWithCallback(
-						boundFunction(self.removeBookmarkConfirmed, service),
-						MessageBox,
-						_("Do you really want to remove your bookmark of %s?") % (path) )
+				if config.EMC.movie_delete_validation.value:
+					self.session.openWithCallback(
+							boundFunction(self.removeBookmarkConfirmed, service),
+							MessageBox,
+							_("Do you really want to remove your bookmark of %s?") % (path) )
+				else:
+					self.removeBookmarkConfirmed(service, True)
 
 	def removeBookmarkConfirmed(self, service, confirm):
 		if confirm and service and config.movielist and config.movielist.videodirs:
@@ -789,7 +792,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 				service = selectedlist[0]
 				name = self["list"].getNameOfService(service)
 				if not self.delCurrentlyPlaying:
-					if not config.EMC.movie_trashcan_enable.value or config.EMC.movie_trashcan_validation.value  or self.permanentDel:
+					if not config.EMC.movie_trashcan_enable.value or config.EMC.movie_delete_validation.value or self.permanentDel:
 						self.session.openWithCallback(self.deleteMovieConfimation, MessageBox, delStr + "?\n" + rm_add + name, MessageBox.TYPE_YESNO)
 					else:
 						self.deleteMovieConfimation(True)
@@ -809,7 +812,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 							name = name[:48] + "..."	# limit the name string
 						movienames += name + "\n"*(i<entrycount)
 					if not self.delCurrentlyPlaying:
-						if not config.EMC.movie_trashcan_enable.value or config.EMC.movie_trashcan_validation.value or self.permanentDel:
+						if not config.EMC.movie_trashcan_enable.value or config.EMC.movie_delete_validation.value or self.permanentDel:
 							self.session.openWithCallback(self.deleteMovieConfimation, MessageBox, delStr + _(" all selected video files?") + "\n" + rm_add + movienames, MessageBox.TYPE_YESNO)
 						else:
 							self.deleteMovieConfimation(True)

@@ -243,7 +243,7 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 			(  _("Always save last played progress as marker")    , config.EMC.movie_save_lastplayed    , None                  , None                  , 1     , []        , _("HELP_Always save last played progress as marker") ),
 			
 			(  separator                                          , config.EMC.about                    , None                  , None                  , 0     , []        , _("") ),
-			(  _("Delete validation")                             , config.EMC.movie_trashcan_validation, None                  , None                  , 0     , []        , _("HELP_Delete validation") ),
+			(  _("Delete validation")                             , config.EMC.movie_delete_validation  , None                  , None                  , 0     , []        , _("HELP_Delete validation") ),
 			
 			(  _("Trashcan enable")                               , config.EMC.movie_trashcan_enable    , None                  , self.openLocationBox  , 0     , []        , _("HELP_Trashcan enable") ),
 			(  _("Trashcan path")                                 , config.EMC.movie_trashcan_path      , self.validatePath     , self.openLocationBox  , 0     , [-1]        , _("HELP_Trashcan path") ),
