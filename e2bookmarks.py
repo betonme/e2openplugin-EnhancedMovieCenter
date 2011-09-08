@@ -31,8 +31,17 @@ class E2Bookmarks(Screen):
 	def __init__(self):
 		pass
 
+	# Is the E2 bookmarks as a list
+	def isE2Bookmark(self, path):
+		if path and config.movielist and config.movielist.videodirs:
+			bookmark = os.path.normpath(path)+"/"
+			bookmarks = [os.path.normpath(e2bm)+"/" for e2bm in config.movielist.videodirs.value]
+			if bookmark in bookmarks:
+				return true
+		return False
+
 	# Returns the E2 bookmarks as a list
-	def getBookmarks(self):
+	def getE2Bookmarks(self):
 		if config.movielist and config.movielist.videodirs:
 			return [os.path.normpath(e2bm) for e2bm in config.movielist.videodirs.value]
 		else
@@ -41,9 +50,9 @@ class E2Bookmarks(Screen):
 	# Add a path to the E2 bookmark list
 	# Returns True on success
 	# Returns False on already in bookmarklist or failure
-	def addBookmark(self, bookmark):
-		bookmark = os.path.normpath(bookmark)+"/"
-		if bookmark and config.movielist and config.movielist.videodirs:
+	def addE2Bookmark(self, path):
+		if path and config.movielist and config.movielist.videodirs:
+			bookmark = os.path.normpath(path)+"/"
 			bookmarks = [os.path.normpath(e2bm)+"/" for e2bm in config.movielist.videodirs.value]
 			if bookmark not in bookmarks:
 				bookmarks.append(bookmark)
@@ -54,26 +63,17 @@ class E2Bookmarks(Screen):
 		return False
 
 	# Remove a path from the E2 bookmark list
-	# Callback is only called on success
-	def removeBookmark(self, service, callback=None):
-		if service and config.movielist and config.movielist.videodirs:
+	# Returns True on success
+	# Returns False on already in bookmarklist or failure
+	def removeE2Bookmark(self, path):
+		if path and config.movielist and config.movielist.videodirs:
 			bookmark = os.path.normpath(service.getPath())+"/"
 			bookmarks = [os.path.normpath(e2bm)+"/" for e2bm in config.movielist.videodirs.value]
 			if bookmark in bookmarks:
 				# Adapted from LocationBox
-				self.session.openWithCallback(
-					boundFunction(self.__removeBookmarkConfirmed, service, callback),
-					MessageBox,
-					_("Do you really want to remove your bookmark of %s?") % (bookmark) )
-
-	def __removeBookmarkConfirmed(self, service, callback, confirm):
-		if confirm:
-			bookmark = os.path.normpath(service.getPath())+"/"
-			bookmarks = [os.path.normpath(e2bm)+"/" for e2bm in config.movielist.videodirs.value]
-			if bookmark in bookmarks:
 				bookmarks.remove(bookmark)
 				bookmarks.sort()
 				config.movielist.videodirs.value = bookmarks
 				config.movielist.videodirs.save()
-				if callback is not None and isCallable(callback):
-					callback(service)
+				return True
+		return False

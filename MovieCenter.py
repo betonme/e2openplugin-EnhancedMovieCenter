@@ -777,7 +777,8 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 			for l in self.list[:]:
 				if l[0] == service:
 					self.list.remove(l)
-			self.l.setList(self.list)
+					self.l.setList(self.list)
+					break
 
 	def addService(self, service):
 		#TODO
@@ -1086,7 +1087,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 										cmtVLC) )
 				
 				if config.EMC.bookmarks_e2.value:
-					bookmarks = self.getBookmarks()
+					bookmarks = self.getE2Bookmarks()
 					if bookmarks:
 						for bookmark in bookmarks:
 							append( (	bookmark,

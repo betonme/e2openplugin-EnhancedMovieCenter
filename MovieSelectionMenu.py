@@ -74,9 +74,11 @@ class MovieMenu(Screen, E2Bookmarks):
 				if ext in extTS:
 					# Only valid for ts files: CutListEditor, DVDBurn, ...
 					self.menu.extend([(p.description, boundFunction(self.execPlugin, p)) for p in plugins.getPlugins(PluginDescriptor.WHERE_MOVIELIST)])
-			self.menu.append((_("Open E2 Bookmark path"), boundFunction(self.openE2Bookmark)))
-			#TODO check if it exists already
-			self.menu.append((_("Add E2 Bookmark"), boundFunction(self.addE2Bookmark)))
+			self.menu.append((_("Open E2 Bookmark path"), boundFunction(self.close, "obookmark")))
+			if not self.isE2Bookmark(currentPath):
+				self.menu.append((_("Add E2 Bookmark"), boundFunction(self.addBookmark)))
+			elif service:
+				self.menu.append((_("Remove E2 Bookmark"), boundFunction(self.close, "rbookmark", service)))
 			self.menu.append((_("Set permanent sort"), boundFunction(self.setPermanentSort, currentPath, mlist.alphaSort)))
 			if mlist.hasFolderPermanentSort(currentPath):
 				self.menu.append((_("Remove permanent sort"), boundFunction(self.removePermanentSort, currentPath)))
@@ -187,17 +189,8 @@ class MovieMenu(Screen, E2Bookmarks):
 			# Close the Menü and reload the movielist
 			self.close("setup")
 
-	def openE2Bookmark(self):
-		self.session.openWithCallback(self.openE2BookmarkCB, MovieLocationBox, text = _("Open E2 Bookmark path"), dir = str(self.currentPath)+"/")
-
-	def openE2BookmarkCB(self, path=None):
-		if path is not None:
-			self.close("bookmark", path)
-		else:
-			self.close(None)
-
-	def addE2Bookmark(self):
-		if self.addBookmark( self.currentPath ):
+	def addBookmark(self):
+		if self.addE2Bookmark( self.currentPath ):
 			if config.EMC.bookmarks_e2.value and self.currentPath == config.EMC.movie_homepath.value:
 				#TODO Avoid reload
 				# If the custom entry has sortingkeys, maybe an addService will do it
