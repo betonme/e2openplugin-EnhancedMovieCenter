@@ -370,7 +370,7 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 
 	def keySaveNew(self):
 		config.EMC.needsreload.value = True
-		for entry in self.list:
+		for i, entry in enumerate( self.list ):
 			if entry[1].isChanged():
 				if entry[2] is not None:
 					# execute value changed -function
@@ -379,9 +379,9 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 						return
 				# Check parent entries
 				for parent in entry[5]:
-					if self.EMCConfig[parent][2] is not None:
+					if self.list[i+parent][2] is not None:
 						# execute parent value changed -function
-						if self.EMCConfig[parent][2](self.EMCConfig[parent][1]) is not None:	
+						if self.list[i+parent][2](self.EMCConfig[i+parent][1]) is not None:	
 							# Stop exiting, user has to correct the config
 							return
 				entry[1].save()
