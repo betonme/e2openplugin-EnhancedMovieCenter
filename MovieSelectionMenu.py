@@ -37,6 +37,7 @@ from EnhancedMovieCenter import _
 from Plugins.Extensions.EnhancedMovieCenter.plugin import pluginOpen as emcsetup
 from PermanentSort import PermanentSort
 from E2Bookmarks import E2Bookmarks
+from RogueFileCheck import RogueFileCheck
 from MovieCenter import extTS
 global extTS
 
@@ -60,7 +61,6 @@ class MovieMenu(Screen, E2Bookmarks):
 			if os.path.exists(config.EMC.movie_trashcan_path.value):
 				if self.service:
 					self.menu.append((_("Delete permanently"), boundFunction(self.close, "delete")))
-#				self.menu.append((_("Cleanup trashcan"), boundFunction(self.cleanTrash)))
 				self.menu.append((_("Empty trashcan"), boundFunction(self.emptyTrash)))
 				self.menu.append((_("Go to trashcan"), boundFunction(self.close, "trash")))
 			self.menu.append((_("Mark all movies"), boundFunction(self.markAllMovies)))
@@ -159,9 +159,10 @@ class MovieMenu(Screen, E2Bookmarks):
 
 	def remRogueFilesCB(self, confirmed):
 		if confirmed:
-			self.close("rogue")
-		else:
-			self.close(None)
+			check = RogueFileCheck(self.currentPath)
+			emcTasker.shellExecute( check.getScript(config.EMC.movie_trashcan_path.value) )
+			self.session.open(MessageBox, check.getStatistics(), MessageBox.TYPE_INFO)
+		self.close(None)
 
 	def markAllMovies(self):
 		for i in xrange( len (self.mlist) ):

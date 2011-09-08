@@ -41,7 +41,6 @@ from EMCTasker import emcTasker, emcDebugOut
 from MovieCenter import MovieCenter
 from MovieSelectionMenu import MovieMenu
 from EMCMediaCenter import EMCMediaCenter
-from RogueFileCheck import RogueFileCheck
 from VlcPluginInterface import VlcPluginInterfaceSel
 from CutListSupport import CutList
 from DirectoryStack import DirectoryStack
@@ -398,7 +397,6 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			elif selection == "ctrash": self.purgeExpired()
 			elif selection == "trash": self.changeDir(config.EMC.movie_trashcan_path.value)
 			elif selection == "delete": self.deleteFile(True)
-			elif selection == "rogue": self.rogueFiles()
 			elif selection == "cutlistmarker": self.removeCutListMarker()
 			elif selection == "bookmark": self.changeDir(parameter)
 
@@ -838,11 +836,6 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		else:
 			self.session.open(MessageBox, _("Cannot delete the parent directory."), MessageBox.TYPE_ERROR, 10)
 		return False
-
-	def rogueFiles(self):
-		check = RogueFileCheck(config.EMC.movie_homepath.value, config.EMC.movie_trashcan_path.value)
-		emcTasker.shellExecute( check.getScript(config.EMC.movie_trashcan_path.value) )
-		self.session.open(MessageBox, check.getStatistics(), MessageBox.TYPE_INFO)
 
 	def setPlayerInstance(self, player):
 		try:

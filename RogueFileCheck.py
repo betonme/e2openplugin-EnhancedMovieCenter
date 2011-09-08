@@ -43,6 +43,7 @@ class RogueFileCheck:
 		return strg
 
 	def checkPath(self, path, avoid=""):
+		#TODO check performance
 		if not os.path.exists(path) or path is avoid: return
 		for p in os.listdir(path):
 			fullpath = os.path.join(path, p)
@@ -69,7 +70,7 @@ class RogueFileCheck:
 
 	def getScript(self, path):
 		strg = ""
-		if os.path.exists(path) and int(config.EMC.movie_trashcan_limit.value) != 0:	# check if the trashcan exists
+		if path and os.path.exists(path):
 			for file in self.files:
 				strg += "\nmv \"" +file+ "\" \"" +path+ "\""
 		else:

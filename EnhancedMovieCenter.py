@@ -75,7 +75,7 @@ def cleanupSetup(dummy=None):
 		if trashCleanCall is not None:
 			if trashCleanCall.exists():
 				trashCleanCall.cancel()
-		if config.EMC.movie_trashcan_clean.value is True or config.EMC.movie_finished_clean.value is True:
+		if config.EMC.movie_trashcan_enable.value and config.EMC.movie_trashcan_clean.value or config.EMC.movie_finished_clean.value:
 			from time import time
 			recordings = NavigationInstance.instance.getRecordings()
 			rec_time = NavigationInstance.instance.RecordTimer.getNextRecordingTime()
@@ -288,12 +288,14 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 			(  _("Tertiary playback audio language")              , config.EMC.audlang3                 , None                  , None                  , 1     , [-3]      , _("HELP_Tertiary playback audio language") ),
 			
 			(  separator                                          , config.EMC.about                    , None                  , None                  , 2     , []        , _("HELP_Advanced options separator") ),
-			(  _("Enable EMC debug output")                       , config.EMC.debug                    , self.dbgChange        , None                  , 2     , []        , _("HELP_Enable EMC debug output") ),
-			(  _("EMC output directory")                          , config.EMC.folder                   , self.validatePath     , self.openLocationBox  , 2     , [-1]      , _("HELP_EMC output directory") ),
-			(  _("Debug output file name")                        , config.EMC.debugfile                , self.validatePath     , None                  , 2     , [-2]      , _("HELP_Debug output file name") ),
 			(  _("Description field update delay")                , config.EMC.movie_descdelay          , None                  , None                  , 2     , []        , _("HELP_Description field update delay") ),
 			(  _("Key period value (50-900)")                     , config.EMC.key_period               , setupKeyResponseValues, None                  , 2     , []        , _("HELP_Key period value (50-900)") ),
 			(  _("Key repeat value (250-900)")                    , config.EMC.key_repeat               , setupKeyResponseValues, None                  , 2     , []        , _("HELP_Key repeat value (250-900)") )
+			
+			(  separator                                          , config.EMC.about                    , None                  , None                  , 2     , []        , _("HELP_Advanced options separator") ),
+			(  _("Enable EMC debug output")                       , config.EMC.debug                    , self.dbgChange        , None                  , 2     , []        , _("HELP_Enable EMC debug output") ),
+			(  _("EMC output directory")                          , config.EMC.folder                   , self.validatePath     , self.openLocationBox  , 2     , [-1]      , _("HELP_EMC output directory") ),
+			(  _("Debug output file name")                        , config.EMC.debugfile                , self.validatePath     , None                  , 2     , [-2]      , _("HELP_Debug output file name") ),
 		]
 
 	def createConfig(self):
