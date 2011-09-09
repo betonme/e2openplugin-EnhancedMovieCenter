@@ -717,7 +717,9 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 						pixmap = self.pic_trashcan
 						datetext = "Trashcan"
 				elif ext == cmtDir:
-					if config.EMC.directories_info.value:
+					if isLink:
+						datetext = _("Link")
+					elif config.EMC.directories_info.value:
 						if config.EMC.directories_info.value == "C":
 							count, size = self.dirInfo(path)
 							datetext = " ( %d ) " % (count)
