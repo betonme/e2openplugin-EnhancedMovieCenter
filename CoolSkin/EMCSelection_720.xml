@@ -46,9 +46,15 @@
 		<convert type="EMCClockToText">Format:%Hh:%Mmin</convert>
 	</widget>
 	<!-- File Size -->
-	<widget name="FileSize" position="580,388" size="100,20" font="Regular;20" halign="right" foregroundColor="#32A834" backgroundColor="#18080911" transparent="1" />
+	<widget source="Service" render="Label" position="580,388" size="100,20" font="Regular;20" halign="right" foregroundColor="#32A834" backgroundColor="#18080911" transparent="1">
+			<convert type="EMCMovieInfo">FileSize</convert>
+	</widget>
 	<!-- File Name -->
-	<!-- <widget name="FileName" position="0,420" size="720,22" font="Regular;22" foregroundColor="#00bab329" backgroundColor="#18080911" halign="center" noWrap="1" transparent="1" /> -->
+	<!-- 
+		<widget source="Service" render="Label" position="0,420" size="720,22" font="Regular;22" foregroundColor="#00bab329" backgroundColor="#18080911" halign="center" noWrap="1" transparent="1">
+			<convert type="EMCEventName">Name</convert>
+		</widget>
+	-->
 	<!-- EMC Short Description(Genre) -->
 	<widget source="Service" render="Label" position="40,420" size="645,22" font="Regular; 20" zPosition="2" foregroundColor="#0032A834" backgroundColor="#18080911" transparent="1" halign="center" >
 		<convert type="EMCMovieInfo">ShortDescription</convert>

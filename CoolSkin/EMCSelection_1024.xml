@@ -33,9 +33,14 @@
 		<convert type="EMCServiceTime">Duration</convert>
 		<convert type="EMCClockToText">Format:%Hh:%Mmin</convert>
 	</widget>
-	<widget name="FileSize" position="874,506" size="100,20" font="Regular;20" halign="right" foregroundColor="#32A834" backgroundColor="#18080911" transparent="1" />
-
-	<!-- <widget name="FileName" position="336,475" size="638,22" font="Regular;22" foregroundColor="#00bab329" backgroundColor="#18080911" halign="center" noWrap="1" transparent="1" /> -->
+	<widget source="Service" render="Label" position="874,506" size="100,20" font="Regular;20" halign="right" foregroundColor="#32A834" backgroundColor="#18080911" transparent="1">
+			<convert type="EMCMovieInfo">FileSize</convert>
+	</widget>
+	<!-- 
+		<widget source="Service" render="Label" position="336,475" size="638,22" font="Regular;22" foregroundColor="#00bab329" backgroundColor="#18080911" halign="center" noWrap="1" transparent="1">
+			<convert type="EMCEventName">Name</convert>
+		</widget>
+	-->
 	<!-- EMC Short Description(Genre) -->
 	<widget source="Service" render="Label" position="336,475" size="638,22" font="Regular; 20" foregroundColor="#00bab329" backgroundColor="#18080911" transparent="1" halign="center" >
 		<convert type="EMCMovieInfo">ShortDescription</convert>

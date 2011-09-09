@@ -44,6 +44,7 @@ from MetaSupport import MetaList
 from EitSupport import EitList
 from PermanentSort import PermanentSort
 from E2Bookmarks import E2Bookmarks
+from ServiceSupport import ServiceCenter
 
 
 global extAudio, extDvd, extVideo, extPlaylist, extList, extMedia
@@ -142,7 +143,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 		VlcPluginInterfaceList.__init__(self)
 		PermanentSort.__init__(self)
 		self.loadPath = config.EMC.movie_homepath.value
-		self.serviceHandler = eServiceCenter.getInstance()
+		self.serviceHandler = ServiceCenter.getInstance()
 		
 		self.alphaSort = config.EMC.CoolStartAZ.value
 		self.returnSort = None

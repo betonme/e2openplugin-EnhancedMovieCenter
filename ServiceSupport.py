@@ -26,7 +26,7 @@ import struct
 
 from Components.Element import cached
 from Components.Sources.ServiceEvent import ServiceEvent as eServiceEvent
-from enigma import eServiceCenter, iServiceInformation
+from enigma import eServiceCenter, iServiceInformation, eServiceReference
 #from Tools.Directories import fileExists
 
 from CutListSupport import CutList
@@ -35,23 +35,6 @@ from EitSupport import EitList
 
 
 instance = None
-
-# def getFolderSize(loadPath):
-# 	folder_size = 0
-# 	for (path, dirs, files) in os.walk(loadPath):
-# 		for file in files:    
-# 			filename = os.path.join(path, file)    
-# 			folder_size += os.path.getsize(filename)
-# 	return folder_size
-
-# def detectDVDStructure(loadPath):
-# 	if not os.path.isdir(loadPath):
-# 		return None
-# 	if fileExists(loadPath + "VIDEO_TS.IFO"):
-# 		return loadPath + "VIDEO_TS.IFO"
-# 	if fileExists(loadPath + "VIDEO_TS/VIDEO_TS.IFO"):
-# 		return loadPath + "VIDEO_TS/VIDEO_TS.IFO"
-# 	return None
 
 
 class ServiceEvent(eServiceEvent):
@@ -79,8 +62,12 @@ class ServiceCenter:
 		return instance
 		
 	def info(self, service):
-		serviceInfo = eServiceCenter.getInstance().info(service)
-		if serviceInfo is not None:
+		path = service.getPath()
+		#if os.path.splitext(path)[1].lower() in extTS:
+		#	serviceInfo = eServiceCenter.getInstance().info(service)
+		#	if serviceInfo is not None:
+		#		return serviceInfo
+		
 #TODO why should we replace it
 # 			from MovieCenter import extTS
 # 			global extTS
@@ -90,146 +77,148 @@ class ServiceCenter:
 # 				serviceInfo.cueSheet = CutList(path)
 # 				return serviceInfo
 # 			return ServiceInfo(service)
-			return serviceInfo
-		else:
-			return ServiceInfo(service)
+		#	return serviceInfo
+		#else:
+		#if service:
+		return ServiceInfo(service)
 
 
 class ServiceInfo:
 	def __init__(self, service):
-		self.service = None
-		self.cutlist = None
-		self.meta = None
-		self.eit = None
-		self.info = None
-		self.newService(service)
-	
-	def newService(self, service):
-		if self.service != service:
-			path = service.getPath()
+		#TODO maybe necessary
+		#if service and not isinstance(service, eServiceReference):
+		#	if NavigationInstance and NavigationInstance.instance:
+		#		service = NavigationInstance.instance.getCurrentlyPlayingServiceReference()
+		if service:
 			self.service = service
-			self.path = path
-			self.__size = os.path.isfile(path) and  os.path.getsize(path) or 0 # TODO folder
-			self.__mtime = os.path.exists(path) and long(os.stat(path).st_mtime) or 0 # TODO folder
-			
-			self.cutlist = CutList(path)
-			self.meta = MetaList(path)
-			self.eit = EitList(path)
-			
-			self.info = Info(self, service)
-			self.event = Event(self, service)
-			service.cueSheet = self.cueSheet
-	
-	def cueSheet(self):
-		return self.cutlist
+			self.info = Info(self)
+		else:
+			self.service = None
+			self.info = None
 	
 	def getLength(self, service):
-		#self.newService(service)
-		return self.cutlist.getCutListLength()
+		#TODO self.newService(service)
+		return self.info and self.info.getLength() or 0
 	
 	def getInfoString(self, service, type):
 		#self.newService(service)
 		if type == iServiceInformation.sServiceref:
-			return service.ref.toString()
+			return service and service.toString() or "" #service.ref.toString() or ""
 		if type == iServiceInformation.sDescription:
-			return self.info.getShortDescription()
+			return self.info and self.info.getShortDescription() or ""
 		if type == iServiceInformation.sTags:
-			return self.info.getTags()
+			return self.info and self.info.getTags() or ""
 		return "None"
 
 	def getInfo(self, service, type):
 		#self.newService(service)
 		if type == iServiceInformation.sTimeCreate:
-			return self.__mtime
+			return self.info and self.info.getMTime() or 0
 		return None
 	
 	def getInfoObject(self, service, type):
 		#self.newService(service)
-		# TODO EMC Folder handling
-# 		if type == iServiceInformation.sFileSize:
-# 			dvd = detectDVDStructure(service.getPath()+"/")
-# 			if dvd:
-# 				return getFolderSize(os.path.dirname(dvd))
-# 			return os.path.getsize(service.getPath())
-		return self.__size
-	
-#	def getServiceReference(self):
-#		return self.info
+		if type == iServiceInformation.sFileSize:
+			return self.info and self.info.getSize() or None
+		return None
 	
 	def getName(self, service):
 		#self.newService(service)
-		return self.info.name
+		return self.info and self.info.getName() or ""
 	
 	def getEvent(self, service):
 		#self.newService(service)
-# 		#TODO Performance
-# 		if os.path.exists(service.getPath() + ".eit"):
-# 			return EventInformationTable(service.getPath() + ".eit")
-# 		else:
-		return self.event
+		return self.info
 
 
 class Info:
-	def __init__(self, serviceInfo):
-		meta = serviceInfo.meta
-		meta = serviceInfo.meta
-		service = serviceinfo.service
+	def __init__(self, serviceinfo):
 		
-		self.__name = service.getName() or ""
-		self.__servicename = service.getServiceName() or ""
-		self.__description = meta and meta.getShortDescription() \
+		# Temporary variables
+		service = serviceinfo.service
+		path = service and service.getPath()
+		isfile = os.path.isfile(path)
+		isdir = os.path.isdir(path)
+		meta = path and MetaList(path)
+		eit = path and EitList(path)
+		
+		# Information which we need later
+		self.__cutlist = path and CutList(path) or []
+		
+		self.__size = isfile and os.stat(path).st_size \
+								or isdir and self.getFolderSize(path) \
+								or None
+		
+		self.__mtime = path and isfile \
+									and long(os.stat(path).st_mtime) or 0
+		
+		self.__name = service and service.getName() or ""
+		self.__servicename = ""
+		self.__shortdescription = meta and meta.getMetaDescription() \
 													or eit and eit.getEitShortDescription() \
-													or self.name
+													or self.__name
 		self.__tags = meta and meta.getMetaTags() or ""
+		
+		self.__eventname = self.__name
+		self.__extendeddescription = eit and eit.getEitDescription() \
+																	or meta and meta.getMetaDescription() \
+																	or not os.path.isfile(path) and os.path.realpath(path) \
+																	or ""
+		self.__id = 0
+		service.cueSheet = self.cueSheet
 
+	def cueSheet(self):
+		return self.__cutlist
+	
 	def getName(self):
 		#EventName NAME
 		return self.__name
-
+	
 	def getServiceName(self):
 		#MovieInfo MOVIE_REC_SERVICE_NAME
 		return self.__servicename
-
-	def getShortDescription(self):
-		#MovieInfo MOVIE_META_DESCRIPTION
-		#MovieInfo SHORT_DESCRIPTION
-		#EventName SHORT_DESCRIPTION
-		return self.__description
-
+	
 	def getTags(self):
 		return self.__tags
-
-
-class Event:
-	def __init__(self, serviceinfo):
-		path = serviceinfo.path
-		self.__eventname = serviceinfo.info.getName()
-		self.__shortdescription = serviceinfo.info.getShortDescription()
-		self.__extendeddescription = serviceinfo.eit.getEitDescription() \
-																	or serviceinfo.meta.getMetaDescription() \
-																	or not os.path.isfile(path) and os.path.realpath(path) \
-																	or ""
 	
 	def getEventName(self):
 		return self.__eventname
 	
 	def getShortDescription(self):
+		#MovieInfo MOVIE_META_DESCRIPTION
+		#MovieInfo SHORT_DESCRIPTION
+		#EventName SHORT_DESCRIPTION
 		return self.__shortdescription
-
+	
 	def getExtendedDescription(self):
 		#EventName EXTENDED_DESCRIPTION
 		return self.__extendeddescription
-
+	
 	def getEventId(self):
 		#EventName ID
-		return 0
-
-# 	def getBeginTimeString(self):
-# 		from datetime import datetime
-# 		begin = self.serviceInfo.getInfo(self.service, iServiceInformation.sTimeCreate)
-# 		d = datetime.fromtimestamp(begin)
-# 		return d.strftime("%d.%m.%Y %H:%M")
+		return self.__id
 	
-#	def getDuration(self):
-#		return self.serviceInfo.length
+	def getMTime(self):
+		return self.__mtime
 	
+	def getSize(self):
+		return self.__size
+	
+	def getLength(self):
+		#self.newService(service)
+		return self.__cutlist and self.__cutlist.getCutListLength() or 0
+	
+	def getBeginTime(self):
+		self.getMTime()
+	
+	def getDuration(self):
+		self.getLength()
+	
+	def getFolderSize(self, loadPath):
+		folder_size = 0
+		for (path, dirs, files) in os.walk(loadPath):
+			for file in files:    
+				filename = os.path.join(path, file)
+				if os.path.exists(filename):
+					folder_size += os.path.getsize(filename)
+		return folder_size

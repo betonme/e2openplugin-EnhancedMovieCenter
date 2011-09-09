@@ -230,20 +230,20 @@ class EitList():
 					# User files can be in cp1252
 					# Is there no other way?
 					short_event_descriptor = "".join(short_event_descriptor)
-					try:
-						short_event_descriptor.decode('utf-8')
-					except UnicodeDecodeError:
-						short_event_descriptor = short_event_descriptor and short_event_descriptor.decode("cp1252").encode("utf-8")
+					#try:
+					#	short_event_descriptor.decode('utf-8')
+					#except UnicodeDecodeError:
+					#	short_event_descriptor = short_event_descriptor and short_event_descriptor.decode("cp1252").encode("utf-8")
 					self.eit['name'] = short_event_descriptor
 					
 					# Very bad but there can be both encodings
 					# User files can be in cp1252
 					# Is there no other way?
 					extended_event_descriptor = "".join(extended_event_descriptor)
-					try:
-						extended_event_descriptor.decode('utf-8')
-					except UnicodeDecodeError:
-						extended_event_descriptor = extended_event_descriptor and extended_event_descriptor.decode("cp1252").encode("utf-8")
+					#try:
+					#	extended_event_descriptor.decode('utf-8')
+					#except UnicodeDecodeError:
+					#	extended_event_descriptor = extended_event_descriptor and extended_event_descriptor.decode("cp1252").encode("utf-8")
 					self.eit['description'] = extended_event_descriptor
 					
 				else:

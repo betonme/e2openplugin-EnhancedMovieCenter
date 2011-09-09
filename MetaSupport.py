@@ -44,7 +44,7 @@ class MetaList():
 	def __init__(self, path=None):
 		self.meta_file = None
 		self.meta_mtime = 0
-		self.meta = []
+		self.meta = ["","","","","","",""]
 		self.iso = None
 
 		self.__newPath(path)
@@ -92,33 +92,33 @@ class MetaList():
 	def getMetaMTime(self):
 		return self.meta_mtime
 		
-	def	getMetaServiceReference(self):
-		return self.meta[self.SERVICE] if len(self.meta) > self.SERVICE else ""
+	def getMetaServiceReference(self):
+		return self.meta[self.SERVICE]
 
-	def	getMetaName(self):
-		return self.meta[self.NAME] if len(self.meta) > self.NAME else ""
+	def getMetaName(self):
+		return self.meta[self.NAME]
 
-	def	getMetaDescription(self):
-		return self.meta[self.DESC] if len(self.meta) > self.DESC else ""
+	def getMetaDescription(self):
+		return self.meta[self.DESC]
 
-	def	getMetaRecordingTime(self):
+	def getMetaRecordingTime(self):
 		return self.__secondsToDate( self.__getMetaRecordingTime() )
 
-	def	getMetaTags(self):
-		return self.meta[self.TAGS] if len(self.meta) > self.TAGS else ""
+	def getMetaTags(self):
+		return self.meta[self.TAGS]
 
 	def	getMetaLength(self):
 		return self.__ptsToSeconds( self.__getMetaLength() )
 		
 	def	getMetaFileSize(self):
-		return self.__mk_int( self.meta[self.FILESIZE] if len(self.meta) > self.FILESIZE else "" )
+		return self.__mk_int( self.meta[self.FILESIZE] )
 
 	# Internal from metalist in pts
-	def	__getMetaRecordingTime(self):
-		return self.__mk_int( self.meta[self.RECTIME] if len(self.meta) > self.RECTIME else "" )
+	def __getMetaRecordingTime(self):
+		return self.__mk_int( self.meta[self.RECTIME] )
 
-	def	__getMetaLength(self):
-		return self.__mk_int( self.meta[self.LENGTH] if len(self.meta) > self.LENGTH else "" )
+	def __getMetaLength(self):
+		return self.__mk_int( self.meta[self.LENGTH] )
 
 	##############################################################################
 	## File IO Functions
@@ -153,14 +153,17 @@ class MetaList():
 				# Parse the lines
 				if lines:
 					# Strip lines and extract information
-					self.meta = [l.strip() for l in lines]
+					lines = [l.strip() for l in lines]
+					le = len(lines)
+					self.meta = ["","","","","","",""]
+					self.meta[0:le] = lines[0:le]
 				else:
 					# No date clear all
-					self.meta = []
+					self.meta = ["","","","","","",""]
 					
 		else:
 			# No path or no file clear all
-			self.meta = []
+			self.meta = ["","","","","","",""]
 
 #MAYBE
 #	def __writeMetaFile(self):

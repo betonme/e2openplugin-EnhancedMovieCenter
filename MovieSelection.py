@@ -55,23 +55,13 @@ gMS = None
 class SelectionEventInfo:
 	def __init__(self):
 		self["Service"] = ServiceEvent()
-		self["FileName"] = Label("")
-		self["FileSize"] = Label("")
 
 	def updateEventInfo(self, service):
 		if service is None:
 			# Reload is in progress
 			self["Service"].newService(None)
-			self["FileName"].setText("")
-			self["FileSize"].setText("")
 		else:
 			self["Service"].newService(service)
-			self["FileName"].setText(service.getName())
-			path = service.getPath()
-			if os.path.exists(path):
-				self["FileSize"].setText("(%d MB)" %(os.stat(path).st_size/1048576))  # 1048576 = 1024 * 1024
-			else:
-				self["FileSize"].setText("")
 
 
 class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfaceSel, DirectoryStack, E2Bookmarks):
@@ -435,8 +425,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		self.callUpdate = DelayedFunction( int(config.EMC.movie_descdelay.value), self.updateMovieInfoDelayed )
 
 	def updateMovieInfoDelayed(self):
-		self.updateTitle()
-		self.updateEventInfo(self.getCurrent())
+		self.updateTitle()		self.updateEventInfo(self.getCurrent())
 
 	def updateTitle(self):
 		if self.multiSelectIdx:
@@ -586,7 +575,6 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			# Move to next or last selected entry
 			self.moveToService(self.returnService)
 			#TODO ret if self.returnService: print "EMC retSer " +str(self.returnService.toString())
-			self.returnService = None
 			self.tmpSelList = None
 		
 		elif self.playerInstance:
@@ -600,6 +588,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			#TODO ret print "EMC initCursor movetop correct ????"
 			self.moveTop()
 		
+		self.returnService = None
 		self.updateMovieInfo()
 
 	def onDialogShow(self):
@@ -612,7 +601,8 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			DelayedFunction(50, self.initList)
 		
 		else:
-			self["list"].refreshList()
+			#TODO is a refresh really necessary
+			#self["list"].refreshList()
 			self.initCursor(False)
 		
 		self.updateMovieInfo()
@@ -719,8 +709,18 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		if current is not None:
 			selectedlist = self["list"].makeSelectionList()[:]
 			if self["list"].currentSelIsDirectory() and len(selectedlist) == 1 and current==selectedlist[0]:
-				# try to delete an empty directory
-				self.delPathSel(current)
+				if not config.EMC.movie_trashcan_enable.value or config.EMC.movie_delete_validation.value or self.permanentDel:
+					path = current.getPath()
+					if os.path.islink(path):
+						msg = _("Do you really want to remove your link\n%s?") % (path)
+					else:
+						msg = _("Do you really want to remove your directory\n%s?") % (path)
+					self.session.openWithCallback(
+							boundFunction(self.delPathSelConfirmed, current),
+							MessageBox,
+							msg )
+				else:
+					self.delPathSelConfirmed(current, True)
 			elif self["list"].currentSelIsBookmark() and len(selectedlist) == 1 and current==selectedlist[0]:
 				# Delete a single bookmark
 				self.removeBookmark(current)
@@ -748,7 +748,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 					self.session.openWithCallback(
 							boundFunction(self.removeBookmarkConfirmed, service),
 							MessageBox,
-							_("Do you really want to remove your bookmark of %s?") % (path) )
+							_("Do you really want to remove your bookmark\n%s?") % (path) )
 				else:
 					self.removeBookmarkConfirmed(service, True)
 
@@ -768,7 +768,6 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 				rm_add = _(" Deleting remotely recorded and it will display an rec-error dialog on the other DB.") + "\n"
 				
 			if self.playerInstance is not None:
-				#TEST
 				if self.playerInstance.currentlyPlayedMovie() in selectedlist:
 					self.delCurrentlyPlaying = True
 			entrycount = len(selectedlist)
@@ -778,11 +777,19 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 				name = self["list"].getNameOfService(service)
 				if not self.delCurrentlyPlaying:
 					if not config.EMC.movie_trashcan_enable.value or config.EMC.movie_delete_validation.value or self.permanentDel:
-						self.session.openWithCallback(self.deleteMovieConfimation, MessageBox, delStr + "?\n" + rm_add + name, MessageBox.TYPE_YESNO)
+						self.session.openWithCallback(
+								self.deleteMovieConfimation,
+								MessageBox,
+								delStr + "?\n" + rm_add + name,
+								MessageBox.TYPE_YESNO )
 					else:
 						self.deleteMovieConfimation(True)
 				else:
-					self.session.openWithCallback(self.deleteMovieConfimation, MessageBox, delStr + _(" currently played?") + "\n" + rm_add + name, MessageBox.TYPE_YESNO)
+					self.session.openWithCallback(
+							self.deleteMovieConfimation,
+							MessageBox,
+							delStr + _(" currently played?") + "\n" + rm_add + name,
+							MessageBox.TYPE_YESNO )
 			else:
 				if entrycount > 1:
 					movienames = ""
@@ -798,7 +805,11 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 						movienames += name + "\n"*(i<entrycount)
 					if not self.delCurrentlyPlaying:
 						if not config.EMC.movie_trashcan_enable.value or config.EMC.movie_delete_validation.value or self.permanentDel:
-							self.session.openWithCallback(self.deleteMovieConfimation, MessageBox, delStr + _(" all selected video files?") + "\n" + rm_add + movienames, MessageBox.TYPE_YESNO)
+							self.session.openWithCallback(
+									self.deleteMovieConfimation,
+									MessageBox,
+									delStr + _(" all selected video files?") + "\n" + rm_add + movienames,
+									MessageBox.TYPE_YESNO )
 						else:
 							self.deleteMovieConfimation(True)
 					else:
@@ -823,10 +834,6 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			elif not delete:
 				self.session.openWithCallback(self.trashcanCreate, MessageBox, _("Delete failed because the trashcan directory does not exist. Attempt to create it now?"), MessageBox.TYPE_YESNO)
 			emcDebugOut("[EMCMS] deleteMovie")
-
-	def delPathSel(self, service):
-		if config.EMC.movie_delete_validation.value:
-			pass
 
 	def delPathSelConfirmed(self, service, confirm):
 		if confirm and service:

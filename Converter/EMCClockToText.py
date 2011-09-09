@@ -36,27 +36,12 @@ class EMCClockToText(ClockToText):
 	TIMESTAMP = 6
 
 	def __init__(self, type):
-		Converter.__init__(self, type)
-		if type == "WithSeconds":
-			self.type = self.WITH_SECONDS
-		elif type == "InMinutes":
-			self.type = self.IN_MINUTES
-		elif type == "Date":
-			self.type = self.DATE
-		elif type == "AsLength":
-			self.type = self.AS_LENGTH
-		elif type == "Timestamp":	
-			self.type = self.TIMESTAMP
-		elif str(type).find("Format") != -1:
-			self.type = self.FORMAT
-			self.fmt_string = type[7:]
-		else:
-			self.type = self.DEFAULT
+		ClockToText.__init__(self, type)
 
 	@cached
 	def getText(self):
 		time = self.source.time
-		if time is None:
+		if not time:
 			return ""
 
 		# handle durations
