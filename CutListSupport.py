@@ -99,6 +99,9 @@ class CutList():
 	def __secondsToPts(self, seconds):
 		return seconds * 90 * 1000
 
+	def __len__(self):
+		return self.cut_list and len(self.cut_list) or 0
+
 	##############################################################################
 	## Overwrite Functions 
 
@@ -145,6 +148,9 @@ class CutList():
 			self.__readCutFile(True)
 		except Exception, e:
 			emcDebugOut("[CUTS] updateCuesheet exception:" + str(e))
+
+	def setCutList(self, cut_list):
+		self.cut_list = cut_list
 
 	##############################################################################
 	## Get Functions
@@ -311,6 +317,8 @@ class CutList():
 				pass
 				
 			else:
+				print "EMC TEST count Cutlist " + str(path)
+				
 				# New path or file has changed
 				self.cut_mtime = mtime
 				

@@ -23,7 +23,6 @@ from Components.ActionMap import ActionMap, HelpableActionMap
 from Components.Button import Button
 from Components.config import *
 from Components.Label import Label
-from Components.Sources.ServiceEvent import ServiceEvent
 from Screens.Screen import Screen
 from Screens.HelpMenu import HelpableScreen
 from Screens.MessageBox import MessageBox
@@ -45,6 +44,7 @@ from VlcPluginInterface import VlcPluginInterfaceSel
 from CutListSupport import CutList
 from DirectoryStack import DirectoryStack
 from E2Bookmarks import E2Bookmarks
+from ServiceSupport import ServiceEvent
 
 from MovieCenter import extMedia
 global extMedia
@@ -58,36 +58,20 @@ class SelectionEventInfo:
 		self["FileName"] = Label("")
 		self["FileSize"] = Label("")
 
-	def updateEventInfo(self):
-		# Think about: Is the if really necessary, it should work for all service instances
-		service = self.getCurrent()
+	def updateEventInfo(self, service):
 		if service is None:
-			self.resetEventInfo()
-		elif self["list"].currentSelIsBookmark() or self["list"].currentSelIsDirectory() or self.browsingVLC():
-			#self.resetEventInfo()
-			# Bookmark: Show title and real path
-			# Directory: Show title and real path
-			# VLC: Show only title
-			self["Service"].newService(service)
-			self["FileName"].setText(self["list"].getCurrentSelName())
+			# Reload is in progress
+			self["Service"].newService(None)
+			self["FileName"].setText("")
 			self["FileSize"].setText("")
 		else:
 			self["Service"].newService(service)
-			self["FileName"].setText(self["list"].getCurrentSelName())
+			self["FileName"].setText(service.getName())
 			path = service.getPath()
 			if os.path.exists(path):
-				self["FileSize"].setText("(%d MB)" %(os.stat(service.getPath()).st_size/1048576))  # 1048576 = 1024 * 1024
+				self["FileSize"].setText("(%d MB)" %(os.stat(path).st_size/1048576))  # 1048576 = 1024 * 1024
 			else:
 				self["FileSize"].setText("")
-
-	def loadingEventInfo(self, loading=True):
-		if loading:
-			self.resetEventInfo()
-
-	def resetEventInfo(self):
-		self["Service"].newService(None)
-		self["FileName"].setText("")
-		self["FileSize"].setText("")
 
 
 class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfaceSel, DirectoryStack, E2Bookmarks):
@@ -97,7 +81,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		VlcPluginInterfaceSel.__init__(self)
 		DirectoryStack.__init__(self)
 		self.avPolicy43 = config.av.policy_43.value
-
+		
 		self.skinName = "EMCSelection"
 		skin = None
 		CoolWide = getDesktop(0).size().width()
@@ -452,7 +436,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 
 	def updateMovieInfoDelayed(self):
 		self.updateTitle()
-		self.updateEventInfo()
+		self.updateEventInfo(self.getCurrent())
 
 	def updateTitle(self):
 		if self.multiSelectIdx:
@@ -867,11 +851,14 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			emcDebugOut("[EMCMS] setPlayerInstance exception:\n" + str(e))
 
 	def openPlayer(self, playlist, playall=False):
+		
+		#TODO
 		#self["actions"].setEnabled(False)
 		# Force update of event info after playing movie 
-		self.resetEventInfo()
+		#self.updateEventInfo(None)
 		# Save service 
 		#self.returnService = self.getCurrent()
+		
 		# force a copy instead of an reference!
 		self.lastPlayedMovies = playlist[:]
 		playlistcopy = playlist[:]
@@ -972,7 +959,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		else:
 			self["wait"].hide()
 			self["list"].show()
-		self.loadingEventInfo(loading)
+		self.updateEventInfo(None)
 
 	def initButtons(self):
 		# Initialize buttons

@@ -132,6 +132,8 @@ class MetaList():
 				pass
 				
 			else:
+				print "EMC TEST count Meta " + str(path)
+				
 				# New path or file has changed
 				self.meta_mtime = mtime
 				

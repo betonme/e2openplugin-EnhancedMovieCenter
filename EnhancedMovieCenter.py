@@ -376,7 +376,7 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 			if entry[1].isChanged():
 				if entry[2] is not None:
 					# execute value changed -function
-					if entry[2](entry[1]) is not None:	
+					if entry[2](entry[1]) is not None:
 						# Stop exiting, user has to correct the config
 						return
 				# Check parent entries

@@ -150,6 +150,8 @@ class EitList():
 				pass
 				
 			else:
+				print "EMC TEST count Eit " + str(path)
+				
 				# New path or file has changed
 				self.eit_mtime = mtime
 				

@@ -32,7 +32,6 @@ from Screens.InfoBarGenerics import *
 from Screens.InfoBar import MoviePlayer, InfoBar
 from Screens.MessageBox import MessageBox
 from Screens.HelpMenu import HelpableScreen
-from Components.ServiceEventTracker import ServiceEventTracker, InfoBarBase
 from Tools.Directories import fileExists, resolveFilename, SCOPE_LANGUAGE, SCOPE_PLUGINS
 
 from EnhancedMovieCenter import _
@@ -218,7 +217,6 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 			self.updateCutList( self.getSeekPlayPosition(), self.getSeekLength() )
 
 	def __onClose(self):
-	#def __del__(self): needs stopped, closed, playeropened as globals
 		self.session.nav.playService(self.lastservice)
 		try:
 			from MovieSelection import gMS

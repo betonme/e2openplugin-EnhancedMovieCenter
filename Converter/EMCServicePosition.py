@@ -31,37 +31,7 @@ from Components.Element import cached, ElementError
 from Components.Converter.Poll import Poll
 from enigma import eServiceReference
 
-from Plugins.Extensions.EnhancedMovieCenter.CutListSupport import CutList
-
 
 class EMCServicePosition(ServicePosition):
 	def __init__(self, type):
 		ServicePosition.__init__(self, type)
-		self.cuts = None
-
-	@cached
-	def getCutlist(self):
-		try:
-			cutlist = []
-			service = self.source.service
-			cue = service and service.cueSheet()
-		
-			if cue:
-				# Native cuesheet support
-				cutlist = cue.getCutList()
-				#print "EMC cue getCutlist"
-			else:
-				#print "EMC cue getCutlist else"
-				# No native cuesheet support
-				if service and not isinstance(service, eServiceReference):
-					if NavigationInstance and NavigationInstance.instance:
-						service = NavigationInstance.instance.getCurrentlyPlayingServiceReference()
-				if service:
-					self.cuts = CutList( service.getPath() )
-					cutlist = self.cuts and self.cuts.getCutList()
-			return cutlist or []
-			
-		except Exception, e:
-			print "[EMCSP] getCutlist exception:" + str(e)
-
-	cutlist = property(getCutlist)
