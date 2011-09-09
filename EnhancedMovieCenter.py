@@ -383,7 +383,6 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 				for parent in entry[5]:
 					if self.list[i+parent][2] is not None:
 						# execute parent value changed -function
-						print "keysavenew" + str(self.list[i+parent])
 						if self.list[i+parent][2](self.EMCConfig[i+parent][1]) is not None:	
 							# Stop exiting, user has to correct the config
 							return
