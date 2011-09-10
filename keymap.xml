@@ -111,8 +111,8 @@
 		<key id="KEY_DOWN" mapto="EMCDown" flags="mr" />
 		<key id="KEY_NEXT" mapto="EMCArrowNext" flags="b" />
 		<!--<key id="KEY_NEXT" mapto="EMCArrowNextL" flags="l" />-->
-		<key id="KEY_PREVIOUS" mapto="EMCArrowPrevious" flags="m" />
-		<key id="KEY_PREVIOUS" mapto="EMCArrowPreviousL" flags="l" />
+		<key id="KEY_PREVIOUS" mapto="EMCArrowPrevious" flags="b" />
+		<!--<key id="KEY_PREVIOUS" mapto="EMCArrowPreviousL" flags="l" />-->
 		<key id="KEY_CHANNELUP" mapto="EMCBqtPlus" flags="m" />
 		<key id="KEY_CHANNELDOWN" mapto="EMCBqtMnus" flags="m" />
 		<key id="KEY_0" mapto="0" flags="m" />

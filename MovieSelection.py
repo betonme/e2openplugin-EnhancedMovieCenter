@@ -127,7 +127,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 				"EMCArrowNext":	(self.CoolForward,		_("Directory forward")),
 #				"EMCArrowNextL":	(self.unUsed,				"-"),
 				"EMCArrowPrevious":	(self.CoolBack,			_("Directory back")),
-				"EMCArrowPreviousL":	(self.DirectoryUp,				_("Directory up")),
+#				"EMCArrowPreviousL":	(self.directoryUp,				_("Directory up")),
 				"EMCVIDEOB":	(self.toggleSelectionList,		_("Toggle service selection")),
 				"EMCVIDEOL":	(self.resetSelectionList,		_("Remove service selection")),
 				"EMCAUDIO":		(self.openMenuPlugins,		_("Available plugins menu")),
@@ -147,7 +147,6 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			}, prio=-1)
 			# give them a little more priority to win over baseclass buttons
 		self["actions"].csel = self
-		#self["actions"].setEnabled(True)
 		
 		HelpableScreen.__init__(self)
 		
@@ -233,9 +232,9 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			# History folder is available - go back 
 			self.changeDir(path, service)
 		else:
-			self.DirectoryUp()
+			self.directoryUp()
 
-	def DirectoryUp(self):
+	def directoryUp(self):
 		path = None
 		service = None
 		if self.currentPath != "" and self.currentPath != "/":
@@ -377,6 +376,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			elif selection == "cutlistmarker": self.removeCutListMarker()
 			elif selection == "obookmark": self.openBookmark()
 			elif selection == "rbookmark": self.removeBookmark(parameter)
+			elif selection == "dirup": self.directoryUp()
 
 	def openMenu(self):
 		current = self.getCurrent()
@@ -863,11 +863,8 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			emcDebugOut("[EMCMS] setPlayerInstance exception:\n" + str(e))
 
 	def openPlayer(self, playlist, playall=False):
-		
-		#TODO
-		#self["actions"].setEnabled(False)
 		# Force update of event info after playing movie 
-		#self.updateEventInfo(None)
+		self.updateEventInfo(None)
 		
 		# Save service 
 		self.returnService = self.getNextSelectedService(self.getCurrent(), self.tmpSelList)

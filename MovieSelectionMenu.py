@@ -53,6 +53,8 @@ class MovieMenu(Screen, E2Bookmarks):
 		self.menu = []
 		if menumode == "normal":
 			self["title"] = StaticText(_("Choose operation"))
+			if currentPath == config.EMC.movie_pathlimit.value:
+				self.menu.append((_("Directory up"), boundFunction(self.close, "dirup")))
 			if config.EMC.movie_bluefunc.value == "MH":
 				self.menu.append((_("Play last"), boundFunction(self.close, "Play last")))
 			else:
