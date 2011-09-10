@@ -650,20 +650,29 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 						colorhighlight = self.FrontColorSel
 					
 					# If no date format is specified, the date column is switched off
-					if not config.EMC.movie_date_format.value:
-						self.CoolDatePos = -1
+					print "EMC skinable date " + str(config.EMC.movie_date_format.value)
+					if config.EMC.movie_date_format.value:
+						CoolDatePos = self.CoolDatePos
+					else:
+						CoolDatePos = -1
 					
 					#If show movie progress is off, the progress columns are switched off
-					if not config.EMC.movie_progress.value:
-						self.CoolBarPos = -1
-						self.CoolProgressPos = -1
+					print "EMC skinable prog " + str(config.EMC.movie_progress.value)
+					if config.EMC.movie_progress.value == "PB":
+						CoolBarPos = self.CoolBarPos
+					else:
+						CoolBarPos = -1
+					if config.EMC.movie_progress.value == "P":
+						CoolProgressPos = self.CoolProgressPos
+					else:
+						CoolProgressPos = -1
 					
-					if self.CoolBarPos != -1:
-						append(MultiContentEntryProgress(pos=(self.CoolBarPos, self.CoolBarHPos -2), size = (self.CoolBarSizeSa.width(), self.CoolBarSizeSa.height()), percent = progress, borderWidth = 1, foreColor = color, backColor = color))
-					if self.CoolProgressPos != -1:
-						append(MultiContentEntryText(pos=(self.CoolProgressPos, 0), size=(progressWidth, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text="%d%%" % (progress)))
-					if self.CoolDatePos != -1:
-						append(MultiContentEntryText(pos=(self.CoolDatePos, 2), size=(self.CoolDateWidth, globalHeight), font=4, text=datetext, color = colordate, color_sel = colorhighlight, flags=RT_HALIGN_CENTER))
+					if CoolBarPos != -1:
+						append(MultiContentEntryProgress(pos=(CoolBarPos, self.CoolBarHPos -2), size = (self.CoolBarSizeSa.width(), self.CoolBarSizeSa.height()), percent = progress, borderWidth = 1, foreColor = color, backColor = color))
+					if CoolProgressPos != -1:
+						append(MultiContentEntryText(pos=(CoolProgressPos, 0), size=(progressWidth, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text="%d%%" % (progress)))
+					if CoolDatePos != -1:
+						append(MultiContentEntryText(pos=(CoolDatePos, 2), size=(self.CoolDateWidth, globalHeight), font=4, text=datetext, color = colordate, color_sel = colorhighlight, flags=RT_HALIGN_CENTER))
 					append(MultiContentEntryText(pos=(self.CoolMoviePos, 0), size=(self.CoolMovieSize, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text=title, color = colortitle, color_sel = colorhighlight))
 			
 			else:
