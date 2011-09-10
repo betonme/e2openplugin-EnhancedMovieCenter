@@ -155,7 +155,8 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		self.tmpSelList = None
 		self.toggle = True
 		
-		self.onExecBegin.append(self.onDialogShow)
+		self.onExecBegin.append(self.__onShow)
+		self.onHide.append(self.__onHide)
 
 	def CoolAVSwitch(self):
 		if config.av.policy_43.value == "pillarbox":
@@ -368,8 +369,8 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			if selection == "Play last": self.playLast()
 			elif selection == "Movie home": self.changeDir(config.EMC.movie_homepath.value)
 			elif selection == "reload": self.reloadList()
-			elif selection == "plugin": self.onDialogShow()
-			elif selection == "setup": self.onDialogShow()
+			elif selection == "plugin": self.__onShow()
+			elif selection == "setup": self.__onShow()
 			elif selection == "ctrash": self.purgeExpired()
 			elif selection == "trash": self.changeDir(config.EMC.movie_trashcan_path.value)
 			elif selection == "delete": self.deleteFile(True)
@@ -592,7 +593,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		self.returnService = None
 		self.updateMovieInfo()
 
-	def onDialogShow(self):
+	def __onShow(self):
 		self.initButtons()
 		
 		if config.EMC.movie_reload.value \
@@ -602,11 +603,14 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			DelayedFunction(50, self.initList)
 		
 		else:
-			#TODO is a refresh really necessary
+			# Refresh is done automatically
 			#self["list"].refreshList()
 			self.initCursor(False)
 		
 		self.updateMovieInfo()
+
+	def __onHide(self):
+		self.returnService = self.getNextSelectedService(self.getCurrent(), self.tmpSelList)
 
 	def getCurrentIndex(self):
 		return self["list"].getCurrentIndex()
@@ -864,8 +868,9 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		#self["actions"].setEnabled(False)
 		# Force update of event info after playing movie 
 		#self.updateEventInfo(None)
+		
 		# Save service 
-		#self.returnService = self.getCurrent()
+		self.returnService = self.getNextSelectedService(self.getCurrent(), self.tmpSelList)
 		
 		# force a copy instead of an reference!
 		self.lastPlayedMovies = playlist[:]
@@ -993,7 +998,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		#IDEA:
 		# Short TV refresh list - reloads only progress
 		# Long TV reload  list - finds new movies 
-		self.returnService = self.getCurrent()
+		self.returnService = self.getNextSelectedService(self.getCurrent(), self.tmpSelList)
 		#TODO ret if self.returnService: print "EMC triSer " +str(self.returnService.toString())
 		self.reloadList()
 
