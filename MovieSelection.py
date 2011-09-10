@@ -425,7 +425,8 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		self.callUpdate = DelayedFunction( int(config.EMC.movie_descdelay.value), self.updateMovieInfoDelayed )
 
 	def updateMovieInfoDelayed(self):
-		self.updateTitle()		self.updateEventInfo(self.getCurrent())
+		self.updateTitle()
+		self.updateEventInfo(self.getCurrent())
 
 	def updateTitle(self):
 		if self.multiSelectIdx:
