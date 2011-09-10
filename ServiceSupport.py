@@ -22,6 +22,7 @@
 import os
 import struct
 
+from Components.config import *
 from Components.Element import cached
 from Components.Sources.ServiceEvent import ServiceEvent as eServiceEvent
 from enigma import eServiceCenter, iServiceInformation, eServiceReference
@@ -60,24 +61,15 @@ class ServiceCenter:
 		return instance
 		
 	def info(self, service):
-		path = service.getPath()
-		#if os.path.splitext(path)[1].lower() in extTS:
-		#	serviceInfo = eServiceCenter.getInstance().info(service)
-		#	if serviceInfo is not None:
-		#		return serviceInfo
-		
-#TODO why should we replace it
-# 			from MovieCenter import extTS
-# 			global extTS
-# 			path = service.getPath()
-# 			if os.path.splitext(path)[1].lower() in extTS:
-# 				# Replace original cuesheet
-# 				serviceInfo.cueSheet = CutList(path)
-# 				return serviceInfo
-# 			return ServiceInfo(service)
-		#	return serviceInfo
-		#else:
-		#if service:
+#		path = service.getPath()
+#		from MovieCenter import extTS
+#		global extTS
+#		if os.path.splitext(path)[1].lower() in extTS:
+#			serviceInfo = eServiceCenter.getInstance().info(service)
+#			if serviceInfo is not None:
+#				# Replace original cuesheet
+#				serviceInfo.cueSheet = CutList(path)
+#				return serviceInfo
 		return ServiceInfo(service)
 
 
@@ -144,11 +136,12 @@ class Info:
 		self.__cutlist = path and CutList(path) or []
 		
 		self.__size = isfile and os.stat(path).st_size \
-								or isdir and self.getFolderSize(path) \
+								or isdir and config.EMC.directories_info.value and self.getFolderSize(path) \
 								or None
+								#TODO or isdvd
 		
-		self.__mtime = path and isfile \
-									and long(os.stat(path).st_mtime) or 0
+		self.__mtime = isfile and long(os.stat(path).st_mtime) or 0
+									#TODO or isdir but show only start date
 		
 		self.__name = service and service.getName() or ""
 		self.__servicename = ""
