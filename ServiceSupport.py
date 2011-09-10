@@ -25,8 +25,9 @@ import struct
 from Components.config import *
 from Components.Element import cached
 from Components.Sources.ServiceEvent import ServiceEvent as eServiceEvent
+from Components.Sources.CurrentService import CurrentService as eCurrentService
 from enigma import eServiceCenter, iServiceInformation, eServiceReference
-#from Tools.Directories import fileExists
+from ServiceReference import ServiceReference
 
 from CutListSupport import CutList
 from MetaSupport import MetaList
@@ -34,6 +35,34 @@ from EitSupport import EitList
 
 
 instance = None
+
+
+class CurrentService(eCurrentService):
+	def __init__(self, navcore):
+		eCurrentService.__init__(self, navcore)
+		self.__cutlist = None
+		self.__path = None
+
+	def cueSheet(self):
+		return self.__cutlist
+
+	@cached
+	def getCurrentService(self):
+		path = None
+		service = self.navcore.getCurrentService()
+		if service:
+			if not isinstance(service, eServiceReference):
+				ref = self.navcore.getCurrentlyPlayingServiceReference()
+				path = ref and ref.getPath()
+			else:
+				path = service.getPath()
+		if path and path != self.__path:
+			self.__path = path
+			self.__cutlist = CutList(path)
+			service.cueSheet = self.cueSheet
+		return service
+
+	service = property(getCurrentService)
 
 
 class ServiceEvent(eServiceEvent):
@@ -81,7 +110,7 @@ class ServiceInfo:
 		#		service = NavigationInstance.instance.getCurrentlyPlayingServiceReference()
 		if service:
 			self.service = service
-			self.info = Info(self)
+			self.info = Info(service)
 		else:
 			self.service = None
 			self.info = None
@@ -93,7 +122,7 @@ class ServiceInfo:
 	def getInfoString(self, service, type):
 		#self.newService(service)
 		if type == iServiceInformation.sServiceref:
-			return service and service.toString() or "" #service.ref.toString() or ""
+			return self.info and self.info.getServiceReference() or ""
 		if type == iServiceInformation.sDescription:
 			return self.info and self.info.getShortDescription() or ""
 		if type == iServiceInformation.sTags:
@@ -122,10 +151,9 @@ class ServiceInfo:
 
 
 class Info:
-	def __init__(self, serviceinfo):
+	def __init__(self, service):
 		
 		# Temporary variables
-		service = serviceinfo.service
 		path = service and service.getPath()
 		isfile = os.path.isfile(path)
 		isdir = os.path.isdir(path)
@@ -144,7 +172,9 @@ class Info:
 									#TODO or isdir but show only start date
 		
 		self.__name = service and service.getName() or ""
-		self.__servicename = ""
+		self.__servicereference = service and service.toString() or ""
+		self.__servicename = ServiceReference(self.__servicereference).getServiceName() or ""
+	
 		self.__shortdescription = meta and meta.getMetaDescription() \
 													or eit and eit.getEitShortDescription() \
 													or self.__name
@@ -153,9 +183,11 @@ class Info:
 		self.__eventname = self.__name
 		self.__extendeddescription = eit and eit.getEitDescription() \
 																	or meta and meta.getMetaDescription() \
-																	or not os.path.isfile(path) and os.path.realpath(path) \
+																	or isdir and os.path.realpath(path) \
 																	or ""
 		self.__id = 0
+		
+		#TODO remove upto ServiceInfo
 		service.cueSheet = self.cueSheet
 
 	def cueSheet(self):
@@ -164,6 +196,9 @@ class Info:
 	def getName(self):
 		#EventName NAME
 		return self.__name
+	
+	def getServiceReference(self):
+		return self.__servicereference
 	
 	def getServiceName(self):
 		#MovieInfo MOVIE_REC_SERVICE_NAME

@@ -99,6 +99,10 @@ class MetaList():
 		return self.meta[self.NAME]
 
 	def getMetaDescription(self):
+		#try:
+		#	self.meta[self.DESC].decode('utf-8')
+		#except UnicodeDecodeError:
+		#	self.meta[self.DESC] = self.meta[self.DESC].decode("cp1252").encode("utf-8")
 		return self.meta[self.DESC]
 
 	def getMetaRecordingTime(self):

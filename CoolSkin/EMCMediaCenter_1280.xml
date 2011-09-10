@@ -17,17 +17,17 @@
 
 	<ePixmap position="180,59" size="900,30" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/EMCMoviePlayer/CoolSlider.png" zPosition="3" alphatest="blend" />
 	<ePixmap position="200,62" size="860,18" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/EMCMoviePlayer/CoolPointerBG.png" zPosition="1" alphatest="blend" />
-	<widget source="session.CurrentService" render="PositionGauge" position="218,50" size="828,28" zPosition="2" pointer="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/EMCMoviePlayer/CoolPointer.png:828,-2" transparent="1" >
+	<widget source="Service" render="PositionGauge" position="218,50" size="828,28" zPosition="2" pointer="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/EMCMoviePlayer/CoolPointer.png:828,-2" transparent="1" >
 		<convert type="EMCServicePosition">Gauge</convert>
 	</widget>
 
-	<widget source="session.CurrentService" render="Label" position="230,85" size="100,30" font="Regular;22" halign="left" backgroundColor="#00000000" transparent="1">
+	<widget source="Service" render="Label" position="230,85" size="100,30" font="Regular;22" halign="left" backgroundColor="#00000000" transparent="1">
 		<convert type="EMCServicePosition">Position</convert>
 	</widget>
-	<widget source="session.CurrentService" render="Label" position="590,85" size="100,30" font="Regular;22" halign="center" backgroundColor="#00000000" transparent="1">
+	<widget source="Service" render="Label" position="590,85" size="100,30" font="Regular;22" halign="center" backgroundColor="#00000000" transparent="1">
 		<convert type="EMCServicePosition">Length</convert>
 	</widget>
-	<widget source="session.CurrentService" render="Label" position="930,85" size="100,30" font="Regular;22" halign="right" backgroundColor="#00000000" transparent="1">
+	<widget source="Service" render="Label" position="930,85" size="100,30" font="Regular;22" halign="right" backgroundColor="#00000000" transparent="1">
 		<convert type="EMCServicePosition">Remaining,Negate</convert>
 	</widget>
 

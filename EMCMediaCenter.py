@@ -39,6 +39,7 @@ from EMCTasker import emcDebugOut
 from DelayedFunction import DelayedFunction
 from CutListSupport import CutList
 from InfoBarSupport import InfoBarSupport
+from ServiceSupport import CurrentService
 
 from MovieCenter import sidDVD
 global sidDVD
@@ -156,6 +157,10 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 		self["MenuActions"].prio = 2
 		self["TeletextActions"].prio = 2
 		self["NumberActions"].prio = 2
+		
+		# Set Source for the Converter ServicePostion
+		# So we can display the marker for all media files
+		self["Service"] = CurrentService(session.nav)
 		
 		# DVD Player
 		self["audioLabel"] = Label("")
@@ -290,8 +295,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 				# Start playing movie
 				self.session.nav.playService(service)
 				
-				#Temp only
-				#self.service = self.session.nav.getCurrentService()
+				#self["service"] =  TODO
 				
 				if service and service.type == sidDVD:
 					# Seek will cause problems with DVDPlayer!
