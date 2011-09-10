@@ -168,8 +168,9 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 		self.CoolBarSize = parseSize("55,10", ((1,1),(1,1)))
 		self.CoolBarSizeSa = parseSize("55,10", ((1,1),(1,1)))
 		
-		self.DateColor = 0xFFFFFF
 		self.DefaultColor = 0xFFFFFF
+		self.TitleColor = 0xFFFFFF
+		self.DateColor = 0xFFFFFF
 		self.BackColor = None
 		self.BackColorSel = 0x000000
 		self.FrontColorSel = 0xFFFFFF
@@ -642,7 +643,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 					
 					# Skin color overwrite handling
 					if self.CoolTitleColor == 0:
-						colortitle = self.TitlColor
+						colortitle = self.TitleColor
 					if self.CoolDateColor == 0:
 						colordate = self.DateColor
 					if self.CoolHighlightColor == 0:
