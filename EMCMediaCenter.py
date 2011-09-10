@@ -220,6 +220,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 		self.session.nav.playService(self.lastservice)
 		try:
 			from MovieSelection import gMS
+			gMS.returnService = self.service
 			if self.stopped:
 				emcDebugOut("[EMCPlayer] Player closed by user")
 				if config.EMC.movie_reopen.value:
