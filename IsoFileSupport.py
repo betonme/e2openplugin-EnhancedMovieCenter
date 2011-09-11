@@ -72,6 +72,8 @@ class IsoSupport():
 					pass
 					
 				else:
+					#print "EMC TEST count Eit " + str(path)
+					
 					# New path or file has changed
 					self.iso_mtime = mtime
 					

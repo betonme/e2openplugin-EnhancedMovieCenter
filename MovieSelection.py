@@ -390,6 +390,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			self.session.openWithCallback(self.menuCallback, MovieMenu, "plugins", self["list"], current, self["list"].makeSelectionList(), self.currentPath)
 
 	def openScriptMenu(self):
+		#TODO actually not used and not working
 		if self.browsingVLC():
 			self.session.open(MessageBox, _("No script operation for VLC streams."), MessageBox.TYPE_ERROR)
 			return
