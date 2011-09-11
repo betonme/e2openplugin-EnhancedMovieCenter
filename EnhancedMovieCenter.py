@@ -242,19 +242,19 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 			(  _("Rewind finished movies before playing")         , config.EMC.movie_rewind_finished    , None                  , None                  , 1     , []        , _("HELP_Rewind finished movies before playing") ),
 			(  _("Always save last played progress as marker")    , config.EMC.movie_save_lastplayed    , None                  , None                  , 1     , []        , _("HELP_Always save last played progress as marker") ),
 			
-			(  separator                                          , config.EMC.about                    , None                  , None                  , 0     , []        , _("") ),
-			(  _("Delete validation")                             , config.EMC.movie_delete_validation  , None                  , None                  , 0     , []        , _("HELP_Delete validation") ),
-			
+			(  separator                                          , config.EMC.about                    , None                  , None                  , 0     , []        , _("HELP_separator_Trashcan settings") ),
 			(  _("Trashcan enable")                               , config.EMC.movie_trashcan_enable    , None                  , self.openLocationBox  , 0     , []        , _("HELP_Trashcan enable") ),
 			(  _("Trashcan path")                                 , config.EMC.movie_trashcan_path      , self.validatePath     , self.openLocationBox  , 0     , [-1]        , _("HELP_Trashcan path") ),
 			(  _("Show trashcan directory")                       , config.EMC.movie_trashcan_show      , None                  , None                  , 0     , [-2]        , _("HELP_Show trashcan directory") ),
 			(  _("Show trashcan information")                     , config.EMC.movie_trashcan_info      , None                  , None                  , 0     , [-3,-1]        , _("HELP_Dynamic trashcan") ),
+			(  _("Delete validation")                             , config.EMC.movie_delete_validation  , None                  , None                  , 0     , [-4]        , _("HELP_Delete validation") ),
+
 			
-			(  _("Enable daily trashcan cleanup")                 , config.EMC.movie_trashcan_clean     , self.trashCleanupSetup, None                  , 0     , [-4]        , _("HELP_Enable daily trashcan cleanup") ),
-			(  _("Daily cleanup time")                            , config.EMC.movie_trashcan_ctime     , None                  , None                  , 0     , [-5,-1]      , _("HELP_Daily cleanup time") ),
+			(  _("Enable daily trashcan cleanup")                 , config.EMC.movie_trashcan_clean     , self.trashCleanupSetup, None                  , 0     , [-5]        , _("HELP_Enable daily trashcan cleanup") ),
+			(  _("Daily cleanup time")                            , config.EMC.movie_trashcan_ctime     , None                  , None                  , 0     , [-6,-1]      , _("HELP_Daily cleanup time") ),
 			(  _("How many days files may remain in trashcan")    , config.EMC.movie_trashcan_limit     , None                  , None                  , 0     , [-6,-2]      , _("HELP_How many days files may remain in trashcan") ),
-			(  _("Move finished movies in trashcan")              , config.EMC.movie_finished_clean     , None                  , None                  , 2     , [-7,-3]      , _("HELP_Move finished movies in trashcan") ),
-			(  _("Age of finished movies in movie folder (days)") , config.EMC.movie_finished_limit     , None                  , None                  , 2     , [-8,-4,-1]   , _("HELP_Age of finished movies in movie folder (days)") ),
+			(  _("Move finished movies in trashcan")              , config.EMC.movie_finished_clean     , None                  , None                  , 2     , [-8,-3]      , _("HELP_Move finished movies in trashcan") ),
+			(  _("Age of finished movies in movie folder (days)") , config.EMC.movie_finished_limit     , None                  , None                  , 2     , [-9,-4,-1]   , _("HELP_Age of finished movies in movie folder (days)") ),
 			
 			(  separator                                          , config.EMC.about                    , None                  , None                  , 0     , []        , _("") ),
 			(  _("Display directory reading text")                , config.EMC.moviecenter_loadtext     , None                  , None                  , 1     , []        , _("HELP_Display directory reading text") ),
