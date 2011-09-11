@@ -401,6 +401,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 		cuts = None
 		progress = 0
 		updlen = length
+		print "EMC length : " + str(length)
 		if last <= 0:
 			# Get last position from cut file
 			if cuts is None:
@@ -423,6 +424,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 						length = 5400
 						# We only update the entry if we do not use the default value
 						updlen = 0
+						print "EMC length default "
 					else:
 						updlen = length
 				else:
@@ -1190,7 +1192,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 				# First we extract as much as possible informations from the filename
 				service = None
 				title, date, time, cutnr = "", "", "", ""
-				length = 0
+				length = 0 #TODO metalength, eitlength and priority handling
 				metastring, eitstring = "", ""
 				metadate, eitdate = "", ""
 				sorttitle, sortdate = "", ""
@@ -1212,6 +1214,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 				
 				# Replace underscores with spaces
 				title = title.replace("_"," ")
+				title = title.replace("."," ")
 				
 				# Derived from RecordTimer
 				# This is everywhere so test it first
@@ -1238,33 +1241,27 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 					date = datetime(date/10000, date%10000/100, date%100, time/100, time%100)
 				
 				# If the user wants it, extract information from the meta and eit files
+				# But it is very slow
 				
-				if movie_metaload and service:
+				if movie_metaload:
 					# read title from META
 					meta = MetaList(path)
 					if meta:
 						metastring = meta.getMetaName()
-						print "EMC Meta metastring " +str(metastring)
-						#TEST date
-						#if not date:
-						metadate = meta.getMetaRecordingTime()  # Time in seconds since 1970
-						print "EMC Meta rectime " +str(metadate)
+						if not date:
+							metadate = meta.getMetaDate()
 						# Improve performance and avoid calculation of movie length
 						length = meta.getMetaLength()
-						print "EMC Meta length  " +str(length)
 				
-				if not metastring and movie_eitload and service:
+				if not metastring and movie_eitload:
 						# read title from EIT
 						eit = EitList(path)
 						if eit:
 							eitstring = eit.getEitName()
-							print "EMC eit eitstring: " + str(eitstring)
-							#if not date:
-							eitdate = eit.getEitWhen()+" "+eit.getEitStartDate()+" "+eit.getEitStartTime()  # Time in seconds since 1970 ?!?
-							print "EMC eit eitdate " +str(eitdate)
-							#if not length:
-							length = eit.getEitLengthInSeconds()
-							print "EMC eit length: " + str(length)
+							if not date:
+								eitdate = eit.getEitDate()
+							if not length:
+								length = eit.getEitLengthInSeconds()
 				
 				# Priority and fallback handling
 				
@@ -1275,16 +1272,20 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 				# Very bad but there can be both encodings
 				# E2 recordings are always in utf8
 				# User files can be in cp1252
-				# Is there no other way?
+				#TODO Is there no other way?
 				try:
 					title.decode('utf-8')
 				except UnicodeDecodeError:
-					title = title and title.decode("cp1252").encode("utf-8")
+					try:
+						title = title.decode("cp1252").encode("utf-8")
+					except UnicodeDecodeError:
+						title = title.decode("iso-8859-1").encode("utf-8")
 				
 				# Set date priority here
 				# Fallback get date from filesystem, but it is very slow
 				#date = date #TODO or metadate or eitdate or os.path.exists(path) and datetime.fromtimestamp( os.path.getmtime(path) ) or None
-				date = date or metadate or (pathexists(path) and datetime.fromtimestamp( pathgetmtime(path) )) or None
+				date = date or metadate or eitdate \
+								or (pathexists(path) and datetime.fromtimestamp( pathgetmtime(path) )) or None
 				
 				# Create sortkeys
 				if not sortdate: sortdate = date and date.strftime( "%Y%m%d%H%M" ) or ""

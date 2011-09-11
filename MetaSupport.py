@@ -81,8 +81,8 @@ class MetaList():
 	def __mk_int(self, s):
 		return int(s) if s else 0
 
-	def __secondsToDate(self, i):
-		return datetime.fromtimestamp(i)
+	def __secondsToDate(self, s):
+		return s and datetime.fromtimestamp(s) or None
 
 	##############################################################################
 	## Get Functions
@@ -99,30 +99,34 @@ class MetaList():
 		return self.meta[self.NAME]
 
 	def getMetaDescription(self):
-		#try:
-		#	self.meta[self.DESC].decode('utf-8')
-		#except UnicodeDecodeError:
-		#	self.meta[self.DESC] = self.meta[self.DESC].decode("cp1252").encode("utf-8")
+		#TODO transform during read on init
+		try:
+			self.meta[self.DESC].decode('utf-8')
+		except UnicodeDecodeError:
+			try:
+				self.meta[self.DESC] = self.meta[self.DESC].decode("cp1252").encode("utf-8")
+			except UnicodeDecodeError:
+				self.meta[self.DESC] = self.meta[self.DESC].decode("iso-8859-1").encode("utf-8")
 		return self.meta[self.DESC]
 
 	def getMetaRecordingTime(self):
-		return self.__secondsToDate( self.__getMetaRecordingTime() )
-
+		# Time in seconds since 1970
+		return self.__mk_int( self.meta[self.RECTIME] )
+	
 	def getMetaTags(self):
 		return self.meta[self.TAGS]
 
 	def	getMetaLength(self):
-		return self.__ptsToSeconds( self.__getMetaLength() )
+		#TODO calculate during read on init
+		return self.__ptsToSeconds( self.__mk_int( self.meta[self.LENGTH] ) )
 		
 	def	getMetaFileSize(self):
 		return self.__mk_int( self.meta[self.FILESIZE] )
 
-	# Internal from metalist in pts
-	def __getMetaRecordingTime(self):
-		return self.__mk_int( self.meta[self.RECTIME] )
-
-	def __getMetaLength(self):
-		return self.__mk_int( self.meta[self.LENGTH] )
+	# Wrapper
+	def getMetaDate(self):
+		#TODO transform during read on init
+		return self.__secondsToDate( self.getMetaRecordingTime() )
 
 	##############################################################################
 	## File IO Functions

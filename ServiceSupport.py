@@ -90,33 +90,25 @@ class ServiceCenter:
 		return instance
 		
 	def info(self, service):
-#		path = service.getPath()
-#		from MovieCenter import extTS
-#		global extTS
-#		if os.path.splitext(path)[1].lower() in extTS:
-#			serviceInfo = eServiceCenter.getInstance().info(service)
-#			if serviceInfo is not None:
-#				# Replace original cuesheet
-#				serviceInfo.cueSheet = CutList(path)
-#				return serviceInfo
 		return ServiceInfo(service)
 
 
 class ServiceInfo:
 	def __init__(self, service):
-		#TODO maybe necessary
-		#if service and not isinstance(service, eServiceReference):
-		#	if NavigationInstance and NavigationInstance.instance:
-		#		service = NavigationInstance.instance.getCurrentlyPlayingServiceReference()
 		if service:
 			self.service = service
 			self.info = Info(service)
 		else:
 			self.service = None
 			self.info = None
-	
+
+	#TODO def newService(self):
+
+	def cueSheet(self):
+		return self.info and self.info.cueSheet() or []
+
 	def getLength(self, service):
-		#TODO self.newService(service)
+		#self.newService(service)
 		return self.info and self.info.getLength() or 0
 	
 	def getInfoString(self, service, type):

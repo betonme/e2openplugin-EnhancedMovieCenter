@@ -24,6 +24,8 @@ import os
 import struct
 import time
 
+from datetime import datetime
+
 from EMCTasker import emcDebugOut
 from IsoFileSupport import IsoSupport
 
@@ -99,7 +101,19 @@ class EitList():
 			if self.eit_file != path:
 				self.eit_file = path
 				self.eit_mtime = 0
-			print "EMC TODO eit path " +str(path)
+
+	def __mk_int(self, s):
+		return int(s) if s else 0
+
+	def __toDate(self, d, t):
+		if d and t:
+			#TODO Is there another fast and safe way to get the datetime
+			try:
+				return datetime(int(d[0]), int(d[1]), int(d[2]), int(t[0]), int(t[1]))
+			except ValueError:
+				return None
+		else:
+			return None
 
 	##############################################################################
 	## Get Functions
@@ -136,7 +150,16 @@ class EitList():
 
 	def getEitLengthInSeconds(self):
 		length = self.eit.get('duration', "")
-		return (length[0]*60 + length[1])*60 + length[2]
+		#TODO Is there another fast and safe way to get the length
+		if len(length)>2:
+			return self.__mk_int((length[0]*60 + length[1])*60 + length[2])
+		elif len(length)>1:
+			return self.__mk_int(length[0]*60 + length[1])
+		else:
+			return self.__mk_int(length)
+
+	def getEitDate(self):
+		return self.__toDate(self.getEitStartDate(), self.getEitStartTime())
 
 	##############################################################################
 	## File IO Functions
@@ -230,20 +253,28 @@ class EitList():
 					# User files can be in cp1252
 					# Is there no other way?
 					short_event_descriptor = "".join(short_event_descriptor)
-					#try:
-					#	short_event_descriptor.decode('utf-8')
-					#except UnicodeDecodeError:
-					#	short_event_descriptor = short_event_descriptor and short_event_descriptor.decode("cp1252").encode("utf-8")
+					if short_event_descriptor:
+						try:
+							short_event_descriptor.decode('utf-8')
+						except UnicodeDecodeError:
+							try:
+								short_event_descriptor = short_event_descriptor.decode("cp1252").encode("utf-8")
+							except UnicodeDecodeError:
+								short_event_descriptor = short_event_descriptor.decode("iso-8859-1").encode("utf-8")
 					self.eit['name'] = short_event_descriptor
 					
 					# Very bad but there can be both encodings
 					# User files can be in cp1252
 					# Is there no other way?
 					extended_event_descriptor = "".join(extended_event_descriptor)
-					#try:
-					#	extended_event_descriptor.decode('utf-8')
-					#except UnicodeDecodeError:
-					#	extended_event_descriptor = extended_event_descriptor and extended_event_descriptor.decode("cp1252").encode("utf-8")
+					if extended_event_descriptor:
+						try:
+							extended_event_descriptor.decode('utf-8')
+						except UnicodeDecodeError:
+							try:
+								extended_event_descriptor = extended_event_descriptor.decode("cp1252").encode("utf-8")
+							except UnicodeDecodeError:
+								extended_event_descriptor = extended_event_descriptor.decode("iso-8859-1").encode("utf-8")
 					self.eit['description'] = extended_event_descriptor
 					
 				else:
