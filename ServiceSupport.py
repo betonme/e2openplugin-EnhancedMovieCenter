@@ -109,7 +109,7 @@ class ServiceInfo:
 
 	def getLength(self, service):
 		#self.newService(service)
-		return self.info and self.info.getLength() or 0
+		return self.info and self.info.getLength(service) or 0
 	
 	def getInfoString(self, service, type):
 		#self.newService(service)
@@ -222,9 +222,13 @@ class Info:
 	def getSize(self):
 		return self.__size
 	
-	def getLength(self):
+	def getLength(self, service):
+		# Should stay dynamic if it is a record
 		#self.newService(service)
-		return self.__cutlist and self.__cutlist.getCutListLength() or 0
+		esc = eServiceCenter.getInstance()
+		info = esc and esc.info(service)
+		length = info and info.getLength(service) or 0
+		return length or self.__cutlist and self.__cutlist.getCutListLength() or 0
 	
 	def getBeginTime(self):
 		self.getMTime()

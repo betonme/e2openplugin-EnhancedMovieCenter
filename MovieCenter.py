@@ -401,7 +401,6 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 		cuts = None
 		progress = 0
 		updlen = length
-		print "EMC length : " + str(length)
 		if last <= 0:
 			# Get last position from cut file
 			if cuts is None:
@@ -413,7 +412,9 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 			# Recalc the movie length to calculate the progress status
 			if length <= 0: 
 				if service:
-					length = self.getLengthFromServiceHandler(service)
+					esc = eServiceCenter.getInstance()
+					info = esc and esc.info(service)
+					length = info and info.getLength(service) or 0
 				if length <= 0: 
 					if cuts is None:
 						cuts = CutList( service.getPath() )
@@ -424,7 +425,6 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 						length = 5400
 						# We only update the entry if we do not use the default value
 						updlen = 0
-						print "EMC length default "
 					else:
 						updlen = length
 				else:
@@ -652,14 +652,14 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 						colorhighlight = self.FrontColorSel
 					
 					# If no date format is specified, the date column is switched off
-					print "EMC skinable date " + str(config.EMC.movie_date_format.value)
+					#print "EMC skinable date " + str(config.EMC.movie_date_format.value)
 					if config.EMC.movie_date_format.value:
 						CoolDatePos = self.CoolDatePos
 					else:
 						CoolDatePos = -1
 					
 					#If show movie progress is off, the progress columns are switched off
-					print "EMC skinable prog " + str(config.EMC.movie_progress.value)
+					#print "EMC skinable prog " + str(config.EMC.movie_progress.value)
 					if config.EMC.movie_progress.value == "PB":
 						CoolBarPos = self.CoolBarPos
 					else:
@@ -901,17 +901,6 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 		l[5] = newselnum
 		self.list[index] = tuple(l)
 		self.l.invalidateEntry(index) # force redraw of the modified item
-
-	def getLengthFromServiceHandler(self, service):
-		# Get the movie length in seconds
-		if service:
-			info = self.serviceHandler.info(service)
-			if info:
-				return info.getLength(service)
-			else:
-				return 0
-		else:
-			return 0
 
 	def getFilePathOfService(self, service):
 		if service:
