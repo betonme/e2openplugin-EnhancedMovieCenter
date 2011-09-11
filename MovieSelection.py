@@ -208,7 +208,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 	def changeDir(self, path, service=None):
 		path = os.path.normpath(path)
 		self.returnService = service
-		#TODO ret if self.returnService: print "EMC chnSer " +str(self.returnService.toString())
+		#TODOret if self.returnService: print "EMC ret chnSer " +str(self.returnService.toString())
 		self.reloadList(path)
 
 	def CoolKey0(self):
@@ -299,7 +299,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			# so we have to update returnService
 			if self.tmpSelList:
 				self.returnService = self.getNextSelectedService(self.getCurrent(), self.tmpSelList)
-				#TODO ret if self.returnService: print "EMC updSer " +str(self.returnService.toString())
+				#TODOret if self.returnService: print "EMC ret updSer " +str(self.returnService.toString())
 		if self.multiSelectIdx:
 			self.multiSelect( self.getCurrentIndex() )
 		self.updateMovieInfo()
@@ -377,6 +377,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			elif selection == "obookmark": self.openBookmark()
 			elif selection == "rbookmark": self.removeBookmark(parameter)
 			elif selection == "dirup": self.directoryUp()
+			elif selection == "oscripts": self.openScriptMenu()
 
 	def openMenu(self):
 		current = self.getCurrent()
@@ -450,7 +451,6 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		if self.browsingVLC(): return
 		service = self.getNextSelectedService(self.getCurrent())
 		self.returnService = service
-		#TODO ret if self.returnService: print "EMC retSer " +str(self.returnService.toString())
 		self["list"].setSorting( not self["list"].getSorting()[0] )
 		self.initButtons()
 		self.initCursor()
@@ -576,8 +576,8 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		if self.returnService:
 			# Move to next or last selected entry
 			self.moveToService(self.returnService)
-			#TODO ret if self.returnService: print "EMC retSer " +str(self.returnService.toString())
-			self.tmpSelList = None
+			#TODOret if self.returnService: print "EMC ret retSer " +str(self.returnService.toString())
+			#self.tmpSelList = None
 		
 		elif self.playerInstance:
 			# Get current service from movie player
@@ -587,7 +587,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		
 		elif ifunknown:
 			# Select first entry
-			#TODO ret print "EMC initCursor movetop correct ????"
+			#TODOret print "EMC ret initCursor movetop correct ????"
 			self.moveTop()
 		
 		self.returnService = None
@@ -628,7 +628,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 	def getNextSelectedService(self, current, selectedlist=None):
 		curSerRef = None
 		if current is None:
-			curSerRef = None
+			tserRef = None
 		elif not self["list"]:
 			# Selectedlist is empty
 			curSerRef = None
@@ -825,12 +825,17 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 
 	def deleteMovieConfimation(self, confirmed):
 		current = self.getCurrent()
+		print "EMC del conf " + str(confirmed)
+		print "EMC del conf " + str(self.tmpSelList)
 		if confirmed and self.tmpSelList is not None and len(self.tmpSelList)>0:
+			print "EMC del confirmed"
 			if self.delCurrentlyPlaying:
 				if self.playerInstance is not None:
 					self.playerInstance.removeFromPlaylist(self.tmpSelList)
 			delete = not config.EMC.movie_trashcan_enable.value or self.permanentDel
+			print "EMC del delete " +str(delete)
 			if os.path.exists(config.EMC.movie_trashcan_path.value) or delete:
+				print "EMC del delete if"
 				# if the user doesn't want to keep the movies in the trash, purge immediately
 				self.execFileOp(config.EMC.movie_trashcan_path.value, current, self.tmpSelList, op="delete", purgeTrash=delete)
 				for x in self.tmpSelList:
@@ -866,9 +871,6 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		# Force update of event info after playing movie 
 		self.updateEventInfo(None)
 		
-		# Save service 
-		self.returnService = self.getNextSelectedService(self.getCurrent(), self.tmpSelList)
-		
 		# force a copy instead of an reference!
 		self.lastPlayedMovies = playlist[:]
 		playlistcopy = playlist[:]
@@ -883,6 +885,9 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 	def entrySelected(self, playall=False):
 		current = self.getCurrent()
 		if current is not None:
+			# Save service 
+			self.returnService = self.getNextSelectedService(self.getCurrent(), self.tmpSelList)
+			
 			# Think about MovieSelection should only know about directories and files
 			# All other things should be in the MovieCenter
 			if self["list"].currentSelIsVirtual():
@@ -996,7 +1001,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		# Short TV refresh list - reloads only progress
 		# Long TV reload  list - finds new movies 
 		self.returnService = self.getNextSelectedService(self.getCurrent(), self.tmpSelList)
-		#TODO ret if self.returnService: print "EMC triSer " +str(self.returnService.toString())
+		#TODOret if self.returnService: print "EMC ret triSer " +str(self.returnService.toString())
 		self.reloadList()
 
 	def reloadList(self, path=None):

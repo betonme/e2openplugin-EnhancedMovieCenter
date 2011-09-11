@@ -54,6 +54,7 @@ class VlcPluginInterfaceSel():
 		try:
 			if entry:
 				self.hide()
+				#TODO Open EMC after playback ends if configured
 				try:	# v2.5
 					self["list"].vlcServer.play(self, entry[4], entry[3], VlcFileListWrapper())
 				except:	# v2.6

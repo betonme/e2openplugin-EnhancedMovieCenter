@@ -90,6 +90,7 @@ class MovieMenu(Screen, E2Bookmarks):
 				path = mlist.hasParentPermanentSort(currentPath)
 				if path:
 					self.menu.append((_("Remove permanent sort from parent"), boundFunction(self.removePermanentSort, path)))
+			self.menu.append((_("Open shell script menu"), boundFunction(self.close, "oscripts")))
 			self.menu.append((_("EMC Setup"), boundFunction(self.execPlugin, emcsetup)))
 			
 		elif menumode == "plugins":

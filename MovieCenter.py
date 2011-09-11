@@ -513,7 +513,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 			isLink = os.path.islink(path)
 			usedFont = int(config.EMC.skin_able.value)
 			
-			#TODO ret print "EMC bldSer " +str(service.toString())
+			#TODOret print "EMC ret bldSer " +str(service.toString())
 			
 			if ext in plyAll:
 				colortitle = None
@@ -1445,6 +1445,8 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 		elif ext in plyM2TS:
 			service = eServiceReference(sidM2TS, 0, path)
 		else:
+			#TODO we need a custom Service class
+			path = path.replace(":","") # because of VLC player
 			service = eServiceReference("2:0:1:0:0:0:0:0:0:0:" + path)
 		if name:
 			service.setName(name)
