@@ -20,15 +20,9 @@
 #	<http://www.gnu.org/licenses/>.
 #
 
-import os
-import NavigationInstance
-
-from Components.config import *
-
 from Components.Converter.Converter import Converter
 from Components.Converter.ServiceTime import ServiceTime
 from Components.Element import cached, ElementError
-from enigma import iServiceInformation, eServiceCenter, eServiceReference
 
 
 class EMCServiceTime(ServiceTime):

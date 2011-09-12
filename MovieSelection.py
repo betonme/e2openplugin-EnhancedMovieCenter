@@ -54,6 +54,7 @@ gMS = None
 
 class SelectionEventInfo:
 	def __init__(self):
+		#from Components.Sources.ServiceEvent import ServiceEvent
 		self["Service"] = ServiceEvent()
 
 	def updateEventInfo(self, service):
@@ -154,8 +155,8 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		self.tmpSelList = None
 		self.toggle = True
 		
-		self.onExecBegin.append(self.__onShow)
-		self.onHide.append(self.__onHide)
+		self.onShow.append(self.onDialogShow)
+		self.onHide.append(self.onDialogHide)
 
 	def CoolAVSwitch(self):
 		if config.av.policy_43.value == "pillarbox":
@@ -368,8 +369,8 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			if selection == "Play last": self.playLast()
 			elif selection == "Movie home": self.changeDir(config.EMC.movie_homepath.value)
 			elif selection == "reload": self.reloadList()
-			elif selection == "plugin": self.__onShow()
-			elif selection == "setup": self.__onShow()
+			elif selection == "plugin": self.onDialogShow()
+			elif selection == "setup": self.onDialogShow()
 			elif selection == "ctrash": self.purgeExpired()
 			elif selection == "trash": self.changeDir(config.EMC.movie_trashcan_path.value)
 			elif selection == "delete": self.deleteFile(True)
@@ -594,7 +595,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		self.returnService = None
 		self.updateMovieInfo()
 
-	def __onShow(self):
+	def onDialogShow(self):
 		self.initButtons()
 		
 		if config.EMC.movie_reload.value \
@@ -610,7 +611,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		
 		self.updateMovieInfo()
 
-	def __onHide(self):
+	def onDialogHide(self):
 		self.returnService = self.getNextSelectedService(self.getCurrent(), self.tmpSelList)
 
 	def getCurrentIndex(self):

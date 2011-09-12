@@ -106,7 +106,7 @@ class MovieMenu(Screen, E2Bookmarks):
 				"cancel":	self.close,
 			})
 		self.skinName = "Menu"
-		self.onShown.append(self.onDialogShow)
+		self.onShow.append(self.onDialogShow)
 
 	def createDir(self, currentPath):
 		self.hide()

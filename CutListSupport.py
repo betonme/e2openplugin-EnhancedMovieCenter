@@ -317,7 +317,7 @@ class CutList():
 				pass
 				
 			else:
-				#print "EMC TEST count Cutlist " + str(path)
+				print "EMC TEST count Cutlist " + str(path)
 				
 				# New path or file has changed
 				self.cut_mtime = mtime

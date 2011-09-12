@@ -1438,10 +1438,10 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 			#TODO we need a custom Service class
 			path = path.replace(":","") # because of VLC player
 			service = eServiceReference("2:0:1:0:0:0:0:0:0:0:" + path)
-		if name:
-			service.setName(name)
-		else:
-			service.setName( os.path.basename(path).capitalize() )
+		#if name:
+		#	service.setName(name)
+		#else:
+		#	service.setName( os.path.basename(path).capitalize() )
 		return service
 
 	def currentSelIsPlayable(self):

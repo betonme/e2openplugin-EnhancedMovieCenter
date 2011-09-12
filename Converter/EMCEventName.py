@@ -20,21 +20,11 @@
 #	<http://www.gnu.org/licenses/>.
 #
 
-import os
-import NavigationInstance
-
-from Components.config import *
-
 from Components.Converter.Converter import Converter
 from Components.Converter.EventName import EventName
 from Components.Element import cached, ElementError
-from enigma import iServiceInformation, eServiceReference
-
-from Plugins.Extensions.EnhancedMovieCenter.MetaSupport import MetaList
-from Plugins.Extensions.EnhancedMovieCenter.EitSupport import EitList
 
 
 class EMCEventName(EventName):
 	def __init__(self, type):
 		EventName.__init__(self, type)
-

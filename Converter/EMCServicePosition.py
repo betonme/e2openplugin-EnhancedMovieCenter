@@ -20,16 +20,9 @@
 #	<http://www.gnu.org/licenses/>.
 #
 
-import os
-import NavigationInstance
-
-from Components.config import *
-
 from Components.Converter.Converter import Converter
 from Components.Converter.ServicePosition import ServicePosition
 from Components.Element import cached, ElementError
-from Components.Converter.Poll import Poll
-from enigma import eServiceReference
 
 
 class EMCServicePosition(ServicePosition):

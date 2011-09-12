@@ -47,6 +47,7 @@ class ConfigTextWOHelp(ConfigText):
 	def onDeselect(self, session):
 		ConfigText.onDeselect(self, None)
 
+
 yes_no_descriptions = {False: _("no"), True: _("yes")}
 class ConfigYesNoConfirm(ConfigBoolean):
 	def __init__(self, text, key1, key2, default = False):
@@ -76,7 +77,7 @@ class ConfigYesNoConfirm(ConfigBoolean):
 
 	def confirmed(self, answer):
 		self.value = answer
-		self.changed()
+
 
 class ConfirmBox(MessageBox):
 	def __init__(self, session, text, key1, key2, type):
@@ -110,6 +111,7 @@ class ConfirmBox(MessageBox):
 	def closeConfirmBox(self, answer):
 		eActionMap.getInstance().unbindAction('', self.action)
 		self.close(answer)
+
 
 def langList():
 	newlist = []

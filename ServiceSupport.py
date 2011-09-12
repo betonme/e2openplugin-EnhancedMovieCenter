@@ -194,11 +194,21 @@ class Info:
 		return self.__name
 	
 	def getServiceReference(self):
-		return self.__reference
+		#TODO Change this
+		#print "getServiceReference"
+		#print ServiceReference(self.__reference).getServiceName()
+		esc = eServiceCenter.getInstance()
+		info = esc and esc.info(self.__reference)
+		rec_ref_str = info and info.getInfoString(self.__reference, iServiceInformation.sServiceref)
+		#print rec_ref_str and ServiceReference(rec_ref_str).getServiceName()
+		#print self.__reference
+		#print str(self.__reference)
+		#print self.__reference.toString()
+		return rec_ref_str
 	
-	def getServiceName(self):
-		#MovieInfo MOVIE_REC_SERVICE_NAME
-		return ServiceReference(self.__reference).getServiceName() or ""
+	#def getServiceName(self):
+	#	#MovieInfo MOVIE_REC_SERVICE_NAME
+	#	return ServiceReference(self.__reference).getServiceName() or ""
 	
 	def getTags(self):
 		return self.__tags
@@ -230,9 +240,11 @@ class Info:
 	def getSize(self):
 		return self.__size
 	
-	def getLength(self, service):
+	def getLength(self, service=None):
+		#TODO
 		# Should stay dynamic if it is a record
 		#self.newService(service)
+		service = service or self.__reference
 		length = 0
 		if self.isfile:
 			#TODO isfile and isdvd
@@ -244,10 +256,10 @@ class Info:
 		return length or 0
 	
 	def getBeginTime(self):
-		self.getMTime()
+		return self.getMTime()
 	
 	def getDuration(self):
-		self.getLength()
+		return self.getLength()
 	
 	def getFolderSize(self, loadPath):
 		folder_size = 0

@@ -20,19 +20,9 @@
 #	<http://www.gnu.org/licenses/>.
 #
 
-import os
-import NavigationInstance
-
-from Components.config import *
-
 from Components.Converter.Converter import Converter
 from Components.Converter.MovieInfo import MovieInfo
 from Components.Element import cached, ElementError
-from enigma import iServiceInformation, eServiceReference
-from ServiceReference import ServiceReference
-
-from Plugins.Extensions.EnhancedMovieCenter.MetaSupport import MetaList
-from Plugins.Extensions.EnhancedMovieCenter.EitSupport import EitList
 
 
 class EMCMovieInfo(MovieInfo):
