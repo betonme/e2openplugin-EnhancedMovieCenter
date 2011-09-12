@@ -21,6 +21,7 @@
 
 import os
 import struct
+from datetime import datetime
 
 from Components.config import *
 from Components.Element import cached
@@ -147,39 +148,42 @@ class Info:
 		
 		# Temporary variables
 		path = service and service.getPath()
-		isfile = os.path.isfile(path)
-		isdir = os.path.isdir(path)
-		meta = path and MetaList(path)
-		eit = path and EitList(path)
+		self.isfile = os.path.isfile(path)
+		self.isdir = os.path.isdir(path)
+		meta = path and MetaList(path)			#TODO dynamic or not
+		eit = path and EitList(path)				#TODO dynamic or not
 		
 		# Information which we need later
-		self.__cutlist = path and CutList(path) or []
+		self.__cutlist = path and CutList(path) or []		#TODO dynamic or not
 		
-		self.__size = isfile and os.stat(path).st_size \
-								or isdir and config.EMC.directories_info.value and self.getFolderSize(path) \
+		self.__size = self.isfile and os.stat(path).st_size \
+								or self.isdir and config.EMC.directories_info.value and self.getFolderSize(path) \
 								or None
 								#TODO or isdvd
 		
-		self.__mtime = isfile and long(os.stat(path).st_mtime) or 0
+		self.__mtime = self.isfile and long(os.stat(path).st_mtime) or 0
+									#TODO show same time as list
 									#TODO or isdir but show only start date
 		
 		self.__name = service and service.getName() or ""
-		self.__servicereference = service and service.toString() or ""
-		self.__servicename = ServiceReference(self.__servicereference).getServiceName() or ""
-	
+		self.__reference = service or ""
+		
+		#TODO dynamic or not
 		self.__shortdescription = meta and meta.getMetaDescription() \
 													or eit and eit.getEitShortDescription() \
 													or self.__name
 		self.__tags = meta and meta.getMetaTags() or ""
 		
 		self.__eventname = self.__name
+		
+		#TODO dynamic or not
 		self.__extendeddescription = eit and eit.getEitDescription() \
 																	or meta and meta.getMetaDescription() \
-																	or isdir and os.path.realpath(path) \
+																	or self.isdir and os.path.realpath(path) \
 																	or ""
 		self.__id = 0
 		
-		#TODO remove upto ServiceInfo
+		#TODO move upto ServiceInfo
 		service.cueSheet = self.cueSheet
 
 	def cueSheet(self):
@@ -190,11 +194,11 @@ class Info:
 		return self.__name
 	
 	def getServiceReference(self):
-		return self.__servicereference
+		return self.__reference
 	
 	def getServiceName(self):
 		#MovieInfo MOVIE_REC_SERVICE_NAME
-		return self.__servicename
+		return ServiceReference(self.__reference).getServiceName() or ""
 	
 	def getTags(self):
 		return self.__tags
@@ -215,7 +219,11 @@ class Info:
 	def getEventId(self):
 		#EventName ID
 		return self.__id
-	
+
+	def getBeginTimeString(self):
+		d = datetime.fromtimestamp(self.__mtime)
+		return d.strftime("%d.%m.%Y %H:%M")
+
 	def getMTime(self):
 		return self.__mtime
 	
@@ -225,10 +233,15 @@ class Info:
 	def getLength(self, service):
 		# Should stay dynamic if it is a record
 		#self.newService(service)
-		esc = eServiceCenter.getInstance()
-		info = esc and esc.info(service)
-		length = info and info.getLength(service) or 0
-		return length or self.__cutlist and self.__cutlist.getCutListLength() or 0
+		length = 0
+		if self.isfile:
+			#TODO isfile and isdvd
+			esc = eServiceCenter.getInstance()
+			info = esc and esc.info(service)
+			length = info and info.getLength(service) or 0
+		if not length:
+			length = self.__cutlist and self.__cutlist.getCutListLength()
+		return length or 0
 	
 	def getBeginTime(self):
 		self.getMTime()
