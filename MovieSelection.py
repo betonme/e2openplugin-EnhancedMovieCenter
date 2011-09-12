@@ -827,17 +827,12 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 
 	def deleteMovieConfimation(self, confirmed):
 		current = self.getCurrent()
-		print "EMC del conf " + str(confirmed)
-		print "EMC del conf " + str(self.tmpSelList)
 		if confirmed and self.tmpSelList is not None and len(self.tmpSelList)>0:
-			print "EMC del confirmed"
 			if self.delCurrentlyPlaying:
 				if self.playerInstance is not None:
 					self.playerInstance.removeFromPlaylist(self.tmpSelList)
 			delete = not config.EMC.movie_trashcan_enable.value or self.permanentDel
-			print "EMC del delete " +str(delete)
 			if os.path.exists(config.EMC.movie_trashcan_path.value) or delete:
-				print "EMC del delete if"
 				# if the user doesn't want to keep the movies in the trash, purge immediately
 				self.execFileOp(config.EMC.movie_trashcan_path.value, current, self.tmpSelList, op="delete", purgeTrash=delete)
 				for x in self.tmpSelList:
