@@ -247,7 +247,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			self.moveTop()
 
 	def setNextPath(self, nextdir = None, service = None):
-		if nextdir == ".." or nextdir is None:
+		if nextdir == ".." or nextdir is None or nextdir.endswith(".."):
 			if self.currentPath != "" and self.currentPath != "/":
 				# Open Parent folder
 				service = self["list"].getPlayerService(self.currentPath)
