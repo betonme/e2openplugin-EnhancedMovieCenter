@@ -154,10 +154,11 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 		self.list = []
 		self.EMCConfig = []
 		ConfigListScreen.__init__(self, self.list, session = session, on_change = self.changedEntry)
-		self.onShown.append(self.onDialogShow)
 		self.needsRestartFlag = False
 		self.defineConfig()
 		self.createConfig()
+		
+		# Override selectionChanged because our config tuples have a size bigger than 2 
 		def selectionChanged():
 			current = self["config"].getCurrent()
 			if self["config"].current != current:
@@ -170,7 +171,11 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 				x()
 		self["config"].selectionChanged = selectionChanged
 		self["config"].onSelectionChanged.append(self.updateHelp)
-
+		
+		#Todo Remove if there is another solution
+		config.EMC.movie_finished_clean.addNotifier(self.changedEntry, initial_call = False, immediate_feedback = True)
+		
+		self.onShow.append(self.onDialogShow)
 
 	def defineConfig(self):
 		
@@ -253,7 +258,7 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 			(  _("Daily cleanup time")                            , config.EMC.movie_trashcan_ctime     , None                  , None                  , 0     , [-6,-1]      , _("HELP_Daily cleanup time") ),
 			(  _("How many days files may remain in trashcan")    , config.EMC.movie_trashcan_limit     , None                  , None                  , 0     , [-7,-2]      , _("HELP_How many days files may remain in trashcan") ),
 			(  _("Move finished movies in trashcan")              , config.EMC.movie_finished_clean     , None                  , None                  , 2     , [-8,-3]      , _("HELP_Move finished movies in trashcan") ),
-			(  _("Age of finished movies in movie folder (days)") , config.EMC.movie_finished_limit     , None                  , None                  , 2     , [-9,-4,-1]   , _("HELP_Age of finished movies in movie folder (days)") ),
+			(  _("Age of finished movies in movie folder (days)") , config.EMC.movie_finished_limit     , None                  , None                  , 2     , [-9,-1]     , _("HELP_Age of finished movies in movie folder (days)") ),
 			
 			(  separator                                          , config.EMC.about                    , None                  , None                  , 0     , []        , _("") ),
 			(  _("Display directory reading text")                , config.EMC.moviecenter_loadtext     , None                  , None                  , 1     , []        , _("HELP_Display directory reading text") ),
@@ -336,7 +341,7 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 		# Call baseclass function
 		Screen.close(self)
 
-	def changedEntry(self):
+	def changedEntry(self, addNotifierDummy=None):
 		self.createConfig()
 
 	def updateHelp(self):
