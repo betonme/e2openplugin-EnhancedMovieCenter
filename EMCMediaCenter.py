@@ -669,8 +669,12 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 			self.jumpToFirstMark()
 		if self.service and self.service.type == sidDVD:
 			# DVDPlayer Workaround
-			self.pauseService()
-			self.unPauseService()
+			#self.pauseService()
+			#self.unPauseService()
+			service = self.session.nav.getCurrentService()
+			if service:
+				pause = service.pause()
+				pause.unpause()
 		self.showAfterSeek()
 
 	# InfoBarNumberZap
