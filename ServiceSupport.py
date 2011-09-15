@@ -22,6 +22,7 @@
 import os
 import struct
 from datetime import datetime
+from time import mktime
 
 from Components.config import *
 from Components.Element import cached
@@ -125,6 +126,7 @@ class ServiceInfo:
 	def getInfo(self, service, type):
 		#self.newService(service)
 		if type == iServiceInformation.sTimeCreate:
+			# Return time in seconds
 			return self.info and self.info.getMTime() or 0
 		return None
 	
@@ -161,12 +163,13 @@ class Info:
 								or None
 								#TODO or isdvd
 		
-		self.__mtime = self.isfile and long(os.stat(path).st_mtime) or 0
+		self.__mtime = self.isfile and service.date and mktime(service.date.timetuple()) or None #long(os.stat(path).st_mtime) or 0
 									#TODO show same time as list
 									#TODO or isdir but show only start date
 		
 		self.__name = service and service.getName() or ""
 		self.__reference = service or ""
+		self.__rec_ref_str = meta and meta.getMetaServiceReference() or ""
 		
 		#TODO dynamic or not
 		self.__shortdescription = meta and meta.getMetaDescription() \
@@ -194,17 +197,7 @@ class Info:
 		return self.__name
 	
 	def getServiceReference(self):
-		#TODO Change this
-		#print "getServiceReference"
-		#print ServiceReference(self.__reference).getServiceName()
-		esc = eServiceCenter.getInstance()
-		info = esc and esc.info(self.__reference)
-		rec_ref_str = info and info.getInfoString(self.__reference, iServiceInformation.sServiceref)
-		#print rec_ref_str and ServiceReference(rec_ref_str).getServiceName()
-		#print self.__reference
-		#print str(self.__reference)
-		#print self.__reference.toString()
-		return rec_ref_str
+		return self.__rec_ref_str
 	
 	#def getServiceName(self):
 	#	#MovieInfo MOVIE_REC_SERVICE_NAME
@@ -231,8 +224,14 @@ class Info:
 		return self.__id
 
 	def getBeginTimeString(self):
-		d = datetime.fromtimestamp(self.__mtime)
-		return d.strftime("%d.%m.%Y %H:%M")
+		d = self.__mtime and datetime.fromtimestamp(self.__mtime)
+		if d:
+			if config.EMC.movie_date_format.value:
+				return d.strftime( config.EMC.movie_date_format.value )
+			else:
+				return d.strftime("%d.%m.%Y %H:%M")
+		else:
+			return ""
 
 	def getMTime(self):
 		return self.__mtime
@@ -241,7 +240,8 @@ class Info:
 		return self.__size
 	
 	def getLength(self, service=None):
-		#TODO
+		#TODO read from meta eit
+		#E2 will read / calculate it directly from ts file
 		# Should stay dynamic if it is a record
 		#self.newService(service)
 		service = service or self.__reference
@@ -267,5 +267,6 @@ class Info:
 			for file in files:    
 				filename = os.path.join(path, file)
 				if os.path.exists(filename):
+					#TODO maybe use os.stat like in movieselection updateinfo
 					folder_size += os.path.getsize(filename)
 		return folder_size

@@ -570,6 +570,8 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 	def showEventInformation(self):
 		from Screens.EventView import EventViewSimple
 		from ServiceReference import ServiceReference
+		
+		# Get our customized event
 		evt = self["list"].getCurrentEvent()
 		if evt:
 			self.session.open(EventViewSimple, evt, ServiceReference(self.getCurrent()))

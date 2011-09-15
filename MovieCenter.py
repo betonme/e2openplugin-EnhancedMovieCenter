@@ -780,6 +780,14 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 			info = self.serviceHandler.info(l[0])
 			return info and info.getEvent(l[0])
 
+	def getCurrentE2Event(self):
+		l = self.l.getCurrentSelection()
+		if l and l[0]:
+			service = l[0]
+			esc = eServiceCenter.getInstance()
+			info = esc and esc.info(service)
+			return info and info.getEvent(l[0])
+
 	GUI_WIDGET = eListbox
 
 	def postWidgetCreate(self, instance):
@@ -1292,7 +1300,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 				
 				# Get player service and set formatted title
 				service = self.getPlayerService(path, title, ext)
-				
+				service.date = date
 				# Check config settings
 				#TODO These checks should be done earlier but there we don't have the service yet
 				if (movie_hide_mov and self.serviceMoving(service)) \
