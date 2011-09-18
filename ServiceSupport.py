@@ -207,16 +207,22 @@ class Info:
 		return self.__tags
 	
 	def getEventName(self):
+		print "getEventName"
+		print self.__eventname
 		return self.__eventname
 	
 	def getShortDescription(self):
 		#MovieInfo MOVIE_META_DESCRIPTION
 		#MovieInfo SHORT_DESCRIPTION
 		#EventName SHORT_DESCRIPTION
+		print "getShortDescription"
+		print self.__shortdescription
 		return self.__shortdescription
 	
 	def getExtendedDescription(self):
 		#EventName EXTENDED_DESCRIPTION
+		print "getExtendedDescription"
+		print self.__extendeddescription
 		return self.__extendeddescription
 	
 	def getEventId(self):

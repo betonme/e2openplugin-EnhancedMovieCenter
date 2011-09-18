@@ -136,10 +136,10 @@ class EitList():
 		return self.eit.get('duration', "")
 
 	def getEitName(self):
-		return self.eit.get('name', "")
+		return self.eit.get('name', "").strip()
 
 	def getEitDescription(self):
-		return self.eit.get('description', "")
+		return self.eit.get('description', "").strip()
 
 	# Wrapper
 	def getEitShortDescription(self):
@@ -230,9 +230,9 @@ class EitList():
 							#ISO_639_language_code = str(data[pos+3:pos+3])
 							event_name_length = ord(data[pos+5])
 							short_event_descriptor.append(data[pos+6:pos+6+event_name_length]) 
-							short_event_descriptor.append("\n\n")
-							text_length = pos+6+event_name_length
-							short_event_descriptor.append(data[pos+7+event_name_length:pos+8+text_length])
+							#short_event_descriptor.append("\n\n")
+							#text_length = pos+6+event_name_length
+							#short_event_descriptor.append(data[pos+7+event_name_length:pos+8+text_length])
 						elif rec == 0x4E:
 							extended_event_descriptor.append(data[pos+8:pos+length]) 
 						elif rec == 0x50:
