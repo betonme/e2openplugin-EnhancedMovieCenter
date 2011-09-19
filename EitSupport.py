@@ -255,12 +255,16 @@ class EitList():
 					short_event_descriptor = "".join(short_event_descriptor)
 					if short_event_descriptor:
 						try:
-							short_event_descriptor.decode('utf-8')
+							short_event_descriptor = short_event_descriptor.decode("iso-8859-1").encode("utf-8")
 						except UnicodeDecodeError:
-							try:
-								short_event_descriptor = short_event_descriptor.decode("cp1252").encode("utf-8")
-							except UnicodeDecodeError:
-								short_event_descriptor = short_event_descriptor.decode("iso-8859-1").encode("utf-8")
+							pass
+#						try:
+#							short_event_descriptor.decode('utf-8')
+#						except UnicodeDecodeError:
+#							try:
+#								short_event_descriptor = short_event_descriptor.decode("cp1252").encode("utf-8")
+#							except UnicodeDecodeError:
+#								short_event_descriptor = short_event_descriptor.decode("iso-8859-1").encode("utf-8")
 					self.eit['name'] = short_event_descriptor
 					
 					# Very bad but there can be both encodings
@@ -269,12 +273,16 @@ class EitList():
 					extended_event_descriptor = "".join(extended_event_descriptor)
 					if extended_event_descriptor:
 						try:
-							extended_event_descriptor.decode('utf-8')
+							extended_event_descriptor = extended_event_descriptor.decode("iso-8859-1").encode("utf-8")
 						except UnicodeDecodeError:
-							try:
-								extended_event_descriptor = extended_event_descriptor.decode("cp1252").encode("utf-8")
-							except UnicodeDecodeError:
-								extended_event_descriptor = extended_event_descriptor.decode("iso-8859-1").encode("utf-8")
+							pass
+#						try:
+#							extended_event_descriptor.decode('utf-8')
+#						except UnicodeDecodeError:
+#							try:
+#								extended_event_descriptor = extended_event_descriptor.decode("cp1252").encode("utf-8")
+#							except UnicodeDecodeError:
+#								extended_event_descriptor = extended_event_descriptor.decode("iso-8859-1").encode("utf-8")
 					self.eit['description'] = extended_event_descriptor
 					
 				else:
