@@ -658,9 +658,7 @@ msgid "HELP_Daily cleanup time"
 msgstr "Uhrzeit bei der alte Files im Papierkorb gelöscht werden, die die eingestellte Verweildauer erreicht haben."
 
 msgid "HELP_How many days files may remain in trashcan"
-msgstr ""
-"Anzahl Tage die die Files im Papierkorb verweilen, bis sie auomatisch gelöscht werden.\n"
-"(Wenn auf [0] gestellt, wird immer direkt gelöscht!)"
+msgstr "Anzahl Tage die die Files im Papierkorb verweilen, bis sie auomatisch gelöscht werden."
 
 msgid "HELP_Move finished movies in trashcan"
 msgstr "Verschiebe alle Aufnahmen im \"Movie home\" mit dem Status \"fertig gesehen\" in den Papierkorb, die die im nächsten Punkt eingestellte Verweildauer erreicht haben."
@@ -669,9 +667,7 @@ msgid "HELP_Age of finished movies in movie folder (days)"
 msgstr "Verweildauer der Aufnahmen mit dem Status \"fertig gesehen\", bis sie in den Papierkorb verschoben werden."
 
 msgid "HELP_Show Latest Recordings directory"
-msgstr ""
-"Zeigt im \"Movie home\" ein virtuelles Verzeichnis mit allen letzten Aufnahmen. Auch von Unterverzeichnissen in \"Movie home\".\n"
-"(Es wird maximal eine Seite voll angezeigt.)"
+msgstr "Zeigt im \"Movie home\" ein virtuelles Verzeichnis mit allen letzten Aufnahmen. Auch von Unterverzeichnissen in \"Movie home\"."
 
 msgid "HELP_Show VLC directory"
 msgstr "Zeigt ein VLC Verzeichnis wenn das VlcPlayerExtended Plugin installiert ist."
