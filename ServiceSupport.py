@@ -43,7 +43,10 @@ class CurrentService(eCurrentService):
 	def __init__(self, navcore):
 		eCurrentService.__init__(self, navcore)
 		self.__cutlist = None
-		self.__path = None
+#		self.__path = None
+
+	def newCueSheet(self, cutlist):
+		self.__cutlist = cutlist
 
 	def cueSheet(self):
 		return self.__cutlist
@@ -53,14 +56,14 @@ class CurrentService(eCurrentService):
 		path = None
 		service = self.navcore.getCurrentService()
 		if service:
-			if not isinstance(service, eServiceReference):
-				ref = self.navcore.getCurrentlyPlayingServiceReference()
-				path = ref and ref.getPath()
-			else:
-				path = service.getPath()
-		if path and path != self.__path:
-			self.__path = path
-			self.__cutlist = CutList(path)
+#			if not isinstance(service, eServiceReference):
+#				ref = self.navcore.getCurrentlyPlayingServiceReference()
+#				path = ref and ref.getPath()
+#			else:
+#				path = service.getPath()
+#		if path and path != self.__path:
+#			self.__path = path
+#			self.__cutlist = CutList(path)
 			service.cueSheet = self.cueSheet
 		return service
 
@@ -177,7 +180,7 @@ class Info:
 													or self.__name
 		self.__tags = meta and meta.getMetaTags() or ""
 		
-		self.__eventname = self.__name
+		self.__eventname = eit and eit.getEitName() or self.__name
 		
 		#TODO dynamic or not
 		self.__extendeddescription = eit and eit.getEitDescription() \
@@ -207,22 +210,16 @@ class Info:
 		return self.__tags
 	
 	def getEventName(self):
-		print "getEventName"
-		print self.__eventname
 		return self.__eventname
 	
 	def getShortDescription(self):
 		#MovieInfo MOVIE_META_DESCRIPTION
 		#MovieInfo SHORT_DESCRIPTION
 		#EventName SHORT_DESCRIPTION
-		print "getShortDescription"
-		print self.__shortdescription
 		return self.__shortdescription
 	
 	def getExtendedDescription(self):
 		#EventName EXTENDED_DESCRIPTION
-		print "getExtendedDescription"
-		print self.__extendeddescription
 		return self.__extendeddescription
 	
 	def getEventId(self):
