@@ -956,10 +956,10 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 			return None
 		elif config.EMC.noscan_linked.value and os.path.islink(checkPath):
 			return None
-		dvdpath = os.path.join(checkPath, "/VIDEO_TS.IFO")
+		dvdpath = os.path.join(checkPath, "VIDEO_TS.IFO")
 		if fileExists( dvdpath ):
 			return dvdpath
-		dvdpath = os.path.join(checkPath, "/VIDEO_TS/VIDEO_TS.IFO")
+		dvdpath = os.path.join(checkPath, "VIDEO_TS/VIDEO_TS.IFO")
 		if fileExists( dvdpath ):
 			return dvdpath
 		return None
