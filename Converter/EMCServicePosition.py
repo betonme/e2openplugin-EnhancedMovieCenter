@@ -28,3 +28,13 @@ from Components.Element import cached, ElementError
 class EMCServicePosition(ServicePosition):
 	def __init__(self, type):
 		ServicePosition.__init__(self, type)
+
+	def getCutlist(self):
+		service = self.source.service
+		cue = service and service.cueSheet()
+		cutlist = cue and cue.getCutList()
+		print "Cutlist EMCServicePosition getCutList len " + str(len(cutlist))
+		return cutlist
+		#return cue and cue.getCutList()
+
+	cutlist = property(getCutlist)

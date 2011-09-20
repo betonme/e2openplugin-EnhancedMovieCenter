@@ -1007,7 +1007,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		self.multiSelectIdx = None
 		if config.EMC.moviecenter_loadtext.value:
 			self.loading()
-		DelayedFunction(10, self.__reloadList, path)
+		DelayedFunction(20, self.__reloadList, path)
 
 	def __reloadList(self, path):
 		if path is None:

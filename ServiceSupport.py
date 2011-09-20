@@ -55,7 +55,7 @@ class CurrentService(eCurrentService):
 	def getCurrentService(self):
 		path = None
 		service = self.navcore.getCurrentService()
-		if service:
+		#if service:
 #			if not isinstance(service, eServiceReference):
 #				ref = self.navcore.getCurrentlyPlayingServiceReference()
 #				path = ref and ref.getPath()
@@ -64,7 +64,7 @@ class CurrentService(eCurrentService):
 #		if path and path != self.__path:
 #			self.__path = path
 #			self.__cuesheet = CutList(path)
-			service.cueSheet = self.cueSheet
+			#service.cueSheet = self.cueSheet
 		return service
 
 	service = property(getCurrentService)

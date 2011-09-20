@@ -64,7 +64,7 @@ class CutList():
 		# Is already initialized in InfoBar and EMCMediaCenter
 		#InfoBarCueSheetSupport.__init__(self)
 		#InfoBarSeek.__init__(self)
-					
+		#self.service = None
 		self.cut_file = None
 		self.cut_mtime = 0
 		self.cut_list = []
@@ -73,6 +73,7 @@ class CutList():
 		self.__newPath(path)
 		self.__readCutFile()
 		self.__verifyCutList()
+		print "Cutlist init " + str(path)
 
 	def __newPath(self, path):
 		name = None
@@ -102,45 +103,67 @@ class CutList():
 	def __len__(self):
 		return self.cut_list and len(self.cut_list) or 0
 
+	def __getCuesheet(self):
+		service = self.session.nav.getCurrentService()
+		if service is None:
+			return None
+		return service.cueSheet()
+
 	##############################################################################
 	## Overwrite Functions 
 
 	# InfoBarCueSheetSupport
 	def downloadCuesheet(self):
-		# Is there native cuesheet support
-		cue = InfoBarCueSheetSupport._InfoBarCueSheetSupport__getCuesheet(self)
-		if cue:
-			# Native cuesheet support
-			self.cut_list = cue.getCutList()
-		else:
-			# No native cuesheet support
-			if self.service:
-				path = self.service.getPath()
-				self.__newPath(path)
-				self.__readCutFile()
-		#MAYBE: If the cutlist is empty we can check the EPG NowNext Events
-		#print "downloadCuesheet cutlist " + str(self.cut_list)
-		#self.__verifyCutList()
+		try:
+			# Is there native cuesheet support
+			cue = self.__getCuesheet() #InfoBarCueSheetSupport._InfoBarCueSheetSupport__getCuesheet(self)
+			if cue:
+				# Native cuesheet support
+				self.cut_list = cue.getCutList()
+				print "Cutlist download cue "
+			else:
+				# No native cuesheet support
+				if self.service:
+					path = self.service.getPath()
+					print "Cutlist download noncue " + str(path)
+					self.__newPath(path)
+					self.__readCutFile()
+					print "Cutlist  len " + str(len(self.cut_list))
+				#MAYBE: If the cutlist is empty we can check the EPG NowNext Events
+				#print "downloadCuesheet cutlist " + str(self.cut_list)
+				#self.__verifyCutList()
+		except Exception, e:
+			emcDebugOut("[CUTS] downloadCutList exception:" + str(e))
 
 	# InfoBarCueSheetSupport
 	def uploadCuesheet(self):
-		# Always save the last marker
-		self.__saveOldLast( self.__getCutListLast() )
-		# Update local cut list, maybe there is a newer one
-		#TODO Not working yet
-		#self.__readCutFile(True)
-		# Is there native cuesheet support
-		cue = InfoBarCueSheetSupport._InfoBarCueSheetSupport__getCuesheet(self)
-		#print "uploadCuesheet cutlist " + str(self.cut_list)
-		if cue:
-			# Native cuesheet support
-			cue.setCutList(self.cut_list)
-		else:
-			# No native cuesheet support
-			if self.service:
-				path = self.service.getPath()
-				self.__newPath(path)
-				self.__writeCutFile()
+		try:
+			# Always check for saving the last marker
+			if config.EMC.movie_save_lastplayed.value is True:
+				self.__saveOldLast()
+			# Update local cut list, maybe there is a newer one
+			#TODO Not working yet
+			#self.__readCutFile(True)
+			# Is there native cuesheet support
+			cue = InfoBarCueSheetSupport._InfoBarCueSheetSupport__getCuesheet(self)
+#			#print "uploadCuesheet cutlist " + str(self.cut_list)
+			if cue:
+				# Native cuesheet support
+				print "Cutlist upload cue "
+				cue.setCutList(self.cut_list)
+			else:
+				# No native cuesheet support
+				if self.service:
+					path = self.service.getPath()
+					print "Cutlist upload cutlist " + str(path)
+					print self.service
+					print path
+					self.__newPath(path)
+					self.__writeCutFile()
+					print self.cut_file
+					print "Cutlist  len " + str(len(self.cut_list))
+		except Exception, e:
+			emcDebugOut("[CUTS] uploadCuesheet exception:" + str(e))
 
 	def updateCuesheet(self):
 		try:
@@ -150,11 +173,15 @@ class CutList():
 			emcDebugOut("[CUTS] updateCuesheet exception:" + str(e))
 
 	def setCutList(self, cut_list):
+		print "Cutlist setCutList len " + str(len(self.cut_list))
 		self.cut_list = cut_list
+		self.__writeCutFile()
 
 	##############################################################################
 	## Get Functions
 	def getCutList(self):
+		print "Cutlist getCutList len " + str(len(self.cut_list))
+		print self.cut_list
 		return self.cut_list
 	
 	def getCutListMTime(self):
@@ -205,14 +232,12 @@ class CutList():
 		self.__writeCutFile()
 
 	def updateCutList(self, play, length):
-		from MovieCenter import sidsCuts
-		global sidsCuts
-		last = self.__getCutListLast()
-		if self.service.type not in sidsCuts:
-			self.__removeSavedLast( self.__getCutListSavedLast() )
-			self.__replaceLast( play )
-			self.__replaceOut( length )
-		self.__saveOldLast( last )
+		# Always check for saving the last marker
+		if config.EMC.movie_save_lastplayed.value is True:
+			self.__saveOldLast()
+		self.__removeSavedLast( self.__getCutListSavedLast() )
+		self.__replaceLast( play )
+		self.__replaceOut( length )
 		self.uploadCuesheet()
 
 	def removeMarksCutList(self):
@@ -235,11 +260,11 @@ class CutList():
 					if cp[0] < self.__secondsToPts(10):
 						self.cut_list.remove(cp)
 
-	def __saveOldLast(self, last):
-		if config.EMC.movie_save_lastplayed.value is True:
-			# Always save the last played as marker
-			if last > 0:
-				self.__insort(last, self.CUT_TYPE_MARK)
+	def __saveOldLast(self):
+		# Save the last played as marker
+		last = self.__getCutListLast()
+		if last > 0:
+			self.__insort(last, self.CUT_TYPE_MARK)
 
 	def __toggleLast(self, toggle):
 		oldLast = self.__getCutListLast()
@@ -360,11 +385,13 @@ class CutList():
 		path = self.cut_file
 		if path:
 		
+			print "Cutlist __writeCutFile "
+		
 			# Generate and pack data
 			if self.cut_list:
 				for (pts, what) in self.cut_list:
 					data += struct.pack('>QI', pts, what)
-					
+			
 			# Write data to file
 			# OE1.6 with Pyton 2.6
 			#with open(path, 'wb') as f: f.write(data)
