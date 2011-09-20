@@ -40,16 +40,16 @@ instance = None
 
 
 class CurrentService(eCurrentService):
-	def __init__(self, navcore):
+	def __init__(self, navcore, cuesheet):
 		eCurrentService.__init__(self, navcore)
-		self.__cutlist = None
+		self.__cuesheet = cuesheet
 #		self.__path = None
 
-	def newCueSheet(self, cutlist):
-		self.__cutlist = cutlist
+	#def newCueSheet(self, cutlist):
+	#	self.__cuesheet = cutlist
 
 	def cueSheet(self):
-		return self.__cutlist
+		return self.__cuesheet
 
 	@cached
 	def getCurrentService(self):
@@ -63,7 +63,7 @@ class CurrentService(eCurrentService):
 #				path = service.getPath()
 #		if path and path != self.__path:
 #			self.__path = path
-#			self.__cutlist = CutList(path)
+#			self.__cuesheet = CutList(path)
 			service.cueSheet = self.cueSheet
 		return service
 
