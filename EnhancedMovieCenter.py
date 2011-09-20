@@ -333,8 +333,6 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 	# Overwrite Screen close function
 	def close(self):
 		#self.hide()
-		if self.needsRestartFlag:
-			self.session.open(MessageBox, _("Some settings changes require GUI restart to take effect."), MessageBox.TYPE_INFO, 10)
 		self.session.openWithCallback(self.closeConfirm, MessageBox, EMCAbout, MessageBox.TYPE_INFO)
 
 	def closeConfirm(self, dummy=None):
@@ -391,7 +389,9 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 							# Stop exiting, user has to correct the config
 							return
 				entry[1].save()
-		self.keySave()
+		if self.needsRestartFlag:
+			self.session.open(MessageBox, _("Some settings changes require GUI restart to take effect."), MessageBox.TYPE_INFO, 10)
+		self.close()
 
 	def launchListSet(self, element):
 		if element is not None:
