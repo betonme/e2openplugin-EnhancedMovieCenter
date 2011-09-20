@@ -229,7 +229,8 @@ class EitList():
 							#descriptor_length = ord(data[pos+2])
 							#ISO_639_language_code = str(data[pos+3:pos+3])
 							event_name_length = ord(data[pos+5])
-							short_event_descriptor.append(data[pos+6:pos+6+event_name_length]) 
+							short_event_descriptor.append(data[pos+6:pos+6+event_name_length])
+							#TODO
 							#short_event_descriptor.append("\n\n")
 							#text_length = pos+6+event_name_length
 							#short_event_descriptor.append(data[pos+7+event_name_length:pos+8+text_length])

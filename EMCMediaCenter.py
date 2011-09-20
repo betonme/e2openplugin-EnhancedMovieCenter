@@ -32,6 +32,7 @@ from Screens.InfoBarGenerics import *
 from Screens.InfoBar import MoviePlayer, InfoBar
 from Screens.MessageBox import MessageBox
 from Screens.HelpMenu import HelpableScreen
+from Tools.BoundFunction import boundFunction
 from Tools.Directories import fileExists, resolveFilename, SCOPE_LANGUAGE, SCOPE_PLUGINS
 
 from EnhancedMovieCenter import _
@@ -160,7 +161,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 		
 		# Set Source for the Converter ServicePostion
 		# So we can display the marker for all media files
-		self["Service"] = CurrentService(session.nav)
+		self["Service"] = CurrentService(session.nav, self)
 		
 		# DVD Player
 		self["audioLabel"] = Label("")
@@ -667,14 +668,12 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 		# From Merlin2
 		elif config.EMC.movie_jump_first_mark.value == True:
 			self.jumpToFirstMark()
-		if self.service and self.service.type == sidDVD:
-			# DVDPlayer Workaround
-			#self.pauseService()
-			#self.unPauseService()
-			service = self.session.nav.getCurrentService()
-			if service:
-				pause = service.pause()
-				pause.unpause()
+		elif self.service and self.service.type == sidDVD:
+			DelayedFunction(500, boundFunction(self.dvdPlayerWorkaround))
+			#service = self.session.nav.getCurrentService()
+			#if service:
+			#	pause = service.pause()
+			#	pause.unpause()
 		self.showAfterSeek()
 
 	# InfoBarNumberZap

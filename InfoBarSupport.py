@@ -32,11 +32,15 @@ from Screens.InfoBarGenerics import *
 from Screens.InfoBar import InfoBar
 from Screens.MessageBox import MessageBox
 from Screens.HelpMenu import HelpableScreen
+from Tools.BoundFunction import boundFunction
 from Tools.Directories import fileExists, resolveFilename, SCOPE_LANGUAGE, SCOPE_PLUGINS
 
 from EnhancedMovieCenter import _
 from EMCTasker import emcDebugOut
 from DelayedFunction import DelayedFunction
+
+from MovieCenter import sidDVD
+global sidDVD
 
 SeekbarPlg = "%s%s"%(resolveFilename(SCOPE_PLUGINS), "Extensions/Seekbar/plugin.py")
 
@@ -225,9 +229,15 @@ class InfoBarSupport(	InfoBarBase, \
 		else:
 			# Call baseclass function
 			InfoBarSeek.doSeek(self, pts)
+			if self.service and self.service.type == sidDVD:
+				DelayedFunction(500, boundFunction(self.dvdPlayerWorkaround))
 			if pts and config.usage.show_infobar_on_skip.value:
 				# InfoBarSeek
 				self.showAfterSeek()
+
+	def dvdPlayerWorkaround(self):
+		self.pauseService()
+		self.unPauseService()
 
 	def getSeekPlayPosition(self):
 		try:
