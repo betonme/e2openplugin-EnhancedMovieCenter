@@ -614,7 +614,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		self.updateMovieInfo()
 
 	def onDialogHide(self):
-		self.returnService = self.getNextSelectedService(self.getCurrent(), self.tmpSelList)
+		self.returnService = self.getCurrent() #self.getNextSelectedService(self.getCurrent(), self.tmpSelList)
 
 	def getCurrentIndex(self):
 		return self["list"].getCurrentIndex()
@@ -885,7 +885,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		current = self.getCurrent()
 		if current is not None:
 			# Save service 
-			self.returnService = self.getNextSelectedService(self.getCurrent(), self.tmpSelList)
+			self.returnService = self.getCurrent() #self.getNextSelectedService(self.getCurrent(), self.tmpSelList)
 			
 			# Think about MovieSelection should only know about directories and files
 			# All other things should be in the MovieCenter
@@ -967,13 +967,13 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			emcDebugOut("[EMCMS] lastPlayedCheck exception:\n" + str(e))
 
 	def loading(self, loading=True):
+		self.updateEventInfo(None)
 		if loading:
 			self["list"].hide()
 			self["wait"].show()
 		else:
 			self["wait"].hide()
 			self["list"].show()
-		self.updateEventInfo(None)
 
 	def initButtons(self):
 		# Initialize buttons
