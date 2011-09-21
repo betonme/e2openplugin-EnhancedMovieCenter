@@ -73,7 +73,7 @@ class CutList():
 		self.__newPath(path)
 		self.__readCutFile()
 		self.__verifyCutList()
-		print "Cutlist init " + str(path)
+		#print "Cutlist init " + str(path)
 
 	def __newPath(self, path):
 		name = None
@@ -120,15 +120,15 @@ class CutList():
 			if cue:
 				# Native cuesheet support
 				self.cut_list = cue.getCutList()
-				print "Cutlist download cue "
+				#print "Cutlist download cue "
 			else:
 				# No native cuesheet support
 				if self.service:
 					path = self.service.getPath()
-					print "Cutlist download noncue " + str(path)
+					#print "Cutlist download noncue " + str(path)
 					self.__newPath(path)
 					self.__readCutFile()
-					print "Cutlist  len " + str(len(self.cut_list))
+					#print "Cutlist  len " + str(len(self.cut_list))
 				#MAYBE: If the cutlist is empty we can check the EPG NowNext Events
 				#print "downloadCuesheet cutlist " + str(self.cut_list)
 				#self.__verifyCutList()
@@ -149,19 +149,19 @@ class CutList():
 #			#print "uploadCuesheet cutlist " + str(self.cut_list)
 			if cue:
 				# Native cuesheet support
-				print "Cutlist upload cue "
+				#print "Cutlist upload cue "
 				cue.setCutList(self.cut_list)
 			else:
 				# No native cuesheet support
 				if self.service:
 					path = self.service.getPath()
-					print "Cutlist upload cutlist " + str(path)
-					print self.service
-					print path
+					#print "Cutlist upload cutlist " + str(path)
+					#print self.service
+					#print path
 					self.__newPath(path)
 					self.__writeCutFile()
-					print self.cut_file
-					print "Cutlist  len " + str(len(self.cut_list))
+					#print self.cut_file
+					#print "Cutlist  len " + str(len(self.cut_list))
 		except Exception, e:
 			emcDebugOut("[CUTS] uploadCuesheet exception:" + str(e))
 
@@ -173,15 +173,15 @@ class CutList():
 			emcDebugOut("[CUTS] updateCuesheet exception:" + str(e))
 
 	def setCutList(self, cut_list):
-		print "Cutlist setCutList len " + str(len(self.cut_list))
+		#print "Cutlist setCutList len " + str(len(self.cut_list))
 		self.cut_list = cut_list
 		self.__writeCutFile()
 
 	##############################################################################
 	## Get Functions
 	def getCutList(self):
-		print "Cutlist getCutList len " + str(len(self.cut_list))
-		print self.cut_list
+		#print "Cutlist getCutList len " + str(len(self.cut_list))
+		#print self.cut_list
 		return self.cut_list
 	
 	def getCutListMTime(self):
@@ -385,7 +385,7 @@ class CutList():
 		path = self.cut_file
 		if path:
 		
-			print "Cutlist __writeCutFile "
+			#print "Cutlist __writeCutFile "
 		
 			# Generate and pack data
 			if self.cut_list:
