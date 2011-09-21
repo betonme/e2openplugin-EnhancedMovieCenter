@@ -1233,8 +1233,8 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 						sortdate = title[0:8] + " 2000"			# "YYYYMMDD" + " " + DUMMY_TIME
 						title = title[11:]									# skips "YYYYMMDD - "
 					
-					time = int(sortdate[9:13])
-					date = int(sortdate[0:8])
+					time = int(sortdate[9:13] or 2000)
+					date = int(sortdate[0:8] or 0)
 					date = datetime(date/10000, date%10000/100, date%100, time/100, time%100)
 				
 				# If the user wants it, extract information from the meta and eit files
