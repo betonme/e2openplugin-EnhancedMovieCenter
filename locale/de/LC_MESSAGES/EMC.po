@@ -198,7 +198,7 @@ msgstr "Papierkorb öffnen"
 msgid "Remove rogue files"
 msgstr "Verwaiste Dateien entfernen"
 
-msgid "Create link(s)"
+msgid "Create link"
 msgstr "Symlink erstellen"
 
 msgid "Create directory"
@@ -253,7 +253,10 @@ msgid "Show plugin config in extensions menu"
 msgstr "EMC Setup im Erweiterungsmenü anzeigen"
 
 msgid "Do you want to resume this playback?"
-msgstr "Wiedergabe fortsetzen ?"
+msgstr "Wiedergabe an Position"
+
+msgid "Resume position at %s"
+msgstr "%s fortsetzen ?"
 
 msgid "Show EMC in extensions menu"
 msgstr "EMC im Erweiterungsmenü anzeigen"
@@ -373,7 +376,7 @@ msgid "Show VLC directory"
 msgstr "VLC Verzeichnis anzeigen"
 
 msgid "Show Latest Recordings directory"
-msgstr "Ordner Neueste Aufnahmen anzeigen"
+msgstr "Verzeichnis Neueste Aufnahmen anzeigen"
 
 msgid "Show E2 Bookmarks in movielist"
 msgstr "E2 Lesezeichen in Filmliste anzeigen"
@@ -385,7 +388,7 @@ msgid "Hide linked files"
 msgstr "Verlinkte Dateien ausblenden"
 
 msgid "Hide linked folders"
-msgstr "Verlinkte Ordner ausblenden"
+msgstr "Verlinkte Verzeichnisse ausblenden"
 
 msgid "Scan for DVD structures"
 msgstr "Suche nach DVD Strukturen"
@@ -493,7 +496,7 @@ msgid "Move finished movies in trashcan"
 msgstr "Verschiebe gesehene Filme in den Papierkorb"
 
 msgid "Age of finished movies in movie folder (days)"
-msgstr "Alter der gesehenen Filme im Filmordner (Tage)"
+msgstr "Alter der gesehenen Filme im Filmverzeichnis (Tage)"
 
 msgid ""
 "ATTENTION\n"
@@ -580,28 +583,50 @@ msgid "Manage E2 Bookmarks"
 msgstr "E2 Lesezeichen bearbeiten"
 
 msgid "Open E2 Bookmark path"
-msgstr "E2 Lesezeichen Ordner öffnen"
+msgstr "E2 Lesezeichen öffnen"
 
 msgid "Open Timer List"
 msgstr "Öffne Timerliste"
 
 msgid "Exclude folders and files"
-msgstr "Ordner und Dateien ausblenden"
+msgstr "Verzeichnisse und Dateien ausblenden"
 
 msgid "Suppress DVD structure scan in folders"
 msgstr "Unterdrücke DVD Strukturen Scan"
 
 msgid "Hide selected entries in movielist"
-msgstr "Ausblenden von speziellen Dateien und Ordnern"
+msgstr "Ausblenden von speziellen Dateien und Verzeichnissen"
 
 msgid "No structure scan in selected folders"
-msgstr "Keine Medienstrutur Erkennung in speziellen Ordnern"
+msgstr "Keine Medienstrutur Erkennung in speziellen Verzeichnissen"
 
 msgid "No structure scan in linked folders"
-msgstr "Keine Medienstrutur Erkennung in Symlink-Ordnern"
+msgstr "Keine Medienstrutur Erkennung in Symlink-Verzeichnissen"
 
 msgid "Enable remote recordings"
 msgstr "Aktiviere Erkennung für remote Aufnahmen"
+
+msgid "Directory up"
+msgstr "Verzeichnis hoch"
+
+msgid "Remove directory from E2 Bookmarks"
+msgstr "Entferne akt. Verz. aus E2 Lesezeichen"
+
+msgid "Remove selected E2 Bookmark"
+msgstr "Entferne ausgewähltes E2 Lesezeichen"
+
+msgid "Set permanent sort"
+msgstr "Setzte permanente Sortierung"
+
+msgid "Remove permanent sort"
+msgstr "Entferne permanente Sortierung"
+
+msgid ""
+"Do you really want to remove your bookmark\n"
+"%s?"
+msgstr ""
+"Willst du wirklich dein Lesezeichen\n"
+"%s entfernen ?"
 
 # EMC Setup Helptext
 msgid "HELP_About"
@@ -626,7 +651,7 @@ msgstr "Deaktiviert die Filmliste von EMC komplett. Jedoch spezielle Funktionen 
 msgid "HELP_Movie home at start"
 msgstr ""
 "EMC startet immer im \"Movie home\" Verzeichnis.\n"
-"(In der nächsten Zeile kann man das \"Movie home\" Verzeichnis setzten)."
+"(Ansonsten öffnet EMC jeweils wieder das vorherige Verzeichnis.)"
 
 msgid "HELP_Movie home home path"
 msgstr "Hier wird der Pfad für \"Movie home\" gesetzt."
@@ -634,7 +659,7 @@ msgstr "Hier wird der Pfad für \"Movie home\" gesetzt."
 msgid "HELP_EMC path access limit"
 msgstr ""
 "Hiermit kann begrenzt werden wie weit in der Verzeichnisstruktur weiter zurück von \"Movie home\" aus navigiert werden kann.\n"
-"(Mit den Tasten [<] und [>] (neben der Nr.0 Taste) kann dennoch weiter zurück navigiert werden als diese Begrenzung."
+"Über [MENU] \"Verzeichnis hoch\" kann dennoch weiter über diese Begrenzung zurück navigiert werden."
 
 msgid "HELP_Trashcan path"
 msgstr ""
@@ -649,7 +674,7 @@ msgstr ""
 msgid "HELP_Delete validation"
 msgstr ""
 "Wenn der Papierkorb aktiviert ist, wird beim löschen keine Sicherheitsabfrage mehr gestellt.\n"
-"(Kann im Notfall vor der Papierkobr leerung ja wieder zurück geschoben werden.)"
+"(Kann im Notfall vor der Papierkobr leerung wieder zurück geschoben werden.)"
 
 msgid "HELP_Enable daily trashcan cleanup"
 msgstr "EMC löscht alte Files die die eingestellte Verweildauer im Papierkorb erreicht haben."
@@ -683,11 +708,11 @@ msgstr "Einstellungen zum Ausblenden von Dateien/Ordern und Performance."
 
 msgid "HELP_cfghide_enable"
 msgstr ""
-"Dateien und Ordner die in '/etc/enigma2/emc-hide.cfg' gelistet sind werden nicht angezeigt.\n"
+"Dateien und Verzeichnisse die in '/etc/enigma2/emc-hide.cfg' gelistet sind werden nicht angezeigt.\n"
 "Das ändern dieser Einstellung erfordert einen Enigma2 Neustart!"
 
 msgid "HELP_cfgnoscan_enable"
-msgstr "Unterordner die in Pfade von '/etc/enigma2/emc-noscan.cfg' stehen werden nicht auf Medienstrukturen (z.B. DVD) überprüft. Dies kann unbeabsichtiges Aufwecken von Festplatten oder Netzlaufwerken verhindern. Ändern dieser Einstellung erfordert E2 Neustart!"
+msgstr "Unterverzeichnisse die in Pfade von '/etc/enigma2/emc-noscan.cfg' stehen werden nicht auf Medienstrukturen (z.B. DVD) überprüft. Dies kann unbeabsichtiges Aufwecken von Festplatten oder Netzlaufwerken verhindern. Ändern dieser Einstellung erfordert E2 Neustart!"
 
 msgid "HELP_Scan for DVD structures"
 msgstr ""
@@ -696,7 +721,7 @@ msgstr ""
 
 msgid "HELP_noscan_linked"
 msgstr ""
-"Symlinks auf Unterordner werden nicht auf Medienstrukturen (z.B. DVD) überprüft.\n"
+"Symlinks auf Untererzeichnisse werden nicht auf Medienstrukturen (z.B. DVD) überprüft.\n"
 "Dies kann unbeabsichtiges Aufwecken von Festplatten oder Netzlaufwerken verhindern."
 
 msgid "HELP_Sort file A to Z at startup"
@@ -738,7 +763,7 @@ msgstr ""
 "Hiermit wird diese Nummer dem Titel hinten angestellt."
 
 msgid "HELP_Show date"
-msgstr "In der Filmliste wird bei jeder Aufnahme auch das Aufnahmedatum angezeigt."
+msgstr "In der Filmliste wird bei jeder Aufnahme auch der Aufnahmezeitpunkt angezeigt."
 
 msgid "HELP_Show movie icons"
 msgstr "In der Filmliste wird bei jeder Aufnahme ein passendes Icon vorne angestellt."
@@ -775,14 +800,14 @@ msgstr "Wurde eine Aufnahme fertig gespielt (Abspielstatus \"fertig gesehen\", E
 msgid "HELP_Always save last played progress as marker"
 msgstr ""
 "Hiermit wird bei jedem stoppen des Abspielvorgangs die aktuelle Abspielposition als Marker speichern.\n"
-"Und kann später dann direkt mit den < > Tasten angesprungen werden. (Unabhängig von der Resume Funktion)"
+"Diese Marker können später dann direkt mit den < > Tasten angesprungen werden. (Unabhängig von der Resume Funktion)"
 
 msgid "HELP_Display directory reading text"
 msgstr "Blendet während dem Verzeichnis einlesen den Text \"Lese Verzeichnis...\" ein."
 
 msgid "HELP_EMC always reload after open"
 msgstr ""
-"Verzeichnis wird beim jedem öffnen von EMC neu einlesen\n"
+"Verzeichnis wird bei jedem öffnen von EMC neu einlesen\n"
 "(Ansonsten wird das Verzeichniss nach dem 2. öffnen aus dem Buffer gelesen.)"
 
 msgid "HELP_EMC re-open list after STOP-press"

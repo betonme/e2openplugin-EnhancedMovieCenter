@@ -226,7 +226,7 @@ class MovieMenu(Screen, E2Bookmarks):
 			self.session.openWithCallback(
 					boundFunction(self.removeDirFromBookmarksConfirmed, path),
 					MessageBox,
-					_("Do you really want to remove your bookmark of %s?") % (path) )
+					_("Do you really want to remove your bookmark\n%s?") % (path) )
 		else:
 			self.removeBookmarkConfirmed(path, True)
 
