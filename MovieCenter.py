@@ -1202,7 +1202,8 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 				else:
 					#TODO Should not be necessary
 					# If there is an ext filename is already the shortname without the extension
-					title = filename[:-len(ext)]
+					#title = filename[:-len(ext)]
+					title = os.path.splitext(filename)[0]
 					
 				# Get cut number
 				if title[-4:-3] == "_" and title[-3:].isdigit():
