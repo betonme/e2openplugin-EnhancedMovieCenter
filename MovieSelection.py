@@ -1195,9 +1195,10 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 							ext = os.path.splitext(movie)[1]
 							if ext in extMedia:
 								fullpath = os.path.join(movie_homepath, movie)
-								if os.path.exists(fullpath):
+								fullpathcuts = fullpathcuts + ".cuts"
+								if os.path.exists(fullpathcuts):
 									currTime = localtime()
-									expTime = localtime(os.stat(fullpath).st_mtime + 24*60*60*int(config.EMC.movie_finished_limit.value))
+									expTime = localtime(os.stat(fullpathcuts).st_mtime + 24*60*60*int(config.EMC.movie_finished_limit.value))
 									if currTime > expTime:
 										# Check progress
 										service = self["list"].getPlayerService(fullpath, movie, ext)
