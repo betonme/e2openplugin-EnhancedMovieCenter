@@ -41,7 +41,7 @@ import NavigationInstance
 from DelayedFunction import DelayedFunction
 from EMCTasker import emcTasker, emcDebugOut
 
-EMCVersion = "V2.1.0"
+EMCVersion = "V3.0.0"
 EMCAbout = "\n  Enhanced Movie Center " +EMCVersion+ "\n\n  (C) 2011 by\n  Coolman, Betonme & Swiss-MAD \n\n  If you like this plugin and you want to support it,\n  or if just want to say ''thanks'',\n  please donate via PayPal. \n\n  Thanks a lot ! \n\n  PayPal: enhancedmoviecenter@gmail.com"
 
 def setEPGLanguage(dummyself=None, dummy=None):
