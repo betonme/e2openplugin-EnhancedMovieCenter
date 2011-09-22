@@ -1210,8 +1210,8 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 					title = title[:-4]
 				
 				# Replace underscores with spaces
-				title = title.replace("_"," ")
-				title = title.replace("."," ")
+				#title = title.replace("_"," ")
+				#title = title.replace("."," ")
 				
 				# Derived from RecordTimer
 				# This is everywhere so test it first
