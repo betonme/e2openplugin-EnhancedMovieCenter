@@ -257,7 +257,7 @@ class Info:
 			esc = eServiceCenter.getInstance()
 			info = esc and esc.info(service)
 			length = info and info.getLength(service) or 0
-		if not length:
+		if length <= 0:
 			length = self.__cutlist and self.__cutlist.getCutListLength()
 		return length or 0
 	
