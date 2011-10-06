@@ -1175,6 +1175,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 		pathgetmtime = os.path.getmtime
 		
 		# Add custom entries and sub directories to the list
+		subdirlist.sort()  #TODO remove and use sorting keys
 		customlist += subdirlist
 		if customlist is not None:
 			for path, filename, ext in customlist:
