@@ -188,6 +188,11 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		from Screens.TimerEdit import TimerEditList
 		self.session.open(TimerEditList)
 
+	def callHelpAction(self, *args):
+		HelpableScreen.callHelpAction(self, *args)
+		from EnhancedMovieCenter import EMCAbout
+		self.session.open(MessageBox, EMCAbout, MessageBox.TYPE_INFO)
+
 	def abort(self):
 		if config.EMC.CoolStartHome.value:
 			self.changeDir(config.EMC.movie_homepath.value)
