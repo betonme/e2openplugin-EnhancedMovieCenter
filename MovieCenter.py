@@ -1303,6 +1303,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 				# Get player service and set formatted title
 				service = self.getPlayerService(path, title, ext)
 				service.date = date
+				service.ext = ext
 				# Check config settings
 				#TODO These checks should be done earlier but there we don't have the service yet
 				if (movie_hide_mov and self.serviceMoving(service)) \

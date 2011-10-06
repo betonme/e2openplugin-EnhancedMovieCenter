@@ -151,10 +151,14 @@ class ServiceInfo:
 class Info:
 	def __init__(self, service):
 		
-		# Temporary variables
+		self.__name = service and service.getName() or ""
+		
 		path = service and service.getPath()
+		
+		#self.isLink = os.path.islink(path)
 		self.isfile = os.path.isfile(path)
-		self.isdir = os.path.isdir(path)
+		isreal = os.path.isdir(path)
+		self.isdir = isreal and hasattr(service, "ext") and service.ext == "DIR" or False
 		meta = path and MetaList(path)			#TODO dynamic or not
 		eit = path and EitList(path)				#TODO dynamic or not
 		
@@ -166,11 +170,10 @@ class Info:
 								or None
 								#TODO or isdvd
 		
-		self.__mtime = self.isfile and service.date and mktime(service.date.timetuple()) or None #long(os.stat(path).st_mtime) or 0
+		self.__mtime = self.isfile and hasattr(service, "date") and mktime(service.date.timetuple()) or None #long(os.stat(path).st_mtime) or 0
 									#TODO show same time as list
 									#TODO or isdir but show only start date
 		
-		self.__name = service and service.getName() or ""
 		self.__reference = service or ""
 		self.__rec_ref_str = meta and meta.getMetaServiceReference() or ""
 		
@@ -185,7 +188,7 @@ class Info:
 		#TODO dynamic or not
 		self.__extendeddescription = eit and eit.getEitDescription() \
 																	or meta and meta.getMetaDescription() \
-																	or self.isdir and os.path.realpath(path) \
+																	or isreal and os.path.realpath(path) \
 																	or ""
 		self.__id = 0
 		
