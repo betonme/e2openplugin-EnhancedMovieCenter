@@ -383,12 +383,12 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 	def openMenu(self):
 		current = self.getCurrent()
 		#if not self["list"].currentSelIsPlayable(): current = None
-		self.session.openWithCallback(self.menuCallback, MovieMenu, "normal", self["list"], current, self["list"].makeSelectionList(), self.currentPath)
+		self.session.openWithCallback(self.menuCallback, MovieMenu, "normal", self, self["list"], current, self["list"].makeSelectionList(), self.currentPath)
 
 	def openMenuPlugins(self):
 		current = self.getCurrent()
 		if self["list"].currentSelIsPlayable():
-			self.session.openWithCallback(self.menuCallback, MovieMenu, "plugins", self["list"], current, self["list"].makeSelectionList(), self.currentPath)
+			self.session.openWithCallback(self.menuCallback, MovieMenu, "plugins", self, self["list"], current, self["list"].makeSelectionList(), self.currentPath)
 
 	def openScriptMenu(self):
 		#TODO actually not used and not working
@@ -1068,7 +1068,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 						mvCmd += '; touch "'+ path +'."*'
 						# move movie into the trashcan
 						mvCmd += '; mv "'+ path +'."* "'+ targetPath +'/"'
-					association.append((service, self.delCB))	# put in a callback for this particular movie
+					association.append((self.delCB, service))	# put in a callback for this particular movie
 					self["list"].highlightService(True, "del", service)
 					if config.EMC.movie_hide_del.value:
 						self["list"].removeService(service)
@@ -1084,7 +1084,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 						sfile = "\""+ path +".\"*"
 						mvCmd += "; touch %s;ls -l %s | while read flags i owner group crap;do chown $owner:$group %s;done;rm %s" %(tfile,tfile,sfile,tfile)
 					mvCmd += '; mv "'+ path +'."* "'+ targetPath +'/"'
-					association.append((service, self.moveCB))	# put in a callback for this particular movie
+					association.append((self.moveCB, service))	# put in a callback for this particular movie
 					self["list"].highlightService(True, "move", service)
 					if config.EMC.movie_hide_mov.value:
 						self["list"].removeService(service)
@@ -1092,6 +1092,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 				self.lastPlayedCheck(service)
 		self["list"].resetSelection()
 		if (mvCmd + rmCmd) != "":
+			association.append((self.initCursor, False)) # Set new Cursor position
 			emcTasker.shellExecute((mvCmd + rmCmd)[2:], association)	# first move, then delete if expiration limit is 0
 
 	def moveMovie(self):

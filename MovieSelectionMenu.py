@@ -42,9 +42,10 @@ from MovieCenter import extTS
 global extTS
 
 class MovieMenu(Screen, E2Bookmarks):
-	def __init__(self, session, menumode, mlist, service, selections, currentPath):
+	def __init__(self, session, menumode, mselection, mlist, service, selections, currentPath):
 		Screen.__init__(self, session)
 		self.mode = menumode
+		self.mselection = mselection
 		self.mlist = mlist
 		self.service = service
 		self.selections = selections
@@ -139,15 +140,19 @@ class MovieMenu(Screen, E2Bookmarks):
 				minFree = 0)
 
 	def createLinkCB(self, currentPath, linkPath):
-		try:
-			if currentPath == linkPath or linkPath == None: return
-			name = os.path.basename(linkPath)
-			cmd = 'ln -s "'+ linkPath +'" "'+ os.path.join(currentPath, name) +'"'
-			if cmd != "":
-				emcTasker.shellExecute(cmd)	# first move, then delete if expiration limit is 0
-		except Exception, e:
-			emcDebugOut("[EMCMM] createLink exception:\n" + str(e))
-		self.close("reload")
+		if currentPath == linkPath or linkPath == None:
+			self.close(None)
+		else:
+			try:
+				name = os.path.basename(linkPath)
+				cmd = 'ln -s "'+ linkPath +'" "'+ os.path.join(currentPath, name) +'"'
+				if cmd != "":
+					association = []
+					association.append((self.mselection.reloadList, None))	# Force list reload after creating the link
+					emcTasker.shellExecute(cmd, association)
+			except Exception, e:
+				emcDebugOut("[EMCMM] createLink exception:\n" + str(e))
+			self.close(None)
 
 	def emptyTrash(self):
 		self.hide()

@@ -64,7 +64,7 @@ class EMCExecutioner:
 	def isIdle(self):
 		return self.executing == ""
 
-	def shellExecute(self, string, associated=None):	# associated = tuple:(service, callback)
+	def shellExecute(self, string, associated=None):	# associated = tuple:(callback, parameter) #TODO use args to enable support for several parameters 
 		string = string.replace("; ","\n")
 		try:
 			if associated is not None and associated != []:
@@ -94,18 +94,14 @@ class EMCExecutioner:
 
 	def runFinished(self, retval):
 		try:
-			from plugin import gRecordings
 			os.remove(self.executing)
 			associated = self.associated[ self.execCount-1 & 1 ]
 			emcDebugOut("[emcTasker] sh exec %s finished, return status = %s%s" %(self.executing, str(retval), self.returnData))
 			for x in associated:
-				if x[1] is not None:
-					x[1](x[0])			# callback(service)
+				if x[0] is not None:
+					x[0](x[1])			# callback(service)
 			self.associated[ self.execCount-1 & 1 ][:] = []	# clear list
 			self.returnData = ""
-			# Set selection to return service
-			#TODO use a callback funtion
-			gRecordings.initCursor(False)
 			
 			if os.path.exists(self.scriptlut[ self.execCount & 1 ]):
 				emcDebugOut("[emcTasker] sh exec rebound")
