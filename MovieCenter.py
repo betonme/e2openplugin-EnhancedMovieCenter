@@ -1291,7 +1291,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 								or (pathexists(path) and datetime.fromtimestamp( pathgetmtime(path) )) or None
 				
 				# Create sortkeys
-				if not sortdate: sortdate = date and date.strftime( "%Y%m%d%H%M" ) or ""
+				if not sortdate: sortdate = date and date.strftime( "%Y%m%d %H%M" ) or ""
 				sorttitle = title.lower()
 				sortkeyalpha = sorttitle + cutnr + sortdate
 				#cutnrreverse = str( 999 - int(cutnr or 0) )
