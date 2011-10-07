@@ -323,19 +323,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 		# If [2] = date = None then it is a directory or special folder entry
 		tmplist = [i for i in sortlist if not i[2]]
 		# Extract list items to be sorted
-		sortlist = sortlist[len(tmplist):]
-		
-		# Find only the first items which won't be sorted
-#		i = 0
-#		for e in xrange(len(sortlist)):
-#			# If [2] = date = None then it is a directory or special folder entry
-#			if sortlist[e][2]:
-#				i=e
-#				break
-#		# Copy items which won't be sorted
-#		tmplist = sortlist[:i]
-#		# Copy items which will be sorted
-#		sortlist = sortlist[i:]
+		sortlist = [i for i in sortlist if i not in tmplist]
 		
 		# Sort list, same algorithm for both implementations
 		# Using itemgetter is slightly faster but not as flexible
@@ -1175,13 +1163,25 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 		pathgetmtime = os.path.getmtime
 		
 		# Add custom entries and sub directories to the list
-		subdirlist.sort()  #TODO remove and use sorting keys
 		customlist += subdirlist
 		if customlist is not None:
 			for path, filename, ext in customlist:
+				sorttitle, sortprefix = "", ""
 				service = self.getPlayerService(path, filename)
-				#TODO sorting keys
-				append((service, (None, None), None, filename, path, 0, 0, ext))
+				
+				if ext == cmtUp: sortprefix = "0"
+				elif ext in cmtTrash: sortprefix = "1"
+				elif ext == cmtLRec: sortprefix = "2"
+				elif ext == cmtBM: sortprefix = "3"
+				elif ext == cmtDir: sortprefix = "4"
+					
+				elif ext == cmtVLC: sortprefix = "5"
+				elif ext == vlcSrv: sortprefix = "6"
+				elif ext == vlcDir: sortprefix = "7"
+				
+				sorttitle = sortprefix + filename.lower()
+				
+				append((service, (sorttitle, sorttitle), None, filename, path, 0, 0, ext))
 		
 		# Add file entries to the list
 		if filelist is not None:
