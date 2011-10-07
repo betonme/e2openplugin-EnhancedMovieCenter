@@ -322,6 +322,9 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 		# But is not as fast as the second implementation
 		# If [2] = date = None then it is a directory or special folder entry
 		tmplist = [i for i in sortlist if not i[2]]
+		# Always sort the same way and never reversed
+		tmplist.sort( key=lambda x: (x[1][0]) )
+		
 		# Extract list items to be sorted
 		sortlist = [i for i in sortlist if i not in tmplist]
 		
