@@ -195,7 +195,9 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 
 	def abort(self):
 		if config.EMC.CoolStartHome.value:
-			self.changeDir(config.EMC.movie_homepath.value)
+			# Reload only if path is not movie home
+			if self.currentPath != config.EMC.movie_homepath.value:
+				DelayedFunction(1000, self.changeDir, config.EMC.movie_homepath.value)
 		if self.playerInstance is not None:
 			self.playerInstance.movieSelected(None)
 		else:
