@@ -228,7 +228,11 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 		# Initially load the movielist
 		# So it must not be done when the user it opens the first time
 		#MAYBE this should be configurable
-		DelayedFunction(10000, self.reload, self.loadPath)
+		DelayedFunction(10000, self.reloadIfNecessary, self.loadPath)
+
+	def reloadIfNecessary(self, loadPath):
+		if not self.list:
+			self.reload(loadPath)
 
 	def applySkin(self, desktop, parent):
 		attribs = []
