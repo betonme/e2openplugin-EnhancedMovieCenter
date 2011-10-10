@@ -1044,14 +1044,17 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 		# Search files through all given paths
 		while dirstack:
 			
-			# Get entries
-			subdirlist, subfilelist = self.createDirList( dirstack.pop() )
-			
-			# Found new directories to search within, use only their path
-			dirstack.extend( [i[0] for i in subdirlist] )
-			
-			# Store the media files
-			filelist.extend( subfilelist )
+			dir = dirstack.pop()
+			if dir != config.EMC.movie_trashcan_path.value:
+				
+				# Get entries
+				subdirlist, subfilelist = self.createDirList( dir )
+				
+				# Found new directories to search within, use only their path
+				dirstack.extend( [i[0] for i in subdirlist] )
+				
+				# Store the media files
+				filelist.extend( subfilelist )
 		
 		# Sorting is done through our default sorting algorithm
 		return filelist
