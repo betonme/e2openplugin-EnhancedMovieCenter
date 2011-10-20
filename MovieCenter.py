@@ -1039,19 +1039,25 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 		# walk through entire tree below movie home. Might take a bit long on huge disks...
 		# think about breaking at 2nd level,
 		# but include folders used in timers, auto timers and bookmarks
-		dirstack.append(config.EMC.movie_homepath.value)
+		dirstack.append( config.EMC.movie_homepath.value )
 		
 		# Search files through all given paths
-		while dirstack:
+		for directory in dirstack:
 			
-			dir = dirstack.pop()
-			if dir != config.EMC.movie_trashcan_path.value:
+			# Avoid trashcan subdirectories
+			if directory.find( config.EMC.movie_trashcan_path.value ) == -1:
 				
 				# Get entries
-				subdirlist, subfilelist = self.createDirList( dir )
+				subdirlist, subfilelist = self.createDirList( directory )
 				
 				# Found new directories to search within, use only their path
-				dirstack.extend( [i[0] for i in subdirlist] )
+				for d in subdirlist:
+					# Resolve symbolic links and get the real path
+					d = os.path.realpath( d )
+					
+					# Avoid duplicate directories
+					if d not in dirstack:
+						dirstack.append( d )
 				
 				# Store the media files
 				filelist.extend( subfilelist )
