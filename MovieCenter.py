@@ -1051,7 +1051,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 				subdirlist, subfilelist = self.createDirList( directory )
 				
 				# Found new directories to search within, use only their path
-				for d in subdirlist:
+				for d, name, ext in subdirlist:
 					# Resolve symbolic links and get the real path
 					d = os.path.realpath( d )
 					
