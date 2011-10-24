@@ -483,6 +483,15 @@ msgstr "Konfiguration"
 msgid "movie manipulation list"
 msgstr "Film Änderungsliste"
 
+msgid "Trashcan enable"
+msgstr "Papierkorb aktivieren"
+
+msgid "Show trashcan directory"
+msgstr "Zeige Papierkorbverzeichnis"
+
+msgid "Show trashcan information"
+msgstr "Zeige Papierkorb Informationen"
+
 msgid "Enable daily trashcan cleanup"
 msgstr "Erlaube tägliche Papierkorb Leerung"
 
@@ -616,10 +625,22 @@ msgid "Remove selected E2 Bookmark"
 msgstr "Entferne ausgewähltes E2 Lesezeichen"
 
 msgid "Set permanent sort"
-msgstr "Setzte permanente Sortierung"
+msgstr "Setze permanente Sortierung"
 
 msgid "Remove permanent sort"
 msgstr "Entferne permanente Sortierung"
+
+msgid "Show directories"
+msgstr "Zeige Verzeichnisse in der Filmliste"
+
+msgid "Show directories information"
+msgstr "Zeige Verzeichnis Informationen"
+
+msgid "Date format"
+msgstr "Datum Format"
+
+msgid "Add directory to E2 Bookmarks"
+msgstr "Akt.Verz.zu den E2 Lesezeichen hinzufügen"
 
 msgid ""
 "Do you really want to remove your bookmark\n"
@@ -628,12 +649,26 @@ msgstr ""
 "Willst du wirklich dein Lesezeichen\n"
 "%s entfernen ?"
 
+msgid ""
+"Do you really want to remove your link\n"
+"%s?"
+msgstr ""
+"Willst du wirklich den Link\n"
+"%s entfernen ?"
+
+msgid ""
+"Do you really want to remove your directory\n"
+"%s?"
+msgstr ""
+"Willst du wirklich dein Verzeichnis\n"
+"%s entfernen ?"
+
 # EMC Setup Helptext
 msgid "HELP_About"
 msgstr "Öffnet das \"Über\" Fenster."
 
 msgid "HELP_Start EMC with"
-msgstr "Setzte eine Start-Taste für EMC."
+msgstr "Setze eine Start-Taste für EMC."
 
 msgid "HELP_Show plugin config in extensions menu"
 msgstr ""
@@ -660,6 +695,9 @@ msgid "HELP_EMC path access limit"
 msgstr ""
 "Hiermit kann begrenzt werden wie weit in der Verzeichnisstruktur weiter zurück von \"Movie home\" aus navigiert werden kann.\n"
 "Über [MENU] \"Verzeichnis hoch\" kann dennoch weiter über diese Begrenzung zurück navigiert werden."
+
+msgid "HELP_separator_Trashcan settings"
+msgstr "Einstellungen die den Papierkorb und dessen automatische Bereinigungsfunktion betreffen."
 
 msgid "HELP_Trashcan path"
 msgstr ""
@@ -742,6 +780,15 @@ msgstr ""
 "Das aussehen der Filmliste wird wenn vorhanden aus dem verwendeten Skin genommen (nur <widget name=\"list\").\n"
 "Ansonsten wie im EMC Setup eingestellt."
 
+msgid "HELP_Show directories"
+msgstr "Verzeichnisse werden in der Filmliste eingeblendet."
+
+msgid "HELP_Show directories information"
+msgstr "Bei Verzeichnissen kann die Anzahl Aufnahmen, die eingenommene Datenmenge, oder beides zusammen eingeblendet werden."
+
+msgid "HELP_Dynamic trashcan"
+msgstr "Beim Papierkorb kann die Anzahl Aufnahmen, die eingenommene Datenmenge, oder beides zusammen eingeblendet werden."
+
 msgid "HELP_Try to load titles from .meta files"
 msgstr ""
 "Titel wird wenn vorhanden aus der .meta geladen.\n"
@@ -762,8 +809,8 @@ msgstr ""
 "Wenn Enigma2 während einer Aufnahme rebootet, wird die Aufnahme von E2 automatisch fortgesetzt und dabei der neuen Datei eine fortlaufende Nummer hinten angestellt.\n"
 "Hiermit wird diese Nummer dem Titel hinten angestellt."
 
-msgid "HELP_Show date"
-msgstr "In der Filmliste wird bei jeder Aufnahme auch der Aufnahmezeitpunkt angezeigt."
+msgid "HELP_Date format"
+msgstr "Datum ausblenden, oder Datum Format wählen das in der Filmliste bei jeder Aufnahme angezeigt wird."
 
 msgid "HELP_Show movie icons"
 msgstr "In der Filmliste wird bei jeder Aufnahme ein passendes Icon vorne angestellt."
@@ -801,6 +848,16 @@ msgid "HELP_Always save last played progress as marker"
 msgstr ""
 "Hiermit wird bei jedem stoppen des Abspielvorgangs die aktuelle Abspielposition als Marker speichern.\n"
 "Diese Marker können später dann direkt mit den < > Tasten angesprungen werden. (Unabhängig von der Resume Funktion)"
+
+msgid "HELP_Trashcan enable"
+msgstr ""
+"Die Papierkorbfunktion kann hier aktiviert/deaktiviert werden.\n"
+"Ist der Papierkorb deaktiviert, wird nach der Sicherheitsabfrage direkt gelöscht."
+
+msgid "HELP_Show trashcan directory"
+msgstr ""
+"Zeigt das Papierkorbverzeichnis in der Filmliste an.\n"
+"(Der Papierkorb kann in jedem Fall über das Menü aufgerufen werden, auch wenn er ausgeblendet ist.)"
 
 msgid "HELP_Display directory reading text"
 msgstr "Blendet während dem Verzeichnis einlesen den Text \"Lese Verzeichnis...\" ein."
