@@ -146,6 +146,7 @@ dirinfo_choices = [	("",							_("Off")),
 
 progress_choices = [	("PB",					_("ProgressBar")),
 											("P",						_("Percent (%)")),
+											("MC",					_("Movie Color")),
 											("",						_("Off")) ]
 
 blue_choices = [	("MH",							_("Movie home")),
