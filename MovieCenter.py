@@ -551,16 +551,20 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 					if config.EMC.movie_date_format.value:
 						datetext = date.strftime( config.EMC.movie_date_format.value )
 					
-					progress = service and self.getProgress(service, length) or 0
-					
-					# Progress State
-					movieUnwatched = config.EMC.movie_progress.value and	progress < int(config.EMC.movie_watching_percent.value)
-					movieWatching  = config.EMC.movie_progress.value and	progress >= int(config.EMC.movie_watching_percent.value) and progress < int(config.EMC.movie_finished_percent.value)
-					movieFinished  = config.EMC.movie_progress.value and	progress >= int(config.EMC.movie_finished_percent.value)
-					
+					if config.EMC.movie_progress.value:
+						# Calculate progress and state
+						progress = service and self.getProgress(service, length) or 0
+						movieUnwatched = config.EMC.movie_progress.value and	progress < int(config.EMC.movie_watching_percent.value)
+						movieWatching  = config.EMC.movie_progress.value and	progress >= int(config.EMC.movie_watching_percent.value) and progress < int(config.EMC.movie_finished_percent.value)
+						movieFinished  = config.EMC.movie_progress.value and	progress >= int(config.EMC.movie_finished_percent.value)
+					else:
+						progress = 0
+						movieUnwatched = False
+						movieWatching = False
+						movieFinished = False
+						
 					# Icon
 					if config.EMC.movie_icons.value:
-						# TODO Is it possible to speed up the buildentry with using movie_progress
 						# video
 						if ext in extVideo:
 							if movieUnwatched:
@@ -1176,7 +1180,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 		# Avoid dots
 		append = tmplist.append
 		pathexists = os.path.exists
-		pathgetmtime = os.path.getmtime
+		pathgetctime = os.path.getctime
 		
 		# Add custom entries and sub directories to the list
 		customlist += subdirlist
@@ -1200,12 +1204,13 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 				append((service, (sorttitle, sorttitle), None, filename, path, 0, 0, ext))
 		
 		# Add file entries to the list
+		now = time()
 		if filelist is not None:
 			for path, filename, ext in filelist:
 				# Filename, Title, Date, Sortingkeys handling
 				# First we extract as much as possible informations from the filename
 				service = None
-				title, date, time, cutnr = "", "", "", ""
+				title, date, cutnr = "", "", ""
 				length = 0 #TODO metalength, eitlength and priority handling
 				metastring, eitstring = "", ""
 				metadate, eitdate = "", ""
@@ -1221,7 +1226,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 					# If there is an ext filename is already the shortname without the extension
 					#title = filename[:-len(ext)]
 					title = os.path.splitext(filename)[0]
-					
+				
 				# Get cut number
 				if title[-4:-3] == "_" and title[-3:].isdigit():
 					cutnr = title[-3:]
@@ -1252,9 +1257,9 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 						title = title[11:]									# skips "YYYYMMDD - "
 					
 					if sortdate:
-						time = int(sortdate[9:13] or 2000)
+						dtime = int(sortdate[9:13] or 2000)
 						date = int(sortdate[0:8] or 0)
-						date = datetime(date/10000, date%10000/100, date%100, time/100, time%100)
+						date = datetime(date/10000, date%10000/100, date%100, dtime/100, dtime%100)
 				
 				# If the user wants it, extract information from the meta and eit files
 				# But it is very slow
@@ -1299,9 +1304,16 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 				
 				# Set date priority here
 				# Fallback get date from filesystem, but it is very slow
-				#date = date #TODO or metadate or eitdate or os.path.exists(path) and datetime.fromtimestamp( os.path.getmtime(path) ) or None
-				date = date or metadate or eitdate \
-								or (pathexists(path) and datetime.fromtimestamp( pathgetmtime(path) )) or None
+				date = date or metadate or eitdate or None
+				if not date and pathexists(path):
+					ctime = pathgetctime(path)
+					# Workaround Python getctime Bug
+					# It can happen that getctime returns the current time instead of the file ctime
+					if now <= ctime: 
+						# Maybe the Python ctime bug has occured
+						# Retry to read the ctime
+						ctime = pathgetctime(path)
+					date = datetime.fromtimestamp( ctime )
 				
 				# Create sortkeys
 				if not sortdate: sortdate = date and date.strftime( "%Y%m%d %H%M" ) or ""
@@ -1332,7 +1344,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 		# Cleanup before continue
 		del append
 		del pathexists
-		del pathgetmtime
+		del pathgetctime
 		
 		if not simulate:
 			# If we are here, there is no way back
