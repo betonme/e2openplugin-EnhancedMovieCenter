@@ -1040,6 +1040,12 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 		#MAYBE: What about using current folder for latest recording lookup?
 		dirstack, subdirlist, filelist, subfilelist = [], [], [], []
 		
+		dappend = dirstack.append
+		fextend = filelist.extend
+		pathrealpath = os.path.realpath
+		pathislink = os.path.islink
+		pathsplitext = os.path.splitext
+		
 		# walk through entire tree below movie home. Might take a bit long on huge disks...
 		# think about breaking at 2nd level,
 		# but include folders used in timers, auto timers and bookmarks
@@ -1057,14 +1063,20 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 				# Found new directories to search within, use only their path
 				for d, name, ext in subdirlist:
 					# Resolve symbolic links and get the real path
-					d = os.path.realpath( d )
+					d = pathrealpath( d )
 					
-					# Avoid duplicate directories
-					if d not in dirstack:
-						dirstack.append( d )
+					# Avoid duplicate directories and ignore links
+					if d not in dirstack and not pathislink( d ):
+						dappend( d )
 				
 				# Store the media files
-				filelist.extend( subfilelist )
+				fextend( [ f for f in subfilelist if pathsplitext(f)[1].lower() in extTS ] )
+		
+		del dappend
+		del fextend
+		del pathrealpath
+		del pathislink
+		del pathsplitext
 		
 		# Sorting is done through our default sorting algorithm
 		return filelist
