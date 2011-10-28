@@ -1204,7 +1204,6 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 				append((service, (sorttitle, sorttitle), None, filename, path, 0, 0, ext))
 		
 		# Add file entries to the list
-		now = time()
 		if filelist is not None:
 			for path, filename, ext in filelist:
 				# Filename, Title, Date, Sortingkeys handling
@@ -1304,16 +1303,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 				
 				# Set date priority here
 				# Fallback get date from filesystem, but it is very slow
-				date = date or metadate or eitdate or None
-				if not date and pathexists(path):
-					ctime = pathgetctime(path)
-					# Workaround Python getctime Bug
-					# It can happen that getctime returns the current time instead of the file ctime
-					if now <= ctime: 
-						# Maybe the Python ctime bug has occured
-						# Retry to read the ctime
-						ctime = pathgetctime(path)
-					date = datetime.fromtimestamp( ctime )
+				date = date or metadate or eitdate or pathexists(path) and datetime.fromtimestamp( pathgetctime(path) ) or None
 				
 				# Create sortkeys
 				if not sortdate: sortdate = date and date.strftime( "%Y%m%d %H%M" ) or ""
