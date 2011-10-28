@@ -1098,7 +1098,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 				
 				if config.EMC.latest_recordings.value:
 					append( (	pathjoin(loadPath, "Latest Recordings"),
-										"Latest Recordings",
+										_("Latest Recordings"),
 										cmtLRec) )
 				
 				if config.EMC.vlc.value and os.path.exists("/usr/lib/enigma2/python/Plugins/Extensions/VlcPlayer"):
