@@ -1469,9 +1469,9 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 		if self.currentSelIsPlayable():
 			# Cursor marks a movie
 			length = len(self.list)
-			rand = range(length)
-			print rand
-			for i in random.shuffle( rand ):
+			shuffle = range(length)
+			random.shuffle( shuffle )
+			for i in shuffle:
 				entry = self.list[i]
 				if entry and entry[7] in plyAll:
 					# Entry is no directory
@@ -1492,14 +1492,15 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 					#TODO Shuffle between dirs and files
 					entries = dirs + files
 					length = len(entries)
-					rand = range(length)
-					print rand
-					for i in random.shuffle( rand ):
+					shuffle = range(length)
+					random.shuffle( shuffle )
+					for i in shuffle:
 						entry = entries[i]
 						pathname = os.path.join(root, entry)
-						if os.path.splitext()[0] in plyAll:
+						ext = os.path.splitext(pathname)[1]
+						if ext in plyAll:
 							# Entry is playable
-							service = self.getPlayerService(pathname, dir, ext)
+							service = self.getPlayerService(pathname, entry, ext)
 							if not self.serviceMoving(service) and not self.serviceDeleting(service):
 								yield service
 								
@@ -1508,7 +1509,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 							if dvdStruct:
 								path = os.path.dirname(dvdStruct)
 								ext = os.path.splitext(dvdStruct)[1].lower()
-								service = self.getPlayerService(path, dir, ext)
+								service = self.getPlayerService(path, entry, ext)
 								if not self.serviceMoving(service) and not self.serviceDeleting(service):
 									yield service
 

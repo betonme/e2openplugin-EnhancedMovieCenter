@@ -915,29 +915,54 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 					self.session.open(MessageBox, _("File not available."), MessageBox.TYPE_ERROR, 10)
 
 	def playLast(self):
+		# Avoid starting several times in different modes
+		if self["wait"].instance.isVisible():
+			return
 		if self.multiSelectIdx:
 			self.multiSelectIdx = None
 			self.updateTitle()
 		if self.lastPlayedMovies is None:
 			self.session.open(MessageBox, _("Last played movie/playlist not available..."), MessageBox.TYPE_ERROR, 10)
 		else:
-			self.openPlayer(self.lastPlayedMovies)
+			# Show a notification to indicate the Play function
+			self["wait"].setText( _("Play last movie starting") )
+			self["wait"].show()
+			DelayedFunction(3000, self.loading, False)
+			DelayedFunction(2000, self.openPlayer, self.lastPlayedMovies)
 
 	def playAll(self):
+		# Avoid starting several times in different modes
+		if self["wait"].instance.isVisible():
+			return
 		if self.multiSelectIdx:
 			self.multiSelectIdx = None
 			self.updateTitle()
+		# Show a notification to indicate the Play function
+		self["wait"].setText( _("Play All starting") )
+		self["wait"].show()
+		DelayedFunction(2000, self.loading, False)
+		# Initialize play all
 		playlist = [self.getCurrent()] 
 		playall = self["list"].getNextService()
-		self.openPlayer(playlist, playall)
+		#self.openPlayer(playlist, playall)
+		DelayedFunction(2000, self.openPlayer, playlist, playall)
 
 	def shuffleAll(self):
+		# Avoid starting several times in different modes
+		if self["wait"].instance.isVisible():
+			return
 		if self.multiSelectIdx:
 			self.multiSelectIdx = None
 			self.updateTitle()
+		# Show a notification to indicate the Shuffle function
+		self["wait"].setText( _("Shuffle All starting") )
+		self["wait"].show()
+		DelayedFunction(2000, self.loading, False)
+		# Initialize shuffle all
 		playlist = [self.getCurrent()] 
 		shuffleall = self["list"].getRandomService()
-		self.openPlayer(playlist, shuffleall)
+		#self.openPlayer(playlist, shuffleall)
+		DelayedFunction(2000, self.openPlayer, playlist, shuffleall)
 
 	def scriptCB(self, result=None):
 		if result is None: return
@@ -989,6 +1014,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		self.updateEventInfo(None)
 		if loading:
 			self["list"].hide()
+			self["wait"].setText( _("Reading directory...") )
 			self["wait"].show()
 		else:
 			self["wait"].hide()
