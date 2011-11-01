@@ -703,7 +703,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 				elif ext == cmtBM:
 					datetext = _("Bookmark")
 					pixmap = self.pic_bookmark
-				elif ext in cmtTrash:
+				elif ext == cmtTrash:
 					if config.EMC.movie_trashcan_enable.value and config.EMC.movie_trashcan_info.value:
 						#TODO Improve performance
 						count = 0
@@ -963,7 +963,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 			return dvdpath
 		return None
 	
-	def createDirList(self, loadPath):
+	def createDirList(self, path):
 		subdirlist, filelist = [], []
 		dvdStruct = None
 		pathname, ext = "", ""
@@ -981,51 +981,59 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 		pathisfile = os.path.isfile
 		pathisdir = os.path.isdir
 		
-		if os.path.exists(loadPath):
+		if os.path.exists(path):
 			
 			# Get directory listing
-			for p in os.listdir(loadPath):
+			#TEST later performance listdir vs walk
+			#for file in os.listdir(path):
+			for root, dirs, files in os.walk(path):
 				
-				# This will decrease the function execution time massively
-				ext = splitext(p)[1].lower()
-				if ext not in localExtList:
-					continue
-				
-				if hideitemlist:
-					if p in hideitemlist or (p[0:1] == "." and ".*" in hideitemlist):
+				for file in files:
+					
+					# This will decrease the function execution time massively
+					ext = splitext(file)[1].lower()
+					if ext not in localExtList:
 						continue
-				
-				pathname = pathjoin(loadPath, p)
-				
-				if pathisfile(pathname):
-					# Media file found
-					# Check is done implizit with in listDir and isfile
-					# Avoid retesting ( if ext in extMedia )
-					fappend( (pathname, p, ext) )
-				
-				elif pathisdir(pathname):
 					
-					# Display folders capitalized
-					p.capitalize()
-					
-					if check_dvdstruct:
-						dvdStruct = self.detectDVDStructure(pathname)
-						if dvdStruct:
-							# DVD Structure found
-							pathname = os.path.dirname(dvdStruct)
-							ext = splitext(dvdStruct)[1].lower()
-							fappend( (pathname, p, ext) )
+					if hideitemlist:
+						if file in hideitemlist or (file[0:1] == "." and ".*" in hideitemlist):
 							continue
 					
-					# Folder found
-					if pathname != movie_trashpath and config.EMC.directories_show.value:
-						dappend( (pathname, p, cmtDir) )
+					pathname = pathjoin(path, file)
+					
+					# Filter dead links
+					if pathisfile(pathname):
+						# Media file found
+						fappend( (pathname, file, ext) )
 				
-				else:
-					# We have found a dead link
-					# Can be a file or folder
-					#IDEA: Display them optionally?
-					pass
+				for dir in dirs:
+					
+					if hideitemlist:
+						if dir in hideitemlist or (dir[0:1] == "." and ".*" in hideitemlist):
+							continue
+					
+					pathname = pathjoin(path, dir)
+					
+					# Filter dead links
+					if pathisdir(pathname):
+						# Display folders capitalized
+						dir.capitalize()
+						
+						if check_dvdstruct:
+							dvdStruct = self.detectDVDStructure(pathname)
+							if dvdStruct:
+								# DVD Structure found
+								pathname = os.path.dirname(dvdStruct)
+								ext = splitext(dvdStruct)[1].lower()
+								fappend( (pathname, dir, ext) )
+								continue
+						
+						# Folder found
+						if pathname != movie_trashpath and config.EMC.directories_show.value:
+							dappend( (pathname, dir, cmtDir) )
+				
+				# We only want the topdir
+				break
 		
 		del dappend
 		del fappend
