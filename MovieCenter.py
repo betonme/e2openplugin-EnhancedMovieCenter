@@ -972,7 +972,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 		
 		# Improve performance and avoid dots
 		movie_trashpath = config.EMC.movie_trashcan_enable.value and config.EMC.movie_trashcan_path.value
-		check_dvdstruct = config.EMC.check_dvdstruct.value and loadPath not in self.nostructscan
+		check_dvdstruct = config.EMC.check_dvdstruct.value and path not in self.nostructscan
 		hideitemlist = self.hideitemlist
 		localExtList = extList
 		
