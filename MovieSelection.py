@@ -106,7 +106,8 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			{
 				"EMCOK":			(self.entrySelected,		_("Play selected movie(s)")),
 #				"EMCOKL":			(self.unUsed,				"-"),
-				"EMCPLAY":		(self.PlayAll,		_("Play ALL")),
+				"EMCPLAY":		(self.playAll,		_("Play All")),
+				"EMCSHUFFLE":	(self.shuffleAll,		_("Shuffle All")),
 				"EMCEXIT":		(self.abort, 				_("Close EMC")),
 				"EMCMENU":		(self.openMenu,				_("Open menu")),
 				"EMCINFO":		(self.showEventInformation,	_("Show event info")),
@@ -374,6 +375,9 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 	def menuCallback(self, selection=None, parameter=None):
 		if selection is not None:
 			if selection == "Play last": self.playLast()
+			elif selection == "playall": self.playAll()
+			elif selection == "shuffleall": self.shuffleAll()
+			
 			elif selection == "Movie home": self.changeDir(config.EMC.movie_homepath.value)
 			elif selection == "reload": self.reloadList()
 			elif selection == "plugin": self.onDialogShow()
@@ -919,13 +923,21 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		else:
 			self.openPlayer(self.lastPlayedMovies)
 
-	def PlayAll(self):
+	def playAll(self):
 		if self.multiSelectIdx:
 			self.multiSelectIdx = None
 			self.updateTitle()
 		playlist = [self.getCurrent()] 
 		playall = self["list"].getNextService()
 		self.openPlayer(playlist, playall)
+
+	def shuffleAll(self):
+		if self.multiSelectIdx:
+			self.multiSelectIdx = None
+			self.updateTitle()
+		playlist = [self.getCurrent()] 
+		shuffleall = self["list"].getRandomService()
+		self.openPlayer(playlist, shuffleall)
 
 	def scriptCB(self, result=None):
 		if result is None: return

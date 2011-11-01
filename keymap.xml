@@ -80,7 +80,8 @@
 		<key id="\x0a" mapto="EMCOK" flags="m" />
 		<key id="\x1b" mapto="EMCEXIT" flags="m" />
 		<key id="KEY_OK" mapto="EMCOK" flags="m" />
-		<key id="KEY_PLAY" mapto="EMCPLAY" flags="m" />
+		<key id="KEY_PLAY" mapto="EMCPLAY" flags="b" />
+		<key id="KEY_PLAY" mapto="EMCSHUFFLE" flags="l" />
 		<key id="KEY_PLAYPAUSE" mapto="EMCPLAY" flags="m" />
 		<key id="KEY_EXIT" mapto="EMCEXIT" flags="m" />
 		<key id="KEY_ESC" mapto="EMCEXIT" flags="m" />

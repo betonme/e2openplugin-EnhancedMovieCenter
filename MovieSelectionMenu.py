@@ -61,6 +61,9 @@ class MovieMenu(Screen, E2Bookmarks):
 			else:
 				self.menu.append((_("Movie home"), boundFunction(self.close, "Movie home")))
 			
+			self.menu.append((_("Play All"), boundFunction(self.close, "playall")))
+			self.menu.append((_("Shuffle All"), boundFunction(self.close, "shuffleall")))
+			
 			if config.EMC.movie_trashcan_enable.value and os.path.exists(config.EMC.movie_trashcan_path.value):
 				if service:
 					self.menu.append((_("Delete permanently"), boundFunction(self.close, "delete")))

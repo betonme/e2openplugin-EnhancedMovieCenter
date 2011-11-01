@@ -20,6 +20,8 @@
 #
 import math
 import os
+import random
+
 from collections import defaultdict
 from time import time
 from datetime import datetime
@@ -1078,7 +1080,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 						dappend( d )
 				
 				# Store the media files
-				fextend( [ f for f in subfilelist if pathsplitext(f)[1].lower() in extTS ] )
+				fextend( [ (p,f,e) for p,f,e in subfilelist if e in extTS ] )
 		
 		del dappend
 		del fextend
@@ -1425,13 +1427,57 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 			idx = self.getCurrentIndex()
 			length = len(self.list)
 			for i in xrange(length):
-				entry = self.list[(i+idx)%length]
-				if entry:
-					if entry[2]: 
-						# Entry is no directory
-						service = entry[0]
-						if not self.serviceMoving(service) and not self.serviceDeleting(service):
-							yield service
+				entry = self.list[ (i+idx)%length ]
+				if entry and entry[7] in plyAll:
+					# Entry is no directory
+					service = entry[0]
+					if not self.serviceMoving(service) and not self.serviceDeleting(service):
+						yield service
+		elif self.currentSelIsDirectory():
+			# Cursor marks a directory
+			#IDEA: Optionally play also the following movielist items (folders and movies)
+			path = self.getCurrentSelDir()
+			# Don't play movies from the trash folder or ".."
+			if path != config.EMC.movie_trashcan_path.value and path != "..":
+				#TODO Reuse the reload and createdirlist function
+					# Then the files are sorted and played in their correct order
+					# So we don't have the whole dir and file recognition handling twice
+					# Simulate reload:	tmplist = self.reload(path, True)
+				for root, dirs, files in os.walk(path): #,False):
+					if dirs:
+						for dir in dirs:
+							pathname = os.path.join(root, dir)
+							dvdStruct = self.detectDVDStructure( pathname )
+							if dvdStruct:
+								pathname = os.path.dirname(dvdStruct)
+								ext = os.path.splitext(dvdStruct)[1].lower()
+								service = self.getPlayerService(pathname, dir, ext)
+								if not self.serviceMoving(service) and not self.serviceDeleting(service):
+									yield service
+					if files:
+						for name in files:
+							ext = os.path.splitext(name)[1].lower()
+							if ext in extMedia:
+								pathname = os.path.join(root, name)
+								#TODO get formatted Name
+								service = self.getPlayerService(pathname, name, ext)
+								if not self.serviceMoving(service) and not self.serviceDeleting(service):
+									yield service
+
+	def getRandomService(self):
+		#IDEA: Optionally loop over all
+		if self.currentSelIsPlayable():
+			# Cursor marks a movie
+			length = len(self.list)
+			rand = range(length)
+			print rand
+			for i in random.shuffle( rand ):
+				entry = self.list[i]
+				if entry and entry[7] in plyAll:
+					# Entry is no directory
+					service = entry[0]
+					if not self.serviceMoving(service) and not self.serviceDeleting(service):
+						yield service
 		elif self.currentSelIsDirectory():
 			# Cursor marks a directory
 			#IDEA: Optionally play also the following movielist items (folders and movies)
@@ -1442,24 +1488,27 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 					#TODO Then the files are sorted and played in their correct order
 					# So we don't have the whole dir and file recognition handling twice
 					# Simulate reload:	tmplist = self.reload(path, True)
-				for root, dirs, files in os.walk(path): #,False):
-					if dirs:
-						for dir in dirs:
-							path = os.path.join(root, dir)
-							dvdStruct = self.detectDVDStructure( path )
+				for root, dirs, files in os.walk(path):
+					#TODO Shuffle between dirs and files
+					entries = dirs + files
+					length = len(entries)
+					rand = range(length)
+					print rand
+					for i in random.shuffle( rand ):
+						entry = entries[i]
+						pathname = os.path.join(root, entry)
+						if os.path.splitext()[0] in plyAll:
+							# Entry is playable
+							service = self.getPlayerService(pathname, dir, ext)
+							if not self.serviceMoving(service) and not self.serviceDeleting(service):
+								yield service
+								
+						elif os.path.isdir(pathname):
+							dvdStruct = self.detectDVDStructure( pathname )
 							if dvdStruct:
 								path = os.path.dirname(dvdStruct)
 								ext = os.path.splitext(dvdStruct)[1].lower()
 								service = self.getPlayerService(path, dir, ext)
-								if not self.serviceMoving(service) and not self.serviceDeleting(service):
-									yield service
-					if files:
-						for name in files:
-							ext = os.path.splitext(name)[1].lower()
-							if ext in extMedia:
-								path = os.path.join(root, name)
-								#TODO get formatted Name
-								service = self.getPlayerService(path, name, ext)
 								if not self.serviceMoving(service) and not self.serviceDeleting(service):
 									yield service
 
