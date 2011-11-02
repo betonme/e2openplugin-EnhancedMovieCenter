@@ -1211,8 +1211,21 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 				sorttitle, sortprefix = "", ""
 				service = self.getPlayerService(path, filename)
 				
+				# Very bad but there can be both encodings
+				# E2 recordings are always in utf8
+				# User files can be in cp1252
+				#TODO Is there no other way?
+				title = filename
+				try:
+					title.decode('utf-8')
+				except UnicodeDecodeError:
+					try:
+						title = title.decode("cp1252").encode("utf-8")
+					except UnicodeDecodeError:
+						title = title.decode("iso-8859-1").encode("utf-8")
+				
 				if ext == cmtUp: sortprefix = "0"
-				elif ext in cmtTrash: sortprefix = "1"
+				elif ext == cmtTrash: sortprefix = "1"
 				elif ext == cmtLRec: sortprefix = "2"
 				elif ext == cmtBM: sortprefix = "3"
 				elif ext == cmtDir: sortprefix = "4"
@@ -1223,7 +1236,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 				
 				sorttitle = sortprefix + filename.lower()
 				
-				append((service, (sorttitle, sorttitle), None, filename, path, 0, 0, ext))
+				append((service, (sorttitle, sorttitle), None, title, path, 0, 0, ext))
 		
 		# Add file entries to the list
 		if filelist is not None:
