@@ -1488,9 +1488,14 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 					#TODO Then the files are sorted and played in their correct order
 					# So we don't have the whole dir and file recognition handling twice
 					# Simulate reload:	tmplist = self.reload(path, True)
+				entries = []
 				for root, dirs, files in os.walk(path):
-					#TODO Shuffle between dirs and files
-					entries = dirs + files
+					for dir in dirs:
+						entries.append( os.path.join(root, dir) )
+					for file in files:
+						entries.append( os.path.join(root, file) )
+				
+				if entries:
 					length = len(entries)
 					shuffle = range(length)
 					random.shuffle( shuffle )
