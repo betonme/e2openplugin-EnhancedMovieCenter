@@ -196,6 +196,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 		self.recControl = RecordingsControl(self.recStateChange)
 		self.highlightsMov = []
 		self.highlightsDel = []
+		self.highlightsCpy = []
 		
 		self.pic_back            = LoadPixmap(cached=True, path='/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/back.png')
 		self.pic_directory       = LoadPixmap(cached=True, path='/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/dir.png')
@@ -618,6 +619,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 				elif selnum > 0: selnumtxt = "%02d" % selnum
 				if service in self.highlightsMov: selnumtxt = "-->"
 				elif service in self.highlightsDel: selnumtxt = "X"
+				elif service in self.highlightsCpy: selnumtxt = "+"
 				
 				if config.EMC.movie_icons.value and selnumtxt is None:
 					append(MultiContentEntryPixmapAlphaTest(pos=(5,2), size=(24,24), png=pixmap, **{}))
@@ -810,13 +812,16 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 		pass
 
 	def serviceBusy(self, service):
-		return service in self.highlightsMov or service in self.highlightsDel
+		return service in self.highlightsMov or service in self.highlightsDel or service in self.highlightsCpy
 
 	def serviceMoving(self, service):
 		return service and service in self.highlightsMov
 
 	def serviceDeleting(self, service):
 		return service and service in self.highlightsDel
+
+	def serviceCopying(self, service):
+		return service and service in self.highlightsCpy
 
 	def highlightService(self, enable, mode, service):
 		if enable:
@@ -826,11 +831,16 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 			elif mode == "del":
 				self.highlightsDel.append(service)
 				self.toggleSelection(service, overrideNum=9998)
+			elif mode == "copy":
+				self.highlightsCpy.append(service)
+				self.toggleSelection(service, overrideNum=9998)
 		else:
 			if mode == "move":
 				self.highlightsMov.remove(service)
 			elif mode == "del":
 				self.highlightsDel.remove(service)
+			elif mode == "copy":
+				self.highlightsCpy.remove(service)
 
 	def __len__(self):
 		return len(self.list)
@@ -1444,7 +1454,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 				if entry and entry[7] in plyAll:
 					# Entry is no directory
 					service = entry[0]
-					if not self.serviceMoving(service) and not self.serviceDeleting(service):
+					if not self.serviceBusy(service):
 						yield service
 		elif self.currentSelIsDirectory():
 			# Cursor marks a directory
@@ -1465,7 +1475,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 								pathname = os.path.dirname(dvdStruct)
 								ext = os.path.splitext(dvdStruct)[1].lower()
 								service = self.getPlayerService(pathname, dir, ext)
-								if not self.serviceMoving(service) and not self.serviceDeleting(service):
+								if not self.serviceBusy(service):
 									yield service
 					if files:
 						for name in files:
@@ -1474,7 +1484,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 								pathname = os.path.join(root, name)
 								#TODO get formatted Name
 								service = self.getPlayerService(pathname, name, ext)
-								if not self.serviceMoving(service) and not self.serviceDeleting(service):
+								if not self.serviceBusy(service):
 									yield service
 
 	def getRandomService(self):
@@ -1489,7 +1499,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 				if entry and entry[7] in plyAll:
 					# Entry is no directory
 					service = entry[0]
-					if not self.serviceMoving(service) and not self.serviceDeleting(service):
+					if not self.serviceBusy(service):
 						yield service
 		elif self.currentSelIsDirectory():
 			# Cursor marks a directory
@@ -1519,7 +1529,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 						if ext in plyAll:
 							# Entry is playable
 							service = self.getPlayerService(pathname, entry, ext)
-							if not self.serviceMoving(service) and not self.serviceDeleting(service):
+							if not self.serviceBusy(service):
 								yield service
 								
 						elif os.path.isdir(pathname):
@@ -1528,7 +1538,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 								path = os.path.dirname(dvdStruct)
 								ext = os.path.splitext(dvdStruct)[1].lower()
 								service = self.getPlayerService(path, entry, ext)
-								if not self.serviceMoving(service) and not self.serviceDeleting(service):
+								if not self.serviceBusy(service):
 									yield service
 
 	def getPlayerService(self, path, name="", ext=None):

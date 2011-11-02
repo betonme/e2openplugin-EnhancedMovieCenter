@@ -94,7 +94,8 @@
 
 		<key id="KEY_RED" mapto="EMCRed" flags="m" />
 		<key id="KEY_GREEN" mapto="EMCGreen" flags="m" />
-		<key id="KEY_YELLOW" mapto="EMCYellow" flags="m" />
+		<key id="KEY_YELLOW" mapto="EMCMOVE" flags="b" />
+		<key id="KEY_YELLOW" mapto="EMCCOPY" flags="l" />
 		<key id="KEY_BLUE" mapto="EMCBlue" flags="b" />
 		<key id="KEY_BLUE" mapto="EMCBlueL" flags="l" />
 

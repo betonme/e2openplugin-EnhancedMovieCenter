@@ -114,11 +114,11 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 				"EMCINFOL":		(self.IMDbSearch,			_("IMDBSearch")),
 				"EMCRed":			(self.deleteFile,			_("Delete file or empty dir")),
 				"EMCGreen":		(self.toggleSort,			_("Toggle sort mode")),
-				"EMCYellow":	(self.moveMovie,			_("Move selected movie(s)")),
+				"EMCMOVE":		(self.moveMovie,			_("Move selected movie(s)")),
+				"EMCCOPY":		(self.copyMovie,			_("Copy selected movie(s)")),
 				"EMCBlue":		(self.blueFunc,				_("Movie home / Play last (configurable)")),
 #				"EMCRedL":		(self.unUsed,				"-"),
 #				"EMCGreenL":	(self.unUsed,				"-"),
-#				"EMCYellowL":	(self.unUsed,				"-"),
 				"EMCBlueL":		(self.openBookmark,		_("Open E2 bookmarks")),
 				"EMCLeft":		(self.pageUp,				_("Move cursor page up")),
 				"EMCRight":		(self.pageDown,				_("Move cursor page down")),
@@ -155,6 +155,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		self.currentPath = config.EMC.movie_homepath.value
 		self.tmpSelList = None
 		self.toggle = True
+		self.busy = False # For PlayLast / PlayAll / ShuffleAll and Move / Copy
 		
 		self.onShow.append(self.onDialogShow)
 		self.onHide.append(self.onDialogHide)
@@ -916,8 +917,10 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 
 	def playLast(self):
 		# Avoid starting several times in different modes
-		if self["wait"].instance.isVisible():
+		if self.busy:
+			self.busy = False
 			return
+		self.busy = True
 		if self.multiSelectIdx:
 			self.multiSelectIdx = None
 			self.updateTitle()
@@ -932,8 +935,10 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 
 	def playAll(self):
 		# Avoid starting several times in different modes
-		if self["wait"].instance.isVisible():
+		if self.busy:
+			self.busy = False
 			return
+		self.busy = True
 		if self.multiSelectIdx:
 			self.multiSelectIdx = None
 			self.updateTitle()
@@ -949,8 +954,10 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 
 	def shuffleAll(self):
 		# Avoid starting several times in different modes
-		if self["wait"].instance.isVisible():
+		if self.busy:
+			self.busy = False
 			return
+		self.busy = True
 		if self.multiSelectIdx:
 			self.multiSelectIdx = None
 			self.updateTitle()
@@ -1094,12 +1101,17 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			self["list"].removeService(service)
 		self.updateMovieInfo()
 
+	def copyCB(self, service):
+		self["list"].highlightService(False, "copy", service)	# remove the highlight
+		self.updateMovieInfo()
+
 #Think about: All file operations should be separate or in MovieCenter.py 
 
 	def execFileOp(self, targetPath, current, selectedlist, op="move", purgeTrash=False):
 		self.returnService = self.getNextSelectedService(current, selectedlist)
-		mvCmd = ""
 		rmCmd = ""
+		mvCmd = ""
+		cpCmd = ""
 		association = []
 		for service in selectedlist:
 			path = os.path.splitext( self["list"].getFilePathOfService(service) )[0]
@@ -1134,13 +1146,35 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 					if config.EMC.movie_hide_mov.value:
 						self["list"].removeService(service)
 					self.moveRecCheck(service, targetPath)
+				elif op == "copy":
+					#if self.mountpoint(self.currentPath) == self.mountpoint(targetPath):
+					#	#self["list"].removeService(service)	# normal direct move
+					#	pass
+					#else:
+					# different self.mountpoint? -> reset user&group
+					if self.mountpoint(targetPath) != self.mountpoint(config.EMC.movie_homepath.value):		# CIFS to HDD is ok!
+						# need to change file ownership to match target filesystem file creation
+						tfile = targetPath + "/owner_test"
+						sfile = "\""+ path +".\"*"
+						cpCmd += "; touch %s;ls -l %s | while read flags i owner group crap;do chown $owner:$group %s;done;rm %s" %(tfile,tfile,sfile,tfile)
+					cpCmd += '; c "'+ path +'."* "'+ targetPath +'/"'
+					association.append((self.copyCB, service))	# put in a callback for this particular movie
+					self["list"].highlightService(True, "copy", service)
+					#if config.EMC.movie_hide_mov.value:
+					#	self["list"].removeService(service)
 				self.lastPlayedCheck(service)
 		self["list"].resetSelection()
-		if (mvCmd + rmCmd) != "":
+		cmd = cpCmd + mvCmd + rmCmd
+		if cmd != "":
 			association.append((self.initCursor, False)) # Set new Cursor position
-			emcTasker.shellExecute((mvCmd + rmCmd)[2:], association)	# first move, then delete if expiration limit is 0
+			emcTasker.shellExecute(cmd[2:], association)	# first move, then delete if expiration limit is 0
 
 	def moveMovie(self):
+		# Avoid starting move and copy at the same time
+		if self.busy:
+			self.busy = False
+			return
+		self.busy = True
 		if self.multiSelectIdx:
 			self.multiSelectIdx = None
 			self.updateTitle()
@@ -1190,6 +1224,54 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			current = self.getCurrent()
 			self.execFileOp(targetPath, current, self.tmpSelList)
 			emcDebugOut("[EMCMS] mvDirSelected")
+
+	def copyMovie(self):
+		# Avoid starting move and copy at the same time
+		if self.busy:
+			self.busy = False
+			return
+		self.busy = True
+		if self.multiSelectIdx:
+			self.multiSelectIdx = None
+			self.updateTitle()
+		if self.browsingVLC() or self["list"].getCurrentSelDir() == "VLC servers": return
+		current = self.getCurrent()
+		if current is not None:
+			selectedlist = self["list"].makeSelectionList()
+			dialog = False
+			if self["list"].currentSelIsDirectory():
+				if current != selectedlist[0]:	# first selection != cursor pos?
+					targetPath = self.currentPath
+					if self["list"].getCurrentSelDir() == "..":
+						targetPath = os.path.dirname(targetPath)
+					else:
+						#targetPath += "/" + self["list"].getCurrentSelDir()
+						targetPath = self["list"].getCurrentSelDir()
+					self.tmpSelList = selectedlist[:]
+					self.execFileOp(targetPath, current, self.tmpSelList, op="copy")
+					self["list"].resetSelection()
+				else:
+					if len(selectedlist) == 1:
+						self.session.open(MessageBox, _("How to copy files:\nSelect some movies with the VIDEO-button, move the cursor on top of the destination directory and press yellow long."), MessageBox.TYPE_ERROR, 10)
+					else:
+						dialog = True
+			else:
+				dialog = True
+			if dialog:
+				try:
+					from Screens.LocationBox import MovieLocationBox
+					if len(selectedlist)==1 and self["list"].serviceBusy(selectedlist[0]): return
+					self.tmpSelList = selectedlist[:]
+					self.session.openWithCallback(self.cpDirSelected, MovieLocationBox, text = _("Choose directory"), dir = str(self.currentPath)+"/", minFree = 0)
+				except:
+					self.session.open(MessageBox, _("How to copy files:\nSelect some movies with the VIDEO-button, move the cursor on top of the destination directory and press yellow long."), MessageBox.TYPE_ERROR, 10)
+			emcDebugOut("[EMCMS] copyMovie")
+
+	def cpDirSelected(self, targetPath):
+		if targetPath is not None:
+			current = self.getCurrent()
+			self.execFileOp(targetPath, current, self.tmpSelList, op="copy")
+			emcDebugOut("[EMCMS] cpDirSelected")
 
 	def trashcanCreate(self, confirmed):
 		try:
