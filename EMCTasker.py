@@ -64,7 +64,10 @@ class EMCExecutioner:
 	def isIdle(self):
 		return self.executing == ""
 
-	def shellExecute(self, string, associated=None):	# associated = tuple:(callback, parameter) #TODO use args to enable support for several parameters 
+	def shellExecute(self, string, associated=None):	# associated = tuple:(callback, parameter)  
+		#TODO use args to enable support for several parameters
+		#TODO use string as list to execute several scripts in sequence and after every script run the corresponding associated function  
+		#if not isinstance(string, list):
 		string = string.replace("; ","\n")
 		try:
 			if associated is not None and associated != []:
