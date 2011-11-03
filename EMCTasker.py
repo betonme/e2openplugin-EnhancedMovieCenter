@@ -64,8 +64,10 @@ class EMCExecutioner:
 	def isIdle(self):
 		return self.executing == ""
 
-	def shellExecute(self, string, associated=None):	# associated = tuple:(callback, parameter)  
-		#TODO use args to enable support for several parameters
+	def shellExecute(self, string, associated=None):	
+		# string = shellcommand
+		# associated = tuple:(callback, arg) or tuple:(callback, [arg1, arg2])  
+
 		#TODO use string as list to execute several scripts in sequence and after every script run the corresponding associated function  
 		#if not isinstance(string, list):
 		string = string.replace("; ","\n")
@@ -100,9 +102,10 @@ class EMCExecutioner:
 			os.remove(self.executing)
 			associated = self.associated[ self.execCount-1 & 1 ]
 			emcDebugOut("[emcTasker] sh exec %s finished, return status = %s%s" %(self.executing, str(retval), self.returnData))
-			for x in associated:
-				if x[0] is not None:
-					x[0](x[1])			# callback(service)
+			for f, args in associated:
+				if f is not None:
+					# callback( arg1, arg2 )
+					f( *args )
 			self.associated[ self.execCount-1 & 1 ][:] = []	# clear list
 			self.returnData = ""
 			
