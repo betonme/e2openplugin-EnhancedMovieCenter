@@ -154,8 +154,12 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		
 		self.currentPath = config.EMC.movie_homepath.value
 		self.tmpSelList = None
+		
+		# Key press short long handling
+		#TODO We have to rework this key press handling in order to allow different user defined color key functions
 		self.toggle = True
-		self.busy = False # For PlayLast / PlayAll / ShuffleAll and Move / Copy
+		self.move = True
+		self.busy = False			# Allow playback only in one mode: PlayEntry / PlayLast / PlayAll / ShuffleAll
 		
 		self.onShow.append(self.onDialogShow)
 		self.onHide.append(self.onDialogHide)
@@ -478,15 +482,14 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		if self.toggle == False:
 			self.toggle = True
 			return
-		if self.toggle:
-			if self["list"].currentSelIsPlayable():
-				self["list"].toggleSelection()
-			# Move cursor
-			if config.EMC.moviecenter_selmove.value != "o":
-				if self.cursorDir == -1 and config.EMC.moviecenter_selmove.value == "b":
-					self.moveToIndex( max(self.getCurrentIndex()-1, 0) )
-				else:
-					self.moveToIndex( min(self.getCurrentIndex()+1, len(self["list"])-1) )
+		if self["list"].currentSelIsPlayable():
+			self["list"].toggleSelection()
+		# Move cursor
+		if config.EMC.moviecenter_selmove.value != "o":
+			if self.cursorDir == -1 and config.EMC.moviecenter_selmove.value == "b":
+				self.moveToIndex( max(self.getCurrentIndex()-1, 0) )
+			else:
+				self.moveToIndex( min(self.getCurrentIndex()+1, len(self["list"])-1) )
 
 	def resetSelectionList(self):
 		if self.multiSelectIdx:
@@ -593,11 +596,12 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			self.session.open(EventViewSimple, evt, ServiceReference(self.getCurrent()))
 
 	def initCursor(self, ifunknown=True):
+		self.tmpSelList = None
+		
 		if self.returnService:
 			# Move to next or last selected entry
 			self.moveToService(self.returnService)
 			#TODOret if self.returnService: print "EMC ret retSer " +str(self.returnService.toString())
-			#self.tmpSelList = None
 		
 		elif self.playerInstance:
 			# Get current service from movie player
@@ -895,6 +899,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		else:
 			#DelayedFunction(10, self.playerInstance.movieSelected, playlist, playall)
 			self.playerInstance.movieSelected(playlist, playall)
+		self.busy = False
 		self.close(None)
 
 	def entrySelected(self, playall=False):
@@ -915,6 +920,11 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			else:
 				playlist = self["list"].makeSelectionList()
 				if not self["list"].serviceBusy(playlist[0]):
+					# Avoid starting several times in different modes
+					if self.busy:
+						self.busy = False
+						return
+					self.busy = True
 					self.openPlayer(playlist, playall)
 				else:
 					self.session.open(MessageBox, _("File not available."), MessageBox.TYPE_ERROR, 10)
@@ -924,13 +934,13 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		if self.busy:
 			self.busy = False
 			return
-		self.busy = True
 		if self.multiSelectIdx:
 			self.multiSelectIdx = None
 			self.updateTitle()
 		if self.lastPlayedMovies is None:
 			self.session.open(MessageBox, _("Last played movie/playlist not available..."), MessageBox.TYPE_ERROR, 10)
 		else:
+			self.busy = True
 			# Show a notification to indicate the Play function
 			self["wait"].setText( _("Play last movie starting") )
 			self["wait"].show()
@@ -953,7 +963,6 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		# Initialize play all
 		playlist = [self.getCurrent()] 
 		playall = self["list"].getNextService()
-		#self.openPlayer(playlist, playall)
 		DelayedFunction(2000, self.openPlayer, playlist, playall)
 
 	def shuffleAll(self):
@@ -972,7 +981,6 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		# Initialize shuffle all
 		playlist = [self.getCurrent()] 
 		shuffleall = self["list"].getRandomService()
-		#self.openPlayer(playlist, shuffleall)
 		DelayedFunction(2000, self.openPlayer, playlist, shuffleall)
 
 	def scriptCB(self, result=None):
@@ -1109,7 +1117,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		self["list"].highlightService(False, "copy", service)	# remove the highlight
 		self.updateMovieInfo()
 
-#Think about: All file operations should be separate or in MovieCenter.py 
+#Think about: All file operations should be in a separate file
 
 	def execFileOp(self, targetPath, current, selectedlist, op="move", purgeTrash=False):
 		self.returnService = self.getNextSelectedService(current, selectedlist)
@@ -1171,14 +1179,16 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		cmd = cpCmd + mvCmd + rmCmd
 		if cmd != "":
 			association.append((self.initCursor, False)) # Set new Cursor position
+			#TODO the handling should be:
+			# runscript for one file do association for file and continue with next file
+			# Now it is run complete script run all associations
 			emcTasker.shellExecute(cmd[2:], association)	# first move, then delete if expiration limit is 0
 
 	def moveMovie(self):
 		# Avoid starting move and copy at the same time
-		if self.busy:
-			self.busy = False
+		if self.move == False:
+			self.move = True
 			return
-		self.busy = True
 		if self.multiSelectIdx:
 			self.multiSelectIdx = None
 			self.updateTitle()
@@ -1231,10 +1241,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 
 	def copyMovie(self):
 		# Avoid starting move and copy at the same time
-		if self.busy:
-			self.busy = False
-			return
-		self.busy = True
+		self.move = False
 		if self.multiSelectIdx:
 			self.multiSelectIdx = None
 			self.updateTitle()
