@@ -1100,19 +1100,20 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		self.updateMovieInfo()
 
 	def moveCB(self, service):
+		self["list"].highlightService(False, "move", service)	# remove the highlight
 		if not config.EMC.movie_hide_mov.value:
 			self["list"].removeService(service)
-		self["list"].highlightService(False, "move", service)	# remove the highlight
 		self.updateMovieInfo()
 
 	def delCB(self, service):
+		self["list"].highlightService(False, "del", service)	# remove the highlight
 		if not config.EMC.movie_hide_del.value:
 			self["list"].removeService(service)
-		self["list"].highlightService(False, "del", service)	# remove the highlight
 		self.updateMovieInfo()
 
 	def copyCB(self, service):
 		self["list"].highlightService(False, "copy", service)	# remove the highlight
+		self["list"].invalidateService(service)
 		self.updateMovieInfo()
 
 #Think about: All file operations should be in a separate file

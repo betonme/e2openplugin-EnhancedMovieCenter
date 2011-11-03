@@ -614,12 +614,10 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 				colorhighlight = color
 				
 				# Get entry selection number
-				if selnum == 9999: selnumtxt = "-->"
-				elif selnum == 9998: selnumtxt = "X"
-				elif selnum > 0: selnumtxt = "%02d" % selnum
 				if service in self.highlightsMov: selnumtxt = "-->"
 				elif service in self.highlightsDel: selnumtxt = "X"
 				elif service in self.highlightsCpy: selnumtxt = "+"
+				elif selnum > 0: selnumtxt = "%02d" % selnum
 				
 				if config.EMC.movie_icons.value and selnumtxt is None:
 					append(MultiContentEntryPixmapAlphaTest(pos=(5,2), size=(24,24), png=pixmap, **{}))
@@ -827,13 +825,13 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 		if enable:
 			if mode == "move":
 				self.highlightsMov.append(service)
-				self.toggleSelection(service, overrideNum=9999)
+				self.unselectService(service)
 			elif mode == "del":
 				self.highlightsDel.append(service)
-				self.toggleSelection(service, overrideNum=9998)
+				self.unselectService(service)
 			elif mode == "copy":
 				self.highlightsCpy.append(service)
-				self.toggleSelection(service)
+				self.unselectService(service)
 		else:
 			if mode == "move":
 				self.highlightsMov.remove(service)
