@@ -1352,7 +1352,9 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 												# move movie into the trashcan
 												mvCmd += '; mv "'+ fullpath +'."* "'+ movie_trashpath +'"'
 						if mvCmd != "":
-							emcTasker.shellExecute(mvCmd[2:])
+							association = []
+							association.append((self.reloadList))	# Force list reload after cleaning
+							emcTasker.shellExecute(mvCmd[2:], association)
 							emcDebugOut("[EMCMS] finished movie cleanup activated")
 						else:
 							emcDebugOut("[EMCMS] finished movie cleanup: nothing to move...")
