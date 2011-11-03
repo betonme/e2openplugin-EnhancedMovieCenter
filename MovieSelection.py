@@ -1161,7 +1161,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 						tfile = targetPath + "/owner_test"
 						sfile = "\""+ path +".\"*"
 						cpCmd += "; touch %s;ls -l %s | while read flags i owner group crap;do chown $owner:$group %s;done;rm %s" %(tfile,tfile,sfile,tfile)
-					cpCmd += '; c "'+ path +'."* "'+ targetPath +'/"'
+					cpCmd += '; cp "'+ path +'."* "'+ targetPath +'/"'
 					association.append((self.copyCB, service))	# put in a callback for this particular movie
 					self["list"].highlightService(True, "copy", service)
 					#if config.EMC.movie_hide_mov.value:
