@@ -138,7 +138,7 @@ class MovieMenu(Screen, E2Bookmarks):
 		self.session.openWithCallback(
 				boundFunction(self.createLinkCB, currentPath),
 				MovieLocationBox,
-				text = _("Choose directory"),
+				text = _("Create Link: Choose directory"),
 				dir = str(self.currentPath)+"/",
 				minFree = 0)
 
