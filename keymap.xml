@@ -61,7 +61,6 @@
 		<key id="KEY_CHANNELUP" mapto="nextTitle" flags="l" />
 		<key id="KEY_CHANNELDOWN" mapto="prevTitle" flags="l" />
 		<device name="dreambox remote control (native)">
-			<key id="KEY_AUDIO" mapto="AudioSelection" flags="b" />
 			<key id="KEY_AUDIO" mapto="dvdAudioMenu" flags="l" />
 			<key id="KEY_RADIO" mapto="dvdAudioMenu" flags="l" />
 			<key id="KEY_RADIO" mapto="nextAudioTrack" flags="b" />
@@ -69,7 +68,6 @@
 			<key id="KEY_VIDEO" mapto="nextAngle" flags="m" />
 		</device>
 		<device name="dreambox advanced remote control (native)">
-			<!-- <key id="KEY_YELLOW" mapto="audioSelection" flags="b" /> InfoBarAudioSelection -->
 			<key id="KEY_RADIO" mapto="dvdAudioMenu" flags="l" />
 			<key id="KEY_RADIO" mapto="nextAudioTrack" flags="b" />
 			<key id="KEY_TEXT" mapto="nextSubtitleTrack" flags="m" />

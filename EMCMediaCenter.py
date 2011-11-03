@@ -130,7 +130,6 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 				"nextTitle": (self.nextTitle, _("jump forward to the next title")),
 				"prevTitle": (self.prevTitle, _("jump back to the previous title")),
 				"dvdAudioMenu": (self.enterDVDAudioMenu, _("(show optional DVD audio menu)")),
-				"AudioSelection": (self.audioSelection, _("Select audio track")),	# InfoBarAudioSelection
 				"nextAudioTrack": (self.nextAudioTrack, _("switch to the next audio track")),
 				"nextSubtitleTrack": (self.nextSubtitleTrack, _("switch to the next subtitle language")),
 				"nextAngle": (self.nextAngle, _("switch to the next angle")),
@@ -410,12 +409,14 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 		try:
 			if not config.EMC.autosubs.value or not enabled: return
 			from Tools.ISO639 import LanguageCodes as langC
-			#s = self.getCurrentServiceSubtitle()
-			subs = self.getServiceInterface("subtitle")
-			lt = [ (e, (e[0] == 0 and "DVB" or e[0] == 1 and "TXT" or "???")) for e in (subs and subs.getSubtitleList() or []) ]
-			l = [ [e[0], e[1], langC.has_key(e[0][4]) and langC[e[0][4]][0] or e[0][4] ] for e in lt ]
-			for sublang in [config.EMC.sublang1.value, config.EMC.sublang2.value, config.EMC.sublang3.value]:
-				if self.trySubEnable(l, sublang): break
+			subs = self.getCurrentServiceSubtitle() or self.getServiceInterface("subtitle")
+			if subs:
+				lt = [ (e, (e[0] == 0 and "DVB" or e[0] == 1 and "TXT" or "???")) for e in (subs and subs.getSubtitleList() or []) ]
+				if lt:
+					l = [ [e[0], e[1], langC.has_key(e[0][4]) and langC[e[0][4]][0] or e[0][4] ] for e in lt ]
+					if l:
+						for sublang in [config.EMC.sublang1.value, config.EMC.sublang2.value, config.EMC.sublang3.value]:
+							if self.trySubEnable(l, sublang): break
 		except Exception, e:
 			emcDebugOut("[EMCPlayer] setSubtitleState exception:\n" + str(e))
 
