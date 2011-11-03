@@ -833,7 +833,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 				self.toggleSelection(service, overrideNum=9998)
 			elif mode == "copy":
 				self.highlightsCpy.append(service)
-				self.toggleSelection(service, overrideNum=9998)
+				self.toggleSelection(service)
 		else:
 			if mode == "move":
 				self.highlightsMov.remove(service)
