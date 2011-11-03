@@ -69,7 +69,7 @@ class MovieMenu(Screen, E2Bookmarks):
 					self.menu.append((_("Delete permanently"), boundFunction(self.close, "delete")))
 				self.menu.append((_("Empty trashcan"), boundFunction(self.emptyTrash)))
 				self.menu.append((_("Go to trashcan"), boundFunction(self.close, "trash")))
-			self.menu.append((_("Mark all movies"), boundFunction(self.markAllMovies)))
+			self.menu.append((_("Mark all movies"), boundFunction(self.close, "markall")))
 			self.menu.append((_("Remove rogue files"), boundFunction(self.remRogueFiles)))
 			self.menu.append((_("Create link"), boundFunction(self.createLink, currentPath)))
 			self.menu.append((_("Create directory"), boundFunction(self.createDir, currentPath)))
@@ -193,11 +193,6 @@ class MovieMenu(Screen, E2Bookmarks):
 			path = config.EMC.movie_trashcan_enable.value and config.EMC.movie_trashcan_path.value
 			emcTasker.shellExecute( check.getScript(path) )
 			self.session.open(MessageBox, check.getStatistics(), MessageBox.TYPE_INFO)
-		self.close(None)
-
-	def markAllMovies(self):
-		for i in xrange( len (self.mlist) ):
-			self.mlist.toggleSelection( index=i )
 		self.close(None)
 
 	def remCutListMarker(self):

@@ -888,7 +888,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 		if x is None: return
 		
 		# We have x=service, index, overrideNum
-		if self.indexIsDirectory(index): return
+		if not self.indexIsPlayable(index): return
 		if self.selectionList == None:
 			self.selectionList = []
 		newselnum = x[5]	# init with old selection number
@@ -1590,6 +1590,10 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 
 	def indexIsDirectory(self, index):
 		try:	return self.list[index][7] == cmtDir
+		except:	return False
+
+	def indexIsPlayable(self, index):
+		try:	return self.list[index][7] in extMedia
 		except:	return False
 
 	def getCurrentSelDir(self):

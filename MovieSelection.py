@@ -378,7 +378,6 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			if selection == "Play last": self.playLast()
 			elif selection == "playall": self.playAll()
 			elif selection == "shuffleall": self.shuffleAll()
-			
 			elif selection == "Movie home": self.changeDir(config.EMC.movie_homepath.value)
 			elif selection == "reload": self.reloadList()
 			elif selection == "plugin": self.onDialogShow()
@@ -391,6 +390,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			elif selection == "rbookmark": self.removeBookmark(parameter)
 			elif selection == "dirup": self.directoryUp()
 			elif selection == "oscripts": self.openScriptMenu()
+			elif selection == "markall": self.markAll()
 
 	def openMenu(self):
 		current = self.getCurrent()
@@ -430,6 +430,10 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		
 		except Exception, e:
 			emcDebugOut("[EMCMS] openScriptMenu exception:\n" + str(e))
+
+	def markAll(self):
+		for i in xrange( len (self["list"]) ):
+			self["list"].toggleSelection( index=i )
 
 	def unUsed(self):
 		self.session.open(MessageBox, _("No functionality set..."), MessageBox.TYPE_INFO)
