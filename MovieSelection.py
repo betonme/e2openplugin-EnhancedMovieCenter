@@ -596,8 +596,6 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			self.session.open(EventViewSimple, evt, ServiceReference(self.getCurrent()))
 
 	def initCursor(self, ifunknown=True):
-		self.tmpSelList = None
-		
 		if self.returnService:
 			# Move to next or last selected entry
 			self.moveToService(self.returnService)
