@@ -105,7 +105,7 @@ class EMCExecutioner:
 			for f, args in associated:
 				if f is not None:
 					# callback( arg1, arg2 )
-					f( *args )
+					f( args )
 			self.associated[ self.execCount-1 & 1 ][:] = []	# clear list
 			self.returnData = ""
 			
