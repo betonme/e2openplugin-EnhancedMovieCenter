@@ -1206,6 +1206,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 		movie_hide_del = config.EMC.movie_hide_del.value
 		movie_show_cutnr = config.EMC.movie_show_cutnr.value
 		movie_show_format = config.EMC.movie_show_format.value
+		title_replace_special_chars = config.EMC.replace_specialchars.value
 		
 		# Avoid dots
 		append = tmplist.append
@@ -1218,12 +1219,17 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 			for path, filename, ext in customlist:
 				sorttitle, sortprefix = "", ""
 				service = self.getPlayerService(path, filename)
+				title = filename
+				
+				# Replace special chars with spaces
+				if title_replace_special_chars:
+					title = title.replace("_"," ")
+					title = title.replace("."," ")
 				
 				# Very bad but there can be both encodings
 				# E2 recordings are always in utf8
 				# User files can be in cp1252
 				#TODO Is there no other way?
-				title = filename
 				try:
 					title.decode('utf-8')
 				except UnicodeDecodeError:
@@ -1274,9 +1280,10 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 					cutnr = title[-3:]
 					title = title[:-4]
 				
-				# Replace underscores with spaces
-				#title = title.replace("_"," ")
-				#title = title.replace("."," ")
+				# Replace special chars with spaces
+				if title_replace_special_chars:
+					title = title.replace("_"," ")
+					title = title.replace("."," ")
 				
 				# Derived from RecordTimer
 				# This is everywhere so test it first

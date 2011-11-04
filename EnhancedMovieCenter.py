@@ -214,7 +214,7 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 			
 			(  separator                                          , config.EMC.about                    , None                  , None                  , 0     , []        , _("") ),
 			(  _("Show directories")                              , config.EMC.directories_show         , None                  , None                  , 0     , []        , _("HELP_Show directories") ),		
-			(  _("Show directories information")                  , config.EMC.directories_info         , None                  , None                  , 0     , [-1]        , _("HELP_Show directories information") ),		
+			(  _("Show directories information")                  , config.EMC.directories_info         , None                  , None                  , 0     , [-1]      , _("HELP_Show directories information") ),		
 			(  _("Show Latest Recordings directory")              , config.EMC.latest_recordings        , None                  , None                  , 0     , []        , _("HELP_Show Latest Recordings directory") ),
 			(  _("Show VLC directory")                            , config.EMC.vlc                      , None                  , None                  , 0     , []        , _("HELP_Show VLC directory") ),
 			(  _("Show E2 Bookmarks in movielist")                , config.EMC.bookmarks_e2             , None                  , None                  , 0     , []        , _("HELP_Show E2 Bookmarks in movielist") ),
@@ -228,6 +228,7 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 			(  separator                                          , config.EMC.about                    , None                  , None                  , 0     , []        , _("") ),
 			(  _("Try to load titles from .meta files")           , config.EMC.movie_metaload           , None                  , None                  , 0     , []        , _("HELP_Try to load titles from .meta files") ),
 			(  _("Try to load titles from .eit files")            , config.EMC.movie_eitload            , None                  , None                  , 0     , []        , _("HELP_Try to load titles from .eit files") ),
+			(  _("Replace special chars in title")                , config.EMC.replace_specialchars     , None                  , None                  , 2     , []        , _("Replace title underscores and points with spaces") ),
 			(  _("Show Movie Format")                             , config.EMC.movie_show_format        , None                  , None                  , 0     , []        , _("HELP_Show Movie Format") ),
 			(  _("Show Cut-Nr if exist")                          , config.EMC.movie_show_cutnr         , None                  , None                  , 0     , []        , _("HELP_Show Cut-Nr if exist") ),
 			
