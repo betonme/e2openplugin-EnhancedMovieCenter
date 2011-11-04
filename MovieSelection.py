@@ -819,7 +819,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 				self.vlcMovieSelected(entry)
 			else:
 				playlist = self["list"].makeSelectionList()
-				if not self["list"].serviceBusy(playlist[0]):
+				if not self["list"].serviceMoving(playlist[0]) and not self["list"].serviceDeleting(playlist[0]):
 					# Avoid starting several times in different modes
 					if self.busy:
 						self.busy = False
