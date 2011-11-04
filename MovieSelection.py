@@ -705,9 +705,227 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 						break
 		return curSerRef
 
-	#TODO
-	# Move all file operation functions to a separate class
+	def loading(self, loading=True):
+		self.updateEventInfo(None)
+		if loading:
+			self["list"].hide()
+			self["wait"].setText( _("Reading directory...") )
+			self["wait"].show()
+		else:
+			self["wait"].hide()
+			self["list"].show()
 
+	def initButtons(self):
+		# Initialize buttons
+		self["key_red"].text = _("Delete")
+		#TODO get color from MovieCenter
+		sort, perm = self["list"].getSorting()
+		green = ""
+		if sort:
+			green = _("Alpha sort")
+		else:
+			green = _("Date sort")
+		if perm == True:
+			green += _(" (P)")
+		self["key_green"].text = green
+		self["key_yellow"].text = _("Move")
+		self["key_blue"].text = _(config.EMC.movie_bluefunc.description[config.EMC.movie_bluefunc.value])
+
+	def initList(self):
+		# Initialize list
+		self.reloadList()
+
+	def triggerReloadList(self):
+		#IDEA:
+		# Short TV refresh list - reloads only progress
+		# Long TV reload  list - finds new movies 
+		self.returnService = self.getNextSelectedService(self.getCurrent(), self.tmpSelList)
+		#TODOret if self.returnService: print "EMC ret triSer " +str(self.returnService.toString())
+		self.reloadList()
+
+	def reloadList(self, path=None):
+		self.multiSelectIdx = None
+		if config.EMC.moviecenter_loadtext.value:
+			self.loading()
+		DelayedFunction(20, self.__reloadList, path)
+
+	def __reloadList(self, path):
+		if path is None:
+			path = self.currentPath
+		
+		# The try here is a nice idea, but it costs us a lot of time
+		# Maybe it should be implemented with a timer
+		
+		#TIME t = time()
+		
+		#try:
+		
+		if self["list"].reload(path):
+			self.currentPath = path
+			self.initButtons()
+			self.initCursor()
+		
+		#except Exception, e:
+		#	#MAYBE: Display MessageBox
+		#	emcDebugOut("[EMCMS] reloadList exception:\n" + str(e))
+		#finally:
+		
+		if config.EMC.moviecenter_loadtext.value:
+			self.loading(False)
+		
+		#TIME print "EMC After reload " + str(time() - t)
+		
+		self.updateMovieInfo()
+
+	#############################################################################
+	# Playback functions
+	#
+	def setPlayerInstance(self, player):
+		try:
+			self.playerInstance = player
+		except Exception, e:
+			emcDebugOut("[EMCMS] setPlayerInstance exception:\n" + str(e))
+
+	def openPlayer(self, playlist, playall=False):
+		# Force update of event info after playing movie 
+		self.updateEventInfo(None)
+		
+		# force a copy instead of an reference!
+		self.lastPlayedMovies = playlist[:]
+		playlistcopy = playlist[:]
+		# Start Player
+		if self.playerInstance is None:
+			Notifications.AddNotification(EMCMediaCenter, playlistcopy, self, playall)
+		else:
+			#DelayedFunction(10, self.playerInstance.movieSelected, playlist, playall)
+			self.playerInstance.movieSelected(playlist, playall)
+		self.busy = False
+		self.close(None)
+
+	def entrySelected(self, playall=False):
+		current = self.getCurrent()
+		if current is not None:
+			# Save service 
+			self.returnService = self.getCurrent() #self.getNextSelectedService(self.getCurrent(), self.tmpSelList)
+			
+			# Think about MovieSelection should only know about directories and files
+			# All other things should be in the MovieCenter
+			if self["list"].currentSelIsVirtual():
+				# Open folder and reload movielist
+				self.setNextPath( self["list"].getCurrentSelDir() )
+			elif self.browsingVLC():
+				# TODO full integration of the VLC Player
+				entry = self["list"].list[ self["list"].getCurrentIndex() ]
+				self.vlcMovieSelected(entry)
+			else:
+				playlist = self["list"].makeSelectionList()
+				if not self["list"].serviceBusy(playlist[0]):
+					# Avoid starting several times in different modes
+					if self.busy:
+						self.busy = False
+						return
+					self.busy = True
+					self.openPlayer(playlist, playall)
+				else:
+					self.session.open(MessageBox, _("File not available."), MessageBox.TYPE_ERROR, 10)
+
+	def playLast(self):
+		# Avoid starting several times in different modes
+		if self.busy:
+			self.busy = False
+			return
+		if self.multiSelectIdx:
+			self.multiSelectIdx = None
+			self.updateTitle()
+		if self.lastPlayedMovies is None:
+			self.session.open(MessageBox, _("Last played movie/playlist not available..."), MessageBox.TYPE_ERROR, 10)
+		else:
+			self.busy = True
+			# Show a notification to indicate the Play function
+			self["wait"].setText( _("Play last movie starting") )
+			self["wait"].show()
+			DelayedFunction(3000, self.loading, False)
+			DelayedFunction(2000, self.openPlayer, self.lastPlayedMovies)
+
+	def playAll(self):
+		# Avoid starting several times in different modes
+		if self.busy:
+			self.busy = False
+			return
+		self.busy = True
+		if self.multiSelectIdx:
+			self.multiSelectIdx = None
+			self.updateTitle()
+		# Show a notification to indicate the Play function
+		self["wait"].setText( _("Play All starting") )
+		self["wait"].show()
+		DelayedFunction(2000, self.loading, False)
+		# Initialize play all
+		playlist = [self.getCurrent()] 
+		playall = self["list"].getNextService()
+		DelayedFunction(2000, self.openPlayer, playlist, playall)
+
+	def shuffleAll(self):
+		# Avoid starting several times in different modes
+		if self.busy:
+			self.busy = False
+			return
+		self.busy = True
+		if self.multiSelectIdx:
+			self.multiSelectIdx = None
+			self.updateTitle()
+		# Show a notification to indicate the Shuffle function
+		self["wait"].setText( _("Shuffle All starting") )
+		self["wait"].show()
+		DelayedFunction(2000, self.loading, False)
+		# Initialize shuffle all
+		playlist = [self.getCurrent()] 
+		shuffleall = self["list"].getRandomService()
+		DelayedFunction(2000, self.openPlayer, playlist, shuffleall)
+
+	def lastPlayedCheck(self, service):
+		try:
+			if self.lastPlayedMovies is not None:
+				if service in self.lastPlayedMovies:
+					self.lastPlayedMovies.remove(service)
+				if len(self.lastPlayedMovies) == 0:
+					self.lastPlayedMovies = None
+		except Exception, e:
+			emcDebugOut("[EMCMS] lastPlayedCheck exception:\n" + str(e))
+
+	#############################################################################
+	# Record control functions
+	#
+	def stopRecordConfirmation(self, confirmed):
+		if not confirmed: return
+		# send as a list?
+		stoppedAll=True
+		for e in self.recsToStop:
+			stoppedAll = stoppedAll and self["list"].recControl.stopRecording(e)
+		if not stoppedAll:
+			self.session.open(MessageBox, _("Not stopping any repeating timers. Modify them with the timer editor."), MessageBox.TYPE_INFO, 10)
+
+	def stopRecordQ(self):
+		try:
+			filenames = ""
+			for e in self.recsToStop:
+				filenames += "\n" + e.split("/")[-1][:-3]
+			self.session.openWithCallback(self.stopRecordConfirmation, MessageBox, _("Stop ongoing recording?\n") + filenames, MessageBox.TYPE_YESNO)
+		except Exception, e:
+			emcDebugOut("[EMCMS] stopRecordQ exception:\n" + str(e))
+
+	def moveRecCheck(self, service, targetPath):
+		try:
+			path = service.getPath()
+			if self["list"].recControl.isRecording(path):
+				self["list"].recControl.fixTimerPath(path, path.replace(self.currentPath, targetPath))
+		except Exception, e:
+			emcDebugOut("[EMCMS] moveRecCheck exception:\n" + str(e))
+
+	#############################################################################
+	# File IO functions
+	#TODO Move all file operation functions to a separate class
+	#
 	def removeCutListMarker(self):
 		if self.browsingVLC(): return
 		current = self.getCurrent()	# make sure there is atleast one entry in the list
@@ -878,109 +1096,6 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			else:
 				self.session.open(MessageBox, _("Cannot delete the parent directory."), MessageBox.TYPE_ERROR, 10)
 
-	def setPlayerInstance(self, player):
-		try:
-			self.playerInstance = player
-		except Exception, e:
-			emcDebugOut("[EMCMS] setPlayerInstance exception:\n" + str(e))
-
-	def openPlayer(self, playlist, playall=False):
-		# Force update of event info after playing movie 
-		self.updateEventInfo(None)
-		
-		# force a copy instead of an reference!
-		self.lastPlayedMovies = playlist[:]
-		playlistcopy = playlist[:]
-		# Start Player
-		if self.playerInstance is None:
-			Notifications.AddNotification(EMCMediaCenter, playlistcopy, self, playall)
-		else:
-			#DelayedFunction(10, self.playerInstance.movieSelected, playlist, playall)
-			self.playerInstance.movieSelected(playlist, playall)
-		self.busy = False
-		self.close(None)
-
-	def entrySelected(self, playall=False):
-		current = self.getCurrent()
-		if current is not None:
-			# Save service 
-			self.returnService = self.getCurrent() #self.getNextSelectedService(self.getCurrent(), self.tmpSelList)
-			
-			# Think about MovieSelection should only know about directories and files
-			# All other things should be in the MovieCenter
-			if self["list"].currentSelIsVirtual():
-				# Open folder and reload movielist
-				self.setNextPath( self["list"].getCurrentSelDir() )
-			elif self.browsingVLC():
-				# TODO full integration of the VLC Player
-				entry = self["list"].list[ self["list"].getCurrentIndex() ]
-				self.vlcMovieSelected(entry)
-			else:
-				playlist = self["list"].makeSelectionList()
-				if not self["list"].serviceBusy(playlist[0]):
-					# Avoid starting several times in different modes
-					if self.busy:
-						self.busy = False
-						return
-					self.busy = True
-					self.openPlayer(playlist, playall)
-				else:
-					self.session.open(MessageBox, _("File not available."), MessageBox.TYPE_ERROR, 10)
-
-	def playLast(self):
-		# Avoid starting several times in different modes
-		if self.busy:
-			self.busy = False
-			return
-		if self.multiSelectIdx:
-			self.multiSelectIdx = None
-			self.updateTitle()
-		if self.lastPlayedMovies is None:
-			self.session.open(MessageBox, _("Last played movie/playlist not available..."), MessageBox.TYPE_ERROR, 10)
-		else:
-			self.busy = True
-			# Show a notification to indicate the Play function
-			self["wait"].setText( _("Play last movie starting") )
-			self["wait"].show()
-			DelayedFunction(3000, self.loading, False)
-			DelayedFunction(2000, self.openPlayer, self.lastPlayedMovies)
-
-	def playAll(self):
-		# Avoid starting several times in different modes
-		if self.busy:
-			self.busy = False
-			return
-		self.busy = True
-		if self.multiSelectIdx:
-			self.multiSelectIdx = None
-			self.updateTitle()
-		# Show a notification to indicate the Play function
-		self["wait"].setText( _("Play All starting") )
-		self["wait"].show()
-		DelayedFunction(2000, self.loading, False)
-		# Initialize play all
-		playlist = [self.getCurrent()] 
-		playall = self["list"].getNextService()
-		DelayedFunction(2000, self.openPlayer, playlist, playall)
-
-	def shuffleAll(self):
-		# Avoid starting several times in different modes
-		if self.busy:
-			self.busy = False
-			return
-		self.busy = True
-		if self.multiSelectIdx:
-			self.multiSelectIdx = None
-			self.updateTitle()
-		# Show a notification to indicate the Shuffle function
-		self["wait"].setText( _("Shuffle All starting") )
-		self["wait"].show()
-		DelayedFunction(2000, self.loading, False)
-		# Initialize shuffle all
-		playlist = [self.getCurrent()] 
-		shuffleall = self["list"].getRandomService()
-		DelayedFunction(2000, self.openPlayer, playlist, shuffleall)
-
 	def scriptCB(self, result=None):
 		if result is None: return
 		
@@ -998,106 +1113,6 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 					emcTasker.shellExecute("%s; sh %s %s %s" %(env, result[1], self.currentPath, current))
 				elif result[1].endswith(".py"):
 					emcTasker.shellExecute("%s; python %s %s %s" %(env, result[1], self.currentPath, current))
-
-	def stopRecordConfirmation(self, confirmed):
-		if not confirmed: return
-		# send as a list?
-		stoppedAll=True
-		for e in self.recsToStop:
-			stoppedAll = stoppedAll and self["list"].recControl.stopRecording(e)
-		if not stoppedAll:
-			self.session.open(MessageBox, _("Not stopping any repeating timers. Modify them with the timer editor."), MessageBox.TYPE_INFO, 10)
-
-	def stopRecordQ(self):
-		try:
-			filenames = ""
-			for e in self.recsToStop:
-				filenames += "\n" + e.split("/")[-1][:-3]
-			self.session.openWithCallback(self.stopRecordConfirmation, MessageBox, _("Stop ongoing recording?\n") + filenames, MessageBox.TYPE_YESNO)
-		except Exception, e:
-			emcDebugOut("[EMCMS] stopRecordQ exception:\n" + str(e))
-
-	def lastPlayedCheck(self, service):
-		try:
-			if self.lastPlayedMovies is not None:
-				if service in self.lastPlayedMovies:
-					self.lastPlayedMovies.remove(service)
-				if len(self.lastPlayedMovies) == 0:
-					self.lastPlayedMovies = None
-		except Exception, e:
-			emcDebugOut("[EMCMS] lastPlayedCheck exception:\n" + str(e))
-
-	def loading(self, loading=True):
-		self.updateEventInfo(None)
-		if loading:
-			self["list"].hide()
-			self["wait"].setText( _("Reading directory...") )
-			self["wait"].show()
-		else:
-			self["wait"].hide()
-			self["list"].show()
-
-	def initButtons(self):
-		# Initialize buttons
-		self["key_red"].text = _("Delete")
-		#TODO get color from MovieCenter
-		sort, perm = self["list"].getSorting()
-		green = ""
-		if sort:
-			green = _("Alpha sort")
-		else:
-			green = _("Date sort")
-		if perm == True:
-			green += _(" (P)")
-		self["key_green"].text = green
-		self["key_yellow"].text = _("Move")
-		self["key_blue"].text = _(config.EMC.movie_bluefunc.description[config.EMC.movie_bluefunc.value])
-
-	def initList(self):
-		# Initialize list
-		self.reloadList()
-
-	def triggerReloadList(self):
-		#IDEA:
-		# Short TV refresh list - reloads only progress
-		# Long TV reload  list - finds new movies 
-		self.returnService = self.getNextSelectedService(self.getCurrent(), self.tmpSelList)
-		#TODOret if self.returnService: print "EMC ret triSer " +str(self.returnService.toString())
-		self.reloadList()
-
-	def reloadList(self, path=None):
-		self.multiSelectIdx = None
-		if config.EMC.moviecenter_loadtext.value:
-			self.loading()
-		DelayedFunction(20, self.__reloadList, path)
-
-	def __reloadList(self, path):
-		if path is None:
-			path = self.currentPath
-		
-		# The try here is a nice idea, but it costs us a lot of time
-		# Maybe it should be implemented with a timer
-		
-		#TIME t = time()
-		
-		#try:
-		
-		if self["list"].reload(path):
-			self.currentPath = path
-			self.initButtons()
-			self.initCursor()
-		
-		#except Exception, e:
-		#	#MAYBE: Display MessageBox
-		#	emcDebugOut("[EMCMS] reloadList exception:\n" + str(e))
-		#finally:
-		
-		if config.EMC.moviecenter_loadtext.value:
-			self.loading(False)
-		
-		#TIME print "EMC After reload " + str(time() - t)
-		
-		self.updateMovieInfo()
 
 	def moveCB(self, service):
 		self["list"].highlightService(False, "move", service)	# remove the highlight
@@ -1120,27 +1135,28 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 
 	def execFileOp(self, targetPath, current, selectedlist, op="move", purgeTrash=False):
 		self.returnService = self.getNextSelectedService(current, selectedlist)
-		rmCmd = ""
-		mvCmd = ""
-		cpCmd = ""
+		cmd = []
 		association = []
 		for service in selectedlist:
 			path = os.path.splitext( self["list"].getFilePathOfService(service) )[0]
 			if path is not None:
 				if op=="delete":	# target == trashcan
+					c = []
 					if purgeTrash or self.currentPath == targetPath or self.mountpoint(self.currentPath) != self.mountpoint(targetPath):
 						# direct delete from the trashcan or network mount (no copy to trashcan from different mountpoint)
-						rmCmd += '; rm -f "'+ path +'."*'
+						c.append( 'rm -f "'+ path +'."*' )
 					else:
 						# create a time stamp with touch
-						mvCmd += '; touch "'+ path +'."*'
+						c.append( 'touch "'+ path +'."*' )
 						# move movie into the trashcan
-						mvCmd += '; mv "'+ path +'."* "'+ targetPath +'/"'
-					association.append((self.delCB, service))	# put in a callback for this particular movie
+						c.append( 'mv "'+ path +'."* "'+ targetPath +'/"' )
+					cmd.append( c )
+					association.append( (self.delCB, service) )	# put in a callback for this particular movie
 					self["list"].highlightService(True, "del", service)
 					if config.EMC.movie_hide_del.value:
 						self["list"].removeService(service)
 				elif op == "move":
+					c = []
 					#if self.mountpoint(self.currentPath) == self.mountpoint(targetPath):
 					#	#self["list"].removeService(service)	# normal direct move
 					#	pass
@@ -1150,14 +1166,16 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 						# need to change file ownership to match target filesystem file creation
 						tfile = targetPath + "/owner_test"
 						sfile = "\""+ path +".\"*"
-						mvCmd += "; touch %s;ls -l %s | while read flags i owner group crap;do chown $owner:$group %s;done;rm %s" %(tfile,tfile,sfile,tfile)
-					mvCmd += '; mv "'+ path +'."* "'+ targetPath +'/"'
-					association.append((self.moveCB, service))	# put in a callback for this particular movie
+						c.append( "touch %s;ls -l %s | while read flags i owner group crap;do chown $owner:$group %s;done;rm %s" %(tfile,tfile,sfile,tfile) )
+					c.append( 'mv "'+ path +'."* "'+ targetPath +'/"' )
+					cmd.append( c )
+					association.append( (self.moveCB, service) )	# put in a callback for this particular movie
 					self["list"].highlightService(True, "move", service)
 					if config.EMC.movie_hide_mov.value:
 						self["list"].removeService(service)
 					self.moveRecCheck(service, targetPath)
 				elif op == "copy":
+					c = []
 					#if self.mountpoint(self.currentPath) == self.mountpoint(targetPath):
 					#	#self["list"].removeService(service)	# normal direct move
 					#	pass
@@ -1167,21 +1185,20 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 						# need to change file ownership to match target filesystem file creation
 						tfile = targetPath + "/owner_test"
 						sfile = "\""+ path +".\"*"
-						cpCmd += "; touch %s;ls -l %s | while read flags i owner group crap;do chown $owner:$group %s;done;rm %s" %(tfile,tfile,sfile,tfile)
-					cpCmd += '; cp "'+ path +'."* "'+ targetPath +'/"'
-					association.append((self.copyCB, service))	# put in a callback for this particular movie
+						c.append( "touch %s;ls -l %s | while read flags i owner group crap;do chown $owner:$group %s;done;rm %s" %(tfile,tfile,sfile,tfile) )
+					c.append( 'cp "'+ path +'."* "'+ targetPath +'/"' )
+					cmd.append( c )
+					association.append( (self.copyCB, service) )	# put in a callback for this particular movie
 					self["list"].highlightService(True, "copy", service)
 					#if config.EMC.movie_hide_mov.value:
 					#	self["list"].removeService(service)
 				self.lastPlayedCheck(service)
 		self["list"].resetSelection()
-		cmd = cpCmd + mvCmd + rmCmd
-		if cmd != "":
-			association.append((self.initCursor, False)) # Set new Cursor position
-			#TODO the handling should be:
-			# runscript for one file do association for file and continue with next file
-			# Now it is run complete script run all associations
-			emcTasker.shellExecute(cmd[2:], association)	# first move, then delete if expiration limit is 0
+		if cmd:
+			if op != "copy":
+				association.append((self.initCursor, False)) # Set new Cursor position
+			# Sync = True: Run script for one file do association and continue with next file
+			emcTasker.shellExecute(cmd, association, True)	# first move, then delete if expiration limit is 0
 
 	def moveMovie(self):
 		# Avoid starting move and copy at the same time
@@ -1223,14 +1240,6 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 				except:
 					self.session.open(MessageBox, _("How to move files:\nSelect some movies with the VIDEO-button, move the cursor on top of the destination directory and press yellow."), MessageBox.TYPE_ERROR, 10)
 			emcDebugOut("[EMCMS] moveMovie")
-
-	def moveRecCheck(self, service, targetPath):
-		try:
-			path = service.getPath()
-			if self["list"].recControl.isRecording(path):
-				self["list"].recControl.fixTimerPath(path, path.replace(self.currentPath, targetPath))
-		except Exception, e:
-			emcDebugOut("[EMCMS] moveRecCheck exception:\n" + str(e))
 
 	def mvDirSelected(self, targetPath):
 		if targetPath is not None:

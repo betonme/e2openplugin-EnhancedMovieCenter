@@ -824,14 +824,14 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 	def highlightService(self, enable, mode, service):
 		if enable:
 			if mode == "move":
+				self.unselectService(service)
 				self.highlightsMov.append(service)
-				self.unselectService(service)
 			elif mode == "del":
+				self.unselectService(service)
 				self.highlightsDel.append(service)
-				self.unselectService(service)
 			elif mode == "copy":
-				self.highlightsCpy.append(service)
 				self.unselectService(service)
+				self.highlightsCpy.append(service)
 		else:
 			if mode == "move":
 				self.highlightsMov.remove(service)
@@ -904,7 +904,8 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 				self.currentSelectionCount -= 1
 				count = 0
 				if x is not None:
-					self.selectionList.remove(x[0]) # remove service
+					if x[0] in self.selectionList:
+						self.selectionList.remove(x[0]) # remove service
 				for i in self.list:
 					if i[5] > x[5]:
 						l = list(i)

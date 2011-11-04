@@ -24,9 +24,11 @@ from Components.config import *
 from Screens.Standby import *
 import Screens.Standby
 import os, sys, traceback
+from collections import Callable, deque
+from pipes import quote
+from itertools import izip_longest
 
 
-#global emcDebugOut
 def emcDebugOut(outtxt, outfile=None, fmode="aw", forced=False):
 	try:	# fails if called too early during Enigma startup
 		if config.EMC.debug.value or forced:
@@ -46,74 +48,99 @@ def emcDebugOut(outtxt, outfile=None, fmode="aw", forced=False):
 		deb.close()
 	except: pass
 
+
 class EMCExecutioner:
 	def __init__(self, identifier):
-		self.appContainer = eConsoleAppContainer()
-		try:	# get() has been removed from newer CVS versions
-			self.appContainer.appClosed.get().append(self.runFinished)
-			self.appContainer.dataAvail.get().append(self.dataAvail)	# this will cause interfilesystem transfers to stall Enigma
-		except:
-			self.appContainer.appClosed.append(self.runFinished)
-			self.appContainer.dataAvail.append(self.dataAvail)	# this will cause interfilesystem transfers to stall Enigma
-		self.scriptlut = ["/tmp/scr"+identifier+"0.sh", "/tmp/scr"+identifier+"1.sh"]
-		self.associated = [ [], [] ]
+		self.identifier = identifier   #TODO could be remove
+		self.container = eConsoleAppContainer()
+		self.container.appClosed.append(self.runFinished)
+		self.container.dataAvail.append(self.dataAvail)	# this will cause interfilesystem transfers to stall Enigma
+		self.script = deque()
+		self.associated = deque()
 		self.executing = ""
-		self.execCount = 0
 		self.returnData = ""
 
 	def isIdle(self):
-		return self.executing == ""
+		return len(self.script)==0
 
-	def shellExecute(self, string, associated=None):	
-		# string = shellcommand
-		# associated = tuple:(callback, arg) or tuple:(callback, [arg1, arg2])  
-
-		#TODO use string as list to execute several scripts in sequence and after every script run the corresponding associated function  
-		#if not isinstance(string, list):
-		string = string.replace("; ","\n")
-		try:
-			if associated is not None and associated != []:
-				self.associated[ self.execCount & 1 ] += associated	# append whatever that's associated with the execution of the script
-			sfile = self.scriptlut[ self.execCount & 1 ]
-			script = open(sfile, "aw")
-			script.write("\n" + string)
-			script.close()
-			if self.executing == "":
-				emcDebugOut("[emcTasker] "+ sfile +" +=\n"+ string)
-				self.execCurrent()
-			else:
-				emcDebugOut("[emcTasker] (bg) "+ sfile +" +=\n"+ string)
-		except Exception, e:
-			emcDebugOut("[emcTasker] shellExecute exception:\n" + str(e))
+	def shellExecute(self, script, associated=None, sync=False):
+		# Parameters:
+		#  script = single command:   cmd
+		#			list of commands: [cmd, cmd]
+		#  associated = single callback: callback
+		#				single tuple:    (callback, args)
+		#				list of tuples:  [(callback),(callback, args),(...)]  
+		#    callback = function to be executed
+		#    args = single parameter:    arg or (arg) or (a, b) or [a,b]
+		#			multiple parameters: arg1, arg2
+		#  sync (synchronous callback):
+		#    True  = After every command, one callback entry is executed, additionally callbacks will be executed after the last command 
+		#            If the callback entry is a tuple or list, alle subcallbacks will be executed
+		#    False = All callbacks are executed at the end
+		if not sync or not isinstance(script, list):
+			# Single command execution
+			self.script.append( script )
+			self.associated.append( associated )
+		else:
+			for s, a in izip_longest(script, associated):
+				self.script.append( s )
+				self.associated.append( [a] )
+		
+		if self.executing == "":
+			emcDebugOut("[emcTasker] Run script")
+			self.execCurrent()
+		else:
+			emcDebugOut("[emcTasker] Run after current execution")
 
 	def execCurrent(self):
-		# "double buffer" with two scripts, one being executed and one being written
-		self.executing = self.scriptlut[ self.execCount & 1 ]
-		sfile = open(self.executing, "r")
-		scr = sfile.read()
-		sfile.close()
-		
-		self.appContainer.execute("sh " + self.executing)
-		emcDebugOut("[emcTasker] executing " + self.executing + scr)
-		self.execCount += 1
-
-	def runFinished(self, retval):
 		try:
-			os.remove(self.executing)
-			associated = self.associated[ self.execCount-1 & 1 ]
-			emcDebugOut("[emcTasker] sh exec %s finished, return status = %s%s" %(self.executing, str(retval), self.returnData))
-			for f, args in associated:
-				if f is not None:
-					# callback( arg1, arg2 )
-					f( args )
-			self.associated[ self.execCount-1 & 1 ][:] = []	# clear list
+			script = self.script.popleft()
+			if script:
+				if isinstance(script, list):
+					script = '; '.join( script )
+				
+				self.executing = quote( script )
+				self.container.execute( "sh -c " + self.executing )
+				emcDebugOut("[emcTasker] executing: " + self.executing )
+			else:
+				self.runFinished()
+		except Exception, e:
+			emcDebugOut("[emcTasker] execCurrent exception:\n" + str(e))
+
+	def runFinished(self, retval=None):
+		def unpack(seq, n=1):
+			for row in seq:
+				if isinstance(row, tuple) or isinstance(row, list):
+					yield [e for e in row[:n]] + [row[n:]]
+				else:
+					yield row, None
+		
+		try:
+			associated = self.associated.popleft()
+			emcDebugOut("[emcTasker] sh exec %s finished, return status = %s %s" %(self.executing, str(retval), self.returnData))
+			if associated:
+				#P3 for foo, bar, *other in tuple:
+				for f, args in unpack(associated):
+					# callback( args )
+					if isinstance(f, Callable):
+						if args:
+							f(*args)
+						else:
+							f(args)
 			self.returnData = ""
 			
-			if os.path.exists(self.scriptlut[ self.execCount & 1 ]):
+			if self.script:
+				# There is more to be executed
 				emcDebugOut("[emcTasker] sh exec rebound")
 				self.execCurrent()
 			else:
 				self.executing = ""
+				
+				#TODO MAYBE we want do cleanup the whole container
+				#del self.container.dataAvail[:]
+				#del self.container.appClosed[:]
+				#del self.container
+			
 		except Exception, e:
 			emcDebugOut("[emcTasker] runFinished exception:\n" + str(e))
 
@@ -128,18 +155,19 @@ class EMCTasker:
 		self.minutes = 0
 		self.timerActive = False
 		self.executioners = []
+		#TODO instantiate the executioner as we need them
 		self.executioners.append( EMCExecutioner("A") )
 		self.executioners.append( EMCExecutioner("B") )
 		self.executioners.append( EMCExecutioner("C") )
 
-	def shellExecute(self, string, associated=None):
+	def shellExecute(self, script, associated=None, sync=False):
 		for x in self.executioners:
 			if x.isIdle():
-				x.shellExecute(string, associated)
+				x.shellExecute(script, associated, sync)
 				return
 		# all were busy, just append to any task list randomly
 		import random
-		self.executioners[ random.randint(0, 2) ].shellExecute(string, associated)
+		self.executioners[ random.randint(0, 2) ].shellExecute(script, associated, sync)
 
 	def Initialize(self, session):
 		self.session = session
@@ -238,5 +266,6 @@ class EMCTasker:
 					self.timerActive = True
 		except Exception, e:
 			emcDebugOut("[emcTasker] RestartTimerStart exception:\n" + str(e))
+
 
 emcTasker = EMCTasker()
