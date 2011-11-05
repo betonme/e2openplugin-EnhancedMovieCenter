@@ -228,7 +228,7 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 			(  separator                                          , config.EMC.about                    , None                  , None                  , 0     , []        , _("") ),
 			(  _("Try to load titles from .meta files")           , config.EMC.movie_metaload           , None                  , None                  , 0     , []        , _("HELP_Try to load titles from .meta files") ),
 			(  _("Try to load titles from .eit files")            , config.EMC.movie_eitload            , None                  , None                  , 0     , []        , _("HELP_Try to load titles from .eit files") ),
-			(  _("Replace special chars in title")                , config.EMC.replace_specialchars     , None                  , None                  , 2     , []        , _("Replace title underscores and points with spaces") ),
+			(  _("Replace special chars in title")                , config.EMC.replace_specialchars     , None                  , None                  , 2     , []        , _("HELP_Replace special chars in title") ),
 			(  _("Show Movie Format")                             , config.EMC.movie_show_format        , None                  , None                  , 0     , []        , _("HELP_Show Movie Format") ),
 			(  _("Show Cut-Nr if exist")                          , config.EMC.movie_show_cutnr         , None                  , None                  , 0     , []        , _("HELP_Show Cut-Nr if exist") ),
 			
