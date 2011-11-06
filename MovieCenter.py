@@ -116,6 +116,8 @@ virAll     = frozenset([cmtBM, cmtVLC, cmtLRec, cmtTrash, cmtUp, cmtDir, vlcSrv,
 #-------------------------------------------------
 def readBasicCfgFile(file):
 	data = []
+	if not os.path.exists(file):
+		return data
 	f = None
 	try:
 		f = open(file, "r")
