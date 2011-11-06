@@ -20,6 +20,7 @@
 #
 
 import os
+import sys, traceback
 
 from Components.config import *
 from Components.ActionMap import ActionMap, NumberActionMap, HelpableActionMap
@@ -218,10 +219,12 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 		self.evEOF()	# begin playback
 
 	def __playerClosed(self):
+		print "EMCMTEST __playerClosed"
 		if self.service:
 			self.updateCutList( self.getSeekPlayPosition(), self.getSeekLength() )
 
 	def __onClose(self):
+		print "EMCMTEST __onClose"
 		self.session.nav.playService(self.lastservice)
 		try:
 			from MovieSelection import gMS
@@ -243,6 +246,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 
 	def evEOF(self, needToClose=False):
 		# see if there are more to play
+		print "EMCMTEST evEOF"
 		if self.playall:
 			# Play All
 			try:
@@ -321,6 +325,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 				self.leavePlayer(False)
 
 	def leavePlayer(self, stopped=True):
+		print "EMCMTEST leavePlayer"
 		self.setSubtitleState(False)
 		self.stopped = stopped
 		if self.playerOpenedList and not stopped:	# for some strange reason "not stopped" has to be checked to avoid a bug (???)
@@ -713,11 +718,18 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 #			InfoBarSeek.showAfterSeek(self)
 
 	def doEofInternal(self, playing):
+		
+		print "EMCMTEST doEofInternal"
+		
 		if self.in_menu:
 			self.hide()
-		DelayedFunction(1000, self.evEOF)
+		DelayedFunction(1000, boundFunction(self.doEvEOF))
 
-  ##############################################################################
+	def doEvEOF(self):
+		if self:
+			self.evEOF()
+
+	##############################################################################
 	## Oozoon image specific
 	def up(self):
 		self.showMovies()
