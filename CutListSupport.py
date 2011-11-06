@@ -100,9 +100,6 @@ class CutList():
 	def __secondsToPts(self, seconds):
 		return seconds * 90 * 1000
 
-	def __len__(self):
-		return self.cut_list and len(self.cut_list) or 0
-
 	def __getCuesheet(self):
 		service = self.session.nav.getCurrentService()
 		if service is None:
