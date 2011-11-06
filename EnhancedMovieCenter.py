@@ -220,10 +220,10 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 			(  _("Show E2 Bookmarks in movielist")                , config.EMC.bookmarks_e2             , None                  , None                  , 0     , []        , _("HELP_Show E2 Bookmarks in movielist") ),
 			
 			(  separator                                          , config.EMC.about                    , None                  , None                  , 1     , []        , _("HELP_separator_hide&performance") ),
-			(  _("Hide selected entries in movielist")            , config.EMC.cfghide_enable           , None                  , None                  , 1     , []        , _("HELP_cfghide_enable") ),
+			(  _("Hide configured entries")                       , config.EMC.cfghide_enable           , None                  , None                  , 1     , []        , _("HELP_cfghide_enable") ),
 			(  _("Scan for DVD structures")                       , config.EMC.check_dvdstruct          , None                  , None                  , 1     , []        , _("HELP_Scan for DVD structures") ),
-			(  _("No structure scan in selected folders")         , config.EMC.cfgnoscan_enable         , None                  , None                  , 1     , []        , _("HELP_cfgnoscan_enable") ),
-			(  _("No structure scan in linked folders")           , config.EMC.noscan_linked            , None                  , None                  , 1     , []        , _("HELP_noscan_linked") ),
+			(  _("Suppress scan in selected folders")             , config.EMC.cfgscan_suppress         , None                  , None                  , 1     , []        , _("HELP_cfgscan_suppress") ),
+			(  _("Scan linked folders")                           , config.EMC.scan_linked              , None                  , None                  , 1     , []        , _("HELP_scan_linked") ),
 			
 			(  separator                                          , config.EMC.about                    , None                  , None                  , 0     , []        , _("") ),
 			(  _("Try to load titles from .meta files")           , config.EMC.movie_metaload           , None                  , None                  , 0     , []        , _("HELP_Try to load titles from .meta files") ),

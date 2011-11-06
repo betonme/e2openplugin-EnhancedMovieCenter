@@ -221,12 +221,8 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 		self.pic_latest          = LoadPixmap(cached=True, path='/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/virtual.png')
 		
 		self.onSelectionChanged = []
-		self.hideitemlist = []
-		if config.EMC.cfghide_enable.value:
-			self.hideitemlist = readBasicCfgFile("/etc/enigma2/emc-hide.cfg")
-		self.nostructscan = []
-		if config.EMC.cfgnoscan_enable.value:
-			self.nostructscan = readBasicCfgFile("/etc/enigma2/emc-noscan.cfg")
+		self.hideitemlist = readBasicCfgFile("/etc/enigma2/emc-hide.cfg") or []
+		self.nostructscan = readBasicCfgFile("/etc/enigma2/emc-noscan.cfg") or []
 		
 		# Initially load the movielist
 		# So it must not be done when the user it opens the first time
@@ -964,7 +960,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 	def detectDVDStructure(self, checkPath):
 		if not os.path.isdir(checkPath):
 			return None
-		elif config.EMC.noscan_linked.value and os.path.islink(checkPath):
+		elif not config.EMC.scan_linked.value and os.path.islink(checkPath):
 			return None
 		dvdpath = os.path.join(checkPath, "VIDEO_TS.IFO")
 		if fileExists( dvdpath ):
@@ -981,8 +977,9 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 		
 		# Improve performance and avoid dots
 		movie_trashpath = config.EMC.movie_trashcan_enable.value and config.EMC.movie_trashcan_path.value
-		check_dvdstruct = config.EMC.check_dvdstruct.value and path not in self.nostructscan
-		hideitemlist = self.hideitemlist
+		check_dvdstruct = config.EMC.check_dvdstruct.value and config.EMC.cfgscan_suppress.value and path not in self.nostructscan
+		hideitemlist = config.EMC.cfghide_enable.value and self.hideitemlist
+		
 		localExtList = extList
 		
 		dappend = subdirlist.append

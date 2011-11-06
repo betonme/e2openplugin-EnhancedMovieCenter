@@ -749,7 +749,7 @@ msgstr ""
 "Dateien und Verzeichnisse die in '/etc/enigma2/emc-hide.cfg' gelistet sind werden nicht angezeigt.\n"
 "Das ändern dieser Einstellung erfordert einen Enigma2 Neustart!"
 
-msgid "HELP_cfgnoscan_enable"
+msgid "HELP_cfgscan_suppress"
 msgstr "Unterverzeichnisse die in Pfade von '/etc/enigma2/emc-noscan.cfg' stehen werden nicht auf Medienstrukturen (z.B. DVD) überprüft. Dies kann unbeabsichtiges Aufwecken von Festplatten oder Netzlaufwerken verhindern. Ändern dieser Einstellung erfordert E2 Neustart!"
 
 msgid "HELP_Scan for DVD structures"
@@ -757,7 +757,7 @@ msgstr ""
 "Hiermit kann die Suche nach DVD Strukturen in Verzeichnissen generell unterbunden werden.\n"
 "Dies kann unbeabsichtiges Aufwecken von Festplatten oder Netzlaufwerken verhindern."
 
-msgid "HELP_noscan_linked"
+msgid "HELP_scan_linked"
 msgstr ""
 "Symlinks auf Untererzeichnisse werden nicht auf Medienstrukturen (z.B. DVD) überprüft.\n"
 "Dies kann unbeabsichtiges Aufwecken von Festplatten oder Netzlaufwerken verhindern."
