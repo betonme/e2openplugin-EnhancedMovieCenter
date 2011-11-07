@@ -192,7 +192,7 @@ class Info:
 		
 		if not self.__extendeddescription:
 			if isreal:
-				desc = os.path.realpath(path):
+				desc = os.path.realpath(path)
 				
 				# Very bad but there can be both encodings
 				# E2 recordings are always in utf8
