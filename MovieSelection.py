@@ -465,8 +465,23 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 				title = "(%d GB) " %(free/1024)
 			else:
 				title = "(%d MB) " %(free)
-		title += self.currentPath or "/" #TEST + (self.currentPath == "")*"/"
-		title = title.replace(config.EMC.movie_homepath.value, "...")
+		
+		path = self.currentPath
+		path = path.replace(config.EMC.movie_homepath.value, "...")
+		
+		# Very bad but there can be both encodings
+		# E2 recordings are always in utf8
+		# User files can be in cp1252
+		#TODO Is there no other way?
+		try:
+			path.decode('utf-8')
+		except UnicodeDecodeError:
+			try:
+				path = path.decode("cp1252").encode("utf-8")
+			except UnicodeDecodeError:
+				path = path.decode("iso-8859-1").encode("utf-8")
+		
+		title += path or "/"
 		self.setTitle(title)
 
 	def toggleSort(self):
