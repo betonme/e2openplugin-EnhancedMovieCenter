@@ -188,8 +188,25 @@ class Info:
 		#TODO dynamic or not
 		self.__extendeddescription = eit and eit.getEitDescription() \
 																	or meta and meta.getMetaDescription() \
-																	or isreal and os.path.realpath(path) \
 																	or ""
+		
+		if not self.__extendeddescription:
+			if isreal:
+				desc = os.path.realpath(path):
+				
+				# Very bad but there can be both encodings
+				# E2 recordings are always in utf8
+				# User files can be in cp1252
+				#TODO Is there no other way?
+				try:
+					desc.decode('utf-8')
+				except UnicodeDecodeError:
+					try:
+						desc = path.decode("cp1252").encode("utf-8")
+					except UnicodeDecodeError:
+						desc = path.decode("iso-8859-1").encode("utf-8")
+				self.__extendeddescription = desc
+		
 		self.__id = 0
 		
 		#TODO move upto ServiceInfo
