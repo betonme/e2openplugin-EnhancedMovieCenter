@@ -1218,7 +1218,6 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 		if customlist is not None:
 			for path, filename, ext in customlist:
 				sorttitle, sortprefix = "", ""
-				service = self.getPlayerService(path, filename)
 				title = filename
 				
 				# Replace special chars with spaces
@@ -1237,6 +1236,8 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 						title = title.decode("cp1252").encode("utf-8")
 					except UnicodeDecodeError:
 						title = title.decode("iso-8859-1").encode("utf-8")
+				
+				service = self.getPlayerService(path, filename)
 				
 				if ext == cmtUp: sortprefix = "0"
 				elif ext == cmtTrash: sortprefix = "1"
