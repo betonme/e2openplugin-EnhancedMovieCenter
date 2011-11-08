@@ -156,7 +156,7 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 		ConfigListScreen.__init__(self, self.list, session = session, on_change = self.changedEntry)
 		self.needsRestartFlag = False
 		self.defineConfig()
-		self.createConfig()
+		#self.createConfig()
 		
 		# Override selectionChanged because our config tuples have a size bigger than 2 
 		def selectionChanged():
@@ -173,7 +173,7 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 		self["config"].onSelectionChanged.append(self.updateHelp)
 		
 		#Todo Remove if there is another solution
-		config.EMC.movie_finished_clean.addNotifier(self.changedEntry, initial_call = False, immediate_feedback = True)
+		#config.EMC.movie_finished_clean.addNotifier(self.changedEntry, initial_call = False, immediate_feedback = True)
 		
 		self.onShow.append(self.onDialogShow)
 
@@ -330,6 +330,7 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 
 	def onDialogShow(self):
 		self.setTitle("Enhanced Movie Center "+ EMCVersion + " (Setup)")
+		self.createConfig()
 
 	# Overwrite Screen close function
 	def close(self):
