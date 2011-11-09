@@ -1360,9 +1360,9 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 				# Create sortkeys
 				if not sortdate: sortdate = date and date.strftime( "%Y%m%d %H%M" ) or ""
 				sorttitle = title.lower()
-				sortkeyalpha = sorttitle + cutnr + sortdate
+				sortkeyalpha = sorttitle + ("%03d") % int(cutnr or 0) + sortdate
 				#cutnrreverse = str( 999 - int(cutnr or 0) )
-				sortkeydate = sortdate + sorttitle + str( 999 - int(cutnr or 0) )
+				sortkeydate = sortdate + sorttitle + ("%03d") % ( 999 - int(cutnr or 0) )
 				
 				# combine information regarding the emc config
 				if movie_show_cutnr:
