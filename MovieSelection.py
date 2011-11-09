@@ -482,6 +482,12 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 				path = path.decode("iso-8859-1").encode("utf-8")
 		
 		title += path or "/"
+		
+		# Display a permanent sort marker if it is set
+		sort, perm = self["list"].getSorting()
+		if perm == True:
+			title += _(" (P)")
+		
 		self.setTitle(title)
 
 	def toggleSort(self):
@@ -734,15 +740,16 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		# Initialize buttons
 		self["key_red"].text = _("Delete")
 		#TODO get color from MovieCenter
-		sort, perm = self["list"].getSorting()
+		#sort, perm = self["list"].getSorting()
 		green = ""
-		if sort:
-			green = _("Alpha sort")
+		# Negotiate the sorting to display the next state
+		if not sort:
+			self["key_green"].text = _("Alpha sort")
 		else:
-			green = _("Date sort")
-		if perm == True:
-			green += _(" (P)")
-		self["key_green"].text = green
+			self["key_green"].text = _("Date sort")
+		#if perm == True:
+		#	green += _(" (P)")
+		#self["key_green"].text = green
 		self["key_yellow"].text = _("Move")
 		self["key_blue"].text = _(config.EMC.movie_bluefunc.description[config.EMC.movie_bluefunc.value])
 
