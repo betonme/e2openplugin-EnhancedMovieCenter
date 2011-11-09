@@ -231,6 +231,7 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 			(  _("Replace special chars in title")                , config.EMC.replace_specialchars     , None                  , None                  , 2     , []        , _("HELP_Replace special chars in title") ),
 			(  _("Show Movie Format")                             , config.EMC.movie_show_format        , None                  , None                  , 0     , []        , _("HELP_Show Movie Format") ),
 			(  _("Show Cut-Nr if exist")                          , config.EMC.movie_show_cutnr         , None                  , None                  , 0     , []        , _("HELP_Show Cut-Nr if exist") ),
+			(  _("Resolve links and show real path")              , config.EMC.movie_real_path          , None                  , None                  , 0     , []        , _("HELP_Solve links") ),
 			
 			(  separator                                          , config.EMC.about                    , None                  , None                  , 0     , []        , _("") ),
 			(  _("Listbox is skin able")                          , config.EMC.skin_able                , None                  , None                  , 0     , []        , _("HELP_Listbox is skin able") ),

@@ -192,7 +192,10 @@ class Info:
 		
 		if not self.__extendeddescription:
 			if isreal:
-				desc = os.path.realpath(path)
+				if config.EMC.movie_real_path.value:
+					desc = os.path.realpath(path)
+				else:
+					desc = path
 				
 				# Very bad but there can be both encodings
 				# E2 recordings are always in utf8
