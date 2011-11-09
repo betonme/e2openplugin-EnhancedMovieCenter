@@ -482,7 +482,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 			for (path, dirs, files) in os.walk(folder):
 				count += len(dirs)
 				for m in files:
-					if os.path.splitext(m)[1] in extList:
+					if os.path.splitext(m)[1].lower() in extList:
 						count += 1
 						if bsize:
 							# Only retrieve the file size if it is requested,
