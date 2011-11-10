@@ -174,6 +174,8 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 		
 		#Todo Remove if there is another solution
 		#config.EMC.movie_finished_clean.addNotifier(self.changedEntry, initial_call = False, immediate_feedback = True)
+		#config.EMC.movie_finished_clean.notifiers.append(self.changedEntry)
+		#config.EMC.movie_finished_clean.notifiers = [ ]
 		
 		self.onShow.append(self.onDialogShow)
 

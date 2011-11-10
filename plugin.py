@@ -32,6 +32,8 @@ from Components.Converter import EMCEventName
 from Components.Converter import EMCServicePosition
 from Components.Converter import EMCServiceTime
 
+#from threading import Semaphore
+
 from __init__ import *
 from EMCTasker import emcTasker, emcDebugOut
 from EnhancedMovieCenter import _, EMCVersion, EMCStartup, EnhancedMovieCenterMenu
@@ -56,6 +58,7 @@ class ConfigYesNoConfirm(ConfigBoolean):
 		self.key2 = key2
 		ConfigBoolean.__init__(self, default = default, descriptions = yes_no_descriptions)
 		self.session = None
+		#self.__semaphore = Semaphore(0)
 
 	def handleKey(self, key):
 		if key in (KEY_LEFT, KEY_RIGHT):
@@ -74,9 +77,13 @@ class ConfigYesNoConfirm(ConfigBoolean):
 	def confirm(self):
 		if self.session:
 			self.session.openWithCallback(self.confirmed, ConfirmBox, self.text, self.key1, self.key2, MessageBox.TYPE_INFO)
+		# Block until it is confirmed
+		#self.__semaphore.acquire()
 
 	def confirmed(self, answer):
-		self.value = answer
+		if self.value != answer:
+			self.value = answer
+		#self.__semaphore.release()
 
 
 class ConfirmBox(MessageBox):
