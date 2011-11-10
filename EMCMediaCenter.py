@@ -326,7 +326,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 		self.stopped = stopped
 		if self.playerOpenedList and not stopped:	# for some strange reason "not stopped" has to be checked to avoid a bug (???)
 			self.recordings.close(None)
-		#else:
+			return
 		if self.dvdScreen:
 			self.dvdScreen.close()
 		# Possible Problem: Avoid GeneratorExit exception
@@ -716,9 +716,11 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 	def doEofInternal(self, playing):
 		if self.in_menu:
 			self.hide()
+		#TEST Check how often doEO
 		DelayedFunction(1000, boundFunction(self.doEvEOF))
 
 	def doEvEOF(self):
+		# Workaround if player is already closed
 		if self:
 			self.evEOF()
 
