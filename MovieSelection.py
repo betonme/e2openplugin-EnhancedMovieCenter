@@ -915,6 +915,14 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 	#############################################################################
 	# Record control functions
 	#
+	def isRecording(self, service):
+		path = service.getPath()
+		return self["list"].recControl.isRecording(path)
+
+	def getRecordingService(self, service):
+		path = service.getPath()
+		return self["list"].recControl.getRecordingService(path)
+
 	def stopRecordConfirmation(self, confirmed):
 		if not confirmed: return
 		# send as a list?

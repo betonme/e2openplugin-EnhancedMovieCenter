@@ -36,6 +36,11 @@ from Screens.HelpMenu import HelpableScreen
 from Tools.BoundFunction import boundFunction
 from Tools.Directories import fileExists, resolveFilename, SCOPE_LANGUAGE, SCOPE_PLUGINS
 
+# Zap to Live TV of record
+from Screens.MessageBox import MessageBox
+from Tools.Notifications import AddPopup
+
+# Plugin internal
 from EnhancedMovieCenter import _
 from EMCTasker import emcDebugOut
 from DelayedFunction import DelayedFunction
@@ -185,6 +190,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 		self.stopped = False
 		self.closedByDelete = False
 		self.playerOpenedList = False
+		self.closeAll = False
 		
 		self.playInit(playlist, recordings, playall)
 		
@@ -217,30 +223,6 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 			return
 		self.firstStart = True
 		self.evEOF()	# begin playback
-
-	def __playerClosed(self):
-		if self.service:
-			self.updateCutList( self.getSeekPlayPosition(), self.getSeekLength() )
-
-	def __onClose(self):
-		self.session.nav.playService(self.lastservice)
-		try:
-			from MovieSelection import gMS
-			gMS.returnService = self.service
-			if self.stopped:
-				emcDebugOut("[EMCPlayer] Player closed by user")
-				if config.EMC.movie_reopen.value:
-					DelayedFunction(80, gMS.session.execDialog, gMS)		# doesn't crash Enigma2 subtitle functionality
-			elif self.closedByDelete:
-				emcDebugOut("[EMCPlayer] closed due to file delete")
-				DelayedFunction(80, gMS.session.execDialog, gMS)		# doesn't crash Enigma2 subtitle functionality
-			else:
-				emcDebugOut("[EMCPlayer] closed due to playlist EOF")
-				if self.playerOpenedList or config.EMC.movie_reopenEOF.value: # did the player close while movie list was open?
-					DelayedFunction(80, gMS.session.execDialog, gMS)		# doesn't crash Enigma2 subtitle functionality
-			self.playerOpenedList = False
-		except Exception, e:
-			emcDebugOut("[EMCPlayer] __del__ exception:\n" + str(e))
 
 	def evEOF(self, needToClose=False):
 		# see if there are more to play
@@ -322,6 +304,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 				self.leavePlayer(False)
 
 	def leavePlayer(self, stopped=True):
+		#TEST is stopped really necessary
 		self.setSubtitleState(False)
 		self.stopped = stopped
 		if self.playerOpenedList and not stopped:	# for some strange reason "not stopped" has to be checked to avoid a bug (???)
@@ -333,8 +316,39 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 		#if self.playall:
 		#	playall.close()
 		self.recordings.setPlayerInstance(None)
-		#self.close(self.lastservice)
 		self.close()
+
+	def __playerClosed(self):
+		if self.service:
+			self.updateCutList( self.getSeekPlayPosition(), self.getSeekLength() )
+
+	def __onClose(self):
+		self.session.nav.playService(self.lastservice)
+		try:
+			from MovieSelection import gMS
+			gMS.returnService = self.service
+			if self.stopped:
+				emcDebugOut("[EMCPlayer] Player closed by user")
+				if config.EMC.movie_reopen.value:
+					DelayedFunction(80, gMS.session.execDialog, gMS)		# doesn't crash Enigma2 subtitle functionality
+			elif self.closedByDelete:
+				emcDebugOut("[EMCPlayer] closed due to file delete")
+				DelayedFunction(80, gMS.session.execDialog, gMS)		# doesn't crash Enigma2 subtitle functionality
+			else:
+				emcDebugOut("[EMCPlayer] closed due to playlist EOF")
+				if self.closeAll:
+					AddPopup(
+										_("EMC\nZap to Live TV of record"),
+										MessageBox.TYPE_INFO,
+										3,
+										"EMCCloseAllAndZap"
+									)
+				else:
+					if self.playerOpenedList or config.EMC.movie_reopenEOF.value: # did the player close while movie list was open?
+						DelayedFunction(80, gMS.session.execDialog, gMS)		# doesn't crash Enigma2 subtitle functionality
+			self.playerOpenedList = False
+		except Exception, e:
+			emcDebugOut("[EMCPlayer] __onClose exception:\n" + str(e))
 
 	def removeFromPlaylist(self, deletedlist):
 		callEOF = False
@@ -714,9 +728,16 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 #			InfoBarSeek.showAfterSeek(self)
 
 	def doEofInternal(self, playing):
+		#TEST Check how often doEofInternal is called
 		if self.in_menu:
 			self.hide()
-		#TEST Check how often doEO
+		if config.EMC.record_eof_jump.value:
+			if self.recordings and self.recordings.isRecording(self.service):
+				# Zap to new channel
+				self.lastservice = self.recordings.getRecordingService(self.service) or self.lastservice
+				self.closeAll = True
+				DelayedFunction(1000, boundFunction(self.leavePlayer, False))
+				return
 		DelayedFunction(1000, boundFunction(self.doEvEOF))
 
 	def doEvEOF(self):

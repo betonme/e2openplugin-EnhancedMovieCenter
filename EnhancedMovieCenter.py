@@ -250,6 +250,7 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 			(  _("Jump to first mark when playing movie")         , config.EMC.movie_jump_first_mark    , None                  , None                  , 1     , []        , _("HELP_Jump to first mark when playing movie") ),
 			(  _("Rewind finished movies before playing")         , config.EMC.movie_rewind_finished    , None                  , None                  , 1     , []        , _("HELP_Rewind finished movies before playing") ),
 			(  _("Always save last played progress as marker")    , config.EMC.movie_save_lastplayed    , None                  , None                  , 1     , []        , _("HELP_Always save last played progress as marker") ),
+			(  _("Jump to channel after record EOF")              , config.EMC.record_eof_jump          , None                  , None                  , 1     , []        , _("HELP_Record eof jump") ),
 			
 			(  separator                                          , config.EMC.about                    , None                  , None                  , 0     , []        , _("HELP_separator_Trashcan settings") ),
 			(  _("Trashcan enable")                               , config.EMC.movie_trashcan_enable    , None                  , self.openLocationBox  , 0     , []        , _("HELP_Trashcan enable") ),

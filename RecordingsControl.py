@@ -131,6 +131,19 @@ class RecordingsControl:
 			emcDebugOut("[emcRC] isRecording exception:\n" + str(e))
 			return False
 
+	def getRecordingService(self, filename):
+		try:
+			if filename[0] == "/": 			filename = os.path.basename(filename)
+			if filename.endswith(".ts"):	filename = filename[:-3]
+			for timer in NavigationInstance.instance.RecordTimer.timer_list:
+				try: timer.Filename
+				except: timer.calculateFilename()
+				if os.path.basename(timer.Filename) == filename:
+					return timer.service_ref.ref
+		except Exception, e:
+			emcDebugOut("[emcRC] getRecordingService exception:\n" + str(e))
+		return None
+
 	def isRemoteRecording(self, filename):
 		try:
 			if filename[0] == "/": 			filename = os.path.basename(filename)
