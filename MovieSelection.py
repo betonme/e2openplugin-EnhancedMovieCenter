@@ -740,16 +740,13 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		# Initialize buttons
 		self["key_red"].text = _("Delete")
 		#TODO get color from MovieCenter
-		#sort, perm = self["list"].getSorting()
+		sort, perm = self["list"].getSorting()
 		green = ""
 		# Negotiate the sorting to display the next state
 		if not sort:
 			self["key_green"].text = _("Alpha sort")
 		else:
 			self["key_green"].text = _("Date sort")
-		#if perm == True:
-		#	green += _(" (P)")
-		#self["key_green"].text = green
 		self["key_yellow"].text = _("Move")
 		self["key_blue"].text = _(config.EMC.movie_bluefunc.description[config.EMC.movie_bluefunc.value])
 
