@@ -5,7 +5,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-11-06 23:29+0100\n"
 "PO-Revision-Date: \n"
-"Last-Translator: Swiss-MAD\n"
+"Last-Translator: bschaar\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -93,13 +93,13 @@ msgstr ""
 #: - Enhanced Movie
 #: Center\EMC-SVN\Locale\HELP_/EnhancedMovieCenter.py:35
 msgid "HELP_Show directories"
-msgstr "Show or hide directorys in the movielist"
+msgstr "Show or hide directories in the movielist"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
 #: Center\EMC-SVN\Locale\HELP_/EnhancedMovieCenter.py:36
 msgid "HELP_Show directories information"
-msgstr "Display amount of recordings and/or how many disk space these all using."
+msgstr "Display amount of recordings and/or how many disk space these are using."
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
@@ -181,7 +181,7 @@ msgstr ""
 #: - Enhanced Movie
 #: Center\EMC-SVN\Locale\HELP_/EnhancedMovieCenter.py:50
 msgid "HELP_Replace special chars in title"
-msgstr "Replace title underscores and points with spaces"
+msgstr "Replace underscores and points in titles with spaces."
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
@@ -209,7 +209,7 @@ msgstr ""
 #: - Enhanced Movie
 #: Center\EMC-SVN\Locale\HELP_/EnhancedMovieCenter.py:57
 msgid "HELP_Date format"
-msgstr "Select the format from date and time, that will display behind of files."
+msgstr "Select the date and time format, which will be displayed behind the files."
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
@@ -301,7 +301,7 @@ msgstr ""
 #: - Enhanced Movie
 #: Center\EMC-SVN\Locale\HELP_/EnhancedMovieCenter.py:74
 msgid "HELP_Dynamic trashcan"
-msgstr "Display amount of recordings and/or how many disk space these all using in your trashcan."
+msgstr "Display amount of recordings and/or how many disk space these are using in your trashcan."
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie

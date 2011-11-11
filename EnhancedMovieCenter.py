@@ -233,7 +233,7 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 			(  _("Replace special chars in title")                , config.EMC.replace_specialchars     , None                  , None                  , 2     , []        , _("HELP_Replace special chars in title") ),
 			(  _("Show Movie Format")                             , config.EMC.movie_show_format        , None                  , None                  , 0     , []        , _("HELP_Show Movie Format") ),
 			(  _("Show Cut-Nr if exist")                          , config.EMC.movie_show_cutnr         , None                  , None                  , 0     , []        , _("HELP_Show Cut-Nr if exist") ),
-			(  _("Resolve links and show real path")              , config.EMC.movie_real_path          , None                  , None                  , 0     , []        , _("HELP_Solve links") ),
+			(  _("Resolve links and show real path")              , config.EMC.movie_real_path          , None                  , None                  , 0     , []        , _("HELP_Resolve links and show real path") ),
 			
 			(  separator                                          , config.EMC.about                    , None                  , None                  , 0     , []        , _("") ),
 			(  _("Listbox is skin able")                          , config.EMC.skin_able                , None                  , None                  , 0     , []        , _("HELP_Listbox is skin able") ),
@@ -250,7 +250,7 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 			(  _("Jump to first mark when playing movie")         , config.EMC.movie_jump_first_mark    , None                  , None                  , 1     , []        , _("HELP_Jump to first mark when playing movie") ),
 			(  _("Rewind finished movies before playing")         , config.EMC.movie_rewind_finished    , None                  , None                  , 1     , []        , _("HELP_Rewind finished movies before playing") ),
 			(  _("Always save last played progress as marker")    , config.EMC.movie_save_lastplayed    , None                  , None                  , 1     , []        , _("HELP_Always save last played progress as marker") ),
-			(  _("Jump to channel after record EOF")              , config.EMC.record_eof_jump          , None                  , None                  , 1     , []        , _("HELP_Record eof jump") ),
+			(  _("Jump to channel after record EOF")              , config.EMC.record_eof_jump          , None                  , None                  , 1     , []        , _("HELP_Jump to channel after record EOF") ),
 			
 			(  separator                                          , config.EMC.about                    , None                  , None                  , 0     , []        , _("HELP_separator_Trashcan settings") ),
 			(  _("Trashcan enable")                               , config.EMC.movie_trashcan_enable    , None                  , self.openLocationBox  , 0     , []        , _("HELP_Trashcan enable") ),

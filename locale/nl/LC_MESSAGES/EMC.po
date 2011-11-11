@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-11-06 23:28+0100\n"
+"POT-Creation-Date: 2011-11-11 01:32+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Swiss-MAD\n"
 "Language-Team: \n"
@@ -14,111 +14,119 @@ msgstr ""
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EMCMediaCenter.py:115
-#: Center\EMC-SVN\Locale/EMCMediaCenter.py:121
+#: Center\EMC-SVN\Locale/EMCMediaCenter.py:120
+#: Center\EMC-SVN\Locale/EMCMediaCenter.py:126
 msgid "Stop playback"
 msgstr "Afspelen stoppen"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EMCMediaCenter.py:116
-#: Center\EMC-SVN\Locale/EMCMediaCenter.py:122
-msgid "Format AVSwitch"
-msgstr ""
-
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
-#: - Enhanced Movie
+#: Center\EMC-SVN\Locale/EMCMediaCenter.py:121
 #: Center\EMC-SVN\Locale/EMCMediaCenter.py:127
-msgid "show DVD main menu"
-msgstr ""
-
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
-#: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EMCMediaCenter.py:129
-msgid "forward to the next chapter"
-msgstr ""
-
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
-#: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EMCMediaCenter.py:130
-msgid "rewind to the previous chapter"
-msgstr ""
-
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
-#: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EMCMediaCenter.py:131
-msgid "jump forward to the next title"
-msgstr ""
+msgid "Format AVSwitch"
+msgstr "AV-formaat wisselen"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
 #: Center\EMC-SVN\Locale/EMCMediaCenter.py:132
-msgid "jump back to the previous title"
-msgstr ""
-
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
-#: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EMCMediaCenter.py:133
-msgid "(show optional DVD audio menu)"
-msgstr ""
+msgid "show DVD main menu"
+msgstr "DVD-hoofdmenu weergeven"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
 #: Center\EMC-SVN\Locale/EMCMediaCenter.py:134
-msgid "switch to the next audio track"
-msgstr ""
+msgid "forward to the next chapter"
+msgstr "Naar het volgende hoofdstuk springen"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
 #: Center\EMC-SVN\Locale/EMCMediaCenter.py:135
-msgid "switch to the next subtitle language"
-msgstr ""
+msgid "rewind to the previous chapter"
+msgstr "Naar het vorige hoofdstuk springen"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
 #: Center\EMC-SVN\Locale/EMCMediaCenter.py:136
+msgid "jump forward to the next title"
+msgstr "Naar de volgende titel springen"
+
+#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
+#: - Enhanced Movie
+#: Center\EMC-SVN\Locale/EMCMediaCenter.py:137
+msgid "jump back to the previous title"
+msgstr "Naar de vorige titel springen"
+
+#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
+#: - Enhanced Movie
+#: Center\EMC-SVN\Locale/EMCMediaCenter.py:138
+msgid "(show optional DVD audio menu)"
+msgstr "(optioneel DVD audiomenu weergeven)"
+
+#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
+#: - Enhanced Movie
+#: Center\EMC-SVN\Locale/EMCMediaCenter.py:139
+msgid "switch to the next audio track"
+msgstr "schakel naar het volgende geluidsspoor"
+
+#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
+#: - Enhanced Movie
+#: Center\EMC-SVN\Locale/EMCMediaCenter.py:140
+msgid "switch to the next subtitle language"
+msgstr "schakel naar de volgende ondertitelingstaal"
+
+#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
+#: - Enhanced Movie
+#: Center\EMC-SVN\Locale/EMCMediaCenter.py:141
 msgid "switch to the next angle"
-msgstr ""
+msgstr "schakel naar de volgende hoek (angle)"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EMCMediaCenter.py:155
-#, fuzzy
+#: Center\EMC-SVN\Locale/EMCMediaCenter.py:160
 msgid "view extensions..."
-msgstr "Open extentie menu"
+msgstr "Open extensie menu"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EMCMediaCenter.py:278
+#: Center\EMC-SVN\Locale/EMCMediaCenter.py:260
 msgid "No DVD-Player found!"
 msgstr "Geen DVD-speler gevonden!"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EMCMediaCenter.py:316
-#, fuzzy
+#: Center\EMC-SVN\Locale/EMCMediaCenter.py:298
 msgid ""
 "Skipping movie, the file does not exist.\n"
 "\n"
-msgstr "Film overslaan, bestand bestaat niet.\n"
+msgstr ""
+"Film overslaan, het bestand bestaat niet.\n"
+"\n"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EMCMediaCenter.py:623
+#: Center\EMC-SVN\Locale/EMCMediaCenter.py:341
+msgid ""
+"EMC\n"
+"Zap to Live TV of record"
+msgstr ""
+
+#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
+#: - Enhanced Movie
+#: Center\EMC-SVN\Locale/EMCMediaCenter.py:637
 msgid "Chap."
-msgstr ""
+msgstr "Hfdstk"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EMCMediaCenter.py:624
+#: Center\EMC-SVN\Locale/EMCMediaCenter.py:638
 msgid "Chapter"
-msgstr ""
+msgstr "Hoofdstuk"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EMCMediaCenter.py:625
+#: Center\EMC-SVN\Locale/EMCMediaCenter.py:639
 msgid "Title"
-msgstr ""
+msgstr "Titel"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
@@ -130,19 +138,19 @@ msgstr "Volgende Enigma2 auto-herstart in "
 #: - Enhanced Movie
 #: Center\EMC-SVN\Locale/EMCTasker.py:191
 msgid "Enigma auto-restart is currently not active."
-msgstr "Enigma2 auto-herstart is nu niet actief."
+msgstr "Enigma2 auto-herstart is momenteel niet actief."
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
 #: Center\EMC-SVN\Locale/EMCTasker.py:203
 msgid "EMC Enigma2 auto-restart launching, continue? Select no to postpone by one hour."
-msgstr "EMC Enigma2 auto-herstart begint. Doorgaan? Kies NEE om dit een uur uit te stellen."
+msgstr "EMC Enigma2 auto-herstart begint, doorgaan? Kies NEE om dit een uur uit te stellen."
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
 #: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:148
 msgid "Cancel"
-msgstr "Afbreken"
+msgstr "Annuleren"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
@@ -152,77 +160,77 @@ msgstr "Bewaren"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:197
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:199
 msgid "About"
 msgstr "Over"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:197
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:199
 msgid "HELP_About"
-msgstr "Opent het \"Over\" venster."
+msgstr "Opent het \"Info\" venster."
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:199
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:201
 msgid "Disable EMC"
 msgstr "EMC deactiveren"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:199
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:201
 msgid "HELP_Disable EMC"
-msgstr "EMC (FilmLijst) uitschakelen. Bepaalde speciale functies zoals [Timers opschonen],[Prullebak ledigen] en [Auto-herstart] blijven actief op de achtergrond."
+msgstr "EMC (FilmLijst) uitschakelen. Bepaalde speciale functies zoals [Timers opschonen],[Prullenbak legen] en [Auto-herstart] blijven actief op de achtergrond."
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:201
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:203
 msgid "Start EMC with"
 msgstr "Start EMC met"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:201
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:203
 msgid "HELP_Start EMC with"
 msgstr "Knop voor het opstarten van EMC instellen."
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:202
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:204
 msgid "Show plugin config in extensions menu"
-msgstr "EMC Setup in extensie menu laten zien"
+msgstr "EMC instellingen in extensie menu laten zien"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:202
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:204
 msgid "HELP_Show plugin config in extensions menu"
 msgstr ""
-"EMC-instellingen verbergen of weergeven in het extentie-menu.\n"
-"Het extentie-menu wordt normaal via de [Blauwe] knop opgeroepen."
+"EMC-instellingen verbergen of weergeven in het extensie-menu.\n"
+"Het extensie-menu is normaliter via de blauwe knop te bereiken."
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:203
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:205
 msgid "Show EMC in extensions menu"
 msgstr "EMC in extensie menu laten zien"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:203
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:205
 msgid "HELP_Show EMC in extensions menu"
 msgstr ""
-"EMC-plugin verbergen of weergeven in het extentie-menu.\n"
-"Het extentie-menu wordt normaal via de [Blauwe] knop opgeroepen."
+"EMC-plugin verbergen of weergeven in het extensie-menu.\n"
+"Het extensie-menu is normaliter via de blauwe toets te bereiken."
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:206
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:208
 msgid "Movie home at start"
 msgstr "Hoofdmap films na starten"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:206
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:208
 msgid "HELP_Movie home at start"
 msgstr ""
 "EMC start steeds in de hoofdmap \"Movie home\".\n"
@@ -230,25 +238,25 @@ msgstr ""
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:207
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:209
 msgid "Sort file A to Z at startup"
 msgstr "Sorteer filmlijst van A tot Z na starten"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:207
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:209
 msgid "HELP_Sort file A to Z at startup"
-msgstr "De FilmLijst wordt alfabetisch gesorteerd."
+msgstr "De FilmLijst wordt bij het openen alfabetisch gesorteerd."
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:208
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:210
 msgid "File order reverse"
-msgstr "Sortering wisselen"
+msgstr "Sortering omdraaien"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:208
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:210
 msgid "HELP_File order reverse"
 msgstr ""
 "De FilmLijst wordt omgekeerd gesorteerd.\n"
@@ -256,131 +264,121 @@ msgstr ""
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:210
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:212
 msgid "Movie home home path"
 msgstr "Pad hoofdmap films"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:210
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:212
 msgid "HELP_Movie home home path"
 msgstr "Instellen hoofdmap \"Movie home\"."
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:211
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:213
 msgid "EMC path access limit"
 msgstr "EMC map beperkte toegang"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:211
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:213
 msgid "HELP_EMC path access limit"
 msgstr ""
-"Limiteer de toegang buiten de hoofdmap \"Movie home\".\n"
+"Beperk de toegang buiten de hoofdmap \"Movie home\".\n"
 "Met de [<] en [>] knoppen (naast de Nr.0 knop) is het mogelijk deze beperking te overschrijden."
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:213
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:215
 msgid "Cursor predictive move after selection"
 msgstr "Cursor na selectie verplaatsen"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:213
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:215
 msgid "HELP_Cursor predictive move after selection"
 msgstr ""
-"Na een selectie met de [VIDEO/PVR] knop wordt de cursor verplaatst in de richting zoals ingesteld.\n"
+"De cursor wordt tijdens het kiezen met de [VIDEO/PVR] knop in de ingestelde richting verplaatst.\n"
 "Met \"omhoog/omlaag\" verplaatst de cursor zich in de richting van de laatst uitgevoerde beweging."
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:216
-#, fuzzy
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:218
 msgid "Show directories"
-msgstr "Kies map"
+msgstr "Mappen weergeven"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:216
-#, fuzzy
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:218
 msgid "HELP_Show directories"
-msgstr "VLC map verbergen of weergeven, enkel indien VlcPlayerExtended Plugin geïnstalleerd is."
+msgstr "Mappen in de filmlijst weergeven."
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:217
-#, fuzzy
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:219
 msgid "Show directories information"
-msgstr "Filmtype weergeven"
+msgstr "Informatie over de mappen weergeven"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:217
-#, fuzzy
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:219
 msgid "HELP_Show directories information"
-msgstr "De bestandsextentie (bestandsformaat) wordt aan de titel toegevoegd."
+msgstr "Bij mappen kan het aantal opnames, de totale bestandsgrootte , of beide weergegeven worden."
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:218
-#, fuzzy
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:220
 msgid "Show Latest Recordings directory"
-msgstr ""
-"Een virtuele map weergeven in \"Movie home\" met een lijst van de recentste opnames. Eveneens voor de submappen van \"Movie home\".\n"
-"(Enkel 1 pagina)"
+msgstr "Map met laatste opnames weergeven"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:218
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:220
 msgid "HELP_Show Latest Recordings directory"
 msgstr ""
-"Een virtuele map weergeven in \"Movie home\" met een lijst van de recentste opnames. Eveneens voor de submappen van \"Movie home\".\n"
+"Een virtuele map weergeven in \"Movie home\" met een lijst van de laatste opnames. Eveneens voor de submappen van \"Movie home\".\n"
 "(Enkel 1 pagina)"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:219
-#, fuzzy
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:221
 msgid "Show VLC directory"
-msgstr "VLC map verbergen of weergeven, enkel indien VlcPlayerExtended Plugin geïnstalleerd is."
+msgstr "VLC map weergeven"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:219
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:221
 msgid "HELP_Show VLC directory"
 msgstr "VLC map verbergen of weergeven, enkel indien VlcPlayerExtended Plugin geïnstalleerd is."
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:220
-#, fuzzy
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:222
 msgid "Show E2 Bookmarks in movielist"
-msgstr "Virtuele mappen weergeven in \"Movie home\" voor de beschikbare Enigma2 Bookmarks."
-
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
-#: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:220
-msgid "HELP_Show E2 Bookmarks in movielist"
-msgstr "Virtuele mappen weergeven in \"Movie home\" voor de beschikbare Enigma2 Bookmarks."
+msgstr "E2 markeringen in filmlijst weergeven."
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
 #: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:222
+msgid "HELP_Show E2 Bookmarks in movielist"
+msgstr "Virtuele mappen weergeven in \"Movie home\" voor de beschikbare Enigma2 leestekens."
+
+#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
+#: - Enhanced Movie
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:224
 msgid "HELP_separator_hide&performance"
 msgstr "Instellingen voor het verbergen of weergeven van mappen/bestanden en de prestaties."
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:223
-#, fuzzy
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:225
 msgid "Hide configured entries"
-msgstr "Geselecteerde film(s) verplaatsen"
+msgstr "Ingestelde bestanden en mappen verbergen"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:223
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:225
 msgid "HELP_cfghide_enable"
 msgstr ""
 "Verberg bestanden en mappen die opgenomen zijn in '/etc/enigma2/emc-hide.cfg'.\n"
@@ -388,225 +386,227 @@ msgstr ""
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:224
-#, fuzzy
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:226
 msgid "Scan for DVD structures"
-msgstr ""
-"In geen enkele map naar DVD-structuren zoeken.\n"
-"Dit voorkomt het ongewenst opstarten van (netwerk)schijven."
+msgstr "Naar DVD-structuren zoeken"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:224
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:226
 msgid "HELP_Scan for DVD structures"
 msgstr ""
 "In geen enkele map naar DVD-structuren zoeken.\n"
-"Dit voorkomt het ongewenst opstarten van (netwerk)schijven."
+"Dit voorkomt het ongewenst opstarten van andere dragers zoals harde schijven, NAS e.d."
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:225
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:227
 msgid "Suppress scan in selected folders"
-msgstr ""
+msgstr "Onderdruk zoeken naar DVD-structuur in geselecteerde mappen"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:225
-#, fuzzy
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:227
 msgid "HELP_cfgscan_suppress"
 msgstr ""
-"Niet zoeken naar DVD-structuren in mappen waarvan de paden opgenomen zijn in '/etc/enigma2/emc-hide.cfg'.  Dit voorkomt het ongewenst opstarten van (netwerk)schijven.\n"
+"Niet zoeken naar DVD-structuren in mappen waarvan de paden opgenomen zijn in '/etc/enigma2/emc-hide.cfg'.  Dit voorkomt het ongewenst opstarten van andere dragers zoals harde schijven, NAS e.d.\n"
 "Het aanpassen van deze instelling vereist een herstart van Enigma2!"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:226
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:228
 msgid "Scan linked folders"
-msgstr ""
+msgstr "DVD-structuur zoeken in links"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:226
-#, fuzzy
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:228
 msgid "HELP_scan_linked"
 msgstr ""
-"In geen enkele Symlink DVD-structuren zoeken.\n"
-"Dit voorkomt het ongewenst opstarten van (netwerk)schijven."
+"Niet in (submappen van) symlinks  naar DVD-structuren zoeken.\n"
+"Dit voorkomt het ongewenst opstarten van andere dragers zoals harde schijven, NAS e.d."
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:229
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:231
 msgid "Try to load titles from .meta files"
 msgstr "Proberen om titels uit .meta-bestand te lezen"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:229
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:231
 msgid "HELP_Try to load titles from .meta files"
 msgstr ""
 "Titels worden van het .meta-bestand geladen indien beschikbaar.\n"
 "In andere gevallen wordt de titel uit de bestandsnaam afgeleid.\n"
-"(Is .meta en .eit geactiveerd wordt eerst de .meta gelezen.)"
+"(Indien zowel .meta als .eit geactiveerd zijn, wordt eerst het .meta-bestand gelezen.)"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:230
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:232
 msgid "Try to load titles from .eit files"
 msgstr "Proberen om titels uit .eit-bestand te lezen"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:230
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:232
 msgid "HELP_Try to load titles from .eit files"
 msgstr ""
 "Titels worden van het .eit-bestand geladen indien beschikbaar.\n"
 "In andere gevallen wordt de titel uit de bestandsnaam afgeleid.\n"
-"(Is .meta en .eit geactiveerd wordt eerst de .meta gelezen.)"
+"(Indien zowel .meta als .eit geactiveerd zijn, wordt eerst het .meta-bestand gelezen.)"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:231
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:233
 msgid "Replace special chars in title"
-msgstr ""
+msgstr "Vervang speciale tekens in de titel"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:231
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:233
 msgid "HELP_Replace special chars in title"
-msgstr ""
+msgstr "Vervang underscores en punten in de bestandsnaam door spatie."
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:232
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:234
 msgid "Show Movie Format"
 msgstr "Filmtype weergeven"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:232
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:234
 msgid "HELP_Show Movie Format"
-msgstr "De bestandsextentie (bestandsformaat) wordt aan de titel toegevoegd."
+msgstr "De bestandsextensie (bestandsformaat) wordt weergegeven."
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:233
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:235
 msgid "Show Cut-Nr if exist"
 msgstr "EMC toont Cut-Nr. indien beschikbaar"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:233
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:235
 msgid "HELP_Show Cut-Nr if exist"
 msgstr ""
-"Indien Enigma2 herstart tijdens een opname, wordt de opname automatisch hervat met een indexnummer aan het einde van de bestandsnaam.\n"
-"Met deze optie wordt deze indexnummer aan de titel toegevoegd."
+"Indien Enigma2 herstart tijdens een opname, wordt de opname automatisch hervat met een volgnummer aan het einde van de bestandsnaam.\n"
+"Met deze optie wordt dit volgnummer aan de titel toegevoegd."
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
 #: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:236
+msgid "Resolve links and show real path"
+msgstr ""
+
+#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
+#: - Enhanced Movie
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:236
+msgid "HELP_Resolve links and show real path"
+msgstr ""
+
+#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
+#: - Enhanced Movie
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:239
 msgid "Listbox is skin able"
-msgstr "Listbox is skinbaar"
+msgstr "Filmlijst is skinbaar"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:236
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:239
 msgid "HELP_Listbox is skin able"
 msgstr ""
-"De visuele weergave van de FilmLijst volgens de Skin (indien beschikbaar) wordt toegepast (enkel <widget name=\"list\").\n"
-"Voor het overige worden de EMC-instellingen toegepast."
+"De weergave van de FilmLijst volgens de Skin (indien beschikbaar) wordt toegepast (enkel <widget name=\"list\").\n"
+"Anders wordt de filmlijst weergegeven zoals in de EMC instellingen bepaald."
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:238
-#, fuzzy
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:241
 msgid "Date format"
-msgstr "Chronologisch"
+msgstr "Datumweergave"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:238
-#, fuzzy
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:241
 msgid "HELP_Date format"
-msgstr "Chronologisch"
+msgstr "Datum verbergen, of de datumweergave kiezen die in de filmlijst bij elke opname weergegeven wordt."
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:240
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:243
 msgid "Show movie icons"
 msgstr "Iconen weergeven"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:240
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:243
 msgid "HELP_Show movie icons"
 msgstr "Een overeenstemmend icon wordt weergegeven in de FilmLijst."
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:241
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:244
 msgid "Show movie progress"
 msgstr "Voortgang weergeven"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:241
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:244
 msgid "HELP_Show movie progress"
-msgstr "Een voortgangsbalk wordt weergegeven in de FilmLijst voor de filmnaam."
+msgstr "Een voortgangsindicatie (balk of percentage) wordt weergegeven in de FilmLijst voor de filmnaam."
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:242
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:245
 msgid "Short watching percent"
-msgstr "Percent kort afspelen"
+msgstr "Percentage kort afspelen"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:242
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:245
 msgid "HELP_Short watching percent"
 msgstr ""
-"Specifieer welk percentage voortgang aanzien wordt als \"wordt afgespeeld\". \n"
+"Specifieer welk percentage van de voortgang aanzien wordt als \"wordt afgespeeld\". \n"
 "De voortgangsbalk wordt blauw."
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:243
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:246
 msgid "Finished watching percent"
-msgstr "Percent volledig afgespeeld"
+msgstr "Percentage volledig afgespeeld"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:243
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:246
 msgid "HELP_Finished watching percent"
 msgstr ""
-"Specifieer welk percentage voortgang aanzien wordt als \"gezien\". \n"
+"Specifieer welk percentage van de voortgang aanzien wordt als \"gezien\". \n"
 "De voortgangsbalk wordt groen."
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:246
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:249
 msgid "No resume below 10 seconds"
-msgstr "Geen hervatten onder 10 sec."
+msgstr "Niet hervatten onder 10 sec."
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:246
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:249
 msgid "HELP_No resume below 10 seconds"
 msgstr ""
-"Markeerpunten onder 10 seconden negeren.\n"
+"Markeerpunten tijdens de eerste 10 seconden negeren.\n"
 "Indien het afspelen tijdens de eerste 10 seconden onderbroken wordt, zal bij het volgende afspelen geen \"hervatten\" voorgesteld worden."
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:247
-#, fuzzy
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:250
 msgid "Jump to first mark when playing movie"
-msgstr ""
-"Automatisch naar het eerste markeerpunt springen indien beschikbaar in het begin van een opname.\n"
-"(Kan helpen om de voorlooptijd automatisch te overbruggen.)"
+msgstr "Automatisch naar het eerste markeerpunt springen"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:247
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:250
 msgid "HELP_Jump to first mark when playing movie"
 msgstr ""
 "Automatisch naar het eerste markeerpunt springen indien beschikbaar in het begin van een opname.\n"
@@ -614,25 +614,25 @@ msgstr ""
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:248
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:251
 msgid "Rewind finished movies before playing"
-msgstr "Afgespeelde filmen terugspoelen voor het afspelen"
+msgstr "Afgespeelde films terugspoelen voor het afspelen"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:248
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:251
 msgid "HELP_Rewind finished movies before playing"
-msgstr "Indien een opname met de status \"gezien\" herstart wordt, automatisch afspelen vanaf het begin."
+msgstr "Indien een opname met de status \"gezien\" heeft, wordt de opname bij een volgende start weer vanaf het begin afgespeeld."
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:249
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:252
 msgid "Always save last played progress as marker"
 msgstr "Laatste afspeelpositie altijd als markeerpunt bewaren"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:249
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:252
 msgid "HELP_Always save last played progress as marker"
 msgstr ""
 "Met deze optie wordt een markeerpunt op de afspeelpositie toegevoegd als het afspelen onderbroken wordt.\n"
@@ -640,167 +640,171 @@ msgstr ""
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:251
-#, fuzzy
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:253
+msgid "Jump to channel after record EOF"
+msgstr ""
+
+#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
+#: - Enhanced Movie
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:253
+msgid "HELP_Jump to channel after record EOF"
+msgstr ""
+
+#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
+#: - Enhanced Movie
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:255
 msgid "HELP_separator_Trashcan settings"
-msgstr "Instellingen voor het verbergen of weergeven van mappen/bestanden en de prestaties."
-
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
-#: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:252
-#, fuzzy
-msgid "Trashcan enable"
-msgstr "Pad prullebak"
-
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
-#: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:252
-#, fuzzy
-msgid "HELP_Trashcan enable"
-msgstr ""
-"Instellen van de prullebak.\n"
-"Drukken op [verwijderen] zal de opnames naar de prullebak verplaatsen i.p.v. deze onmiddellijk te verwijderen."
-
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
-#: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:253
-msgid "Trashcan path"
-msgstr "Pad prullebak"
-
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
-#: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:253
-msgid "HELP_Trashcan path"
-msgstr ""
-"Instellen van de prullebak.\n"
-"Drukken op [verwijderen] zal de opnames naar de prullebak verplaatsen i.p.v. deze onmiddellijk te verwijderen."
-
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
-#: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:254
-#, fuzzy
-msgid "Show trashcan directory"
-msgstr "Prullebak verbergen"
-
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
-#: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:254
-#, fuzzy
-msgid "HELP_Show trashcan directory"
-msgstr ""
-"Indien actief wordt de prullebak verborgen in EMC.\n"
-"(Maar, het blijft mogelijk om de prullebak te openen via EMC [MENU])"
-
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
-#: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:255
-msgid "Show trashcan information"
-msgstr ""
-
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
-#: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:255
-#, fuzzy
-msgid "HELP_Dynamic trashcan"
-msgstr "Prullebak legen"
+msgstr "Instellingen die betrekking hebben op de prullenbak en het automatische legen."
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
 #: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:256
+msgid "Trashcan enable"
+msgstr "Prullenbak gebruiken"
+
+#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
+#: - Enhanced Movie
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:256
+msgid "HELP_Trashcan enable"
+msgstr ""
+"Instellen van de prullenbak.\n"
+"Drukken op [verwijderen] zal de opnames naar de prullenbak verplaatsen i.p.v. deze onmiddellijk te verwijderen."
+
+#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
+#: - Enhanced Movie
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:257
+msgid "Trashcan path"
+msgstr "Pad prullenbak"
+
+#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
+#: - Enhanced Movie
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:257
+msgid "HELP_Trashcan path"
+msgstr ""
+"Instellen van het pad van de prullenbak.\n"
+"Drukken op [verwijderen] zal de opnames naar de prullenbak verplaatsen i.p.v. deze onmiddellijk te verwijderen."
+
+#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
+#: - Enhanced Movie
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:258
+msgid "Show trashcan directory"
+msgstr "Prullenbak weergeven"
+
+#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
+#: - Enhanced Movie
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:258
+msgid "HELP_Show trashcan directory"
+msgstr ""
+"Laat de prullenbak in de filmlijst zien.\n"
+"(De prullenbak kan in elk geval via het menu worden opgeroepen, zelfs wanneer het verborgen is.)"
+
+#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
+#: - Enhanced Movie
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:259
+msgid "Show trashcan information"
+msgstr "Prullenbak informatie weergeven"
+
+#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
+#: - Enhanced Movie
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:259
+msgid "HELP_Dynamic trashcan"
+msgstr "Bij de prullenbak kan het aantal opnames, de totale bestandsgrootte , of beide samen weergegeven worden."
+
+#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
+#: - Enhanced Movie
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:260
 msgid "Delete validation"
 msgstr "Bevestigen bij wissen"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:256
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:260
 msgid "HELP_Delete validation"
-msgstr "Indien actief en de prullebak is in gebruik zal EMC nooit een bevestiging vragen."
+msgstr "Indien actief en de prullenbak is in gebruik zal EMC nooit een bevestiging vragen."
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:258
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:262
 msgid "Enable daily trashcan cleanup"
-msgstr "Prullebak dagelijks legen activeren"
+msgstr "Prullenbak dagelijks legen activeren"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:258
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:262
 msgid "HELP_Enable daily trashcan cleanup"
-msgstr "EMC verwijderd oude bestanden uit de prullebak, van zodra ze de limiet bereiken die in de volgende regel ingesteld wordt."
+msgstr "EMC verwijderd oude bestanden uit de prullenbak, van zodra ze de limiet bereiken die in de volgende regel ingesteld wordt."
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:259
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:263
 msgid "Daily cleanup time"
 msgstr "Tijdstip om dagelijks op te ruimen"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:259
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:263
 msgid "HELP_Daily cleanup time"
-msgstr "Tijdstip waarop EMC alle bestanden uit de prullebak verwijderd die de limiet overschrijden."
+msgstr "Tijdstip waarop EMC alle bestanden uit de prullenbak verwijderd die de limiet overschrijden."
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:260
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:264
 msgid "How many days files may remain in trashcan"
-msgstr "Aantal dagen bestanden in de prullebak"
+msgstr "Aantal dagen mogen bestanden in de prullenbak blijven"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:260
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:264
 msgid "HELP_How many days files may remain in trashcan"
 msgstr ""
-"Instellen hoeveel dagen de bestanden in de prullebak blijven alvorens EMC deze definitief verwijderd.\n"
+"Instellen hoeveel dagen de bestanden in de prullenbak blijven alvorens EMC deze definitief verwijderd.\n"
 "(Indien ingesteld op [0] worden de bestanden onmiddellijk verwijderd)."
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:261
-#, fuzzy
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:265
 msgid "Move finished movies in trashcan"
-msgstr "Verplaats alle afgespeelde (geziene) opnames van \"Movie home\" naar de prullebak, van zodra ze de limiet bereiken die in de volgende regel ingesteld wordt."
-
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
-#: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:261
-msgid "HELP_Move finished movies in trashcan"
-msgstr "Verplaats alle afgespeelde (geziene) opnames van \"Movie home\" naar de prullebak, van zodra ze de limiet bereiken die in de volgende regel ingesteld wordt."
-
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
-#: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:262
-#, fuzzy
-msgid "Age of finished movies in movie folder (days)"
-msgstr "Instellen hoeveel dagen de afgespeelde opnames in \"Movie home\" blijven."
-
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
-#: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:262
-msgid "HELP_Age of finished movies in movie folder (days)"
-msgstr "Instellen hoeveel dagen de afgespeelde opnames in \"Movie home\" blijven."
+msgstr "Afgespeelde opnames  naar de prullenbak verplaatsen"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
 #: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:265
+msgid "HELP_Move finished movies in trashcan"
+msgstr "Verplaats alle afgespeelde (geziene) opnames van \"Movie home\" naar de prullenbak, van zodra ze de limiet bereiken die in de volgende regel ingesteld wordt."
+
+#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
+#: - Enhanced Movie
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:266
+msgid "Age of finished movies in movie folder (days)"
+msgstr "Instellen hoeveel dagen de afgespeelde opnames in \"Movie home\" mogen blijven."
+
+#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
+#: - Enhanced Movie
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:266
+msgid "HELP_Age of finished movies in movie folder (days)"
+msgstr "Instellen hoeveel dagen de afgespeelde opnames in \"Movie home\" mogen blijven."
+
+#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
+#: - Enhanced Movie
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:269
 msgid "Display directory reading text"
 msgstr "Bericht bij actualiseren overzicht weergeven"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:265
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:269
 msgid "HELP_Display directory reading text"
 msgstr "Bericht weergeven \"Mappen inlezen...\" tijdens het inlezen van mappen."
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:266
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:270
 msgid "EMC always reload after open"
 msgstr "EMC na openen altijd opnieuw inlezen"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:266
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:270
 msgid "HELP_EMC always reload after open"
 msgstr ""
 "Mappen opnieuw inlezen bij elke start van EMC.\n"
@@ -808,13 +812,13 @@ msgstr ""
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:267
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:271
 msgid "EMC re-open list after STOP-press"
 msgstr "EMC na op STOP gedrukt te hebben heropenen"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:267
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:271
 msgid "HELP_EMC re-open list after STOP-press"
 msgstr ""
 "Indien het afspelen afgebroken wordt, de EMC FilmLijst opnieuw weergeven.\n"
@@ -822,13 +826,13 @@ msgstr ""
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:268
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:272
 msgid "EMC re-open list after Movie end"
 msgstr "EMC na einde van een film heropenen"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:268
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:272
 msgid "HELP_EMC re-open list after Movie end"
 msgstr ""
 "Indien het afspelen het einde bereikt, de EMC FilmLijst opnieuw weergeven.\n"
@@ -836,298 +840,298 @@ msgstr ""
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:270
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:274
 msgid "Leave Movie with Exit"
 msgstr "Stop afspelen met Exit?"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:270
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:274
 msgid "HELP_Leave Movie with Exit"
 msgstr "Het afspelen van een opname kan afgebroken worden met de EXIT knop, bijkomend bij de STOP knop."
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:271
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:275
 msgid "Blue button function"
-msgstr "Functie van de blaue knop"
+msgstr "Functie van de blauwe knop"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:271
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:275
 msgid "HELP_Blue button function"
 msgstr "Een keuzelijst voor het toewijzen van een functie aan de blauwe knop."
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:273
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:277
 msgid "Hide movies being moved"
 msgstr "Verberg films die verplaatst worden"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:273
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:277
 msgid "HELP_Hide movies being moved"
 msgstr ""
 "De opname wordt verborgen tijdens het verplaatsen.\n"
-"(Het verplaatsen wordt altijd in achtergrond uitgevoerd.)"
+"(Het verplaatsen wordt altijd in de achtergrond uitgevoerd.)"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:274
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:278
 msgid "Hide movies being deleted"
 msgstr "Verberg films die gewist worden"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:274
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:278
 msgid "HELP_Hide movies being deleted"
 msgstr ""
 "De opname wordt verborgen tijdens het verwijderen.\n"
-"(Het verwijderen wordt altijd in achtergrond uitgevoerd.)"
+"(Het verwijderen wordt altijd in de achtergrond uitgevoerd.)"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:276
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:280
 msgid "Enable remote recordings"
-msgstr "Activeer herkenning opnames van andere Box."
+msgstr "Activeer herkenning opnames van een andere Box."
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:276
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:280
 msgid "HELP_Enable remote recordings"
 msgstr ""
-"Detecteer opnames van een andere Dreambox op een gemeenschappelijk volume.\n"
+"Detecteer opnames van een andere Dreambox op een gemeenschappelijk volume (bijv. een NAS).\n"
 "Deze opnames krijgen een specifiek icoon."
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:277
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:281
 msgid "Automatic timers list cleaning"
 msgstr "Automatisch timers opschonen"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:277
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:281
 msgid "HELP_Automatic timers list cleaning"
-msgstr "Uitgevoerde Timers worden automatisch uit de TimerLijst verwijderd."
+msgstr "Verlopen Timers worden automatisch uit de TimerLijst verwijderd."
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:279
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:283
 msgid "Enigma daily auto-restart"
 msgstr "Enigma2 dagelijks autom. herstarten"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:279
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:283
 msgid "HELP_Enigma daily auto-restart"
 msgstr "Enigma2 wordt dagelijks herstart tijdens het aangegeven tijdsbestek."
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:280
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:284
 msgid "Enigma auto-restart window begin"
 msgstr "Enigma2 auto-herstart venster Start"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:280
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:284
 msgid "HELP_Enigma auto-restart window begin"
 msgstr "Start van het tijdsbestek voor de automatische Enigma2 herstart."
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:281
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:285
 msgid "Enigma auto-restart window end"
 msgstr "Enigma2 auto-herstart venster Eind"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:281
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:285
 msgid "HELP_Enigma auto-restart window end"
 msgstr "Einde van het tijdsbestek voor de automatische Enigma2 herstart."
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:282
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:286
 msgid "Force standby after auto-restart"
 msgstr "Forceer Standby status na een auto-herstart"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:282
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:286
 msgid "HELP_Force standby after auto-restart"
 msgstr "Na de automatische Enigma2 herstart, de Dreambox in Standby schakelen."
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:284
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:288
 msgid "HELP_Language Separator"
 msgstr "Taalinstellingen"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:285
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:289
 msgid "Preferred EPG language"
 msgstr "Voorkeur EPG taal"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:285
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:289
 msgid "HELP_Preferred EPG language"
 msgstr "Hier kan de voorkeurstaal voor de EPG ingesteld worden."
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:286
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:290
 msgid "Enable playback auto-subtitling"
 msgstr "Ondertiteling autom. laten zien"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:286
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:290
 msgid "HELP_Enable playback auto-subtitling"
 msgstr "De automatische selectie van de ondertitels activeren."
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:287
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:291
 msgid "Primary playback subtitle language"
 msgstr "Eerste voorkeur voor ondertiteling"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:287
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:291
 msgid "HELP_Primary playback subtitle language"
 msgstr "Eerste taal ondertitels, indien beschikbaar, die gekozen moeten worden."
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:288
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:292
 msgid "Secondary playback subtitle language"
 msgstr "Tweede voorkeur voor ondertiteling"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:288
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:292
 msgid "HELP_Secondary playback subtitle language"
 msgstr "Tweede taal ondertitels, indien beschikbaar, die gekozen moeten worden."
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:289
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:293
 msgid "Tertiary playback subtitle language"
 msgstr "Derde voorkeur voor ondertiteling"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:289
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:293
 msgid "HELP_Tertiary playback subtitle language"
 msgstr "Derde taal ondertitels, indien beschikbaar, die gekozen moeten worden."
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:290
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:294
 msgid "Enable playback auto-language selection"
 msgstr "Geluidsspoor autom. kiezen"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:290
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:294
 msgid "HELP_Enable playback auto-language selection"
-msgstr "De automatische selectie van het geluidskanaal activeren."
+msgstr "De automatische selectie van het geluidsspooor activeren."
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:291
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:295
 msgid "Primary playback audio language"
 msgstr "Eerste voorkeur voor geluidsspoor"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:291
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:295
 msgid "HELP_Primary playback audio language"
-msgstr "Eerste geluidskanaal, indien beschikbaar, dat gekozen moet worden."
+msgstr "Eerste geluidsspoor, indien beschikbaar, dat gekozen moet worden."
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:292
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:296
 msgid "Secondary playback audio language"
 msgstr "Tweede voorkeur voor geluidsspoor"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:292
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:296
 msgid "HELP_Secondary playback audio language"
-msgstr "Tweede geluidskanaal, indien beschikbaar, dat gekozen moet worden."
+msgstr "Tweede geluidsspoor, indien beschikbaar, dat gekozen moet worden."
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:293
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:297
 msgid "Tertiary playback audio language"
 msgstr "Derde voorkeur voor geluidsspoor"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:293
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:297
 msgid "HELP_Tertiary playback audio language"
-msgstr "Derde geluidskanaal, indien beschikbaar, dat gekozen moet worden."
+msgstr "Derde geluidsspoor, indien beschikbaar, dat gekozen moet worden."
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:295
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:300
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:299
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:304
 msgid "HELP_Advanced options separator"
 msgstr "Geavanceerde instellingen"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:296
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:300
 msgid "Description field update delay"
 msgstr "Vertraging actualisatie beschrijving"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:296
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:300
 msgid "HELP_Description field update delay"
 msgstr ""
 "Vertraging voor het weergeven van de filmbeschrijving.\n"
-"(Versneld het snel bladeren met de omhoog/omlaag-knop in de filmlijst omdat de beschrijving later ingelezen wordt.)"
+"(Versneld het snel bladeren met de omhoog/omlaag-knop in de filmlijst, omdat de beschrijving later ingelezen wordt.)"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:297
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:301
 msgid "Key period value (50-900)"
-msgstr "Waarde v.d. toets (50-900)"
+msgstr "Toetsduur (50-900)"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:297
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:301
 msgid "HELP_Key period value (50-900)"
 msgstr "Tijd tot de knopdruk herhaald wordt bij blijvend indrukken van de knop."
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:298
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:302
 msgid "Key repeat value (250-900)"
-msgstr "Waarde herhalingstoets (250-900)"
+msgstr "Toets herhaalwaarde (250-900)"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:298
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:302
 msgid "HELP_Key repeat value (250-900)"
 msgstr "Snelheid waarmee de knopdruk herhaald wordt bij blijvend indrukken van de knop."
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:301
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:305
 msgid "Enable EMC debug output"
 msgstr "Debug output activeren"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:301
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:305
 msgid "HELP_Enable EMC debug output"
 msgstr ""
 "Debuggen van EMC activeren. Het logbestand wordt in de map ingestelde \"EMC map\" geschreven.\n"
@@ -1135,135 +1139,132 @@ msgstr ""
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:302
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:306
 msgid "EMC output directory"
 msgstr "EMC output map"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:302
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:306
 msgid "HELP_EMC output directory"
 msgstr "Map voor het schrijven van EMC-debuginformatie instellen."
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:303
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:307
 msgid "Debug output file name"
 msgstr "Debug output bestandsnaam"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:303
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:307
 msgid "HELP_Debug output file name"
 msgstr "Bestandsnaam van het logbestand voor het debuggen."
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:394
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:399
 msgid "Some settings changes require GUI restart to take effect."
-msgstr "Sommige veranderingen eisen een herstart van de GUI, Enigma2 a.u.b. opnieuw starten."
+msgstr "Sommige veranderingen eisen een herstart van E2, de GUI a.u.b. opnieuw starten."
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:409
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:414
 msgid "Choose directory"
 msgstr "Kies map"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:421
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:426
 #, python-format
 msgid "Given path %s does not exist. Please change."
 msgstr "Opgegeven pad %s bestaat niet. Veranderen a.u.b."
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:429
-#: Center\EMC-SVN\Locale/MovieSelection.py:1302
+#: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:434
+#: Center\EMC-SVN\Locale/MovieSelection.py:1329
 msgid "Trashcan create failed. Check mounts and permissions."
-msgstr "Aanmaken prullebak mislukt. Mounts en rechten controleren."
+msgstr "Aanmaken prullenbak mislukt. Mounts en rechten controleren."
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
 #: Center\EMC-SVN\Locale/InfoBarSupport.py:119
 msgid "jump to previous marked position"
-msgstr ""
+msgstr "Spring naar vorig markeerpunt"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
 #: Center\EMC-SVN\Locale/InfoBarSupport.py:120
 msgid "jump to next marked position"
-msgstr ""
+msgstr "Spring naar volgend markeerpunt"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
 #: Center\EMC-SVN\Locale/InfoBarSupport.py:121
 msgid "toggle a cut mark at the current position"
-msgstr ""
+msgstr "Markeerpunt op actuele positie schakelen"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
 #: Center\EMC-SVN\Locale/InfoBarSupport.py:156
 msgid "Do you want to resume this playback?"
-msgstr ""
+msgstr "Afspelen op positie"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
 #: Center\EMC-SVN\Locale/InfoBarSupport.py:156
 #, python-format
 msgid "Resume position at %s"
-msgstr ""
+msgstr "Hervatten vanaf positie %s"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
 #: Center\EMC-SVN\Locale/InfoBarSupport.py:158
-#, fuzzy
 msgid "Resuming playback"
-msgstr "Afspelen stoppen"
+msgstr "Afspelen hervatten"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
 #: Center\EMC-SVN\Locale/MovieCenter.py:689
 msgid "VLC"
-msgstr ""
+msgstr "VLC"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
 #: Center\EMC-SVN\Locale/MovieCenter.py:692
 msgid "VLC-Server"
-msgstr ""
+msgstr "VLC-Server"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
 #: Center\EMC-SVN\Locale/MovieCenter.py:695
 msgid "VLC-Dir"
-msgstr ""
+msgstr "VLC-Map"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
 #: Center\EMC-SVN\Locale/MovieCenter.py:698
-#, fuzzy
 msgid "Latest"
-msgstr "Chronologisch"
+msgstr "Laatste"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
 #: Center\EMC-SVN\Locale/MovieCenter.py:701
 msgid "Up"
-msgstr ""
+msgstr "Omhoog"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
 #: Center\EMC-SVN\Locale/MovieCenter.py:704
-#, fuzzy
 msgid "Bookmark"
-msgstr "Markeringen"
+msgstr "Markering"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
 #: Center\EMC-SVN\Locale/MovieCenter.py:733
 msgid "Link"
-msgstr ""
+msgstr "Link"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
@@ -1276,19 +1277,18 @@ msgstr "Map"
 #: - Enhanced Movie
 #: Center\EMC-SVN\Locale/MovieCenter.py:753
 msgid "UNKNOWN"
-msgstr ""
+msgstr "ONBEKEND"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/MovieCenter.py:1131
-#, fuzzy
+#: Center\EMC-SVN\Locale/MovieCenter.py:1132
 msgid "Latest Recordings"
-msgstr "Activeer herkenning opnames van andere Box."
+msgstr "Laatste opnames"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
 #: Center\EMC-SVN\Locale/MovieSelection.py:96
-#: Center\EMC-SVN\Locale/MovieSelection.py:712
+#: Center\EMC-SVN\Locale/MovieSelection.py:733
 msgid "Reading directory..."
 msgstr "Map lezen..."
 
@@ -1310,13 +1310,13 @@ msgstr "Alles afspelen"
 #: Center\EMC-SVN\Locale/MovieSelection.py:110
 #: Center\EMC-SVN\Locale/MovieSelectionMenu.py:65
 msgid "Shuffle All"
-msgstr ""
+msgstr "Alles willekeurig afspelen"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
 #: Center\EMC-SVN\Locale/MovieSelection.py:111
 msgid "Close EMC"
-msgstr "Filmoverzicht sluiten"
+msgstr "EMC sluiten"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
@@ -1357,9 +1357,8 @@ msgstr "Geselecteerde film(s) verplaatsen"
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
 #: Center\EMC-SVN\Locale/MovieSelection.py:118
-#, fuzzy
 msgid "Copy selected movie(s)"
-msgstr "Geselecteerde film(s) afspelen"
+msgstr "Geselecteerde film(s) kopiëren"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
@@ -1370,9 +1369,8 @@ msgstr "Film hoofdmap / Laatst gespeelde (config.)"
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
 #: Center\EMC-SVN\Locale/MovieSelection.py:122
-#, fuzzy
 msgid "Open E2 bookmarks"
-msgstr "Open markeringen"
+msgstr "Open E2 markeringen"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
@@ -1402,13 +1400,13 @@ msgstr "Cursor omlaag"
 #: - Enhanced Movie
 #: Center\EMC-SVN\Locale/MovieSelection.py:127
 msgid "Move cursor to the top"
-msgstr "Verplaats cursor naar begin"
+msgstr "Verplaats cursor naar het begin"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
 #: Center\EMC-SVN\Locale/MovieSelection.py:128
 msgid "Move cursor to the end"
-msgstr "Verplaats cursor naar einde"
+msgstr "Verplaats cursor naar het einde"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
@@ -1426,7 +1424,7 @@ msgstr "Vorige map"
 #: - Enhanced Movie
 #: Center\EMC-SVN\Locale/MovieSelection.py:133
 msgid "Toggle service selection"
-msgstr "Verwissel zender selectie"
+msgstr "Verwissel zenderselectie"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
@@ -1451,7 +1449,7 @@ msgstr "Filmoverzicht actualiseren"
 #: - Enhanced Movie
 #: Center\EMC-SVN\Locale/MovieSelection.py:139
 msgid "Open Timer List"
-msgstr ""
+msgstr "Timerlijst openen"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
@@ -1469,28 +1467,26 @@ msgstr "Start / Stop multiselectie"
 #: - Enhanced Movie
 #: Center\EMC-SVN\Locale/MovieSelection.py:374
 #: Center\EMC-SVN\Locale/MovieSelectionMenu.py:83
-#, fuzzy
 msgid "Open E2 Bookmark path"
-msgstr "Open markeringen"
+msgstr "Open E2 markeringen"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
 #: Center\EMC-SVN\Locale/MovieSelection.py:412
 msgid "No script operation for VLC streams."
-msgstr ""
+msgstr "Geen script werking voor VLC streams."
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
 #: Center\EMC-SVN\Locale/MovieSelection.py:428
 msgid "Does not contain any scripts."
-msgstr ""
+msgstr "Bevat geen scripts."
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
 #: Center\EMC-SVN\Locale/MovieSelection.py:432
-#, fuzzy
 msgid "Choose script"
-msgstr "Kies map"
+msgstr "Kies script"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
@@ -1506,194 +1502,198 @@ msgstr "*** Multiselectie actief ***"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/MovieSelection.py:720
-#: Center\EMC-SVN\Locale/MovieSelection.py:1019
+#: Center\EMC-SVN\Locale/MovieSelection.py:489
+msgid " (P)"
+msgstr " (P)"
+
+#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
+#: - Enhanced Movie
+#: Center\EMC-SVN\Locale/MovieSelection.py:741
+#: Center\EMC-SVN\Locale/MovieSelection.py:1046
 msgid "Delete"
 msgstr "Verwijderen"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/MovieSelection.py:725
+#: Center\EMC-SVN\Locale/MovieSelection.py:747
 msgid "Alpha sort"
 msgstr "Alfabetisch"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/MovieSelection.py:727
+#: Center\EMC-SVN\Locale/MovieSelection.py:749
 msgid "Date sort"
 msgstr "Chronologisch"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/MovieSelection.py:729
-msgid " (P)"
-msgstr ""
-
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
-#: - Enhanced Movie
-#: Center\EMC-SVN\Locale/MovieSelection.py:731
+#: Center\EMC-SVN\Locale/MovieSelection.py:750
 msgid "Move"
 msgstr "Verplaatsen"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/MovieSelection.py:830
+#: Center\EMC-SVN\Locale/MovieSelection.py:849
 msgid "File not available."
 msgstr "Bestand niet beschikbaar."
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/MovieSelection.py:841
+#: Center\EMC-SVN\Locale/MovieSelection.py:860
 msgid "Last played movie/playlist not available..."
 msgstr "Laatst afgespeelde film(lijst) niet beschikbaar..."
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/MovieSelection.py:845
-#, fuzzy
+#: Center\EMC-SVN\Locale/MovieSelection.py:864
 msgid "Play last movie starting"
-msgstr "Geselecteerde film(s) afspelen"
+msgstr "Laatste film afspelen"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/MovieSelection.py:860
-#, fuzzy
+#: Center\EMC-SVN\Locale/MovieSelection.py:879
 msgid "Play All starting"
-msgstr "Alles afspelen"
+msgstr "Start met alles afspelen"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/MovieSelection.py:878
+#: Center\EMC-SVN\Locale/MovieSelection.py:897
 msgid "Shuffle All starting"
-msgstr ""
+msgstr "Start alles afspelen in willekeurige volgorde"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/MovieSelection.py:906
+#: Center\EMC-SVN\Locale/MovieSelection.py:933
 msgid "Not stopping any repeating timers. Modify them with the timer editor."
 msgstr "Herhalingstimers werden niet gestopt. Bewerk ze met de Timer-Editor."
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/MovieSelection.py:913
+#: Center\EMC-SVN\Locale/MovieSelection.py:940
 msgid "Stop ongoing recording?\n"
 msgstr "Lopende opname stoppen?\n"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/MovieSelection.py:960
+#: Center\EMC-SVN\Locale/MovieSelection.py:987
 #, python-format
 msgid ""
 "Do you really want to remove your link\n"
 "%s?"
 msgstr ""
+"Wilt U uw link echt verwijderen\n"
+"%s?"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/MovieSelection.py:962
+#: Center\EMC-SVN\Locale/MovieSelection.py:989
 #, python-format
 msgid ""
 "Do you really want to remove your directory\n"
 "%s?"
 msgstr ""
+"Wilt U uw map echt verwijderen\n"
+"%s?"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/MovieSelection.py:996
+#: Center\EMC-SVN\Locale/MovieSelection.py:1023
 #: Center\EMC-SVN\Locale/MovieSelectionMenu.py:232
 #, python-format
 msgid ""
 "Do you really want to remove your bookmark\n"
 "%s?"
 msgstr ""
+"Wilt U uw markering echt verwijderen\n"
+"%s?"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/MovieSelection.py:1013
+#: Center\EMC-SVN\Locale/MovieSelection.py:1040
 msgid " Deleting remotely recorded and it will display an rec-error dialog on the other DB."
-msgstr "Verwijderen remote opnamen er zal een recording-fout worden getoond op de andere ontvanger."
+msgstr "Verwijderen remote opnamen er zal een opnamefout worden getoond op de andere ontvanger."
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/MovieSelection.py:1019
+#: Center\EMC-SVN\Locale/MovieSelection.py:1046
 msgid " permanently"
-msgstr " definitief"
+msgstr " permanent"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/MovieSelection.py:1036
+#: Center\EMC-SVN\Locale/MovieSelection.py:1063
 msgid " currently played?"
-msgstr " actuele weergave?"
+msgstr " wordt momenteel weergegeven?"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/MovieSelection.py:1056
+#: Center\EMC-SVN\Locale/MovieSelection.py:1083
 msgid " all selected video files?"
 msgstr " alle geselecteerde videobestanden?"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/MovieSelection.py:1061
+#: Center\EMC-SVN\Locale/MovieSelection.py:1088
 msgid " all selected video files? The currently playing movie is also one of the selections and its playback will be stopped."
 msgstr " alle geselecteerde videobestanden? De film die nu wordt afgespeeld behoort ook tot de selectie en de weergave zal worden gestopt."
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/MovieSelection.py:1063
+#: Center\EMC-SVN\Locale/MovieSelection.py:1090
 msgid "Delete error:\n"
 msgstr "Fout tijdens verwijderen:\n"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/MovieSelection.py:1080
+#: Center\EMC-SVN\Locale/MovieSelection.py:1107
 msgid "Delete failed because the trashcan directory does not exist. Attempt to create it now?"
-msgstr "Verwijderen mislukt omdat de map met de prullebak niet is gevonden. Nu aanmaken?"
+msgstr "Verwijderen mislukt omdat de map met de prullenbak niet is gevonden. Nu aanmaken?"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/MovieSelection.py:1092
+#: Center\EMC-SVN\Locale/MovieSelection.py:1119
 msgid "Directory is not empty."
 msgstr "Map is niet leeg."
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/MovieSelection.py:1097
+#: Center\EMC-SVN\Locale/MovieSelection.py:1124
 msgid "Cannot delete the parent directory."
 msgstr "Kan bovenliggende map niet verwijderen."
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/MovieSelection.py:1229
-#: Center\EMC-SVN\Locale/MovieSelection.py:1241
-#, fuzzy
+#: Center\EMC-SVN\Locale/MovieSelection.py:1256
+#: Center\EMC-SVN\Locale/MovieSelection.py:1268
 msgid ""
 "How to move files:\n"
 "Select some movies with the VIDEO-button, move the cursor on top of the destination directory and press yellow."
-msgstr "Film(s) selecteren met VIDEO-knop, beweeg de cursor op de doelmap en druk op de gele toets."
+msgstr ""
+"Hoe bestanden kopiëren:\n"
+"Selecteer een film met de VIDEO-knop, met de cursor de doelmap kiezen en daarna op de gele knop drukken."
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/MovieSelection.py:1239
-#, fuzzy
+#: Center\EMC-SVN\Locale/MovieSelection.py:1266
 msgid "Move file(s): Choose directory"
-msgstr "Kies map"
+msgstr "Bestand(en) verplaatsen: kies map"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/MovieSelection.py:1274
-#: Center\EMC-SVN\Locale/MovieSelection.py:1286
-#, fuzzy
+#: Center\EMC-SVN\Locale/MovieSelection.py:1301
+#: Center\EMC-SVN\Locale/MovieSelection.py:1313
 msgid ""
 "How to copy files:\n"
 "Select some movies with the VIDEO-button, move the cursor on top of the destination directory and press yellow long."
-msgstr "Film(s) selecteren met VIDEO-knop, beweeg de cursor op de doelmap en druk op de gele toets."
+msgstr ""
+"Hoe bestanden kopiëren:\n"
+"Selecteer een film met de VIDEO-knop, met de cursor de doelmap kiezen en daarna lang (!) op de gele knop drukken."
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/MovieSelection.py:1284
-#, fuzzy
+#: Center\EMC-SVN\Locale/MovieSelection.py:1311
 msgid "Copy file(s): Choose directory"
-msgstr "Kies map"
+msgstr "Bestand(en) kopiëren: kies map"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
@@ -1704,21 +1704,20 @@ msgstr "Kies functie"
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
 #: Center\EMC-SVN\Locale/MovieSelectionMenu.py:58
-#, fuzzy
 msgid "Directory up"
-msgstr "Map "
+msgstr "Bovenliggende map"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
 #: Center\EMC-SVN\Locale/MovieSelectionMenu.py:60
-#: Center\EMC-SVN\Locale/plugin.py:153
+#: Center\EMC-SVN\Locale/plugin.py:160
 msgid "Play last"
-msgstr "Laatste film afspelen"
+msgstr "Laatste afspelen"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
 #: Center\EMC-SVN\Locale/MovieSelectionMenu.py:62
-#: Center\EMC-SVN\Locale/plugin.py:152
+#: Center\EMC-SVN\Locale/plugin.py:159
 msgid "Movie home"
 msgstr "Hoofdmap films"
 
@@ -1732,32 +1731,31 @@ msgstr "Definitief verwijderen"
 #: - Enhanced Movie
 #: Center\EMC-SVN\Locale/MovieSelectionMenu.py:70
 msgid "Empty trashcan"
-msgstr "Prullebak legen"
+msgstr "Prullenak legen"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
 #: Center\EMC-SVN\Locale/MovieSelectionMenu.py:71
 msgid "Go to trashcan"
-msgstr "Ga naar prullebak"
+msgstr "Ga naar prullenbak"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
 #: Center\EMC-SVN\Locale/MovieSelectionMenu.py:72
 msgid "Mark all movies"
-msgstr "Alle bestanden"
+msgstr "Alle bestanden markeren"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
 #: Center\EMC-SVN\Locale/MovieSelectionMenu.py:73
 msgid "Remove rogue files"
-msgstr "Malafide (wees-)bestanden verwijderen"
+msgstr "Weesbestanden verwijderen"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
 #: Center\EMC-SVN\Locale/MovieSelectionMenu.py:74
-#, fuzzy
 msgid "Create link"
-msgstr "Symlink aanmaken"
+msgstr "Creëer Symlink"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
@@ -1770,52 +1768,49 @@ msgstr "Map aanmaken"
 #: - Enhanced Movie
 #: Center\EMC-SVN\Locale/MovieSelectionMenu.py:77
 msgid "Remove cut list marker"
-msgstr "Cut list marker verwijderen"
+msgstr "Alle markeringen verwijderen"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
 #: Center\EMC-SVN\Locale/MovieSelectionMenu.py:85
 msgid "Add directory to E2 Bookmarks"
-msgstr ""
+msgstr "Map toevoegen aan E2 markeringen"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
 #: Center\EMC-SVN\Locale/MovieSelectionMenu.py:87
 msgid "Remove directory from E2 Bookmarks"
-msgstr ""
+msgstr "Verwijder huidige map als E2 markering"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
 #: Center\EMC-SVN\Locale/MovieSelectionMenu.py:89
-#, fuzzy
 msgid "Remove selected E2 Bookmark"
-msgstr "Cut list marker verwijderen"
+msgstr "Verwijder geselecteerde E2 markering"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
 #: Center\EMC-SVN\Locale/MovieSelectionMenu.py:90
-#, fuzzy
 msgid "Set permanent sort"
-msgstr " definitief"
+msgstr "Permanente sortering instellen"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
 #: Center\EMC-SVN\Locale/MovieSelectionMenu.py:92
-#, fuzzy
 msgid "Remove permanent sort"
-msgstr "Definitief verwijderen"
+msgstr "Permanente sortering verwijderen"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
 #: Center\EMC-SVN\Locale/MovieSelectionMenu.py:96
 msgid "Remove permanent sort from parent"
-msgstr ""
+msgstr "Permanent sorteren in de moedermap (parent dir) beëindigen"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
 #: Center\EMC-SVN\Locale/MovieSelectionMenu.py:98
 msgid "EMC Setup"
-msgstr ""
+msgstr "EMC Instellingen"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
@@ -1838,15 +1833,14 @@ msgstr "Map "
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
 #: Center\EMC-SVN\Locale/MovieSelectionMenu.py:141
-#, fuzzy
 msgid "Create Link: Choose directory"
-msgstr "Kies map"
+msgstr "Creëer Symlink: kies map"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
 #: Center\EMC-SVN\Locale/MovieSelectionMenu.py:165
 msgid "Permanently delete all files in trashcan?"
-msgstr "Alle films uit de prullebak definitief verwijderen?"
+msgstr "Alle films uit de prullenbak definitief verwijderen?"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
@@ -1858,153 +1852,151 @@ msgstr "Film Selectie Menu"
 #: - Enhanced Movie
 #: Center\EMC-SVN\Locale/MovieSelectionMenu.py:187
 msgid "Locate rogue files and remove them? (permanently if no trashcan available, may take a minute or so)"
-msgstr "Malafide (wees-)bestanden zoeken en verwijderen? (Als er geen prullebak is worden deze meteen verwijderd - kan even duren)"
+msgstr "Weesbestanden zoeken en verwijderen? (Als er geen prullenbak is worden deze meteen verwijderd - kan even duren)"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
 #: Center\EMC-SVN\Locale/MovieSelectionMenu.py:203
 msgid "Remove all cut file marker permanently?"
-msgstr "Alle cut list markers definitief verwijderen?"
+msgstr "Alle cmarkeringen definitief verwijderen?"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/plugin.py:51
+#: Center\EMC-SVN\Locale/plugin.py:53
 msgid "no"
-msgstr ""
+msgstr "nee"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/plugin.py:51
+#: Center\EMC-SVN\Locale/plugin.py:53
 msgid "yes"
-msgstr ""
+msgstr "ja"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/plugin.py:128
+#: Center\EMC-SVN\Locale/plugin.py:135
 msgid "No override"
 msgstr "Niet overschrijven"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/plugin.py:129
+#: Center\EMC-SVN\Locale/plugin.py:136
 msgid "Video-button"
 msgstr "Video-knop"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/plugin.py:130
+#: Center\EMC-SVN\Locale/plugin.py:137
 msgid "TV-button"
 msgstr "TV-knop"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/plugin.py:131
+#: Center\EMC-SVN\Locale/plugin.py:138
 msgid "Radio-button"
 msgstr "Radio-knop"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/plugin.py:132
+#: Center\EMC-SVN\Locale/plugin.py:139
 msgid "Quick-button"
-msgstr "Snel-toets"
+msgstr "Sneltoets"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/plugin.py:133
+#: Center\EMC-SVN\Locale/plugin.py:140
 msgid "Timeshift-button"
-msgstr "Timeshift knop"
+msgstr "Timeshift-knop"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/plugin.py:136
-#: Center\EMC-SVN\Locale/plugin.py:142
-#: Center\EMC-SVN\Locale/plugin.py:150
-#, fuzzy
+#: Center\EMC-SVN\Locale/plugin.py:143
+#: Center\EMC-SVN\Locale/plugin.py:149
+#: Center\EMC-SVN\Locale/plugin.py:157
 msgid "Off"
-msgstr "uit"
+msgstr "Uit"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/plugin.py:137
+#: Center\EMC-SVN\Locale/plugin.py:144
 msgid "DD.MM.YYYY"
 msgstr "DD.MM.YYYY"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/plugin.py:138
+#: Center\EMC-SVN\Locale/plugin.py:145
 msgid "DD.MM HH:MM"
 msgstr "DD.MM HH:MM"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/plugin.py:139
+#: Center\EMC-SVN\Locale/plugin.py:146
 msgid "YYYY/MM/DD"
 msgstr "YYYY/MM/DD"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/plugin.py:140
+#: Center\EMC-SVN\Locale/plugin.py:147
 msgid "MM/DD HH:MM"
-msgstr "MM/DD HH:MM"
+msgstr "MM/DD hh:mm"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/plugin.py:143
+#: Center\EMC-SVN\Locale/plugin.py:150
 msgid "( # )"
 msgstr "( # )"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/plugin.py:144
+#: Center\EMC-SVN\Locale/plugin.py:151
 msgid "( # / GB )"
 msgstr "( # / GB )"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/plugin.py:145
+#: Center\EMC-SVN\Locale/plugin.py:152
 msgid "( GB )"
 msgstr "( GB )"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/plugin.py:147
+#: Center\EMC-SVN\Locale/plugin.py:154
 msgid "ProgressBar"
-msgstr ""
-
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
-#: - Enhanced Movie
-#: Center\EMC-SVN\Locale/plugin.py:148
-msgid "Percent (%)"
-msgstr ""
-
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
-#: - Enhanced Movie
-#: Center\EMC-SVN\Locale/plugin.py:149
-#, fuzzy
-msgid "Movie Color"
-msgstr "Hoofdmap films"
+msgstr "Voortgangsbalk"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
 #: Center\EMC-SVN\Locale/plugin.py:155
+msgid "Percent (%)"
+msgstr "Percent (%)"
+
+#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
+#: - Enhanced Movie
+#: Center\EMC-SVN\Locale/plugin.py:156
+msgid "Movie Color"
+msgstr "Filmkleur"
+
+#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
+#: - Enhanced Movie
+#: Center\EMC-SVN\Locale/plugin.py:162
 msgid "down"
 msgstr "omlaag"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/plugin.py:156
+#: Center\EMC-SVN\Locale/plugin.py:163
 msgid "up/down"
 msgstr "omhoog/omlaag"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/plugin.py:157
+#: Center\EMC-SVN\Locale/plugin.py:164
 msgid "off"
 msgstr "uit"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/plugin.py:216
+#: Center\EMC-SVN\Locale/plugin.py:225
 msgid ""
 "ATTENTION\n"
 "\n"
@@ -2013,16 +2005,22 @@ msgid ""
 "\n"
 "Confirm this with the blue key followed by the green key."
 msgstr ""
+"OPGELET\n"
+"\n"
+"Deze optie zal alle geziene films in Movie Home automatisch naar de prullenbak verplaatsen na een ingestelde tijd.\n"
+"Bij een volgend legen van de prullenbak worden alle films verwijderd.\n"
+"\n"
+"Bevestig deze keuze met de blauwe knop, gevolgd door de groene knop."
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/plugin.py:298
+#: Center\EMC-SVN\Locale/plugin.py:307
 msgid "configuration"
 msgstr "Configuratie"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
-#: Center\EMC-SVN\Locale/plugin.py:301
+#: Center\EMC-SVN\Locale/plugin.py:310
 msgid "movie manipulation list"
 msgstr "Film manipulatielijst"
 
@@ -2036,20 +2034,100 @@ msgstr " bestanden\n"
 #: - Enhanced Movie
 #: Center\EMC-SVN\Locale/RogueFileCheck.py:41
 msgid "No rogue files found."
-msgstr "Geen malafide (wees-)bestanden gevonden."
+msgstr "Geen weesbestanden gevonden."
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
 #: Center\EMC-SVN\Locale/RogueFileCheck.py:42
-#, fuzzy
 msgid ""
 "Found rogue files:\n"
 "\n"
-msgstr "Malafide (wees-)bestanden zoeken:\n"
+msgstr ""
+"Weesbestanden gevonden:\n"
+"\n"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
 #: Center\EMC-SVN\Locale/VlcPluginInterface.py:118
 msgid "VLC Server not reachable"
-msgstr ""
+msgstr "VLC Server onbereikbaar"
 
+#~ msgid "true"
+#~ msgstr "ja"
+
+#~ msgid "false"
+#~ msgstr "nee"
+
+#~ msgid "no override"
+#~ msgstr "niet overschrijven"
+
+#~ msgid "show event details"
+#~ msgstr "Laat details zien"
+
+#~ msgid "Move cursor 1/2 page up"
+#~ msgstr "Cursor 1/2 pagina omhoog"
+
+#~ msgid "Move cursor 1/2 page down"
+#~ msgstr "Cursor 1/2 pagina omlaag"
+
+#~ msgid "Error: path '%s' not available!"
+#~ msgstr "Fout: Map %s niet beschikbaar!"
+
+#~ msgid "How to move files:\n"
+#~ msgstr "Hoe bestanden verplaatsen:\n"
+
+#~ msgid "Select Location"
+#~ msgstr "Selecteer locatie"
+
+#~ msgid "Bookmark directory"
+#~ msgstr "Map markeren"
+
+#~ msgid "Choose bookmark"
+#~ msgstr "Markering kiezen"
+
+#~ msgid "Movie home auto-update perms (chmod)"
+#~ msgstr "Hoofdmap films: Autom. updaten van rechten (chmod)"
+
+#~ msgid "Movie home chmod permission value"
+#~ msgstr "Hoofdmap films: Chmod waarde"
+
+#~ msgid "EMC open with cursor on newest (TV mode)"
+#~ msgstr "Cursor autom. naar de nieuwste (TV mode)"
+
+#~ msgid "EMC open with cursor on newest (player)"
+#~ msgstr "Cursor automatisch naar begin van de lijst (Player)"
+
+#~ msgid "Show date"
+#~ msgstr "Datum weergeven"
+
+#~ msgid "Show icon indication for non-watched"
+#~ msgstr "Niet afgespeelde film met icoon kenmerken"
+
+#~ msgid "EMC cifs* files operation"
+#~ msgstr "Cifs* bestandsoperaties"
+
+#~ msgid "Hide VLC directory"
+#~ msgstr "VLC map verbergen"
+
+#~ msgid "Enable component video in A/V Settings"
+#~ msgstr "Component Video in A/V instellingen activeren"
+
+#~ msgid "unhide"
+#~ msgstr "tonen"
+
+#~ msgid "delete"
+#~ msgstr "verwijder"
+
+#~ msgid "do nothing"
+#~ msgstr "niks doen"
+
+#~ msgid "HELP_Show EMC Bookmarks in movielist"
+#~ msgstr ""
+#~ "Virtuele mappen weergeven in \"Movie home\" voor de beschikbare EMC "
+#~ "Bookmarks."
+
+#~ msgid "HELP_Show date"
+#~ msgstr "De opnamedatum wordt weergegeven in de FilmLijst."
+
+#~ msgid "HELP_Show icon indication for non-watched"
+#~ msgstr "Een overeenstemmend icon wordt weergegeven voor ongeziene opnames."
