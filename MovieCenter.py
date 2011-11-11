@@ -1027,9 +1027,6 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 					
 					# Filter dead links
 					if pathisdir(pathname):
-						# Display folders capitalized
-						dir.capitalize()
-						
 						if check_dvdstruct:
 							dvdStruct = self.detectDVDStructure(pathname)
 							if dvdStruct:
@@ -1124,7 +1121,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 			if loadPath == config.EMC.movie_homepath.value:
 				if trashcan and config.EMC.movie_trashcan_enable.value and config.EMC.movie_trashcan_show.value:
 					append( (	config.EMC.movie_trashcan_path.value,
-										(pathbasename(config.EMC.movie_trashcan_path.value)).capitalize(),
+										pathbasename(config.EMC.movie_trashcan_path.value) or "trashcan",
 										cmtTrash) )
 				
 				if config.EMC.latest_recordings.value:
@@ -1142,7 +1139,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 					if bookmarks:
 						for bookmark in bookmarks:
 							append( (	bookmark,
-												"E2 "+(pathbasename(bookmark).capitalize()),
+												pathbasename(bookmark) or bookmark,
 												cmtBM) )
 		
 		del append
