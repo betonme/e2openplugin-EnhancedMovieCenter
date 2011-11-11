@@ -1238,7 +1238,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 					except UnicodeDecodeError:
 						title = title.decode("iso-8859-1").encode("utf-8")
 				
-				service = self.getPlayerService(path, filename)
+				service = self.getPlayerService(path, title)
 				
 				if ext == cmtUp: sortprefix = "0"
 				elif ext == cmtTrash: sortprefix = "1"
