@@ -76,15 +76,16 @@ class PermanentSort():
 
 	def __readPermanentSortCfgFile(self):
 		data = {}
-		f = None
-		try:
-			f = open(cfg_file, "rb")
-			data = pickle.load(f)
-		except Exception, e:
-			emcDebugOut("[EMC] Exception in readPermanentSortCfgFile: " + str(e))
-		finally:
-			if f is not None:
-				f.close()
+		if os.path.exists(cfg_file):
+			f = None
+			try:
+				f = open(cfg_file, "rb")
+				data = pickle.load(f)
+			except Exception, e:
+				emcDebugOut("[EMC] Exception in readPermanentSortCfgFile: " + str(e))
+			finally:
+				if f is not None:
+					f.close()
 		return data
 	
 	def __writePermanentSortCfgFile(self, data):
