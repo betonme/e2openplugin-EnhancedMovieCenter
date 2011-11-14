@@ -376,7 +376,7 @@ msgstr "Einstellungen zum Ausblenden von Dateien/Ordern und Performance."
 #: - Enhanced Movie
 #: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:225
 msgid "Hide configured entries"
-msgstr "Ausblenden von konfigurierten Dateien und Verzeichnissen"
+msgstr "Konfigurierte Dateien und Verzeichnisse ausblenden"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
@@ -404,7 +404,7 @@ msgstr ""
 #: - Enhanced Movie
 #: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:227
 msgid "Suppress scan in selected folders"
-msgstr "Unterdrücke Struktursuche in ausgewählten Verzeichnissen"
+msgstr "Keine Struktursuche in ausgewählten Verzeichnissen"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
@@ -505,7 +505,7 @@ msgstr "Löse Links auf, und zeige echten Pfad"
 #: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:236
 msgid "HELP_Resolve links and show real path"
 msgstr ""
-"Ziel von Links und Symlins werden aufgelöst.\n"
+"Ziel von Links und Symlinks werden aufgelöst.\n"
 "Bei Problemen mit Spinnern oder NAS wake up, diese Option ausschalten. (Pfad wird bei \"Extended Description\" angezeigt.)"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC

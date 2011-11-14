@@ -6,7 +6,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-11-11 01:32+0100\n"
 "PO-Revision-Date: \n"
-"Last-Translator: Swiss-MAD\n"
+"Last-Translator: bschaar and Ni Hao\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -108,7 +108,7 @@ msgstr ""
 msgid ""
 "EMC\n"
 "Zap to Live TV of record"
-msgstr ""
+msgstr "Terug naar (live) TV Beeld"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
@@ -498,13 +498,13 @@ msgstr ""
 #: - Enhanced Movie
 #: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:236
 msgid "Resolve links and show real path"
-msgstr ""
+msgstr "Verwijder symlinks en laat echte pad(en) zien"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
 #: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:236
 msgid "HELP_Resolve links and show real path"
-msgstr ""
+msgstr "Verwijzingen van (symbolische) links worden verwijderd. Bij problemen met \"spinners\" of het ontwaken van een NAS, deze keuze uitschakelen. (Het pad wordt bij \"Uitgebreide beschrijving\" getoond.)"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
@@ -642,13 +642,13 @@ msgstr ""
 #: - Enhanced Movie
 #: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:253
 msgid "Jump to channel after record EOF"
-msgstr ""
+msgstr "Keer terug naar de zender na einde opname"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
 #: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:253
 msgid "HELP_Jump to channel after record EOF"
-msgstr ""
+msgstr "Nadat een opname is beëindigd wordt teruggekeerd naar de TV zender"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
