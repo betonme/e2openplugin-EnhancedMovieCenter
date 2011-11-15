@@ -71,7 +71,6 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		SelectionEventInfo.__init__(self)
 		VlcPluginInterfaceSel.__init__(self)
 		DirectoryStack.__init__(self)
-		self.avPolicy43 = config.av.policy_43.value
 		
 		self.skinName = "EMCSelection"
 		skin = None
@@ -207,7 +206,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		if self.playerInstance is not None:
 			self.playerInstance.movieSelected(None)
 		else:
-			config.av.policy_43.value = self.avPolicy43
+			config.av.policy_43.cancel() # reload the default setting
 		self.close(None)
 
 	def blueFunc(self):
