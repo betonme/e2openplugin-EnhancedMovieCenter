@@ -790,7 +790,7 @@ msgstr "Verweildauer der Aufnahmen mit dem Status \"fertig gesehen\", bis sie in
 #: - Enhanced Movie
 #: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:269
 msgid "Display directory reading text"
-msgstr "Zeige <lese Verzeichnis...> Text"
+msgstr "Zeige <Lese Verzeichnis...> Text"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
