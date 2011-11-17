@@ -156,7 +156,7 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 		ConfigListScreen.__init__(self, self.list, session = session, on_change = self.changedEntry)
 		self.needsRestartFlag = False
 		self.defineConfig()
-		#self.createConfig()
+		self.createConfig()
 		
 		# Override selectionChanged because our config tuples have a size bigger than 2 
 		def selectionChanged():
@@ -334,7 +334,7 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 
 	def onDialogShow(self):
 		self.setTitle("Enhanced Movie Center "+ EMCVersion + " (Setup)")
-		self.createConfig()
+		#self.createConfig()
 
 	# Overwrite Screen close function
 	def close(self):
