@@ -174,8 +174,7 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 		
 		#Todo Remove if there is another solution
 		#config.EMC.movie_finished_clean.addNotifier(self.changedEntry, initial_call = False, immediate_feedback = True)
-		#config.EMC.movie_finished_clean.notifiers.append(self.changedEntry)
-		#config.EMC.movie_finished_clean.notifiers = [ ]
+		config.EMC.movie_finished_clean.notifiers.append(self.changedEntry)
 		
 		self.onShow.append(self.onDialogShow)
 
@@ -380,12 +379,14 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 
 	def keySaveNew(self):
 		config.EMC.needsreload.value = True
+		config.EMC.movie_finished_clean.notifiers = [ ]
 		for i, entry in enumerate( self.list ):
 			if entry[1].isChanged():
 				if entry[2] is not None:
 					# execute value changed -function
 					if entry[2](entry[1]) is not None:
 						# Stop exiting, user has to correct the config
+						config.EMC.movie_finished_clean.notifiers.append(self.changedEntry)
 						return
 				# Check parent entries
 				for parent in entry[5]:
@@ -393,11 +394,16 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 						# execute parent value changed -function
 						if self.list[i+parent][2](self.EMCConfig[i+parent][1]) is not None:	
 							# Stop exiting, user has to correct the config
+							config.EMC.movie_finished_clean.notifiers.append(self.changedEntry)
 							return
 				entry[1].save()
 		if self.needsRestartFlag:
 			self.session.open(MessageBox, _("Some settings changes require GUI restart to take effect."), MessageBox.TYPE_INFO, 10)
 		self.close()
+
+	def keyCancel(self):
+		config.EMC.movie_finished_clean.notifiers = [ ]
+		ConfigListScreen.keyCancel(self)
 
 	def launchListSet(self, element):
 		if element is not None:
