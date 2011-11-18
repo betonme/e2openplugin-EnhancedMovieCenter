@@ -18,7 +18,7 @@
 	<!-- EMC Movie List  -->
 	<widget name="list" position="40,43" size="645,330" zPosition="2" itemHeight="22" CoolFont="Regular;20" CoolSelectFont="Regular;20" CoolFolderSize="500" CoolMoviePos="92" CoolMovieSize="447" CoolTitleColor="0" CoolDateFont="Regular;20" CoolDatePos="541" CoolDateWidth="110" CoolDateColor="0" CoolHighlightColor="0" CoolBarPos="30" CoolBarHPos="6" CoolBarSize="55,14" CoolBarSizeSa="55,14" CoolProgressPos="1000" DefaultColor="#FFFFFF" UnwatchedColor="#FFFFFF" WatchingColor="#3486F4" FinishedColor="#46D93A" RecordingColor="#9F1313" BackColorSel="#00000000" scrollbarMode="showNever" selectionPixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/Select700x22.png" backgroundColor="#00000000" transparent="1" />
 	<!-- EMC wait text  -->
-	<widget name="wait" position="0,200" size="720,27" zPosition="1" font="Regular;25" foregroundColor="#00bab329" backgroundColor="#00000000" halign="center" valign="center" transparent="1" />
+	<widget name="wait" position="40,385" size="640,27" zPosition="3" font="Regular;25" foregroundColor="#00bab329" backgroundColor="#00000000" halign="center" valign="center" transparent="1" />
 	<!-- Infobar Bitmap -->
 	<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/InfoBar.png" position="36,377" zPosition="-1" size="650,39" alphatest="blend" />
 	<!-- EMC Recording Channel -->
@@ -55,7 +55,7 @@
 			<convert type="EMCEventName">Name</convert>
 		</widget>
 	-->
-	<!-- EMC Short Description(Genre) -->
+	<!-- EMC Short Description -->
 	<widget source="Service" render="Label" position="40,420" size="645,22" font="Regular; 20" zPosition="2" foregroundColor="#0032A834" backgroundColor="#18080911" transparent="1" halign="center" >
 		<convert type="EMCMovieInfo">ShortDescription</convert>
 	</widget>

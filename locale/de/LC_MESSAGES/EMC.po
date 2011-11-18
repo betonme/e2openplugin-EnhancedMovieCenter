@@ -772,7 +772,7 @@ msgstr "Verschiebe gesehene Filme in den Papierkorb"
 #: - Enhanced Movie
 #: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:265
 msgid "HELP_Move finished movies in trashcan"
-msgstr "Verschiebe alle Aufnahmen im \"Movie home\" mit dem Status \"fertig gesehen\" in den Papierkorb, die die im nächsten Punkt eingestellte Verweildauer erreicht haben."
+msgstr "Verschiebt alle Aufnahmen in \"Movie home\" und deren Unterverzeichnisse (keins Links) mit dem Status \"fertig gesehen\" in den Papierkorb, die die im nächsten Punkt eingestellte Verweildauer erreicht haben."
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
