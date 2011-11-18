@@ -262,7 +262,7 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 			(  _("Daily cleanup time")                            , config.EMC.movie_trashcan_ctime     , None                  , None                  , 0     , [-6,-1]      , _("HELP_Daily cleanup time") ),
 			(  _("How many days files may remain in trashcan")    , config.EMC.movie_trashcan_limit     , None                  , None                  , 0     , [-7,-2]      , _("HELP_How many days files may remain in trashcan") ),
 			(  _("Move finished movies in trashcan")              , config.EMC.movie_finished_clean     , None                  , None                  , 2     , [-8,-3]      , _("HELP_Move finished movies in trashcan") ),
-			(  _("Age of finished movies in movie folder (days)") , config.EMC.movie_finished_limit     , None                  , None                  , 2     , [-9,-1]     , _("HELP_Age of finished movies in movie folder (days)") ),
+			(  _("Age of finished movies in movie folder (days)") , config.EMC.movie_finished_limit     , None                  , None                  , 2     , [-9,-4,-1]   , _("HELP_Age of finished movies in movie folder (days)") ),
 			
 			(  separator                                          , config.EMC.about                    , None                  , None                  , 0     , []        , _("") ),
 			(  _("Display directory reading text")                , config.EMC.moviecenter_loadtext     , None                  , None                  , 1     , []        , _("HELP_Display directory reading text") ),
