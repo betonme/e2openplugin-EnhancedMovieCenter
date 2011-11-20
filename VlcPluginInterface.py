@@ -28,7 +28,7 @@ from Screens.MessageBox import MessageBox
 global vlcSrv, vlcDir, vlcFil
 
 # VLC types
-vlcSrv  = "VLCS"
+vlcSrv  = "VLC"
 vlcDir  = "VLCD"
 vlcFil  = "VLCF"
 

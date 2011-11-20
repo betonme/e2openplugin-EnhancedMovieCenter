@@ -87,7 +87,7 @@ class MovieMenu(Screen, E2Bookmarks):
 				self.menu.append((_("Remove directory from E2 Bookmarks"), boundFunction(self.removeDirFromBookmarks, currentPath)))
 			if service and self.isE2Bookmark(service.getPath()):
 				self.menu.append((_("Remove selected E2 Bookmark"), boundFunction(self.close, "rbookmark", service)))
-			self.menu.append((_("Set permanent sort"), boundFunction(self.setPermanentSort, currentPath, mlist.alphaSort)))
+			self.menu.append((_("Set permanent sort"), boundFunction(self.setPermanentSort, currentPath, mlist.actualSort)))
 			if mlist.hasFolderPermanentSort(currentPath):
 				self.menu.append((_("Remove permanent sort"), boundFunction(self.removePermanentSort, currentPath)))
 			else:
@@ -244,9 +244,9 @@ class MovieMenu(Screen, E2Bookmarks):
 
 	def setPermanentSort(self, path, sort):
 		self.mlist.setPermanentSort(path, sort)
-		self.close(None)
+		self.close("updatetitle")
 
 	def removePermanentSort(self, path):
 		self.mlist.removePermanentSort(path)
-		self.close(None)
+		self.close("updatetitle")
 	

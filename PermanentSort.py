@@ -26,8 +26,11 @@ from collections import defaultdict
 
 from EMCTasker import emcDebugOut
 
-global cfg_file
-cfg_file = "/etc/enigma2/emc-permsort.cfg"
+from Components.config import *
+
+
+global CFG_FILE
+CFG_FILE = "/etc/enigma2/emc-permsort.cfg"
 
 
 # PermanentSort class
@@ -64,7 +67,8 @@ class PermanentSort():
 		path = os.path.normpath(path)
 		while len(path)>1:
 			if path in self.__permanentSort:
-				return self.__permanentSort[path]
+				sort, order = self.__permanentSort[path]
+				return sort, order
 			path = os.path.dirname(path)
 		return None
 
@@ -76,22 +80,34 @@ class PermanentSort():
 
 	def __readPermanentSortCfgFile(self):
 		data = {}
-		if os.path.exists(cfg_file):
+		if os.path.exists(CFG_FILE):
 			f = None
+			
+			# Read from file
 			try:
-				f = open(cfg_file, "rb")
+				f = open(CFG_FILE, "rb")
 				data = pickle.load(f)
 			except Exception, e:
-				emcDebugOut("[EMC] Exception in readPermanentSortCfgFile: " + str(e))
+				emcDebugOut("[EMC] Exception in readPermanentSortCfgFile Load: " + str(e))
 			finally:
 				if f is not None:
 					f.close()
+			
+			# Parse the data
+			try:
+				for key, value in data.items():
+					if not isinstance(value, tuple):
+						# There is only the sorting stored, add the default order
+						data[key] = (value, config.EMC.moviecenter_sort.value[1])
+			except Exception, e:
+				emcDebugOut("[EMC] Exception in readPermanentSortCfgFile Parse: " + str(e))
+			
 		return data
 	
 	def __writePermanentSortCfgFile(self, data):
 		f = None
 		try:
-			f = open(cfg_file, "wb")
+			f = open(CFG_FILE, "wb")
 			pickle.dump(data, f)
 		except Exception, e:
 			emcDebugOut("[EMC] Exception in writePermanentSortCfgFile: " + str(e))

@@ -96,13 +96,14 @@ sidM2TS     = 3 																			# eServiceFactoryM2TS::id  enum { id = 0x3 };
 # Grouped service ids
 sidsCuts = frozenset([sidDVB, sidDVD])
 
-# Custom types (Used by EMC internally)
-cmtDir     = "DIR"
-cmtUp      = "UP"
-cmtTrash   = "TRASH"
-cmtLRec    = "LREC"
-cmtVLC     = "VLC"
-cmtBM      = "BM"
+# Custom types: Used by EMC internally for sorting and type identification
+
+cmtUp      = "0"
+cmtTrash   = "1"
+cmtLRec    = "2"
+cmtBM      = "B"
+cmtDir     = "D"
+cmtVLC     = "V"
 
 # Grouped custom types
 virVLC     = frozenset([cmtVLC, vlcSrv, vlcDir])
@@ -149,7 +150,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 		self.loadPath = config.EMC.movie_homepath.value
 		self.serviceHandler = ServiceCenter.getInstance()
 		
-		self.alphaSort = config.EMC.CoolStartAZ.value
+		self.actualSort = config.EMC.moviecenter_sort.value
 		self.returnSort = None
 		
 		self.CoolFont = parseFont("Regular;20", ((1,1),(1,1)))
@@ -308,54 +309,130 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 			except Exception, e:
 				emcDebugOut("[MC] External observer exception: \n" + str(e))
 
-	def setSorting(self, trueOrFalse):
+	def getSorting(self):
+		# Return the actual sorting mode
+		return self.actualSort
+
+	def setSorting(self, sort):
+		self.setSortingMode(sort[0], sort[1])
+
+	def setSortingMode(self, mode=None, order=None):
 		self.returnSort = None
-		self.alphaSort = trueOrFalse
+		
+		if mode is None:
+			mode = self.actualSort[0] #or config.EMC.moviecenter_sort.value[0]
+		if order is None:
+			order = self.actualSort[1] #or config.EMC.moviecenter_sort.value[1]
+		
+		self.actualSort = (mode, order)
 		
 		self.list = self.doListSort(self.list)
 		self.l.setList( self.list )
 
-	def getSorting(self):
+	def resetSorting(self, reload=False):
+		self.actualSort = config.EMC.moviecenter_sort.value
+		if reload:
+			self.list = self.doListSort(self.list)
+			self.l.setList( self.list )
+
+	def nextSortingMode(self):
+		from Plugins.Extensions.EnhancedMovieCenter.plugin import sort_choices
+		sorts = list( set( [sort for sort, desc in sort_choices] ) )
+		if self.actualSort in sorts:
+			# Get the index of the actual mode
+			idx = sorts.index( self.actualSort )
+			# Set next mode
+			self.setSorting( sorts[ (idx+1) % len(sorts) ] )
+		else:
+			# Fallback toggle only the mode not the order
+			self.toggleSortingMode()
+
+	def toggleSortingMode(self):
+		from Plugins.Extensions.EnhancedMovieCenter.plugin import sort_choices
+		sorts = list( set( [sort for sort, desc in sort_choices] ) )
+		# Toggle the mode
+		mode, order = self.actualSort
+		# Get all sorting modes as a list of unique ids
+		modes = list( set( [m for m, o in sorts] ) )
+		if mode in modes:
+			# Get next sorting mode
+			idx = modes.index(mode)
+			mode = modes[ (idx+1) % len(modes) ]
+		else:
+			# Fallback
+			mode = modes[ 0 ]
+		# Set the mode
+		self.setSortingMode(mode, order)
+
+	def toggleSortingOrder(self):
+		mode, order = self.actualSort
+		self.setSortingMode(mode, not order)
+
+	def isEqualPermanentSort(self):
+		isperm = False
 		perm = self.getPermanentSort(self.loadPath)
 		if perm is not None:
-			perm = self.alphaSort == perm
-		# Return the actual sorting mode and if the current sorting mode is set as the permanent one
-		return ( self.alphaSort, perm )
+			isperm = self.actualSort == perm
+		# Return if the current sorting mode is set as / equal the permanent one
+		return isperm
 
 	def doListSort(self, sortlist):
 		# This will find all unsortable items
 		# But is not as fast as the second implementation
 		# If [2] = date = None then it is a directory or special folder entry
-		tmplist = [i for i in sortlist if not i[2]]
-		# Always sort the same way and never reversed
-		tmplist.sort( key=lambda x: (x[1][0]) )
-		
+		tmplist = [i for i in sortlist if i[7] in virAll]
 		# Extract list items to be sorted
 		sortlist = [i for i in sortlist if i not in tmplist]
+		# Always sort via extension and sorttitle and never reversed
+		tmplist.sort( key=lambda x: (x[7],x[1]) )
 		
 		# Sort list, same algorithm for both implementations
 		# Using itemgetter is slightly faster but not as flexible
-		# Then the list has to be flat, no sub tuples were allowed (key=itemgetter(x))
-		if self.alphaSort:
-			sortlist.sort( key=lambda x: (x[1][0]), reverse=config.EMC.moviecenter_reversed.value )
-		else:
-			sortlist.sort( key=lambda x: (x[1][1]), reverse=not config.EMC.moviecenter_reversed.value )
-			#Faster if separate? sortlist.reverse()
-			
-			#TEST
-				# Create sortkeys
-				#sorttitle = title.lower()
-				#sortkeyalpha = sorttitle + cutnr + sortdate
-				#cutnrreverse = str( 999 - int(cutnr or 0) )
-				
-				#sorttitle = title.lower() #without cut_nr
-				#cutnr = int(cutnr or 0)
-				#append((service, sorttitle, date, title, path, 0, length, ext)) ,cutnr
-				
-				#sortkeydate = date + sorttitle + str( 999 - int(cutnr or 0) 
-			#sortlist.sort( key=lambda x: (x[2],x[1],-x[8]))
+		#  from operator import itemgetter: (key=itemgetter(x))
+		#  Then the list has to be flat
+		#   no sub tuples are possible 
+		#   no negotiation is possible
+		# Faster if separate? sortlist.reverse()
+		# Tuple: (service, sorttitle, date, title, path, selectionnumber, length, ext, cutnr)
+		mode, order = self.actualSort
+		if mode is None:
+			mode = config.EMC.moviecenter_sort.value[0]
+		if order is None:
+			order = config.EMC.moviecenter_sort.value[1]
+		
+		if mode == "D":	# Date sort
+			#sortkeydate = date + sorttitle + ("%03d") % ( 999 - int(cutnr or 0) )
+			#sortlist.sort( key=lambda x: (x[1][1]), reverse=not config.EMC.moviecenter_reversed.value )
+			if not order:
+				#sortlist.sort( key=lambda x: (x[7] in virAll, x[2], x[1], -x[8]), reverse=True )
+				sortlist.sort( key=lambda x: (x[2],x[1],-x[8]), reverse=True )
+			else:
+				#TEST
+				#sortlist.sort( key=lambda x: (x[2], x[1], x[8]) )
+				#sortlist.sort( key=lambda x: (x[7] in virAll, x[2], x[1], x[8]) )
+				sortlist.sort( key=lambda x: (x[2], x[1], x[8]), reverse=True )
+		
+		elif mode == "A":	# Alpha sort
+			#sortkeyalpha = sorttitle + ("%03d") % int(cutnr or 0) + date
+			#sortlist.sort( key=lambda x: (x[1][0]), reverse=config.EMC.moviecenter_reversed.value )
+			#sortlist.sort( key=lambda x: (x[1],x[8],x[2]), reverse=config.EMC.moviecenter_reversed.value )
+			if not order:
+				#sortlist.sort( key=lambda x: (x[9],x[1],x[2],x[8]) )
+				#sortlist.sort( key=lambda x: (x[7] not in virAll, x[1], x[2], x[8]) )
+				sortlist.sort( key=lambda x: (x[1],x[2],x[8]) )
+			else:
+				#TEST
+				#sortlist.sort( key=lambda x: (x[7] not in virAll, x[1], x[2], -x[8]), reverse=True )
+				#sortlist.sort( key=lambda x: (x[1],x[2],-x[8]), reverse=True )
+				sortlist.sort( key=lambda x: (x[1],x[2],-x[8]) )
 		
 		# Combine lists
+		if order:
+			#TODO TEST later with green button solution
+			sortlist.reverse()
+		#	tmplist += sortlist
+		#	return tmplist.reverse()
+		#else:
 		return tmplist + sortlist
 
 	def recStateChange(self, timer):
@@ -445,10 +522,14 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 		# The progress of one recording is updated
 		# - if it will be highlighted the list
 		# Note: There is no auto update mechanism of the recording progress
-		begin, end = self.recControl.getRecordingTimes(path)
-		last = time() - begin
-		length = end - begin
-		return self.calculateProgress(last, length)
+		times = self.recControl.getRecordingTimes(path)
+		if times:
+			begin, end = times
+			last = time() - begin
+			length = end - begin
+			return self.calculateProgress(last, length)
+		else:
+			return 0
 
 	def calculateProgress(self, last, length):
 		progress = 0
@@ -494,7 +575,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 			size /= (1024.0 * 1024.0 * 1024.0)
 		return count, size
 
-	def buildMovieCenterEntry(self, service, sortkeys, date, title, path, selnum, length, ext):
+	def buildMovieCenterEntry(self, service, sorttitle, date, title, path, selnum, length, ext, *args):
 		#TODO remove before release
 		try:
 			offset = 0
@@ -569,10 +650,10 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 						# video
 						if ext in extVideo:
 							if movieUnwatched:
-								if not latest:
-									pixmap = self.pic_movie_unwatched
-								else:
+								if config.EMC.mark_latest_files.value and latest:
 									pixmap = self.pic_latest
+								else:
+									pixmap = self.pic_movie_unwatched
 							elif movieWatching:
 								pixmap = self.pic_movie_watching
 							elif movieFinished:
@@ -802,11 +883,6 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 					self.l.setList(self.list)
 					break
 
-	def addService(self, service):
-		#TODO
-		# Actually You can only use reload with filname
-		pass
-
 	def serviceBusy(self, service):
 		return service in self.highlightsMov or service in self.highlightsDel or service in self.highlightsCpy
 
@@ -831,12 +907,18 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 				self.unselectService(service)
 				self.highlightsCpy.append(service)
 		else:
-			if mode == "move":
-				self.highlightsMov.remove(service)
-			elif mode == "del":
-				self.highlightsDel.remove(service)
-			elif mode == "copy":
-				self.highlightsCpy.remove(service)
+			if service:
+				# Reset the length to force progress recalculation
+				self.updateLength(service, 0)
+				if mode == "move":
+					if service in self.highlightsMov:
+						self.highlightsMov.remove(service)
+				elif mode == "del":
+					if service in self.highlightsDel:
+						self.highlightsDel.remove(service)
+				elif mode == "copy":
+					if service in self.highlightsCpy:
+						self.highlightsCpy.remove(service)
 
 	def __len__(self):
 		return len(self.list)
@@ -1153,7 +1235,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 		customlist, subdirlist, filelist, tmplist = [], [], [], []
 		resetlist = True 
 		dosort = True
-		alphaSort = None
+		nextSort = None
 		
 		if config.EMC.remote_recordings.value:
 			# get a list of current remote recordings
@@ -1190,8 +1272,8 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 				emcDebugOut("[EMC] Latest Recordings")
 				filelist = self.createLatestRecordingsList()
 				customlist = self.createCustomList(loadPath, extend=False)
-				# Set date sort mode
-				alphaSort = False
+				# Set date descending as next sort mode
+				nextSort = (1, False)
 			
 			else:
 				# No changes done
@@ -1209,13 +1291,19 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 		# Avoid dots
 		append = tmplist.append
 		pathexists = os.path.exists
-		pathgetctime = os.path.getctime
+		pathgetmtime = os.path.getmtime
+		
+		service = None
+		title, sorttitle = "", ""
+		date = datetime.fromtimestamp(0)
+		cutnr = ""
+		metastring, eitstring = "", ""
 		
 		# Add custom entries and sub directories to the list
 		customlist += subdirlist
 		if customlist is not None:
 			for path, filename, ext in customlist:
-				sorttitle, sortprefix = "", ""
+				sorttitle = ""
 				title = filename
 				
 				# Replace special chars with spaces
@@ -1237,19 +1325,9 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 				
 				service = self.getPlayerService(path, title)
 				
-				if ext == cmtUp: sortprefix = "0"
-				elif ext == cmtTrash: sortprefix = "1"
-				elif ext == cmtLRec: sortprefix = "2"
-				elif ext == cmtBM: sortprefix = "3"
-				elif ext == cmtDir: sortprefix = "4"
-					
-				elif ext == cmtVLC: sortprefix = "5"
-				elif ext == vlcSrv: sortprefix = "6"
-				elif ext == vlcDir: sortprefix = "7"
+				sorttitle = title.lower()
 				
-				sorttitle = sortprefix + filename.lower()
-				
-				append((service, (sorttitle, sorttitle), None, title, path, 0, 0, ext))
+				append((service, sorttitle, date, title, path, 0, 0, ext, 0))
 		
 		# Add file entries to the list
 		if filelist is not None:
@@ -1258,11 +1336,13 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 				# First we extract as much as possible informations from the filename
 				service = None
 				title, date, cutnr = "", "", ""
-				length = 0 #TODO metalength, eitlength and priority handling
+				length = 0 
+				#TODO metalength, eitlength and priority handling
 				metastring, eitstring = "", ""
-				metadate, eitdate = "", ""
-				sorttitle, sortdate = "", ""
-				sortkeyalpha, sortkeydate = "", ""
+				#metadate, eitdate = "", ""
+				sorttitle = ""
+				#sortdate = ""
+				#sortkeyalpha, sortkeydate = "", ""
 				
 				# Remove extension
 				if not ext:
@@ -1289,7 +1369,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 				if title[0:8].isdigit():
 					if not title[8:9].isdigit() and title[9:13].isdigit():
 						# Default: filename = YYYYMMDD TIME - service_name
-						sortdate = title[0:13]							# "YYYYMMDD TIME - " -> "YYYYMMDD TIME"
+						date = title[0:13]									# "YYYYMMDD TIME - " -> "YYYYMMDD TIME"
 						title = title[16:]									# skips "YYYYMMDD TIME - "
 						
 						# Standard: filename = YYYYMMDD TIME - service_name - name
@@ -1301,12 +1381,12 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 						
 					elif title[8:11] == " - ":
 						# Short Composition: filename = YYYYMMDD - name
-						sortdate = title[0:8] + " 2000"			# "YYYYMMDD" + " " + DUMMY_TIME
+						date = title[0:8] + " 2000"			# "YYYYMMDD" + " " + DUMMY_TIME
 						title = title[11:]									# skips "YYYYMMDD - "
 					
-					if sortdate:
-						dtime = int(sortdate[9:13] or 2000)
-						date = int(sortdate[0:8] or 0)
+					if date:
+						dtime = int(date[9:13] or 2000)
+						date = int(date[0:8] or 0)
 						date = datetime(date/10000, date%10000/100, date%100, dtime/100, dtime%100)
 				
 				# If the user wants it, extract information from the meta and eit files
@@ -1318,7 +1398,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 					if meta:
 						metastring = meta.getMetaName()
 						if not date:
-							metadate = meta.getMetaDate()
+							date = meta.getMetaDate()
 						# Improve performance and avoid calculation of movie length
 						length = meta.getMetaLength()
 				
@@ -1328,7 +1408,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 						if eit:
 							eitstring = eit.getEitName()
 							if not date:
-								eitdate = eit.getEitDate()
+								date = eit.getEitDate()
 							if not length:
 								length = eit.getEitLengthInSeconds()
 				
@@ -1352,14 +1432,13 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 				
 				# Set date priority here
 				# Fallback get date from filesystem, but it is very slow
-				date = date or metadate or eitdate or pathexists(path) and datetime.fromtimestamp( pathgetctime(path) ) or None
+				date = date or pathexists(path) and datetime.fromtimestamp( pathgetmtime(path) ) or None
 				
 				# Create sortkeys
-				if not sortdate: sortdate = date and date.strftime( "%Y%m%d %H%M" ) or ""
+				#if not sortdate: sortdate = date and date.strftime( "%Y%m%d %H%M" ) or ""
 				sorttitle = title.lower()
-				sortkeyalpha = sorttitle + sortdate + ("%03d") % int(cutnr or 0)
-				#cutnrreverse = str( 999 - int(cutnr or 0) )
-				sortkeydate = sortdate + sorttitle + ("%03d") % ( 999 - int(cutnr or 0) )
+				#sortkeyalpha = sorttitle + ("%03d") % int(cutnr or 0) + sortdate
+				#sortkeydate = sortdate + sorttitle + ("%03d") % ( 999 - int(cutnr or 0) )
 				
 				# combine information regarding the emc config
 				if movie_show_cutnr:
@@ -1370,20 +1449,23 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 				
 				# Get player service and set formatted title
 				service = self.getPlayerService(path, title, ext)
+				
+				# Bad workaround to get all information into our Service Source
 				service.date = date
 				service.ext = ext
+				
 				# Check config settings
 				#TODO These checks should be done earlier but there we don't have the service yet
 				if (movie_hide_mov and self.serviceMoving(service)) \
 					or (movie_hide_del and self.serviceDeleting(service)):
 					continue
 				
-				append((service, (sortkeyalpha, sortkeydate), date, title, path, 0, length, ext))
+				append((service, sorttitle, date, title, path, 0, length, ext, int(cutnr or 0)))
 		
 		# Cleanup before continue
 		del append
 		del pathexists
-		del pathgetctime
+		del pathgetmtime
 		
 		if not simulate:
 			# If we are here, there is no way back
@@ -1394,25 +1476,25 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 				self.loadPath = loadPath
 				
 				# Lookup for a permanent sorting mode
-				permSort = self.getPermanentSort(loadPath)
-				if permSort is not None:
+				perm = self.getPermanentSort(loadPath)
+				if perm is not None:
 					# Backup the actual sorting mode
 					if self.returnSort is None:
-						self.returnSort = self.alphaSort
-					self.alphaSort = permSort
+						self.returnSort = self.actualSort
+					self.actualSort = perm
 				
 				elif self.returnSort is not None:
 					# Restore sorting mode
-					self.alphaSort = self.returnSort
+					self.actualSort = self.returnSort
 					self.returnSort = None
 				
-				if alphaSort is not None:
+				if nextSort is not None:
 					# Backup the actual sorting mode
 					if self.returnSort is None:
-						self.returnSort = self.alphaSort
+						self.returnSort = self.actualSort
 					# Set new sorting mode
-					self.alphaSort = alphaSort
-		
+					self.actualSort = nextSort
+			
 			if resetlist:
 				self.list = []
 			else:

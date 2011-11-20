@@ -139,7 +139,7 @@ class CutList():
 			if config.EMC.movie_save_lastplayed.value is True:
 				self.__saveOldLast()
 			# Update local cut list, maybe there is a newer one
-			#TODO Not working yet
+			#TODO to be tested
 			#self.__readCutFile(True)
 			# Is there native cuesheet support
 			cue = InfoBarCueSheetSupport._InfoBarCueSheetSupport__getCuesheet(self)
@@ -367,10 +367,10 @@ class CutList():
 					while pos+12 <= len(data):
 						# Unpack
 						(pts, what) = struct.unpack('>QI', data[pos:pos+12])
-						if not update:
-							self.__insort(long(pts), what)
-						else:
-							self.__update(long(pts), what)
+						#if not update:
+						self.__insort(long(pts), what)
+						#else:
+						#	self.__update(long(pts), what)
 						# Next cut_list entry
 						pos += 12
 		else:

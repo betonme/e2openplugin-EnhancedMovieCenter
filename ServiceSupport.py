@@ -51,6 +51,16 @@ class CurrentService(eCurrentService):
 	def cueSheet(self):
 		return self.__cuesheet
 
+	def getLength(self):
+		if config.EMC.record_show_real_length.value:
+			ref = self.navcore.getCurrentlyPlayingServiceReference()
+			if ref:
+				from MovieSelection import gMS
+				times = gMS.getRecordingTimes(ref)
+				if times:
+					return (times[1] - times[0]) * 90000 # times (begin, end) : end - begin
+		return 0
+
 	@cached
 	def getCurrentService(self):
 		path = None
@@ -174,6 +184,15 @@ class Info:
 									#TODO show same time as list
 									#TODO or isdir but show only start date
 		
+		# If it is a record we will force to use the timer duration
+		self.__length = 0
+		if config.EMC.record_show_real_length.value:
+			from MovieSelection import gMS
+			times = gMS["list"].recControl.getRecordingTimes(path)
+			#times = gMS.getRecordingTimes(service)
+			if times:
+				 self.__length = times[1] - times[0] # times = (begin, end) : end - begin
+			
 		self.__reference = service or ""
 		self.__rec_ref_str = meta and meta.getMetaServiceReference() or ""
 		
@@ -268,8 +287,10 @@ class Info:
 	def getLength(self, service=None):
 		#TODO read from meta eit
 		#E2 will read / calculate it directly from ts file
-		# Should stay dynamic if it is a record
+		# Should stay dynamic if it is a copy or move
 		#self.newService(service)
+		if self.__length:
+			return self.__length
 		service = service or self.__reference
 		length = 0
 		if self.isfile:

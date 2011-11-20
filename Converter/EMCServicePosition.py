@@ -65,3 +65,13 @@ class EMCServicePosition(ServicePosition):
 			print "[EMCSP] getCutlist exception:" + str(e)
 
 	cutlist = property(getCutlist)
+
+	def getLength(self):
+		length = self.source and self.source.getLength()
+		if length:
+			return length
+		
+		# Fallback
+		return ServicePosition.getLength(self)
+
+	length = property(getLength)

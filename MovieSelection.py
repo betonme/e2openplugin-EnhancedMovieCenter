@@ -112,7 +112,8 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 				"EMCINFO":		(self.showEventInformation,	_("Show event info")),
 				"EMCINFOL":		(self.IMDbSearch,			_("IMDBSearch")),
 				"EMCRed":			(self.deleteFile,			_("Delete file or empty dir")),
-				"EMCGreen":		(self.toggleSort,			_("Toggle sort mode")),
+				"EMCSortMode":		(self.toggleSortMode,			_("Toggle sort mode")),
+				"EMCSortOrder":		(self.toggleSortOrder,			_("Toggle sort order")),
 				"EMCMOVE":		(self.moveMovie,			_("Move selected movie(s)")),
 				"EMCCOPY":		(self.copyMovie,			_("Copy selected movie(s)")),
 				"EMCBlue":		(self.blueFunc,				_("Movie home / Play last (configurable)")),
@@ -156,7 +157,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		
 		# Key press short long handling
 		#TODO We have to rework this key press handling in order to allow different user defined color key functions
-		self.toggle = True
+		self.toggle = True		# Used for long / short key press detection: Toggle sort mode / order, Toggle selection / reset selection 
 		self.move = True
 		self.busy = False			# Allow playback only in one mode: PlayEntry / PlayLast / PlayAll / ShuffleAll
 		
@@ -212,8 +213,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 	def blueFunc(self):
 		if config.EMC.movie_bluefunc.value == "MH":
 			self.returnService = None
-			self["list"].alphaSort = config.EMC.CoolStartAZ.value
-			self["list"].returnSort = None
+			self["list"].resetSorting()
 			self.changeDir(config.EMC.movie_homepath.value)
 		elif config.EMC.movie_bluefunc.value == "PL":
 			self.playLast()
@@ -394,6 +394,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			elif selection == "dirup": self.directoryUp()
 			elif selection == "oscripts": self.openScriptMenu()
 			elif selection == "markall": self.markAll()
+			elif selection == "updatetitle": self.updateTitle()
 
 	def openMenu(self):
 		current = self.getCurrent()
@@ -455,8 +456,10 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		if self.multiSelectIdx:
 			self.setTitle(_("*** Multiselection active ***"))
 			return
-		lotime = localtime()
-		title = "[%02d:%02d] " %(lotime[3],lotime[4])
+		#lotime = localtime()
+		#title = "[%02d:%02d] " %(lotime[3],lotime[4])
+		
+		# Display the free space
 		if os.path.exists(self.currentPath):
 			stat = os.statvfs(self.currentPath)
 			free = (stat.f_bavail if stat.f_bavail!=0 else stat.f_bfree) * stat.f_bsize / 1024 / 1024
@@ -465,9 +468,9 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			else:
 				title = "(%d MB) " %(free)
 		
+		# Display the current path
 		path = self.currentPath
 		path = path.replace(config.EMC.movie_homepath.value, "...")
-		
 		# Very bad but there can be both encodings
 		# E2 recordings are always in utf8
 		# User files can be in cp1252
@@ -479,21 +482,39 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 				path = path.decode("cp1252").encode("utf-8")
 			except UnicodeDecodeError:
 				path = path.decode("iso-8859-1").encode("utf-8")
-		
 		title += path or "/"
 		
+		# Display the actual sorting mode
+		from Plugins.Extensions.EnhancedMovieCenter.plugin import sort_modes
+		sort = sort_modes.get( self["list"].getSorting() )
+		if sort:
+			title += " (" + str(sort[1]) + ")"
+		
 		# Display a permanent sort marker if it is set
-		sort, perm = self["list"].getSorting()
+		perm = self["list"].isEqualPermanentSort()
 		if perm == True:
 			title += _(" (P)")
 		
 		self.setTitle(title)
 
-	def toggleSort(self):
+	def toggleSortMode(self):
 		if self.browsingVLC(): return
+		if self.toggle == False:
+			self.toggle = True
+			return
 		service = self.getNextSelectedService(self.getCurrent())
 		self.returnService = service
-		self["list"].setSorting( not self["list"].getSorting()[0] )
+		self["list"].toggleSortingMode()
+		self.initButtons()
+		self.initCursor()
+		self.updateMovieInfo()
+
+	def toggleSortOrder(self):
+		if self.browsingVLC(): return
+		self.toggle = False
+		service = self.getNextSelectedService(self.getCurrent())
+		self.returnService = service
+		self["list"].toggleSortingOrder()
 		self.initButtons()
 		self.initCursor()
 		self.updateMovieInfo()
@@ -739,13 +760,17 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		# Initialize buttons
 		self["key_red"].text = _("Delete")
 		#TODO get color from MovieCenter
-		sort, perm = self["list"].getSorting()
+		mode, order = self["list"].getSorting()
+		#if order == False:
 		green = ""
-		# Negotiate the sorting to display the next state
-		if not sort:
-			self["key_green"].text = _("Alpha sort")
-		else:
-			self["key_green"].text = _("Date sort")
+		#else:
+		#	green = "- " # reverse
+		# Display the next sorting state
+		if mode == "A":
+			green += _("Date sort")
+		elif mode == "D":
+			green += _("Alpha sort")
+		self["key_green"].text = green
 		self["key_yellow"].text = _("Move")
 		self["key_blue"].text = _(config.EMC.movie_bluefunc.description[config.EMC.movie_bluefunc.value])
 
@@ -916,11 +941,24 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 	#
 	def isRecording(self, service):
 		path = service.getPath()
-		return self["list"].recControl.isRecording(path)
+		if path:
+			return self["list"].recControl.isRecording(path)
+		else:
+			return False
 
 	def getRecordingService(self, service):
 		path = service.getPath()
-		return self["list"].recControl.getRecordingService(path)
+		if path:
+			return self["list"].recControl.getRecordingService(path)
+		else:
+			return False
+
+	def getRecordingTimes(self, service):
+		path = service.getPath()
+		if path:
+			return self["list"].recControl.getRecordingTimes(path)
+		else:
+			return False
 
 	def stopRecordConfirmation(self, confirmed):
 		if not confirmed: return

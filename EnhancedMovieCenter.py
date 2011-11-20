@@ -205,9 +205,8 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 			
 			(  separator                                          , config.EMC.about                    , None                  , None                  , 0     , []        , _("") ),
 			(  _("Movie home at start")                           , config.EMC.CoolStartHome            , None                  , None                  , 0     , []        , _("HELP_Movie home at start") ),
-			(  _("Sort file A to Z at startup")                   , config.EMC.CoolStartAZ              , None                  , None                  , 0     , []        , _("HELP_Sort file A to Z at startup") ),
-			(  _("File order reverse")                            , config.EMC.moviecenter_reversed     , None                  , None                  , 0     , []        , _("HELP_File order reverse") ),
-			
+			(  _("Default sort mode")                             , config.EMC.moviecenter_sort         , None                  , None                  , 0     , []        , _("HELP_Sort mode at startup") ),
+	
 			(  _("Movie home home path")                          , config.EMC.movie_homepath           , self.validatePath     , self.openLocationBox  , 0     , []        , _("HELP_Movie home home path") ),
 			(  _("EMC path access limit")                         , config.EMC.movie_pathlimit          , self.validatePath     , self.openLocationBox  , 1     , []        , _("HELP_EMC path access limit") ),
 			
@@ -243,13 +242,16 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 			(  _("Show movie progress")                           , config.EMC.movie_progress           , None                  , None                  , 0     , []        , _("HELP_Show movie progress") ),
 			(  _("Short watching percent")                        , config.EMC.movie_watching_percent   , None                  , None                  , 0     , [-1]      , _("HELP_Short watching percent") ),
 			(  _("Finished watching percent")                     , config.EMC.movie_finished_percent   , None                  , None                  , 0     , [-2]      , _("HELP_Finished watching percent") ),
+			(  _("Mark latest media files")                       , config.EMC.mark_latest_files        , None                  , None                  , 0     , []        , _("HELP_Mark latest media files") ),
 			
 			(  separator                                          , config.EMC.about                    , None                  , None                  , 0     , []        , _("") ),
 			(  _("No resume below 10 seconds")                    , config.EMC.movie_ignore_firstcuts   , None                  , None                  , 1     , []        , _("HELP_No resume below 10 seconds") ),
 			(  _("Jump to first mark when playing movie")         , config.EMC.movie_jump_first_mark    , None                  , None                  , 1     , []        , _("HELP_Jump to first mark when playing movie") ),
 			(  _("Rewind finished movies before playing")         , config.EMC.movie_rewind_finished    , None                  , None                  , 1     , []        , _("HELP_Rewind finished movies before playing") ),
 			(  _("Always save last played progress as marker")    , config.EMC.movie_save_lastplayed    , None                  , None                  , 1     , []        , _("HELP_Always save last played progress as marker") ),
-			(  _("Jump to channel after record EOF")              , config.EMC.record_eof_jump          , None                  , None                  , 1     , []        , _("HELP_Jump to channel after record EOF") ),
+			(  _("Zap to channel after record EOF")               , config.EMC.record_eof_zap           , None                  , None                  , 1     , []        , _("HELP_Zap to channel after record EOF") ),
+			(  _("Show real length of running records")           , config.EMC.record_show_real_length  , None                  , None                  , 1     , []        , _("HELP_Show real length of running records") ),
+			
 			
 			(  separator                                          , config.EMC.about                    , None                  , None                  , 0     , []        , _("HELP_separator_Trashcan settings") ),
 			(  _("Trashcan enable")                               , config.EMC.movie_trashcan_enable    , None                  , self.openLocationBox  , 0     , []        , _("HELP_Trashcan enable") ),

@@ -71,6 +71,7 @@ class RecordEventObserver:
 			emcDebugOut("[spRO] recEvent exception:\n" + str(e))
 
 
+#TODO RecControl should be a separate global instance
 class RecordingsControl:
 	def __init__(self, recStateChange):
 		self.recStateChange = recStateChange
@@ -94,7 +95,7 @@ class RecordingsControl:
 			if timer.state == timer.StatePrepared:	pass
 			elif timer.state == timer.StateRunning:	# timer.isRunning()
 				if not filename in self.recDict:
-					self.recDict[filename] = (timer.begin, timer.end)
+					self.recDict[filename] = (timer.begin, timer.end, timer.service_ref.ref)
 					inform = True
 					emcDebugOut("[emcRC] REC START for: " + filename)
 			else: #timer.state == timer.StateEnded:
@@ -135,11 +136,9 @@ class RecordingsControl:
 		try:
 			if filename[0] == "/": 			filename = os.path.basename(filename)
 			if filename.endswith(".ts"):	filename = filename[:-3]
-			for timer in NavigationInstance.instance.RecordTimer.timer_list:
-				try: timer.Filename
-				except: timer.calculateFilename()
-				if os.path.basename(timer.Filename) == filename:
-					return timer.service_ref.ref
+			if filename in self.recDict:
+				begin, end, ref = self.recDict[filename]
+				return ref
 		except Exception, e:
 			emcDebugOut("[emcRC] getRecordingService exception:\n" + str(e))
 		return None
@@ -154,11 +153,13 @@ class RecordingsControl:
 			return False
 
 	def getRecordingTimes(self, filename):
+		#TODO lookup actual times or get a notification on time changed
 		try:
 			if filename[0] == "/": 			filename = os.path.basename(filename)
 			if filename.endswith(".ts"):	filename = filename[:-3]
 			if filename in self.recDict:
-				return self.recDict[filename]
+				begin, end, ref = self.recDict[filename]
+				return begin, end
 		except Exception, e:
 			emcDebugOut("[emcRC] getRecordingTimes exception:\n" + str(e))
 			return False

@@ -273,7 +273,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 				
 				# Is this really necessary 
 				# TEST for M2TS Audio problem
-				#self.session.nav.stopService() 
+				self.session.nav.stopService() 
 				
 				# Start playing movie
 				self.session.nav.playService(service)
@@ -731,13 +731,15 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 		#TEST Check how often doEofInternal is called
 		if self.in_menu:
 			self.hide()
-		if config.EMC.record_eof_jump.value:
-			if self.recordings and self.recordings.isRecording(self.service):
-				# Zap to new channel
-				self.lastservice = self.recordings.getRecordingService(self.service) or self.lastservice
-				self.closeAll = True
-				DelayedFunction(1000, boundFunction(self.leavePlayer, False))
-				return
+		if config.EMC.record_eof_zap.value:
+			if self.recordings:
+				lastservice = self.recordings.getRecordingService(self.service)
+				if lastservice:
+					# Zap to new channel
+					self.lastservice = lastservice
+					self.closeAll = True
+					DelayedFunction(1000, boundFunction(self.leavePlayer, False))
+					return
 		DelayedFunction(1000, boundFunction(self.doEvEOF))
 
 	def doEvEOF(self):

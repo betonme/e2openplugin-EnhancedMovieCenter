@@ -157,6 +157,24 @@ move_choices = [	("d",								_("down")),
 									("b",								_("up/down")),
 									("o",								_("off")) ]
 
+#Think about using AZ or ("A",False) as dict key / permanent sort store value
+sort_modes = {		("D",False)	:				( _("Date sort descending (D-)"), 	("D-")	),
+									("A",False)	:				( _("Alpha sort ascending (AZ)"), 	("AZ")	),
+									("D",True)	:				( _("Date sort ascending (D+)"), 		("D+")	),
+									("A",True)	:				( _("Alpha sort descending (ZA)"),	("ZA") 	) }
+									# If you add a new sort order, you have to think about
+									#  Order false has to be the preferred state
+									#  Both order possibilities should be in the list
+									# Following functions are invoved, but they are all implemented dynamically 
+									#  MovieCenter.reload -> Add new parameter if necessary
+									#   Don't worry about buildMovieCenterEntry(*args):
+									#  MovieSelection.initButtons -> Set next button text
+									#  Green short will go through all types: D A
+									#  Green long will only toggle the sort order: normal reverse
+
+sort_choices = [ (k, v[0]) for k, v in sort_modes.items() ]
+sort_choices.sort( key=lambda x : x[0][1] )
+
 config.EMC                           = ConfigSubsection()
 config.EMC.needsreload               = ConfigYesNo(default = False)
 config.EMC.about                     = ConfigSelection(default = "1", choices = [("1", " ")])
@@ -198,7 +216,8 @@ config.EMC.movie_ignore_firstcuts    = ConfigYesNo(default = True)
 config.EMC.movie_jump_first_mark     = ConfigYesNo(default = True)
 config.EMC.movie_rewind_finished     = ConfigYesNo(default = True)
 config.EMC.movie_save_lastplayed     = ConfigYesNo(default = False)
-config.EMC.record_eof_jump			     = ConfigYesNo(default = True)
+config.EMC.record_eof_zap            = ConfigYesNo(default = True)
+config.EMC.record_show_real_length   = ConfigYesNo(default = True)
 config.EMC.movie_metaload            = ConfigYesNo(default = True)
 config.EMC.movie_eitload             = ConfigYesNo(default = False)
 config.EMC.movie_exit                = ConfigYesNo(default = False)
@@ -223,15 +242,14 @@ config.EMC.movie_delete_validation   = ConfigYesNo(default = True)
 config.EMC.directories_show          = ConfigYesNo(default = True)
 config.EMC.directories_info          = ConfigSelection(default = "", choices = dirinfo_choices)
 config.EMC.latest_recordings         = ConfigYesNo(default = True)
+config.EMC.mark_latest_files         = ConfigYesNo(default = True)
 config.EMC.vlc                       = ConfigYesNo(default = False)
 config.EMC.bookmarks_e2              = ConfigYesNo(default = False)
 config.EMC.check_dvdstruct           = ConfigYesNo(default = True)
 #config.EMC.check_movie_cutting      = ConfigYesNo(default = True)
 config.EMC.movie_hide_mov            = ConfigYesNo(default = False)
 config.EMC.movie_hide_del            = ConfigYesNo(default = False)
-#TODO should be a ConfigSelection sorting date_down az_down 
-config.EMC.CoolStartAZ               = ConfigYesNo(default = False)
-config.EMC.moviecenter_reversed      = ConfigYesNo(default = False)
+config.EMC.moviecenter_sort          = ConfigSelection(default = ("D",False), choices = sort_choices)
 config.EMC.moviecenter_selmove       = ConfigSelection(default = "d", choices = move_choices)
 config.EMC.moviecenter_loadtext      = ConfigYesNo(default = True)
 config.EMC.replace_specialchars      = ConfigYesNo(default = False)
