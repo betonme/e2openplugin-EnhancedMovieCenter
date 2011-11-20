@@ -370,6 +370,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 	def movieSelected(self, playlist, playall=False):
 		self.playerOpenedList = False
 		if playlist is not None and len(playlist) > 0:
+			self.__playerClosed()
 			self.playcount = -1
 			self.playlist = playlist
 			self.playall = playall
