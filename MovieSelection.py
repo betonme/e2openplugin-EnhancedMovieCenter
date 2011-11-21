@@ -86,6 +86,10 @@ class SelectionEventInfo:
 				for (pts, what) in cut_list:
 					if what == 3: # self.CUT_TYPE_LAST:
 						last = pts
+						break
+				if not last:
+					#TODO Get first mark if it is in the first half of the movie
+					pass
 				if last:
 					print "EMC: seekto"
 					seekable.seekTo(last)
@@ -630,8 +634,10 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		cutsr = path +".cutsr"
 		if os.path.exists(cutsr) and not os.path.exists(cuts):
 			# Rename file - to catch all old EMC revisions
-			os.rename(cutsr, cuts)	
-			
+			try:
+				os.rename(cutsr, cuts)
+			except Exception, e:
+				emcDebugOut("[CUTS] Exception in __toggleProgressService: " + str(e))
 		# All calculations are done in seconds
 		cuts = CutList( path )
 		last = cuts.getCutListLast()
