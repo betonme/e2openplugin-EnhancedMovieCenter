@@ -519,6 +519,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 				self.previewMovie( service )
 
 	def updateTitle(self):
+		title = ""
 		if self.multiSelectIdx:
 			self.setTitle(_("*** Multiselection active ***"))
 			return
@@ -559,7 +560,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		# Display a permanent sort marker if it is set
 		perm = self["list"].isEqualPermanentSort()
 		if perm == True:
-			title += _(" (P)")
+			title += _(" <P>")
 		
 		self.setTitle(title)
 
