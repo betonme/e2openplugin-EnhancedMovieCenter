@@ -242,7 +242,7 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 			(  _("Show movie progress")                           , config.EMC.movie_progress           , None                  , None                  , 0     , []        , _("HELP_Show movie progress") ),
 			(  _("Short watching percent")                        , config.EMC.movie_watching_percent   , None                  , None                  , 0     , [-1]      , _("HELP_Short watching percent") ),
 			(  _("Finished watching percent")                     , config.EMC.movie_finished_percent   , None                  , None                  , 0     , [-2]      , _("HELP_Finished watching percent") ),
-			(  _("Mark latest media files")                       , config.EMC.mark_latest_files        , None                  , None                  , 0     , []        , _("HELP_Mark latest media files") ),
+			(  _("Mark new recordings with a star")               , config.EMC.mark_latest_files        , None                  , None                  , 0     , []        , _("HELP_Mark latest recordings") ),
 			(  _("Show movie preview")                            , config.EMC.movie_preview            , None                  , None                  , 0     , []        , _("HELP_Show movie preview") ),
 			(  _("Movie preview delay in seconds")                , config.EMC.movie_previewdelay       , None                  , None                  , 0     , [-1]      , _("HELP_Show movie preview delay") ),
 			
