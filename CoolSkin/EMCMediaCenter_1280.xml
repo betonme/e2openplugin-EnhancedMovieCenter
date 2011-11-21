@@ -55,5 +55,4 @@
 		<convert type="ServiceInfo">IsMultichannel</convert>
 		<convert type="ConditionalShowHide" />
 	</widget>
-
 </screen>

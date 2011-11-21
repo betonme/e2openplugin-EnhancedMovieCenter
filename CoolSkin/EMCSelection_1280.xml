@@ -1,4 +1,3 @@
-
 <screen name="EMCSelection" position="0,0" size="1280,720" title="Enhanced Movie Center" flags="wfNoBorder">
 	<ePixmap position="0,0" zPosition="-10" size="1280,720" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/CoolMenu.png" transparent="1" />
 	<ePixmap pixmap="skin_default/icons/clock.png" position="1100,33" zPosition="1" size="26,26" alphatest="on" />
