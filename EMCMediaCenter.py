@@ -59,7 +59,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 	ENABLE_RESUME_SUPPORT = True
 	ALLOW_SUSPEND = True
 	
-	def __init__(self, session, playlist, recordings, playall=False):
+	def __init__(self, session, playlist, recordings, playall=False, lastservice=None):
 		
 		# The CutList must be initialized very first  
 		CutList.__init__(self)
@@ -192,7 +192,14 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 		self.playerOpenedList = False
 		self.closeAll = False
 		
-		self.playInit(playlist, recordings, playall)
+		self.lastservice = lastservice or self.session.nav.getCurrentlyPlayingServiceReference()
+		self.playlist = playlist
+		self.playall = playall
+		self.playcount = -1
+		self.recordings = recordings
+		self.firstStart = False
+		self.service = None
+		self.recordings.setPlayerInstance(self)
 		
 		# Dialog Events
 		self.onShown.append(self.__onShow)  # Don't use onFirstExecBegin() it will crash
@@ -206,16 +213,6 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 			config.av.policy_43.value = "scale"
 		else:
 			config.av.policy_43.value = "pillarbox"
-
-	def playInit(self, playlist, recordings, playall):
-		self.lastservice = self.session.nav.getCurrentlyPlayingServiceReference()
-		self.playlist = playlist
-		self.playall = playall
-		self.playcount = -1
-		self.recordings = recordings
-		self.firstStart = False
-		self.service = None
-		self.recordings.setPlayerInstance(self)
 
 	def __onShow(self):
 		if self.firstStart:

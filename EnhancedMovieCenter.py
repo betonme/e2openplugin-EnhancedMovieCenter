@@ -243,6 +243,8 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 			(  _("Short watching percent")                        , config.EMC.movie_watching_percent   , None                  , None                  , 0     , [-1]      , _("HELP_Short watching percent") ),
 			(  _("Finished watching percent")                     , config.EMC.movie_finished_percent   , None                  , None                  , 0     , [-2]      , _("HELP_Finished watching percent") ),
 			(  _("Mark latest media files")                       , config.EMC.mark_latest_files        , None                  , None                  , 0     , []        , _("HELP_Mark latest media files") ),
+			(  _("Show movie preview")                            , config.EMC.movie_preview            , None                  , None                  , 0     , []        , _("HELP_Show movie preview") ),
+			(  _("Movie preview delay in seconds")                , config.EMC.movie_previewdelay       , None                  , None                  , 0     , [-1]      , _("HELP_Show movie preview delay") ),
 			
 			(  separator                                          , config.EMC.about                    , None                  , None                  , 0     , []        , _("") ),
 			(  _("No resume below 10 seconds")                    , config.EMC.movie_ignore_firstcuts   , None                  , None                  , 1     , []        , _("HELP_No resume below 10 seconds") ),

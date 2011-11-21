@@ -34,6 +34,10 @@ from enigma import getDesktop, eServiceReference
 import os
 from time import time
 
+# Movie preview
+from Components.VideoWindow import VideoWindow
+
+# EMC internal
 from DelayedFunction import DelayedFunction
 from EnhancedMovieCenter import _
 from EMCTasker import emcTasker, emcDebugOut
@@ -46,8 +50,8 @@ from DirectoryStack import DirectoryStack
 from E2Bookmarks import E2Bookmarks
 from ServiceSupport import ServiceEvent
 
-from MovieCenter import extMedia
-global extMedia
+from MovieCenter import extVideo, extMedia
+global extVideo, extMedia
 
 gMS = None
 
@@ -56,13 +60,35 @@ class SelectionEventInfo:
 	def __init__(self):
 		#from Components.Sources.ServiceEvent import ServiceEvent
 		self["Service"] = ServiceEvent()
+		# Movie preview
+		self["Video"] = VideoWindow(decoder = 0)
 
 	def updateEventInfo(self, service):
-		if service is None:
-			# Reload is in progress
-			self["Service"].newService(None)
-		else:
-			self["Service"].newService(service)
+		self["Service"].newService(service)
+
+	# Movie preview
+	def previewMovie(self, service=None):
+		if self.previewTimer.isActive()
+			self.previewTimer.stop()
+		if config.EMC.movie_preview.value and service:
+			self.session.nav.playService(service)
+			s = self.session.nav.getCurrentService()
+			#TODOMP cuesheet for non ts-files
+			seekable = s.seek()
+			if seekable:
+				print "EMC: seekable"
+				cue = s.cueSheet()
+				try:
+					cut_list = cue.getCutList()
+				except:
+					return
+				last = None
+				for (pts, what) in cut_list:
+					if what == 3: # self.CUT_TYPE_LAST:
+						last = pts
+				if last:
+					print "EMC: seekto"
+					seekable.seekTo(last)
 
 
 class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfaceSel, DirectoryStack, E2Bookmarks):
@@ -90,7 +116,6 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		self.lastPlayedMovies = None
 		self.multiSelectIdx = None
 		self.returnService = None
-		self.callUpdate = None
 		self.cursorDir = 0
 		self["wait"] = Label(_("Reading directory..."))
 		self["wait"].hide()
@@ -161,8 +186,16 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		self.move = True
 		self.busy = False			# Allow playback only in one mode: PlayEntry / PlayLast / PlayAll / ShuffleAll
 		
+		self.delayTimer = eTimer()
+		self.delayTimer.callback.append(self.updateInfoDelayed)
+		
+		# Movie preview
+		self.previewTimer = eTimer()
+		self.previewTimer.callback.append(self.previewMovieDelayed)
+		
 		self.onShow.append(self.onDialogShow)
 		self.onHide.append(self.onDialogHide)
+		self["list"].onSelectionChanged.append(self.selectionChanged)
 
 	def CoolAVSwitch(self):
 		if config.av.policy_43.value == "pillarbox":
@@ -208,6 +241,9 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			self.playerInstance.movieSelected(None)
 		else:
 			config.av.policy_43.cancel() # reload the default setting
+		# Movie preview
+		if self.lastservice:
+			self.session.nav.playService(self.lastservice)
 		self.close(None)
 
 	def blueFunc(self):
@@ -280,42 +316,24 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 	def moveUp(self):
 		self.cursorDir = -1
 		self["list"].instance.moveSelection( self["list"].instance.moveUp )
-		self.updateAfterKeyPress()
 
 	def moveDown(self):
 		self.cursorDir = 1
 		self["list"].instance.moveSelection( self["list"].instance.moveDown )
-		self.updateAfterKeyPress()
 
 	def pageUp(self):
 		self.cursorDir = 0
 		self["list"].instance.moveSelection( self["list"].instance.pageUp )
-		self.updateAfterKeyPress()
 
 	def pageDown(self):
 		self.cursorDir = 0
 		self["list"].instance.moveSelection( self["list"].instance.pageDown )
-		self.updateAfterKeyPress()
 
 	def moveTop(self):
 		self["list"].instance.moveSelection( self["list"].instance.moveTop )
-		self.updateAfterKeyPress()
 
 	def moveEnd(self):
 		self["list"].instance.moveSelection( self["list"].instance.moveEnd )
-		self.updateAfterKeyPress()
-
-	def updateAfterKeyPress(self):
-		if self.returnService:
-			# Service was stored for a pending update,
-			# but user wants to move, copy, delete it,
-			# so we have to update returnService
-			if self.tmpSelList:
-				self.returnService = self.getNextSelectedService(self.getCurrent(), self.tmpSelList)
-				#TODOret if self.returnService: print "EMC ret updSer " +str(self.returnService.toString())
-		if self.multiSelectIdx:
-			self.multiSelect( self.getCurrentIndex() )
-		self.updateMovieInfo()
 
 	def multiSelect(self, index=-1):
 		if self.browsingVLC(): return
@@ -442,15 +460,50 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 	def unUsed(self):
 		self.session.open(MessageBox, _("No functionality set..."), MessageBox.TYPE_INFO)
 
-	def updateMovieInfo(self):
-		if self.callUpdate is not None:
-			if self.callUpdate.exists():
-				self.callUpdate.cancel()
-		self.callUpdate = DelayedFunction( int(config.EMC.movie_descdelay.value), self.updateMovieInfoDelayed )
+	def selectionChanged(self):
+		if self.returnService:
+			# Service was stored for a pending update,
+			# but user wants to move, copy, delete it,
+			# so we have to update returnService
+			if self.tmpSelList:
+				self.returnService = self.getNextSelectedService(self.getCurrent(), self.tmpSelList)
+				#TODOret if self.returnService: print "EMC ret updSer " +str(self.returnService.toString())
+		if self.multiSelectIdx:
+			self.multiSelect( self.getCurrentIndex() )
+		self.updateInfo()
 
-	def updateMovieInfoDelayed(self):
+	def updateInfo(self):
+		if self.delayTimer.isActive()
+			self.delayTimer.stop()
+		self.delayTimer.start(int(config.EMC.movie_descdelay.value), True)
+		# Movie preview
+		if config.EMC.movie_preview.value:
+			if self.previewTimer.isActive()
+				self.previewTimer.stop()
+			# Play preview only if it is a video file
+			if service:
+				ext = os.path.splitext(service.getPath())[1]
+				if ext in extMedia:
+					self.previewTimer.startLongTimer( int(config.EMC.movie_previewdelay.value) )
+
+	def updateInfoDelayed(self):
 		self.updateTitle()
-		self.updateEventInfo(self.getCurrent())
+		self.updateEventInfo( self.getCurrent() )
+
+	def resetInfo(self):
+		self.updateTitle()
+		if self.delayTimer.isActive()
+			self.delayTimer.stop()
+		self.updateEventInfo(None)
+		# Movie preview
+		if config.EMC.movie_preview.value:
+			if self.previewTimer.isActive()
+				self.previewTimer.stop()
+			self.previewMovie(None)
+
+	# Movie preview
+	def previewMovieDelayed(self):
+		self.previewMovie( self.getCurrent() )
 
 	def updateTitle(self):
 		if self.multiSelectIdx:
@@ -507,7 +560,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		self["list"].toggleSortingMode()
 		self.initButtons()
 		self.initCursor()
-		self.updateMovieInfo()
+		self.updateInfo()
 
 	def toggleSortOrder(self):
 		if self.browsingVLC(): return
@@ -517,7 +570,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		self["list"].toggleSortingOrder()
 		self.initButtons()
 		self.initCursor()
-		self.updateMovieInfo()
+		self.updateInfo()
 
 	def toggleSelectionList(self):
 		if self.toggle == False:
@@ -654,9 +707,12 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			self.moveTop()
 		
 		self.returnService = None
-		self.updateMovieInfo()
+		self.updateInfo()
 
 	def onDialogShow(self):
+		# Movie preview
+		self.lastservice = self.session.nav.getCurrentlyPlayingServiceReference()
+		
 		self.initButtons()
 		
 		if config.EMC.movie_reload.value \
@@ -670,7 +726,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			#self["list"].refreshList()
 			self.initCursor(False)
 		
-		self.updateMovieInfo()
+		self.updateInfo()
 
 	def onDialogHide(self):
 		self.returnService = self.getCurrent() #self.getNextSelectedService(self.getCurrent(), self.tmpSelList)
@@ -681,12 +737,12 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 	def moveToIndex(self, index):
 		self.multiSelectIdx = None
 		self["list"].moveToIndex(index)
-		self.updateMovieInfo()
+		self.updateInfo()
 	
 	def moveToService(self, service):
 		self.multiSelectIdx = None
 		self["list"].moveToService(service)
-		self.updateMovieInfo()
+		self.updateInfo()
 
 	def getNextSelectedService(self, current, selectedlist=None):
 		curSerRef = None
@@ -747,7 +803,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		return curSerRef
 
 	def loading(self, loading=True):
-		self.updateEventInfo(None)
+		self.resetInfo()
 		if loading:
 			self["list"].hide()
 			self["wait"].setText( _("Reading directory...") )
@@ -818,7 +874,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		
 		#TIME print "EMC After reload " + str(time() - t)
 		
-		self.updateMovieInfo()
+		self.updateInfo()
 
 	#############################################################################
 	# Playback functions
@@ -831,14 +887,14 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 
 	def openPlayer(self, playlist, playall=False):
 		# Force update of event info after playing movie 
-		self.updateEventInfo(None)
+		self.resetInfo()
 		
 		# force a copy instead of an reference!
 		self.lastPlayedMovies = playlist[:]
 		playlistcopy = playlist[:]
 		# Start Player
 		if self.playerInstance is None:
-			Notifications.AddNotification(EMCMediaCenter, playlistcopy, self, playall)
+			Notifications.AddNotification(EMCMediaCenter, playlistcopy, self, playall, self.lastservice)
 		else:
 			#DelayedFunction(10, self.playerInstance.movieSelected, playlist, playall)
 			self.playerInstance.movieSelected(playlist, playall)
@@ -1182,18 +1238,18 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		self["list"].highlightService(False, "move", service)	# remove the highlight
 		if not config.EMC.movie_hide_mov.value:
 			self["list"].removeService(service)
-		self.updateMovieInfo()
+		self.updateInfo()
 
 	def delCB(self, service):
 		self["list"].highlightService(False, "del", service)	# remove the highlight
 		if not config.EMC.movie_hide_del.value:
 			self["list"].removeService(service)
-		self.updateMovieInfo()
+		self.updateInfo()
 
 	def copyCB(self, service):
 		self["list"].highlightService(False, "copy", service)	# remove the highlight
 		self["list"].invalidateService(service)
-		self.updateMovieInfo()
+		self.updateInfo()
 
 #Think about: All file operations should be in a separate file
 
