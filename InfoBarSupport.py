@@ -165,12 +165,11 @@ class InfoBarSupport(	InfoBarBase, \
 	def jumpToFirstMark(self):
 		firstMark = None
 		current_pos = self.cueGetCurrentPosition() or 0
-		#increase current_pos by 2 seconds to make sure we get the correct mark
+		# Increase current_pos by 2 seconds to make sure we get the correct mark
 		current_pos = current_pos+180000
 		# EMC enhancement: increase recording margin to make sure we get the correct mark
 		margin = config.recording.margin_before.value*60*90000 *2 or 20*60*90000
-		middle = self.getSeekLength() or 90*60*90000
-		middle /=2 
+		middle = (self.getSeekLength() or 90*60*90000) / 2
 		
 		for (pts, what) in self.cut_list:
 			if what == self.CUT_TYPE_MARK:

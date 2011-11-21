@@ -103,7 +103,8 @@ class ServiceCenter:
 		if instance is None:
 			ServiceCenter()
 		return instance
-		
+	
+	#TODO avoid recreation of ServiceInfo if service is equal
 	def info(self, service):
 		return ServiceInfo(service)
 

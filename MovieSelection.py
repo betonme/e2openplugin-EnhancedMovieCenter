@@ -72,28 +72,34 @@ class SelectionEventInfo:
 		if self.previewTimer.isActive():
 			self.previewTimer.stop()
 		if config.EMC.movie_preview.value and service:
+			# Start preview
 			self.session.nav.playService(service)
+			# Get seek
 			s = self.session.nav.getCurrentService()
-			#TODOMP cuesheet for non ts-files
-			seekable = s.seek()
+			seekable = s and s.seek()
 			if seekable:
-				print "EMC: seekable"
-				cue = s.cueSheet()
-				try:
-					cut_list = cue.getCutList()
-				except:
-					return
-				last = None
-				for (pts, what) in cut_list:
-					if what == 3: # self.CUT_TYPE_LAST:
-						last = pts
-						break
-				if not last:
-					#TODO Get first mark if it is in the first half of the movie
-					pass
-				if last:
-					print "EMC: seekto"
-					seekable.seekTo(last)
+				cue = s and s.cueSheet()
+				if cue:
+					# Avoid cutlist overwrite
+					cue.setCutListEnable(False)
+					# Adapted from jumpToFirstMark
+					jumpto = None
+					# EMC enhancement: increase recording margin to make sure we get the correct mark
+					margin = config.recording.margin_before.value*60*90000 *2 or 20*60*90000
+					middle = (long(seekable.getLength()[1]) or 90*60*90000) / 2
+					# Search first mark
+					for (pts, what) in cue.getCutList():
+						if what == 3: #CUT_TYPE_LAST:
+							jumpto = pts
+							break
+						if what == 2: #CUT_TYPE_MARK:
+							if pts != None and ( pts < margin and pts < middle ):
+								if jumpto == None or pts < jumpto: 
+									jumpto = pts
+									break
+					if jumpto is not None:
+						# Jump to first mark
+						seekable.seekTo(jumpto)
 
 
 class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfaceSel, DirectoryStack, E2Bookmarks):
