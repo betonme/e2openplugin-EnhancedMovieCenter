@@ -268,6 +268,14 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 					self["TeletextActions"].setEnabled(True)
 					self["DVDPlayerPlaybackActions"].setEnabled(False)
 				
+				print self.session.nav.getCurrentlyPlayingServiceReference()
+				print service
+				
+				# Check if the video preview is active and already running
+				if config.EMC.movie_preview.value and \
+					self.session.nav.getCurrentlyPlayingServiceReference().getPath() == service.getPath():
+					return
+				
 				# Is this really necessary 
 				# TEST for M2TS Audio problem
 				self.session.nav.stopService() 
