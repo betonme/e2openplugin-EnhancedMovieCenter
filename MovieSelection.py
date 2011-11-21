@@ -30,7 +30,8 @@ from Screens.ChoiceBox import ChoiceBox
 from Screens.LocationBox import MovieLocationBox
 from Tools import Notifications
 from Tools.BoundFunction import boundFunction
-from enigma import getDesktop, eServiceReference
+from enigma import getDesktop, eServiceReference, eTimer
+
 import os
 from time import time
 
@@ -68,7 +69,7 @@ class SelectionEventInfo:
 
 	# Movie preview
 	def previewMovie(self, service=None):
-		if self.previewTimer.isActive()
+		if self.previewTimer.isActive():
 			self.previewTimer.stop()
 		if config.EMC.movie_preview.value and service:
 			self.session.nav.playService(service)
@@ -478,18 +479,14 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		self.updateInfo()
 
 	def updateInfo(self):
-		if self.delayTimer.isActive()
+		if self.delayTimer.isActive():
 			self.delayTimer.stop()
 		self.delayTimer.start(int(config.EMC.movie_descdelay.value), True)
 		# Movie preview
 		if config.EMC.movie_preview.value:
-			if self.previewTimer.isActive()
+			if self.previewTimer.isActive():
 				self.previewTimer.stop()
-			# Play preview only if it is a video file
-			if service:
-				ext = os.path.splitext(service.getPath())[1]
-				if ext in extMedia:
-					self.previewTimer.startLongTimer( int(config.EMC.movie_previewdelay.value) )
+			self.previewTimer.startLongTimer( int(config.EMC.movie_previewdelay.value) )
 
 	def updateInfoDelayed(self):
 		self.updateTitle()
@@ -497,18 +494,23 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 
 	def resetInfo(self):
 		self.updateTitle()
-		if self.delayTimer.isActive()
+		if self.delayTimer.isActive():
 			self.delayTimer.stop()
 		self.updateEventInfo(None)
 		# Movie preview
 		if config.EMC.movie_preview.value:
-			if self.previewTimer.isActive()
+			if self.previewTimer.isActive():
 				self.previewTimer.stop()
 			self.previewMovie(None)
 
 	# Movie preview
 	def previewMovieDelayed(self):
-		self.previewMovie( self.getCurrent() )
+		service = self.getCurrent()
+		# Play preview only if it is a video file
+		if service:
+			ext = os.path.splitext(service.getPath())[1]
+			if ext in extMedia:
+				self.previewMovie( service )
 
 	def updateTitle(self):
 		if self.multiSelectIdx:
