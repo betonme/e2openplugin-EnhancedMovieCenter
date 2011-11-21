@@ -438,7 +438,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 	def recStateChange(self, timer):
 		if timer:
 			path = os.path.dirname(timer.Filename)
-			if path == self.loadPath:
+			if os.path.realpath(path) == os.path.realpath(self.loadPath):
 				# EMC shows the directory which contains the recording
 				if timer.state == TimerEntry.StateRunning:
 					if not self.list:
@@ -1140,7 +1140,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 		
 		dappend = dirstack.append
 		fextend = filelist.extend
-		pathrealpath = os.path.realpath
+		pathreal = os.path.realpath
 		pathislink = os.path.islink
 		pathsplitext = os.path.splitext
 		
@@ -1161,7 +1161,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 				# Found new directories to search within, use only their path
 				for d, name, ext in subdirlist:
 					# Resolve symbolic links and get the real path
-					d = pathrealpath( d )
+					d = pathreal( d )
 					
 					# Avoid duplicate directories and ignore links
 					if d not in dirstack and not pathislink( d ):
@@ -1172,7 +1172,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 		
 		del dappend
 		del fextend
-		del pathrealpath
+		del pathreal
 		del pathislink
 		del pathsplitext
 		
@@ -1190,20 +1190,21 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 		path, name = "", ""
 		append = customlist.append
 		pathjoin = os.path.join
-		pathnormpath = os.path.normpath
-		pathbasename = os.path.basename
+		pathreal = os.path.realpath
 		
-		if loadPath != "" and loadPath != config.EMC.movie_pathlimit.value:
+		loadPath = pathreal(loadPath)
+		
+		if loadPath != "" and loadPath != pathreal(config.EMC.movie_pathlimit.value):
 			append( (	pathjoin(loadPath, ".."),
 								"..",
 								cmtUp) )
 		
 		if extend:
 			# Insert these entries always at last
-			if loadPath == config.EMC.movie_homepath.value:
+			if loadPath == pathreal(config.EMC.movie_homepath.value):
 				if trashcan and config.EMC.movie_trashcan_enable.value and config.EMC.movie_trashcan_show.value:
 					append( (	config.EMC.movie_trashcan_path.value,
-										pathbasename(config.EMC.movie_trashcan_path.value) or "trashcan",
+										os.path.basename(config.EMC.movie_trashcan_path.value) or "trashcan",
 										cmtTrash) )
 				
 				if config.EMC.latest_recordings.value:
@@ -1221,13 +1222,11 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 					if bookmarks:
 						for bookmark in bookmarks:
 							append( (	bookmark,
-												pathbasename(bookmark) or bookmark,
+												os.path.basename(bookmark) or bookmark,
 												cmtBM) )
 		
 		del append
 		del pathjoin
-		del pathnormpath
-		del pathbasename
 		return customlist
 
 	def reload(self, loadPath, simulate=False):
@@ -1547,7 +1546,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 			#IDEA: Optionally play also the following movielist items (folders and movies)
 			path = self.getCurrentSelDir()
 			# Don't play movies from the trash folder or ".."
-			if path != config.EMC.movie_trashcan_path.value and path != "..":
+			if os.path.realpath(path) != os.path.realpath(config.EMC.movie_trashcan_path.value) and path != "..":
 				#TODO Reuse the reload and createdirlist function
 					# Then the files are sorted and played in their correct order
 					# So we don't have the whole dir and file recognition handling twice
@@ -1592,7 +1591,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 			#IDEA: Optionally play also the following movielist items (folders and movies)
 			path = self.getCurrentSelDir()
 			# Don't play movies from the trash folder or ".."
-			if path != config.EMC.movie_trashcan_path.value and path != "..":
+			if os.path.realpath(path) != os.path.realpath(config.EMC.movie_trashcan_path.value) and path != "..":
 				#IDEA Is there a way to reuse the reload or createdirlist function
 					#TODO Then the files are sorted and played in their correct order
 					# So we don't have the whole dir and file recognition handling twice
