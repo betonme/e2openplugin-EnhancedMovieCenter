@@ -242,7 +242,8 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		else:
 			config.av.policy_43.cancel() # reload the default setting
 		# Movie preview
-		if self.lastservice:
+		# Restore last service only if no player is active
+		if not self.playerInstance and self.lastservice:
 			self.session.nav.playService(self.lastservice)
 		self.close(None)
 
