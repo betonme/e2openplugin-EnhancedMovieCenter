@@ -1,4 +1,11 @@
 <keymap>
+	<map context="EMCConfigColorActions">
+		<key id="KEY_RED" mapto="red" flags="m" />
+		<key id="KEY_GREEN" mapto="green" flags="m" />
+		<key id="KEY_YELLOW" mapto="yellow" flags="m" />
+		<key id="KEY_BLUE" mapto="blueshort" flags="b" />
+		<key id="KEY_BLUE" mapto="bluelong" flags="l" />
+	</map>
 	<map context="CoolPlayerActions">
 		<device name="dreambox remote control (native)">
 			<key id="KEY_TV" mapto="leavePlayer" flags="m" />

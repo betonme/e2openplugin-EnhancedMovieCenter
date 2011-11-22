@@ -580,6 +580,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 
 	def toggleSortMode(self):
 		if self.browsingVLC(): return
+		#WORKAROUND E2 doesn't send dedicated short or long pressed key events
 		if self.toggle == False:
 			self.toggle = True
 			return
@@ -601,6 +602,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		self.updateInfo()
 
 	def toggleSelectionList(self):
+		#WORKAROUND E2 doesn't send dedicated short or long pressed key events
 		if self.toggle == False:
 			self.toggle = True
 			return
@@ -1352,6 +1354,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 
 	def moveMovie(self):
 		# Avoid starting move and copy at the same time
+		#WORKAROUND E2 doesn't send dedicated short or long pressed key events
 		if self.move == False:
 			self.move = True
 			return
