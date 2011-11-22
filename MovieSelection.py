@@ -38,6 +38,11 @@ from time import time
 # Movie preview
 from Components.VideoWindow import VideoWindow
 
+# Cover
+from Components.AVSwitch import AVSwitch
+from Components.Pixmap import Pixmap
+from enigma import ePicLoad
+
 # EMC internal
 from DelayedFunction import DelayedFunction
 from EnhancedMovieCenter import _
@@ -51,8 +56,8 @@ from DirectoryStack import DirectoryStack
 from E2Bookmarks import E2Bookmarks
 from ServiceSupport import ServiceEvent
 
-from MovieCenter import extVideo, extMedia, plyDVD
-global extVideo, extMedia, plyDVD
+from MovieCenter import cmtDir, extVideo, extMedia, plyDVD
+global cmtDir, extVideo, extMedia, plyDVD
 
 gMS = None
 
@@ -63,14 +68,38 @@ class SelectionEventInfo:
 		self["Service"] = ServiceEvent()
 		# Movie preview
 		self["Video"] = VideoWindow(decoder = 0)
+		# Movie Cover
+		self["Cover"] = Pixmap()
 
 	def updateEventInfo(self, service):
 		self["Service"].newService(service)
+		self.showCover(service)
+
+	def showCover(, service=None):
+		if config.EMC.movie_cover.value and service:
+			jpgpath = ""
+			if service.ext in extMedia:
+				jpgpath = os.path.splitext(service.getPath())[0] + ".jpg"
+			elif service.ext == cmtDir:
+				jpgpath = service.getPath() 
+				jpgpath = os.path.join(jpgpath, os.path.basename(jpgpath)) + ".jpg"
+			if jpgpath and os.path.exists(jpgpath):
+				sc = AVSwitch().getFramebufferScale() # Maybe save during init
+				self.picload = ePicLoad()
+				self.picload.PictureData.get().append(self.showCoverCallback)
+				size = self["Cover"].instance.size()
+				self.picload.setPara((int(size[0]), int(size[1]), sc[0], sc[1], False, 1, "#00000000")) # Background dynamically
+				self.picload.startDecode(jpgpath)
+
+	def showCoverCallback(self, picInfo=None):
+		if picInfo:
+			ptr = self.picload.getData()
+			if ptr != None:
+				self["Cover"].instance.setPixmap(ptr)
+				#self["Cover"].show()
 
 	# Movie preview
 	def previewMovie(self, service=None):
-		if self.previewTimer.isActive():
-			self.previewTimer.stop()
 		if config.EMC.movie_preview.value and service:
 			# TODO can we reuse the EMCMediaCenter for the video preview
 			# Start preview
@@ -215,6 +244,10 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		
 		self.delayTimer = eTimer()
 		self.delayTimer.callback.append(self.updateInfoDelayed)
+		
+		# Movie cover
+		self.coverTimer = eTimer()
+		self.coverTimer.callback.append(self.showCoverDelayed)
 		
 		# Movie preview
 		self.previewTimer = eTimer()
@@ -501,14 +534,26 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		self.updateInfo()
 
 	def updateInfo(self):
-		if self.delayTimer.isActive():
-			self.delayTimer.stop()
-		self.delayTimer.start(int(config.EMC.movie_descdelay.value), True)
-		# Movie preview
-		if config.EMC.movie_preview.value:
-			if self.previewTimer.isActive():
-				self.previewTimer.stop()
-			self.previewTimer.startLongTimer( int(config.EMC.movie_previewdelay.value) )
+		# Get current service
+		service = self.getCurrent()
+		if service:
+			if self.delayTimer.isActive():
+				self.delayTimer.stop()
+			self.delayTimer.start(int(config.EMC.movie_descdelay.value), True)
+			# Movie cover
+			if config.EMC.movie_cover.value:
+				if self.coverTimer.isActive():
+					self.coverTimer.stop()
+				# Show cover only for media files and directories
+				if service.ext in extMedia or ext == cmtDir:
+					self.coverTimer.startLongTimer( int(config.EMC.movie_coverdelay.value) )
+			# Movie preview
+			if config.EMC.movie_preview.value:
+				if self.previewTimer.isActive():
+					self.previewTimer.stop()
+				# Play preview only if it is a video file
+				if service.ext in extMedia:
+					self.previewTimer.startLongTimer( int(config.EMC.movie_previewdelay.value) )
 
 	def updateInfoDelayed(self):
 		self.updateTitle()
@@ -525,14 +570,13 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 				self.previewTimer.stop()
 			self.previewMovie(None)
 
+	# Movie cover
+	def showCoverDelayed(self):
+		self.showCover( self.getCurrent() )
+
 	# Movie preview
 	def previewMovieDelayed(self):
-		service = self.getCurrent()
-		# Play preview only if it is a video file
-		if service:
-			ext = os.path.splitext(service.getPath())[1]
-			if ext in extMedia:
-				self.previewMovie( service )
+		self.previewMovie( self.getCurrent() )
 
 	def updateTitle(self):
 		title = ""
