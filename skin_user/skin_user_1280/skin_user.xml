@@ -1,0 +1,132 @@
+<skin>
+	<!-- Fonts -->
+	<fonts>
+		<font filename="nmsbd.ttf" name="EMCRegularFont" scale="90" />
+	</fonts>
+	<!-- EMC 1280 EMCSelection-->
+	<screen name="EMCSelection" position="0,0" size="1280,720" title="Enhanced Movie Center" flags="wfNoBorder">
+		<ePixmap position="0,0" zPosition="-10" size="1280,720" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/CoolMenu.png" transparent="1" />
+		<ePixmap pixmap="skin_default/icons/clock.png" position="1100,33" zPosition="1" size="26,26" alphatest="on" />
+		<eLabel text="E n h a n c e d  M o v i e  C e n t e r" position="535,25" size="450,30" font="EMCRegularFont;26" foregroundColor="#FFFFFF" backgroundColor="#444444" transparent="1" />
+		<widget source="global.CurrentTime" render="Label" position="1120,25" size="160,30" font="EMCRegularFont;26" foregroundColor="#00bab329" backgroundColor="#000000" shadowColor="#000000" halign="left" transparent="1">
+			<convert type="EMCClockToText">WithSeconds</convert>
+		</widget>
+		<widget source="Title" render="Label" position="560,60" size="500,43" font="EMCRegularFont;26" foregroundColor="#00bab329" backgroundColor="#444444" transparent="1" />
+		<widget source="global.CurrentTime" render="Label" position="1015,60" size="210,30" font="EMCRegularFont;26" halign="right" foregroundColor="#00bab329" backgroundColor="#000000" shadowColor="#000000" transparent="1">
+			<convert type="EMCClockToText">Format:%d.%m.%Y</convert>
+		</widget>
+		<ePixmap position="65,110" size="390,225" zPosition="2" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/pig_bg.png" />
+		<widget source="session.VideoPicture" render="Pig" position="70,115" size="380,215" zPosition="3" backgroundColor="#ff000000" />
+
+		<widget name="list" position="528,110" size="700,532" itemHeight="28" CoolFont="EMCRegularFont;20" CoolSelectFont="EMCRegularFont;20" CoolDateFont="EMCRegularFont;20" CoolMoviePos="35" CoolMovieSize="545" CoolFolderSize="550" CoolTitleColor="0" CoolDatePos="1000" CoolDateWidth="110" CoolDateColor="0" CoolHighlightColor="0" CoolProgressPos="1000" CoolBarPos="590" CoolBarHPos="8" CoolBarSize="55,10" CoolBarSizeSa="110,16" selectionPixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/cursor.png" DefaultColor="#FFFFFF" UnwatchedColor="#FFFFFF" WatchingColor="#3486F4" FinishedColor="#46D93A" RecordingColor="#9F1313" BackColorSel="#00000000" backgroundColor="#00000000" foregroundColorSelected="#ffffff" scrollbarMode="showNever" transparent="1" />
+		<widget name="wait" position="0,center" size="1280,50" zPosition="1" font="EMCRegularFont;32" foregroundColor="#FFFFFF" backgroundColor="#18080911" halign="center" valign="center" />
+		<widget source="Service" render="Label" position="30,45" size="480,60" font="EMCRegularFont;26" foregroundColor="#00bab329" backgroundColor="#444444" valign="center" halign="center" transparent="1">
+			<convert type="EMCEventName">Name</convert>
+		</widget>
+		<widget source="Service" render="Label" position="50,345" size="70,24" font="EMCRegularFont;20" halign="left" foregroundColor="#00bab329" backgroundColor="#444444" transparent="1">
+			<convert type="EMCServiceTime">StartTime</convert>
+			<convert type="EMCClockToText">Format:%H:%M </convert>
+		</widget>
+		<widget source="Service" render="Label" position="110,345" size="70,24" font="EMCRegularFont;20" foregroundColor="#00bab329" backgroundColor="#444444" transparent="1">
+			<convert type="EMCServiceTime">EndTime</convert>
+			<convert type="EMCClockToText">Format:- %H:%M </convert>
+		</widget>
+		<widget source="Service" render="Label" position="245,345" size="100,24" font="EMCRegularFont;20" halign="left" foregroundColor="#00bab329" backgroundColor="#444444" transparent="1">
+			<convert type="EMCServiceTime">Duration</convert>
+			<convert type="EMCClockToText">InMinutes</convert>
+		</widget>
+		<widget source="Service" render="Label" position="270,345" size="200,24" font="EMCRegularFont;20" foregroundColor="#00bab329" halign="right" backgroundColor="#444444" transparent="1">
+				<convert type="EMCMovieInfo">FileSize</convert>
+		</widget>
+		<!-- EMC Short Description(Genre) -->
+		<widget source="Service" render="Label" position="50,370" size="425,22" font="EMCRegularFont; 19" zPosition="2" foregroundColor="#00bab329" backgroundColor="#444444" transparent="1" halign="center" >
+			<convert type="EMCMovieInfo">ShortDescription</convert>
+		</widget>
+		<widget source="Service" render="Label" position="50,395" size="425,246" font="EMCRegularFont;19" foregroundColor="#FFFFFF" backgroundColor="#444444" transparent="1" halign="left" valign="top">
+			<convert type="EMCEventName">ExtendedDescription</convert>
+		</widget>
+		<widget source="Service" render="Label" position="50,640" size="200,24" font="EMCRegularFont;19" foregroundColor="#00bab329" halign="left" backgroundColor="#444444" transparent="1">
+			<convert type="EMCMovieInfo">RecordServiceName</convert>
+		</widget>
+		<widget source="Service" render="Label" position="210,640" size="300,24" font="EMCRegularFont;19" foregroundColor="#00bab329" halign="right" backgroundColor="#444444" transparent="1">
+			<convert type="EMCServiceTime">StartTime</convert>
+			<convert type="EMCClockToText">Date</convert>
+		</widget>
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key-red.png" position="70,668" size="30,30" alphatest="on" />
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key-green.png" position="375,668" size="30,30" alphatest="on" />
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key-yellow.png" position="680,668" size="30,30" alphatest="on" />
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key-blue.png" position="985,668" size="30,30" alphatest="on" />
+		<widget name="key_red" position="105,670" size="190,30" zPosition="1" font="EMCRegularFont;18" halign="left" foregroundColor="#9F1313" backgroundColor="#000000" transparent="1" />
+		<widget name="key_green" position="410,670" size="190,30" zPosition="1" font="EMCRegularFont;18" halign="left" foregroundColor="#00389416" backgroundColor="#000000" transparent="1" />
+		<widget name="key_yellow" position="715,670" size="190,30" zPosition="1" font="EMCRegularFont;18" halign="left" foregroundColor="#B59E01" backgroundColor="#444444" transparent="1" />
+		<widget name="key_blue" position="1020,670" size="190,30" zPosition="1" font="EMCRegularFont;18" halign="left" foregroundColor="#1E28B6" backgroundColor="#000000" transparent="1" />
+	</screen>
+	<!-- EMC 1280 EMCMediaCenter -->
+	<screen name="EMCMediaCenter" position="0,552" size="1280,150" title="InfoBar" backgroundColor="transparent" flags="wfNoBorder">
+		<ePixmap position="0,0" zPosition="-1" size="1280,150" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/EMCMoviePlayer/CoolInfobar.png" />
+
+		<widget source="session.CurrentService" render="Label" font="EMCRegularFont;22" position="40,8" size="55,30" halign="right" foregroundColor="#00e5b243" backgroundColor="#00000000" transparent="1">
+			<convert type="ServiceInfo">VideoWidth</convert>
+		</widget>
+		<eLabel text="x" font="EMCRegularFont;20" position="102,8" size="15,30" halign="center" foregroundColor="#00e5b243" backgroundColor="#00000000" transparent="1" />
+		<widget source="session.CurrentService" render="Label" font="EMCRegularFont;22" position="125,8" size="55,30" halign="left" foregroundColor="#00e5b243" backgroundColor="#00000000" transparent="1">
+			<convert type="ServiceInfo">VideoHeight</convert>
+		</widget>
+		<widget source="session.CurrentService" render="Label" position="200,5" size="880,30" font="EMCRegularFont;26" valign="top" halign="center" noWrap="1" backgroundColor="#00000000" transparent="1">
+			<convert type="ServiceName">Name</convert>
+		</widget>
+		<widget source="global.CurrentTime" render="Label" position="1110,8" size="100,30" font="EMCRegularFont;22" valign="top" halign="left" foregroundColor="#00e5b243" backgroundColor="#00000000" transparent="1">
+			<convert type="EMCClockToText">Format:%H:%M:%S</convert>
+		</widget>
+
+		<ePixmap position="180,59" size="900,30" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/EMCMoviePlayer/CoolSlider.png" zPosition="3" alphatest="blend" />
+		<ePixmap position="200,62" size="860,18" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/EMCMoviePlayer/CoolPointerBG.png" zPosition="1" alphatest="blend" />
+		<widget source="Service" render="PositionGauge" position="218,50" size="828,28" zPosition="2" pointer="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/EMCMoviePlayer/CoolPointer.png:828,-2" transparent="1" >
+			<convert type="EMCServicePosition">Gauge</convert>
+		</widget>
+
+		<widget source="Service" render="Label" position="230,85" size="100,30" font="EMCRegularFont;22" halign="left" backgroundColor="#00000000" transparent="1">
+			<convert type="EMCServicePosition">Position</convert>
+		</widget>
+		<widget source="Service" render="Label" position="590,85" size="100,30" font="EMCRegularFont;22" halign="center" backgroundColor="#00000000" transparent="1">
+			<convert type="EMCServicePosition">Length</convert>
+		</widget>
+		<widget source="Service" render="Label" position="930,85" size="100,30" font="EMCRegularFont;22" halign="right" backgroundColor="#00000000" transparent="1">
+			<convert type="EMCServicePosition">Remaining,Negate</convert>
+		</widget>
+		
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/EMCMoviePlayer/format_off.png" position="50,125" size="40,20" zPosition="1" alphatest="blend" />
+		<widget source="session.CurrentService" render="Pixmap" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/EMCMoviePlayer/format_on.png" position="50,125" size="40,20" zPosition="2" alphatest="blend">
+			<convert type="ServiceInfo">IsWidescreen</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+
+		<ePixmap position="120,128" size="26,16" pixmap="skin_default/icons/icon_dolby.png" zPosition="3" alphatest="on" />
+		<widget name="audioLabel" position="155,125" size="100,22" font="EMCRegularFont;18" backgroundColor="#00000000" zPosition="3" transparent="1" />
+
+		<widget name="chapterLabel" position="350,125" size="580,30" font="EMCRegularFont;22" halign="center" foregroundColor="#00e5b243" backgroundColor="#00000000" transparent="1" />
+		<!-- Subtitel Label only for DVD -->
+		<widget name="subtitleLabel" position="1009,125" size="70,22" zPosition="3" halign="right" font="EMCRegularFont;18" backgroundColor="#00000000" transparent="1" />
+
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/EMCMoviePlayer/rec_off.png" position="1104,125" size="28,20" zPosition="1" alphatest="on" />
+		<widget source="session.RecordState" render="Pixmap" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/EMCMoviePlayer/rec_on.png" position="1104,125" size="28,20" zPosition="2" alphatest="on">
+			<convert type="ConditionalShowHide">Blink</convert>
+		</widget>
+
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/EMCMoviePlayer/dolby_off.png" position="1159,125" size="57,20" zPosition="1" alphatest="blend" />
+		<widget source="session.CurrentService" render="Pixmap" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/EMCMoviePlayer/dolby_on.png" position="1159,125" size="57,20" zPosition="2" alphatest="blend">
+			<convert type="ServiceInfo">IsMultichannel</convert>
+			<convert type="ConditionalShowHide" />
+		</widget>
+	</screen>
+	<!-- EMC EnhancedMovieCenterMenu -->
+	<screen name="EnhancedMovieCenterMenu" position="center,center" size="620,500" title="EnhancedMovieCenterMenu">
+		<widget name="config" position="10,10" size="605,353 " enableWrapAround="1" scrollbarMode="showOnDemand" />
+		<eLabel position="0,362" size="620,2" backgroundColor="#999999" zPosition="1" />
+		<widget source="help" render="Label" position="10,367" size="605,88" font="EMCRegularFont;20" foregroundColor="#999999" />
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key-red.png" position="66,455" zPosition="0" size="140,40" transparent="1" alphatest="on" />
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key-green.png" position="412,455" zPosition="0" size="140,40" transparent="1" alphatest="on" />
+		<widget name="key_red" position="66,455" zPosition="1" size="140,40" font="EMCRegularFont;20" valign="center" halign="center" backgroundColor="#9f1313" transparent="1" shadowColor="#000000" shadowOffset="-1,-1" />
+		<widget name="key_green" position="412,455" zPosition="1" size="140,40" font="EMCRegularFont;20" valign="center" halign="center" backgroundColor="#1f771f" transparent="1" shadowColor="#000000" shadowOffset="-1,-1" />
+	</screen>
+</skin>
