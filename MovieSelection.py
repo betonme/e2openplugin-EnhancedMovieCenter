@@ -51,8 +51,8 @@ from DirectoryStack import DirectoryStack
 from E2Bookmarks import E2Bookmarks
 from ServiceSupport import ServiceEvent
 
-from MovieCenter import extVideo, extMedia
-global extVideo, extMedia
+from MovieCenter import extVideo, extMedia, plyDVD
+global extVideo, extMedia, plyDVD
 
 gMS = None
 
@@ -72,34 +72,50 @@ class SelectionEventInfo:
 		if self.previewTimer.isActive():
 			self.previewTimer.stop()
 		if config.EMC.movie_preview.value and service:
+			# TODO can we reuse the EMCMediaCenter for the video preview
 			# Start preview
 			self.session.nav.playService(service)
-			# Get seek
+			# Get service
 			s = self.session.nav.getCurrentService()
-			seekable = s and s.seek()
-			if seekable:
-				cue = s and s.cueSheet()
-				if cue:
-					# Avoid cutlist overwrite
-					cue.setCutListEnable(False)
-					# Adapted from jumpToFirstMark
-					jumpto = None
-					# EMC enhancement: increase recording margin to make sure we get the correct mark
-					margin = config.recording.margin_before.value*60*90000 *2 or 20*60*90000
-					middle = (long(seekable.getLength()[1]) or 90*60*90000) / 2
-					# Search first mark
-					for (pts, what) in cue.getCutList():
-						if what == 3: #CUT_TYPE_LAST:
-							jumpto = pts
-							break
-						if what == 2: #CUT_TYPE_MARK:
-							if pts != None and ( pts < margin and pts < middle ):
-								if jumpto == None or pts < jumpto: 
+			if s:
+				if service.ext in plyDVD:
+					subs = getattr(s, "subtitle", None)
+					if callable(subs):
+						#self.dvdScreen = self.session.instantiateDialog(DVDOverlay)
+						#subs.enableSubtitles(self.dvdScreen.instance, None)
+						subs.enableSubtitles(None, None)
+					from Screens.InfoBar import InfoBar
+					infobar = InfoBar and InfoBar.instance
+					if infobar:
+						infobar.pauseService()
+						infobar.unPauseService()
+				else:
+					# Get seek
+					seekable = s.seek()
+					if seekable:
+						# Get cuesheet
+						cue = s.cueSheet()
+						if cue:
+							# Avoid cutlist overwrite
+							cue.setCutListEnable(False)
+							# Adapted from jumpToFirstMark
+							jumpto = None
+							# EMC enhancement: increase recording margin to make sure we get the correct mark
+							margin = config.recording.margin_before.value*60*90000 *2 or 20*60*90000
+							middle = (long(seekable.getLength()[1]) or 90*60*90000) / 2
+							# Search first mark
+							for (pts, what) in cue.getCutList():
+								if what == 3: #CUT_TYPE_LAST:
 									jumpto = pts
 									break
-					if jumpto is not None:
-						# Jump to first mark
-						seekable.seekTo(jumpto)
+								if what == 2: #CUT_TYPE_MARK:
+									if pts != None and ( pts < margin and pts < middle ):
+										if jumpto == None or pts < jumpto: 
+											jumpto = pts
+											break
+							if jumpto is not None:
+								# Jump to first mark
+								seekable.seekTo(jumpto)
 
 
 class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfaceSel, DirectoryStack, E2Bookmarks):

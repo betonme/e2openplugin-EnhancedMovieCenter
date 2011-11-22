@@ -268,9 +268,6 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 					self["TeletextActions"].setEnabled(True)
 					self["DVDPlayerPlaybackActions"].setEnabled(False)
 				
-				print self.session.nav.getCurrentlyPlayingServiceReference()
-				print service
-				
 				# Check if the video preview is active and already running
 				if config.EMC.movie_preview.value and \
 					self.session.nav.getCurrentlyPlayingServiceReference().getPath() == service.getPath():
@@ -691,11 +688,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 		elif config.EMC.movie_jump_first_mark.value == True:
 			self.jumpToFirstMark()
 		elif self.service and self.service.type == sidDVD:
-			DelayedFunction(500, boundFunction(self.dvdPlayerWorkaround))
-			#service = self.session.nav.getCurrentService()
-			#if service:
-			#	pause = service.pause()
-			#	pause.unpause()
+			DelayedFunction(50, boundFunction(self.dvdPlayerWorkaround))
 		self.showAfterSeek()
 
 	# InfoBarNumberZap
