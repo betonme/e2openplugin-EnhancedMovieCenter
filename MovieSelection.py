@@ -523,8 +523,6 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		if self.multiSelectIdx:
 			self.setTitle(_("*** Multiselection active ***"))
 			return
-		#lotime = localtime()
-		#title = "[%02d:%02d] " %(lotime[3],lotime[4])
 		
 		# Display the free space
 		if os.path.exists(self.currentPath):
@@ -555,7 +553,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		from Plugins.Extensions.EnhancedMovieCenter.plugin import sort_modes
 		sort = sort_modes.get( self["list"].getSorting() )
 		if sort:
-			title += " (" + str(sort[1]) + ")"
+			title += " [" + str(sort[1]) + "]"
 		
 		# Display a permanent sort marker if it is set
 		perm = self["list"].isEqualPermanentSort()
