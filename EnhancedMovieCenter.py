@@ -34,7 +34,7 @@ from Screens.MessageBox import MessageBox
 from Screens.ServiceScan import *
 import Screens.Standby
 from Tools import Notifications
-from enigma import eServiceEvent, eActionMap
+from enigma import eServiceEvent, eActionMap, eTimer
 import os, struct
 import NavigationInstance
 
@@ -125,10 +125,12 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 		<widget name="config" position="10,10" size="605,353 " enableWrapAround="1" scrollbarMode="showOnDemand" />
 		<eLabel position="0,362" size="620,2" backgroundColor="#999999" zPosition="1" />
 		<widget source="help" render="Label" position="10,367" size="605,88" font="Regular;20" foregroundColor="#999999" />
-		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key-red.png" position="66,455" zPosition="0" size="140,40" transparent="1" alphatest="on" />
-		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key-green.png" position="412,455" zPosition="0" size="140,40" transparent="1" alphatest="on" />
-		<widget name="key_red" position="66,455" zPosition="1" size="140,40" font="Regular;20" valign="center" halign="center" backgroundColor="#9f1313" transparent="1" shadowColor="#000000" shadowOffset="-1,-1" />
-		<widget name="key_green" position="412,455" zPosition="1" size="140,40" font="Regular;20" valign="center" halign="center" backgroundColor="#1f771f" transparent="1" shadowColor="#000000" shadowOffset="-1,-1" />
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key-red.png" position="50,455" zPosition="0" size="140,40" transparent="1" alphatest="on" />
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key-green.png" position="240,455" zPosition="0" size="140,40" transparent="1" alphatest="on" />
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key-green.png" position="430,455" zPosition="0" size="140,40" transparent="1" alphatest="on" />
+		<widget name="key_red" position="50,455" zPosition="1" size="140,40" font="Regular;20" valign="center" halign="center" backgroundColor="#9f1313" transparent="1" shadowColor="#000000" shadowOffset="-1,-1" />
+		<widget name="key_green" position="240,455" zPosition="1" size="140,40" font="Regular;20" valign="center" halign="center" backgroundColor="#1f771f" transparent="1" shadowColor="#000000" shadowOffset="-1,-1" />
+		<widget name="key_blue" position="430,455" zPosition="1" size="140,40" font="Regular;20" valign="center" halign="center" backgroundColor="#18188b" transparent="1" shadowColor="#000000" shadowOffset="-1,-1" />
 	</screen>"""
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -141,6 +143,7 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 			"cancel":		self.keyCancel,
 			"red":			self.keyCancel,
 			"green": 		self.keySaveNew,
+			"blue": 		self.loadPredefinedSettings,
 			"nextBouquet":	self.bouquetPlus,
 			"prevBouquet":	self.bouquetMinus,
 		}, -2) # higher priority
@@ -148,7 +151,7 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 		self["key_red"] = Button(_("Cancel"))
 		self["key_green"] = Button(_("Save"))
 #		self["key_yellow"] = Button(" ")
-#		self["key_blue"] = Button(" ")
+		self["key_blue"] = Button("Default")
 		self["help"] = StaticText()
 		
 		self.list = []
@@ -157,6 +160,9 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 		self.needsRestartFlag = False
 		self.defineConfig()
 		self.createConfig()
+		
+		self.reloadTimer = eTimer()
+		self.reloadTimer.callback.append(self.createConfig)
 		
 		# Override selectionChanged because our config tuples have a size bigger than 2 
 		def selectionChanged():
@@ -172,7 +178,7 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 		self["config"].selectionChanged = selectionChanged
 		self["config"].onSelectionChanged.append(self.updateHelp)
 		
-		#Todo Remove if there is another solution
+		#Todo Remove if there is another solution, maybe thinkabout xml
 		#config.EMC.movie_finished_clean.addNotifier(self.changedEntry, initial_call = False, immediate_feedback = True)
 		config.EMC.movie_finished_clean.notifiers.append(self.changedEntry)
 		
@@ -194,6 +200,7 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 #         _                                                 ,                                     ,                       ,                       ,       ,   parent config value must be true
 #         _                                                 ,                                     ,                       ,                       ,       ,   a selection value "" is False 
 #         _                                                 ,                                     ,                       ,                       ,       ,           , _context sensitive help text
+
 		self.EMCConfig = [	
 			(  _("About")                                         , config.EMC.about                    , None                  , self.showInfo         , 0     , []        , _("HELP_About") ),
 			
@@ -335,6 +342,11 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 		self.list = list
 		self["config"].setList(self.list)
 
+	def loadPredefinedSettings(self):
+		# Refresh is done implizit on change
+		for conf in self.EMCConfig:
+			conf[1].value = conf[1].default
+
 	def onDialogShow(self):
 		self.setTitle("Enhanced Movie Center "+ EMCVersion + " (Setup)")
 		#self.createConfig()
@@ -349,7 +361,9 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 		Screen.close(self)
 
 	def changedEntry(self, addNotifierDummy=None):
-		self.createConfig()
+		if self.reloadTimer.isActive():
+			self.reloadTimer.stop()
+		self.reloadTimer.start(50, True)
 
 	def updateHelp(self):
 		cur = self["config"].getCurrent()
