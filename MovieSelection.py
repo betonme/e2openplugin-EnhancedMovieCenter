@@ -42,6 +42,7 @@ from Components.VideoWindow import VideoWindow
 from Components.AVSwitch import AVSwitch
 from Components.Pixmap import Pixmap
 from enigma import ePicLoad
+#from Tools.LoadPixmap import LoadPixmap
 
 # EMC internal
 from DelayedFunction import DelayedFunction
@@ -56,8 +57,8 @@ from DirectoryStack import DirectoryStack
 from E2Bookmarks import E2Bookmarks
 from ServiceSupport import ServiceEvent
 
-from MovieCenter import cmtDir, extVideo, extMedia, plyDVD
-global cmtDir, extVideo, extMedia, plyDVD
+from MovieCenter import extList, extVideo, extMedia, extDir, plyDVD
+global extList, extVideo, extMedia, extDir, plyDVD
 
 gMS = None
 
@@ -70,26 +71,35 @@ class SelectionEventInfo:
 		self["Video"] = VideoWindow(decoder = 0)
 		# Movie Cover
 		self["Cover"] = Pixmap()
+		#noCoverFile = resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/no_coverArt.png")
+		#self.noCoverPixmap = LoadPixmap(noCoverFile)
+		#self.noCoverPixmap = None
 
 	def updateEventInfo(self, service):
 		self["Service"].newService(service)
-		self.showCover(service)
 
-	def showCover(, service=None):
+	def showCover(self, service=None):
 		if config.EMC.movie_cover.value and service:
 			jpgpath = ""
-			if service.ext in extMedia:
-				jpgpath = os.path.splitext(service.getPath())[0] + ".jpg"
-			elif service.ext == cmtDir:
-				jpgpath = service.getPath() 
-				jpgpath = os.path.join(jpgpath, os.path.basename(jpgpath)) + ".jpg"
+			path, ext = os.path.splitext(service.getPath())
+			ext = ext.lower()
+			if ext in extMedia:
+				jpgpath = path + ".jpg"
+			elif ext in extDir:
+				jpgpath = os.path.join(service.getPath(), os.path.basename(path)) + ".jpg"
 			if jpgpath and os.path.exists(jpgpath):
 				sc = AVSwitch().getFramebufferScale() # Maybe save during init
 				self.picload = ePicLoad()
 				self.picload.PictureData.get().append(self.showCoverCallback)
 				size = self["Cover"].instance.size()
-				self.picload.setPara((int(size[0]), int(size[1]), sc[0], sc[1], False, 1, "#00000000")) # Background dynamically
+				self.picload.setPara((size.width(), size.height(), sc[0], sc[1], False, 1, "#00000000")) # Background dynamically
 				self.picload.startDecode(jpgpath)
+			else:
+				#TODO test if reset has to be done really
+				self["Cover"].instance.setPixmap(None)#(self.noCoverPixmap)
+		else:
+			#TODO test if reset has to be done really
+			self["Cover"].instance.setPixmap(None)#(self.noCoverPixmap)
 
 	def showCoverCallback(self, picInfo=None):
 		if picInfo:
@@ -100,51 +110,53 @@ class SelectionEventInfo:
 
 	# Movie preview
 	def previewMovie(self, service=None):
-		if config.EMC.movie_preview.value and service:
-			# TODO can we reuse the EMCMediaCenter for the video preview
-			# Start preview
-			self.session.nav.playService(service)
-			# Get service
-			s = self.session.nav.getCurrentService()
-			if s:
-				if service.ext in plyDVD:
-					subs = getattr(s, "subtitle", None)
-					if callable(subs):
-						#self.dvdScreen = self.session.instantiateDialog(DVDOverlay)
-						#subs.enableSubtitles(self.dvdScreen.instance, None)
-						subs.enableSubtitles(None, None)
-					from Screens.InfoBar import InfoBar
-					infobar = InfoBar and InfoBar.instance
-					if infobar:
-						infobar.pauseService()
-						infobar.unPauseService()
-				else:
-					# Get seek
-					seekable = s.seek()
-					if seekable:
-						# Get cuesheet
-						cue = s.cueSheet()
-						if cue:
-							# Avoid cutlist overwrite
-							cue.setCutListEnable(False)
-							# Adapted from jumpToFirstMark
-							jumpto = None
-							# EMC enhancement: increase recording margin to make sure we get the correct mark
-							margin = config.recording.margin_before.value*60*90000 *2 or 20*60*90000
-							middle = (long(seekable.getLength()[1]) or 90*60*90000) / 2
-							# Search first mark
-							for (pts, what) in cue.getCutList():
-								if what == 3: #CUT_TYPE_LAST:
-									jumpto = pts
-									break
-								if what == 2: #CUT_TYPE_MARK:
-									if pts != None and ( pts < margin and pts < middle ):
-										if jumpto == None or pts < jumpto: 
-											jumpto = pts
-											break
-							if jumpto is not None:
-								# Jump to first mark
-								seekable.seekTo(jumpto)
+		if service:
+			if config.EMC.movie_preview.value:
+				# TODO can we reuse the EMCMediaCenter for the video preview
+				# Start preview
+				self.session.nav.playService(service)
+				# Get service
+				s = self.session.nav.getCurrentService()
+				if s:
+					if service.ext in plyDVD:
+						subs = getattr(s, "subtitle", None)
+						if callable(subs):
+							#self.dvdScreen = self.session.instantiateDialog(DVDOverlay)
+							#subs.enableSubtitles(self.dvdScreen.instance, None)
+							subs.enableSubtitles(None, None)
+						from Screens.InfoBar import InfoBar
+						infobar = InfoBar and InfoBar.instance
+						if infobar:
+							infobar.pauseService()
+							infobar.unPauseService()
+					else:
+						# Get seek
+						seekable = s.seek()
+						if seekable:
+							# Get cuesheet
+							cue = s.cueSheet()
+							if cue:
+								# Avoid cutlist overwrite
+								cue.setCutListEnable(False)
+								# Adapted from jumpToFirstMark
+								jumpto = None
+								# EMC enhancement: increase recording margin to make sure we get the correct mark
+								margin = config.recording.margin_before.value*60*90000 *2 or 20*60*90000
+								middle = (long(seekable.getLength()[1]) or 90*60*90000) / 2
+								# Search first mark
+								for (pts, what) in cue.getCutList():
+									if what == 3: #CUT_TYPE_LAST:
+										jumpto = pts
+										break
+									if what == 2: #CUT_TYPE_MARK:
+										if pts != None and ( pts < margin and pts < middle ):
+											if jumpto == None or pts < jumpto: 
+												jumpto = pts
+												break
+								if jumpto is not None:
+									# Jump to first mark
+									seekable.seekTo(jumpto)
+		#else: #TODO restore service?
 
 
 class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfaceSel, DirectoryStack, E2Bookmarks):
@@ -536,6 +548,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 	def updateInfo(self):
 		# Get current service
 		service = self.getCurrent()
+		ext = ""
 		if service:
 			if self.delayTimer.isActive():
 				self.delayTimer.stop()
@@ -545,13 +558,15 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 				if self.coverTimer.isActive():
 					self.coverTimer.stop()
 				# Show cover only for media files and directories
-				if service.ext in extMedia or ext == cmtDir:
+				ext = os.path.splitext(service.getPath())[1].lower()
+				if ext in extList:
 					self.coverTimer.startLongTimer( int(config.EMC.movie_coverdelay.value) )
 			# Movie preview
 			if config.EMC.movie_preview.value:
 				if self.previewTimer.isActive():
 					self.previewTimer.stop()
 				# Play preview only if it is a video file
+				ext = ext or os.path.splitext(service.getPath())[1].lower()
 				if service.ext in extMedia:
 					self.previewTimer.startLongTimer( int(config.EMC.movie_previewdelay.value) )
 
@@ -564,11 +579,14 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		if self.delayTimer.isActive():
 			self.delayTimer.stop()
 		self.updateEventInfo(None)
+		# Movie cover
+		if self.coverTimer.isActive():
+			self.coverTimer.stop()
+		self.showCover(None)
 		# Movie preview
-		if config.EMC.movie_preview.value:
-			if self.previewTimer.isActive():
-				self.previewTimer.stop()
-			self.previewMovie(None)
+		if self.previewTimer.isActive():
+			self.previewTimer.stop()
+		self.previewMovie(None)
 
 	# Movie cover
 	def showCoverDelayed(self):
@@ -1511,7 +1529,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 					for root, dirs, files in os.walk(movie_trashpath):
 						for movie in files:
 							# Only check media files
-							ext = os.path.splitext(movie)[1]
+							ext = os.path.splitext(movie)[1].lower()
 							if ext in extMedia:
 								fullpath = os.path.join(root, movie)
 								currTime = localtime()
@@ -1539,7 +1557,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 							for movie in files:
 								
 								# Only check media files
-								ext = os.path.splitext(movie)[1]
+								ext = os.path.splitext(movie)[1].lower()
 								if ext in extMedia:
 									fullpath = os.path.join(root, movie)
 									fullpathcuts = fullpath + ".cuts"
