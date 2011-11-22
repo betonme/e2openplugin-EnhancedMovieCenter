@@ -128,7 +128,9 @@ def EMCStartup(session):
 # Predefined settings:
 #  Index 0: Custom should always be the first one:           User edited vlues in the config
 #  Index 1: Default should always be the second one:         Default values stored within the ConfigElement
-#  Index x: All other entries are specified via the config:  Values are defined in the emc config: None stands for not specified, will be ignored
+#  Index x: All other entries are specified via the config:  Values are defined in the emc config
+#                                                                   Be careful, You have to specify a valid value
+#                                                                   None stands for not specified, will be ignored
 #														Name (Button),		Column,	ID (Title)
 predefined_settings = {	_("Custom") :				( None,		"" ),
 												_("Default") :			( None,		"D" ),
@@ -180,9 +182,9 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 		self.skin = EnhancedMovieCenterMenu.skin
 		self.screenTitle = "Enhanced Movie Center "+ EMCVersion + " (Setup)"
 		
-		self["actions"] = ActionMap(["ChannelSelectBaseActions", "OkCancelActions", "EMCConfigColorActions"],
+		self["actions"] = ActionMap(["OkCancelActions", "EMCConfigActions"],
 		{
-			"ok":			self.keyOK,
+			"ok":						self.keyOK,
 			"cancel":				self.keyCancel,
 			"red":					self.keyCancel,
 			"green": 				self.keySaveNew,
@@ -270,7 +272,7 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 			
 			(  separator                                          , config.EMC.about                    , None                  , None                  , 0     , []          , _("")                                                    , None              , None ),
 			(  _("Show directories")                              , config.EMC.directories_show         , None                  , None                  , 0     , []          , _("HELP_Show directories")                               , None              , True ),
-			(  _("Show directories information")                  , config.EMC.directories_info         , None                  , None                  , 0     , [-1]        , _("HELP_Show directories information")                   , None              , True ),
+			(  _("Show directories information")                  , config.EMC.directories_info         , None                  , None                  , 0     , [-1]        , _("HELP_Show directories information")                   , ""                , "CS" ),
 			(  _("Show Latest Recordings directory")              , config.EMC.latest_recordings        , None                  , None                  , 0     , []          , _("HELP_Show Latest Recordings directory")               , None              , True ),
 			(  _("Show VLC directory")                            , config.EMC.vlc                      , None                  , None                  , 0     , []          , _("HELP_Show VLC directory")                             , None              , True ),
 			(  _("Show E2 Bookmarks in movielist")                , config.EMC.bookmarks_e2             , None                  , None                  , 0     , []          , _("HELP_Show E2 Bookmarks in movielist")                 , None              , True ),
@@ -295,7 +297,7 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 			(  _("Date format")                                   , config.EMC.movie_date_format        , None                  , None                  , 0     , []          , _("HELP_Date format")                                    , None              , None ),
 			
 			(  _("Show movie icons")                              , config.EMC.movie_icons              , None                  , None                  , 0     , []          , _("HELP_Show movie icons")                               , False             , True ),
-			(  _("Show movie progress")                           , config.EMC.movie_progress           , None                  , None                  , 0     , []          , _("HELP_Show movie progress")                            , False             , True ),
+			(  _("Show movie progress")                           , config.EMC.movie_progress           , None                  , None                  , 0     , []          , _("HELP_Show movie progress")                            , ""                , "PB" ),
 			(  _("Short watching percent")                        , config.EMC.movie_watching_percent   , None                  , None                  , 0     , [-1]        , _("HELP_Short watching percent")                         , None              , None ),
 			(  _("Finished watching percent")                     , config.EMC.movie_finished_percent   , None                  , None                  , 0     , [-2]        , _("HELP_Finished watching percent")                      , None              , None ),
 			(  _("Mark new recordings with a star")               , config.EMC.mark_latest_files        , None                  , None                  , 0     , []          , _("HELP_Mark new recordings with a star")                , False             , True ),
@@ -317,7 +319,7 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 			(  _("Trashcan enable")                               , config.EMC.movie_trashcan_enable    , None                  , self.openLocationBox  , 0     , []          , _("HELP_Trashcan enable")                                , None              , None ),
 			(  _("Trashcan path")                                 , config.EMC.movie_trashcan_path      , self.validatePath     , self.openLocationBox  , 0     , [-1]        , _("HELP_Trashcan path")                                  , None              , None ),
 			(  _("Show trashcan directory")                       , config.EMC.movie_trashcan_show      , None                  , None                  , 0     , [-2]        , _("HELP_Show trashcan directory")                        , None              , True ),
-			(  _("Show trashcan information")                     , config.EMC.movie_trashcan_info      , None                  , None                  , 0     , [-3,-1]     , _("HELP_Dynamic trashcan")                               , False             , True ),
+			(  _("Show trashcan information")                     , config.EMC.movie_trashcan_info      , None                  , None                  , 0     , [-3,-1]     , _("HELP_Dynamic trashcan")                               , ""                , "CS" ),
 			(  _("Delete validation")                             , config.EMC.movie_delete_validation  , None                  , None                  , 0     , [-4]        , _("HELP_Delete validation")                              , None              , None ),
 			
 			(  _("Enable daily trashcan cleanup")                 , config.EMC.movie_trashcan_clean     , self.trashCleanupSetup, None                  , 0     , [-5]        , _("HELP_Enable daily trashcan cleanup")                  , None              , None ),
@@ -392,10 +394,11 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 					# Check for predefined config match
 					for i,pd in enumerate(pds[:]):
 						if conf[pd] is not None:
+							print conf[1].value, conf[pd]
 							if conf[1].value != conf[pd]:
 								# Settings are not equal: Delete it, because we don't have to test the rest of the config elements
 								del pds[i]
-								continue						
+								continue
 #			try:
 #				list.append( getConfigListEntry( _("Enable component video in A/V Settings"), config.av.yuvenabled, self.needsRestart, None, 2, [], _("") ) )
 #			except: pass
@@ -413,22 +416,26 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 		if self.keylong:
 			self.keylong = False
 		# Load next predefined values, Button text indicates already the next values
-		colum, id = get_predefined_value( self["key_blue"].getText() )
+		column, id = get_predefined_value( self["key_blue"].getText() )
 		# Refresh is done implizit on change
 		for conf in self.EMCConfig:
+			#print conf
 			# None values will be ignored
-			if conf[colum] is not None:
-				conf[1].value = conf[colum]
+			if conf[column] is not None:
+				#print conf[1].value, conf[column]
+				conf[1].value = conf[column]
+		self.createConfig()
 
 	def loadDefaultSettings(self):
 		self.keylong = True
-		self.session.openWithCallback(self.loadDefaultSettingsCB, MessageBox, _("Load default settings will overwrite all settings, really load them?"), MessageBox.TYPE_INFO)
+		self.session.openWithCallback(self.loadDefaultSettingsCB, MessageBox, _("Load default settings will overwrite all settings, really load them?"), MessageBox.TYPE_YESNO)
 
 	def loadDefaultSettingsCB(self, result):
 		if result:
 			# Refresh is done implizit on change
 			for conf in self.EMCConfig:
 				conf[1].value = conf[1].default
+			self.createConfig()
 
 	def onDialogShow(self):
 		#self.setTitle( self.screenTitle )
