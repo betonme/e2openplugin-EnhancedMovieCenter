@@ -546,6 +546,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		self.updateInfo()
 
 	def updateInfo(self):
+		self.resetInfo()
 		# Get current service
 		service = self.getCurrent()
 		ext = ""
