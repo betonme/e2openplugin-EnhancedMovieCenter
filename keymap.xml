@@ -1,4 +1,13 @@
 <keymap>
+	<map context="EMCConfigActions">
+		<key id="KEY_RED" mapto="red" flags="m" />
+		<key id="KEY_GREEN" mapto="green" flags="m" />
+		<key id="KEY_YELLOW" mapto="yellow" flags="m" />
+		<key id="KEY_BLUE" mapto="blueshort" flags="b" />
+		<key id="KEY_BLUE" mapto="bluelong" flags="l" />
+		<key id="KEY_CHANNELUP" mapto="nextBouquet" flags="m" />
+		<key id="KEY_CHANNELDOWN" mapto="prevBouquet" flags="m" />
+	</map>
 	<map context="CoolPlayerActions">
 		<key id="KEY_POWER" mapto="leavePlayer" flags="m" />
 		<key id="KEY_TV" mapto="leavePlayer" flags="m" />
