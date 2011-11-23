@@ -86,7 +86,10 @@ class SelectionEventInfo:
 			if ext in extMedia:
 				jpgpath = path + ".jpg"
 			elif ext in extDir:
-				jpgpath = os.path.join(service.getPath(), os.path.basename(path)) + ".jpg"
+				jpgpath = os.path.join(service.getPath(), "folder.jpg")
+				#TODO avoid os.path.exists double check
+				if jpgpath and not os.path.exists(jpgpath):
+					jpgpath = os.path.join(service.getPath(), os.path.basename(path)) + ".jpg"
 			if jpgpath and os.path.exists(jpgpath):
 				sc = AVSwitch().getFramebufferScale() # Maybe save during init
 				self.picload = ePicLoad()
