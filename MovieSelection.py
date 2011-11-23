@@ -560,7 +560,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 				# Show cover only for media files and directories
 				ext = os.path.splitext(service.getPath())[1].lower()
 				if ext in extList:
-					self.coverTimer.startLongTimer( int(config.EMC.movie_coverdelay.value) )
+					self.coverTimer.start(int(config.EMC.movie_coverdelay.value), True)
 			# Movie preview
 			if config.EMC.movie_preview.value:
 				if self.previewTimer.isActive():
@@ -568,7 +568,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 				# Play preview only if it is a video file
 				ext = ext or os.path.splitext(service.getPath())[1].lower()
 				if service.ext in extMedia:
-					self.previewTimer.startLongTimer( int(config.EMC.movie_previewdelay.value) )
+					self.previewTimer.start(int(config.EMC.movie_previewdelay.value), True)
 
 	def updateInfoDelayed(self):
 		self.updateTitle()
