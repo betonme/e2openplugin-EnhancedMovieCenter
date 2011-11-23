@@ -1,91 +1,37 @@
 <keymap>
-	<map context="EMCConfigActions">
-		<key id="KEY_RED" mapto="red" flags="m" />
-		<key id="KEY_GREEN" mapto="green" flags="m" />
-		<key id="KEY_YELLOW" mapto="yellow" flags="m" />
-		<key id="KEY_BLUE" mapto="blueshort" flags="b" />
-		<key id="KEY_BLUE" mapto="bluelong" flags="l" />
-		<key id="KEY_CHANNELUP" mapto="nextBouquet" flags="m" />
-		<key id="KEY_CHANNELDOWN" mapto="prevBouquet" flags="m" />
-	</map>
 	<map context="CoolPlayerActions">
-		<device name="dreambox remote control (native)">
-			<key id="KEY_TV" mapto="leavePlayer" flags="m" />
-			<key id="KEY_STOP" mapto="leavePlayer" flags="m" />
-			<key id="KEY_EXIT" mapto="leavePlayer" flags="m" />
-			<key id="KEY_ESC" mapto="leavePlayer" flags="m" />
-		</device>
-		<device name="dreambox advanced remote control (native)">
-			<key id="KEY_TV" mapto="leavePlayer" flags="m" />
-			<key id="KEY_STOP" mapto="leavePlayer" flags="m" />
-			<key id="KEY_EXIT" mapto="leavePlayer" flags="m" />
-			<key id="KEY_ESC" mapto="leavePlayer" flags="m" />
-		</device>
-		<device name="dreambox ir keyboard">
-			<key id="KEY_TV" mapto="leavePlayer" flags="m" />
-			<key id="KEY_STOP" mapto="leavePlayer" flags="m" />
-			<key id="KEY_EXIT" mapto="leavePlayer" flags="m" />
-			<key id="KEY_ESC" mapto="leavePlayer" flags="m" />
-		</device>
-		<!-- <key id="KEY_INFO" mapto="EMCINFO"		flags="b" /> InfoBarSimpleEventView -->
+		<key id="KEY_POWER" mapto="leavePlayer" flags="m" />
 		<key id="KEY_TV" mapto="leavePlayer" flags="m" />
 		<key id="KEY_STOP" mapto="leavePlayer" flags="m" />
-		<!-- <key id="KEY_RADIO" mapto="EMCRADIO"		flags="m" /> InfobarExtensions -->
 		<key id="KEY_EXIT" mapto="leavePlayer" flags="m" />
 		<key id="KEY_ESC" mapto="leavePlayer" flags="m" />
 		<key id="KEY_GREEN" mapto="EMCGreen" flags="m" />
 	</map>
 	<map context="CoolPlayerActions2">
-		<device name="dreambox remote control (native)">
-			<key id="KEY_TV" mapto="leavePlayer" flags="m" />
-			<key id="KEY_STOP" mapto="leavePlayer" flags="m" />
-		</device>
-		<device name="dreambox advanced remote control (native)">
-			<key id="KEY_TV" mapto="leavePlayer" flags="m" />
-			<key id="KEY_STOP" mapto="leavePlayer" flags="m" />
-		</device>
-		<device name="dreambox ir keyboard">
-			<key id="KEY_TV" mapto="leavePlayer" flags="m" />
-			<key id="KEY_STOP" mapto="leavePlayer" flags="m" />
-		</device>
-		<!-- <key id="KEY_INFO" mapto="EMCINFO"		flags="b" /> InfoBarSimpleEventView -->
+		<key id="KEY_POWER" mapto="leavePlayer" flags="m" />
 		<key id="KEY_TV" mapto="leavePlayer" flags="m" />
 		<key id="KEY_STOP" mapto="leavePlayer" flags="m" />
 		<key id="KEY_GREEN" mapto="EMCGreen" flags="m" />
 	</map>
 	<map context="EMCGeneralPlayerActions">
-		<!-- <key id="KEY_MENU" mapto="mainMenu" flags="mr" /> InfobarMenuActions -->
-		<!-- <key id="KEY_INFO" mapto="toggleInfo" flags="m" /> InfoBarSimpleEventView -->
 		<key id="KEY_RADIO" mapto="showExtensions" flags="b" />
-		<!-- <key id="KEY_TEXT" mapto="showTeletext" flags="m" /> InfobarTeletextActions-->
-		<!-- <key id="KEY_RED" mapto="EMCRed" flags="m" /> -->
-		<!-- <key id="KEY_YELLOW" mapto="EMCYellow" flags="m" /> -->
-		<!-- <key id="KEY_BLUE" mapto="EMCBlue" flags="m" /> -->
 	</map>
 	<map context="EMCDVDPlayerActions">
 		<key id="KEY_MENU" mapto="dvdMenu" flags="mr" />
-		<!-- <key id="KEY_INFO" mapto="toggleInfo" flags="m" /> InfoBarSimpleEventView -->
 		<key id="KEY_CHANNELUP" mapto="nextChapter" flags="b" />
 		<key id="KEY_CHANNELDOWN" mapto="prevChapter" flags="b" />
 		<key id="KEY_CHANNELUP" mapto="nextTitle" flags="l" />
 		<key id="KEY_CHANNELDOWN" mapto="prevTitle" flags="l" />
-		<device name="dreambox remote control (native)">
-			<key id="KEY_AUDIO" mapto="dvdAudioMenu" flags="l" />
-			<key id="KEY_RADIO" mapto="dvdAudioMenu" flags="l" />
-			<key id="KEY_RADIO" mapto="nextAudioTrack" flags="b" />
-			<key id="KEY_TEXT" mapto="nextSubtitleTrack" flags="m" />
-			<key id="KEY_VIDEO" mapto="nextAngle" flags="m" />
-		</device>
-		<device name="dreambox advanced remote control (native)">
-			<key id="KEY_RADIO" mapto="dvdAudioMenu" flags="l" />
-			<key id="KEY_RADIO" mapto="nextAudioTrack" flags="b" />
-			<key id="KEY_TEXT" mapto="nextSubtitleTrack" flags="m" />
-			<key id="KEY_VIDEO" mapto="nextAngle" flags="m" />
-		</device>
+		<key id="KEY_AUDIO" mapto="dvdAudioMenu" flags="l" />
+		<key id="KEY_RADIO" mapto="dvdAudioMenu" flags="l" />
+		<key id="KEY_RADIO" mapto="nextAudioTrack" flags="b" />
+		<key id="KEY_TEXT" mapto="nextSubtitleTrack" flags="m" />
+		<key id="KEY_VIDEO" mapto="nextAngle" flags="m" />
 	</map>
 	<map context="PluginMovieSelectionActions">
 		<key id="\x0a" mapto="EMCOK" flags="m" />
 		<key id="\x1b" mapto="EMCEXIT" flags="m" />
+		<key id="KEY_POWER" mapto="EMCEXIT" flags="m" />
 		<key id="KEY_OK" mapto="EMCOK" flags="m" />
 		<key id="KEY_PLAY" mapto="EMCPLAY" flags="b" />
 		<key id="KEY_PLAY" mapto="EMCSHUFFLE" flags="l" />
@@ -120,9 +66,7 @@
 		<key id="KEY_UP" mapto="EMCUp" flags="mr" />
 		<key id="KEY_DOWN" mapto="EMCDown" flags="mr" />
 		<key id="KEY_NEXT" mapto="EMCArrowNext" flags="b" />
-		<!--<key id="KEY_NEXT" mapto="EMCArrowNextL" flags="l" />-->
 		<key id="KEY_PREVIOUS" mapto="EMCArrowPrevious" flags="b" />
-		<!--<key id="KEY_PREVIOUS" mapto="EMCArrowPreviousL" flags="l" />-->
 		<key id="KEY_CHANNELUP" mapto="EMCBqtPlus" flags="m" />
 		<key id="KEY_CHANNELDOWN" mapto="EMCBqtMnus" flags="m" />
 		<key id="KEY_0" mapto="0" flags="m" />
