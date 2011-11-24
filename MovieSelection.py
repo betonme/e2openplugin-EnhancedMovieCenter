@@ -596,13 +596,17 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		if config.EMC.movie_pig.value == "C":
 			self.showCover(None)
 		elif config.EMC.movie_pig.value == "P":
-			self.previewMovie(None)
+			# Avoid movie preview if player is running
+			if self.playerInstance:
+				self.previewMovie(None)
 
 	def showPigDelayed(self):
 		if config.EMC.movie_pig.value == "C":
 			self.showCover( self.getCurrent() )
 		elif config.EMC.movie_pig.value == "P":
-			self.previewMovie( self.getCurrent() )
+			# Avoid movie preview if player is running
+			if self.playerInstance:
+				self.previewMovie( self.getCurrent() )
 
 	def updateTitle(self):
 		title = ""
