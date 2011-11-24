@@ -13,17 +13,18 @@
 		<key id="KEY_TV" mapto="leavePlayer" flags="m" />
 		<key id="KEY_STOP" mapto="leavePlayer" flags="m" />
 		<key id="KEY_EXIT" mapto="leavePlayer" flags="m" />
+		<key id="KEY_HOME" mapto="leavePlayer" flags="m" />
+		<key id="KEY_HOME" mapto="leavePlayer" flags="m" />
 		<key id="KEY_ESC" mapto="leavePlayer" flags="m" />
-		<key id="KEY_GREEN" mapto="EMCGreen" flags="m" />
 	</map>
 	<map context="CoolPlayerActions2">
 		<key id="KEY_POWER" mapto="leavePlayer" flags="m" />
 		<key id="KEY_TV" mapto="leavePlayer" flags="m" />
 		<key id="KEY_STOP" mapto="leavePlayer" flags="m" />
-		<key id="KEY_GREEN" mapto="EMCGreen" flags="m" />
 	</map>
 	<map context="EMCGeneralPlayerActions">
 		<key id="KEY_RADIO" mapto="showExtensions" flags="b" />
+		<key id="KEY_GREEN" mapto="EMCGreen" flags="m" />
 	</map>
 	<map context="EMCDVDPlayerActions">
 		<key id="KEY_MENU" mapto="dvdMenu" flags="mr" />

@@ -118,13 +118,11 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 			self["actions"] = HelpableActionMap(self, "CoolPlayerActions",
 				{
 					"leavePlayer":	(self.leavePlayer, 		_("Stop playback")),
-					"EMCGreen":	(self.CoolAVSwitch,			_("Format AVSwitch")),
 				}) # default priority
 		else:
 			self["actions"] = HelpableActionMap(self, "CoolPlayerActions2",
 				{
 					"leavePlayer":	(self.leavePlayer, 		_("Stop playback")),
-					"EMCGreen":	(self.CoolAVSwitch,			_("Format AVSwitch")),
 				}) # default priority
 		
 		self["DVDPlayerPlaybackActions"] = HelpableActionMap(self, "EMCDVDPlayerActions",
@@ -158,6 +156,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 		self["GeneralPlayerPlaybackActions"] = HelpableActionMap(self, "EMCGeneralPlayerActions",
 			{
 				"showExtensions": (self.openExtensions, _("view extensions...")),
+				"EMCGreen":	(self.CoolAVSwitch,			_("Format AVSwitch")),
 			}, 2) # lower priority
 		
 		self["MenuActions"].prio = 2
