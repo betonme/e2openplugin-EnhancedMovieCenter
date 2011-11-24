@@ -1451,7 +1451,6 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 				
 				# Bad workaround to get all information into our Service Source
 				service.date = date
-				service.ext = ext
 				
 				# Check config settings
 				#TODO These checks should be done earlier but there we don't have the service yet

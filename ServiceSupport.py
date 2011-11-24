@@ -169,7 +169,8 @@ class Info:
 		#self.isLink = os.path.islink(path)
 		self.isfile = os.path.isfile(path)
 		isreal = os.path.isdir(path)
-		self.isdir = isreal and hasattr(service, "ext") and service.ext == "DIR" or False
+		ext = path and os.path.splitext(path)[1].lower()
+		self.isdir = isreal and hasattr(service, "ext") and ext == "DIR" or False
 		meta = path and MetaList(path)			#TODO dynamic or not
 		eit = path and EitList(path)				#TODO dynamic or not
 		

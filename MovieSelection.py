@@ -75,34 +75,49 @@ class SelectionEventInfo:
 		#self.noCoverPixmap = LoadPixmap(noCoverFile)
 		#self.noCoverPixmap = None
 
+	def initPig(self):
+		if config.EMC.movie_pig.value == "TV":
+			self["Cover"].hide()
+			self["Video"].show()
+		elif config.EMC.movie_pig.value == "C":
+			self["Video"].hide()
+			self["Cover"].show()
+			self["Cover"].instance.setPixmap(None)
+		elif config.EMC.movie_pig.value == "P":
+			self["Cover"].hide()
+			self["Video"].show()
+			#TODO reset preview
+
 	def updateEventInfo(self, service):
 		self["Service"].newService(service)
 
 	def showCover(self, service=None):
-		if config.EMC.movie_preview_cover.value == "Cover" and service:
-			jpgpath = ""
-			path, ext = os.path.splitext(service.getPath())
-			ext = ext.lower()
-			if ext in extMedia:
-				jpgpath = path + ".jpg"
-			elif ext in extDir:
-				jpgpath = os.path.join(service.getPath(), "folder.jpg")
-				#TODO avoid os.path.exists double check
-				if jpgpath and not os.path.exists(jpgpath):
-					jpgpath = os.path.join(service.getPath(), os.path.basename(path)) + ".jpg"
-			if jpgpath and os.path.exists(jpgpath):
-				sc = AVSwitch().getFramebufferScale() # Maybe save during init
-				self.picload = ePicLoad()
-				self.picload.PictureData.get().append(self.showCoverCallback)
-				size = self["Cover"].instance.size()
-				self.picload.setPara((size.width(), size.height(), sc[0], sc[1], False, 1, "#00000000")) # Background dynamically
-				self.picload.startDecode(jpgpath)
+		if config.EMC.movie_pig.value == "C":
+			if service:
+				path = service.getPath()
+				name, ext = os.path.splitext(service.getPath())
+				ext = ext.lower()
+				jpgpath = ""
+				if ext in extMedia:
+					jpgpath = name + ".jpg"
+				elif os.path.isdir(path):
+					jpgpath = os.path.join(path, "folder.jpg")
+					#TODO avoid os.path.exists double check
+					if jpgpath and not os.path.exists(jpgpath):
+						jpgpath = os.path.join(path, os.path.basename(path)) + ".jpg"
+				if jpgpath and os.path.exists(jpgpath):
+					sc = AVSwitch().getFramebufferScale() # Maybe save during init
+					self.picload = ePicLoad()
+					self.picload.PictureData.get().append(self.showCoverCallback)
+					size = self["Cover"].instance.size()
+					self.picload.setPara((size.width(), size.height(), sc[0], sc[1], False, 1, "#00000000")) # Background dynamically
+					self.picload.startDecode(jpgpath)
+				else:
+					#TODO test if reset has to be done really
+					self["Cover"].instance.setPixmap(None)#(self.noCoverPixmap)
 			else:
 				#TODO test if reset has to be done really
 				self["Cover"].instance.setPixmap(None)#(self.noCoverPixmap)
-		else:
-			#TODO test if reset has to be done really
-			self["Cover"].instance.setPixmap(None)#(self.noCoverPixmap)
 
 	def showCoverCallback(self, picInfo=None):
 		if picInfo:
@@ -114,51 +129,51 @@ class SelectionEventInfo:
 	# Movie preview
 	def previewMovie(self, service=None):
 		if service:
-			if config.EMC.movie_preview_cover.value == "Preview":
-				# TODO can we reuse the EMCMediaCenter for the video preview
-				# Start preview
-				self.session.nav.playService(service)
-				# Get service
-				s = self.session.nav.getCurrentService()
-				if s:
-					if service.ext in plyDVD:
-						subs = getattr(s, "subtitle", None)
-						if callable(subs):
-							#self.dvdScreen = self.session.instantiateDialog(DVDOverlay)
-							#subs.enableSubtitles(self.dvdScreen.instance, None)
-							subs.enableSubtitles(None, None)
-						from Screens.InfoBar import InfoBar
-						infobar = InfoBar and InfoBar.instance
-						if infobar:
-							infobar.pauseService()
-							infobar.unPauseService()
-					else:
-						# Get seek
-						seekable = s.seek()
-						if seekable:
-							# Get cuesheet
-							cue = s.cueSheet()
-							if cue:
-								# Avoid cutlist overwrite
-								cue.setCutListEnable(False)
-								# Adapted from jumpToFirstMark
-								jumpto = None
-								# EMC enhancement: increase recording margin to make sure we get the correct mark
-								margin = config.recording.margin_before.value*60*90000 *2 or 20*60*90000
-								middle = (long(seekable.getLength()[1]) or 90*60*90000) / 2
-								# Search first mark
-								for (pts, what) in cue.getCutList():
-									if what == 3: #CUT_TYPE_LAST:
-										jumpto = pts
-										break
-									if what == 2: #CUT_TYPE_MARK:
-										if pts != None and ( pts < margin and pts < middle ):
-											if jumpto == None or pts < jumpto: 
-												jumpto = pts
-												break
-								if jumpto is not None:
-									# Jump to first mark
-									seekable.seekTo(jumpto)
+			# TODO can we reuse the EMCMediaCenter for the video preview
+			# Start preview
+			self.session.nav.playService(service)
+			# Get service
+			s = self.session.nav.getCurrentService()
+			if s:
+				ext = os.path.splitext(service.getPath())[1].lower()
+				if ext in plyDVD:
+					subs = getattr(s, "subtitle", None)
+					if callable(subs):
+						#self.dvdScreen = self.session.instantiateDialog(DVDOverlay)
+						#subs.enableSubtitles(self.dvdScreen.instance, None)
+						subs.enableSubtitles(None, None)
+					from Screens.InfoBar import InfoBar
+					infobar = InfoBar and InfoBar.instance
+					if infobar:
+						infobar.pauseService()
+						infobar.unPauseService()
+				else:
+					# Get seek
+					seekable = s.seek()
+					if seekable:
+						# Get cuesheet
+						cue = s.cueSheet()
+						if cue:
+							# Avoid cutlist overwrite
+							cue.setCutListEnable(False)
+							# Adapted from jumpToFirstMark
+							jumpto = None
+							# EMC enhancement: increase recording margin to make sure we get the correct mark
+							margin = config.recording.margin_before.value*60*90000 *2 or 20*60*90000
+							middle = (long(seekable.getLength()[1]) or 90*60*90000) / 2
+							# Search first mark
+							for (pts, what) in cue.getCutList():
+								if what == 3: #CUT_TYPE_LAST:
+									jumpto = pts
+									break
+								if what == 2: #CUT_TYPE_MARK:
+									if pts != None and ( pts < margin and pts < middle ):
+										if jumpto == None or pts < jumpto: 
+											jumpto = pts
+											break
+							if jumpto is not None:
+								# Jump to first mark
+								seekable.seekTo(jumpto)
 		#else: #TODO restore service?
 
 
@@ -260,13 +275,8 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		self.delayTimer = eTimer()
 		self.delayTimer.callback.append(self.updateInfoDelayed)
 		
-		# Movie cover
-		self.coverTimer = eTimer()
-		self.coverTimer.callback.append(self.showCoverDelayed)
-		
-		# Movie preview
-		self.previewTimer = eTimer()
-		self.previewTimer.callback.append(self.previewMovieDelayed)
+		self.pigTimer = eTimer()
+		self.pigTimer.callback.append(self.showPigDelayed)
 		
 		self.onShow.append(self.onDialogShow)
 		self.onHide.append(self.onDialogHide)
@@ -476,7 +486,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			elif selection == "playall": self.playAll()
 			elif selection == "shuffleall": self.shuffleAll()
 			elif selection == "Movie home": self.changeDir(config.EMC.movie_homepath.value)
-			elif selection == "reload": self.reloadList()
+			elif selection == "reload": self.initList()
 			elif selection == "plugin": self.onDialogShow()
 			elif selection == "setup": self.onDialogShow()
 			elif selection == "ctrash": self.purgeExpired()
@@ -557,22 +567,20 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			if self.delayTimer.isActive():
 				self.delayTimer.stop()
 			self.delayTimer.start(int(config.EMC.movie_descdelay.value), True)
+			if self.pigTimer.isActive():
+				self.pigTimer.stop()
 			# Movie cover
-			if config.EMC.movie_preview_cover.value == "Cover":
-				if self.coverTimer.isActive():
-					self.coverTimer.stop()
+			if config.EMC.movie_pig.value == "C":
 				# Show cover only for media files and directories
 				ext = os.path.splitext(service.getPath())[1].lower()
 				if ext in extList:
-					self.coverTimer.start(int(config.EMC.movie_coverdelay.value), True)
+					self.pigTimer.start(int(config.EMC.movie_pig_delay.value), True)
 			# Movie preview
-			if config.EMC.movie_preview_cover.value == "Preview":
-				if self.previewTimer.isActive():
-					self.previewTimer.stop()
+			elif config.EMC.movie_pig.value == "P":
 				# Play preview only if it is a video file
-				ext = ext or os.path.splitext(service.getPath())[1].lower()
-				if service.ext in extMedia:
-					self.previewTimer.start(int(config.EMC.movie_previewdelay.value), True)
+				ext = os.path.splitext(service.getPath())[1].lower()
+				if ext in extMedia:
+					self.pigTimer.start(int(config.EMC.movie_pig_delay.value), True)
 
 	def updateInfoDelayed(self):
 		self.updateTitle()
@@ -583,22 +591,18 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		if self.delayTimer.isActive():
 			self.delayTimer.stop()
 		self.updateEventInfo(None)
-		# Movie cover
-		if self.coverTimer.isActive():
-			self.coverTimer.stop()
-		self.showCover(None)
-		# Movie preview
-		if self.previewTimer.isActive():
-			self.previewTimer.stop()
-		self.previewMovie(None)
+		if self.pigTimer.isActive():
+			self.pigTimer.stop()
+		if config.EMC.movie_pig.value == "C":
+			self.showCover(None)
+		elif config.EMC.movie_pig.value == "P":
+			self.previewMovie(None)
 
-	# Movie cover
-	def showCoverDelayed(self):
-		self.showCover( self.getCurrent() )
-
-	# Movie preview
-	def previewMovieDelayed(self):
-		self.previewMovie( self.getCurrent() )
+	def showPigDelayed(self):
+		if config.EMC.movie_pig.value == "C":
+			self.showCover( self.getCurrent() )
+		elif config.EMC.movie_pig.value == "P":
+			self.previewMovie( self.getCurrent() )
 
 	def updateTitle(self):
 		title = ""
@@ -929,6 +933,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		self["key_blue"].text = _(config.EMC.movie_bluefunc.description[config.EMC.movie_bluefunc.value])
 
 	def initList(self):
+		self.initPig()
 		# Initialize list
 		self.reloadList()
 
