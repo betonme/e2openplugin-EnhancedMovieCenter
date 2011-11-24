@@ -79,7 +79,7 @@ class SelectionEventInfo:
 		self["Service"].newService(service)
 
 	def showCover(self, service=None):
-		if config.EMC.movie_cover.value and service:
+		if config.EMC.movie_preview_cover.value == "Cover" and service:
 			jpgpath = ""
 			path, ext = os.path.splitext(service.getPath())
 			ext = ext.lower()
@@ -114,7 +114,7 @@ class SelectionEventInfo:
 	# Movie preview
 	def previewMovie(self, service=None):
 		if service:
-			if config.EMC.movie_preview.value:
+			if config.EMC.movie_preview_cover.value == "Preview":
 				# TODO can we reuse the EMCMediaCenter for the video preview
 				# Start preview
 				self.session.nav.playService(service)
@@ -558,7 +558,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 				self.delayTimer.stop()
 			self.delayTimer.start(int(config.EMC.movie_descdelay.value), True)
 			# Movie cover
-			if config.EMC.movie_cover.value:
+			if config.EMC.movie_preview_cover.value == "Cover":
 				if self.coverTimer.isActive():
 					self.coverTimer.stop()
 				# Show cover only for media files and directories
@@ -566,7 +566,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 				if ext in extList:
 					self.coverTimer.start(int(config.EMC.movie_coverdelay.value), True)
 			# Movie preview
-			if config.EMC.movie_preview.value:
+			if config.EMC.movie_preview_cover.value == "Preview":
 				if self.previewTimer.isActive():
 					self.previewTimer.stop()
 				# Play preview only if it is a video file

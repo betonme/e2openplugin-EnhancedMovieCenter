@@ -269,7 +269,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 					self["DVDPlayerPlaybackActions"].setEnabled(False)
 				
 				# Check if the video preview is active and already running
-				if config.EMC.movie_preview.value and \
+				if (config.EMC.movie_preview_cover.value == "Preview") and \
 					self.session.nav.getCurrentlyPlayingServiceReference().getPath() == service.getPath():
 					return
 				

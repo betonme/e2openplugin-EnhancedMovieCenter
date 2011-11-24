@@ -301,11 +301,10 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 			(  _("Short watching percent")                        , config.EMC.movie_watching_percent   , None                  , None                  , 0     , [-1]        , _("HELP_Short watching percent")                         , None              , None ),
 			(  _("Finished watching percent")                     , config.EMC.movie_finished_percent   , None                  , None                  , 0     , [-2]        , _("HELP_Finished watching percent")                      , None              , None ),
 			(  _("Mark new recordings with a star")               , config.EMC.mark_latest_files        , None                  , None                  , 0     , []          , _("HELP_Mark new recordings with a star")                , False             , True ),
-			(  _("Show movie cover")                              , config.EMC.movie_cover              , None                  , None                  , 0     , []          , _("HELP_Show movie cover")                               , False             , None ),
+			(  _("Show TV, Preview or Cover")                     , config.EMC.movie_preview_cover      , None                  , None                  , 0     , []          , _("HELP_Show Show TV, Preview or Cover")                 , False             , None ),
 			(  _("Movie cover delay in ms")                       , config.EMC.movie_coverdelay         , None                  , None                  , 0     , [-1]        , _("HELP_Movie cover delay in ms")                        , None              , None ),
-			(  _("Show movie preview")                            , config.EMC.movie_preview            , None                  , None                  , 0     , []          , _("HELP_Show movie preview")                             , False             , None ),
 			(  _("Movie preview delay in ms")                     , config.EMC.movie_previewdelay       , None                  , None                  , 0     , [-1]        , _("HELP_Movie preview delay in ms")                      , None              , None ),
-			
+
 			(  separator                                          , config.EMC.about                    , None                  , None                  , 0     , []          , _("")                                                    , None              , None ),
 			(  _("No resume below 10 seconds")                    , config.EMC.movie_ignore_firstcuts   , None                  , None                  , 1     , []          , _("HELP_No resume below 10 seconds")                     , None              , None ),
 			(  _("Jump to first mark when playing movie")         , config.EMC.movie_jump_first_mark    , None                  , None                  , 1     , []          , _("HELP_Jump to first mark when playing movie")          , None              , None ),
@@ -313,8 +312,8 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 			(  _("Always save last played progress as marker")    , config.EMC.movie_save_lastplayed    , None                  , None                  , 1     , []          , _("HELP_Always save last played progress as marker")     , None              , None ),
 			(  _("Zap to channel after record EOF")               , config.EMC.record_eof_zap           , None                  , None                  , 1     , []          , _("HELP_Zap to channel after record EOF")                , None              , None ),
 			(  _("Show real length of running records")           , config.EMC.record_show_real_length  , None                  , None                  , 1     , []          , _("HELP_Show real length of running records")            , None              , True ),
-			
-			
+
+
 			(  separator                                          , config.EMC.about                    , None                  , None                  , 0     , []          , _("HELP_separator_Trashcan settings")                    , None              , None ),
 			(  _("Trashcan enable")                               , config.EMC.movie_trashcan_enable    , None                  , self.openLocationBox  , 0     , []          , _("HELP_Trashcan enable")                                , None              , None ),
 			(  _("Trashcan path")                                 , config.EMC.movie_trashcan_path      , self.validatePath     , self.openLocationBox  , 0     , [-1]        , _("HELP_Trashcan path")                                  , None              , None ),

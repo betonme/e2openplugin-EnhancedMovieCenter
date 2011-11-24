@@ -206,10 +206,9 @@ config.EMC.movie_bluefunc            = ConfigSelection(default = "MH", choices =
 #config.EMC.movie_yellowfunc 
 config.EMC.CoolStartHome             = ConfigYesNo(default = False)
 config.EMC.movie_descdelay           = ConfigSelectionNumber(50, 60000, 50, default= 200)
-config.EMC.movie_cover               = ConfigYesNo(default = False)
+config.EMC.movie_preview_cover       = ConfigSelection(choices = [("TV", _("TV")), ("Preview", _("Preview")), ("Cover", _("Cover"))], default = "TV")
 config.EMC.movie_coverdelay          = ConfigSelectionNumber(50, 60000, 50, default= 500)
-config.EMC.movie_preview             = ConfigYesNo(default = False)
-config.EMC.movie_previewdelay        = ConfigSelectionNumber(50, 60000, 50, default= 3000)
+config.EMC.movie_previewdelay        = ConfigSelectionNumber(50, 60000, 50, default= 4000)
 config.EMC.skin_able                 = ConfigYesNo(default = False)
 config.EMC.movie_icons               = ConfigYesNo(default = True)
 config.EMC.movie_progress            = ConfigSelection(default = "PB", choices = progress_choices)
