@@ -14,7 +14,6 @@
 		<key id="KEY_STOP" mapto="leavePlayer" flags="m" />
 		<key id="KEY_EXIT" mapto="leavePlayer" flags="m" />
 		<key id="KEY_HOME" mapto="leavePlayer" flags="m" />
-		<key id="KEY_HOME" mapto="leavePlayer" flags="m" />
 		<key id="KEY_ESC" mapto="leavePlayer" flags="m" />
 	</map>
 	<map context="CoolPlayerActions2">
