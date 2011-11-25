@@ -46,11 +46,12 @@ from MetaSupport import MetaList
 from EitSupport import EitList
 from PermanentSort import PermanentSort
 from E2Bookmarks import E2Bookmarks
+from EMCBookmarks import EMCBookmarks
 from ServiceSupport import ServiceCenter
 
 
 global extAudio, extDvd, extVideo, extPlaylist, extList, extMedia
-global cmtDir, cmtUp, cmtTrash, cmtLRec, cmtVLC, cmtBM, virVLC, virAll
+global cmtDir, cmtUp, cmtTrash, cmtLRec, cmtVLC, cmtBME2, cmtBMEMC, virVLC, virAll
 global vlcSrv, vlcDir, vlcFil
 global plyDVB, plyM2TS, plyDVD, plyMP3, plyVLC, plyAll
 global sidDVB, sidDVD, sidMP3
@@ -101,13 +102,14 @@ sidsCuts = frozenset([sidDVB, sidDVD])
 cmtUp      = "0"
 cmtTrash   = "1"
 cmtLRec    = "2"
-cmtBM      = "B"
+cmtBME2    = "BE2"
+cmtBMEMC   = "BEMC"
 cmtDir     = "D"
 cmtVLC     = "V"
 
 # Grouped custom types
 virVLC     = frozenset([cmtVLC, vlcSrv, vlcDir])
-virAll     = frozenset([cmtBM, cmtVLC, cmtLRec, cmtTrash, cmtUp, cmtDir, vlcSrv, vlcDir])
+virAll     = frozenset([cmtBME2, cmtBMEMC, cmtVLC, cmtLRec, cmtTrash, cmtUp, cmtDir, vlcSrv, vlcDir])
 
 #-------------------------------------------------
 # func: readBasicCfgFile( file )
@@ -138,7 +140,7 @@ def readBasicCfgFile(file):
 	return data
 
 
-class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmarks):
+class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBookmarks):
 	instance = None
 	
 	def __init__(self):
@@ -781,7 +783,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 				elif ext == cmtUp:
 					datetext = _("Up")
 					pixmap = self.pic_back
-				elif ext == cmtBM:
+				elif ext == cmtBME2 or ext == cmtBMEMC:
 					datetext = _("Bookmark")
 					pixmap = self.pic_bookmark
 				elif ext == cmtTrash:
@@ -1223,7 +1225,15 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 						for bookmark in bookmarks:
 							append( (	bookmark,
 												os.path.basename(bookmark) or bookmark,
-												cmtBM) )
+												cmtBME2 ) )
+				
+				if config.EMC.bookmarks_emc.value:
+					bookmarks = self.getEMCBookmarks()
+					if bookmarks:
+						for bookmark in bookmarks:
+							append( (	bookmark, 
+												os.path.basename(bookmark),
+												cmtBMEMC ) )
 		
 		del append
 		del pathjoin
@@ -1663,8 +1673,12 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 		try:	return self.list[self.getCurrentIndex()][7] in virAll
 		except:	return False
 
-	def currentSelIsBookmark(self):
-		try:	return self.list[self.getCurrentIndex()][7] == cmtBM
+	def currentSelIsE2Bookmark(self):
+		try:	return self.list[self.getCurrentIndex()][7] == cmtBME2
+		except:	return False
+
+	def currentSelIsEMCBookmark(self):
+		try:	return self.list[self.getCurrentIndex()][7] == cmtBMEMC
 		except:	return False
 
 	def indexIsDirectory(self, index):
