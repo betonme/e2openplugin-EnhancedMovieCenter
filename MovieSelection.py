@@ -82,8 +82,9 @@ class SelectionEventInfo:
 			self["Video"].show()
 		elif config.EMC.movie_pig.value == "C":
 			self["Video"].hide()
-			self["Cover"].show()
 			self["Cover"].instance.setPixmap(None)
+			#self["Cover"].show()
+			self["Cover"].hide()
 		elif config.EMC.movie_pig.value == "P":
 			self["Cover"].hide()
 			self["Video"].show()
@@ -96,7 +97,7 @@ class SelectionEventInfo:
 		if config.EMC.movie_pig.value == "C":
 			if service:
 				path = service.getPath()
-				name, ext = os.path.splitext(service.getPath())
+				name, ext = os.path.splitext(path)
 				ext = ext.lower()
 				jpgpath = ""
 				if ext in extMedia:
@@ -113,19 +114,22 @@ class SelectionEventInfo:
 					size = self["Cover"].instance.size()
 					self.picload.setPara((size.width(), size.height(), sc[0], sc[1], False, 1, "#00000000")) # Background dynamically
 					self.picload.startDecode(jpgpath)
+					#self["Cover"].show()
 				else:
 					#TODO test if reset has to be done really
-					self["Cover"].instance.setPixmap(None)#(self.noCoverPixmap)
+					#self["Cover"].instance.setPixmap(None)#(self.noCoverPixmap)
+					self["Cover"].hide()
 			else:
 				#TODO test if reset has to be done really
-				self["Cover"].instance.setPixmap(None)#(self.noCoverPixmap)
+				#self["Cover"].instance.setPixmap(None)#(self.noCoverPixmap)
+				self["Cover"].hide()
 
 	def showCoverCallback(self, picInfo=None):
 		if picInfo:
 			ptr = self.picload.getData()
 			if ptr != None:
 				self["Cover"].instance.setPixmap(ptr)
-				#self["Cover"].show()
+				self["Cover"].show()
 
 	# Movie preview
 	def previewMovie(self, service=None):
