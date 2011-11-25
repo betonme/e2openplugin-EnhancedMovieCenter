@@ -20,12 +20,17 @@
 #
 
 import os, sys
+
+from glob import glob
 from Components.config import *
+
 from __init__ import _
+
 
 global extRogue
 
-extRogue = frozenset([".ts.ap", ".ts.cuts", ".ts.cutsr", ".ts.meta", ".ts.sc", ".eit", ".ts_mp.jpg", ".ts.gm", "dvd.cuts"])
+
+extRogue = frozenset([".ap", ".cuts", ".cutsr", ".meta", ".sc", ".eit", ".ts_mp.jpg", ".gm", "dvd.cuts"])
 
 
 class RogueFileCheck:
@@ -43,6 +48,7 @@ class RogueFileCheck:
 		return strg
 
 	def checkPath(self, path, avoid=""):
+		from MovieCenter import extMedia
 		#TODO check performance
 		if not os.path.exists(path) or path is avoid: return
 		for p in os.listdir(path):
@@ -54,13 +60,16 @@ class RogueFileCheck:
 				if os.path.exists(fullpath):
 					# Is there an alternative to avoid a for loop in a for loop
 					# Maybe we can use a dict e.x.: .ap = .ts.ap
-					for ext in extRogue:
-						if p.endswith(ext):
-							if not os.path.exists( fullpath.replace(ext, ".ts") ):
-								try:    self.found[ext] += 1
-								except: self.found[ext] = 1
-								self.files.append(fullpath)
-							break
+					filepath, ext = os.path.splitext(fullpath)
+					if ext.lower() in extRogue:
+						for f in glob( filepath + '*'):
+							if os.path.splitext(f)[1].lower() in extMedia:
+								break
+						else:
+							# No matching media file found
+							try:    self.found[ext] += 1
+							except: self.found[ext] = 1
+							self.files.append(fullpath)
 
 	def getDelFilesScript(self):
 		strg = ""
