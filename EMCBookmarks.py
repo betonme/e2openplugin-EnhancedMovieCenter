@@ -59,13 +59,13 @@ class EMCBookmarks():
 	def addEMCBookmark(self, path):
 		if path:
 			try:
-			if path.endswith("/"):	path = path[:-1]
-			bmfile = open("/etc/enigma2/emc-bookmarks.cfg", "a")
-			bmfile.write(path + "\n")
-			bmfile.close()
-			return True
-		except Exception, e:
-			emcDebugOut("[EMCMM] addEMCBookmark exception:\n" + str(e))
+				if path.endswith("/"):	path = path[:-1]
+				bmfile = open("/etc/enigma2/emc-bookmarks.cfg", "a")
+				bmfile.write(path + "\n")
+				bmfile.close()
+				return True
+			except Exception, e:
+				emcDebugOut("[EMCMM] addEMCBookmark exception:\n" + str(e))
 		return False
 
 	# Remove a path from the EMC bookmark list
