@@ -52,11 +52,7 @@ class EMCClockToText(ClockToText):
 		elif self.type == self.TIMESTAMP:
 			return str(time)
 		
-		if time > (31 * 24 * 60 * 60): 
-		# No Recording should be longer than 1 month :-)
-			t = localtime(time)
-		else:
-			t = gmtime(time)
+		t = localtime(time)
 		
 		if self.type == self.WITH_SECONDS:
 			return "%2d:%02d:%02d" % (t.tm_hour, t.tm_min, t.tm_sec)

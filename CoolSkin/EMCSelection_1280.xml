@@ -27,7 +27,7 @@
 	</widget>
 	<widget source="Service" render="Label" position="245,345" size="100,24" font="Regular;20" halign="left" foregroundColor="#00bab329" backgroundColor="#444444" transparent="1">
 		<convert type="EMCServiceTime">Duration</convert>
-		<convert type="EMCClockToText">InMinutes</convert>
+		<convert type="EMCClockToText">AsLength</convert>
 	</widget>
 	<widget source="Service" render="Label" position="270,345" size="200,24" font="Regular;20" foregroundColor="#00bab329" halign="right" backgroundColor="#444444" transparent="1">
 			<convert type="EMCMovieInfo">FileSize</convert>
