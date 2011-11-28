@@ -1219,7 +1219,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 										"VLC servers",
 										cmtVLC) )
 				
-				if config.EMC.bookmarks_e2.value:
+				if config.EMC.bookmarks.value == "Both" or config.EMC.bookmarks.value == "E2":
 					bookmarks = self.getE2Bookmarks()
 					if bookmarks:
 						for bookmark in bookmarks:
@@ -1227,7 +1227,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 												os.path.basename(bookmark) or bookmark,
 												cmtBME2 ) )
 				
-				if config.EMC.bookmarks_emc.value:
+				if config.EMC.bookmarks.value == "Both" or config.EMC.bookmarks.value == "EMC":
 					bookmarks = self.getEMCBookmarks()
 					if bookmarks:
 						for bookmark in bookmarks:

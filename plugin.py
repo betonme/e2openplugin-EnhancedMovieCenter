@@ -161,6 +161,11 @@ pig_choices = [	("TV",								_("TV")),
 								("P",									_("Preview")),
 								("C",									_("Cover")) ]
 
+bookmark_choices = [	("No",					_("No")),
+											("E2",					_("E2 Bookmarks")),
+											("E2EMC",				_("EMC Bookmarks")),
+											("Both",				_("Both")) ]
+
 #Think about using AZ or ("A",False) as dict key / permanent sort store value
 sort_modes = {		("D",False)	:				( _("Date sort descending (D-)"), 	("D-")	),
 									("A",False)	:				( _("Alpha sort ascending (AZ)"), 	("AZ")	),
@@ -250,8 +255,7 @@ config.EMC.directories_info          = ConfigSelection(default = "", choices = d
 config.EMC.latest_recordings         = ConfigYesNo(default = True)
 config.EMC.mark_latest_files         = ConfigYesNo(default = True)
 config.EMC.vlc                       = ConfigYesNo(default = False)
-config.EMC.bookmarks_e2              = ConfigYesNo(default = False)
-config.EMC.bookmarks_emc             = ConfigYesNo(default = False)
+config.EMC.bookmarks                 = ConfigSelection(default = "No", choices = bookmark_choices)
 config.EMC.check_dvdstruct           = ConfigYesNo(default = True)
 #config.EMC.check_movie_cutting      = ConfigYesNo(default = True)
 config.EMC.movie_hide_mov            = ConfigYesNo(default = False)

@@ -243,7 +243,8 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 
 	def addDirToE2Bookmarks(self, path):
 		if path and self.addE2Bookmark( path ) \
-			and config.EMC.bookmarks_e2.value and path == config.EMC.movie_homepath.value:
+			and (config.EMC.bookmarks.value == "Both" or config.EMC.bookmarks.value == "E2") \
+			and path == config.EMC.movie_homepath.value:
 			#TODO Avoid reload
 			# If the custom entry has sortingkeys, maybe an addService will do it
 			self.close("reload")
@@ -260,8 +261,10 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 			self.removeDirFromE2BookmarksConfirmed(path, True)
 
 	def removeDirFromE2BookmarksConfirmed(self, path, confirm):
-		if confirm and path and self.removeE2Bookmark(path) \
-			and config.EMC.bookmarks_e2.value and path == config.EMC.movie_homepath.value:
+		if confirm \
+			and path and self.removeE2Bookmark(path) \
+			and (config.EMC.bookmarks.value == "Both" or config.EMC.bookmarks.value == "E2") \
+			and path == config.EMC.movie_homepath.value:
 			#TODO Avoid reload
 			# Just a remove service will do the job
 			self.close("reload")
@@ -270,7 +273,8 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 
 	def addDirToEMCBookmarks(self, path):
 		if path and self.addEMCBookmark( path ) \
-			and config.EMC.bookmarks_emc.value and path == config.EMC.movie_homepath.value:
+			and (config.EMC.bookmarks.value == "Both" or config.EMC.bookmarks.value == "EMC") \
+			and path == config.EMC.movie_homepath.value:
 			#TODO Avoid reload
 			# If the custom entry has sortingkeys, maybe an addService will do it
 			self.close("reload")
@@ -287,8 +291,10 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 			self.removeDirFromEMCBookmarksConfirmed(path, True)
 
 	def removeDirFromEMCBookmarksConfirmed(self, path, confirm):
-		if confirm and path and self.removeEMCBookmark(path) \
-			and config.EMC.bookmarks_emc.value and path == config.EMC.movie_homepath.value:
+		if confirm \
+			and path and self.removeEMCBookmark(path) \
+			and (config.EMC.bookmarks.value == "Both" or config.EMC.bookmarks.value == "EMC") \
+			and path == config.EMC.movie_homepath.value:
 			#TODO Avoid reload
 			# Just a remove service will do the job
 			self.close("reload")
