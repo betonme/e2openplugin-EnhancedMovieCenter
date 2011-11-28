@@ -26,6 +26,9 @@ from Components.config import *
 
 from EMCTasker import emcTasker, emcDebugOut
 
+global CFG_FILE
+CFG_FILE = "/etc/enigma2/emc-bookmarks.cfg"
+
 
 class EMCBookmarks():
 	def __init__(self):
@@ -41,16 +44,17 @@ class EMCBookmarks():
 	# Returns the EMC bookmarks as a list
 	def getEMCBookmarks(self):
 		bm = []
-		f = None
-		try:
-			f = open("/etc/enigma2/emc-bookmarks.cfg", "r")
-			bm = f.readlines()
-		except Exception, e:
-			emcDebugOut("[EMCBookmarks] Exception in getEMCBookmarks: " + str(e))
-		finally:
-			if f is not None:
-				f.close()
-		bm = map(lambda b:b[:-1], bm)
+		if os.access(CFG_FILE, os.R_OK):
+			f = None
+			try:
+				f = open(CFG_FILE, "r")
+				bm = f.readlines()
+			except Exception, e:
+				emcDebugOut("[EMCBookmarks] Exception in getEMCBookmarks: " + str(e))
+			finally:
+				if f is not None:
+					f.close()
+			bm = map(lambda b:b[:-1], bm)
 		return bm
 
 	# Add a path to the EMC bookmark list
@@ -60,7 +64,7 @@ class EMCBookmarks():
 		if path:
 			try:
 				if path.endswith("/"):	path = path[:-1]
-				bmfile = open("/etc/enigma2/emc-bookmarks.cfg", "a")
+				bmfile = open(CFG_FILE, "a")
 				bmfile.write(path + "\n")
 				bmfile.close()
 				return True
@@ -75,7 +79,7 @@ class EMCBookmarks():
 		if path:
 			try:
 				bm = []
-				bmfile = open("/etc/enigma2/emc-bookmarks.cfg", "r+")
+				bmfile = open(CFG_FILE, "r+")
 				bm = f.readlines()
 				bm = map(lambda b:b[:-1], bm)
 				if path in bm:

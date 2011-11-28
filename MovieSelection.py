@@ -483,7 +483,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		self.session.openWithCallback(self.openBookmarksCB, MovieLocationBox, text = _("Open E2 Bookmark path"), dir = str(self.currentPath)+"/")
 
 	def openEMCBookmarks(self):
-		self.session.openWithCallback(self.openBookmarksCB, MovieMenu, "emcBookmarks", self["list"], None, self["list"].makeSelectionList(), self.currentPathSel)
+		self.session.openWithCallback(self.openBookmarksCB, MovieMenu, "emcBookmarks", self["list"], None, self["list"].makeSelectionList(), self.currentPath)
 
 	def openBookmarksCB(self, path=None):
 		if path is not None:
@@ -503,9 +503,9 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			elif selection == "delete": self.deleteFile(True)
 			elif selection == "cutlistmarker": self.removeCutListMarker()
 			elif selection == "openE2Bookmarks": self.openE2Bookmarks()
-			elif selection == "removeE2Bookmark": self.removeE2Bookmark(parameter)
+			elif selection == "removeE2Bookmark": self.deleteE2Bookmark(parameter)
 			elif selection == "openEMCBookmarks": self.openEMCBookmarks()
-			elif selection == "removeEMCBookmark": self.removeEMCBookmark(parameter)
+			elif selection == "removeEMCBookmark": self.deleteEMCBookmark(parameter)
 			elif selection == "dirup": self.directoryUp()
 			elif selection == "oscripts": self.openScriptMenu()
 			elif selection == "markall": self.markAll()
@@ -1207,9 +1207,9 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			elif len(selectedlist) == 1 and current==selectedlist[0]:
 				if self["list"].currentSelIsE2Bookmark():
 					# Delete a single bookmark
-					self.removeE2Bookmark(current)
+					self.deleteE2Bookmark(current)
 				elif self["list"].currentSelIsEMCBookmark():
-					self.removeEMCBookmark(current)
+					self.deleteEMCBookmark(current)
 					
 			else:
 				if self["list"].serviceBusy(selectedlist[0]): return
@@ -1227,38 +1227,38 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 					else:
 						self.deleteMovieQ(selectedlist, self.remRecsToStop)
 
-	def removeE2Bookmark(self, service):
+	def deleteE2Bookmark(self, service):
 		if service:
 			path = service.getPath()
 			if self.isE2Bookmark(path):
 				if config.EMC.movie_delete_validation.value:
 					self.session.openWithCallback(
-							boundFunction(self.removeE2BookmarkConfirmed, service),
+							boundFunction(self.deleteE2BookmarkConfirmed, service),
 							MessageBox,
 							_("Do you really want to remove your bookmark\n%s?") % (path) )
 				else:
-					self.removeE2BookmarkConfirmed(service, True)
+					self.deleteE2BookmarkConfirmed(service, True)
 
-	def removeE2BookmarkConfirmed(self, service, confirm):
+	def deleteE2BookmarkConfirmed(self, service, confirm):
 		if confirm and service and config.movielist and config.movielist.videodirs:
 			path = service.getPath()
 			if self.removeE2Bookmark(path):
 				# If service is not in list, don't care about it.
 				self["list"].removeService(service)
 
-	def removeEMCBookmark(self, service):
+	def deleteEMCBookmark(self, service):
 		if service:
 			path = service.getPath()
 			if self.isEMCBookmark(path):
 				if config.EMC.movie_delete_validation.value:
 					self.session.openWithCallback(
-							boundFunction(self.removeEMCBookmarkBookmarkConfirmed, service),
+							boundFunction(self.deleteEMCBookmarkConfirmed, service),
 							MessageBox,
 							_("Do you really want to remove your bookmark\n%s?") % (path) )
 				else:
-					self.removeEMCBookmarkBookmarkConfirmed(service, True)
+					self.deleteEMCBookmarkConfirmed(service, True)
 
-	def removeEMCBookmarkConfirmed(self, service, confirm):
+	def deleteEMCBookmarkConfirmed(self, service, confirm):
 		if confirm and service and config.movielist and config.movielist.videodirs:
 			path = service.getPath()
 			if self.removeEMCBookmark(path):
