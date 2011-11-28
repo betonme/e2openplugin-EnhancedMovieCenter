@@ -162,11 +162,12 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 
 	def createLink(self, currentPath):
 		self.session.openWithCallback(
-				boundFunction(self.createLinkCB, currentPath),
+				boundFunction( self.createLinkCB, currentPath ),
 				MovieLocationBox,
-				text = _("Create Link: Choose directory"),
-				dir = str(self.currentPath)+"/",
-				minFree = 0)
+					text = _("Create Link: Choose directory"),
+					dir = str(self.currentPath)+"/",
+					autoAdd = False,
+					minFree = 0 )
 
 	def createLinkCB(self, currentPath, linkPath):
 		if currentPath == linkPath or linkPath == None:

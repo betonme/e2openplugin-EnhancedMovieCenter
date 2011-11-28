@@ -480,7 +480,12 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 				emcDebugOut("[EMCMS] multiSelect Not active")
 
 	def openE2Bookmarks(self):
-		self.session.openWithCallback(self.openBookmarksCB, MovieLocationBox, text = _("Open E2 Bookmark path"), dir = str(self.currentPath)+"/")
+		self.session.openWithCallback(
+			self.openBookmarksCB,
+			MovieLocationBox,
+				text = _("Open E2 Bookmark path"),
+				dir = str(self.currentPath)+"/",
+				autoAdd = False )
 
 	def openEMCBookmarks(self):
 		self.session.openWithCallback(self.openBookmarksCB, MovieMenu, "emcBookmarks", self["list"], None, self["list"].makeSelectionList(), self.currentPath)
@@ -1495,10 +1500,15 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 				dialog = True
 			if dialog:
 				try:
-					from Screens.LocationBox import MovieLocationBox
 					if len(selectedlist)==1 and self["list"].serviceBusy(selectedlist[0]): return
 					self.tmpSelList = selectedlist[:]
-					self.session.openWithCallback(self.mvDirSelected, MovieLocationBox, text = _("Move file(s): Choose directory"), dir = str(self.currentPath)+"/", minFree = 0)
+					self.session.openWithCallback(
+						self.mvDirSelected,
+						MovieLocationBox,
+							text = _("Move file(s): Choose directory"),
+							dir = str(self.currentPath)+"/",
+							autoAdd = False,
+							minFree = 100 )
 				except:
 					self.session.open(MessageBox, _("How to move files:\nSelect some movies with the VIDEO-button, move the cursor on top of the destination directory and press yellow."), MessageBox.TYPE_ERROR, 10)
 			emcDebugOut("[EMCMS] moveMovie")
@@ -1540,10 +1550,15 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 				dialog = True
 			if dialog:
 				try:
-					from Screens.LocationBox import MovieLocationBox
 					if len(selectedlist)==1 and self["list"].serviceBusy(selectedlist[0]): return
 					self.tmpSelList = selectedlist[:]
-					self.session.openWithCallback(self.cpDirSelected, MovieLocationBox, text = _("Copy file(s): Choose directory"), dir = str(self.currentPath)+"/", minFree = 0)
+					self.session.openWithCallback(
+						self.cpDirSelected,
+						MovieLocationBox,
+							text = _("Copy file(s): Choose directory"),
+							dir = str(self.currentPath)+"/",
+							autoAdd = False,
+							minFree = 100)
 				except:
 					self.session.open(MessageBox, _("How to copy files:\nSelect some movies with the VIDEO-button, move the cursor on top of the destination directory and press yellow long."), MessageBox.TYPE_ERROR, 10)
 			emcDebugOut("[EMCMS] copyMovie")

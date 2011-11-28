@@ -524,7 +524,13 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 			if element:
 				path = os.path.normpath( element.value )
 				from Screens.LocationBox import MovieLocationBox
-				self.session.openWithCallback(self.dirSelected, MovieLocationBox, text = _("Choose directory"), dir = str(path)+"/", minFree = 100)
+				self.session.openWithCallback( 
+					self.dirSelected,
+					MovieLocationBox,
+						text = _("Choose directory"),
+						dir = str(path)+"/",
+						autoAdd = False,
+						minFree = 100 )
 		except: pass
 
 	def showRestart(self):
