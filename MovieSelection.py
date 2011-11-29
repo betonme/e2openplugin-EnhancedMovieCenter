@@ -483,7 +483,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		self.session.openWithCallback(
 			self.openBookmarksCB,
 			LocationBox,
-				windowTitle = _("E2 Bookmark")
+				windowTitle = _("E2 Bookmark"),
 				text = _("Open E2 Bookmark path"),
 				currDir = str(path)+"/",
 				bookmarks = config.movielist.videodirs,
@@ -1513,7 +1513,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 					self.session.openWithCallback(
 						self.mvDirSelected,
 						LocationBox,
-							windowTitle = _("Move file(s):")
+							windowTitle = _("Move file(s):"),
 							text = _("Choose directory"),
 							currDir = str(self.currentPath)+"/",
 							bookmarks = config.movielist.videodirs,
@@ -1567,7 +1567,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 					self.session.openWithCallback(
 						self.cpDirSelected,
 						LocationBox,
-							windowTitle = _("Copy file(s):")
+							windowTitle = _("Copy file(s):"),
 							text = _("Choose directory"),
 							currDir = str(self.currentPath)+"/",
 							bookmarks = config.movielist.videodirs,

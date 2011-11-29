@@ -164,7 +164,7 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 		self.session.openWithCallback(
 				boundFunction( self.createLinkCB, path ),
 				LocationBox,
-					windowTitle = _("Create Link")
+					windowTitle = _("Create Link"),
 					text = _("Choose directory"),
 					currDir = str(path)+"/",
 					bookmarks = config.movielist.videodirs,

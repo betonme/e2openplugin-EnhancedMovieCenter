@@ -525,9 +525,9 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 			if element:
 				path = os.path.normpath( element.value )
 				self.session.openWithCallback( 
-					self.dirSelected,	
-					MovieLocationBox,
-						windowTitle = _("Select Location")
+					self.dirSelected,
+					LocationBox,
+						windowTitle = _("Select Location"),
 						text = _("Choose directory"),
 						currDir = str(path)+"/",
 						bookmarks = config.movielist.videodirs,
