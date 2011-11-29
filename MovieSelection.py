@@ -488,7 +488,8 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 				autoAdd = False )
 
 	def openEMCBookmarks(self):
-		self.session.openWithCallback(self.openBookmarksCB, MovieMenu, "emcBookmarks", self["list"], None, self["list"].makeSelectionList(), self.currentPath)
+		#TODO Use a choicebox
+		self.session.openWithCallback(self.openBookmarksCB, MovieMenu, "emcBookmarks", self, self["list"], None, self["list"].makeSelectionList(), self.currentPath)
 
 	def openBookmarksCB(self, path=None):
 		if path is not None:
