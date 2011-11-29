@@ -163,7 +163,7 @@ pig_choices = [	("TV",								_("TV")),
 
 bookmark_choices = [	("No",					_("No")),
 											("E2",					_("E2 Bookmarks")),
-											("E2EMC",				_("EMC Bookmarks")),
+											("EMC",					_("EMC Bookmarks")),
 											("Both",				_("Both")) ]
 
 #Think about using AZ or ("A",False) as dict key / permanent sort store value
