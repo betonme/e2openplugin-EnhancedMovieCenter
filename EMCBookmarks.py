@@ -20,7 +20,6 @@
 #
 
 import os
-from operator import isCallable
 
 from Components.config import *
 
@@ -32,6 +31,7 @@ CFG_FILE = "/etc/enigma2/emc-bookmarks.cfg"
 
 class EMCBookmarks():
 	def __init__(self):
+		#TODO store local self.emcbookmarks = []
 		pass
 
 	# Is the EMC bookmarks as a list
@@ -54,22 +54,39 @@ class EMCBookmarks():
 			finally:
 				if f is not None:
 					f.close()
-			bm = map(lambda b:b[:-1], bm)
+			bm = map(lambda b:b.strip(), bm)
 		return bm
+
+	# Writes the EMC bookmark file
+	# Returns True on success
+	# Returns False on failure
+	def setEMCBookmarks(self, bm):
+		if bm and os.access(CFG_FILE, os.W_OK):
+			bm.sort()
+			f = None
+			try:
+				bmfile = open(CFG_FILE, "w")
+				bmfile.writelines([ p + "\n" for p in bm ])
+				bmfile.close()
+				return True
+			except Exception, e:
+				emcDebugOut("[EMCBookmarks] Exception in setEMCBookmarks: " + str(e))
+			finally:
+				if f is not None:
+					f.close()
+		return False
 
 	# Add a path to the EMC bookmark list
 	# Returns True on success
 	# Returns False on already in bookmarklist or failure
 	def addEMCBookmark(self, path):
 		if path:
-			try:
-				if path.endswith("/"):	path = path[:-1]
-				bmfile = open(CFG_FILE, "a")
-				bmfile.write(path + "\n")
-				bmfile.close()
-				return True
-			except Exception, e:
-				emcDebugOut("[EMCMM] addEMCBookmark exception:\n" + str(e))
+			if path.endswith("/"):	path = path[:-1]
+			bm = []
+			bm = self.getEMCBookmarks()
+			if path not in bm:
+				bm.append(path)
+				return self.setEMCBookmarks(bm)
 		return False
 
 	# Remove a path from the EMC bookmark list
@@ -77,16 +94,9 @@ class EMCBookmarks():
 	# Returns False on already in bookmarklist or failure
 	def removeEMCBookmark(self, path):
 		if path:
-			try:
-				bm = []
-				bmfile = open(CFG_FILE, "r+")
-				bm = f.readlines()
-				bm = map(lambda b:b[:-1], bm)
-				if path in bm:
-					bm.remove(path)
-					bmfile.writelines([ p for p in bm ])		
-				bmfile.close()
-				return True
-			except Exception, e:
-				emcDebugOut("[EMCMM] removeEMCBookmark exception:\n" + str(e))
+			bm = []
+			bm = self.getEMCBookmarks()
+			if path in bm:
+				bm.remove(path)
+				return self.setEMCBookmarks(bm)
 		return False
