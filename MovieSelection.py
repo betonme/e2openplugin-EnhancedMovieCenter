@@ -1202,7 +1202,8 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		current = self.getCurrent()	# make sure there is atleast one entry in the list
 		if current is not None:
 			selectedlist = self["list"].makeSelectionList()[:]
-			if self["list"].currentSelIsDirectory() and len(selectedlist) == 1 and current==selectedlist[0]:
+			single = len(selectedlist) == 1 and current==selectedlist[0]
+			if single and self["list"].currentSelIsDirectory():
 				if not config.EMC.movie_trashcan_enable.value or config.EMC.movie_delete_validation.value or self.permanentDel:
 					path = current.getPath()
 					if os.path.islink(path):
@@ -1215,13 +1216,14 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 							msg )
 				else:
 					self.delPathSelConfirmed(current, True)
-			elif len(selectedlist) == 1 and current==selectedlist[0]:
-				if self["list"].currentSelIsE2Bookmark():
-					# Delete a single bookmark
-					self.deleteE2Bookmark(current)
-				elif self["list"].currentSelIsEMCBookmark():
-					self.deleteEMCBookmark(current)
-					
+			
+			elif single and self["list"].currentSelIsE2Bookmark():
+				# Delete a single E2 bookmark
+				self.deleteE2Bookmark(current)
+			elif single and self["list"].currentSelIsEMCBookmark():
+				# Delete a single EMC bookmark
+				self.deleteEMCBookmark(current)
+			
 			else:
 				if self["list"].serviceBusy(selectedlist[0]): return
 				if selectedlist and len(selectedlist)>0:
