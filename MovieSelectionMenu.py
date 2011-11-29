@@ -28,7 +28,7 @@ from Plugins.Plugin import PluginDescriptor
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Screens.InputBox import InputBox
-from Screens.LocationBox import MovieLocationBox
+from Screens.LocationBox import LocationBox
 from Tools.BoundFunction import boundFunction
 import os
 
@@ -160,13 +160,17 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 		else:
 			self.close(None)
 
-	def createLink(self, currentPath):
+	def createLink(self, path):
 		self.session.openWithCallback(
-				boundFunction( self.createLinkCB, currentPath ),
-				MovieLocationBox,
-					text = _("Create Link: Choose directory"),
-					dir = str(self.currentPath)+"/",
+				boundFunction( self.createLinkCB, path ),
+				LocationBox,
+					windowTitle = _("Create Link")
+					text = _("Choose directory"),
+					currDir = str(path)+"/",
+					bookmarks = config.movielist.videodirs,
 					autoAdd = False,
+					editDir = True,
+					inhibitDirs = ["/bin", "/boot", "/dev", "/etc", "/lib", "/proc", "/sbin", "/sys", "/usr", "/var"],
 					minFree = 0 )
 
 	def createLinkCB(self, currentPath, linkPath):

@@ -27,7 +27,7 @@ from Screens.Screen import Screen
 from Screens.HelpMenu import HelpableScreen
 from Screens.MessageBox import MessageBox
 from Screens.ChoiceBox import ChoiceBox
-from Screens.LocationBox import MovieLocationBox
+from Screens.LocationBox import LocationBox
 from Tools import Notifications
 from Tools.BoundFunction import boundFunction
 from enigma import getDesktop, eServiceReference, eTimer
@@ -482,10 +482,15 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 	def openE2Bookmarks(self):
 		self.session.openWithCallback(
 			self.openBookmarksCB,
-			MovieLocationBox,
+			LocationBox,
+				windowTitle = _("E2 Bookmark")
 				text = _("Open E2 Bookmark path"),
-				dir = str(self.currentPath)+"/",
-				autoAdd = False )
+				currDir = str(path)+"/",
+				bookmarks = config.movielist.videodirs,
+				autoAdd = False,
+				editDir = True,
+				inhibitDirs = ["/bin", "/boot", "/dev", "/etc", "/lib", "/proc", "/sbin", "/sys", "/usr", "/var"],
+				minFree = 0 )
 
 	def openEMCBookmarks(self):
 		#TODO Use a choicebox
@@ -1505,10 +1510,14 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 					self.tmpSelList = selectedlist[:]
 					self.session.openWithCallback(
 						self.mvDirSelected,
-						MovieLocationBox,
-							text = _("Move file(s): Choose directory"),
-							dir = str(self.currentPath)+"/",
+						LocationBox,
+							windowTitle = _("Move file(s):")
+							text = _("Choose directory"),
+							currDir = str(self.currentPath)+"/",
+							bookmarks = config.movielist.videodirs,
 							autoAdd = False,
+							editDir = True,
+							inhibitDirs = ["/bin", "/boot", "/dev", "/etc", "/lib", "/proc", "/sbin", "/sys", "/usr", "/var"],
 							minFree = 100 )
 				except:
 					self.session.open(MessageBox, _("How to move files:\nSelect some movies with the VIDEO-button, move the cursor on top of the destination directory and press yellow."), MessageBox.TYPE_ERROR, 10)
@@ -1555,11 +1564,15 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 					self.tmpSelList = selectedlist[:]
 					self.session.openWithCallback(
 						self.cpDirSelected,
-						MovieLocationBox,
-							text = _("Copy file(s): Choose directory"),
-							dir = str(self.currentPath)+"/",
+						LocationBox,
+							windowTitle = _("Copy file(s):")
+							text = _("Choose directory"),
+							currDir = str(self.currentPath)+"/",
+							bookmarks = config.movielist.videodirs,
 							autoAdd = False,
-							minFree = 100)
+							editDir = True,
+							inhibitDirs = ["/bin", "/boot", "/dev", "/etc", "/lib", "/proc", "/sbin", "/sys", "/usr", "/var"],
+							minFree = 100 )
 				except:
 					self.session.open(MessageBox, _("How to copy files:\nSelect some movies with the VIDEO-button, move the cursor on top of the destination directory and press yellow long."), MessageBox.TYPE_ERROR, 10)
 			emcDebugOut("[EMCMS] copyMovie")

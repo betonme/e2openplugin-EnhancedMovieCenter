@@ -30,6 +30,7 @@ from Components.Label import Label
 from Components.Pixmap import Pixmap
 from Components.Sources.StaticText import StaticText
 from Screens.Screen import Screen
+from Screens.LocationBox import LocationBox
 from Screens.MessageBox import MessageBox
 from Screens.ServiceScan import *
 import Screens.Standby
@@ -523,13 +524,16 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 		try:
 			if element:
 				path = os.path.normpath( element.value )
-				from Screens.LocationBox import MovieLocationBox
 				self.session.openWithCallback( 
-					self.dirSelected,
+					self.dirSelected,	
 					MovieLocationBox,
+						windowTitle = _("Select Location")
 						text = _("Choose directory"),
-						dir = str(path)+"/",
+						currDir = str(path)+"/",
+						bookmarks = config.movielist.videodirs,
 						autoAdd = False,
+						editDir = True,
+						inhibitDirs = ["/bin", "/boot", "/dev", "/etc", "/lib", "/proc", "/sbin", "/sys", "/usr", "/var"],
 						minFree = 100 )
 		except: pass
 
