@@ -94,6 +94,7 @@ class EMCBookmarks():
 	# Returns False on already in bookmarklist or failure
 	def removeEMCBookmark(self, path):
 		if path:
+			if path.endswith("/"):	path = path[:-1]
 			bm = []
 			bm = self.getEMCBookmarks()
 			if path in bm:

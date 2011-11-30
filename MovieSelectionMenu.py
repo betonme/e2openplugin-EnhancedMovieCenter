@@ -334,5 +334,8 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 	
 	# Overwrite Screen close function
 	def close(self, parameter = None):
+		if parameter is None:
+			if self.reloadafterclose:
+				parameter = "reload"
 		# Call baseclass function
-		Screen.close(self, parameter or self.reloadafterclose)
+		Screen.close(self, parameter)
