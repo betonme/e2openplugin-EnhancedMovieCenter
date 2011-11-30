@@ -212,7 +212,8 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 		self.pic_movie_rec       = LoadPixmap(cached=True, path='/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/movie_rec.png')
 		self.pic_movie_recrem    = LoadPixmap(cached=True, path='/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/movie_recrem.png')
 		self.pic_movie_cut       = LoadPixmap(cached=True, path='/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/movie_cut.png')
-		self.pic_bookmark        = LoadPixmap(cached=True, path='/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/bookmark.png')
+		self.pic_e2bookmark      = LoadPixmap(cached=True, path='/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/e2bookmark.png')
+		self.pic_emcbookmark     = LoadPixmap(cached=True, path='/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/emcbookmark.png')
 		self.pic_trashcan        = LoadPixmap(cached=True, path='/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/trashcan.png')
 		self.pic_trashcan_full   = LoadPixmap(cached=True, path='/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/trashcan_full.png')
 		self.pic_mp3             = LoadPixmap(cached=True, path='/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/music.png')
@@ -783,9 +784,12 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 				elif ext == cmtUp:
 					datetext = _("Up")
 					pixmap = self.pic_back
-				elif ext == cmtBME2 or ext == cmtBMEMC:
+				elif ext == cmtBME2:
 					datetext = _("Bookmark")
-					pixmap = self.pic_bookmark
+					pixmap = self.pic_e2bookmark
+				elif ext == cmtBMEMC:
+					datetext = _("Bookmark")
+					pixmap = self.pic_emcbookmark
 				elif ext == cmtTrash:
 					if config.EMC.movie_trashcan_enable.value and config.EMC.movie_trashcan_info.value:
 						#TODO Improve performance
