@@ -485,7 +485,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			LocationBox,
 				windowTitle = _("E2 Bookmark"),
 				text = _("Open E2 Bookmark path"),
-				currDir = str(path)+"/",
+				currDir = str(self.currentPath)+"/",
 				bookmarks = config.movielist.videodirs,
 				autoAdd = False,
 				editDir = True,
@@ -493,7 +493,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 				minFree = 0 )
 
 	def openEMCBookmarks(self):
-		#TODO Use a choicebox
+		#TODO Use a choicebox or a LocationBox with simulated bookmarks
 		self.session.openWithCallback(self.openBookmarksCB, MovieMenu, "emcBookmarks", self, self["list"], None, self["list"].makeSelectionList(), self.currentPath)
 
 	def openBookmarksCB(self, path=None):
