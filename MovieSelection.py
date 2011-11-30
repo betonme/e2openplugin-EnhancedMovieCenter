@@ -1042,7 +1042,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		current = self.getCurrent()
 		if current is not None:
 			# Save service 
-			self.returnService = self.getCurrent() #self.getNextSelectedService(self.getCurrent(), self.tmpSelList)
+			#self.returnService = self.getCurrent() #self.getNextSelectedService(self.getCurrent(), self.tmpSelList)
 			
 			# Think about MovieSelection should only know about directories and files
 			# All other things should be in the MovieCenter
