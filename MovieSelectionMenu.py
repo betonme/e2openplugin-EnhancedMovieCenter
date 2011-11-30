@@ -142,9 +142,10 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 
 	def redButton(self):
 		if self.mode != "emcBookmarks": return
-		path = self["menu"].getCurrent()
+		current = self["menu"].getCurrent()
+		path = current and current[0]
 		if path and self.removeEMCBookmark(path):
-			self.menu.remove(path)
+			self.menu.remove(current)
 			self["menu"].setList(self.menu)
 			if (config.EMC.bookmarks.value == "Both" or config.EMC.bookmarks.value == "EMC") \
 				and path == config.EMC.movie_homepath.value:
