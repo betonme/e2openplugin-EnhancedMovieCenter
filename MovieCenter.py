@@ -882,7 +882,8 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 			for l in self.list[:]:
 				if l[0] == service:
 					self.list.remove(l)
-					self.l.setList(self.list)
+					self.list = self.doListSort(self.list)
+					self.l.setList( self.list )
 					break
 
 	def serviceBusy(self, service):
