@@ -52,6 +52,7 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 		self.service = service
 		self.selections = selections
 		self.currentPath = currentPath
+		self.reloadafterclose = False
 		
 		self.menu = []
 		if menumode == "normal":
@@ -130,13 +131,26 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 					self.menu.append((line, boundFunction(self.close, line)))
 
 		self["menu"] = List(self.menu)
-		self["actions"] = ActionMap(["OkCancelActions"],
+		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"],
 			{
-				"ok":		self.okButton,
-				"cancel":	self.close,
+				"ok":       self.okButton,
+				"cancel":   self.close,
+				"red":      self.redButton,
 			})
 		self.skinName = "Menu"
 		self.onShow.append(self.onDialogShow)
+
+	def redButton(self):
+		if self.mode != "emcBookmarks": return
+		path = self["menu"].getCurrent()
+		if path and self.removeEMCBookmark(path):
+			self.menu.remove(path)
+			self["menu"].setList(self.menu)
+			if (config.EMC.bookmarks.value == "Both" or config.EMC.bookmarks.value == "EMC") \
+				and path == config.EMC.movie_homepath.value:
+				#TODO Avoid reload
+				# Just a remove service will do the job
+				self.reloadafterclose = True
 
 	def createDir(self, currentPath):
 		self.hide()
@@ -318,3 +332,7 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 		self.mlist.removePermanentSort(path)
 		self.close("updatetitle")
 	
+	# Overwrite Screen close function
+	def close(self, parameter = None):
+		# Call baseclass function
+		Screen.close(self, parameter or self.reloadafterclose)
