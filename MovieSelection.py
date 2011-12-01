@@ -270,7 +270,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		HelpableScreen.__init__(self)
 		
 		self.currentPath = config.EMC.movie_homepath.value
-		self.tmpSelList = None
+		self.tmpSelList = None		# Used for file operations
 		
 		# Key press short long handling
 		#TODO We have to rework this key press handling in order to allow different user defined color key functions
@@ -843,6 +843,8 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			self.moveTop()
 		
 		self.returnService = None
+		self.tmpSelList = None
+		
 		self.updateInfo()
 
 	def onDialogShow(self):
@@ -981,6 +983,8 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 
 	def reloadList(self, path=None):
 		self.multiSelectIdx = None
+		self.resetInfo()
+		
 		if config.EMC.moviecenter_loadtext.value:
 			self.loading()
 		DelayedFunction(20, self.__reloadList, path)
