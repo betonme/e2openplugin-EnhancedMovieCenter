@@ -332,10 +332,12 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			self.playerInstance.movieSelected(None)
 		else:
 			config.av.policy_43.cancel() # reload the default setting
-		# Movie preview
-		# Restore last service only if no player is active
-		if not self.playerInstance and self.lastservice:
-			self.session.nav.playService(self.lastservice)
+			
+			# Movie preview
+			# Restore last service only if no player is active
+			if self.lastservice:
+				self.session.nav.playService(self.lastservice)
+				self.lastservice = None
 		self.close(None)
 
 	def blueFunc(self):
@@ -829,6 +831,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		if self.returnService:
 			# Move to next or last selected entry
 			self.moveToService(self.returnService)
+			self.returnService = None
 			#TODOret if self.returnService: print "EMC ret retSer " +str(self.returnService.toString())
 		
 		elif self.playerInstance:
@@ -842,14 +845,11 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			#TODOret print "EMC ret initCursor movetop correct ????"
 			self.moveTop()
 		
-		self.returnService = None
-		self.tmpSelList = None
-		
 		self.updateInfo()
 
 	def onDialogShow(self):
 		# Movie preview
-		self.lastservice = self.session.nav.getCurrentlyPlayingServiceReference()
+		self.lastservice = self.lastservice or self.session.nav.getCurrentlyPlayingServiceReference()
 		
 		self.initButtons()
 		
@@ -1481,10 +1481,13 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 				self.lastPlayedCheck(service)
 		self["list"].resetSelection()
 		if cmd:
-			if op != "copy":
-				association.append((self.initCursor, False)) # Set new Cursor position
+			association.append((self.initCursor, False)) # Set new Cursor position
+			association.append((self.postFileOp))
 			# Sync = True: Run script for one file do association and continue with next file
 			emcTasker.shellExecute(cmd, association, True)	# first move, then delete if expiration limit is 0
+
+	def postFileOp(self):
+		self.tmpSelList = None
 
 	def moveMovie(self):
 		# Avoid starting move and copy at the same time
