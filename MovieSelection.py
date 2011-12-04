@@ -207,6 +207,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		self.lastPlayedMovies = None
 		self.multiSelectIdx = None
 		self.returnService = None
+		self.lastservice = None
 		self.cursorDir = 0
 		self["wait"] = Label(_("Reading directory..."))
 		self["wait"].hide()
