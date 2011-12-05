@@ -108,25 +108,23 @@ class EMCExecutioner:
 			emcDebugOut("[emcTasker] execCurrent exception:\n" + str(e))
 
 	def runFinished(self, retval=None):
-		def unpack(seq, n=1):
-			for row in seq:
-				if isinstance(row, tuple) or isinstance(row, list):
-					yield [e for e in row[:n]] + [row[n:]]
-				else:
-					yield row, None
-		
 		try:
 			associated = self.associated.popleft()
 			emcDebugOut("[emcTasker] sh exec %s finished, return status = %s %s" %(self.executing, str(retval), self.returnData))
-			if associated:
+			if associatedlist:
 				#P3 for foo, bar, *other in tuple:
-				for f, args in unpack(associated):
-					# callback( args )
-					if isinstance(f, Callable):
-						if args:
-							f(*args)
+				for associated in associatedlist:
+					for fargs in associated:
+						if isinstance(fargs, tuple) or isinstance(fargs, list):
+							f, args = [e for e in fargs[:n]] + [fargs[n:]]
+							if isinstance(f, Callable):
+								if args:
+									f(*args)
+								else:
+									f(args)
 						else:
-							f(args)
+							if isinstance(fargs, Callable):
+								fargs()
 			self.returnData = ""
 			
 			if self.script:

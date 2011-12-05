@@ -197,7 +197,7 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 				cmd = 'ln -s "'+ linkPath +'" "'+ os.path.join(currentPath, name) +'"'
 				if cmd != "":
 					association = []
-					association.append((self.mselection.reloadList, None))	# Force list reload after creating the link
+					association.append((self.mselection.reloadList))	# Force list reload after creating the link
 					emcTasker.shellExecute(cmd, association)
 			except Exception, e:
 				emcDebugOut("[EMCMM] createLink exception:\n" + str(e))
