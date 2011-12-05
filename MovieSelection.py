@@ -1285,7 +1285,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 					self.deleteEMCBookmarkConfirmed(service, True)
 
 	def deleteEMCBookmarkConfirmed(self, service, confirm):
-		if confirm and service and config.movielist and config.movielist.videodirs:
+		if confirm and service:
 			path = service.getPath()
 			if self.removeEMCBookmark(path):
 				# If service is not in list, don't care about it.

@@ -61,6 +61,7 @@ class EMCBookmarks():
 	# Returns True on success
 	# Returns False on failure
 	def setEMCBookmarks(self, bm):
+		result = False
 		if bm and os.access(CFG_FILE, os.W_OK):
 			bm.sort()
 			f = None
@@ -68,13 +69,13 @@ class EMCBookmarks():
 				bmfile = open(CFG_FILE, "w")
 				bmfile.writelines([ p + "\n" for p in bm ])
 				bmfile.close()
-				return True
+				result = True
 			except Exception, e:
 				emcDebugOut("[EMCBookmarks] Exception in setEMCBookmarks: " + str(e))
 			finally:
 				if f is not None:
 					f.close()
-		return False
+		return result
 
 	# Add a path to the EMC bookmark list
 	# Returns True on success
