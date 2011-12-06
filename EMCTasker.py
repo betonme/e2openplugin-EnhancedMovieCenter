@@ -111,20 +111,19 @@ class EMCExecutioner:
 		try:
 			associated = self.associated.popleft()
 			emcDebugOut("[emcTasker] sh exec %s finished, return status = %s %s" %(self.executing, str(retval), self.returnData))
-			if associatedlist:
+			if associated:
 				#P3 for foo, bar, *other in tuple:
-				for associated in associatedlist:
-					for fargs in associated:
-						if isinstance(fargs, tuple) or isinstance(fargs, list):
-							f, args = [e for e in fargs[:n]] + [fargs[n:]]
-							if isinstance(f, Callable):
-								if args:
-									f(*args)
-								else:
-									f(args)
-						else:
-							if isinstance(fargs, Callable):
-								fargs()
+				for fargs in associated:
+					if isinstance(fargs, tuple) or isinstance(fargs, list):
+						f, args = [e for e in fargs[:n]] + [fargs[n:]]
+						if isinstance(f, Callable):
+							if args:
+								f(*args)
+							else:
+								f(args)
+					else:
+						if isinstance(fargs, Callable):
+							fargs()
 			self.returnData = ""
 			
 			if self.script:
