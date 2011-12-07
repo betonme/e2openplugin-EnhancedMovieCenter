@@ -115,7 +115,7 @@ class EMCExecutioner:
 				#P3 for foo, bar, *other in tuple:
 				for fargs in associated:
 					if isinstance(fargs, tuple) or isinstance(fargs, list):
-						f, args = [e for e in fargs[:n]] + [fargs[n:]]
+						f, args = [e for e in fargs[:1]] + [fargs[1:]]
 						if isinstance(f, Callable):
 							if args:
 								f(*args)
