@@ -168,13 +168,13 @@ class EMCTasker:
 
 	def Initialize(self, session):
 		self.session = session
-		if config.EMC.enigmarestart.value:
+		if config.EMC.restart.value != "0":
 			from DelayedFunction import DelayedFunction
 			DelayedFunction(60 * 1000, self.RestartTimerStart, True)	# delay auto restart timer to make sure there's time for clock init
 
 	def ShowAutoRestartInfo(self):
 		# call the Execute/Stop function to update minutes
-		if config.EMC.enigmarestart.value:
+		if config.EMC.restart.value != "0":
 			self.RestartTimerStart(True)
 		else:
 			self.RestartTimerStop()
@@ -204,11 +204,13 @@ class EMCTasker:
 		if confirmFlag:
 			emcDebugOut("+++ Enigma restart NOW")
 			flag = os.path.join(config.EMC.folder.value, "EMC_standby_flag.tmp")
-			if Screens.Standby.inStandby or config.EMC.enigmarestart_stby.value:
+			if Screens.Standby.inStandby or config.EMC.restart_stby.value:
 				emcDebugOut("!", flag, fmode="w", forced=True)
 			else:
 				self.shellExecute("rm -rf " + flag)
-			self.session.open(TryQuitMainloop, 3)
+			if config.EMC.restart.value == "2": CoolRestart = 2 # Reboot
+			else: CoolRestart = 3 # E2 Restart
+			self.session.open(TryQuitMainloop, CoolRestart)
 			# this means that we're going to be re-instantiated after Enigma has restarted
 		else:
 			self.RestartTimerStart(True, 60)
@@ -219,8 +221,8 @@ class EMCTasker:
 			self.timerActive = False
 
 			lotime = localtime()
-			wbegin = config.EMC.enigmarestart_begin.value
-			wend = config.EMC.enigmarestart_end.value
+			wbegin = config.EMC.restart_begin.value
+			wend = config.EMC.restart_end.value
 			xtimem = lotime[3]*60 + lotime[4]
 			ytimem = wbegin[0]*60 + wbegin[1]
 			ztimem = wend[0]*60 + wend[1]
