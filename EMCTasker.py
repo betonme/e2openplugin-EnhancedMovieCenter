@@ -183,9 +183,9 @@ class EMCTasker:
 		if self.timerActive:
 			mints = self.minutes % 60
 			hours = self.minutes / 60
-			self.session.open(MessageBox, _("Next Enigma auto-restart in ")+ str(hours) +" h "+ str(mints) +" min", MessageBox.TYPE_INFO, 4)
+			self.session.open(MessageBox, _("Next auto-start in ")+ str(hours) +" h "+ str(mints) +" min", MessageBox.TYPE_INFO, 4)
 		else:
-			self.session.open(MessageBox, _("Enigma auto-restart is currently not active."), MessageBox.TYPE_INFO, 4)
+			self.session.open(MessageBox, _("auto-start is currently not active."), MessageBox.TYPE_INFO, 4)
 
 	def RestartTimerStop(self):
 		self.restartTimer.stop()
@@ -238,14 +238,14 @@ class EMCTasker:
 			ztimem = wend[0]*60 + wend[1]
 
 			if ytimem > ztimem:	ztimem += 12*60
-			emcDebugOut("+++ Local time is " +str(lotime[3:5]) + ", auto-restart window is %s - %s" %(str(wbegin), str(wend)) )
+			emcDebugOut("+++ Local time is " +str(lotime[3:5]) + ", auto-start window is %s - %s" %(str(wbegin), str(wend)) )
 
 			if postponeDelay > 0:
 				self.restartTimer.start(postponeDelay * 60000, False)
 				self.timerActive = True
 				mints = postponeDelay % 60
 				hours = postponeDelay / 60
-				emcDebugOut("+++ User postponed auto-restart by " +str(hours)+ "h " +str(mints)+ "min")
+				emcDebugOut("+++ User postponed auto-start by " +str(hours)+ "h " +str(mints)+ "min")
 				return
 
 			minsToGo = ytimem - xtimem
@@ -261,7 +261,7 @@ class EMCTasker:
 				self.minutes = minsToGo
 				mints = self.minutes % 60
 				hours = self.minutes / 60
-				emcDebugOut("+++ Auto restart rescheduled in " +str(hours)+ "h " +str(mints)+ "min")
+				emcDebugOut("+++ Auto start rescheduled in " +str(hours)+ "h " +str(mints)+ "min")
 			else:
 				recordings = len(self.session.nav.getRecordings())
 				next_rec_time = self.session.nav.RecordTimer.getNextRecordingTime()
