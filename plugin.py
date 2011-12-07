@@ -166,6 +166,10 @@ bookmark_choices = [	("No",					_("No")),
 											("EMC",					_("EMC Bookmarks")),
 											("Both",				_("Both")) ]
 
+restart_choices = [	("",              _("No")),
+										("2",             _("Reboot")),
+										("3",             _("E2 Restart"))]
+
 #Think about using AZ or ("A",False) as dict key / permanent sort store value
 sort_modes = {		("D",False)	:				( _("Date sort descending (D-)"), 	("D-")	),
 									("A",False)	:				( _("Alpha sort ascending (AZ)"), 	("AZ")	),
@@ -200,7 +204,7 @@ config.EMC.autosubs                  = ConfigYesNo(default = False)
 config.EMC.autoaudio                 = ConfigYesNo(default = False)
 config.EMC.key_period                = ConfigSelectionNumber(50, 900, 50, default = 100)
 config.EMC.key_repeat                = ConfigSelectionNumber(250, 900, 50, default= 500)
-config.EMC.restart                   = ConfigSelection(choices = [("0", _("No")), ("2", _("Reboot")), ("3", _("E2 Restart"))], default = "0")
+config.EMC.restart                   = ConfigSelection(choices = default = "", restart_choices)
 config.EMC.restart_begin       = ConfigClock(default = 60 * 60 * 2)
 config.EMC.restart_end         = ConfigClock(default = 60 * 60 * 5)
 config.EMC.restart_stby        = ConfigYesNo(default = False)
