@@ -119,7 +119,7 @@ def EMCStartup(session):
 	DelayedFunction(5000, cleanupSetup)
 
 	# Go into standby if the reason for restart was EMC auto-restart
-	if config.EMC.restart.value != "0":
+	if config.EMC.restart.value != "":
 		flag = os.path.join(config.EMC.folder.value, "EMC_standby_flag.tmp")
 		if os.path.exists(flag):
 			emcDebugOut("+++ Going into Standby mode after auto-restart")

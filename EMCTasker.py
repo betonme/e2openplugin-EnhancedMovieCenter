@@ -168,13 +168,13 @@ class EMCTasker:
 
 	def Initialize(self, session):
 		self.session = session
-		if config.EMC.restart.value != "0":
+		if config.EMC.restart.value != "":
 			from DelayedFunction import DelayedFunction
 			DelayedFunction(60 * 1000, self.RestartTimerStart, True)	# delay auto restart timer to make sure there's time for clock init
 
 	def ShowAutoRestartInfo(self):
 		# call the Execute/Stop function to update minutes
-		if config.EMC.restart.value != "0":
+		if config.EMC.restart.value != "":
 			self.RestartTimerStart(True)
 		else:
 			self.RestartTimerStop()
