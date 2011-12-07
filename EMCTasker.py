@@ -196,8 +196,14 @@ class EMCTasker:
 		if Screens.Standby.inStandby:
 			self.LaunchRestart(True)	# no need to query if in standby mode
 		else:
-			# query from the user if it is ok to restart now
-			stri = _("EMC Enigma2 auto-restart launching, continue? Select no to postpone by one hour.")
+			if config.EMC.restart.value == "0": # Standby
+				stri = _("Your Box is about to go into Standby, continue?\n Select no to delay one hour")
+			elif config.EMC.restart.value == "1": # DeepStandby
+				stri = _("Your Box is about to go into DeepStandby, continue?\n Select no to delay one hour")
+			elif config.EMC.restart.value == "2": # Reboot
+				stri = _("Your Box is about to go into Reboot, continue?\n Select no to delay one hour")
+			else: # E2 Restart
+				stri = _("Your Box is about to go into E2 Restart, continue?\n Select no to delay one hour")
 			self.session.openWithCallback(self.LaunchRestart, MessageBox, stri, MessageBox.TYPE_YESNO, 30)
 
 	def LaunchRestart(self, confirmFlag=True):
@@ -208,7 +214,11 @@ class EMCTasker:
 				emcDebugOut("!", flag, fmode="w", forced=True)
 			else:
 				self.shellExecute("rm -rf " + flag)
-			if config.EMC.restart.value == "2": CoolRestart = 2 # Reboot
+			if config.EMC.restart.value == "0": # Standby
+				self.session.open(Standby)
+				return "true"
+			elif config.EMC.restart.value == "1": CoolRestart = 1 # DeepStandby
+			elif config.EMC.restart.value == "2": CoolRestart = 2 # Reboot
 			else: CoolRestart = 3 # E2 Restart
 			self.session.open(TryQuitMainloop, CoolRestart)
 			# this means that we're going to be re-instantiated after Enigma has restarted

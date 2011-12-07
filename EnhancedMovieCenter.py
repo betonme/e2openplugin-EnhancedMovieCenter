@@ -263,6 +263,12 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 			(  _("Show EMC in extensions menu")                   , config.EMC.extmenu_list             , self.needsRestart     , None                  , 0     , []          , _("HELP_Show EMC in extensions menu")                    , None              , None ),
 			
 			(  separator                                          , config.EMC.about                    , None                  , None                  , 0     , []          , _("")                                                    , None              , None ),
+			(  _("daily auto-start")                              , config.EMC.restart                  , self.autoRestartInfo  , self.autoRestartInfo  , 1     , []          , _("HELP_Daily auto-start")                               , None              , None ),
+			(  _("auto-start window begin")                       , config.EMC.restart_begin            , None                  , None                  , 1     , [-1]        , _("HELP_auto-start window begin")                        , None              , None ),
+			(  _("auto-start window end")                         , config.EMC.restart_end              , None                  , None                  , 1     , [-2]        , _("HELP_auto-start window end")                          , None              , None ),
+			(  _("Force standby after auto-restart")              , config.EMC.restart_stby             , None                  , None                  , 1     , [-3]        , _("HELP_Force standby after auto-start")                 , None              , None ),
+			
+			(  separator                                          , config.EMC.about                    , None                  , None                  , 0     , []          , _("")                                                    , None              , None ),
 			(  _("Movie home at start")                           , config.EMC.CoolStartHome            , None                  , None                  , 0     , []          , _("HELP_Movie home at start")                            , False             , None ),
 			(  _("Default sort mode")                             , config.EMC.moviecenter_sort         , None                  , None                  , 0     , []          , _("HELP_Sort mode at startup")                           , None              , None ),
 	
@@ -341,12 +347,7 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 			
 			(  _("Enable remote recordings")                      , config.EMC.remote_recordings        , None                  , None                  , 1     , []          , _("HELP_Enable remote recordings")                       , False             , None ),
 			(  _("Automatic timers list cleaning")                , config.EMC.timer_autocln            , None                  , None                  , 1     , []          , _("HELP_Automatic timers list cleaning")                 , None              , None ),
-			
-			(  _("Enigma daily auto-restart")                     , config.EMC.restart                  , self.autoRestartInfo  , self.autoRestartInfo  , 1     , []          , _("HELP_Enigma daily auto-restart")                      , None              , None ),
-			(  _("Enigma auto-restart window begin")              , config.EMC.restart_begin            , None                  , None                  , 1     , [-1]        , _("HELP_Enigma auto-restart window begin")               , None              , None ),
-			(  _("Enigma auto-restart window end")                , config.EMC.restart_end              , None                  , None                  , 1     , [-2]        , _("HELP_Enigma auto-restart window end")                 , None              , None ),
-			(  _("Force standby after auto-restart")              , config.EMC.restart_stby             , None                  , None                  , 1     , [-3]        , _("HELP_Force standby after auto-restart")               , None              , None ),
-			
+
 			(  separator                                          , config.EMC.about                    , None                  , None                  , 1     , []          , _("HELP_Language Separator")                             , None              , None ),
 			(  _("Preferred EPG language")                        , config.EMC.epglang                  , setEPGLanguage        , None                  , 1     , []          , _("HELP_Preferred EPG language")                         , None              , None ),
 			(  _("Enable playback auto-subtitling")               , config.EMC.autosubs                 , None                  , None                  , 1     , []          , _("HELP_Enable playback auto-subtitling")                , None              , None ),

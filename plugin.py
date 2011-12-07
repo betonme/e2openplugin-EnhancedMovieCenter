@@ -167,6 +167,8 @@ bookmark_choices = [	("No",					_("No")),
 											("Both",				_("Both")) ]
 
 restart_choices = [	("",              _("No")),
+										("0",             _("Standby")),
+										("1",             _("DeepStandby")),
 										("2",             _("Reboot")),
 										("3",             _("E2 Restart"))]
 
