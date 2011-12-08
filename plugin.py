@@ -157,7 +157,7 @@ move_choices = [	("d",								_("down")),
 									("b",								_("up/down")),
 									("o",								_("off")) ]
 
-pig_choices = [	("TV",								_("TV")),
+pig_choices = [	("No",								_("No")),
 								("P",									_("Preview")),
 								("C",									_("Cover")) ]
 
@@ -221,7 +221,7 @@ config.EMC.movie_bluefunc            = ConfigSelection(default = "MH", choices =
 #config.EMC.movie_yellowfunc 
 config.EMC.CoolStartHome             = ConfigYesNo(default = False)
 config.EMC.movie_descdelay           = ConfigSelectionNumber(50, 60000, 50, default= 200)
-config.EMC.movie_pig                 = ConfigSelection(default = "TV", choices = pig_choices)
+config.EMC.movie_pig                 = ConfigSelection(default = "No", choices = pig_choices)
 config.EMC.movie_pig_delay           = ConfigSelectionNumber(50, 60000, 50, default= 500)
 config.EMC.skin_able                 = ConfigYesNo(default = False)
 config.EMC.movie_icons               = ConfigYesNo(default = True)
