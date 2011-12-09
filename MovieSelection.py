@@ -77,7 +77,7 @@ class SelectionEventInfo:
 		#self.noCoverPixmap = None
 
 	def initPig(self):
-		if config.EMC.movie_pig.value == "No":
+		if config.EMC.movie_pig.value == "":
 			self["Cover"].hide()
 			self["Video"].show()
 		elif config.EMC.movie_pig.value == "C":
