@@ -58,8 +58,8 @@ from E2Bookmarks import E2Bookmarks
 from EMCBookmarks import EMCBookmarks
 from ServiceSupport import ServiceEvent
 
-from MovieCenter import extList, extVideo, extMedia, extDir, plyDVD
-global extList, extVideo, extMedia, extDir, plyDVD
+from MovieCenter import extList, extVideo, extMedia, extDir, plyDVD, cmtBME2, cmtBMEMC
+global extList, extVideo, extMedia, extDir, plyDVD, cmtBME2, cmtBMEMC
 
 gMS = None
 
@@ -1270,7 +1270,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			path = service.getPath()
 			if self.removeE2Bookmark(path):
 				# If service is not in list, don't care about it.
-				self["list"].removeService(service)
+				self["list"].removeServiceOfType(service, cmtBME2)
 
 	def deleteEMCBookmark(self, service):
 		if service:
@@ -1289,7 +1289,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			path = service.getPath()
 			if self.removeEMCBookmark(path):
 				# If service is not in list, don't care about it.
-				self["list"].removeService(service)
+				self["list"].removeServiceOfType(service, cmtBMEMC)
 
 	def deleteMovieQ(self, selectedlist, remoteRec):
 		try:
