@@ -157,7 +157,7 @@ move_choices = [	("d",								_("down")),
 									("b",								_("up/down")),
 									("o",								_("off")) ]
 
-pig_choices = [	("No",								_("No")),
+pig_choices = [	("",									_("No")),
 								("P",									_("Preview")),
 								("C",									_("Cover")) ]
 
@@ -166,11 +166,11 @@ bookmark_choices = [	("No",					_("No")),
 											("EMC",					_("EMC Bookmarks")),
 											("Both",				_("Both")) ]
 
-restart_choices = [	("",              _("No")),
-										("0",             _("Standby")),
-										("1",             _("DeepStandby")),
-										("2",             _("Reboot")),
-										("3",             _("E2 Restart"))]
+restart_choices = [	("",							_("No")),
+										("0",							_("Standby")),
+										("1",							_("DeepStandby")),
+										("2",							_("Reboot")),
+										("3",							_("E2 Restart"))]
 
 #Think about using AZ or ("A",False) as dict key / permanent sort store value
 sort_modes = {		("D",False)	:				( _("Date sort descending (D-)"), 	("D-")	),
@@ -221,7 +221,7 @@ config.EMC.movie_bluefunc            = ConfigSelection(default = "MH", choices =
 #config.EMC.movie_yellowfunc 
 config.EMC.CoolStartHome             = ConfigYesNo(default = False)
 config.EMC.movie_descdelay           = ConfigSelectionNumber(50, 60000, 50, default= 200)
-config.EMC.movie_pig                 = ConfigSelection(default = "No", choices = pig_choices)
+config.EMC.movie_pig                 = ConfigSelection(default = "", choices = pig_choices)
 config.EMC.movie_pig_delay           = ConfigSelectionNumber(50, 60000, 50, default= 500)
 config.EMC.skin_able                 = ConfigYesNo(default = False)
 config.EMC.movie_icons               = ConfigYesNo(default = True)
