@@ -609,7 +609,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		# Movie cover
 		if config.EMC.movie_pig.value == "C":
 			# Show cover only for media files and directories
-			if self["list"].currentSelIsPlayable() or self["list"].currentSelIsDirectory()::
+			if self["list"].currentSelIsPlayable() or self["list"].currentSelIsDirectory():
 				self.pigTimer.start(int(config.EMC.movie_pig_delay.value), True)
 		# Movie preview
 		elif config.EMC.movie_pig.value == "P":
