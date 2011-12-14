@@ -1274,7 +1274,14 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			path = service.getPath()
 			if self.removeE2Bookmark(path):
 				# If service is not in list, don't care about it.
+				print "EMC: deleteEMCBookmarkConfirmed"
+				print service
+				print self.getCurrent()
+				print self.returnService
 				self["list"].removeServiceOfType(service, cmtBME2)
+				print service
+				print self.getCurrent()
+				print self.returnService
 
 	def deleteEMCBookmark(self, service):
 		if service:
@@ -1293,7 +1300,14 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			path = service.getPath()
 			if self.removeEMCBookmark(path):
 				# If service is not in list, don't care about it.
+				print "EMC: deleteEMCBookmarkConfirmed"
+				print service
+				print self.getCurrent()
+				print self.returnService
 				self["list"].removeServiceOfType(service, cmtBMEMC)
+				print service
+				print self.getCurrent()
+				print self.returnService
 
 	def deleteMovieQ(self, selectedlist, remoteRec):
 		try:
