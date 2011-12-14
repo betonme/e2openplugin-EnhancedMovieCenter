@@ -78,51 +78,55 @@ class SelectionEventInfo:
 
 	def initPig(self):
 		if config.EMC.movie_pig.value == "":
+			print "EMC: InitPig"
 			self["Cover"].hide()
 			self["Video"].show()
+			self.session.nav.playService(self.lastservice)
+			self.lastservice = None
 		elif config.EMC.movie_pig.value == "C":
+			print "EMC: InitPig C"
 			self["Video"].hide()
 			self["Cover"].instance.setPixmap(None)
 			#self["Cover"].show()
 			self["Cover"].hide()
 		elif config.EMC.movie_pig.value == "P":
+			print "EMC: InitPig P"
 			self["Cover"].hide()
-			self["Video"].show()
-			#TODO reset preview
+			#self["Video"].show()
+			self["Video"].hide()
 
 	def updateEventInfo(self, service):
 		self["Service"].newService(service)
 
 	def showCover(self, service=None):
-		if config.EMC.movie_pig.value == "C":
-			if service:
-				path = service.getPath()
-				name, ext = os.path.splitext(path)
-				ext = ext.lower()
-				jpgpath = ""
-				if ext in extMedia:
-					jpgpath = name + ".jpg"
-				elif os.path.isdir(path):
-					jpgpath = os.path.join(path, "folder.jpg")
-					#TODO avoid os.path.exists double check
-					if jpgpath and not os.path.exists(jpgpath):
-						jpgpath = os.path.join(path, os.path.basename(path)) + ".jpg"
-				if jpgpath and os.path.exists(jpgpath):
-					sc = AVSwitch().getFramebufferScale() # Maybe save during init
-					self.picload = ePicLoad()
-					self.picload.PictureData.get().append(self.showCoverCallback)
-					size = self["Cover"].instance.size()
-					self.picload.setPara((size.width(), size.height(), sc[0], sc[1], False, 1, "#00000000")) # Background dynamically
-					self.picload.startDecode(jpgpath)
-					#self["Cover"].show()
-				else:
-					#TODO test if reset has to be done really
-					#self["Cover"].instance.setPixmap(None)#(self.noCoverPixmap)
-					self["Cover"].hide()
+		if service:
+			path = service.getPath()
+			name, ext = os.path.splitext(path)
+			ext = ext.lower()
+			jpgpath = ""
+			if ext in extMedia:
+				jpgpath = name + ".jpg"
+			elif os.path.isdir(path):
+				jpgpath = os.path.join(path, "folder.jpg")
+				#TODO avoid os.path.exists double check
+				if jpgpath and not os.path.exists(jpgpath):
+					jpgpath = os.path.join(path, os.path.basename(path)) + ".jpg"
+			if jpgpath and os.path.exists(jpgpath):
+				sc = AVSwitch().getFramebufferScale() # Maybe save during init
+				self.picload = ePicLoad()
+				self.picload.PictureData.get().append(self.showCoverCallback)
+				size = self["Cover"].instance.size()
+				self.picload.setPara((size.width(), size.height(), sc[0], sc[1], False, 1, "#00000000")) # Background dynamically
+				self.picload.startDecode(jpgpath)
+				#self["Cover"].show()
 			else:
 				#TODO test if reset has to be done really
 				#self["Cover"].instance.setPixmap(None)#(self.noCoverPixmap)
 				self["Cover"].hide()
+		else:
+			#TODO test if reset has to be done really
+			#self["Cover"].instance.setPixmap(None)#(self.noCoverPixmap)
+			self["Cover"].hide()
 
 	def showCoverCallback(self, picInfo=None):
 		if picInfo:
@@ -133,6 +137,7 @@ class SelectionEventInfo:
 
 	# Movie preview
 	def previewMovie(self, service=None):
+		print "EMC: previewMovie"
 		if service:
 			# TODO can we reuse the EMCMediaCenter for the video preview
 			# Start preview
@@ -179,8 +184,11 @@ class SelectionEventInfo:
 							if jumpto is not None:
 								# Jump to first mark
 								seekable.seekTo(jumpto)
-		#else: #TODO restore service?
-
+				print "EMC: previewMovie show"
+				self["Video"].show()
+		else:
+			self.session.nav.stopService() 
+			self["Video"].hide()
 
 class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfaceSel, DirectoryStack, E2Bookmarks, EMCBookmarks):
 	def __init__(self, session):
@@ -593,27 +601,22 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 
 	def updateInfo(self):
 		self.resetInfo()
-		# Get current service
-		service = self.getCurrent()
-		ext = ""
-		if service:
-			if self.delayTimer.isActive():
-				self.delayTimer.stop()
-			self.delayTimer.start(int(config.EMC.movie_descdelay.value), True)
-			if self.pigTimer.isActive():
-				self.pigTimer.stop()
-			# Movie cover
-			if config.EMC.movie_pig.value == "C":
-				# Show cover only for media files and directories
-				ext = os.path.splitext(service.getPath())[1].lower()
-				if ext in extList:
-					self.pigTimer.start(int(config.EMC.movie_pig_delay.value), True)
-			# Movie preview
-			elif config.EMC.movie_pig.value == "P":
-				# Play preview only if it is a video file
-				ext = os.path.splitext(service.getPath())[1].lower()
-				if ext in extMedia:
-					self.pigTimer.start(int(config.EMC.movie_pig_delay.value), True)
+		if self.delayTimer.isActive():
+			self.delayTimer.stop()
+		self.delayTimer.start(int(config.EMC.movie_descdelay.value), True)
+		if self.pigTimer.isActive():
+			self.pigTimer.stop()
+		# Movie cover
+		if config.EMC.movie_pig.value == "C":
+			# Show cover only for media files and directories
+			if self["list"].currentSelIsPlayable() or self["list"].currentSelIsDirectory()::
+				self.pigTimer.start(int(config.EMC.movie_pig_delay.value), True)
+		# Movie preview
+		elif config.EMC.movie_pig.value == "P":
+			# Play preview only if it is a video file
+			if self["list"].currentSelIsPlayable():
+				print "EMC: start preview"
+				self.pigTimer.start(int(config.EMC.movie_pig_delay.value), True)
 
 	def updateInfoDelayed(self):
 		self.updateTitle()
@@ -631,6 +634,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		elif config.EMC.movie_pig.value == "P":
 			# Avoid movie preview if player is running
 			if self.playerInstance:
+				print "EMC: reset preview"
 				self.previewMovie(None)
 
 	def showPigDelayed(self):
