@@ -268,15 +268,15 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 					self["DVDPlayerPlaybackActions"].setEnabled(False)
 				
 				# Check if the video preview is active and already running
-				if (config.EMC.movie_pig.value == "P") and \
-					self.session.nav.getCurrentlyPlayingServiceReference().getPath() == service.getPath():
-					
-					s = self.session.nav.getCurrentService()
-					seekable = s and s.seek()
-					cue = seekable and s.cueSheet()
-					if cue:
-						cue.setCutListEnable(True)
-					return
+				if (config.EMC.movie_pig.value == "P"):
+					ref = self.session.nav.getCurrentlyPlayingServiceReference()
+					if ref and ref.getPath() == service.getPath():
+						s = self.session.nav.getCurrentService()
+						seekable = s and s.seek()
+						cue = seekable and s.cueSheet()
+						if cue:
+							cue.setCutListEnable(True)
+						return
 				
 				# Is this really necessary 
 				# TEST for M2TS Audio problem
