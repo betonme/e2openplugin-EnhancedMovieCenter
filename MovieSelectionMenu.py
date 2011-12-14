@@ -154,7 +154,6 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 				self.reloadafterclose = True
 
 	def createDir(self, currentPath):
-		self.hide()
 		self.session.openWithCallback(
 				boundFunction(self.createDirCB, currentPath),
 				InputBox,
@@ -320,10 +319,6 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 			self.close("reload")
 		else:
 			self.close(None)
-
-	def createDir(self):
-		self.hide()
-		self.session.openWithCallback(self.createDirCB, InputBox, title=_("Enter name for new directory."), windowTitle=_("Create directory"))
 
 	def setPermanentSort(self, path, sort):
 		self.mlist.setPermanentSort(path, sort)
