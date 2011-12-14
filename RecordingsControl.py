@@ -209,6 +209,8 @@ class RecordingsControl:
 
 	def remoteInit(self, ip):
 		try:
+			if not os.path.exists(config.EMC.folder.value):
+				emcTasker.shellExecute("mkdir " + config.EMC.folder.value)
 			if ip is not None:
 				rec = "/db_%s.rec" %str(ip).replace(", ", ".")[1:-1]
 				self.recFile = os.path.join(config.EMC.folder.value, rec)

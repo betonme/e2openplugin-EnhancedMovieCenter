@@ -109,9 +109,6 @@ def cleanupSetup(dummy=None):
 def EMCStartup(session):
 	emcDebugOut("+++ EMC "+EMCVersion+" startup")
 	
-	if not os.path.exists(config.EMC.folder.value):
-		emcTasker.shellExecute("mkdir " + config.EMC.folder.value)
-	
 	if config.EMC.epglang.value:
 		eServiceEvent.setEPGLanguage(config.EMC.epglang.value)
 	
@@ -120,6 +117,8 @@ def EMCStartup(session):
 
 	# Go into standby if the reason for restart was EMC auto-restart
 	if config.EMC.restart.value != "":
+		if not os.path.exists(config.EMC.folder.value):
+			emcTasker.shellExecute("mkdir " + config.EMC.folder.value)
 		flag = os.path.join(config.EMC.folder.value, "EMC_standby_flag.tmp")
 		if os.path.exists(flag):
 			emcDebugOut("+++ Going into Standby mode after auto-restart")

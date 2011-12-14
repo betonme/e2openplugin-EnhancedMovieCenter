@@ -32,6 +32,8 @@ from itertools import izip_longest
 def emcDebugOut(outtxt, outfile=None, fmode="aw", forced=False):
 	try:	# fails if called too early during Enigma startup
 		if config.EMC.debug.value or forced:
+			if not os.path.exists(config.EMC.folder.value):
+				emcTasker.shellExecute("mkdir " + config.EMC.folder.value)
 			if outfile is None:
 				outfile = os.path.join(config.EMC.folder.value, config.EMC.debugfile.value)
 				ltim = localtime()
