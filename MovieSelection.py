@@ -623,6 +623,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		self.updateEventInfo( self.getCurrent() )
 
 	def resetInfo(self):
+		print "EMC: resetInfo"
 		self.updateTitle()
 		if self.delayTimer.isActive():
 			self.delayTimer.stop()
@@ -633,16 +634,19 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			self.showCover(None)
 		elif config.EMC.movie_pig.value == "P":
 			# Avoid movie preview if player is running
-			if self.playerInstance:
+			if self.playerInstance is None:
 				print "EMC: reset preview"
 				self.previewMovie(None)
 
 	def showPigDelayed(self):
 		if config.EMC.movie_pig.value == "C":
+			print "EMC showPigDelayed C"
 			self.showCover( self.getCurrent() )
 		elif config.EMC.movie_pig.value == "P":
 			# Avoid movie preview if player is running
-			if self.playerInstance:
+			print "EMC showPigDelayed P"
+			print self.playerInstance
+			if self.playerInstance is None:
 				self.previewMovie( self.getCurrent() )
 
 	def updateTitle(self):

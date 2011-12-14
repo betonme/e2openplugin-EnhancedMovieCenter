@@ -393,7 +393,7 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 					# Check for predefined config match
 					for i,pd in enumerate(pds[:]):
 						if conf[pd] is not None:
-							print conf[1].value, conf[pd]
+							#print conf[1].value, conf[pd]
 							if conf[1].value != conf[pd]:
 								# Settings are not equal: Delete it, because we don't have to test the rest of the config elements
 								del pds[i]
