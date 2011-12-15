@@ -158,14 +158,14 @@ class SelectionEventInfo:
 						infobar.pauseService()
 						infobar.unPauseService()
 				else:
-					# Get seek
-					seekable = s.seek()
-					if seekable:
-						# Get cuesheet
-						cue = s.cueSheet()
-						if cue:
-							# Avoid cutlist overwrite
-							cue.setCutListEnable(False)
+					# Get cuesheet
+					cue = s.cueSheet()
+					if cue:
+						# Avoid cutlist overwrite
+						cue.setCutListEnable(0)
+						# Get seek
+						seekable = s.seek()
+						if seekable:
 							# Adapted from jumpToFirstMark
 							jumpto = None
 							# EMC enhancement: increase recording margin to make sure we get the correct mark
