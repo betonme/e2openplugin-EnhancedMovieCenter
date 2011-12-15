@@ -606,17 +606,18 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		self.delayTimer.start(int(config.EMC.movie_descdelay.value), True)
 		if self.pigTimer.isActive():
 			self.pigTimer.stop()
-		# Movie cover
-		if config.EMC.movie_pig.value == "C":
-			# Show cover only for media files and directories
-			if self["list"].currentSelIsPlayable() or self["list"].currentSelIsDirectory():
-				self.pigTimer.start(int(config.EMC.movie_pig_delay.value), True)
-		# Movie preview
-		elif config.EMC.movie_pig.value == "P":
-			# Play preview only if it is a video file
-			if self["list"].currentSelIsPlayable():
-				print "EMC: start preview"
-				self.pigTimer.start(int(config.EMC.movie_pig_delay.value), True)
+		if self.shown:
+			# Movie cover
+			if config.EMC.movie_pig.value == "C":
+				# Show cover only for media files and directories
+				if self["list"].currentSelIsPlayable() or self["list"].currentSelIsDirectory():
+					self.pigTimer.start(int(config.EMC.movie_pig_delay.value), True)
+			# Movie preview
+			elif config.EMC.movie_pig.value == "P":
+				# Play preview only if it is a video file
+				if self["list"].currentSelIsPlayable():
+					print "EMC: start preview"
+					self.pigTimer.start(int(config.EMC.movie_pig_delay.value), True)
 
 	def updateInfoDelayed(self):
 		self.updateTitle()
@@ -630,13 +631,14 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		self.updateEventInfo(None)
 		if self.pigTimer.isActive():
 			self.pigTimer.stop()
-		if config.EMC.movie_pig.value == "C":
-			self.showCover(None)
-		elif config.EMC.movie_pig.value == "P":
-			# Avoid movie preview if player is running
-			if self.playerInstance is None:
-				print "EMC: reset preview"
-				self.previewMovie(None)
+		if self.shown:
+			if config.EMC.movie_pig.value == "C":
+				self.showCover(None)
+			elif config.EMC.movie_pig.value == "P":
+				# Avoid movie preview if player is running
+				if self.playerInstance is None:
+					print "EMC: reset preview"
+					self.previewMovie(None)
 
 	def showPigDelayed(self):
 		if config.EMC.movie_pig.value == "C":
