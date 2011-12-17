@@ -228,9 +228,8 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 		self["config"].onSelectionChanged.append(self.updateHelp)
 		
 		#Todo Remove if there is another solution, maybe thinkabout xml
-		#config.EMC.movie_finished_clean.addNotifier(self.changedEntry, initial_call = False, immediate_feedback = True)
-		config.EMC.movie_finished_clean.notifiers.append(self.changedEntry)
-		
+		config.EMC.movie_finished_clean.addNotifier(self.changedEntry, initial_call = False, immediate_feedback = True)
+
 		self.onShow.append(self.onDialogShow)
 
 	def defineConfig(self):
@@ -396,7 +395,7 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 							#print conf[1].value, conf[pd]
 							if conf[1].value != conf[pd]:
 								# Settings are not equal: Delete it, because we don't have to test the rest of the config elements
-								del pds[i]
+								pds.remove(pd)
 								continue
 #			try:
 #				list.append( getConfigListEntry( _("Enable component video in A/V Settings"), config.av.yuvenabled, self.needsRestart, None, 2, [], _("") ) )
@@ -487,14 +486,14 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 
 	def keySaveNew(self):
 		config.EMC.needsreload.value = True
-		config.EMC.movie_finished_clean.notifiers = [ ]
+		config.EMC.movie_finished_clean.removeNotifier(self.changedEntry)
 		for i, entry in enumerate( self.list ):
 			if entry[1].isChanged():
 				if entry[2] is not None:
 					# execute value changed -function
 					if entry[2](entry[1]) is not None:
 						# Stop exiting, user has to correct the config
-						config.EMC.movie_finished_clean.notifiers.append(self.changedEntry)
+						config.EMC.movie_finished_clean.addNotifier(self.changedEntry, initial_call = False, immediate_feedback = True)
 						return
 				# Check parent entries
 				for parent in entry[5]:
@@ -502,7 +501,7 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 						# execute parent value changed -function
 						if self.list[i+parent][2](self.EMCConfig[i+parent][1]) is not None:	
 							# Stop exiting, user has to correct the config
-							config.EMC.movie_finished_clean.notifiers.append(self.changedEntry)
+							config.EMC.movie_finished_clean.addNotifier(self.changedEntry, initial_call = False, immediate_feedback = True)
 							return
 				entry[1].save()
 		if self.needsRestartFlag:
@@ -510,7 +509,7 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 		self.close()
 
 	def keyCancel(self):
-		config.EMC.movie_finished_clean.notifiers = [ ]
+		config.EMC.movie_finished_clean.removeNotifier(self.changedEntry)
 		ConfigListScreen.keyCancel(self)
 
 	def launchListSet(self, element):
