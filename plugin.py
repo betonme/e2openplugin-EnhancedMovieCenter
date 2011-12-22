@@ -333,7 +333,7 @@ def Plugins(**kwargs):
 	show_p = [ PluginDescriptor.WHERE_PLUGINMENU ]
 	if config.EMC.extmenu_plugin.value:
 		show_p.append( PluginDescriptor.WHERE_EXTENSIONSMENU )
-	descriptors.append( PluginDescriptor(name = "Enhanced Movie Center "+EMCVersion+ " (Setup)", description = "Enhanced Movie Center " +_("configuration"), icon = "/EnhancedMovieCenter.png", where = show_p, fnc = pluginOpen) )
+	descriptors.append( PluginDescriptor(name = "Enhanced Movie Center "+EMCVersion+ " (Setup)", description = "Enhanced Movie Center " +_("configuration"), icon = "EnhancedMovieCenter.png", where = show_p, fnc = pluginOpen) )
 
 	if config.EMC.extmenu_list.value and not config.EMC.ml_disable.value:
 		descriptors.append( PluginDescriptor(name = "Enhanced Movie Center", description = "Enhanced Movie Center " + _("movie manipulation list"), where = PluginDescriptor.WHERE_EXTENSIONSMENU, fnc = recordingsOpen) )
