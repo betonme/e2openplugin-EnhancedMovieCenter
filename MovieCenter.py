@@ -1410,7 +1410,10 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 					if date:
 						dtime = int(date[9:13] or 2000)
 						date = int(date[0:8] or 0)
-						date = datetime(date/10000, date%10000/100, date%100, dtime/100, dtime%100)
+						try:
+							date = datetime(date/10000, date%10000/100, date%100, dtime/100, dtime%100)
+						except ValueError, e:
+							date = ""
 				
 				# If the user wants it, extract information from the meta and eit files
 				# But it is very slow
