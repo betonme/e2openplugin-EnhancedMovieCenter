@@ -62,7 +62,7 @@ class EMCBookmarks():
 	# Returns False on failure
 	def setEMCBookmarks(self, bm):
 		result = False
-		if bm and os.access(CFG_FILE, os.W_OK):
+		if bm:
 			bm.sort()
 			f = None
 			try:
