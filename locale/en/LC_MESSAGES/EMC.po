@@ -280,7 +280,7 @@ msgstr ""
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
 #: Center\EMC-SVN\Locale\HELP_/EnhancedMovieCenter.py:56
-msgid "HELP_Jump to channel after record EOF"
+msgid "HELP_Zap to channel after record EOF"
 msgstr "If the player reach the end of a running record, because of fast forward or jump forward, close emc and zap directly to the live tv channel of the record."
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
