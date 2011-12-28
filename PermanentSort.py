@@ -98,7 +98,9 @@ class PermanentSort():
 				for key, value in data.items():
 					if not isinstance(value, tuple):
 						# There is only the sorting stored, add the default order
-						data[key] = (value, config.EMC.moviecenter_sort.value[1])
+						#data[key] = (value, config.EMC.moviecenter_sort.value[1])
+						from Plugins.Extensions.EnhancedMovieCenter.plugin import sort_modes
+						data[key] = (value, sort_modes.get( config.EMC.moviecenter_sort.value )[1][1])
 			except Exception, e:
 				emcDebugOut("[EMC] Exception in readPermanentSortCfgFile Parse: " + str(e))
 			

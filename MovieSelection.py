@@ -684,9 +684,12 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		
 		# Display the actual sorting mode
 		from Plugins.Extensions.EnhancedMovieCenter.plugin import sort_modes
-		sort = sort_modes.get( self["list"].getSorting() )
-		if sort:
-			title += " [" + str(sort[1]) + "]"
+		#sort = sort_modes.get( self["list"].getSorting() )
+		actsort = self["list"].getSorting()
+		for k, v in sort_modes.items():
+			if v[1] == actsort:
+				title += " [" + str(k) + "]"
+				break
 		
 		# Display a permanent sort marker if it is set
 		perm = self["list"].isEqualPermanentSort()
@@ -864,10 +867,13 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		
 		self.initButtons()
 		
-		if config.EMC.movie_reload.value \
-			or config.EMC.needsreload.value \
-			or len(self["list"]) == 0:
+		if config.EMC.needsreload.value:
 			config.EMC.needsreload.value = False
+			self["list"].resetSorting()
+			DelayedFunction(50, self.initList)
+		
+		if config.EMC.movie_reload.value \
+			or len(self["list"]) == 0:
 			DelayedFunction(50, self.initList)
 		
 		else:

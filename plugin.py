@@ -173,10 +173,10 @@ restart_choices = [	("",							_("No")),
 										("3",							_("E2 Restart"))]
 
 #Think about using AZ or ("A",False) as dict key / permanent sort store value
-sort_modes = {		("D",False)	:				( _("Date sort descending (D-)"), 	("D-")	),
-									("A",False)	:				( _("Alpha sort ascending (AZ)"), 	("AZ")	),
-									("D",True)	:				( _("Date sort ascending (D+)"), 		("D+")	),
-									("A",True)	:				( _("Alpha sort descending (ZA)"),	("ZA") 	) }
+sort_modes = {		("D-")	:				( _("Date sort descending (D-)"), 	("D",False)	),
+									("AZ")	:				( _("Alpha sort ascending (AZ)"), 	("A",False)	),
+									("D+")	:				( _("Date sort ascending (D+)"), 		("D",True)	),
+									("ZA")	:				( _("Alpha sort descending (ZA)"),	("A",True) 	) }
 									# If you add a new sort order, you have to think about
 									#  Order false has to be the preferred state
 									#  Both order possibilities should be in the list
@@ -188,7 +188,7 @@ sort_modes = {		("D",False)	:				( _("Date sort descending (D-)"), 	("D-")	),
 									#  Green long will only toggle the sort order: normal reverse
 
 sort_choices = [ (k, v[0]) for k, v in sort_modes.items() ]
-sort_choices.sort( key=lambda x : x[0][1] )
+#sort_choices.sort( key=lambda x : x[0][1] )
 
 config.EMC                           = ConfigSubsection()
 config.EMC.needsreload               = ConfigYesNo(default = False)
@@ -266,7 +266,7 @@ config.EMC.check_dvdstruct           = ConfigYesNo(default = True)
 #config.EMC.check_movie_cutting      = ConfigYesNo(default = True)
 config.EMC.movie_hide_mov            = ConfigYesNo(default = False)
 config.EMC.movie_hide_del            = ConfigYesNo(default = False)
-config.EMC.moviecenter_sort          = ConfigSelection(default = ("D",False), choices = sort_choices)
+config.EMC.moviecenter_sort          = ConfigSelection(default = ("D-"), choices = sort_choices)
 config.EMC.moviecenter_selmove       = ConfigSelection(default = "d", choices = move_choices)
 config.EMC.moviecenter_loadtext      = ConfigYesNo(default = True)
 config.EMC.replace_specialchars      = ConfigYesNo(default = False)

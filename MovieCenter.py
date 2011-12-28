@@ -152,7 +152,8 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 		self.loadPath = config.EMC.movie_homepath.value
 		self.serviceHandler = ServiceCenter.getInstance()
 		
-		self.actualSort = config.EMC.moviecenter_sort.value
+		from Plugins.Extensions.EnhancedMovieCenter.plugin import sort_modes
+		self.actualSort = sort_modes.get( config.EMC.moviecenter_sort.value )[1]
 		self.returnSort = None
 		
 		self.CoolFont = parseFont("Regular;20", ((1,1),(1,1)))
@@ -323,9 +324,9 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 		self.returnSort = None
 		
 		if mode is None:
-			mode = self.actualSort[0] #or config.EMC.moviecenter_sort.value[0]
+			mode = self.actualSort[0]
 		if order is None:
-			order = self.actualSort[1] #or config.EMC.moviecenter_sort.value[1]
+			order = self.actualSort[1]
 		
 		self.actualSort = (mode, order)
 		
@@ -333,30 +334,35 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 		self.l.setList( self.list )
 
 	def resetSorting(self, reload=False):
-		self.actualSort = config.EMC.moviecenter_sort.value
+		from Plugins.Extensions.EnhancedMovieCenter.plugin import sort_modes
+		self.actualSort = sort_modes.get( config.EMC.moviecenter_sort.value )[1]
 		if reload:
 			self.list = self.doListSort(self.list)
 			self.l.setList( self.list )
 
-	def nextSortingMode(self):
-		from Plugins.Extensions.EnhancedMovieCenter.plugin import sort_choices
-		sorts = list( set( [sort for sort, desc in sort_choices] ) )
-		if self.actualSort in sorts:
-			# Get the index of the actual mode
-			idx = sorts.index( self.actualSort )
-			# Set next mode
-			self.setSorting( sorts[ (idx+1) % len(sorts) ] )
-		else:
-			# Fallback toggle only the mode not the order
-			self.toggleSortingMode()
+# Not workin anymore
+#	def nextSortingMode(self):
+#		from Plugins.Extensions.EnhancedMovieCenter.plugin import sort_choices
+#		sorts = list( set( [sort for sort, desc in sort_choices] ) )
+#		if self.actualSort in sorts:
+#			# Get the index of the actual mode
+#			idx = sorts.index( self.actualSort )
+#			# Set next mode
+#			self.setSorting( sorts[ (idx+1) % len(sorts) ] )
+#		else:
+#			# Fallback toggle only the mode not the order
+#			self.toggleSortingMode()
 
 	def toggleSortingMode(self):
-		from Plugins.Extensions.EnhancedMovieCenter.plugin import sort_choices
-		sorts = list( set( [sort for sort, desc in sort_choices] ) )
+		from Plugins.Extensions.EnhancedMovieCenter.plugin import sort_modes
+		#sorts = list( set( [sort for sort, desc in sort_choices] ) )
+		sorts = [ v[1] for v in sort_modes.values() ]
+		print sorts
 		# Toggle the mode
 		mode, order = self.actualSort
 		# Get all sorting modes as a list of unique ids
 		modes = list( set( [m for m, o in sorts] ) )
+		print modes
 		if mode in modes:
 			# Get next sorting mode
 			idx = modes.index(mode)
@@ -399,9 +405,9 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 		# Tuple: (service, sorttitle, date, title, path, selectionnumber, length, ext, cutnr)
 		mode, order = self.actualSort
 		if mode is None:
-			mode = config.EMC.moviecenter_sort.value[0]
+			mode = self.actualSort[0]
 		if order is None:
-			order = config.EMC.moviecenter_sort.value[1]
+			order = self.actualSort[1]
 		
 		if mode == "D":	# Date sort
 			#sortkeydate = date + sorttitle + ("%03d") % ( 999 - int(cutnr or 0) )
@@ -1254,6 +1260,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 		return customlist
 
 	def reload(self, loadPath, simulate=False):
+		#TODO add parameter reset list sort
 		emcDebugOut("[MC] LOAD PATH:\n" + str(loadPath))
 		customlist, subdirlist, filelist, tmplist = [], [], [], []
 		resetlist = True 
