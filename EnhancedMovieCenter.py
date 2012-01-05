@@ -442,7 +442,10 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 
 	# Overwrite Screen close function
 	def close(self):
-		config.EMC.movie_finished_clean.clearNotifiers()
+		try: # only for test
+			config.EMC.movie_finished_clean.clearNotifiers()
+		except: pass
+
 		self.session.openWithCallback(self.closeConfirm, MessageBox, EMCAbout, MessageBox.TYPE_INFO)
 
 	def closeConfirm(self, dummy=None):
@@ -486,7 +489,11 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 
 	def keySaveNew(self):
 		config.EMC.needsreload.value = True
-		config.EMC.movie_finished_clean.removeNotifier(self.changedEntry)
+
+		try: # only for test
+			config.EMC.movie_finished_clean.removeNotifier(self.changedEntry)
+		except: pass
+
 		for i, entry in enumerate( self.list ):
 			if entry[1].isChanged():
 				if entry[2] is not None:
