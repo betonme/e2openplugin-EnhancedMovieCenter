@@ -732,11 +732,10 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 #			InfoBarSeek.showAfterSeek(self)
 
 	def doEofInternal(self, playing):
-		#TEST Check how often doEofInternal is called
 		if self.in_menu:
 			self.hide()
-		if config.EMC.record_eof_zap.value:
-			if self.recordings:
+		if config.EMC.record_eof_zap.value and self.recordings:
+			if self.getSeekLength() < (self.getSeekPlayPosition() + 2*90000):
 				lastservice = self.recordings.getRecordingService(self.service)
 				if lastservice:
 					# Zap to new channel
