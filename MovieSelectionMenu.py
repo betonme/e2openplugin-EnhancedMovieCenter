@@ -65,10 +65,11 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 				self.menu.append((_("Directory up"), boundFunction(self.close, "dirup")))
 			
 			self.menu.append((_("Play last"), boundFunction(self.close, "Play last")))
-
 			
 			self.menu.append((_("Play All"), boundFunction(self.close, "playall")))
 			self.menu.append((_("Shuffle All"), boundFunction(self.close, "shuffleall")))
+			
+			self.menu.append((_("IMDB"), boundFunction(self.close, "imdb")))
 			
 			if config.EMC.movie_trashcan_enable.value and os.path.exists(config.EMC.movie_trashcan_path.value):
 				if service:

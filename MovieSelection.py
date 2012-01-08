@@ -540,6 +540,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			elif selection == "oscripts": self.openScriptMenu()
 			elif selection == "markall": self.markAll()
 			elif selection == "updatetitle": self.updateTitle()
+			elif selection == "imdb": self.imdb()
 
 	def openMenu(self):
 		current = self.getCurrent()
@@ -580,6 +581,9 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		except Exception, e:
 			emcDebugOut("[EMCMS] openScriptMenu exception:\n" + str(e))
 
+	def imdb(self):
+		pass
+	
 	def markAll(self):
 		for i in xrange( len (self["list"]) ):
 			self["list"].toggleSelection( index=i )
