@@ -277,6 +277,8 @@ config.EMC.cfghide_enable            = ConfigYesNo(default = False)
 config.EMC.cfgscan_suppress          = ConfigYesNo(default = False)
 config.EMC.remote_recordings         = ConfigYesNo(default = False)
 
+config.EMC.InfoLong                  = ConfigSelection(choices = [("IMDbSearch", _("IMDb Search")), ("TMDBInfo", _("TMDB Info"))], default = "IMDbSearch")
+
 gSession = None
 gRecordings = None
 

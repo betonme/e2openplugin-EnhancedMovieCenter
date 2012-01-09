@@ -235,7 +235,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 				"EMCEXIT":		(self.abort, 				_("Close EMC")),
 				"EMCMENU":		(self.openMenu,				_("Open menu")),
 				"EMCINFO":		(self.showEventInformation,	_("Show event info")),
-				"EMCINFOL":		(self.IMDbSearch,			_("IMDBSearch")),
+				"EMCINFOL":		(self.CoolInfoLong,			_("IMDBSearch / TMDBInfo")),
 				"EMCRed":			(self.deleteFile,			_("Delete file or empty dir")),
 				"EMCSortMode":		(self.toggleSortMode,			_("Toggle sort mode")),
 				"EMCSortOrder":		(self.toggleSortOrder,			_("Toggle sort order")),
@@ -326,6 +326,14 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 	def CoolTimerList(self):
 		from Screens.TimerEdit import TimerEditList
 		self.session.open(TimerEditList)
+
+	def CoolInfoLong(self):
+		if config.EMC.InfoLong.value == "IMDbSearch":
+			self.IMDbSearch()
+		elif config.EMC.InfoLong.value == "TMDBInfo":
+			self.TMDBInfo()
+		else:
+			self.IMDbSearch()
 
 	def callHelpAction(self, *args):
 		HelpableScreen.callHelpAction(self, *args)
@@ -835,6 +843,17 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			IMDB = None
 		if IMDB is not None:
 			self.session.open(IMDB, name, False)
+
+	def TMDBInfo(self):
+		name = ''
+		if (self["list"].getCurrentSelName()):
+			name = (self["list"].getCurrentSelName())
+		try:
+			from Plugins.Extensions.TMDb.plugin import TMDbMain
+		except ImportError:
+			TMDbMain = None
+		if TMDbMain is not None:
+			self.session.open(TMDbMain, name)
 
 	def showEventInformation(self):
 		from Screens.EventView import EventViewSimple
