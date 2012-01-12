@@ -57,6 +57,7 @@ from DirectoryStack import DirectoryStack
 from E2Bookmarks import E2Bookmarks
 from EMCBookmarks import EMCBookmarks
 from ServiceSupport import ServiceEvent
+from imdb import *
 
 from MovieCenter import extList, extVideo, extMedia, extDir, plyDVD, cmtBME2, cmtBMEMC
 global extList, extVideo, extMedia, extDir, plyDVD, cmtBME2, cmtBMEMC
@@ -590,7 +591,9 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			emcDebugOut("[EMCMS] openScriptMenu exception:\n" + str(e))
 
 	def imdb(self):
-		pass
+		listref = self["list"].list
+		data = [ (title, path) for (s, st, d, title, path, s, l, ext, c) in listref if ext in extMedia ]
+		self.session.open(imdbscan, data)
 	
 	def markAll(self):
 		for i in xrange( len (self["list"]) ):
