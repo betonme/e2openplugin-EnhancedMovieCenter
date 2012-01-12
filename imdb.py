@@ -63,8 +63,9 @@ class imdbscan(Screen):
 				<widget name="menulist" position="10,10" size="710,380" scrollbarMode="showOnDemand" />
 			</screen>"""
 
-	def __init__(self, session, args=0):
-		Screen.__init__(self, session)
+	def __init__(self, session, data):
+		Screen.__init__(self, session, data)
+		self.m_list = data
 		self["actions"] = ActionMap(["SetupActions", "ColorActions"],
 		#self["actions"] = HelpableActionMap(self, "sjActions",
 		{
@@ -107,22 +108,22 @@ class imdbscan(Screen):
 		self.counter = 0
 		self.t_elapsed = 0
 		self.menulist = []
-		m_list = [["superman", "/home/root/", "saw.ts"], ["alice im wunderland", "/home/root/", "saw.ts"], ["greek", "/home/root/", "saw.ts"], ["saw 4", "/home/root/", "saw.ts"], ["saw", "/home/root/", "saw.ts"], ["sex and the city tv", "/tmp/", "sex and the city.ts"], ["final destination", "/tmp/", "final destination.st"], ["star wars", "/tmp/", "star wars.ts"], ["saw 2", "/home/root/", "saw 2.ts"], ["Terminator", "/home/root/", "terminator.ts"], ["Mad Men", "/home/root/", "Mad Men.ts"]]
-		self.count_movies = len(m_list)
+		#m_list = [["superman", "/home/root/", "saw.ts"], ["alice im wunderland", "/home/root/", "saw.ts"], ["greek", "/home/root/", "saw.ts"], ["saw 4", "/home/root/", "saw.ts"], ["saw", "/home/root/", "saw.ts"], ["sex and the city tv", "/tmp/", "sex and the city.ts"], ["final destination", "/tmp/", "final destination.st"], ["star wars", "/tmp/", "star wars.ts"], ["saw 2", "/home/root/", "saw 2.ts"], ["Terminator", "/home/root/", "terminator.ts"], ["Mad Men", "/home/root/", "Mad Men.ts"]]
+		self.count_movies = len(self.m_list)
 
-		for each in m_list:
-        		self.name = each[0].replace(' ','%')
-        		self.path = each[1]
-			self.o_title = each[2]
+		for each in self.m_list:
+        		self.name = each[0].replace(' ','.')
+        		path = each[1]
+			path = path.replace('.ts','.jpg')
 			self.start_time = time.clock()
 			self.t_start_time = time.clock()
 
 			url = "http://www.imdbapi.com/?t=" + self.name
 			print "EMC iMDB:", url
-			search_title = self.name.replace('%',' ')
-			getPage(url).addCallback(self._gotPageLoadFrameSearch, search_title).addErrback(self.errorLoad)
+			search_title = self.name.replace('.',' ')
+			getPage(url).addCallback(self._gotPageLoadFrameSearch, search_title, path).addErrback(self.errorLoad)
 
-	def _gotPageLoadFrameSearch(self, data, search_title):
+	def _gotPageLoadFrameSearch(self, data, search_title, path):
 		self.check = "false"
 		### Zeitmessung ###
 		self.counter = self.counter + 1
@@ -134,10 +135,17 @@ class imdbscan(Screen):
 		
 		count = "Film: " + str(self.counter) + " von " + str(self.count_movies) + "       Took: " + str(elapsed) + " ms" + "       Total Time: " + str(self.t_elapsed) + " ms"
 
+		print "drinnen:", path
 		### Parsing infos from data ###
 		poster_url = re.findall('"Poster":"(.*?)"', data)
-		poster_jpg= poster_url[0].replace('http://ia.media-imdb.com/images/M/','')
-		
+		if poster_url[0] == "N/A":
+			print "N/A"
+			os.system("cp /usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/no_poster.jpg " + "'" + path + "'")
+			#poster_path = "/tmp/" + "no_poster.jpg"
+		else:
+			print "NOOOOOT N/A"
+			#poster_jpg = poster_url[0].replace('http://ia.media-imdb.com/images/M/','')
+
 		movie_name = re.findall('"Title":"(.*?)"."Year":"(.*?)"', data)
 		movie_title = str(movie_name[0][0]) + " " + str(movie_name[0][1])
 
@@ -145,19 +153,18 @@ class imdbscan(Screen):
 		genre = "(%s)" % got_genre[0]
 
 		### Downloading Cover mit file exist check ###
-	        poster_path = "/tmp/" + poster_jpg
-		if not os.path.exists(poster_path):
+		if not os.path.exists(path):
 			print "EMC iMDB: Download", poster_url[0]
 			urllib._urlopener = AppURLopener()
-			urllib.urlretrieve(poster_url[0], poster_path)
+			urllib.urlretrieve(poster_url[0], path)
 			urllib.urlcleanup()
 
 		### Uebergabe zum screen ###
-		if os.path.exists(poster_path):
+		if os.path.exists(path):
 			self["info"].setText(count)
 			self["m_info"].setText(movie_title)
 			self["genre"].setText(genre)
-			self.menulist.append(imdb_show(movie_title, poster_path, str(elapsed), genre, search_title))
+			self.menulist.append(imdb_show(movie_title, path, str(elapsed), genre, search_title))
 		self["menulist"].l.setList(self.menulist)
 		self["menulist"].l.setItemHeight(24)
 		self.check = "true"
