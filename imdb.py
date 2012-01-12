@@ -44,7 +44,7 @@ def imdb_show(title, pp, elapsed, genre, search_title):
 	res.append(MultiContentEntryText(pos=(460, 0), size=(100, 24), font=4, text=elapsed, flags=RT_HALIGN_LEFT))
 	return res
 
-class imdbscan(Screen, scanlist):
+class imdbscan(Screen):
 	if getDesktop(0).size().width() == 1280:
 		skin = """
 			<screen position="center,center" size="800,550" title="EMC iMDB">
@@ -87,10 +87,9 @@ class imdbscan(Screen, scanlist):
 		self["menulist"].onSelectionChanged.append(self.showInfo)
 		#self.onLayoutFinish.append(self.showInfo)
 		self.check = "false"
-		print scanlist	
+		print data
 
 	def showInfo(self):
-		#print self.check
 		if self.check == "true":
 			m_title = self["menulist"].getCurrent()[0][0]
 			m_poster_path = self["menulist"].getCurrent()[0][1]
