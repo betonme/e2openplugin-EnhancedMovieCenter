@@ -17,10 +17,22 @@
 
 	<ePixmap position="180,59" size="900,30" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/EMCMoviePlayer/CoolSlider.png" zPosition="3" alphatest="blend" />
 	<ePixmap position="200,62" size="860,18" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/EMCMoviePlayer/CoolPointerBG.png" zPosition="1" alphatest="blend" />
-	<widget source="Service" render="PositionGauge" position="218,50" size="828,28" zPosition="2" pointer="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/EMCMoviePlayer/CoolPointer.png:828,-2" transparent="1" >
+
+	<!-- Progressbar -->
+	<!-- BEGINN ServicePosition with markers over the progressbar -->
+	<widget source="session.CurrentService" render="Progress" position="218,60" size="828,18" zPosition="3" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/EMCMoviePlayer/CoolPointer.png" transparent="1">
+		<convert type="EMCServicePosition">Position</convert>
+	</widget>
+	<widget source="Service" render="PositionGauge" position="218,60" size="828,18" zPosition="4" transparent="1" >
 		<convert type="EMCServicePosition">Gauge</convert>
 	</widget>
+	<!-- END ServicePosition with markers over the progressbar -->
 
+	<!-- Progressbar -->
+	<!-- <widget source="Service" render="PositionGauge" position="218,50" size="828,28" zPosition="2" pointer="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/EMCMoviePlayer/CoolPointer.png:828,-2" transparent="1" >
+		<convert type="EMCServicePosition">Gauge</convert> 
+	</widget> -->		<!-- EMC Converter needed, to display markers on not *.ts files -->
+	
 	<widget source="Service" render="Label" position="230,85" size="100,30" font="Regular;22" halign="left" backgroundColor="#00000000" transparent="1">
 		<convert type="EMCServicePosition">Position</convert>
 	</widget>
