@@ -229,12 +229,13 @@ class imdbscan(Screen):
 	def themoviedb(self, data, search_title, path):
 		print "data??"
 		self.counter_a += 1
-		if self.m_list:
+		if self.m_list and self.counter_a % 10 == 0:
 			print "counter???"
-			current = time.time()
-			print current, self.starttime
-			print (current - self.starttime) + 100
-			DelayedFunction(10000 - int(time.time() - self.starttime) + 100, boundFunction(self.imdb_start()))
+			print self.counter_a
+			#current = time.time()
+			#print current, self.starttime
+			#print (current - self.starttime) + 100
+			DelayedFunction(10000 - int(time.time() - self.starttime) + 100, boundFunction(self.imdb_start))
 
 		print "weiter geht es"
 		self.check = "false"
@@ -242,18 +243,18 @@ class imdbscan(Screen):
 		if re.match('.*?<opensearch:totalResults>0</opensearch:totalResults>|.*?Error 503 Service Unavailable|.*?500 Internal Server Error',data, re.S):
 			#print "themoviedb: themoviedb website is down.."
 			print "N/A"
-      			self.counter = self.counter + 1
+			self.counter = self.counter + 1
 			self.counter_no_poster = self.counter_no_poster + 1
-      			self.end_time = time.clock()
-      			self.t_end_time = time.clock()
-      			elapsed = (self.end_time - self.start_time) * 10
-      			self.t_elapsed = self.t_elapsed + elapsed
-      			self.count = "Film: " + str(self.counter) + " von " + str(self.count_movies) + "     Took: " + str(elapsed) + " ms" + "     Total Time: " + str(self.t_elapsed) + " ms"
-      			self["info"].setText(self.count)
-      			self["m_info"].setText(search_title)
-      			self["genre"].setText("no genre")
-      			self["no_poster"].setText("No Cover: %s" % str(self.counter_no_poster))
-      			self.menulist.append(imdb_show(search_title, self.no_image_poster, "N/A", "", search_title))
+			self.end_time = time.clock()
+			self.t_end_time = time.clock()
+			elapsed = (self.end_time - self.start_time) * 10
+			self.t_elapsed = self.t_elapsed + elapsed
+			self.count = "Film: " + str(self.counter) + " von " + str(self.count_movies) + "     Took: " + str(elapsed) + " ms" + "     Total Time: " + str(self.t_elapsed) + " ms"
+			self["info"].setText(self.count)
+			self["m_info"].setText(search_title)
+			self["genre"].setText("no genre")
+			self["no_poster"].setText("No Cover: %s" % str(self.counter_no_poster))
+			self.menulist.append(imdb_show(search_title, self.no_image_poster, "N/A", "", search_title))
 			print "nur N/A geworden"
 		else:
 			movie_title = re.findall('<name>(.*?)</name>', data)
