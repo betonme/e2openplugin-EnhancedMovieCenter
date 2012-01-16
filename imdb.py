@@ -54,31 +54,33 @@ def imdb_show(title, pp, elapsed, genre, search_title):
 	if not re.match('.*?(Exist|N/A)', elapsed):
 		print "nicht:", elapsed
 		elapsed = "%s ms." % elapsed
-	res.append(MultiContentEntryText(pos=(0, 0), size=(510, 24), font=4, text=search_title, flags=RT_HALIGN_LEFT))
-	res.append(MultiContentEntryText(pos=(500, 0), size=(172, 24), font=4, text=elapsed, flags=RT_HALIGN_LEFT))
+	res.append(MultiContentEntryText(pos=(0, 0), size=(650, 24), font=4, text=search_title, flags=RT_HALIGN_LEFT))
+	res.append(MultiContentEntryText(pos=(660, 0), size=(172, 24), font=4, text=elapsed, flags=RT_HALIGN_LEFT))
 	return res
 
 class imdbscan(Screen):
 	if getDesktop(0).size().width() == 1280:
 		skin = """
-			<screen position="center,center" size="900,560" title="EMC iMDB">
-				<widget name="menulist" position="220,100" size="672,408" scrollbarMode="showOnDemand" transparent="1"/>
-				<widget name="info" position="0,0" size="900,24" zPosition="0" font="Regular;21" halign="center" valign="center" transparent="1" foregroundColor="#ffffff" backgroundColor="black"/>
+			<screen position="center,center" size="1000,560" title="EMC iMDB">
+				<widget name="menulist" position="220,100" size="772,408" scrollbarMode="showOnDemand" transparent="1"/>
+				<widget name="info" position="0,0" size="1000,24" zPosition="0" font="Regular;21" halign="center" valign="center" transparent="1" foregroundColor="#ffffff" backgroundColor="black"/>
 				<widget name="poster" zPosition="2" position="20,40" size="170,230" alphatest="blend" />
-				<widget name="m_info" position="200,40" size="700,24" zPosition="0" font="Regular;21" halign="center" valign="center" transparent="1" foregroundColor="#ffffff" backgroundColor="black"/>
+				<widget name="m_info" position="200,40" size="800,24" zPosition="0" font="Regular;21" halign="center" valign="center" transparent="1" foregroundColor="#ffffff" backgroundColor="black"/>
 				<widget name="download" position="10,398" size="200,24" zPosition="0" font="Regular;21" halign="left" valign="center" transparent="1" foregroundColor="#ffffff" backgroundColor="black"/>
 				<widget name="exist" position="10,350" size="200,24" zPosition="0" font="Regular;21" halign="left" valign="center" transparent="1" foregroundColor="#ffffff" backgroundColor="black"/>
 				<widget name="no_poster" position="10,374" size="200,24" zPosition="0" font="Regular;21" halign="left" valign="center" transparent="1" foregroundColor="#ffffff" backgroundColor="black"/>
-				<widget name="genre" position="200,64" size="700,24" zPosition="0" font="Regular;21" halign="center" valign="center" transparent="1" foregroundColor="#ffffff" backgroundColor="black"/>
-				<widget name="done_msg" position="0,512" size="840,48" zPosition="0" font="Regular;21" halign="center" valign="center" transparent="1" foregroundColor="#ffffff" backgroundColor="black"/>
-				<widget name="ButtonGreen" pixmap="skin_default/buttons/key_green.png" position="21,300" zPosition="10" size="35,25" transparent="1" alphatest="on" />
-				<widget name="ButtonGreenText" position="65,300" size="300,22" valign="center" halign="left" zPosition="10" font="Regular;20" transparent="1" />
-				<widget name="ButtonRed" pixmap="skin_default/buttons/key_red.png" position="21,460" zPosition="10" size="35,25" transparent="1" alphatest="on" />
-				<widget name="ButtonRedText" position="65,460" size="300,22" valign="center" halign="left" zPosition="10" font="Regular;20" transparent="1" />
+				<widget name="genre" position="200,64" size="800,24" zPosition="0" font="Regular;21" halign="center" valign="center" transparent="1" foregroundColor="#ffffff" backgroundColor="black"/>
+				<widget name="done_msg" position="0,512" size="940,48" zPosition="0" font="Regular;21" halign="center" valign="center" transparent="1" foregroundColor="#ffffff" backgroundColor="black"/>
+				<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key-green.png" position="10,293" size="30,30" alphatest="on" />
+				<!-- <widget name="ButtonGreen" pixmap="skin_default/buttons/key_green.png" position="21,300" zPosition="10" size="35,25" transparent="1" alphatest="on" /> -->
+				<widget name="ButtonGreenText" position="54,300" size="300,22" valign="center" halign="left" zPosition="1" font="Regular;20" transparent="1" />
+				<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key-red.png" position="10,453" size="30,30" alphatest="on" />
+				<!-- <widget name="ButtonRed" pixmap="skin_default/buttons/key_red.png" position="21,460" zPosition="10" size="35,25" transparent="1" alphatest="on" /> -->
+				<widget name="ButtonRedText" position="54,460" size="300,22" valign="center" halign="left" zPosition="1" font="Regular;20" transparent="1" />
 			</screen>"""
 	else:
 		skin = """
-			<screen position="center,center" size="720,500" title="EMC iMDB">
+			<screen position="center,center" size="620,500" title="EMC iMDB">
 				<widget name="menulist" position="10,10" size="710,380" scrollbarMode="showOnDemand" />
 			</screen>"""
 
@@ -111,7 +113,7 @@ class imdbscan(Screen):
 		self["no_poster"] = Label("")
 		self["done_msg"] = Label("")
 		self["info"].setText("Um die Suche zu starten, drück bitte die Gruene-Taste")
-		self.no_image_poster = "/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/no_poster.jpg"
+		self.no_image_poster = "/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/no_poster.png"
 		self["menulist"].onSelectionChanged.append(self.showInfo)
 		self.check = "false"
 		self.running = "false"
@@ -375,8 +377,8 @@ class imdbscan(Screen):
 		if self.check == "true":
 			m_poster_path = self["menulist"].getCurrent()[0][1]
 			if os.path.exists(m_poster_path):
-				if m_poster_path == "/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/no_poster.jpg":
-					print "no_poster.jpg kann nicht geloescht werden."
+				if m_poster_path == "/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/no_poster.png":
+					print "no_poster.png kann nicht geloescht werden."
 				else:
 					os.system("rm '%s'" % (m_poster_path))
 					done = "%s removed." % m_poster_path
