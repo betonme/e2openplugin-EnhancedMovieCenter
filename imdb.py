@@ -25,7 +25,7 @@ from enigma import loadJPG
 import re, urllib, urllib2, os, time
 
 class AppURLopener(urllib.FancyURLopener):
-    version = "Mozilla/5.0 (X11; U; Linux x86_64; de; rv:1.9.0.15) Gecko/2009102815 Ubuntu/9.04 (jaunty) Firefox/3."
+	version = "Mozilla/5.0 (X11; U; Linux x86_64; de; rv:1.9.0.15) Gecko/2009102815 Ubuntu/9.04 (jaunty) Firefox/3."
 
 class imdblist(MenuList):
 	def __init__(self, list):
@@ -78,7 +78,7 @@ class imdbscan(Screen):
 		self["actions"] = HelpableActionMap(self, "EMCimdb",
 		{
 			"EMCEXIT":		self.exit,
-			"EMCOK":                self.ok,
+			"EMCOK":		self.ok,
 			"EMCGreen":		self.imdb,
 			"EMCRed":		self.red,
 
@@ -87,7 +87,7 @@ class imdbscan(Screen):
 		self["ButtonGreen"] = Pixmap()
 		self["ButtonGreenText"] = Label(_("Start"))
 		self["ButtonRed"] = Pixmap()
-                self["ButtonRedText"] = Label(_("Loeschen"))
+		self["ButtonRedText"] = Label(_("Loeschen"))
 
 		self["poster"] = Pixmap()
 		self.menulist = []
@@ -143,8 +143,8 @@ class imdbscan(Screen):
 		self["download"].setText("Download: 0")
 
 		for each in self.m_list:
-        		self.name = each[0].replace(' ','.').replace(':','.').replace('..','.')
-        		path = each[1]
+			self.name = each[0].replace(' ','.').replace(':','.').replace('..','.')
+			path = each[1]
 			path = path.replace('.ts','.jpg')
 			self.start_time = time.clock()
 			self.t_start_time = time.clock()
@@ -160,26 +160,26 @@ class imdbscan(Screen):
 				self.check = "false"
 				self.counter_exist = self.counter_exist + 1
 				self.end_time = time.clock()
-                		self.t_end_time = time.clock()
+				self.t_end_time = time.clock()
 				self.counter = self.counter + 1
-                		elapsed = (self.end_time - self.start_time) * 10
-                		self.t_elapsed = self.t_elapsed + elapsed
+				elapsed = (self.end_time - self.start_time) * 10
+				self.t_elapsed = self.t_elapsed + elapsed
 				self.count = "Film: " + str(self.counter) + " von " + str(self.count_movies) + "     Took: " + str(elapsed) + " ms" + "     Total Time: " + str(self.t_elapsed) + " ms"
 
 				self["info"].setText(self.count)
-                                self["m_info"].setText(search_title)
-                                self["genre"].setText("")
-                                self["exist"].setText("Exist: %s" % str(self.counter_exist))
-                                self.menulist.append(imdb_show(search_title, path, "Exist", "", search_title))
+				self["m_info"].setText(search_title)
+				self["genre"].setText("")
+				self["exist"].setText("Exist: %s" % str(self.counter_exist))
+				self.menulist.append(imdb_show(search_title, path, "Exist", "", search_title))
 				self["menulist"].l.setList(self.menulist)
-	                	self["menulist"].l.setItemHeight(24)
+				self["menulist"].l.setItemHeight(24)
 
 	def _gotPageLoadFrameSearch(self, data, search_title, path):
 		self.check = "false"
 		### Zeitmessung ###
 		#self.end_time = time.clock()
-                #self.t_end_time = time.clock()
-                #elapsed = (self.end_time - self.start_time) * 10
+		#self.t_end_time = time.clock()
+		#elapsed = (self.end_time - self.start_time) * 10
 		#self.t_elapsed = self.t_elapsed + elapsed
 		
 		#self.count = "Film: " + str(self.counter) + " von " + str(self.count_movies) + "     Took: " + str(elapsed) + " ms" + "     Total Time: " + str(self.t_elapsed) + " ms"
@@ -197,14 +197,14 @@ class imdbscan(Screen):
 				self.counter = self.counter + 1
 				self.counter_no_poster = self.counter_no_poster + 1
 				self.end_time = time.clock()
-		                self.t_end_time = time.clock()
-           			elapsed = (self.end_time - self.start_time) * 10
-                		self.t_elapsed = self.t_elapsed + elapsed
+				self.t_end_time = time.clock()
+				elapsed = (self.end_time - self.start_time) * 10
+				self.t_elapsed = self.t_elapsed + elapsed
 				self.count = "Film: " + str(self.counter) + " von " + str(self.count_movies) + "     Took: " + str(elapsed) + " ms" +"     Total Time: " + str(self.t_elapsed) + " ms"
 
 				self["info"].setText(self.count)
-                        	self["m_info"].setText(movie_title)
-                        	self["genre"].setText("no genre")
+				self["m_info"].setText(movie_title)
+				self["genre"].setText("no genre")
 				self["no_poster"].setText("No Cover: %s" % str(self.counter_no_poster))
 				self.menulist.append(imdb_show(movie_title, self.no_image_poster, "N/A", "", search_title))
 				
@@ -217,9 +217,9 @@ class imdbscan(Screen):
 				self.counter = self.counter + 1
 				self.counter_download = self.counter_download + 1
 				self.end_time = time.clock()
-	        	       	self.t_end_time = time.clock()
-        		        elapsed = (self.end_time - self.start_time) * 10
-                		self.t_elapsed = self.t_elapsed + elapsed
+				self.t_end_time = time.clock()
+				elapsed = (self.end_time - self.start_time) * 10
+				self.t_elapsed = self.t_elapsed + elapsed
 				self.count = "Film: " + str(self.counter) + " von " + str(self.count_movies) + "     Took: " + str(elapsed) + " ms" +"     Total Time: " + str(self.t_elapsed) + " ms"
 
 				urllib._urlopener = AppURLopener()
@@ -238,15 +238,15 @@ class imdbscan(Screen):
 			self.counter = self.counter + 1
 			self.counter_no_poster = self.counter_no_poster + 1
 			self.end_time = time.clock()
-	                self.t_end_time = time.clock()
-        	        elapsed = (self.end_time - self.start_time) * 10
-               		self.t_elapsed = self.t_elapsed + elapsed
+			self.t_end_time = time.clock()
+			elapsed = (self.end_time - self.start_time) * 10
+			self.t_elapsed = self.t_elapsed + elapsed
 			self.menulist.append(imdb_show(search_title, self.no_image_poster, "N/A", "", search_title))
 			self.count = "Film: " + str(self.counter) + " von " + str(self.count_movies) + "     Took: " + str(elapsed) + " ms" + "     Total Time: " + str(self.t_elapsed) + " ms"
 			self["no_poster"].setText("No Cover: %s" % str(self.counter_no_poster))
-                        self["info"].setText(self.count)
-                       	self["m_info"].setText(search_title)
-                        self["genre"].setText("no genre")
+			self["info"].setText(self.count)
+			self["m_info"].setText(search_title)
+			self["genre"].setText("no genre")
 
 		self["menulist"].l.setList(self.menulist)
 		self["menulist"].l.setItemHeight(24)
@@ -289,9 +289,9 @@ class imdbscan(Screen):
 		self.picload.startDecode(poster_path)
 
 	def showCoverCallback(self, picInfo=None):
-                if picInfo:
-                        ptr = self.picload.getData()
-                        if ptr != None:
-                                print "anzeigen"
-                                self["poster"].instance.setPixmap(ptr)
-                                self["poster"].show()
+		if picInfo:
+			ptr = self.picload.getData()
+			if ptr != None:
+				print "anzeigen"
+				self["poster"].instance.setPixmap(ptr)
+				self["poster"].show()
