@@ -594,7 +594,8 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		# Create new frozenset containing directories and playable files
 		extImdb = frozenset([cmtDir]) | extMedia
 		
-		selectedlist = self["list"].makeSelectionList()
+		# Get only the selections without a fallback to current 
+		selectedlist = self["list"].makeSelectionList(False)
 		if selectedlist:
 			# The selectedList only contains the service
 			data = [ (service.getName() , service.getPath() ) for service in selectedlist ]

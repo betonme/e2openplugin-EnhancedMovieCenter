@@ -945,9 +945,9 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 	def __len__(self):
 		return len(self.list)
 
-	def makeSelectionList(self):
+	def makeSelectionList(self, currentIfEmpty=True):
 		selList = []
-		if self.currentSelectionCount == 0:
+		if self.currentSelectionCount == 0 and currentIfEmpty:
 			# if no selections made, select the current cursor position
 			single = self.l.getCurrentSelection()
 			if single:
