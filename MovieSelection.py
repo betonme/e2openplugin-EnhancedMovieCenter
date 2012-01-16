@@ -59,8 +59,8 @@ from EMCBookmarks import EMCBookmarks
 from ServiceSupport import ServiceEvent
 from imdb import *
 
-from MovieCenter import extList, extVideo, extMedia, extDir, plyDVD, cmtBME2, cmtBMEMC
-global extList, extVideo, extMedia, extDir, plyDVD, cmtBME2, cmtBMEMC
+from MovieCenter import extList, extVideo, extMedia, extDir, plyDVD, cmtBME2, cmtBMEMC, cmtDir
+global extList, extVideo, extMedia, extDir, plyDVD, cmtBME2, cmtBMEMC, cmtDir
 
 gMS = None
 
@@ -591,8 +591,20 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			emcDebugOut("[EMCMS] openScriptMenu exception:\n" + str(e))
 
 	def imdb(self):
-		listref = self["list"].list
-		data = [ (title, path) for (s, st, d, title, path, s, l, ext, c) in listref if ext in extMedia ]
+		# Create new frozenset containing directories and playable files
+		extImdb = frozenset([cmtDir]) | extMedia
+		
+		selectedlist = self["list"].makeSelectionList()
+		if selectedlist:
+			# The selectedList only contains the service
+			data = [ (service.getName() , service.getPath() ) for service in selectedlist ]
+		else:
+			# Store a local list reference
+			listref = self["list"].list
+			# Filter the list and create a subset
+			data = [ (title, path) for (s, st, d, title, path, s, l, ext, c) in listref if (ext in extImdb and not os.path.islink(path)) ]
+		
+		# Collect imdb data
 		self.session.open(imdbscan, data)
 	
 	def markAll(self):
