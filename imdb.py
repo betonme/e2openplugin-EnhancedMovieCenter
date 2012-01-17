@@ -1,4 +1,4 @@
-﻿# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 from Components.ActionMap import *
 from Components.Label import Label
 from Components.MenuList import MenuList
@@ -52,7 +52,6 @@ class imdblist(MenuList):
 def imdb_show(title, pp, elapsed, genre, search_title):
 	res = [ (title, pp, elapsed, genre, search_title) ]
 	if not re.match('.*?(Exist|N/A)', elapsed):
-		print "nicht:", elapsed
 		elapsed = "%s ms." % elapsed
 	res.append(MultiContentEntryText(pos=(0, 0), size=(650, 24), font=4, text=search_title, flags=RT_HALIGN_LEFT))
 	res.append(MultiContentEntryText(pos=(660, 0), size=(172, 24), font=4, text=elapsed, flags=RT_HALIGN_LEFT))
@@ -121,8 +120,6 @@ class imdbscan(Screen):
 
 	def showInfo(self):
 		if self.check == "true":
-			#test = self["menulist"].l.getCurrentSelection()[0]
-			#print test
 			m_title = self["menulist"].getCurrent()[0][0]
 			m_poster_path = self["menulist"].getCurrent()[0][1]
 			#m_real_title = self["menulist"].getCurrent()[0][2]
@@ -137,12 +134,10 @@ class imdbscan(Screen):
 
 	def imdb(self):
 		if self.running == "true":
-			print "Search already Running."
+			print "EMC iMDB: Search already Running."
+                        
 		elif self.running == "false":
-			#self.imdb_start()
-
-#	### Liste umwandeln und title weitergeben zur imdb suche ###
-#	def imdb_start(self):
+                        print "EMC iMDB: Search started..."
 			self.running = "true"
 			self.counter = 0
 			self.counter_download = 0
@@ -155,206 +150,147 @@ class imdbscan(Screen):
 			self["exist"].setText("Exist: 0")
 			self["no_poster"].setText("No Cover: 0")
 			self["download"].setText("Download: 0")
-
 			self.counter_a = 0
 			self.starttime = 0
-
+                        self.t_start_time = time.clock()
+			self.s_supertime = time.clock()
 			self.file_format = "(.ts|.avi|.mkv|.divx|.f4v|.flv|.img|.iso|.m2ts|.m4v|.mov|.mp4|.mpeg|.mpg|.mts|.vob)"
-
-		#for each in self.m_list:
+                        self.cm_list = self.m_list[:]
 			self.imdb_start()
 
-	#def counter(self):
-	def imdb_start(self):
+        def imdb_start(self):
 		self.starttime = time.time()
+		#print len(self.cm_list.pop())
+		self.gotall = 0
+		self.run10 = "false"
 		for i in xrange(10):
-			(title, path) = self.m_list.pop()
-
-			self.start_time = time.clock()
-			self.t_start_time = time.clock()
-
-			if config.plugins.imdb.search.value == "0":
-				self.name = title.replace(' ','.').replace(':','.').replace('..','.')
-	      			#path = each[1]
-       				path = re.sub(self.file_format + "$", '.jpg', path)
-				search_title = self.name.replace('.',' ')
+			if self.cm_list:
+				(title, path) = self.cm_list.pop()
+				self.start_time = time.clock()
+                                
+				if config.plugins.imdb.search.value == "0":
+					self.name = title.replace(' ','.').replace(':','.').replace('..','.')
+       					path = re.sub(self.file_format + "$", '.jpg', path)
+					search_title = self.name.replace('.',' ')
 				
-				if not os.path.exists(path):
-					url = "http://www.imdbapi.com/?t=" + self.name.replace('Ã¶','%F6')
-					##replace('Ã¶','%F6')
-					print "EMC imdbapi.com:", url
-					getPage(url, timeout = 10).addCallback(self.imdbapi, search_title, path).addErrback(self.errorLoad, search_title)
-				else:
-					self.check = "false"
-					self.counter_exist = self.counter_exist + 1
-					self.end_time = time.clock()
-          				self.t_end_time = time.clock()
-					self.counter = self.counter + 1
-          				elapsed = (self.end_time - self.start_time) * 10
-          				self.t_elapsed = self.t_elapsed + elapsed
-					self.count = "Film: " + str(self.counter) + " von " + str(self.count_movies) + "     Took: " + str(elapsed) + " ms" + "     Total Time: " + str(self.t_elapsed) + " ms"
-					self["info"].setText(self.count)
-          				self["m_info"].setText(search_title)
-          				self["genre"].setText("")
-          				self["exist"].setText("Exist: %s" % str(self.counter_exist))
-          				self.menulist.append(imdb_show(search_title, path, "Exist", "", search_title))
-					self["menulist"].l.setList(self.menulist)
-				        self["menulist"].l.setItemHeight(24)
+					if not os.path.exists(path):
+						url = "http://www.imdbapi.com/?t=" + self.name.replace('Ã¶','%F6')
+						##replace('Ã¶','%F6')
+						print "EMC imdbapi.com:", url
+						getPage(url, timeout = 10).addCallback(self.imdbapi, search_title, path).addErrback(self.errorLoad, search_title)
+					else:
+                                                print "EMC iMDB: Cover vorhanden"
+						self.display_exist(search_title, path)
+						if self.gotall == 10:
+                                                        print "EMC iMDB: N/A Jump"
+                                                        self.imdb_start()
 
-			if config.plugins.imdb.search.value == "1":
-				self.name = title.replace(' ','+').replace(':','+').replace('-','').replace('++','+')
-        			#path = each[1]
-        			path = re.sub(self.file_format + "$", '.jpg', path)
-        			search_title = self.name.replace('+',' ')
-				if not os.path.exists(path):
-					url = "http://api.themoviedb.org/2.1/Movie.search/de/xml/8789cfd3fbab7dccf1269c3d7d867aff/" + self.name
-					print "EMC themoviedb.org:", url
-												
-					getPage(url).addCallback(self.themoviedb, search_title, path).addErrback(self.errorLoad, search_title)
-				else:
-					self.check = "false"
-					self.counter_exist = self.counter_exist + 1
-					self.end_time = time.clock()
-					self.t_end_time = time.clock()
-					self.counter = self.counter + 1
-					elapsed = (self.end_time - self.start_time) * 10
-					self.t_elapsed = self.t_elapsed + elapsed
-					self.count = "Film: " + str(self.counter) + " von " + str(self.count_movies) + "     Took: " + str(elapsed) + " ms" + "     Total Time: " + str(self.t_elapsed) + " ms"
-					self["info"].setText(self.count)
-          				self["m_info"].setText(search_title)
-          				self["genre"].setText("")
-          				self["exist"].setText("Exist: %s" % str(self.counter_exist))
-          				self.menulist.append(imdb_show(search_title, path, "Exist", "", search_title))
-          				self["menulist"].l.setList(self.menulist)
-          				self["menulist"].l.setItemHeight(24)
+				if config.plugins.imdb.search.value == "1":
+					self.name = title.replace(' ','+').replace(':','+').replace('-','').replace('++','+')
+        				path = re.sub(self.file_format + "$", '.jpg', path)
+        				search_title = self.name.replace('+',' ')
+                                
+					if not os.path.exists(path):
+						url = "http://api.themoviedb.org/2.1/Movie.search/de/xml/8789cfd3fbab7dccf1269c3d7d867aff/" + self.name
+						print "EMC themoviedb.org:", url						
+						getPage(url, timeout = 10).addCallback(self.themoviedb, search_title, path).addErrback(self.errorLoad, search_title)
+					else:
+						print "EMC iMDB: Cover vorhanden"
+						self.counter += 1
+						self.display_exist(search_title, path)
+						if self.gotall == 10:
+							print "EMC iMDB: N/A Jump"
+							self.imdb_start()
+			else:
+				print "EMC iMDB: MovieList is empty."
+				#break
+
+		#avg = self.t_elapsed / self.counter
+                #self.e_supertime = time.clock()
+		#print self.counter, self.count_movies
+		#if self.counter == self.count_movies:
+		avg = self.t_elapsed / self.counter
+		self.e_supertime = time.clock()
+                endeee = (self.e_supertime - self.s_supertime)
+                done = "%s Filme in %s ms gefunden. Avg. Speed: %.1f ms" % (str(self.counter), str(endeee), int(avg))
+                self["done_msg"].setText(done)
+		self.check = "true"
+		self.running = "false"
 
 	def themoviedb(self, data, search_title, path):
-		print "data??"
+                self.check = "false"
 		self.counter_a += 1
-		if self.m_list and self.counter_a % 10 == 0:
-			print "counter???"
-			print self.counter_a
-			#current = time.time()
-			#print current, self.starttime
-			#print (current - self.starttime) + 100
+		self.counter += 1
+		if self.cm_list and self.run10 == "false":
+		#and self.counter_a % 10 == 0:
+                        print "EMC iMDB: 10sec. DelayFunction gestatet"
 			DelayedFunction(10000 - int(time.time() - self.starttime) + 100, boundFunction(self.imdb_start))
-
-		print "weiter geht es"
-		self.check = "false"
+			self.run10 = "true"
 		### Parsing infos from data ###
 		if re.match('.*?<opensearch:totalResults>0</opensearch:totalResults>|.*?Error 503 Service Unavailable|.*?500 Internal Server Error',data, re.S):
-			#print "themoviedb: themoviedb website is down.."
-			print "N/A"
-			self.counter = self.counter + 1
-			self.counter_no_poster = self.counter_no_poster + 1
-			self.end_time = time.clock()
-			self.t_end_time = time.clock()
-			elapsed = (self.end_time - self.start_time) * 10
-			self.t_elapsed = self.t_elapsed + elapsed
-			self.count = "Film: " + str(self.counter) + " von " + str(self.count_movies) + "     Took: " + str(elapsed) + " ms" + "     Total Time: " + str(self.t_elapsed) + " ms"
-			self["info"].setText(self.count)
-			self["m_info"].setText(search_title)
-			self["genre"].setText("no genre")
-			self["no_poster"].setText("No Cover: %s" % str(self.counter_no_poster))
-			self.menulist.append(imdb_show(search_title, self.no_image_poster, "N/A", "", search_title))
-			print "nur N/A geworden"
+			print "EMC iMDB: Themoviedb.org is down or No results found - %s" % search_title
+			self.display_na(search_title)
 		else:
 			movie_title = re.findall('<name>(.*?)</name>', data)
 			poster_url = re.findall('<image type="poster" url="(.*?)" size="cover"', data)
 			if poster_url:
 				print "EMC themoviedb: Download", search_title, poster_url[0]
-				self.counter = self.counter + 1
-	      			self.counter_download = self.counter_download + 1
-       				self.end_time = time.clock()
-        			self.t_end_time = time.clock()
-        			elapsed = (self.end_time - self.start_time) * 10
-        			self.t_elapsed = self.t_elapsed + elapsed
-        			self.count = "Film: " + str(self.counter) + " von " + str(self.count_movies) + "     Took: " + str(elapsed) + " ms" +"     Total Time: " + str(self.t_elapsed) + " ms"
-				#path = '"%s"' % path
-				#print path
-				#downloadPage(poster_url[0], file(path, 'wb'))
+                                ### Cover Download ###
 	      			urllib._urlopener = AppURLopener()
        				urllib.urlretrieve(poster_url[0], path)
         			urllib.urlcleanup()
-				#os.system("wget %s -O %s" % (poster_url[0], path))
         			if os.path.exists(path):
-					print "poster daa"
-					self["info"].setText(self.count)
-					self["m_info"].setText(movie_title[0])
-					#self["genre"].setText("")
-					self["download"].setText("Download: %s" % str(self.counter_download))
-            				self.menulist.append(imdb_show(movie_title[0], path, str(elapsed), "", search_title))
-					print "geladen"
+					self.display_download(movie_title[0], search_title, path)
 		   	 	else:
-		        		print "film gefunden aber kein poster"
-
+		        		print "EMC iMDB: Film gefunden aber kein poster vorhanden - %s" % search_title
+                                        self.display_na(search_title)
+                        else:
+                                print "EMC iMDB: Themoviedb.org is down or No results found - %s" % search_title
+                                self.display_na(search_title)
+                        
 		self["menulist"].l.setList(self.menulist)
 		self["menulist"].l.setItemHeight(24)
-		self.check = "true"
-		avg = self.t_elapsed / self.counter
-		done = "%s Filme in %s ms gefunden. Avg. Speed: %.1f ms" % (str(self.counter), str(self.t_elapsed), int(avg))
-		self["done_msg"].setText(done)
-		self.running = "false"
+		#self.check = "true"
+		#avg = self.t_elapsed / self.counter
+		#self.e_supertime = time.clock()
+		#endeee = (self.e_supertime - self.s_supertime)
+		#done = "%s Filme in %s ms gefunden. Avg. Speed: %.1f ms" % (str(self.counter), str(endeee), int(avg))
+		#self["done_msg"].setText(done)
+                ### Suche kann wieder gestartet werden ### 
+		#self.running = "false"
 
 	def imdbapi(self, data, search_title, path):
-		self.check = "false"
+                self.check = "false"
+                self.counter_a += 1
+		if self.cm_list and self.run10 == "false":
+		#and self.counter_a % 10 == 0:
+                        print "EMC iMDB: 10sec. DelayFunction gestatet"
+			DelayedFunction(10000 - int(time.time() - self.starttime) + 100, boundFunction(self.imdb_start))
+			self.run10 = "true"
+		
 		### Parsing infos from data ###
 		if re.match('.*?"Response":"True"', data):
 			movie_name = re.findall('"Title":"(.*?)"."Year":"(.*?)"', data)
 			movie_title = str(movie_name[0][0]) + " " + str(movie_name[0][1])
 			poster_url = re.findall('"Poster":"(.*?)"', data)
 			if poster_url[0] == "N/A":
-				print "N/A"
-				self.counter = self.counter + 1
-				self.counter_no_poster = self.counter_no_poster + 1
-				self.end_time = time.clock()
-		    		self.t_end_time = time.clock()
-				elapsed = (self.end_time - self.start_time) * 10
-        			self.t_elapsed = self.t_elapsed + elapsed
-				self.count = "Film: " + str(self.counter) + " von " + str(self.count_movies) + "     Took: " + str(elapsed) + " ms" +"     Total Time: " + str(self.t_elapsed) + " ms"
-
-				self["info"].setText(self.count)
-        			self["m_info"].setText(movie_title)
-        			self["genre"].setText("no genre")
-				self["no_poster"].setText("No Cover: %s" % str(self.counter_no_poster))
-				self.menulist.append(imdb_show(movie_title, self.no_image_poster, "N/A", "", search_title))
+                                print "EMC iMDB: theimdbapi.com is down or No results found - %s" % search_title
+				self.display_na(search_title)
 			else:
-				print "EMC iMDB: Download", poster_url[0]
-				got_genre = re.findall('"Genre":"(.*?)"', data)
-				genre = "(%s)" % got_genre[0]
-				
-				self.counter = self.counter + 1
-				self.counter_download = self.counter_download + 1
-				self.end_time = time.clock()
-	      			self.t_end_time = time.clock()
-        			elapsed = (self.end_time - self.start_time) * 10
-        			self.t_elapsed = self.t_elapsed + elapsed
-				self.count = "Film: " + str(self.counter) + " von " + str(self.count_movies) + "     Took: " + str(elapsed) + " ms" +"     Total Time: " + str(self.t_elapsed) + " ms"
-
+                                print "EMC iMDB: theimdbapi.com Download", search_title, poster_url[0]
+                                ### Cover Download ###
 				urllib._urlopener = AppURLopener()
 				urllib.urlretrieve(poster_url[0], path)
 				urllib.urlcleanup()
 				if os.path.exists(path):
-					self["info"].setText(self.count)
-					self["m_info"].setText(movie_title)
-					#self["genre"].setText(genre)
-					self["download"].setText("Download: %s" % str(self.counter_download))
-					self.menulist.append(imdb_show(movie_title, path, str(elapsed), genre, search_title))
-
+					self.display_download(movie_title[0], search_title, path)
+                                else:
+		        		print "EMC iMDB: Film gefunden aber kein poster vorhanden - %s" % search_title
+                                        self.display_na(search_title)
+                                        
 		elif re.match('.*?"Response":"Parse Error"', data):
-			print "NOOOOOOOOOOOOOOOOOOOTTTTTT TRUE -", search_title
-			self.counter = self.counter + 1
-			self.counter_no_poster = self.counter_no_poster + 1
-			self.end_time = time.clock()
-	    		self.t_end_time = time.clock()
-      			elapsed = (self.end_time - self.start_time) * 10
-      			self.t_elapsed = self.t_elapsed + elapsed
-			self.menulist.append(imdb_show(search_title, self.no_image_poster, "N/A", "", search_title))
-			self.count = "Film: " + str(self.counter) + " von " + str(self.count_movies) + "     Took: " + str(elapsed) + " ms" + "     Total Time: " + str(self.t_elapsed) + " ms"
-			self["no_poster"].setText("No Cover: %s" % str(self.counter_no_poster))
-      			self["info"].setText(self.count)
-      			self["m_info"].setText(search_title)
-      			self["genre"].setText("no genre")
+			print "EMC iMDB: theimdbapi.com is down or No results found - %s" % search_title
+			self.display_na(search_title)
 
 		self["menulist"].l.setList(self.menulist)
 		self["menulist"].l.setItemHeight(24)
@@ -362,12 +298,56 @@ class imdbscan(Screen):
 		avg = self.t_elapsed / self.counter
 		done = "%s Filme in %s ms gefunden. Avg. Speed: %.1f ms" % (str(self.counter), str(self.t_elapsed), int(avg))
 		self["done_msg"].setText(done)
+                ### Suche kann wieder gestartet werden ### 
 		self.running = "false"
 		#self.showInfo()
 
 	def errorLoad(self, error, search_title):
 		print "keine daten zu %s gefunden." % search_title
 		#print "Please report: %s" % str(error)
+                
+        def display_na(self, search_title):
+                self.counter_no_poster = self.counter_no_poster + 1
+                self.end_time = time.clock()
+                self.t_end_time = time.clock()
+                elapsed = (self.end_time - self.start_time) * 10
+                self.t_elapsed = self.t_elapsed + elapsed
+                self.count = "Film: %s von %s Last: %s" % (self.counter, self.count_movies, search_title)
+                self["info"].setText(self.count)
+                self["m_info"].setText(search_title)
+                self["genre"].setText("")
+                self["no_poster"].setText("No Cover: %s" % str(self.counter_no_poster))
+                self.menulist.append(imdb_show(search_title, self.no_image_poster, "N/A", "", search_title))                
+                
+        def display_exist(self, search_title, path):
+		self.counter_exist = self.counter_exist + 1
+                self.counter = self.counter + 1
+		self.end_time = time.clock()
+                self.t_end_time = time.clock()			
+                elapsed = (self.end_time - self.start_time) * 10
+                self.t_elapsed = self.t_elapsed + elapsed
+		self.count = "Film: %s von %s Last: %s"% (self.counter, self.count_movies, search_title)
+		self["info"].setText(self.count)
+          	self["m_info"].setText(search_title)
+          	self["genre"].setText("")
+          	self["exist"].setText("Exist: %s" % str(self.counter_exist))
+          	self.menulist.append(imdb_show(search_title, path, "Exist", "", search_title))
+		self["menulist"].l.setList(self.menulist)
+		self["menulist"].l.setItemHeight(24)
+        
+        def display_download(self, movie_title, search_title, path):
+		print "YEEEEESDEFD", movie_title, search_title, path
+	      	self.counter_download = self.counter_download + 1
+       		self.end_time = time.clock()
+        	self.t_end_time = time.clock()
+        	elapsed = (self.end_time - self.start_time) * 10
+        	self.t_elapsed = self.t_elapsed + elapsed
+        	self.count = "Film: %s von %s Last: %s" % (self.counter, self.count_movies, search_title)
+                self["info"].setText(self.count)
+		self["m_info"].setText(movie_title)
+		self["genre"].setText("")
+		self["download"].setText("Download: %s" % str(self.counter_download))
+                self.menulist.append(imdb_show(movie_title, path, str(elapsed), "", search_title))
 		
 	def exit(self):
 		self.check = "false"
