@@ -53,12 +53,14 @@ class CurrentService(eCurrentService):
 
 	def getLength(self):
 		if config.EMC.record_show_real_length.value:
-			ref = self.navcore.getCurrentlyPlayingServiceReference()
-			if ref:
+			service = self.navcore.getCurrentlyPlayingServiceReference()
+			if service:
 				from MovieSelection import gMS
-				times = gMS.getRecordingTimes(ref)
-				if times:
-					return (times[1] - times[0]) * 90000 # times (begin, end) : end - begin
+				path = service.getPath()
+				record = path and gMS.getRecording(path)
+				if record:
+					begin, end, service = record
+					return (end - begin) * 90000 # times (begin, end) : end - begin
 		return 0
 
 	@cached
@@ -190,10 +192,10 @@ class Info:
 		self.__length = 0
 		if config.EMC.record_show_real_length.value:
 			from MovieSelection import gMS
-			times = gMS["list"].recControl.getRecordingTimes(path)
-			#times = gMS.getRecordingTimes(service)
-			if times:
-				 self.__length = times[1] - times[0] # times = (begin, end) : end - begin
+			record = gMS.getRecording(path)
+			if record:
+				begin, end, service = record
+				self.__length = end - begin # times = (begin, end) : end - begin
 			
 		self.__reference = service or ""
 		self.__rec_ref_str = meta and meta.getMetaServiceReference() or ""

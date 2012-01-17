@@ -272,7 +272,7 @@ class InfoBarSupport(	InfoBarBase, \
 		# If player is in pause mode do not call eof
 		if state != self.SEEK_STATE_PAUSE:
 			# Wait one second before signaling eof
-			#DelayedFunction(1000, self.__evEOF, self)
 			# Call private InfoBarSeek function
-			if hasattr(self, "seekstate"):
-				InfoBarSeek._InfoBarSeek__evEOF(self)
+			#if hasattr(self, "seekstate"):
+				#InfoBarSeek._InfoBarSeek__evEOF(self)
+			DelayedFunction(1000, boundFunction(InfoBarSeek._InfoBarSeek__evEOF, self))

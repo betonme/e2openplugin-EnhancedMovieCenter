@@ -35,6 +35,7 @@ from Screens.MessageBox import MessageBox
 from Screens.HelpMenu import HelpableScreen
 from Tools.BoundFunction import boundFunction
 from Tools.Directories import fileExists, resolveFilename, SCOPE_LANGUAGE, SCOPE_PLUGINS
+from time import time
 
 # Zap to Live TV of record
 from Screens.MessageBox import MessageBox
@@ -734,12 +735,15 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 	def doEofInternal(self, playing):
 		if self.in_menu:
 			self.hide()
-		if config.EMC.record_eof_zap.value and self.recordings:
-			if self.getSeekLength() < (self.getSeekPlayPosition() + 2*90000):
-				lastservice = self.recordings.getRecordingService(self.service)
-				if lastservice:
+		if config.EMC.record_eof_zap.value and self.recordings and self.service:
+			record = self.recordings.getRecording(self.service.getPath())
+			if record:
+				begin, end, service = record
+				last = ( time() - begin ) * 90000 
+				# Seek play position and record length differ about one second
+				if last < (self.getSeekPlayPosition() + 10*90000):
 					# Zap to new channel
-					self.lastservice = lastservice
+					self.lastservice = service
 					self.closeAll = True
 					DelayedFunction(1000, boundFunction(self.leavePlayer, False))
 					return

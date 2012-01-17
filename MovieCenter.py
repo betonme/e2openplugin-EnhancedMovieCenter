@@ -531,9 +531,9 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 		# The progress of one recording is updated
 		# - if it will be highlighted the list
 		# Note: There is no auto update mechanism of the recording progress
-		times = self.recControl.getRecordingTimes(path)
-		if times:
-			begin, end = times
+		record = self.recControl.getRecording(path)
+		if record:
+			begin, end, service = record
 			last = time() - begin
 			length = end - begin
 			return self.calculateProgress(last, length)

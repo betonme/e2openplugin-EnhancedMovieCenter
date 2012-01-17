@@ -132,15 +132,15 @@ class RecordingsControl:
 			emcDebugOut("[emcRC] isRecording exception:\n" + str(e))
 			return False
 
-	def getRecordingService(self, filename):
+	def getRecording(self, filename):
 		try:
 			if filename[0] == "/": 			filename = os.path.basename(filename)
 			if filename.endswith(".ts"):	filename = filename[:-3]
 			if filename in self.recDict:
 				begin, end, ref = self.recDict[filename]
-				return ref
+				return begin, end, ref
 		except Exception, e:
-			emcDebugOut("[emcRC] getRecordingService exception:\n" + str(e))
+			emcDebugOut("[emcRC] getRecording exception:\n" + str(e))
 		return None
 
 	def isRemoteRecording(self, filename):
@@ -150,18 +150,6 @@ class RecordingsControl:
 			return filename in self.recRemoteList
 		except Exception, e:
 			emcDebugOut("[emcRC] isRemoteRecording exception:\n" + str(e))
-			return False
-
-	def getRecordingTimes(self, filename):
-		#TODO lookup actual times or get a notification on time changed
-		try:
-			if filename[0] == "/": 			filename = os.path.basename(filename)
-			if filename.endswith(".ts"):	filename = filename[:-3]
-			if filename in self.recDict:
-				begin, end, ref = self.recDict[filename]
-				return begin, end
-		except Exception, e:
-			emcDebugOut("[emcRC] getRecordingTimes exception:\n" + str(e))
 			return False
 
 	def stopRecording(self, filename):
