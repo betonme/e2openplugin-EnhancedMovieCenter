@@ -1310,8 +1310,6 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 				return False
 		
 		# Local variables
-		movie_metaload = config.EMC.movie_metaload.value
-		movie_eitload = config.EMC.movie_eitload.value
 		movie_hide_mov = config.EMC.movie_hide_mov.value
 		movie_hide_del = config.EMC.movie_hide_del.value
 		movie_show_cutnr = config.EMC.movie_show_cutnr.value
@@ -1322,6 +1320,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 		append = tmplist.append
 		pathexists = os.path.exists
 		pathgetmtime = os.path.getmtime
+		pathsplitext = os.path.splitext
 		
 		service = None
 		title, sorttitle = "", ""
@@ -1361,6 +1360,9 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 		
 		# Add file entries to the list
 		if filelist is not None:
+			#TODO extract the function to retrieve the correct title
+			movie_metaload = config.EMC.movie_metaload.value
+			movie_eitload = config.EMC.movie_eitload.value
 			for path, filename, ext in filelist:
 				# Filename, Title, Date, Sortingkeys handling
 				# First we extract as much as possible informations from the filename
@@ -1377,12 +1379,12 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 				# Remove extension
 				if not ext:
 					# Avoid splitext it is very slow compared to a slice
-					title, ext = os.path.splitext(filename)
+					title, ext = pathsplitext(filename)
 				else:
 					#TODO Should not be necessary
 					# If there is an ext filename is already the shortname without the extension
 					#title = filename[:-len(ext)]
-					title = os.path.splitext(filename)[0]
+					title = pathsplitext(filename)[0]
 				
 				# Get cut number
 				if title[-4:-3] == "_" and title[-3:].isdigit():
@@ -1498,6 +1500,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 		del append
 		del pathexists
 		del pathgetmtime
+		del pathsplitext
 		
 		if not simulate:
 			# If we are here, there is no way back
@@ -1563,6 +1566,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 
 	def getNextService(self):
 		#IDEA: Optionally loop over all
+		#TODO calculate the correct title
 		if self.currentSelIsPlayable():
 			# Cursor marks a movie
 			idx = self.getCurrentIndex()
@@ -1607,6 +1611,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 
 	def getRandomService(self):
 		#IDEA: Optionally loop over all
+		#TODO calculate the correct title
 		if self.currentSelIsPlayable():
 			# Cursor marks a movie
 			length = len(self.list)

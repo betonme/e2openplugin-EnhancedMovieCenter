@@ -591,22 +591,66 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			emcDebugOut("[EMCMS] openScriptMenu exception:\n" + str(e))
 
 	def imdb(self):
-		# Create new frozenset containing directories and playable files
-		extImdb = frozenset([cmtDir]) | extMedia
+		filelist = []
 		
 		# Get only the selections without a fallback to current 
 		selectedlist = self["list"].makeSelectionList(False)
 		if selectedlist:
-			# The selectedList only contains the service
-			data = [ (service.getName() , service.getPath() ) for service in selectedlist ]
+			# The selectedList only contains the services
+			filelist = [ (service.getName() , service.getPath() ) for service in selectedlist ]
 		else:
 			# Store a local list reference
 			listref = self["list"].list
+			
+			# Create new frozenset containing directories and playable files
+			#extImdb = frozenset([cmtDir]) | extMedia
 			# Filter the list and create a subset
-			data = [ (title, path) for (s, st, d, title, path, s, l, ext, c) in listref if (ext in extImdb and not os.path.islink(path)) ]
-		
+			#data = [ (title, path) for (s, st, d, title, path, s, l, ext, c) in listref if (ext in extImdb and not os.path.islink(path)) ]
+			
+			# Make loadPath more flexible
+			#MAYBE: What about using current folder for latest recording lookup?
+			dirstack, subdirlist, subfilelist = [], [], []
+			
+			dappend = dirstack.append
+			fextend = filelist.extend
+			pathreal = os.path.realpath
+			pathislink = os.path.islink
+			pathsplitext = os.path.splitext
+			
+			# walk through entire tree below current path. Might take a bit long on huge disks...
+			dirstack.append( self.currentPath )
+			
+			# Search files through all given paths
+			for directory in dirstack:
+				
+				# Avoid trashcan subdirectories
+				if directory.find( config.EMC.movie_trashcan_path.value ) == -1:
+					
+					# Get entries
+					subdirlist, subfilelist = listref.createDirList( directory )
+					
+					# Found new directories to search within, use only their path
+					for d, name, ext in subdirlist:
+						# Resolve symbolic links and get the real path
+						d = pathreal( d )
+						
+						# Avoid duplicate directories and ignore links
+						if d not in dirstack and not pathislink( d ):
+							dappend( d )
+					
+					# Store the media files
+					fextend( [ (file, path) for path,file,ext in subfilelist ] )
+					
+					# Maybe there is one problem: file is the filename not the clean title !!
+			
+			del dappend
+			del fextend
+			del pathreal
+			del pathislink
+			del pathsplitext
+			
 		# Collect imdb data
-		self.session.open(imdbscan, data)
+		self.session.open(imdbscan, filelist)
 	
 	def markAll(self):
 		for i in xrange( len (self["list"]) ):
