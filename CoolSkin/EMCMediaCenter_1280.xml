@@ -20,6 +20,9 @@
 
 	<!-- Progressbar -->
 	<!-- BEGINN ServicePosition with markers over the progressbar -->
+	<widget source="session.CurrentService" render="Progress" position="218,60" size="828,18" zPosition="2" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/EMCMoviePlayer/CoolPointerRecord.png" transparent="1">
+		<convert type="EMCRecordPosition">Position</convert>
+	</widget>
 	<widget source="session.CurrentService" render="Progress" position="218,60" size="828,18" zPosition="3" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/EMCMoviePlayer/CoolPointer.png" transparent="1">
 		<convert type="EMCServicePosition">Position</convert>
 	</widget>
