@@ -600,7 +600,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			filelist = [ (service.getName() , service.getPath() ) for service in selectedlist ]
 		else:
 			# Store a local list reference
-			listref = self["list"].list
+			listref = self["list"]
 			
 			# Create new frozenset containing directories and playable files
 			#extImdb = frozenset([cmtDir]) | extMedia
