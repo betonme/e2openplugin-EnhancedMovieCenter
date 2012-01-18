@@ -89,7 +89,6 @@ class imdbscan(Screen):
 			"EMCGreen":		self.imdb,
 			"EMCRed":		self.red,
 			"EMCMenu":		self.config,
-
 		}, -1)
 
 		self["ButtonGreen"] = Pixmap()
@@ -163,6 +162,7 @@ class imdbscan(Screen):
 			self.imdb_start()
 
         def imdb_start(self):
+		self["done_msg"].setText("Searching..")
 		self.starttime = time.time()
 		self.gotall = 0
 		self.run10 = "false"
@@ -229,6 +229,7 @@ class imdbscan(Screen):
 		#and self.counter_a % 10 == 0:
                         print "EMC iMDB: 10sec. DelayFunction gestatet"
 			DelayedFunction(10000 - int(time.time() - self.starttime) + 100, boundFunction(self.imdb_start))
+			self.display_delay()
 			self.run10 = "true"
 		### Parsing infos from data ###
 		if re.match('.*?<opensearch:totalResults>0</opensearch:totalResults>|.*?Error 503 Service Unavailable|.*?500 Internal Server Error',data, re.S):
@@ -260,6 +261,7 @@ class imdbscan(Screen):
 		if self.cm_list and self.run10 == "false":
 		#and self.counter_a % 10 == 0:
                         print "EMC iMDB: 10sec. DelayFunction gestatet"
+			self.display_delay()
 			DelayedFunction(10000 - int(time.time() - self.starttime) + 100, boundFunction(self.imdb_start))
 			self.run10 = "true"
 		
@@ -329,6 +331,9 @@ class imdbscan(Screen):
                 self.menulist.append(imdb_show(movie_title, path, str(elapsed), "", search_title))
                 self["menulist"].l.setList(self.menulist)
 		self["menulist"].l.setItemHeight(24)
+
+	def display_delay(self):
+		self["done_msg"].setText("Delay of 10 sec. due the search flooding..")		
 		
 	def exit(self):
 		self.check = "false"
