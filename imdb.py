@@ -219,7 +219,9 @@ class imdbscan(Screen):
                 		self["done_msg"].setText(self.done)
 				self.check = "true"
 				self.running = "false"
-				self.menulist.instance.moveSelection(self.menulist.instance.moveTop)
+				if self["menulist"].instance:
+	        	                print "move to TOP"
+        	        	        self["menulist"].instance.moveSelection(self["menulist"].instance.moveTop)
 				break
 
 	def themoviedb(self, data, search_title, path):
