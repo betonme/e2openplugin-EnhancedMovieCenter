@@ -275,4 +275,5 @@ class InfoBarSupport(	InfoBarBase, \
 			# Call private InfoBarSeek function
 			#if hasattr(self, "seekstate"):
 				#InfoBarSeek._InfoBarSeek__evEOF(self)
-			DelayedFunction(1000, boundFunction(InfoBarSeek._InfoBarSeek__evEOF, self))
+			# Use only 900ms because the player will run for max 1 seconds until eof
+			DelayedFunction(900, boundFunction(InfoBarSeek._InfoBarSeek__evEOF, self))

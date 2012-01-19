@@ -738,21 +738,24 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 		if config.EMC.record_eof_zap.value and self.recordings and self.service:
 			record = self.recordings.getRecording(self.service.getPath())
 			if record:
-				begin, end, service = record
-				last = ( time() - begin ) * 90000 
+				#begin, end, service = record
+				#last = ( time() - begin ) * 90000
+				
 				# Seek play position and record length differ about one second
-				if last < (self.getSeekPlayPosition() + 10*90000):
-					# Zap to new channel
-					self.lastservice = service
-					self.closeAll = True
-					DelayedFunction(1000, boundFunction(self.leavePlayer, False))
-					return
-		DelayedFunction(1000, boundFunction(self.doEvEOF))
-
-	def doEvEOF(self):
-		# Workaround if player is already closed
-		if self:
-			self.evEOF()
+				#print "EMC doEofInternal"
+				#print "recordlength ", (( end - begin ) * 90000)
+				#print "seeklength   ", (self.getSeekLength())
+				#print "recordlast  ", last
+				#print "seekplay    ", (self.getSeekPlayPosition())
+				#print "seekplay+10 ", (self.getSeekPlayPosition() + 1*90000)
+				#if last < (self.getSeekPlayPosition() + 1*90000):
+				# Zap to new channel
+				self.lastservice = service
+				self.closeAll = True
+				DelayedFunction(10, boundFunction(self.leavePlayer, False))
+				return
+		
+		DelayedFunction(10, boundFunction(self.evEOF))
 
 	##############################################################################
 	## Oozoon image specific
