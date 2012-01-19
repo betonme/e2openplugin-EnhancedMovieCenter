@@ -738,7 +738,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 		if config.EMC.record_eof_zap.value and self.recordings and self.service:
 			record = self.recordings.getRecording(self.service.getPath())
 			if record:
-				#begin, end, service = record
+				begin, end, service = record
 				#last = ( time() - begin ) * 90000
 				
 				# Seek play position and record length differ about one second
