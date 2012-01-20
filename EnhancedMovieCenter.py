@@ -182,7 +182,7 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 		self.skin = EnhancedMovieCenterMenu.skin
 		self.screenTitle = "Enhanced Movie Center "+ EMCVersion + " (Setup)"
 		
-		self["actions"] = ActionMap(["OkCancelActions", "EMCConfigActions"],
+		self["actions"] = ActionMap(["SetupActions", "OkCancelActions", "EMCConfigActions"],
 		{
 			"ok":						self.keyOK,
 			"cancel":				self.keyCancel,
