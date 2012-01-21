@@ -64,7 +64,7 @@ def showCoverlist(title, url, path):
 class imdbscan(Screen):
 	if getDesktop(0).size().width() == 1280:
 		skin = """
-			<screen position="center,center" size="1000,560" title="EMC iMDB">
+			<screen position="center,center" size="1000,560" title="EMC Cover search">
 				<widget name="menulist" position="220,100" size="772,408" scrollbarMode="showOnDemand" transparent="1" enableWrapAround="on" />
 				<widget name="info" position="10,10" size="300,24" zPosition="0" font="Regular;21" halign="left" valign="center" transparent="1" foregroundColor="#ffffff" backgroundColor="#000000"/>
 				<widget name="poster" position="10,40" size="185,230" zPosition="4" alphatest="on" />
@@ -102,9 +102,9 @@ class imdbscan(Screen):
 		}, -1)
 
 		self["ButtonGreen"] = Pixmap()
-		self["ButtonGreenText"] = Label(_("Start"))
+		self["ButtonGreenText"] = Label(_("Search"))
 		self["ButtonRed"] = Pixmap()
-    		self["ButtonRedText"] = Label(_("Loeschen"))
+    		self["ButtonRedText"] = Label(_("Delete"))
 		self["poster"] = Pixmap()
 		self.menulist = []
 		self["menulist"] = imdblist([])
@@ -114,7 +114,7 @@ class imdbscan(Screen):
 		self["download"] = Label("")
 		self["exist"] = Label("")
 		self["no_poster"] = Label("")
-		self["done_msg"] = Label("Um die Suche zu starten, drück bitte die Gruene-Taste")
+		self["done_msg"] = Label("Press green button to start search")
 		self["info"].setText("")
 		self.no_image_poster = "/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/no_poster.png"
 		self.check = "false"
