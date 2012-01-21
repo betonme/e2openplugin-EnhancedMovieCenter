@@ -86,10 +86,11 @@
 		<key id="KEY_8" mapto="8" flags="m" />
 		<key id="KEY_9" mapto="9" flags="m" />
 	</map>
-	<map context="EMCimdb">
-		<key id="KEY_RED" mapto="EMCRed" flags="m" />
+	<map context="EMCimdb">	
 		<key id="KEY_OK" mapto="EMCOK" flags="m" />
+		<key id="KEY_MENU" mapto="EMCMenu" flags="m" />
 		<key id="KEY_EXIT" mapto="EMCEXIT" flags="m" />
+		<key id="KEY_RED" mapto="EMCRed" flags="m" />
 		<key id="KEY_GREEN" mapto="EMCGreen" flags="m" />
 	</map>
 </keymap>
