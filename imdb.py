@@ -33,7 +33,7 @@ from time import time
 import re, urllib, urllib2, os, time
 
 config.plugins.imdb = ConfigSubsection()
-config.plugins.imdb.search = ConfigSelection(default="0", choices = [("0",_("imdbapi")),("1",_("themoviedb"))])
+config.plugins.imdb.search = ConfigSelection(default="0", choices = [("0",_("imdb.de")),("1",_("themoviedb.org"))])
 
 class AppURLopener(urllib.FancyURLopener):
     version = "Mozilla/5.0 (X11; U; Linux x86_64; de; rv:1.9.0.15) Gecko/2009102815 Ubuntu/9.04 (jaunty) Firefox/3."
@@ -268,7 +268,7 @@ class imdbscan(Screen):
 		### Parsing infos from data ###
 		if re.match('.*?<opensearch:totalResults>0</opensearch:totalResults>|.*?Error 503 Service Unavailable|.*?500 Internal Server Error',data, re.S):
 			print "EMC iMDB: Themoviedb.org is down or No results found - %s" % search_title
-			self.display_na(search_title)
+			self.display_na(search_title, path)
 		else:
 			movie_title = re.findall('<name>(.*?)</name>', data)
 			poster_url = re.findall('<image type="poster" url="(.*?)" size="cover"', data)
@@ -282,10 +282,10 @@ class imdbscan(Screen):
 					self.display_download(movie_title[0], search_title, path)
 		   	 	else:
 		        		print "EMC iMDB: Film gefunden aber kein poster vorhanden - %s" % search_title
-                                        self.display_na(search_title)
+                                        self.display_na(search_title, path)
                         else:
                                 print "EMC iMDB: Themoviedb.org is down or No results found - %s" % search_title
-                                self.display_na(search_title)
+                                self.display_na(search_title, path)
                         
 		self["menulist"].l.setList(self.menulist)
 		self["menulist"].l.setItemHeight(24)
@@ -306,7 +306,7 @@ class imdbscan(Screen):
 			poster_url = re.findall('"Poster":"(.*?)"', data)
 			if poster_url[0] == "N/A":
                                 print "EMC iMDB: theimdbapi.com is down or No results found - %s" % search_title
-				self.display_na(search_title)
+				self.display_na(search_title, path)
 			else:
                                 print "EMC iMDB: theimdbapi.com Download", search_title, poster_url[0]
                                 ### Cover Download ###
@@ -317,11 +317,11 @@ class imdbscan(Screen):
 					self.display_download(movie_title, search_title, path)
                                 else:
 		        		print "EMC iMDB: Film gefunden aber kein poster vorhanden - %s" % search_title
-                                        self.display_na(search_title)
+                                        self.display_na(search_title, path)
        
 		elif re.match('.*?"Response":"Parse Error"', data):
 			print "EMC iMDB: theimdbapi.com is down or No results found - %s" % search_title
-			self.display_na(search_title)
+			self.display_na(search_title, path)
 
 		self["menulist"].l.setList(self.menulist)
 		self["menulist"].l.setItemHeight(24)
@@ -330,14 +330,14 @@ class imdbscan(Screen):
 		print "keine daten zu %s gefunden." % search_title
 		#print "Please report: %s" % str(error)
                 
-        def display_na(self, search_title):
+        def display_na(self, search_title, path):
 		self.counter += 1
                 self.counter_no_poster = self.counter_no_poster + 1
                 self.count = "Film: %s von %s" % (self.counter, self.count_movies)
                 self["info"].setText(self.count)
                 self["m_info"].setText(search_title)
                 self["no_poster"].setText("No Cover: %s" % str(self.counter_no_poster))
-                self.menulist.append(imdb_show(search_title, self.no_image_poster, "N/A", "", search_title))
+                self.menulist.append(imdb_show(search_title, path, "N/A", "", search_title))
                 self["menulist"].l.setList(self.menulist)
 		self["menulist"].l.setItemHeight(24)
 		if self.count_movies == self.counter:
@@ -398,7 +398,8 @@ class imdbscan(Screen):
 			m_poster_path = self["menulist"].getCurrent()[0][1]
 			print m_poster_path
 			data_list = [(m_title, m_poster_path)]
-                        self.session.open(getCover, data_list)
+                        #self.session.open(getCover, data_list)
+			self.session.openWithCallback(self.setupFinished, getCover, data_list)
 
 	### Cover resize ###
 	def poster_resize(self, poster_path):
@@ -425,8 +426,9 @@ class imdbscan(Screen):
 		self.session.openWithCallback(self.setupFinished, imdbSetup)
 
 	def setupFinished(self, result):
+		print "showwwww it meeee ttto :D"
 		if result:
-			self.showInfo()
+			self.showInfo()			
 
 class imdbSetup(Screen, ConfigListScreen):
 	skin = """
@@ -550,11 +552,11 @@ class getCover(Screen):
 	def exit(self):
 		self.check = "false"
 		#self["poster"].hide()
-		self.close()
+		self.close(False)
 
 	def ok(self):
 		if self.check == "true":
 			os.system("mv %s '%s'" % (self.path, self.o_path))
 			print "EMC iMDB: mv poster to real path - %s %s" % (self.path, self.o_path) 
 			self.check = "false"
-			self.close()
+			self.close(True)
