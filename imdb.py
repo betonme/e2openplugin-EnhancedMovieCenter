@@ -52,8 +52,8 @@ def imdb_show(title, pp, elapsed, genre, search_title):
 	res = [ (title, pp, elapsed, genre, search_title) ]
 	if not re.match('.*?(Exist|N/A)', elapsed):
 		elapsed = "%s ms." % elapsed
-	res.append(MultiContentEntryText(pos=(0, 0), size=(510, 24), font=4, text=search_title, flags=RT_HALIGN_LEFT))
-	res.append(MultiContentEntryText(pos=(500, 0), size=(172, 24), font=4, text=elapsed, flags=RT_HALIGN_LEFT))
+	res.append(MultiContentEntryText(pos=(0, 0), size=(650, 24), font=4, text=search_title, flags=RT_HALIGN_LEFT))
+	res.append(MultiContentEntryText(pos=(660, 0), size=(172, 24), font=4, text=elapsed, flags=RT_HALIGN_LEFT))
 	return res
 
 def showCoverlist(title, url, path):
@@ -64,22 +64,24 @@ def showCoverlist(title, url, path):
 class imdbscan(Screen):
 	if getDesktop(0).size().width() == 1280:
 		skin = """
-			<screen position="center,center" size="900,560" title="EMC iMDB">
-				<widget name="menulist" position="220,100" size="672,408" scrollbarMode="showOnDemand" transparent="1"/>
-				<widget name="info" position="30,10" size="300,24" zPosition="0" font="Regular;21" halign="left" valign="center" transparent="1" foregroundColor="#ffffff" backgroundColor="black"/>
-				<widget name="poster" position="20,40" size="165,230" zPosition="4" backgroundColor="#00000000" alphatest="off" transparent="0" />
-				<widget name="m_info" position="200,40" size="800,24" zPosition="0" font="Regular;21" halign="center" valign="center" transparent="1" foregroundColor="#ffffff" backgroundColor="black"/>
-				<widget name="download" position="10,398" size="200,24" zPosition="0" font="Regular;21" halign="left" valign="center" transparent="1" foregroundColor="#ffffff" backgroundColor="black"/>
-				<widget name="exist" position="10,350" size="200,24" zPosition="0" font="Regular;21" halign="left" valign="center" transparent="1" foregroundColor="#ffffff" backgroundColor="black"/>
-				<widget name="no_poster" position="10,374" size="200,24" zPosition="0" font="Regular;21" halign="left" valign="center" transparent="1" foregroundColor="#ffffff" backgroundColor="black"/>
-				<widget name="genre" position="200,64" size="800,24" zPosition="0" font="Regular;21" halign="center" valign="center" transparent="1" foregroundColor="#ffffff" backgroundColor="black"/>
-				<widget name="done_msg" position="0,512" size="940,48" zPosition="0" font="Regular;21" halign="center" valign="center" transparent="1" foregroundColor="#ffffff" backgroundColor="black"/>
+			<screen position="center,center" size="1000,560" title="EMC iMDB">
+				<widget name="menulist" position="220,100" size="772,408" scrollbarMode="showOnDemand" transparent="1" enableWrapAround="on" />
+				<widget name="info" position="10,10" size="300,24" zPosition="0" font="Regular;21" halign="left" valign="center" transparent="1" foregroundColor="#ffffff" backgroundColor="#000000"/>
+				<widget name="poster" position="10,40" size="185,230" zPosition="4" alphatest="on" />
+				<widget name="m_info" position="200,40" size="800,24" zPosition="0" font="Regular;21" halign="center" valign="center" transparent="1" foregroundColor="#ffffff" backgroundColor="#000000"/>
+				<widget name="download" position="10,398" size="200,24" zPosition="0" font="Regular;21" halign="left" valign="center" transparent="1" foregroundColor="#ffffff" backgroundColor="#000000"/>
+				<widget name="exist" position="10,350" size="200,24" zPosition="0" font="Regular;21" halign="left" valign="center" transparent="1" foregroundColor="#ffffff" backgroundColor="#000000"/>
+				<widget name="no_poster" position="10,374" size="200,24" zPosition="0" font="Regular;21" halign="left" valign="center" transparent="1" foregroundColor="#ffffff" backgroundColor="#000000"/>
+				<widget name="genre" position="200,64" size="800,24" zPosition="0" font="Regular;21" halign="center" valign="center" transparent="1" foregroundColor="#ffffff" backgroundColor="#000000"/>
+				<widget name="done_msg" position="220,512" size="940,48" zPosition="0" font="Regular;21" halign="left" valign="center" transparent="1" foregroundColor="#ffffff" backgroundColor="#000000"/>
 				<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key-green.png" position="10,293" size="30,30" alphatest="on" />
-				<!-- <widget name="ButtonGreen" pixmap="skin_default/buttons/key_green.png" position="21,300" zPosition="10" size="35,25" transparent="1" alphatest="on" /> -->
-				<widget name="ButtonGreenText" position="54,300" size="300,22" valign="center" halign="left" zPosition="1" font="Regular;20" transparent="1" />
+				<widget name="ButtonGreenText" position="50,300" size="300,22" valign="center" halign="left" zPosition="1" font="Regular;20" transparent="1" />
 				<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key-red.png" position="10,453" size="30,30" alphatest="on" />
-				<!-- <widget name="ButtonRed" pixmap="skin_default/buttons/key_red.png" position="21,460" zPosition="10" size="35,25" transparent="1" alphatest="on" /> -->
-				<widget name="ButtonRedText" position="54,460" size="300,22" valign="center" halign="left" zPosition="1" font="Regular;20" transparent="1" />
+				<widget name="ButtonRedText" position="50,460" size="300,22" valign="center" halign="left" zPosition="1" font="Regular;20" transparent="1" />
+				<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key_menu.png" position="10,495" size="35,25" alphatest="on" />
+				<eLabel text="Setup" position="50,495" size="300,25" font="Regular;21" halign="left" valign="center" transparent="1" />
+				<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key_ok.png" position="10,530" size="35,25" alphatest="on" />
+				<eLabel text="Single search" position="50,530" size="300,25" font="Regular;21" halign="left" valign="center" transparent="1" />
 			</screen>"""
 	else:
 		skin = """
@@ -434,8 +436,8 @@ class imdbSetup(Screen, ConfigListScreen):
 	skin = """
 		<screen position="center,center" size="550,400" title="EMC imdb Setup" >
 			<widget name="config" position="20,10" size="510,330" scrollbarMode="showOnDemand" />
-			<widget name="key_red" position="0,350" size="140,40" valign="center" halign="center" zPosition="5" transparent="1" foregroundColor="white" font="Regular;18"/>
-			<widget name="key_green" position="140,350" size="140,40" valign="center" halign="center" zPosition="5" transparent="1" foregroundColor="white" font="Regular;18"/>
+			<widget name="key_red" position="0,350" size="140,40" valign="center" halign="center" zPosition="5" transparent="1" foregroundColor="#ffffff" font="Regular;18"/>
+			<widget name="key_green" position="140,350" size="140,40" valign="center" halign="center" zPosition="5" transparent="1" foregroundColor="#ffffff" font="Regular;18"/>
 			<ePixmap name="red" pixmap="skin_default/buttons/red.png" position="0,350" size="140,40" zPosition="4" transparent="1" alphatest="on"/>
 			<ePixmap name="green" pixmap="skin_default/buttons/green.png" position="140,350" size="140,40" zPosition="4" transparent="1" alphatest="on"/>
 		</screen>"""
@@ -470,9 +472,9 @@ class imdbSetup(Screen, ConfigListScreen):
                 
 class getCover(Screen):
 	skin = """
-		<screen position="center,center" size="550,430" title="EMC Cover Selecter" >
-			<widget name="menulist" position="0,0" size="550,195" scrollbarMode="showOnDemand" transparent="1"/>
-			<widget name="poster" zPosition="2" position="0,200" size="165,230" alphatest="blend" />
+		<screen position="center,center" size="1000,560" title="EMC Cover Selecter" >
+			<widget name="poster" zPosition="2" position="10,10" size="185,230" alphatest="on" />
+			<widget name="menulist" position="220,10" size="760,530" scrollbarMode="showOnDemand" transparent="1" enableWrapAround="on" />
 		</screen>"""
 
 	def __init__(self, session, data):
