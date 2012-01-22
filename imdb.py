@@ -69,7 +69,7 @@ class imdbscan(Screen):
 		skin = """
 			<screen position="center,center" size="1000,560" title="EMC Cover search">
 				<widget name="menulist" position="220,100" size="772,408" scrollbarMode="showOnDemand" transparent="1" enableWrapAround="on" />
-				<widget name="info" position="10,10" size="300,24" zPosition="0" font="Regular;21" halign="left" valign="center" transparent="1" foregroundColor="#ffffff" backgroundColor="#000000"/>
+				<widget name="info" position="10,10" size="900,24" zPosition="0" font="Regular;21" halign="left" valign="center" transparent="1" foregroundColor="#ffffff" backgroundColor="#000000"/>
 				<widget name="poster" position="10,40" size="185,230" zPosition="4" alphatest="on" />
 				<widget name="m_info" position="200,40" size="800,24" zPosition="0" font="Regular;21" halign="center" valign="center" transparent="1" foregroundColor="#ffffff" backgroundColor="#000000"/>
 				<widget name="download" position="10,398" size="200,24" zPosition="0" font="Regular;21" halign="left" valign="center" transparent="1" foregroundColor="#ffffff" backgroundColor="#000000"/>
@@ -121,9 +121,17 @@ class imdbscan(Screen):
 		self["info"].setText("")
 		self.no_image_poster = "/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/no_poster.png"
 		self.check = "false"
-		#if self.check == "true":
 		self["menulist"].onSelectionChanged.append(self.showInfo)
 		self.running = "false"
+		self.setShowSearchSiteName()
+
+	def setShowSearchSiteName(self):
+		if config.plugins.imdb.search.value == "0":
+                        self.showSearchSiteName = "IMDB"
+			print "set to: %s" % self.showSearchSiteName
+                else:
+                        self.showSearchSiteName = "TMDb"
+			print "set to: %s" % self.showSearchSiteName
 
 	def showInfo(self):
 		if self.check == "true":
@@ -149,6 +157,7 @@ class imdbscan(Screen):
                         
 		elif self.running == "false":
                         print "EMC iMDB: Search started..."
+			self["done_msg"].show()
 			self.no_cover()
 			self.running = "true"
 			self.counter = 0
@@ -160,7 +169,6 @@ class imdbscan(Screen):
 			self.t_elapsed = 0
 			self.menulist = []
 			self.count_movies = len(self.m_list)
-			#self.poster_resize(self.no_image_poster)
 			self["exist"].setText(_("Exist: %s") % "0")
 			self["no_poster"].setText(_("No Cover: %s") % "0")
 			self["download"].setText(_("Download: %s") % "0")
@@ -178,17 +186,10 @@ class imdbscan(Screen):
 			for each in self.cm_list:
                                 (title, path) = each
 				path = re.sub(self.file_format + "$", '.jpg', path)
-				if os.path.exists(path):
-					#elem = (title, path)
-					#self.exist_list.append(elem)
-					self.counter2 += 1
-                                        #self.gotall += 1
+				if os.path.exists(path):			
+					self.counter2 += 1                                       
                                         print "EMC iMDB: Cover vorhanden - %s" % title
                                         self.display_exist(title, path)
-                                        #if self.gotall == 10:
-                                        #print "EMC iMDB: N/A Jump"
-                                        #self.imdb_start()
-
 				else:
 					elem2 = (title, path)
 					self.search_list.append(elem2)
@@ -200,7 +201,6 @@ class imdbscan(Screen):
         def imdb_start(self):
 		self["done_msg"].setText(_("Searching.."))
 		self.starttime = time.time()
-		#self.gotall = 0
 		self.run10 = "false"
 		for i in xrange(10):
 			if self.search_list:
@@ -218,14 +218,6 @@ class imdbscan(Screen):
 						##replace('Ã¶','%F6')
 						print "EMC imdbapi.com:", url
 						getPage(url, timeout = 10).addCallback(self.imdbapi, search_title, path).addErrback(self.errorLoad, search_title)
-#					else:
-#                                                self.counter2 += 1
-#						self.gotall += 1
-#                                                print "EMC iMDB: Cover vorhanden"
-#						self.display_exist(search_title, path)
-#						if self.gotall == 10:
- #                                                       print "EMC iMDB: N/A Jump"
-  #                                                      self.imdb_start()
 
 				if config.plugins.imdb.search.value == "1":
 					self.name = title.replace(' ','+').replace(':','+').replace('-','').replace('++','+')
@@ -237,14 +229,6 @@ class imdbscan(Screen):
 						url = "http://api.themoviedb.org/2.1/Movie.search/de/xml/8789cfd3fbab7dccf1269c3d7d867aff/" + self.name
 						print "EMC themoviedb.org:", url						
 						getPage(url, timeout = 10).addCallback(self.themoviedb, search_title, path).addErrback(self.errorLoad, search_title)
-#					else:
-#						self.counter2 += 1
-#						self.gotall += 1
-#						print "EMC iMDB: Cover vorhanden - %s" % search_title
-#						self.display_exist(search_title, path)
-#						if self.gotall == 10:
-#							print "EMC iMDB: N/A Jump"
-#							self.imdb_start()
 			else:
 				print "EMC iMDB: MovieList is empty, search is DONE."
 				self.e_supertime = time.time()
@@ -253,15 +237,8 @@ class imdbscan(Screen):
 				avg = (total_time / total_movie)
 				self.done = _("%s Filme in %.1f sec gefunden. Avg. Speed: %.1f sec") % (total_movie, total_time, avg) 
                 		self["done_msg"].setText(self.done)
-				#self.check = "false"
 				self.running = "false"
-				#if self["menulist"].instance:
-	        	        #        print "move to TOP"
-        	        	#        self["menulist"].instance.moveSelection(self["menulist"].instance.moveTop)
-				#DelayedFunction(1000, self.check = "true")
 				break
-		
-		#self.check = "true"
 
 	def themoviedb(self, data, search_title, path):
 		if self.search_list and self.run10 == "false":
@@ -333,12 +310,12 @@ class imdbscan(Screen):
 
 	def errorLoad(self, error, search_title):
 		print "keine daten zu %s gefunden." % search_title
-		#print "Please report: %s" % str(error)
-                
+		#print "Please report: %s" % str(error)     
+
         def display_na(self, search_title, path):
 		self.counter += 1
                 self.counter_no_poster = self.counter_no_poster + 1
-                self.count = _("Film: %s von %s") % (self.counter, self.count_movies)
+                self.count = _("%s: %s von %s") % (self.showSearchSiteName, self.counter, self.count_movies)
                 self["info"].setText(self.count)
                 self["m_info"].setText(search_title)
                 self["no_poster"].setText(_("No Cover: %s") % str(self.counter_no_poster))
@@ -351,7 +328,7 @@ class imdbscan(Screen):
         def display_exist(self, search_title, path):
 		self.counter += 1
 		self.counter_exist = self.counter_exist + 1
-		self.count = _("Film: %s von %s") % (self.counter, self.count_movies)
+		self.count = _("%s: %s von %s") % (self.showSearchSiteName, self.counter, self.count_movies)
 		self["info"].setText(self.count)
           	self["m_info"].setText(search_title)
           	self["exist"].setText(_("Exist: %s") % str(self.counter_exist))
@@ -367,7 +344,7 @@ class imdbscan(Screen):
 	      	self.counter_download = self.counter_download + 1
        		self.end_time = time.clock()
         	elapsed = (self.end_time - self.start_time) * 10
-        	self.count = _("Film: %s von %s") % (self.counter, self.count_movies)
+        	self.count = _("%s: %s von %s") % (self.showSearchSiteName, self.counter, self.count_movies)
                 self["info"].setText(self.count)
 		self["m_info"].setText(movie_title)
 		self["download"].setText(_("Download: %s") % str(self.counter_download))
@@ -403,8 +380,7 @@ class imdbscan(Screen):
 			m_poster_path = self["menulist"].getCurrent()[0][1]
 			print m_poster_path
 			data_list = [(m_title, m_poster_path)]
-                        #self.session.open(getCover, data_list)
-			self.session.openWithCallback(self.setupFinished, getCover, data_list)
+			self.session.openWithCallback(self.setupFinished2, getCover, data_list)
 
 	### Cover resize ###
 	def poster_resize(self, poster_path):
@@ -431,9 +407,22 @@ class imdbscan(Screen):
 		self.session.openWithCallback(self.setupFinished, imdbSetup)
 
 	def setupFinished(self, result):
-		print "showwwww it meeee ttto :D"
+		print "EMC iMDB Config Saved."
 		if result:
-			self.showInfo()			
+			self["done_msg"].show()
+			self.setShowSearchSiteName()
+			print "was ist settteeedd:", self.showSearchSiteName
+			self.showInfo()
+			self["done_msg"].setText(_("Search site set to: %s" % self.showSearchSiteName))
+			DelayedFunction(3000, self["done_msg"].hide)
+
+        def setupFinished2(self, result):
+                print "EMC iMDB single search done."
+                if result:
+			self.showInfo()
+			self["done_msg"].show()
+			self["done_msg"].setText("Cover is Saved.")
+			DelayedFunction(3000, self["done_msg"].hide)
 
 class imdbSetup(Screen, ConfigListScreen):
 	skin = """
@@ -455,7 +444,6 @@ class imdbSetup(Screen, ConfigListScreen):
 		self.list.append(getConfigListEntry(_("Search Site:"), config.plugins.imdb.search))
 		ConfigListScreen.__init__(self, self.list, session)
 		self["setupActions"] = ActionMap(["SetupActions", "ColorActions"],
-		#self["actions"] = HelpableActionMap(self, "sjActions",
 		{
 			"green":	self.keySave,
 			"cancel":	self.keyClose,
@@ -483,9 +471,6 @@ class getCover(Screen):
 	def __init__(self, session, data):
 		Screen.__init__(self, session, data)
 
-		#["key_red"] = Button(_("Cancel"))
-		#self["key_green"] = Button(_("OK"))
-
 		self["actions"] = HelpableActionMap(self, "EMCimdb",
 		{
 			"EMCEXIT":	self.exit,
@@ -495,7 +480,7 @@ class getCover(Screen):
 		}, -1)
                 
 		(title, o_path) = data.pop()
-		self.title =  title
+		self.title = title
 		self.o_path = o_path
 		self.menulist = []
 		self["menulist"] = imdblist([])
@@ -556,7 +541,6 @@ class getCover(Screen):
 
 	def exit(self):
 		self.check = "false"
-		#self["poster"].hide()
 		self.close(False)
 
 	def ok(self):
