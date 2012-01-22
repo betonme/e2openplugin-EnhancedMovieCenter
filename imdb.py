@@ -1,4 +1,7 @@
 # -*- coding: utf-8 -*-
+
+from __init__ import _
+
 from Components.ActionMap import *
 from Components.Label import Label
 from Components.MenuList import MenuList
