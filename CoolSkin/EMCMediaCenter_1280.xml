@@ -47,14 +47,21 @@
 	</widget>
 
 
-	<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/EMCMoviePlayer/format_off.png" position="50,125" size="40,20" zPosition="1" alphatest="blend" />
+	<ePixmap position="50,125" size="40,20" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/EMCMoviePlayer/format_off.png"  zPosition="1" alphatest="blend" />
 	<widget source="session.CurrentService" render="Pixmap" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/EMCMoviePlayer/format_on.png" position="50,125" size="40,20" zPosition="2" alphatest="blend">
 		<convert type="ServiceInfo">IsWidescreen</convert>
 		<convert type="ConditionalShowHide" />
 	</widget>
 
-	<ePixmap position="120,128" size="26,16" pixmap="skin_default/icons/icon_dolby.png" zPosition="3" alphatest="on" />
-	<widget name="audioLabel" position="155,125" size="100,22" font="Regular;18" backgroundColor="#00000000" zPosition="3" transparent="1" />
+	<ePixmap position="120,125" size="29,20" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/EMCMoviePlayer/ico_hd_off.png" zPosition="1" alphatest="blend"/>
+	<widget source="session.CurrentService" render="Pixmap" position="120,125" size="29,20" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/EMCMoviePlayer/ico_hd_on.png" zPosition="2" alphatest="blend">
+		<convert type="ServiceInfo">VideoWidth</convert>
+		<convert type="ValueRange">721,1980</convert>
+		<convert type="ConditionalShowHide"/>
+	</widget>	
+	
+	<ePixmap position="180,128" size="26,16" pixmap="skin_default/icons/icon_dolby.png" zPosition="3" alphatest="on" />
+	<widget name="audioLabel" position="210,125" size="100,22" font="Regular;18" backgroundColor="#00000000" zPosition="3" transparent="1" />
 
 	<widget name="chapterLabel" position="350,125" size="580,30" font="Regular;22" halign="center" foregroundColor="#00e5b243" backgroundColor="#00000000" transparent="1" />
 	<!-- Subtitel Label only for DVD -->
