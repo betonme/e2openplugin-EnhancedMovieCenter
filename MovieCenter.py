@@ -1076,6 +1076,47 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 			return dvdpath
 		return None
 	
+	def createDirListRecursive(self, path):
+		dirstack, subdirlist, subfilelist, filelist = [], [], [], []
+		
+		dappend = dirstack.append
+		fextend = filelist.extend
+		pathreal = os.path.realpath
+		pathislink = os.path.islink
+		pathsplitext = os.path.splitext
+		
+		# walk through entire tree below current path. Might take a bit long on huge disks...
+		dirstack.append( path )
+		
+		# Search files through all given paths
+		for directory in dirstack:
+			
+			# Avoid trashcan subdirectories
+			if directory.find( config.EMC.movie_trashcan_path.value ) == -1:
+				
+				# Get entries
+				subdirlist, subfilelist = self.createDirList( directory )
+				
+				# Found new directories to search within, use only their path
+				for d, name, ext in subdirlist:
+					# Resolve symbolic links and get the real path
+					d = pathreal( d )
+					
+					# Avoid duplicate directories and ignore links
+					if d not in dirstack and not pathislink( d ):
+						dappend( d )
+				
+				# Store the media files
+				fextend( subfilelist )
+		
+		del dappend
+		del fextend
+		del pathreal
+		del pathislink
+		del pathsplitext
+		# We don't want any folders
+		return [], filelist
+	
 	def createDirList(self, path):
 		subdirlist, filelist = [], []
 		dvdStruct = None
@@ -1259,7 +1300,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 		del pathjoin
 		return customlist
 
-	def reload(self, loadPath, simulate=False):
+	def reload(self, loadPath, simulate=False, recursive=False):
 		#TODO add parameter reset list sort
 		emcDebugOut("[MC] LOAD PATH:\n" + str(loadPath))
 		customlist, subdirlist, filelist, tmplist = [], [], [], []
@@ -1276,8 +1317,13 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 			# Found directory
 			
 			# Read subdirectories and filenames
-			subdirlist, filelist = self.createDirList(loadPath)
-			customlist = self.createCustomList(loadPath)
+			if not recursive:
+				subdirlist, filelist = self.createDirList(loadPath)
+			else:
+				subdirlist, filelist = self.createDirListRecursive(loadPath)
+				
+			if not simulate:
+				customlist = self.createCustomList(loadPath)
 		
 		elif os.path.isfile(loadPath):
 			# Found file
