@@ -61,7 +61,7 @@ global sidDVB, sidDVD, sidMP3
 
 # Media types
 extAudio    = frozenset([".ac3", ".dts", ".flac", ".m4a", ".mp2", ".mp3", ".ogg", ".wav"])
-extVideo    = frozenset([".ts", ".avi", ".divx", ".f4v", ".flv", ".img", ".iso", ".m2ts", ".m4v", ".mkv", ".mov", ".mp4", ".mpeg", ".mpg", ".mts", ".vob"])
+extVideo    = frozenset([".ts", ".avi", ".divx", ".f4v", ".flv", ".img", ".ifo", ".iso", ".m2ts", ".m4v", ".mkv", ".mov", ".mp4", ".mpeg", ".mpg", ".mts", ".vob"])
 extPlaylist = frozenset([".m3u"])
 extMedia    = extAudio | extVideo | extPlaylist
 extDir      = frozenset([""])
@@ -657,7 +657,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 					# Icon
 					if config.EMC.movie_icons.value:
 						# video
-						if ext in extVideo:
+						if ext in extVideo and ext not in extDvd:
 							if movieUnwatched:
 								if config.EMC.mark_latest_files.value and latest:
 									pixmap = self.pic_latest

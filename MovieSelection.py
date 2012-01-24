@@ -107,6 +107,8 @@ class SelectionEventInfo:
 			jpgpath = ""
 			if ext in extMedia:
 				jpgpath = name + ".jpg"
+			elif os.path.isdir(path) and path.endswith("VIDEO_TS"):
+				jpgpath = os.path.join(path, "dvd.jpg")
 			elif os.path.isdir(path):
 				jpgpath = os.path.join(path, "folder.jpg")
 				#TODO avoid os.path.exists double check
