@@ -49,6 +49,11 @@ from CutListSupport import CutList
 from InfoBarSupport import InfoBarSupport
 from ServiceSupport import CurrentService
 
+# Cover
+from Components.AVSwitch import AVSwitch
+from Components.Pixmap import Pixmap
+from enigma import ePicLoad
+
 from MovieCenter import sidDVD
 global sidDVD
 
