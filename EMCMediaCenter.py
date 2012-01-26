@@ -170,8 +170,11 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 		self["NumberActions"].prio = 2
                 
                 # Cover Anzeige
-                self["Cover"] = Pixmap()
-		
+		self["Cover"] = Pixmap()
+		self["Cover"].hide()
+		self["coverborder"] = Pixmap()
+		self["coverborder"].hide()
+
 		# Set Source for the Converter ServicePostion
 		# So we can display the marker for all media files
 		self["Service"] = CurrentService(session.nav, self)
@@ -217,7 +220,8 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
         ### Cover anzeige        
         def showCover(self, jpgpath):
 		if not os.path.exists(jpgpath):
-			self["Cover"].show()
+			self["Cover"].hide()
+			self["coverborder"].hide()
                 	#jpgpath = "/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/no_poster.png"
 		else:
                 	sc = AVSwitch().getFramebufferScale() # Maybe save during init
@@ -233,6 +237,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 			if ptr != None:
 				self["Cover"].instance.setPixmap(ptr)
 				self["Cover"].show()
+				self["coverborder"].show()
                                 
 	def CoolAVSwitch(self):
 		if config.av.policy_43.value == "pillarbox":
@@ -706,7 +711,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 		### Cover anzeige
                 service = self.playlist[self.playcount]
                 cover_path = service.getPath().replace(".ts",".jpg")
-		self.showCover(cover_path)	
+		self.showCover(cover_path)
 		if self.in_menu:
 			pass
 			#self.hide()
