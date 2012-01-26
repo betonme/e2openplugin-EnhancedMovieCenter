@@ -1,5 +1,7 @@
 <screen name="EMCMediaCenter" position="0,552" size="1280,150" title="InfoBar" backgroundColor="transparent" flags="wfNoBorder">
 	<ePixmap position="0,0" zPosition="-1" size="1280,150" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/EMCMoviePlayer/CoolInfobar.png" />
+	
+	<widget name="Cover" position="0,0" size="215,380" zPosition="4" backgroundColor="#00000000" alphatest="off" transparent="0" />
 
 	<widget source="session.CurrentService" render="Label" font="Regular;22" position="40,8" size="55,30" halign="right" foregroundColor="#00e5b243" backgroundColor="#00000000" transparent="1">
 		<convert type="ServiceInfo">VideoWidth</convert>

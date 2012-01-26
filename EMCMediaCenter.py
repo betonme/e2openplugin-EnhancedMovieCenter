@@ -19,7 +19,7 @@
 #	<http://www.gnu.org/licenses/>.
 #
 
-import os
+import os, re
 import sys, traceback
 
 from Components.config import *
@@ -163,6 +163,9 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 		self["MenuActions"].prio = 2
 		self["TeletextActions"].prio = 2
 		self["NumberActions"].prio = 2
+                
+                # Cover Anzeige
+                self["Cover"] = Pixmap()
 		
 		# Set Source for the Converter ServicePostion
 		# So we can display the marker for all media files
@@ -205,7 +208,26 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 		self.onShown.append(self.__onShow)  # Don't use onFirstExecBegin() it will crash
 		self.onClose.insert(0, self.__playerClosed)
 		self.onClose.append(self.__onClose)
+                
+        ### Cover anzeige        
+        def showCover(self, jpgpath):
+		if not os.path.exists(jpgpath):
+                	jpgpath = "/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/no_poster.png"
 
+                sc = AVSwitch().getFramebufferScale() # Maybe save during init
+		self.picload = ePicLoad()
+		self.picload.PictureData.get().append(self.showCoverCallback)
+		size = self["Cover"].instance.size()
+		self.picload.setPara((size.width(), size.height(), sc[0], sc[1], False, 1, "#00000000")) # Background dynamically
+		self.picload.startDecode(jpgpath)
+                                
+        def showCoverCallback(self, picInfo=None):
+		if picInfo:
+			ptr = self.picload.getData()
+			if ptr != None:
+				self["Cover"].instance.setPixmap(ptr)
+				self["Cover"].show()
+                                
 	def CoolAVSwitch(self):
 		if config.av.policy_43.value == "pillarbox":
 			config.av.policy_43.value = "panscan"
@@ -720,7 +742,14 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 
 	# InfoBarShowHide Key_Ok
 	def toggleShow(self):
+        
+                ### Cover anzeige
+                service = self.playlist[self.playcount]
+		cover_path = service.getPath().replace(".ts",".jpg")
+                
 		if not self.in_menu:
+                        ### Cover anzeige
+                        self.showCover(cover_path)
 			# Call baseclass function
 			InfoBarShowHide.toggleShow(self)
 
