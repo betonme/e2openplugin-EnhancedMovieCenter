@@ -217,14 +217,15 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
         ### Cover anzeige        
         def showCover(self, jpgpath):
 		if not os.path.exists(jpgpath):
-                	jpgpath = "/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/no_poster.png"
-
-                sc = AVSwitch().getFramebufferScale() # Maybe save during init
-		self.picload = ePicLoad()
-		self.picload.PictureData.get().append(self.showCoverCallback)
-		size = self["Cover"].instance.size()
-		self.picload.setPara((size.width(), size.height(), sc[0], sc[1], False, 1, "#00000000")) # Background dynamically
-		self.picload.startDecode(jpgpath)
+			self["Cover"].show()
+                	#jpgpath = "/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/no_poster.png"
+		else:
+                	sc = AVSwitch().getFramebufferScale() # Maybe save during init
+			self.picload = ePicLoad()
+			self.picload.PictureData.get().append(self.showCoverCallback)
+			size = self["Cover"].instance.size()
+			self.picload.setPara((size.width(), size.height(), sc[0], sc[1], False, 1, "#00000000")) # Background dynamically
+			self.picload.startDecode(jpgpath)
                                 
         def showCoverCallback(self, picInfo=None):
 		if picInfo:
