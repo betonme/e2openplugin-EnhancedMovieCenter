@@ -701,6 +701,11 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 	#		InfoBarShowHide.serviceStarted(self)
 
 	def doShow(self):
+
+		### Cover anzeige
+                service = self.playlist[self.playcount]
+                cover_path = service.getPath().replace(".ts",".jpg")
+		self.showCover(cover_path)	
 		if self.in_menu:
 			pass
 			#self.hide()
