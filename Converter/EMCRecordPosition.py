@@ -45,13 +45,17 @@ class EMCRecordPosition(ServicePosition):
 
 	@cached
 	def getPosition(self):
+		print "EMCRecordPosition getPosition"
 		if config.EMC.record_eof_zap.value:
 			from Plugins.Extensions.EnhancedMovieCenter.MovieSelection import gMS
 			service = NavigationInstance.instance.getCurrentlyPlayingServiceReference()
 			path = service and service.getPath()
+			print path
 			record = path and gMS.getRecording(path)
 			if record:
+				print record
 				begin, end, s = record
+				print int((time() - begin) * 90000)
 				return int((time() - begin) * 90000)
 		return 0
 
@@ -59,6 +63,7 @@ class EMCRecordPosition(ServicePosition):
 
 	@cached
 	def getLength(self):
+		print "EMCRecordPosition getLength"
 		if config.EMC.record_eof_zap.value:
 			from Plugins.Extensions.EnhancedMovieCenter.MovieSelection import gMS
 			service = NavigationInstance.instance.getCurrentlyPlayingServiceReference()
@@ -66,6 +71,7 @@ class EMCRecordPosition(ServicePosition):
 			record = path and gMS.getRecording(path)
 			if record:
 				begin, end, s = record
+				print int((end - begin) * 90000)
 				return int((end - begin) * 90000)
 		return 0
 
