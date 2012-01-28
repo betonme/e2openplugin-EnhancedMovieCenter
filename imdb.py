@@ -68,15 +68,23 @@ class imdbscan(Screen):
 	if getDesktop(0).size().width() == 1280:
 		skin = """
 			<screen position="center,center" size="1000,560" title="EMC Cover search">
-				<widget name="menulist" position="220,100" size="772,408" selectionPixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/cursor.png" scrollbarMode="showOnDemand" transparent="1" enableWrapAround="on" />
+				<!-- Info: Amount of searched Covers -->
 				<widget name="info" position="10,10" size="900,24" zPosition="0" font="Regular;21" halign="left" valign="center" transparent="1" foregroundColor="#ffffff" backgroundColor="#000000"/>
-				<widget name="poster" position="10,40" size="185,230" zPosition="4" alphatest="on" />
+				<!-- aktual movie name -->
 				<widget name="m_info" position="200,40" size="800,24" zPosition="0" font="Regular;21" halign="center" valign="center" transparent="1" foregroundColor="#ffffff" backgroundColor="#000000"/>
+				<!-- OLD ? can removed ?  -->
+				<widget name="genre" position="200,64" size="800,24" zPosition="0" font="Regular;21" halign="center" valign="center" transparent="1" foregroundColor="#ffffff" backgroundColor="#000000"/>
+				<!-- Movie Listbox -->
+				<widget name="menulist" position="220,80" size="772,420" selectionPixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/cursor.png" scrollbarMode="showOnDemand" transparent="1" enableWrapAround="on" />
+				<!-- Cover picture -->
+				<widget name="poster" position="10,40" size="185,230" zPosition="4" alphatest="on" />
+				<!-- Amount of "downloaded", "exist", and "not found" covers -->
 				<widget name="download" position="10,398" size="200,24" zPosition="0" font="Regular;21" halign="left" valign="center" transparent="1" foregroundColor="#ffffff" backgroundColor="#000000"/>
 				<widget name="exist" position="10,350" size="200,24" zPosition="0" font="Regular;21" halign="left" valign="center" transparent="1" foregroundColor="#ffffff" backgroundColor="#000000"/>
 				<widget name="no_poster" position="10,374" size="200,24" zPosition="0" font="Regular;21" halign="left" valign="center" transparent="1" foregroundColor="#ffffff" backgroundColor="#000000"/>
-				<widget name="genre" position="200,64" size="800,24" zPosition="0" font="Regular;21" halign="center" valign="center" transparent="1" foregroundColor="#ffffff" backgroundColor="#000000"/>
+				<!--  -->
 				<widget name="done_msg" position="220,512" size="940,48" zPosition="0" font="Regular;21" halign="left" valign="center" transparent="1" foregroundColor="#ffffff" backgroundColor="#000000"/>
+				<!-- Buttons  -->
 				<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key-green.png" position="10,293" size="30,30" alphatest="on" />
 				<widget name="ButtonGreenText" position="50,300" size="300,22" valign="center" halign="left" zPosition="1" font="Regular;20" transparent="1" />
 				<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key-red.png" position="10,453" size="30,30" alphatest="on" />
@@ -98,10 +106,11 @@ class imdbscan(Screen):
 		self["actions"] = HelpableActionMap(self, "EMCimdb",
 		{
 			"EMCEXIT":		self.exit,
-			"EMCOK":                self.ok,
+			"EMCOK":		self.ok,
 			"EMCGreen":		self.imdb,
 			"EMCRed":		self.red,
-			"EMCYellow":		self.verwaltung,
+			"EMCYellow":	self.verwaltung,
+			"EMCRedLong":	self.redLong,
 			"EMCMenu":		self.config,
 		}, -1)
 
@@ -412,6 +421,10 @@ class imdbscan(Screen):
 					done = _("%s removed.") % m_poster_path
 					self.no_cover()
 					self["done_msg"].setText(done)
+
+	def redLong(self):
+		pass
+
 	def ok(self):
                 if self.check == "true":
 			data_list = []
@@ -504,7 +517,7 @@ class getCover(Screen):
 	skin = """
 		<screen position="center,center" size="1000,560" title="EMC Cover Selecter" >
 			<widget name="poster" zPosition="2" position="10,10" size="185,230" alphatest="on" />
-			<widget name="menulist" position="220,10" size="760,530" selectionPixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/cursor.png" scrollbarMode="showOnDemand" transparent="1" enableWrapAround="on" />
+			<widget name="menulist" position="220,10" size="760,507" selectionPixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/cursor.png" scrollbarMode="showOnDemand" transparent="1" enableWrapAround="on" />
 			<widget name="info" position="10,535" size="990,24" zPosition="0" font="Regular;21" halign="left" valign="center" transparent="1" foregroundColor="#ffffff" backgroundColor="#000000"/>
 		</screen>"""
 
