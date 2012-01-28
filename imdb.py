@@ -101,6 +101,7 @@ class imdbscan(Screen):
 			"EMCOK":                self.ok,
 			"EMCGreen":		self.imdb,
 			"EMCRed":		self.red,
+			"EMCRedLong":		redLong,
 			"EMCMenu":		self.config,
 		}, -1)
 
@@ -373,6 +374,10 @@ class imdbscan(Screen):
 					done = _("%s removed.") % m_poster_path
 					self.no_cover()
 					self["done_msg"].setText(done)
+
+	def redLong(self):
+		pass
+
 	def ok(self):
                 if self.check == "true":
 			data_list = []
