@@ -71,7 +71,7 @@ class imdbscan(Screen):
 				<!-- Info: Amount of searched Covers -->
 				<widget name="info" position="10,10" size="900,24" zPosition="0" font="Regular;21" halign="left" valign="center" transparent="1" foregroundColor="#ffffff" backgroundColor="#000000"/>
 				<!-- aktual movie name -->
-				<widget name="m_info" position="200,40" size="800,24" zPosition="0" font="Regular;21" halign="center" valign="center" transparent="1" foregroundColor="#ffffff" backgroundColor="#000000"/>
+				<widget name="m_info" position="200,40" size="800,24" zPosition="0" font="Regular;24" halign="center" valign="center" transparent="1" foregroundColor="#00bab329" backgroundColor="#000000"/>
 				<!-- OLD ? can removed ?  -->
 				<widget name="genre" position="200,64" size="800,24" zPosition="0" font="Regular;21" halign="center" valign="center" transparent="1" foregroundColor="#ffffff" backgroundColor="#000000"/>
 				<!-- Movie Listbox -->
@@ -79,20 +79,23 @@ class imdbscan(Screen):
 				<!-- Cover picture -->
 				<widget name="poster" position="10,40" size="185,230" zPosition="4" alphatest="on" />
 				<!-- Amount of "downloaded", "exist", and "not found" covers -->
-				<widget name="download" position="10,398" size="200,24" zPosition="0" font="Regular;21" halign="left" valign="center" transparent="1" foregroundColor="#ffffff" backgroundColor="#000000"/>
-				<widget name="exist" position="10,350" size="200,24" zPosition="0" font="Regular;21" halign="left" valign="center" transparent="1" foregroundColor="#ffffff" backgroundColor="#000000"/>
-				<widget name="no_poster" position="10,374" size="200,24" zPosition="0" font="Regular;21" halign="left" valign="center" transparent="1" foregroundColor="#ffffff" backgroundColor="#000000"/>
+				<widget name="download" position="10,371" size="200,24" zPosition="0" font="Regular;21" halign="left" valign="center" transparent="1" foregroundColor="#ffffff" backgroundColor="#000000"/>
+				<widget name="exist" position="10,323" size="200,24" zPosition="0" font="Regular;21" halign="left" valign="center" transparent="1" foregroundColor="#ffffff" backgroundColor="#000000"/>
+				<widget name="no_poster" position="10,347" size="200,24" zPosition="0" font="Regular;21" halign="left" valign="center" transparent="1" foregroundColor="#ffffff" backgroundColor="#000000"/>
 				<!--  -->
 				<widget name="done_msg" position="220,512" size="940,48" zPosition="0" font="Regular;21" halign="left" valign="center" transparent="1" foregroundColor="#ffffff" backgroundColor="#000000"/>
 				<!-- Buttons  -->
-				<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key-green.png" position="10,293" size="30,30" alphatest="on" />
-				<widget name="ButtonGreenText" position="50,300" size="300,22" valign="center" halign="left" zPosition="1" font="Regular;20" transparent="1" />
+				<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key-green.png" position="10,278" size="30,30" alphatest="on" />
+				<widget name="ButtonGreenText" position="50,285" size="300,22" valign="center" halign="left" zPosition="1" font="Regular;20" transparent="1" />
+				<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key-yellow.png" position="10,418" size="30,30" alphatest="on" />
+				<eLabel text="Manage Cover" position="50,425" size="300,22" font="Regular;21" halign="left" valign="center" transparent="1" />
 				<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key-red.png" position="10,453" size="30,30" alphatest="on" />
 				<widget name="ButtonRedText" position="50,460" size="300,22" valign="center" halign="left" zPosition="1" font="Regular;20" transparent="1" />
 				<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key_menu.png" position="10,495" size="35,25" alphatest="on" />
-				<eLabel text="Setup" position="50,495" size="300,25" font="Regular;21" halign="left" valign="center" transparent="1" />
+				<eLabel text="Setup" position="50,498" size="300,22" font="Regular;21" halign="left" valign="center" transparent="1" />
 				<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key_ok.png" position="10,530" size="35,25" alphatest="on" />
-				<eLabel text="Single search" position="50,530" size="300,25" font="Regular;21" halign="left" valign="center" transparent="1" />
+				<eLabel text="Single search" position="50,533" size="300,22" font="Regular;21" halign="left" valign="center" transparent="1" />
+				<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key_ok.png" position="10,530" size="35,25" alphatest="on" />
 			</screen>"""
 	else:
 		skin = """
@@ -117,7 +120,7 @@ class imdbscan(Screen):
 		self["ButtonGreen"] = Pixmap()
 		self["ButtonGreenText"] = Label(_("Search"))
 		self["ButtonRed"] = Pixmap()
-    		self["ButtonRedText"] = Label(_("Delete"))
+		self["ButtonRedText"] = Label(_("Delete"))
 		self["poster"] = Pixmap()
 		self.menulist = []
 		self["menulist"] = imdblist([])
