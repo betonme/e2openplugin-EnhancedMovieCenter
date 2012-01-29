@@ -650,7 +650,9 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 
 	def updateInfoDelayed(self):
 		self.updateTitle()
-		self.updateEventInfo( self.getCurrent() )
+		current = self.getCurrent()
+		if current and not self["list"].serviceMoving(current) and not self["list"].serviceDeleting(current):
+			self.updateEventInfo(  )
 
 	def resetInfo(self):
 		print "EMC: resetInfo"
