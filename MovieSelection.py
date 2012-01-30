@@ -652,7 +652,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		self.updateTitle()
 		current = self.getCurrent()
 		if current and not self["list"].serviceMoving(current) and not self["list"].serviceDeleting(current):
-			self.updateEventInfo(  )
+			self.updateEventInfo( current )
 
 	def resetInfo(self):
 		print "EMC: resetInfo"
