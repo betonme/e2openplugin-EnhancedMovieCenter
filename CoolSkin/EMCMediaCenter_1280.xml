@@ -15,18 +15,18 @@
 		<convert type="EMCClockToText">Format:%H:%M:%S</convert>
 	</widget>
 
-	<ePixmap position="180,614" size="900,24" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/EMCMoviePlayer/CoolSlider.png" zPosition="4" alphatest="blend" />
+	<ePixmap position="180,610" size="900,24" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/EMCMoviePlayer/CoolSlider.png" zPosition="4" alphatest="blend" />
 	<ePixmap position="200,614" size="860,18" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/EMCMoviePlayer/CoolPointerBG.png" zPosition="1" alphatest="blend" />
 
 	<!-- Progressbar -->
 	<!-- EMC Converter needed, to display markers on not *.ts files -->
-	<widget source="Service" render="PositionGauge" position="216,615" size="828,18" zPosition="2" pointer="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/EMCMoviePlayer/CoolPointerRecord.png:828,0" transparent="1">
+	<widget source="Service" render="PositionGauge" position="216,613" size="828,16" zPosition="2" pointer="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/EMCMoviePlayer/CoolPointerRecord.png:828,0" transparent="1">
 		<convert type="EMCRecordPosition">Gauge</convert>
 	</widget>
-	<widget source="Service" render="PositionGauge" position="216,615" size="828,18" zPosition="3" pointer="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/EMCMoviePlayer/CoolPointer.png:828,0" transparent="1">
+	<widget source="Service" render="PositionGauge" position="216,613" size="828,16" zPosition="3" pointer="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/EMCMoviePlayer/CoolPointer.png:828,0" transparent="1">
 		<convert type="EMCServicePosition">Gauge</convert>
 	</widget>
-	<widget source="Service" render="PositionGauge" position="216,615" size="828,18" zPosition="4" transparent="1" >
+	<widget source="Service" render="PositionGauge" position="216,613" size="828,16" zPosition="4" transparent="1" >
 		<convert type="EMCServicePosition">Gauge</convert>
 	</widget>
 	
@@ -40,8 +40,10 @@
 		<convert type="EMCServicePosition">Remaining,Negate</convert>
 	</widget>
 	<!-- Infobar Cover -->
-	<widget name="Cover" position="50,322" size="185,230" zPosition="1" alphatest="on" />
-
+	<!-- <widget name="Cover" position="50,320" size="230,230" zPosition="1" alphatest="on" /> -->
+	<widget name="Cover" position="50,400" size="150,150" zPosition="1" alphatest="on" />
+	<!-- <widget name="Cover" position="50,593" size="71,71" zPosition="1" alphatest="on" /> -->
+	
 	<ePixmap position="50,677" size="40,20" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/EMCMoviePlayer/format_off.png"  zPosition="1" alphatest="blend" />
 	<widget source="session.CurrentService" render="Pixmap" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/EMCMoviePlayer/format_on.png" position="50,677" size="40,20" zPosition="2" alphatest="blend">
 		<convert type="ServiceInfo">IsWidescreen</convert>
