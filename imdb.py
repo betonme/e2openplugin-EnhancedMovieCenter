@@ -137,21 +137,27 @@ class imdbscan(Screen):
 		self.setShowSearchSiteName()
 
 	def verwaltung(self):
+		self.menulist = []
 		self.file_format = "(.ts|.avi|.mkv|.divx|.f4v|.flv|.img|.iso|.m2ts|.m4v|.mov|.mp4|.mpeg|.mpg|.mts|.vob)"
 		self.count_movies = len(self.m_list)
 		self.vm_list = self.m_list[:]
+		count_existing = 0
+		count_na = 0
 		for each in self.vm_list:			
 			(title, path) = each
 			path = re.sub(self.file_format + "$", '.jpg', path)
 			if os.path.exists(path):
+				count_existing += 1
 				self.menulist.append(imdb_show(title, path, "Exist", "", title))
 			else:
+				count_na += 1
 				self.menulist.append(imdb_show(title, path, "N/A", "", title))
 
 		self["menulist"].l.setList(self.menulist)
                	self["menulist"].l.setItemHeight(28)
-		self.check = "true"
 		self.showInfo()
+		self["done_msg"].setText(_("Total: %s - Exist: %s - N/A: %s") % (self.count_movies, count_existing, count_na))
+		self.check = "true"
 
 	def setShowSearchSiteName(self):
 		if config.plugins.imdb.search.value == "0":
@@ -276,9 +282,20 @@ class imdbscan(Screen):
 			self.display_delay()
 			self.run10 = "true"
 		### Parsing infos from data ###
-		if re.match('.*?<opensearch:totalResults>0</opensearch:totalResults>|.*?Error 503 Service Unavailable|.*?500 Internal Server Error',data, re.S):
+		if re.match('.*?<movies>Nothing found.</movies>|.*?<opensearch:totalResults>0</opensearch:totalResults>|.*?Error 503 Service Unavailable|.*?500 Internal Server Error', data, re.S):
 			print "EMC iMDB: Themoviedb.org is down or No results found - %s" % search_title
+			print "inffffooooooos ????"
 			self.display_na(search_title, path)
+			if len(self.search_list) == 0:
+				print "EMC iMDB: MovieList is empty, search is DONE."
+                                self.e_supertime = time.time()
+                                total_movie = self.counter3 + self.counter2
+                                total_time = self.e_supertime - self.s_supertime
+                                avg = (total_time / total_movie)
+                                self.done = _("%s Filme in %.1f sec gefunden. Avg. Speed: %.1f sec") % (total_movie, total_time, avg)
+                                self["done_msg"].setText(self.done)
+                                self.running = "false"
+				break # break outside a loop
 		else:
 			movie_title = re.findall('<name>(.*?)</name>', data)
 			poster_url = re.findall('<image type="poster" url="(.*?)" size="cover"', data)
