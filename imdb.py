@@ -443,18 +443,18 @@ class imdbscan(Screen):
 		self["poster"].hide()
 		sc = AVSwitch().getFramebufferScale() # Maybe save during init
 		self.picload = ePicLoad()
-		self.picload.PictureData.get().append(self.showCoverCallback)
+		#self.picload.PictureData.get().append(self.showCoverCallback)
 		size = self["poster"].instance.size()
 		self.picload.setPara((size.width(), size.height(), sc[0], sc[1], False, 1, "#00000000")) # Background dynamically
-		self.picload.startDecode(poster_path)
-
-	def showCoverCallback(self, picInfo=None):
-                if picInfo:
-                        ptr = self.picload.getData()
-                        if ptr != None:
-                                print "anzeigen"
-                                self["poster"].instance.setPixmap(ptr)
-                                self["poster"].show()
+		#self.picload.startDecode(poster_path)
+		if self.picload.startDecode(poster_path, 0, 0, False) == 0:
+	#def showCoverCallback(self, picInfo=None):
+		#if picInfo:
+			ptr = self.picload.getData()
+			if ptr != None:
+				print "anzeigen"
+				self["poster"].instance.setPixmap(ptr)
+				self["poster"].show()
 		else:
 			print "nicht angezeigt"
 		
@@ -549,8 +549,8 @@ class getCover(Screen):
 		self.searchCover(self.title)
 		self.einzel_start_time = time.clock()
 
-        def searchCover(self, title):
-                print title
+	def searchCover(self, title):
+		print title
 		url = "http://m.imdb.com/find?q=%s" % title.replace(' ','+')
 		getPage(url).addCallback(self.showCovers, title).addErrback(self.errorLoad, title)
 
@@ -617,15 +617,15 @@ class getCover(Screen):
 		self.picload.PictureData.get().append(self.showCoverCallback)
 		size = self["poster"].instance.size()
 		self.picload.setPara((size.width(), size.height(), sc[0], sc[1], False, 1, "#00000000")) # Background dynamically
-		self.picload.startDecode(poster_path)
-
-	def showCoverCallback(self, picInfo=None):
-                if picInfo:
-                        ptr = self.picload.getData()
-                        if ptr != None:
-                                print "EMC iMDB: Load Poster - %s" % self.m_title
-                                self["poster"].instance.setPixmap(ptr)
-                                self["poster"].show()
+		#self.picload.startDecode(poster_path)
+		if self.picload.startDecode(poster_path, 0, 0, False) == 0:
+	#def showCoverCallback(self, picInfo=None):
+		#if picInfo:
+			ptr = self.picload.getData()
+			if ptr != None:
+				print "EMC iMDB: Load Poster - %s" % self.m_title
+				self["poster"].instance.setPixmap(ptr)
+				self["poster"].show()
 
 	def exit(self):
 		self.check = "false"
