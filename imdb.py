@@ -614,7 +614,7 @@ class getCover(Screen):
 		self["poster"].hide()
 		sc = AVSwitch().getFramebufferScale() # Maybe save during init
 		self.picload = ePicLoad()
-		self.picload.PictureData.get().append(self.showCoverCallback)
+		#self.picload.PictureData.get().append(self.showCoverCallback)
 		size = self["poster"].instance.size()
 		self.picload.setPara((size.width(), size.height(), sc[0], sc[1], False, 1, "#00000000")) # Background dynamically
 		#self.picload.startDecode(poster_path)
