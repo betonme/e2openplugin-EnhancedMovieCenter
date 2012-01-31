@@ -237,7 +237,8 @@ class imdbscan(Screen):
 		self.starttime = time.time()
 		self.run10 = "false"
 		for i in xrange(10):
-			if self.search_list:
+			#if self.search_list:
+			if not len(self.search_list) == 0:
 				(title, path) = self.search_list.pop()
 				self.start_time = time.clock()
                                 
@@ -264,14 +265,14 @@ class imdbscan(Screen):
 						print "EMC themoviedb.org:", url						
 						getPage(url, timeout = 10).addCallback(self.themoviedb, search_title, path).addErrback(self.errorLoad, search_title)
 			else:
-				print "EMC iMDB: MovieList is empty, search is DONE."
-				self.e_supertime = time.time()
-				total_movie = self.counter3 + self.counter2 
-                		total_time = self.e_supertime - self.s_supertime
-				avg = (total_time / total_movie)
-				self.done = _("%s Filme in %.1f sec gefunden. Avg. Speed: %.1f sec") % (total_movie, total_time, avg) 
-                		self["done_msg"].setText(self.done)
-				self.running = "false"
+				print "EMC iMDB: MovieList is empty, search is DONE. - BREAK..."
+				#self.e_supertime = time.time()
+				#total_movie = self.counter3 + self.counter2 
+                		#total_time = self.e_supertime - self.s_supertime
+				#avg = (total_time / total_movie)
+				#self.done = _("%s Filme in %.1f sec gefunden. Avg. Speed: %.1f sec") % (total_movie, total_time, avg) 
+                		#self["done_msg"].setText(self.done)
+				#self.running = "false"
 				break
 
 	def themoviedb(self, data, search_title, path):
@@ -284,18 +285,7 @@ class imdbscan(Screen):
 		### Parsing infos from data ###
 		if re.match('.*?<movies>Nothing found.</movies>|.*?<opensearch:totalResults>0</opensearch:totalResults>|.*?Error 503 Service Unavailable|.*?500 Internal Server Error', data, re.S):
 			print "EMC iMDB: Themoviedb.org is down or No results found - %s" % search_title
-			print "inffffooooooos ????"
 			self.display_na(search_title, path)
-			if len(self.search_list) == 0:
-				print "EMC iMDB: MovieList is empty, search is DONE."
-                                self.e_supertime = time.time()
-                                total_movie = self.counter3 + self.counter2
-                                total_time = self.e_supertime - self.s_supertime
-                                avg = (total_time / total_movie)
-                                self.done = _("%s Filme in %.1f sec gefunden. Avg. Speed: %.1f sec") % (total_movie, total_time, avg)
-                                self["done_msg"].setText(self.done)
-                                self.running = "false"
-				break # break outside a loop
 		else:
 			movie_title = re.findall('<name>(.*?)</name>', data)
 			poster_url = re.findall('<image type="poster" url="(.*?)" size="cover"', data)
@@ -391,6 +381,7 @@ class imdbscan(Screen):
 		self["menulist"].l.setItemHeight(28)
 		if self.count_movies == self.counter:
 			self.check = "true"
+			self.init_ende()
                 
         def display_exist(self, search_title, path):
 		self.counter += 1
@@ -404,9 +395,9 @@ class imdbscan(Screen):
 		self["menulist"].l.setItemHeight(28)
 		if self.count_movies == self.counter:
                         self.check = "true"
+			self.init_ende()
         
         def display_download(self, movie_title, search_title, path):
-		print "debug:", movie_title
 		self.counter += 1
 	      	self.counter_download = self.counter_download + 1
        		self.end_time = time.clock()
@@ -420,6 +411,17 @@ class imdbscan(Screen):
 		self["menulist"].l.setItemHeight(28)
 		if self.count_movies == self.counter:
                         self.check = "true"
+			self.init_ende()
+
+	def init_ende(self):
+		print "EMC iMDB: MovieList is empty, search is DONE."
+                self.e_supertime = time.time()
+                total_movie = self.counter3 + self.counter2
+                total_time = self.e_supertime - self.s_supertime
+                avg = (total_time / total_movie)
+                self.done = _("%s Filme in %.1f sec gefunden. Avg. Speed: %.1f sec") % (total_movie, total_time, avg)
+                self["done_msg"].setText(self.done)
+                self.running = "false"
 
 	def display_delay(self):
 		self["done_msg"].setText(_("Delay of 10 sec. due the search flooding.."))
