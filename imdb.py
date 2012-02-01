@@ -440,9 +440,10 @@ class imdbscan(Screen):
 					print "no_poster.jpg kann nicht geloescht werden."
 				else:
 					os.system("rm '%s'" % (m_poster_path))
-					done = _("%s removed.") % m_poster_path
+					#done = _("%s removed.") % m_poster_path
+					self.verwaltung()
 					self.no_cover()
-					self["done_msg"].setText(done)
+					self["done_msg"].setText(_("%s removed.") % m_poster_path)
 
 	def redLong(self):
 		pass
