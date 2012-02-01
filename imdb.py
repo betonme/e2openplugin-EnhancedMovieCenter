@@ -37,6 +37,7 @@ import re, urllib, urllib2, os, time
 
 config.plugins.imdb = ConfigSubsection()
 config.plugins.imdb.search = ConfigSelection(default="0", choices = [("0",_("imdb.de")),("1",_("themoviedb.org"))])
+config.plugins.imdb.singlesearch = ConfigSelection(default="0", choices = [("0",_("imdb.de")),("1",_("thetvdb.com")),("2",_("both"))])
 
 class AppURLopener(urllib.FancyURLopener):
     version = "Mozilla/5.0 (X11; U; Linux x86_64; de; rv:1.9.0.15) Gecko/2009102815 Ubuntu/9.04 (jaunty) Firefox/3."
@@ -59,8 +60,9 @@ def imdb_show(title, pp, elapsed, genre, search_title):
 	res.append(MultiContentEntryText(pos=(660, 0), size=(172, 24), font=4, text=elapsed, flags=RT_HALIGN_LEFT))
 	return res
 
-def showCoverlist(title, url, path):
+def showCoverlist(title, url, path, art):
 	res = [ (title, url, path) ]
+	title = art + title
 	res.append(MultiContentEntryText(pos=(0, 0), size=(550, 24), font=4, text=title, flags=RT_HALIGN_LEFT))
 	return res
 
@@ -110,8 +112,8 @@ class imdbscan(Screen):
 			"EMCOK":		self.ok,
 			"EMCGreen":		self.imdb,
 			"EMCRed":		self.red,
-			"EMCYellow":	self.verwaltung,
-			"EMCRedLong":	self.redLong,
+			"EMCYellow":		self.verwaltung,
+			"EMCRedLong":		self.redLong,
 			"EMCMenu":		self.config,
 		}, -1)
 
@@ -143,7 +145,7 @@ class imdbscan(Screen):
 		self.vm_list = self.m_list[:]
 		count_existing = 0
 		count_na = 0
-		for each in self.vm_list:			
+		for each in sorted(self.vm_list):			
 			(title, path) = each
 			path = re.sub(self.file_format + "$", '.jpg', path)
 			if os.path.exists(path):
@@ -155,9 +157,9 @@ class imdbscan(Screen):
 
 		self["menulist"].l.setList(self.menulist)
                	self["menulist"].l.setItemHeight(28)
+		self.check = "true"
 		self.showInfo()
 		self["done_msg"].setText(_("Total: %s - Exist: %s - N/A: %s") % (self.count_movies, count_existing, count_na))
-		self.check = "true"
 
 	def setShowSearchSiteName(self):
 		if config.plugins.imdb.search.value == "0":
@@ -217,7 +219,7 @@ class imdbscan(Screen):
 			self.exist_list = []
 			self.check = "false"
 			self["done_msg"].setText(_("Creating Search List.."))
-			for each in self.cm_list:
+			for each in sorted(self.cm_list):
                                 (title, path) = each
 				path = re.sub(self.file_format + "$", '.jpg', path)
 				if os.path.exists(path):			
@@ -486,15 +488,16 @@ class imdbscan(Screen):
 			print "was ist settteeedd:", self.showSearchSiteName
 			self.showInfo()
 			self["done_msg"].setText(_("Search site set to: %s" % self.showSearchSiteName))
-			DelayedFunction(3000, self["done_msg"].hide)
+			#DelayedFunction(3000, self["done_msg"].hide)
 
         def setupFinished2(self, result):
                 print "EMC iMDB single search done."
                 if result:
-			self.showInfo()
+			self.verwaltung()
+			#self.showInfo()
 			self["done_msg"].show()
 			self["done_msg"].setText("Cover is Saved.")
-			DelayedFunction(3000, self["done_msg"].hide)
+			#DelayedFunction(3000, self["done_msg"].hide)
 
 class imdbSetup(Screen, ConfigListScreen):
 	skin = """
@@ -514,6 +517,7 @@ class imdbSetup(Screen, ConfigListScreen):
 
 		self.list = []
 		self.list.append(getConfigListEntry(_("Search Site:"), config.plugins.imdb.search))
+		self.list.append(getConfigListEntry(_("Single Search:"), config.plugins.imdb.singlesearch))
 		ConfigListScreen.__init__(self, self.list, session)
 		self["setupActions"] = ActionMap(["SetupActions", "ColorActions"],
 		{
@@ -563,8 +567,59 @@ class getCover(Screen):
 		self.check = "false"
                 self.path = "/tmp/tmp.jpg"
 		self.cover_count = 0
-		self.searchCover(self.title)
+		self.search_check = 0
 		self.einzel_start_time = time.clock()
+
+		if config.plugins.imdb.singlesearch.value == "0":
+			self.searchCover(self.title)
+			#self.search_done()
+
+		if config.plugins.imdb.singlesearch.value == "1":
+			self.searchtvdb(self.title)
+			#self.search_done()
+
+		if config.plugins.imdb.singlesearch.value == "2":
+			self.searchCover(self.title)
+			self.searchtvdb(self.title)
+			#self.search_done()
+	                #self.check = "true"
+        	        #self.showInfo()
+              		#self.einzel_end_time = time.clock()
+	                #self.einzel_elapsed = (self.einzel_end_time - self.einzel_start_time)
+	                #self["info"].setText(_("found %s covers in %.1f sec") % (self.cover_count, self.einzel_elapsed))
+				
+	def searchtvdb(self, title):
+		url = "http://www.thetvdb.com/api/GetSeries.php?seriesname=%s&language=de" % title.replace(' ','+')
+		getPage(url).addCallback(self.parsetvdb, title).addErrback(self.errorLoad, title)
+
+	def parsetvdb(self, data, title):
+		id = re.findall('<id>(.*?)</id>', data)
+		if id:
+			url = "http://www.thetvdb.com/api/2AAF0562E31BCEEC/series/%s/" % id[0]
+			getPage(url).addCallback(self.showCovers_tvdb, title).addErrback(self.errorLoad, title)
+
+	def showCovers_tvdb(self, data, title):
+		bild = re.findall('<poster>(.*?)</poster>', data)
+		if bild:
+			print "EMB iMDB: Cover Select - %s" % title
+			self.cover_count = self.cover_count + 1
+			print "http://www.thetvdb.com/banners/_cache/%s" % bild[0]
+			tvdb_url = "http://www.thetvdb.com/banners/_cache/%s" % bild[0]
+			print "bild:", tvdb_url
+			self.menulist.append(showCoverlist(title, tvdb_url, self.o_path, "tvdb: "))
+		else:
+			#self["info"].setText(_("Nothing found for %s") % title)
+			print "EMC iMDB tvdb: keine infos gefunden - %s" % title
+
+		self["menulist"].l.setList(self.menulist)
+		self["menulist"].l.setItemHeight(28)
+		self.search_check += 1 
+		if not config.plugins.imdb.singlesearch.value == "2":		
+			self.check = "true"
+                	self.showInfo()
+                	self.einzel_end_time = time.clock()
+                	self.einzel_elapsed = (self.einzel_end_time - self.einzel_start_time)
+                	self["info"].setText(_("found %s covers in %.1f sec") % (self.cover_count, self.einzel_elapsed))
 
 	def searchCover(self, title):
 		print title
@@ -577,17 +632,24 @@ class getCover(Screen):
 		bild = re.findall('<img src="http://ia.media-imdb.com/images/(.*?)".*?<a href="/title/(.*?)/".*?">(.*?)</a>.*?\((.*?)\)', data, re.S)
 		if bild:
 			for each in bild:
-				print self.cover_count
+				#print self.cover_count
 				self.cover_count = self.cover_count + 1
 				imdb_title = each[2]
 				imdb_url = each[0]
-				self.menulist.append(showCoverlist(imdb_title, imdb_url, self.o_path))
+				imdb_url = re.findall('(.*?)\.', imdb_url)
+                                extra_imdb_convert = "._V1_SX320.jpg"
+                                imdb_url = "http://ia.media-imdb.com/images/%s%s" % (imdb_url[0], extra_imdb_convert)
+
+				self.menulist.append(showCoverlist(imdb_title, imdb_url, self.o_path, "imdb: "))
 		else:
 			self["info"].setText(_("Nothing found for %s") % title)
 			print "EMC iMDB: keine infos gefunden - %s" % title
 
 		self["menulist"].l.setList(self.menulist)
 		self["menulist"].l.setItemHeight(28)
+		self.search_check += 1
+
+		#if not config.plugins.imdb.singlesearch.value == "2":
 		self.check = "true"
 		self.showInfo()
 		self.einzel_end_time = time.clock()
@@ -598,14 +660,23 @@ class getCover(Screen):
 		print "keine daten zu %s gefunden." % title
 		print error
 
+	def search_done(self):
+		#if self.search_check == "2":
+                self.check = "true"
+                self.showInfo()
+                self.einzel_end_time = time.clock()
+                self.einzel_elapsed = (self.einzel_end_time - self.einzel_start_time)
+                self["info"].setText(_("found %s covers in %.1f sec") % (self.cover_count, self.einzel_elapsed))
+
 	def showInfo(self):
 		if self.check == "true":
                         m_title = self["menulist"].getCurrent()[0][0]
 			m_url = self["menulist"].getCurrent()[0][1]
+			print m_title, m_url
                         if m_url:
-                                m_url = re.findall('(.*?)\.', m_url)
-                                extra_imdb_convert = "._V1_SX320.jpg"
-                                m_url = "http://ia.media-imdb.com/images/%s%s" % (m_url[0], extra_imdb_convert)
+                                #m_url = re.findall('(.*?)\.', m_url)
+                                #extra_imdb_convert = "._V1_SX320.jpg"
+                                #m_url = "http://ia.media-imdb.com/images/%s%s" % (m_url[0], extra_imdb_convert)
                                 print "EMC iMDB: Download Poster - %s" % m_url
                                 urllib._urlopener = AppURLopener()
                                 urllib.urlretrieve(m_url, self.path)
