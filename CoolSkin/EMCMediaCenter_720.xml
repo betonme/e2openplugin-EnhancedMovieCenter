@@ -37,13 +37,19 @@
 	</widget>
 	<!-- Progressbar -->
 	<ePixmap position="50,465" size="620,24" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/EMCMoviePlayer/CoolSliderSD.png" zPosition="3" alphatest="blend" />
-	<ePixmap position="86,468" size="548,18" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/EMCMoviePlayer/CoolPointerBG.png" zPosition="1" alphatest="blend" />
-	<widget source="Service" render="PositionGauge" position="86,456" size="548,28" zPosition="2" pointer="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/EMCMoviePlayer/CoolPointerRecordSD.png:548,-3" transparent="1" >
+	<ePixmap position="86,469" size="548,18" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/EMCMoviePlayer/CoolPointerBG.png" zPosition="1" alphatest="blend" />
+
+	<widget source="Service" render="PositionGauge" position="87,468" size="548,16" zPosition="2" pointer="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/EMCMoviePlayer/CoolPointerRecord.png:828,0" transparent="1" >
 		<convert type="EMCRecordPosition">Gauge</convert> <!-- EMC Converter needed, to display markers on not *.ts files -->
 	</widget>
-	<widget source="Service" render="PositionGauge" position="86,456" size="548,28" zPosition="3" pointer="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/EMCMoviePlayer/CoolPointerSD.png:548,-3" transparent="1" >
+	<widget source="Service" render="PositionGauge" position="87,468" size="548,16" zPosition="3" pointer="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/EMCMoviePlayer/CoolPointer.png:828,0" transparent="1" >
 		<convert type="EMCServicePosition">Gauge</convert> <!-- EMC Converter needed, to display markers on not *.ts files -->
 	</widget>
+	<widget source="Service" render="PositionGauge" position="87,468" size="548,16" zPosition="4" transparent="1" >
+		<convert type="EMCServicePosition">Gauge</convert> <!-- EMC Converter needed, to display markers on not *.ts files -->
+	</widget>
+	<!-- Infobar Cover -->
+	<widget name="Cover" position="50,256" size="100,150" zPosition="1" alphatest="on" />
 	<!-- Entire movie length -->
 	<widget source="Service" render="Label" position="270,492" size="180,22" font="Regular;22" halign="center" valign="center" backgroundColor="#00242424" transparent="1">
 		<convert type="EMCServicePosition">Length,ShowHours</convert>

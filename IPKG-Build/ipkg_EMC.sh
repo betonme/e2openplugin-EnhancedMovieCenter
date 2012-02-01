@@ -11,6 +11,7 @@ cp -r /usr/lib/enigma2/python/Components/Converter/EMCEventName.pyo /tmp/temp/us
 cp -r /usr/lib/enigma2/python/Components/Converter/EMCServicePosition.pyo /tmp/temp/usr/lib/enigma2/python/Components/Converter/
 cp -r /usr/lib/enigma2/python/Components/Converter/EMCServiceTime.pyo /tmp/temp/usr/lib/enigma2/python/Components/Converter/
 cp -r /usr/lib/enigma2/python/Components/Converter/EMCMovieInfo.pyo /tmp/temp/usr/lib/enigma2/python/Components/Converter/
+cp -r /usr/lib/enigma2/python/Components/Converter/EMCRecordPosition.pyo /tmp/temp/usr/lib/enigma2/python/Components/Converter/
 
 echo "Kopiere Config Dateien aus /etc/enigma2/ nach /tmp/temp/"
 mkdir -p /tmp/temp/etc/enigma2/
@@ -22,7 +23,7 @@ echo "Lösche alle *.py unter /tmp/temp/"
 rm -r /tmp/temp/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/*.py
 
 echo "Kopiere control Daten nach /tmp/temp/"
-cp -r /media/ba/ipk/EMC/CONTROL/ /tmp/temp/
+cp -r /media/USB-Extension/ipk/EMC/CONTROL/ /tmp/temp/
 
 echo "IPKG erstellung läuft...."
 ipkg-build.sh /tmp/temp/ /tmp
