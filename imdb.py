@@ -20,6 +20,7 @@ from Components.PluginComponent import plugins
 
 from Components.Button import Button
 
+from twisted.web import client
 from twisted.web.client import downloadPage, getPage
 
 from Components.config import *
@@ -36,7 +37,7 @@ from time import time
 import re, urllib, urllib2, os, time
 
 config.plugins.imdb = ConfigSubsection()
-config.plugins.imdb.search = ConfigSelection(default="0", choices = [("0",_("imdb.de")),("1",_("themoviedb.org"))])
+config.plugins.imdb.search = ConfigSelection(default="0", choices = [("0",_("imdb.de")),("1",_("themoviedb.org")),("2",_("ofdb.de"))])
 config.plugins.imdb.singlesearch = ConfigSelection(default="0", choices = [("0",_("imdb.de")),("1",_("thetvdb.com")),("2",_("both"))])
 
 class AppURLopener(urllib.FancyURLopener):
@@ -165,8 +166,11 @@ class imdbscan(Screen):
 		if config.plugins.imdb.search.value == "0":
                         self.showSearchSiteName = "IMDB"
 			print "set to: %s" % self.showSearchSiteName
-                else:
+                elif config.plugins.imdb.search.value == "1":
                         self.showSearchSiteName = "TMDb"
+			print "set to: %s" % self.showSearchSiteName
+		else:
+			self.showSearchSiteName = "OFDB"
 			print "set to: %s" % self.showSearchSiteName
 
 	def showInfo(self):
@@ -266,6 +270,18 @@ class imdbscan(Screen):
 						url = "http://api.themoviedb.org/2.1/Movie.search/de/xml/8789cfd3fbab7dccf1269c3d7d867aff/" + self.name
 						print "EMC themoviedb.org:", url						
 						getPage(url, timeout = 10).addCallback(self.themoviedb, search_title, path).addErrback(self.errorLoad, search_title)
+                                                
+				if config.plugins.imdb.search.value == "2":
+					self.name = title.replace(' ','+').replace(':','+').replace('-','').replace('++','+')
+					path = re.sub(self.file_format + "$", '.jpg', path)
+					search_title = self.name.replace('+',' ')
+                                        
+					if not os.path.exists(path):
+						self.counter3 += 1
+						url = "http://ofdbgw.home-of-root.de/search/%s" % self.name
+						#url = "http://ofdbgw.home-of-root.de/search/" + self.name
+						print "EMC ofdb.de:", url				
+						getPage(url).addCallback(self.ofdb_search, search_title, path).addErrback(self.errorLoad, search_title)
 			else:
 				print "EMC iMDB: MovieList is empty, search is DONE. - BREAK..."
 				#self.e_supertime = time.time()
@@ -276,6 +292,35 @@ class imdbscan(Screen):
                 		#self["done_msg"].setText(self.done)
 				#self.running = "false"
 				break
+
+	def ofdb_search(self, data, search_title, path):
+		if self.search_list and self.run10 == "false":
+		#and self.counter_a % 10 == 0:
+                        print "EMC iMDB: 10sec. DelayFunction gestatet"
+			DelayedFunction(10000 - int(time.time() - self.starttime) + 100, boundFunction(self.imdb_start))
+			self.display_delay()
+			self.run10 = "true"
+
+		if re.match('.*?<rcodedesc>Ok.*?', data, re.S):
+			bild = re.findall('<bild>(.*?)</bild', data)
+			movie_title = re.findall('<titel>(.*?)</titel>', data)
+			if bild:
+				if bild[0] == "http://img.ofdb.de/film/na.gif":
+					print "EMC iMDB: Film gefunden aber kein poster vorhanden - %s" % search_title
+					self.display_na(search_title, path)
+				else:
+					os.system("wget %s -O '%s'" % (bild[0], path))
+					if os.path.exists(path):
+						self.display_download(movie_title[0], search_title, path)
+					else:
+						print "EMC iMDB: Film gefunden aber kein poster vorhanden - %s" % search_title
+						self.display_na(search_title, path)
+			else:
+				print "EMC iMDB: Film gefunden aber kein poster vorhanden - %s" % search_title
+				self.display_na(search_title, path)
+		else:
+			print "EMC iMDB: ofdb.de is down or No results found - %s" % search_title
+			self.display_na(search_title, path)
 
 	def themoviedb(self, data, search_title, path):
 		if self.search_list and self.run10 == "false":
