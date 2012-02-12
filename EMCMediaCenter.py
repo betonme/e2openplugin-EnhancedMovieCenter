@@ -359,7 +359,10 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 			self.updateCutList( self.getSeekPlayPosition(), self.getSeekLength() )
 
 	def __onClose(self):
-		self.session.nav.playService(self.lastservice)
+		if self.lastservice:
+			self.session.nav.playService(self.lastservice)
+			self.lastservice = None
+		
 		try:
 			from MovieSelection import gMS
 			gMS.returnService = self.service
@@ -383,6 +386,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 					if self.playerOpenedList or config.EMC.movie_reopenEOF.value: # did the player close while movie list was open?
 						DelayedFunction(80, gMS.session.execDialog, gMS)		# doesn't crash Enigma2 subtitle functionality
 			self.playerOpenedList = False
+			self.service = None
 		except Exception, e:
 			emcDebugOut("[EMCPlayer] __onClose exception:\n" + str(e))
 
@@ -702,10 +706,9 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 	#		InfoBarShowHide.serviceStarted(self)
 
 	def doShow(self):
-
 		### Cover anzeige
-                service = self.playlist[self.playcount]
-                cover_path = service.getPath().replace(".ts",".jpg")
+		service = self.playlist[self.playcount]
+		cover_path = service.getPath().replace(".ts",".jpg")
 		self.showCover(cover_path)	
 		if self.in_menu:
 			pass
@@ -791,6 +794,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 				#if last < (self.getSeekPlayPosition() + 1*90000):
 				# Zap to new channel
 				self.lastservice = service
+				self.service = None
 				self.closeAll = True
 				DelayedFunction(10, boundFunction(self.leavePlayer, False))
 				return
