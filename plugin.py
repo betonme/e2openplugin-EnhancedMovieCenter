@@ -158,7 +158,7 @@ move_choices = [	("d",								_("down")),
 									("o",								_("off")) ]
 
 pig_choices = [	("",									_("No")),
-#								("P",									_("Preview")),
+								("P",									_("Preview")),
 								("C",									_("Cover")) ]
 
 bookmark_choices = [	("No",					_("No")),

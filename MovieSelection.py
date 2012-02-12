@@ -59,8 +59,8 @@ from EMCBookmarks import EMCBookmarks
 from ServiceSupport import ServiceEvent
 from imdb import *
 
-from MovieCenter import extList, extVideo, extMedia, extDir, plyDVD, cmtBME2, cmtBMEMC, cmtDir
-global extList, extVideo, extMedia, extDir, plyDVD, cmtBME2, cmtBMEMC, cmtDir
+from MovieCenter import extList, extVideo, extMedia, extDir, plyAll, plyDVD, cmtBME2, cmtBMEMC, cmtDir
+global extList, extVideo, extMedia, extDir, plyAll, plyDVD, cmtBME2, cmtBMEMC, cmtDir
 
 gMS = None
 
@@ -141,56 +141,68 @@ class SelectionEventInfo:
 	# Movie preview
 	def previewMovie(self, service=None):
 		print "EMC: previewMovie"
+		lastserviceref = self.session.nav.getCurrentlyPlayingServiceReference()
 		if service:
 			# TODO can we reuse the EMCMediaCenter for the video preview
-			# Start preview
-			self.session.nav.playService(service)
-			# Get service
-			s = self.session.nav.getCurrentService()
-			if s:
-				ext = os.path.splitext(service.getPath())[1].lower()
-				if ext in plyDVD:
-					subs = getattr(s, "subtitle", None)
-					if callable(subs):
-						#self.dvdScreen = self.session.instantiateDialog(DVDOverlay)
-						#subs.enableSubtitles(self.dvdScreen.instance, None)
-						subs.enableSubtitles(None, None)
-					from Screens.InfoBar import InfoBar
-					infobar = InfoBar and InfoBar.instance
-					if infobar:
-						infobar.pauseService()
-						infobar.unPauseService()
-				else:
-					# Get cuesheet
-					cue = s.cueSheet()
-					if cue:
-						# Avoid cutlist overwrite
-						cue.setCutListEnable(0)
-						# Get seek
-						seekable = s.seek()
-						if seekable:
-							# Adapted from jumpToFirstMark
-							jumpto = None
-							# EMC enhancement: increase recording margin to make sure we get the correct mark
-							margin = config.recording.margin_before.value*60*90000 *2 or 20*60*90000
-							middle = (long(seekable.getLength()[1]) or 90*60*90000) / 2
-							# Search first mark
-							for (pts, what) in cue.getCutList():
-								if what == 3: #CUT_TYPE_LAST:
-									jumpto = pts
-									break
-								if what == 2: #CUT_TYPE_MARK:
-									if pts != None and ( pts < margin and pts < middle ):
-										if jumpto == None or pts < jumpto: 
+			ext = os.path.splitext(service.getPath())[1].lower()
+			if ext in plyAll:
+				# Start preview
+				self.session.nav.playService(service)
+				# Get service
+				s = self.session.nav.getCurrentService()
+				if s:
+					if ext in plyDVD:
+						subs = getattr(s, "subtitle", None)
+						if callable(subs):
+							#self.dvdScreen = self.session.instantiateDialog(DVDOverlay)
+							#subs.enableSubtitles(self.dvdScreen.instance, None)
+							subs.enableSubtitles(None, None)
+						from Screens.InfoBar import InfoBar
+						infobar = InfoBar and InfoBar.instance
+						if infobar:
+							infobar.pauseService()
+							infobar.unPauseService()
+					else:
+						# Get cuesheet
+						cue = s.cueSheet()
+						if cue:
+							# Avoid cutlist overwrite
+							cue.setCutListEnable(0)
+							# Get seek
+							seekable = s.seek()
+							if seekable:
+								# Adapted from jumpToFirstMark
+								jumpto = None
+								# EMC enhancement: increase recording margin to make sure we get the correct mark
+								margin = config.recording.margin_before.value*60*90000 *2 or 20*60*90000
+								middle = (long(seekable.getLength()[1]) or 90*60*90000) / 2
+								# Search first mark
+								for (pts, what) in cue.getCutList():
+									if what == 3: #CUT_TYPE_LAST:
+										if pts != None and ( pts < margin and pts < middle ):
 											jumpto = pts
 											break
-							if jumpto is not None:
-								# Jump to first mark
-								seekable.seekTo(jumpto)
-				print "EMC: previewMovie show"
+									if what == 2: #CUT_TYPE_MARK:
+										if pts != None and ( pts < margin and pts < middle ):
+											if jumpto == None or pts < jumpto: 
+												jumpto = pts
+												break
+								if jumpto is not None:
+									# Jump to first mark
+									seekable.seekTo(jumpto)
 				self["Video"].show()
-		else:
-			self.session.nav.stopService() 
+			else:
+				# Start LiveTV
+				if self.lastservice:
+					self.session.nav.playService(self.lastservice)
+					print "EMC: previewMovie show"
+					self["Video"].show()
+		
+		# If livetv is shown - don't stop it
+		elif lastserviceref and self.lastservice and lastserviceref != self.lastservice:
+			# Stop a previously played preview
+			self.session.nav.stopService()
+			print "EMC: previewMovie hide"
 			self["Video"].hide()
 
 class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfaceSel, DirectoryStack, E2Bookmarks, EMCBookmarks):
@@ -635,7 +647,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		self.delayTimer.start(int(config.EMC.movie_descdelay.value), True)
 		if self.pigTimer.isActive():
 			self.pigTimer.stop()
-		if self.shown:
+		if self.already_shown and self.shown:
 			# Movie cover
 			if config.EMC.movie_pig.value == "C":
 				# Show cover only for media files and directories
@@ -644,9 +656,9 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			# Movie preview
 			elif config.EMC.movie_pig.value == "P":
 				# Play preview only if it is a video file
-				if self["list"].currentSelIsPlayable():
-					print "EMC: start preview"
-					self.pigTimer.start(int(config.EMC.movie_pig_delay.value), True)
+				#if self["list"].currentSelIsPlayable():
+				print "EMC: start preview timer"
+				self.pigTimer.start(int(config.EMC.movie_pig_delay.value), True)
 
 	def updateInfoDelayed(self):
 		self.updateTitle()
@@ -662,7 +674,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		self.updateEventInfo(None)
 		if self.pigTimer.isActive():
 			self.pigTimer.stop()
-		if self.shown:
+		if self.already_shown and self.shown:
 			if config.EMC.movie_pig.value == "C":
 				self.showCover(None)
 			elif config.EMC.movie_pig.value == "P":
