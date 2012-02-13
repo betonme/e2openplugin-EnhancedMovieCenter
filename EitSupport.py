@@ -89,8 +89,19 @@ class EitList():
 			#	if name and len(name):
 			#		path = "/home/root/dvd-" + name
 			#el
-			if os.path.isdir(path):
-				path += "/dvd"
+			if os.path.isdir(path) and os.path.basename(path.lower()).endswith("video_ts"):
+				path += "/dvd"																							#dvdfoldername/video_ts/dvd.eit
+				if not os.path.exists(path + ".eit"):
+					path = path[:-4]
+					dvdpath, vts = os.path.split(path)
+					path = dvdpath + "/folder"																#dvdfoldername/folder.eit
+					if not os.path.exists(path + ".eit"):
+						path = os.path.join(dvdpath, os.path.basename(dvdpath))	#dvdfoldername/dvdfoldername.eit
+			elif os.path.isdir(path) and not path.endswith(".."):
+				path += "/folder"																						#foldername/folder.eit
+				if not os.path.exists(path + ".eit"):
+					fldpath, fld = os.path.split(path)
+					path = os.path.join(fldpath, os.path.basename(fldpath))		#foldername/foldername.eit
 			else:
 				path = os.path.splitext(path)[0]
 			if not os.path.exists(path + ".eit"):
