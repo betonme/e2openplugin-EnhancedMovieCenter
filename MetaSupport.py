@@ -61,8 +61,19 @@ class MetaList():
 			#	if name and len(name):
 			#		path = "/home/root/dvd-" + name
 			#el
-			if os.path.isdir(path):
-				path += "/dvd"
+			if os.path.isdir(path) and os.path.basename(path.lower()).endswith("video_ts"):
+				path += "/dvd"																								##dvdfoldername/video_ts/dvd.meta
+				if not os.path.exists(path + ".meta"):
+					path = path[:-4]
+					dvdpath, vts = os.path.split(path)
+					path = dvdpath + "/folder"																	#dvdfoldername/folder.meta
+					if not os.path.exists(path + ".meta"):
+						path = os.path.join(dvdpath, os.path.basename(dvdpath))		#dvdfoldername/dvdfoldername.meta
+			elif os.path.isdir(path) and not path.endswith(".."):
+				path += "/folder"																							##foldername/folder.meta
+				if not os.path.exists(path + ".meta"):
+					fldpath, fld = os.path.split(path)
+					path = os.path.join(fldpath, os.path.basename(fldpath))			##foldername/foldername.meta
 			if not os.path.exists(path + ".meta"):
 				path, ext = os.path.splitext(path)
 				# Strip existing cut number
