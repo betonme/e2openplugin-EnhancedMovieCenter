@@ -106,26 +106,14 @@ class SelectionEventInfo:
 			ext = ext.lower()
 			jpgpath = ""
 			if ext in extMedia:
-				jpgpath = name + ".jpg"																												##filename.jpg
-				if jpgpath and not os.path.exists(jpgpath):
-					jpgpath = name + ".ts_mp.jpg"																								##filename.ts_mp.jpg
-
-			elif os.path.isdir(path) and os.path.basename(path.lower()).endswith("video_ts"):
-				jpgpath = os.path.join(path, "dvd.jpg")																				##dvdfoldername/video_ts/dvd.jpg
-				if jpgpath and not os.path.exists(jpgpath):
-					dvdpath, vts = os.path.split(path)
-					jpgpath = os.path.join(dvdpath, os.path.basename(dvdpath)) + ".ts_mp.jpg"		##MovielistPreview dvdfoldername/dvdfoldername.ts_mp.jpg
-				if jpgpath and not os.path.exists(jpgpath):
-					jpgpath = os.path.join(dvdpath, os.path.basename(dvdpath)) + ".jpg"					##dvdfoldername/dvdfoldername.jpg
-
+				jpgpath = name + ".jpg"
+			elif os.path.isdir(path) and path.endswith("VIDEO_TS"):
+				jpgpath = os.path.join(path, "dvd.jpg")
 			elif os.path.isdir(path):
-				jpgpath = os.path.join(path, "folder.jpg")																		##foldername/folder.jpg
+				jpgpath = os.path.join(path, "folder.jpg")
 				#TODO avoid os.path.exists double check
 				if jpgpath and not os.path.exists(jpgpath):
-					jpgpath = os.path.join(path, os.path.basename(path)) + ".jpg"								##foldername/foldername.jpg
-				if jpgpath and not os.path.exists(jpgpath):
-					jpgpath = os.path.join(path, os.path.basename(path)) + ".ts_mp.jpg"					##MovielistPreview foldername/foldername.ts_mp.jpg
-
+					jpgpath = os.path.join(path, os.path.basename(path)) + ".jpg"
 			if jpgpath and os.path.exists(jpgpath):
 				sc = AVSwitch().getFramebufferScale() # Maybe save during init
 				self.picload = ePicLoad()
