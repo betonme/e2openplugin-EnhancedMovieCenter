@@ -297,18 +297,14 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 					self["DVDPlayerPlaybackActions"].setEnabled(False)
 				
 				# Check if the video preview is active and already running
-				if (config.EMC.movie_preview.value):
-					print "EMCMediaCenter"
+				if config.EMC.movie_preview.value:
 					ref = self.session.nav.getCurrentlyPlayingServiceReference()
-					print ref and ref.getPath()
-					print service and service.getPath()
 					if ref and service and ref.getPath() == service.getPath():
 						s = self.session.nav.getCurrentService()
-						if s:
-							cue = s and s.cueSheet()
-							if cue is not None:
-								cue.setCutListEnable(1)
-								print "EMC cue.setCutListEnable(1)"
+						cue = s and s.cueSheet()
+						if cue is not None:
+							cue.setCutListEnable(1)
+							print "EMC cue.setCutListEnable(1)"
 						return
 				
 				# Is this really necessary 

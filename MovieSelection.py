@@ -77,10 +77,6 @@ class SelectionEventInfo:
 		#noCoverFile = resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/no_coverArt.png")
 		#self.noCoverPixmap = LoadPixmap(noCoverFile)
 		#self.noCoverPixmap = None
-# 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
-# 			{
-# 				iPlayableService.evStart: self.__serviceStarted,
-# 			})
 
 	def initPig(self):
 		if not (config.EMC.movie_cover.value or config.EMC.movie_preview.value):
@@ -158,6 +154,13 @@ class SelectionEventInfo:
 				self["Cover"].instance.setPixmap(ptr)
 				self["Cover"].show()
 
+	def setCutListDisable(self):
+		s = self.session.nav.getCurrentService()
+		cue = s and s.cueSheet()
+		if cue:
+			# Avoid cutlist overwrite
+			cue.setCutListEnable(0)
+
 	# Movie preview
 	def showPreview(self, service=None):
 		print "EMC: showPreview"
@@ -168,47 +171,48 @@ class SelectionEventInfo:
 			if ext in plyAll:
 				# Start preview
 				self.session.nav.playService(service)
-				# Get service
+				DelayedFunction(5000, self.setCutListDisable)
+				# Get service, seek and cuesheet
 				s = self.session.nav.getCurrentService()
-				if s:
-					# Get seek and cuesheet
-					seekable = s and s.seek()
-					cue = seekable and s.cueSheet()
-					if cue:
-						# Avoid cutlist overwrite
-						cue.setCutListEnable(0)
-						print "EMC cue.setCutListEnable(0)"
-						# Adapted from jumpToFirstMark
-						jumpto = None
-						# EMC enhancement: increase recording margin to make sure we get the correct mark
-						margin = config.recording.margin_before.value*60*90000 *2 or 20*60*90000
-						middle = (long(seekable.getLength()[1]) or 90*60*90000) / 2
-						# Search first mark
-						for (pts, what) in cue.getCutList():
-							if what == 3: #CUT_TYPE_LAST:
-								if pts != None and ( pts < margin and pts < middle ):
+				seekable = s and s.seek()
+				cue = s and s.cueSheet()
+				if cue and seekable:
+					# Avoid cutlist overwrite
+					cue.setCutListEnable(0)
+					print "EMC cue.setCutListEnable(0)"
+					# Adapted from jumpToFirstMark
+					jumpto = None
+					# EMC enhancement: increase recording margin to make sure we get the correct mark
+					margin = config.recording.margin_before.value*60*90000 *2 or 20*60*90000
+					middle = (long(seekable.getLength()[1]) or 90*60*90000) / 2
+					# Search first mark
+					for (pts, what) in cue.getCutList():
+						if what == 3: #CUT_TYPE_LAST:
+							if pts != None and ( pts < margin and pts < middle ):
+								jumpto = pts
+								break
+						if what == 2: #CUT_TYPE_MARK:
+							if pts != None and ( pts < margin and pts < middle ):
+								if jumpto == None or pts < jumpto: 
 									jumpto = pts
 									break
-							if what == 2: #CUT_TYPE_MARK:
-								if pts != None and ( pts < margin and pts < middle ):
-									if jumpto == None or pts < jumpto: 
-										jumpto = pts
-										break
-						if jumpto is not None:
-							# Jump to first mark
-							seekable.seekTo(jumpto)
-						
-					if ext in plyDVD:
-						subs = getattr(s, "subtitle", None)
-						if callable(subs):
-							#self.dvdScreen = self.session.instantiateDialog(DVDOverlay)
-							#subs.enableSubtitles(self.dvdScreen.instance, None)
-							subs.enableSubtitles(None, None)
-						from Screens.InfoBar import InfoBar
-						infobar = InfoBar and InfoBar.instance
-						if infobar:
-							infobar.pauseService()
-							infobar.unPauseService()
+					if jumpto is not None:
+						# Jump to first mark
+						seekable.seekTo(jumpto)
+				ref = self.session.nav.getCurrentlyPlayingServiceReference()
+				ext = ref and os.path.splitext(ref.getPath())[1].lower()
+				if ext in plyDVD:
+					subs = getattr(s, "subtitle", None)
+					if callable(subs):
+						#self.dvdScreen = self.session.instantiateDialog(DVDOverlay)
+						#subs.enableSubtitles(self.dvdScreen.instance, None)
+						subs.enableSubtitles(None, None)
+					from Screens.InfoBar import InfoBar
+					infobar = InfoBar and InfoBar.instance
+					if infobar:
+						infobar.pauseService()
+						infobar.unPauseService()
+				
 				self["Video"].show()
 			else:
 				# Start LiveTV
@@ -223,17 +227,6 @@ class SelectionEventInfo:
 			self.session.nav.stopService()
 			print "EMC: showPreview hide"
 			self["Video"].hide()
-
-# 	def __serviceStarted(self):
-# 		service = self.session.nav.getCurrentService()
-# 		if service:
-# 			cue = service and service.cueSheet()
-# 			if cue is not None:
-# 				cue.setCutListEnable(0)
-# 			#seek = service.seek()
-# 			#if seek:
-# 			#	length = int(seek.getLength()[1])
-# 			#	seek.seekTo(random.randint(0, length))
 
 
 class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfaceSel, DirectoryStack, E2Bookmarks, EMCBookmarks):
@@ -416,7 +409,8 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 	def changeDir(self, path, service=None):
 		path = os.path.normpath(path)
 		self.returnService = service
-		#TODOret if self.returnService: print "EMC ret chnSer " +str(self.returnService.toString())
+		#TODOret
+		if self.returnService: print "EMC ret chnSer " +str(self.returnService.toString())
 		self.reloadList(path)
 
 	def CoolKey0(self):
@@ -667,8 +661,10 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			# but user wants to move, copy, delete it,
 			# so we have to update returnService
 			if self.tmpSelList:
+				if self.returnService: print "EMC ret updSe1 " +str(self.returnService.toString())
 				self.returnService = self.getNextSelectedService(self.getCurrent(), self.tmpSelList)
-				#TODOret if self.returnService: print "EMC ret updSer " +str(self.returnService.toString())
+				#TODOret 
+				if self.returnService: print "EMC ret updSer " +str(self.returnService.toString())
 		if self.multiSelectIdx:
 			self.multiSelect( self.getCurrentIndex() )
 		self.updateInfo()
@@ -697,7 +693,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		if current and not self["list"].serviceMoving(current) and not self["list"].serviceDeleting(current):
 			self.updateEventInfo( current )
 
-	def resetInfo(self):
+	def resetInfo(self, preview=True):
 		print "EMC: resetInfo"
 		if self.delayTimer.isActive():
 			self.delayTimer.stop()
@@ -709,7 +705,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		self.updateTitle()
 		self.updateEventInfo(None)
 		
-		if self.already_shown and self.shown:
+		if preview and self.already_shown and self.shown:
 			if config.EMC.movie_cover.value:
 				self.showCover(None)
 			elif config.EMC.movie_preview.value:
@@ -933,7 +929,8 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			# Move to next or last selected entry
 			self.moveToService(self.returnService)
 			self.returnService = None
-			#TODOret if self.returnService: print "EMC ret retSer " +str(self.returnService.toString())
+			#TODOret 
+			if self.returnService: print "EMC ret retSer " +str(self.returnService.toString())
 		
 		elif ifunknown and self.playerInstance:
 			# Get current service from movie player
@@ -943,13 +940,16 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		
 		elif ifunknown:
 			# Select first entry
-			#TODOret print "EMC ret initCursor movetop correct ????"
+			#TODOret
+			print "EMC ret initCursor movetop correct ????"
 			self.moveTop()
 		
 		self.updateInfo()
 
 	def setCursor(self):
 		if self.returnService:
+			#TODOret
+			print "EMC ret setCur " +str(self.returnService.toString())
 			# Move to next or last selected entry
 			self.moveToService(self.returnService)
 	
@@ -1095,7 +1095,8 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		# Short TV refresh list - reloads only progress
 		# Long TV reload  list - finds new movies 
 		self.returnService = self.getNextSelectedService(self.getCurrent(), self.tmpSelList)
-		#TODOret if self.returnService: print "EMC ret triSer " +str(self.returnService.toString())
+		#TODOret 
+		if self.returnService: print "EMC ret triSer " +str(self.returnService.toString())
 		self.reloadList()
 
 	def reloadList(self, path=None):
@@ -1145,7 +1146,8 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 
 	def openPlayer(self, playlist, playall=False):
 		# Force update of event info after playing movie 
-		self.resetInfo()
+		# Don't reset if movie preview is active
+		self.resetInfo(preview=False)
 		
 		# force a copy instead of an reference!
 		self.lastPlayedMovies = playlist[:]
@@ -1527,6 +1529,8 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 
 	def execFileOp(self, targetPath, current, selectedlist, op="move", purgeTrash=False):
 		self.returnService = self.getNextSelectedService(current, selectedlist)
+		#TODOret
+		print "EMC ret exeFil " +str(self.returnService.toString())
 		cmd = []
 		association = []
 		for service in selectedlist:

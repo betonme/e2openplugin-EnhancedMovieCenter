@@ -163,6 +163,7 @@ class CutList():
 			emcDebugOut("[CUTS] uploadCuesheet exception:" + str(e))
 
 	def updateCuesheet(self):
+		print "Cutlist updateCuesheet"
 		try:
 			# Use non native cuesheet support
 			self.__readCutFile(True)
@@ -170,7 +171,7 @@ class CutList():
 			emcDebugOut("[CUTS] updateCuesheet exception:" + str(e))
 
 	def setCutList(self, cut_list):
-		#print "Cutlist setCutList len " + str(len(self.cut_list))
+		print "Cutlist setCutList"
 		self.cut_list = cut_list
 		self.__writeCutFile()
 
