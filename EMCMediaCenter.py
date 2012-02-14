@@ -756,14 +756,13 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 
 	# InfoBarShowHide Key_Ok
 	def toggleShow(self):
-        
-                ### Cover anzeige
-                service = self.playlist[self.playcount]
+		### Cover anzeige
+		service = self.playlist[self.playcount]
 		cover_path = service.getPath().replace(".ts",".jpg")
-                
+		
 		if not self.in_menu:
-                        ### Cover anzeige
-                        self.showCover(cover_path)
+			### Cover anzeige
+			self.showCover(cover_path)
 			# Call baseclass function
 			InfoBarShowHide.toggleShow(self)
 
