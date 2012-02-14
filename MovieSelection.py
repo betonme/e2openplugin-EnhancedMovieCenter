@@ -78,19 +78,20 @@ class SelectionEventInfo:
 		#self.noCoverPixmap = None
 
 	def initPig(self):
-		if config.EMC.movie_pig.value == "":
+		if not (config.EMC.movie_cover.value or config.EMC.movie_preview.value):
 			print "EMC: InitPig"
 			self["Cover"].hide()
 			self["Video"].show()
-			self.session.nav.playService(self.lastservice)
-			self.lastservice = None
-		elif config.EMC.movie_pig.value == "C":
+			if self.lastservice:
+				self.session.nav.playService(self.lastservice)
+				self.lastservice = None
+		elif config.EMC.movie_cover.value:
 			print "EMC: InitPig C"
 			self["Video"].hide()
 			self["Cover"].instance.setPixmap(None)
 			#self["Cover"].show()
 			self["Cover"].hide()
-		elif config.EMC.movie_pig.value == "P":
+		elif config.EMC.movie_preview.value:
 			print "EMC: InitPig P"
 			self["Cover"].hide()
 			#self["Video"].show()
@@ -153,8 +154,8 @@ class SelectionEventInfo:
 				self["Cover"].show()
 
 	# Movie preview
-	def previewMovie(self, service=None):
-		print "EMC: previewMovie"
+	def showPreview(self, service=None):
+		print "EMC: showPreview"
 		lastserviceref = self.session.nav.getCurrentlyPlayingServiceReference()
 		if service:
 			# TODO can we reuse the EMCMediaCenter for the video preview
@@ -209,14 +210,14 @@ class SelectionEventInfo:
 				# Start LiveTV
 				if self.lastservice:
 					self.session.nav.playService(self.lastservice)
-					print "EMC: previewMovie show"
+					print "EMC: showPreview show"
 					self["Video"].show()
 		
 		# If livetv is shown - don't stop it
 		elif lastserviceref and self.lastservice and lastserviceref != self.lastservice:
 			# Stop a previously played preview
 			self.session.nav.stopService()
-			print "EMC: previewMovie hide"
+			print "EMC: showPreview hide"
 			self["Video"].hide()
 
 class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfaceSel, DirectoryStack, E2Bookmarks, EMCBookmarks):
@@ -319,8 +320,10 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		self.delayTimer = eTimer()
 		self.delayTimer.callback.append(self.updateInfoDelayed)
 		
-		self.pigTimer = eTimer()
-		self.pigTimer.callback.append(self.showPigDelayed)
+		self.coverTimer = eTimer()
+		self.coverTimer.callback.append(self.showCoverDelayed)
+		self.previewTimer = eTimer()
+		self.previewTimer.callback.append(self.showPreviewDelayed)
 		
 		self.onShow.append(self.onDialogShow)
 		self.onHide.append(self.onDialogHide)
@@ -656,23 +659,21 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 
 	def updateInfo(self):
 		self.resetInfo()
-		if self.delayTimer.isActive():
-			self.delayTimer.stop()
 		self.delayTimer.start(int(config.EMC.movie_descdelay.value), True)
-		if self.pigTimer.isActive():
-			self.pigTimer.stop()
+		
 		if self.already_shown and self.shown:
 			# Movie cover
-			if config.EMC.movie_pig.value == "C":
+			if config.EMC.movie_cover.value:
 				# Show cover only for media files and directories
 				if self["list"].currentSelIsPlayable() or self["list"].currentSelIsDirectory():
-					self.pigTimer.start(int(config.EMC.movie_pig_delay.value), True)
+					self.coverTimer.start(int(config.EMC.movie_cover_delay.value), True)
 			# Movie preview
-			elif config.EMC.movie_pig.value == "P":
+			elif config.EMC.movie_preview.value:
 				# Play preview only if it is a video file
 				#if self["list"].currentSelIsPlayable():
-				print "EMC: start preview timer"
-				self.pigTimer.start(int(config.EMC.movie_pig_delay.value), True)
+				if self.playerInstance is None:
+					print "EMC: start preview timer"
+					self.previewTimer.start(int(config.EMC.movie_preview_delay.value), True)
 
 	def updateInfoDelayed(self):
 		self.updateTitle()
@@ -682,31 +683,33 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 
 	def resetInfo(self):
 		print "EMC: resetInfo"
-		self.updateTitle()
 		if self.delayTimer.isActive():
 			self.delayTimer.stop()
+		if self.coverTimer.isActive():
+			self.coverTimer.stop()
+		if self.previewTimer.isActive():
+			self.previewTimer.stop()
+		
+		self.updateTitle()
 		self.updateEventInfo(None)
-		if self.pigTimer.isActive():
-			self.pigTimer.stop()
+		
 		if self.already_shown and self.shown:
-			if config.EMC.movie_pig.value == "C":
+			if config.EMC.movie_cover.value:
 				self.showCover(None)
-			elif config.EMC.movie_pig.value == "P":
+			elif config.EMC.movie_preview.value:
 				# Avoid movie preview if player is running
 				if self.playerInstance is None:
 					print "EMC: reset preview"
-					self.previewMovie(None)
+					self.showPreview(None)
 
-	def showPigDelayed(self):
-		if config.EMC.movie_pig.value == "C":
-			print "EMC showPigDelayed C"
-			self.showCover( self.getCurrent() )
-		elif config.EMC.movie_pig.value == "P":
-			# Avoid movie preview if player is running
-			print "EMC showPigDelayed P"
-			print self.playerInstance
-			if self.playerInstance is None:
-				self.previewMovie( self.getCurrent() )
+	def showCoverDelayed(self):
+		print "EMC showCoverDelayed"
+		self.showCover( self.getCurrent() )
+
+	def showPreviewDelayed(self):
+		# Avoid movie preview if player is running
+		print "EMC showPreviewDelayed"
+		self.showPreview( self.getCurrent() )
 
 	def updateTitle(self):
 		title = ""

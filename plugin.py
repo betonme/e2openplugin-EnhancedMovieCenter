@@ -157,10 +157,6 @@ move_choices = [	("d",								_("down")),
 									("b",								_("up/down")),
 									("o",								_("off")) ]
 
-pig_choices = [	("",									_("No")),
-								("P",									_("Preview")),
-								("C",									_("Cover")) ]
-
 bookmark_choices = [	("No",					_("No")),
 											("E2",					_("E2 Bookmarks")),
 											("EMC",					_("EMC Bookmarks")),
@@ -221,8 +217,10 @@ config.EMC.movie_bluefunc            = ConfigSelection(default = "MH", choices =
 #config.EMC.movie_yellowfunc 
 config.EMC.CoolStartHome             = ConfigYesNo(default = False)
 config.EMC.movie_descdelay           = ConfigSelectionNumber(50, 60000, 50, default= 200)
-config.EMC.movie_pig                 = ConfigSelection(default = "", choices = pig_choices)
-config.EMC.movie_pig_delay           = ConfigSelectionNumber(50, 60000, 50, default= 500)
+config.EMC.movie_cover               = ConfigYesNo(default = False)
+config.EMC.movie_cover_delay         = ConfigSelectionNumber(50, 60000, 50, default= 500)
+config.EMC.movie_preview             = ConfigYesNo(default = False)
+config.EMC.movie_preview_delay       = ConfigSelectionNumber(50, 60000, 50, default= 2000)
 config.EMC.skin_able                 = ConfigYesNo(default = False)
 config.EMC.movie_icons               = ConfigYesNo(default = True)
 config.EMC.movie_progress            = ConfigSelection(default = "PB", choices = progress_choices)
