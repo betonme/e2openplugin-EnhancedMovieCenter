@@ -304,10 +304,11 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 					print service and service.getPath()
 					if ref and service and ref.getPath() == service.getPath():
 						s = self.session.nav.getCurrentService()
-						seekable = s and s.seek()
-						cue = seekable and s.cueSheet()
-						if cue:
-							cue.setCutListEnable(True)
+						if s:
+							cue = s and s.cueSheet()
+							if cue is not None:
+								cue.setCutListEnable(1)
+								print "EMC cue.setCutListEnable(1)"
 						return
 				
 				# Is this really necessary 

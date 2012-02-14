@@ -23,6 +23,7 @@ from Components.ActionMap import ActionMap, HelpableActionMap
 from Components.Button import Button
 from Components.config import *
 from Components.Label import Label
+from Components.ServiceEventTracker import ServiceEventTracker
 from Screens.Screen import Screen
 from Screens.HelpMenu import HelpableScreen
 from Screens.MessageBox import MessageBox
@@ -30,7 +31,7 @@ from Screens.ChoiceBox import ChoiceBox
 from Screens.LocationBox import LocationBox
 from Tools import Notifications
 from Tools.BoundFunction import boundFunction
-from enigma import getDesktop, eServiceReference, eTimer
+from enigma import getDesktop, eServiceReference, eTimer, iPlayableService
 
 import os
 from time import time
@@ -76,6 +77,10 @@ class SelectionEventInfo:
 		#noCoverFile = resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/no_coverArt.png")
 		#self.noCoverPixmap = LoadPixmap(noCoverFile)
 		#self.noCoverPixmap = None
+# 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
+# 			{
+# 				iPlayableService.evStart: self.__serviceStarted,
+# 			})
 
 	def initPig(self):
 		if not (config.EMC.movie_cover.value or config.EMC.movie_preview.value):
@@ -166,6 +171,33 @@ class SelectionEventInfo:
 				# Get service
 				s = self.session.nav.getCurrentService()
 				if s:
+					# Get seek and cuesheet
+					seekable = s and s.seek()
+					cue = seekable and s.cueSheet()
+					if cue:
+						# Avoid cutlist overwrite
+						cue.setCutListEnable(0)
+						print "EMC cue.setCutListEnable(0)"
+						# Adapted from jumpToFirstMark
+						jumpto = None
+						# EMC enhancement: increase recording margin to make sure we get the correct mark
+						margin = config.recording.margin_before.value*60*90000 *2 or 20*60*90000
+						middle = (long(seekable.getLength()[1]) or 90*60*90000) / 2
+						# Search first mark
+						for (pts, what) in cue.getCutList():
+							if what == 3: #CUT_TYPE_LAST:
+								if pts != None and ( pts < margin and pts < middle ):
+									jumpto = pts
+									break
+							if what == 2: #CUT_TYPE_MARK:
+								if pts != None and ( pts < margin and pts < middle ):
+									if jumpto == None or pts < jumpto: 
+										jumpto = pts
+										break
+						if jumpto is not None:
+							# Jump to first mark
+							seekable.seekTo(jumpto)
+						
 					if ext in plyDVD:
 						subs = getattr(s, "subtitle", None)
 						if callable(subs):
@@ -177,34 +209,6 @@ class SelectionEventInfo:
 						if infobar:
 							infobar.pauseService()
 							infobar.unPauseService()
-					else:
-						# Get cuesheet
-						cue = s.cueSheet()
-						if cue:
-							# Avoid cutlist overwrite
-							cue.setCutListEnable(0)
-							# Get seek
-							seekable = s.seek()
-							if seekable:
-								# Adapted from jumpToFirstMark
-								jumpto = None
-								# EMC enhancement: increase recording margin to make sure we get the correct mark
-								margin = config.recording.margin_before.value*60*90000 *2 or 20*60*90000
-								middle = (long(seekable.getLength()[1]) or 90*60*90000) / 2
-								# Search first mark
-								for (pts, what) in cue.getCutList():
-									if what == 3: #CUT_TYPE_LAST:
-										if pts != None and ( pts < margin and pts < middle ):
-											jumpto = pts
-											break
-									if what == 2: #CUT_TYPE_MARK:
-										if pts != None and ( pts < margin and pts < middle ):
-											if jumpto == None or pts < jumpto: 
-												jumpto = pts
-												break
-								if jumpto is not None:
-									# Jump to first mark
-									seekable.seekTo(jumpto)
 				self["Video"].show()
 			else:
 				# Start LiveTV
@@ -219,6 +223,18 @@ class SelectionEventInfo:
 			self.session.nav.stopService()
 			print "EMC: showPreview hide"
 			self["Video"].hide()
+
+# 	def __serviceStarted(self):
+# 		service = self.session.nav.getCurrentService()
+# 		if service:
+# 			cue = service and service.cueSheet()
+# 			if cue is not None:
+# 				cue.setCutListEnable(0)
+# 			#seek = service.seek()
+# 			#if seek:
+# 			#	length = int(seek.getLength()[1])
+# 			#	seek.seekTo(random.randint(0, length))
+
 
 class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfaceSel, DirectoryStack, E2Bookmarks, EMCBookmarks):
 	def __init__(self, session):
