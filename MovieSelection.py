@@ -169,9 +169,10 @@ class SelectionEventInfo:
 			# TODO can we reuse the EMCMediaCenter for the video preview
 			ext = os.path.splitext(service.getPath())[1].lower()
 			if ext in plyAll:
+				self.session.nav.stopService()
 				# Start preview
 				self.session.nav.playService(service)
-				DelayedFunction(5000, self.setCutListDisable)
+				#DelayedFunction(5000, self.setCutListDisable)
 				# Get service, seek and cuesheet
 				s = self.session.nav.getCurrentService()
 				seekable = s and s.seek()
@@ -469,24 +470,30 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 	def moveUp(self):
 		self.cursorDir = -1
 		self["list"].instance.moveSelection( self["list"].instance.moveUp )
+		self.updateAfterKeyPress()
 
 	def moveDown(self):
 		self.cursorDir = 1
 		self["list"].instance.moveSelection( self["list"].instance.moveDown )
+		self.updateAfterKeyPress()
 
 	def pageUp(self):
 		self.cursorDir = 0
 		self["list"].instance.moveSelection( self["list"].instance.pageUp )
+		self.updateAfterKeyPress()
 
 	def pageDown(self):
 		self.cursorDir = 0
 		self["list"].instance.moveSelection( self["list"].instance.pageDown )
+		self.updateAfterKeyPress()
 
 	def moveTop(self):
 		self["list"].instance.moveSelection( self["list"].instance.moveTop )
+		self.updateAfterKeyPress()
 
 	def moveEnd(self):
 		self["list"].instance.moveSelection( self["list"].instance.moveEnd )
+		self.updateAfterKeyPress()
 
 	def multiSelect(self, index=-1):
 		if self.browsingVLC(): return
@@ -655,16 +662,21 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 	def unUsed(self):
 		self.session.open(MessageBox, _("No functionality set..."), MessageBox.TYPE_INFO)
 
-	def selectionChanged(self):
+	def updateAfterKeyPress(self):
 		if self.returnService:
 			# Service was stored for a pending update,
 			# but user wants to move, copy, delete it,
 			# so we have to update returnService
 			if self.tmpSelList:
-				if self.returnService: print "EMC ret updSe1 " +str(self.returnService.toString())
+				#TODOret 
+				print "EMC ret updSe1 " +str(self.returnService.toString())
+				print len(self.tmpSelList)
+				print self.getCurrent().toString()
 				self.returnService = self.getNextSelectedService(self.getCurrent(), self.tmpSelList)
 				#TODOret 
-				if self.returnService: print "EMC ret updSer " +str(self.returnService.toString())
+				print "EMC ret updSer " +str(self.returnService.toString())
+
+	def selectionChanged(self):
 		if self.multiSelectIdx:
 			self.multiSelect( self.getCurrentIndex() )
 		self.updateInfo()
@@ -1002,7 +1014,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 	def getNextSelectedService(self, current, selectedlist=None):
 		curSerRef = None
 		if current is None:
-			tserRef = None
+			curSerRef = None
 		elif not self["list"]:
 			# Selectedlist is empty
 			curSerRef = None
