@@ -255,6 +255,8 @@ config.EMC.movie_finished_limit      = ConfigSelectionNumber(1, 99, 1, default =
 config.EMC.movie_trashcan_ctime      = ConfigClock(default = 0)
 config.EMC.movie_delete_validation   = ConfigYesNo(default = True)
 config.EMC.directories_show          = ConfigYesNo(default = True)
+config.EMC.directories_ontop         = ConfigYesNo(default = False)
+config.EMC.cfgtopdir_enable          = ConfigYesNo(default = False)
 config.EMC.directories_info          = ConfigSelection(default = "", choices = dirinfo_choices)
 config.EMC.latest_recordings         = ConfigYesNo(default = True)
 config.EMC.mark_latest_files         = ConfigYesNo(default = True)

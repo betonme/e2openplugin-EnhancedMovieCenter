@@ -51,7 +51,7 @@ from ServiceSupport import ServiceCenter
 
 
 global extAudio, extDvd, extVideo, extPlaylist, extList, extMedia
-global cmtDir, cmtUp, cmtTrash, cmtLRec, cmtVLC, cmtBME2, cmtBMEMC, virVLC, virAll
+global cmtDir, cmtUp, cmtTrash, cmtLRec, cmtVLC, cmtBME2, cmtBMEMC, virVLC, virAll, virToE, virToD
 global vlcSrv, vlcDir, vlcFil
 global plyDVB, plyM2TS, plyDVD, plyMP3, plyVLC, plyAll
 global sidDVB, sidDVD, sidMP3
@@ -110,6 +110,12 @@ cmtVLC     = "V"
 # Grouped custom types
 virVLC     = frozenset([cmtVLC, vlcSrv, vlcDir])
 virAll     = frozenset([cmtBME2, cmtBMEMC, cmtVLC, cmtLRec, cmtTrash, cmtUp, cmtDir, vlcSrv, vlcDir])
+virToE     = frozenset([cmtBME2, cmtBMEMC, cmtVLC, cmtLRec, cmtTrash, cmtUp, vlcSrv, vlcDir])
+
+if config.EMC.directories_ontop.value:
+	virToD = virToE
+else:
+	virToD = virAll
 
 #-------------------------------------------------
 # func: readBasicCfgFile( file )
@@ -226,11 +232,13 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 		self.pic_vlc_dir         = LoadPixmap(cached=True, path='/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/vlcdir.png')
 		self.pic_link            = LoadPixmap(cached=True, path='/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/link.png')
 		self.pic_latest          = LoadPixmap(cached=True, path='/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/virtual.png')
+		self.pic_col_dir         = LoadPixmap(cached=True, path='/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/coldir.png')
 		
 		self.onSelectionChanged = []
 		self.hideitemlist = readBasicCfgFile("/etc/enigma2/emc-hide.cfg") or []
 		self.nostructscan = readBasicCfgFile("/etc/enigma2/emc-noscan.cfg") or []
-		
+		self.topdirlist = readBasicCfgFile("/etc/enigma2/emc-topdir.cfg") or []
+
 		# Initially load the movielist
 		# So it must not be done when the user it opens the first time
 		#MAYBE this should be configurable
@@ -389,7 +397,16 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 		# This will find all unsortable items
 		# But is not as fast as the second implementation
 		# If [2] = date = None then it is a directory or special folder entry
-		tmplist = [i for i in sortlist if i[7] in virAll]
+		# tmplist = [i for i in sortlist if i[7] in virAll]
+		if config.EMC.directories_ontop.value:
+			virToD = virToE
+		else:
+			virToD = virAll
+		if config.EMC.cfgtopdir_enable.value:
+			topdirlist = self.topdirlist
+			tmplist = [i for i in sortlist if i[7] in virToD or i[3] in topdirlist]
+		else:
+			tmplist = [i for i in sortlist if i[7] in virToD]
 		# Extract list items to be sorted
 		sortlist = [i for i in sortlist if i not in tmplist]
 		# Always sort via extension and sorttitle and never reversed
@@ -774,7 +791,9 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 				#TODO config.EMC.movie_icons.value not used here
 				#TODO Skin config.EMC.skin_able.value not used here
 				#TODO config.EMC.movie_date_format.value not used here
-				
+
+				topdirlist = self.topdirlist
+
 				if ext == cmtVLC:
 					datetext = _("VLC")
 					pixmap = self.pic_vlc
@@ -822,8 +841,18 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 						pixmap = self.pic_trashcan
 						datetext = "Trashcan"
 				elif ext == cmtDir:
+
 					if isLink:
-						datetext = _("Link")
+						if config.EMC.directories_ontop.value:
+							if title in topdirlist:
+								datetext = _("Link")					#TopLink
+								pixmap = self.pic_directory
+							else:
+								datetext = _("Collection")		#ColLink
+								pixmap = self.pic_col_dir
+						else:
+							datetext = _("Link")
+							pixmap = self.pic_directory
 					elif config.EMC.directories_info.value:
 						if config.EMC.directories_info.value == "C":
 							count, size = self.dirInfo(path)
@@ -838,8 +867,16 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 							# Should never happen
 							datetext = _("Directory")
 					else:
-						datetext = _("Directory")
-					pixmap = self.pic_directory
+						if config.EMC.directories_ontop.value:
+							if title in topdirlist:
+								datetext = _("Directory")				#TopDirectory
+								pixmap = self.pic_directory
+							else:
+								datetext = _("Collection")			#ColDirectory
+								pixmap = self.pic_col_dir
+						else:
+							datetext = _("Directory")
+							pixmap = self.pic_directory
 				else:
 					# Should never happen
 					pixmap = self.pic_directory
