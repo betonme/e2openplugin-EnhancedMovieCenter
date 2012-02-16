@@ -269,13 +269,13 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 				cutspath = path + ".cuts"
 				if os.path.exists(cutspath):
 					# prepare cut list
-					try:
-						# Workaround for not working E2 cue.setCutListEnable
-						# We always have to set this permission, we can not detect all stop preview events
-						os.chmod(cutspath, 755)
-						print "EMC set chmod read and write"
-					except:
-						pass
+					#try:
+					#	# Workaround for not working E2 cue.setCutListEnable not working :-(
+					#	# We always have to set this permission, we can not detect all stop preview events
+					#	os.chmod(cutspath, 755)
+					#	print "EMC set chmod read and write"
+					#except:
+					#	pass
 					# Workaround for E2 dvb player bug in combination with running recordings and existings cutlists
 					record = self.recordings.getRecording(path)
 					if record:

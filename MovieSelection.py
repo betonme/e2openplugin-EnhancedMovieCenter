@@ -166,11 +166,11 @@ class SelectionEventInfo:
 				#self.session.nav.stopService()
 				#cue.setCutListEnable(2) #not tested
 				
-				# Workaround for not working E2 cue.setCutListEnable
-				cutspath = service.getPath() + ".cuts"
-				if os.path.exists(cutspath):
-					os.chmod(cutspath, 555)
-					print "EMC set chmod read only"
+				# Workaround for not working E2 cue.setCutListEnable not working :-(
+				#cutspath = service.getPath() + ".cuts"
+				#if os.path.exists(cutspath):
+				#	os.chmod(cutspath, 555)
+				#	print "EMC set chmod read only"
 				
 				# Start preview
 				self.session.nav.playService(service)
@@ -189,20 +189,16 @@ class SelectionEventInfo:
 					# Adapted from jumpToFirstMark
 					jumpto = None
 					# EMC enhancement: increase recording margin to make sure we get the correct mark
-					margin = config.recording.margin_before.value*60*90000 *2 or 20*60*90000
-					middle = (long(seekable.getLength()[1]) or 90*60*90000) / 2
+					#margin = config.recording.margin_before.value*60*90000 *2 or 20*60*90000
+					#middle = (long(seekable.getLength()[1]) or 90*60*90000) / 2
 					# Search first mark
 					for (pts, what) in cue.getCutList():
 						if what == 3: #CUT_TYPE_LAST:
-							if pts != None and ( pts < margin and pts < middle ):
-								jumpto = pts
+							if pts != None:
+								# Start preview 5 seconds before last position
+								jumpto = pts - ( 5 * 90000 )
 								break
-						if what == 2: #CUT_TYPE_MARK:
-							if pts != None and ( pts < margin and pts < middle ):
-								if jumpto == None or pts < jumpto: 
-									jumpto = pts
-									break
-					if jumpto is not None:
+					if jumpto is not None and jumpto > 0:
 						# Jump to first mark
 						seekable.seekTo(jumpto)
 				ref = self.session.nav.getCurrentlyPlayingServiceReference()
