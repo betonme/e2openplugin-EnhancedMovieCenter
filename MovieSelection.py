@@ -195,8 +195,8 @@ class SelectionEventInfo:
 					for (pts, what) in cue.getCutList():
 						if what == 3: #CUT_TYPE_LAST:
 							if pts != None:
-								# Start preview 5 seconds before last position
-								jumpto = pts - ( 5 * 90000 )
+								# Start preview x seconds before last position
+								jumpto = pts - ( config.EMC.movie_preview_offset.value * 90000 )
 								break
 					if jumpto is not None and jumpto > 0:
 						# Jump to first mark
