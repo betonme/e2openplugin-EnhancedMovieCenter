@@ -20,7 +20,6 @@
 #
 
 import os, re
-from stat import *
 import sys, traceback
 
 from Components.config import *
@@ -273,7 +272,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 					try:
 						# Workaround for not working E2 cue.setCutListEnable
 						# We always have to set this permission, we can not detect all stop preview events
-						os.chmod(cutspath, stat.S_IWRITE)
+						os.chmod(cutspath, 755)
 						print "EMC set chmod read and write"
 					except:
 						pass

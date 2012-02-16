@@ -34,7 +34,6 @@ from Tools.BoundFunction import boundFunction
 from enigma import getDesktop, eServiceReference, eTimer, iPlayableService
 
 import os
-from stat import *
 from time import time
 
 # Movie preview
@@ -169,7 +168,7 @@ class SelectionEventInfo:
 				
 				# Workaround for not working E2 cue.setCutListEnable
 				cutspath = service.getPath() + ".cuts"
-				os.chmod(cutspath, stat.S_IREAD)
+				os.chmod(cutspath, 555)
 				print "EMC set chmod read only"
 				
 				# Start preview
