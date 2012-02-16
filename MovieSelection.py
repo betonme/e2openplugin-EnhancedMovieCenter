@@ -168,8 +168,9 @@ class SelectionEventInfo:
 				
 				# Workaround for not working E2 cue.setCutListEnable
 				cutspath = service.getPath() + ".cuts"
-				os.chmod(cutspath, 555)
-				print "EMC set chmod read only"
+				if os.path.exists(cutspath):
+					os.chmod(cutspath, 555)
+					print "EMC set chmod read only"
 				
 				# Start preview
 				self.session.nav.playService(service)
