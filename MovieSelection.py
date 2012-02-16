@@ -78,6 +78,8 @@ class SelectionEventInfo:
 		#noCoverFile = resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/no_coverArt.png")
 		#self.noCoverPixmap = LoadPixmap(noCoverFile)
 		#self.noCoverPixmap = None
+		self.picload = ePicLoad()
+		self.picload.PictureData.get().append(self.showCoverCallback)
 
 	def initPig(self):
 		if not (config.EMC.movie_cover.value or config.EMC.movie_preview.value):
@@ -132,9 +134,7 @@ class SelectionEventInfo:
 					jpgpath = os.path.join(path, os.path.basename(path)) + ".ts_mp.jpg"					#foldername/foldername.ts_mp.jpg
 
 			if jpgpath and os.path.exists(jpgpath):
-				sc = AVSwitch().getFramebufferScale() # Maybe save during init
-				self.picload = ePicLoad()
-				self.picload.PictureData.get().append(self.showCoverCallback)
+				sc = AVSwitch().getFramebufferScale()
 				size = self["Cover"].instance.size()
 				self.picload.setPara((size.width(), size.height(), sc[0], sc[1], False, 1, "#00000000")) # Background dynamically
 				self.picload.startDecode(jpgpath)
