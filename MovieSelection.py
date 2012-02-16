@@ -226,9 +226,11 @@ class SelectionEventInfo:
 		# If livetv is shown - don't stop it
 		elif lastserviceref and self.lastservice and lastserviceref != self.lastservice:
 			# Stop a previously played preview
-			self.session.nav.stopService()
+			
+			#TEST Do not stop preview on cursor move
+			#self.session.nav.stopService()
 			print "EMC: showPreview hide"
-			self["Video"].hide()
+			#self["Video"].hide()
 
 
 class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfaceSel, DirectoryStack, E2Bookmarks, EMCBookmarks):
