@@ -20,6 +20,7 @@
 #
 
 import os, re
+from stat import *
 import sys, traceback
 
 from Components.config import *

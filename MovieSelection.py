@@ -34,6 +34,7 @@ from Tools.BoundFunction import boundFunction
 from enigma import getDesktop, eServiceReference, eTimer, iPlayableService
 
 import os
+from stat import *
 from time import time
 
 # Movie preview
