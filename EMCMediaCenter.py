@@ -268,6 +268,13 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 			if os.path.exists(path): #TODO use ext != vlc but must be prepared first
 				
 				# prepare cut list
+				try:
+					# Workaround for not working E2 cue.setCutListEnable
+					# We always have to set this permission, we can not detect all stop preview events
+					os.chmod(service.getPath(), stat.S_IWRITE)
+					print "EMC set chmod read and write"
+				except:
+					pass
 				self.recordings.toggleProgress(service, True)
 				self.service = service
 				
@@ -309,7 +316,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 				
 				# Is this really necessary 
 				# TEST for M2TS Audio problem
-				self.session.nav.stopService() 
+				#self.session.nav.stopService() 
 				
 				# Start playing movie
 				self.session.nav.playService(service)
@@ -778,6 +785,10 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 		if self.in_menu:
 			self.hide()
 		if config.EMC.record_eof_zap.value and self.recordings and self.service:
+			#TEST
+			# get path from iPlayableService
+			#ref = self.session.nav.getCurrentlyPlayingServiceReference()
+			#if ref and self.service and ref.getPath() == self.service.getPath():
 			record = self.recordings.getRecording(self.service.getPath())
 			if record:
 				begin, end, service = record
@@ -797,6 +808,11 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 				self.closeAll = True
 				DelayedFunction(10, boundFunction(self.leavePlayer, False))
 				return
+				#TEST just return and ignore if there is more to play
+				#else:
+				##if self.seekstate == self.SEEK_STATE_EOF:
+				##	self.setSeekState(self.SEEK_STATE_PLAY)
+				#	return
 		
 		DelayedFunction(10, boundFunction(self.evEOF))
 

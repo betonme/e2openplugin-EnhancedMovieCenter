@@ -42,7 +42,7 @@ from Components.VideoWindow import VideoWindow
 # Cover
 from Components.AVSwitch import AVSwitch
 from Components.Pixmap import Pixmap
-from enigma import ePicLoad
+from enigma import ePicLoad, getDesktop
 #from Tools.LoadPixmap import LoadPixmap
 
 # EMC internal
@@ -71,7 +71,8 @@ class SelectionEventInfo:
 		#from Components.Sources.ServiceEvent import ServiceEvent
 		self["Service"] = ServiceEvent()
 		# Movie preview
-		self["Video"] = VideoWindow(decoder = 0)
+		desktopSize = getDesktop(0).size()
+		self["Video"] = VideoWindow(decoder = 0, fb_width=desktopSize.width(), fb_height=desktopSize.height())
 		# Movie Cover
 		self["Cover"] = Pixmap()
 		#noCoverFile = resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/no_coverArt.png")
@@ -154,13 +155,6 @@ class SelectionEventInfo:
 				self["Cover"].instance.setPixmap(ptr)
 				self["Cover"].show()
 
-	def setCutListDisable(self):
-		s = self.session.nav.getCurrentService()
-		cue = s and s.cueSheet()
-		if cue:
-			# Avoid cutlist overwrite
-			cue.setCutListEnable(0)
-
 	# Movie preview
 	def showPreview(self, service=None):
 		print "EMC: showPreview"
@@ -169,10 +163,15 @@ class SelectionEventInfo:
 			# TODO can we reuse the EMCMediaCenter for the video preview
 			ext = os.path.splitext(service.getPath())[1].lower()
 			if ext in plyAll:
-				self.session.nav.stopService()
+				#self.session.nav.stopService()
+				#cue.setCutListEnable(2) #not tested
+				
+				# Workaround for not working E2 cue.setCutListEnable
+				os.chmod(service.getPath(), stat.S_IREAD)
+				print "EMC set chmod read only"
+				
 				# Start preview
 				self.session.nav.playService(service)
-				#DelayedFunction(5000, self.setCutListDisable)
 				# Get service, seek and cuesheet
 				s = self.session.nav.getCurrentService()
 				seekable = s and s.seek()
@@ -180,7 +179,11 @@ class SelectionEventInfo:
 				if cue and seekable:
 					# Avoid cutlist overwrite
 					cue.setCutListEnable(0)
+					#cue.setCutListEnable(2)
+					#cue.setCutListEnable(3)
 					print "EMC cue.setCutListEnable(0)"
+					#self.downloadCuesheet() #not tested
+					
 					# Adapted from jumpToFirstMark
 					jumpto = None
 					# EMC enhancement: increase recording margin to make sure we get the correct mark
