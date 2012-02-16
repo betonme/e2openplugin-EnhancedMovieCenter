@@ -196,7 +196,7 @@ class SelectionEventInfo:
 						if what == 3: #CUT_TYPE_LAST:
 							if pts != None:
 								# Start preview x seconds before last position
-								jumpto = pts - ( config.EMC.movie_preview_offset.value * 90000 )
+								jumpto = int(pts) - ( int(config.EMC.movie_preview_offset.value) * 90000 )
 								break
 					if jumpto is not None and jumpto > 0:
 						# Jump to first mark
