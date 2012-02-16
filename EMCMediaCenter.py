@@ -266,15 +266,24 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 			#TODO Problem with VLC
 			path = service and service.getPath()
 			if os.path.exists(path): #TODO use ext != vlc but must be prepared first
-				
-				# prepare cut list
-				try:
-					# Workaround for not working E2 cue.setCutListEnable
-					# We always have to set this permission, we can not detect all stop preview events
-					os.chmod(service.getPath(), stat.S_IWRITE)
-					print "EMC set chmod read and write"
-				except:
-					pass
+				cutspath = path + ".cuts"
+				if os.path.exists(cutspath):
+					# prepare cut list
+					try:
+						# Workaround for not working E2 cue.setCutListEnable
+						# We always have to set this permission, we can not detect all stop preview events
+						os.chmod(cutspath, stat.S_IWRITE)
+						print "EMC set chmod read and write"
+					except:
+						pass
+					# Workaround for E2 dvb player bug in combination with running recordings and existings cutlists
+					record = self.recordings.getRecording(path)
+					if record:
+						try:
+							os.remove(cutspath)
+						except:
+							pass
+				# Further cutlist handling
 				self.recordings.toggleProgress(service, True)
 				self.service = service
 				

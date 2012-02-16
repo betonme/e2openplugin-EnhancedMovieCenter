@@ -167,7 +167,8 @@ class SelectionEventInfo:
 				#cue.setCutListEnable(2) #not tested
 				
 				# Workaround for not working E2 cue.setCutListEnable
-				os.chmod(service.getPath(), stat.S_IREAD)
+				cutspath = service.getPath() + ".cuts"
+				os.chmod(cutspath, stat.S_IREAD)
 				print "EMC set chmod read only"
 				
 				# Start preview
