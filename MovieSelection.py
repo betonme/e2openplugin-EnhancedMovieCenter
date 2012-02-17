@@ -89,17 +89,18 @@ class SelectionEventInfo:
 			if self.lastservice:
 				self.session.nav.playService(self.lastservice)
 				self.lastservice = None
-		elif config.EMC.movie_cover.value:
-			print "EMC: InitPig C"
-			self["Video"].hide()
-			self["Cover"].instance.setPixmap(None)
-			#self["Cover"].show()
-			self["Cover"].hide()
-		elif config.EMC.movie_preview.value:
-			print "EMC: InitPig P"
-			self["Cover"].hide()
-			#self["Video"].show()
-			self["Video"].hide()
+		else
+			if config.EMC.movie_cover.value:
+				print "EMC: InitPig C"
+				self["Video"].hide()
+				self["Cover"].instance.setPixmap(None)
+				#self["Cover"].show()
+				self["Cover"].hide()
+			if config.EMC.movie_preview.value:
+				print "EMC: InitPig P"
+				self["Cover"].hide()
+				#self["Video"].show()
+				self["Video"].hide()
 
 	def updateEventInfo(self, service):
 		self["Service"].newService(service)
@@ -695,7 +696,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 				if self["list"].currentSelIsPlayable() or self["list"].currentSelIsDirectory():
 					self.coverTimer.start(int(config.EMC.movie_cover_delay.value), True)
 			# Movie preview
-			elif config.EMC.movie_preview.value:
+			if config.EMC.movie_preview.value:
 				# Play preview only if it is a video file
 				#if self["list"].currentSelIsPlayable():
 				if self.playerInstance is None:
@@ -723,7 +724,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		if preview and self.already_shown and self.shown:
 			if config.EMC.movie_cover.value:
 				self.showCover(None)
-			elif config.EMC.movie_preview.value:
+			if config.EMC.movie_preview.value:
 				# Avoid movie preview if player is running
 				if self.playerInstance is None:
 					print "EMC: reset preview"
