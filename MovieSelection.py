@@ -89,7 +89,7 @@ class SelectionEventInfo:
 			if self.lastservice:
 				self.session.nav.playService(self.lastservice)
 				self.lastservice = None
-		else
+		else:
 			if config.EMC.movie_cover.value:
 				print "EMC: InitPig C"
 				self["Video"].hide()
