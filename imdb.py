@@ -527,7 +527,7 @@ class imdbscan(Screen):
 				ptr = self.picload.getData()
 				if ptr != None:
 					print "anzeigen"
-					self["poster"].instance.setPixmap(ptr)
+					self["poster"].instance.setPixmap(ptr.__deref__())
 					self["poster"].show()
 				else:
 					print "nicht angezeigt"
@@ -775,7 +775,7 @@ class getCover(Screen):
 				ptr = self.picload.getData()
 				if ptr != None:
 					print "EMC iMDB: Load Poster - %s" % self.m_title
-					self["poster"].instance.setPixmap(ptr)
+					self["poster"].instance.setPixmap(ptr.__deref__())
 					self["poster"].show()
 
 	def exit(self):

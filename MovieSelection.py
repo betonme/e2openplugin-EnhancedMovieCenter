@@ -159,7 +159,7 @@ class SelectionEventInfo:
 		if self.picload and picInfo:
 			ptr = self.picload.getData()
 			if ptr != None:
-				self["Cover"].instance.setPixmap(ptr)
+				self["Cover"].instance.setPixmap(ptr.__deref__())
 				self["Cover"].show()
 
 	# Movie preview
