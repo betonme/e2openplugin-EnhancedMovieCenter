@@ -362,9 +362,9 @@ class imdbscan(Screen):
 				else:
 					print "EMC iMDB: Film gefunden aber kein poster vorhanden - %s" % search_title
 					self.display_na(search_title, path)
-				else:
-					print "EMC iMDB: Themoviedb.org is down or No results found - %s" % search_title
-					self.display_na(search_title, path)
+			else:
+				print "EMC iMDB: Themoviedb.org is down or No results found - %s" % search_title
+				self.display_na(search_title, path)
 
 		self["menulist"].l.setList(self.menulist)
 		self["menulist"].l.setItemHeight(28)
@@ -529,8 +529,8 @@ class imdbscan(Screen):
 					print "anzeigen"
 					self["poster"].instance.setPixmap(ptr)
 					self["poster"].show()
-			else:
-				print "nicht angezeigt"
+				else:
+					print "nicht angezeigt"
 		
 	def config(self):
 		self.session.openWithCallback(self.setupFinished, imdbSetup)
@@ -747,7 +747,7 @@ class getCover(Screen):
 				urllib.urlcleanup()
 				if os.path.exists(self.path):
 					self.poster_resize(self.path, m_title)
-	
+					
 					#ptr = LoadPixmap(self.path)
 					#if ptr is None:
 					#        ptr = LoadPixmap("/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/no_poster.png")
