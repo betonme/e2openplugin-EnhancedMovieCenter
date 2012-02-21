@@ -78,8 +78,13 @@ class SelectionEventInfo:
 		#noCoverFile = resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/no_coverArt.png")
 		#self.noCoverPixmap = LoadPixmap(noCoverFile)
 		#self.noCoverPixmap = None
+		
 		self.picload = ePicLoad()
 		self.picload.PictureData.get().append(self.showCoverCallback)
+
+	def closeEventInfo(self):
+		if self.picload:
+			del self.picload
 
 	def initPig(self):
 		if not (config.EMC.movie_cover.value or config.EMC.movie_preview.value):
@@ -137,8 +142,9 @@ class SelectionEventInfo:
 			if jpgpath and os.path.exists(jpgpath):
 				sc = AVSwitch().getFramebufferScale()
 				size = self["Cover"].instance.size()
-				self.picload.setPara((size.width(), size.height(), sc[0], sc[1], False, 1, "#00000000")) # Background dynamically
-				self.picload.startDecode(jpgpath)
+				if self.picload:
+					self.picload.setPara((size.width(), size.height(), sc[0], sc[1], False, 1, "#00000000")) # Background dynamically
+					self.picload.startDecode(jpgpath)
 				#self["Cover"].show()
 			else:
 				#TODO test if reset has to be done really
@@ -150,7 +156,7 @@ class SelectionEventInfo:
 			self["Cover"].hide()
 
 	def showCoverCallback(self, picInfo=None):
-		if picInfo:
+		if self.picload and picInfo:
 			ptr = self.picload.getData()
 			if ptr != None:
 				self["Cover"].instance.setPixmap(ptr)
@@ -341,6 +347,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		
 		self.onShow.append(self.onDialogShow)
 		self.onHide.append(self.onDialogHide)
+		self.onClose.append(self.onDialogClose)
 		self["list"].onSelectionChanged.append(self.selectionChanged)
 
 	def CoolAVSwitch(self):
@@ -993,6 +1000,9 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 
 	def onDialogHide(self):
 		self.returnService = self.getCurrent() #self.getNextSelectedService(self.getCurrent(), self.tmpSelList)
+
+	def onDialogClose(self):
+		self.closeEventInfo()
 
 	def getCurrentIndex(self):
 		return self["list"].getCurrentIndex()

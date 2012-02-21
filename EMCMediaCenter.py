@@ -209,6 +209,9 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 		self.service = None
 		self.recordings.setPlayerInstance(self)
 		
+		self.picload = ePicLoad()
+		self.picload.PictureData.get().append(self.showCoverCallback)
+		
 		# Dialog Events
 		self.onShown.append(self.__onShow)  # Don't use onFirstExecBegin() it will crash
 		self.onClose.insert(0, self.__playerClosed)
@@ -221,14 +224,13 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 			#jpgpath = "/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/no_poster.png"
 		else:
 			sc = AVSwitch().getFramebufferScale() # Maybe save during init
-			self.picload = ePicLoad()
-			self.picload.PictureData.get().append(self.showCoverCallback)
 			size = self["Cover"].instance.size()
-			self.picload.setPara((size.width(), size.height(), sc[0], sc[1], False, 1, "#00000000")) # Background dynamically
-			self.picload.startDecode(jpgpath)
+			if self.picload:
+				self.picload.setPara((size.width(), size.height(), sc[0], sc[1], False, 1, "#00000000")) # Background dynamically
+				self.picload.startDecode(jpgpath)
 
 	def showCoverCallback(self, picInfo=None):
-		if picInfo:
+		if self.picload and picInfo:
 			ptr = self.picload.getData()
 			if ptr != None:
 				self["Cover"].instance.setPixmap(ptr)
@@ -375,6 +377,8 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 			self.updateCutList( self.getSeekPlayPosition(), self.getSeekLength() )
 
 	def __onClose(self):
+		if self.picload:
+			del self.picload
 		if self.lastservice:
 			self.session.nav.playService(self.lastservice)
 			self.lastservice = None
