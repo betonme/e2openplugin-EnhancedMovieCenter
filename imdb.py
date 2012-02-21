@@ -141,11 +141,11 @@ class imdbscan(Screen):
 		self.picload = ePicLoad()
 		#self.picload.PictureData.get().append(self.showCoverCallback)
 		
-		self.onClose.append(self.onClose)
+		self.onClose.append(self.onCloseIMDB)
 		
 		self.setShowSearchSiteName()
 
-	def onClose(self):
+	def onCloseIMDB(self):
 		if self.picload:
 			del self.picload
 
@@ -628,7 +628,7 @@ class getCover(Screen):
 		self.picload = ePicLoad()
 		#self.picload.PictureData.get().append(self.showCoverCallback)
 		
-		self.onClose.append(self.onClose)
+		self.onClose.append(self.onCloseIMDB)
 		
 		if config.plugins.imdb.singlesearch.value == "0":
 			self.searchCover(self.title)
@@ -648,7 +648,7 @@ class getCover(Screen):
 			#self.einzel_elapsed = (self.einzel_end_time - self.einzel_start_time)
 			#self["info"].setText(_("found %s covers in %.1f sec") % (self.cover_count, self.einzel_elapsed))
 
-	def onClose(self):
+	def onCloseIMDB(self):
 		if self.picload:
 			del self.picload
 
