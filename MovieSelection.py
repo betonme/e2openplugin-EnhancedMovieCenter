@@ -75,16 +75,6 @@ class SelectionEventInfo:
 		self["Video"] = VideoWindow(decoder = 0, fb_width=desktopSize.width(), fb_height=desktopSize.height())
 		# Movie Cover
 		self["Cover"] = Pixmap()
-		#noCoverFile = resolveFilename(SCOPE_CURRENT_SKIN, "skin_default/no_coverArt.png")
-		#self.noCoverPixmap = LoadPixmap(noCoverFile)
-		#self.noCoverPixmap = None
-		
-		self.picload = ePicLoad()
-		self.picload.PictureData.get().append(self.showCoverCallback)
-
-	def closeEventInfo(self):
-		if self.picload:
-			del self.picload
 
 	def initPig(self):
 		if not (config.EMC.movie_cover.value or config.EMC.movie_preview.value):
@@ -99,12 +89,10 @@ class SelectionEventInfo:
 				print "EMC: InitPig C"
 				self["Video"].hide()
 				self["Cover"].instance.setPixmap(None)
-				#self["Cover"].show()
 				self["Cover"].hide()
 			if config.EMC.movie_preview.value:
 				print "EMC: InitPig P"
 				self["Cover"].hide()
-				#self["Video"].show()
 				self["Video"].hide()
 
 	def updateEventInfo(self, service):
@@ -142,17 +130,15 @@ class SelectionEventInfo:
 			if jpgpath and os.path.exists(jpgpath):
 				sc = AVSwitch().getFramebufferScale()
 				size = self["Cover"].instance.size()
+				self.picload = ePicLoad()
+				self.picload.PictureData.get().append(self.showCoverCallback)
 				if self.picload:
 					self.picload.setPara((size.width(), size.height(), sc[0], sc[1], False, 1, "#00000000")) # Background dynamically
-					self.picload.startDecode(jpgpath)
-				#self["Cover"].show()
+					if self.picload.startDecode(jpgpath) != 0:
+						del self.picload
 			else:
-				#TODO test if reset has to be done really
-				#self["Cover"].instance.setPixmap(None)#(self.noCoverPixmap)
 				self["Cover"].hide()
 		else:
-			#TODO test if reset has to be done really
-			#self["Cover"].instance.setPixmap(None)#(self.noCoverPixmap)
 			self["Cover"].hide()
 
 	def showCoverCallback(self, picInfo=None):
@@ -161,6 +147,7 @@ class SelectionEventInfo:
 			if ptr != None:
 				self["Cover"].instance.setPixmap(ptr.__deref__())
 				self["Cover"].show()
+			del self.picload
 
 	# Movie preview
 	def showPreview(self, service=None):
@@ -347,7 +334,6 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		
 		self.onShow.append(self.onDialogShow)
 		self.onHide.append(self.onDialogHide)
-		self.onClose.append(self.onDialogClose)
 		self["list"].onSelectionChanged.append(self.selectionChanged)
 
 	def CoolAVSwitch(self):
@@ -1000,9 +986,6 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 
 	def onDialogHide(self):
 		self.returnService = self.getCurrent() #self.getNextSelectedService(self.getCurrent(), self.tmpSelList)
-
-	def onDialogClose(self):
-		self.closeEventInfo()
 
 	def getCurrentIndex(self):
 		return self["list"].getCurrentIndex()

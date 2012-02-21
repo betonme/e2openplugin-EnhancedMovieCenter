@@ -141,13 +141,7 @@ class imdbscan(Screen):
 		self.picload = ePicLoad()
 		#self.picload.PictureData.get().append(self.showCoverCallback)
 		
-		self.onClose.append(self.onCloseIMDB)
-		
 		self.setShowSearchSiteName()
-
-	def onCloseIMDB(self):
-		if self.picload:
-			del self.picload
 
 	def verwaltung(self):
 		self.menulist = []
@@ -484,6 +478,8 @@ class imdbscan(Screen):
 		self["done_msg"].setText(_("Delay of 10 sec. due the search flooding.."))
 		
 	def exit(self):
+		if self.picload:
+			del self.picload
 		self.check = "false"
 		self.close()
 
@@ -628,8 +624,6 @@ class getCover(Screen):
 		self.picload = ePicLoad()
 		#self.picload.PictureData.get().append(self.showCoverCallback)
 		
-		self.onClose.append(self.onCloseIMDB)
-		
 		if config.plugins.imdb.singlesearch.value == "0":
 			self.searchCover(self.title)
 			#self.search_done()
@@ -647,10 +641,6 @@ class getCover(Screen):
 			#self.einzel_end_time = time.clock()
 			#self.einzel_elapsed = (self.einzel_end_time - self.einzel_start_time)
 			#self["info"].setText(_("found %s covers in %.1f sec") % (self.cover_count, self.einzel_elapsed))
-
-	def onCloseIMDB(self):
-		if self.picload:
-			del self.picload
 
 	def searchtvdb(self, title):
 		url = "http://www.thetvdb.com/api/GetSeries.php?seriesname=%s&language=de" % title.replace(' ','+')
@@ -779,6 +769,8 @@ class getCover(Screen):
 					self["poster"].show()
 
 	def exit(self):
+		if self.picload:
+			del self.picload
 		self.check = "false"
 		self.close(False)
 

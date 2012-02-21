@@ -317,10 +317,6 @@ def autostart(reason, **kwargs):
 					gRecordings = gSession.instantiateDialog(EMCSelection)
 				except Exception, e:
 					emcDebugOut("[spStartup] instantiateDialog exception:\n" + str(e))
-	else: # end
-		global gRecordings
-		if gRecordings:
-			gRecordings.onDialogClose()
 
 def pluginOpen(session, **kwargs):
 	try:
