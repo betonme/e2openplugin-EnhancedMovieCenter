@@ -728,13 +728,8 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 	def doShow(self):
 		### Cover anzeige
 		service = self.playlist[self.playcount]
-		
-		#TODO use the extensions list from MovieCenter
-		file_format = "(.ts|.avi|.mkv|.divx|.f4v|.flv|.img|.iso|.m2ts|.m4v|.mov|.mp4|.mpeg|.mpg|.mts|.vob)
-		cover_path_real = service.getPath()
-		cover_path = re.sub(file_format + "$", '.jpg', cover_path_real)
-		
-		self.showCover(cover_path)
+		cover_path = service.getPath().replace(".ts",".jpg")
+		self.showCover(cover_path)	
 		if self.in_menu:
 			pass
 			#self.hide()
@@ -783,11 +778,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 	def toggleShow(self):
 		### Cover anzeige
 		service = self.playlist[self.playcount]
-		
-		#TODO use the extensions list from MovieCenter
-		file_format = "(.ts|.avi|.mkv|.divx|.f4v|.flv|.img|.iso|.m2ts|.m4v|.mov|.mp4|.mpeg|.mpg|.mts|.vob)
-		cover_path_real = service.getPath()
-		cover_path = re.sub(file_format + "$", '.jpg', cover_path_real)
+		cover_path = service.getPath().replace(".ts",".jpg")
 		
 		if not self.in_menu:
 			### Cover anzeige
