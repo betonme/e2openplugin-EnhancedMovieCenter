@@ -28,7 +28,7 @@ from datetime import datetime
 
 from Components.config import *
 from Components.GUIComponent import GUIComponent
-from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest, MultiContentEntryProgress
+from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
 from Tools.LoadPixmap import LoadPixmap
 from Tools.Directories import fileExists
 from skin import parseColor, parseFont, parseSize
@@ -144,6 +144,12 @@ def readBasicCfgFile(file):
 		if f is not None:
 			f.close()
 	return data
+
+
+# muss drinnen bleiben sonst crashed es bei foreColorSelected
+def MultiContentEntryProgress(pos = (0, 0), size = (0, 0), percent = None, borderWidth = None, foreColor = None, foreColorSelected = None, backColor = None, backColorSelected = None):
+	return (eListboxPythonMultiContent.TYPE_PROGRESS, pos[0], pos[1], size[0], size[1], percent, borderWidth, foreColor, foreColorSelected, backColor, backColorSelected)
+
 
 
 class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBookmarks):
@@ -735,7 +741,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 				
 				if not config.EMC.skin_able.value:
 					if config.EMC.movie_progress.value == "PB":
-						append(MultiContentEntryProgress(pos=(offset, self.CoolBarHPos), size = (self.CoolBarSize.width(), self.CoolBarSize.height()), percent = progress, borderWidth = 1, backColorSelected = None, foreColor = color, backColor = color))
+						append(MultiContentEntryProgress(pos=(offset, self.CoolBarHPos), size = (self.CoolBarSize.width(), self.CoolBarSize.height()), percent = progress, borderWidth = 1, foreColor = color, foreColorSelected=color, backColor = self.BackColor, backColorSelected = None))
 						offset += self.CoolBarSize.width() + 10
 					elif config.EMC.movie_progress.value == "P":
 						append(MultiContentEntryText(pos=(offset, 0), size=(progressWidth, globalHeight), font=usedFont, flags=RT_HALIGN_CENTER, text="%d%%" % (progress), color = color, color_sel = colorhighlight, backcolor = self.BackColor, backcolor_sel = self.BackColorSel))
@@ -776,7 +782,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 						CoolProgressPos = -1
 					
 					if CoolBarPos != -1:
-						append(MultiContentEntryProgress(pos=(CoolBarPos, self.CoolBarHPos -2), size = (self.CoolBarSizeSa.width(), self.CoolBarSizeSa.height()), percent = progress, borderWidth = 1, foreColor = color, backColor = color))
+						append(MultiContentEntryProgress(pos=(CoolBarPos, self.CoolBarHPos -2), size = (self.CoolBarSizeSa.width(), self.CoolBarSizeSa.height()), percent = progress, borderWidth = 1, foreColor = color, foreColorSelected=color, backColor = self.BackColor, backColorSelected = None))
 					if CoolProgressPos != -1:
 						append(MultiContentEntryText(pos=(CoolProgressPos, 0), size=(progressWidth, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text="%d%%" % (progress)))
 					if CoolDatePos != -1:
