@@ -190,7 +190,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 		self.currentChapter = 0
 		self.totalTitles = 0
 		self.currentTitle = 0
-		self.in_menu = False
+		self.in_menu = None
 		self.dvdScreen = None
 		
 		# Further initialization
@@ -672,7 +672,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 		#if self.dvdScreen:
 		#	self.dvdScreen.hide()
 		self.show()
-		self.in_menu = False
+		self.in_menu = None
 		if self.has_key("DVDMenuActions"):
 			self["DVDMenuActions"].setEnabled(False)
 		if self.has_key("ShowHideActions"):
