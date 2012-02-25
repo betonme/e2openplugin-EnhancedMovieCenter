@@ -394,6 +394,12 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			if self.lastservice:
 				self.session.nav.playService(self.lastservice)
 				self.lastservice = None
+		if self.delayTimer.isActive():
+			self.delayTimer.stop()
+		if self.coverTimer.isActive():
+			self.coverTimer.stop()
+		if self.previewTimer.isActive():
+			self.previewTimer.stop()
 		self.close(None)
 
 	def blueFunc(self):
