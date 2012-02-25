@@ -65,7 +65,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 	ENABLE_RESUME_SUPPORT = True
 	ALLOW_SUSPEND = True
 	
-	def __init__(self, session, playlist, recordings, playall=False, lastservice=None):
+	def __init__(self, session, playlist, recordings, playall=None, lastservice=None):
 		
 		# The CutList must be initialized very first  
 		CutList.__init__(self)
@@ -425,7 +425,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 	def currentlyPlayedMovie(self):
 		return self.service
 
-	def movieSelected(self, playlist, playall=False):
+	def movieSelected(self, playlist, playall=None):
 		self.playerOpenedList = False
 		if playlist is not None and len(playlist) > 0:
 			self.__playerClosed()
