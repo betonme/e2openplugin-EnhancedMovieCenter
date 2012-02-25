@@ -194,7 +194,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 		self.dvdScreen = None
 		
 		# Further initialization
-		self.firstStart = False
+		self.firstStart = True
 		self.stopped = False
 		self.closedByDelete = False
 		self.playerOpenedList = False
@@ -205,7 +205,6 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 		self.playall = playall
 		self.playcount = -1
 		self.recordings = recordings
-		self.firstStart = False
 		self.service = None
 		self.recordings.setPlayerInstance(self)
 		
@@ -247,9 +246,8 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 	def __onShow(self):
 		if self.firstStart:
 			# Avoid new playback if the user switches between MovieSelection and MoviePlayer
-			return
-		self.firstStart = True
-		self.evEOF()	# begin playback
+			self.firstStart = False
+			self.evEOF()	# begin playback
 
 	def evEOF(self, needToClose=False):
 		# see if there are more to play
