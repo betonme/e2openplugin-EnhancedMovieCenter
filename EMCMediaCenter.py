@@ -320,6 +320,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 						cue = s and s.cueSheet()
 						if cue is not None:
 							cue.setCutListEnable(1)
+							self.downloadCuesheet()
 							print "EMC cue.setCutListEnable(1)"
 						return
 				
