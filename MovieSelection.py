@@ -58,7 +58,7 @@ from DirectoryStack import DirectoryStack
 from E2Bookmarks import E2Bookmarks
 from EMCBookmarks import EMCBookmarks
 from ServiceSupport import ServiceEvent
-from imdb import *
+from EMCCoverSearch import EMCImdbScan
 
 from MovieCenter import extList, extVideo, extMedia, extDir, plyAll, plyDVD, cmtBME2, cmtBMEMC, cmtDir
 global extList, extVideo, extMedia, extDir, plyAll, plyDVD, cmtBME2, cmtBMEMC, cmtDir
@@ -656,7 +656,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			filelist = [ (title , path ) for (service, sorttitle, date, title, path, selnum, length, ext, cutnr) in selectedlist ]
 			
 		# Collect imdb data
-		self.session.open(imdbscan, filelist)
+		self.session.open(EMCImdbScan, filelist)
 	
 	def markAll(self):
 		for i in xrange( len (self["list"]) ):

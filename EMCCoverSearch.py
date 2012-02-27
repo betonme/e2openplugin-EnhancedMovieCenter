@@ -36,9 +36,9 @@ from time import time
 
 import re, urllib, urllib2, os, time
 
-config.plugins.imdb = ConfigSubsection()
-config.plugins.imdb.search = ConfigSelection(default="0", choices = [("0",_("imdb.de")),("1",_("themoviedb.org")),("2",_("ofdb.de"))])
-config.plugins.imdb.singlesearch = ConfigSelection(default="0", choices = [("0",_("imdb.de")),("1",_("thetvdb.com")),("2",_("both"))])
+config.EMC.imdb = ConfigSubsection()
+config.EMC.imdb.search = ConfigSelection(default="0", choices = [("0",_("imdb.de")),("1",_("themoviedb.org")),("2",_("ofdb.de"))])
+config.EMC.imdb.singlesearch = ConfigSelection(default="0", choices = [("0",_("imdb.de")),("1",_("thetvdb.com")),("2",_("both"))])
 
 class AppURLopener(urllib.FancyURLopener):
 	version = "Mozilla/5.0 (X11; U; Linux x86_64; de; rv:1.9.0.15) Gecko/2009102815 Ubuntu/9.04 (jaunty) Firefox/3."
@@ -67,7 +67,7 @@ def showCoverlist(title, url, path, art):
 	res.append(MultiContentEntryText(pos=(0, 0), size=(550, 24), font=4, text=title, flags=RT_HALIGN_LEFT))
 	return res
 
-class imdbscan(Screen):
+class EMCImdbScan(Screen):
 	if getDesktop(0).size().width() == 1280:
 		skin = """
 			<screen position="center,center" size="1000,560" title="EMC Cover search">
@@ -140,12 +140,12 @@ class imdbscan(Screen):
 		
 		self.picload = ePicLoad()
 		#self.picload.PictureData.get().append(self.showCoverCallback)
+		self.file_format = "(.ts|.avi|.mkv|.divx|.f4v|.flv|.img|.iso|.m2ts|.m4v|.mov|.mp4|.mpeg|.mpg|.mts|.vob)"
 		
 		self.setShowSearchSiteName()
 
 	def verwaltung(self):
 		self.menulist = []
-		self.file_format = "(.ts|.avi|.mkv|.divx|.f4v|.flv|.img|.iso|.m2ts|.m4v|.mov|.mp4|.mpeg|.mpg|.mts|.vob)"
 		self.count_movies = len(self.m_list)
 		self.vm_list = self.m_list[:]
 		count_existing = 0
@@ -167,10 +167,10 @@ class imdbscan(Screen):
 		self["done_msg"].setText(_("Total: %s - Exist: %s - N/A: %s") % (self.count_movies, count_existing, count_na))
 
 	def setShowSearchSiteName(self):
-		if config.plugins.imdb.search.value == "0":
+		if config.EMC.imdb.search.value == "0":
 			self.showSearchSiteName = "IMDB"
 			print "set to: %s" % self.showSearchSiteName
-		elif config.plugins.imdb.search.value == "1":
+		elif config.EMC.imdb.search.value == "1":
 			self.showSearchSiteName = "TMDb"
 			print "set to: %s" % self.showSearchSiteName
 		else:
@@ -221,7 +221,6 @@ class imdbscan(Screen):
 			self.starttime = 0
 			self.t_start_time = time.clock()
 			self.s_supertime = time.time()
-			self.file_format = "(.ts|.avi|.mkv|.divx|.f4v|.flv|.img|.iso|.m2ts|.m4v|.mov|.mp4|.mpeg|.mpg|.mts|.vob)"
 			self.cm_list = self.m_list[:]
 			self.search_list = []
 			self.exist_list = []
@@ -252,7 +251,7 @@ class imdbscan(Screen):
 				(title, path) = self.search_list.pop()
 				self.start_time = time.clock()
 
-				if config.plugins.imdb.search.value == "0":
+				if config.EMC.imdb.search.value == "0":
 					self.name = title.replace(' ','.').replace(':','.').replace('..','.')
 					path = re.sub(self.file_format + "$", '.jpg', path)
 					search_title = self.name.replace('.',' ')
@@ -264,7 +263,7 @@ class imdbscan(Screen):
 						print "EMC imdbapi.com:", url
 						getPage(url, timeout = 10).addCallback(self.imdbapi, search_title, path).addErrback(self.errorLoad, search_title)
 
-				if config.plugins.imdb.search.value == "1":
+				if config.EMC.imdb.search.value == "1":
 					self.name = title.replace(' ','+').replace(':','+').replace('-','').replace('++','+')
 					path = re.sub(self.file_format + "$", '.jpg', path)
 					search_title = self.name.replace('+',' ')
@@ -275,7 +274,7 @@ class imdbscan(Screen):
 						print "EMC themoviedb.org:", url						
 						getPage(url, timeout = 10).addCallback(self.themoviedb, search_title, path).addErrback(self.errorLoad, search_title)
 
-				if config.plugins.imdb.search.value == "2":
+				if config.EMC.imdb.search.value == "2":
 					self.name = title.replace(' ','+').replace(':','+').replace('-','').replace('++','+')
 					path = re.sub(self.file_format + "$", '.jpg', path)
 					search_title = self.name.replace('+',' ')
@@ -567,8 +566,8 @@ class imdbSetup(Screen, ConfigListScreen):
 		self["key_green"] = Button(_("OK"))
 
 		self.list = []
-		self.list.append(getConfigListEntry(_("Search Site:"), config.plugins.imdb.search))
-		self.list.append(getConfigListEntry(_("Single Search:"), config.plugins.imdb.singlesearch))
+		self.list.append(getConfigListEntry(_("Search Site:"), config.EMC.imdb.search))
+		self.list.append(getConfigListEntry(_("Single Search:"), config.EMC.imdb.singlesearch))
 		ConfigListScreen.__init__(self, self.list, session)
 		self["setupActions"] = ActionMap(["SetupActions", "ColorActions"],
 		{
@@ -624,15 +623,15 @@ class getCover(Screen):
 		self.picload = ePicLoad()
 		#self.picload.PictureData.get().append(self.showCoverCallback)
 		
-		if config.plugins.imdb.singlesearch.value == "0":
+		if config.EMC.imdb.singlesearch.value == "0":
 			self.searchCover(self.title)
 			#self.search_done()
 		
-		if config.plugins.imdb.singlesearch.value == "1":
+		if config.EMC.imdb.singlesearch.value == "1":
 			self.searchtvdb(self.title)
 			#self.search_done()
 		
-		if config.plugins.imdb.singlesearch.value == "2":
+		if config.EMC.imdb.singlesearch.value == "2":
 			self.searchCover(self.title)
 			self.searchtvdb(self.title)
 			#self.search_done()
@@ -668,7 +667,7 @@ class getCover(Screen):
 		self["menulist"].l.setList(self.menulist)
 		self["menulist"].l.setItemHeight(28)
 		self.search_check += 1 
-		if not config.plugins.imdb.singlesearch.value == "2":		
+		if not config.EMC.imdb.singlesearch.value == "2":		
 			self.check = "true"
 			self.showInfo()
 			self.einzel_end_time = time.clock()
@@ -703,7 +702,7 @@ class getCover(Screen):
 		self["menulist"].l.setItemHeight(28)
 		self.search_check += 1
 
-		#if not config.plugins.imdb.singlesearch.value == "2":
+		#if not config.EMC.imdb.singlesearch.value == "2":
 		self.check = "true"
 		self.showInfo()
 		self.einzel_end_time = time.clock()
