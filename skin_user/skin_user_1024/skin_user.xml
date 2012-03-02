@@ -105,10 +105,18 @@
 		</widget>
 		<!-- Progressbar -->
 		<ePixmap position="64,465" size="900,24" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/EMCMoviePlayer/CoolSlider.png" zPosition="3" alphatest="blend" />
-		<ePixmap position="100,468" size="832,18" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/EMCMoviePlayer/CoolPointerBG.png" zPosition="1" alphatest="blend" />
-		<widget source="Service" render="PositionGauge" position="100,456" size="832,28" zPosition="2" pointer="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/EMCMoviePlayer/CoolPointer.png:828,-3" transparent="1" >
+		<ePixmap position="100,469" size="832,18" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/EMCMoviePlayer/CoolPointerBG.png" zPosition="1" alphatest="blend" />
+		<widget source="Service" render="PositionGauge" position="100,468" size="832,16" zPosition="2" pointer="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/EMCMoviePlayer/CoolPointerRecord.png:828,0" transparent="1" >
+			<convert type="EMCRecordPosition">Gauge</convert> <!-- EMC Converter needed, to display markers on not *.ts files -->
+		</widget>
+		<widget source="Service" render="PositionGauge" position="100,468" size="832,16" zPosition="3" pointer="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/EMCMoviePlayer/CoolPointer.png:828,0" transparent="1" >
 			<convert type="EMCServicePosition">Gauge</convert> <!-- EMC Converter needed, to display markers on not *.ts files -->
 		</widget>
+		<widget source="Service" render="PositionGauge" position="100,468" size="832,16" zPosition="4" transparent="1" >
+			<convert type="EMCServicePosition">Gauge</convert> <!-- EMC Converter needed, to display markers on not *.ts files -->
+		</widget>
+		<!-- Infobar Cover -->
+		<widget name="Cover" position="50,256" size="100,150" zPosition="1" alphatest="on" />	
 		<!-- Entire movie length -->
 		<widget source="Service" render="Label" position="462,492" size="100,22" font="EMCRegularFont;22" halign="center" valign="center" backgroundColor="#00282828" transparent="1">
 			<convert type="EMCServicePosition">Length,ShowHours</convert>

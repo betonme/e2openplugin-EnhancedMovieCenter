@@ -665,7 +665,7 @@ msgstr "Letzte Abspielposition immer als Marker speichern"
 #: Center\EMC-SVN\Locale/EnhancedMovieCenter.py:253
 msgid "HELP_Always save last played progress as marker"
 msgstr ""
-"Hiermit wird bei jedem stoppen des Abspielvorgangs die aktuelle Abspielposition als Marker speichern.\n"
+"Hiermit wird bei jedem stoppen des Abspielvorgangs die aktuelle Abspielposition als Marker gespeichert.\n"
 "Diese Marker können später dann direkt mit den < > Tasten angesprungen werden. (Unabhängig von der Resume Funktion)"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
