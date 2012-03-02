@@ -215,6 +215,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 		self.onShown.append(self.__onShow)  # Don't use onFirstExecBegin() it will crash
 		self.onClose.insert(0, self.__playerClosed)
 		self.onClose.append(self.__onClose)
+		self.file_format = "(.ts|.avi|.mkv|.divx|.f4v|.flv|.img|.iso|.m2ts|.m4v|.mov|.mp4|.mpeg|.mpg|.mts|.vob)"
 
 	### Cover anzeige
 	def showCover(self, jpgpath):
@@ -727,7 +728,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 	def doShow(self):
 		### Cover anzeige
 		service = self.playlist[self.playcount]
-		cover_path = service.getPath().replace(".ts",".jpg")
+		cover_path = re.sub(self.file_format + "$", '.jpg', service.getPath())
 		self.showCover(cover_path)	
 		if self.in_menu:
 			pass
@@ -777,7 +778,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 	def toggleShow(self):
 		### Cover anzeige
 		service = self.playlist[self.playcount]
-		cover_path = service.getPath().replace(".ts",".jpg")
+		cover_path = re.sub(self.file_format + "$", '.jpg', service.getPath())
 		
 		if not self.in_menu:
 			### Cover anzeige
