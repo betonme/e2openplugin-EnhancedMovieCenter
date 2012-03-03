@@ -62,18 +62,24 @@ class MetaList():
 			#		path = "/home/root/dvd-" + name
 			#el
 			if os.path.isdir(path) and os.path.basename(path.lower()).endswith("video_ts"):
-				path += "/dvd"																								##dvdfoldername/video_ts/dvd.meta
+				vtspath = path
+				dvdpath, vts = os.path.split(path)
+				path = os.path.join(dvdpath, os.path.basename(dvdpath)) + ".ts"		#dvdfoldername/dvdfoldername.ts.meta
 				if not os.path.exists(path + ".meta"):
-					path = path[:-4]
-					dvdpath, vts = os.path.split(path)
-					path = dvdpath + "/folder"																	#dvdfoldername/folder.meta
-					if not os.path.exists(path + ".meta"):
-						path = os.path.join(dvdpath, os.path.basename(dvdpath))		#dvdfoldername/dvdfoldername.meta
+					path = os.path.join(dvdpath, os.path.basename(dvdpath))					#dvdfoldername/dvdfoldername.meta
+				if not os.path.exists(path + ".meta"):
+					path = dvdpath + "/folder"																			#dvdfoldername/folder.meta
+				if not os.path.exists(path + ".meta"):
+					path = vtspath + "/dvd"																					#dvdfoldername/video_ts/dvd.meta
+
 			elif os.path.isdir(path) and not path.endswith(".."):
-				path += "/folder"																							##foldername/folder.meta
+				fldpath = path
+				path = os.path.join(path, os.path.basename(path)) + ".ts"					#foldername/foldername.ts.meta
 				if not os.path.exists(path + ".meta"):
-					fldpath, fld = os.path.split(path)
-					path = os.path.join(fldpath, os.path.basename(fldpath))			##foldername/foldername.meta
+					path = path[:-3]																								#foldername/foldername.meta
+				if not os.path.exists(path + ".meta"):
+					path = fldpath + "/folder"																			#foldername/folder.meta
+
 			if not os.path.exists(path + ".meta"):
 				path, ext = os.path.splitext(path)
 				# Strip existing cut number
