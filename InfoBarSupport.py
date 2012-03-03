@@ -262,10 +262,11 @@ class InfoBarSupport(	InfoBarBase, \
 		# Stop one second before eof : 1 * 90 * 1000
 		state = self.seekstate
 		play = self.getSeekPlayPosition()
-		end = self.getSeekLength() - 90000
+		length = self.getSeekLength()
+		end = length and length - 90000
 		
 		# Validate play eand end values
-		if play < end and 0 < end:
+		if play and end and play < end and 0 < end:
 			# InfoBarSeek
 			InfoBarSeek.doSeek(self, end)
 		
