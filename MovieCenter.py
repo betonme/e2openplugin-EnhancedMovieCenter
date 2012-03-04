@@ -872,6 +872,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 						else:
 							# Should never happen
 							datetext = _("Directory")
+						pixmap = self.pic_directory
 					else:
 						if config.EMC.directories_ontop.value:
 							if title in topdirlist:
