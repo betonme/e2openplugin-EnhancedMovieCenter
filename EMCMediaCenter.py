@@ -166,7 +166,8 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 			}, 2) # lower priority
 		
 		self["MenuActions"].prio = 2
-		self["TeletextActions"].prio = 2
+		if "TeletextActions" in self:
+			self["TeletextActions"].prio = 2
 		self["NumberActions"].prio = 2
 		
 		# Cover Anzeige
