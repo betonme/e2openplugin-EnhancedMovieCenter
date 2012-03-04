@@ -105,28 +105,28 @@ class SelectionEventInfo:
 			ext = ext.lower()
 			jpgpath = ""
 			if ext in extMedia:
-				jpgpath = name + ".jpg"																												#filename.jpg
-				if jpgpath and not os.path.exists(jpgpath):
-					jpgpath = name + ".ts_mp.jpg"																								#filename.ts_mp.jpg
+				jpgpath = name + ".ts_mp.jpg"																									#filename.ts_mp.jpg
+				if not os.path.exists(jpgpath):
+					jpgpath = name + ".jpg"																											#filename.jpg
 
 			elif os.path.isdir(path) and os.path.basename(path.lower()).endswith("video_ts"):
-				jpgpath = os.path.join(path, "dvd.jpg")																				#dvdfoldername/video_ts/dvd.jpg
-				if jpgpath and not os.path.exists(jpgpath):
-					dvdpath, vts = os.path.split(path)
-					jpgpath = os.path.join(dvdpath, "folder.jpg")																#dvdfoldername/folder.jpg
-				if jpgpath and not os.path.exists(jpgpath):
+				dvdpath, vts = os.path.split(path)
+				jpgpath = os.path.join(dvdpath, os.path.basename(dvdpath)) + ".ts_mp.jpg"			#dvdfoldername/dvdfoldername.ts_mp.jpg
+				if not os.path.exists(jpgpath):
 					jpgpath = os.path.join(dvdpath, os.path.basename(dvdpath)) + ".jpg"					#dvdfoldername/dvdfoldername.jpg
-				if jpgpath and not os.path.exists(jpgpath):
-					jpgpath = os.path.join(dvdpath, os.path.basename(dvdpath)) + ".ts_mp.jpg"		#dvdfoldername/dvdfoldername.ts_mp.jpg
+				if not os.path.exists(jpgpath):
+					jpgpath = os.path.join(dvdpath, "folder.jpg")																#dvdfoldername/folder.jpg
+				if not os.path.exists(jpgpath):
+					jpgpath = os.path.join(path, "dvd.jpg")																			#dvdfoldername/video_ts/dvd.jpg
 
 			elif os.path.isdir(path):
-				jpgpath = os.path.join(path, "folder.jpg")																		#foldername/folder.jpg
-				#TODO avoid os.path.exists double check
-				if jpgpath and not os.path.exists(jpgpath):
+				jpgpath = os.path.join(path, os.path.basename(path)) + ".ts_mp.jpg"						#foldername/foldername.ts_mp.jpg
+				if not os.path.exists(jpgpath):
 					jpgpath = os.path.join(path, os.path.basename(path)) + ".jpg"								#foldername/foldername.jpg
-				if jpgpath and not os.path.exists(jpgpath):
-					jpgpath = os.path.join(path, os.path.basename(path)) + ".ts_mp.jpg"					#foldername/foldername.ts_mp.jpg
+				if not os.path.exists(jpgpath):
+					jpgpath = os.path.join(path, "folder.jpg")																	#foldername/folder.jpg
 
+			#TODO avoid os.path.exists double check
 			if jpgpath and os.path.exists(jpgpath):
 				sc = AVSwitch().getFramebufferScale()
 				size = self["Cover"].instance.size()
