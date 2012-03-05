@@ -1393,7 +1393,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 				filelist = self.createLatestRecordingsList()
 				customlist = self.createCustomList(loadPath, extend=False)
 				# Set date descending as next sort mode
-				nextSort = (1, False)
+				nextSort = ("D",False)
 			
 			else:
 				# No changes done
