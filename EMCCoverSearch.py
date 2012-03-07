@@ -492,7 +492,7 @@ class EMCImdbScan(Screen):
 		total_movie = self.counter3 + self.counter2
 		total_time = self.e_supertime - self.s_supertime
 		avg = (total_time / total_movie)
-		self.done = _("%s Filme in %.1f sec gefunden. Avg. Speed: %.1f sec") % (total_movie, total_time, avg)
+		self.done = _("%s movies in %.1f sec found. Avg. Speed: %.1f sec.") % (total_movie, total_time, avg)
 		self["done_msg"].setText(self.done)
 		self.running = "false"
 
