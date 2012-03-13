@@ -29,7 +29,7 @@ from Screens.HelpMenu import HelpableScreen
 from Screens.MessageBox import MessageBox
 from Screens.ChoiceBox import ChoiceBox
 from Screens.LocationBox import LocationBox
-from Tools import Notifications
+from Tools import Notifications, AddPopup
 from Tools.BoundFunction import boundFunction
 from enigma import getDesktop, eServiceReference, eTimer, iPlayableService
 
@@ -1169,7 +1169,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		playlistcopy = playlist[:]
 		# Start Player
 		if self.playerInstance is None:
-			Notifications.AddNotification(EMCMediaCenter, playlistcopy, self, playall, self.lastservice)
+			AddNotification(EMCMediaCenter, playlistcopy, self, playall, self.lastservice)
 		else:
 			#DelayedFunction(10, self.playerInstance.movieSelected, playlist, playall)
 			self.playerInstance.movieSelected(playlist, playall)
@@ -1740,6 +1740,15 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		try:
 			movie_trashpath = config.EMC.movie_trashcan_path.value
 			movie_homepath = config.EMC.movie_homepath.value
+			if movie_trashpath == movie_homepath:
+				AddPopup(
+					_("EMC: Skipping Trashcan Cleanup\nMovie Home Path is equal Trashcan Path"),"
+					MessageBox.TYPE_INFO,
+					0,
+					"EMC_TRASHCAN_CLEANUP_ID"
+				)
+				return
+			
 			if os.path.exists(movie_trashpath):
 				if config.EMC.movie_trashcan_clean.value is True:
 					# Trashcan cleanup
