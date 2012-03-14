@@ -29,7 +29,8 @@ from Screens.HelpMenu import HelpableScreen
 from Screens.MessageBox import MessageBox
 from Screens.ChoiceBox import ChoiceBox
 from Screens.LocationBox import LocationBox
-from Tools import Notifications, AddPopup
+from Tools import Notifications
+from Tools.Notifications import AddPopup
 from Tools.BoundFunction import boundFunction
 from enigma import getDesktop, eServiceReference, eTimer, iPlayableService
 
@@ -1753,7 +1754,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			for root, dirs, files in os.walk(movie_trashpath):
 				if os.path.realpath(root) in movie_homepath:
 					AddPopup(
-						_("EMC: Skipping Trashcan Cleanup\nMovie Home Path is equal to or a subfolder of the Trashcan"),"
+						_("EMC: Skipping Trashcan Cleanup\nMovie Home Path is equal to or a subfolder of the Trashcan"),
 						MessageBox.TYPE_INFO,
 						0,
 						"EMC_TRASHCAN_CLEANUP_ID"
