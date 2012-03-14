@@ -1738,16 +1738,19 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 	# Move all trashcan operations to a separate class
 	def purgeExpired(self):
 		try:
-			movie_trashpath = os.path.realpath(config.EMC.movie_trashcan_path.value)
+			movie_trashpath = config.EMC.movie_trashcan_path.value
 			movie_homepath = os.path.realpath(config.EMC.movie_homepath.value)
-			if movie_trashpath in movie_homepath:
-				AddPopup(
-					_("EMC: Skipping Trashcan Cleanup\nMovie Home Path is equal Trashcan Path"),"
-					MessageBox.TYPE_INFO,
-					0,
-					"EMC_TRASHCAN_CLEANUP_ID"
-				)
-				return
+			
+			# Avoid cleaning the movie home folder
+			for root, dirs, files in os.walk(movie_trashpath):
+				if os.path.realpath(root) in movie_homepath:
+					AddPopup(
+						_("EMC: Skipping Trashcan Cleanup\nMovie Home Path is equal to or a subfolder of the Trashcan"),"
+						MessageBox.TYPE_INFO,
+						0,
+						"EMC_TRASHCAN_CLEANUP_ID"
+					)
+					return
 			
 			if os.path.exists(movie_trashpath):
 				if config.EMC.movie_trashcan_clean.value is True:
