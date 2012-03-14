@@ -84,6 +84,7 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 			self.menu.append((_("Create directory"), boundFunction(self.createDir, currentPath)))
 			
 			if self.service or self.selections:
+				self.menu.append((_("Rename selected movie(s)"), boundFunction(self.renameMovies)))
 				self.menu.append((_("Remove cut list marker"), boundFunction(self.remCutListMarker)))
 			if service:
 				ext = os.path.splitext(self.service.getPath())[1].lower()
@@ -254,12 +255,27 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 			self.close("cutlistmarker")
 		else:
 			self.close(None)
-			
+
+	def renameMovies(self):
+		self.close("rename")
+
 	def execPlugin(self, plugin):
-		plugin(session=self.session, service=self.service)
+		services = self.service
+		try:
+			from Plugins.Extensions.SeriesPlugin.plugin import RENAMEMOVIES
+		except ImportError as ie:
+			RENAMEMOVIES = "SeriesPlugin not available"
+		else:
+			# SeriesPlugin selected
+			if plugin.name = RENAMEMOVIES:
+				services = self.selections or self.service
+			else:
+				services = self.service
+		
+		plugin(session=self.session, services)
 		if (plugin == emcsetup):
-			# Close the Menü and reload the movielist
-			self.close("setup")
+			# Close the menu
+			self.close("reload")
 
 	def addDirToE2Bookmarks(self, path):
 		if path and self.addE2Bookmark( path ) \

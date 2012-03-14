@@ -59,6 +59,7 @@ from E2Bookmarks import E2Bookmarks
 from EMCBookmarks import EMCBookmarks
 from ServiceSupport import ServiceEvent
 from EMCCoverSearch import EMCImdbScan
+from MovieRetitle import MovieRetitle
 
 from MovieCenter import extList, extVideo, extMedia, extDir, plyAll, plyDVD, cmtBME2, cmtBMEMC, cmtDir
 global extList, extVideo, extMedia, extDir, plyAll, plyDVD, cmtBME2, cmtBMEMC, cmtDir
@@ -601,6 +602,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			elif selection == "markall": self.markAll()
 			elif selection == "updatetitle": self.updateTitle()
 			elif selection == "imdb": self.imdb()
+			elif selection == "rename": self.rename()
 
 	def openMenu(self):
 		current = self.getCurrent()
@@ -929,6 +931,12 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			TMDbMain = None
 		if TMDbMain is not None:
 			self.session.open(TMDbMain, name)
+
+	def rename(self):
+		self.session.openWithCallback(
+							self.reloadList,
+							MovieRetitle,
+							self["list"].makeSelectionList() or self.getCurrent() )
 
 	def showEventInformation(self):
 		from Screens.EventView import EventViewSimple
