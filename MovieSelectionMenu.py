@@ -267,7 +267,7 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 			RENAMEMOVIES = "SeriesPlugin not available"
 		else:
 			# SeriesPlugin selected
-			if plugin.name = RENAMEMOVIES:
+			if plugin.name == RENAMEMOVIES:
 				services = self.selections or self.service
 			else:
 				services = self.service
