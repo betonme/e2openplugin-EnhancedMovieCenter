@@ -261,6 +261,7 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 
 	def execPlugin(self, plugin):
 		services = self.service
+		session = self.session
 		try:
 			from Plugins.Extensions.SeriesPlugin.plugin import RENAMEMOVIES
 		except ImportError as ie:
@@ -272,7 +273,7 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 			else:
 				services = self.service
 		
-		plugin(session=self.session, services)
+		plugin(session, services)
 		if (plugin == emcsetup):
 			# Close the menu
 			self.close("reload")
