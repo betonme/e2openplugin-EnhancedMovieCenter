@@ -1178,7 +1178,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		playlistcopy = playlist[:]
 		# Start Player
 		if self.playerInstance is None:
-			AddNotification(EMCMediaCenter, playlistcopy, self, playall, self.lastservice)
+			Notifications.AddNotification(EMCMediaCenter, playlistcopy, self, playall, self.lastservice)
 		else:
 			#DelayedFunction(10, self.playerInstance.movieSelected, playlist, playall)
 			self.playerInstance.movieSelected(playlist, playall)
