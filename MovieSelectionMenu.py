@@ -260,20 +260,7 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 		self.close("rename")
 
 	def execPlugin(self, plugin):
-		services = self.service
-		session = self.session
-		try:
-			from Plugins.Extensions.SeriesPlugin.plugin import RENAMEMOVIES
-		except ImportError as ie:
-			RENAMEMOVIES = "SeriesPlugin not available"
-		else:
-			# SeriesPlugin selected
-			if plugin.name == RENAMEMOVIES:
-				services = self.selections or self.service
-			else:
-				services = self.service
-		
-		plugin(session, services)
+		plugin(session, self.service, self.selections)
 		if (plugin == emcsetup):
 			# Close the menu
 			self.close("reload")
