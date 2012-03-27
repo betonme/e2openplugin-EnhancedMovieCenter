@@ -260,7 +260,7 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 		self.close("rename")
 
 	def execPlugin(self, plugin):
-		plugin(session, self.service, self.selections)
+		plugin(self.session, self.service, self.selections)
 		if (plugin == emcsetup):
 			# Close the menu
 			self.close("reload")

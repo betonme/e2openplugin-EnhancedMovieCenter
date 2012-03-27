@@ -318,13 +318,13 @@ def autostart(reason, **kwargs):
 				except Exception, e:
 					emcDebugOut("[spStartup] instantiateDialog exception:\n" + str(e))
 
-def pluginOpen(session, **kwargs):
+def pluginOpen(session, *args, **kwargs):
 	try:
 		session.open(EnhancedMovieCenterMenu)
 	except Exception, e:
 		emcDebugOut("[pluginOpen] exception:\n" + str(e))
 
-def recordingsOpen(session, **kwargs):
+def recordingsOpen(session, *args, **kwargs):
 	showMoviesNew()
 
 def Plugins(**kwargs):
