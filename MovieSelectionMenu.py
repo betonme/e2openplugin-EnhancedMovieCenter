@@ -19,6 +19,9 @@
 #	<http://www.gnu.org/licenses/>.
 #
 
+import os
+import inspect
+
 from Components.config import *
 from Components.PluginComponent import plugins
 from Components.ActionMap import ActionMap
@@ -30,7 +33,6 @@ from Screens.MessageBox import MessageBox
 from Screens.InputBox import InputBox
 from Screens.LocationBox import LocationBox
 from Tools.BoundFunction import boundFunction
-import os
 
 from EMCTasker import emcTasker, emcDebugOut
 from EnhancedMovieCenter import _
@@ -260,7 +262,11 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 		self.close("rename")
 
 	def execPlugin(self, plugin):
-		plugin(self.session, self.service, self.selections)
+		args = inspect.getargspec(plugin)[0]
+		if len(args) == 3:
+			plugin(self.session, self.service, self.selections)
+		else:
+			plugin(self.session, self.service)
 		if (plugin == emcsetup):
 			# Close the menu
 			self.close("reload")
