@@ -266,7 +266,7 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 		if len(args) == 3:
 			plugin(self.session, self.service, self.selections)
 		else:
-			plugin(self.session, self.service)
+			plugin(session=self.session, service=self.service)
 		if (plugin == emcsetup):
 			# Close the menu
 			self.close("reload")
