@@ -20,7 +20,6 @@
 #
 
 import os
-import inspect
 
 from Components.config import *
 from Components.PluginComponent import plugins
@@ -226,7 +225,12 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 	def okButton(self):
 		try:
 			self["menu"].getCurrent()[1]()
-		except:pass
+		#except:pass
+		except Exception, e:
+			import os, sys, traceback
+			print _("exception ") + str(e)
+			exc_type, exc_value, exc_traceback = sys.exc_info()
+			traceback.print_exception(exc_type, exc_value, exc_traceback, file=sys.stdout)
 
 	def remRogueFiles(self):
 		self.hide()
@@ -262,11 +266,13 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 		self.close("rename")
 
 	def execPlugin(self, plugin):
-		args = inspect.getargspec(plugin)[0]
-		if len(args) == 3:
+		# Very bad but inspect.getargspec won't work
+		# Plugins should always be designed to accept additional parameters!
+		try:
 			plugin(self.session, self.service, self.selections)
-		else:
+		except:
 			plugin(session=self.session, service=self.service)
+		
 		if (plugin == emcsetup):
 			# Close the menu
 			self.close("reload")
