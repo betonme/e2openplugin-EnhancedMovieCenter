@@ -20,17 +20,9 @@
 #	<http://www.gnu.org/licenses/>.
 #
 
-#import os
-import NavigationInstance
 
-from Components.config import *
-
-from Components.Converter.Converter import Converter
 from Components.Converter.ServicePosition import ServicePosition
 from Components.Element import cached
-#from enigma import eServiceReference
-
-from time import time
 
 
 class EMCRecordPosition(ServicePosition):
@@ -39,40 +31,36 @@ class EMCRecordPosition(ServicePosition):
 
 	@cached
 	def getCutlist(self):
+		# Not used
 		return []
 
 	cutlist = property(getCutlist)
 
 	@cached
 	def getPosition(self):
-		if config.EMC.record_show_real_length.value:
-			from Plugins.Extensions.EnhancedMovieCenter.MovieSelection import gMS
-			service = NavigationInstance.instance.getCurrentlyPlayingServiceReference()
-			path = service and service.getPath()
-			record = path and gMS.getRecording(path)
-			if record:
-				begin, end, s = record
-				return int((time() - begin) * 90000)
-		return 0
+		player = self.source.player
+		position = player and player.getPosition()
+		if position:
+			return position
+		# Fallback
+		return ServicePosition.getPosition(self)
 
 	position = property(getPosition)
 
 	@cached
 	def getLength(self):
-		if config.EMC.record_show_real_length.value:
-			from Plugins.Extensions.EnhancedMovieCenter.MovieSelection import gMS
-			service = NavigationInstance.instance.getCurrentlyPlayingServiceReference()
-			path = service and service.getPath()
-			record = path and gMS.getRecording(path)
-			if record:
-				begin, end, s = record
-				return int((end - begin) * 90000)
-		return 0
+		player = self.source.player
+		length = player and player.getLength()
+		if length:
+			return length
+		# Fallback
+		return ServicePosition.getLength(self)
 
 	length = property(getLength)
 
 	@cached
 	def getValue(self):
+		# Not used
 		return None
 	
 	value = property(getValue)

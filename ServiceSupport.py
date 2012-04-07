@@ -26,8 +26,6 @@ from time import mktime
 
 from Components.config import *
 from Components.Element import cached
-from Components.Sources.ServiceEvent import ServiceEvent as eServiceEvent
-from Components.Sources.CurrentService import CurrentService as eCurrentService
 from enigma import eServiceCenter, iServiceInformation, eServiceReference
 from ServiceReference import ServiceReference
 
@@ -37,60 +35,6 @@ from EitSupport import EitList
 
 
 instance = None
-
-
-class CurrentService(eCurrentService):
-	def __init__(self, navcore, cuesheet):
-		eCurrentService.__init__(self, navcore)
-		self.__cuesheet = cuesheet
-#		self.__path = None
-
-	#def newCueSheet(self, cutlist):
-	#	self.__cuesheet = cutlist
-
-	def cueSheet(self):
-		return self.__cuesheet
-
-	def getLength(self):
-		if config.EMC.record_show_real_length.value:
-			service = self.navcore.getCurrentlyPlayingServiceReference()
-			if service:
-				from MovieSelection import gMS
-				path = service.getPath()
-				record = path and gMS.getRecording(path)
-				if record:
-					begin, end, service = record
-					return (end - begin) * 90000 # times (begin, end) : end - begin
-		return 0
-
-	@cached
-	def getCurrentService(self):
-		path = None
-		service = self.navcore.getCurrentService()
-		#if service:
-#			if not isinstance(service, eServiceReference):
-#				ref = self.navcore.getCurrentlyPlayingServiceReference()
-#				path = ref and ref.getPath()
-#			else:
-#				path = service.getPath()
-#		if path and path != self.__path:
-#			self.__path = path
-#			self.__cuesheet = CutList(path)
-			#service.cueSheet = self.cueSheet
-		return service
-
-	service = property(getCurrentService)
-
-
-class ServiceEvent(eServiceEvent):
-	def __init__(self):
-		eServiceEvent.__init__(self)
-	
-	@cached
-	def getInfo(self):
-		return self.service and ServiceCenter.getInstance().info(self.service)
-	
-	info = property(getInfo)
 
 
 class ServiceCenter:
@@ -166,7 +110,7 @@ class Info:
 		
 		self.__name = service and service.getName() or ""
 		
-		path = service and service.getPath()
+		self.path = path = service and service.getPath()
 		
 		#self.isLink = os.path.islink(path)
 		self.isfile = os.path.isfile(path)
@@ -188,15 +132,6 @@ class Info:
 									#TODO show same time as list
 									#TODO or isdir but show only start date
 		
-		# If it is a record we will force to use the timer duration
-		self.__length = 0
-		if config.EMC.record_show_real_length.value:
-			from MovieSelection import gMS
-			record = gMS.getRecording(path)
-			if record:
-				begin, end, service = record
-				self.__length = end - begin # times = (begin, end) : end - begin
-			
 		self.__reference = service or ""
 		self.__rec_ref_str = meta and meta.getMetaServiceReference() or ""
 		
@@ -293,10 +228,18 @@ class Info:
 		#E2 will read / calculate it directly from ts file
 		# Should stay dynamic if it is a copy or move
 		#self.newService(service)
-		if self.__length:
-			return self.__length
-		service = service or self.__reference
+		
+		# If it is a record we will force to use the timer duration
 		length = 0
+		if config.EMC.record_show_real_length.value:
+			from MovieSelection import gMS
+			record = gMS.getRecording(self.path)
+			if record:
+				begin, end, service = record
+				length = end - begin # times = (begin, end) : end - begin
+			if length:
+				return length
+		service = service or self.__reference
 		if self.isfile:
 			#TODO isfile and isdvd
 			esc = eServiceCenter.getInstance()

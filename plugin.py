@@ -27,9 +27,13 @@ from Plugins.Plugin import PluginDescriptor
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 
+from Components.Sources import EMCCurrentService
+from Components.Sources import EMCServiceEvent
+from Components.Renderer import EMCPositionGauge
 from Components.Converter import EMCClockToText
 from Components.Converter import EMCEventName
 from Components.Converter import EMCServicePosition
+from Components.Converter import EMCRecordPosition
 from Components.Converter import EMCServiceTime
 
 from __init__ import *
@@ -234,6 +238,8 @@ config.EMC.movie_rewind_finished     = ConfigYesNo(default = True)
 config.EMC.movie_save_lastplayed     = ConfigYesNo(default = False)
 config.EMC.record_eof_zap            = ConfigYesNo(default = True)
 config.EMC.record_show_real_length   = ConfigYesNo(default = True)
+config.EMC.cutlist_at_download       = ConfigYesNo(default = False)
+config.EMC.cutlist_at_offset         = ConfigSelectionNumber(-1000, +1000, 1, default = 0)
 config.EMC.movie_metaload            = ConfigYesNo(default = True)
 config.EMC.movie_eitload             = ConfigYesNo(default = False)
 config.EMC.movie_exit                = ConfigYesNo(default = False)

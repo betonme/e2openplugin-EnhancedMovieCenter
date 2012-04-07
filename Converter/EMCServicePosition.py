@@ -20,57 +20,27 @@
 #	<http://www.gnu.org/licenses/>.
 #
 
-import os
-import NavigationInstance
-
-from Components.config import *
-
-from Components.Converter.Converter import Converter
 from Components.Converter.ServicePosition import ServicePosition
-from Components.Element import cached, ElementError
-from Components.Converter.Poll import Poll
-from enigma import eServiceReference
-
-from Plugins.Extensions.EnhancedMovieCenter.CutListSupport import CutList
+from Components.Element import cached
 
 
 class EMCServicePosition(ServicePosition):
 	def __init__(self, type):
 		ServicePosition.__init__(self, type)
-		self.cuts = None
 
 	@cached
 	def getCutlist(self):
-		try:
-			cutlist = []
-			service = self.source.service
-			cue = service and service.cueSheet()
-		
-			if cue:
-				# Native cuesheet support
-				cutlist = cue.getCutList()
-				#print "EMC cue getCutlist"
-			else:
-				#print "EMC cue getCutlist else"
-				# No native cuesheet support
-				if service and not isinstance(service, eServiceReference):
-					if NavigationInstance and NavigationInstance.instance:
-						service = NavigationInstance.instance.getCurrentlyPlayingServiceReference()
-				if service:
-					self.cuts = CutList( service.getPath() )
-					cutlist = self.cuts and self.cuts.getCutList()
-			return cutlist or []
-			
-		except Exception, e:
-			print "[EMCSP] getCutlist exception:" + str(e)
+		service = self.source.service
+		cut = service and service.cutList()
+		return cut and cut.getCutList()
 
 	cutlist = property(getCutlist)
 
 	def getLength(self):
-		length = self.source and self.source.getLength()
+		player = self.source.player
+		length = player and player.getLength()
 		if length:
 			return length
-		
 		# Fallback
 		return ServicePosition.getLength(self)
 

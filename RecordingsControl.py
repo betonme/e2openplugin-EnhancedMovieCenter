@@ -95,7 +95,12 @@ class RecordingsControl:
 			if timer.state == timer.StatePrepared:	pass
 			elif timer.state == timer.StateRunning:	# timer.isRunning()
 				if not filename in self.recDict:
-					self.recDict[filename] = (timer.begin, timer.end, timer.service_ref.ref)
+					begin = timer.begin
+					if timer.autoincrease:
+						end = begin
+					else:
+						end = timer.end
+					self.recDict[filename] = (begin, end, timer.service_ref.ref, str(timer))
 					inform = True
 					emcDebugOut("[emcRC] REC START for: " + filename)
 			else: #timer.state == timer.StateEnded:
@@ -137,7 +142,14 @@ class RecordingsControl:
 			if filename[0] == "/": 			filename = os.path.basename(filename)
 			if filename.endswith(".ts"):	filename = filename[:-3]
 			if filename in self.recDict:
-				begin, end, ref = self.recDict[filename]
+				begin, end, ref, id = self.recDict[filename]
+				if end - begin == 0:
+						for timer in NavigationInstance.instance.RecordTimer.timer_list:
+							if str(timer) == id:
+								# Update record times
+								begin = timer.begin
+								end = timer.end
+								self.recDict[filename] = (begin, end, ref, id)
 				return begin, end, ref
 		except Exception, e:
 			emcDebugOut("[emcRC] getRecording exception:\n" + str(e))

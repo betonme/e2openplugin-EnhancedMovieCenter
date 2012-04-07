@@ -489,16 +489,23 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 					# But it is fast enough
 					emcDebugOut("[MC] Timer ended")
 					DelayedFunction(3000, self.refreshList)
-# 			#WORKAROUND Player is running during a record ends
-# 			# We should find a more flexible universal solution
-# 			from MovieSelection import gMS
-# 			if gMS and gMS.playerInstance is not None:
-# 				DelayedFunction(3000, self.updatePlayer)
-# 
-# 	def updatePlayer(self):
-# 		from MovieSelection import gMS
-# 		if gMS and gMS.playerInstance is not None:
-# 			gMS.playerInstance.updateCuesheet(gMS)
+					
+					from MovieSelection import gMS
+					if gMS and gMS.playerInstance is not None:
+						# Check if record is currently played
+						record = timer.Filename + ".ts"
+						if record == gMS.playerInstance.service.getPath():
+							# WORKAROUND Player is running during a record ends
+							# We should find a more flexible universal solution
+							DelayedFunction(3000, self.updatePlayer)
+							# ATTENTION thist won't fix the other situation
+							# If a running record will be played and the player is stopped before the record ends
+							# -> Then E2 will overwrite the existing cuts.
+
+	def updatePlayer(self):
+		from MovieSelection import gMS
+		if gMS and gMS.playerInstance is not None:
+			gMS.playerInstance.updateFromCuesheet()
 
 	def getProgress(self, service, length=0, last=0, forceRecalc=False, cuts=None):
 		# All calculations are done in seconds

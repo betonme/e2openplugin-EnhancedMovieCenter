@@ -323,7 +323,9 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 			(  _("Always save last played progress as marker")    , config.EMC.movie_save_lastplayed    , None                  , None                  , 1     , []          , _("HELP_Always save last played progress as marker")     , None              , None ),
 			(  _("Zap to channel after record EOF")               , config.EMC.record_eof_zap           , None                  , None                  , 1     , []          , _("HELP_Zap to channel after record EOF")                , None              , None ),
 			(  _("Show real length of running records")           , config.EMC.record_show_real_length  , None                  , None                  , 1     , []          , _("HELP_Show real length of running records")            , None              , True ),
-
+			(  _("Download cutlist from Cutlist.at")              , config.EMC.cutlist_at_download      , None                  , None                  , 1     , []          , _("HELP_Download cutlist from Cutlist.at")               , False              , True ),
+			(  _("Cutlist.at offset in seconds")                  , config.EMC.cutlist_at_offset        , None                  , None                  , 1     , [-1]        , _("HELP_Cutlist.at offset")                       , None              , None ),
+			
 			(  separator                                          , config.EMC.about                    , None                  , None                  , 0     , []          , _("HELP_separator_Trashcan settings")                    , None              , None ),
 			(  _("Trashcan enable")                               , config.EMC.movie_trashcan_enable    , None                  , self.openLocationBox  , 0     , []          , _("HELP_Trashcan enable")                                , None              , None ),
 			(  _("Trashcan path")                                 , config.EMC.movie_trashcan_path      , self.validatePath     , self.openLocationBox  , 0     , [-1]        , _("HELP_Trashcan path")                                  , None              , None ),

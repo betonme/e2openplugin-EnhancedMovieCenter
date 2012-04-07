@@ -58,9 +58,10 @@ from CutListSupport import CutList
 from DirectoryStack import DirectoryStack
 from E2Bookmarks import E2Bookmarks
 from EMCBookmarks import EMCBookmarks
-from ServiceSupport import ServiceEvent
+from ServiceSupport import ServiceCenter
 from EMCCoverSearch import EMCImdbScan
 from MovieRetitle import MovieRetitle
+from Components.Sources.EMCServiceEvent import EMCServiceEvent
 
 from MovieCenter import extList, extVideo, extMedia, extDir, plyAll, plyDVD, cmtBME2, cmtBMEMC, cmtDir
 global extList, extVideo, extMedia, extDir, plyAll, plyDVD, cmtBME2, cmtBMEMC, cmtDir
@@ -70,8 +71,7 @@ gMS = None
 
 class SelectionEventInfo:
 	def __init__(self):
-		#from Components.Sources.ServiceEvent import ServiceEvent
-		self["Service"] = ServiceEvent()
+		self["Service"] = EMCServiceEvent(ServiceCenter.getInstance())
 		# Movie preview
 		desktopSize = getDesktop(0).size()
 		self["Video"] = VideoWindow(decoder = 0, fb_width=desktopSize.width(), fb_height=desktopSize.height())

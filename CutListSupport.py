@@ -73,7 +73,8 @@ class CutList():
 		self.__newPath(path)
 		self.__readCutFile()
 		self.__verifyCutList()
-		#print "Cutlist init " + str(path)
+		
+		self.downloader = None
 
 	def __newPath(self, path):
 		name = None
@@ -112,25 +113,35 @@ class CutList():
 	# InfoBarCueSheetSupport
 	def downloadCuesheet(self):
 		try:
+			service = hasattr(self, "service") and self.service
+			
 			# Is there native cuesheet support
 			cue = self.__getCuesheet() #InfoBarCueSheetSupport._InfoBarCueSheetSupport__getCuesheet(self)
 			if cue:
 				# Native cuesheet support
 				self.cut_list = cue.getCutList()
-				#print "Cutlist download cue "
 			else:
 				# No native cuesheet support
-				if self.service:
-					path = self.service.getPath()
-					#print "Cutlist download noncue " + str(path)
+				if service:
+					path = service.getPath()
 					self.__newPath(path)
 					self.__readCutFile()
-					#print "Cutlist  len " + str(len(self.cut_list))
-				#MAYBE: If the cutlist is empty we can check the EPG NowNext Events
-				#print "downloadCuesheet cutlist " + str(self.cut_list)
-				#self.__verifyCutList()
+			
+			if config.EMC.cutlist_at_download.value:
+				if service and service.getName():
+					from CutlistDownloader import CutlistAT
+					from MovieCenter import sidDVB
+					if service and service.type == sidDVB:
+						self.downloader = CutlistAT(self.cutlistDownloaded, service)
+			
+			#MAYBE: If the cutlist is empty we can check the EPG NowNext Events
 		except Exception, e:
 			emcDebugOut("[CUTS] downloadCutList exception:" + str(e))
+
+	def cutlistDownloaded(self, cutlist):
+		if cutlist:
+			for pts, what in cutlist:
+				self.__insort(pts, what)
 
 	# InfoBarCueSheetSupport
 	def uploadCuesheet(self):
@@ -138,31 +149,25 @@ class CutList():
 			# Always check for saving the last marker
 			if config.EMC.movie_save_lastplayed.value is True:
 				self.__saveOldLast()
-			# Update local cut list, maybe there is a newer one
-			#TODO to be tested
-			#self.__readCutFile(True)
+			
 			# Is there native cuesheet support
 			cue = InfoBarCueSheetSupport._InfoBarCueSheetSupport__getCuesheet(self)
-#			#print "uploadCuesheet cutlist " + str(self.cut_list)
 			if cue:
 				# Native cuesheet support
-				#print "Cutlist upload cue "
 				cue.setCutList(self.cut_list)
 			else:
 				# No native cuesheet support
-				if self.service:
+				# Update local cut list, maybe there is a newer one
+				#TODO to be tested
+				#self.__readCutFile(True)
+				if hasattr(self, "service") and self.service:
 					path = self.service.getPath()
-					#print "Cutlist upload cutlist " + str(path)
-					#print self.service
-					#print path
 					self.__newPath(path)
 					self.__writeCutFile()
-					#print self.cut_file
-					#print "Cutlist  len " + str(len(self.cut_list))
 		except Exception, e:
 			emcDebugOut("[CUTS] uploadCuesheet exception:" + str(e))
 
-	def updateCuesheet(self):
+	def updateFromCuesheet(self):
 		print "Cutlist updateCuesheet"
 		try:
 			# Use non native cuesheet support
@@ -171,15 +176,12 @@ class CutList():
 			emcDebugOut("[CUTS] updateCuesheet exception:" + str(e))
 
 	def setCutList(self, cut_list):
-		print "Cutlist setCutList"
 		self.cut_list = cut_list
 		self.__writeCutFile()
 
 	##############################################################################
 	## Get Functions
 	def getCutList(self):
-		#print "Cutlist getCutList len " + str(len(self.cut_list))
-		#print self.cut_list
 		return self.cut_list
 	
 	def getCutListMTime(self):
@@ -298,6 +300,7 @@ class CutList():
 
 	def __insort(self, pts, what):
 		if (pts, what) not in self.cut_list:
+			#TODO Handle duplicates and near markers
 			insort(self.cut_list, (pts, what))
 
 	def __insortSavedLast(self, pts):
@@ -340,8 +343,6 @@ class CutList():
 				pass
 				
 			else:
-				#print "EMC TEST count Cutlist " + str(path)
-				
 				# New path or file has changed
 				self.cut_mtime = mtime
 				
@@ -368,10 +369,7 @@ class CutList():
 					while pos+12 <= len(data):
 						# Unpack
 						(pts, what) = struct.unpack('>QI', data[pos:pos+12])
-						#if not update:
 						self.__insort(long(pts), what)
-						#else:
-						#	self.__update(long(pts), what)
 						# Next cut_list entry
 						pos += 12
 		else:
@@ -382,9 +380,7 @@ class CutList():
 		data = ""
 		path = self.cut_file
 		if path:
-		
-			#print "Cutlist __writeCutFile "
-		
+			
 			# Generate and pack data
 			if self.cut_list:
 				for (pts, what) in self.cut_list:

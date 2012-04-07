@@ -259,22 +259,26 @@ class InfoBarSupport(	InfoBarBase, \
 
 	# Handle EOF
 	def doSeekEOF(self):
-		# Stop one second before eof : 1 * 90 * 1000
+		# Stop two seconds before eof : 2 * 90 * 1000
 		state = self.seekstate
 		play = self.getSeekPlayPosition()
 		length = self.getSeekLength()
-		end = length and length - 90000
+		end = length and length - 2 * 90000
 		
-		# Validate play eand end values
+		# Validate play and end values
 		if play and end and play < end and 0 < end:
 			# InfoBarSeek
 			InfoBarSeek.doSeek(self, end)
 		
+		#TODO find a better solution
 		# If player is in pause mode do not call eof
 		if state != self.SEEK_STATE_PAUSE:
+			#self.setSeekState(self.SEEK_STATE_EOF)
 			# Wait one second before signaling eof
 			# Call private InfoBarSeek function
 			#if hasattr(self, "seekstate"):
 				#InfoBarSeek._InfoBarSeek__evEOF(self)
-			# Use only 900ms because the player will run for max 1 seconds until eof
-			DelayedFunction(900, boundFunction(InfoBarSeek._InfoBarSeek__evEOF, self))
+			# Use only 800ms because the player will run for max 1 seconds until eof
+			DelayedFunction(800, boundFunction(InfoBarSeek._InfoBarSeek__evEOF, self))
+			##InfoBarSeek.doSeek(self, end)
+			#InfoBarSeek._InfoBarSeek__evEOF(self)

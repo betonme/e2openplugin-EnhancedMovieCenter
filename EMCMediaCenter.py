@@ -21,6 +21,7 @@
 
 import os, re
 import sys, traceback
+from time import time
 
 from Components.config import *
 from Components.ActionMap import ActionMap, NumberActionMap, HelpableActionMap
@@ -35,7 +36,6 @@ from Screens.MessageBox import MessageBox
 from Screens.HelpMenu import HelpableScreen
 from Tools.BoundFunction import boundFunction
 from Tools.Directories import fileExists, resolveFilename, SCOPE_LANGUAGE, SCOPE_PLUGINS
-from time import time
 
 # Zap to Live TV of record
 from Screens.MessageBox import MessageBox
@@ -47,15 +47,15 @@ from EMCTasker import emcDebugOut
 from DelayedFunction import DelayedFunction
 from CutListSupport import CutList
 from InfoBarSupport import InfoBarSupport
-from ServiceSupport import CurrentService
+from Components.Sources.EMCCurrentService import EMCCurrentService
 
 # Cover
 from Components.AVSwitch import AVSwitch
 from Components.Pixmap import Pixmap
 from enigma import ePicLoad
 
-from MovieCenter import sidDVD
-global sidDVD
+from MovieCenter import sidDVD, sidDVB
+
 
 dvdPlayerPlg = "%s%s"%(resolveFilename(SCOPE_PLUGINS), "Extensions/DVDPlayer/plugin.py")
 
@@ -170,12 +170,11 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 			self["TeletextActions"].prio = 2
 		self["NumberActions"].prio = 2
 		
+		# EMC Source
+		self["Service"] = EMCCurrentService(session.nav, self)
+		
 		# Cover Anzeige
 		self["Cover"] = Pixmap()
-		
-		# Set Source for the Converter ServicePostion
-		# So we can display the marker for all media files
-		self["Service"] = CurrentService(session.nav, self)
 		
 		# DVD Player
 		self["audioLabel"] = Label("")
@@ -333,8 +332,6 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 				# Start playing movie
 				self.session.nav.playService(service)
 				
-				#self["service"] =  TODO
-				
 				if service and service.type == sidDVD:
 					# Seek will cause problems with DVDPlayer!
 					# ServiceDVD needs this to start
@@ -411,6 +408,47 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 		except Exception, e:
 			emcDebugOut("[EMCPlayer] __onClose exception:\n" + str(e))
 
+	##############################################################################
+	## Recordings relevant function
+	def getLength(self):
+		if config.EMC.record_show_real_length.value:
+			service = self.service
+			path = service and service.getPath()
+			if path:
+				record = self.recordings.getRecording(path)
+				if record:
+					#TODO There is still a problem with split records with cut numbers
+					begin, end, s = record
+					return int((end - begin) * 90000)
+		# Fallback
+		seek = self.getSeek()
+		if seek is None:
+			return None
+		length = seek.getLength()
+		if length[0]:
+			return 0
+		return length[1]
+
+	def getPosition(self):
+		if config.EMC.record_show_real_length.value:
+			service = self.service
+			path = service and service.getPath()
+			if path:
+				record = self.recordings.getRecording(path)
+				if record:
+					begin, end, s = record
+					return int((time() - begin) * 90000)
+		# Fallback
+		seek = self.getSeek()
+		if seek is None:
+			return None
+		pos = seek.getPlayPosition()
+		if pos[0]:
+			return 0
+		return pos[1]
+
+	##############################################################################
+	## List functions
 	def removeFromPlaylist(self, deletedlist):
 		callEOF = False
 		for x in deletedlist:
@@ -809,18 +847,13 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 				#last = ( time() - begin ) * 90000
 				
 				# Seek play position and record length differ about one second
-				#print "EMC doEofInternal"
-				#print "recordlength ", (( end - begin ) * 90000)
-				#print "seeklength   ", (self.getSeekLength())
-				#print "recordlast  ", last
-				#print "seekplay    ", (self.getSeekPlayPosition())
-				#print "seekplay+10 ", (self.getSeekPlayPosition() + 1*90000)
 				#if last < (self.getSeekPlayPosition() + 1*90000):
 				# Zap to new channel
 				self.lastservice = service
 				self.service = None
 				self.closeAll = True
-				DelayedFunction(10, boundFunction(self.leavePlayer, False))
+				#DelayedFunction(10, boundFunction(self.leavePlayer, False))
+				self.leavePlayer(False)
 				return
 				#TEST just return and ignore if there is more to play
 				#else:
@@ -828,7 +861,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 				##	self.setSeekState(self.SEEK_STATE_PLAY)
 				#	return
 		
-		DelayedFunction(10, boundFunction(self.evEOF))
+		self.evEOF()
 
 	##############################################################################
 	## Oozoon image specific
