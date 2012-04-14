@@ -45,8 +45,8 @@ from DelayedFunction import DelayedFunction
 from EMCTasker import emcTasker, emcDebugOut
 
 
-EMCVersion = "V3.9.1"
-EMCAbout = "\n  Enhanced Movie Center " +EMCVersion+ "\n\n  (C) 2011 by\n  Coolman, Betonme & Swiss-MAD \n\n  If you like this plugin and you want to support it,\n  or if just want to say ''thanks'',\n  please donate via PayPal. \n\n  Thanks a lot ! \n\n  PayPal: enhancedmoviecenter@gmail.com"
+EMCVersion = "V3.9.2"
+EMCAbout = "\n  Enhanced Movie Center " +EMCVersion+ "\n\n  (C) 2012 by\n  Coolman, Betonme & Swiss-MAD \n\n  If you like this plugin and you want to support it,\n  or if just want to say ''thanks'',\n  please donate via PayPal. \n\n  Thanks a lot ! \n\n  PayPal: enhancedmoviecenter@gmail.com"
 
 
 def setEPGLanguage(dummyself=None, dummy=None):
@@ -524,7 +524,7 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 		self.close()
 
 	def keyCancel(self):
-		ConfigListScreen.keyCancel(self)
+		self.close()
 
 	def launchListSet(self, element):
 		if element is not None:
