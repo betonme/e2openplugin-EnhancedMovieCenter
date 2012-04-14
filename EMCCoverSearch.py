@@ -163,7 +163,7 @@ class EMCImdbScan(Screen):
 		
 		self.picload = ePicLoad()
 		#self.picload.PictureData.get().append(self.showCoverCallback)
-		self.file_format = "(.ts|.avi|.mkv|.divx|.f4v|.flv|.img|.iso|.m2ts|.m4v|.mov|.mp4|.mpeg|.mpg|.mts|.vob)"
+		self.file_format = "(.ts|.avi|.mkv|.divx|.f4v|.flv|.img|.iso|.m2ts|.m4v|.mov|.mp4|.mpeg|.mpg|.mts|.vob|.wmv)"
 		
 		self.setShowSearchSiteName()
 
