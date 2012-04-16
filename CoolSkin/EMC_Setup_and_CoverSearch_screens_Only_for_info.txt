@@ -1,5 +1,14 @@
 <!-- Skin defaults from the EMC-Setup screen and CoverSearch screens. Only for info to skin this by self -->
 
+
+<!-- EnhancedMovieCenter Menu --- It's a E2 default Screen !!!  -->
+<screen name="Menu" position="center,center" size="375,410" title="Main menu" >
+	<widget source="title" render="Label" position="35,10" size="280,35" font="Regular;23" />
+	<widget source="menu" render="Listbox" position="35,45" size="340,353" scrollbarMode="showOnDemand" enableWrapAround="on"  >
+		<convert type="StringList" />
+	</widget>
+</screen>
+
 <!-- EnhancedMovieCenter Setup -->
 <screen name="EnhancedMovieCenterMenu" position="center,center" size="620,500" title="EnhancedMovieCenterMenu">
 	<!-- Config Listbox -->
