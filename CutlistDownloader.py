@@ -190,8 +190,18 @@ class CutlistAT():
 			#channel = ServiceReference(ref).getServiceName() #info and info.getName(service)
 			
 			begins = [localtime(begin), localtime(begin - 10*60), localtime(begin + 10*60)]
+
+			name = name.replace('ä', 'ae')
+			name = name.replace('ö', 'oe')
+			name = name.replace('ü', 'ue')
+
+			name = name.replace('-', '_')
+			name = name.replace(' ', '_')
+			name = name.replace('__', '_')
+			name = name.replace('__', '_')
+			
 			for begin in begins:
-				searchfor = ("%s_%s") % (name.replace(' ', '_'), strftime('%y.%m.%d_%H-%M', begin))
+				searchfor = ("%s_%s") % (name, strftime('%y.%m.%d_%H-%M', begin))
 				#searchfor = ("%s_%s_%s") % (name.replace(' ', '_'), strftime('%y.%m.%d_%H-%M', localtime(begin)), channel.replace(' ', '_'))
 				self.searchs.append( searchfor )
 			
