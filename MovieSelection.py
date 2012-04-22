@@ -205,12 +205,7 @@ class SelectionEventInfo:
 						#self.dvdScreen = self.session.instantiateDialog(DVDOverlay)
 						#subs.enableSubtitles(self.dvdScreen.instance, None)
 						subs.enableSubtitles(None, None)
-					from Screens.InfoBar import InfoBar
-					infobar = InfoBar and InfoBar.instance
-					if infobar:
-						infobar.pauseService()
-						infobar.unPauseService()
-				
+					DelayedFunction(50, boundFunction(self.dvdPlayerWorkaround))
 				self["Video"].show()
 			else:
 				# Start LiveTV
@@ -227,6 +222,13 @@ class SelectionEventInfo:
 			#self.session.nav.stopService()
 			print "EMC: showPreview hide"
 			#self["Video"].hide()
+	
+	def dvdPlayerWorkaround(self):
+		from Screens.InfoBar import InfoBar
+		infobar = InfoBar and InfoBar.instance
+		if infobar:
+			infobar.pauseService()
+			infobar.unPauseService()
 
 
 class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfaceSel, DirectoryStack, E2Bookmarks, EMCBookmarks):
