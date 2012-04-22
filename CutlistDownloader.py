@@ -54,8 +54,6 @@ getXMLUrl = "http://www.cutlist.at/getxml.php?name="
 getFileUrl = "http://www.cutlist.at/getfile.php?id="
 
 
-
-
 #############################################################################
 # Cutlist Class
 class cutlist:
@@ -191,9 +189,12 @@ class CutlistAT():
 			
 			begins = [localtime(begin), localtime(begin - 10*60), localtime(begin + 10*60)]
 
-			name = name.replace('ä', 'ae')
-			name = name.replace('ö', 'oe')
-			name = name.replace('ü', 'ue')
+			name = name.lower()
+			#small sharp s ("s-zet")  	ß 	alt + 225 	&szlig;
+			
+			name = name.replace('&auml;', 'ae')
+			name = name.replace('&ouml;', 'oe')
+			name = name.replace('&uuml;', 'ue')
 
 			name = name.replace('-', '_')
 			name = name.replace(' ', '_')
@@ -358,5 +359,4 @@ class CutlistAT():
 			
 			print cuesheet
 			return cuesheet
-	
 
