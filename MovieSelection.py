@@ -972,7 +972,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		
 		self.updateInfo()
 
-	def setCursor(self):
+	def setReturnCursor(self):
 		if self.returnService:
 			#TODOret
 			print "EMC ret setCur " +str(self.returnService.toString())
@@ -1019,11 +1019,9 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 
 	def removeService(self, service):
 		self["list"].removeService(service)
-		self.setCursor()
 
 	def removeServiceOfType(self, service, type):
 		self["list"].removeServiceOfType(service, type)
-		self.setCursor()
 
 	def getNextSelectedService(self, current, selectedlist=None):
 		curSerRef = None
@@ -1404,6 +1402,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			if self.removeE2Bookmark(path):
 				# If service is not in list, don't care about it.
 				self.removeServiceOfType(service, cmtBME2)
+				self.setReturnCursor()
 
 	def deleteEMCBookmark(self, service):
 		if service:
@@ -1423,6 +1422,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			if self.removeEMCBookmark(path):
 				# If service is not in list, don't care about it.
 				self.removeServiceOfType(service, cmtBMEMC)
+				self.setReturnCursor()
 
 	def deleteMovieQ(self, selectedlist, remoteRec):
 		try:
@@ -1507,12 +1507,14 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 				if os.path.islink(path):
 					emcTasker.shellExecute("rm -f '" + path + "'")
 					self.removeService(service)
+					self.setReturnCursor()
 				elif os.path.exists(path):
 					if len(os.listdir(path))>0:
 						self.session.open(MessageBox, _("Directory is not empty."), MessageBox.TYPE_ERROR, 10)
 					else:
 						emcTasker.shellExecute('rmdir "' + path +'"')
 						self.removeService(service)
+						self.setReturnCursor()
 			else:
 				self.session.open(MessageBox, _("Cannot delete the parent directory."), MessageBox.TYPE_ERROR, 10)
 
@@ -1538,17 +1540,20 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		self["list"].highlightService(False, "move", service)	# remove the highlight
 		if not config.EMC.movie_hide_mov.value:
 			self.removeService(service)
+			self.setReturnCursor()
 		self.updateInfo()
 
 	def delCB(self, service):
 		self["list"].highlightService(False, "del", service)	# remove the highlight
 		if not config.EMC.movie_hide_del.value:
 			self.removeService(service)
+			self.setReturnCursor()
 		self.updateInfo()
 
 	def copyCB(self, service):
 		self["list"].highlightService(False, "copy", service)	# remove the highlight
 		self["list"].invalidateService(service)
+		self.setReturnCursor()
 		self.updateInfo()
 
 #Think about: All file operations should be in a separate file
@@ -1577,6 +1582,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 					self["list"].highlightService(True, "del", service)
 					if config.EMC.movie_hide_del.value:
 						self.removeService(service)
+						self.setReturnCursor()
 				elif op == "move":
 					c = []
 					#if self.mountpoint(self.currentPath) == self.mountpoint(targetPath):
@@ -1595,6 +1601,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 					self["list"].highlightService(True, "move", service)
 					if config.EMC.movie_hide_mov.value:
 						self.removeService(service)
+						self.setReturnCursor()
 					self.moveRecCheck(service, targetPath)
 				elif op == "copy":
 					c = []
