@@ -36,6 +36,7 @@ from enigma import getDesktop, eServiceReference, eTimer, iPlayableService
 
 import os
 from time import time
+from thread import start_new_thread
 
 # Movie preview
 from Components.VideoWindow import VideoWindow
@@ -988,11 +989,13 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		if config.EMC.needsreload.value:
 			config.EMC.needsreload.value = False
 			self["list"].resetSorting()
-			DelayedFunction(50, self.initList)
+			#DelayedFunction(50, self.initList)
+			start_new_thread(self.initList)
 		
 		if config.EMC.movie_reload.value \
 			or len(self["list"]) == 0:
-			DelayedFunction(50, self.initList)
+			#DelayedFunction(50, self.initList)
+			start_new_thread(self.initList)
 		
 		else:
 			# Refresh is done automatically
