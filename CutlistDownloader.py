@@ -190,8 +190,8 @@ class CutlistAT():
 			begins = [localtime(begin), localtime(begin - 10*60), localtime(begin + 10*60)]
 
 			name = name.lower()
-			#small sharp s ("s-zet")  	ß 	alt + 225 	&szlig;
 			
+			#small sharp s ("s-zet") alt + 225 	&szlig;
 			name = name.replace('&auml;', 'ae')
 			name = name.replace('&ouml;', 'oe')
 			name = name.replace('&uuml;', 'ue')
