@@ -678,12 +678,12 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			# so we have to update returnService
 			if self.tmpSelList:
 				#TODOret 
-				print "EMC ret updSe1 " +str(self.returnService.toString())
-				print len(self.tmpSelList)
-				print self.getCurrent().toString()
+				#print "EMC ret updSe1 " +str(self.returnService.toString())
+				#print len(self.tmpSelList)
+				#print self.getCurrent().toString()
 				self.returnService = self.getNextSelectedService(self.getCurrent(), self.tmpSelList)
 				#TODOret 
-				print "EMC ret updSer " +str(self.returnService.toString())
+				#print "EMC ret updSer " +str(self.returnService.toString())
 
 	def selectionChanged(self):
 		if self.multiSelectIdx:
@@ -712,7 +712,8 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		self.updateTitle()
 		current = self.getCurrent()
 		if current and not self["list"].serviceMoving(current) and not self["list"].serviceDeleting(current):
-			self.updateEventInfo( current )
+			#self.updateEventInfo( current )
+			start_new_thread(self.updateEventInfo, (current,))
 
 	def resetInfo(self, preview=True):
 		print "EMC: resetInfo"
@@ -1230,7 +1231,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			# Show a notification to indicate the Play function
 			self["wait"].setText( _("Play last movie starting") )
 			self["wait"].show()
-			DelayedFunction(3000, self.loading, False)
+			DelayedFunction(1000, self.loading, False)
 			DelayedFunction(2000, self.openPlayer, self.lastPlayedMovies)
 
 	def playAll(self):
@@ -1245,7 +1246,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		# Show a notification to indicate the Play function
 		self["wait"].setText( _("Play All starting") )
 		self["wait"].show()
-		DelayedFunction(2000, self.loading, False)
+		DelayedFunction(1000, self.loading, False)
 		# Initialize play all
 		playlist = [self.getCurrent()] 
 		playall = self["list"].getNextService()
