@@ -36,7 +36,7 @@
 	<widget source="Service" render="Label" position="50,370" size="425,22" font="Regular; 19" zPosition="2" foregroundColor="#00bab329" backgroundColor="#444444" transparent="1" halign="center" >
 		<convert type="EMCMovieInfo">ShortDescription</convert>
 	</widget>
-	<widget source="Service" render="Label" position="50,395" size="425,244" font="Regular;19" foregroundColor="#FFFFFF" backgroundColor="#444444" transparent="1" halign="left" valign="top">
+	<widget source="Service" render="Label" position="50,395" size="425,243" font="Regular;19" foregroundColor="#FFFFFF" backgroundColor="#444444" transparent="1" halign="left" valign="top">
 		<convert type="EMCEventName">ExtendedDescription</convert>
 	</widget>
 	<widget source="Service" render="Label" position="50,640" size="200,24" font="Regular;19" foregroundColor="#00bab329" halign="left" backgroundColor="#444444" transparent="1">
