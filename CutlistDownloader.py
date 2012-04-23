@@ -24,7 +24,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, see <http://www.gnu.org/licenses/>.
 
-from os import listdir,lstat,remove
+import os
 import sys
 
 from twisted.web.client import getPage
@@ -183,21 +183,41 @@ class CutlistAT():
 			
 			name = ref.getName()
 			info = eServiceCenter.getInstance().info(ref)
-			begin = info.getInfo(ref, iServiceInformation.sTimeCreate) or 0
+			
+			begin = info.getInfo(ref, iServiceInformation.sTimeCreate) or -1
+			if begin != -1:
+				end = begin + (info.getLength(ref) or 0)
+			else:
+				end = os.path.getmtime(service.getPath())
+				begin = end - (info.getLength(ref) or 0)
+				#MAYBE we could also try to parse the filename
+			print begin
+			print end
+			
 			#Maybe later extract date from path filename
 			#channel = ServiceReference(ref).getServiceName() #info and info.getName(service)
 			
 			begins = [localtime(begin), localtime(begin - 10*60), localtime(begin + 10*60)]
 
+			try:
+				name.decode('utf-8')
+			except UnicodeDecodeError:
+				try:
+					name = name.decode("cp1252").encode("utf-8")
+				except UnicodeDecodeError:
+					name = name.decode("iso-8859-1").encode("utf-8")
+			
 			name = name.lower()
 			
-			#small sharp s ("s-zet") alt + 225 	&szlig;
-			name = name.replace('&auml;', 'ae')
-			name = name.replace('&ouml;', 'oe')
-			name = name.replace('&uuml;', 'ue')
-
+			name = name.replace('\xc3\xa4', 'ae')
+			name = name.replace('\xc3\xb6', 'oe')
+			name = name.replace('\xc3\xbc', 'ue')
+			name = name.replace('\xc3\x9f', 'ss')
+			
 			name = name.replace('-', '_')
 			name = name.replace(' ', '_')
+			
+			name = name.replace('__', '_')
 			name = name.replace('__', '_')
 			name = name.replace('__', '_')
 			
