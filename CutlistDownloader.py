@@ -26,6 +26,7 @@
 
 import os
 import sys
+import re
 
 from twisted.web.client import getPage
 
@@ -166,8 +167,11 @@ class cutlist:
 class CutlistAT():
 	def __init__(self, callback, service):
 		self.callback = callback
+		
+		self.regexp_seriesepisodes = re.compile('(.*)[ _][Ss]{,1}\d{1,2}[EeXx]\d{1,2}.*')  #Only for S01E01 01x01
 		self.searchs = []
 		self.cutlists = []
+		
 		print "EMC CutlistAT"
 		self.searchForCutlists(service)
 
@@ -184,11 +188,11 @@ class CutlistAT():
 			name = ref.getName()
 			info = eServiceCenter.getInstance().info(ref)
 			
-			begin = info.getInfo(ref, iServiceInformation.sTimeCreate) or -1
+			begin = info and info.getInfo(ref, iServiceInformation.sTimeCreate) or -1
 			if begin != -1:
 				end = begin + (info.getLength(ref) or 0)
 			else:
-				end = os.path.getmtime(service.getPath())
+				end = os.path.getmtime(ref.getPath())
 				begin = end - (info.getLength(ref) or 0)
 				#MAYBE we could also try to parse the filename
 			print begin
@@ -198,7 +202,8 @@ class CutlistAT():
 			#channel = ServiceReference(ref).getServiceName() #info and info.getName(service)
 			
 			begins = [localtime(begin), localtime(begin - 10*60), localtime(begin + 10*60)]
-
+			
+			# Is there a better way to handle the title encoding 
 			try:
 				name.decode('utf-8')
 			except UnicodeDecodeError:
@@ -207,6 +212,7 @@ class CutlistAT():
 				except UnicodeDecodeError:
 					name = name.decode("iso-8859-1").encode("utf-8")
 			
+			# Modify title to get search string
 			name = name.lower()
 			
 			name = name.replace('\xc3\xa4', 'ae')
@@ -215,11 +221,22 @@ class CutlistAT():
 			name = name.replace('\xc3\x9f', 'ss')
 			
 			name = name.replace('-', '_')
+			name = name.replace(',', '_')
+			name = name.replace('\'', '_')
 			name = name.replace(' ', '_')
 			
-			name = name.replace('__', '_')
-			name = name.replace('__', '_')
-			name = name.replace('__', '_')
+			while '__' in name:
+				name = name.replace('__', '_')
+			
+			name = name.rstrip('_')
+			
+			# Remove Series Episode naming
+			m = self.regexp_seriesepisodes.match(name)
+			
+			if m:
+				print m.group(0)       # The entire match
+				print m.group(1)       # The first parenthesized subgroup.
+				name = m.group(1)
 			
 			for begin in begins:
 				searchfor = ("%s_%s") % (name, strftime('%y.%m.%d_%H-%M', begin))
@@ -241,6 +258,8 @@ class CutlistAT():
 			print downloadUrl
 			# Download xml file
 			getPage(downloadUrl, timeout = 10).addCallback(self.parseList).addErrback(self.downloadList)
+		else:
+			self.callback([])
 	
 	def parseList(self, data):
 		try:
