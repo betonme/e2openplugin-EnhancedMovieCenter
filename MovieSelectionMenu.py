@@ -90,7 +90,7 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 				show_plugins = True
 				if self.selections:
 					for service in self.selections:
-						ext = os.path.splitext(self.service.getPath())[1].lower()
+						ext = os.path.splitext(service.getPath())[1].lower()
 						if ext not in extTS:
 							show_plugins = False
 							break
