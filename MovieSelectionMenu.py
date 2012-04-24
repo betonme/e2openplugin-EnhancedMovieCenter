@@ -87,9 +87,18 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 			if self.service or self.selections:
 				self.menu.append((_("Rename selected movie(s)"), boundFunction(self.renameMovies)))
 				self.menu.append((_("Remove cut list marker"), boundFunction(self.remCutListMarker)))
-			if service:
-				ext = os.path.splitext(self.service.getPath())[1].lower()
-				if ext in extTS:
+				show_plugins = True
+				if self.selections:
+					for service in self.selections:
+						ext = os.path.splitext(self.service.getPath())[1].lower()
+						if ext not in extTS:
+							show_plugins = False
+							break
+				else:
+					ext = os.path.splitext(self.service.getPath())[1].lower()
+					if ext not in extTS:
+						show_plugins = False
+				if show_plugins:
 					# Only valid for ts files: CutListEditor, DVDBurn, ...
 					self.menu.extend([(p.description, boundFunction(self.execPlugin, p)) for p in plugins.getPlugins(PluginDescriptor.WHERE_MOVIELIST)])
 			
