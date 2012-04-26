@@ -173,10 +173,14 @@ restart_choices = [	("",							_("No")),
 										("3",							_("E2 Restart"))]
 
 #Think about using AZ or ("A",False) as dict key / permanent sort store value
-sort_modes = {		("D-")	:				( _("Date sort descending (D-)"), 	("D",False)	),
-									("AZ")	:				( _("Alpha sort ascending (AZ)"), 	("A",False)	),
-									("D+")	:				( _("Date sort ascending (D+)"), 		("D",True)	),
-									("ZA")	:				( _("Alpha sort descending (ZA)"),	("A",True) 	) }
+#TODO use an OrderedDict
+sort_modes =	{		("D-")	:				( _("Date sort descending (D-)"),			("D",False),	_("Date sort"),	),
+									("AZ")	:				( _("Alpha sort ascending (AZ)"),			("A",False),	_("Alpha sort"),	),
+									("P+")	:				( _("Progress sort ascending (P+)"),	("P",False),	_("Progress sort"),	),
+									("D+")	:				( _("Date sort ascending (D+)"),			("D",True),		_("Date sort"),	),
+									("ZA")	:				( _("Alpha sort descending (ZA)"),		("A",True),		_("Alpha sort"),	),
+									("P-")	:				( _("Progress sort descending (P-)"),	("P",True),		_("Progress sort"),	),
+							}
 									# If you add a new sort order, you have to think about
 									#  Order false has to be the preferred state
 									#  Both order possibilities should be in the list
@@ -188,7 +192,6 @@ sort_modes = {		("D-")	:				( _("Date sort descending (D-)"), 	("D",False)	),
 									#  Green long will only toggle the sort order: normal reverse
 
 sort_choices = [ (k, v[0]) for k, v in sort_modes.items() ]
-#sort_choices.sort( key=lambda x : x[0][1] )
 
 config.EMC                           = ConfigSubsection()
 config.EMC.needsreload               = ConfigYesNo(default = False)

@@ -433,30 +433,22 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 			order = self.actualSort[1]
 		
 		if mode == "D":	# Date sort
-			#sortkeydate = date + sorttitle + ("%03d") % ( 999 - int(cutnr or 0) )
-			#sortlist.sort( key=lambda x: (x[1][1]), reverse=not config.EMC.moviecenter_reversed.value )
 			if not order:
-				#sortlist.sort( key=lambda x: (x[7] in virAll, x[2], x[1], -x[8]), reverse=True )
 				sortlist.sort( key=lambda x: (x[2],x[1],-x[8]), reverse=True )
 			else:
-				#TEST
-				#sortlist.sort( key=lambda x: (x[2], x[1], x[8]) )
-				#sortlist.sort( key=lambda x: (x[7] in virAll, x[2], x[1], x[8]) )
 				sortlist.sort( key=lambda x: (x[2], x[1], x[8]), reverse=True )
 		
 		elif mode == "A":	# Alpha sort
-			#sortkeyalpha = sorttitle + ("%03d") % int(cutnr or 0) + date
-			#sortlist.sort( key=lambda x: (x[1][0]), reverse=config.EMC.moviecenter_reversed.value )
-			#sortlist.sort( key=lambda x: (x[1],x[8],x[2]), reverse=config.EMC.moviecenter_reversed.value )
 			if not order:
-				#sortlist.sort( key=lambda x: (x[9],x[1],x[2],x[8]) )
-				#sortlist.sort( key=lambda x: (x[7] not in virAll, x[1], x[2], x[8]) )
 				sortlist.sort( key=lambda x: (x[1],x[2],x[8]) )
 			else:
-				#TEST
-				#sortlist.sort( key=lambda x: (x[7] not in virAll, x[1], x[2], -x[8]), reverse=True )
-				#sortlist.sort( key=lambda x: (x[1],x[2],-x[8]), reverse=True )
 				sortlist.sort( key=lambda x: (x[1],x[2],-x[8]) )
+		
+		elif mode == "P":	# Progress
+			if not order:
+				sortlist.sort( key=lambda x: ( self.getProgress(x[0], x[6]) ) ) #,x[2],x[8]) )
+			else:
+				sortlist.sort( key=lambda x: ( self.getProgress(x[0], x[6]) ) ) # ,x[2],-x[8]) )
 		
 		# Combine lists
 		if order:

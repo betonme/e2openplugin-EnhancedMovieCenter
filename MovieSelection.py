@@ -778,7 +778,6 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		
 		# Display the actual sorting mode
 		from Plugins.Extensions.EnhancedMovieCenter.plugin import sort_modes
-		#sort = sort_modes.get( self["list"].getSorting() )
 		actsort = self["list"].getSorting()
 		for k, v in sort_modes.items():
 			if v[1] == actsort:
@@ -1099,17 +1098,33 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		# Initialize buttons
 		self["key_red"].text = _("Delete")
 		#TODO get color from MovieCenter
-		mode, order = self["list"].getSorting()
-		#if order == False:
-		green = ""
-		#else:
-		#	green = "- " # reverse
+		
 		# Display the next sorting state
-		if mode == "A":
-			green += _("Date sort")
-		elif mode == "D":
-			green += _("Alpha sort")
-		self["key_green"].text = green
+		from Plugins.Extensions.EnhancedMovieCenter.plugin import sort_modes
+		#sorts = list( set( [sort for sort, desc in sort_choices] ) )
+		sorts = [ v[1] for v in sort_modes.values() ]
+		print sorts
+		# Toggle the mode
+		mode, order = self["list"].getSorting()
+		# Get all sorting modes as a list of unique ids
+		modes = list( set( [m for m, o in sorts] ) )
+		print modes
+		if mode in modes:
+			# Get next sorting mode
+			idx = modes.index(mode)
+			mode = modes[ (idx+1) % len(modes) ]
+		else:
+			# Fallback
+			mode = modes[ 0 ]
+		print mode
+		
+		for k, v in sort_modes.items():
+			print v[1], (mode, order)
+			if v[1] == (mode, order):
+				self["key_green"].text = v[2]
+				break
+		else:
+			self["key_green"].text = ""
 		self["key_yellow"].text = _("Move")
 		self["key_blue"].text = _(config.EMC.movie_bluefunc.description[config.EMC.movie_bluefunc.value])
 
