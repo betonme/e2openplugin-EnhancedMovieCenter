@@ -129,16 +129,19 @@ class CutList():
 			
 			if config.EMC.cutlist_at_download.value:
 				if service and service.getName():
-					from CutlistDownloader import CutlistAT
 					from MovieCenter import sidDVB
 					if service and service.type == sidDVB:
-						self.downloader = CutlistAT(self.cutlistDownloaded, service)
+						try:
+							from Plugins.Extensions.CutlistDownloader.CutlistAT import CutlistAT#
+							self.downloader = CutlistAT(self.cutlistDownloaded, service)
+						except ImportError as ie:
+							emcDebugOut("[EMC] Plugin CutlistDownloader missing:" + str(e))
 			
 			#MAYBE: If the cutlist is empty we can check the EPG NowNext Events
 		except Exception, e:
 			emcDebugOut("[CUTS] downloadCutList exception:" + str(e))
 
-	def cutlistDownloaded(self, cutlist):
+	def cutlistDownloaded(self, cutlist=[]):
 		if cutlist:
 			for pts, what in cutlist:
 				self.__insort(pts, what)
