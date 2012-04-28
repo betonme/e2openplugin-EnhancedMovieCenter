@@ -127,6 +127,8 @@ class CutList():
 					self.__newPath(path)
 					self.__readCutFile()
 			
+			#print "CUTSTEST0 ", self.cut_list
+			
 			if config.EMC.cutlist_at_download.value:
 				if service and service.getName():
 					from MovieCenter import sidDVB
@@ -236,11 +238,16 @@ class CutList():
 
 	def updateCutList(self, play, length):
 		# Always check for saving the last marker
+		#print "CUTSTEST1 ", self.cut_list
 		if config.EMC.movie_save_lastplayed.value is True:
 			self.__saveOldLast()
+		#print "CUTSTEST2 ", self.cut_list
 		self.__removeSavedLast( self.__getCutListSavedLast() )
+		#print "CUTSTEST3 ", self.cut_list
 		self.__replaceLast( play )
+		#print "CUTSTEST4 ", self.cut_list
 		self.__replaceOut( length )
+		#print "CUTSTEST5 ", self.cut_list
 		self.uploadCuesheet()
 
 	def removeMarksCutList(self):
@@ -299,17 +306,17 @@ class CutList():
 		
 		newSaved = savedLast or oldLast
 		self.__replaceLast(newLast)
-		self.__insortSavedLast(newSaved)
+		self.__appendSavedLast(newSaved)
 
 	def __insort(self, pts, what):
 		if (pts, what) not in self.cut_list:
 			#TODO Handle duplicates and near markers
 			insort(self.cut_list, (pts, what))
 
-	def __insortSavedLast(self, pts):
+	def __appendSavedLast(self, pts):
 		if pts > 0 and pts < self.MOVIE_FINISHED:
 			self.__insort(pts, self.CUT_TYPE_MARK)
-			self.__insort(pts, self.CUT_TYPE_SAVEDLAST)
+			self.cut_list.append( (pts, self.CUT_TYPE_SAVEDLAST) )
 
 	def __replaceOut(self, pts):
 		if self.cut_list:
