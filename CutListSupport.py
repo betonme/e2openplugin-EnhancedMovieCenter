@@ -44,6 +44,7 @@ class CutList():
 	# Additional custom EMC specific types
 	# Has to be remove before starting a player
 	CUT_TYPE_SAVEDLAST = 4
+	CUT_TYPE_LENGTH = 5
 	
 	# Toggle Types
 	CUT_TOGGLE_START = 0
@@ -59,7 +60,9 @@ class CutList():
 	# Constants
 	ENABLE_RESUME_SUPPORT = True
 	MOVIE_FINISHED = 0xFFFFFFFFFFFFFFFF
-
+	
+	INSORT_SCOPE = 45000  # 0.5 seconds * 90 * 1000
+	
 	def __init__(self, path=None):
 		# Is already initialized in InfoBar and EMCMediaCenter
 		#InfoBarCueSheetSupport.__init__(self)
@@ -73,8 +76,6 @@ class CutList():
 		self.__newPath(path)
 		self.__readCutFile()
 		self.__verifyCutList()
-		
-		self.downloader = None
 
 	def __newPath(self, path):
 		name = None
@@ -134,8 +135,8 @@ class CutList():
 					from MovieCenter import sidDVB
 					if service and service.type == sidDVB:
 						try:
-							from Plugins.Extensions.CutlistDownloader.CutlistAT import CutlistAT#
-							self.downloader = CutlistAT(self.cutlistDownloaded, service)
+							from Plugins.Extensions.CutlistDownloader.plugin import bestCutlist#
+							bestCutlist(service, self.cutlistDownloaded)
 						except ImportError as ie:
 							emcDebugOut("[EMC] Plugin CutlistDownloader missing:" + str(e))
 			
@@ -144,9 +145,12 @@ class CutList():
 			emcDebugOut("[CUTS] downloadCutList exception:" + str(e))
 
 	def cutlistDownloaded(self, cutlist=[]):
+		print "EMC cutlistDownloaded"
+		print self.cut_list
 		if cutlist:
 			for pts, what in cutlist:
 				self.__insort(pts, what)
+		print self.cut_list
 
 	# InfoBarCueSheetSupport
 	def uploadCuesheet(self):
@@ -202,7 +206,7 @@ class CutList():
 	def getCutListSavedLast(self):
 		return self.__ptsToSeconds( self.__getCutListSavedLast() )
 		
-	# Intenal from cutlist in pts
+	# Internal from cutlist in pts
 	def __getCutListLast(self):
 		if self.cut_list:
 			for (pts, what) in self.cut_list:
@@ -213,7 +217,7 @@ class CutList():
 	def __getCutListLength(self):
 		if self.cut_list:
 			for (pts, what) in self.cut_list:
-				if what == self.CUT_TYPE_OUT:
+				if what == self.CUT_TYPE_LENGTH:
 					return pts
 		return 0
 
@@ -246,7 +250,7 @@ class CutList():
 		#print "CUTSTEST3 ", self.cut_list
 		self.__replaceLast( play )
 		#print "CUTSTEST4 ", self.cut_list
-		self.__replaceOut( length )
+		self.__replaceLength( length )
 		#print "CUTSTEST5 ", self.cut_list
 		self.uploadCuesheet()
 
@@ -309,8 +313,14 @@ class CutList():
 		self.__appendSavedLast(newSaved)
 
 	def __insort(self, pts, what):
-		if (pts, what) not in self.cut_list:
-			#TODO Handle duplicates and near markers
+		if self.cut_list:
+			for (clpts, clwhat) in self.cut_list[:]:
+				if clwhat == what:
+					if clpts-self.INSORT_SCOPE < pts < clpts+self.INSORT_SCOPE:
+						# Found a conflicting entry, replace it to avoid doubles and short jumps
+						self.cut_list.remove( (clpts, clwhat) )
+			insort(self.cut_list, (pts, what))
+		else:
 			insort(self.cut_list, (pts, what))
 
 	def __appendSavedLast(self, pts):
@@ -318,13 +328,13 @@ class CutList():
 			self.__insort(pts, self.CUT_TYPE_MARK)
 			self.cut_list.append( (pts, self.CUT_TYPE_SAVEDLAST) )
 
-	def __replaceOut(self, pts):
+	def __replaceLength(self, pts):
 		if self.cut_list:
 			for cp in self.cut_list[:]:
-				if cp[1] == self.CUT_TYPE_OUT:
+				if cp[1] == self.CUT_TYPE_LENGTH:
 					self.cut_list.remove(cp)
 		if pts > 0:
-			self.__insort(pts, self.CUT_TYPE_OUT)
+			self.__insort(pts, self.CUT_TYPE_LENGTH)
 
 	def __replaceLast(self, pts):
 		if self.cut_list:
