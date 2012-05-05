@@ -30,6 +30,13 @@ from Screens.InfoBarGenerics import InfoBarCueSheetSupport, InfoBarSeek
 from EMCTasker import emcDebugOut
 from IsoFileSupport import IsoSupport
 
+try:
+	from Plugins.Extensions.CutlistDownloader.plugin import bestCutlist#
+except ImportError as ie:
+	hasCutlistDownloader = False
+else:
+	hasCutlistDownloader = True
+	
 
 # Cut File support class
 # Description
@@ -129,16 +136,12 @@ class CutList():
 					self.__readCutFile()
 			
 			#print "CUTSTEST0 ", self.cut_list
-			
 			if config.EMC.cutlist_at_download.value:
-				if service and service.getName():
-					from MovieCenter import sidDVB
-					if service and service.type == sidDVB:
-						try:
-							from Plugins.Extensions.CutlistDownloader.plugin import bestCutlist#
-							bestCutlist(service, self.cutlistDownloaded)
-						except ImportError as ie:
-							emcDebugOut("[EMC] Plugin CutlistDownloader missing:" + str(e))
+				if service and hasCutlistDownloader:
+					try:
+						bestCutlist(service, self.cutlistDownloaded)
+					except Exception, e:
+						emcDebugOut("[EMC] Plugin CutlistDownloader exception:" + str(e))
 			
 			#MAYBE: If the cutlist is empty we can check the EPG NowNext Events
 		except Exception, e:

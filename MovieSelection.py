@@ -712,8 +712,8 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		self.updateTitle()
 		current = self.getCurrent()
 		if current and not self["list"].serviceMoving(current) and not self["list"].serviceDeleting(current):
-			#self.updateEventInfo( current )
-			start_new_thread(self.updateEventInfo, (current,))
+			self.updateEventInfo( current )
+			#OE2.0 Bug start_new_thread(self.updateEventInfo, (current,))
 
 	def resetInfo(self, preview=True):
 		print "EMC: resetInfo"
@@ -989,13 +989,13 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		if config.EMC.needsreload.value:
 			config.EMC.needsreload.value = False
 			self["list"].resetSorting()
-			#DelayedFunction(50, self.initList)
-			start_new_thread(self.initList, ())
+			DelayedFunction(50, self.initList)
+			#OE2.0 Bug start_new_thread(self.initList, ())
 		
 		if config.EMC.movie_reload.value \
 			or len(self["list"]) == 0:
-			#DelayedFunction(50, self.initList)
-			start_new_thread(self.initList, ())
+			DelayedFunction(50, self.initList)
+			#OE2.0 Bug start_new_thread(self.initList, ())
 		
 		else:
 			# Refresh is done automatically
@@ -1197,7 +1197,9 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		playlistcopy = playlist[:]
 		# Start Player
 		if self.playerInstance is None:
-			Notifications.AddNotification(EMCMediaCenter, playlistcopy, self, playall, self.lastservice)
+			#Notifications.AddNotification(EMCMediaCenter, playlistcopy, self, playall, self.lastservice)
+			#EMCMediaCenter(self.session, playlistcopy, self, playall, self.lastservice)
+			self.session.open(EMCMediaCenter, playlistcopy, self, playall, self.lastservice)
 		else:
 			#DelayedFunction(10, self.playerInstance.movieSelected, playlist, playall)
 			self.playerInstance.movieSelected(playlist, playall)

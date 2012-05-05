@@ -41,6 +41,14 @@ import NavigationInstance
 
 from itertools import cycle
 
+try:
+	from Plugins.Extensions.CutlistDownloader.plugin import bestCutlist#
+except ImportError as ie:
+	hasCutlistDownloader = False
+else:
+	hasCutlistDownloader = True
+
+
 from DelayedFunction import DelayedFunction
 from EMCTasker import emcTasker, emcDebugOut
 
@@ -323,8 +331,13 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 			(  _("Always save last played progress as marker")    , config.EMC.movie_save_lastplayed    , None                  , None                  , 1     , []          , _("HELP_Always save last played progress as marker")     , None              , None ),
 			(  _("Zap to channel after record EOF")               , config.EMC.record_eof_zap           , None                  , None                  , 1     , []          , _("HELP_Zap to channel after record EOF")                , None              , None ),
 			(  _("Show real length of running records")           , config.EMC.record_show_real_length  , None                  , None                  , 1     , []          , _("HELP_Show real length of running records")            , None              , True ),
-			(  _("Download cutlist from Cutlist.at")              , config.EMC.cutlist_at_download      , None                  , None                  , 1     , []          , _("HELP_Download cutlist from Cutlist.at")               , False              , True ),
-			
+		]
+		if hasCutlistDownloader:
+			self.EMCConfig.append(
+			(  _("Download cutlist from Cutlist.at")              , config.EMC.cutlist_at_download      , None                  , None                  , 1     , []          , _("HELP_Download cutlist from Cutlist.at")               , False             , True ),
+		)
+		self.EMCConfig.extend(
+		[
 			(  separator                                          , config.EMC.about                    , None                  , None                  , 0     , []          , _("HELP_separator_Trashcan settings")                    , None              , None ),
 			(  _("Trashcan enable")                               , config.EMC.movie_trashcan_enable    , None                  , self.openLocationBox  , 0     , []          , _("HELP_Trashcan enable")                                , None              , None ),
 			(  _("Trashcan path")                                 , config.EMC.movie_trashcan_path      , self.validatePath     , self.openLocationBox  , 0     , [-1]        , _("HELP_Trashcan path")                                  , None              , None ),
@@ -374,6 +387,7 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 			(  _("EMC output directory")                          , config.EMC.folder                   , self.validatePath     , self.openLocationBox  , 2     , [-1]        , _("HELP_EMC output directory")                           , None              , None ),
 			(  _("Debug output file name")                        , config.EMC.debugfile                , self.validatePath     , None                  , 2     , [-2]        , _("HELP_Debug output file name")                         , None              , None ),
 		]
+		)
 
 	def createConfig(self):
 		list = []

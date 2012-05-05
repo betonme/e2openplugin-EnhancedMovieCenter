@@ -91,24 +91,15 @@ class InfoBarSupport(	InfoBarBase, \
 
 	def __init__(self):
 
-		for x in	InfoBarBase, \
-							InfoBarNotifications, \
-							InfoBarSeek, \
-							InfoBarShowHide, \
-							InfoBarMenu, \
-							InfoBarShowMovies, \
-							InfoBarAudioSelection, \
-							InfoBarSimpleEventView, \
-							InfoBarServiceNotifications, \
-							InfoBarPVRState, \
-							InfoBarMoviePlayerSummarySupport, \
-							InfoBarSubtitleSupport, \
-							InfoBarTeletextPlugin, \
-							InfoBarServiceErrorPopupSupport, \
-							InfoBarExtensions, \
-							InfoBarPlugins, \
-							InfoBarNumberZap:
-							#InfoBarCueSheetSupport
+		for x in	InfoBarShowHide, InfoBarMenu, \
+				InfoBarBase, InfoBarSeek, InfoBarShowMovies, \
+				InfoBarAudioSelection, InfoBarSimpleEventView, \
+				InfoBarServiceNotifications, InfoBarPVRState, \
+				InfoBarMoviePlayerSummarySupport, InfoBarSubtitleSupport, \
+				InfoBarTeletextPlugin, InfoBarServiceErrorPopupSupport, InfoBarExtensions, InfoBarNotifications, \
+				InfoBarPlugins, InfoBarNumberZap:
+				#InfoBarPiP
+				#InfoBarCueSheetSupport
 			x.__init__(self)
 			
 		# Initialize InfoBarCueSheetSupport because we cannot override __serviceStarted
