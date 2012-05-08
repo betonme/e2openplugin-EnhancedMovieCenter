@@ -31,13 +31,13 @@
 	</widget>
 	
 	<widget source="Service" render="Label" position="230,637" size="100,30" font="Regular;22" halign="left" backgroundColor="#00000000" transparent="1">
-		<convert type="EMCServicePosition">Position</convert>
+		<convert type="EMCServicePosition">Position,ShowHours</convert>
 	</widget>
 	<widget source="Service" render="Label" position="590,637" size="100,30" font="Regular;22" halign="center" backgroundColor="#00000000" transparent="1">
-		<convert type="EMCServicePosition">Length</convert>
+		<convert type="EMCServicePosition">Length,ShowHours</convert>
 	</widget>
 	<widget source="Service" render="Label" position="930,637" size="100,30" font="Regular;22" halign="right" backgroundColor="#00000000" transparent="1">
-		<convert type="EMCServicePosition">Remaining,Negate</convert>
+		<convert type="EMCServicePosition">Remaining,Negate,ShowHours</convert>
 	</widget>
 	<!-- Infobar Cover -->
 	<!-- <widget name="Cover" position="50,320" size="230,230" zPosition="1" alphatest="on" /> -->
