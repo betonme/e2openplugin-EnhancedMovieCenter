@@ -357,11 +357,16 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 
 	def leavePlayer(self, stopped=True):
 		#TEST is stopped really necessary
-		self.setSubtitleState(False)
 		self.stopped = stopped
-		if self.playerOpenedList and not stopped:	# for some strange reason "not stopped" has to be checked to avoid a bug (???)
-			self.recordings.close(None)
+		if self.playerOpenedList:
+			print "leavePlayer self.recordings.close", self.recordings
+			#self.recordings.close()
+			#self.session.close(self.recordings)
+			#self.session.execEnd(self.recordings)
+			self.playerOpenedList = False
+			self.recordings.hide()
 			return
+		self.setSubtitleState(False)
 		if self.dvdScreen:
 			self.dvdScreen.close()
 		# Possible Problem: Avoid GeneratorExit exception
@@ -382,15 +387,17 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 			self.lastservice = None
 		
 		try:
-			from MovieSelection import gMS
-			gMS.returnService = self.service
+			#from MovieSelection import gMS
+			self.recordings.returnService = self.service
 			if self.stopped:
 				emcDebugOut("[EMCPlayer] Player closed by user")
 				if config.EMC.movie_reopen.value:
-					DelayedFunction(80, gMS.session.execDialog, gMS)		# doesn't crash Enigma2 subtitle functionality
+					#DelayedFunction(80, gMS.session.execDialog, gMS)		# doesn't crash Enigma2 subtitle functionality
+					self.recordings.show()
 			elif self.closedByDelete:
 				emcDebugOut("[EMCPlayer] closed due to file delete")
-				DelayedFunction(80, gMS.session.execDialog, gMS)		# doesn't crash Enigma2 subtitle functionality
+				#DelayedFunction(80, gMS.session.execDialog, gMS)		# doesn't crash Enigma2 subtitle functionality
+				self.recordings.show()
 			else:
 				emcDebugOut("[EMCPlayer] closed due to playlist EOF")
 				if self.closeAll:
@@ -402,7 +409,8 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 									)
 				else:
 					if self.playerOpenedList or config.EMC.movie_reopenEOF.value: # did the player close while movie list was open?
-						DelayedFunction(80, gMS.session.execDialog, gMS)		# doesn't crash Enigma2 subtitle functionality
+						#DelayedFunction(80, gMS.session.execDialog, gMS)		# doesn't crash Enigma2 subtitle functionality
+						self.recordings.show()
 			self.playerOpenedList = False
 			self.service = None
 		except Exception, e:
@@ -467,6 +475,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 		return self.service
 
 	def movieSelected(self, playlist, playall=None):
+		print "movieSelected"
 		self.playerOpenedList = False
 		if playlist is not None and len(playlist) > 0:
 			self.__playerClosed()
@@ -749,8 +758,8 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 	def showMovies(self):
 		try:
 			self.playerOpenedList = True
-			#DelayedFunction(20, self.session.execDialog, self.recordings)
-			self.session.execDialog(self.recordings)
+			#self.session.execDialog(self.recordings)
+			self.recordings.show()
 		except Exception, e:
 			emcDebugOut("[EMCPlayer] showMovies exception:\n" + str(e))
 

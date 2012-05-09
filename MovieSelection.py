@@ -314,7 +314,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 				"7":		(self.CoolTVGuide,			"-"),
 				"8":		(self.CoolSingleGuide,		"-"),
 				"9":		(self.CoolEasyGuide,	"-"),
-			}, prio=-1)
+			}, prio=-3)
 			# give them a little more priority to win over baseclass buttons
 		self["actions"].csel = self
 		
@@ -405,7 +405,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			self.coverTimer.stop()
 		if self.previewTimer.isActive():
 			self.previewTimer.stop()
-		self.close(None)
+		self.close()
 
 	def blueFunc(self):
 		if config.EMC.movie_bluefunc.value == "MH":
@@ -1204,7 +1204,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			#DelayedFunction(10, self.playerInstance.movieSelected, playlist, playall)
 			self.playerInstance.movieSelected(playlist, playall)
 		self.busy = False
-		self.close(None)
+		#self.close()
 
 	def entrySelected(self, playall=False):
 		current = self.getCurrent()
