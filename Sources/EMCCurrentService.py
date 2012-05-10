@@ -34,7 +34,8 @@ class EMCCurrentService(CurrentService):
 	@cached
 	def getCurrentService(self):
 		service = self.navcore.getCurrentService()
-		service.cutList = self.cueSheet
+		if service:
+			service.cutList = self.cueSheet
 		return service
 
 	service = property(getCurrentService)

@@ -60,6 +60,13 @@ from MovieCenter import sidDVD, sidDVB
 dvdPlayerPlg = "%s%s"%(resolveFilename(SCOPE_PLUGINS), "Extensions/DVDPlayer/plugin.py")
 
 
+class EMCMoviePlayerSummary(Screen):
+	def __init__(self, session, parent):
+		Screen.__init__(self, session, parent)
+		self.skinName = ["EMCMoviePlayerSummary"]
+		self["Service"] = EMCCurrentService(session.nav, parent)
+
+
 class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 	
 	ENABLE_RESUME_SUPPORT = True
@@ -732,12 +739,12 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 		if self.has_key("SeekActions"):
 			self["SeekActions"].setEnabled(True)
 
-	# Not used yet
-	#def createSummary(self):
-	#	if self.service and self.service.type == sidDVD:
-	#		if fileExists(dvdPlayerPlg) or fileExists("%sc"%dvdPlayerPlg):
-	#			from Plugins.Extensions.DVDPlayer.plugin import DVDSummary
-	#			return DVDSummary
+	def createSummary(self):
+		if self.service and self.service.type == sidDVD and (fileExists(dvdPlayerPlg) or fileExists("%sc"%dvdPlayerPlg)):
+			from Plugins.Extensions.DVDPlayer.plugin import DVDSummary
+			return DVDSummary
+		else:
+			return EMCMoviePlayerSummary
 
 	def setChapterLabel(self):
 		chapterLCD = "Menu"

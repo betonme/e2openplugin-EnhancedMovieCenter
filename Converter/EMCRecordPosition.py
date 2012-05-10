@@ -57,10 +57,3 @@ class EMCRecordPosition(ServicePosition):
 		return ServicePosition.getLength(self)
 
 	length = property(getLength)
-
-	@cached
-	def getValue(self):
-		# Not used
-		return None
-	
-	value = property(getValue)

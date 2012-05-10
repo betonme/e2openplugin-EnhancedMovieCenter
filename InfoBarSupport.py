@@ -80,7 +80,6 @@ class InfoBarSupport(	InfoBarBase, \
 											InfoBarServiceNotifications, \
 											InfoBarPVRState, \
 											InfoBarCueSheetSupport, \
-											InfoBarMoviePlayerSummarySupport, \
 											InfoBarSubtitleSupport, \
 											InfoBarTeletextPlugin, \
 											InfoBarServiceErrorPopupSupport, \
@@ -88,6 +87,7 @@ class InfoBarSupport(	InfoBarBase, \
 											InfoBarPlugins, \
 											InfoBarNumberZap ):
 											#InfoBarPiP
+											#InfoBarMoviePlayerSummarySupport
 
 	def __init__(self):
 
@@ -95,11 +95,12 @@ class InfoBarSupport(	InfoBarBase, \
 				InfoBarBase, InfoBarSeek, InfoBarShowMovies, \
 				InfoBarAudioSelection, InfoBarSimpleEventView, \
 				InfoBarServiceNotifications, InfoBarPVRState, \
-				InfoBarMoviePlayerSummarySupport, InfoBarSubtitleSupport, \
+				InfoBarSubtitleSupport, \
 				InfoBarTeletextPlugin, InfoBarServiceErrorPopupSupport, InfoBarExtensions, InfoBarNotifications, \
 				InfoBarPlugins, InfoBarNumberZap:
 				#InfoBarPiP
 				#InfoBarCueSheetSupport
+				#InfoBarMoviePlayerSummarySupport
 			x.__init__(self)
 			
 		# Initialize InfoBarCueSheetSupport because we cannot override __serviceStarted
