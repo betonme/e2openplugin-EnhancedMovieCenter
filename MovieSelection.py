@@ -32,7 +32,7 @@ from Screens.LocationBox import LocationBox
 from Tools import Notifications
 from Tools.Notifications import AddPopup
 from Tools.BoundFunction import boundFunction
-from enigma import getDesktop, eServiceReference, eTimer, iPlayableService
+from enigma import getDesktop, eServiceReference, eTimer, iPlayableService, eServiceCenter
 
 import os
 from time import time
@@ -1517,6 +1517,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			if os.path.exists(config.EMC.movie_trashcan_path.value) or delete:
 				# if the user doesn't want to keep the movies in the trash, purge immediately
 				self.execFileOp(config.EMC.movie_trashcan_path.value, current, self.tmpSelList, op="delete", purgeTrash=delete)
+				
 				for x in self.tmpSelList:
 					self.lastPlayedCheck(x)
 				self["list"].resetSelection()
@@ -1580,7 +1581,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		self.setReturnCursor()
 		self.updateInfo()
 
-#Think about: All file operations should be in a separate file
+#Think about: All file operations should be in a separate class
 
 	def execFileOp(self, targetPath, current, selectedlist, op="move", purgeTrash=False):
 		self.returnService = self.getNextSelectedService(current, selectedlist)
@@ -1595,15 +1596,33 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 					c = []
 					if purgeTrash or self.currentPath == targetPath or self.mountpoint(self.currentPath) != self.mountpoint(targetPath):
 						# direct delete from the trashcan or network mount (no copy to trashcan from different mountpoint)
-						c.append( 'rm -f "'+ path +'."*' )
+						#c.append( 'rm -f "'+ path +'."*' )
+						
+						#TEST_E2DELETE
+						serviceHandler = eServiceCenter.getInstance()
+						offline = serviceHandler.offlineOperations(service)
+						result = False
+						if offline is not None:
+							# really delete!
+							if not offline.deleteFromDisk(0):
+								result = True
+						if result == False:
+							self.session.open(MessageBox, _("Delete failed!"), MessageBox.TYPE_ERROR)
+						else:
+							self.removeService(service)
+						#TEST_E2DELETE
+						
 					else:
 						# create a time stamp with touch
 						c.append( 'touch "'+ path +'."*' )
 						# move movie into the trashcan
 						c.append( 'mv "'+ path +'."* "'+ targetPath +'/"' )
-					cmd.append( c )
-					association.append( (self.delCB, service) )	# put in a callback for this particular movie
-					self["list"].highlightService(True, "del", service)
+						
+						#TEST_E2DELETE <- decrement indent
+						cmd.append( c )
+						association.append( (self.delCB, service) )	# put in a callback for this particular movie
+						self["list"].highlightService(True, "del", service)
+						#TEST_E2DELETE
 					if config.EMC.movie_hide_del.value:
 						self.removeService(service)
 						self.setReturnCursor()
@@ -1790,7 +1809,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 						_("EMC: Skipping Trashcan Cleanup\nMovie Home Path is equal to or a subfolder of the Trashcan"),
 						MessageBox.TYPE_INFO,
 						0,
-						"EMC_TRASHCAN_CLEANUP_ID"
+						"EMC_TRASHCAN_CLEANUP_SKIPPED_ID"
 					)
 					return
 			
@@ -1808,7 +1827,29 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 								if os.path.exists(fullpath):
 									expTime = localtime(os.stat(fullpath).st_mtime + 24*60*60*int(config.EMC.movie_trashcan_limit.value))
 									if currTime > expTime:
-										purgeCmd += '; rm -f "'+ os.path.splitext(fullpath)[0] +'."*'
+										#purgeCmd += '; rm -f "'+ os.path.splitext(fullpath)[0] +'."*'
+										
+										#TEST_E2DELETE
+										service = self["list"].getPlayerService(fullpath, movie, ext)
+										serviceHandler = eServiceCenter.getInstance()
+										offline = serviceHandler.offlineOperations(service)
+										result = False
+										if offline is not None:
+											# really delete!
+											if not offline.deleteFromDisk(0):
+												result = True
+										if result == False:
+											#self.session.open(MessageBox, _("Delete failed!"), MessageBox.TYPE_ERROR)
+											AddPopup(
+												_("EMC Trashcan Cleanup failed!"),
+												MessageBox.TYPE_ERROR,
+												0,
+												"EMC_TRASHCAN_CLEANUP_FAILED_ID"
+											)
+										else:
+											self.removeService(service)
+										#TEST_E2DELETE
+										
 					if purgeCmd != "":
 						emcTasker.shellExecute(purgeCmd[2:])
 						emcDebugOut("[EMCMS] trashcan cleanup activated")
