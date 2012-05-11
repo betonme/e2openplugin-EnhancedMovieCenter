@@ -225,8 +225,10 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 	def emptyTrashCB(self, confirmed):
 		if confirmed:
 			# TODO append callback refreshlist
-			emcTasker.shellExecute("rm -f %s/*"%config.EMC.movie_trashcan_path.value)
-		self.close(None)
+			#emcTasker.shellExecute("rm -f %s/*"%config.EMC.movie_trashcan_path.value)
+			self.close("emptytrash")
+		else:
+			self.close(None)
 
 	def onDialogShow(self):
 		self.setTitle(_("Movie Selection Menu"))

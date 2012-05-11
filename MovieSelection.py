@@ -607,6 +607,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			elif selection == "updatetitle": self.updateTitle()
 			elif selection == "imdb": self.imdb()
 			elif selection == "rename": self.rename()
+			elif selection == "emptytrash": self.purgeExpired(emptyTrash=True)
 
 	def openMenu(self):
 		current = self.getCurrent()
@@ -1797,7 +1798,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			emcDebugOut("[EMCMS] trashcanCreate exception:\n" + str(e))
 
 	# Move all trashcan operations to a separate class
-	def purgeExpired(self):
+	def purgeExpired(self, emptyTrash=False):
 		try:
 			movie_trashpath = config.EMC.movie_trashcan_path.value
 			movie_homepath = os.path.realpath(config.EMC.movie_homepath.value)
@@ -1814,19 +1815,18 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 					return
 			
 			if os.path.exists(movie_trashpath):
-				if config.EMC.movie_trashcan_clean.value is True:
+				if config.EMC.movie_trashcan_clean.value is True or emptyTrash:
 					# Trashcan cleanup
 					purgeCmd = ""
+					currTime = localtime()
 					for root, dirs, files in os.walk(movie_trashpath):
 						for movie in files:
 							# Only check media files
 							ext = os.path.splitext(movie)[1].lower()
 							if ext in extMedia:
 								fullpath = os.path.join(root, movie)
-								currTime = localtime()
 								if os.path.exists(fullpath):
-									expTime = localtime(os.stat(fullpath).st_mtime + 24*60*60*int(config.EMC.movie_trashcan_limit.value))
-									if currTime > expTime:
+									if emptyTrash or currTime > localtime(os.stat(fullpath).st_mtime + 24*60*60*int(config.EMC.movie_trashcan_limit.value)):
 										#purgeCmd += '; rm -f "'+ os.path.splitext(fullpath)[0] +'."*'
 										
 										#TEST_E2DELETE
@@ -1863,6 +1863,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 					import Screens.Standby
 					if Screens.Standby.inStandby:
 						mvCmd = ""
+						currTime = localtime()
 						for root, dirs, files in os.walk(movie_homepath):
 							if root.startswith(movie_trashpath):
 								# Don't handle the trashcan and its subfolders
@@ -1875,9 +1876,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 									fullpath = os.path.join(root, movie)
 									fullpathcuts = fullpath + ".cuts"
 									if os.path.exists(fullpathcuts):
-										currTime = localtime()
-										expTime = localtime(os.stat(fullpathcuts).st_mtime + 24*60*60*int(config.EMC.movie_finished_limit.value))
-										if currTime > expTime:
+										if currTime > localtime(os.stat(fullpathcuts).st_mtime + 24*60*60*int(config.EMC.movie_finished_limit.value)):
 											# Check progress
 											service = self["list"].getPlayerService(fullpath, movie, ext)
 											progress = self["list"].getProgress(service, forceRecalc=True)
