@@ -1199,12 +1199,15 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		if self.playerInstance is None:
 			#Notifications.AddNotification(EMCMediaCenter, playlistcopy, self, playall, self.lastservice)
 			#EMCMediaCenter(self.session, playlistcopy, self, playall, self.lastservice)
-			self.session.open(EMCMediaCenter, playlistcopy, self, playall, self.lastservice)
+			#self.session.open(EMCMediaCenter, playlistcopy, self, playall, self.lastservice)
+			#DelayedFunction(100, self.session.open, EMCMediaCenter, playlistcopy, self, playall, self.lastservice)
+			self.close(playlistcopy, self, playall, self.lastservice)
+			self.busy = False
 		else:
 			#DelayedFunction(10, self.playerInstance.movieSelected, playlist, playall)
 			self.playerInstance.movieSelected(playlist, playall)
-		self.busy = False
-		#self.close()
+			self.busy = False
+			self.close()
 
 	def entrySelected(self, playall=False):
 		current = self.getCurrent()

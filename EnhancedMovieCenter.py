@@ -19,7 +19,7 @@
 #	<http://www.gnu.org/licenses/>.
 #
 
-from __init__ import _
+from . import _
 from Components.config import *
 from Components.config import config
 from Components.Button import Button
@@ -85,7 +85,8 @@ trashCleanCall = None
 
 def cleanupSetup(dummy=None):
 	try:
-		from MovieSelection import gMS
+		#from MovieSelection import gMS
+		from plugin import gRecordings
 		global trashCleanCall
 		if trashCleanCall is not None:
 			if trashCleanCall.exists():
@@ -108,7 +109,8 @@ def cleanupSetup(dummy=None):
 				# Recall setup funktion
 				trashCleanCall = DelayedFunction(1000*seconds, cleanupSetup)
 				# Execute trash cleaning
-				DelayedFunction(2000, gMS.purgeExpired)
+				#DelayedFunction(2000, gMS.purgeExpired)
+				DelayedFunction(2000, gRecordings.purgeExpired)
 				emcDebugOut("Next trashcan cleanup in " + str(seconds/60) + " minutes")
 	except Exception, e:
 		emcDebugOut("[sp] cleanupSetup exception:\n" + str(e))

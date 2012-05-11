@@ -366,12 +366,12 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 		#TEST is stopped really necessary
 		self.stopped = stopped
 		if self.playerOpenedList:
-			print "leavePlayer self.recordings.close", self.recordings
-			#self.recordings.close()
+			print "leavePlayer self.recordings.close"
+			self.recordings.close()
 			#self.session.close(self.recordings)
 			#self.session.execEnd(self.recordings)
 			self.playerOpenedList = False
-			self.recordings.hide()
+			#self.recordings.hide()
 			return
 		self.setSubtitleState(False)
 		if self.dvdScreen:
@@ -380,19 +380,8 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 		#if self.playall:
 		#	playall.close()
 		self.recordings.setPlayerInstance(None)
-		self.close()
-
-	def __playerClosed(self):
-		if self.service:
-			self.updateCutList( self.getSeekPlayPosition(), self.getSeekLength() )
-
-	def __onClose(self):
-		if self.picload:
-			del self.picload
-		if self.lastservice:
-			self.session.nav.playService(self.lastservice)
-			self.lastservice = None
 		
+		reopen = False
 		try:
 			#from MovieSelection import gMS
 			self.recordings.returnService = self.service
@@ -400,11 +389,13 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 				emcDebugOut("[EMCPlayer] Player closed by user")
 				if config.EMC.movie_reopen.value:
 					#DelayedFunction(80, gMS.session.execDialog, gMS)		# doesn't crash Enigma2 subtitle functionality
-					self.recordings.show()
+					#self.recordings.show()
+					reopen = True
 			elif self.closedByDelete:
 				emcDebugOut("[EMCPlayer] closed due to file delete")
 				#DelayedFunction(80, gMS.session.execDialog, gMS)		# doesn't crash Enigma2 subtitle functionality
-				self.recordings.show()
+				#self.recordings.show()
+				reopen = True
 			else:
 				emcDebugOut("[EMCPlayer] closed due to playlist EOF")
 				if self.closeAll:
@@ -417,11 +408,25 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 				else:
 					if self.playerOpenedList or config.EMC.movie_reopenEOF.value: # did the player close while movie list was open?
 						#DelayedFunction(80, gMS.session.execDialog, gMS)		# doesn't crash Enigma2 subtitle functionality
-						self.recordings.show()
+						#self.recordings.show()
+						reopen = True
 			self.playerOpenedList = False
 			self.service = None
 		except Exception, e:
-			emcDebugOut("[EMCPlayer] __onClose exception:\n" + str(e))
+			emcDebugOut("[EMCPlayer] leave exception:\n" + str(e))
+		
+		self.close(reopen)
+
+	def __playerClosed(self):
+		if self.service:
+			self.updateCutList( self.getSeekPlayPosition(), self.getSeekLength() )
+
+	def __onClose(self):
+		if self.picload:
+			del self.picload
+		if self.lastservice:
+			self.session.nav.playService(self.lastservice)
+			self.lastservice = None
 
 	##############################################################################
 	## Recordings relevant function
@@ -765,8 +770,8 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 	def showMovies(self):
 		try:
 			self.playerOpenedList = True
-			#self.session.execDialog(self.recordings)
-			self.recordings.show()
+			self.session.execDialog(self.recordings)
+			#self.recordings.show()
 		except Exception, e:
 			emcDebugOut("[EMCPlayer] showMovies exception:\n" + str(e))
 

@@ -38,7 +38,6 @@ from Components.Converter import EMCServiceTime
 
 from __init__ import *
 from EMCTasker import emcTasker, emcDebugOut
-from EnhancedMovieCenter import _, EMCVersion, EMCStartup, EnhancedMovieCenterMenu
 
 
 class ConfigTextWOHelp(ConfigText):
@@ -295,15 +294,27 @@ def showMoviesNew(dummy_self = None):
 	try:
 		global gSession, gRecordings
 		gSession.execDialog(gRecordings)
+		gRecordings.callback = showMoviesCallback
 	except Exception, e:
 		emcDebugOut("[showMoviesNew] exception:\n" + str(e))
+
+def showMoviesCallback(*args):
+	if args:
+		global gSession
+		from EMCMediaCenter import EMCMediaCenter
+		gSession.openWithCallback(playerCallback, EMCMediaCenter, *args)
+
+def playerCallback(reopen):
+	if reopen:
+		showMoviesNew()
+
 
 def autostart(reason, **kwargs):
 	if reason == 0: # start
 		if kwargs.has_key("session"):
 			global gSession
 			gSession = kwargs["session"]
-			
+			from EnhancedMovieCenter import EMCStartup
 			EMCStartup(gSession)
 			emcTasker.Initialize(gSession)
 			
@@ -327,6 +338,7 @@ def autostart(reason, **kwargs):
 					emcDebugOut("[spStartup] instantiateDialog exception:\n" + str(e))
 
 def pluginOpen(session, *args, **kwargs):
+	from EnhancedMovieCenter import EnhancedMovieCenterMenu
 	try:
 		session.open(EnhancedMovieCenterMenu)
 	except Exception, e:
@@ -336,6 +348,7 @@ def recordingsOpen(session, *args, **kwargs):
 	showMoviesNew()
 
 def Plugins(**kwargs):
+	from EnhancedMovieCenter import EMCVersion
 	localeInit()
 	descriptors = []
 	
