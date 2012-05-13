@@ -33,7 +33,7 @@ echo "Lösche alle *.py unter /tmp/temp/"
 rm -r /tmp/temp/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/*.py
 
 echo "Kopiere control Daten nach /tmp/temp/"
-cp -r /media/hdd/ipk/EMC/CONTROL/ /tmp/temp/
+cp -r /media/hdd/ipk/EMC_OE2/CONTROL/ /tmp/temp/
 
 echo "IPKG erstellung läuft...."
 sh ipkg-build.sh /tmp/temp/ /tmp

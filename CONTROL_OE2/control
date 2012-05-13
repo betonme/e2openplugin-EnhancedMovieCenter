@@ -1,0 +1,10 @@
+Package: enigma2-plugin-extensions-enhancedmoviecenter
+Version: 3.0.0beta685
+Description: Enhanced Movie Center by Coolman, Betonme & Swiss-MAD
+Section: extra
+Priority: optional
+Maintainer: Coolman, Betonme, dirtylion & Swiss-MAD
+Architecture: mips32el
+OE: EnhancedMovieCenter_V3.0.0beta685
+Homepage: http://www.i-have-a-dreambox.com/wbb2/thread.php?threadid=156282
+Depends: enigma2 (>= 2.6git20091014), python-shell
