@@ -35,7 +35,6 @@ from Tools.BoundFunction import boundFunction
 from enigma import getDesktop, eServiceReference, eTimer, iPlayableService, eServiceCenter
 
 import os
-import re
 from time import time
 from thread import start_new_thread
 
@@ -1584,6 +1583,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		self.updateInfo()
 
 #Think about: All file operations should be in a separate class
+# Uses pipes instead of os.system
 
 	def execFileOp(self, targetPath, current, selectedlist, op="move", purgeTrash=False):
 		self.returnService = self.getNextSelectedService(current, selectedlist)
@@ -1615,10 +1615,11 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 						#TEST_E2DELETE
 						
 					else:
+						path = path.replace("'","\'")
 						# create a time stamp with touch
-						c.append( 'touch "'+ re.escape(path) +'."*' )
+						c.append( 'touch "'+ path +'."*' )
 						# move movie into the trashcan
-						c.append( 'mv "'+ re.escape(path) +'."* "'+ targetPath +'/"' )
+						c.append( 'mv "'+ path +'."* "'+ targetPath +'/"' )
 						
 						#TEST_E2DELETE <- decrement indent
 						cmd.append( c )
@@ -1637,10 +1638,12 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 					# different self.mountpoint? -> reset user&group
 					if self.mountpoint(targetPath) != self.mountpoint(config.EMC.movie_homepath.value):		# CIFS to HDD is ok!
 						# need to change file ownership to match target filesystem file creation
+						
 						tfile = targetPath + "/owner_test"
-						sfile = "\""+ re.escape(path) +".\"*"
+						path = path.replace("'","\'")
+						sfile = "\""+ path +".\"*"
 						c.append( "touch %s;ls -l %s | while read flags i owner group crap;do chown $owner:$group %s;done;rm %s" %(tfile,tfile,sfile,tfile) )
-					c.append( 'mv "'+ re.escape(path) +'."* "'+ targetPath +'/"' )
+					c.append( 'mv "'+ path +'."* "'+ targetPath +'/"' )
 					cmd.append( c )
 					association.append( (self.moveCB, service) )	# put in a callback for this particular movie
 					self["list"].highlightService(True, "move", service)
@@ -1658,9 +1661,10 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 					if self.mountpoint(targetPath) != self.mountpoint(config.EMC.movie_homepath.value):		# CIFS to HDD is ok!
 						# need to change file ownership to match target filesystem file creation
 						tfile = targetPath + "/owner_test"
-						sfile = "\""+ re.escape(path) +".\"*"
+						path = path.replace("'","\'")
+						sfile = "\""+ path +".\"*"
 						c.append( "touch %s;ls -l %s | while read flags i owner group crap;do chown $owner:$group %s;done;rm %s" %(tfile,tfile,sfile,tfile) )
-					c.append( 'cp "'+ re.escape(path) +'."* "'+ targetPath +'/"' )
+					c.append( 'cp "'+ path +'."* "'+ targetPath +'/"' )
 					cmd.append( c )
 					association.append( (self.copyCB, service) )	# put in a callback for this particular movie
 					self["list"].highlightService(True, "copy", service)
@@ -1731,7 +1735,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 	def mvDirSelected(self, targetPath):
 		if targetPath is not None:
 			current = self.getCurrent()
-			self.(targetPath, current, self.tmpSelList)
+			self.execFileOp(targetPath, current, self.tmpSelList)
 			emcDebugOut("[EMCMS] mvDirSelected")
 
 	def copyMovie(self):
@@ -1883,7 +1887,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 											progress = self["list"].getProgress(service, forceRecalc=True)
 											if progress >= int(config.EMC.movie_finished_percent.value):
 												# cut file extension
-												fullpath = re.escape(os.path.splitext(fullpath)[0])
+												fullpath = os.path.splitext(fullpath)[0].replace("'","\'")
 												# create a time stamp with touch for all corresponding files
 												mvCmd += '; touch "'+ fullpath +'."*'
 												# move movie into the trashcan
