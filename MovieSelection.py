@@ -1610,8 +1610,14 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 								result = True
 						if result == False:
 							self.session.open(MessageBox, _("Delete failed!"), MessageBox.TYPE_ERROR)
+							return
 						else:
 							self.removeService(service)
+							self.setReturnCursor()
+							path = path.replace("'","\'")
+							c.append( 'rm -f "'+ path +'."jpg' )
+							c.append( 'rm -f "'+ path +'."png' )
+							cmd.append( c )
 						#TEST_E2DELETE
 						
 					else:
@@ -1626,9 +1632,9 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 						association.append( (self.delCB, service) )	# put in a callback for this particular movie
 						self["list"].highlightService(True, "del", service)
 						#TEST_E2DELETE
-					if config.EMC.movie_hide_del.value:
-						self.removeService(service)
-						self.setReturnCursor()
+						if config.EMC.movie_hide_del.value:
+							self.removeService(service)
+							self.setReturnCursor()
 				elif op == "move":
 					c = []
 					#if self.mountpoint(self.currentPath) == self.mountpoint(targetPath):
@@ -1851,8 +1857,11 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 												0,
 												"EMC_TRASHCAN_CLEANUP_FAILED_ID"
 											)
+											return
 										else:
-											self.removeService(service)
+											path = os.path.splitext(fullpath)[0].replace("'","\'")
+											purgeCmd += '; rm -f "'+ path +'."jpg'
+											purgeCmd += '; rm -f "'+ path +'."png'
 										#TEST_E2DELETE
 										
 					if purgeCmd != "":
