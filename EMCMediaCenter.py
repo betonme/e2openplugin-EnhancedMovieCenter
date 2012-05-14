@@ -102,6 +102,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 		# If we enable them, the sound will be delayed for about 2 seconds ?
 				iPlayableService.evStart: self.__serviceStarted,
 				iPlayableService.evStopped: self.__serviceStopped,
+				#iPlayableService.evEOF: self.__evEOF,
 				#iPlayableService.evUser: self.__timeUpdated,
 				#iPlayableService.evUser+1: self.__statePlay,
 				#iPlayableService.evUser+2: self.__statePause,
@@ -220,7 +221,6 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 		
 		# Dialog Events
 		self.onShown.append(self.__onShow)  # Don't use onFirstExecBegin() it will crash
-		self.onClose.insert(0, self.__playerClosed)
 		self.onClose.append(self.__onClose)
 		self.file_format = "(.ts|.avi|.mkv|.divx|.f4v|.flv|.img|.iso|.m2ts|.m4v|.mov|.mp4|.mpeg|.mpg|.mts|.vob|.wmv)"
 
@@ -259,6 +259,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 
 	def evEOF(self, needToClose=False):
 		# see if there are more to play
+		print "EMC PLAYER evEOF", self.playall, self.playcount, self.playlist
 		if self.playall:
 			# Play All
 			try:
@@ -321,16 +322,16 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 					self["DVDPlayerPlaybackActions"].setEnabled(False)
 				
 				# Check if the video preview is active and already running
-				if config.EMC.movie_preview.value:
-					ref = self.session.nav.getCurrentlyPlayingServiceReference()
-					if ref and service and ref.getPath() == service.getPath():
-						s = self.session.nav.getCurrentService()
-						cue = s and s.cueSheet()
-						if cue is not None:
-							cue.setCutListEnable(1)
-							self.downloadCuesheet()
-							print "EMC cue.setCutListEnable(1)"
-						return
+#				if config.EMC.movie_preview.value:
+#					ref = self.session.nav.getCurrentlyPlayingServiceReference()
+#					if ref and service and ref.getPath() == service.getPath():
+#						#s = self.session.nav.getCurrentService()
+#						#cue = s and s.cueSheet()
+#						#if cue is not None:
+#							#cue.setCutListEnable(1)
+#						self.downloadCuesheet()
+#							#print "EMC cue.setCutListEnable(1)"
+#						#return
 				
 				# Is this really necessary 
 				# TEST for M2TS Audio problem
@@ -417,10 +418,6 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 		
 		self.close(reopen)
 
-	def __playerClosed(self):
-		if self.service:
-			self.updateCutList( self.getSeekPlayPosition(), self.getSeekLength() )
-
 	def __onClose(self):
 		if self.picload:
 			del self.picload
@@ -490,7 +487,6 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 		print "movieSelected"
 		self.playerOpenedList = False
 		if playlist is not None and len(playlist) > 0:
-			self.__playerClosed()
 			self.playcount = -1
 			self.playlist = playlist
 			self.playall = playall
@@ -649,6 +645,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 			self.dvdScreen.show()
 		
 	def __serviceStopped(self):
+		print "EMC MediaCenter serviceStopped"
 		if self.dvdScreen:
 			self.dvdScreen.hide()
 		subs = self.getServiceInterface("subtitle")
@@ -854,7 +851,19 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 #		else:
 #			InfoBarSeek.showAfterSeek(self)
 
+	#def __evEOF(self):
+	#	print "EMC PLAYER __evEOF"
+
 	def doEofInternal(self, playing):
+		print "EMC PLAYER doEofInternal"
+		if not self.execing:
+			return
+		if not playing:
+			return
+		
+		if service.type != sidDVB:
+			self.updateCutList( self.getSeekPlayPosition(), self.getSeekLength() )
+		
 		if self.in_menu:
 			self.hide()
 		if config.EMC.record_eof_zap.value and self.recordings and self.service:
