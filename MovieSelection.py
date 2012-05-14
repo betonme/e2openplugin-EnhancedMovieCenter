@@ -1196,6 +1196,11 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		# force a copy instead of an reference!
 		self.lastPlayedMovies = playlist[:]
 		playlistcopy = playlist[:]
+		
+		# Workaround for MoviePreview with play problem, events will not be attached to the correct nav, eof recognition won't work
+		if config.EMC.movie_preview.value:
+			self.session.nav.stopService() 
+		
 		# Start Player
 		if self.playerInstance is None:
 			#Notifications.AddNotification(EMCMediaCenter, playlistcopy, self, playall, self.lastservice)
