@@ -299,15 +299,17 @@ def showMoviesNew(dummy_self = None):
 		emcDebugOut("[showMoviesNew] exception:\n" + str(e))
 
 def showMoviesCallback(*args):
-	if args:
-		global gSession
-		from EMCMediaCenter import EMCMediaCenter
-		gSession.openWithCallback(playerCallback, EMCMediaCenter, *args)
+	try:
+		if args:
+			global gSession
+			from EMCMediaCenter import EMCMediaCenter
+			gSession.openWithCallback(playerCallback, EMCMediaCenter, *args)
+	except Exception, e:
+		emcDebugOut("[showMoviesCallback] exception:\n" + str(e))
 
 def playerCallback(reopen):
 	if reopen:
 		showMoviesNew()
-
 
 def autostart(reason, **kwargs):
 	if reason == 0: # start
