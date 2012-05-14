@@ -102,6 +102,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 		# If we enable them, the sound will be delayed for about 2 seconds ?
 				iPlayableService.evStart: self.__serviceStarted,
 				iPlayableService.evStopped: self.__serviceStopped,
+				#iPlayableService.evEnd: self.__evEnd,
 				#iPlayableService.evEOF: self.__evEOF,
 				#iPlayableService.evUser: self.__timeUpdated,
 				#iPlayableService.evUser+1: self.__statePlay,
@@ -374,12 +375,18 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 			self.playerOpenedList = False
 			#self.recordings.hide()
 			return
+		
 		self.setSubtitleState(False)
 		if self.dvdScreen:
 			self.dvdScreen.close()
+		
 		# Possible Problem: Avoid GeneratorExit exception
 		#if self.playall:
 		#	playall.close()
+		
+		if self.service.type != sidDVB:
+			self.updateCutList( self.getSeekPlayPosition(), self.getSeekLength() )
+		
 		self.recordings.setPlayerInstance(None)
 		
 		reopen = False
@@ -861,9 +868,6 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 		if not playing:
 			return
 		
-		if service.type != sidDVB:
-			self.updateCutList( self.getSeekPlayPosition(), self.getSeekLength() )
-		
 		if self.in_menu:
 			self.hide()
 		if config.EMC.record_eof_zap.value and self.recordings and self.service:
@@ -890,6 +894,9 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 				##if self.seekstate == self.SEEK_STATE_EOF:
 				##	self.setSeekState(self.SEEK_STATE_PLAY)
 				#	return
+		
+		if self.service.type != sidDVB:
+			self.updateCutList( self.getSeekPlayPosition(), self.getSeekLength() )
 		
 		self.evEOF()
 
