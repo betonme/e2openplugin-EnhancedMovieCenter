@@ -201,11 +201,11 @@ class SelectionEventInfo:
 				ref = self.session.nav.getCurrentlyPlayingServiceReference()
 				ext = ref and os.path.splitext(ref.getPath())[1].lower()
 				if ext in plyDVD:
-					subs = getattr(s, "subtitle", None)
-					if callable(subs):
-						#self.dvdScreen = self.session.instantiateDialog(DVDOverlay)
-						#subs.enableSubtitles(self.dvdScreen.instance, None)
-						subs.enableSubtitles(None, None)
+					#subs = getattr(s, "subtitle", None)
+					#if callable(subs):
+					#	#self.dvdScreen = self.session.instantiateDialog(DVDOverlay)
+					#	#subs.enableSubtitles(self.dvdScreen.instance, None)
+					#	subs.enableSubtitles(None, None)
 					DelayedFunction(50, boundFunction(self.dvdPlayerWorkaround))
 				self["Video"].show()
 			else:
