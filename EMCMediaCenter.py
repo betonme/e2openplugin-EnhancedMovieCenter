@@ -95,6 +95,9 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 			self.skin = Cool.read()
 			Cool.close()
 		
+		# EMC Source
+		self["Service"] = EMCCurrentService(session.nav, self)
+		
 		# Events
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
 			{
@@ -178,9 +181,6 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 		if "TeletextActions" in self:
 			self["TeletextActions"].prio = 2
 		self["NumberActions"].prio = 2
-		
-		# EMC Source
-		self["Service"] = EMCCurrentService(session.nav, self)
 		
 		# Cover Anzeige
 		self["Cover"] = Pixmap()

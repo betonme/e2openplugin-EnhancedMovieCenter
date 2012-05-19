@@ -31,8 +31,11 @@ class EMCServicePosition(ServicePosition):
 	@cached
 	def getCutlist(self):
 		service = self.source.service
-		cut = service and service.cutList()
-		return cut and cut.getCutList()
+		if service is not None and hasattr(service, "cutList"):
+			cut = service and service.cutList()
+			return cut and cut.getCutList()
+		else:
+			return []
 
 	cutlist = property(getCutlist)
 
