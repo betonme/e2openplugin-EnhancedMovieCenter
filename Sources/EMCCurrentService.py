@@ -34,7 +34,7 @@ class EMCCurrentService(CurrentService):
 	@cached
 	def getCurrentService(self):
 		service = self.navcore.getCurrentService()
-		if service is not None and hasattr(service, "cutList"):
+		if service is not None:
 			service.cutList = self.cueSheet
 		return service
 
