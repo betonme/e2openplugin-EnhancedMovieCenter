@@ -251,7 +251,7 @@ class InfoBarSupport(	InfoBarBase, \
 
 	# Handle EOF
 	def doSeekEOF(self):
-		# Stop two seconds before eof : 2 * 90 * 1000
+		# Stop one second before eof : 1 * 90 * 1000
 		state = self.seekstate
 		play = self.getSeekPlayPosition()
 		length = self.getSeekLength()
@@ -265,12 +265,20 @@ class InfoBarSupport(	InfoBarBase, \
 		#TODO find a better solution
 		# If player is in pause mode do not call eof
 		if state != self.SEEK_STATE_PAUSE:
+			#try:
+			#	#self.pvrStateDialog["state"].setText(self.SEEK_STATE_EOF[3])
+			#	InfoBarPVRState._InfoBarPVRState__playStateChanged(self, self.SEEK_STATE_EOF)
+			#except:
+			#	pass
 			#self.setSeekState(self.SEEK_STATE_EOF)
+			#self.unPauseService()
 			# Wait one second before signaling eof
 			# Call private InfoBarSeek function
 			#if hasattr(self, "seekstate"):
 				#InfoBarSeek._InfoBarSeek__evEOF(self)
 			# Use only 800ms because the player will run for max 1 seconds until eof
-			DelayedFunction(800, boundFunction(InfoBarSeek._InfoBarSeek__evEOF, self))
+			#DelayedFunction(800, boundFunction(InfoBarSeek._InfoBarSeek__evEOF, self))
 			##InfoBarSeek.doSeek(self, end)
 			#InfoBarSeek._InfoBarSeek__evEOF(self)
+			if self.service.type != sidDVB:
+				InfoBarSeek._InfoBarSeek__evEOF(self)
