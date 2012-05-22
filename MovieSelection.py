@@ -1620,8 +1620,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 							self.removeService(service)
 							self.setReturnCursor()
 							path = path.replace("'","\'")
-							c.append( 'rm -f "'+ path +'."jpg' )
-							c.append( 'rm -f "'+ path +'."png' )
+							c.append( 'rm -f "'+ path +'."*' )
 							cmd.append( c )
 						#TEST_E2DELETE
 						
@@ -1865,8 +1864,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 											return
 										else:
 											path = os.path.splitext(fullpath)[0].replace("'","\'")
-											purgeCmd += '; rm -f "'+ path +'."jpg'
-											purgeCmd += '; rm -f "'+ path +'."png'
+											purgeCmd += '; rm -f "'+ path +'."*'
 										#TEST_E2DELETE
 										
 					if purgeCmd != "":
