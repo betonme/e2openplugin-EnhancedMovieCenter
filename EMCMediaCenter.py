@@ -493,10 +493,15 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 	def movieSelected(self, playlist, playall=None):
 		print "movieSelected"
 		self.playerOpenedList = False
+		
 		if playlist is not None and len(playlist) > 0:
 			self.playcount = -1
 			self.playlist = playlist
 			self.playall = playall
+			
+			if self.service.type != sidDVB:
+				self.updateCutList( self.getSeekPlayPosition(), self.getSeekLength() )
+			
 			self.evEOF()	# start playback of the first movie
 
 	##############################################################################
