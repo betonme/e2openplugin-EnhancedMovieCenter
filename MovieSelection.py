@@ -19,6 +19,11 @@
 #	<http://www.gnu.org/licenses/>.
 #
 
+import os
+from time import time
+#from thread import start_new_thread
+from threading import Thread
+
 from Components.ActionMap import ActionMap, HelpableActionMap
 from Components.Button import Button
 from Components.config import *
@@ -33,10 +38,6 @@ from Tools import Notifications
 from Tools.Notifications import AddPopup
 from Tools.BoundFunction import boundFunction
 from enigma import getDesktop, eServiceReference, eTimer, iPlayableService, eServiceCenter
-
-import os
-from time import time
-from thread import start_new_thread
 
 # Movie preview
 from Components.VideoWindow import VideoWindow
@@ -714,7 +715,9 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		current = self.getCurrent()
 		if current and not self["list"].serviceMoving(current) and not self["list"].serviceDeleting(current):
 			self.updateEventInfo( current )
-			#OE2.0 Bug start_new_thread(self.updateEventInfo, (current,))
+			#OE2.0 Bug start_new_thread
+			#t = Thread(target=self.updateEventInfo, args=(current,))
+			#t.start()
 
 	def resetInfo(self, preview=True):
 		print "EMC: resetInfo"
@@ -889,7 +892,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 				else: forceProgress = 100 							# force next state 0
 			if forceProgress > -1:
 				progress = forceProgress
-		
+				
 			if progress >= 100:
 				# 100% -> 0
 				# Don't care about preparePlayback, always reset to 0%
@@ -990,13 +993,11 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		if config.EMC.needsreload.value:
 			config.EMC.needsreload.value = False
 			self["list"].resetSorting()
-			DelayedFunction(50, self.initList)
-			#OE2.0 Bug start_new_thread(self.initList, ())
+			self.initList()
 		
 		if config.EMC.movie_reload.value \
 			or len(self["list"]) == 0:
-			DelayedFunction(50, self.initList)
-			#OE2.0 Bug start_new_thread(self.initList, ())
+			self.initList()
 		
 		else:
 			# Refresh is done automatically
@@ -1086,7 +1087,6 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		return curSerRef
 
 	def loading(self, loading=True):
-		self.resetInfo()
 		if loading:
 			self["list"].hide()
 			self["wait"].setText( _("Reading directory...") )
@@ -1149,7 +1149,11 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		
 		if config.EMC.moviecenter_loadtext.value:
 			self.loading()
-		DelayedFunction(20, self.__reloadList, path)
+		
+		self.__reloadList(path)
+		#OE2.0 Bug start_new_thread
+		#t = Thread(target=self.reloadListThread, args=(path,))
+		#t.start()
 
 	def __reloadList(self, path):
 		if path is None:
@@ -1192,6 +1196,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		# Force update of event info after playing movie 
 		# Don't reset if movie preview is active
 		self.resetInfo(preview=False)
+		self.loading(False)
 		
 		# force a copy instead of an reference!
 		self.lastPlayedMovies = playlist[:]
@@ -1203,16 +1208,12 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		
 		# Start Player
 		if self.playerInstance is None:
-			#Notifications.AddNotification(EMCMediaCenter, playlistcopy, self, playall, self.lastservice)
-			#EMCMediaCenter(self.session, playlistcopy, self, playall, self.lastservice)
-			#self.session.open(EMCMediaCenter, playlistcopy, self, playall, self.lastservice)
-			#DelayedFunction(100, self.session.open, EMCMediaCenter, playlistcopy, self, playall, self.lastservice)
 			self.close(playlistcopy, self, playall, self.lastservice)
 			self.busy = False
 		else:
-			#DelayedFunction(10, self.playerInstance.movieSelected, playlist, playall)
 			self.playerInstance.movieSelected(playlist, playall)
 			self.busy = False
+			
 			self.close()
 
 	def entrySelected(self, playall=False):
@@ -1257,8 +1258,8 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			# Show a notification to indicate the Play function
 			self["wait"].setText( _("Play last movie starting") )
 			self["wait"].show()
-			DelayedFunction(1000, self.loading, False)
-			DelayedFunction(2000, self.openPlayer, self.lastPlayedMovies)
+			#DelayedFunction(1000, self.loading, False)
+			DelayedFunction(1000, self.openPlayer, self.lastPlayedMovies)
 
 	def playAll(self):
 		# Avoid starting several times in different modes
@@ -1269,14 +1270,14 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		if self.multiSelectIdx:
 			self.multiSelectIdx = None
 			self.updateTitle()
-		# Show a notification to indicate the Play function
-		self["wait"].setText( _("Play All starting") )
-		self["wait"].show()
-		DelayedFunction(1000, self.loading, False)
 		# Initialize play all
 		playlist = [self.getCurrent()] 
 		playall = self["list"].getNextService()
-		DelayedFunction(2000, self.openPlayer, playlist, playall)
+		# Show a notification to indicate the Play function
+		self["wait"].setText( _("Play All starting") )
+		self["wait"].show()
+		#DelayedFunction(1000, self.loading, False)
+		DelayedFunction(1000, self.openPlayer, playlist, playall)
 
 	def shuffleAll(self):
 		# Avoid starting several times in different modes
@@ -1287,14 +1288,14 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		if self.multiSelectIdx:
 			self.multiSelectIdx = None
 			self.updateTitle()
-		# Show a notification to indicate the Shuffle function
-		self["wait"].setText( _("Shuffle All starting") )
-		self["wait"].show()
-		DelayedFunction(2000, self.loading, False)
 		# Initialize shuffle all
 		playlist = [self.getCurrent()] 
 		shuffleall = self["list"].getRandomService()
-		DelayedFunction(2000, self.openPlayer, playlist, shuffleall)
+		# Show a notification to indicate the Shuffle function
+		self["wait"].setText( _("Shuffle All starting") )
+		self["wait"].show()
+		#DelayedFunction(1000, self.loading, False)
+		DelayedFunction(1000, self.openPlayer, playlist, shuffleall)
 
 	def lastPlayedCheck(self, service):
 		try:

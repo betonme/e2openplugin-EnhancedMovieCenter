@@ -39,8 +39,7 @@ from EnhancedMovieCenter import _
 from EMCTasker import emcDebugOut
 from DelayedFunction import DelayedFunction
 
-from MovieCenter import sidDVD
-global sidDVD
+from MovieCenter import sidDVD, sidDVB
 
 SeekbarPlg = "%s%s"%(resolveFilename(SCOPE_PLUGINS), "Extensions/Seekbar/plugin.py")
 
@@ -280,5 +279,5 @@ class InfoBarSupport(	InfoBarBase, \
 			#DelayedFunction(800, boundFunction(InfoBarSeek._InfoBarSeek__evEOF, self))
 			##InfoBarSeek.doSeek(self, end)
 			#InfoBarSeek._InfoBarSeek__evEOF(self)
-			if self.service.type != sidDVB:
-				InfoBarSeek._InfoBarSeek__evEOF(self)
+			#if self.service.type != sidDVB:
+			InfoBarSeek._InfoBarSeek__evEOF(self)

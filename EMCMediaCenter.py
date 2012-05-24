@@ -384,7 +384,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 		#if self.playall:
 		#	playall.close()
 		
-		if self.service.type != sidDVB:
+		if self.service and self.service.type != sidDVB:
 			self.updateCutList( self.getSeekPlayPosition(), self.getSeekLength() )
 		
 		self.recordings.setPlayerInstance(None)
