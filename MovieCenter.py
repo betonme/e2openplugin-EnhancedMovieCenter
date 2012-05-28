@@ -1166,7 +1166,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 		pathname, ext = "", ""
 		
 		# Improve performance and avoid dots
-		movie_trashpath = config.EMC.movie_trashcan_enable.value and config.EMC.movie_trashcan_path.value
+		movie_trashpath = config.EMC.movie_trashcan_enable.value and os.path.realpath(config.EMC.movie_trashcan_path.value)
 		check_dvdstruct = config.EMC.check_dvdstruct.value \
 							and not (config.EMC.cfgscan_suppress.value and path in self.nostructscan)
 		hideitemlist = config.EMC.cfghide_enable.value and self.hideitemlist
@@ -1225,7 +1225,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 								continue
 						
 						# Folder found
-						if pathname != movie_trashpath and config.EMC.directories_show.value:
+						if os.path.realpath(dir) != movie_trashpath and config.EMC.directories_show.value:
 							dappend( (pathname, dir, cmtDir) )
 				
 				# We only want the topdir
