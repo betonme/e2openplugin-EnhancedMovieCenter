@@ -84,24 +84,24 @@
 		<ePixmap position="180,610" size="900,24" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/EMCMoviePlayer/CoolSlider.png" zPosition="4" alphatest="blend" />
 		<ePixmap position="200,614" size="860,18" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/EMCMoviePlayer/CoolPointerBG.png" zPosition="1" alphatest="blend" />
 
-		<widget source="Service" render="PositionGauge" position="216,613" size="828,16" zPosition="2" pointer="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/EMCMoviePlayer/CoolPointerRecord.png:828,0" transparent="1">
+		<widget source="Service" render="EMCPositionGauge" position="216,613" size="828,16" zPosition="2" pointer="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/EMCMoviePlayer/CoolPointerRecord.png:828,0" transparent="1">
 			<convert type="EMCRecordPosition">Gauge</convert>
 		</widget>
-		<widget source="Service" render="PositionGauge" position="216,613" size="828,16" zPosition="3" pointer="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/EMCMoviePlayer/CoolPointer.png:828,0" transparent="1">
+		<widget source="Service" render="EMCPositionGauge" position="216,613" size="828,16" zPosition="3" pointer="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/EMCMoviePlayer/CoolPointer.png:828,0" transparent="1">
 			<convert type="EMCServicePosition">Gauge</convert>
 		</widget>
-		<widget source="Service" render="PositionGauge" position="216,613" size="828,16" zPosition="4" transparent="1" >
+		<widget source="Service" render="EMCPositionGauge" position="216,613" size="828,16" zPosition="4" transparent="1" >
 			<convert type="EMCServicePosition">Gauge</convert>
 		</widget>
 		
 		<widget source="Service" render="Label" position="230,637" size="100,30" font="EMCRegularFont;22" halign="left" backgroundColor="#00000000" transparent="1">
-			<convert type="EMCServicePosition">Position</convert>
+			<convert type="EMCServicePosition">Position,ShowHours</convert>
 		</widget>
 		<widget source="Service" render="Label" position="590,637" size="100,30" font="EMCRegularFont;22" halign="center" backgroundColor="#00000000" transparent="1">
-			<convert type="EMCServicePosition">Length</convert>
+			<convert type="EMCServicePosition">Length,ShowHours</convert>
 		</widget>
 		<widget source="Service" render="Label" position="930,637" size="100,30" font="EMCRegularFont;22" halign="right" backgroundColor="#00000000" transparent="1">
-			<convert type="EMCServicePosition">Remaining,Negate</convert>
+			<convert type="EMCServicePosition">Remaining,Negate,ShowHours</convert>
 		</widget>
 		<!-- Infobar Cover -->
 		<!-- <widget name="Cover" position="50,320" size="230,230" zPosition="1" alphatest="on" /> -->
