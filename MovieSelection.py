@@ -278,7 +278,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 				"EMCEXIT":		(self.abort, 				_("Close EMC")),
 				"EMCMENU":		(self.openMenu,				_("Open menu")),
 				"EMCINFO":		(self.showEventInformation,	_("Show event info")),
-				"EMCINFOL":		(self.CoolInfoLong,			_("IMDBSearch / TMDBInfo")),
+				"EMCINFOL":		(self.CoolInfoLong,			_("IMDBSearch / TMDBInfo / CSFDInfo")),
 				"EMCRed":			(self.deleteFile,			_("Delete file or empty dir")),
 				"EMCSortMode":		(self.toggleSortMode,			_("Toggle sort mode")),
 				"EMCSortOrder":		(self.toggleSortOrder,			_("Toggle sort order")),
@@ -377,6 +377,8 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			self.IMDbSearch()
 		elif config.EMC.InfoLong.value == "TMDBInfo":
 			self.TMDBInfo()
+		elif config.EMC.InfoLong.value == "CSFDInfo":
+			self.CSFDInfo()
 		else:
 			self.IMDbSearch()
 
@@ -939,6 +941,17 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			TMDbMain = None
 		if TMDbMain is not None:
 			self.session.open(TMDbMain, name)
+
+	def CSFDInfo(self):
+		name = ''
+		if self["list"].getCurrentSelName():
+			name = self["list"].getCurrentSelName()
+		try:
+			from Plugins.Extensions.CSFD.plugin import CSFD
+		except ImportError:
+			CSFD = None
+		if CSFD is not None:
+			self.session.open(CSFD, name, False)
 
 	def rename(self):
 		self.session.openWithCallback(
