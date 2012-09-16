@@ -26,6 +26,7 @@ import time
 
 from datetime import datetime
 
+from Components.Language import language
 from EMCTasker import emcDebugOut
 from IsoFileSupport import IsoSupport
 
@@ -41,6 +42,16 @@ from IsoFileSupport import IsoSupport
 #				crc = crc ^ poly
 #			crc = crc & 0xffffffffL
 #	return crc
+
+decoding_charSpecCZSK = {u'Ï'+u'C': u'Č',u'Ï'+u'E': u'Ě',u'Ï'+u'L': u'Ľ',u'Ï'+u'N': u'Ň',u'Ï'+u'R': u'Ř',u'Ï'+u'S': u'Š',u'Ï'+u'T': u'Ť',u'Ï'+u'Z': u'Ž',u'Ï'+u'c': u'č',u'Ï'+u'd': u'ď',u'Ï'+u'e': u'ě',u'Ï'+u'l': u'ľ', u'Ï'+u'n': u'ň',
+u'Ï'+u'r': u'ř',u'Ï'+u's': u'š',u'Ï'+u't': u'ť',u'Ï'+u'z': u'ž',u'Ï'+u'D': u'Ď',u'Â'+u'A': u'Á',u'Â'+u'E': u'É',u'Â'+u'I': u'Í',u'Â'+u'O': u'Ó',u'Â'+u'U': u'Ú',u'Â'+u'a': u'á',u'Â'+u'e': u'é',u'Â'+u'i': u'í',u'Â'+u'o': u'ó',
+u'Â'+u'u': u'ú',u'Â'+u'y': u'ý',u'Ã'+u'o': u'ô',u'Ã'+u'O': u'Ô',u'Ê'+u'u': u'ů',u'Ê'+u'U': u'Ů',u'È'+u'A': u'Ä',u'È'+u'E': u'Ë',u'È'+u'I': u'Ï',u'È'+u'O': u'Ö',u'È'+u'U': u'Ü',u'È'+u'Y': u'Ÿ',u'È'+u'a': u'ä',u'È'+u'e': u'ë',
+u'È'+u'i': u'ï',u'È'+u'o': u'ö',u'È'+u'u': u'ü',u'È'+u'y': u'ÿ'}
+
+def convertCharSpecCZSK(text):
+	for i, j in decoding_charSpecCZSK.iteritems():
+		text = text.replace(i, j)
+	return text
 
 def parseMJD(MJD):
 	# Parse 16 bit unsigned int containing Modified Julian Date, 
@@ -177,6 +188,8 @@ class EitList():
 	def __readEitFile(self):
 		data = ""
 		path = self.eit_file
+		lang = language.getLanguage()[:2]
+
 		if path and os.path.exists(path):
 			mtime = os.path.getmtime(path)
 			if self.eit_mtime == mtime:
@@ -240,13 +253,17 @@ class EitList():
 							#descriptor_length = ord(data[pos+2])
 							#ISO_639_language_code = str(data[pos+3:pos+3])
 							event_name_length = ord(data[pos+5])
-							short_event_descriptor.append(data[pos+6:pos+6+event_name_length])
+							if short_event_descriptor==[]:
+								short_event_descriptor.append(data[pos+6:pos+6+event_name_length])
+							else:
+								short_event_descriptor.append(" ")
+								short_event_descriptor.append(data[pos+6:pos+6+event_name_length])
 							#TODO
 							#short_event_descriptor.append("\n\n")
 							#text_length = pos+6+event_name_length
 							#short_event_descriptor.append(data[pos+7+event_name_length:pos+8+text_length])
 						elif rec == 0x4E:
-							extended_event_descriptor.append(data[pos+8:pos+length]) 
+							extended_event_descriptor.append(data[pos+8:pos+length])
 						elif rec == 0x50:
 							component_descriptor.append(data[pos+8:pos+length])
 						elif rec == 0x54:
@@ -277,6 +294,8 @@ class EitList():
 								short_event_descriptor = short_event_descriptor.decode("cp1252").encode("utf-8")
 							except UnicodeDecodeError:
 								short_event_descriptor = short_event_descriptor.decode("iso-8859-1").encode("utf-8")
+							if (lang == "cs") or (lang == "sk"):
+								short_event_descriptor = str(convertCharSpecCZSK(short_event_descriptor))
 					self.eit['name'] = short_event_descriptor
 					
 					# Very bad but there can be both encodings
@@ -295,6 +314,8 @@ class EitList():
 								extended_event_descriptor = extended_event_descriptor.decode("cp1252").encode("utf-8")
 							except UnicodeDecodeError:
 								extended_event_descriptor = extended_event_descriptor.decode("iso-8859-1").encode("utf-8")
+							if (lang == "cs") or (lang == "sk"):
+								extended_event_descriptor = str(convertCharSpecCZSK(extended_event_descriptor))
 					self.eit['description'] = extended_event_descriptor
 					
 				else:

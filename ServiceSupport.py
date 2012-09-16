@@ -117,9 +117,19 @@ class Info:
 		isreal = os.path.isdir(path)
 		ext = path and os.path.splitext(path)[1].lower()
 		self.isdir = isreal and hasattr(service, "ext") and ext == "DIR" or False
-		meta = path and MetaList(path)			#TODO dynamic or not
-		eit = path and EitList(path)				#TODO dynamic or not
-		
+
+		#TODO dynamic or not
+		if config.EMC.movie_metaload.value:
+			meta = path and MetaList(path)
+		else:
+			meta = None
+
+		#TODO dynamic or not
+		if config.EMC.movie_eitload.value:
+			eit = path and EitList(path)
+		else:
+			eit = None
+
 		# Information which we need later
 		self.__cutlist = path and CutList(path) or []		#TODO dynamic or not
 		
@@ -141,11 +151,11 @@ class Info:
 													or self.__name
 		self.__tags = meta and meta.getMetaTags() or ""
 		
-		self.__eventname = eit and eit.getEitName() or self.__name
+		self.__eventname = meta and meta.getMetaName() or eit and eit.getEitName() or self.__name
 		
 		#TODO dynamic or not
-		self.__extendeddescription = eit and eit.getEitDescription() \
-																	or meta and meta.getMetaDescription() \
+		self.__extendeddescription = meta and meta.getMetaDescription() \
+																	or eit and eit.getEitDescription() \
 																	or ""
 		
 		if not self.__extendeddescription:
