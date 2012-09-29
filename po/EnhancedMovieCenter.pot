@@ -1,0 +1,1753 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-11-13 01:03+0100\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Swiss-MAD\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "imdb.de"
+msgstr ""
+
+msgid "themoviedb.org"
+msgstr ""
+
+msgid "ofdb.de"
+msgstr ""
+
+msgid "csfd.cz"
+msgstr ""
+
+msgid "thetvdb.com"
+msgstr ""
+
+msgid "all"
+msgstr ""
+
+msgid "Search"
+msgstr ""
+
+msgid "Delete"
+msgstr ""
+
+msgid "Press green button to start search"
+msgstr ""
+
+
+msgid "Total: %s - Exist: %s - N/A: %s"
+msgstr ""
+
+
+
+msgid "Exist: %s"
+msgstr ""
+
+
+
+msgid "No Cover: %s"
+msgstr ""
+
+
+
+
+msgid "Download: %s"
+msgstr ""
+
+
+msgid "Searching..."
+msgstr ""
+
+
+msgid "Creating Search List.."
+msgstr ""
+
+
+msgid "Searching.."
+msgstr ""
+
+
+
+
+
+msgid "%s: %s von %s"
+msgstr ""
+
+
+msgid "Exist"
+msgstr ""
+
+
+
+msgid "%s movies in %.1f sec found. Avg. Speed: %.1f sec."
+msgstr ""
+
+
+msgid "Delay of 10 sec. due the search flooding.."
+msgstr ""
+
+
+
+msgid "%s removed."
+msgstr ""
+
+
+
+msgid "Search site set to: %s"
+msgstr ""
+
+
+
+
+msgid "Cancel"
+msgstr ""
+
+
+msgid "OK"
+msgstr ""
+
+
+msgid "Search Site:"
+msgstr ""
+
+
+msgid "Single Search:"
+msgstr ""
+
+
+
+msgid "Searching for %s"
+msgstr ""
+
+
+
+
+
+
+msgid "found %s covers in %.1f sec"
+msgstr ""
+
+
+
+msgid "Nothing found for %s"
+msgstr ""
+
+
+
+msgid "Stop playback"
+msgstr ""
+
+
+msgid "show DVD main menu"
+msgstr ""
+
+
+msgid "forward to the next chapter"
+msgstr ""
+
+
+msgid "rewind to the previous chapter"
+msgstr ""
+
+
+msgid "jump forward to the next title"
+msgstr ""
+
+
+msgid "jump back to the previous title"
+msgstr ""
+
+
+msgid "(show optional DVD audio menu)"
+msgstr ""
+
+
+msgid "switch to the next audio track"
+msgstr ""
+
+
+msgid "switch to the next subtitle language"
+msgstr ""
+
+
+msgid "switch to the next angle"
+msgstr ""
+
+
+msgid "view extensions..."
+msgstr ""
+
+
+msgid "Format AVSwitch"
+msgstr ""
+
+
+msgid "No DVD-Player found!"
+msgstr ""
+
+
+msgid ""
+"Skipping movie, the file does not exist.\n"
+"\n"
+msgstr ""
+
+
+msgid ""
+"EMC\n"
+"Zap to Live TV of record"
+msgstr ""
+
+
+msgid "Chap."
+msgstr ""
+
+
+msgid "Chapter"
+msgstr ""
+
+
+msgid "Title"
+msgstr ""
+
+
+msgid "Next auto-start in "
+msgstr ""
+
+
+msgid "auto-start is currently not active."
+msgstr ""
+
+
+msgid ""
+"Your Box is about to go into Standby, continue?\n"
+" Select no to delay one hour"
+msgstr ""
+
+
+msgid ""
+"Your Box is about to go into DeepStandby, continue?\n"
+" Select no to delay one hour"
+msgstr ""
+
+
+msgid ""
+"Your Box is about to go into Reboot, continue?\n"
+" Select no to delay one hour"
+msgstr ""
+
+
+msgid ""
+"Your Box is about to go into E2 Restart, continue?\n"
+" Select no to delay one hour"
+msgstr ""
+
+
+
+msgid "Custom"
+msgstr ""
+
+
+msgid "Default"
+msgstr ""
+
+
+msgid "Performance"
+msgstr ""
+
+
+msgid "Information"
+msgstr ""
+
+
+
+msgid "Save"
+msgstr ""
+
+
+msgid "About"
+msgstr ""
+
+
+msgid "HELP_About"
+msgstr ""
+
+
+msgid "Disable EMC"
+msgstr ""
+
+
+msgid "HELP_Disable EMC"
+msgstr ""
+
+
+msgid "Start EMC with"
+msgstr ""
+
+
+msgid "HELP_Start EMC with"
+msgstr ""
+
+
+msgid "Show plugin config in extensions menu"
+msgstr ""
+
+
+msgid "HELP_Show plugin config in extensions menu"
+msgstr ""
+
+
+msgid "Show EMC in extensions menu"
+msgstr ""
+
+
+msgid "HELP_Show EMC in extensions menu"
+msgstr ""
+
+
+msgid "daily auto-start"
+msgstr ""
+
+
+msgid "HELP_Daily auto-start"
+msgstr ""
+
+
+msgid "auto-start window begin"
+msgstr ""
+
+
+msgid "HELP_auto-start window begin"
+msgstr ""
+
+
+msgid "auto-start window end"
+msgstr ""
+
+
+msgid "HELP_auto-start window end"
+msgstr ""
+
+
+msgid "Force standby after auto-restart"
+msgstr ""
+
+
+msgid "HELP_Force standby after auto-start"
+msgstr ""
+
+
+msgid "LongInfo Button"
+msgstr ""
+
+
+msgid "HELP_LongInfo Button"
+msgstr ""
+
+
+msgid "Movie home at start"
+msgstr ""
+
+
+msgid "HELP_Movie home at start"
+msgstr ""
+
+
+msgid "Default sort mode"
+msgstr ""
+
+
+msgid "HELP_Sort mode at startup"
+msgstr ""
+
+
+msgid "Movie home home path"
+msgstr ""
+
+
+msgid "HELP_Movie home home path"
+msgstr ""
+
+
+msgid "EMC path access limit"
+msgstr ""
+
+
+msgid "HELP_EMC path access limit"
+msgstr ""
+
+
+msgid "Cursor predictive move after selection"
+msgstr ""
+
+
+msgid "HELP_Cursor predictive move after selection"
+msgstr ""
+
+
+msgid "Show directories"
+msgstr ""
+
+
+msgid "HELP_Show directories"
+msgstr ""
+
+
+msgid "Show directories information"
+msgstr ""
+
+
+msgid "HELP_Show directories information"
+msgstr ""
+
+
+msgid "Show Directories within the movielist"
+msgstr ""
+
+
+msgid "HELP_Show Directories within the movielist"
+msgstr ""
+
+
+msgid "Configured Directories at the top of movielist"
+msgstr ""
+
+
+msgid "HELP_Configure in etc\\enigma2\\emc-topdir.cfg"
+msgstr ""
+
+
+msgid "Show Latest Recordings directory"
+msgstr ""
+
+
+msgid "HELP_Show Latest Recordings directory"
+msgstr ""
+
+
+msgid "Show VLC directory"
+msgstr ""
+
+
+msgid "HELP_Show VLC directory"
+msgstr ""
+
+
+msgid "Show Bookmarks in movielist"
+msgstr ""
+
+
+msgid "HELP_Show Bookmarks in movielist"
+msgstr ""
+
+
+msgid "HELP_separator_hide&performance"
+msgstr ""
+
+
+msgid "Hide configured entries"
+msgstr ""
+
+
+msgid "HELP_cfghide_enable"
+msgstr ""
+
+
+msgid "Scan for DVD structures"
+msgstr ""
+
+
+msgid "HELP_Scan for DVD structures"
+msgstr ""
+
+
+msgid "Suppress scan in selected folders"
+msgstr ""
+
+
+msgid "HELP_cfgscan_suppress"
+msgstr ""
+
+
+msgid "Scan linked folders"
+msgstr ""
+
+
+msgid "HELP_scan_linked"
+msgstr ""
+
+
+msgid "Try to load titles from .meta files"
+msgstr ""
+
+
+msgid "HELP_Try to load titles from .meta files"
+msgstr ""
+
+
+msgid "Try to load titles from .eit files"
+msgstr ""
+
+
+msgid "HELP_Try to load titles from .eit files"
+msgstr ""
+
+
+msgid "Replace special chars in title"
+msgstr ""
+
+
+msgid "HELP_Replace special chars in title"
+msgstr ""
+
+
+msgid "Show Movie Format"
+msgstr ""
+
+
+msgid "HELP_Show Movie Format"
+msgstr ""
+
+
+msgid "Show Cut-Nr if exist"
+msgstr ""
+
+
+msgid "HELP_Show Cut-Nr if exist"
+msgstr ""
+
+
+msgid "Resolve links and show real path"
+msgstr ""
+
+
+msgid "HELP_Resolve links and show real path"
+msgstr ""
+
+
+msgid "Listbox is skin able"
+msgstr ""
+
+
+msgid "HELP_Listbox is skin able"
+msgstr ""
+
+
+msgid "Date format"
+msgstr ""
+
+
+msgid "HELP_Date format"
+msgstr ""
+
+
+msgid "Show movie icons"
+msgstr ""
+
+
+msgid "HELP_Show movie icons"
+msgstr ""
+
+
+msgid "Show movie progress"
+msgstr ""
+
+
+msgid "HELP_Show movie progress"
+msgstr ""
+
+
+msgid "Short watching percent"
+msgstr ""
+
+
+msgid "HELP_Short watching percent"
+msgstr ""
+
+
+msgid "Finished watching percent"
+msgstr ""
+
+
+msgid "HELP_Finished watching percent"
+msgstr ""
+
+
+msgid "Mark new recordings with a star"
+msgstr ""
+
+
+msgid "HELP_Mark new recordings with a star"
+msgstr ""
+
+
+msgid "Show Cover"
+msgstr ""
+
+
+msgid "HELP_Show Cover"
+msgstr ""
+
+
+msgid "Cover delay in ms"
+msgstr ""
+
+
+msgid "HELP_Cover delay in ms"
+msgstr ""
+
+
+msgid "Show movie preview"
+msgstr ""
+
+
+msgid "HELP_Show movie preview"
+msgstr ""
+
+
+msgid "Movie preview delay in ms"
+msgstr ""
+
+
+msgid "HELP_Movie preview delay in ms"
+msgstr ""
+
+
+msgid "Start movie preview before last position"
+msgstr ""
+
+
+msgid "HELP_Movie preview offset in seconds"
+msgstr ""
+
+
+msgid "No resume below 10 seconds"
+msgstr ""
+
+
+msgid "HELP_No resume below 10 seconds"
+msgstr ""
+
+
+msgid "Jump to first mark when playing movie"
+msgstr ""
+
+
+msgid "HELP_Jump to first mark when playing movie"
+msgstr ""
+
+
+msgid "Rewind finished movies before playing"
+msgstr ""
+
+
+msgid "HELP_Rewind finished movies before playing"
+msgstr ""
+
+
+msgid "Always save last played progress as marker"
+msgstr ""
+
+
+msgid "HELP_Always save last played progress as marker"
+msgstr ""
+
+
+msgid "Zap to channel after record EOF"
+msgstr ""
+
+
+msgid "HELP_Zap to channel after record EOF"
+msgstr ""
+
+
+msgid "Show real length of running records"
+msgstr ""
+
+
+msgid "HELP_Show real length of running records"
+msgstr ""
+
+
+msgid "Download cutlist from Cutlist.at"
+msgstr ""
+
+
+msgid "HELP_Download cutlist from Cutlist.at"
+msgstr ""
+
+
+msgid "HELP_separator_Trashcan settings"
+msgstr ""
+
+
+msgid "Trashcan enable"
+msgstr ""
+
+
+msgid "HELP_Trashcan enable"
+msgstr ""
+
+
+msgid "Trashcan path"
+msgstr ""
+
+
+msgid "HELP_Trashcan path"
+msgstr ""
+
+
+msgid "Show trashcan directory"
+msgstr ""
+
+
+msgid "HELP_Show trashcan directory"
+msgstr ""
+
+
+msgid "Show trashcan information"
+msgstr ""
+
+
+msgid "HELP_Dynamic trashcan"
+msgstr ""
+
+
+msgid "Delete validation"
+msgstr ""
+
+
+msgid "HELP_Delete validation"
+msgstr ""
+
+
+msgid "Enable daily trashcan cleanup"
+msgstr ""
+
+
+msgid "HELP_Enable daily trashcan cleanup"
+msgstr ""
+
+
+msgid "Daily cleanup time"
+msgstr ""
+
+
+msgid "HELP_Daily cleanup time"
+msgstr ""
+
+
+msgid "How many days files may remain in trashcan"
+msgstr ""
+
+
+msgid "HELP_How many days files may remain in trashcan"
+msgstr ""
+
+
+msgid "Move finished movies in trashcan"
+msgstr ""
+
+
+msgid "HELP_Move finished movies in trashcan"
+msgstr ""
+
+
+msgid "Age of finished movies in movie folder (days)"
+msgstr ""
+
+
+msgid "HELP_Age of finished movies in movie folder (days)"
+msgstr ""
+
+
+msgid "Display directory reading text"
+msgstr ""
+
+
+msgid "HELP_Display directory reading text"
+msgstr ""
+
+
+msgid "EMC always reload after open"
+msgstr ""
+
+
+msgid "HELP_EMC always reload after open"
+msgstr ""
+
+
+msgid "EMC re-open list after STOP-press"
+msgstr ""
+
+
+msgid "HELP_EMC re-open list after STOP-press"
+msgstr ""
+
+
+msgid "EMC re-open list after Movie end"
+msgstr ""
+
+
+msgid "HELP_EMC re-open list after Movie end"
+msgstr ""
+
+
+msgid "Leave Movie with Exit"
+msgstr ""
+
+
+msgid "HELP_Leave Movie with Exit"
+msgstr ""
+
+
+msgid "Blue button function"
+msgstr ""
+
+
+msgid "HELP_Blue button function"
+msgstr ""
+
+
+msgid "Hide movies being moved"
+msgstr ""
+
+
+msgid "HELP_Hide movies being moved"
+msgstr ""
+
+
+msgid "Hide movies being deleted"
+msgstr ""
+
+
+msgid "HELP_Hide movies being deleted"
+msgstr ""
+
+
+msgid "Enable remote recordings"
+msgstr ""
+
+
+msgid "HELP_Enable remote recordings"
+msgstr ""
+
+
+msgid "Automatic timers list cleaning"
+msgstr ""
+
+
+msgid "HELP_Automatic timers list cleaning"
+msgstr ""
+
+
+msgid "HELP_Language Separator"
+msgstr ""
+
+
+msgid "Preferred EPG language"
+msgstr ""
+
+
+msgid "HELP_Preferred EPG language"
+msgstr ""
+
+
+msgid "Enable playback auto-subtitling"
+msgstr ""
+
+
+msgid "HELP_Enable playback auto-subtitling"
+msgstr ""
+
+
+msgid "Primary playback subtitle language"
+msgstr ""
+
+
+msgid "HELP_Primary playback subtitle language"
+msgstr ""
+
+
+msgid "Secondary playback subtitle language"
+msgstr ""
+
+
+msgid "HELP_Secondary playback subtitle language"
+msgstr ""
+
+
+msgid "Tertiary playback subtitle language"
+msgstr ""
+
+
+msgid "HELP_Tertiary playback subtitle language"
+msgstr ""
+
+
+msgid "Enable playback auto-language selection"
+msgstr ""
+
+
+msgid "HELP_Enable playback auto-language selection"
+msgstr ""
+
+
+msgid "Primary playback audio language"
+msgstr ""
+
+
+msgid "HELP_Primary playback audio language"
+msgstr ""
+
+
+msgid "Secondary playback audio language"
+msgstr ""
+
+
+msgid "HELP_Secondary playback audio language"
+msgstr ""
+
+
+msgid "Tertiary playback audio language"
+msgstr ""
+
+
+msgid "HELP_Tertiary playback audio language"
+msgstr ""
+
+
+
+msgid "HELP_Advanced options separator"
+msgstr ""
+
+
+msgid "Description field update delay"
+msgstr ""
+
+
+msgid "HELP_Description field update delay"
+msgstr ""
+
+
+msgid "Key period value (50-900)"
+msgstr ""
+
+
+msgid "HELP_Key period value (50-900)"
+msgstr ""
+
+
+msgid "Key repeat value (250-900)"
+msgstr ""
+
+
+msgid "HELP_Key repeat value (250-900)"
+msgstr ""
+
+
+msgid "Enable EMC debug output"
+msgstr ""
+
+
+msgid "HELP_Enable EMC debug output"
+msgstr ""
+
+
+msgid "EMC output directory"
+msgstr ""
+
+
+msgid "HELP_EMC output directory"
+msgstr ""
+
+
+msgid "Debug output file name"
+msgstr ""
+
+
+msgid "HELP_Debug output file name"
+msgstr ""
+
+
+msgid "Load default settings will overwrite all settings, really load them?"
+msgstr ""
+
+
+msgid "Some settings changes require GUI restart to take effect."
+msgstr ""
+
+
+msgid "Select Location"
+msgstr ""
+
+
+
+
+
+msgid "Choose directory"
+msgstr ""
+
+
+
+msgid "Given path %s does not exist. Please change."
+msgstr ""
+
+
+
+msgid "Trashcan create failed. Check mounts and permissions."
+msgstr ""
+
+
+msgid "jump to previous marked position"
+msgstr ""
+
+
+msgid "jump to next marked position"
+msgstr ""
+
+
+msgid "toggle a cut mark at the current position"
+msgstr ""
+
+
+msgid "Do you want to resume this playback?"
+msgstr ""
+
+
+
+msgid "Resume position at %s"
+msgstr ""
+
+
+msgid "Resuming playback"
+msgstr ""
+
+
+msgid "VLC"
+msgstr ""
+
+
+msgid "VLC-Server"
+msgstr ""
+
+
+msgid "VLC-Dir"
+msgstr ""
+
+
+msgid "Latest"
+msgstr ""
+
+
+msgid "Up"
+msgstr ""
+
+
+
+msgid "Bookmark"
+msgstr ""
+
+
+
+msgid "Link"
+msgstr ""
+
+
+
+msgid "Collection"
+msgstr ""
+
+
+
+
+msgid "Directory"
+msgstr ""
+
+
+msgid "UNKNOWN"
+msgstr ""
+
+
+msgid "Latest Recordings"
+msgstr ""
+
+
+
+msgid "Location:"
+msgstr ""
+
+
+msgid "Foldername:"
+msgstr ""
+
+
+msgid "Filename:"
+msgstr ""
+
+
+msgid "Movietitle:"
+msgstr ""
+
+
+msgid "Description:"
+msgstr ""
+
+
+msgid "Change Foldername"
+msgstr ""
+
+
+msgid "Change File/Moviename and/or Description"
+msgstr ""
+
+
+
+msgid "Reading directory..."
+msgstr ""
+
+
+msgid "Play selected movie(s)"
+msgstr ""
+
+
+
+msgid "Play All"
+msgstr ""
+
+
+
+msgid "Shuffle All"
+msgstr ""
+
+
+msgid "Close EMC"
+msgstr ""
+
+
+msgid "Open menu"
+msgstr ""
+
+
+msgid "Show event info"
+msgstr ""
+
+
+msgid "IMDBSearch / TMDBInfo / CSFDInfo"
+msgstr ""
+
+
+msgid "Delete file or empty dir"
+msgstr ""
+
+
+msgid "Toggle sort mode"
+msgstr ""
+
+
+msgid "Toggle sort order"
+msgstr ""
+
+
+msgid "Move selected movie(s)"
+msgstr ""
+
+
+msgid "Copy selected movie(s)"
+msgstr ""
+
+
+msgid "Movie home / Play last (configurable)"
+msgstr ""
+
+
+msgid "Open E2 bookmarks"
+msgstr ""
+
+
+msgid "Move cursor page up"
+msgstr ""
+
+
+msgid "Move cursor page down"
+msgstr ""
+
+
+msgid "Move cursor up"
+msgstr ""
+
+
+msgid "Move cursor down"
+msgstr ""
+
+
+msgid "Move cursor to the top"
+msgstr ""
+
+
+msgid "Move cursor to the end"
+msgstr ""
+
+
+msgid "Directory forward"
+msgstr ""
+
+
+msgid "Directory back"
+msgstr ""
+
+
+msgid "Toggle service selection"
+msgstr ""
+
+
+msgid "Remove service selection"
+msgstr ""
+
+
+
+msgid "Available plugins menu"
+msgstr ""
+
+
+msgid "Reload movie file list"
+msgstr ""
+
+
+msgid "Open Timer List"
+msgstr ""
+
+
+msgid "Toggle viewed / not viewed"
+msgstr ""
+
+
+msgid "Start / end multiselection"
+msgstr ""
+
+
+msgid "E2 Bookmark"
+msgstr ""
+
+
+
+msgid "Open E2 Bookmark path"
+msgstr ""
+
+
+msgid "No script operation for VLC streams."
+msgstr ""
+
+
+msgid "Does not contain any scripts."
+msgstr ""
+
+
+msgid "Choose script"
+msgstr ""
+
+
+msgid "No functionality set..."
+msgstr ""
+
+
+msgid "*** Multiselection active ***"
+msgstr ""
+
+
+msgid " <P>"
+msgstr ""
+
+
+msgid "Move"
+msgstr ""
+
+
+msgid "File not available."
+msgstr ""
+
+
+msgid "Last played movie/playlist not available..."
+msgstr ""
+
+
+msgid "Play last movie starting"
+msgstr ""
+
+
+msgid "Play All starting"
+msgstr ""
+
+
+msgid "Shuffle All starting"
+msgstr ""
+
+
+msgid "Not stopping any repeating timers. Modify them with the timer editor."
+msgstr ""
+
+
+msgid "Stop ongoing recording?\n"
+msgstr ""
+
+
+
+msgid ""
+"Do you really want to remove your link\n"
+"%s?"
+msgstr ""
+
+
+
+msgid ""
+"Do you really want to remove your directory\n"
+"%s?"
+msgstr ""
+
+
+
+
+
+
+msgid ""
+"Do you really want to remove your bookmark\n"
+"%s?"
+msgstr ""
+
+
+msgid ""
+" Deleting remotely recorded and it will display an rec-error dialog on the "
+"other DB."
+msgstr ""
+
+
+msgid " permanently"
+msgstr ""
+
+
+msgid " currently played?"
+msgstr ""
+
+
+msgid " all selected video files?"
+msgstr ""
+
+
+msgid ""
+" all selected video files? The currently playing movie is also one of the "
+"selections and its playback will be stopped."
+msgstr ""
+
+
+msgid "Delete error:\n"
+msgstr ""
+
+
+msgid ""
+"Delete failed because the trashcan directory does not exist. Attempt to "
+"create it now?"
+msgstr ""
+
+
+msgid "Directory is not empty."
+msgstr ""
+
+
+msgid "Cannot delete the parent directory."
+msgstr ""
+
+
+msgid "Delete failed!"
+msgstr ""
+
+
+
+msgid ""
+"How to move files:\n"
+"Select some movies with the VIDEO-button, move the cursor on top of the "
+"destination directory and press yellow."
+msgstr ""
+
+
+msgid "Move file(s):"
+msgstr ""
+
+
+
+msgid ""
+"How to copy files:\n"
+"Select some movies with the VIDEO-button, move the cursor on top of the "
+"destination directory and press yellow long."
+msgstr ""
+
+
+msgid "Copy file(s):"
+msgstr ""
+
+
+msgid ""
+"EMC: Skipping Trashcan Cleanup\n"
+"Movie Home Path is equal to or a subfolder of the Trashcan"
+msgstr ""
+
+
+msgid "EMC Trashcan Cleanup failed!"
+msgstr ""
+
+
+msgid "Choose operation"
+msgstr ""
+
+
+
+msgid "Movie home"
+msgstr ""
+
+
+msgid "Directory up"
+msgstr ""
+
+
+
+msgid "Play last"
+msgstr ""
+
+
+msgid "Cover search"
+msgstr ""
+
+
+msgid "Delete permanently"
+msgstr ""
+
+
+msgid "Empty trashcan"
+msgstr ""
+
+
+msgid "Go to trashcan"
+msgstr ""
+
+
+msgid "Mark all movies"
+msgstr ""
+
+
+msgid "Remove rogue files"
+msgstr ""
+
+
+msgid "Create link"
+msgstr ""
+
+
+
+msgid "Create directory"
+msgstr ""
+
+
+msgid "Rename selected movie(s)"
+msgstr ""
+
+
+msgid "Remove cut list marker"
+msgstr ""
+
+
+msgid "Add directory to E2 Bookmarks"
+msgstr ""
+
+
+msgid "Remove directory from E2 Bookmarks"
+msgstr ""
+
+
+msgid "Remove selected E2 Bookmark"
+msgstr ""
+
+
+msgid "Open EMC Bookmark path"
+msgstr ""
+
+
+msgid "Add directory to EMC Bookmarks"
+msgstr ""
+
+
+msgid "Remove directory from EMC Bookmarks"
+msgstr ""
+
+
+msgid "Remove selected EMC Bookmark"
+msgstr ""
+
+
+msgid "Set permanent sort"
+msgstr ""
+
+
+msgid "Remove permanent sort"
+msgstr ""
+
+
+msgid "Remove permanent sort from parent"
+msgstr ""
+
+
+msgid "EMC Setup"
+msgstr ""
+
+
+msgid "Choose plugin"
+msgstr ""
+
+
+msgid "Choose bookmark"
+msgstr ""
+
+
+msgid "Enter name for new directory."
+msgstr ""
+
+
+msgid "Directory "
+msgstr ""
+
+
+msgid "Create Link"
+msgstr ""
+
+
+msgid "Permanently delete all files in trashcan?"
+msgstr ""
+
+
+msgid "Movie Selection Menu"
+msgstr ""
+
+
+msgid "exception "
+msgstr ""
+
+
+msgid ""
+"Locate rogue files and remove them? (permanently if no trashcan available, "
+"may take a minute or so)"
+msgstr ""
+
+
+msgid "Remove all cut file marker permanently?"
+msgstr ""
+
+
+msgid "no"
+msgstr ""
+
+
+msgid "yes"
+msgstr ""
+
+
+msgid "No override"
+msgstr ""
+
+
+msgid "Video-button"
+msgstr ""
+
+
+msgid "TV-button"
+msgstr ""
+
+
+msgid "Radio-button"
+msgstr ""
+
+
+msgid "Quick-button"
+msgstr ""
+
+
+msgid "Timeshift-button"
+msgstr ""
+
+
+
+
+msgid "Off"
+msgstr ""
+
+
+msgid "DD.MM.YYYY"
+msgstr ""
+
+
+msgid "DD.MM HH:MM"
+msgstr ""
+
+
+msgid "YYYY/MM/DD"
+msgstr ""
+
+
+msgid "MM/DD HH:MM"
+msgstr ""
+
+
+msgid "( # )"
+msgstr ""
+
+
+msgid "( # / GB )"
+msgstr ""
+
+
+msgid "( GB )"
+msgstr ""
+
+
+msgid "ProgressBar"
+msgstr ""
+
+
+msgid "Percent (%)"
+msgstr ""
+
+
+msgid "Movie Color"
+msgstr ""
+
+
+msgid "down"
+msgstr ""
+
+
+msgid "up/down"
+msgstr ""
+
+
+msgid "off"
+msgstr ""
+
+
+
+msgid "No"
+msgstr ""
+
+
+msgid "E2 Bookmarks"
+msgstr ""
+
+
+msgid "EMC Bookmarks"
+msgstr ""
+
+
+msgid "Both"
+msgstr ""
+
+
+msgid "Standby"
+msgstr ""
+
+
+msgid "DeepStandby"
+msgstr ""
+
+
+msgid "Reboot"
+msgstr ""
+
+
+msgid "E2 Restart"
+msgstr ""
+
+
+msgid "Date sort descending (D-)"
+msgstr ""
+
+
+
+msgid "Date sort"
+msgstr ""
+
+
+msgid "Alpha sort ascending (AZ)"
+msgstr ""
+
+
+
+msgid "Alpha sort"
+msgstr ""
+
+
+msgid "Progress sort ascending (P+)"
+msgstr ""
+
+
+
+msgid "Progress sort"
+msgstr ""
+
+
+msgid "Date sort ascending (D+)"
+msgstr ""
+
+
+msgid "Alpha sort descending (ZA)"
+msgstr ""
+
+
+msgid "Progress sort descending (P-)"
+msgstr ""
+
+
+msgid ""
+"ATTENTION\n"
+"\n"
+"This option will move all finished movies in Movie Home automatically to "
+"Your trashcan at the given time.\n"
+"At next trashcan cleanup all movies will be deleted.\n"
+"\n"
+"Confirm this with the blue key followed by the green key."
+msgstr ""
+
+
+msgid "IMDb Search"
+msgstr ""
+
+
+msgid "TMDB Info"
+msgstr ""
+
+
+msgid "CSFD Info"
+msgstr ""
+
+
+msgid "configuration"
+msgstr ""
+
+
+msgid "movie manipulation list"
+msgstr ""
+
+
+msgid " files\n"
+msgstr ""
+
+
+msgid "No rogue files found."
+msgstr ""
+
+
+msgid ""
+"Found rogue files:\n"
+"\n"
+msgstr ""
+
+
+msgid "VLC Server not reachable"
+msgstr ""

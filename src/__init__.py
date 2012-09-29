@@ -10,9 +10,9 @@ loadSkin("/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/CoolSki
 def localeInit():
 	lang = language.getLanguage()[:2] # getLanguage returns e.g. "fi_FI" for "language_country"
 	os_environ["LANGUAGE"] = lang # Enigma doesn't set this (or LC_ALL, LC_MESSAGES, LANG). gettext needs it!
-	gettext.bindtextdomain("EMC", resolveFilename(SCOPE_PLUGINS, "Extensions/EnhancedMovieCenter/locale"))
+	gettext.bindtextdomain("EnhancedMovieCenter", resolveFilename(SCOPE_PLUGINS, "Extensions/EnhancedMovieCenter/locale"))
 
-_ = lambda txt: gettext.dgettext("EMC", txt) if txt else ""
+_ = lambda txt: gettext.dgettext("EnhancedMovieCenter", txt) if txt else ""
 
 localeInit()
 language.addCallback(localeInit)
