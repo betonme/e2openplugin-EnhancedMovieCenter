@@ -41,7 +41,7 @@ from DelayedFunction import DelayedFunction
 
 from MovieCenter import sidDVD, sidDVB
 
-SeekbarPlg = "%s%s"%(resolveFilename(SCOPE_PLUGINS), "Extensions/Seekbar/plugin.py")
+SeekbarPlg = "%s%s"%(resolveFilename(SCOPE_PLUGINS), "Extensions/Seekbar/plugin.pyo")
 
 
 # Overwrite Seekbar

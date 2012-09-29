@@ -57,7 +57,7 @@ from enigma import ePicLoad
 from MovieCenter import sidDVD, sidDVB
 
 
-dvdPlayerPlg = "%s%s"%(resolveFilename(SCOPE_PLUGINS), "Extensions/DVDPlayer/plugin.py")
+dvdPlayerPlg = "%s%s"%(resolveFilename(SCOPE_PLUGINS), "Extensions/DVDPlayer/plugin.pyo")
 
 
 class EMCMoviePlayerSummary(Screen):
