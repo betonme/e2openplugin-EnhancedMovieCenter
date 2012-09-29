@@ -284,7 +284,7 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 		except:
 			plugin(session=self.session, service=self.service)
 		
-		self.close("reload")
+		#self.close("reload")
 
 	def addDirToE2Bookmarks(self, path):
 		if path and self.addE2Bookmark( path ) \
