@@ -156,10 +156,15 @@ class Info:
 											or self.__name
 		
 		#TODO dynamic or not
-		self.__extendeddescription = meta and meta.getMetaDescription() \
-																	or eit and eit.getEitDescription() \
+		#
+		#self.__extendeddescription = meta and meta.getMetaDescription() \
+		#															or eit and eit.getEitDescription() \
+		#															or ""
+		## meta file has no extendeddescrition 
+		self.__extendeddescription = eit and eit.getEitDescription() \
+																	or meta and meta.getMetaDescription() \
 																	or ""
-		
+		##
 		if not self.__extendeddescription:
 			if isreal:
 				if config.EMC.movie_real_path.value:
