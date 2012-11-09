@@ -139,6 +139,7 @@ launch_choices = [	("None",						_("No override")),
 # Date format is implemented using datetime.strftime
 date_choices = [	("",								_("Off")),
 									("%d.%m.%Y",				_("DD.MM.YYYY")),
+									("%d.%m %H:%M",			_("DD.MM HH:MM")),
 									("%d.%m. %H:%M",			_("DD.MM. HH:MM")),
 									("%Y/%m/%d",				_("YYYY/MM/DD")),
 									("%m/%d %H:%M",			_("MM/DD HH:MM")) ]
