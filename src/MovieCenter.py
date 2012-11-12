@@ -35,10 +35,10 @@ from skin import parseColor, parseFont, parseSize
 from enigma import eListboxPythonMultiContent, eListbox, gFont, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_HALIGN_CENTER, eServiceReference, eServiceCenter
 from timer import TimerEntry
 
-from RecordingsControl import RecordingsControl
+from . import _
+from RecordingsControl import RecordingsControl, getRecording
 from DelayedFunction import DelayedFunction
 from EMCTasker import emcDebugOut
-from EnhancedMovieCenter import _
 from VlcPluginInterface import VlcPluginInterfaceList, vlcSrv, vlcDir, vlcFil
 from operator import itemgetter
 from CutListSupport import CutList
@@ -145,6 +145,149 @@ def readBasicCfgFile(file):
 			f.close()
 	return data
 
+#-------------------------------------------------
+# func: getPlayerService(path, name="", ext=None)
+#
+# Determine the service of a media file
+#-------------------------------------------------
+def getPlayerService(path, name="", ext=None):
+	if ext in plyDVB:
+		service = eServiceReference(sidDVB, 0, path)
+	elif ext in plyMP3:
+		service = eServiceReference(sidMP3, 0, path)
+	elif ext in plyDVD:
+		service = eServiceReference(sidDVD, 0, path)
+		#QUESTION Is the special name handling really necessary
+		if service:
+			# Copied from dvd player
+			if path.endswith("/VIDEO_TS") or path.endswith("/"):
+				names = service.toString().rsplit("/",3)
+				if names[2].startswith("Disk ") or names[2].startswith("DVD "):
+					#TEST name = str(names[1]) + " - " + str(names[2])
+					name = names[1] + " - " + names[2]
+				else:
+					name = names[2]
+	elif ext in plyM2TS:
+		service = eServiceReference(sidM2TS, 0, path)
+	else:
+		path = path.replace(":","") # because of VLC player
+		service = eServiceReference("2:0:1:0:0:0:0:0:0:0:" + path)
+	if name:
+		service.setName(name)
+	return service
+
+def getProgress(service, length=0, last=0, forceRecalc=False, cuts=None):
+	# All calculations are done in seconds
+	# The progress of a recording isn't correct, because we only get the actual length not the final
+	cuts = None
+	progress = 0
+	#updlen = length
+	if last <= 0:
+		# Get last position from cut file
+		if cuts is None:
+			cuts = CutList( service.getPath() )
+		last = cuts.getCutListLast()
+	# Check for valid position
+	if last > 0 or forceRecalc:
+		# Valid position
+		# Recalc the movie length to calculate the progress status
+		if length <= 0: 
+			if service:
+				esc = eServiceCenter.getInstance()
+				info = esc and esc.info(service)
+				length = info and info.getLength(service) or 0
+			if length <= 0: 
+				if cuts is None:
+					cuts = CutList( service.getPath() )
+				length = cuts.getCutListLength()
+				if length <= 0: 
+					# Set default file length if is not calculateable
+					# 90 minutes = 90 * 60
+					length = 5400
+					# We only update the entry if we do not use the default value
+				#	updlen = 0
+				#else:
+				#	updlen = length
+			#else:
+			#	updlen = length
+		if length:
+			progress = calculateProgress(last, length)
+		else:
+			# This should never happen, we always have our default length
+			progress = 100
+			#emcDebugOut("[MC] getProgress(): Last without any length")
+	else:
+		# No position implies progress is zero
+		progress = 0
+	return progress, length
+
+def calculateProgress(last, length):
+	progress = 0
+	if length:
+		# Adjust the watched movie length (98% of movie length) 
+		# else we will never see the 100%
+		adjlength = float(length) / 100.0 * 98.0
+		# Calculate progress and round up
+		progress = int( math.ceil ( float(last) / float(adjlength) * 100.0 ) )
+		# Normalize progress
+		if progress < 0: progress = 0
+		elif progress > 100: progress = 100
+	return progress
+
+def toggleProgressService(service, preparePlayback, forceProgress=-1, first=False):
+	if service is None:
+		return
+	
+	# Cut file handling
+	path = service.getPath()
+	
+	# Only for compatibilty reasons
+	# Should be removed anytime
+	cuts  = path +".cuts"
+	cutsr = path +".cutsr"
+	if os.path.exists(cutsr) and not os.path.exists(cuts):
+		# Rename file - to catch all old EMC revisions
+		try:
+			os.rename(cutsr, cuts)
+		except Exception, e:
+			emcDebugOut("[CUTS] Exception in toggleProgressService: " + str(e))
+	# All calculations are done in seconds
+	cuts = CutList( path )
+	last = cuts.getCutListLast()
+	#length = self["list"].getLengthOfService(service)
+	progress, length = getProgress(service, length=0, last=last, forceRecalc=True, cuts=cuts)
+	
+	if not preparePlayback:
+		if first:
+			if progress < 100: forceProgress = 50		# force next state 100
+			else: forceProgress = 100 							# force next state 0
+		if forceProgress > -1:
+			progress = forceProgress
+			
+		if progress >= 100:
+			# 100% -> 0
+			# Don't care about preparePlayback, always reset to 0%
+			# Save last marker
+			cuts.toggleLastCutList(cuts.CUT_TOGGLE_START)
+		elif progress <= 0:
+			# 0% -> SAVEDLAST or length
+			cuts.toggleLastCutList(cuts.CUT_TOGGLE_RESUME)
+		else:
+			# 1-99% -> length
+			cuts.toggleLastCutList(cuts.CUT_TOGGLE_FINISHED)
+	else:
+		if progress >= 100 or config.EMC.movie_rewind_finished.value is True and progress >= int(config.EMC.movie_finished_percent.value):
+			# 100% -> 0 or
+			# Start playback and rewind is set and movie progress > finished -> 0
+			# Don't save SavedMarker
+			cuts.toggleLastCutList(cuts.CUT_TOGGLE_START_FOR_PLAY)
+		else:
+			# Delete SavedMarker
+			cuts.toggleLastCutList(cuts.CUT_TOGGLE_FOR_PLAY)
+	
+	# Update movielist entry
+	#self["list"].invalidateService(service)
+	return progress
 
 # muss drinnen bleiben sonst crashed es bei foreColorSelected
 def MultiContentEntryProgress(pos = (0, 0), size = (0, 0), percent = None, borderWidth = None, foreColor = None, foreColorSelected = None, backColor = None, backColorSelected = None):
@@ -248,7 +391,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 		# Initially load the movielist
 		# So it must not be done when the user it opens the first time
 		#MAYBE this should be configurable
-		DelayedFunction(10000, self.reloadIfNecessary, self.loadPath)
+		#DelayedFunction(10000, self.reloadIfNecessary, self.loadPath)
 
 	def reloadIfNecessary(self, loadPath):
 		if not self.list:
@@ -354,7 +497,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 			self.list = self.doListSort(self.list)
 			self.l.setList( self.list )
 
-# Not workin anymore
+# Not working anymore
 #	def nextSortingMode(self):
 #		from Plugins.Extensions.EnhancedMovieCenter.plugin import sort_choices
 #		sorts = list( set( [sort for sort, desc in sort_choices] ) )
@@ -446,9 +589,9 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 		
 		elif mode == "P":	# Progress
 			if not order:
-				sortlist.sort( key=lambda x: ( self.getProgress(x[0], x[6]) ) ) #,x[2],x[8]) )
+				sortlist.sort( key=lambda x: ( getProgress(x[0], x[6]) ) ) #,x[2],x[8]) )
 			else:
-				sortlist.sort( key=lambda x: ( self.getProgress(x[0], x[6]) ) ) # ,x[2],-x[8]) )
+				sortlist.sort( key=lambda x: ( getProgress(x[0], x[6]) ) ) # ,x[2],-x[8]) )
 		
 		# Combine lists
 		if order:
@@ -481,70 +624,6 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 					# But it is fast enough
 					emcDebugOut("[MC] Timer ended")
 					DelayedFunction(3000, self.refreshList)
-					
-					from MovieSelection import gMS
-					if gMS and gMS.playerInstance is not None:
-						# Check if record is currently played
-						record = timer.Filename + ".ts"
-						if record == gMS.playerInstance.service.getPath():
-							# WORKAROUND Player is running during a record ends
-							# We should find a more flexible universal solution
-							DelayedFunction(3000, self.updatePlayer)
-							# ATTENTION thist won't fix the other situation
-							# If a running record will be played and the player is stopped before the record ends
-							# -> Then E2 will overwrite the existing cuts.
-
-	def updatePlayer(self):
-		from MovieSelection import gMS
-		if gMS and gMS.playerInstance is not None:
-			gMS.playerInstance.updateFromCuesheet()
-
-	def getProgress(self, service, length=0, last=0, forceRecalc=False, cuts=None):
-		# All calculations are done in seconds
-		# The progress of a recording isn't correct, because we only get the actual length not the final
-		cuts = None
-		progress = 0
-		updlen = length
-		if last <= 0:
-			# Get last position from cut file
-			if cuts is None:
-				cuts = CutList( service.getPath() )
-			last = cuts.getCutListLast()
-		# Check for valid position
-		if last > 0 or forceRecalc:
-			# Valid position
-			# Recalc the movie length to calculate the progress status
-			if length <= 0: 
-				if service:
-					esc = eServiceCenter.getInstance()
-					info = esc and esc.info(service)
-					length = info and info.getLength(service) or 0
-				if length <= 0: 
-					if cuts is None:
-						cuts = CutList( service.getPath() )
-					length = cuts.getCutListLength()
-					if length <= 0: 
-						# Set default file length if is not calculateable
-						# 90 minutes = 90 * 60
-						length = 5400
-						# We only update the entry if we do not use the default value
-						updlen = 0
-					else:
-						updlen = length
-				else:
-					updlen = length
-				if updlen:
-					self.updateLength(service, updlen)
-			if length:
-				progress = self.calculateProgress(last, length)
-			else:
-				# This should never happen, we always have our default length
-				progress = 100
-				#emcDebugOut("[MC] getProgress(): Last without any length")
-		else:
-			# No position implies progress is zero
-			progress = 0
-		return progress
 
 	def getRecordProgress(self, path):
 		# The progress of all recordings is updated
@@ -553,27 +632,14 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 		# The progress of one recording is updated
 		# - if it will be highlighted the list
 		# Note: There is no auto update mechanism of the recording progress
-		record = self.recControl.getRecording(path)
+		record = getRecording(path)
 		if record:
 			begin, end, service = record
 			last = time() - begin
 			length = end - begin
-			return self.calculateProgress(last, length)
+			return calculateProgress(last, length)
 		else:
 			return 0
-
-	def calculateProgress(self, last, length):
-		progress = 0
-		if length:
-			# Adjust the watched movie length (98% of movie length) 
-			# else we will never see the 100%
-			adjlength = float(length) / 100.0 * 98.0
-			# Calculate progress and round up
-			progress = int( math.ceil ( float(last) / float(adjlength) * 100.0 ) )
-			# Normalize progress
-			if progress < 0: progress = 0
-			elif progress > 100: progress = 100
-		return progress
 
 	def updateLength(self, service, length):
 		# Update entry in list... so next time we don't need to recalc
@@ -666,7 +732,9 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 					
 					if config.EMC.movie_progress.value:
 						# Calculate progress and state
-						progress = service and self.getProgress(service, length) or 0
+						progress, updlen = getProgress(service, length) or 0
+						if updlen:
+							self.updateLength(service, updlen)
 						movieUnwatched = config.EMC.movie_progress.value and	progress < int(config.EMC.movie_watching_percent.value)
 						movieWatching  = config.EMC.movie_progress.value and	progress >= int(config.EMC.movie_watching_percent.value) and progress < int(config.EMC.movie_finished_percent.value)
 						movieFinished  = config.EMC.movie_progress.value and	progress >= int(config.EMC.movie_finished_percent.value)
@@ -1441,7 +1509,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 					except UnicodeDecodeError:
 						title = title.decode("iso-8859-1").encode("utf-8")
 				
-				service = self.getPlayerService(path, title)
+				service = getPlayerService(path, title)
 				
 				sorttitle = title.lower()
 				
@@ -1572,7 +1640,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 					title += " "+ext[1:]
 				
 				# Get player service and set formatted title
-				service = self.getPlayerService(path, title, ext)
+				service = getPlayerService(path, title, ext)
 				
 				# Bad workaround to get all information into our Service Source
 				service.date = date
@@ -1685,7 +1753,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 							if dvdStruct:
 								pathname = os.path.dirname(dvdStruct)
 								ext = os.path.splitext(dvdStruct)[1].lower()
-								service = self.getPlayerService(pathname, dir, ext)
+								service = getPlayerService(pathname, dir, ext)
 								if not self.serviceBusy(service):
 									yield service
 					if files:
@@ -1694,7 +1762,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 							if ext in extMedia:
 								pathname = os.path.join(root, name)
 								#TODO get formatted Name
-								service = self.getPlayerService(pathname, name, ext)
+								service = getPlayerService(pathname, name, ext)
 								if not self.serviceBusy(service):
 									yield service
 
@@ -1740,7 +1808,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 						ext = os.path.splitext(pathname)[1]
 						if ext in plyAll:
 							# Entry is playable
-							service = self.getPlayerService(pathname, entry, ext)
+							service = getPlayerService(pathname, entry, ext)
 							if not self.serviceBusy(service):
 								yield service
 								
@@ -1749,35 +1817,9 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 							if dvdStruct:
 								path = os.path.dirname(dvdStruct)
 								ext = os.path.splitext(dvdStruct)[1].lower()
-								service = self.getPlayerService(path, entry, ext)
+								service = getPlayerService(path, entry, ext)
 								if not self.serviceBusy(service):
 									yield service
-
-	def getPlayerService(self, path, name="", ext=None):
-		if ext in plyDVB:
-			service = eServiceReference(sidDVB, 0, path)
-		elif ext in plyMP3:
-			service = eServiceReference(sidMP3, 0, path)
-		elif ext in plyDVD:
-			service = eServiceReference(sidDVD, 0, path)
-			#QUESTION Is the special name handling really necessary
-			if service:
-				# Copied from dvd player
-				if path.endswith("/VIDEO_TS") or path.endswith("/"):
-					names = service.toString().rsplit("/",3)
-					if names[2].startswith("Disk ") or names[2].startswith("DVD "):
-						#TEST name = str(names[1]) + " - " + str(names[2])
-						name = names[1] + " - " + names[2]
-					else:
-						name = names[2]
-		elif ext in plyM2TS:
-			service = eServiceReference(sidM2TS, 0, path)
-		else:
-			path = path.replace(":","") # because of VLC player
-			service = eServiceReference("2:0:1:0:0:0:0:0:0:0:" + path)
-		if name:
-			service.setName(name)
-		return service
 
 	def currentSelIsPlayable(self):
 		try:	return self.list[self.getCurrentIndex()][7] in extMedia

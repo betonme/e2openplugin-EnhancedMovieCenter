@@ -30,6 +30,21 @@ from EMCTasker import emcTasker, emcDebugOut
 from DelayedFunction import DelayedFunction
 
 
+def getRecording(filename):
+	try:
+		if filename[0] == "/": 			filename = os.path.basename(filename)
+		if filename.endswith(".ts"):	filename = filename[:-3]
+		
+		for timer in NavigationInstance.instance.RecordTimer.timer_list:
+			try: timer.Filename
+			except: timer.calculateFilename()
+			if filename == os.path.basename(timer.Filename):
+				return timer.begin, timer.end, timer.service_ref.ref
+	except Exception, e:
+		emcDebugOut("[emcRC] getRecording exception:\n" + str(e))
+	return None
+
+
 class NetworkAwareness:
 	def __init__(self):
 		self.retries = 0
@@ -137,24 +152,6 @@ class RecordingsControl:
 			emcDebugOut("[emcRC] isRecording exception:\n" + str(e))
 			return False
 
-	def getRecording(self, filename):
-		try:
-			if filename[0] == "/": 			filename = os.path.basename(filename)
-			if filename.endswith(".ts"):	filename = filename[:-3]
-			if filename in self.recDict:
-				begin, end, ref, id = self.recDict[filename]
-				if end - begin == 0:
-						for timer in NavigationInstance.instance.RecordTimer.timer_list:
-							if str(timer) == id:
-								# Update record times
-								begin = timer.begin
-								end = timer.end
-								self.recDict[filename] = (begin, end, ref, id)
-				return begin, end, ref
-		except Exception, e:
-			emcDebugOut("[emcRC] getRecording exception:\n" + str(e))
-		return None
-
 	def isRemoteRecording(self, filename):
 		try:
 			if filename[0] == "/": 			filename = os.path.basename(filename)
@@ -236,11 +233,12 @@ class RecordingsControl:
 		self.recRemoteList = []
 		recf = None
 		try:
-			for x in os.listdir(config.EMC.folder.value):
-				path = os.path.join(config.EMC.folder.value, x)
-				if x.endswith(".rec") and path != self.recFile:
-					recf = open( path, "rb" )
-					self.recRemoteList += pickle.load(recf)
+			if config.EMC.folder.value and os.path.exists(config.EMC.folder.value):
+				for x in os.listdir(config.EMC.folder.value):
+					path = os.path.join(config.EMC.folder.value, x)
+					if x.endswith(".rec") and path != self.recFile:
+						recf = open( path, "rb" )
+						self.recRemoteList += pickle.load(recf)
 		except Exception, e:
 			emcDebugOut("[emcRC] recFilesRead exception:\n" + str(e))
 		finally:

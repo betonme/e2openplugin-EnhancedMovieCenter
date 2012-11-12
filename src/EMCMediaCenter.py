@@ -54,8 +54,10 @@ from Components.AVSwitch import AVSwitch
 from Components.Pixmap import Pixmap
 from enigma import ePicLoad
 
-from MovieCenter import sidDVD, sidDVB
+from MovieCenter import sidDVD, sidDVB, toggleProgressService
 
+from RecordingsControl import getRecording
+import NavigationInstance
 
 dvdPlayerPlg = "%s%s"%(resolveFilename(SCOPE_PLUGINS), "Extensions/DVDPlayer/plugin.pyo")
 
@@ -72,7 +74,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 	ENABLE_RESUME_SUPPORT = True
 	ALLOW_SUSPEND = True
 	
-	def __init__(self, session, playlist, recordings, playall=None, lastservice=None):
+	def __init__(self, session, playlist, playall=None, lastservice=None):
 		
 		# The CutList must be initialized very first  
 		CutList.__init__(self)
@@ -206,19 +208,22 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 		self.firstStart = True
 		self.stopped = False
 		self.closedByDelete = False
-		self.playerOpenedList = False
 		self.closeAll = False
 		
 		self.lastservice = lastservice or self.session.nav.getCurrentlyPlayingServiceReference()
 		self.playlist = playlist
 		self.playall = playall
 		self.playcount = -1
-		self.recordings = recordings
 		self.service = None
-		self.recordings.setPlayerInstance(self)
 		
 		self.picload = ePicLoad()
 		self.picload.PictureData.get().append(self.showCoverCallback)
+		
+		# Record events
+		try:
+			NavigationInstance.instance.RecordTimer.on_state_change.append(self.recEvent)
+		except Exception, e:
+			emcDebugOut("[EMCMediaCenter] Record observer add exception:\n" + str(e))
 		
 		# Dialog Events
 		self.onShown.append(self.__onShow)  # Don't use onFirstExecBegin() it will crash
@@ -287,14 +292,14 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 					#except:
 					#	pass
 					# Workaround for E2 dvb player bug in combination with running recordings and existings cutlists
-					record = self.recordings.getRecording(path)
+					record = getRecording(path)
 					if record:
 						try:
 							os.remove(cutspath)
 						except:
 							pass
 				# Further cutlist handling
-				self.recordings.toggleProgress(service, True)
+				toggleProgressService(service, True)
 				self.service = service
 				
 				if service and service.type == sidDVD:
@@ -323,16 +328,16 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 					self["DVDPlayerPlaybackActions"].setEnabled(False)
 				
 				# Check if the video preview is active and already running
-#				if config.EMC.movie_preview.value:
-#					ref = self.session.nav.getCurrentlyPlayingServiceReference()
-#					if ref and service and ref.getPath() == service.getPath():
-#						#s = self.session.nav.getCurrentService()
-#						#cue = s and s.cueSheet()
-#						#if cue is not None:
-#							#cue.setCutListEnable(1)
-#						self.downloadCuesheet()
-#							#print "EMC cue.setCutListEnable(1)"
-#						#return
+		#				if config.EMC.movie_preview.value:
+		#					ref = self.session.nav.getCurrentlyPlayingServiceReference()
+		#					if ref and service and ref.getPath() == service.getPath():
+		#						#s = self.session.nav.getCurrentService()
+		#						#cue = s and s.cueSheet()
+		#						#if cue is not None:
+		#							#cue.setCutListEnable(1)
+		#						self.downloadCuesheet()
+		#							#print "EMC cue.setCutListEnable(1)"
+		#						#return
 				
 				# Is this really necessary 
 				# TEST for M2TS Audio problem
@@ -367,14 +372,6 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 	def leavePlayer(self, stopped=True):
 		#TEST is stopped really necessary
 		self.stopped = stopped
-		if self.playerOpenedList:
-			print "leavePlayer self.recordings.close"
-			self.recordings.close()
-			#self.session.close(self.recordings)
-			#self.session.execEnd(self.recordings)
-			self.playerOpenedList = False
-			#self.recordings.hide()
-			return
 		
 		self.setSubtitleState(False)
 		if self.dvdScreen:
@@ -387,43 +384,53 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 		if self.service and self.service.type != sidDVB:
 			self.updateCutList( self.getSeekPlayPosition(), self.getSeekLength() )
 		
-		self.recordings.setPlayerInstance(None)
-		
 		reopen = False
 		try:
-			#from MovieSelection import gMS
-			self.recordings.returnService = self.service
+#			self.recordings.returnService = self.service
 			if self.stopped:
 				emcDebugOut("[EMCPlayer] Player closed by user")
 				if config.EMC.movie_reopen.value:
-					#DelayedFunction(80, gMS.session.execDialog, gMS)		# doesn't crash Enigma2 subtitle functionality
 					#self.recordings.show()
 					reopen = True
 			elif self.closedByDelete:
 				emcDebugOut("[EMCPlayer] closed due to file delete")
-				#DelayedFunction(80, gMS.session.execDialog, gMS)		# doesn't crash Enigma2 subtitle functionality
 				#self.recordings.show()
 				reopen = True
 			else:
 				emcDebugOut("[EMCPlayer] closed due to playlist EOF")
 				if self.closeAll:
 					AddPopup(
-										_("EMC\nZap to Live TV of record"),
-										MessageBox.TYPE_INFO,
-										3,
-										"EMCCloseAllAndZap"
-									)
+								_("EMC\nZap to Live TV of record"),
+								MessageBox.TYPE_INFO,
+								3,
+								"EMCCloseAllAndZap"
+							)
 				else:
-					if self.playerOpenedList or config.EMC.movie_reopenEOF.value: # did the player close while movie list was open?
-						#DelayedFunction(80, gMS.session.execDialog, gMS)		# doesn't crash Enigma2 subtitle functionality
+					if config.EMC.movie_reopenEOF.value: # did the player close while movie list was open?
 						#self.recordings.show()
 						reopen = True
-			self.playerOpenedList = False
 			self.service = None
 		except Exception, e:
 			emcDebugOut("[EMCPlayer] leave exception:\n" + str(e))
 		
 		self.close(reopen)
+
+	def recEvent(self, timer):
+		try:
+			# Check if record is currently played
+			path = timer.Filename + ".ts"
+			if path == self.service.getPath():
+				# WORKAROUND Player is running during a record ends
+				# We should find a more flexible universal solution
+				DelayedFunction(3000, self.updatePlayer)
+				# ATTENTION thist won't fix the other situation
+				# If a running record will be played and the player is stopped before the record ends
+				# -> Then E2 will overwrite the existing cuts.
+		except Exception, e:
+			emcDebugOut("[spRO] recEvent exception:\n" + str(e))
+
+	def updatePlayer(self):
+		self.updateFromCuesheet()
 
 	def __onClose(self):
 		if self.picload:
@@ -431,6 +438,11 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 		if self.lastservice:
 			self.session.nav.playService(self.lastservice)
 			self.lastservice = None
+		# Record events
+		try:
+			NavigationInstance.instance.RecordTimer.on_state_change.remove(self.recEvent)
+		except Exception, e:
+			emcDebugOut("[EMCMediaCenter] Record observer remove exception:\n" + str(e))
 
 	##############################################################################
 	## Recordings relevant function
@@ -439,7 +451,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 			service = self.service
 			path = service and service.getPath()
 			if path:
-				record = self.recordings.getRecording(path)
+				record = getRecording(path)
 				if record:
 					#TODO There is still a problem with split records with cut numbers
 					begin, end, s = record
@@ -458,7 +470,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 			service = self.service
 			path = service and service.getPath()
 			if path:
-				record = self.recordings.getRecording(path)
+				record = getRecording(path)
 				if record:
 					begin, end, s = record
 					return int((time() - begin) * 90000)
@@ -492,7 +504,6 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 
 	def movieSelected(self, playlist, playall=None):
 		print "movieSelected"
-		self.playerOpenedList = False
 		
 		if playlist is not None and len(playlist) > 0:
 			self.playcount = -1
@@ -778,9 +789,9 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 	# InfoBarShowMovies
 	def showMovies(self):
 		try:
-			self.playerOpenedList = True
-			self.session.execDialog(self.recordings)
-			#self.recordings.show()
+			from MovieSelection import EMCSelection
+			#self.session.openWithCallback(showMoviesCallback, EMCSelection)
+			self.session.open(EMCSelection, playerInstance=self, returnService=self.service )
 		except Exception, e:
 			emcDebugOut("[EMCPlayer] showMovies exception:\n" + str(e))
 
@@ -811,33 +822,12 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 			#	self.dvdScreen.hide()
 			InfoBarShowHide.doShow(self)
 
-	# InfoBarCueSheetSupport
-	def playLastCB(self, answer):
-		if answer == True:
-			self.doSeek(self.resume_point)
-		# From Merlin2
-		elif config.EMC.movie_jump_first_mark.value == True:
-			self.jumpToFirstMark()
-		elif self.service and self.service.type == sidDVD:
-			DelayedFunction(50, boundFunction(self.dvdPlayerWorkaround))
-		self.showAfterSeek()
-
 	# InfoBarNumberZap
 	def keyNumberGlobal(self, number):
 		if self.service and self.service.type == sidDVD:
 			if fileExists(dvdPlayerPlg) or fileExists("%sc"%dvdPlayerPlg):
 				from Plugins.Extensions.DVDPlayer.plugin import ChapterZap
 				self.session.openWithCallback(self.numberEntered, ChapterZap, "0")
-
-	def numberEntered(self, retval):
-		if retval and retval > 0 and retval != "":
-			self.zapToNumber(retval)
-
-	def zapToNumber(self, number):
-		if self.service:
-			seekable = self.getSeek()
-			if seekable:
-				seekable.seekChapter(number)
 
 	# InfoBarMenu Key_Menu
 	#def mainMenu(self):
@@ -875,25 +865,26 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 		
 		if self.in_menu:
 			self.hide()
-		if config.EMC.record_eof_zap.value and self.recordings and self.service:
+		if config.EMC.record_eof_zap.value and self.service:
 			#TEST
 			# get path from iPlayableService
 			#ref = self.session.nav.getCurrentlyPlayingServiceReference()
 			#if ref and self.service and ref.getPath() == self.service.getPath():
-			record = self.recordings.getRecording(self.service.getPath())
+			record = getRecording(self.service.getPath())
 			if record:
 				begin, end, service = record
-				#last = ( time() - begin ) * 90000
 				
 				# Seek play position and record length differ about one second
+				#last = ( time() - begin ) * 90000
 				#if last < (self.getSeekPlayPosition() + 1*90000):
+				
 				# Zap to new channel
 				self.lastservice = service
 				self.service = None
 				self.closeAll = True
-				#DelayedFunction(10, boundFunction(self.leavePlayer, False))
 				self.leavePlayer(False)
 				return
+
 				#TEST just return and ignore if there is more to play
 				#else:
 				##if self.seekstate == self.SEEK_STATE_EOF:

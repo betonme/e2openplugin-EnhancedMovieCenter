@@ -138,10 +138,10 @@ launch_choices = [	("None",						_("No override")),
 
 # Date format is implemented using datetime.strftime
 date_choices = [	("",								_("Off")),
-									("%d.%m.%Y",				_("DD.MM.YYYY")),
+									("%d.%m.%Y",			_("DD.MM.YYYY")),
 									("%d.%m %H:%M",			_("DD.MM HH:MM")),
-									("%d.%m. %H:%M",			_("DD.MM. HH:MM")),
-									("%Y/%m/%d",				_("YYYY/MM/DD")),
+									("%d.%m. %H:%M",		_("DD.MM. HH:MM")),
+									("%Y/%m/%d",			_("YYYY/MM/DD")),
 									("%m/%d %H:%M",			_("MM/DD HH:MM")) ]
 
 dirinfo_choices = [	("",							_("Off")),
@@ -289,13 +289,12 @@ config.EMC.remote_recordings         = ConfigYesNo(default = False)
 config.EMC.InfoLong                  = ConfigSelection(choices = [("IMDbSearch", _("IMDb Search")), ("TMDBInfo", _("TMDB Info")), ('CSFDInfo', _('CSFD Info'))], default = "IMDbSearch")
 
 gSession = None
-gRecordings = None
 
 def showMoviesNew(dummy_self = None):
 	try:
-		global gSession, gRecordings
-		gSession.execDialog(gRecordings)
-		gRecordings.callback = showMoviesCallback
+		global gSession
+		from MovieSelection import EMCSelection
+		gSession.openWithCallback(showMoviesCallback, EMCSelection)
 	except Exception, e:
 		emcDebugOut("[showMoviesNew] exception:\n" + str(e))
 
@@ -316,8 +315,8 @@ def autostart(reason, **kwargs):
 	if reason == 0: # start
 		if kwargs.has_key("session"):
 			global gSession
-			gSession = kwargs["session"]
 			from EnhancedMovieCenter import EMCStartup
+			gSession = kwargs["session"]
 			EMCStartup(gSession)
 			emcTasker.Initialize(gSession)
 			
@@ -334,21 +333,21 @@ def autostart(reason, **kwargs):
 					emcDebugOut("[spStartup] MovieCenter launch override exception:\n" + str(e))
 				
 				try:
-					global gRecordings
 					from MovieSelection import EMCSelection
-					gRecordings = gSession.instantiateDialog(EMCSelection)
+					gSession.openWithCallback(showMoviesCallback, EMCSelection)
 				except Exception, e:
 					emcDebugOut("[spStartup] instantiateDialog exception:\n" + str(e))
 
 def pluginOpen(session, *args, **kwargs):
-	from EnhancedMovieCenter import EnhancedMovieCenterMenu
 	try:
+		from EnhancedMovieCenter import EnhancedMovieCenterMenu
 		session.open(EnhancedMovieCenterMenu)
 	except Exception, e:
 		emcDebugOut("[pluginOpen] exception:\n" + str(e))
 
 def recordingsOpen(session, *args, **kwargs):
-	showMoviesNew()
+	from MovieSelection import EMCSelection
+	session.openWithCallback(showMoviesCallback, EMCSelection)
 
 def Plugins(**kwargs):
 	from EnhancedMovieCenter import EMCVersion

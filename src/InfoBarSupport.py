@@ -111,8 +111,11 @@ class InfoBarSupport(	InfoBarBase, \
 				"jumpNextMark": (self.jumpNextMark, _("jump to next marked position")),
 				"toggleMark": (self.toggleMark, _("toggle a cut mark at the current position"))
 			}, prio=1)
+			
 		self.cut_list = [ ]
 		self.is_closing = False
+		self.resume_point = 0
+		
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
 			{
 				iPlayableService.evStart: self.__serviceStarted,
@@ -151,7 +154,27 @@ class InfoBarSupport(	InfoBarBase, \
 				self.jumpToFirstMark()
 		elif config.EMC.movie_jump_first_mark.value == True:
 			self.jumpToFirstMark()
+	
+	def playLastCB(self, answer):
+		if answer == True:
+			self.doSeek(self.resume_point)
+		# From Merlin2
+		elif config.EMC.movie_jump_first_mark.value == True:
+			self.jumpToFirstMark()
+		elif self.service and self.service.type == sidDVD:
+			DelayedFunction(50, boundFunction(self.dvdPlayerWorkaround))
+		self.showAfterSeek()
+	
+	def numberEntered(self, retval):
+		if retval and retval > 0 and retval != "":
+			self.zapToNumber(retval)
 
+	def zapToNumber(self, number):
+		if self.service:
+			seekable = self.getSeek()
+			if seekable:
+				seekable.seekChapter(number)
+	
 	# From Merlin2
 	def jumpToFirstMark(self):
 		firstMark = None

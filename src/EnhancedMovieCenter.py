@@ -53,7 +53,7 @@ from DelayedFunction import DelayedFunction
 from EMCTasker import emcTasker, emcDebugOut
 
 
-EMCVersion = "V3.9.2"
+EMCVersion = "V4.0.0b4"
 EMCAbout = "\n  Enhanced Movie Center " +EMCVersion+ "\n\n  (C) 2012 by\n  Coolman, Betonme & Swiss-MAD \n\n  If you like this plugin and you want to support it,\n  or if just want to say ''thanks'',\n  please donate via PayPal. \n\n  Thanks a lot ! \n\n  PayPal: enhancedmoviecenter@gmail.com"
 
 
@@ -85,8 +85,6 @@ trashCleanCall = None
 
 def cleanupSetup(dummy=None):
 	try:
-		#from MovieSelection import gMS
-		from plugin import gRecordings
 		global trashCleanCall
 		if trashCleanCall is not None:
 			if trashCleanCall.exists():
@@ -109,8 +107,8 @@ def cleanupSetup(dummy=None):
 				# Recall setup funktion
 				trashCleanCall = DelayedFunction(1000*seconds, cleanupSetup)
 				# Execute trash cleaning
-				#DelayedFunction(2000, gMS.purgeExpired)
-				DelayedFunction(2000, gRecordings.purgeExpired)
+				from MovieSelection import purgeExpired
+				DelayedFunction(2000, purgeExpired)
 				emcDebugOut("Next trashcan cleanup in " + str(seconds/60) + " minutes")
 	except Exception, e:
 		emcDebugOut("[sp] cleanupSetup exception:\n" + str(e))

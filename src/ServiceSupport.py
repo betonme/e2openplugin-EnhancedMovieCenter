@@ -32,7 +32,7 @@ from ServiceReference import ServiceReference
 from CutListSupport import CutList
 from MetaSupport import MetaList
 from EitSupport import EitList
-
+from RecordingsControl import getRecording
 
 instance = None
 
@@ -164,7 +164,7 @@ class Info:
 		self.__extendeddescription = eit and eit.getEitDescription() \
 																	or meta and meta.getMetaDescription() \
 																	or ""
-		##
+		
 		if not self.__extendeddescription:
 			if isreal:
 				if config.EMC.movie_real_path.value:
@@ -249,8 +249,7 @@ class Info:
 		# If it is a record we will force to use the timer duration
 		length = 0
 		if config.EMC.record_show_real_length.value:
-			from MovieSelection import gMS
-			record = gMS.getRecording(self.path)
+			record = getRecording(self.path)
 			if record:
 				begin, end, service = record
 				length = end - begin # times = (begin, end) : end - begin

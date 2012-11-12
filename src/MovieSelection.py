@@ -52,7 +52,7 @@ from enigma import ePicLoad, getDesktop
 from DelayedFunction import DelayedFunction
 from EnhancedMovieCenter import _
 from EMCTasker import emcTasker, emcDebugOut
-from MovieCenter import MovieCenter
+from MovieCenter import MovieCenter, getPlayerService, getProgress, toggleProgressService
 from MovieSelectionMenu import MovieMenu
 from EMCMediaCenter import EMCMediaCenter
 from VlcPluginInterface import VlcPluginInterfaceSel
@@ -68,7 +68,110 @@ from Components.Sources.EMCServiceEvent import EMCServiceEvent
 from MovieCenter import extList, extVideo, extMedia, extDir, plyAll, plyDVD, cmtBME2, cmtBMEMC, cmtDir
 global extList, extVideo, extMedia, extDir, plyAll, plyDVD, cmtBME2, cmtBMEMC, cmtDir
 
-gMS = None
+
+# Move all trashcan operations to a separate file / class
+def purgeExpired(emptyTrash=False):
+	try:
+		movie_trashpath = config.EMC.movie_trashcan_path.value
+		movie_homepath = os.path.realpath(config.EMC.movie_homepath.value)
+		
+		# Avoid cleaning the movie home folder
+		for root, dirs, files in os.walk(movie_trashpath):
+			if os.path.realpath(root) in movie_homepath:
+				AddPopup(
+					_("EMC: Skipping Trashcan Cleanup\nMovie Home Path is equal to or a subfolder of the Trashcan"),
+					MessageBox.TYPE_INFO,
+					0,
+					"EMC_TRASHCAN_CLEANUP_SKIPPED_ID"
+				)
+				return
+		
+		if os.path.exists(movie_trashpath):
+			if config.EMC.movie_trashcan_clean.value is True or emptyTrash:
+				# Trashcan cleanup
+				purgeCmd = ""
+				currTime = localtime()
+				for root, dirs, files in os.walk(movie_trashpath):
+					for movie in files:
+						# Only check media files
+						ext = os.path.splitext(movie)[1].lower()
+						if ext in extMedia:
+							fullpath = os.path.join(root, movie)
+							if os.path.exists(fullpath):
+								if emptyTrash or currTime > localtime(os.stat(fullpath).st_mtime + 24*60*60*int(config.EMC.movie_trashcan_limit.value)):
+									#purgeCmd += '; rm -f "'+ os.path.splitext(fullpath)[0] +'."*'
+									
+									#TEST_E2DELETE
+									service = getPlayerService(fullpath, movie, ext)
+									serviceHandler = eServiceCenter.getInstance()
+									offline = serviceHandler.offlineOperations(service)
+									result = False
+									if offline is not None:
+										# really delete!
+										if not offline.deleteFromDisk(0):
+											result = True
+									if result == False:
+										AddPopup(
+											_("EMC Trashcan Cleanup failed!"),
+											MessageBox.TYPE_ERROR,
+											0,
+											"EMC_TRASHCAN_CLEANUP_FAILED_ID"
+										)
+										return
+									else:
+										path = os.path.splitext(fullpath)[0].replace("'","\'")
+										purgeCmd += '; rm -f "'+ path +'."*'
+									#TEST_E2DELETE
+									
+				if purgeCmd != "":
+					emcTasker.shellExecute(purgeCmd[2:])
+					emcDebugOut("[EMCMS] trashcan cleanup activated")
+				else:
+					emcDebugOut("[EMCMS] trashcan cleanup: nothing to delete...")
+			if config.EMC.movie_finished_clean.value is True:
+				#TODO very slow
+				# Movie folder cleanup
+				# Start only if dreambox is in standby
+				# No subdirectory handling
+				import Screens.Standby
+				if Screens.Standby.inStandby:
+					mvCmd = ""
+					currTime = localtime()
+					for root, dirs, files in os.walk(movie_homepath):
+						if root.startswith(movie_trashpath):
+							# Don't handle the trashcan and its subfolders
+							continue
+						for movie in files:
+							
+							# Only check media files
+							ext = os.path.splitext(movie)[1].lower()
+							if ext in extMedia:
+								fullpath = os.path.join(root, movie)
+								fullpathcuts = fullpath + ".cuts"
+								if os.path.exists(fullpathcuts):
+									if currTime > localtime(os.stat(fullpathcuts).st_mtime + 24*60*60*int(config.EMC.movie_finished_limit.value)):
+										# Check progress
+										service = getPlayerService(fullpath, movie, ext)
+										progress, length = getProgress(service, forceRecalc=True)
+										if progress >= int(config.EMC.movie_finished_percent.value):
+											# cut file extension
+											fullpath = os.path.splitext(fullpath)[0].replace("'","\'")
+											# create a time stamp with touch for all corresponding files
+											mvCmd += '; touch "'+ fullpath +'."*'
+											# move movie into the trashcan
+											mvCmd += '; mv "'+ fullpath +'."* "'+ movie_trashpath +'"'
+					if mvCmd != "":
+						association = []
+						#Not necessary anymore - Is done always on show
+						#association.append((reloadList))	# Force list reload after cleaning
+						emcTasker.shellExecute(mvCmd[2:], association)
+						emcDebugOut("[EMCMS] finished movie cleanup activated")
+					else:
+						emcDebugOut("[EMCMS] finished movie cleanup: nothing to move...")
+		else:
+			emcDebugOut("[EMCMS] trashcan cleanup: no trashcan...")
+	except Exception, e:
+		emcDebugOut("[EMCMS] purgeExpired exception:\n" + str(e))
 
 
 class SelectionEventInfo:
@@ -234,7 +337,11 @@ class SelectionEventInfo:
 
 
 class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfaceSel, DirectoryStack, E2Bookmarks, EMCBookmarks):
-	def __init__(self, session):
+	
+	returnService = None
+	currentPath = None
+	
+	def __init__(self, session, playerInstance=None, returnService=None):
 		Screen.__init__(self, session)
 		SelectionEventInfo.__init__(self)
 		VlcPluginInterfaceSel.__init__(self)
@@ -254,10 +361,11 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			self.skin = Cool.read()
 			Cool.close()
 		
-		self.playerInstance = None
+		self.playerInstance = playerInstance
 		self.lastPlayedMovies = None
 		self.multiSelectIdx = None
-		self.returnService = None
+		if returnService:
+			self.returnService = returnService
 		self.lastservice = None
 		self.cursorDir = 0
 		self["wait"] = Label(_("Reading directory..."))
@@ -267,8 +375,6 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		self["key_green"] = Button()
 		self["key_yellow"] = Button()
 		self["key_blue"] = Button()
-		global gMS
-		gMS = self
 		self["actions"] = HelpableActionMap(self, "PluginMovieSelectionActions",
 			{
 				"EMCOK":			(self.entrySelected,		_("Play selected movie(s)")),
@@ -321,7 +427,8 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		
 		HelpableScreen.__init__(self)
 		
-		self.currentPath = config.EMC.movie_homepath.value
+		if self.currentPath == None:
+			self.currentPath = config.EMC.movie_homepath.value
 		self.tmpSelList = None		# Used for file operations
 		
 		# Key press short long handling
@@ -463,7 +570,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		if nextdir == ".." or nextdir is None or nextdir.endswith(".."):
 			if self.currentPath != "" and self.currentPath != "/":
 				# Open Parent folder
-				service = self["list"].getPlayerService(self.currentPath)
+				service = getPlayerService(self.currentPath)
 				nextdir = os.path.dirname(self.currentPath)
 			else:
 				# No way to go folder up
@@ -596,7 +703,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			elif selection == "reload": self.initList()
 			elif selection == "plugin": self.onDialogShow()
 			elif selection == "setup": self.onDialogShow()
-			elif selection == "ctrash": self.purgeExpired()
+			elif selection == "ctrash": purgeExpired()
 			elif selection == "trash": self.changeDir(config.EMC.movie_trashcan_path.value)
 			elif selection == "delete": self.deleteFile(True)
 			elif selection == "cutlistmarker": self.removeCutListMarker()
@@ -610,7 +717,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			elif selection == "updatetitle": self.updateTitle()
 			elif selection == "imdb": self.imdb()
 			elif selection == "rename": self.rename()
-			elif selection == "emptytrash": self.purgeExpired(emptyTrash=True)
+			elif selection == "emptytrash": purgeExpired(emptyTrash=True)
 
 	def openMenu(self):
 		current = self.getCurrent()
@@ -844,7 +951,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			for service in selectedlist:
 				self["list"].toggleSelection(service)
 
-	def toggleProgress(self, service=None, preparePlayback=False):
+	def toggleProgress(self, service=None):
 		if self.multiSelectIdx:
 			self.multiSelectIdx = None
 			self.updateTitle()
@@ -855,70 +962,16 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			if current is not None:
 				# Force copy of selectedlist
 				selectedlist = self["list"].makeSelectionList()[:]
-				if len(selectedlist)>1 and not preparePlayback:
+				if len(selectedlist)>1:
 					first = True
 				for sel in selectedlist:
-					progress = self.__toggleProgressService(sel, preparePlayback, forceProgress, first)
+					progress = toggleProgressService(sel, False, forceProgress, first)
+					self["list"].invalidateService(service)
 					first = False
-					if not preparePlayback:
-						forceProgress = progress
-		else:
-			self.__toggleProgressService(service, preparePlayback)
-	
-	def __toggleProgressService(self, service, preparePlayback, forceProgress=-1, first=False):
-		if service is None:
-			return
-		
-		# Cut file handling
-		path = service.getPath()
-		
-		# Only for compatibilty reasons
-		# Should be removed anytime
-		cuts  = path +".cuts"
-		cutsr = path +".cutsr"
-		if os.path.exists(cutsr) and not os.path.exists(cuts):
-			# Rename file - to catch all old EMC revisions
-			try:
-				os.rename(cutsr, cuts)
-			except Exception, e:
-				emcDebugOut("[CUTS] Exception in __toggleProgressService: " + str(e))
-		# All calculations are done in seconds
-		cuts = CutList( path )
-		last = cuts.getCutListLast()
-		length = self["list"].getLengthOfService(service)
-		progress = self["list"].getProgress(service, length=length, last=last, forceRecalc=True, cuts=cuts)
-		
-		if not preparePlayback:
-			if first:
-				if progress < 100: forceProgress = 50		# force next state 100
-				else: forceProgress = 100 							# force next state 0
-			if forceProgress > -1:
-				progress = forceProgress
-				
-			if progress >= 100:
-				# 100% -> 0
-				# Don't care about preparePlayback, always reset to 0%
-				# Save last marker
-				cuts.toggleLastCutList(cuts.CUT_TOGGLE_START)
-			elif progress <= 0:
-				# 0% -> SAVEDLAST or length
-				cuts.toggleLastCutList(cuts.CUT_TOGGLE_RESUME)
-			else:
-				# 1-99% -> length
-				cuts.toggleLastCutList(cuts.CUT_TOGGLE_FINISHED)
-		else:
-			if progress >= 100 or config.EMC.movie_rewind_finished.value is True and progress >= int(config.EMC.movie_finished_percent.value):
-				# 100% -> 0 or
-				# Start playback and rewind is set and movie progress > finished -> 0
-				# Don't save SavedMarker
-				cuts.toggleLastCutList(cuts.CUT_TOGGLE_START_FOR_PLAY)
-			else:
-				# Delete SavedMarker
-				cuts.toggleLastCutList(cuts.CUT_TOGGLE_FOR_PLAY)
-		
-		# Update movielist entry
-		self["list"].invalidateService(service)
-		return progress
+					#if not preparePlayback:
+					forceProgress = progress
+		#else:
+		#	toggleProgressService(service, preparePlayback)
 	
 	def IMDbSearch(self):
 		name = ''
@@ -1199,11 +1252,11 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 	#############################################################################
 	# Playback functions
 	#
-	def setPlayerInstance(self, player):
-		try:
-			self.playerInstance = player
-		except Exception, e:
-			emcDebugOut("[EMCMS] setPlayerInstance exception:\n" + str(e))
+#	def setPlayerInstance(self, player):
+#		try:
+#			self.playerInstance = player
+#		except Exception, e:
+#			emcDebugOut("[EMCMS] setPlayerInstance exception:\n" + str(e))
 
 	def openPlayer(self, playlist, playall=False):
 		# Force update of event info after playing movie 
@@ -1221,12 +1274,11 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		
 		# Start Player
 		if self.playerInstance is None:
-			self.close(playlistcopy, self, playall, self.lastservice)
+			self.close(playlistcopy, playall, self.lastservice)
 			self.busy = False
 		else:
 			self.playerInstance.movieSelected(playlist, playall)
 			self.busy = False
-			
 			self.close()
 
 	def entrySelected(self, playall=False):
@@ -1329,9 +1381,6 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 	#		return self["list"].recControl.isRecording(path)
 	#	else:
 	#		return False
-
-	def getRecording(self, path):
-		return self["list"].recControl.getRecording(path)
 
 	def stopRecordConfirmation(self, confirmed):
 		if not confirmed: return
@@ -1826,106 +1875,4 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			self.session.open(MessageBox, _("Trashcan create failed. Check mounts and permissions."), MessageBox.TYPE_ERROR)
 			emcDebugOut("[EMCMS] trashcanCreate exception:\n" + str(e))
 
-	# Move all trashcan operations to a separate class
-	def purgeExpired(self, emptyTrash=False):
-		try:
-			movie_trashpath = config.EMC.movie_trashcan_path.value
-			movie_homepath = os.path.realpath(config.EMC.movie_homepath.value)
-			
-			# Avoid cleaning the movie home folder
-			for root, dirs, files in os.walk(movie_trashpath):
-				if os.path.realpath(root) in movie_homepath:
-					AddPopup(
-						_("EMC: Skipping Trashcan Cleanup\nMovie Home Path is equal to or a subfolder of the Trashcan"),
-						MessageBox.TYPE_INFO,
-						0,
-						"EMC_TRASHCAN_CLEANUP_SKIPPED_ID"
-					)
-					return
-			
-			if os.path.exists(movie_trashpath):
-				if config.EMC.movie_trashcan_clean.value is True or emptyTrash:
-					# Trashcan cleanup
-					purgeCmd = ""
-					currTime = localtime()
-					for root, dirs, files in os.walk(movie_trashpath):
-						for movie in files:
-							# Only check media files
-							ext = os.path.splitext(movie)[1].lower()
-							if ext in extMedia:
-								fullpath = os.path.join(root, movie)
-								if os.path.exists(fullpath):
-									if emptyTrash or currTime > localtime(os.stat(fullpath).st_mtime + 24*60*60*int(config.EMC.movie_trashcan_limit.value)):
-										#purgeCmd += '; rm -f "'+ os.path.splitext(fullpath)[0] +'."*'
-										
-										#TEST_E2DELETE
-										service = self["list"].getPlayerService(fullpath, movie, ext)
-										serviceHandler = eServiceCenter.getInstance()
-										offline = serviceHandler.offlineOperations(service)
-										result = False
-										if offline is not None:
-											# really delete!
-											if not offline.deleteFromDisk(0):
-												result = True
-										if result == False:
-											#self.session.open(MessageBox, _("Delete failed!"), MessageBox.TYPE_ERROR)
-											AddPopup(
-												_("EMC Trashcan Cleanup failed!"),
-												MessageBox.TYPE_ERROR,
-												0,
-												"EMC_TRASHCAN_CLEANUP_FAILED_ID"
-											)
-											return
-										else:
-											path = os.path.splitext(fullpath)[0].replace("'","\'")
-											purgeCmd += '; rm -f "'+ path +'."*'
-										#TEST_E2DELETE
-										
-					if purgeCmd != "":
-						emcTasker.shellExecute(purgeCmd[2:])
-						emcDebugOut("[EMCMS] trashcan cleanup activated")
-					else:
-						emcDebugOut("[EMCMS] trashcan cleanup: nothing to delete...")
-				if config.EMC.movie_finished_clean.value is True:
-					#TODO very slow
-					# Movie folder cleanup
-					# Start only if dreambox is in standby
-					# No subdirectory handling
-					import Screens.Standby
-					if Screens.Standby.inStandby:
-						mvCmd = ""
-						currTime = localtime()
-						for root, dirs, files in os.walk(movie_homepath):
-							if root.startswith(movie_trashpath):
-								# Don't handle the trashcan and its subfolders
-								continue
-							for movie in files:
-								
-								# Only check media files
-								ext = os.path.splitext(movie)[1].lower()
-								if ext in extMedia:
-									fullpath = os.path.join(root, movie)
-									fullpathcuts = fullpath + ".cuts"
-									if os.path.exists(fullpathcuts):
-										if currTime > localtime(os.stat(fullpathcuts).st_mtime + 24*60*60*int(config.EMC.movie_finished_limit.value)):
-											# Check progress
-											service = self["list"].getPlayerService(fullpath, movie, ext)
-											progress = self["list"].getProgress(service, forceRecalc=True)
-											if progress >= int(config.EMC.movie_finished_percent.value):
-												# cut file extension
-												fullpath = os.path.splitext(fullpath)[0].replace("'","\'")
-												# create a time stamp with touch for all corresponding files
-												mvCmd += '; touch "'+ fullpath +'."*'
-												# move movie into the trashcan
-												mvCmd += '; mv "'+ fullpath +'."* "'+ movie_trashpath +'"'
-						if mvCmd != "":
-							association = []
-							association.append((self.reloadList))	# Force list reload after cleaning
-							emcTasker.shellExecute(mvCmd[2:], association)
-							emcDebugOut("[EMCMS] finished movie cleanup activated")
-						else:
-							emcDebugOut("[EMCMS] finished movie cleanup: nothing to move...")
-			else:
-				emcDebugOut("[EMCMS] trashcan cleanup: no trashcan...")
-		except Exception, e:
-			emcDebugOut("[EMCMS] purgeExpired exception:\n" + str(e))
+
