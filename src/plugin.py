@@ -288,6 +288,18 @@ config.EMC.remote_recordings         = ConfigYesNo(default = False)
 
 config.EMC.InfoLong                  = ConfigSelection(choices = [("IMDbSearch", _("IMDb Search")), ("TMDBInfo", _("TMDB Info")), ('CSFDInfo', _('CSFD Info'))], default = "IMDbSearch")
 
+def checkList(cfg):
+	if cfg.value not in cfg.choices.choices:
+		cfg.value = cfg.default
+
+checkList(config.EMC.epglang)
+checkList(config.EMC.sublang1)
+checkList(config.EMC.sublang2)
+checkList(config.EMC.sublang3)
+checkList(config.EMC.audlang1)
+checkList(config.EMC.audlang2)
+checkList(config.EMC.audlang3)
+
 gSession = None
 
 def showMoviesNew(dummy_self = None):
