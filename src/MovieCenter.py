@@ -1294,7 +1294,7 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 						
 						# Folder found
 						if config.EMC.directories_show.value:
-							if os.path.realpath(pathname).find( movie_trashpath ) == -1:
+							if not movie_trashpath or os.path.realpath(pathname).find( movie_trashpath ) == -1:
 								dappend( (pathname, dir, cmtDir) )
 				
 				# We only want the topdir
