@@ -43,10 +43,10 @@ src/script/Makefile
 src/img/Makefile
 src/img/EMCMoviePlayer/Makefile
 src/CoolSkin/Makefile
-src/components/Makefile
-src/components/Converter/Makefile
-src/components/Renderer/Makefile
-src/components/Sources/Makefile
+src/Components/Makefile
+src/Components/Converter/Makefile
+src/Components/Renderer/Makefile
+src/Components/Sources/Makefile
 po/Makefile
 etc/Makefile
 
