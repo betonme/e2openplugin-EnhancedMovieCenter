@@ -177,6 +177,8 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 			{
 				"showExtensions": (self.openExtensions, _("view extensions...")),
 				"EMCGreen":	(self.CoolAVSwitch,			_("Format AVSwitch")),
+				"seekFwd": (self.seekFwd, _("Seek forward")),
+				"seekBack": (self.seekBack, _("Seek backward")),
 			}, 2) # lower priority
 		
 		self["MenuActions"].prio = 2
