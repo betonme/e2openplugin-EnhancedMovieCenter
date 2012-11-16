@@ -289,8 +289,20 @@ config.EMC.remote_recordings         = ConfigYesNo(default = False)
 config.EMC.InfoLong                  = ConfigSelection(choices = [("IMDbSearch", _("IMDb Search")), ("TMDBInfo", _("TMDB Info")), ('CSFDInfo', _('CSFD Info'))], default = "IMDbSearch")
 
 def checkList(cfg):
+	try:
+		print "EMC LANGUAGE TEST"
+		print cfg.value
+		print cfg.choices
+		print cfg.choices.choices
+		print cfg.default
+	except:
+		pass
 	if cfg.value not in cfg.choices.choices:
-		cfg.value = cfg.default
+		if cfg.default in cfg.choices.choices:
+			cfg.value = cfg.default
+		else:
+			cfg.value = cfg.choices.choices[0]
+	print cfg.value
 
 checkList(config.EMC.epglang)
 checkList(config.EMC.sublang1)
