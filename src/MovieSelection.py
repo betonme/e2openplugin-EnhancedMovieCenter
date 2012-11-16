@@ -338,10 +338,31 @@ class SelectionEventInfo:
 
 class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfaceSel, DirectoryStack, E2Bookmarks, EMCBookmarks):
 	
-	returnService = None
-	currentPath = None
+	# Define static member variables
+	_returnService = None
+	def setReturnService(self, rs):
+		EMCSelection._returnService = rs
+	def getReturnService(self):
+		return EMCSelection._returnService
+	returnService = property(getReturnService, setReturnService)
 	
-	def __init__(self, session, playerInstance=None, returnService=None):
+	_currentPath = None
+	def setCurrentPath(self, cp):
+		EMCSelection._currentPath = cp
+	def getCurrentPath(self):
+		if EMCSelection.currentPath is None:
+			EMCSelection.currentPath = config.EMC.movie_homepath.value
+		return EMCSelection._currentPath
+	currentPath = property(getCurrentPath, setCurrentPath)
+	
+	_lastPlayed = None
+	def setLastPlayed(self, lp):
+		EMCSelection._lastPlayed = lp
+	def getLastPlayed(self):
+		return EMCSelection._lastPlayed
+	lastPlayed = property(getLastPlayed, setLastPlayed)
+	
+	def __init__(self, session, returnService=None, playerInstance=None):
 		Screen.__init__(self, session)
 		SelectionEventInfo.__init__(self)
 		VlcPluginInterfaceSel.__init__(self)
@@ -362,12 +383,14 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			Cool.close()
 		
 		self.playerInstance = playerInstance
-		self.lastPlayedMovies = None
+		self.lastPlayed = None
 		self.multiSelectIdx = None
 		if returnService:
 			self.returnService = returnService
+			self.currentPath = os.path.dirname(returnService.getPath())
 		self.lastservice = None
 		self.cursorDir = 0
+		
 		self["wait"] = Label(_("Reading directory..."))
 		self["wait"].hide()
 		self["list"] = MovieCenter()
@@ -1266,7 +1289,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		self.loading(False)
 		
 		# force a copy instead of an reference!
-		self.lastPlayedMovies = playlist[:]
+		self.lastPlayed = playlist[:]
 		playlistcopy = playlist[:]
 		
 		# Workaround for MoviePreview with play problem, events will not be attached to the correct nav, eof recognition won't work
@@ -1317,7 +1340,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		if self.multiSelectIdx:
 			self.multiSelectIdx = None
 			self.updateTitle()
-		if self.lastPlayedMovies is None:
+		if self.lastPlayed is None:
 			self.session.open(MessageBox, _("Last played movie/playlist not available..."), MessageBox.TYPE_ERROR, 10)
 		else:
 			self.busy = True
@@ -1325,7 +1348,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			self["wait"].setText( _("Play last movie starting") )
 			self["wait"].show()
 			#DelayedFunction(1000, self.loading, False)
-			DelayedFunction(1000, self.openPlayer, self.lastPlayedMovies)
+			DelayedFunction(1000, self.openPlayer, self.lastPlayed)
 
 	def playAll(self):
 		# Avoid starting several times in different modes
@@ -1365,11 +1388,11 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 
 	def lastPlayedCheck(self, service):
 		try:
-			if self.lastPlayedMovies is not None:
-				if service in self.lastPlayedMovies:
-					self.lastPlayedMovies.remove(service)
-				if len(self.lastPlayedMovies) == 0:
-					self.lastPlayedMovies = None
+			if self.lastPlayed is not None:
+				if service in self.lastPlayed:
+					self.lastPlayed.remove(service)
+				if len(self.lastPlayed) == 0:
+					self.lastPlayed = None
 		except Exception, e:
 			emcDebugOut("[EMCMS] lastPlayedCheck exception:\n" + str(e))
 

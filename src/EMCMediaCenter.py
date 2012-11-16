@@ -411,11 +411,11 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 					if config.EMC.movie_reopenEOF.value: # did the player close while movie list was open?
 						#self.recordings.show()
 						reopen = True
-			self.service = None
+			#self.service = None
 		except Exception, e:
 			emcDebugOut("[EMCPlayer] leave exception:\n" + str(e))
 		
-		self.close(reopen)
+		self.close(reopen, self.service)
 
 	def recEvent(self, timer):
 		try:
@@ -793,7 +793,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 		try:
 			from MovieSelection import EMCSelection
 			#self.session.openWithCallback(showMoviesCallback, EMCSelection)
-			self.session.open(EMCSelection, playerInstance=self, returnService=self.service )
+			self.session.open(EMCSelection, returnService=self.service, playerInstance=self)
 		except Exception, e:
 			emcDebugOut("[EMCPlayer] showMovies exception:\n" + str(e))
 

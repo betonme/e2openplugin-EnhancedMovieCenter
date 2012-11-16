@@ -323,9 +323,9 @@ def showMoviesCallback(*args):
 	except Exception, e:
 		emcDebugOut("[showMoviesCallback] exception:\n" + str(e))
 
-def playerCallback(reopen):
+def playerCallback(reopen, *args):
 	if reopen:
-		showMoviesNew()
+		showMoviesNew(*args)
 
 def autostart(reason, **kwargs):
 	if reason == 0: # start
