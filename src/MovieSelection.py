@@ -185,7 +185,7 @@ class SelectionEventInfo:
 
 	def initPig(self):
 		if not (config.EMC.movie_cover.value or config.EMC.movie_preview.value):
-			print "EMC: InitPig"
+			#print "EMC: InitPig"
 			self["Cover"].hide()
 			self["Video"].show()
 			if self.lastservice:
@@ -193,12 +193,12 @@ class SelectionEventInfo:
 				self.lastservice = None
 		else:
 			if config.EMC.movie_cover.value:
-				print "EMC: InitPig C"
+				#print "EMC: InitPig C"
 				self["Video"].hide()
 				self["Cover"].instance.setPixmap(None)
 				self["Cover"].hide()
 			if config.EMC.movie_preview.value:
-				print "EMC: InitPig P"
+				#print "EMC: InitPig P"
 				self["Cover"].hide()
 				self["Video"].hide()
 
@@ -258,7 +258,7 @@ class SelectionEventInfo:
 
 	# Movie preview
 	def showPreview(self, service=None):
-		print "EMC: showPreview"
+		#print "EMC: showPreview"
 		lastserviceref = self.session.nav.getCurrentlyPlayingServiceReference()
 		if service:
 			# TODO can we reuse the EMCMediaCenter for the video preview
@@ -284,7 +284,7 @@ class SelectionEventInfo:
 					cue.setCutListEnable(0)
 					#cue.setCutListEnable(2)
 					#cue.setCutListEnable(3)
-					print "EMC cue.setCutListEnable(0)"
+					#print "EMC cue.setCutListEnable(0)"
 					#self.downloadCuesheet() #not tested
 					
 					# Adapted from jumpToFirstMark
@@ -316,7 +316,7 @@ class SelectionEventInfo:
 				# Start LiveTV
 				if self.lastservice:
 					self.session.nav.playService(self.lastservice)
-					print "EMC: showPreview show"
+					#print "EMC: showPreview show"
 					self["Video"].show()
 		
 		# If livetv is shown - don't stop it
@@ -350,8 +350,8 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 	def setCurrentPath(self, cp):
 		EMCSelection._currentPath = cp
 	def getCurrentPath(self):
-		if EMCSelection.currentPath is None:
-			EMCSelection.currentPath = config.EMC.movie_homepath.value
+		if EMCSelection._currentPath is None:
+			EMCSelection._currentPath = config.EMC.movie_homepath.value
 		return EMCSelection._currentPath
 	currentPath = property(getCurrentPath, setCurrentPath)
 	
@@ -838,7 +838,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 				# Play preview only if it is a video file
 				#if self["list"].currentSelIsPlayable():
 				if self.playerInstance is None:
-					print "EMC: start preview timer"
+					#print "EMC: start preview timer"
 					self.previewTimer.start(int(config.EMC.movie_preview_delay.value), True)
 
 	def updateInfoDelayed(self):
@@ -872,12 +872,12 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 					self.showPreview(None)
 
 	def showCoverDelayed(self):
-		print "EMC showCoverDelayed"
+		#print "EMC showCoverDelayed"
 		self.showCover( self.getCurrent() )
 
 	def showPreviewDelayed(self):
 		# Avoid movie preview if player is running
-		print "EMC showPreviewDelayed"
+		#print "EMC showPreviewDelayed"
 		self.showPreview( self.getCurrent() )
 
 	def updateTitle(self):
@@ -1193,12 +1193,12 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		from Plugins.Extensions.EnhancedMovieCenter.plugin import sort_modes
 		#sorts = list( set( [sort for sort, desc in sort_choices] ) )
 		sorts = [ v[1] for v in sort_modes.values() ]
-		print sorts
+		#print sorts
 		# Toggle the mode
 		mode, order = self["list"].getSorting()
 		# Get all sorting modes as a list of unique ids
 		modes = list( set( [m for m, o in sorts] ) )
-		print modes
+		#print modes
 		if mode in modes:
 			# Get next sorting mode
 			idx = modes.index(mode)
@@ -1206,10 +1206,10 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		else:
 			# Fallback
 			mode = modes[ 0 ]
-		print mode
+		#print mode
 		
 		for k, v in sort_modes.items():
-			print v[1], (mode, order)
+			#print v[1], (mode, order)
 			if v[1] == (mode, order):
 				self["key_green"].text = v[2]
 				break

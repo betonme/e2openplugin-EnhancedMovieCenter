@@ -294,22 +294,120 @@ def MultiContentEntryProgress(pos = (0, 0), size = (0, 0), percent = None, borde
 	return (eListboxPythonMultiContent.TYPE_PROGRESS, pos[0], pos[1], size[0], size[1], percent, borderWidth, foreColor, foreColorSelected, backColor, backColorSelected)
 
 
-
 class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBookmarks):
-	instance = None
+	_loadPath = config.EMC.movie_homepath.value
+	def setLoadPath(self, lp):
+		MovieCenter._loadPath = lp
+	def getLoadPath(self):
+		return MovieCenter._loadPath
+	loadPath = property(getLoadPath, setLoadPath)
+	
+	_list = []
+	def setList(self, li):
+		MovieCenter._list = li
+	def getList(self):
+		return MovieCenter._list
+	list = property(getList, setList)
+	
+	from Plugins.Extensions.EnhancedMovieCenter.plugin import sort_modes
+	_actualSort = sort_modes.get( config.EMC.moviecenter_sort.value )[1]
+	def setActualSort(self, acs):
+		MovieCenter._actualSort = acs
+	def getActualSort(self):
+		return MovieCenter._actualSort
+	actualSort = property(getActualSort, setActualSort)
+	
+	_returnSort = []
+	def setReturnSort(self, rs):
+		MovieCenter._returnSort = rs
+	def getReturnSort(self):
+		return MovieCenter._returnSort
+	returnSort = property(getReturnSort, setReturnSort)
+	
+	_selectionList = None
+	def setSelectionList(self, sl):
+		MovieCenter._selectionList = sl
+	def getSelectionList(self):
+		return MovieCenter._selectionList
+	selectionList = property(getSelectionList, setSelectionList)
+	
+	#_recControl = RecordingsControl(self.recStateChange)
+	#def getRecControl(self):
+	#	return MovieCenter._recControl
+	#recControl = property(getRecControl)
+	
+	
+	_currentSelectionCount = None
+	def setCurrentSelectionCount(self, v):
+		MovieCenter._currentSelectionCount = v
+	def getCurrentSelectionCount(self):
+		return MovieCenter._currentSelectionCount
+	currentSelectionCount = property(getCurrentSelectionCount, setCurrentSelectionCount)
+	
+	_highlightsMov = []
+	def setHighlightsMov(self, v):
+		MovieCenter._highlightsMov = v
+	def getHighlightsMov(self):
+		return MovieCenter._highlightsMov
+	highlightsMov = property(getHighlightsMov, setHighlightsMov)
+	
+	_highlightsDel = []
+	def setHighlightsDel(self, v):
+		MovieCenter._highlightsDel = v
+	def getHighlightsDel(self):
+		return MovieCenter._highlightsDel
+	highlightsDel = property(getHighlightsDel, setHighlightsDel)
+	
+	_highlightsCpy = []
+	def setHighlightsCpy(self, v):
+		MovieCenter._highlightsCpy = v
+	def getHighlightsCpy(self):
+		return MovieCenter._highlightsCpy
+	highlightsCpy = property(getHighlightsCpy, setHighlightsCpy)
+	
+	_hideitemlist = readBasicCfgFile("/etc/enigma2/emc-hide.cfg") or []
+	def setHideitemlist(self, v):
+		MovieCenter._hideitemlist = v
+	def getHideitemlist(self):
+		return MovieCenter._hideitemlist
+	hideitemlist = property(getHideitemlist, setHideitemlist)
+	
+	_nostructscan = readBasicCfgFile("/etc/enigma2/emc-noscan.cfg") or []
+	def setNostructscan(self, v):
+		MovieCenter._nostructscan = v
+	def getNostructscan(self):
+		return MovieCenter._nostructscan
+	nostructscan = property(getNostructscan, setNostructscan)
+	
+	_topdirlist = readBasicCfgFile("/etc/enigma2/emc-topdir.cfg") or []
+	def setTopdirlist(self, v):
+		MovieCenter._topdirlist = v
+	def getTopdirlist(self):
+		return MovieCenter._topdirlist
+	topdirlist = property(getTopdirlist, setTopdirlist)
 	
 	def __init__(self):
-		MovieCenter.instance = self
-		self.list = []
 		GUIComponent.__init__(self)
 		VlcPluginInterfaceList.__init__(self)
 		PermanentSort.__init__(self)
-		self.loadPath = config.EMC.movie_homepath.value
 		self.serviceHandler = ServiceCenter.getInstance()
 		
-		from Plugins.Extensions.EnhancedMovieCenter.plugin import sort_modes
-		self.actualSort = sort_modes.get( config.EMC.moviecenter_sort.value )[1]
-		self.returnSort = None
+		# self.loadPath = config.EMC.movie_homepath.value
+		# self.list = []
+		# from Plugins.Extensions.EnhancedMovieCenter.plugin import sort_modes
+		# self.actualSort = sort_modes.get( config.EMC.moviecenter_sort.value )[1]
+		# self.returnSort = []
+		# self.selectionList = None
+		
+		self.recControl = RecordingsControl(self.recStateChange)
+		
+		#self.currentSelectionCount = 0		
+		#self.highlightsMov = []
+		#self.highlightsDel = []
+		#self.highlightsCpy = []
+		#self.hideitemlist = readBasicCfgFile("/etc/enigma2/emc-hide.cfg") or []
+		#self.nostructscan = readBasicCfgFile("/etc/enigma2/emc-noscan.cfg") or []
+		#self.topdirlist = readBasicCfgFile("/etc/enigma2/emc-topdir.cfg") or []
 		
 		self.CoolFont = parseFont("Regular;20", ((1,1),(1,1)))
 		self.CoolSelectFont = parseFont("Regular;20", ((1,1),(1,1)))
@@ -351,13 +449,6 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 		self.l.setFont(4, self.CoolDateFont)
 		self.l.setBuildFunc(self.buildMovieCenterEntry)
 		self.l.setItemHeight(28)
-		self.currentSelectionCount = 0		
-		
-		self.selectionList = None
-		self.recControl = RecordingsControl(self.recStateChange)
-		self.highlightsMov = []
-		self.highlightsDel = []
-		self.highlightsCpy = []
 		
 		self.pic_back            = LoadPixmap(cached=True, path='/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/back.png')
 		self.pic_directory       = LoadPixmap(cached=True, path='/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/dir.png')
@@ -384,18 +475,8 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 		self.pic_col_dir         = LoadPixmap(cached=True, path='/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/coldir.png')
 		
 		self.onSelectionChanged = []
-		self.hideitemlist = readBasicCfgFile("/etc/enigma2/emc-hide.cfg") or []
-		self.nostructscan = readBasicCfgFile("/etc/enigma2/emc-noscan.cfg") or []
-		self.topdirlist = readBasicCfgFile("/etc/enigma2/emc-topdir.cfg") or []
 
-		# Initially load the movielist
-		# So it must not be done when the user it opens the first time
-		#MAYBE this should be configurable
-		#DelayedFunction(10000, self.reloadIfNecessary, self.loadPath)
-
-	def reloadIfNecessary(self, loadPath):
-		if not self.list:
-			self.reload(loadPath)
+		self.l.setList( self.list )
 
 	def applySkin(self, desktop, parent):
 		attribs = []
@@ -514,12 +595,12 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 		from Plugins.Extensions.EnhancedMovieCenter.plugin import sort_modes
 		#sorts = list( set( [sort for sort, desc in sort_choices] ) )
 		sorts = [ v[1] for v in sort_modes.values() ]
-		print sorts
+		#print sorts
 		# Toggle the mode
 		mode, order = self.actualSort
 		# Get all sorting modes as a list of unique ids
 		modes = list( set( [m for m, o in sorts] ) )
-		print modes
+		#print modes
 		if mode in modes:
 			# Get next sorting mode
 			idx = modes.index(mode)
@@ -1670,18 +1751,18 @@ class MovieCenter(GUIComponent, VlcPluginInterfaceList, PermanentSort, E2Bookmar
 				
 				# Lookup for a permanent sorting mode
 				perm = self.getPermanentSort(loadPath)
-				if perm is not None:
+				if perm:
 					# Backup the actual sorting mode
 					if self.returnSort is None:
 						self.returnSort = self.actualSort
 					self.actualSort = perm
 				
-				elif self.returnSort is not None:
+				elif self.returnSort:
 					# Restore sorting mode
 					self.actualSort = self.returnSort
 					self.returnSort = None
 				
-				if nextSort is not None:
+				if nextSort:
 					# Backup the actual sorting mode
 					if self.returnSort is None:
 						self.returnSort = self.actualSort
