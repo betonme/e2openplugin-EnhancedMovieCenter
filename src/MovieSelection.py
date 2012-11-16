@@ -964,14 +964,15 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 				selectedlist = self["list"].makeSelectionList()[:]
 				if len(selectedlist)>1:
 					first = True
-				for sel in selectedlist:
-					progress = toggleProgressService(sel, False, forceProgress, first)
+				for service in selectedlist:
+					progress = toggleProgressService(service, False, forceProgress, first)
 					self["list"].invalidateService(service)
 					first = False
 					#if not preparePlayback:
 					forceProgress = progress
-		#else:
-		#	toggleProgressService(service, preparePlayback)
+		else:
+			toggleProgressService(service, preparePlayback)
+			self["list"].invalidateService(service)
 	
 	def IMDbSearch(self):
 		name = ''
