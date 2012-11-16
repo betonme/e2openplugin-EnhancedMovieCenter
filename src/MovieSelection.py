@@ -383,7 +383,6 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			Cool.close()
 		
 		self.playerInstance = playerInstance
-		self.lastPlayed = None
 		self.multiSelectIdx = None
 		if returnService:
 			self.returnService = returnService
