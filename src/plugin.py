@@ -289,14 +289,6 @@ config.EMC.remote_recordings         = ConfigYesNo(default = False)
 config.EMC.InfoLong                  = ConfigSelection(choices = [("IMDbSearch", _("IMDb Search")), ("TMDBInfo", _("TMDB Info")), ('CSFDInfo', _('CSFD Info'))], default = "IMDbSearch")
 
 def checkList(cfg):
-	try:
-		print "EMC LANGUAGE TEST"
-		print cfg.value
-		print cfg.choices
-		print cfg.choices.choices
-		print cfg.default
-	except:
-		pass
 	if cfg.value not in cfg.choices.choices:
 		if cfg.default in cfg.choices.choices:
 			cfg.value = cfg.default
@@ -356,11 +348,11 @@ def autostart(reason, **kwargs):
 				except Exception, e:
 					emcDebugOut("[spStartup] MovieCenter launch override exception:\n" + str(e))
 				
-				try:
-					from MovieSelection import EMCSelection
-					gSession.openWithCallback(showMoviesCallback, EMCSelection)
-				except Exception, e:
-					emcDebugOut("[spStartup] instantiateDialog exception:\n" + str(e))
+				#try:
+				#	from MovieSelection import EMCSelection
+				#	gSession.openWithCallback(showMoviesCallback, EMCSelection)
+				#except Exception, e:
+				#	emcDebugOut("[spStartup] instantiateDialog exception:\n" + str(e))
 
 def pluginOpen(session, *args, **kwargs):
 	try:
