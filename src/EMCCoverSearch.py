@@ -183,11 +183,12 @@ class EMCImdbScan(Screen):
 				count_na += 1
 				self.menulist.append(imdb_show(title, path, "N/A", "", title))
 
-		self["menulist"].l.setList(self.menulist)
-		self["menulist"].l.setItemHeight(28)
-		self.check = "true"
-		self.showInfo()
-		self["done_msg"].setText(_("Total: %s - Exist: %s - N/A: %s") % (self.count_movies, count_existing, count_na))
+		if self.menulist:
+			self["menulist"].l.setList(self.menulist)
+			self["menulist"].l.setItemHeight(28)
+			self.check = "true"
+			self.showInfo()
+			self["done_msg"].setText(_("Total: %s - Exist: %s - N/A: %s") % (self.count_movies, count_existing, count_na))
 
 	def setShowSearchSiteName(self):
 		if config.EMC.imdb.search.value == "0":
