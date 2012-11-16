@@ -467,9 +467,9 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 			config.EMC.movie_finished_clean.clearNotifiers()
 		except: pass
 
-		self.session.openWithCallback(self.closeConfirm, MessageBox, EMCAbout, MessageBox.TYPE_INFO)
+		self.session.openWithCallback(self.closed, MessageBox, EMCAbout, MessageBox.TYPE_INFO)
 
-	def closeConfirm(self, dummy=None):
+	def closed(self, dummy=None):
 		# Call baseclass function
 		Screen.close(self)
 
@@ -536,8 +536,18 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 			self.session.open(MessageBox, _("Some settings changes require GUI restart to take effect."), MessageBox.TYPE_INFO, 10)
 		self.close()
 
-	def keyCancel(self):
+	def cancelConfirm(self, result):
+		if not result:
+			return
+		for x in self["config"].list:
+			x[1].cancel()
 		self.close()
+
+	def keyCancel(self):
+		if self["config"].isChanged():
+			self.session.openWithCallback(self.cancelConfirm, MessageBox, _("Really close without saving settings?"))
+		else:
+			self.close()
 
 	def launchListSet(self, element):
 		if element is not None:
