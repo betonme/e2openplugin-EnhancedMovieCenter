@@ -65,7 +65,10 @@ dvdPlayerPlg = "%s%s"%(resolveFilename(SCOPE_PLUGINS), "Extensions/DVDPlayer/plu
 class EMCMoviePlayerSummary(Screen):
 	def __init__(self, session, parent):
 		Screen.__init__(self, session, parent)
-		self.skinName = ["EMCMoviePlayerSummary"]
+		if hasattr(config.misc, "boxtype") and config.misc.boxtype.value == 'gbquad':
+			self.skinName = ["EMCMoviePlayerSummaryGBHDQ"]
+		else:
+			self.skinName = ["EMCMoviePlayerSummary"]
 		self["Service"] = EMCCurrentService(session.nav, parent)
 
 
