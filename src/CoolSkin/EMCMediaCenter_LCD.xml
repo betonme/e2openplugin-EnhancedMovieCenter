@@ -1,22 +1,28 @@
 <skin>
 <!-- LCD screen -->
 	<screen name="EMCMoviePlayerSummary" position="0,0" size="132,64" id="1">
+		<!-- Movie name -->		
 		<widget source="session.CurrentService" render="Label" position="1,1" size="130,37" font="Regular;16" halign="center">
 			  <convert type="ServiceName">Name</convert>
 		</widget>
-		<widget source="Service" render="EMCPositionGauge" position="1,37" size="130,4" borderWidth="1">
-			  <convert type="EMCRecordPosition">Position</convert>
-		</widget>
-		<widget source="Service" render="EMCPositionGauge" position="1,40" size="130,4" borderWidth="1">
+		<!-- Movie progress -->
+		<widget source="Service" render="Progress" position="1,40" size="130,4" zPosition="2" borderWidth="1">
 			  <convert type="EMCServicePosition">Position</convert>
 		</widget>
+		<!-- Movie recording progress -->
+		<widget source="Service" render="Progress" position="1,37" size="130,4" zPosition="1" borderWidth="1">
+			  <convert type="EMCRecordPosition">Position</convert>
+		</widget>
+		<!-- Current time -->
 		<widget source="global.CurrentTime" render="Label" position="1,44" size="58,20" font="Regular;17" halign="center">
 			  <convert type="ClockToText">Format:%H:%M</convert>
 		</widget>
+		<!-- Remaining movie time -->
 		<widget source="session.CurrentService" render="Label" position="60,44" size="72,20" font="Regular;17" halign="center">
 			  <convert type="ServicePosition">Remaining,Negate</convert>
 			  <!--convert type="ServicePosition">Summary</convert-->
 		</widget>
+		<!-- Recording indicator-->
 		<widget source="session.RecordState" render="FixedLabel" text="REC" position="62,44" size="70,20" font="Regular;18" halign="center">
 			  <convert type="ConfigEntryTest">config.usage.blinking_display_clock_during_recording,True,CheckSourceBoolean</convert>
 			  <convert type="ConditionalShowHide">Blink</convert>
