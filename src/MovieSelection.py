@@ -1621,6 +1621,30 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 				self.session.openWithCallback(self.trashcanCreate, MessageBox, _("Delete failed because the trashcan directory does not exist. Attempt to create it now?"), MessageBox.TYPE_YESNO)
 			emcDebugOut("[EMCMS] deleteMovie")
 
+	def delPathSelRecursive(self, service, path):
+		if path and service:
+			emcTasker.shellExecute('rm -rf "' + path + '"')
+			self.removeService(service)
+			self.setReturnCursor()
+
+	def delPathSelConfirmed(self, service, confirm):
+		if confirm and service:
+			path = service.getPath()
+			if path != "..":
+				if os.path.islink(path):
+					emcTasker.shellExecute("rm -f '" + path + "'")
+					self.removeService(service)
+					self.setReturnCursor()
+				elif os.path.exists(path):
+					if len(os.listdir(path))>0:
+						self.session.openWithCallback(self.delPathSelRecursive(service, path), MessageBox, _("Directory is not empty! Do you really want to delete it?"), MessageBox.TYPE_YESNO)
+					else:
+						emcTasker.shellExecute('rmdir "' + path +'"')
+						self.removeService(service)
+						self.setReturnCursor()
+			else:
+				self.session.open(MessageBox, _("Cannot delete the parent directory."), MessageBox.TYPE_ERROR, 10)
+
 	def delPathSelConfirmed(self, service, confirm):
 		if confirm and service:
 			path = service.getPath()
