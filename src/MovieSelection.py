@@ -1621,11 +1621,22 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 				self.session.openWithCallback(self.trashcanCreate, MessageBox, _("Delete failed because the trashcan directory does not exist. Attempt to create it now?"), MessageBox.TYPE_YESNO)
 			emcDebugOut("[EMCMS] deleteMovie")
 
+	def isPathLocked(self, path):
+		locked = False
+		for root, dirs, files in os.walk(path):
+			if "dir.lock" in files:
+				locked = True
+				break
+		return locked
+	
 	def delPathSelRecursive(self, service, path):
-		if path and service:
-			emcTasker.shellExecute('rm -rf "' + path + '"')
-			self.removeService(service)
-			self.setReturnCursor()
+		if not self.isPathLocked(path):
+			if path and service:
+				emcTasker.shellExecute('rm -rf "' + path + '"')
+				self.removeService(service)
+				self.setReturnCursor()
+		else:
+			self.session.open(MessageBox, _("The folder or a contained folder is locked, unlock it first!"), MessageBox.TYPE_ERROR, 10)
 
 	def delPathSelConfirmed(self, service, confirm):
 		if confirm and service:
