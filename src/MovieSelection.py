@@ -1645,24 +1645,6 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			else:
 				self.session.open(MessageBox, _("Cannot delete the parent directory."), MessageBox.TYPE_ERROR, 10)
 
-	def delPathSelConfirmed(self, service, confirm):
-		if confirm and service:
-			path = service.getPath()
-			if path != "..":
-				if os.path.islink(path):
-					emcTasker.shellExecute("rm -f '" + path + "'")
-					self.removeService(service)
-					self.setReturnCursor()
-				elif os.path.exists(path):
-					if len(os.listdir(path))>0:
-						self.session.open(MessageBox, _("Directory is not empty."), MessageBox.TYPE_ERROR, 10)
-					else:
-						emcTasker.shellExecute('rmdir "' + path +'"')
-						self.removeService(service)
-						self.setReturnCursor()
-			else:
-				self.session.open(MessageBox, _("Cannot delete the parent directory."), MessageBox.TYPE_ERROR, 10)
-
 	def scriptCB(self, result=None):
 		if result is None: return
 		
