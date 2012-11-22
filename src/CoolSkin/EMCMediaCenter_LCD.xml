@@ -68,10 +68,15 @@
 		<widget source="session.CurrentService" render="Label" position="0,38" size="220,52" font="FdLcD;26" halign="left" >
 			<convert type="ServiceName">Name</convert>
 		</widget>
-		<widget source="Service" render="EMCPositionGauge" position="0,96" size="220,8" borderWidth="1" zPosition="2" pointer="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/EMCMoviePlayer/LCD_220px_Pointer.png:220,0" transparent="1" >
+		<!-- Progress border -->
+		<eLabel position="0,95" size="220,1" backgroundColor="#3D3DFF" />
+		<eLabel position="0,95" size="1,8" backgroundColor="#3D3DFF" />
+		<eLabel position="220,95" size="1,8" backgroundColor="#3D3DFF" />
+		<eLabel position="0,104" size="220,1" backgroundColor="#3D3DFF" />
+		<widget source="Service" render="EMCPositionGauge" position="0,96" size="220,8" zPosition="2" pointer="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/EMCMoviePlayer/LCD_220px_Pointer.png:220,0" transparent="1" >
 			<convert type="EMCServicePosition">Position</convert>
 		</widget>
-		<widget source="Service" render="EMCPositionGauge" position="0,96" size="220,8" borderWidth="1" zPosition="1" pointer="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/EMCMoviePlayer/LCD_220px_RecPointer.png:220,0" transparent="1" >
+		<widget source="Service" render="EMCPositionGauge" position="0,96" size="220,8" zPosition="1" pointer="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/EMCMoviePlayer/LCD_220px_RecPointer.png:220,0" transparent="1" >
 			<convert type="EMCRecordPosition">Position</convert>
 		</widget>
 		<widget source="session.CurrentService" render="Label" position="0,106" size="220,36" font="FdLcD;35" halign="left" valign="bottom" noWrap="1">
