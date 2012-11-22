@@ -1629,14 +1629,15 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 				break
 		return locked
 	
-	def delPathSelRecursive(self, service, path):
-		if not self.isPathLocked(path):
-			if path and service:
-				emcTasker.shellExecute('rm -rf "' + path + '"')
-				self.removeService(service)
-				self.setReturnCursor()
-		else:
-			self.session.open(MessageBox, _("The folder or a contained folder is locked, unlock it first!"), MessageBox.TYPE_ERROR, 10)
+	def delPathSelRecursive(self, service, path, confirm):
+		if confirm:
+			if not self.isPathLocked(path):
+				if path and service:
+					emcTasker.shellExecute('rm -rf "' + path + '"')
+					self.removeService(service)
+					self.setReturnCursor()
+			else:
+				self.session.open(MessageBox, _("The folder or a contained folder is locked, unlock it first!"), MessageBox.TYPE_ERROR, 10)
 
 	def delPathSelConfirmed(self, service, confirm):
 		if confirm and service:
@@ -1648,7 +1649,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 					self.setReturnCursor()
 				elif os.path.exists(path):
 					if len(os.listdir(path))>0:
-						self.session.openWithCallback(self.delPathSelRecursive(service, path), MessageBox, _("Directory is not empty! Do you really want to delete it?"), MessageBox.TYPE_YESNO)
+						self.session.openWithCallback(boundFunction(self.delPathSelRecursive, service, path), MessageBox, _("Directory is not empty! Do you really want to delete it?"), MessageBox.TYPE_YESNO)
 					else:
 						emcTasker.shellExecute('rmdir "' + path +'"')
 						self.removeService(service)
