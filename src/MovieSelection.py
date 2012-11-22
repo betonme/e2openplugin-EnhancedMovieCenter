@@ -1704,7 +1704,8 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		cmd = []
 		association = []
 		for service in selectedlist:
-			path = os.path.splitext( self["list"].getFilePathOfService(service) )[0]
+			#path = os.path.splitext( self["list"].getFilePathOfService(service) )[0]
+			path = os.path.splitext( service.getPath() )[0]
 			if path is not None:
 				if op=="delete":	# target == trashcan
 					c = []
