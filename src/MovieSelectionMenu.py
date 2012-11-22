@@ -32,7 +32,6 @@ from Screens.MessageBox import MessageBox
 from Screens.InputBox import InputBox
 from Screens.LocationBox import LocationBox
 from Tools.BoundFunction import boundFunction
-from Tools.Notifications import AddPopup
 
 from EMCTasker import emcTasker, emcDebugOut
 from EnhancedMovieCenter import _
@@ -84,8 +83,6 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 			
 			self.menu.append((_("Create link"), boundFunction(self.createLink, currentPath)))
 			self.menu.append((_("Create directory"), boundFunction(self.createDir, currentPath)))
-			
-			self.menu.append((_("(Un-)Lock Directory"), boundFunction(self.lockDir, currentPath)))
 			
 			if self.service or self.selections:
 				self.menu.append((_("Rename selected movie(s)"), boundFunction(self.renameMovies)))
@@ -188,22 +185,7 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 				self.close("reload")
 		else:
 			self.close(None)
-			
-	def lockDir(self, currentPath):
-		self.hide
-		if not os.path.exists(currentPath + '/dir.lock'):
-			self.session.openWithCallback(boundFunction(self.lockDirConfirmed, currentPath, False), MessageBox, _("Do you really want to lock the directory " + currentPath + "?"), MessageBox.TYPE_YESNO)
-		else:
-			self.session.openWithCallback(boundFunction(self.lockDirConfirmed, currentPath, True), MessageBox, _("The directory " + currentPath + " is already locked. Do you want to unlock it?"), MessageBox.TYPE_YESNO)
 
-	def lockDirConfirmed(self, currentPath, locked, confirmed):
-		if not locked:
-			if confirmed:
-				emcTasker.shellExecute('touch ' + currentPath + '/dir.lock')
-		else:
-			if confirmed:
-				emcTasker.shellExecute('rm -f ' + currentPath + '/dir.lock')
-			
 	def createLink(self, path):
 		self.session.openWithCallback(
 				boundFunction( self.createLinkCB, path ),
