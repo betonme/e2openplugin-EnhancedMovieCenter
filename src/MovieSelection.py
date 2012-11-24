@@ -1613,7 +1613,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			delete = not config.EMC.movie_trashcan_enable.value or self.permanentDel
 			if os.path.exists(config.EMC.movie_trashcan_path.value) or delete:
 				# if the user doesn't want to keep the movies in the trash, purge immediately
-				if not self.isUpperPathLocked(pathname):
+				if not self.isPathLocked(pathname):
 					self.execFileOp(config.EMC.movie_trashcan_path.value, current, self.tmpSelList, op="delete", purgeTrash=delete)
 				else:
 					self.session.open(MessageBox, _("This element belongs to a locked folder and cannot be deleted!"), MessageBox.TYPE_ERROR, 10)
@@ -1625,27 +1625,21 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 				self.session.openWithCallback(self.trashcanCreate, MessageBox, _("Delete failed because the trashcan directory does not exist. Attempt to create it now?"), MessageBox.TYPE_YESNO)
 			emcDebugOut("[EMCMS] deleteMovie")
 
-	def isUpperPathLocked(self, path):
-		locked = False
-		while path != "/":
-			if os.path.isfile(path + "/dir.lock"):
-				locked = True
-				break
-			(path, tail) = os.path.split(path)
-		return locked
-	
-	def isPathLocked(self, path):
+	def isLowerPathLocked(self, path):
 		locked = False
 		for root, dirs, files in os.walk(path):
 			if "dir.lock" in files:
 				locked = True
 				break
-		return locked
+		return locked		
+	
+	def isPathLocked(self, path):
+		return os.path.isfile(path + "/dir.lock")
 	
 	def delPathSelRecursive(self, service, path, confirm):
 		if confirm and path:
-			if self.isPathLocked(path) or self.isUpperPathLocked(path):
-				self.session.open(MessageBox, _("This folder is locked or is in relation to a locked folder, unlock it first!"), MessageBox.TYPE_ERROR, 10)
+			if self.isPathLocked(path) or self.isLowerPathLocked(path):
+				self.session.open(MessageBox, _("This folder is locked or contains a locked subfolder, unlock it first!"), MessageBox.TYPE_ERROR, 10)
 			elif service:
 				emcTasker.shellExecute('rm -rf "' + path + '"')
 				self.removeService(service)

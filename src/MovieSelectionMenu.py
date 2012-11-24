@@ -192,17 +192,23 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 	def lockDir(self, currentPath):
 		self.hide
 		if not os.path.exists(currentPath + '/dir.lock'):
-			self.session.openWithCallback(boundFunction(self.lockDirConfirmed, currentPath, False), MessageBox, _("Do you really want to lock the directory " + currentPath + "?"), MessageBox.TYPE_YESNO)
+			self.session.openWithCallback(boundFunction(self.lockDirConfirmed, currentPath, False), MessageBox, _("Do you really want to lock the directory " + currentPath + " and all its subfolders?"), MessageBox.TYPE_YESNO)
 		else:
-			self.session.openWithCallback(boundFunction(self.lockDirConfirmed, currentPath, True), MessageBox, _("The directory " + currentPath + " is already locked. Do you want to unlock it?"), MessageBox.TYPE_YESNO)
+			self.session.openWithCallback(boundFunction(self.lockDirConfirmed, currentPath, True), MessageBox, _("The directory " + currentPath + " is already locked. Do you want to unlock it and all its subfolders?"), MessageBox.TYPE_YESNO)
 
 	def lockDirConfirmed(self, currentPath, locked, confirmed):
 		if not locked:
 			if confirmed:
 				emcTasker.shellExecute('touch ' + currentPath + '/dir.lock')
+				for root, dirs, files in os.walk(currentPath):
+					for dir in dirs:
+						emcTasker.shellExecute('touch ' + root + '/' + dir +  '/dir.lock')
 		else:
 			if confirmed:
 				emcTasker.shellExecute('rm -f ' + currentPath + '/dir.lock')
+				for root, dirs, files in os.walk(currentPath):
+					for dir in dirs:
+						emcTasker.shellExecute('rm -rf ' + root + '/' + dir +  '/dir.lock')
 			
 	def createLink(self, path):
 		self.session.openWithCallback(
