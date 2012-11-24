@@ -1649,7 +1649,6 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			elif service:
 				emcTasker.shellExecute('rm -rf "' + path + '"')
 				self.removeService(service)
-				self.setReturnCursor()		
 
 	def delPathSelConfirmed(self, service, confirm):
 		if confirm and service:
@@ -1663,9 +1662,8 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 					if len(os.listdir(path))>0:
 						self.session.openWithCallback(boundFunction(self.delPathSelRecursive, service, path), MessageBox, _("Directory is not empty! Do you really want to delete it?"), MessageBox.TYPE_YESNO)
 					else:
-						emcTasker.shellExecute('rmdir "' + path +'"')
-						self.removeService(service)
-						self.setReturnCursor()
+						self.delPathSelRecursive(service, path, True)
+					self.setReturnCursor()
 			else:
 				self.session.open(MessageBox, _("Cannot delete the parent directory."), MessageBox.TYPE_ERROR, 10)
 
