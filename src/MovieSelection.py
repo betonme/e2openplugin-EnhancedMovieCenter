@@ -339,28 +339,18 @@ class SelectionEventInfo:
 class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfaceSel, DirectoryStack, E2Bookmarks, EMCBookmarks):
 	
 	# Define static member variables
-	_returnService = None
-	def setReturnService(self, rs):
-		EMCSelection._returnService = rs
-	def getReturnService(self):
-		return EMCSelection._returnService
-	returnService = property(getReturnService, setReturnService)
+	def attrgetter(attr, default=None):
+		def get_any(self):
+			return getattr(EMCSelection, attr, default)
+		return get_any
+	def attrsetter(attr):
+		def set_any(self, value):
+			setattr(EMCSelection, attr, value)
+		return set_any
 	
-	_currentPath = None
-	def setCurrentPath(self, cp):
-		EMCSelection._currentPath = cp
-	def getCurrentPath(self):
-		if EMCSelection._currentPath is None:
-			EMCSelection._currentPath = config.EMC.movie_homepath.value
-		return EMCSelection._currentPath
-	currentPath = property(getCurrentPath, setCurrentPath)
-	
-	_lastPlayed = None
-	def setLastPlayed(self, lp):
-		EMCSelection._lastPlayed = lp
-	def getLastPlayed(self):
-		return EMCSelection._lastPlayed
-	lastPlayed = property(getLastPlayed, setLastPlayed)
+	returnService = property( fget=attrgetter('_returnService'), fset=attrsetter('_returnService'))
+	currentPath   = property( fget=attrgetter('_currentPath', config.EMC.movie_homepath.value), fset=attrsetter('_currentPath'))
+	lastPlayed    = property( fget=attrgetter('_lastPlayed'), fset=attrsetter('_lastPlayed'))
 	
 	def __init__(self, session, returnService=None, playerInstance=None):
 		Screen.__init__(self, session)
@@ -1238,6 +1228,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 
 	def reloadList(self, path=None):
 		self.multiSelectIdx = None
+
 		self.resetInfo()
 		
 		if config.EMC.moviecenter_loadtext.value:
@@ -1363,8 +1354,9 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			self.multiSelectIdx = None
 			self.updateTitle()
 		# Initialize play all
-		playlist = [self.getCurrent()] 
-		playall = self["list"].getNextService()
+		service = self.getCurrent()
+		playlist = [service] 
+		playall = self["list"].getNextService(service)
 		# Show a notification to indicate the Play function
 		self["wait"].setText( _("Play All starting") )
 		self["wait"].show()
@@ -1381,8 +1373,9 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			self.multiSelectIdx = None
 			self.updateTitle()
 		# Initialize shuffle all
-		playlist = [self.getCurrent()] 
-		shuffleall = self["list"].getRandomService()
+		service = self.getCurrent()
+		playlist = [service] 
+		shuffleall = self["list"].getRandomService(service)
 		# Show a notification to indicate the Shuffle function
 		self["wait"].setText( _("Shuffle All starting") )
 		self["wait"].show()
