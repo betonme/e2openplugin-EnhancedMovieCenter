@@ -1111,7 +1111,7 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 	def getRandomService(self, service):
 		#IDEA: Optionally loop over all
 		#TODO calculate the correct title
-		idx = self.getIndexOfService(self, service)
+		idx = self.getIndexOfService(service)
 		if self.list[idx][7] in extMedia:
 			# Cursor marks a movie
 			length = len(self.list)
