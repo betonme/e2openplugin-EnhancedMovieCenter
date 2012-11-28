@@ -202,13 +202,13 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 				emcTasker.shellExecute('touch ' + currentPath + '/dir.lock')
 				for root, dirs, files in os.walk(currentPath):
 					for dir in dirs:
-						emcTasker.shellExecute('touch ' + root + '/' + dir +  '/dir.lock')
+						emcTasker.shellExecute('touch "' + root + '/' + dir +  '/dir.lock"')
 		else:
 			if confirmed:
 				emcTasker.shellExecute('rm -f ' + currentPath + '/dir.lock')
 				for root, dirs, files in os.walk(currentPath):
 					for dir in dirs:
-						emcTasker.shellExecute('rm -rf ' + root + '/' + dir +  '/dir.lock')
+						emcTasker.shellExecute('rm -rf "' + root + '/' + dir +  '/dir.lock"')
 			
 	def createLink(self, path):
 		self.session.openWithCallback(
