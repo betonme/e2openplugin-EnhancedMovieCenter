@@ -199,13 +199,13 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 	def lockDirConfirmed(self, currentPath, locked, confirmed):
 		if not locked:
 			if confirmed:
-				emcTasker.shellExecute('touch ' + currentPath + '/dir.lock')
+				emcTasker.shellExecute('touch "' + currentPath + '/dir.lock"')
 				for root, dirs, files in os.walk(currentPath):
 					for dir in dirs:
 						emcTasker.shellExecute('touch "' + root + '/' + dir +  '/dir.lock"')
 		else:
 			if confirmed:
-				emcTasker.shellExecute('rm -f ' + currentPath + '/dir.lock')
+				emcTasker.shellExecute('rm -f "' + currentPath + '/dir.lock"')
 				for root, dirs, files in os.walk(currentPath):
 					for dir in dirs:
 						emcTasker.shellExecute('rm -rf "' + root + '/' + dir +  '/dir.lock"')
