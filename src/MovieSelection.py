@@ -507,10 +507,12 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		self.session.open(MessageBox, EMCAbout, MessageBox.TYPE_INFO)
 
 	def abort(self):
-		#if config.EMC.CoolStartHome.value:
-		#	# Reload only if path is not movie home
-		#	if self.currentPath != config.EMC.movie_homepath.value:
-		#		DelayedFunction(1000, self.changeDir, config.EMC.movie_homepath.value)
+		if config.EMC.CoolStartHome.value:
+			# Reload only if path is not movie home
+			if self.currentPath != config.EMC.movie_homepath.value:
+				#DelayedFunction(1000, self.changeDir, config.EMC.movie_homepath.value)
+				self.currentPath = config.EMC.movie_homepath.value
+				config.EMC.needsreload.value = True
 		if self.playerInstance is not None:
 			self.playerInstance.movieSelected(None)
 		else:
@@ -1078,10 +1080,10 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			or len(self["list"]) == 0:
 			self.initList()
 		
-		elif config.EMC.CoolStartHome.value:
-			# Reload only if path is not movie home
-			if self.currentPath != config.EMC.movie_homepath.value:
-				self.changeDir(config.EMC.movie_homepath.value)
+		#elif config.EMC.CoolStartHome.value:
+		#	# Reload only if path is not movie home
+		#	if self.currentPath != config.EMC.movie_homepath.value:
+		#		self.changeDir(config.EMC.movie_homepath.value)
 		
 		else:
 			# Refresh is done automatically
