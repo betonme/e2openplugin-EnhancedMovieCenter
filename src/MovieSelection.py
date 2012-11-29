@@ -52,7 +52,7 @@ from enigma import ePicLoad, getDesktop
 from DelayedFunction import DelayedFunction
 from EnhancedMovieCenter import _
 from EMCTasker import emcTasker, emcDebugOut
-from MovieCenter import MovieCenter, getPlayerService, getProgress, toggleProgressService
+from MovieCenter import MovieCenter, getPlayerService, getProgress
 from MovieSelectionMenu import MovieMenu
 from EMCMediaCenter import EMCMediaCenter
 from VlcPluginInterface import VlcPluginInterfaceSel
@@ -969,24 +969,8 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		if self.multiSelectIdx:
 			self.multiSelectIdx = None
 			self.updateTitle()
-		if service is None:
-			first = False
-			forceProgress = -1
-			current = self.getCurrent()
-			if current is not None:
-				# Force copy of selectedlist
-				selectedlist = self["list"].makeSelectionList()[:]
-				if len(selectedlist)>1:
-					first = True
-				for service in selectedlist:
-					progress = toggleProgressService(service, False, forceProgress, first)
-					self["list"].invalidateService(service)
-					first = False
-					#if not preparePlayback:
-					forceProgress = progress
-		else:
-			toggleProgressService(service, preparePlayback)
-			self["list"].invalidateService(service)
+		
+		self["list"].toggleProgress(service)
 	
 	def IMDbSearch(self):
 		name = ''
@@ -1114,62 +1098,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		self["list"].removeServiceOfType(service, type)
 
 	def getNextSelectedService(self, current, selectedlist=None):
-		curSerRef = None
-		if current is None:
-			curSerRef = None
-		elif not self["list"]:
-			# Selectedlist is empty
-			curSerRef = None
-		elif selectedlist is None:
-			# Selectedlist is empty
-			curSerRef = current
-		elif current is not None and current not in selectedlist:
-			# Current is not within the selectedlist
-			curSerRef = current
-		else:
-			# Current is within the selectedlist
-			last_idx = len(self["list"]) - 1
-			len_sel = len(selectedlist)
-			first_sel_idx = last_idx
-			last_sel_idx = 0
-			
-			# Get first and last selected item indexes
-			for sel in selectedlist:
-				idx = self["list"].getIndexOfService(sel)
-				if idx < 0: idx = 0
-				if idx < first_sel_idx: first_sel_idx = idx
-				if idx > last_sel_idx:  last_sel_idx = idx
-			
-			# Calculate previous and next item indexes
-			prev_idx = first_sel_idx - 1
-			next_idx = last_sel_idx + 1
-			len_fitola = last_sel_idx - first_sel_idx + 1
-			
-			# Check if there is a not selected item between the first and last selected item
-			if len_fitola > len_sel:
-				for entry in self["list"].list[first_sel_idx:last_sel_idx]:
-					if entry[0] not in selectedlist:
-						# Return first entry which is not in selectedlist
-						curSerRef = entry[0]
-						break
-			# Check if next calculated item index is within the movie list
-			elif next_idx <= last_idx:
-				# Select item behind selectedlist
-				curSerRef = self["list"].getServiceOfIndex(next_idx)
-			# Check if previous calculated item index is within the movie list
-			elif prev_idx >= 0:
-				# Select item before selectedlist
-				curSerRef = self["list"].getServiceOfIndex(prev_idx)
-			else:
-				# The whole list must be selected
-				# First and last item is selected
-				# Recheck and find first not selected item
-				for entry in self["list"].list:
-					if entry[0] not in selectedlist:
-						# Return first entry which is not in selectedlist
-						curSerRef = entry[0]
-						break
-		return curSerRef
+		return self["list"].getNextSelectedService(current, selectedlist)
 
 	def loading(self, loading=True):
 		if loading:
@@ -1314,8 +1243,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 				self.setNextPath( self["list"].getCurrentSelDir() )
 			elif self.browsingVLC():
 				# TODO full integration of the VLC Player
-				entry = self["list"].list[ self["list"].getCurrentIndex() ]
-				self.vlcMovieSelected(entry)
+				self.vlcMovieSelected(current)
 			else:
 				playlist = self["list"].makeSelectionList()
 				if not self["list"].serviceMoving(playlist[0]) and not self["list"].serviceDeleting(playlist[0]):

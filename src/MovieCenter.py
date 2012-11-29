@@ -117,6 +117,7 @@ if config.EMC.directories_ontop.value:
 else:
 	virToD = virAll
 
+	
 #-------------------------------------------------
 # func: readBasicCfgFile( file )
 #
@@ -270,7 +271,7 @@ def toggleProgressService(service, preparePlayback, forceProgress=-1, first=Fals
 	# All calculations are done in seconds
 	cuts = CutList( path )
 	last = cuts.getCutListLast()
-	#length = self["list"].getLengthOfService(service)
+	#length = self.getLengthOfService(service)
 	progress, length = getProgress(service, length=0, last=last, forceRecalc=True, cuts=cuts)
 	
 	if not preparePlayback:
@@ -301,8 +302,6 @@ def toggleProgressService(service, preparePlayback, forceProgress=-1, first=Fals
 			# Delete SavedMarker
 			cuts.toggleLastCutList(cuts.CUT_TOGGLE_FOR_PLAY)
 	
-	# Update movielist entry
-	#self["list"].invalidateService(service)
 	return progress
 
 def dirInfo(folder, bsize=False):
@@ -369,11 +368,24 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 		self.hideitemlist = readBasicCfgFile("/etc/enigma2/emc-hide.cfg") or []
 		self.nostructscan = readBasicCfgFile("/etc/enigma2/emc-noscan.cfg") or []
 		self.topdirlist = readBasicCfgFile("/etc/enigma2/emc-topdir.cfg") or []
-
+	
+	def getList(self):
+		return self.list
+	
+	def getListEntry(self, index):
+		return self.list[index]
+	
+	def getTypeOfIndex(self, index):
+		return self.list[index][7]
+	
 	def getSorting(self):
 		# Return the actual sorting mode
 		return self.actualSort
 
+	def resetSorting(self):
+		from Plugins.Extensions.EnhancedMovieCenter.plugin import sort_modes
+		self.actualSort = sort_modes.get( config.EMC.moviecenter_sort.value )[1]
+	
 	def isEqualPermanentSort(self):
 		isperm = False
 		perm = self.getPermanentSort(self.currentPath)
@@ -733,7 +745,6 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 		#TODO add parameter reset list sort
 		emcDebugOut("[MC] LOAD PATH:\n" + str(currentPath))
 		customlist, subdirlist, filelist, tmplist = [], [], [], []
-		list = self.list
 		resetlist = True 
 		nextSort = None
 		
@@ -1006,16 +1017,16 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 					self.actualSort = nextSort
 			
 			if resetlist:
-				list = []
+				self.list = []
 			else:
-				tmplist = list + tmplist
-				
+				tmplist = self.list + tmplist
+			
+			self.list = self.doListSort( tmplist )
+			return self.list
+			
 		else:
 			# Simulate only
-			pass
-			
-		list = self.doListSort( tmplist )
-		return list
+			return self.doListSort( tmplist )
 
 	def globalReload(self, arg):
 		try:
@@ -1155,6 +1166,36 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 								if not self.serviceBusy(service):
 									yield service
 
+	def removeServiceInternal(self, service):
+		if service:
+			for l in self.list[:]:
+				if l[0] == service:
+					self.list.remove(l)
+					break
+			return self.doListSort(self.list)
+
+	def removeServiceOfTypeInternal(self, service, type):
+		if service:
+			for l in self.list[:]:
+				if l[0] == service and l[7] == type:
+					self.list.remove(l)
+					break
+			return self.doListSort(self.list)
+	
+	def setSortingModeInternal(self, mode, order):
+		self.returnSort = None
+		
+		if mode is None:
+			mode = self.actualSort[0]
+		if order is None:
+			order = self.actualSort[1]
+		
+		self.actualSort = (mode, order)
+		
+		self.list = self.doListSort(self.list)
+		return self.list
+
+		
 
 moviecenter = None
 									
@@ -1164,8 +1205,13 @@ class MovieCenter(GUIComponent):
 		global moviecenterdata
 		if moviecenterdata is None:
 			moviecenterdata = MovieCenterData()
-		#return getattr(moviecenterdata, name, None)
 		return getattr(moviecenterdata, name)
+	
+	#def __setattr__(self, name, value):
+	#	global moviecenterdata
+	#	if moviecenterdata is None:
+	#		moviecenterdata = MovieCenterData()
+	#	setattr(moviecenterdata, name, value)
 	
 	def __init__(self):
 		GUIComponent.__init__(self)
@@ -1242,7 +1288,7 @@ class MovieCenter(GUIComponent):
 		
 		self.onSelectionChanged = []
 
-		self.l.setList( self.list )
+		self.l.setList( self.getList() )
 
 	def applySkin(self, desktop, parent):
 		attribs = []
@@ -1645,24 +1691,16 @@ class MovieCenter(GUIComponent):
 
 	def removeService(self, service):
 		if service:
-			for l in self.list[:]:
-				if l[0] == service:
-					self.list.remove(l)
-					break
-			self.list = self.doListSort(self.list)
-			self.l.setList( self.list )
+			list = self.removeServiceInternal(service)
+			self.l.setList( list )
 
 	def removeServiceOfType(self, service, type):
 		if service:
-			for l in self.list[:]:
-				if l[0] == service and l[7] == type:
-					self.list.remove(l)
-					break
-			self.list = self.doListSort(self.list)
-			self.l.setList( self.list )
+			list = self.removeServiceOfTypeInternal(service, type)
+			self.l.setList( list )
 
 	def __len__(self):
-		return len(self.list)
+		return len(self.getList())
 
 	def makeSelectionList(self, currentIfEmpty=True):
 		selList = []
@@ -1708,8 +1746,8 @@ class MovieCenter(GUIComponent):
 		self.l.invalidate()
 
 	def reload(self, currentPath, simulate=False, recursive=False):
-		self.list = self.reloadInternal(currentPath, simulate, recursive)
-		self.l.setList( self.list )
+		list = self.reloadInternal(currentPath, simulate, recursive)
+		self.l.setList( list )
 		return True
 	
 	def moveToIndex(self, index):
@@ -1717,57 +1755,54 @@ class MovieCenter(GUIComponent):
 
 	def moveToService(self, service):
 		if service:
-			for c, x in enumerate(self.list):
-				if x[0] == service:
-					self.instance.moveSelectionTo(c)
-					break
+			index = self.getIndexOfService(service)
+			if index:
+				self.instance.moveSelectionTo(index)
 
 	def currentSelIsPlayable(self):
-		try:	return self.list[self.getCurrentIndex()][7] in extMedia
+		try:	return self.getTypeOfIndex(self.getCurrentIndex()) in extMedia
 		except:	return False
 
 	def currentSelIsDirectory(self):
-		try:	return self.list[self.getCurrentIndex()][7] == cmtDir
+		try:	return self.getTypeOfIndex(self.getCurrentIndex()) == cmtDir
 		except:	return False
 
 	def currentSelIsVirtual(self):
-		try:	return self.list[self.getCurrentIndex()][7] in virAll
+		try:	return self.getTypeOfIndex(self.getCurrentIndex()) in virAll
 		except:	return False
 
 	def currentSelIsE2Bookmark(self):
-		try:	return self.list[self.getCurrentIndex()][7] == cmtBME2
+		try:	return self.getTypeOfIndex(self.getCurrentIndex()) == cmtBME2
 		except:	return False
 
 	def currentSelIsEMCBookmark(self):
-		try:	return self.list[self.getCurrentIndex()][7] == cmtBMEMC
+		try:	return self.getTypeOfIndex(self.getCurrentIndex()) == cmtBMEMC
 		except:	return False
 
 	def indexIsDirectory(self, index):
-		try:	return self.list[index][7] == cmtDir
+		try:	return self.getTypeOfIndex(index) == cmtDir
 		except:	return False
 
 	def indexIsPlayable(self, index):
-		try:	return self.list[index][7] in extMedia
+		try:	return self.getTypeOfIndex(index) in extMedia
 		except:	return False
 
 	def getCurrentSelDir(self):
-		try:	return self.list[self.getCurrentIndex()][4]
+		try:	return self.getListEntry(self.getCurrentIndex())[4]
 		except:	return False
 
 	def getCurrentSelName(self):
-		try: return self.list[self.getCurrentIndex()][3]
+		try: return self.getListEntry(self.getCurrentIndex())[3]
 		except: return "none"
 
 	def highlightService(self, enable, mode, service):
 		if enable:
+			self.unselectService(service)
 			if mode == "move":
-				self.unselectService(service)
 				self.highlightsMov.append(service)
 			elif mode == "del":
-				self.unselectService(service)
 				self.highlightsDel.append(service)
 			elif mode == "copy":
-				self.unselectService(service)
 				self.highlightsCpy.append(service)
 		else:
 			if service:
@@ -1782,6 +1817,8 @@ class MovieCenter(GUIComponent):
 				elif mode == "copy":
 					if service in self.highlightsCpy:
 						self.highlightsCpy.remove(service)
+
+
 
 	def toggleSelection(self, service=None, index=-1, overrideNum=None):
 		x = None
@@ -1834,13 +1871,6 @@ class MovieCenter(GUIComponent):
 		self.list[index] = tuple(l)
 		self.l.invalidateEntry(index) # force redraw of the modified item
 	
-	def resetSorting(self, reload=False):
-		from Plugins.Extensions.EnhancedMovieCenter.plugin import sort_modes
-		self.actualSort = sort_modes.get( config.EMC.moviecenter_sort.value )[1]
-		if reload:
-			self.list = self.doListSort(self.list)
-			self.l.setList( self.list )
-	
 	def toggleSortingMode(self):
 		from Plugins.Extensions.EnhancedMovieCenter.plugin import sort_modes
 		#sorts = list( set( [sort for sort, desc in sort_choices] ) )
@@ -1858,7 +1888,6 @@ class MovieCenter(GUIComponent):
 		else:
 			# Fallback
 			mode = modes[ 0 ]
-		# Set the mode
 		self.setSortingMode(mode, order)
 
 	def toggleSortingOrder(self):
@@ -1866,14 +1895,85 @@ class MovieCenter(GUIComponent):
 		self.setSortingMode(mode, not order)
 
 	def setSortingMode(self, mode=None, order=None):
-		self.returnSort = None
-		
-		if mode is None:
-			mode = self.actualSort[0]
-		if order is None:
-			order = self.actualSort[1]
-		
-		self.actualSort = (mode, order)
-		
-		self.list = self.doListSort(self.list)
-		self.l.setList( self.list )
+		list = self.setSortingModeInternal(mode, order)
+		self.l.setList( list )
+
+	def toggleProgress(self, service):
+		if service is None:
+			first = False
+			forceProgress = -1
+			current = self.getCurrent()
+			if current is not None:
+				# Force copy of selectedlist
+				selectedlist = self.makeSelectionList()[:]
+				if len(selectedlist)>1:
+					first = True
+				for service in selectedlist:
+					progress = toggleProgressService(service, False, forceProgress, first)
+					self.invalidateService(service)
+					#DelayedFunction(1000, self.invalidateService, service)
+					first = False
+					#if not preparePlayback:
+					forceProgress = progress
+		else:
+			toggleProgressService(service, preparePlayback)
+			self.invalidateService(service)
+			#DelayedFunction(1000, self.invalidateService, service)
+
+	def getNextSelectedService(self, current, selectedlist=None):
+		curSerRef = None
+		if current is None:
+			curSerRef = None
+		elif not self.list:
+			# Selectedlist is empty
+			curSerRef = None
+		elif selectedlist is None:
+			# Selectedlist is empty
+			curSerRef = current
+		elif current is not None and current not in selectedlist:
+			# Current is not within the selectedlist
+			curSerRef = current
+		else:
+			# Current is within the selectedlist
+			last_idx = len(self.list) - 1
+			len_sel = len(selectedlist)
+			first_sel_idx = last_idx
+			last_sel_idx = 0
+			
+			# Get first and last selected item indexes
+			for sel in selectedlist:
+				idx = self.getIndexOfService(sel)
+				if idx < 0: idx = 0
+				if idx < first_sel_idx: first_sel_idx = idx
+				if idx > last_sel_idx:  last_sel_idx = idx
+			
+			# Calculate previous and next item indexes
+			prev_idx = first_sel_idx - 1
+			next_idx = last_sel_idx + 1
+			len_fitola = last_sel_idx - first_sel_idx + 1
+			
+			# Check if there is a not selected item between the first and last selected item
+			if len_fitola > len_sel:
+				for entry in self.list[first_sel_idx:last_sel_idx]:
+					if entry[0] not in selectedlist:
+						# Return first entry which is not in selectedlist
+						curSerRef = entry[0]
+						break
+			# Check if next calculated item index is within the movie list
+			elif next_idx <= last_idx:
+				# Select item behind selectedlist
+				curSerRef = self.getServiceOfIndex(next_idx)
+			# Check if previous calculated item index is within the movie list
+			elif prev_idx >= 0:
+				# Select item before selectedlist
+				curSerRef = self.getServiceOfIndex(prev_idx)
+			else:
+				# The whole list must be selected
+				# First and last item is selected
+				# Recheck and find first not selected item
+				for entry in self.list:
+					if entry[0] not in selectedlist:
+						# Return first entry which is not in selectedlist
+						curSerRef = entry[0]
+						break
+		return curSerRef
