@@ -729,12 +729,12 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 		del pathjoin
 		return customlist
 
-	def reload(self, currentPath, simulate=False, recursive=False):
+	def reloadInternal(self, currentPath, simulate=False, recursive=False):
 		#TODO add parameter reset list sort
 		emcDebugOut("[MC] LOAD PATH:\n" + str(currentPath))
 		customlist, subdirlist, filelist, tmplist = [], [], [], []
+		list = self.list
 		resetlist = True 
-		dosort = True
 		nextSort = None
 		
 		if config.EMC.remote_recordings.value:
@@ -1006,34 +1006,25 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 					self.actualSort = nextSort
 			
 			if resetlist:
-				self.list = []
+				list = []
 			else:
-				tmplist = self.list + tmplist
-		
-			if dosort:
-				# Do list sort
-				self.list = self.doListSort( tmplist )
-			else:
-				self.list = tmplist
-			
-			# Assign list to listbox
-			self.setNewList()
-		
+				tmplist = list + tmplist
+				
 		else:
 			# Simulate only
-			tmplist = self.doListSort( tmplist )
-			return tmplist
-		
-		return True
+			pass
+			
+		list = self.doListSort( tmplist )
+		return list
 
-	def setNewList(self):
+	def globalReload(self, arg):
 		try:
 			global moviecenter
 			if moviecenter:
-				moviecenter.l.setList( self.list )
+				moviecenter.reload( arg )
 		except: pass
 
-	def refreshList(self):
+	def globalRefresh(self):
 		try:
 			global moviecenter
 			if moviecenter:
@@ -1050,18 +1041,18 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 						# Empty list it will be better to reload it complete
 						# Maybe EMC was never started before
 						emcDebugOut("[MC] Timer started - full reload")
-						DelayedFunction(3000, self.reload, self.currentPath)
+						DelayedFunction(3000, self.globalReload, self.currentPath)
 					else:
 						# We have to add the new recording
 						emcDebugOut("[MC] Timer started - add recording")
 						# Timer filname is without extension
 						filename = timer.Filename + ".ts"
-						DelayedFunction(3000, self.reload, filename)
+						DelayedFunction(3000, self.globalReload, filename)
 				elif timer.state == TimerEntry.StateEnded:
 					#MAYBE Just refresh the ended record
 					# But it is fast enough
 					emcDebugOut("[MC] Timer ended")
-					DelayedFunction(3000, self.refreshList)
+					DelayedFunction(3000, self.globalRefresh)
 
 	def getNextService(self, service):
 		#IDEA: Optionally loop over all
@@ -1716,6 +1707,11 @@ class MovieCenter(GUIComponent):
 		#		self.invalidateService(entry[0])
 		self.l.invalidate()
 
+	def reload(self, currentPath, simulate=False, recursive=False):
+		self.list = self.reloadInternal(currentPath, simulate, recursive)
+		self.l.setList( self.list )
+		return True
+	
 	def moveToIndex(self, index):
 		self.instance.moveSelectionTo(index)
 
@@ -1725,8 +1721,6 @@ class MovieCenter(GUIComponent):
 				if x[0] == service:
 					self.instance.moveSelectionTo(c)
 					break
-
-
 
 	def currentSelIsPlayable(self):
 		try:	return self.list[self.getCurrentIndex()][7] in extMedia
