@@ -1194,6 +1194,62 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 		
 		self.list = self.doListSort(self.list)
 		return self.list
+	
+	def toggleSelectionInternal(self, entry, index, overrideNum, invalidateFunction=None):
+		if self.selectionList == None:
+			self.selectionList = []
+		newselnum = entry[5]	# init with old selection number
+		if overrideNum == None:
+			if self.serviceBusy(entry[0]): return	# no toggle if file being operated on
+			# basic selection toggle
+			if newselnum == 0:
+				# was not selected
+				self.currentSelectionCount += 1
+				newselnum = self.currentSelectionCount
+				self.selectionList.append(entry[0]) # append service
+			else:
+				# was selected, reset selection number and decrease all that had been selected after this
+				newselnum = 0
+				self.currentSelectionCount -= 1
+				count = 0
+				if entry is not None:
+					if entry[0] in self.selectionList:
+						self.selectionList.remove(entry[0]) # remove service
+				for i in self.list:
+					if i[5] > entry[5]:
+						l = list(i)
+						l[5] = i[5]-1
+						self.setList[count] = tuple(l)
+						invalidateFunction and invalidateFunction(count) # force redraw
+					count += 1
+		else:
+			newselnum = overrideNum * (newselnum == 0)
+		l = list(entry)
+		l[5] = newselnum
+		self.list[index] = tuple(l)
+		invalidateFunction and invalidateFunction(index) # force redraw of the modified item
+	
+	def highlightServiceInternal(self, enable, mode, service):
+		if enable:
+			if mode == "move":
+				self.highlightsMov.append(service)
+			elif mode == "del":
+				self.highlightsDel.append(service)
+			elif mode == "copy":
+				self.highlightsCpy.append(service)
+		elif service:
+			# Reset the length to force progress recalculation
+			self.updateLength(service, 0)
+			if mode == "move":
+				if service in self.highlightsMov:
+					self.highlightsMov.remove(service)
+			elif mode == "del":
+				if service in self.highlightsDel:
+					self.highlightsDel.remove(service)
+			elif mode == "copy":
+				if service in self.highlightsCpy:
+					self.highlightsCpy.remove(service)
+
 
 		
 
@@ -1798,78 +1854,29 @@ class MovieCenter(GUIComponent):
 	def highlightService(self, enable, mode, service):
 		if enable:
 			self.unselectService(service)
-			if mode == "move":
-				self.highlightsMov.append(service)
-			elif mode == "del":
-				self.highlightsDel.append(service)
-			elif mode == "copy":
-				self.highlightsCpy.append(service)
-		else:
-			if service:
-				# Reset the length to force progress recalculation
-				self.updateLength(service, 0)
-				if mode == "move":
-					if service in self.highlightsMov:
-						self.highlightsMov.remove(service)
-				elif mode == "del":
-					if service in self.highlightsDel:
-						self.highlightsDel.remove(service)
-				elif mode == "copy":
-					if service in self.highlightsCpy:
-						self.highlightsCpy.remove(service)
-
-
+			self.highlightServiceInternal(enable, mode, service)
+		elif service:
+			self.highlightServiceInternal(enable, mode, service)
 
 	def toggleSelection(self, service=None, index=-1, overrideNum=None):
-		x = None
+		entry = None
 		if service is None:
 			if index == -1:
 				if self.l.getCurrentSelection() is None: return
 				index = self.getCurrentIndex()
-			x = self.list[index]
+			entry = self.list[index]
 		else:
 			index = 0
 			for e in self.list:
 				if e[0] == service:
-					x = e
+					entry = e
 					break
 				index += 1
-		if x is None: return
+		if entry is None: return
 		
-		# We have x=service, index, overrideNum
+		# We have entry, index, overrideNum
 		if not self.indexIsPlayable(index): return
-		if self.selectionList == None:
-			self.selectionList = []
-		newselnum = x[5]	# init with old selection number
-		if overrideNum == None:
-			if self.serviceBusy(x[0]): return	# no toggle if file being operated on
-			# basic selection toggle
-			if newselnum == 0:
-				# was not selected
-				self.currentSelectionCount += 1
-				newselnum = self.currentSelectionCount
-				self.selectionList.append(x[0]) # append service
-			else:
-				# was selected, reset selection number and decrease all that had been selected after this
-				newselnum = 0
-				self.currentSelectionCount -= 1
-				count = 0
-				if x is not None:
-					if x[0] in self.selectionList:
-						self.selectionList.remove(x[0]) # remove service
-				for i in self.list:
-					if i[5] > x[5]:
-						l = list(i)
-						l[5] = i[5]-1
-						self.list[count] = tuple(l)
-						self.l.invalidateEntry(count) # force redraw
-					count += 1
-		else:
-			newselnum = overrideNum * (newselnum == 0)
-		l = list(x)
-		l[5] = newselnum
-		self.list[index] = tuple(l)
-		self.l.invalidateEntry(index) # force redraw of the modified item
+		self.toggleSelectionInternal(entry, index, overrideNum, self.l.invalidateEntry)
 	
 	def toggleSortingMode(self):
 		from Plugins.Extensions.EnhancedMovieCenter.plugin import sort_modes
