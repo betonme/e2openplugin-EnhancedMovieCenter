@@ -1,4 +1,0 @@
-#!/bin/sh
-rm -rf /usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/
-echo "Plugin removed! You should restart enigma2 now!"
-exit 0
