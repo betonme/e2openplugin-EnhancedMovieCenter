@@ -1219,7 +1219,7 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 					if i[5] > entry[5]:
 						l = list(i)
 						l[5] = i[5]-1
-						self.setList[count] = tuple(l)
+						self.list[count] = tuple(l)
 						invalidateFunction and invalidateFunction(count) # force redraw
 					count += 1
 		else:
