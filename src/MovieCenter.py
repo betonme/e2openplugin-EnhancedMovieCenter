@@ -1804,7 +1804,7 @@ class MovieCenter(GUIComponent):
 	def reload(self, currentPath, simulate=False, recursive=False):
 		list = self.reloadInternal(currentPath, simulate, recursive)
 		self.l.setList( list )
-		return True
+		return list
 	
 	def moveToIndex(self, index):
 		self.instance.moveSelectionTo(index)
