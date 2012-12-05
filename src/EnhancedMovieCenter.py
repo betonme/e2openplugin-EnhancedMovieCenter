@@ -507,10 +507,13 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 	def keySaveNew(self):
 		config.EMC.needsreload.value = True
 
-		try: # only for test
-			config.EMC.movie_finished_clean.removeNotifier(self.changedEntry)
+		try: # DMM
+			#config.EMC.movie_finished_clean.removeNotifier(self.changedEntry)
+			config.EMC.movie_finished_clean.clearNotifiers()
 		except: pass
-
+		try: # Others
+			config.EMC.movie_finished_clean.notifiers = { }
+		except: pass
 		for i, entry in enumerate( self.list ):
 			if entry[1].isChanged():
 				if entry[2] is not None:
@@ -535,8 +538,12 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 	def cancelConfirm(self, result):
 		if not result:
 			return
-		try: # only for test
+		try: # DMM
+			#config.EMC.movie_finished_clean.removeNotifier(self.changedEntry)
 			config.EMC.movie_finished_clean.clearNotifiers()
+		except: pass
+		try: # Others
+			config.EMC.movie_finished_clean.notifiers = { }
 		except: pass
 		for x in self["config"].list:
 			x[1].cancel()
