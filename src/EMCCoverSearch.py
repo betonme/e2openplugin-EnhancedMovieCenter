@@ -880,7 +880,7 @@ class getCover(Screen):
 		self["info"].setText(_("found %s covers in %.1f sec") % (self.cover_count, self.einzel_elapsed))
 
 	def showInfo(self):
-		if self.check == "true":
+		if self.check == "true" and self.menulist:
 			m_title = self["menulist"].getCurrent()[0][0]
 			m_url = self["menulist"].getCurrent()[0][1]
 			print m_title, m_url
