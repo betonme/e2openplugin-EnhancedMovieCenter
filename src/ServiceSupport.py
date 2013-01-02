@@ -184,6 +184,16 @@ class Info:
 					except UnicodeDecodeError:
 						desc = path.decode("iso-8859-1").encode("utf-8")
 				self.__extendeddescription = desc
+			else:
+				#No Description in *.eit file or no *.eit file exists
+				#Try reading description from *.txt file
+				txtpath = os.path.splitext(path)[0] + ".txt"
+				if os.path.exists(txtpath):
+					txtdescarr = open(txtpath).readlines()
+					txtdesc = ""
+					for line in txtdescarr:
+						txtdesc += line
+					self.__extendeddescription = txtdesc
 		
 		self.__id = 0
 		
