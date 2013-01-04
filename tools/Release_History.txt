@@ -4,3 +4,5 @@ Release History
 enigma2-plugin-extensions-enhancedmoviecenter_3.6.3beta20121127_all.ipk --> SHA-1: 8f5b3df5f1e9b7adb0a7b34caa3d695ad192696c
 enigma2-plugin-extensions-enhancedmoviecenter_3.6.4beta20121127_all.ipk --> SHA-1: fd9c19072cbd0a40633e242d979063c1573eb4fd
 enigma2-plugin-extensions-enhancedmoviecenter_3.6.5beta20121130_all.ipk --> SHA-1: e5b7310a78c19186a99bd546f4a9adad665dd647
+enigma2-plugin-extensions-enhancedmoviecenter_3.6.6beta20121202_all.ipk --> SHA-1: 7e3c3050d6454bbe70684cc4467f4651792edb8b
+enigma2-plugin-extensions-enhancedmoviecenter_3.6.7beta20130104_all.ipk --> SHA-1: 4ab1fb79628f10b5a42912b0501365f688f464c5
