@@ -172,14 +172,14 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 		self.session.openWithCallback(
 				boundFunction(self.createDirCB, currentPath),
 				InputBox,
-				title=_("Enter name for new directory."),
+				title=_("Enter name for new directory:"),
 				windowTitle=_("Create directory") )
 
 	def createDirCB(self, currentPath, name):
 		if name is not None:
 			name = os.path.join(currentPath, name)
 			if os.path.exists(name):
-				self.session.open(MessageBox, _("Directory "+name+" already exists."), MessageBox.TYPE_ERROR)
+				self.session.open(MessageBox, _("Directory %s already exists!") % (name), MessageBox.TYPE_ERROR)
 			else:
 				try:
 					os.mkdir(name)
@@ -192,9 +192,9 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 	def lockDir(self, currentPath):
 		self.hide
 		if not os.path.exists(currentPath + '/dir.lock'):
-			self.session.openWithCallback(boundFunction(self.lockDirConfirmed, currentPath, False), MessageBox, _("Do you really want to lock the directory " + currentPath + " and all its subfolders?"), MessageBox.TYPE_YESNO)
+			self.session.openWithCallback(boundFunction(self.lockDirConfirmed, currentPath, False), MessageBox, _("Do you really want to lock the directory %s and all its subfolders?") % (currentPath), MessageBox.TYPE_YESNO)
 		else:
-			self.session.openWithCallback(boundFunction(self.lockDirConfirmed, currentPath, True), MessageBox, _("The directory " + currentPath + " is already locked. Do you want to unlock it and all its subfolders?"), MessageBox.TYPE_YESNO)
+			self.session.openWithCallback(boundFunction(self.lockDirConfirmed, currentPath, True), MessageBox, _("The directory %s is already locked. Do you want to unlock it and all its subfolders?") % (currentPath), MessageBox.TYPE_YESNO)
 
 	def lockDirConfirmed(self, currentPath, locked, confirmed):
 		if not locked:
