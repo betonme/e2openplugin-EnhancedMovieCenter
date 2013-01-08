@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: EMC V.3.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-01-08 23:36+0100\n"
+"POT-Creation-Date: 2013-01-09 00:29+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Jojojoxx <Johannes_vdgiet@gmx.de>\n"
 "Language-Team: Swiss-MAD\n"
@@ -779,20 +779,23 @@ msgid "Choose bookmark"
 msgstr "Wählen Sie die Lesezeichen"
 
 #: src/MovieSelectionMenu.py:175
-msgid "Enter name for new directory."
-msgstr "Name für neues Verzeichnis eingeben."
+msgid "Enter name for new directory:"
+msgstr "Name für neues Verzeichnis eingeben:"
 
 #: src/MovieSelectionMenu.py:182
-msgid "Directory "
-msgstr "Verzeichnis "
+#, python-format
+msgid "Directory %s already exists!"
+msgstr "Verzeichnis %s existiert bereits!"
 
 #: src/MovieSelectionMenu.py:195
-msgid "Do you really want to lock the directory "
-msgstr ""
+#, python-format
+msgid "Do you really want to lock the directory %s and all its subfolders?"
+msgstr "Soll das Verzeichnis %s samt aller Unterverzeichnisse gesperrt werden?"
 
 #: src/MovieSelectionMenu.py:197
-msgid "The directory "
-msgstr ""
+#, python-format
+msgid "The directory %s is already locked. Do you want to unlock it and all its subfolders?"
+msgstr "Das Verzeichnis %s ist bereits gesperrt. Soll es samt aller Unterverzeichnisse entsperrt werden?"
 
 #: src/MovieSelectionMenu.py:217
 msgid "Create Link"
@@ -890,15 +893,15 @@ msgstr ""
 
 #: src/EnhancedMovieCenter.py:144
 msgid "Default"
-msgstr ""
+msgstr "Default"
 
 #: src/EnhancedMovieCenter.py:145
 msgid "Performance"
-msgstr ""
+msgstr "Performance"
 
 #: src/EnhancedMovieCenter.py:146
 msgid "Information"
-msgstr ""
+msgstr "Information"
 
 #: src/EnhancedMovieCenter.py:205
 msgid "Cancel"
@@ -1689,7 +1692,7 @@ msgstr "Damit die Einstellungen wirksam werden, bitte Enigma2 neustarten !"
 
 #: src/EnhancedMovieCenter.py:554
 msgid "Really close without saving settings?"
-msgstr ""
+msgstr "Ohne Speichern der Einstellungen fortfahren?"
 
 #: src/EnhancedMovieCenter.py:572
 msgid "Select Location"
@@ -1703,28 +1706,28 @@ msgstr "Gewähltes Verzeichnis %s existiert nicht. Bitte ändern."
 #: src/EMCCoverSearch.py:40
 #: src/EMCCoverSearch.py:41
 msgid "imdb.de"
-msgstr ""
+msgstr "imdb.de"
 
 #: src/EMCCoverSearch.py:40
 msgid "themoviedb.org"
-msgstr ""
+msgstr "themoviedb.org"
 
 #: src/EMCCoverSearch.py:40
 msgid "ofdb.de"
-msgstr ""
+msgstr "ofdb.de"
 
 #: src/EMCCoverSearch.py:40
 #: src/EMCCoverSearch.py:41
 msgid "csfd.cz"
-msgstr ""
+msgstr "csfd.cz"
 
 #: src/EMCCoverSearch.py:41
 msgid "thetvdb.com"
-msgstr ""
+msgstr "thetvdb.com"
 
 #: src/EMCCoverSearch.py:41
 msgid "all"
-msgstr ""
+msgstr "Alle"
 
 #: src/EMCCoverSearch.py:145
 msgid "Search"
@@ -1883,6 +1886,8 @@ msgstr "%s fortsetzen ?"
 msgid "Resuming playback"
 msgstr "Wiedergabe fortsetzten"
 
+#~ msgid "Directory "
+#~ msgstr "Verzeichnis "
 #~ msgid "Show E2 Bookmarks in movielist"
 #~ msgstr "E2 Lesezeichen in Filmliste anzeigen"
 #~ msgid "HELP_Show E2 Bookmarks in movielist"
