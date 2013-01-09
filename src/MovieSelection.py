@@ -270,6 +270,14 @@ class SelectionEventInfo:
 		else:
 			self["Cover"].hide()
 
+	def showCoverCallback(self, picInfo=None):
+		if self.picload and picInfo:
+			ptr = self.picload.getData()
+			if ptr != None:
+				self["Cover"].instance.setPixmap(ptr.__deref__())
+				self["Cover"].show()
+			del self.picload
+
 	# Movie preview
 	def showPreview(self, service=None):
 		#print "EMC: showPreview"
