@@ -215,27 +215,46 @@ class SelectionEventInfo:
 			ext = ext.lower()
 			jpgpath = ""
 			if ext in extMedia:
-				jpgpath = name + ".ts_mp.jpg"																									#filename.ts_mp.jpg
+				jpgpath = name + ".ts_mp.jpg"																#filename.ts_mp.jpg
 				if not os.path.exists(jpgpath):
-					jpgpath = name + ".jpg"																											#filename.jpg
-
+					jpgpath = name + ".ts_mp.png" 															#filename.ts_mp.png
+				if not os.path.exists(jpgpath):
+					jpgpath = name + ".png" 																#filename.png
+				if not os.path.exists(jpgpath):
+					jpgpath = name + ".jpg" 																#filename.jpg 
+					
 			elif os.path.isdir(path) and os.path.basename(path.lower()).endswith("video_ts"):
 				dvdpath, vts = os.path.split(path)
-				jpgpath = os.path.join(dvdpath, os.path.basename(dvdpath)) + ".ts_mp.jpg"			#dvdfoldername/dvdfoldername.ts_mp.jpg
+				jpgpath = os.path.join(dvdpath, os.path.basename(dvdpath)) + ".ts_mp.png"					#dvdfoldername/dvdfoldername.ts_mp.png
 				if not os.path.exists(jpgpath):
-					jpgpath = os.path.join(dvdpath, os.path.basename(dvdpath)) + ".jpg"					#dvdfoldername/dvdfoldername.jpg
+					jpgpath = os.path.join(dvdpath, os.path.basename(dvdpath)) + ".ts_mp.jpg"				#dvdfoldername/dvdfoldername.ts_mp.jpg
 				if not os.path.exists(jpgpath):
-					jpgpath = os.path.join(dvdpath, "folder.jpg")																#dvdfoldername/folder.jpg
+					jpgpath = os.path.join(dvdpath, os.path.basename(dvdpath)) + ".png"						#dvdfoldername/dvdfoldername.png
 				if not os.path.exists(jpgpath):
-					jpgpath = os.path.join(path, "dvd.jpg")																			#dvdfoldername/video_ts/dvd.jpg
+					jpgpath = os.path.join(dvdpath, os.path.basename(dvdpath)) + ".jpg"						#dvdfoldername/dvdfoldername.jpg	
+				if not os.path.exists(jpgpath):
+					jpgpath = os.path.join(dvdpath, "folder.png")											#dvdfoldername/folder.png
+				if not os.path.exists(jpgpath):
+					jpgpath = os.path.join(dvdpath, "folder.jpg")											#dvdfoldername/folder.jpg
+				if not os.path.exists(jpgpath):
+					jpgpath = os.path.join(path, "dvd.png")													#dvdfoldername/video_ts/dvd.png
+				if not os.path.exists(jpgpath):
+					jpgpath = os.path.join(path, "dvd.jpg")													#dvdfoldername/video_ts/dvd.jpg
 
 			elif os.path.isdir(path):
-				jpgpath = os.path.join(path, os.path.basename(path)) + ".ts_mp.jpg"						#foldername/foldername.ts_mp.jpg
+				jpgpath = os.path.join(path, os.path.basename(path)) + ".ts_mp.png"							#foldername/foldername.ts_mp.png
 				if not os.path.exists(jpgpath):
-					jpgpath = os.path.join(path, os.path.basename(path)) + ".jpg"								#foldername/foldername.jpg
+					jpgpath = os.path.join(path, os.path.basename(path)) + ".ts_mp.jpg"						#foldername/foldername.ts_mp.jpg				
 				if not os.path.exists(jpgpath):
-					jpgpath = os.path.join(path, "folder.jpg")																	#foldername/folder.jpg
-
+					jpgpath = os.path.join(path, os.path.basename(path)) + ".png"							#foldername/foldername.png
+				if not os.path.exists(jpgpath):
+					jpgpath = os.path.join(path, os.path.basename(path)) + ".jpg"							#foldername/foldername.jpg
+				if not os.path.exists(jpgpath):
+					jpgpath = os.path.join(path, "folder.png")												#foldername/folder.png
+				if not os.path.exists(jpgpath):
+					jpgpath = os.path.join(path, "folder.jpg")												#foldername/folder.jpg					
+					
+					
 			#TODO avoid os.path.exists double check
 			if jpgpath and os.path.exists(jpgpath):
 				sc = AVSwitch().getFramebufferScale()
@@ -243,21 +262,13 @@ class SelectionEventInfo:
 				self.picload = ePicLoad()
 				self.picload.PictureData.get().append(self.showCoverCallback)
 				if self.picload:
-					self.picload.setPara((size.width(), size.height(), sc[0], sc[1], False, 1, "#00000000")) # Background dynamically
+					self.picload.setPara((size.width(), size.height(), sc[0], sc[1], False, 1, "#ffffffff")) # Background dynamically
 					if self.picload.startDecode(jpgpath) != 0:
 						del self.picload
 			else:
 				self["Cover"].hide()
 		else:
 			self["Cover"].hide()
-
-	def showCoverCallback(self, picInfo=None):
-		if self.picload and picInfo:
-			ptr = self.picload.getData()
-			if ptr != None:
-				self["Cover"].instance.setPixmap(ptr.__deref__())
-				self["Cover"].show()
-			del self.picload
 
 	# Movie preview
 	def showPreview(self, service=None):
