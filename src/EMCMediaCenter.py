@@ -244,7 +244,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 			sc = AVSwitch().getFramebufferScale() # Maybe save during init
 			size = self["Cover"].instance.size()
 			if self.picload:
-				self.picload.setPara((size.width(), size.height(), sc[0], sc[1], False, 1, "#00000000")) # Background dynamically
+				self.picload.setPara((size.width(), size.height(), sc[0], sc[1], False, 1, "#ffffffff")) # Background dynamically
 				self.picload.startDecode(jpgpath)
 
 	def showCoverCallback(self, picInfo=None):
@@ -813,7 +813,9 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 	def doShow(self):
 		### Cover anzeige
 		service = self.playlist[self.playcount]
-		cover_path = re.sub(self.file_format + "$", '.jpg', service.getPath())
+		cover_path = re.sub(self.file_format + "$", '.png', service.getPath())
+		if not os.path.exists(cover_path):
+			cover_path = re.sub(self.file_format + "$", '.jpg', service.getPath())
 		self.showCover(cover_path)	
 		if self.in_menu:
 			pass
@@ -842,7 +844,9 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 	def toggleShow(self):
 		### Cover anzeige
 		service = self.playlist[self.playcount]
-		cover_path = re.sub(self.file_format + "$", '.jpg', service.getPath())
+		cover_path = re.sub(self.file_format + "$", '.png', service.getPath())
+		if not os.path.exists(cover_path):
+			cover_path = re.sub(self.file_format + "$", '.jpg', service.getPath())
 		
 		if not self.in_menu:
 			### Cover anzeige
