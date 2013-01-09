@@ -263,7 +263,12 @@ class EitList():
 							#text_length = pos+6+event_name_length
 							#short_event_descriptor.append(data[pos+7+event_name_length:pos+8+text_length])
 						elif rec == 0x4E:
-							extended_event_descriptor.append(data[pos+8:pos+length])
+							#special way to handle CR/LF charater
+							for i in range (pos+8,pos+length):
+								if str(ord(data[i]))=="138":
+									extended_event_descriptor.append("\n")
+								else:
+									extended_event_descriptor.append(data[i])
 						elif rec == 0x50:
 							component_descriptor.append(data[pos+8:pos+length])
 						elif rec == 0x54:
