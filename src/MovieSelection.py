@@ -431,10 +431,10 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 #				"EMCBlueL":		(self.openEMCBookmarks,		_("Open EMC bookmarks")),
 				"EMCLeft":		(self.pageUp,				_("Move cursor page up")),
 				"EMCRight":		(self.pageDown,				_("Move cursor page down")),
-				"EMCUp":			(self.moveUp,			_("Move cursor up")),
-				"EMCDown":		(self.moveDown,			_("Move cursor down")),
-				"EMCBqtPlus":	(self.moveTop,			_("Move cursor to the top")),
-				"EMCBqtMnus":	(self.moveEnd,			_("Move cursor to the end")),
+				"EMCUp":		(self.moveUp,				_("Move cursor up")),
+				"EMCDown":		(self.moveDown,				_("Move cursor down")),
+				"EMCBqtPlus":	(self.bqtPlus,			_("Move cursor to the top / Move cursor x entries up")),
+				"EMCBqtMnus":	(self.bqtMnus,			_("Move cursor to the end / Move cursor x entries down")),
 				"EMCArrowNext":	(self.CoolForward,		_("Directory forward")),
 #				"EMCArrowNextL":	(self.unUsed,				"-"),
 				"EMCArrowPrevious":	(self.CoolBack,			_("Directory back")),
@@ -560,6 +560,18 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			self.changeDir(config.EMC.movie_homepath.value)
 		elif config.EMC.movie_bluefunc.value == "PL":
 			self.playLast()
+			
+	def bqtPlus(self):
+		if config.EMC.bqt_keys.value == "":
+			self.moveTop()
+		elif config.EMC.bqt_keys.value == "Skip":
+			self.moveSkipUp()
+			
+	def bqtMnus(self):
+		if config.EMC.bqt_keys.value == "":
+			self.moveEnd()
+		elif config.EMC.bqt_keys.value == "Skip":
+			self.moveSkipDown()
 
 	def changeDir(self, path, service=None):
 		path = os.path.normpath(path)
@@ -643,6 +655,18 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 
 	def moveTop(self):
 		self["list"].instance.moveSelection( self["list"].instance.moveTop )
+		self.updateAfterKeyPress()
+		
+	def moveSkipUp(self):
+		self.cursorDir = -1
+		for _ in range(int(config.EMC.list_skip_size.value)):
+			self["list"].instance.moveSelection( self["list"].instance.moveUp )
+		self.updateAfterKeyPress()
+		
+	def moveSkipDown(self):
+		self.cursorDir = 1
+		for _ in range(int(config.EMC.list_skip_size.value)):
+			self["list"].instance.moveSelection( self["list"].instance.moveDown )
 		self.updateAfterKeyPress()
 
 	def moveEnd(self):

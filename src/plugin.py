@@ -172,6 +172,9 @@ restart_choices = [	("",							_("No")),
 										("2",							_("Reboot")),
 										("3",							_("E2 Restart"))]
 
+bqt_choices = [	("",							_("HomeEnd")),
+				("Skip",							_("Skip")) ]
+
 #Think about using AZ or ("A",False) as dict key / permanent sort store value
 #TODO use an OrderedDict
 sort_modes =	{		("D-")	:				( _("Date sort descending (D-)"),			("D",False),	_("Date sort"),	),
@@ -285,6 +288,8 @@ config.EMC.scan_linked               = ConfigYesNo(default = False)
 config.EMC.cfghide_enable            = ConfigYesNo(default = False)
 config.EMC.cfgscan_suppress          = ConfigYesNo(default = False)
 config.EMC.remote_recordings         = ConfigYesNo(default = False)
+config.EMC.bqt_keys                  = ConfigSelection(default = "", choices = bqt_choices)
+config.EMC.list_skip_size            = ConfigSelectionNumber(3, 10, 1, default = 5)
 
 config.EMC.InfoLong                  = ConfigSelection(choices = [("IMDbSearch", _("IMDb Search")), ("TMDBInfo", _("TMDB Info")), ('CSFDInfo', _('CSFD Info'))], default = "IMDbSearch")
 
