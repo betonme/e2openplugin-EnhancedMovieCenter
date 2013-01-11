@@ -36,7 +36,7 @@ from Components.Converter import EMCServicePosition
 from Components.Converter import EMCRecordPosition
 from Components.Converter import EMCServiceTime
 
-from __init__ import *
+from __init__ import _
 from EMCTasker import emcTasker, emcDebugOut
 
 
@@ -372,7 +372,6 @@ def recordingsOpen(session, *args, **kwargs):
 
 def Plugins(**kwargs):
 	from EnhancedMovieCenter import EMCVersion
-	localeInit()
 	descriptors = []
 	
 	descriptors.append( PluginDescriptor(where = PluginDescriptor.WHERE_SESSIONSTART, fnc = autostart) )
