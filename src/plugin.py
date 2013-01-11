@@ -36,7 +36,7 @@ from Components.Converter import EMCServicePosition
 from Components.Converter import EMCRecordPosition
 from Components.Converter import EMCServiceTime
 
-from __init__ import _
+from __init__ import _, language
 from EMCTasker import emcTasker, emcDebugOut
 
 
