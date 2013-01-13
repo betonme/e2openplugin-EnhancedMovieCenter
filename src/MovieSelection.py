@@ -433,8 +433,8 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 				"EMCRight":		(self.pageDown,				_("Move cursor page down")),
 				"EMCUp":		(self.moveUp,				_("Move cursor up")),
 				"EMCDown":		(self.moveDown,				_("Move cursor down")),
-				"EMCBqtPlus":	(self.bqtPlus,			_("Move cursor to the top / Move cursor x entries up")),
-				"EMCBqtMnus":	(self.bqtMnus,			_("Move cursor to the end / Move cursor x entries down")),
+				"EMCBqtPlus":	(self.bqtPlus,			_("Move cursor to the top / Move cursor x entries up / Switch Folders in Movie Home (up)")),
+				"EMCBqtMnus":	(self.bqtMnus,			_("Move cursor to the end / Move cursor x entries down / Switch Folders in Movie Home (down)")),
 				"EMCArrowNext":	(self.CoolForward,		_("Directory forward")),
 #				"EMCArrowNextL":	(self.unUsed,				"-"),
 				"EMCArrowPrevious":	(self.CoolBack,			_("Directory back")),
@@ -566,12 +566,42 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			self.moveTop()
 		elif config.EMC.bqt_keys.value == "Skip":
 			self.moveSkipUp()
+		elif config.EMC.bqt_keys.value == "Folder":
+			self.bqtNextFolder()
 			
 	def bqtMnus(self):
 		if config.EMC.bqt_keys.value == "":
 			self.moveEnd()
 		elif config.EMC.bqt_keys.value == "Skip":
 			self.moveSkipDown()
+		elif config.EMC.bqt_keys.value == "Folder":
+			self.bqtPrevFolder()
+			
+	def bqtNextFolder(self):
+		dirlist = self.bqtListFolders()
+		try:
+			pos = (dirlist.index(self.currentPath) + 1) % len(dirlist)			
+		except:
+			pos = 0		
+		self.setNextPath(dirlist[pos])
+		
+	def bqtPrevFolder(self):
+		dirlist = self.bqtListFolders()
+		try:
+			pos = (dirlist.index(self.currentPath) - 1) % len(dirlist)
+		except:
+			pos = len(dirlist)-1
+		self.setNextPath(dirlist[pos])		
+	
+	def bqtListFolders(self):
+		movie_homepath = os.path.realpath(config.EMC.movie_homepath.value)
+		tmplist = [os.path.join(movie_homepath, f) for f in os.listdir(movie_homepath)]
+		dirlist = []
+		for i in tmplist:
+			if os.path.isdir(i):
+				dirlist.append(i)
+		dirlist.sort()
+		return dirlist
 
 	def changeDir(self, path, service=None):
 		path = os.path.normpath(path)

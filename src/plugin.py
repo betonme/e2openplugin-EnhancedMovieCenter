@@ -173,7 +173,8 @@ restart_choices = [	("",							_("No")),
 										("3",							_("E2 Restart"))]
 
 bqt_choices = [	("",							_("HomeEnd")),
-				("Skip",							_("Skip")) ]
+				("Skip",						_("Skip")),
+				("Folder",						_("Change Folder"))]
 
 #Think about using AZ or ("A",False) as dict key / permanent sort store value
 #TODO use an OrderedDict
