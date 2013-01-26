@@ -39,7 +39,11 @@ from . import _
 from RecordingsControl import RecordingsControl, getRecording
 from DelayedFunction import DelayedFunction
 from EMCTasker import emcDebugOut
-from VlcPluginInterface import VlcPluginInterfaceList, vlcSrv, vlcDir, vlcFil
+try:
+	from VlcPluginInterface import VlcPluginInterfaceList, vlcSrv, vlcDir, vlcFil
+	from VlcPlayer import DEFAULT_VIDEO_PID, DEFAULT_AUDIO_PID, ENIGMA_SERVICE_ID
+except:
+	pass
 from operator import itemgetter
 from CutListSupport import CutList
 from MetaSupport import MetaList
@@ -172,7 +176,11 @@ def getPlayerService(path, name="", ext=None):
 		service = eServiceReference(sidM2TS, 0, path)
 	else:
 		path = path.replace(":","") # because of VLC player
-		service = eServiceReference("2:0:1:0:0:0:0:0:0:0:" + path)
+		#service = eServiceReference("2:0:1:0:0:0:0:0:0:0:" + path)
+		service = eServiceReference(ENIGMA_SERVICE_ID, 0, url)
+		print "service valid=", service.valid()
+		service.setData(0, DEFAULT_VIDEO_PID)
+		service.setData(1, DEFAULT_AUDIO_PID)
 	if name:
 		service.setName(name)
 	return service
