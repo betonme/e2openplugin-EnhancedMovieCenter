@@ -174,7 +174,7 @@ def getPlayerService(path, name="", ext=None):
 	else:
 		path = path.replace(":","") # because of VLC player
 		#service = eServiceReference("2:0:1:0:0:0:0:0:0:0:" + path)
-		service = eServiceReference(ENIGMA_SERVICE_ID, 0, url)
+		service = eServiceReference(ENIGMA_SERVICE_ID, 0, path)
 		print "service valid=", service.valid()
 		service.setData(0, DEFAULT_VIDEO_PID)
 		service.setData(1, DEFAULT_AUDIO_PID)
