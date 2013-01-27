@@ -21,7 +21,7 @@
 
 import os
 
-from enigma import eServiceReference
+from enigma import eServiceReference, eServiceCenter
 from EMCTasker import emcDebugOut
 from Screens.MessageBox import MessageBox
 
@@ -31,6 +31,11 @@ global vlcSrv, vlcDir, vlcFil
 vlcSrv  = "VLC"
 vlcDir  = "VLCD"
 vlcFil  = "VLCF"
+
+def isValidServiceId(id):
+	testSRef = eServiceReference(id, 0, "Just a TestReference")
+	info = eServiceCenter.getInstance().info(testSRef)
+	return info is not None
 
 try:
 	from VlcPlayer import DEFAULT_VIDEO_PID, DEFAULT_AUDIO_PID, ENIGMA_SERVICE_ID
