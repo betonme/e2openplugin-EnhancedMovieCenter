@@ -39,11 +39,8 @@ from . import _
 from RecordingsControl import RecordingsControl, getRecording
 from DelayedFunction import DelayedFunction
 from EMCTasker import emcDebugOut
-try:
-	from VlcPluginInterface import VlcPluginInterfaceList, vlcSrv, vlcDir, vlcFil
-	from VlcPlayer import DEFAULT_VIDEO_PID, DEFAULT_AUDIO_PID, ENIGMA_SERVICE_ID
-except:
-	pass
+from VlcPluginInterface import VlcPluginInterfaceList, vlcSrv, vlcDir, vlcFil
+from VlcPluginInterface import DEFAULT_VIDEO_PID, DEFAULT_AUDIO_PID, ENIGMA_SERVICE_ID
 from operator import itemgetter
 from CutListSupport import CutList
 from MetaSupport import MetaList

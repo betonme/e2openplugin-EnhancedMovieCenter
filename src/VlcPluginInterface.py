@@ -32,6 +32,42 @@ vlcSrv  = "VLC"
 vlcDir  = "VLCD"
 vlcFil  = "VLCF"
 
+try:
+	from VlcPlayer import DEFAULT_VIDEO_PID, DEFAULT_AUDIO_PID, ENIGMA_SERVICE_ID
+except:
+	ENIGMA_SERVICEGS_ID = 0x1001
+	ENIGMA_SERVICETS_ID = 0x1002
+
+	ENIGMA_SERVICE_ID = 0
+
+	print "[VLC] Checking for buildin servicets ... ",
+	if isValidServiceId(ENIGMA_SERVICETS_ID):
+		print "yes"
+		ENIGMA_SERVICE_ID = ENIGMA_SERVICETS_ID
+		STOP_BEFORE_UNPAUSE = False
+	else:
+		print "no"
+		print "[VLC] Checking for existing and usable servicets.so ... ",
+		try:
+			import servicets
+		except Exception, e:
+			print e
+			print "[VLC] Checking for usable gstreamer service ... ",
+			if isValidServiceId(ENIGMA_SERVICEGS_ID):
+				print "yes"
+				ENIGMA_SERVICE_ID = ENIGMA_SERVICEGS_ID
+				STOP_BEFORE_UNPAUSE = True
+			else:
+				print "no"
+				print "[VLC] No valid VLC-Service found - VLC-streaming not supported"
+		else:
+			print "yes"
+			ENIGMA_SERVICE_ID = ENIGMA_SERVICETS_ID
+			STOP_BEFORE_UNPAUSE = False
+
+	DEFAULT_VIDEO_PID = 0x44
+	DEFAULT_AUDIO_PID = 0x45
+
 
 class VlcFileListWrapper:
 	def __init__(self):
