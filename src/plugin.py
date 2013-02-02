@@ -295,12 +295,14 @@ config.EMC.list_skip_size            = ConfigSelectionNumber(3, 10, 1, default =
 config.EMC.InfoLong                  = ConfigSelection(choices = [("IMDbSearch", _("IMDb Search")), ("TMDBInfo", _("TMDB Info")), ('CSFDInfo', _('CSFD Info'))], default = "IMDbSearch")
 
 def checkList(cfg):
-	if cfg.value not in cfg.choices.choices:
-		if cfg.default in cfg.choices.choices:
-			cfg.value = cfg.default
-		else:
-			cfg.value = cfg.choices.choices[0]
-	print cfg.value
+    for choices in cfg.choices.choices:
+        if cfg.value == choices[0]:
+            return
+    if cfg.default in cfg.choices.choices:
+        cfg.value = cfg.default
+    else:
+        cfg.value = cfg.choices.choices[0]
+    print cfg.value
 
 checkList(config.EMC.epglang)
 checkList(config.EMC.sublang1)
