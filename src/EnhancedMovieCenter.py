@@ -513,7 +513,7 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 
 		if isinstance(config.EMC.movie_finished_clean.notifiers, dict):
 			config.EMC.movie_finished_clean.notifiers = { }
-		elif if isinstance(config.EMC.movie_finished_clean.notifiers, list):
+		elif isinstance(config.EMC.movie_finished_clean.notifiers, list):
 			config.EMC.movie_finished_clean.notifiers = [ ]
 		
 		for i, entry in enumerate( self.list ):
@@ -543,7 +543,7 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 
 		if isinstance(config.EMC.movie_finished_clean.notifiers, dict):
 			config.EMC.movie_finished_clean.notifiers = { }
-		elif if isinstance(config.EMC.movie_finished_clean.notifiers, list):
+		elif isinstance(config.EMC.movie_finished_clean.notifiers, list):
 			config.EMC.movie_finished_clean.notifiers = [ ]
 
 		for x in self["config"].list:
