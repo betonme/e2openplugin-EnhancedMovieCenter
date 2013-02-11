@@ -198,7 +198,7 @@ msgid "Creating Search List.."
 msgstr "Sestavit seznam..."
 
 msgid "Cursor predictive move after selection"
-msgstr " Předvolený posun kurzoru podle výběru"
+msgstr " Předvolený posun kurzoru po výběru"
 
 msgid "Custom"
 msgstr "Uživatelský"
@@ -210,7 +210,7 @@ msgid "DD.MM.YYYY"
 msgstr "DD.MM.YYYY"
 
 msgid "Daily cleanup time"
-msgstr "Vyprázdnit koš každý den "
+msgstr "Vyprázdnit koš každý den v ..."
 
 msgid "Date format"
 msgstr "Formát datumu"
@@ -367,10 +367,10 @@ msgid "EMC path access limit"
 msgstr "EMC - omezení přístupu ke struktuře vůči základní složce"
 
 msgid "EMC re-open list after Movie end"
-msgstr "EMC -  po ukončení videa zpět do seznamu"
+msgstr "Přejít po \"Exit\" videa zpět do výchozí složky, ne=do TV"
 
 msgid "EMC re-open list after STOP-press"
-msgstr "EMC -  přejít po \"Stop\" videa zpět do seznamu"
+msgstr "Přejít po \"Stop\" videa zpět do výchozí složky, ne=do TV"
 
 msgid ""
 "EMC: Skipping Trashcan Cleanup\n"
@@ -431,7 +431,7 @@ msgid "Foldername:"
 msgstr "Složka :"
 
 msgid "Force standby after auto-restart"
-msgstr "Po aut.restartu nastavit do pohotovostního režimu"
+msgstr "Po aut.restartu nastavit do režimu spánku"
 
 msgid "Format AVSwitch"
 msgstr "Přepnout formát videa"
@@ -536,12 +536,12 @@ msgstr ""
 
 msgid "HELP_EMC re-open list after Movie end"
 msgstr ""
-"Nápověda - po ukončení videa skok do seznamu.\n"
+"Nápověda - přejít po \"Exit\" videa zpět do výchozí složky EMC.\n"
 "Jinak se vrátí do TV módu."
 
 msgid "HELP_EMC re-open list after STOP-press"
 msgstr ""
-"Nápověda - po pozastavení (Stop) videa skok do seznamu.\n"
+"Nápověda - přejít po \"Stop\" videa zpět do výchozí složky EMC.\n"
 "Jinak se vrátí do TV módu."
 
 msgid "HELP_Enable EMC debug output"
@@ -794,7 +794,7 @@ msgstr ""
 
 msgid "HELP_Zap to channel after record EOF"
 msgstr ""
-"Nápověda - při nahrávání a dosažení konce - např. po zrychlení nebo přeskoku "
+"Nápověda - při nahrávání a dosažení konce - např. zrychlení nebo přeskoku "
 "vpřed\n"
 " bude dále nahrávat a zobrazovat v reálu."
 
@@ -1378,7 +1378,7 @@ msgstr ""
 " Volba \"ne\" to oddálí o hodinu."
 
 msgid "Zap to channel after record EOF"
-msgstr "Zapnout kanál po záznamu EOF"
+msgstr "Přehrávat záznam po zastavení (konec rychlení, skok) "
 
 msgid "all"
 msgstr "vše"
