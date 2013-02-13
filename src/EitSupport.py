@@ -330,16 +330,3 @@ class EitList():
 		else:
 			# No path or no file clear all
 			self.eit = {}
-
-#MAYBE
-#	def __writeEitFile(self):
-#		# Generate and pack data
-#		data = ""
-#		if self.eit_file:
-#TODO
-#			pass
-#		# Write data to file
-#		if os.path.exists(self.eit_file):
-#TODO w or wb
-#			with open(self.eit_file, 'wb') as file:
-#				file.write(data)
