@@ -16,4 +16,3 @@ _ = lambda txt: gettext.dgettext("EnhancedMovieCenter", txt) if txt else ""
 
 localeInit()
 language.addCallback(localeInit)
-
