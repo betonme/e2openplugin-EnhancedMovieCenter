@@ -189,17 +189,3 @@ class MetaList():
 		else:
 			# No path or no file clear all
 			self.meta = ["","","","","","",""]
-
-#MAYBE
-#	def __writeMetaFile(self):
-#		# Generate and pack data
-#		data = ""
-#		if self.meta_file:
-#TODO
-#			pass
-#		# Write data to file
-#		if os.path.exists(self.meta_file):
-#TODO w or wb
-#			with open(self.meta_file, 'wb') as file:
-#				file.write(data)
-
