@@ -20,14 +20,7 @@ from ServiceSupport import ServiceCenter
 class MovieRetitle(Screen, ConfigListScreen):
 	def __init__(self, session, services):
 		Screen.__init__(self, session)
-		#try:
-		#	sz_w = getDesktop(0).size().width()
-		#except:
-		#	sz_w = 720
-		#if sz_w == 1280:
-		#elif sz_w == 1024:
-		#else:
-		#TBD
+
 		self.skinName = ["MovieRetitle", "Setup"]
 		self.list = [ ]
 		ConfigListScreen.__init__(self, self.list, session)
