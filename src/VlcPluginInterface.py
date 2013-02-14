@@ -179,4 +179,3 @@ class VlcPluginInterfaceList():
 				emcDebugOut("[EMC_VLC] reloadVlcFilelist exception:\n" + str(e))
 		
 		return vlcdirlist, vlcfilelist
-
