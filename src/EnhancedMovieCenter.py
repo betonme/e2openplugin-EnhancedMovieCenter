@@ -583,7 +583,7 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 	def showRestart(self):
 		emcTasker.ShowAutoRestartInfo()
 
-	def showInfo(self):
+	def showInfo(self, dummy=None):
 		self.session.open(MessageBox, EMCAbout, MessageBox.TYPE_INFO)
 
 	def validatePath(self, element):
