@@ -363,6 +363,7 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 			
 			(  _("Leave Movie with Exit")                         , config.EMC.movie_exit               , None                  , None                  , 0     , []          , _("HELP_Leave Movie with Exit")                          , None              , None ),
 			(  _("Blue button function")                          , config.EMC.movie_bluefunc           , None                  , None                  , 0     , []          , _("HELP_Blue button function")                           , None              , None ),
+			(  _("Yellow button function")                        , config.EMC.movie_yellowfunc           , None                  , None                  , 0     , []          , _("HELP_Yellow button function")                           , None              , None ),
 			
 			(  _("Hide movies being moved")                       , config.EMC.movie_hide_mov           , None                  , None                  , 1     , []          , _("HELP_Hide movies being moved")                        , None              , None ),
 			(  _("Hide movies being deleted")                     , config.EMC.movie_hide_del           , None                  , None                  , 1     , []          , _("HELP_Hide movies being deleted")                      , None              , None ),

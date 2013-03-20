@@ -65,6 +65,10 @@ from EMCCoverSearch import EMCImdbScan
 from MovieRetitle import MovieRetitle
 from Components.Sources.EMCServiceEvent import EMCServiceEvent
 
+#Movie Blurbs
+import json
+from urllib2 import Request, urlopen
+
 from MovieCenter import extList, extVideo, extMedia, extDir, plyAll, plyDVD, cmtBME2, cmtBMEMC, cmtDir
 global extList, extVideo, extMedia, extDir, plyAll, plyDVD, cmtBME2, cmtBMEMC, cmtDir
 
@@ -422,7 +426,8 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 				"EMCRed":			(self.deleteFile,			_("Delete file or empty dir")),
 				"EMCSortMode":		(self.toggleSortMode,			_("Toggle sort mode")),
 				"EMCSortOrder":		(self.toggleSortOrder,			_("Toggle sort order")),
-				"EMCMOVE":		(self.moveMovie,			_("Move selected movie(s)")),
+#				"EMCMOVE":		(self.moveMovie,			_("Move selected movie(s)")),
+				"EMCYELLOW":    (self.yellowFunc,			_("Move selected movie(s)")),				
 				"EMCCOPY":		(self.copyMovie,			_("Copy selected movie(s)")),
 				"EMCBlue":		(self.blueFunc,				_("Movie home / Play last (configurable)")),
 #				"EMCRedL":		(self.unUsed,				"-"),
@@ -560,6 +565,14 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			self.changeDir(config.EMC.movie_homepath.value)
 		elif config.EMC.movie_bluefunc.value == "PL":
 			self.playLast()
+		elif config.EMC.movie_bluefunc.value == "MB":
+			self.dlMovieBlurb()
+			
+	def yellowFunc(self):
+		if config.EMC.movie_yellowfunc.value == "move":
+			self.moveMovie
+		elif config.EMC.movie_yellowfunc.value == "MB":
+			self.dlMovieBlurb()
 			
 	def bqtPlus(self):
 		if config.EMC.bqt_keys.value == "":
@@ -1216,7 +1229,8 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 				break
 		else:
 			self["key_green"].text = ""
-		self["key_yellow"].text = _("Move")
+		#self["key_yellow"].text = _("Move")
+		self["key_yellow"].text = _(config.EMC.movie_yellowfunc.description[config.EMC.movie_yellowfunc.value])
 		self["key_blue"].text = _(config.EMC.movie_bluefunc.description[config.EMC.movie_bluefunc.value])
 
 	def initList(self):
@@ -1925,4 +1939,28 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			self.session.open(MessageBox, _("Trashcan create failed. Check mounts and permissions."), MessageBox.TYPE_ERROR)
 			emcDebugOut("[EMCMS] trashcanCreate exception:\n" + str(e))
 
+	def dlMovieBlurb(self):
+		selectedlist = self["list"].makeSelectionList()[:]
+		service = selectedlist[0]
+		moviename = str(self["list"].getNameOfService(service))
+		print "TMDb Lookup for: " + moviename
+		
+		headers = {"Accept": "application/json"}
+		request = Request("http://api.themoviedb.org/3/search/movie?api_key=8789cfd3fbab7dccf1269c3d7d867aff&query=" + moviename.replace(" ","+"), headers=headers)
+		jsonresponse = urlopen(request).read()
+		response = json.loads(jsonresponse)
 
+		print "Found " + str(response["total_results"]) + " results for movie " + moviename
+		movies = response["results"]
+		if len(movies) > 0:
+			id = movies[0]["id"] #We need a possibility to select the right movie if more than one movie was found
+			request = Request("http://api.themoviedb.org/3/movie/" + str(id) + "?api_key=8789cfd3fbab7dccf1269c3d7d867aff&language=de", headers=headers)
+			jsonresponse = urlopen(request).read()
+			response = json.loads(jsonresponse)
+
+			blurb = response["overview"]
+			blurbutf8 = blurb.encode('utf-8')
+			file(self.currentPath + "/" + moviename + ".txt",'w').write(blurbutf8)
+			self.session.open(MessageBox, _(str(len(movies)) + ' movies found!\nBlurb of the best match\n\n"' + str(movies[0]["title"]) + '"\n\ndownloaded successfully!'), MessageBox.TYPE_INFO, 10)			
+		else:
+			self.session.open(MessageBox, _("No movies found for " + moviename), MessageBox.TYPE_ERROR, 10)

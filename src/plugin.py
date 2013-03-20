@@ -155,7 +155,11 @@ progress_choices = [	("PB",					_("ProgressBar")),
 											("",						_("Off")) ]
 
 blue_choices = [	("MH",							_("Movie home")),
-									("PL",							_("Play last")) ]
+					("PL",							_("Play last")),
+					("MB",							_("Download Movie Blurb (experimental!)"))]
+
+yellow_choices = [  ("move", _("Move")),
+					("MB", _("Download Movie Blurb (experimental!)"))]
 
 move_choices = [	("d",								_("down")),
 									("b",								_("up/down")),
@@ -225,7 +229,7 @@ config.EMC.ml_disable                = ConfigYesNo(default = False)
 config.EMC.movie_bluefunc            = ConfigSelection(default = "MH", choices = blue_choices)
 #config.EMC.movie_redfunc 
 #config.EMC.movie_greenfunc 
-#config.EMC.movie_yellowfunc 
+config.EMC.movie_yellowfunc          = ConfigSelection(default = "move", choices = yellow_choices)
 config.EMC.CoolStartHome             = ConfigYesNo(default = False)
 config.EMC.movie_descdelay           = ConfigSelectionNumber(50, 60000, 50, default= 200)
 config.EMC.movie_cover               = ConfigYesNo(default = False)
