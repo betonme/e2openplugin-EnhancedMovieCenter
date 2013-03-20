@@ -570,7 +570,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			
 	def yellowFunc(self):
 		if config.EMC.movie_yellowfunc.value == "move":
-			self.moveMovie
+			self.moveMovie()
 		elif config.EMC.movie_yellowfunc.value == "MB":
 			self.dlMovieBlurb()
 			
