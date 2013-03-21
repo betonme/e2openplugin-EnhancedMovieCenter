@@ -573,6 +573,8 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			self.moveMovie()
 		elif value == "PL":
 			self.playLast()
+		elif value == "CS":
+			self.imdb()
 		elif value == "MB":
 			self.dlMovieBlurb()
 			

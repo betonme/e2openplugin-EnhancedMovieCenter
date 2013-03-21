@@ -157,6 +157,7 @@ progress_choices = [("PB",	_("ProgressBar")),
 blueyellow_choices = 	[("MH",	_("Movie home")),
 						("MV", 	_("Move Movie")),
 						("PL",	_("Play last")),
+						("CS",	_("Cover Search")),
 						("MB",	_("Download Movie Blurb (experimental!)"))]
 						
 blue_choices = blueyellow_choices
