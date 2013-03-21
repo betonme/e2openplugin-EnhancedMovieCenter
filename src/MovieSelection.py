@@ -427,9 +427,9 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 				"EMCSortMode":		(self.toggleSortMode,			_("Toggle sort mode")),
 				"EMCSortOrder":		(self.toggleSortOrder,			_("Toggle sort order")),
 #				"EMCMOVE":		(self.moveMovie,			_("Move selected movie(s)")),
-				"EMCYELLOW":    (self.yellowFunc,			_("Move selected movie(s)")),				
+				"EMCYELLOW":    (self.yellowFunc,			_("Movie home / Play last / Move file / Download blurb (configurable)")),				
 				"EMCCOPY":		(self.copyMovie,			_("Copy selected movie(s)")),
-				"EMCBlue":		(self.blueFunc,				_("Movie home / Play last (configurable)")),
+				"EMCBlue":		(self.blueFunc,				_("Movie home / Play last / Move file / Download blurb (configurable)")),
 #				"EMCRedL":		(self.unUsed,				"-"),
 #				"EMCGreenL":	(self.unUsed,				"-"),
 				"EMCBlueL":		(self.openE2Bookmarks,		_("Open E2 bookmarks")),
@@ -559,19 +559,21 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		self.close()
 
 	def blueFunc(self):
-		if config.EMC.movie_bluefunc.value == "MH":
+		self.execblueyellowbutton(config.EMC.movie_bluefunc.value)
+			
+	def yellowFunc(self):
+		self.execblueyellowbutton(config.EMC.movie_yellowfunc.value)
+			
+	def execblueyellowbutton(self, value):
+		if value == "MH":
 			self.returnService = None
 			self["list"].resetSorting()
 			self.changeDir(config.EMC.movie_homepath.value)
-		elif config.EMC.movie_bluefunc.value == "PL":
-			self.playLast()
-		elif config.EMC.movie_bluefunc.value == "MB":
-			self.dlMovieBlurb()
-			
-	def yellowFunc(self):
-		if config.EMC.movie_yellowfunc.value == "move":
+		elif value == "MV":
 			self.moveMovie()
-		elif config.EMC.movie_yellowfunc.value == "MB":
+		elif value == "PL":
+			self.playLast()
+		elif value == "MB":
 			self.dlMovieBlurb()
 			
 	def bqtPlus(self):
@@ -1942,25 +1944,26 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 	def dlMovieBlurb(self):
 		selectedlist = self["list"].makeSelectionList()[:]
 		service = selectedlist[0]
-		moviename = str(self["list"].getNameOfService(service))
-		print "TMDb Lookup for: " + moviename
-		
-		headers = {"Accept": "application/json"}
-		request = Request("http://api.themoviedb.org/3/search/movie?api_key=8789cfd3fbab7dccf1269c3d7d867aff&query=" + moviename.replace(" ","+"), headers=headers)
-		jsonresponse = urlopen(request).read()
-		response = json.loads(jsonresponse)
+		if os.path.isfile(service.getPath()):
+			moviename = str(self["list"].getNameOfService(service))
+			print "TMDb Lookup for: " + moviename
 
-		print "Found " + str(response["total_results"]) + " results for movie " + moviename
-		movies = response["results"]
-		if len(movies) > 0:
-			id = movies[0]["id"] #We need a possibility to select the right movie if more than one movie was found
-			request = Request("http://api.themoviedb.org/3/movie/" + str(id) + "?api_key=8789cfd3fbab7dccf1269c3d7d867aff&language=de", headers=headers)
+			headers = {"Accept": "application/json"}
+			request = Request("http://api.themoviedb.org/3/search/movie?api_key=8789cfd3fbab7dccf1269c3d7d867aff&query=" + moviename.replace(" ","+"), headers=headers)
 			jsonresponse = urlopen(request).read()
 			response = json.loads(jsonresponse)
 
-			blurb = response["overview"]
-			blurbutf8 = blurb.encode('utf-8')
-			file(self.currentPath + "/" + moviename + ".txt",'w').write(blurbutf8)
-			self.session.open(MessageBox, _(str(len(movies)) + ' movies found!\nBlurb of the best match\n\n"' + str(movies[0]["title"]) + '"\n\ndownloaded successfully!'), MessageBox.TYPE_INFO, 10)			
-		else:
-			self.session.open(MessageBox, _("No movies found for " + moviename), MessageBox.TYPE_ERROR, 10)
+			print "Found " + str(response["total_results"]) + " results for movie " + moviename
+			movies = response["results"]
+			if len(movies) > 0:
+				id = movies[0]["id"] #We need a possibility to select the right movie if more than one movie was found
+				request = Request("http://api.themoviedb.org/3/movie/" + str(id) + "?api_key=8789cfd3fbab7dccf1269c3d7d867aff&language=de", headers=headers)
+				jsonresponse = urlopen(request).read()
+				response = json.loads(jsonresponse)
+
+				blurb = response["overview"]
+				blurbutf8 = blurb.encode('utf-8')
+				file(self.currentPath + "/" + moviename + ".txt",'w').write(blurbutf8)
+				self.session.open(MessageBox, _(str(len(movies)) + ' movies found!\nBlurb of the best match\n\n"' + str(movies[0]["title"]) + '"\n\ndownloaded successfully!'), MessageBox.TYPE_INFO, 10)			
+			else:
+				self.session.open(MessageBox, _("No movies found for " + moviename), MessageBox.TYPE_ERROR, 10)
