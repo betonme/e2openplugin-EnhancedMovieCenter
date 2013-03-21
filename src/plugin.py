@@ -154,15 +154,19 @@ progress_choices = [	("PB",					_("ProgressBar")),
 											("MC",					_("Movie Color")),
 											("",						_("Off")) ]
 
-blue_choices = 	[("MH",							_("Movie home")),
-					("MV", 						_("Move Movie")),
-					("PL",							_("Play last")),
-					("MB",							_("Download Movie Blurb (experimental!)"))]
+blueyellow_choices = 	[("MH",							_("Movie home")),
+						("MV", 						_("Move Movie")),
+						("PL",							_("Play last")),
+						("MB",							_("Download Movie Blurb (experimental!)"))]
+						
+blue_choices = blueyellow_choices
 
-yellow_choices = [	("MH",							_("Movie home")),
-					("MV", 							_("Move Movie")),
-					("PL",							_("Play last")),
-					("MB",							_("Download Movie Blurb (experimental!)"))]
+yellow_choices = blueyellow_choices
+
+#yellow_choices = [	("MH",							_("Movie home")),
+#					("MV", 							_("Move Movie")),
+#					("PL",							_("Play last")),
+#					("MB",							_("Download Movie Blurb (experimental!)"))]
 					
 move_choices = [	("d",								_("down")),
 									("b",								_("up/down")),
