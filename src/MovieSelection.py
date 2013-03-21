@@ -805,6 +805,8 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			elif selection == "playall": self.playAll()
 			elif selection == "shuffleall": self.shuffleAll()
 			elif selection == "Movie home": self.changeDir(config.EMC.movie_homepath.value)
+			elif selection == "Move Movie": self.moveMovie()
+			elif selection == "Movie Blurb": self.dlMovieBlurb()
 			elif selection == "reload": self.initList()
 			elif selection == "plugin": self.onDialogShow()
 			elif selection == "setup": self.onDialogShow()

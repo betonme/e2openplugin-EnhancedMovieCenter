@@ -87,6 +87,10 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 			
 			self.menu.append((_("(Un-)Lock Directory"), boundFunction(self.lockDir, currentPath)))
 			
+			if os.path.isfile(service.getPath()):
+				self.menu.append((_("Move Movie"), boundFunction(self.close, "Move Movie")))
+				self.menu.append((_("Download Movie Blurb (experimental!)"), boundFunction(self.close, "Movie Blurb")))
+			
 			if self.service or self.selections:
 				self.menu.append((_("Rename selected movie(s)"), boundFunction(self.renameMovies)))
 				self.menu.append((_("Remove cut list marker"), boundFunction(self.remCutListMarker)))
