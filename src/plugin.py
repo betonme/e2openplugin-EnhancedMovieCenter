@@ -129,73 +129,67 @@ def langListSel():
 		newlist.append( _(e[1][0]) )
 	return newlist
 
-launch_choices = [	("None",						_("No override")),
-										("showMovies",			_("Video-button")),
-										("showTv",					_("TV-button")),
-										("showRadio",				_("Radio-button")),
-										("openQuickbutton",	_("Quick-button")),
-										("timeshiftStart",	_("Timeshift-button")) ]
+launch_choices = [	("None",			_("No override")),
+					("showMovies",		_("Video-button")),
+					("showTv",			_("TV-button")),
+					("showRadio",		_("Radio-button")),
+					("openQuickbutton",	_("Quick-button")),
+					("timeshiftStart",	_("Timeshift-button")) ]
 
 # Date format is implemented using datetime.strftime
-date_choices = [	("",								_("Off")),
-									("%d.%m.%Y",			_("DD.MM.YYYY")),
-									("%d.%m %H:%M",			_("DD.MM HH:MM")),
-									("%d.%m. %H:%M",		_("DD.MM. HH:MM")),
-									("%Y/%m/%d",			_("YYYY/MM/DD")),
-									("%m/%d %H:%M",			_("MM/DD HH:MM")) ]
+date_choices = [	("",					_("Off")),
+					("%d.%m.%Y",			_("DD.MM.YYYY")),
+					("%d.%m %H:%M",			_("DD.MM HH:MM")),
+					("%d.%m. %H:%M",		_("DD.MM. HH:MM")),
+					("%Y/%m/%d",			_("YYYY/MM/DD")),
+					("%m/%d %H:%M",			_("MM/DD HH:MM")) ]
 
-dirinfo_choices = [	("",							_("Off")),
-										("C",							_("( # )")),						# Count
-										("CS",						_("( # / GB )")),				# Count / Size
-										("S",							_("( GB )")) ]					# Size
+dirinfo_choices = [	("",	_("Off")),
+					("C",	_("( # )")),		# Count
+					("CS",	_("( # / GB )")),	# Count / Size
+					("S",	_("( GB )")) ]		# Size
 
-progress_choices = [	("PB",					_("ProgressBar")),
-											("P",						_("Percent (%)")),
-											("MC",					_("Movie Color")),
-											("",						_("Off")) ]
+progress_choices = [("PB",	_("ProgressBar")),
+					("P",	_("Percent (%)")),
+					("MC",	_("Movie Color")),
+					("",	_("Off")) ]
 
-blueyellow_choices = 	[("MH",							_("Movie home")),
-						("MV", 						_("Move Movie")),
-						("PL",							_("Play last")),
-						("MB",							_("Download Movie Blurb (experimental!)"))]
+blueyellow_choices = 	[("MH",	_("Movie home")),
+						("MV", 	_("Move Movie")),
+						("PL",	_("Play last")),
+						("MB",	_("Download Movie Blurb (experimental!)"))]
 						
 blue_choices = blueyellow_choices
-
 yellow_choices = blueyellow_choices
+			
+move_choices = [("d",	_("down")),
+				("b",	_("up/down")),
+				("o",	_("off")) ]
 
-#yellow_choices = [	("MH",							_("Movie home")),
-#					("MV", 							_("Move Movie")),
-#					("PL",							_("Play last")),
-#					("MB",							_("Download Movie Blurb (experimental!)"))]
-					
-move_choices = [	("d",								_("down")),
-									("b",								_("up/down")),
-									("o",								_("off")) ]
+bookmark_choices = [("No",		_("No")),
+					("E2",		_("E2 Bookmarks")),
+					("EMC",		_("EMC Bookmarks")),
+					("Both",	_("Both")) ]
 
-bookmark_choices = [	("No",					_("No")),
-											("E2",					_("E2 Bookmarks")),
-											("EMC",					_("EMC Bookmarks")),
-											("Both",				_("Both")) ]
+restart_choices = [	("",	_("No")),
+					("0",	_("Standby")),
+					("1",	_("DeepStandby")),
+					("2",	_("Reboot")),
+					("3",	_("E2 Restart"))]
 
-restart_choices = [	("",							_("No")),
-										("0",							_("Standby")),
-										("1",							_("DeepStandby")),
-										("2",							_("Reboot")),
-										("3",							_("E2 Restart"))]
-
-bqt_choices = [	("",							_("HomeEnd")),
-				("Skip",						_("Skip")),
-				("Folder",						_("Change Folder"))]
+bqt_choices = [	("",		_("HomeEnd")),
+				("Skip",	_("Skip")),
+				("Folder",	_("Change Folder"))]
 
 #Think about using AZ or ("A",False) as dict key / permanent sort store value
 #TODO use an OrderedDict
-sort_modes =	{		("D-")	:				( _("Date sort descending (D-)"),			("D",False),	_("Date sort"),	),
-									("AZ")	:				( _("Alpha sort ascending (AZ)"),			("A",False),	_("Alpha sort"),	),
-									("P+")	:				( _("Progress sort ascending (P+)"),	("P",False),	_("Progress sort"),	),
-									("D+")	:				( _("Date sort ascending (D+)"),			("D",True),		_("Date sort"),	),
-									("ZA")	:				( _("Alpha sort descending (ZA)"),		("A",True),		_("Alpha sort"),	),
-									("P-")	:				( _("Progress sort descending (P-)"),	("P",True),		_("Progress sort"),	),
-							}
+sort_modes =	{		("D-")	:	( _("Date sort descending (D-)"),		("D",False),	_("Date sort"),		),
+						("AZ")	:	( _("Alpha sort ascending (AZ)"),		("A",False),	_("Alpha sort"),	),
+						("P+")	:	( _("Progress sort ascending (P+)"),	("P",False),	_("Progress sort"),	),
+						("D+")	:	( _("Date sort ascending (D+)"),		("D",True),		_("Date sort"),		),
+						("ZA")	:	( _("Alpha sort descending (ZA)"),		("A",True),		_("Alpha sort"),	),
+						("P-")	:	( _("Progress sort descending (P-)"),	("P",True),		_("Progress sort"),	),
+				}
 									# If you add a new sort order, you have to think about
 									#  Order false has to be the preferred state
 									#  Both order possibilities should be in the list
