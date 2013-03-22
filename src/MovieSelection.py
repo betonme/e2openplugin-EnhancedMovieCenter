@@ -1949,16 +1949,16 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		#TODO: Save all movie informations in a .eit file instead a .txt file
 		selectedlist = self["list"].makeSelectionList()[:]
 		service = selectedlist[0]
+		(moviepath,ext) = os.path.splitext(service.getPath())
+
 		if os.path.isfile(service.getPath()):
 			moviename = str(self["list"].getNameOfService(service))
-			print "TMDb Lookup for: " + moviename
 
 			headers = {"Accept": "application/json"}
 			request = Request("http://api.themoviedb.org/3/search/movie?api_key=8789cfd3fbab7dccf1269c3d7d867aff&query=" + moviename.replace(" ","+"), headers=headers)
 			jsonresponse = urlopen(request).read()
 			response = json.loads(jsonresponse)
 
-			print "Found " + str(response["total_results"]) + " results for movie " + moviename
 			movies = response["results"]
 			if len(movies) > 0:
 				id = movies[0]["id"] #We need a possibility to select the right movie if more than one movie was found
@@ -1966,7 +1966,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 				jsonresponse = urlopen(request).read()
 				response = json.loads(jsonresponse)
 
-				blurb = (response["overview"]).encode('utf-8')
+				blurb = (str(response["overview"])).encode('utf-8')
 				runtime = (str(response["runtime"])).encode('utf-8')
 				releasedate = (str(response["release_date"])).encode('utf-8')	
 				countrylist = response["production_countries"]
@@ -1977,7 +1977,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 					else:
 						countries = countries + ", " + i["name"]
 					
-				file(self.currentPath + "/" + moviename + ".txt",'w').write("Laufzeit: " + runtime + " Minuten\n\n" + "Inhalt: " + blurb + "\n\nProduktionsland: " + countries)
+				file(moviepath + ".txt",'w').write("Laufzeit: " + runtime + " Minuten\n\n" + "Inhalt: " + blurb + "\n\nProduktionsland: " + countries)
 				self.session.open(MessageBox, _(str(len(movies)) + ' movies found!\nBlurb of the best match\n\n"' + str(movies[0]["title"]) + '"\n\ndownloaded successfully!'), MessageBox.TYPE_INFO, 10)			
 			else:
 				self.session.open(MessageBox, _("No movies found for " + moviename), MessageBox.TYPE_ERROR, 10)
