@@ -1978,6 +1978,6 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 						countries = countries + ", " + i["name"]
 					
 				file(moviepath + ".txt",'w').write("Laufzeit: " + runtime + " Minuten\n\n" + "Inhalt: " + blurb + "\n\nProduktionsland: " + countries)
-				self.session.open(MessageBox, _(str(len(movies)) + ' movies found!\nBlurb of the best match\n\n"' + str(movies[0]["title"]) + '"\n\ndownloaded successfully!'), MessageBox.TYPE_INFO, 10)			
+				self.session.open(MessageBox, _(str(len(movies)) + ' movies found!\nInformations of the best match\n\n"' + str(movies[0]["title"]) + '"\n\ndownloaded successfully!'), MessageBox.TYPE_INFO, 10)			
 			else:
 				self.session.open(MessageBox, _("No movies found for " + moviename), MessageBox.TYPE_ERROR, 10)
