@@ -1946,6 +1946,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			emcDebugOut("[EMCMS] trashcanCreate exception:\n" + str(e))
 
 	def dlMovieBlurb(self):
+		#TODO: Save all movie informations in a .eit file instead a .txt file
 		selectedlist = self["list"].makeSelectionList()[:]
 		service = selectedlist[0]
 		if os.path.isfile(service.getPath()):
@@ -1965,9 +1966,18 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 				jsonresponse = urlopen(request).read()
 				response = json.loads(jsonresponse)
 
-				blurb = response["overview"]
-				blurbutf8 = blurb.encode('utf-8')
-				file(self.currentPath + "/" + moviename + ".txt",'w').write(blurbutf8)
+				blurb = (response["overview"]).encode('utf-8')
+				runtime = (str(response["runtime"])).encode('utf-8')
+				releasedate = (str(response["release_date"])).encode('utf-8')	
+				countrylist = response["production_countries"]
+				countries  = ""
+				for i in countrylist:
+					if countries == "":
+						countries = i["name"]
+					else:
+						countries = countries + ", " + i["name"]
+					
+				file(self.currentPath + "/" + moviename + ".txt",'w').write("Laufzeit: " + runtime + " Minuten\n\n" + "Inhalt: " + blurb + "\n\nProduktionsland: " + countries)
 				self.session.open(MessageBox, _(str(len(movies)) + ' movies found!\nBlurb of the best match\n\n"' + str(movies[0]["title"]) + '"\n\ndownloaded successfully!'), MessageBox.TYPE_INFO, 10)			
 			else:
 				self.session.open(MessageBox, _("No movies found for " + moviename), MessageBox.TYPE_ERROR, 10)
