@@ -575,7 +575,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			self.playLast()
 		elif value == "CS":
 			self.imdb()
-		elif value == "MB":
+		elif value == "MI":
 			self.dlMovieBlurb()
 			
 	def bqtPlus(self):

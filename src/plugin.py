@@ -158,7 +158,7 @@ blueyellow_choices = 	[("MH",	_("Movie home")),
 						("MV", 	_("Move Movie")),
 						("PL",	_("Play last")),
 						("CS",	_("Cover Search")),
-						("MB",	_("Download Movie Blurb (experimental!)"))]
+						("MI",	_("Download Movie Info"))]
 						
 blue_choices = blueyellow_choices
 yellow_choices = blueyellow_choices
