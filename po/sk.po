@@ -1160,7 +1160,7 @@ msgstr ""
 #: Center\EMC-SVN\Locale\ALL_No_Help_/MovieSelection.py:1284
 #, fuzzy
 msgid "Copy file(s): Choose directory"
-msgstr "Kopírovať súbor(y): Výber priečinku
+msgstr "Kopírovať súbor(y): Výber priečinku"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
