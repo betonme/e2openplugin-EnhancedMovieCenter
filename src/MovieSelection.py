@@ -1947,13 +1947,15 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 
 	def dlMovieBlurb(self):
 		#TODO: Save all movie informations in a .eit file instead a .txt file
+		removelist = [".", "1080p", "720p", "x264", "h264"]
 		selectedlist = self["list"].makeSelectionList()[:]
 		service = selectedlist[0]
 		(moviepath,ext) = os.path.splitext(service.getPath())
 
 		if os.path.isfile(service.getPath()):
 			moviename = str(self["list"].getNameOfService(service))
-			moviename = moviename.replace("."," ")
+			for rem in removelist:
+				moviename = moviename.replace(rem," ")
 			noerror = True
 			try:
 				headers = {"Accept": "application/json"}
