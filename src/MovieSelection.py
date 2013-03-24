@@ -1953,6 +1953,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 
 		if os.path.isfile(service.getPath()):
 			moviename = str(self["list"].getNameOfService(service))
+			moviename = moviename.replace("."," ")
 			noerror = True
 			try:
 				headers = {"Accept": "application/json"}
