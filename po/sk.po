@@ -1015,7 +1015,7 @@ msgstr "Prehrať posledný film zašínajúci"
 #: Center\EMC-SVN\Locale\ALL_No_Help_/MovieSelection.py:860
 #, fuzzy
 msgid "Play All starting"
-msgstr Prehrať všetky začínajúce"
+msgstr "Prehrať všetky začínajúce"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
