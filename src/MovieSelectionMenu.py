@@ -89,7 +89,7 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 			
 			if os.path.isfile(service.getPath()):
 				self.menu.append((_("Move Movie"), boundFunction(self.close, "Move Movie")))
-				self.menu.append((_("Download Movie Blurb (experimental!)"), boundFunction(self.close, "Movie Blurb")))
+				self.menu.append((_("Download Movie Information"), boundFunction(self.close, "Movie Information")))
 			
 			if self.service or self.selections:
 				self.menu.append((_("Rename selected movie(s)"), boundFunction(self.renameMovies)))

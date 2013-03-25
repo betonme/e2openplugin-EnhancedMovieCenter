@@ -65,7 +65,7 @@ from EMCCoverSearch import EMCImdbScan
 from MovieRetitle import MovieRetitle
 from Components.Sources.EMCServiceEvent import EMCServiceEvent
 
-#Movie Blurbs
+#Download Movie Information
 import json
 from urllib2 import Request, urlopen
 
@@ -427,9 +427,9 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 				"EMCSortMode":		(self.toggleSortMode,			_("Toggle sort mode")),
 				"EMCSortOrder":		(self.toggleSortOrder,			_("Toggle sort order")),
 #				"EMCMOVE":		(self.moveMovie,			_("Move selected movie(s)")),
-				"EMCYELLOW":    (self.yellowFunc,			_("Movie home / Play last / Move file / Download blurb (configurable)")),				
+				"EMCYELLOW":    (self.yellowFunc,			_("Movie home / Play last / Move file / Download Movie Information (configurable)")),				
 				"EMCCOPY":		(self.copyMovie,			_("Copy selected movie(s)")),
-				"EMCBlue":		(self.blueFunc,				_("Movie home / Play last / Move file / Download blurb (configurable)")),
+				"EMCBlue":		(self.blueFunc,				_("Movie home / Play last / Move file / Download Movie Information (configurable)")),
 #				"EMCRedL":		(self.unUsed,				"-"),
 #				"EMCGreenL":	(self.unUsed,				"-"),
 				"EMCBlueL":		(self.openE2Bookmarks,		_("Open E2 bookmarks")),
@@ -576,7 +576,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		elif value == "CS":
 			self.imdb()
 		elif value == "MI":
-			self.dlMovieBlurb()
+			self.dlMovieInfo()
 			
 	def bqtPlus(self):
 		if config.EMC.bqt_keys.value == "":
@@ -808,7 +808,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			elif selection == "shuffleall": self.shuffleAll()
 			elif selection == "Movie home": self.changeDir(config.EMC.movie_homepath.value)
 			elif selection == "Move Movie": self.moveMovie()
-			elif selection == "Movie Blurb": self.dlMovieBlurb()
+			elif selection == "Movie Information": self.dlMovieInfo()
 			elif selection == "reload": self.initList()
 			elif selection == "plugin": self.onDialogShow()
 			elif selection == "setup": self.onDialogShow()
@@ -1945,7 +1945,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			self.session.open(MessageBox, _("Trashcan create failed. Check mounts and permissions."), MessageBox.TYPE_ERROR)
 			emcDebugOut("[EMCMS] trashcanCreate exception:\n" + str(e))
 
-	def dlMovieBlurb(self):
+	def dlMovieInfo(self):
 		#TODO: Save all movie informations in a .eit file instead a .txt file
 		removelist = [".", "1080p", "720p", "x264", "h264"]
 		selectedlist = self["list"].makeSelectionList()[:]
