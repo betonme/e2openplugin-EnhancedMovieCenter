@@ -1954,6 +1954,12 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 
 		if os.path.isfile(service.getPath()):
 			moviename = str(self["list"].getNameOfService(service))
+
+			if config.EMC.movie_show_format:
+				extVideo = ["ts", "avi", "divx", "f4v", "flv", "img", "ifo", "iso", "m2ts", "m4v", "mkv", "mov", "mp4", "mpeg", "mpg", "mts", "vob", "wmv"]
+				for rem in extVideo:
+					moviename = moviename.replace(rem,"")
+
 			for rem in removelist:
 				moviename = moviename.replace(rem," ")
 			noerror = True
