@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: EMC V.4.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-01-10 22:30+0100\n"
+"POT-Creation-Date: 2013-03-28 23:40+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Swiss-MAD\n"
 "Language-Team: \n"
@@ -10,7 +10,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.4\n"
+"X-Generator: Poedit 1.5.5\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: _;gettext;gettext_noop;_()\n"
 "X-Poedit-Basepath: ../\n"
@@ -44,8 +44,8 @@ msgstr ""
 msgid "Search"
 msgstr ""
 
-#: src/EMCCoverSearch.py:147 src/MovieSelection.py:1160
-#: src/MovieSelection.py:1528
+#: src/EMCCoverSearch.py:147 src/MovieSelection.py:1209
+#: src/MovieSelection.py:1579
 msgid "Delete"
 msgstr ""
 
@@ -115,7 +115,7 @@ msgid "Search site set to: %s"
 msgstr ""
 
 #: src/EMCCoverSearch.py:654 src/EnhancedMovieCenter.py:205
-#: src/MovieRetitle.py:40
+#: src/MovieRetitle.py:33
 msgid "Cancel"
 msgstr ""
 
@@ -279,7 +279,7 @@ msgstr ""
 msgid "Information"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:206 src/MovieRetitle.py:39
+#: src/EnhancedMovieCenter.py:206 src/MovieRetitle.py:32
 msgid "Save"
 msgstr ""
 
@@ -496,514 +496,530 @@ msgid "HELP_Scan for DVD structures"
 msgstr ""
 
 #: src/EnhancedMovieCenter.py:304
-msgid "Suppress scan in selected folders"
+msgid "Scan for Movie Structures"
 msgstr ""
 
 #: src/EnhancedMovieCenter.py:304
+msgid "HELP_Scan for Movie Structures"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:305
+msgid "Suppress scan in selected folders"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:305
 msgid "HELP_cfgscan_suppress"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:305
+#: src/EnhancedMovieCenter.py:306
 msgid "Scan linked folders"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:305
+#: src/EnhancedMovieCenter.py:306
 msgid "HELP_scan_linked"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:308
+#: src/EnhancedMovieCenter.py:309
 msgid "Try to load titles from .meta files"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:308
+#: src/EnhancedMovieCenter.py:309
 msgid "HELP_Try to load titles from .meta files"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:309
+#: src/EnhancedMovieCenter.py:310
 msgid "Try to load titles from .eit files"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:309
+#: src/EnhancedMovieCenter.py:310
 msgid "HELP_Try to load titles from .eit files"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:310
+#: src/EnhancedMovieCenter.py:311
 msgid "Replace special chars in title"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:310
+#: src/EnhancedMovieCenter.py:311
 msgid "HELP_Replace special chars in title"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:311
+#: src/EnhancedMovieCenter.py:312
 msgid "Show Movie Format"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:311
+#: src/EnhancedMovieCenter.py:312
 msgid "HELP_Show Movie Format"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:312
+#: src/EnhancedMovieCenter.py:313
 msgid "Show Cut-Nr if exist"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:312
+#: src/EnhancedMovieCenter.py:313
 msgid "HELP_Show Cut-Nr if exist"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:313
+#: src/EnhancedMovieCenter.py:314
 msgid "Resolve links and show real path"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:313
+#: src/EnhancedMovieCenter.py:314
 msgid "HELP_Resolve links and show real path"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:316
+#: src/EnhancedMovieCenter.py:317
 msgid "Listbox is skin able"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:316
+#: src/EnhancedMovieCenter.py:317
 msgid "HELP_Listbox is skin able"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:318
+#: src/EnhancedMovieCenter.py:319
 msgid "Date format"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:318
+#: src/EnhancedMovieCenter.py:319
 msgid "HELP_Date format"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:320
+#: src/EnhancedMovieCenter.py:321
 msgid "Show movie icons"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:320
+#: src/EnhancedMovieCenter.py:321
 msgid "HELP_Show movie icons"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:321
+#: src/EnhancedMovieCenter.py:322
 msgid "Show movie progress"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:321
+#: src/EnhancedMovieCenter.py:322
 msgid "HELP_Show movie progress"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:322
+#: src/EnhancedMovieCenter.py:323
 msgid "Short watching percent"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:322
+#: src/EnhancedMovieCenter.py:323
 msgid "HELP_Short watching percent"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:323
+#: src/EnhancedMovieCenter.py:324
 msgid "Finished watching percent"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:323
+#: src/EnhancedMovieCenter.py:324
 msgid "HELP_Finished watching percent"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:324
+#: src/EnhancedMovieCenter.py:325
 msgid "Mark new recordings with a star"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:324
+#: src/EnhancedMovieCenter.py:325
 msgid "HELP_Mark new recordings with a star"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:325
+#: src/EnhancedMovieCenter.py:326
 msgid "Show Cover"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:325
+#: src/EnhancedMovieCenter.py:326
 msgid "HELP_Show Cover"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:326
+#: src/EnhancedMovieCenter.py:327
 msgid "Cover delay in ms"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:326
+#: src/EnhancedMovieCenter.py:327
 msgid "HELP_Cover delay in ms"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:327
+#: src/EnhancedMovieCenter.py:328
 msgid "Show movie preview"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:327
+#: src/EnhancedMovieCenter.py:328
 msgid "HELP_Show movie preview"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:328
+#: src/EnhancedMovieCenter.py:329
 msgid "Movie preview delay in ms"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:328
+#: src/EnhancedMovieCenter.py:329
 msgid "HELP_Movie preview delay in ms"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:329
+#: src/EnhancedMovieCenter.py:330
 msgid "Start movie preview before last position"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:329
+#: src/EnhancedMovieCenter.py:330
 msgid "HELP_Movie preview offset in seconds"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:332
+#: src/EnhancedMovieCenter.py:333
 msgid "No resume below 10 seconds"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:332
+#: src/EnhancedMovieCenter.py:333
 msgid "HELP_No resume below 10 seconds"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:333
+#: src/EnhancedMovieCenter.py:334
 msgid "Jump to first mark when playing movie"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:333
+#: src/EnhancedMovieCenter.py:334
 msgid "HELP_Jump to first mark when playing movie"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:334
+#: src/EnhancedMovieCenter.py:335
 msgid "Rewind finished movies before playing"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:334
+#: src/EnhancedMovieCenter.py:335
 msgid "HELP_Rewind finished movies before playing"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:335
+#: src/EnhancedMovieCenter.py:336
 msgid "Always save last played progress as marker"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:335
+#: src/EnhancedMovieCenter.py:336
 msgid "HELP_Always save last played progress as marker"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:336
+#: src/EnhancedMovieCenter.py:337
 msgid "Zap to channel after record EOF"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:336
+#: src/EnhancedMovieCenter.py:337
 msgid "HELP_Zap to channel after record EOF"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:337
+#: src/EnhancedMovieCenter.py:338
 msgid "Show real length of running records"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:337
+#: src/EnhancedMovieCenter.py:338
 msgid "HELP_Show real length of running records"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:341
+#: src/EnhancedMovieCenter.py:342
 msgid "Download cutlist from Cutlist.at"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:341
+#: src/EnhancedMovieCenter.py:342
 msgid "HELP_Download cutlist from Cutlist.at"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:345
+#: src/EnhancedMovieCenter.py:346
 msgid "HELP_separator_Trashcan settings"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:346
+#: src/EnhancedMovieCenter.py:347
 msgid "Trashcan enable"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:346
+#: src/EnhancedMovieCenter.py:347
 msgid "HELP_Trashcan enable"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:347
+#: src/EnhancedMovieCenter.py:348
 msgid "Trashcan path"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:347
+#: src/EnhancedMovieCenter.py:348
 msgid "HELP_Trashcan path"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:348
+#: src/EnhancedMovieCenter.py:349
 msgid "Show trashcan directory"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:348
+#: src/EnhancedMovieCenter.py:349
 msgid "HELP_Show trashcan directory"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:349
+#: src/EnhancedMovieCenter.py:350
 msgid "Show trashcan information"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:349
+#: src/EnhancedMovieCenter.py:350
 msgid "HELP_Dynamic trashcan"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:350
+#: src/EnhancedMovieCenter.py:351
 msgid "Delete validation"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:350
+#: src/EnhancedMovieCenter.py:351
 msgid "HELP_Delete validation"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:352
+#: src/EnhancedMovieCenter.py:353
 msgid "Enable daily trashcan cleanup"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:352
+#: src/EnhancedMovieCenter.py:353
 msgid "HELP_Enable daily trashcan cleanup"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:353
+#: src/EnhancedMovieCenter.py:354
 msgid "Daily cleanup time"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:353
+#: src/EnhancedMovieCenter.py:354
 msgid "HELP_Daily cleanup time"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:354
+#: src/EnhancedMovieCenter.py:355
 msgid "How many days files may remain in trashcan"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:354
+#: src/EnhancedMovieCenter.py:355
 msgid "HELP_How many days files may remain in trashcan"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:355
+#: src/EnhancedMovieCenter.py:356
 msgid "Move finished movies in trashcan"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:355
+#: src/EnhancedMovieCenter.py:356
 msgid "HELP_Move finished movies in trashcan"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:356
+#: src/EnhancedMovieCenter.py:357
 msgid "Age of finished movies in movie folder (days)"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:356
+#: src/EnhancedMovieCenter.py:357
 msgid "HELP_Age of finished movies in movie folder (days)"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:359
+#: src/EnhancedMovieCenter.py:360
 msgid "Display directory reading text"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:359
+#: src/EnhancedMovieCenter.py:360
 msgid "HELP_Display directory reading text"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:360
+#: src/EnhancedMovieCenter.py:361
 msgid "EMC always reload after open"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:360
+#: src/EnhancedMovieCenter.py:361
 msgid "HELP_EMC always reload after open"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:361
+#: src/EnhancedMovieCenter.py:362
 msgid "EMC re-open list after STOP-press"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:361
+#: src/EnhancedMovieCenter.py:362
 msgid "HELP_EMC re-open list after STOP-press"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:362
+#: src/EnhancedMovieCenter.py:363
 msgid "EMC re-open list after Movie end"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:362
+#: src/EnhancedMovieCenter.py:363
 msgid "HELP_EMC re-open list after Movie end"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:364
+#: src/EnhancedMovieCenter.py:365
 msgid "Leave Movie with Exit"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:364
+#: src/EnhancedMovieCenter.py:365
 msgid "HELP_Leave Movie with Exit"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:365
+#: src/EnhancedMovieCenter.py:366
 msgid "Blue button function"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:365
+#: src/EnhancedMovieCenter.py:366
 msgid "HELP_Blue button function"
 msgstr ""
 
 #: src/EnhancedMovieCenter.py:367
-msgid "Hide movies being moved"
+msgid "Yellow button function"
 msgstr ""
 
 #: src/EnhancedMovieCenter.py:367
+msgid "HELP_Yellow button function"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:369
+msgid "Hide movies being moved"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:369
 msgid "HELP_Hide movies being moved"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:368
+#: src/EnhancedMovieCenter.py:370
 msgid "Hide movies being deleted"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:368
+#: src/EnhancedMovieCenter.py:370
 msgid "HELP_Hide movies being deleted"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:370
+#: src/EnhancedMovieCenter.py:372
 msgid "Enable remote recordings"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:370
+#: src/EnhancedMovieCenter.py:372
 msgid "HELP_Enable remote recordings"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:371
+#: src/EnhancedMovieCenter.py:373
 msgid "Automatic timers list cleaning"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:371
+#: src/EnhancedMovieCenter.py:373
 msgid "HELP_Automatic timers list cleaning"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:373
+#: src/EnhancedMovieCenter.py:375
 msgid "HELP_Language Separator"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:374
+#: src/EnhancedMovieCenter.py:376
 msgid "Preferred EPG language"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:374
+#: src/EnhancedMovieCenter.py:376
 msgid "HELP_Preferred EPG language"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:375
+#: src/EnhancedMovieCenter.py:377
 msgid "Enable playback auto-subtitling"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:375
+#: src/EnhancedMovieCenter.py:377
 msgid "HELP_Enable playback auto-subtitling"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:376
+#: src/EnhancedMovieCenter.py:378
 msgid "Primary playback subtitle language"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:376
+#: src/EnhancedMovieCenter.py:378
 msgid "HELP_Primary playback subtitle language"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:377
+#: src/EnhancedMovieCenter.py:379
 msgid "Secondary playback subtitle language"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:377
+#: src/EnhancedMovieCenter.py:379
 msgid "HELP_Secondary playback subtitle language"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:378
+#: src/EnhancedMovieCenter.py:380
 msgid "Tertiary playback subtitle language"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:378
+#: src/EnhancedMovieCenter.py:380
 msgid "HELP_Tertiary playback subtitle language"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:379
+#: src/EnhancedMovieCenter.py:381
 msgid "Enable playback auto-language selection"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:379
+#: src/EnhancedMovieCenter.py:381
 msgid "HELP_Enable playback auto-language selection"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:380
+#: src/EnhancedMovieCenter.py:382
 msgid "Primary playback audio language"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:380
+#: src/EnhancedMovieCenter.py:382
 msgid "HELP_Primary playback audio language"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:381
+#: src/EnhancedMovieCenter.py:383
 msgid "Secondary playback audio language"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:381
+#: src/EnhancedMovieCenter.py:383
 msgid "HELP_Secondary playback audio language"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:382
+#: src/EnhancedMovieCenter.py:384
 msgid "Tertiary playback audio language"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:382
+#: src/EnhancedMovieCenter.py:384
 msgid "HELP_Tertiary playback audio language"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:384 src/EnhancedMovieCenter.py:389
+#: src/EnhancedMovieCenter.py:386 src/EnhancedMovieCenter.py:391
 msgid "HELP_Advanced options separator"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:385
+#: src/EnhancedMovieCenter.py:387
 msgid "Description field update delay"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:385
+#: src/EnhancedMovieCenter.py:387
 msgid "HELP_Description field update delay"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:386
+#: src/EnhancedMovieCenter.py:388
 msgid "Key period value (50-900)"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:386
+#: src/EnhancedMovieCenter.py:388
 msgid "HELP_Key period value (50-900)"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:387
+#: src/EnhancedMovieCenter.py:389
 msgid "Key repeat value (250-900)"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:387
+#: src/EnhancedMovieCenter.py:389
 msgid "HELP_Key repeat value (250-900)"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:390
+#: src/EnhancedMovieCenter.py:392
 msgid "Enable EMC debug output"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:390
+#: src/EnhancedMovieCenter.py:392
 msgid "HELP_Enable EMC debug output"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:391
+#: src/EnhancedMovieCenter.py:393
 msgid "EMC output directory"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:391
+#: src/EnhancedMovieCenter.py:393
 msgid "HELP_EMC output directory"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:392
+#: src/EnhancedMovieCenter.py:394
 msgid "Debug output file name"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:392
+#: src/EnhancedMovieCenter.py:394
 msgid "HELP_Debug output file name"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:454
+#: src/EnhancedMovieCenter.py:456
 msgid "Load default settings will overwrite all settings, really load them?"
 msgstr ""
 
@@ -1011,25 +1027,25 @@ msgstr ""
 msgid "Some settings changes require GUI restart to take effect."
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:558
+#: src/EnhancedMovieCenter.py:557
 msgid "Really close without saving settings?"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:576
+#: src/EnhancedMovieCenter.py:575
 msgid "Select Location"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:577 src/MovieSelection.py:1816
-#: src/MovieSelection.py:1870 src/MovieSelectionMenu.py:218
+#: src/EnhancedMovieCenter.py:576 src/MovieSelection.py:1867
+#: src/MovieSelection.py:1921 src/MovieSelectionMenu.py:222
 msgid "Choose directory"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:595
+#: src/EnhancedMovieCenter.py:594
 #, python-format
 msgid "Given path %s does not exist. Please change."
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:603 src/MovieSelection.py:1894
+#: src/EnhancedMovieCenter.py:602 src/MovieSelection.py:1945
 msgid "Trashcan create failed. Check mounts and permissions."
 msgstr ""
 
@@ -1058,368 +1074,382 @@ msgstr ""
 msgid "Resuming playback"
 msgstr ""
 
-#: src/MovieCenter.py:716
+#: src/MovieCenter.py:740
 msgid "Latest Recordings"
 msgstr ""
 
-#: src/MovieCenter.py:1618
+#: src/MovieCenter.py:1642
 msgid "VLC"
 msgstr ""
 
-#: src/MovieCenter.py:1621
+#: src/MovieCenter.py:1645
 msgid "VLC-Server"
 msgstr ""
 
-#: src/MovieCenter.py:1624
+#: src/MovieCenter.py:1648
 msgid "VLC-Dir"
 msgstr ""
 
-#: src/MovieCenter.py:1627
+#: src/MovieCenter.py:1651
 msgid "Latest"
 msgstr ""
 
-#: src/MovieCenter.py:1630
+#: src/MovieCenter.py:1654
 msgid "Up"
 msgstr ""
 
-#: src/MovieCenter.py:1633 src/MovieCenter.py:1636
+#: src/MovieCenter.py:1657 src/MovieCenter.py:1660
 msgid "Bookmark"
 msgstr ""
 
-#: src/MovieCenter.py:1668 src/MovieCenter.py:1674
+#: src/MovieCenter.py:1692 src/MovieCenter.py:1698
 msgid "Link"
 msgstr ""
 
-#: src/MovieCenter.py:1671 src/MovieCenter.py:1696
+#: src/MovieCenter.py:1695 src/MovieCenter.py:1720
 msgid "Collection"
 msgstr ""
 
-#: src/MovieCenter.py:1688 src/MovieCenter.py:1693 src/MovieCenter.py:1699
+#: src/MovieCenter.py:1712 src/MovieCenter.py:1717 src/MovieCenter.py:1723
 msgid "Directory"
 msgstr ""
 
-#: src/MovieCenter.py:1704
+#: src/MovieCenter.py:1728
 msgid "UNKNOWN"
 msgstr ""
 
-#: src/MovieRetitle.py:35 src/MovieRetitle.py:71
+#: src/MovieRetitle.py:28 src/MovieRetitle.py:64
 msgid "Location:"
 msgstr ""
 
-#: src/MovieRetitle.py:86
+#: src/MovieRetitle.py:79
 msgid "Foldername:"
 msgstr ""
 
-#: src/MovieRetitle.py:88
+#: src/MovieRetitle.py:81
 msgid "Filename:"
 msgstr ""
 
-#: src/MovieRetitle.py:89
+#: src/MovieRetitle.py:82
 msgid "Movietitle:"
 msgstr ""
 
-#: src/MovieRetitle.py:90
+#: src/MovieRetitle.py:83
 msgid "Description:"
 msgstr ""
 
-#: src/MovieRetitle.py:120
+#: src/MovieRetitle.py:113
 msgid "Change Foldername"
 msgstr ""
 
-#: src/MovieRetitle.py:122
+#: src/MovieRetitle.py:115
 msgid "Change File/Moviename and/or Description"
 msgstr ""
 
-#: src/MovieSelection.py:82
+#: src/MovieSelection.py:86
 msgid ""
 "EMC: Skipping Trashcan Cleanup\n"
 "Movie Home Path is equal to or a subfolder of the Trashcan"
 msgstr ""
 
-#: src/MovieSelection.py:118
+#: src/MovieSelection.py:122
 msgid "EMC Trashcan Cleanup failed!"
 msgstr ""
 
-#: src/MovieSelection.py:405 src/MovieSelection.py:1152
+#: src/MovieSelection.py:409 src/MovieSelection.py:1201
 msgid "Reading directory..."
 msgstr ""
 
-#: src/MovieSelection.py:414
+#: src/MovieSelection.py:418
 msgid "Play selected movie(s)"
 msgstr ""
 
-#: src/MovieSelection.py:416 src/MovieSelectionMenu.py:71
+#: src/MovieSelection.py:420 src/MovieSelectionMenu.py:71
 msgid "Play All"
 msgstr ""
 
-#: src/MovieSelection.py:417 src/MovieSelectionMenu.py:72
+#: src/MovieSelection.py:421 src/MovieSelectionMenu.py:72
 msgid "Shuffle All"
 msgstr ""
 
-#: src/MovieSelection.py:418
+#: src/MovieSelection.py:422
 msgid "Close EMC"
 msgstr ""
 
-#: src/MovieSelection.py:419
+#: src/MovieSelection.py:423
 msgid "Open menu"
 msgstr ""
 
-#: src/MovieSelection.py:420
+#: src/MovieSelection.py:424
 msgid "Show event info"
 msgstr ""
 
-#: src/MovieSelection.py:421
+#: src/MovieSelection.py:425
 msgid "IMDBSearch / TMDBInfo / CSFDInfo"
 msgstr ""
 
-#: src/MovieSelection.py:422
+#: src/MovieSelection.py:426
 msgid "Delete file or empty dir"
 msgstr ""
 
-#: src/MovieSelection.py:423
+#: src/MovieSelection.py:427
 msgid "Toggle sort mode"
 msgstr ""
 
-#: src/MovieSelection.py:424
+#: src/MovieSelection.py:428
 msgid "Toggle sort order"
 msgstr ""
 
-#: src/MovieSelection.py:425
-msgid "Move selected movie(s)"
+#: src/MovieSelection.py:430 src/MovieSelection.py:432
+msgid ""
+"Movie home / Play last / Move file / Download Movie Information "
+"(configurable)"
 msgstr ""
 
-#: src/MovieSelection.py:426
+#: src/MovieSelection.py:431
 msgid "Copy selected movie(s)"
 msgstr ""
 
-#: src/MovieSelection.py:427
-msgid "Movie home / Play last (configurable)"
-msgstr ""
-
-#: src/MovieSelection.py:430
+#: src/MovieSelection.py:435
 msgid "Open E2 bookmarks"
 msgstr ""
 
-#: src/MovieSelection.py:432
+#: src/MovieSelection.py:437
 msgid "Move cursor page up"
 msgstr ""
 
-#: src/MovieSelection.py:433
+#: src/MovieSelection.py:438
 msgid "Move cursor page down"
 msgstr ""
 
-#: src/MovieSelection.py:434
+#: src/MovieSelection.py:439
 msgid "Move cursor up"
 msgstr ""
 
-#: src/MovieSelection.py:435
+#: src/MovieSelection.py:440
 msgid "Move cursor down"
 msgstr ""
 
-#: src/MovieSelection.py:436
-msgid "Move cursor to the top / Move cursor x entries up"
-msgstr ""
-
-#: src/MovieSelection.py:437
-msgid "Move cursor to the end / Move cursor x entries down"
-msgstr ""
-
-#: src/MovieSelection.py:438
-msgid "Directory forward"
-msgstr ""
-
-#: src/MovieSelection.py:440
-msgid "Directory back"
+#: src/MovieSelection.py:441
+msgid ""
+"Move cursor to the top / Move cursor x entries up / Switch Folders in Movie "
+"Home (up)"
 msgstr ""
 
 #: src/MovieSelection.py:442
-msgid "Toggle service selection"
+msgid ""
+"Move cursor to the end / Move cursor x entries down / Switch Folders in "
+"Movie Home (down)"
 msgstr ""
 
 #: src/MovieSelection.py:443
-msgid "Remove service selection"
+msgid "Directory forward"
 msgstr ""
 
-#: src/MovieSelection.py:444 src/MovieSelection.py:446
-msgid "Available plugins menu"
+#: src/MovieSelection.py:445
+msgid "Directory back"
 msgstr ""
 
 #: src/MovieSelection.py:447
-msgid "Reload movie file list"
+msgid "Toggle service selection"
 msgstr ""
 
 #: src/MovieSelection.py:448
+msgid "Remove service selection"
+msgstr ""
+
+#: src/MovieSelection.py:449 src/MovieSelection.py:451
+msgid "Available plugins menu"
+msgstr ""
+
+#: src/MovieSelection.py:452
+msgid "Reload movie file list"
+msgstr ""
+
+#: src/MovieSelection.py:453
 msgid "Open Timer List"
 msgstr ""
 
-#: src/MovieSelection.py:449
+#: src/MovieSelection.py:454
 msgid "Toggle viewed / not viewed"
 msgstr ""
 
-#: src/MovieSelection.py:451
+#: src/MovieSelection.py:456
 msgid "Start / end multiselection"
 msgstr ""
 
-#: src/MovieSelection.py:732
+#: src/MovieSelection.py:779
 msgid "E2 Bookmark"
 msgstr ""
 
-#: src/MovieSelection.py:733 src/MovieSelectionMenu.py:108
+#: src/MovieSelection.py:780 src/MovieSelectionMenu.py:112
 msgid "Open E2 Bookmark path"
 msgstr ""
 
-#: src/MovieSelection.py:795
+#: src/MovieSelection.py:844
 msgid "No script operation for VLC streams."
 msgstr ""
 
-#: src/MovieSelection.py:811
+#: src/MovieSelection.py:860
 msgid "Does not contain any scripts."
 msgstr ""
 
-#: src/MovieSelection.py:815
+#: src/MovieSelection.py:864
 msgid "Choose script"
 msgstr ""
 
-#: src/MovieSelection.py:843
+#: src/MovieSelection.py:892
 msgid "No functionality set..."
 msgstr ""
 
-#: src/MovieSelection.py:924
+#: src/MovieSelection.py:973
 msgid "*** Multiselection active ***"
 msgstr ""
 
-#: src/MovieSelection.py:963
+#: src/MovieSelection.py:1012
 msgid " <P>"
 msgstr ""
 
-#: src/MovieSelection.py:1189
-msgid "Move"
-msgstr ""
-
-#: src/MovieSelection.py:1303
+#: src/MovieSelection.py:1354
 msgid "File not available."
 msgstr ""
 
-#: src/MovieSelection.py:1314
+#: src/MovieSelection.py:1365
 msgid "Last played movie/playlist not available..."
 msgstr ""
 
-#: src/MovieSelection.py:1318
+#: src/MovieSelection.py:1369
 msgid "Play last movie starting"
 msgstr ""
 
-#: src/MovieSelection.py:1337
+#: src/MovieSelection.py:1388
 msgid "Play All starting"
 msgstr ""
 
-#: src/MovieSelection.py:1356
+#: src/MovieSelection.py:1407
 msgid "Shuffle All starting"
 msgstr ""
 
-#: src/MovieSelection.py:1388
+#: src/MovieSelection.py:1439
 msgid "Not stopping any repeating timers. Modify them with the timer editor."
 msgstr ""
 
-#: src/MovieSelection.py:1395
+#: src/MovieSelection.py:1446
 msgid "Stop ongoing recording?\n"
 msgstr ""
 
-#: src/MovieSelection.py:1443
+#: src/MovieSelection.py:1494
 #, python-format
 msgid ""
 "Do you really want to remove your link\n"
 "%s?"
 msgstr ""
 
-#: src/MovieSelection.py:1445
+#: src/MovieSelection.py:1496
 #, python-format
 msgid ""
 "Do you really want to remove your directory\n"
 "%s?"
 msgstr ""
 
-#: src/MovieSelection.py:1484 src/MovieSelection.py:1504
-#: src/MovieSelectionMenu.py:328 src/MovieSelectionMenu.py:358
+#: src/MovieSelection.py:1535 src/MovieSelection.py:1555
+#: src/MovieSelectionMenu.py:332 src/MovieSelectionMenu.py:362
 #, python-format
 msgid ""
 "Do you really want to remove your bookmark\n"
 "%s?"
 msgstr ""
 
-#: src/MovieSelection.py:1522
+#: src/MovieSelection.py:1573
 msgid ""
 " Deleting remotely recorded and it will display an rec-error dialog on the "
 "other DB."
 msgstr ""
 
-#: src/MovieSelection.py:1528
+#: src/MovieSelection.py:1579
 msgid " permanently"
 msgstr ""
 
-#: src/MovieSelection.py:1545
+#: src/MovieSelection.py:1596
 msgid " currently played?"
 msgstr ""
 
-#: src/MovieSelection.py:1565
+#: src/MovieSelection.py:1616
 msgid " all selected video files?"
 msgstr ""
 
-#: src/MovieSelection.py:1570
+#: src/MovieSelection.py:1621
 msgid ""
 " all selected video files? The currently playing movie is also one of the "
 "selections and its playback will be stopped."
 msgstr ""
 
-#: src/MovieSelection.py:1572
+#: src/MovieSelection.py:1623
 msgid "Delete error:\n"
 msgstr ""
 
-#: src/MovieSelection.py:1588
+#: src/MovieSelection.py:1639
 msgid "This element belongs to a locked folder and cannot be deleted!"
 msgstr ""
 
-#: src/MovieSelection.py:1594
+#: src/MovieSelection.py:1645
 msgid ""
 "Delete failed because the trashcan directory does not exist. Attempt to "
 "create it now?"
 msgstr ""
 
-#: src/MovieSelection.py:1611
+#: src/MovieSelection.py:1662
 msgid "This folder is locked or contains a locked subfolder, unlock it first!"
 msgstr ""
 
-#: src/MovieSelection.py:1626
+#: src/MovieSelection.py:1677
 msgid "Directory is not empty! Do you really want to delete it?"
 msgstr ""
 
-#: src/MovieSelection.py:1631
+#: src/MovieSelection.py:1682
 msgid "Cannot delete the parent directory."
 msgstr ""
 
-#: src/MovieSelection.py:1699
+#: src/MovieSelection.py:1750
 msgid "Delete failed!"
 msgstr ""
 
-#: src/MovieSelection.py:1803 src/MovieSelection.py:1824
+#: src/MovieSelection.py:1854 src/MovieSelection.py:1875
 msgid ""
 "How to move files:\n"
 "Select some movies with the VIDEO-button, move the cursor on top of the "
 "destination directory and press yellow."
 msgstr ""
 
-#: src/MovieSelection.py:1815
+#: src/MovieSelection.py:1866
 msgid "Move file(s):"
 msgstr ""
 
-#: src/MovieSelection.py:1857 src/MovieSelection.py:1878
+#: src/MovieSelection.py:1908 src/MovieSelection.py:1929
 msgid ""
 "How to copy files:\n"
 "Select some movies with the VIDEO-button, move the cursor on top of the "
 "destination directory and press yellow long."
 msgstr ""
 
-#: src/MovieSelection.py:1869
+#: src/MovieSelection.py:1920
 msgid "Copy file(s):"
+msgstr ""
+
+#: src/MovieSelection.py:1994
+msgid ""
+" movies found!\n"
+"Information of the best match\n"
+"\n"
+"\""
+msgstr ""
+
+#: src/MovieSelection.py:1996
+msgid "No movies found for "
+msgstr ""
+
+#: src/MovieSelection.py:1998
+msgid "An error occured! Internet connection broken?"
 msgstr ""
 
 #: src/MovieSelectionMenu.py:61
@@ -1434,7 +1464,7 @@ msgstr ""
 msgid "Directory up"
 msgstr ""
 
-#: src/MovieSelectionMenu.py:69 src/plugin.py:158
+#: src/MovieSelectionMenu.py:69 src/plugin.py:159
 msgid "Play last"
 msgstr ""
 
@@ -1466,7 +1496,7 @@ msgstr ""
 msgid "Create link"
 msgstr ""
 
-#: src/MovieSelectionMenu.py:86 src/MovieSelectionMenu.py:176
+#: src/MovieSelectionMenu.py:86 src/MovieSelectionMenu.py:180
 msgid "Create directory"
 msgstr ""
 
@@ -1474,110 +1504,118 @@ msgstr ""
 msgid "(Un-)Lock Directory"
 msgstr ""
 
-#: src/MovieSelectionMenu.py:91
-msgid "Rename selected movie(s)"
+#: src/MovieSelectionMenu.py:91 src/plugin.py:158
+msgid "Move Movie"
 msgstr ""
 
 #: src/MovieSelectionMenu.py:92
+msgid "Download Movie Information"
+msgstr ""
+
+#: src/MovieSelectionMenu.py:95
+msgid "Rename selected movie(s)"
+msgstr ""
+
+#: src/MovieSelectionMenu.py:96
 msgid "Remove cut list marker"
 msgstr ""
 
-#: src/MovieSelectionMenu.py:110
+#: src/MovieSelectionMenu.py:114
 msgid "Add directory to E2 Bookmarks"
 msgstr ""
 
-#: src/MovieSelectionMenu.py:112
+#: src/MovieSelectionMenu.py:116
 msgid "Remove directory from E2 Bookmarks"
 msgstr ""
 
-#: src/MovieSelectionMenu.py:114
+#: src/MovieSelectionMenu.py:118
 msgid "Remove selected E2 Bookmark"
 msgstr ""
 
-#: src/MovieSelectionMenu.py:116
+#: src/MovieSelectionMenu.py:120
 msgid "Open EMC Bookmark path"
 msgstr ""
 
-#: src/MovieSelectionMenu.py:118
+#: src/MovieSelectionMenu.py:122
 msgid "Add directory to EMC Bookmarks"
 msgstr ""
 
-#: src/MovieSelectionMenu.py:120
+#: src/MovieSelectionMenu.py:124
 msgid "Remove directory from EMC Bookmarks"
 msgstr ""
 
-#: src/MovieSelectionMenu.py:122
+#: src/MovieSelectionMenu.py:126
 msgid "Remove selected EMC Bookmark"
 msgstr ""
 
-#: src/MovieSelectionMenu.py:124
+#: src/MovieSelectionMenu.py:128
 msgid "Set permanent sort"
 msgstr ""
 
-#: src/MovieSelectionMenu.py:126
+#: src/MovieSelectionMenu.py:130
 msgid "Remove permanent sort"
 msgstr ""
 
-#: src/MovieSelectionMenu.py:130
+#: src/MovieSelectionMenu.py:134
 msgid "Remove permanent sort from parent"
 msgstr ""
 
-#: src/MovieSelectionMenu.py:133
+#: src/MovieSelectionMenu.py:137
 msgid "EMC Setup"
 msgstr ""
 
-#: src/MovieSelectionMenu.py:136
+#: src/MovieSelectionMenu.py:140
 msgid "Choose plugin"
 msgstr ""
 
-#: src/MovieSelectionMenu.py:142
+#: src/MovieSelectionMenu.py:146
 msgid "Choose bookmark"
 msgstr ""
 
-#: src/MovieSelectionMenu.py:175
+#: src/MovieSelectionMenu.py:179
 msgid "Enter name for new directory:"
 msgstr ""
 
-#: src/MovieSelectionMenu.py:182
+#: src/MovieSelectionMenu.py:186
 #, python-format
 msgid "Directory %s already exists!"
 msgstr ""
 
-#: src/MovieSelectionMenu.py:195
+#: src/MovieSelectionMenu.py:199
 #, python-format
 msgid "Do you really want to lock the directory %s and all its subfolders?"
 msgstr ""
 
-#: src/MovieSelectionMenu.py:197
+#: src/MovieSelectionMenu.py:201
 #, python-format
 msgid ""
 "The directory %s is already locked. Do you want to unlock it and all its "
 "subfolders?"
 msgstr ""
 
-#: src/MovieSelectionMenu.py:217
+#: src/MovieSelectionMenu.py:221
 msgid "Create Link"
 msgstr ""
 
-#: src/MovieSelectionMenu.py:246
+#: src/MovieSelectionMenu.py:250
 msgid "Permanently delete all files in trashcan?"
 msgstr ""
 
-#: src/MovieSelectionMenu.py:258
+#: src/MovieSelectionMenu.py:262
 msgid "Movie Selection Menu"
 msgstr ""
 
-#: src/MovieSelectionMenu.py:266
+#: src/MovieSelectionMenu.py:270
 msgid "exception "
 msgstr ""
 
-#: src/MovieSelectionMenu.py:275
+#: src/MovieSelectionMenu.py:279
 msgid ""
 "Locate rogue files and remove them? (permanently if no trashcan available, "
 "may take a minute or so)"
 msgstr ""
 
-#: src/MovieSelectionMenu.py:291
+#: src/MovieSelectionMenu.py:295
 msgid "Remove all cut file marker permanently?"
 msgstr ""
 
@@ -1662,94 +1700,106 @@ msgid "Movie Color"
 msgstr ""
 
 #: src/plugin.py:160
-msgid "down"
+msgid "Cover Search"
 msgstr ""
 
 #: src/plugin.py:161
-msgid "up/down"
-msgstr ""
-
-#: src/plugin.py:162
-msgid "off"
-msgstr ""
-
-#: src/plugin.py:164 src/plugin.py:169
-msgid "No"
-msgstr ""
-
-#: src/plugin.py:165
-msgid "E2 Bookmarks"
+msgid "Download Movie Info"
 msgstr ""
 
 #: src/plugin.py:166
-msgid "EMC Bookmarks"
+msgid "down"
 msgstr ""
 
 #: src/plugin.py:167
-msgid "Both"
+msgid "up/down"
 msgstr ""
 
-#: src/plugin.py:170
-msgid "Standby"
+#: src/plugin.py:168
+msgid "off"
+msgstr ""
+
+#: src/plugin.py:170 src/plugin.py:175
+msgid "No"
 msgstr ""
 
 #: src/plugin.py:171
-msgid "DeepStandby"
+msgid "E2 Bookmarks"
 msgstr ""
 
 #: src/plugin.py:172
-msgid "Reboot"
+msgid "EMC Bookmarks"
 msgstr ""
 
 #: src/plugin.py:173
-msgid "E2 Restart"
-msgstr ""
-
-#: src/plugin.py:175
-msgid "HomeEnd"
+msgid "Both"
 msgstr ""
 
 #: src/plugin.py:176
-msgid "Skip"
+msgid "Standby"
 msgstr ""
 
-#: src/plugin.py:180
-msgid "Date sort descending (D-)"
+#: src/plugin.py:177
+msgid "DeepStandby"
 msgstr ""
 
-#: src/plugin.py:180 src/plugin.py:183
-msgid "Date sort"
+#: src/plugin.py:178
+msgid "Reboot"
+msgstr ""
+
+#: src/plugin.py:179
+msgid "E2 Restart"
 msgstr ""
 
 #: src/plugin.py:181
-msgid "Alpha sort ascending (AZ)"
-msgstr ""
-
-#: src/plugin.py:181 src/plugin.py:184
-msgid "Alpha sort"
+msgid "HomeEnd"
 msgstr ""
 
 #: src/plugin.py:182
-msgid "Progress sort ascending (P+)"
-msgstr ""
-
-#: src/plugin.py:182 src/plugin.py:185
-msgid "Progress sort"
+msgid "Skip"
 msgstr ""
 
 #: src/plugin.py:183
+msgid "Change Folder"
+msgstr ""
+
+#: src/plugin.py:187
+msgid "Date sort descending (D-)"
+msgstr ""
+
+#: src/plugin.py:187 src/plugin.py:190
+msgid "Date sort"
+msgstr ""
+
+#: src/plugin.py:188
+msgid "Alpha sort ascending (AZ)"
+msgstr ""
+
+#: src/plugin.py:188 src/plugin.py:191
+msgid "Alpha sort"
+msgstr ""
+
+#: src/plugin.py:189
+msgid "Progress sort ascending (P+)"
+msgstr ""
+
+#: src/plugin.py:189 src/plugin.py:192
+msgid "Progress sort"
+msgstr ""
+
+#: src/plugin.py:190
 msgid "Date sort ascending (D+)"
 msgstr ""
 
-#: src/plugin.py:184
+#: src/plugin.py:191
 msgid "Alpha sort descending (ZA)"
 msgstr ""
 
-#: src/plugin.py:185
+#: src/plugin.py:192
 msgid "Progress sort descending (P-)"
 msgstr ""
 
-#: src/plugin.py:265
+#: src/plugin.py:272
 msgid ""
 "ATTENTION\n"
 "\n"
@@ -1760,23 +1810,23 @@ msgid ""
 "Confirm this with the blue key followed by the green key."
 msgstr ""
 
-#: src/plugin.py:294
+#: src/plugin.py:302
 msgid "IMDb Search"
 msgstr ""
 
-#: src/plugin.py:294
+#: src/plugin.py:302
 msgid "TMDB Info"
 msgstr ""
 
-#: src/plugin.py:294
+#: src/plugin.py:302
 msgid "CSFD Info"
 msgstr ""
 
-#: src/plugin.py:383
+#: src/plugin.py:392
 msgid "configuration"
 msgstr ""
 
-#: src/plugin.py:386
+#: src/plugin.py:395
 msgid "movie manipulation list"
 msgstr ""
 
@@ -1794,6 +1844,6 @@ msgid ""
 "\n"
 msgstr ""
 
-#: src/VlcPluginInterface.py:118
+#: src/VlcPluginInterface.py:159
 msgid "VLC Server not reachable"
 msgstr ""

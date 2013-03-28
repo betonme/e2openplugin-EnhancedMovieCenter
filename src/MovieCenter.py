@@ -341,6 +341,18 @@ def detectDVDStructure(checkPath):
 	dvdpath = os.path.join(checkPath, "VIDEO_TS/VIDEO_TS.IFO")
 	if fileExists( dvdpath ):
 		return dvdpath
+
+def detectMOVStructure(checkPath):
+	if not os.path.isdir(checkPath):
+		return None
+	elif not config.EMC.scan_linked.value and os.path.islink(checkPath):
+		return None
+	extMovie = extVideo - extDvd
+	for ext in extMovie:
+		movpath = os.path.join(checkPath, os.path.basename(checkPath)) + ext
+		if fileExists( movpath ):
+			return movpath
+
 	return None
 
 # muss drinnen bleiben sonst crashed es bei foreColorSelected
@@ -571,6 +583,8 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 		movie_trashpath = config.EMC.movie_trashcan_enable.value and os.path.realpath(config.EMC.movie_trashcan_path.value)
 		check_dvdstruct = config.EMC.check_dvdstruct.value \
 							and not (config.EMC.cfgscan_suppress.value and path in self.nostructscan)
+		check_moviestruct = config.EMC.check_moviestruct.value \
+							and not (config.EMC.cfgscan_suppress.value and path in self.nostructscan)
 		hideitemlist = config.EMC.cfghide_enable.value and self.hideitemlist
 		
 		localExtList = extList
@@ -625,7 +639,12 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 								ext = splitext(dvdStruct)[1].lower()
 								fappend( (pathname, dir, ext) )
 								continue
-						
+						if check_moviestruct:
+							movStruct = detectMOVStructure(pathname)
+							if movStruct:
+								ext = splitext(movStruct)[1].lower()
+								fappend( (movStruct, dir, ext) )
+								continue
 						# Folder found
 						if config.EMC.directories_show.value:
 							if not movie_trashpath or os.path.realpath(pathname).find( movie_trashpath ) == -1:
