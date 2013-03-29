@@ -116,16 +116,20 @@ class EMCExecutioner:
 			if associated:
 				#P3 for foo, bar, *other in tuple:
 				for fargs in associated:
-					if isinstance(fargs, tuple) or isinstance(fargs, list):
-						f, args = [e for e in fargs[:1]] + [fargs[1:]]
-						if isinstance(f, Callable):
-							if args:
-								f(*args)
-							else:
-								f(args)
-					else:
-						if isinstance(fargs, Callable):
-							fargs()
+					try:
+						if isinstance(fargs, tuple) or isinstance(fargs, list):
+							f, args = [e for e in fargs[:1]] + [fargs[1:]]
+							if isinstance(f, Callable):
+								if args:
+									f(*args)
+								else:
+									f(args)
+						else:
+							if isinstance(fargs, Callable):
+								fargs()
+					except Exception, e:
+						#emcDebugOut("[emcTasker] runFinished exception:\n" + str(e))
+						pass
 			self.returnData = ""
 			
 			if self.script:
