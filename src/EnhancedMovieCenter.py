@@ -53,7 +53,7 @@ from DelayedFunction import DelayedFunction
 from EMCTasker import emcTasker, emcDebugOut
 
 
-EMCVersion = "V3.6.9beta"
+EMCVersion = "V3.7.0beta"
 EMCAbout = "\n  Enhanced Movie Center " +EMCVersion+ "\n\n  (C) 2012 by\n  Coolman, Betonme & Swiss-MAD \n\n  If you like this plugin and you want to support it,\n  or if just want to say ''thanks'',\n  please donate via PayPal. \n\n  Thanks a lot ! \n\n  PayPal: enhancedmoviecenter@gmail.com"
 
 
