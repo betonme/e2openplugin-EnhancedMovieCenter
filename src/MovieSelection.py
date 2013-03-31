@@ -64,6 +64,7 @@ from ServiceSupport import ServiceCenter
 from EMCCoverSearch import EMCImdbScan
 from MovieRetitle import MovieRetitle
 from Components.Sources.EMCServiceEvent import EMCServiceEvent
+from MovieInfo import DownloadMovieInfo
 
 #Download Movie Information
 import json
@@ -1946,7 +1947,6 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			emcDebugOut("[EMCMS] trashcanCreate exception:\n" + str(e))
 
 	def dlMovieInfo(self):
-		#TODO: Save all movie informations in a .eit file instead a .txt file
 		removelist = [".", "1080p", "720p", "x264", "h264"]
 		selectedlist = self["list"].makeSelectionList()[:]
 		service = selectedlist[0]
@@ -1962,6 +1962,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 
 			for rem in removelist:
 				moviename = moviename.replace(rem," ")
+
 			noerror = True
 			try:
 				headers = {"Accept": "application/json"}
@@ -1971,28 +1972,8 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 				movies = response["results"]
 			except:
 				noerror = False
-
+				
 			if noerror:
-				if len(movies) > 0:
-					id = movies[0]["id"] #We need a possibility to select the right movie if more than one movie was found
-					request = Request("http://api.themoviedb.org/3/movie/" + str(id) + "?api_key=8789cfd3fbab7dccf1269c3d7d867aff&language=de", headers=headers)
-					jsonresponse = urlopen(request).read()
-					response = json.loads(jsonresponse)
-
-					blurb = (str(response["overview"])).encode('utf-8')
-					runtime = (str(response["runtime"])).encode('utf-8')
-					releasedate = (str(response["release_date"])).encode('utf-8')	
-					countrylist = response["production_countries"]
-					countries  = ""
-					for i in countrylist:
-						if countries == "":
-							countries = i["name"]
-						else:
-							countries = countries + ", " + i["name"]
-
-					file(moviepath + ".txt",'w').write("Laufzeit: " + runtime + " Minuten\n\n" + "Inhalt: " + blurb + "\n\nProduktionsland: " + countries)
-					self.session.open(MessageBox, _(str(len(movies)) + ' movies found!\nInformation of the best match\n\n"' + str(movies[0]["title"]) + '"\n\ndownloaded successfully!'), MessageBox.TYPE_INFO, 10)			
-				else:
-					self.session.open(MessageBox, _("No movies found for " + moviename), MessageBox.TYPE_ERROR, 10)
+				self.session.open(DownloadMovieInfo, movies, moviename, service)		
 			else:
 				self.session.open(MessageBox, _("An error occured! Internet connection broken?"), MessageBox.TYPE_ERROR, 10)

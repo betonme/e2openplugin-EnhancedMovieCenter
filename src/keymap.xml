@@ -99,4 +99,9 @@
 		<key id="KEY_GREEN" mapto="EMCGreen" flags="m" />
 		<key id="KEY_YELLOW" mapto="EMCYellow" flags="m" />
 	</map>
+	<map context="EMCMovieInfo">
+		<key id="KEY_EXIT" mapto="EMCEXIT" flags="m" />
+		<key id="KEY_OK" mapto="EMCOK" flags="m" />
+		<key id="KEY_INFO" mapto="EMCINFO" flags="b" />
+	</map>
 </keymap>
