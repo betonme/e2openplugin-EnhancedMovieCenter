@@ -1947,33 +1947,8 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			emcDebugOut("[EMCMS] trashcanCreate exception:\n" + str(e))
 
 	def dlMovieInfo(self):
-		substitutelist = [("."," "), ("_"," "), ("-"," "), ("1080p",""), ("720p",""), ("x264",""), ("h264",""), ("1080i",""), ("AC3",""), ("DUBBED","")]
 		selectedlist = self["list"].makeSelectionList()[:]
 		service = selectedlist[0]
-		(moviepath,ext) = os.path.splitext(service.getPath())
-
 		if os.path.isfile(service.getPath()):
 			moviename = str(self["list"].getNameOfService(service))
-
-			if config.EMC.movie_show_format:
-				extVideo = ["ts", "avi", "divx", "f4v", "flv", "img", "ifo", "iso", "m2ts", "m4v", "mkv", "mov", "mp4", "mpeg", "mpg", "mts", "vob", "wmv"]
-				for rem in extVideo:
-					moviename = moviename.replace(rem,"")
-
-			for (phrase,sub) in substitutelist:
-				moviename = moviename.replace(phrase,sub)
-
-			noerror = True
-			try:
-				headers = {"Accept": "application/json"}
-				request = Request("http://api.themoviedb.org/3/search/movie?api_key=8789cfd3fbab7dccf1269c3d7d867aff&query=" + moviename.replace(" ","+"), headers=headers)
-				jsonresponse = urlopen(request).read()
-				response = json.loads(jsonresponse)
-				movies = response["results"]
-			except:
-				noerror = False
-
-			if noerror:
-				self.session.open(DownloadMovieInfo, movies, moviename, service)		
-			else:
-				self.session.open(MessageBox, _("An error occured! Internet connection broken?"), MessageBox.TYPE_ERROR, 10)
+			self.session.open(DownloadMovieInfo, service, moviename)
