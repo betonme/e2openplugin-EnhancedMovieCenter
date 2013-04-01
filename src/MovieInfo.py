@@ -40,10 +40,10 @@ class DownloadMovieInfo(Screen):
 		self.close()
 		
 	def ok(self):		
-		sel = self["movielist"].l.getCurrentSelection()[1]
+		sel = self["movielist"].l.getCurrentSelection()
 
 		if sel is not None:
-			id = sel
+			id = sel[1]
 			noerror = True
 			try:
 				headers = {"Accept": "application/json"}
