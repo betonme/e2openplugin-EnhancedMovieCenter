@@ -1947,7 +1947,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			emcDebugOut("[EMCMS] trashcanCreate exception:\n" + str(e))
 
 	def dlMovieInfo(self):
-		removelist = [".", "_", "1080p", "720p", "x264", "h264", "1080i", "AC3"]
+		substitutelist = [("."," "), ("_"," "), ("-"," "), ("1080p",""), ("720p",""), ("x264",""), ("h264",""), ("1080i",""), ("AC3",""), ("DUBBED","")]
 		selectedlist = self["list"].makeSelectionList()[:]
 		service = selectedlist[0]
 		(moviepath,ext) = os.path.splitext(service.getPath())
@@ -1960,8 +1960,8 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 				for rem in extVideo:
 					moviename = moviename.replace(rem,"")
 
-			for rem in removelist:
-				moviename = moviename.replace(rem," ")
+			for (phrase,sub) in substitutelist:
+				moviename = moviename.replace(phrase,sub)
 
 			noerror = True
 			try:
