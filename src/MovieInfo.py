@@ -1,6 +1,7 @@
 from Components.ActionMap import ActionMap, HelpableActionMap
 from Components.MenuList import MenuList
 from Components.Button import Button
+from Components.Label import Label
 from Screens.Screen import Screen
 from Components.Label import Label
 from Screens.MessageBox import MessageBox
@@ -12,9 +13,9 @@ from urllib2 import Request, urlopen
 
 
 config.EMC.movieinfo = ConfigSubsection()
-config.EMC.movieinfo.language = ConfigSelection(default='0', choices=[('0', _('German')), ('1', _('English'))])
+config.EMC.movieinfo.language = ConfigSelection(default='de', choices=[('de', _('German')), ('en', _('English'))])
 
-class DownloadMovieInfo(Screen, ConfigListScreen):
+class DownloadMovieInfo(Screen):
 	skin = """
 		<screen position="center,center" size="600,450" title="Movie Information Download (TMDb)">
 		<widget name="movie_name" position="5,5" size="600,22" zPosition="0" font="Regular;21" valign="center" transparent="1" foregroundColor="#00bab329" backgroundColor="#000000"/>
@@ -22,18 +23,21 @@ class DownloadMovieInfo(Screen, ConfigListScreen):
 		<widget name="resulttext" position="5,380" size="600,22" zPosition="0" font="Regular;21" valign="center" transparent="1" foregroundColor="#00bab329" backgroundColor="#000000"/>
 		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key_menu.png" position="5,410" size="35,25" alphatest="on" />
 		<eLabel text="Setup" position="45,410" size="300,25" font="Regular;18" halign="left" valign="center" transparent="1" />
-		</screen>"""
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key_menu.png" position="5,410" size="35,25" alphatest="on" />
+		<eLabel text="Info" position="200,410" size="300,25" font="Regular;18" halign="left" valign="center" transparent="1" />
+	</screen>"""
 
 	def __init__(self, session, service, moviename):
 		Screen.__init__(self, session)
 		self.session = session
 		self.service = service
+		self.moviename = moviename
 		self["actions"] = HelpableActionMap(self, "EMCMovieInfo",
 		{
 			"EMCEXIT":		self.exit,
 			"EMCOK":		self.ok,
 			"EMCMenu":		self.setup,
-			#"EMCINFO":		self.info
+			"EMCINFO":		self.info,
 		}, -1)
 
 		substitutelist = [("."," "), ("_"," "), ("-"," "), ("1080p",""), ("720p",""), ("x264",""), ("h264",""), ("1080i",""), ("AC3","")]
@@ -67,37 +71,45 @@ class DownloadMovieInfo(Screen, ConfigListScreen):
 
 	def ok(self):		
 		sel = self["movielist"].l.getCurrentSelection()
-
 		if sel is not None:
 			id = sel[1]
-			lang = "en"
-			if config.EMC.movieinfo.language == 0:
-				lang = "de"
-			elif config.EMC.movieinfo.language == 1:
-				lang = "en"
-			response=self.fetchdata("http://api.themoviedb.org/3/movie/" + str(id) + "?api_key=8789cfd3fbab7dccf1269c3d7d867aff&language=" + lang)
-
-			if response is not None:
-				blurb = (str(response["overview"])).encode('utf-8')
-				runtime = (str(response["runtime"])).encode('utf-8')
-				releasedate = (str(response["release_date"])).encode('utf-8')	
-				countrylist = response["production_countries"]
-				countries  = ""
-				for i in countrylist:
-					if countries == "":
-						countries = i["name"]
-					else:
-						countries = countries + ", " + i["name"]
-
+			info = self.getMovieInfo(id)
+			if info is not None:
 				(moviepath,ext) = os.path.splitext(self.service.getPath())
-				file(moviepath + ".txt",'w').write("Laufzeit: " + runtime + " Minuten\n\n" + "Inhalt: " + blurb + "\n\nProduktionsland: " + countries)
-				self.session.open(MessageBox, _('Movie Information downloaded successfully!'), MessageBox.TYPE_INFO, 10)
+				file(moviepath + ".txt",'w').write(info)
+				self.session.open(MessageBox, _('Movie Information downloaded successfully!'), MessageBox.TYPE_INFO, 5)
 				self.exit()
-			else:
-				self.session.open(MessageBox, _("An error occured! Internet connection broken?"), MessageBox.TYPE_ERROR, 10)
 
-	#def info(self):
-		#TODO
+	def getMovieInfo(self, id):
+		lang = config.EMC.movieinfo.language.value
+		response = self.fetchdata("http://api.themoviedb.org/3/movie/" + str(id) + "?api_key=8789cfd3fbab7dccf1269c3d7d867aff&language=" + lang)
+
+		if response is not None:
+			blurb = (str(response["overview"])).encode('utf-8')
+			runtime = (str(response["runtime"]) + " Minuten").encode('utf-8')
+			if runtime == "0 Minuten":
+				runtime = "unbekannt"
+
+			releasedate = (str(response["release_date"])).encode('utf-8')	
+			countrylist = response["production_countries"]
+			vote = (str(response["vote_average"])).encode('utf-8')
+			countries  = ""
+			for i in countrylist:
+				if countries == "":
+					countries = i["name"]
+				else:
+					countries = countries + ", " + i["name"]
+			countries = countries.encode('utf-8')			
+			return ("Inhalt: " + blurb + "\n\nLaufzeit: " + runtime + "\nProduktionsland: " + countries + "\nErscheinungsdatum: " + releasedate + "\nBewertung: " + vote)
+		else:
+			self.session.open(MessageBox, _("An error occured! Internet connection broken?"), MessageBox.TYPE_ERROR, 10)
+			return None
+
+	def info(self):
+		sel = self["movielist"].l.getCurrentSelection()
+		if sel is not None:
+			preview = self.getMovieInfo(sel[1])
+			self.session.open(MovieInfoPreview, preview, self.moviename)
 
 	def fetchdata(self, url):
 		try:
@@ -112,6 +124,29 @@ class DownloadMovieInfo(Screen, ConfigListScreen):
 	def setup(self):
 		self.session.open(MovieInfoSetup)
 
+
+class MovieInfoPreview(Screen):
+	skin = """
+		<screen position="center,center" size="800,450" title="Movie Information Preview">
+		<widget name="movie_name" position="5,5" size="600,22" zPosition="0" font="Regular;21" valign="center" transparent="1" foregroundColor="#00bab329" backgroundColor="#000000"/>
+		<widget name="previewtext" position="10,50" size="760,380" font="Regular;20" />
+	</screen>"""
+
+	def __init__(self, session, preview, moviename):
+		Screen.__init__(self, session)
+		#self.session = session
+		self.preview = preview
+		self["movie_name"] = Label("Movie Information Preview for:   " + moviename)
+		self["previewtext"]=Label(_(str(preview)))
+		self["actions"] = HelpableActionMap(self, "EMCMovieInfo",
+		{
+			"EMCEXIT":		self.close,
+			#"EMCOK":		self.red,
+			#"EMCMenu":		self.setup,
+			#"EMCINFO":		self.info,
+			#"EMCGreen":	self.green,
+			#"EMCRed":		self.red,
+		}, -1)
 
 
 class MovieInfoSetup(Screen, ConfigListScreen):
