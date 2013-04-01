@@ -103,5 +103,8 @@
 		<key id="KEY_EXIT" mapto="EMCEXIT" flags="m" />
 		<key id="KEY_OK" mapto="EMCOK" flags="m" />
 		<key id="KEY_INFO" mapto="EMCINFO" flags="b" />
+		<key id="KEY_MENU" mapto="EMCMenu" flags="m" />
+		<key id="KEY_GREEN" mapto="EMCGreen" flags="m" />
+		<key id="KEY_RED" mapto="EMCRed" flags="b" />
 	</map>
 </keymap>
