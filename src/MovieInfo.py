@@ -14,6 +14,10 @@ from urllib2 import Request, urlopen
 
 config.EMC.movieinfo = ConfigSubsection()
 config.EMC.movieinfo.language = ConfigSelection(default='de', choices=[('de', _('German')), ('en', _('English'))])
+config.EMC.movieinfo.ldruntime = ConfigSelection(default='1', choices=[('1', _('Yes')), ('0', _('No'))])
+config.EMC.movieinfo.ldcountries = ConfigSelection(default='1', choices=[('1', _('Yes')), ('0', _('No'))])
+config.EMC.movieinfo.ldreleasedate = ConfigSelection(default='1', choices=[('1', _('Yes')), ('0', _('No'))])
+config.EMC.movieinfo.ldvote = ConfigSelection(default='1', choices=[('1', _('Yes')), ('0', _('No'))])
 
 class DownloadMovieInfo(Screen):
 	skin = """
@@ -86,21 +90,37 @@ class DownloadMovieInfo(Screen):
 
 		if response is not None:
 			blurb = (str(response["overview"])).encode('utf-8')
-			runtime = (str(response["runtime"]) + " Minuten").encode('utf-8')
-			if runtime == "0 Minuten":
-				runtime = "unbekannt"
 
-			releasedate = (str(response["release_date"])).encode('utf-8')	
-			countrylist = response["production_countries"]
-			vote = (str(response["vote_average"])).encode('utf-8')
-			countries  = ""
-			for i in countrylist:
-				if countries == "":
-					countries = i["name"]
-				else:
-					countries = countries + ", " + i["name"]
-			countries = countries.encode('utf-8')			
-			return ("Inhalt: " + blurb + "\n\nLaufzeit: " + runtime + "\nProduktionsland: " + countries + "\nErscheinungsdatum: " + releasedate + "\nBewertung: " + vote)
+			if config.EMC.movieinfo.ldruntime.value == '1':
+				runtime = ("Laufzeit: " + str(response["runtime"]) + " Minuten").encode('utf-8')
+				if runtime == "Laufzeit: 0 Minuten":
+					runtime = "Laufzeit: unbekannt"
+			else:
+				runtime = ""
+
+			if config.EMC.movieinfo.ldreleasedate.value  == '1':
+				releasedate = ("Erscheinungsdatum: " + str(response["release_date"])).encode('utf-8')	
+			else:
+				releasedate = ""
+
+			if config.EMC.movieinfo.ldvote.value  == '1':
+				vote = ("Bewertung: " + str(response["vote_average"])).encode('utf-8')
+			else:
+				vote = ""
+
+			if config.EMC.movieinfo.ldcountries.value  == '1':
+				countrylist = response["production_countries"]
+				countries  = ""
+				for i in countrylist:
+					if countries == "":
+						countries = i["name"]
+					else:
+						countries = countries + ", " + i["name"]
+				countries = ("Produktionsland: " + countries).encode('utf-8')
+			else:
+				countries = ""			
+
+			return ("Inhalt: " + blurb + "\n\n" + runtime + "\n" + countries + "\n" + releasedate + "\n" + vote)
 		else:
 			self.session.open(MessageBox, _("An error occured! Internet connection broken?"), MessageBox.TYPE_ERROR, 10)
 			return None
@@ -164,6 +184,11 @@ class MovieInfoSetup(Screen, ConfigListScreen):
 		#self.session = session
 		self.list = []
 		self.list.append(getConfigListEntry(_("Language:"), config.EMC.movieinfo.language))
+		self.list.append(getConfigListEntry(_("Load Runtime :"), config.EMC.movieinfo.ldruntime))
+		self.list.append(getConfigListEntry(_("Load Production Countries :"), config.EMC.movieinfo.ldcountries))
+		self.list.append(getConfigListEntry(_("Load Releasedate :"), config.EMC.movieinfo.ldreleasedate))
+		self.list.append(getConfigListEntry(_("Load Vote :"), config.EMC.movieinfo.ldvote))
+		
 		ConfigListScreen.__init__(self, self.list, session)
 		self["actions"] = HelpableActionMap(self, "EMCMovieInfo",
 		{
