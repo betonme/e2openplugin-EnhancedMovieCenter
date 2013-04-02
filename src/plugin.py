@@ -38,6 +38,7 @@ from Components.Converter import EMCServiceTime
 
 from __init__ import _, language
 from EMCTasker import emcTasker, emcDebugOut
+import copy
 
 
 class ConfigTextWOHelp(ConfigText):
@@ -154,14 +155,16 @@ progress_choices = [("PB",	_("ProgressBar")),
 					("MC",	_("Movie Color")),
 					("",	_("Off")) ]
 
-blueyellow_choices = 	[("MH",	_("Movie home")),
-						("MV", 	_("Move Movie")),
-						("PL",	_("Play last")),
-						("CS",	_("Cover Search")),
-						("MI",	_("Download Movie Info"))]
+blueyellowgreen_choices = 	[("MH",	_("Movie home")),
+							 ("MV", _("Move Movie")),
+							 ("PL",	_("Play last")),
+							 ("CS",	_("Cover Search")),
+							 ("MI",	_("Download Movie Info"))]
 						
-blue_choices = blueyellow_choices
-yellow_choices = blueyellow_choices
+blue_choices = blueyellowgreen_choices
+yellow_choices = blueyellowgreen_choices
+green_choices = copy.copy(blueyellowgreen_choices)
+green_choices.extend([("ST", _("Sort Options"))])
 			
 move_choices = [("d",	_("down")),
 				("b",	_("up/down")),
@@ -228,10 +231,10 @@ config.EMC.folder                    = ConfigTextWOHelp(default = "/hdd/EMC", fi
 config.EMC.debugfile                 = ConfigTextWOHelp(default = "output.txt", fixed_size = False, visible_width= 22)
 config.EMC.ml_disable                = ConfigYesNo(default = False)
 # Color keys selection list array dict: longdescription, shortdescription, functionpointer
-config.EMC.movie_bluefunc            = ConfigSelection(default = "MH", choices = blue_choices)
 #config.EMC.movie_redfunc 
-#config.EMC.movie_greenfunc 
+config.EMC.movie_greenfunc			 = ConfigSelection(default = "ST", choices = green_choices)
 config.EMC.movie_yellowfunc          = ConfigSelection(default = "MV", choices = yellow_choices)
+config.EMC.movie_bluefunc            = ConfigSelection(default = "MH", choices = blue_choices)
 config.EMC.CoolStartHome             = ConfigYesNo(default = False)
 config.EMC.movie_descdelay           = ConfigSelectionNumber(50, 60000, 50, default= 200)
 config.EMC.movie_cover               = ConfigYesNo(default = False)

@@ -425,14 +425,12 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 				"EMCINFO":			(self.showEventInformation,	_("Show event info")),
 				"EMCINFOL":			(self.CoolInfoLong,			_("IMDBSearch / TMDBInfo / CSFDInfo")),
 				"EMCRed":			(self.deleteFile,			_("Delete file or empty dir")),
-				"EMCSortMode":		(self.toggleSortMode,		_("Toggle sort mode")),
-				"EMCSortOrder":		(self.toggleSortOrder,		_("Toggle sort order")),
-#				"EMCMOVE":			(self.moveMovie,			_("Move selected movie(s)")),
-				"EMCYELLOW":  	 	 (self.yellowFunc,			_("Movie home / Play last / Move file / Download Movie Information (configurable)")),				
+				"EMCYELLOW":  	 	(self.yellowFunc,			_("customizable yellow button")),				
 				"EMCCOPY":			(self.copyMovie,			_("Copy selected movie(s)")),
-				"EMCBlue":			(self.blueFunc,				_("Movie home / Play last / Move file / Download Movie Information (configurable)")),
+				"EMCBLUE":			(self.blueFunc,				_("customizable buttonblue ")),
+				"EMCGREEN":			(self.greenFuncShort,		_("customizable green button")),
+				"EMCGREENL":		(self.greenFuncLong,		_("customizable green button")),
 #				"EMCRedL":			(self.unUsed,				"-"),
-#				"EMCGreenL":		(self.unUsed,				"-"),
 				"EMCBlueL":			(self.openE2Bookmarks,		_("Open E2 bookmarks")),
 #				"EMCBlueL":			(self.openEMCBookmarks,		_("Open EMC bookmarks")),
 				"EMCLeft":			(self.pageUp,				_("Move cursor page up")),
@@ -564,6 +562,18 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			
 	def yellowFunc(self):
 		self.execblueyellowbutton(config.EMC.movie_yellowfunc.value)
+	
+	def greenFuncShort(self):
+		if config.EMC.movie_greenfunc.value != "ST":
+			self.execblueyellowbutton(config.EMC.movie_greenfunc.value)
+		else:
+			self.toggleSortMode()
+				
+	def greenFuncLong(self):
+		if config.EMC.movie_greenfunc.value != "ST":
+			self.execblueyellowbutton(config.EMC.movie_greenfunc.value)
+		else:
+			self.toggleSortOrder()
 			
 	def execblueyellowbutton(self, value):
 		if value == "MH":
@@ -1229,14 +1239,17 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			mode = modes[ 0 ]
 		#print mode
 		
-		for k, v in sort_modes.items():
-			#print v[1], (mode, order)
-			if v[1] == (mode, order):
-				self["key_green"].text = v[2]
-				break
+		if config.EMC.movie_greenfunc.value == "ST":
+			for k, v in sort_modes.items():
+				#print v[1], (mode, order)
+				if v[1] == (mode, order):
+					self["key_green"].text = v[2]
+					break
+			else:
+				self["key_green"].text = ""
 		else:
-			self["key_green"].text = ""
-		#self["key_yellow"].text = _("Move")
+			self["key_green"].text = config.EMC.movie_greenfunc.description[config.EMC.movie_greenfunc.value]
+
 		self["key_yellow"].text = _(config.EMC.movie_yellowfunc.description[config.EMC.movie_yellowfunc.value])
 		self["key_blue"].text = _(config.EMC.movie_bluefunc.description[config.EMC.movie_bluefunc.value])
 

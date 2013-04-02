@@ -268,11 +268,12 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 			(  _("Show plugin config in extensions menu")         , config.EMC.extmenu_plugin           , self.needsRestart     , None                  , 0     , []          , _("HELP_Show plugin config in extensions menu")          , None              , None ),
 			(  _("Show EMC in extensions menu")                   , config.EMC.extmenu_list             , self.needsRestart     , None                  , 0     , []          , _("HELP_Show EMC in extensions menu")                    , None              , None ),
 
-			(  separator                                          , config.EMC.about                    , None                  , None                  , 0     , []          , _("HELP_Key assignment Separator")                                                    , None              , None ),
+			(  separator                                          , config.EMC.about                    , None                  , None                  , 0     , []          , _("HELP_Key assignment Separator")                       , None              , None ),
 			(  _("Bouquet buttons behaviour")                     , config.EMC.bqt_keys                 , None                  , None                  , 0     , []          , _("HELP_Bouquet buttons behaviour")                      , None              , None ),
 			(  _("List entries to skip")                          , config.EMC.list_skip_size           , None                  , None                  , 0     , [-1]        , _("HELP_List entries to skip")                           , None              , None ),
-			(  _("Blue button function")                          , config.EMC.movie_bluefunc           , None                  , None                  , 0     , []          , _("HELP_Blue button function")                           , None              , None ),
+			(  _("Green button function")                         , config.EMC.movie_greenfunc           , None                 , None                  , 0     , []          , _("HELP_Green button function")                          , None              , None ),
 			(  _("Yellow button function")                        , config.EMC.movie_yellowfunc         , None                  , None                  , 0     , []          , _("HELP_Yellow button function")                         , None              , None ),
+			(  _("Blue button function")                          , config.EMC.movie_bluefunc           , None                  , None                  , 0     , []          , _("HELP_Blue button function")                           , None              , None ),
 
 			
 			(  separator                                          , config.EMC.about                    , None                  , None                  , 0     , []          , _("")                                                    , None              , None ),
