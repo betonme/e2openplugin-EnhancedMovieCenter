@@ -27,8 +27,10 @@ class DownloadMovieInfo(Screen):
 		<widget name="resulttext" position="5,380" size="600,22" zPosition="0" font="Regular;21" valign="center" transparent="1" foregroundColor="#00bab329" backgroundColor="#000000"/>
 		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key_menu.png" position="5,410" size="35,25" alphatest="on" />
 		<eLabel text="Setup" position="45,410" size="300,25" font="Regular;18" halign="left" valign="center" transparent="1" />
-		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key_info.png" position="210,410" size="35,25" alphatest="on" />
-		<eLabel text="Filminfo" position="250,410" size="300,25" font="Regular;18" halign="left" valign="center" transparent="1" />
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key_ok.png" position="230,410" size="35,25" alphatest="on" />
+		<eLabel text="Speichern" position="270,410" size="300,25" font="Regular;18" halign="left" valign="center" transparent="1" />
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key_info.png" position="460,410" size="35,25" alphatest="on" />
+		<eLabel text="Filminfo" position="500,410" size="300,25" font="Regular;18" halign="left" valign="center" transparent="1" />
 	</screen>"""
 
 	def __init__(self, session, service, moviename):
