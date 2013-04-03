@@ -1,3 +1,7 @@
+# -*- coding: utf-8 -*-
+
+from __init__ import _
+
 from Components.ActionMap import ActionMap, HelpableActionMap
 from Components.MenuList import MenuList
 from Components.Button import Button
@@ -21,16 +25,16 @@ config.EMC.movieinfo.ldvote = ConfigSelection(default='1', choices=[('1', _('Yes
 
 class DownloadMovieInfo(Screen):
 	skin = """
-		<screen position="center,center" size="600,450" title="Movie Information Download (TMDb)">
-		<widget name="movie_name" position="5,5" size="600,22" zPosition="0" font="Regular;21" valign="center" transparent="1" foregroundColor="#00bab329" backgroundColor="#000000"/>
-		<widget name="movielist" position="10,50" size="570,330" scrollbarMode="showOnDemand"/>
-		<widget name="resulttext" position="5,380" size="600,22" zPosition="0" font="Regular;21" valign="center" transparent="1" foregroundColor="#00bab329" backgroundColor="#000000"/>
-		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key_menu.png" position="5,410" size="35,25" alphatest="on" />
-		<eLabel text="Setup" position="45,410" size="300,25" font="Regular;18" halign="left" valign="center" transparent="1" />
-		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key_ok.png" position="230,410" size="35,25" alphatest="on" />
-		<eLabel text="Speichern" position="270,410" size="300,25" font="Regular;18" halign="left" valign="center" transparent="1" />
-		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key_info.png" position="460,410" size="35,25" alphatest="on" />
-		<eLabel text="Filminfo" position="500,410" size="300,25" font="Regular;18" halign="left" valign="center" transparent="1" />
+		<screen position="center,center" size="700,500" title="Movie Information Download (TMDb)">
+		<widget name="movie_name" position="5,5" size="695,44" zPosition="0" font="Regular;21" valign="center" transparent="1" foregroundColor="#00bab329" backgroundColor="#000000"/>
+		<widget name="movielist" position="10,54" size="670,379" scrollbarMode="showOnDemand"/>
+		<widget name="resulttext" position="5,433" size="700,22" zPosition="0" font="Regular;21" valign="center" transparent="1" foregroundColor="#00bab329" backgroundColor="#000000"/>
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key_menu.png" position="5,460" size="35,25" alphatest="on" />
+		<eLabel text="Setup" position="45,460" size="300,25" font="Regular;18" halign="left" valign="center" transparent="1" />
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key_ok.png" position="280,460" size="35,25" alphatest="on" />
+		<eLabel text="Speichern" position="320,460" size="300,25" font="Regular;18" halign="left" valign="center" transparent="1" />
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key_info.png" position="560,460" size="35,25" alphatest="on" />
+		<eLabel text="Filminfo" position="600,460" size="300,25" font="Regular;18" halign="left" valign="center" transparent="1" />
 	</screen>"""
 
 	def __init__(self, session, service, moviename):
@@ -70,7 +74,7 @@ class DownloadMovieInfo(Screen):
 			self["resulttext"] = Label(str(len(movies)) + " movies found!")
 		else:
 			self["movielist"] = MenuList([])
-			self["resulttext"] = Label("An error occured! Internet connection broken?")
+			self["resulttext"] = Label(_("An error occured! Internet connection broken?"))
 
 	def exit(self):
 		self.close()
@@ -83,7 +87,7 @@ class DownloadMovieInfo(Screen):
 			if info is not None:
 				(moviepath,ext) = os.path.splitext(self.service.getPath())
 				file(moviepath + ".txt",'w').write(info)
-				self.session.open(MessageBox, _('Movie Information downloaded successfully!'), MessageBox.TYPE_INFO, 5)
+				self.session.open(MessageBox, (_('Movie Information downloaded successfully!')), MessageBox.TYPE_INFO, 5)
 				self.exit()
 
 	def getMovieInfo(self, id):
@@ -150,8 +154,8 @@ class DownloadMovieInfo(Screen):
 class MovieInfoPreview(Screen):
 	skin = """
 		<screen position="center,center" size="800,450" title="Movie Information Preview">
-		<widget name="movie_name" position="5,5" size="600,22" zPosition="0" font="Regular;21" valign="center" transparent="1" foregroundColor="#00bab329" backgroundColor="#000000"/>
-		<widget name="previewtext" position="10,50" size="760,380" font="Regular;20" />
+		<widget name="movie_name" position="5,5" size="795,44" zPosition="0" font="Regular;21" valign="center" transparent="1" foregroundColor="#00bab329" backgroundColor="#000000"/>
+		<widget name="previewtext" position="10,53" size="760,380" font="Regular;20" />
 	</screen>"""
 
 	def __init__(self, session, preview, moviename):
