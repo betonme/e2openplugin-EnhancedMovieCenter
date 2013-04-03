@@ -126,7 +126,7 @@ class DownloadMovieInfo(Screen):
 			else:
 				countries = ""			
 
-			return ("Inhalt: " + blurb + "\n\n" + runtime + "\n" + countries + "\n" + releasedate + "\n" + vote)
+			return ("Content: " + blurb + "\n\n" + runtime + "\n" + countries + "\n" + releasedate + "\n" + vote)
 		else:
 			self.session.open(MessageBox, _("An error occured! Internet connection broken?"), MessageBox.TYPE_ERROR, 10)
 			return None
