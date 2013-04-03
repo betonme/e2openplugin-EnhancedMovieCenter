@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 from __init__ import _
-
 from Components.ActionMap import ActionMap, HelpableActionMap
 from Components.MenuList import MenuList
 from Components.Button import Button
@@ -99,19 +98,19 @@ class DownloadMovieInfo(Screen):
 			blurb = (str(response["overview"])).encode('utf-8')
 
 			if config.EMC.movieinfo.ldruntime.value == '1':
-				runtime = ("Runtime: " + str(response["runtime"]) + " Minutes").encode('utf-8')
-				if runtime == "Runtime: 0 Minutes":
-					runtime = "Runtime: unknown"
+				runtime = ("Runtime: " + str(response["runtime"]) + " Minutes\n").encode('utf-8')
+				if runtime == "Runtime: 0 Minutes\n":
+					runtime = "Runtime: unknown\n"
 			else:
 				runtime = ""
 
 			if config.EMC.movieinfo.ldreleasedate.value  == '1':
-				releasedate = ("Release date: " + str(response["release_date"])).encode('utf-8')	
+				releasedate = ("Release Date: " + str(response["release_date"]) + "\n").encode('utf-8')	
 			else:
 				releasedate = ""
 
 			if config.EMC.movieinfo.ldvote.value  == '1':
-				vote = ("Vote: " + str(response["vote_average"])).encode('utf-8')
+				vote = ("Vote: " + str(response["vote_average"]) + "\n").encode('utf-8')
 			else:
 				vote = ""
 
@@ -123,7 +122,7 @@ class DownloadMovieInfo(Screen):
 						genres = i["name"]
 					else:
 						genres = genres + ", " + i["name"]
-				genres = ("Genre: " + genres).encode('utf-8')
+				genres = ("Genre: " + genres + "\n").encode('utf-8')
 			else:
 				genres = ""
 			
@@ -135,11 +134,11 @@ class DownloadMovieInfo(Screen):
 						countries = i["name"]
 					else:
 						countries = countries + ", " + i["name"]
-				countries = ("Production countries: " + countries).encode('utf-8')
+				countries = ("Production Countries: " + countries + "\n").encode('utf-8')
 			else:
 				countries = ""			
 
-			return ("Content: " + blurb + "\n\n" + runtime + "\n" + genres + "\n" + countries + "\n" + releasedate + "\n" + vote)
+			return ("Content: " + blurb + "\n\n" + runtime + genres + countries + releasedate + vote)
 		else:
 			self.session.open(MessageBox, _("An error occured! Internet connection broken?"), MessageBox.TYPE_ERROR, 10)
 			return None
@@ -204,10 +203,11 @@ class MovieInfoSetup(Screen, ConfigListScreen):
 		self.list = []
 		self.list.append(getConfigListEntry(_("Language:"), config.EMC.movieinfo.language))
 		self.list.append(getConfigListEntry(_("Load Runtime:"), config.EMC.movieinfo.ldruntime))
-		self.list.append(getConfigListEntry(_("Load Production Countries:"), config.EMC.movieinfo.ldcountries))
-		self.list.append(getConfigListEntry(_("Load Release date:"), config.EMC.movieinfo.ldreleasedate))
-		self.list.append(getConfigListEntry(_("Load Vote:"), config.EMC.movieinfo.ldvote))
 		self.list.append(getConfigListEntry(_("Load Genre:"), config.EMC.movieinfo.ldgenre))
+		self.list.append(getConfigListEntry(_("Load Production Countries:"), config.EMC.movieinfo.ldcountries))
+		self.list.append(getConfigListEntry(_("Load Release Date:"), config.EMC.movieinfo.ldreleasedate))
+		self.list.append(getConfigListEntry(_("Load Vote:"), config.EMC.movieinfo.ldvote))
+
 		
 		ConfigListScreen.__init__(self, self.list, session)
 		self["actions"] = HelpableActionMap(self, "EMCMovieInfo",
