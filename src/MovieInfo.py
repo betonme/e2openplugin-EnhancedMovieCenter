@@ -22,6 +22,7 @@ config.EMC.movieinfo.ldruntime = ConfigSelection(default='1', choices=[('1', _('
 config.EMC.movieinfo.ldcountries = ConfigSelection(default='1', choices=[('1', _('Yes')), ('0', _('No'))])
 config.EMC.movieinfo.ldreleasedate = ConfigSelection(default='1', choices=[('1', _('Yes')), ('0', _('No'))])
 config.EMC.movieinfo.ldvote = ConfigSelection(default='1', choices=[('1', _('Yes')), ('0', _('No'))])
+config.EMC.movieinfo.ldgenre = ConfigSelection(default='1', choices=[('1', _('Yes')), ('0', _('No'))])
 
 class DownloadMovieInfo(Screen):
 	skin = """
@@ -114,6 +115,18 @@ class DownloadMovieInfo(Screen):
 			else:
 				vote = ""
 
+			if config.EMC.movieinfo.ldgenre.value == '1':
+				genrelist = response["genres"]
+				genres = ""
+				for i in genrelist:
+					if genres == "":
+						genres = i["name"]
+					else:
+						genres = genres + ", " + i["name"]
+				genres = ("Genre: " + genres).encode('utf-8')
+			else:
+				genres = ""
+			
 			if config.EMC.movieinfo.ldcountries.value  == '1':
 				countrylist = response["production_countries"]
 				countries  = ""
@@ -126,7 +139,7 @@ class DownloadMovieInfo(Screen):
 			else:
 				countries = ""			
 
-			return ("Content: " + blurb + "\n\n" + runtime + "\n" + countries + "\n" + releasedate + "\n" + vote)
+			return ("Content: " + blurb + "\n\n" + runtime + "\n" + genres + "\n" + countries + "\n" + releasedate + "\n" + vote)
 		else:
 			self.session.open(MessageBox, _("An error occured! Internet connection broken?"), MessageBox.TYPE_ERROR, 10)
 			return None
@@ -194,6 +207,7 @@ class MovieInfoSetup(Screen, ConfigListScreen):
 		self.list.append(getConfigListEntry(_("Load Production Countries:"), config.EMC.movieinfo.ldcountries))
 		self.list.append(getConfigListEntry(_("Load Release date:"), config.EMC.movieinfo.ldreleasedate))
 		self.list.append(getConfigListEntry(_("Load Vote:"), config.EMC.movieinfo.ldvote))
+		self.list.append(getConfigListEntry(_("Load Genre:"), config.EMC.movieinfo.ldgenre))
 		
 		ConfigListScreen.__init__(self, self.list, session)
 		self["actions"] = HelpableActionMap(self, "EMCMovieInfo",
