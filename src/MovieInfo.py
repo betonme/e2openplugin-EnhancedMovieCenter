@@ -32,9 +32,9 @@ class DownloadMovieInfo(Screen):
 		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key_menu.png" position="5,460" size="35,25" alphatest="on" />
 		<eLabel text="Setup" position="45,460" size="300,25" font="Regular;18" halign="left" valign="center" transparent="1" />
 		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key_ok.png" position="280,460" size="35,25" alphatest="on" />
-		<eLabel text="Speichern" position="320,460" size="300,25" font="Regular;18" halign="left" valign="center" transparent="1" />
+		<eLabel text="Save" position="320,460" size="300,25" font="Regular;18" halign="left" valign="center" transparent="1" />
 		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key_info.png" position="560,460" size="35,25" alphatest="on" />
-		<eLabel text="Filminfo" position="600,460" size="300,25" font="Regular;18" halign="left" valign="center" transparent="1" />
+		<eLabel text="Movie Info" position="600,460" size="300,25" font="Regular;18" halign="left" valign="center" transparent="1" />
 	</screen>"""
 
 	def __init__(self, session, service, moviename):
@@ -98,19 +98,19 @@ class DownloadMovieInfo(Screen):
 			blurb = (str(response["overview"])).encode('utf-8')
 
 			if config.EMC.movieinfo.ldruntime.value == '1':
-				runtime = ("Laufzeit: " + str(response["runtime"]) + " Minuten").encode('utf-8')
-				if runtime == "Laufzeit: 0 Minuten":
-					runtime = "Laufzeit: unbekannt"
+				runtime = ("Runtime: " + str(response["runtime"]) + " Minutes").encode('utf-8')
+				if runtime == "Runtime: 0 Minutes":
+					runtime = "Runtime: unknown"
 			else:
 				runtime = ""
 
 			if config.EMC.movieinfo.ldreleasedate.value  == '1':
-				releasedate = ("Erscheinungsdatum: " + str(response["release_date"])).encode('utf-8')	
+				releasedate = ("Release date: " + str(response["release_date"])).encode('utf-8')	
 			else:
 				releasedate = ""
 
 			if config.EMC.movieinfo.ldvote.value  == '1':
-				vote = ("Bewertung: " + str(response["vote_average"])).encode('utf-8')
+				vote = ("Vote: " + str(response["vote_average"])).encode('utf-8')
 			else:
 				vote = ""
 
@@ -122,7 +122,7 @@ class DownloadMovieInfo(Screen):
 						countries = i["name"]
 					else:
 						countries = countries + ", " + i["name"]
-				countries = ("Produktionsland: " + countries).encode('utf-8')
+				countries = ("Production countries: " + countries).encode('utf-8')
 			else:
 				countries = ""			
 
@@ -190,10 +190,10 @@ class MovieInfoSetup(Screen, ConfigListScreen):
 		#self.session = session
 		self.list = []
 		self.list.append(getConfigListEntry(_("Language:"), config.EMC.movieinfo.language))
-		self.list.append(getConfigListEntry(_("Load Runtime :"), config.EMC.movieinfo.ldruntime))
-		self.list.append(getConfigListEntry(_("Load Production Countries :"), config.EMC.movieinfo.ldcountries))
-		self.list.append(getConfigListEntry(_("Load Releasedate :"), config.EMC.movieinfo.ldreleasedate))
-		self.list.append(getConfigListEntry(_("Load Vote :"), config.EMC.movieinfo.ldvote))
+		self.list.append(getConfigListEntry(_("Load Runtime:"), config.EMC.movieinfo.ldruntime))
+		self.list.append(getConfigListEntry(_("Load Production Countries:"), config.EMC.movieinfo.ldcountries))
+		self.list.append(getConfigListEntry(_("Load Release date:"), config.EMC.movieinfo.ldreleasedate))
+		self.list.append(getConfigListEntry(_("Load Vote:"), config.EMC.movieinfo.ldvote))
 		
 		ConfigListScreen.__init__(self, self.list, session)
 		self["actions"] = HelpableActionMap(self, "EMCMovieInfo",
