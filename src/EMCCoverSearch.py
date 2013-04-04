@@ -188,7 +188,7 @@ class EMCImdbScan(Screen):
 			self["menulist"].l.setItemHeight(28)
 			self.check = "true"
 			self.showInfo()
-			self["done_msg"].setText(_("Total: %s - Exist: %s - N/A: %s") % (self.count_movies, count_existing, count_na))
+			self["done_msg"].setText(("Total: %s - Exist: %s - N/A: %s") % (self.count_movies, count_existing, count_na))
 
 	def setShowSearchSiteName(self):
 		if config.EMC.imdb.search.value == "0":
@@ -511,7 +511,7 @@ class EMCImdbScan(Screen):
 	def display_na(self, search_title, path):
 		self.counter += 1
 		self.counter_no_poster = self.counter_no_poster + 1
-		self.count = _("%s: %s von %s") % (self.showSearchSiteName, self.counter, self.count_movies)
+		self.count = ("%s: %s von %s") % (self.showSearchSiteName, self.counter, self.count_movies)
 		self["info"].setText(self.count)
 		self["m_info"].setText(search_title)
 		self["no_poster"].setText(_("No Cover: %s") % str(self.counter_no_poster))
@@ -525,7 +525,7 @@ class EMCImdbScan(Screen):
 	def display_exist(self, search_title, path):
 		self.counter += 1
 		self.counter_exist = self.counter_exist + 1
-		self.count = _("%s: %s von %s") % (self.showSearchSiteName, self.counter, self.count_movies)
+		self.count = ("%s: %s von %s") % (self.showSearchSiteName, self.counter, self.count_movies)
 		self["info"].setText(self.count)
 		self["m_info"].setText(search_title)
 		self["exist"].setText(_("Exist: %s") % str(self.counter_exist))
@@ -541,7 +541,7 @@ class EMCImdbScan(Screen):
 		self.counter_download = self.counter_download + 1
 		self.end_time = time.clock()
 		elapsed = (self.end_time - self.start_time) * 10
-		self.count = _("%s: %s von %s") % (self.showSearchSiteName, self.counter, self.count_movies)
+		self.count = ("%s: %s von %s") % (self.showSearchSiteName, self.counter, self.count_movies)
 		self["info"].setText(self.count)
 		self["m_info"].setText(movie_title)
 		self["download"].setText(_("Download: %s") % str(self.counter_download))
@@ -558,7 +558,7 @@ class EMCImdbScan(Screen):
 		total_movie = self.counter3 + self.counter2
 		total_time = self.e_supertime - self.s_supertime
 		avg = (total_time / total_movie)
-		self.done = _("%s movies in %.1f sec found. Avg. Speed: %.1f sec.") % (total_movie, total_time, avg)
+		self.done = ("%s movies in %.1f sec found. Avg. Speed: %.1f sec.") % (total_movie, total_time, avg)
 		self["done_msg"].setText(self.done)
 		self.running = "false"
 
@@ -797,7 +797,7 @@ class getCover(Screen):
 			self.showInfo()
 			self.einzel_end_time = time.clock()
 			self.einzel_elapsed = self.einzel_end_time - self.einzel_start_time
-			self["info"].setText(_("found %s covers in %.1f sec") % (self.cover_count, self.einzel_elapsed))
+			self["info"].setText(("found %s covers in %.1f sec") % (self.cover_count, self.einzel_elapsed))
 
 	def searchtvdb(self, title):
 		url = "http://www.thetvdb.com/api/GetSeries.php?seriesname=%s&language=de" % title.replace(' ','+')
@@ -830,7 +830,7 @@ class getCover(Screen):
 			self.showInfo()
 			self.einzel_end_time = time.clock()
 			self.einzel_elapsed = (self.einzel_end_time - self.einzel_start_time)
-			self["info"].setText(_("found %s covers in %.1f sec") % (self.cover_count, self.einzel_elapsed))
+			self["info"].setText(("found %s covers in %.1f sec") % (self.cover_count, self.einzel_elapsed))
 
 	def searchCover(self, title):
 		print title
@@ -865,7 +865,7 @@ class getCover(Screen):
 		self.showInfo()
 		self.einzel_end_time = time.clock()
 		self.einzel_elapsed = (self.einzel_end_time - self.einzel_start_time)
-		self["info"].setText(_("found %s covers in %.1f sec") % (self.cover_count, self.einzel_elapsed))
+		self["info"].setText(("found %s covers in %.1f sec") % (self.cover_count, self.einzel_elapsed))
 
 	def errorLoad(self, error, title):
 		print "keine daten zu %s gefunden." % title
@@ -877,7 +877,7 @@ class getCover(Screen):
 		self.showInfo()
 		self.einzel_end_time = time.clock()
 		self.einzel_elapsed = (self.einzel_end_time - self.einzel_start_time)
-		self["info"].setText(_("found %s covers in %.1f sec") % (self.cover_count, self.einzel_elapsed))
+		self["info"].setText(("found %s covers in %.1f sec") % (self.cover_count, self.einzel_elapsed))
 
 	def showInfo(self):
 		if self.check == "true" and self.menulist:
