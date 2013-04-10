@@ -34,7 +34,7 @@ from Tools.BoundFunction import boundFunction
 from DelayedFunction import DelayedFunction
 from time import time
 
-import re, urllib, urllib2, os, time
+import re, urllib, urllib2, os, time, shutil
 
 config.EMC.imdb = ConfigSubsection()
 config.EMC.imdb.search = ConfigSelection(default='0', choices=[('0', _('imdb.de')), ('1', _('themoviedb.org')), ('2', _('ofdb.de')), ('3', _('csfd.cz'))])
@@ -933,7 +933,7 @@ class getCover(Screen):
 
 	def ok(self):
 		if self.check == "true":
-			os.system("mv %s '%s'" % (self.path, self.o_path))
+			shutil.move(self.path, self.o_path)
 			print "EMC iMDB: mv poster to real path - %s %s" % (self.path, self.o_path) 
 			self.check = "false"
 			self.close(True)
