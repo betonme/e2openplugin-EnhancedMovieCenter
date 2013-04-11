@@ -285,11 +285,10 @@ class EMCImdbScan(Screen):
 					self.name = title.replace(' ','.').replace(':','.').replace('..','.')
 					path = re.sub(self.file_format + "$", '.jpg', path)
 					search_title = self.name.replace('.',' ')
-				
+
 					if not os.path.exists(path):
 						self.counter3 += 1
-						url = "http://www.imdbapi.com/?t=" + self.name.replace('Ã¶','%F6')
-						##replace('Ã¶','%F6')
+						url = "http://www.imdbapi.com/?t=" + self.name.replace('Ã¶','%F6').replace(' ','%20').replace('.','%20')
 						print "EMC imdbapi.com:", url
 						getPage(url, timeout = 10).addCallback(self.imdbapi, search_title, path).addErrback(self.errorLoad, search_title)
 
