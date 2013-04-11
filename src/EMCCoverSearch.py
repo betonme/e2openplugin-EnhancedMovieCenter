@@ -578,8 +578,7 @@ class EMCImdbScan(Screen):
 				if m_poster_path == self.no_image_poster:
 					print "no_poster.jpg kann nicht geloescht werden."
 				else:
-					os.system("rm '%s'" % (m_poster_path))
-					#done = _("%s removed.") % m_poster_path
+					os.remove(m_poster_path)
 					self.verwaltung()
 					self.no_cover()
 					self["done_msg"].setText(_("%s removed.") % m_poster_path)
