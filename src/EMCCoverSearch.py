@@ -270,7 +270,7 @@ class EMCImdbScan(Screen):
 			#print "exist:", self.exist_list
 			#print "search:", self.search_list
 			self.imdb_start()
-			
+
 	def imdb_start(self):
 		self["done_msg"].setText(_("Searching.."))
 		self.starttime = time.time()
@@ -301,7 +301,7 @@ class EMCImdbScan(Screen):
 					if not os.path.exists(path):
 						self.counter3 += 1
 						url = "http://api.themoviedb.org/2.1/Movie.search/de/xml/8789cfd3fbab7dccf1269c3d7d867aff/" + self.name
-						print "EMC themoviedb.org:", url						
+						print "EMC themoviedb.org:", url
 						getPage(url, timeout = 10).addCallback(self.themoviedb, search_title, path).addErrback(self.errorLoad, search_title)
 
 				if config.EMC.imdb.search.value == "2":
@@ -356,7 +356,8 @@ class EMCImdbScan(Screen):
 				movie_title = movie_search[0][1]
 				print "EMC csfd: Download - movie_title: ", movie_title, poster_url
 				print "EMC csfd: Download", search_title, poster_url
-				os.system("wget %s -O '%s'" % (poster_url, path))
+				#os.system("wget %s -O '%s'" % (poster_url, path))
+				urllib.urlretrieve(poster_url, path)
 				if os.path.exists(path):
 					self.display_download(movie_title, search_title, path)
 				else:
@@ -373,7 +374,8 @@ class EMCImdbScan(Screen):
 					poster_url = movie_search[0]
 					print "EMC csfd: Download - movie_title: ", movie_title, poster_url
 					print "EMC csfd: Download", search_title, poster_url
-					os.system("wget %s -O '%s'" % (poster_url, path))
+					#os.system("wget %s -O '%s'" % (poster_url, path))
+					urllib.urlretrieve(poster_url, path)
 					if os.path.exists(path):
 						self.display_download(movie_title, search_title, path)
 					else:
@@ -401,7 +403,8 @@ class EMCImdbScan(Screen):
 					print "EMC iMDB: Film gefunden aber kein poster vorhanden - %s" % search_title
 					self.display_na(search_title, path)
 				else:
-					os.system("wget %s -O '%s'" % (bild[0], path))
+					#os.system("wget %s -O '%s'" % (bild[0], path))
+					urllib.urlretrieve(bild[0], path)
 					if os.path.exists(path):
 						self.display_download(movie_title[0], search_title, path)
 					else:
@@ -438,7 +441,8 @@ class EMCImdbScan(Screen):
 				#urllib.urlcleanup()
 
 				### download durch wget
-				os.system("wget %s -O '%s'" % (poster_url[0], path))
+				#os.system("wget %s -O '%s'" % (poster_url[0], path))
+				urllib.urlretrieve(poster_url[0], path)
 				if os.path.exists(path):
 					self.display_download(movie_title[0], search_title, path)
 				else:
@@ -481,7 +485,8 @@ class EMCImdbScan(Screen):
 				#downloadPage(poster_url[0], path).addCallback(self.download_file, movie_title, search_title, path).addErrback(self.errorLoad)
 
 				### download durch wget
-				os.system("wget %s -O '%s'" % (poster_url[0], path))
+				#os.system("wget %s -O '%s'" % (poster_url[0], path))
+				urllib.urlretrieve(poster_url[0], path)
 				if os.path.exists(path):
 					self.display_download(movie_title, search_title, path)
 				else:
