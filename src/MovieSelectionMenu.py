@@ -72,6 +72,7 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 			self.menu.append((_("Shuffle All"), boundFunction(self.close, "shuffleall")))
 			
 			self.menu.append((_("Cover search"), boundFunction(self.close, "imdb")))
+			self.menu.append((_("Delete"), boundFunction(self.close, "del")))
 			
 			if config.EMC.movie_trashcan_enable.value and os.path.exists(config.EMC.movie_trashcan_path.value):
 				if service:
@@ -88,6 +89,7 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 			self.menu.append((_("(Un-)Lock Directory"), boundFunction(self.lockDir, currentPath)))
 			
 			if os.path.isfile(service.getPath()):
+				self.menu.append((_("Copy Movie"), boundFunction(self.close, "Copy Movie")))
 				self.menu.append((_("Move Movie"), boundFunction(self.close, "Move Movie")))
 				self.menu.append((_("Download Movie Information"), boundFunction(self.close, "Movie Information")))
 			

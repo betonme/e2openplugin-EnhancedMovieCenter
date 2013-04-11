@@ -11,7 +11,10 @@
 	</widget>
 	<ePixmap position="65,110" size="390,225" zPosition="2" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/pig_bg.png" />
 	<widget source="session.VideoPicture" render="Pig" position="70,115" size="380,215" zPosition="3" backgroundColor="#ff000000" />
-	<widget name="Cover" position="70,115" size="380,215" zPosition="4" backgroundColor="#00000000" alphatest="off" transparent="0" />
+	<!-- Cover Mini Tv -->
+	<widget name="CoverBg" position="70,115" size="380,215" zPosition="4" alphatest="off" transparent="0" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/cover_bg.png" />
+	<widget name="Cover" position="70,115" size="380,215" zPosition="5" alphatest="blend" />
+
 	<widget name="list" position="528,110" size="700,532" itemHeight="28" CoolFont="Regular;20" CoolSelectFont="Regular;20" CoolDateFont="Regular;20" CoolMoviePos="35" CoolMovieSize="545" CoolFolderSize="545" CoolTitleColor="0" CoolDatePos="1000" CoolDateWidth="122" CoolDateColor="0" CoolHighlightColor="0" CoolProgressPos="1000" CoolBarPos="590" CoolBarHPos="8" CoolBarSize="55,10" CoolBarSizeSa="110,16" selectionPixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/cursor.png" DefaultColor="#FFFFFF" UnwatchedColor="#FFFFFF" WatchingColor="#3486F4" FinishedColor="#46D93A" RecordingColor="#9F1313" BackColorSel="#00000000"  foregroundColorSelected="#ffffff" backgroundColor="#00000000" scrollbarMode="showNever" transparent="1" />
 	<widget name="wait" position="0,center" size="1280,50" zPosition="1" font="Regular;32" foregroundColor="#FFFFFF" backgroundColor="#18080911" halign="center" valign="center" />
 	<widget source="Service" render="Label" position="30,47" size="480,55" font="Regular;24" foregroundColor="#00bab329" backgroundColor="#444444" halign="center" transparent="1">

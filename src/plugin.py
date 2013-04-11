@@ -165,7 +165,14 @@ blue_choices = blueyellowgreen_choices
 yellow_choices = blueyellowgreen_choices
 green_choices = copy.copy(blueyellowgreen_choices)
 green_choices.extend([("ST", _("Sort Options"))])
-			
+
+# todo add (green) sort options & modes to emc-menu
+togglecover_choices = 	[(False,	_("Off")),
+						("RD", 	_("Red")),
+#						("GR",	_("Green")),
+						("YL",	_("Yellow")),
+						("BL",	_("Blue"))]
+
 move_choices = [("d",	_("down")),
 				("b",	_("up/down")),
 				("o",	_("off")) ]
@@ -239,6 +246,7 @@ config.EMC.CoolStartHome             = ConfigYesNo(default = False)
 config.EMC.movie_descdelay           = ConfigSelectionNumber(50, 60000, 50, default= 200)
 config.EMC.movie_cover               = ConfigYesNo(default = False)
 config.EMC.movie_cover_delay         = ConfigSelectionNumber(50, 60000, 50, default= 500)
+config.EMC.toggle_cover_button       = ConfigSelection(default = False, choices = togglecover_choices)
 config.EMC.movie_preview             = ConfigYesNo(default = False)
 config.EMC.movie_preview_delay       = ConfigSelectionNumber(50, 60000, 50, default= 2000)
 config.EMC.movie_preview_offset      = ConfigSelectionNumber(0, 60000, 1, default= 5)
@@ -392,7 +400,7 @@ def Plugins(**kwargs):
 	show_p = [ PluginDescriptor.WHERE_PLUGINMENU ]
 	if config.EMC.extmenu_plugin.value:
 		show_p.append( PluginDescriptor.WHERE_EXTENSIONSMENU )
-	descriptors.append( PluginDescriptor(name = "EMC "+EMCVersion+ " (Setup)", description = "Enhanced Movie Center " +_("configuration"), icon = "img/EnhancedMovieCenter.png", where = show_p, fnc = pluginOpen) )
+	descriptors.append( PluginDescriptor(name = "EMC "+EMCVersion+ " (Setup)", description = "Enhanced Movie Center " +_("configuration"), icon = "EnhancedMovieCenter.png", where = show_p, fnc = pluginOpen) )
 
 	if config.EMC.extmenu_list.value and not config.EMC.ml_disable.value:
 		descriptors.append( PluginDescriptor(name = "Enhanced Movie Center", description = "Enhanced Movie Center " + _("movie manipulation list"), where = PluginDescriptor.WHERE_EXTENSIONSMENU, fnc = recordingsOpen) )
