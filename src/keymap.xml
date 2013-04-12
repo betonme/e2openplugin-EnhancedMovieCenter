@@ -62,7 +62,7 @@
 		<key id="KEY_GREEN" mapto="EMCGREEN" flags="b" />
 		<key id="KEY_GREEN" mapto="EMCGREENL" flags="l" />
 		<key id="KEY_YELLOW" mapto="EMCYELLOW" flags="b" />
-		<key id="KEY_YELLOW" mapto="EMCCOPY" flags="l" />
+		<key id="KEY_YELLOW" mapto="EMCYELLOWL" flags="l" />
 		<key id="KEY_BLUE" mapto="EMCBLUE" flags="b" />
 		<key id="KEY_BLUE" mapto="EMCBlueL" flags="l" />
 

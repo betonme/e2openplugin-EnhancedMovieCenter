@@ -159,12 +159,20 @@ blueyellowgreen_choices = 	[("MH",	_("Movie home")),
 							 ("MV", _("Move Movie")),
 							 ("PL",	_("Play last")),
 							 ("CS",	_("Cover Search")),
-							 ("MI",	_("Download Movie Info"))]
+							 ("MI",	_("Download Movie Info")),
+							 ("CP", _("Copy File")),
+							 ("E2", _("Open E2 bookmarks"))]
 						
 blue_choices = blueyellowgreen_choices
 yellow_choices = blueyellowgreen_choices
 green_choices = copy.copy(blueyellowgreen_choices)
 green_choices.extend([("ST", _("Sort Options"))])
+
+longblueyellowgreen_choices = copy.copy(blueyellowgreen_choices)
+#longblueyellowgreen_choices.extend()
+longblue_choices = blueyellowgreen_choices
+longyellow_choices = blueyellowgreen_choices
+#longgreen_choices = blueyellowgreen_choices
 
 # todo add (green) sort options & modes to emc-menu
 togglecover_choices = 	[(False,	_("Off")),
@@ -242,6 +250,9 @@ config.EMC.ml_disable                = ConfigYesNo(default = False)
 config.EMC.movie_greenfunc			 = ConfigSelection(default = "ST", choices = green_choices)
 config.EMC.movie_yellowfunc          = ConfigSelection(default = "MV", choices = yellow_choices)
 config.EMC.movie_bluefunc            = ConfigSelection(default = "MH", choices = blue_choices)
+#config.EMC.movie_longgreenfunc		 = ConfigSelection(default = "CS", choices = longgreen_choices)
+config.EMC.movie_longyellowfunc      = ConfigSelection(default = "MV", choices = longyellow_choices)
+config.EMC.movie_longbluefunc        = ConfigSelection(default = "MH", choices = longblue_choices)
 config.EMC.CoolStartHome             = ConfigYesNo(default = False)
 config.EMC.movie_descdelay           = ConfigSelectionNumber(50, 60000, 50, default= 200)
 config.EMC.movie_cover               = ConfigYesNo(default = False)

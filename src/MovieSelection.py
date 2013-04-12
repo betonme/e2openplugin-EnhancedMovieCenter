@@ -452,13 +452,15 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 				"EMCGREEN":			(self.greenFuncShort,		greenhelptext),												#_("customizable green button")),
 				"EMCGREENL":		(self.greenFuncLong,		greenlonghelptext),										#_("customizable green button")),
 				"EMCYELLOW":		(self.yellowFunc,				yellowhelptext),											#_("customizable yellow button")),
-				"EMCCOPY":			(self.copyMovie,			_("Copy selected movie(s)")),
+#				"EMCYELLOWL":		(self.copyMovie,			_("Copy selected movie(s)")),
+				"EMCYELLOWL":		(self.yellowFuncLong,		_("customizable long yellow button")),
 				"EMCBLUE":			(self.blueFunc,					bluehelptext),												#_("customizable buttonblue ")),
-				"EMCBlueL":			(self.openE2Bookmarks,		_("Open E2 bookmarks")),
+#				"EMCBlueL":			(self.openE2Bookmarks,		_("Open E2 bookmarks")),
+				"EMCBlueL":			(self.blueFuncLong,			_("customizable long blue button")),
 #				"EMCBlueL":			(self.openEMCBookmarks,		_("Open EMC bookmarks")),
 				"EMCLeft":			(self.pageUp,					_("Move cursor page up")),
 				"EMCRight":			(self.pageDown,				_("Move cursor page down")),
-				"EMCUp":				(self.moveUp,					_("Move cursor up")),
+				"EMCUp":			(self.moveUp,					_("Move cursor up")),
 				"EMCDown":			(self.moveDown,				_("Move cursor down")),
 				"EMCBqtPlus":		(self.bqtPlus,				_("Move cursor to the top / Move cursor x entries up / Switch Folders in Movie Home (up)")),
 				"EMCBqtMnus":		(self.bqtMnus,				_("Move cursor to the end / Move cursor x entries down / Switch Folders in Movie Home (down)")),
@@ -601,6 +603,12 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 #		else:
 #			self.toggleSortMode()
 
+	def blueFuncLong(self):
+		self.execblueyellowbutton(config.EMC.movie_longbluefunc.value)
+
+	def yellowFuncLong(self):
+		self.execblueyellowbutton(config.EMC.movie_longyellowfunc.value)	
+	
 	def greenFuncLong(self):
 		if config.EMC.movie_greenfunc.value != "ST":
 			self.execblueyellowbutton(config.EMC.movie_greenfunc.value)
@@ -620,17 +628,17 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			self.imdb()
 		elif value == "MI":
 			self.dlMovieInfo()
+		elif value == "CP":
+			self.copyMovie()
+		elif value == "E2":
+			self.openE2Bookmarks()
 
-#	def yellowFunc(self):
-#		self.execblueyellowbutton(config.EMC.movie_yellowfunc.value)
 	def yellowFunc(self):
 		if config.EMC.toggle_cover_button.value == "YL":
 			self.toggleCover()
 		else:
 			self.execblueyellowbutton(config.EMC.movie_yellowfunc.value)
 
-#	def blueFunc(self):
-#		self.execblueyellowbutton(config.EMC.movie_bluefunc.value)
 	def blueFunc(self):
 		if config.EMC.toggle_cover_button.value == "BL":
 			self.toggleCover()
