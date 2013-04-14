@@ -11,10 +11,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "Language: cs\n"
-"X-Generator: Poedit 1.5.4\n"
-
-msgid " <P>"
-msgstr ""
+"X-Generator: Poedit 1.5.5\n"
 
 msgid ""
 " Deleting remotely recorded and it will display an rec-error dialog on the "
@@ -60,6 +57,9 @@ msgstr "( # / GB )"
 msgid "( GB )"
 msgstr "( GB )"
 
+msgid "(Un-)Lock Directory"
+msgstr "Zamknout/odemknout složku"
+
 msgid "(show optional DVD audio menu)"
 msgstr "(Zobrazit volitelné audio menu DVD)"
 
@@ -96,13 +96,13 @@ msgid "Age of finished movies in movie folder (days)"
 msgstr "Počet dnů od shlédnutí videa - ve složce \"Movie\""
 
 msgid "Alpha sort"
-msgstr "Seřadit"
+msgstr "seřadit vzestupně"
 
 msgid "Alpha sort ascending (AZ)"
-msgstr "Seřadit podle abecedy (AZ)"
+msgstr "seřadit podle abecedy (AZ)"
 
 msgid "Alpha sort descending (ZA)"
-msgstr "Seřadit podle abecedy (ZA)"
+msgstr "seřadit podle abecedy (ZA)"
 
 msgid "Always save last played progress as marker"
 msgstr "Vždy uložit poslední pozici jako značku"
@@ -122,6 +122,9 @@ msgstr "umístění"
 msgid "Both"
 msgstr "obě"
 
+msgid "Bouquet buttons behaviour"
+msgstr "Chování tlačítka Bouquet"
+
 msgid "CSFD Info"
 msgstr "CSFD info"
 
@@ -134,14 +137,17 @@ msgstr "Nadřazenou složku nelze odstranit !"
 msgid "Change File/Moviename and/or Description"
 msgstr "Změnit soubor, název videa a popis"
 
+msgid "Change Folder"
+msgstr "změnit složku"
+
 msgid "Change Foldername"
 msgstr "Změnit název složky"
 
 msgid "Chap."
-msgstr "Kap."
+msgstr "kap."
 
 msgid "Chapter"
-msgstr "Kapitola"
+msgstr "kapitola"
 
 msgid "Choose bookmark"
 msgstr "Vybrat záložku"
@@ -161,11 +167,8 @@ msgstr "Vybrat skript"
 msgid "Close EMC"
 msgstr "Ukončit EMC centrum"
 
-msgid "Copy file(s): Choose directory"
-msgstr "Kopírování souborů : volba složky"
-
 msgid "Collection"
-msgstr "Sestava"
+msgstr "složka"
 
 msgid "Configured Directories at the top of movielist"
 msgstr "Konfigurace složek nahoře v seznamu videa"
@@ -173,20 +176,26 @@ msgstr "Konfigurace složek nahoře v seznamu videa"
 msgid "Copy file(s):"
 msgstr "Kopie souboru:"
 
+msgid "Copy file(s): Choose directory"
+msgstr "Kopírování souborů : volba složky"
+
 msgid "Copy selected movie(s)"
 msgstr "Kopírování vybraného videa"
 
-msgid "Create Link: Choose directory"
-msgstr "Nastavení odkazu : volba složky"
-
 msgid "Cover delay in ms"
 msgstr "Zpoždění zobrazení \"potisku\" v ms"
+
+msgid "Cover is Saved."
+msgstr "\"Potisk\" byl uložený"
 
 msgid "Cover search"
 msgstr "Vyhledat potisk"
 
 msgid "Create Link"
 msgstr "Vytvořit link"
+
+msgid "Create Link: Choose directory"
+msgstr "Nastavení odkazu : volba složky"
 
 msgid "Create directory"
 msgstr "Založit složku"
@@ -206,6 +215,9 @@ msgstr "Uživatelský"
 msgid "DD.MM HH:MM"
 msgstr "DD.MM HH:MM"
 
+msgid "DD.MM. HH:MM"
+msgstr "TT.MM. HH:MM"
+
 msgid "DD.MM.YYYY"
 msgstr "DD.MM.YYYY"
 
@@ -216,13 +228,13 @@ msgid "Date format"
 msgstr "Formát datumu"
 
 msgid "Date sort"
-msgstr "Seřadit podle datumu"
+msgstr "seřadit podle datumu"
 
 msgid "Date sort ascending (D+)"
-msgstr "Seřadit vzestupně"
+msgstr "seřadit vzestupně"
 
 msgid "Date sort descending (D-)"
-msgstr "Seřadit sestupně"
+msgstr "seřadit sestupně"
 
 msgid "Debug output file name"
 msgstr "Nastavit název výstupního souboru"
@@ -292,6 +304,16 @@ msgstr "Deaktivovat EMC centrum"
 msgid "Display directory reading text"
 msgstr "Zvýraznit složku <vybraného seznamu...> "
 
+msgid "Do you really want to lock the directory %s and all its subfolders?"
+msgstr "Chcete uzamknout složku %s a všechny její podsložky ?"
+
+msgid ""
+"Do you really want to lock the directory /media/hdd/movie and all its "
+"subfolders?"
+msgstr ""
+"Chcete uzamknout složku /media/hdd/movie\n"
+"a všechny její podsložky ?"
+
 msgid ""
 "Do you really want to remove your bookmark\n"
 "%s?"
@@ -322,6 +344,9 @@ msgstr "Neobsahuje žádné skripty !"
 msgid "Download cutlist from Cutlist.at"
 msgstr "Stáhnout ořezové značky z Cutlist.at"
 
+msgid "Download:"
+msgstr "Načteno :"
+
 msgid "Download: %s"
 msgstr "Stáhnout:  %s"
 
@@ -334,15 +359,21 @@ msgstr "E2 záložky"
 msgid "E2 Restart"
 msgstr "E2 restart"
 
-msgid "EMC Bookmarks"
-msgstr "EMC záložky"
-
 msgid ""
 "EMC\n"
 "Zap to Live TV of record"
 msgstr ""
 "EMC centrum ...\n"
 "Zapnout záznam Live TV "
+
+msgid "EMC Bookmarks"
+msgstr "EMC záložky"
+
+msgid "EMC Cover search"
+msgstr "EMC - vyhledávání potisků"
+
+msgid "EMC Cover search setup"
+msgstr "EMC - nastavení vyhledávání potisků"
 
 msgid ""
 "EMC Enigma2 auto-restart launching, continue? Select no to postpone by one "
@@ -364,7 +395,7 @@ msgid "EMC output directory"
 msgstr "EMC - výstupní složka"
 
 msgid "EMC path access limit"
-msgstr "EMC - omezení přístupu ke struktuře vůči základní složce"
+msgstr "EMC - přístup ke struktuře vůči zákl.složce"
 
 msgid "EMC re-open list after Movie end"
 msgstr "Přejít po \"Exit\" videa zpět do výchozí složky, ne=do TV"
@@ -397,6 +428,9 @@ msgstr "Povolit aut.titulky při přehrávání"
 msgid "Enable remote recordings"
 msgstr "Povolit vzdálené nahrávání"
 
+msgid "Enhanced Movie Center configuration"
+msgstr "Konfigurace mediálního centra EMC"
+
 msgid "Enigma auto-restart is currently not active."
 msgstr "Aut.restart Enigmy není momentálně aktivní !"
 
@@ -412,8 +446,14 @@ msgstr "Aut.restart Enigmy - každý den"
 msgid "Enter name for new directory."
 msgstr "Název pro novou složku"
 
+msgid "Enter name for new directory:"
+msgstr "Název nové složky :"
+
 msgid "Exist"
 msgstr "Existuje"
+
+msgid "Exist:"
+msgstr "Existuje :"
 
 msgid "Exist: %s"
 msgstr "Existuje: %s"
@@ -471,6 +511,11 @@ msgstr "Nápověda - vyprázdnění seznamu automatického časovače "
 msgid "HELP_Blue button function"
 msgstr ""
 "Nápověda - k vybrané položce může být přiřazena funkce modrého tlačítka  "
+
+msgid "HELP_Bouquet buttons behaviour"
+msgstr ""
+"Nápověda - Chování tlačítka Bouquet - skok na začátek/konec seznamu nebo "
+"vynechat jen několik položek"
 
 msgid "HELP_Configure in etc\\enigma2\\emc-topdir.cfg"
 msgstr "Nápověda - Konfigurace v etc\\enigma2\\emc-topdir.cfg"
@@ -613,13 +658,16 @@ msgstr "Nápověda - výběr jazyka"
 msgid "HELP_Leave Movie with Exit"
 msgstr "Nápověda - přerušení přehrávání také tlačítkem Exit"
 
+msgid "HELP_List entries to skip"
+msgstr "Nápověda - přeskočit více zadání v seznamu"
+
 msgid "HELP_Listbox is skin able"
 msgstr ""
 "Nápověda - změna vzhledu boxu podle skinu (pouze <widget name=\"list\"). \n"
 "Jinak je vzhled nastavený v EMC."
 
 msgid "HELP_LongInfo Button"
-msgstr "Nápověda - Info přes dlouhý stisk tlačítka."
+msgstr "Nápověda - Info přes dlouhý stisk tlačítka"
 
 msgid "HELP_Mark new recordings with a star"
 msgstr "Nápověda - označení nového záznamu hvězdičkou"
@@ -700,13 +748,13 @@ msgstr ""
 "restartuje,\n"
 "bude tato nahrávka znovu aut.pokračovat od poslední značky. "
 
+msgid "HELP_Show Directories within the movielist"
+msgstr "Nápověda - zobrazení složek bez videa"
+
 msgid "HELP_Show E2 Bookmarks in movielist"
 msgstr ""
 "Nápověda - zobrazení všech virtuálních seznamů ze složky \"Movie\" \n"
 "se všemi záložkami Enigma2"
-
-msgid "HELP_Show Directories within the movielist"
-msgstr "Nápověda - zobrazení složek bez videa"
 
 msgid "HELP_Show EMC in extensions menu"
 msgstr ""
@@ -737,6 +785,9 @@ msgstr "Nápověda - zobrazení ikon v seznamu podle stavu videa"
 
 msgid "HELP_Show movie preview"
 msgstr "Nápověda - zobrazení náhledu videa."
+
+msgid "HELP_Show movie preview delay"
+msgstr "Nápověda - zobrazení prodlevy při startu náhledu"
 
 msgid "HELP_Show movie progress"
 msgstr ""
@@ -827,6 +878,50 @@ msgstr "Nápověda - nastavení pro aut.vyprázdňování koše"
 msgid "HELP_separator_hide&performance"
 msgstr "Nápověda - nastavení pro skrývání souborů a složek "
 
+msgid "Help_Configured Directories at the top of movielist"
+msgstr ""
+"Nápověda - konfigurace složek nahoře v seznamu videa.\n"
+"V \"etc_dvdapp2_emc-topdir.cfg\"."
+
+msgid "Help_Daily auto-start"
+msgstr "Nápověda - denně startovat automaticky "
+
+msgid "Help_Default sort mode"
+msgstr "Nápověda - předvolené seřazení"
+
+msgid "Help_LongInfo Button"
+msgstr "Nápověda - dlouhé tlačítko \"Info\""
+
+msgid "Help_Mark new recordings with a star"
+msgstr "Nápověda - označit nově nahraná videa hvězdičkou"
+
+msgid "Help_Movie preview dalay in ms"
+msgstr "Nápověda - doba \"náhledu\" videa v ms"
+
+msgid "Help_Movie preview offset in seconds"
+msgstr "Nápověda - odstup mezi \"náhledy\" v sec."
+
+msgid "Help_Show Bookmarks in movielist"
+msgstr "Nápověda - zobrazit značky v seznamu videa"
+
+msgid "Help_Show Cover"
+msgstr "Nápověda - zobrazit \"potisk\""
+
+msgid "Help_Show Directories within the movielist"
+msgstr "Nápověda - zobrazit složky i bez videa"
+
+msgid "Help_Show movie preview"
+msgstr "Nápověda - zobrazit \"náhled\" videa"
+
+msgid "Help_Show real length of running records"
+msgstr "Nápověda - zobrazit reálnou délku nahrávaného videa"
+
+msgid "Help_auto-start window begin"
+msgstr "Nápověda - aut.spustit okno v..."
+
+msgid "Help_auto-start window end"
+msgstr "Nápověda - aut.zavřít okno v..."
+
 msgid "Hide configured entries"
 msgstr "Skrýt konfiguraci položek"
 
@@ -835,6 +930,9 @@ msgstr "Skrýt vybraný soubor při mazání"
 
 msgid "Hide movies being moved"
 msgstr "Skrýt vybraný soubor při přesunu"
+
+msgid "HomeEnd"
+msgstr "začátek / konec"
 
 msgid "How many days files may remain in trashcan"
 msgstr "Kolik dnů ponechat data v koši ?"
@@ -895,6 +993,9 @@ msgstr "Přerušit přehrávání tlačítkem Exit"
 msgid "Link"
 msgstr "odkaz"
 
+msgid "List entries to skip"
+msgstr "Přeskočit v seznamu x řádků"
+
 msgid "Listbox is skin able"
 msgstr "Povolit změnu vzhledu boxu"
 
@@ -914,10 +1015,13 @@ msgid "Location:"
 msgstr "Umístění :"
 
 msgid "LongInfo Button"
-msgstr "Dlouhé tlačítko \"Info\""
+msgstr "dlouhé tlačítko \"Info\""
 
 msgid "MM/DD HH:MM"
 msgstr "MM/DD HH:MM"
+
+msgid "Manage Cover"
+msgstr "Správa potisku"
 
 msgid "Mark all movies"
 msgstr "Označit všechny soubory"
@@ -940,17 +1044,31 @@ msgstr "Přesunout kurzor o stránku nahoru"
 msgid "Move cursor to the end"
 msgstr "Přesunout kurzor na konec"
 
+msgid ""
+"Move cursor to the end / Move cursor x entries down / Switch Folders in "
+"Movie Home (down)"
+msgstr ""
+"Přesunout kurzor na konec / Kurzor o x řádků dolů / Přepnout složky v Movie "
+"Home (dolů)"
+
 msgid "Move cursor to the top"
 msgstr "Přesunout kurzor na začátek"
+
+msgid ""
+"Move cursor to the top / Move cursor x entries up / Switch Folders in Movie "
+"Home (up)"
+msgstr ""
+"Přesunout kurzor nahoru / Kurzor o x řádků nahoru / Přepnout složky v Movie "
+"Home (nach oben)"
 
 msgid "Move cursor up"
 msgstr "Přesunout kurzor nahoru"
 
-msgid "Move file(s): Choose directory"
-msgstr "Přesun souborů - vyberte složku"
-
 msgid "Move file(s):"
 msgstr "Přesun souboru :"
+
+msgid "Move file(s): Choose directory"
+msgstr "Přesun souborů - vyberte složku"
 
 msgid "Move finished movies in trashcan"
 msgstr "Přesunout shlédnuté soubory do koše"
@@ -959,13 +1077,13 @@ msgid "Move selected movie(s)"
 msgstr "Přesunout vybraná videa"
 
 msgid "Movie Color"
-msgstr "Barva videa"
+msgstr "video v barvách"
 
 msgid "Movie Selection Menu"
 msgstr "MENU EMC centrum "
 
 msgid "Movie home"
-msgstr "Výchozí složka"
+msgstr "výchozí složka"
 
 msgid "Movie home / Play last (configurable)"
 msgstr "Složka videa (Movie) / poslední přehrávané  (lze konfigurovat)"
@@ -976,8 +1094,14 @@ msgstr "Začít na základní složce videa"
 msgid "Movie home home path"
 msgstr "Základní složka videa je umístěna v..."
 
+msgid "Movie preview dalay in ms"
+msgstr "Doba \"náhledu\" videa v ms"
+
 msgid "Movie preview delay in ms"
 msgstr "Zpoždění \"náhledu\" videa v ms"
+
+msgid "Movie preview delay in seconds"
+msgstr "Prodleva startu náhledu pod 10 sec."
 
 msgid "Movietitle:"
 msgstr "Titulek videa :"
@@ -987,6 +1111,9 @@ msgstr "Další aut.restart Enigmy v..."
 
 msgid "No"
 msgstr "Ne"
+
+msgid "No Cover:"
+msgstr "Bez potisku:"
 
 msgid "No Cover: %s"
 msgstr "Ne potisk : %s"
@@ -998,7 +1125,7 @@ msgid "No functionality set..."
 msgstr "Žádná funkce není nastavena..."
 
 msgid "No override"
-msgstr "Nepoužívat"
+msgstr "nepoužívat"
 
 msgid "No resume below 10 seconds"
 msgstr "Ignorovat značky pod rozsah 10 sec."
@@ -1020,7 +1147,7 @@ msgid "OK"
 msgstr "OK"
 
 msgid "Off"
-msgstr "vypnuté"
+msgstr "vypnuto"
 
 msgid "Open E2 Bookmark path"
 msgstr "Nastavit cesty k úložišti"
@@ -1038,7 +1165,7 @@ msgid "Open menu"
 msgstr "Otevřít menu"
 
 msgid "Percent (%)"
-msgstr "Procent %"
+msgstr "procenta %"
 
 msgid "Performance"
 msgstr "Výkon"
@@ -1053,7 +1180,7 @@ msgid "Play All starting"
 msgstr "Spustit vše"
 
 msgid "Play last"
-msgstr "Přehrát poslední"
+msgstr "přehrát poslední"
 
 msgid "Play last movie starting"
 msgstr "Přehrát poslední video"
@@ -1074,25 +1201,28 @@ msgid "Primary playback subtitle language"
 msgstr "První jazyk titulků při přehrávání"
 
 msgid "Progress sort"
-msgstr "Řadit podle pořadí"
+msgstr "podle pořadí"
 
 msgid "Progress sort ascending (P+)"
-msgstr "Řadit podle pořadí vzestupně (P+)"
+msgstr "pořadí vzestupně (P+)"
 
 msgid "Progress sort descending (P-)"
-msgstr "Řadit podle pořadí sestupně (P-)"
+msgstr "pořadí sestupně (P-)"
 
 msgid "ProgressBar"
-msgstr "Průběh"
+msgstr "pásek"
 
 msgid "Quick-button"
-msgstr "Tlačítko Quick"
+msgstr "tlačítko \"Quick\""
 
 msgid "Radio-button"
-msgstr "Tlačítko Radio"
+msgstr "tlačítko \"Radio\""
 
 msgid "Reading directory..."
 msgstr "Načítám složky..."
+
+msgid "Really close without saving settings?"
+msgstr "Opravdu zavřít bez uložení ?"
 
 msgid "Reboot"
 msgstr "Restart"
@@ -1166,6 +1296,9 @@ msgstr "Hledat stránku :"
 msgid "Search site set to: %s"
 msgstr "Hledané místo nastaveno na: %s"
 
+msgid "Search site:"
+msgstr "Hledat v místě :"
+
 msgid "Searching for %s"
 msgstr "Hledat %s"
 
@@ -1180,6 +1313,12 @@ msgstr "Druhá audio stopa"
 
 msgid "Secondary playback subtitle language"
 msgstr "Druhý jazyk titulků"
+
+msgid "Seek backward"
+msgstr "Rychle zpět"
+
+msgid "Seek forward"
+msgstr "Rychle dopředu"
 
 msgid "Set permanent sort"
 msgstr "Nastavit pevné seřazení"
@@ -1196,11 +1335,11 @@ msgstr "Zobrazit potisk"
 msgid "Show Cut-Nr if exist"
 msgstr "Zobrazit značky střihu, pokud existují"
 
-msgid "Show E2 Bookmarks in movielist"
-msgstr "Zobrazit umístění E2 v seznamu videa"
-
 msgid "Show Directories within the movielist"
 msgstr "Zobrazit složky i bez videa"
+
+msgid "Show E2 Bookmarks in movielist"
+msgstr "Zobrazit umístění E2 v seznamu videa"
 
 msgid "Show EMC in extensions menu"
 msgstr "Zobrazit EMC modul v rozšířeném menu"
@@ -1253,6 +1392,15 @@ msgstr "Přehrát všechno s náhodným výběrem"
 msgid "Single Search:"
 msgstr "Hledat jednou :"
 
+msgid "Single search"
+msgstr "Samostatné vyhledání"
+
+msgid "Single search:"
+msgstr "Jednoduché vyhledávání :"
+
+msgid "Skip"
+msgstr "přeskočit řádky"
+
 msgid ""
 "Skipping movie, the file does not exist.\n"
 "\n"
@@ -1288,7 +1436,7 @@ msgid "TMDB Info"
 msgstr "TMDB info"
 
 msgid "TV-button"
-msgstr "Tlačítko TV"
+msgstr "tlačítko \"TV\""
 
 msgid "Tertiary playback audio language"
 msgstr "Třetí audio stopa"
@@ -1296,11 +1444,24 @@ msgstr "Třetí audio stopa"
 msgid "Tertiary playback subtitle language"
 msgstr "Třetí jazyk titulků"
 
+msgid ""
+"The directory %s is already locked. Do you want to unlock it and all its "
+"subfolders?"
+msgstr "Složka %s je již uzamčena. Chcete ji uvolnit a všechny podsložky ?"
+
+msgid "This element belongs to a locked folder and cannot be deleted!"
+msgstr "Tento prvek patří do uzamčené složky a nelze ho odstranit ! "
+
+msgid "This folder is locked or contains a locked subfolder, unlock it first!"
+msgstr ""
+"Tato složka je uzamčena nebo obsahuje uzamčené podsložky. Nejprve je "
+"uvolněte."
+
 msgid "Timeshift-button"
-msgstr "Tlačítko časovače "
+msgstr "tlačítko \"časovače\""
 
 msgid "Title"
-msgstr "Titulek"
+msgstr "titulek"
 
 msgid "Toggle service selection"
 msgstr "Přepnout službu"
@@ -1351,7 +1512,7 @@ msgid "VLC-Server"
 msgstr "VLC server"
 
 msgid "Video-button"
-msgstr "Tlačítko \"Video\" "
+msgstr "tlačítko \"Video\" "
 
 msgid "YYYY/MM/DD"
 msgstr "YYYY/MM/DD"
@@ -1376,6 +1537,13 @@ msgid ""
 msgstr ""
 "Sat.přijímač bude restartovat systém, pokračovat ?\n"
 " Volba \"ne\" to oddálí o hodinu."
+
+msgid ""
+"Your Box is about to go into Standby, continue?\n"
+" Select no to delay one hour"
+msgstr ""
+"EMC Enigma2 se má aut.restartovat; jak pokračovat ? NE odloží restart o "
+"jednu hodinu."
 
 msgid "Zap to channel after record EOF"
 msgstr "Přehrávat záznam po zastavení (konec rychlení, skok) "
@@ -1438,7 +1606,7 @@ msgid "ofdb.de"
 msgstr "ofdb.de"
 
 msgid "off"
-msgstr "vypnuté"
+msgstr "vypnuto"
 
 msgid "rewind to the previous chapter"
 msgstr "Přejít na předchozí kapitolu"
@@ -1472,99 +1640,3 @@ msgstr "Otevřít rozšířené menu..."
 
 msgid "yes"
 msgstr "ano"
-
-msgid "Help_Daily auto-start"
-msgstr "Nápověda - denně startovat automaticky "
-
-msgid "Help_LongInfo Button"
-msgstr "Nápověda - dlouhé tlačítko \"Info\""
-
-msgid "Help_Default sort mode"
-msgstr "Nápověda - předvolené seřazení"
-
-msgid "Help_Show Directories within the movielist"
-msgstr "Nápověda - zobrazit složky i bez seznamu videa"
-
-msgid "Help_Show Bookmarks in movielist"
-msgstr "Nápověda - zobrazit značky v seznamu videa"
-
-msgid "Help_Mark new recordings with a star"
-msgstr "Nápověda - označit nově nahraná videa hvězdičkou"
-
-msgid "Help_Show Cover"
-msgstr "Nápověda - zobrazit \"potisk\""
-
-msgid "Cover is Saved."
-msgstr "\"Potisk\" byl uložený"
-
-msgid "Manage Cover"
-msgstr "Zpřesnění kanálu"
-
-msgid "Single search"
-msgstr "Zpřesnění kanálu"
-
-msgid "Single search:"
-msgstr "Jednoduché vyhledávání :"
-
-msgid "EMC Cover search setup"
-msgstr "EMC - nastavení vyhledávání potisků"
-
-msgid "EMC Cover search"
-msgstr "EMC - vyhledávání potisků"
-
-msgid "Search site:"
-msgstr "Hledat v místě :"
-
-msgid "Help_Show movie preview"
-msgstr "Nápověda - zobrazit \"náhled\" videa"
-
-msgid "Help_Show real length of running records"
-msgstr "Nápověda - zobrazit reálnou délku nahrávaného videa"
-
-msgid "Help_Configured Directories at the top of movielist"
-msgstr ""
-"Nápověda - konfigurace složek nahoře v seznamu videa.\n"
-"V \"etc_dvdapp2_emc-topdir.cfg\"."
-
-msgid "Movie preview dalay in ms"
-msgstr "Doba \"náhledu\" videa v ms"
-
-msgid "Help_Movie preview dalay in ms"
-msgstr "Nápověda - doba \"náhledu\" videa v ms"
-
-msgid "Help_Movie preview offset in seconds"
-msgstr "Nápověda - odstup mezi \"náhledy\" v sec."
-
-msgid "Help_auto-start window begin"
-msgstr "Nápověda - aut.spustit okno v..."
-
-msgid "Help_auto-start window end"
-msgstr "Nápověda - aut.zavřít okno v..."
-
-msgid "Enhanced Movie Center configuration"
-msgstr "Konfigurace mediálního centra EMC"
-
-msgid "Movie preview delay in seconds"
-msgstr "Prodleva startu náhledu pod 10 sec."
-
-msgid "HELP_Show movie preview delay"
-msgstr "Nápověda - zobrazení prodlevy startu náhledu"
-
-msgid "Exist:"
-msgstr "Existuje :"
-
-msgid "No Cover:"
-msgstr "Bez potisku:"
-
-msgid "Download:"
-msgstr "Načteno :"
-
-msgid "(Un-)Lock Directory"
-msgstr "Zamknout/odemknout složku"
-
-msgid ""
-"Do you really want to lock the directory /media/hdd/movie and all its "
-"subfolders?"
-msgstr ""
-"Chcete uzamknout složku /media/hdd/movie\n"
-"a všechny podsložky ?"
