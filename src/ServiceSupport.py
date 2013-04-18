@@ -161,12 +161,41 @@ class Info:
 		#															or eit and eit.getEitDescription() \
 		#															or ""
 		## meta file has no extendeddescrition 
+#		self.__extendeddescription = eit and eit.getEitDescription() \
+#																	or meta and meta.getMetaDescription() \
+#																	or "" 
+
+		#Show txt-Information in ExtendedDescription if meta but no eit
 		self.__extendeddescription = eit and eit.getEitDescription() \
-																	or meta and meta.getMetaDescription() \
 																	or ""
-		
+
+		#Show Path in ExtendedDescription if no eit or txt file
+		#ToDo: make configurable in EMC Setup ?
+		show_path_extdescr = False		#True
+
 		if not self.__extendeddescription:
 			if isreal:
+				txtpath = ""
+				if config.EMC.check_dvdstruct.value and os.path.basename(path.lower()).endswith("video_ts"):
+					folderpath = os.path.split(path)[0]
+					foldername = os.path.basename(folderpath)
+					txtpath = os.path.join(folderpath, foldername) + ".txt"								#dvdfolder/dvdfoldername.txt
+				else:
+					foldername = os.path.basename(path)
+					txtpath = os.path.join(path, foldername) + ".txt"											#folder/foldername.txt
+			else:
+				#No Description in *.eit file or no *.eit file exists
+				#Try reading description from *.txt file
+				txtpath = os.path.splitext(path)[0] + ".txt"
+
+			if os.path.exists(txtpath):
+				txtdescarr = open(txtpath).readlines()
+				txtdesc = ""
+				for line in txtdescarr:
+					txtdesc += line
+				self.__extendeddescription = txtdesc
+
+			elif show_path_extdescr:
 				if config.EMC.movie_real_path.value:
 					desc = os.path.realpath(path)
 				else:
@@ -185,16 +214,9 @@ class Info:
 						desc = path.decode("iso-8859-1").encode("utf-8")
 				self.__extendeddescription = desc
 			else:
-				#No Description in *.eit file or no *.eit file exists
-				#Try reading description from *.txt file
-				txtpath = os.path.splitext(path)[0] + ".txt"
-				if os.path.exists(txtpath):
-					txtdescarr = open(txtpath).readlines()
-					txtdesc = ""
-					for line in txtdescarr:
-						txtdesc += line
-					self.__extendeddescription = txtdesc
-		
+#				self.__extendeddescription = "No eit or txt file found"
+				self.__extendeddescription = ""
+
 		self.__id = 0
 		
 		#TODO move upto ServiceInfo
