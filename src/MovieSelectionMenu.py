@@ -83,6 +83,8 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 			self.menu.append((_("Mark all movies"), boundFunction(self.close, "markall")))
 			self.menu.append((_("Remove rogue files"), boundFunction(self.remRogueFiles)))
 			
+			self.menu.append((_("Delete cut file"), boundFunction(self.deleteCutFileQ)))
+			
 			self.menu.append((_("Create link"), boundFunction(self.createLink, currentPath)))
 			self.menu.append((_("Create directory"), boundFunction(self.createDir, currentPath)))
 			
@@ -392,3 +394,12 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 				parameter = "reload"
 		# Call baseclass function
 		Screen.close(self, parameter)
+		
+	def deleteCutFileQ(self):
+		self.session.openWithCallback(self.deleteCutFile, MessageBox, "Do you really want to delete the cut file?")
+
+	def deleteCutFile(self, confirm):
+		if confirm:
+			file = self.service.getPath() + ".cuts"
+			emcTasker.shellExecute('rm -f "' + file + '"')		
+		self.close("reload")
