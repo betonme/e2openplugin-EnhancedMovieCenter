@@ -56,9 +56,10 @@
 		<key id="KEY_MENU" mapto="EMCMENU" flags="b" />
 		<key id="KEY_INFO" mapto="EMCINFO" flags="b" />
 		<key id="KEY_MENU" mapto="EMCMENUL" flags="l" />
-		<key id="KEY_INFO" mapto="EMCINFOL" flags="l" /> 
+		<key id="KEY_INFO" mapto="EMCINFOL" flags="l" />
 
-		<key id="KEY_RED" mapto="EMCRed" flags="m" />
+		<key id="KEY_RED" mapto="EMCRed" flags="b" />
+		<key id="KEY_RED" mapto="EMCREDL" flags="l" />
 		<key id="KEY_GREEN" mapto="EMCGREEN" flags="b" />
 		<key id="KEY_GREEN" mapto="EMCGREENL" flags="l" />
 		<key id="KEY_YELLOW" mapto="EMCYELLOW" flags="b" />

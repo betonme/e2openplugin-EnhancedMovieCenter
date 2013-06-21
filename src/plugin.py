@@ -155,31 +155,51 @@ progress_choices = [("PB",	_("ProgressBar")),
 					("MC",	_("Movie Color")),
 					("",	_("Off")) ]
 
-blueyellowgreen_choices = 	[("MH",	_("Movie home")),
-							 ("MV", _("Move Movie")),
+#blueyellowgreen_choices = 	[("MH",	_("Movie home")),
+#							 ("MV", _("Move Movie")),
+#							 ("PL",	_("Play last")),
+#							 ("CS",	_("Cover Search")),
+#							 ("MI",	_("Download Movie Info")),
+#							 ("CP", _("Copy File")),
+#							 ("E2", _("Open E2 bookmarks"))]
+
+colorbutton_choices = 	[("MH",	_("Movie home")),
+							 ("DL",	_("Delete")),
+							 ("MV",	_("Move Movie")),
 							 ("PL",	_("Play last")),
 							 ("CS",	_("Cover Search")),
 							 ("MI",	_("Download Movie Info")),
-							 ("CP", _("Copy File")),
-							 ("E2", _("Open E2 bookmarks"))]
-						
-blue_choices = blueyellowgreen_choices
-yellow_choices = blueyellowgreen_choices
-green_choices = copy.copy(blueyellowgreen_choices)
+							 ("CP",	_("Copy File")),
+							 ("E2",	_("Open E2 bookmarks")),
+							 ("TC",	_("Toggle Cover Button")),
+							 ("",		_("Button disabled"))]
+
+red_choices = colorbutton_choices
+green_choices = copy.copy(colorbutton_choices)
 green_choices.extend([("ST", _("Sort Options"))])
+yellow_choices = colorbutton_choices
+blue_choices = colorbutton_choices
 
-longblueyellowgreen_choices = copy.copy(blueyellowgreen_choices)
+#green_choices = copy.copy(blueyellowgreen_choices)
+#longblueyellowgreen_choices = copy.copy(blueyellowgreen_choices)
+
+longcolorbutton_choices = 	[("MH",	_("Movie home")),
+							 ("DL",	_("Delete")),
+							 ("MV",	_("Move Movie")),
+							 ("PL",	_("Play last")),
+							 ("CS",	_("Cover Search")),
+							 ("MI",	_("Download Movie Info")),
+							 ("CP",	_("Copy File")),
+							 ("E2",	_("Open E2 bookmarks")),
+#							 ("TC",	_("Toggle Cover Button")),
+							 ("",		_("Button disabled"))]
+
 #longblueyellowgreen_choices.extend()
-longblue_choices = blueyellowgreen_choices
-longyellow_choices = blueyellowgreen_choices
-#longgreen_choices = blueyellowgreen_choices
 
-# todo add (green) sort options & modes to emc-menu
-togglecover_choices = 	[(False,	_("Off")),
-						("RD", 	_("Red")),
-#						("GR",	_("Green")),
-						("YL",	_("Yellow")),
-						("BL",	_("Blue"))]
+longred_choices = longcolorbutton_choices
+#longgreen_choices = blueyellowgreen_choices
+longyellow_choices = longcolorbutton_choices
+longblue_choices = longcolorbutton_choices
 
 move_choices = [("d",	_("down")),
 				("b",	_("up/down")),
@@ -246,18 +266,18 @@ config.EMC.folder                    = ConfigTextWOHelp(default = "/hdd/EMC", fi
 config.EMC.debugfile                 = ConfigTextWOHelp(default = "output.txt", fixed_size = False, visible_width= 22)
 config.EMC.ml_disable                = ConfigYesNo(default = False)
 # Color keys selection list array dict: longdescription, shortdescription, functionpointer
-#config.EMC.movie_redfunc 
-config.EMC.movie_greenfunc			 = ConfigSelection(default = "ST", choices = green_choices)
+config.EMC.movie_redfunc             = ConfigSelection(default = "DL", choices = red_choices)
+config.EMC.movie_greenfunc           = ConfigSelection(default = "ST", choices = green_choices)
 config.EMC.movie_yellowfunc          = ConfigSelection(default = "MV", choices = yellow_choices)
 config.EMC.movie_bluefunc            = ConfigSelection(default = "MH", choices = blue_choices)
-#config.EMC.movie_longgreenfunc		 = ConfigSelection(default = "CS", choices = longgreen_choices)
+config.EMC.movie_longredfunc         = ConfigSelection(default = "DL", choices = longred_choices)
+#config.EMC.movie_longgreenfunc       = ConfigSelection(default = "CS", choices = longgreen_choices)
 config.EMC.movie_longyellowfunc      = ConfigSelection(default = "MV", choices = longyellow_choices)
 config.EMC.movie_longbluefunc        = ConfigSelection(default = "MH", choices = longblue_choices)
 config.EMC.CoolStartHome             = ConfigYesNo(default = False)
 config.EMC.movie_descdelay           = ConfigSelectionNumber(50, 60000, 50, default= 200)
 config.EMC.movie_cover               = ConfigYesNo(default = False)
 config.EMC.movie_cover_delay         = ConfigSelectionNumber(50, 60000, 50, default= 500)
-config.EMC.toggle_cover_button       = ConfigSelection(default = False, choices = togglecover_choices)
 config.EMC.movie_preview             = ConfigYesNo(default = False)
 config.EMC.movie_preview_delay       = ConfigSelectionNumber(50, 60000, 50, default= 2000)
 config.EMC.movie_preview_offset      = ConfigSelectionNumber(0, 60000, 1, default= 5)

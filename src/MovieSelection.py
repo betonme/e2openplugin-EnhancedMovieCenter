@@ -187,6 +187,7 @@ class SelectionEventInfo:
 		# Movie Cover
 		self["Cover"] = Pixmap()
 		self["CoverBg"] = Pixmap()
+		self["CoverBg"].hide()
 
 	def initPig(self):
 		if not (config.EMC.movie_cover.value or config.EMC.movie_preview.value):
@@ -283,18 +284,24 @@ class SelectionEventInfo:
 			self["Cover"].hide()
 #			self["CoverBg"].hide()				#Hide VideoPicture when scrolling movielist
 
+	def showCoverCallback_org(self, picInfo=None):
+		if self.picload and picInfo:
+			ptr = self.picload.getData()
+			if ptr != None:
+				self["Cover"].instance.setPixmap(ptr.__deref__())
+				self["Cover"].show()
+				self["CoverBg"].show()
+			del self.picload
+
 	def showCoverCallback(self, picInfo=None):
 		if self.picload and picInfo:
 			ptr = self.picload.getData()
 			if ptr != None:
 				self["Cover"].instance.setPixmap(ptr.__deref__())
-				if config.EMC.toggle_cover_button.value:
+				if config.EMC.movie_cover.value:
 					if self.cover:
 						self["Cover"].show()
 						self["CoverBg"].show()
-				else:
-					self["Cover"].show()
-					self["CoverBg"].show()
 			del self.picload
 
 	# Movie preview
@@ -353,6 +360,11 @@ class SelectionEventInfo:
 					#	subs.enableSubtitles(None, None)
 					DelayedFunction(50, boundFunction(self.dvdPlayerWorkaround))
 				self["Video"].show()
+				#try: show preview although cover is on
+				if self.cover:
+					self["Cover"].hide()
+					self["CoverBg"].hide()
+					self.toggleCover()
 			else:
 				# Start LiveTV
 				if self.lastservice:
@@ -430,60 +442,62 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		self["key_yellow"] = Button()
 		self["key_blue"] = Button()
 
-		if config.EMC.toggle_cover_button.value:
+		if config.EMC.movie_cover.value:
 			self.cover = True
 		else:
 			self.cover = False
 
-		redhelptext, greenhelptext, greenlonghelptext, yellowhelptext, bluehelptext = self.initButtons()
+		helptext = self.initButtons()
 
 		self["actions"] = HelpableActionMap(self, "PluginMovieSelectionActions",
 			{
-				"EMCOK":				(self.entrySelected,		_("Play selected movie(s)")),
-#				"EMCOKL":				(self.unUsed,				"-"),
-				"EMCPLAY":			(self.playAll,				_("Play All")),
-				"EMCSHUFFLE":		(self.shuffleAll,			_("Shuffle All")),
-				"EMCEXIT":			(self.abort, 				_("Close EMC")),
-				"EMCMENU":			(self.openMenu,				_("Open menu")),
-				"EMCINFO":			(self.showEventInformation,	_("Show event info")),
-				"EMCINFOL":			(self.CoolInfoLong,			_("IMDBSearch / TMDBInfo / CSFDInfo")),
-				"EMCRed":				(self.redFunc,					redhelptext),													#_("Delete file or empty dir")),
-#				"EMCRedL":			(self.unUsed,				"-"),
-				"EMCGREEN":			(self.greenFuncShort,		greenhelptext),												#_("customizable green button")),
-				"EMCGREENL":		(self.greenFuncLong,		greenlonghelptext),										#_("customizable green button")),
-				"EMCYELLOW":		(self.yellowFunc,				yellowhelptext),											#_("customizable yellow button")),
-#				"EMCYELLOWL":		(self.copyMovie,			_("Copy selected movie(s)")),
-				"EMCYELLOWL":		(self.yellowFuncLong,		_("customizable long yellow button")),
-				"EMCBLUE":			(self.blueFunc,					bluehelptext),												#_("customizable buttonblue ")),
-#				"EMCBlueL":			(self.openE2Bookmarks,		_("Open E2 bookmarks")),
-				"EMCBlueL":			(self.blueFuncLong,			_("customizable long blue button")),
-#				"EMCBlueL":			(self.openEMCBookmarks,		_("Open EMC bookmarks")),
-				"EMCLeft":			(self.pageUp,					_("Move cursor page up")),
-				"EMCRight":			(self.pageDown,				_("Move cursor page down")),
-				"EMCUp":			(self.moveUp,					_("Move cursor up")),
-				"EMCDown":			(self.moveDown,				_("Move cursor down")),
-				"EMCBqtPlus":		(self.bqtPlus,				_("Move cursor to the top / Move cursor x entries up / Switch Folders in Movie Home (up)")),
-				"EMCBqtMnus":		(self.bqtMnus,				_("Move cursor to the end / Move cursor x entries down / Switch Folders in Movie Home (down)")),
-				"EMCArrowNext":		(self.CoolForward,			_("Directory forward")),
-#				"EMCArrowNextL":	(self.unUsed,				"-"),
-				"EMCArrowPrevious":	(self.CoolBack,				_("Directory back")),
-#				"EMCArrowPreviousL":(self.directoryUp,			_("Directory up")),
-				"EMCVIDEOB":		(self.toggleSelectionList,	_("Toggle service selection")),
-				"EMCVIDEOL":		(self.resetSelectionList,	_("Remove service selection")),
-				"EMCAUDIO":			(self.openMenuPlugins,		_("Available plugins menu")),
-#				"EMCAUDIOL":		(self.unUsed,				"-"),
-				"EMCMENUL":			(self.openMenuPlugins,		_("Available plugins menu")),
-				"EMCTV":			(self.triggerReloadList,	_("Reload movie file list")),
-				"EMCTVL":			(self.CoolTimerList,		_("Open Timer List")),
-				"EMCRADIO":			(self.toggleProgress,		_("Toggle viewed / not viewed")),
-#				"EMCRADIOL":		(self.unUsed,				"-"),
-				"EMCTEXT":			(self.multiSelect,			_("Start / end multiselection")),
-#				"EMCTEXTL":			(self.unUsed,				"-"),
-				"0":				(self.CoolKey0,				"-"),
-				"4":				(self.CoolAVSwitch,			"-"),
-				"7":				(self.CoolTVGuide,			"-"),
-				"8":				(self.CoolSingleGuide,		"-"),
-				"9":				(self.CoolEasyGuide,		"-"),
+				"EMCOK":				(self.entrySelected,					_("Play selected movie(s)")),
+#				"EMCOKL":				(self.unUsed,									"-"),
+				"EMCPLAY":			(self.playAll,								_("Play All")),
+				"EMCSHUFFLE":		(self.shuffleAll,							_("Shuffle All")),
+				"EMCEXIT":			(self.abort, 									_("Close EMC")),
+				"EMCMENU":			(self.openMenu,								_("Open menu")),
+				"EMCINFO":			(self.showEventInformation,		_("Show event info")),
+				"EMCINFOL":			(self.CoolInfoLong,						_("IMDBSearch / TMDBInfo / CSFDInfo")),
+
+				"EMCRed":				(self.redFunc,								helptext[0]), 							#redhelptext),
+				"EMCGREEN":			(self.greenFuncShort,					helptext[2]), 							#greenhelptext),
+				"EMCYELLOW":		(self.yellowFunc,							helptext[4]), 							#yellowhelptext),
+				"EMCBLUE":			(self.blueFunc,								helptext[6]), 							#bluehelptext),
+
+				"EMCREDL":			(self.redFuncLong,						helptext[1]), 							#redlonghelptext),
+				"EMCGREENL":		(self.greenFuncLong,					helptext[3]), 							#greenlonghelptext),
+				"EMCYELLOWL":		(self.yellowFuncLong,					helptext[5]), 							#yellowlonghelptext),
+				"EMCBlueL":			(self.blueFuncLong,						helptext[7]), 							#bluelonghelptext),
+#				"EMCBlueL":			(self.openE2Bookmarks,				_("Open E2 bookmarks")),
+#				"EMCBlueL":			(self.openEMCBookmarks,				_("Open EMC bookmarks")),
+
+				"EMCLeft":			(self.pageUp,									_("Move cursor page up")),
+				"EMCRight":			(self.pageDown,								_("Move cursor page down")),
+				"EMCUp":				(self.moveUp,									_("Move cursor up")),
+				"EMCDown":			(self.moveDown,								_("Move cursor down")),
+				"EMCBqtPlus":		(self.bqtPlus,								_("Move cursor to the top / Move cursor x entries up / Switch Folders in Movie Home (up)")),
+				"EMCBqtMnus":		(self.bqtMnus,								_("Move cursor to the end / Move cursor x entries down / Switch Folders in Movie Home (down)")),
+				"EMCArrowNext":	(self.CoolForward,						_("Directory forward")),
+#				"EMCArrowNextL":	(self.unUsed,								"-"),
+				"EMCArrowPrevious":	(self.CoolBack,						_("Directory back")),
+#				"EMCArrowPreviousL":(self.directoryUp,				_("Directory up")),
+				"EMCVIDEOB":		(self.toggleSelectionList,		_("Toggle service selection")),
+				"EMCVIDEOL":		(self.resetSelectionList,			_("Remove service selection")),
+				"EMCAUDIO":			(self.openMenuPlugins,				_("Available plugins menu")),
+#				"EMCAUDIOL":		(self.unUsed,									"-"),
+				"EMCMENUL":			(self.openMenuPlugins,				_("Available plugins menu")),
+				"EMCTV":				(self.triggerReloadList,			_("Reload movie file list")),
+				"EMCTVL":				(self.CoolTimerList,					_("Open Timer List")),
+				"EMCRADIO":			(self.toggleProgress,					_("Toggle viewed / not viewed")),
+#				"EMCRADIOL":		(self.unUsed,									"-"),
+				"EMCTEXT":			(self.multiSelect,						_("Start / end multiselection")),
+#				"EMCTEXTL":			(self.unUsed,									"-"),
+				"0":						(self.CoolKey0,								"-"),
+				"4":						(self.CoolAVSwitch,						"-"),
+				"7":						(self.CoolTVGuide,						"-"),
+				"8":						(self.CoolSingleGuide,				"-"),
+				"9":						(self.CoolEasyGuide,					"-"),
 			}, prio=-3)
 			# give them a little more priority to win over baseclass buttons
 		self["actions"].csel = self
@@ -583,10 +597,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		self.close()
 
 	def redFunc(self):
-		if config.EMC.toggle_cover_button.value == "RD":
-			self.toggleCover()
-		else:
-			self.deleteFile()
+			self.execblueyellowbutton(config.EMC.movie_redfunc.value)
 
 	def greenFuncShort(self):
 		if config.EMC.movie_greenfunc.value != "ST":
@@ -594,32 +605,34 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		else:
 			self.toggleSortMode()
 
-# todo add (green) sort options & modes to emc-menu
-#	def greenFuncShort(self):
-#		if config.EMC.toggle_cover_button.value == "GR":
-#			self.toggleCover()
-#		elif config.EMC.movie_greenfunc.value != "ST":
-#			self.execblueyellowbutton(config.EMC.movie_greenfunc.value)
-#		else:
-#			self.toggleSortMode()
+	def yellowFunc(self):
+			self.execblueyellowbutton(config.EMC.movie_yellowfunc.value)
 
-	def blueFuncLong(self):
-		self.execblueyellowbutton(config.EMC.movie_longbluefunc.value)
+	def blueFunc(self):
+			self.execblueyellowbutton(config.EMC.movie_bluefunc.value)
 
-	def yellowFuncLong(self):
-		self.execblueyellowbutton(config.EMC.movie_longyellowfunc.value)	
-	
+	def redFuncLong(self):
+		self.execblueyellowbutton(config.EMC.movie_longredfunc.value)
+
 	def greenFuncLong(self):
 		if config.EMC.movie_greenfunc.value != "ST":
 			self.execblueyellowbutton(config.EMC.movie_greenfunc.value)
 		else:
 			self.toggleSortOrder()
 
+	def yellowFuncLong(self):
+		self.execblueyellowbutton(config.EMC.movie_longyellowfunc.value)
+
+	def blueFuncLong(self):
+		self.execblueyellowbutton(config.EMC.movie_longbluefunc.value)
+
 	def execblueyellowbutton(self, value):
 		if value == "MH":
 			self.returnService = None
 			self["list"].resetSorting()
 			self.changeDir(config.EMC.movie_homepath.value)
+		elif value == "DL":
+			self.deleteFile()
 		elif value == "MV":
 			self.moveMovie()
 		elif value == "PL":
@@ -632,18 +645,8 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			self.copyMovie()
 		elif value == "E2":
 			self.openE2Bookmarks()
-
-	def yellowFunc(self):
-		if config.EMC.toggle_cover_button.value == "YL":
+		elif value == "TC":
 			self.toggleCover()
-		else:
-			self.execblueyellowbutton(config.EMC.movie_yellowfunc.value)
-
-	def blueFunc(self):
-		if config.EMC.toggle_cover_button.value == "BL":
-			self.toggleCover()
-		else:
-			self.execblueyellowbutton(config.EMC.movie_bluefunc.value)
 
 	def bqtPlus(self):
 		if config.EMC.bqt_keys.value == "":
@@ -749,11 +752,25 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 
 	def moveUp(self):
 		self.cursorDir = -1
+
+		#test: show cover when cursormove if preview is on
+		if config.EMC.movie_preview.value:
+			if config.EMC.movie_cover.value:
+				self.cover = False
+				self.toggleCover()
+
 		self["list"].instance.moveSelection( self["list"].instance.moveUp )
 		self.updateAfterKeyPress()
 
 	def moveDown(self):
 		self.cursorDir = 1
+
+		#test: show cover when cursormove if preview is on
+		if config.EMC.movie_preview.value:
+			if config.EMC.movie_cover.value:
+				self.cover = False
+				self.toggleCover()
+
 		self["list"].instance.moveSelection( self["list"].instance.moveDown )
 		self.updateAfterKeyPress()
 
@@ -987,8 +1004,8 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			# Movie cover
 			if config.EMC.movie_cover.value:
 				# Show cover only for media files and directories
-				if self["list"].currentSelIsPlayable() or self["list"].currentSelIsDirectory():
-					self.coverTimer.start(int(config.EMC.movie_cover_delay.value), True)
+				#if self["list"].currentSelIsPlayable() or self["list"].currentSelIsDirectory():
+				self.coverTimer.start(int(config.EMC.movie_cover_delay.value), True)
 			# Movie preview
 			if config.EMC.movie_preview.value:
 				# Play preview only if it is a video file
@@ -1083,7 +1100,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		self.setTitle(title)
 
 	def toggleCover(self):
-		if config.EMC.toggle_cover_button.value:
+		if config.EMC.movie_cover.value:
 			if self.cover:
 				self.cover = False
 				self["Cover"].hide()
@@ -1287,17 +1304,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 
 	def initButtons(self):
 		# Initialize buttons
-#		self["key_red"].text = _("Delete")
-		if config.EMC.toggle_cover_button.value == "RD":
-			redhelptext = _("Toggle Cover Mini-TV")
-			if self.cover:
-				redtext = _("Hide Cover")
-			else:
-				redtext = _("Show Cover")
-		else:
-			redtext = _("Delete")
-			redhelptext = redtext
-		self["key_red"].text = redtext
+		helptext = []
 
 		#TODO get color from MovieCenter
 		
@@ -1320,6 +1327,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			mode = modes[ 0 ]
 		#print mode
 
+		# Green button
 		if config.EMC.movie_greenfunc.value == "ST":
 			greenhelptext = _("Sort Mode")
 			greenlonghelptext = _("Sort Order")
@@ -1340,50 +1348,56 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			greenlonghelptext = greentext
 		self["key_green"].text = greentext
 
-# todo add (green) sort options & modes to emc-menu
-#		if config.EMC.toggle_cover_button.value == "GR":
-#			green = ""
-#			if self.cover:
-#				green += _("Hide Cover")
-#			else:
-#				green += _("Show Cover")
-#			self["key_green"].text = green
-#		elif config.EMC.movie_greenfunc.value == "ST":
-#			for k, v in sort_modes.items():
-#				#print v[1], (mode, order)
-#				if v[1] == (mode, order):
-#					self["key_green"].text = v[2]
-#					break
-#			else:
-#				self["key_green"].text = ""
-#		else:
-#			self["key_green"].text = config.EMC.movie_greenfunc.description[config.EMC.movie_greenfunc.value]
-
-#		self["key_yellow"].text = _(config.EMC.movie_yellowfunc.description[config.EMC.movie_yellowfunc.value])
-		if config.EMC.toggle_cover_button.value == "YL":
-			yellowhelptext = _("Toggle Cover Mini-TV")
-			if self.cover:
-				yellowtext = _("Hide Cover")
+		# Red button
+		redhelptext = config.EMC.movie_redfunc.description[config.EMC.movie_redfunc.value]
+		redlonghelptext = config.EMC.movie_longredfunc.description[config.EMC.movie_longredfunc.value]
+		if config.EMC.movie_redfunc.value == "TC":
+			if config.EMC.movie_cover.value:
+				if self.cover:
+					redtext = _("Hide Cover")
+				else:
+					redtext = _("Show Cover")
 			else:
-				yellowtext = _("Show Cover")
+				redtext = _("Button disabled")
+				redhelptext = _("Cover disabled in EMC-Setup")
 		else:
-			yellowtext =  _(config.EMC.movie_yellowfunc.description[config.EMC.movie_yellowfunc.value])
-			yellowhelptext = yellowtext
+			redtext = redhelptext
+		self["key_red"].text = redtext
+
+		# Yellow button
+		yellowhelptext = config.EMC.movie_yellowfunc.description[config.EMC.movie_yellowfunc.value]
+		yellowlonghelptext = config.EMC.movie_longyellowfunc.description[config.EMC.movie_longyellowfunc.value]
+		if config.EMC.movie_yellowfunc.value == "TC":
+			if config.EMC.movie_cover.value:
+				if self.cover:
+					yellowtext = _("Hide Cover")
+				else:
+					yellowtext = _("Show Cover")
+			else:
+				yellowtext = _("Button disabled")
+				yellowhelptext = _("Cover disabled in EMC-Setup")
+		else:
+			yellowtext = yellowhelptext
 		self["key_yellow"].text = yellowtext
 
-#		self["key_blue"].text = _(config.EMC.movie_bluefunc.description[config.EMC.movie_bluefunc.value])
-		if config.EMC.toggle_cover_button.value == "BL":
-			bluehelptext = _("Toggle Cover Mini-TV")
-			if self.cover:
-				bluetext = _("Hide Cover")
+		# Blue button
+		bluehelptext = config.EMC.movie_bluefunc.description[config.EMC.movie_bluefunc.value]
+		bluelonghelptext = config.EMC.movie_longbluefunc.description[config.EMC.movie_longbluefunc.value]
+		if config.EMC.movie_bluefunc.value == "TC":
+			if config.EMC.movie_cover.value:
+				if self.cover:
+					bluetext = _("Hide Cover")
+				else:
+					bluetext = _("Show Cover")
 			else:
-				bluetext = _("Show Cover")
+				bluetext = _("Button disabled")
+				bluehelptext = _("Cover disabled in EMC-Setup")
 		else:
-			bluetext = _(config.EMC.movie_bluefunc.description[config.EMC.movie_bluefunc.value])
-			bluehelptext = bluetext
+			bluetext = bluehelptext
 		self["key_blue"].text = bluetext
 
-		return redhelptext, greenhelptext, greenlonghelptext, yellowhelptext, bluehelptext
+		helptext = [redhelptext, redlonghelptext, greenhelptext, greenlonghelptext, yellowhelptext, yellowlonghelptext, bluehelptext, bluelonghelptext]
+		return helptext
 
 	def initList(self):
 		self.initPig()
