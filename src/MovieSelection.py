@@ -52,7 +52,7 @@ from enigma import ePicLoad, getDesktop
 from DelayedFunction import DelayedFunction
 from EnhancedMovieCenter import _
 from EMCTasker import emcTasker, emcDebugOut
-from MovieCenter import MovieCenter, getPlayerService, getProgress
+from MovieCenter import MovieCenter, getPlayerService, getProgress, detectBLUStructure, detectDVDStructure
 from MovieSelectionMenu import MovieMenu
 from EMCMediaCenter import EMCMediaCenter
 from VlcPluginInterface import VlcPluginInterfaceSel
@@ -219,46 +219,41 @@ class SelectionEventInfo:
 			path = service.getPath()
 			name, ext = os.path.splitext(path)
 			ext = ext.lower()
-			jpgpath = ""
-			if ext in extMedia:
-				jpgpath = name + ".ts_mp.jpg"																#filename.ts_mp.jpg
-				if not os.path.exists(jpgpath):
-					jpgpath = name + ".ts_mp.png" 															#filename.ts_mp.png
-				if not os.path.exists(jpgpath):
-					jpgpath = name + ".png" 																#filename.png
-				if not os.path.exists(jpgpath):
-					jpgpath = name + ".jpg" 																#filename.jpg 
-					
-			elif os.path.isdir(path) and os.path.basename(path.lower()).endswith("video_ts"):
-				dvdpath, vts = os.path.split(path)
-				jpgpath = os.path.join(dvdpath, os.path.basename(dvdpath)) + ".ts_mp.png"					#dvdfoldername/dvdfoldername.ts_mp.png
-				if not os.path.exists(jpgpath):
-					jpgpath = os.path.join(dvdpath, os.path.basename(dvdpath)) + ".ts_mp.jpg"				#dvdfoldername/dvdfoldername.ts_mp.jpg
-				if not os.path.exists(jpgpath):
-					jpgpath = os.path.join(dvdpath, os.path.basename(dvdpath)) + ".png"						#dvdfoldername/dvdfoldername.png
-				if not os.path.exists(jpgpath):
-					jpgpath = os.path.join(dvdpath, os.path.basename(dvdpath)) + ".jpg"						#dvdfoldername/dvdfoldername.jpg	
-				if not os.path.exists(jpgpath):
-					jpgpath = os.path.join(dvdpath, "folder.png")											#dvdfoldername/folder.png
-				if not os.path.exists(jpgpath):
-					jpgpath = os.path.join(dvdpath, "folder.jpg")											#dvdfoldername/folder.jpg
-				if not os.path.exists(jpgpath):
-					jpgpath = os.path.join(path, "dvd.png")													#dvdfoldername/video_ts/dvd.png
-				if not os.path.exists(jpgpath):
-					jpgpath = os.path.join(path, "dvd.jpg")													#dvdfoldername/video_ts/dvd.jpg
+			jpgpath = p1 = p2 = p3 = ""
+			exts = [".jpg", ".png", "_md.jpg", "_md.png"]
+
+			if ext in extMedia:																							#Files, Movie Structures
+				dir = os.path.dirname(path)
+				p1 = name																											# path/dir/filename.cover
+				p2 = os.path.join(dir, os.path.basename(dir))									# path/dir/dirname.cover, show foldercover if no filecover exist
 
 			elif os.path.isdir(path):
-				jpgpath = os.path.join(path, os.path.basename(path)) + ".ts_mp.png"							#foldername/foldername.ts_mp.png
-				if not os.path.exists(jpgpath):
-					jpgpath = os.path.join(path, os.path.basename(path)) + ".ts_mp.jpg"						#foldername/foldername.ts_mp.jpg				
-				if not os.path.exists(jpgpath):
-					jpgpath = os.path.join(path, os.path.basename(path)) + ".png"							#foldername/foldername.png
-				if not os.path.exists(jpgpath):
-					jpgpath = os.path.join(path, os.path.basename(path)) + ".jpg"							#foldername/foldername.jpg
-				if not os.path.exists(jpgpath):
-					jpgpath = os.path.join(path, "folder.png")												#foldername/folder.png
-				if not os.path.exists(jpgpath):
-					jpgpath = os.path.join(path, "folder.jpg")												#foldername/folder.jpg					
+				if path.lower().endswith("/bdmv"):														#Bluray-Structures
+				#if detectBLUStructure(os.path.dirname(path)):
+					dir = path[:-5]
+					if dir.lower().endswith("/brd"): dir = dir[:-4]
+
+				elif path.lower().endswith("/video_ts"):											#DVD-Structures
+				#elif detectDVDStructure(os.path.dirname(path)):
+					dir = path[:-9]
+					if dir.lower().endswith("/dvd"): dir = dir[:-4]
+
+				else:																													#Folders
+					dir = path
+					p2 = os.path.join(dir, "folder")														# path/pdir/dir/"folder".cover
+
+#				dirname = os.path.basename(dir)
+#				prtdir = os.path.dirname(dir)
+				prtdir, dirname = os.path.split(dir)
+				p1 = os.path.join(dir, dirname)																# path/prtdir/dir/dirname.cover
+				p3 = os.path.join(prtdir, dirname)														# path/prtdir/dirname.cover, show AMS-Covers
+
+			pathes = [p1, p2, p3]
+			for coverpath in pathes:
+				for ext in exts:
+					jpgpath = coverpath + ext
+					if os.path.exists(jpgpath): break
+				if os.path.exists(jpgpath): break
 
 			if path.endswith("/.."):
 				jpgpath = "/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/cover_bg.png"
@@ -648,6 +643,13 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		elif value == "TC":
 			self.toggleCover()
 
+	def coverAfterPreview(self):
+		#test: show cover on cursormove if cover and preview is on
+		if config.EMC.movie_preview.value:
+			if config.EMC.movie_cover.value:
+				self.cover = False
+				self.toggleCover()
+
 	def bqtPlus(self):
 		if config.EMC.bqt_keys.value == "":
 			self.moveTop()
@@ -752,25 +754,11 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 
 	def moveUp(self):
 		self.cursorDir = -1
-
-		#test: show cover when cursormove if preview is on
-		if config.EMC.movie_preview.value:
-			if config.EMC.movie_cover.value:
-				self.cover = False
-				self.toggleCover()
-
 		self["list"].instance.moveSelection( self["list"].instance.moveUp )
 		self.updateAfterKeyPress()
 
 	def moveDown(self):
 		self.cursorDir = 1
-
-		#test: show cover when cursormove if preview is on
-		if config.EMC.movie_preview.value:
-			if config.EMC.movie_cover.value:
-				self.cover = False
-				self.toggleCover()
-
 		self["list"].instance.moveSelection( self["list"].instance.moveDown )
 		self.updateAfterKeyPress()
 
@@ -978,6 +966,8 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		self.session.open(MessageBox, _("No functionality set..."), MessageBox.TYPE_INFO)
 
 	def updateAfterKeyPress(self):
+		#test: show cover on cursormove if cover and preview is on
+		self.coverAfterPreview()
 		if self.returnService:
 			# Service was stored for a pending update,
 			# but user wants to move, copy, delete it,
@@ -1212,6 +1202,16 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		evt = self["list"].getCurrentEvent()
 		if evt:
 			self.session.open(EventViewSimple, evt, ServiceReference(self.getCurrent()))
+
+	def openBludiscPlayer(self, blupath):
+		try:
+			from Plugins.Extensions.BludiscPlayer.plugin import BludiscMenu
+		except ImportError:
+			BludiscMenu = None
+		if BludiscMenu is not None:
+			self.session.open(BludiscMenu, bd_mountpoint=blupath)
+		else:
+			self.session.open(MessageBox,"Plugin not found!", MessageBox.TYPE_ERROR)
 
 	def initCursor(self, ifunknown=True):
 		if self.returnService:
@@ -1494,7 +1494,14 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			
 			# Think about MovieSelection should only know about directories and files
 			# All other things should be in the MovieCenter
-			if self["list"].currentSelIsVirtual():
+
+			# detectBLUStructure
+			path = current.getPath()
+			if detectBLUStructure(os.path.dirname(path)):
+				blupath = os.path.dirname(path)
+				self.openBludiscPlayer(blupath)
+
+			elif self["list"].currentSelIsVirtual():
 				# Open folder and reload movielist
 				self.setNextPath( self["list"].getCurrentSelDir() )
 			elif self.browsingVLC():

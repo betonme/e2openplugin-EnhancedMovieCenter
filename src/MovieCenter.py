@@ -51,7 +51,7 @@ from EMCBookmarks import EMCBookmarks
 from ServiceSupport import ServiceCenter
 
 
-global extAudio, extDvd, extVideo, extPlaylist, extList, extMedia
+global extAudio, extDvd, extVideo, extPlaylist, extList, extMedia, extBlu
 global cmtDir, cmtUp, cmtTrash, cmtLRec, cmtVLC, cmtBME2, cmtBMEMC, virVLC, virAll, virToE, virToD
 global vlcSrv, vlcDir, vlcFil
 global plyDVB, plyM2TS, plyDVD, plyMP3, plyVLC, plyAll
@@ -62,7 +62,7 @@ global sidDVB, sidDVD, sidMP3
 
 # Media types
 extAudio    = frozenset([".ac3", ".dts", ".flac", ".m3u", ".m4a", ".mp2", ".mp3", ".ogg", ".wav", ".wma"])
-extVideo    = frozenset([".ts", ".avi", ".divx", ".f4v", ".flv", ".img", ".ifo", ".iso", ".m2ts", ".m4v", ".mkv", ".mov", ".mp4", ".mpeg", ".mpg", ".mts", ".vob", ".wmv"])
+extVideo    = frozenset([".ts", ".avi", ".divx", ".f4v", ".flv", ".img", ".ifo", ".iso", ".m2ts", ".m4v", ".mkv", ".mov", ".mp4", ".mpeg", ".mpg", ".mts", ".vob", ".wmv", ".bdmv"])
 extPlaylist = frozenset([".m3u"])
 extMedia    = extAudio | extVideo | extPlaylist
 extDir      = frozenset([""])
@@ -73,6 +73,9 @@ extTS       = frozenset([".ts"])
 extM2ts     = frozenset([".m2ts"])
 extDvd      = frozenset([".iso", ".img", ".ifo"])
 extVLC      = frozenset([vlcFil])
+extBlu      = frozenset([".bdmv"])
+# blue movie disk movie
+# mimetype("video/x-bluray") ext (".bdmv")
 
 # Player types
 plyDVB      = extTS																		# ServiceDVB
@@ -341,18 +344,34 @@ def detectDVDStructure(checkPath):
 	dvdpath = os.path.join(checkPath, "VIDEO_TS/VIDEO_TS.IFO")
 	if fileExists( dvdpath ):
 		return dvdpath
+	dvdpath = os.path.join(checkPath, "DVD/VIDEO_TS/VIDEO_TS.IFO")
+	if fileExists( dvdpath ):
+		return dvdpath
+	return None
 
 def detectMOVStructure(checkPath):
 	if not os.path.isdir(checkPath):
 		return None
 	elif not config.EMC.scan_linked.value and os.path.islink(checkPath):
 		return None
-	extMovie = extVideo - extDvd
+	extMovie = extVideo - extDvd - extBlu
 	for ext in extMovie:
 		movpath = os.path.join(checkPath, os.path.basename(checkPath)) + ext
 		if fileExists( movpath ):
 			return movpath
+	return None
 
+def detectBLUStructure(checkPath):
+	if not os.path.isdir(checkPath):
+		return None
+	elif not config.EMC.scan_linked.value and os.path.islink(checkPath):
+		return None
+	blupath = os.path.join(checkPath, "BDMV/index.bdmv")
+	if fileExists( blupath ):
+		return blupath
+	blupath = os.path.join(checkPath, "BRD/BDMV/index.bdmv")
+	if fileExists( blupath ):
+		return blupath
 	return None
 
 # muss drinnen bleiben sonst crashed es bei foreColorSelected
@@ -585,6 +604,9 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 							and not (config.EMC.cfgscan_suppress.value and path in self.nostructscan)
 		check_moviestruct = config.EMC.check_moviestruct.value \
 							and not (config.EMC.cfgscan_suppress.value and path in self.nostructscan)
+		check_blustruct = config.EMC.check_blustruct.value \
+							and not (config.EMC.cfgscan_suppress.value and path in self.nostructscan)
+
 		hideitemlist = config.EMC.cfghide_enable.value and self.hideitemlist
 		
 		localExtList = extList
@@ -595,7 +617,8 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 		pathjoin = os.path.join
 		pathisfile = os.path.isfile
 		pathisdir = os.path.isdir
-		
+		pathislink = os.path.islink
+
 		if os.path.exists(path):
 			
 			# Get directory listing
@@ -618,6 +641,11 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 					
 					# Filter dead links
 					if pathisfile(pathname):
+
+						# Symlink media file
+						if pathislink(pathname) and not config.EMC.symlinks_show.value:
+							continue
+
 						# Media file found
 						fappend( (pathname, file, ext) )
 				
@@ -642,14 +670,25 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 						if check_moviestruct:
 							movStruct = detectMOVStructure(pathname)
 							if movStruct:
+								# Movie Structure found
 								ext = splitext(movStruct)[1].lower()
 								fappend( (movStruct, dir, ext) )
 								continue
-						# Folder found
+						if check_blustruct:
+							bluStruct = detectBLUStructure(pathname)
+							if bluStruct:
+								# Bluray Structure found
+								pathname = os.path.dirname(bluStruct)
+								ext = splitext(bluStruct)[1].lower()
+								fappend( (pathname, dir, ext) )
+								continue
 						if config.EMC.directories_show.value:
 							if not movie_trashpath or os.path.realpath(pathname).find( movie_trashpath ) == -1:
+								# Symlink folder found
+								if pathislink(pathname) and not config.EMC.symlinks_show.value:
+									continue
+								# Folder found
 								dappend( (pathname, dir, cmtDir) )
-				
 				# We only want the topdir
 				break
 		
@@ -659,6 +698,7 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 		del pathjoin
 		del pathisfile
 		del pathisdir
+		del pathislink
 		return subdirlist, filelist
 
 	def createLatestRecordingsList(self):
@@ -1359,6 +1399,10 @@ class MovieCenter(GUIComponent):
 		self.pic_dvd_default     = LoadPixmap(cached=True, path='/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/dvd_default.png')
 		self.pic_dvd_watching    = LoadPixmap(cached=True, path='/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/dvd_watching.png')
 		self.pic_dvd_finished    = LoadPixmap(cached=True, path='/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/dvd_finished.png')
+		self.pic_brd_default     = LoadPixmap(cached=True, path='/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/brd_default.png')
+		# TODO: Progress.value for blue structure
+		#self.pic_brd_watching    = LoadPixmap(cached=True, path='/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/brd_watching.png')
+		#self.pic_brd_finished    = LoadPixmap(cached=True, path='/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/brd_finished.png')
 		self.pic_playlist        = LoadPixmap(cached=True, path='/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/playlist.png')
 		self.pic_vlc             = LoadPixmap(cached=True, path='/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/vlc.png')
 		self.pic_vlc_dir         = LoadPixmap(cached=True, path='/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/vlcdir.png')
@@ -1495,7 +1539,12 @@ class MovieCenter(GUIComponent):
 					datetext = "   VLC   "
 					pixmap = self.pic_vlc
 					color = self.DefaultColor
-				
+					
+				#elif ext in extBlu:
+				#	datetext = ext
+				#	pixmap = self.pic_brd_default
+				#	color = self.DefaultColor
+
 				else:
 					# Media file
 					if config.EMC.movie_date_format.value:
@@ -1518,7 +1567,7 @@ class MovieCenter(GUIComponent):
 					# Icon
 					if config.EMC.movie_icons.value:
 						# video
-						if ext in extVideo and ext not in extDvd:
+						if ext in extVideo and ext not in extDvd and ext not in extBlu:
 							if movieUnwatched:
 								if config.EMC.mark_latest_files.value and latest:
 									pixmap = self.pic_latest
@@ -1541,6 +1590,16 @@ class MovieCenter(GUIComponent):
 								pixmap = self.pic_dvd_finished
 							else:
 								pixmap = self.pic_dvd_default
+
+						# TODO: Progress.value for blue structure
+						elif ext in extBlu:
+							#if movieWatching:
+							#	pixmap = self.pic_brd_watching
+							#elif movieFinished:
+							#	pixmap = self.pic_brd_finished
+							#else:
+							pixmap = self.pic_brd_default
+
 						# playlists
 						elif ext in extPlaylist:
 							pixmap = self.pic_playlist
@@ -1568,12 +1627,24 @@ class MovieCenter(GUIComponent):
 				elif service in self.highlightsCpy: selnumtxt = "+"
 				elif selnum > 0: selnumtxt = "%02d" % selnum
 				
-				if config.EMC.movie_icons.value and selnumtxt is None:
-					append(MultiContentEntryPixmapAlphaTest(pos=(5,2), size=(24,24), png=pixmap, **{}))
-					if isLink:
-						append(MultiContentEntryPixmapAlphaTest(pos=(7,13), size=(9,10), png=self.pic_link, **{}))
-					offset = 35
-				if selnumtxt is not None:
+#				if config.EMC.movie_icons.value and selnumtxt is None:
+#					append(MultiContentEntryPixmapAlphaTest(pos=(5,2), size=(24,24), png=pixmap, **{}))
+#					if isLink:
+#						append(MultiContentEntryPixmapAlphaTest(pos=(7,13), size=(9,10), png=self.pic_link, **{}))
+#					offset = 35
+#				if selnumtxt is not None:
+
+				if selnumtxt is None:
+					if config.EMC.movie_icons.value:
+						append(MultiContentEntryPixmapAlphaTest(pos=(5,2), size=(24,24), png=pixmap, **{}))
+						# Media files hide symlink arrow icons
+						if isLink and config.EMC.link_icons.value:
+							append(MultiContentEntryPixmapAlphaTest(pos=(7,13), size=(9,10), png=self.pic_link, **{}))
+						offset = 35
+					else:
+						offset = 5
+				else:
+
 					append(MultiContentEntryText(pos=(5, 0), size=(26, globalHeight), font=3, flags=RT_HALIGN_LEFT, text=selnumtxt))
 					offset += 35
 				
@@ -1618,47 +1689,73 @@ class MovieCenter(GUIComponent):
 						CoolProgressPos = self.CoolProgressPos
 					else:
 						CoolProgressPos = -1
-					
+
+					# TODO: Progress.value for blue structure
+					if ext in extBlu:
+						CoolProgressPos = -1
+						CoolBarPos = -1
+						# CoolDatePos = self.l.getItemSize().width() - self.CoolDateWidth 0)
+						CoolDatePos = self.CoolBarPos
+						datetext = _("Bluray")
+
 					if CoolBarPos != -1:
 						append(MultiContentEntryProgress(pos=(CoolBarPos, self.CoolBarHPos -2), size = (self.CoolBarSizeSa.width(), self.CoolBarSizeSa.height()), percent = progress, borderWidth = 1, foreColor = color, foreColorSelected=color, backColor = self.BackColor, backColorSelected = None))
 					if CoolProgressPos != -1:
 						append(MultiContentEntryText(pos=(CoolProgressPos, 0), size=(progressWidth, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text="%d%%" % (progress)))
 					if CoolDatePos != -1:
 						append(MultiContentEntryText(pos=(CoolDatePos, 2), size=(self.CoolDateWidth, globalHeight), font=4, text=datetext, color = colordate, color_sel = colorhighlight, flags=RT_HALIGN_CENTER))
-					append(MultiContentEntryText(pos=(self.CoolMoviePos, 0), size=(self.CoolMovieSize, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text=title, color = colortitle, color_sel = colorhighlight))
-			
+#					append(MultiContentEntryText(pos=(self.CoolMoviePos, 0), size=(self.CoolMovieSize, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text=title, color = colortitle, color_sel = colorhighlight))
+
+					# Media files - hide icons and align left
+					CoolMoviePos = self.CoolMoviePos
+					if not config.EMC.movie_icons.value and selnumtxt is None:
+						CoolMoviePos = self.CoolMoviePos - 30
+					append(MultiContentEntryText(pos=(CoolMoviePos, 0), size=(self.CoolMovieSize, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text=title, color = colortitle, color_sel = colorhighlight))
+
 			else:
 				# Directory and vlc directories
 				
 				#TODO Is there any way to combine it for both files and directories?
 				#TODO Color not used yet for folders color = self.DefaultColor
-				#TODO config.EMC.movie_icons.value not used here
+				#TODO config.EMC.movie_icons.value not used here // try: line ~1827
 				#TODO Skin config.EMC.skin_able.value not used here
 				#TODO config.EMC.movie_date_format.value not used here
 
-				topdirlist = self.topdirlist
-
 				if ext == cmtVLC:
 					datetext = _("VLC")
-					pixmap = self.pic_vlc
+					if not config.EMC.movie_icons.value:
+						pixmap = self.pic_vlc
+
 				elif ext == vlcSrv:
-					datetext = _("VLC-Server")
 					pixmap = self.pic_vlc
+					if not config.EMC.movie_icons.value:
+						datetext = _("VLC-Server")
+
 				elif ext == vlcDir:
-					datetext = _("VLC-Dir")
 					pixmap = self.pic_vlc_dir
+					if not config.EMC.movie_icons.value:
+						datetext = _("VLC-Dir")
+
 				elif ext == cmtLRec:
-					datetext = _("Latest")
 					pixmap = self.pic_latest
+					if not config.EMC.movie_icons.value:
+						datetext = _("Latest")
+
 				elif ext == cmtUp:
-					datetext = _("Up")
 					pixmap = self.pic_back
+					if not config.EMC.movie_icons.value:
+						datetext = _("Up")
+
 				elif ext == cmtBME2:
-					datetext = _("Bookmark")
 					pixmap = self.pic_e2bookmark
+					if not config.EMC.movie_icons.value:
+						datetext = _("Bookmark")
+
 				elif ext == cmtBMEMC:
-					datetext = _("Bookmark")
 					pixmap = self.pic_emcbookmark
+					if not config.EMC.movie_icons.value:
+						datetext = _("Bookmark")
+
 				elif ext == cmtTrash:
 					if config.EMC.movie_trashcan_enable.value and config.EMC.movie_trashcan_info.value:
 						#TODO Improve performance
@@ -1674,7 +1771,7 @@ class MovieCenter(GUIComponent):
 							datetext = " ( %.2f GB ) " % (size)
 						else:
 							# Should never happen
-							datetext = "Trashcan"
+							datetext = _("Trashcan")
 						if count:
 							# Trashcan contains garbage
 							pixmap = self.pic_trashcan_full
@@ -1683,21 +1780,27 @@ class MovieCenter(GUIComponent):
 							pixmap = self.pic_trashcan
 					else:
 						pixmap = self.pic_trashcan
-						datetext = "Trashcan"
-				elif ext == cmtDir:
+						if not config.EMC.movie_icons.value:
+							datetext = _("Trashcan")
 
-					if isLink:
-						if config.EMC.directories_ontop.value:
-							if title in topdirlist:
-								datetext = _("Link")					#TopLink
-								pixmap = self.pic_directory
-							else:
-								datetext = _("Collection")		#ColLink
-								pixmap = self.pic_col_dir
-						else:
-							datetext = _("Link")
-							pixmap = self.pic_directory
-					elif config.EMC.directories_info.value:
+				elif ext == cmtDir:
+					pixmap = self.pic_directory
+
+#					if isLink:
+#						if config.EMC.directories_ontop.value:
+#							if title in topdirlist:
+#								datetext = _("Link")					#TopLink
+#								pixmap = self.pic_directory
+#							else:
+#								datetext = _("Collection")		#ColLink
+#								pixmap = self.pic_col_dir
+#						else:
+#							datetext = _("Link")
+#							pixmap = self.pic_directory
+#					elif config.EMC.directories_info.value:
+
+					# Directory and symlink-direcory info.value
+					if config.EMC.directories_info.value:
 						if config.EMC.directories_info.value == "C":
 							count, size = dirInfo(path)
 							datetext = " ( %d ) " % (count)
@@ -1709,33 +1812,46 @@ class MovieCenter(GUIComponent):
 							datetext = " ( %.2f GB ) " % (size)
 						else:
 							# Should never happen
-							datetext = _("Directory")
-						pixmap = self.pic_directory
-					else:
-						if config.EMC.directories_ontop.value:
-							if title in topdirlist:
-								datetext = _("Directory")				#TopDirectory
-								pixmap = self.pic_directory
-							else:
-								datetext = _("Collection")			#ColDirectory
-								pixmap = self.pic_col_dir
-						else:
-							datetext = _("Directory")
 							pixmap = self.pic_directory
+							datetext = _("Directory")
+
+					# Directory
+					else:
+						if not config.EMC.movie_icons.value:
+							datetext = _("Directory")
+							if isLink:
+								datetext = _("Link")
+						else:
+							if config.EMC.directories_ontop.value and title not in self.topdirlist:
+								datetext = _("Collection")
+								pixmap = self.pic_col_dir
+
 				else:
 					# Should never happen
 					pixmap = self.pic_directory
 					datetext = _("UNKNOWN")
 									
-				# Is there any way to combine it for both files and directories?
-				append(MultiContentEntryPixmapAlphaTest(pos=(5,2), size=(24,24), png=pixmap, **{}))
-				if isLink:
-					append(MultiContentEntryPixmapAlphaTest(pos=(7,13), size=(9,10), png=self.pic_link, **{}))
-				# Directory left side
-				append(MultiContentEntryText(pos=(30, 0), size=(self.CoolFolderSize, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text=title))
+#				# Is there any way to combine it for both files and directories?
+#				append(MultiContentEntryPixmapAlphaTest(pos=(5,2), size=(24,24), png=pixmap, **{}))
+#				if isLink:
+#					append(MultiContentEntryPixmapAlphaTest(pos=(7,13), size=(9,10), png=self.pic_link, **{}))
+#				# Directory left side
+#				append(MultiContentEntryText(pos=(30, 0), size=(self.CoolFolderSize, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text=title))
+
+				# Directories and links - hide icons and align left
+				if config.EMC.movie_icons.value:
+					append(MultiContentEntryPixmapAlphaTest(pos=(5,2), size=(24,24), png=pixmap, **{}))
+					# Directories hide symlink arrow icons
+					if isLink and config.EMC.link_icons.value:
+						append(MultiContentEntryPixmapAlphaTest(pos=(7,13), size=(9,10), png=self.pic_link, **{}))
+					# Directory left side
+					append(MultiContentEntryText(pos=(self.CoolMoviePos, 0), size=(self.CoolFolderSize, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text=title))
+				else:
+					# Directory left side
+					append(MultiContentEntryText(pos=(5, 0), size=(self.CoolFolderSize, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text=title))
+
 				# Directory right side
 				append(MultiContentEntryText(pos=(self.l.getItemSize().width() - self.CoolDateWidth, 0), size=(self.CoolDateWidth, globalHeight), font=2, flags=RT_HALIGN_CENTER, text=datetext))
-			
 			del append
 			return res
 		except Exception, e:
