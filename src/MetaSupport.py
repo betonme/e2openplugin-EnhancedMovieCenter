@@ -27,7 +27,6 @@ from datetime import datetime
 from EMCTasker import emcDebugOut
 from IsoFileSupport import IsoSupport
 
-
 # Meta File support class
 # Description
 # http://git.opendreambox.org/?p=enigma2.git;a=blob;f=doc/FILEFORMAT
@@ -61,24 +60,10 @@ class MetaList():
 			#	if name and len(name):
 			#		path = "/home/root/dvd-" + name
 			#el
-			if os.path.isdir(path) and os.path.basename(path.lower()).endswith("video_ts"):
-				vtspath = path
-				dvdpath, vts = os.path.split(path)
-				path = os.path.join(dvdpath, os.path.basename(dvdpath)) + ".ts"		#dvdfoldername/dvdfoldername.ts.meta
-				if not os.path.exists(path + ".meta"):
-					path = os.path.join(dvdpath, os.path.basename(dvdpath))					#dvdfoldername/dvdfoldername.meta
-				if not os.path.exists(path + ".meta"):
-					path = dvdpath + "/folder"																			#dvdfoldername/folder.meta
-				if not os.path.exists(path + ".meta"):
-					path = vtspath + "/dvd"																					#dvdfoldername/video_ts/dvd.meta
 
-			elif os.path.isdir(path) and not path.endswith(".."):
-				fldpath = path
-				path = os.path.join(path, os.path.basename(path)) + ".ts"					#foldername/foldername.ts.meta
-				if not os.path.exists(path + ".meta"):
-					path = path[:-3]																								#foldername/foldername.meta
-				if not os.path.exists(path + ".meta"):
-					path = fldpath + "/folder"																			#foldername/folder.meta
+			exts = [".ts.meta", ".meta"]
+			fpath = getInfoFile(path, exts)
+			path = os.path.splitext(fpath)[0]
 
 			if not os.path.exists(path + ".meta"):
 				path, ext = os.path.splitext(path)
@@ -189,3 +174,37 @@ class MetaList():
 		else:
 			# No path or no file clear all
 			self.meta = ["","","","","","",""]
+			
+def getInfoFile(path, exts):
+	from MovieCenter import extMedia
+	fpath = p1 = p2 = p3 = ""
+	name, ext = os.path.splitext(path)
+	ext = ext.lower()
+
+	if os.path.isfile(path) and ext in extMedia:										#files & movie structures
+		dir = os.path.dirname(path)
+		p1 = name																											# filename.ext
+		p2 = os.path.join(dir, os.path.basename(dir))									# folder.ext if no filename.ext
+
+	elif os.path.isdir(path):
+		if path.lower().endswith("/bdmv"):														# bluray structures
+			dir = path[:-5]
+			if dir.lower().endswith("/brd"): dir = dir[:-4]
+		elif path.lower().endswith("video_ts"):												# DVD structures
+			dir = path[:-9]
+			if dir.lower().endswith("/dvd"): dir = dir[:-4]
+		else:
+			dir = path
+			p2 = os.path.join(dir, "folder")														# "folder.ext"
+
+		prtdir, dirname = os.path.split(dir)
+		p1 = os.path.join(dir, dirname)																# /dir/dirname.ext
+		p3 = os.path.join(prtdir, dirname)														# /prtdir/dirname.ext, show AMS-files
+
+	pathes = [p1, p2, p3]
+	for p in pathes:
+		for ext in exts:
+			fpath = p + ext
+			if os.path.exists(fpath): break
+		if os.path.exists(fpath): break
+	return fpath

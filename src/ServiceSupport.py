@@ -30,12 +30,10 @@ from enigma import eServiceCenter, iServiceInformation, eServiceReference
 from ServiceReference import ServiceReference
 
 from CutListSupport import CutList
-from MetaSupport import MetaList
+from MetaSupport import MetaList, getInfoFile
 from EitSupport import EitList
 from RecordingsControl import getRecording
-
 instance = None
-
 
 class ServiceCenter:
 	def __init__(self):
@@ -173,20 +171,12 @@ class Info:
 		#ToDo: make configurable in EMC Setup ?
 		show_path_extdescr = False		#True
 
+		#No Description in *.eit file or no *.eit file exists
+		#Try reading description from *.txt file
 		if not self.__extendeddescription:
-			if isreal:
-				txtpath = ""
-				if config.EMC.check_dvdstruct.value and os.path.basename(path.lower()).endswith("video_ts"):
-					folderpath = os.path.split(path)[0]
-					foldername = os.path.basename(folderpath)
-					txtpath = os.path.join(folderpath, foldername) + ".txt"								#dvdfolder/dvdfoldername.txt
-				else:
-					foldername = os.path.basename(path)
-					txtpath = os.path.join(path, foldername) + ".txt"											#folder/foldername.txt
-			else:
-				#No Description in *.eit file or no *.eit file exists
-				#Try reading description from *.txt file
-				txtpath = os.path.splitext(path)[0] + ".txt"
+
+			exts = [".txt"]
+			txtpath = getInfoFile(path, exts)
 
 			if os.path.exists(txtpath):
 				txtdescarr = open(txtpath).readlines()

@@ -66,6 +66,9 @@ from MovieRetitle import MovieRetitle
 from Components.Sources.EMCServiceEvent import EMCServiceEvent
 from MovieInfo import DownloadMovieInfo
 
+#from MetaSupport import MetaList
+from MetaSupport import getInfoFile
+
 from MovieCenter import extList, extVideo, extMedia, extDir, plyAll, plyDVD, cmtBME2, cmtBMEMC, cmtDir
 global extList, extVideo, extMedia, extDir, plyAll, plyDVD, cmtBME2, cmtBMEMC, cmtDir
 
@@ -217,46 +220,12 @@ class SelectionEventInfo:
 	def showCover(self, service=None):
 		if service:
 			path = service.getPath()
-			name, ext = os.path.splitext(path)
-			ext = ext.lower()
-			jpgpath = p1 = p2 = p3 = ""
+			jpgpath = ""
 			exts = [".jpg", ".png", "_md.jpg", "_md.png"]
-
-			if ext in extMedia:																							#Files, Movie Structures
-				dir = os.path.dirname(path)
-				p1 = name																											# path/dir/filename.cover
-				p2 = os.path.join(dir, os.path.basename(dir))									# path/dir/dirname.cover, show foldercover if no filecover exist
-
-			elif os.path.isdir(path):
-				if path.lower().endswith("/bdmv"):														#Bluray-Structures
-				#if detectBLUStructure(os.path.dirname(path)):
-					dir = path[:-5]
-					if dir.lower().endswith("/brd"): dir = dir[:-4]
-
-				elif path.lower().endswith("/video_ts"):											#DVD-Structures
-				#elif detectDVDStructure(os.path.dirname(path)):
-					dir = path[:-9]
-					if dir.lower().endswith("/dvd"): dir = dir[:-4]
-
-				else:																													#Folders
-					dir = path
-					p2 = os.path.join(dir, "folder")														# path/pdir/dir/"folder".cover
-
-#				dirname = os.path.basename(dir)
-#				prtdir = os.path.dirname(dir)
-				prtdir, dirname = os.path.split(dir)
-				p1 = os.path.join(dir, dirname)																# path/prtdir/dir/dirname.cover
-				p3 = os.path.join(prtdir, dirname)														# path/prtdir/dirname.cover, show AMS-Covers
-
-			pathes = [p1, p2, p3]
-			for coverpath in pathes:
-				for ext in exts:
-					jpgpath = coverpath + ext
-					if os.path.exists(jpgpath): break
-				if os.path.exists(jpgpath): break
+			jpgpath = getInfoFile(path, exts)
 
 			if path.endswith("/.."):
-				jpgpath = "/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/cover_bg.png"
+				jpgpath = "/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/cover_tr.png"
 
 			if not os.path.exists(jpgpath):
 				no_poster = _("no_poster.png")
@@ -754,6 +723,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 
 	def moveUp(self):
 		self.cursorDir = -1
+		self.coverAfterPreview()
 		self["list"].instance.moveSelection( self["list"].instance.moveUp )
 		self.updateAfterKeyPress()
 
@@ -967,7 +937,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 
 	def updateAfterKeyPress(self):
 		#test: show cover on cursormove if cover and preview is on
-		self.coverAfterPreview()
+		#self.coverAfterPreview()
 		if self.returnService:
 			# Service was stored for a pending update,
 			# but user wants to move, copy, delete it,

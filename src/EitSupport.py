@@ -30,6 +30,8 @@ from Components.Language import language
 from EMCTasker import emcDebugOut
 from IsoFileSupport import IsoSupport
 
+from MetaSupport import getInfoFile
+
 #def crc32(data):
 #	poly = 0x4c11db7
 #	crc = 0xffffffffL
@@ -100,21 +102,11 @@ class EitList():
 			#	if name and len(name):
 			#		path = "/home/root/dvd-" + name
 			#el
-			if os.path.isdir(path) and os.path.basename(path.lower()).endswith("video_ts"):
-				path += "/dvd"																							#dvdfoldername/video_ts/dvd.eit
-				if not os.path.exists(path + ".eit"):
-					path = path[:-4]
-					dvdpath, vts = os.path.split(path)
-					path = dvdpath + "/folder"																#dvdfoldername/folder.eit
-					if not os.path.exists(path + ".eit"):
-						path = os.path.join(dvdpath, os.path.basename(dvdpath))	#dvdfoldername/dvdfoldername.eit
-			elif os.path.isdir(path) and not path.endswith(".."):
-				path += "/folder"																						#foldername/folder.eit
-				if not os.path.exists(path + ".eit"):
-					fldpath, fld = os.path.split(path)
-					path = os.path.join(fldpath, os.path.basename(fldpath))		#foldername/foldername.eit
-			else:
-				path = os.path.splitext(path)[0]
+
+			exts = [".eit"]
+			fpath = getInfoFile(path, exts)
+			path = os.path.splitext(fpath)[0]
+
 			if not os.path.exists(path + ".eit"):
 				# Strip existing cut number
 				if path[-4:-3] == "_" and path[-3:].isdigit():
