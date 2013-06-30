@@ -11,7 +11,7 @@ from Screens.MessageBox import MessageBox
 from Components.config import *
 from Components.ConfigList import *
 
-import json, os
+import json, os, re
 from urllib2 import Request, urlopen
 
 
@@ -57,6 +57,9 @@ class DownloadMovieInfo(Screen):
 			extVideo = ["ts", "avi", "divx", "f4v", "flv", "img", "ifo", "iso", "m2ts", "m4v", "mkv", "mov", "mp4", "mpeg", "mpg", "mts", "vob", "wmv"]
 			for rem in extVideo:
 				moviename = moviename.replace(rem,"")
+				
+		# Remove phrases which are encapsulated in [*] from the movietitle
+		moviename = re.sub(r'\[.*\]', "", moviename)
 
 		for (phrase,sub) in substitutelist:
 			moviename = moviename.replace(phrase,sub)
