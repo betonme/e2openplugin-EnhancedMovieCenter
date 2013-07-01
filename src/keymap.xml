@@ -25,8 +25,8 @@
 	<map context="EMCGeneralPlayerActions">
 		<key id="KEY_RADIO" mapto="showExtensions" flags="b" />
 		<key id="KEY_GREEN" mapto="EMCGreen" flags="m" />
-		<key id="KEY_LEFT" mapto="seekBack" flags="m" />
-		<key id="KEY_RIGHT" mapto="seekFwd" flags="m" />
+		<key id="KEY_LEFT" mapto="seekBack" flags="b" />
+		<key id="KEY_RIGHT" mapto="seekFwd" flags="b" />
 	</map>
 	<map context="EMCDVDPlayerActions">
 		<key id="KEY_MENU" mapto="dvdMenu" flags="mr" />
@@ -39,6 +39,8 @@
 		<key id="KEY_RADIO" mapto="nextAudioTrack" flags="b" />
 		<key id="KEY_TEXT" mapto="nextSubtitleTrack" flags="m" />
 		<key id="KEY_VIDEO" mapto="nextAngle" flags="m" />
+		<key id="KEY_LEFT" mapto="left" flags="m" />
+		<key id="KEY_RIGHT" mapto="right" flags="m" />
 	</map>
 	<map context="PluginMovieSelectionActions">
 		<key id="\x0a" mapto="EMCOK" flags="m" />
