@@ -833,8 +833,12 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 	def keyNumberGlobal(self, number):
 		if self.service and self.service.type == sidDVD:
 			if fileExists(dvdPlayerPlg) or fileExists("%sc"%dvdPlayerPlg):
-				from Plugins.Extensions.DVDPlayer.plugin import ChapterZap
-				self.session.openWithCallback(self.numberEntered, ChapterZap, "0")
+				if fileExists('/usr/lib/enigma2/python/Screens/DVD.pyo'):
+					from Screens.DVD import ChapterZap
+					self.session.openWithCallback(self.numberEntered, ChapterZap, "0")
+				else:
+					from Plugins.Extensions.DVDPlayer.plugin import ChapterZap
+				        self.session.openWithCallback(self.numberEntered, ChapterZap, "0")
 
 	# InfoBarMenu Key_Menu
 	#def mainMenu(self):
