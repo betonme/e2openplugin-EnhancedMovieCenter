@@ -836,6 +836,9 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 				if fileExists('/usr/lib/enigma2/python/Screens/DVD.pyo'):
 					from Screens.DVD import ChapterZap
 					self.session.openWithCallback(self.numberEntered, ChapterZap, "0")
+				elif fileExists('/usr/lib/enigma2/python/Screens/DVD.pyc'):
+					from Screens.DVD import ChapterZap
+					self.session.openWithCallback(self.numberEntered, ChapterZap, "0")
 				else:
 					from Plugins.Extensions.DVDPlayer.plugin import ChapterZap
 				        self.session.openWithCallback(self.numberEntered, ChapterZap, "0")
