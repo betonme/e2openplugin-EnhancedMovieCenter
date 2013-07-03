@@ -59,7 +59,7 @@ from MovieCenter import sidDVD, sidDVB, toggleProgressService
 from RecordingsControl import getRecording
 import NavigationInstance
 
-dvdPlayerPlg = "%s%s"%(resolveFilename(SCOPE_PLUGINS), "Extensions/DVDPlayer/plugin.pyo")
+dvdPlayerPlg = "%s%s"%(resolveFilename(SCOPE_PLUGINS), "Extensions/DVDPlayer/plugin.py")
 
 
 class EMCMoviePlayerSummary(Screen):
@@ -309,7 +309,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 				
 				if service and service.type == sidDVD:
 					# Only import DVDPlayer, if we want to play a DVDPlayer format
-					if fileExists(dvdPlayerPlg) or fileExists("%sc"%dvdPlayerPlg):
+					if fileExists("%so"%dvdPlayerPlg) or fileExists("%sc"%dvdPlayerPlg):
 						try:
 							from Plugins.Extensions.DVDPlayer import servicedvd # load c++ part of dvd player plugin
 						except:
@@ -770,7 +770,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 			self["SeekActions"].setEnabled(True)
 
 	def createSummary(self):
-		if self.service and self.service.type == sidDVD and (fileExists(dvdPlayerPlg) or fileExists("%sc"%dvdPlayerPlg)):
+		if self.service and self.service.type == sidDVD and (fileExists("%so"%dvdPlayerPlg) or fileExists("%sc"%dvdPlayerPlg)):
 			from Plugins.Extensions.DVDPlayer.plugin import DVDSummary
 			return DVDSummary
 		else:
@@ -832,16 +832,13 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 	# InfoBarNumberZap
 	def keyNumberGlobal(self, number):
 		if self.service and self.service.type == sidDVD:
-			if fileExists(dvdPlayerPlg) or fileExists("%sc"%dvdPlayerPlg):
-				if fileExists('/usr/lib/enigma2/python/Screens/DVD.pyo'):
-					from Screens.DVD import ChapterZap
-					self.session.openWithCallback(self.numberEntered, ChapterZap, "0")
-				elif fileExists('/usr/lib/enigma2/python/Screens/DVD.pyc'):
+			if fileExists("%so"%dvdPlayerPlg) or fileExists("%sc"%dvdPlayerPlg):
+				if fileExists('/usr/lib/enigma2/python/Screens/DVD.pyo') or fileExists('/usr/lib/enigma2/python/Screens/DVD.pyc'):
 					from Screens.DVD import ChapterZap
 					self.session.openWithCallback(self.numberEntered, ChapterZap, "0")
 				else:
 					from Plugins.Extensions.DVDPlayer.plugin import ChapterZap
-				        self.session.openWithCallback(self.numberEntered, ChapterZap, "0")
+					self.session.openWithCallback(self.numberEntered, ChapterZap, "0")
 
 	# InfoBarMenu Key_Menu
 	#def mainMenu(self):

@@ -41,7 +41,7 @@ from DelayedFunction import DelayedFunction
 
 from MovieCenter import sidDVD, sidDVB
 
-SeekbarPlg = "%s%s"%(resolveFilename(SCOPE_PLUGINS), "Extensions/Seekbar/plugin.pyo")
+SeekbarPlg = "%s%s"%(resolveFilename(SCOPE_PLUGINS), "Extensions/Seekbar/plugin.py")
 
 
 # Overwrite Seekbar
@@ -206,7 +206,7 @@ class InfoBarSupport(	InfoBarBase, \
 	# InfoBarSeek
 	# Seekbar workaround
 	def seekFwdManual(self):
-		if fileExists(SeekbarPlg) or fileExists("%sc"%SeekbarPlg):
+		if fileExists("%so"%SeekbarPlg) or fileExists("%sc"%SeekbarPlg):
 			from Plugins.Extensions.Seekbar.plugin import Seekbar, seekbar
 			Seekbar.keyOK = EMCkeyOK
 			seekbar(self)
@@ -217,7 +217,7 @@ class InfoBarSupport(	InfoBarBase, \
 
 	# Seekbar workaround
 	def seekBackManual(self):
-		if fileExists(SeekbarPlg) or fileExists("%sc"%SeekbarPlg):
+		if fileExists("%so"%SeekbarPlg) or fileExists("%sc"%SeekbarPlg):
 			from Plugins.Extensions.Seekbar.plugin import Seekbar, seekbarBack
 			Seekbar.keyOK = EMCkeyOK
 			seekbarBack(self)

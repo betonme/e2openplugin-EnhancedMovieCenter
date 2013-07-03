@@ -349,9 +349,9 @@ class EMCImdbScan(Screen):
 			print "EMC iMDB - csfd 1 : CSFD.cz is down or No results found - %s" % search_title
 			self.display_na(search_title, path)
 		else:
-			movie_search = re.findall('<img src=\"(http://img.csfd.cz/posters/.*?)\".*?<h3 class="subject"><a href=.*?class="film c.">(.*?)</a>.*?</li>', data, re.S)
+			movie_search = re.findall('<img src=\"(//img.csfd.cz/files/images/film/posters/.*?)\".*?<h3 class="subject"><a href=.*?class="film c.">(.*?)</a>.*?</li>', data, re.DOTALL | re.IGNORECASE)
 			if movie_search:
-				poster_url = movie_search[0][0]
+				poster_url = "http:" + movie_search[0][0]
 				movie_title = movie_search[0][1]
 				print "EMC csfd: Download - movie_title: ", movie_title, poster_url
 				print "EMC csfd: Download", search_title, poster_url
@@ -363,14 +363,14 @@ class EMCImdbScan(Screen):
 					print "EMC iMDB - csfd: Film gefunden aber kein poster vorhanden - %s" % search_title
 					self.display_na(search_title, path)
 			else:
-				movie_search = re.findall('<img src="(http://img.csfd.cz/posters/.*?)" alt="poster"', data, re.S)
+				movie_search = re.findall('<img src=\"(//img.csfd.cz/files/images/film/posters/.*?)" alt="poster"', data, re.DOTALL | re.IGNORECASE)
 				if movie_search:
 					title_s = re.findall('<title>(.*?)\|', data, re.S)
 					if title_s:
 						movie_title = title_s[0]
 					else:
 						movie_title = search_title
-					poster_url = movie_search[0]
+					poster_url = "http:" + movie_search[0]
 					print "EMC csfd: Download - movie_title: ", movie_title, poster_url
 					print "EMC csfd: Download", search_title, poster_url
 					#os.system("wget %s -O '%s'" % (poster_url, path))
@@ -746,43 +746,80 @@ class getCover(Screen):
 			#self.einzel_elapsed = (self.einzel_end_time - self.einzel_start_time)
 			#self["info"].setText(_("found %s covers in %.1f sec") % (self.cover_count, self.einzel_elapsed))
 
+	def searchcsfd_detail(self, url, title):
+		getPage(url).addCallback(self.showCovers_detail_csfd, title).addErrback(self.errorLoad, title)
+
+	def showCovers_detail_csfd(self, data, title):
+		title_s = re.findall('<title>(.*?)\|', data, re.S)
+		if title_s:
+			csfd_title = title_s[0]
+			print "EMC csfd: Movie found - %s" % csfd_title
+		else:
+			csfd_title = title
+		bild = re.findall('<img src="(//img.csfd.cz/files/images/film/posters/.*?)" alt="poster"', data, re.DOTALL | re.IGNORECASE)
+		if bild:
+			print "EMC csfd: Cover Select - %s" % title
+			self.cover_count = self.cover_count + 1
+			csfd_url = "http:" + bild[0].replace('\\','').strip()
+			print "csfd_url: %s" % csfd_url
+			self.menulist.append(showCoverlist(csfd_title, csfd_url, self.o_path, "csfd: "))
+			bild = re.findall('<h3>Plak.*?ty</h3>(.*?)</table>', data, re.S)
+			if bild:
+				bild1 = re.findall('style=\"background-image\: url\(\'(.*?)\'\)\;', bild[0], re.DOTALL | re.IGNORECASE)
+				if bild1:
+					for each in bild1:
+						print "EMC csfd: Cover Select - %s" % title
+						self.cover_count = self.cover_count + 1
+						csfd_url = "http:" + each.replace('\\','').strip()
+						print "csfd_url: %s" % csfd_url
+						self.menulist.append(showCoverlist(csfd_title, csfd_url, self.o_path, "csfd: "))
+				else:
+					print "EMC csfd 3 : no else covers - %s" % title
+			else:
+				print "EMC csfd 2 : no else covers - %s" % title
+		else:
+			print "EMC csfd 1 : keine infos gefunden - %s" % title
+
 	def searchcsfd(self, title):
 		search_title = urllib.quote(title.replace('+', ' ').replace('-', ' '))
 		url = "http://www.csfd.cz/hledat/?q=%s" % search_title
 		getPage(url).addCallback(self.showCovers_csfd, title).addErrback(self.errorLoad, title)
 
 	def showCovers_csfd(self, data, title):
-		bild = re.findall('<img src=\"(http://img.csfd.cz/posters/.*?)\".*?<h3 class="subject"><a href=.*?class="film c.">(.*?)</a>.*?</li>', data, re.S)
+		bild = re.findall('<img src=\"(//img.csfd.cz/files/images/film/posters/.*?)\".*?<h3 class="subject"><a href="(.*?)" class="film c.">(.*?)</a>.*?</li>', data, re.DOTALL | re.IGNORECASE)
 		if bild:
 			for each in bild:
-				print "EMB iMDB - csfd: Cover Select - %s" % title
+				print "EMC csfd: Cover Select - %s" % title
 				self.cover_count = self.cover_count + 1
-				csfd_title = each[1]
-				csfd_url = each[0]
-				print "csfd_url: ", csfd_url
+				csfd_title = each[2]
+				csfd_detail_url = "http://www.csfd.cz" + each[1]
+				print "csfd_detail_url: %s" % csfd_detail_url
+				csfd_url = "http:" + each[0]
+				print "csfd_url: %s" % csfd_url
 				self.menulist.append(showCoverlist(csfd_title, csfd_url, self.o_path, 'csfd: '))
+				self.searchcsfd_detail(csfd_detail_url, csfd_title)
 		else:
 			title_s = re.findall('<title>(.*?)\|', data, re.S)
 			if title_s:
 				csfd_title = title_s[0]
-				print "EMB iMDB - csfd: Movie found - %s" % csfd_title
+				print "EMC iMDB csfd: Movie found - %s" % csfd_title
 			else:
 				csfd_title = title
-			bild = re.findall('<img src="(http://img.csfd.cz/posters/.*?)" alt="poster"', data, re.S)
+			bild = re.findall('<img src="(//img.csfd.cz/files/images/film/posters/.*?)" alt="poster"', data, re.DOTALL | re.IGNORECASE)
 			if bild:
-				print "EMB iMDB - csfd: Cover Select - %s" % title
+				print "EMC iMDB csfd: Cover Select - %s" % title
 				self.cover_count = self.cover_count + 1
-				csfd_url = bild[0].replace('\\','').strip()
+				csfd_url = "http:" + bild[0].replace('\\','').strip()
 				print "csfd_url: %s" % csfd_url
 				self.menulist.append(showCoverlist(csfd_title, csfd_url, self.o_path, "csfd: "))
 				bild = re.findall('<h3>Plak.*?ty</h3>(.*?)</table>', data, re.S)
 				if bild:
-					bild1 = re.findall('style=\"background-image\: url\(\'(.*?)\'\)\;', bild[0], re.S)
+					bild1 = re.findall('style=\"background-image\: url\(\'(.*?)\'\)\;', bild[0], re.DOTALL | re.IGNORECASE)
 					if bild1:
 						for each in bild1:
-							print "EMB iMDB - csfd: Cover Select - %s" % title
+							print "EMC iMDB - csfd: Cover Select - %s" % title
 							self.cover_count = self.cover_count + 1
-							csfd_url = each.replace('\\','').strip()
+							csfd_url = "http:" + each.replace('\\','').strip()
 							print "csfd_url: %s" % csfd_url
 							self.menulist.append(showCoverlist(csfd_title, csfd_url, self.o_path, "csfd: "))
 					else:
