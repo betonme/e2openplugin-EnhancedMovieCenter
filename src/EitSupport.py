@@ -104,7 +104,7 @@ class EitList():
 			#el
 
 			exts = [".eit"]
-			fpath = getInfoFile(path, exts)
+			fpath = getInfoFile(path, exts)[1]
 			path = os.path.splitext(fpath)[0]
 
 			if not os.path.exists(path + ".eit"):

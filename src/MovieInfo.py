@@ -14,7 +14,6 @@ from Components.ConfigList import *
 import json, os, re
 from urllib2 import Request, urlopen
 
-
 config.EMC.movieinfo = ConfigSubsection()
 config.EMC.movieinfo.language = ConfigSelection(default='de', choices=[('de', _('German')), ('en', _('English'))])
 config.EMC.movieinfo.ldruntime = ConfigSelection(default='1', choices=[('1', _('Yes')), ('0', _('No'))])
@@ -37,10 +36,12 @@ class DownloadMovieInfo(Screen):
 		<eLabel text="Movie Info" position="600,460" size="300,25" font="Regular;18" halign="left" valign="center" transparent="1" />
 	</screen>"""
 
-	def __init__(self, session, service, moviename):
+#	def __init__(self, session, service, moviename):
+	def __init__(self, session, spath, moviename):
 		Screen.__init__(self, session)
 		self.session = session
-		self.service = service
+#		self.service = service
+		self.spath = spath
 		self.moviename = moviename
 		self["actions"] = HelpableActionMap(self, "EMCMovieInfo",
 		{
@@ -51,13 +52,21 @@ class DownloadMovieInfo(Screen):
 		}, -1)
 
 		substitutelist = [("."," "), ("_"," "), ("-"," "), ("1080p",""), ("720p",""), ("x264",""), ("h264",""), ("1080i",""), ("AC3","")]
-		(moviepath,ext) = os.path.splitext(service.getPath())
+#		(moviepath,ext) = os.path.splitext(service.getPath())  #do we need this line ?
 
-		if config.EMC.movie_show_format:
-			extVideo = ["ts", "avi", "divx", "f4v", "flv", "img", "ifo", "iso", "m2ts", "m4v", "mkv", "mov", "mp4", "mpeg", "mpg", "mts", "vob", "wmv"]
+#		if config.EMC.movie_show_format:
+#			extVideo = ["ts", "avi", "divx", "f4v", "flv", "img", "ifo", "iso", "m2ts", "m4v", "mkv", "mov", "mp4", "mpeg", "mpg", "mts", "vob", "wmv"]
+#			for rem in extVideo:
+#				moviename = moviename.replace(rem,"")
+
+		if config.EMC.movie_show_format.value:
+			from MovieCenter import extVideo
 			for rem in extVideo:
-				moviename = moviename.replace(rem,"")
-				
+				rem = rem.replace("."," ")
+				if moviename.endswith(rem):
+					moviename = moviename[:-len(rem)]
+					break
+
 		# Remove phrases which are encapsulated in [*] from the movietitle
 		moviename = re.sub(r'\[.*\]', "", moviename)
 
@@ -88,7 +97,9 @@ class DownloadMovieInfo(Screen):
 			id = sel[1]
 			info = self.getMovieInfo(id)
 			if info is not None:
-				(moviepath,ext) = os.path.splitext(self.service.getPath())
+#				(moviepath,ext) = os.path.splitext(self.service.getPath())
+				moviepath = os.path.splitext(self.spath)[0]
+
 				file(moviepath + ".txt",'w').write(info)
 				self.session.open(MessageBox, (_('Movie Information downloaded successfully!')), MessageBox.TYPE_INFO, 5)
 				self.exit()

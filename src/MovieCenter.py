@@ -354,7 +354,7 @@ def detectMOVStructure(checkPath):
 		return None
 	elif not config.EMC.scan_linked.value and os.path.islink(checkPath):
 		return None
-	extMovie = extVideo - extDvd - extBlu
+	extMovie = extVideo - extBlu
 	for ext in extMovie:
 		movpath = os.path.join(checkPath, os.path.basename(checkPath)) + ext
 		if fileExists( movpath ):
@@ -609,7 +609,7 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 
 		hideitemlist = config.EMC.cfghide_enable.value and self.hideitemlist
 		
-		localExtList = extList
+		localExtList = extList - extBlu
 		
 		dappend = subdirlist.append
 		fappend = filelist.append
@@ -630,9 +630,10 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 					
 					# This will decrease the function execution time massively
 					ext = splitext(file)[1].lower()
+
 					if ext not in localExtList:
 						continue
-					
+
 					if hideitemlist:
 						if file in hideitemlist or (file[0:1] == "." and ".*" in hideitemlist):
 							continue

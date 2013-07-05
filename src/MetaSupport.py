@@ -62,7 +62,7 @@ class MetaList():
 			#el
 
 			exts = [".ts.meta", ".meta"]
-			fpath = getInfoFile(path, exts)
+			fpath = getInfoFile(path, exts)[1]
 			path = os.path.splitext(fpath)[0]
 
 			if not os.path.exists(path + ".meta"):
@@ -174,8 +174,8 @@ class MetaList():
 		else:
 			# No path or no file clear all
 			self.meta = ["","","","","","",""]
-			
-def getInfoFile(path, exts):
+
+def getInfoFile(path, exts=""):
 	from MovieCenter import extMedia
 	fpath = p1 = p2 = p3 = ""
 	name, ext = os.path.splitext(path)
@@ -193,7 +193,7 @@ def getInfoFile(path, exts):
 		elif path.lower().endswith("video_ts"):												# DVD structures
 			dir = path[:-9]
 			if dir.lower().endswith("/dvd"): dir = dir[:-4]
-		else:
+		else:																													# folders
 			dir = path
 			p2 = os.path.join(dir, "folder")														# "folder.ext"
 
@@ -207,4 +207,4 @@ def getInfoFile(path, exts):
 			fpath = p + ext
 			if os.path.exists(fpath): break
 		if os.path.exists(fpath): break
-	return fpath
+	return (p1, fpath)

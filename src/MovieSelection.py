@@ -52,7 +52,7 @@ from enigma import ePicLoad, getDesktop
 from DelayedFunction import DelayedFunction
 from EnhancedMovieCenter import _
 from EMCTasker import emcTasker, emcDebugOut
-from MovieCenter import MovieCenter, getPlayerService, getProgress, detectBLUStructure, detectDVDStructure
+from MovieCenter import MovieCenter, getPlayerService, getProgress, detectBLUStructure
 from MovieSelectionMenu import MovieMenu
 from EMCMediaCenter import EMCMediaCenter
 from VlcPluginInterface import VlcPluginInterfaceSel
@@ -222,7 +222,7 @@ class SelectionEventInfo:
 			path = service.getPath()
 			jpgpath = ""
 			exts = [".jpg", ".png", "_md.jpg", "_md.png"]
-			jpgpath = getInfoFile(path, exts)
+			jpgpath = getInfoFile(path, exts)[1]
 
 			if path.endswith("/.."):
 				jpgpath = "/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/cover_tr.png"
@@ -596,6 +596,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			self["list"].resetSorting()
 			self.changeDir(config.EMC.movie_homepath.value)
 		elif value == "DL":
+			self.coverAfterPreview()
 			self.deleteFile()
 		elif value == "MV":
 			self.moveMovie()
@@ -729,24 +730,29 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 
 	def moveDown(self):
 		self.cursorDir = 1
+		self.coverAfterPreview()
 		self["list"].instance.moveSelection( self["list"].instance.moveDown )
 		self.updateAfterKeyPress()
 
 	def pageUp(self):
 		self.cursorDir = 0
+		self.coverAfterPreview()
 		self["list"].instance.moveSelection( self["list"].instance.pageUp )
 		self.updateAfterKeyPress()
 
 	def pageDown(self):
 		self.cursorDir = 0
+		self.coverAfterPreview()
 		self["list"].instance.moveSelection( self["list"].instance.pageDown )
 		self.updateAfterKeyPress()
 
 	def moveTop(self):
+		self.coverAfterPreview()
 		self["list"].instance.moveSelection( self["list"].instance.moveTop )
 		self.updateAfterKeyPress()
 		
 	def moveSkipUp(self):
+		self.coverAfterPreview()
 		self.cursorDir = -1
 		for _ in range(int(config.EMC.list_skip_size.value)):
 			self["list"].instance.moveSelection( self["list"].instance.moveUp )
@@ -754,11 +760,13 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		
 	def moveSkipDown(self):
 		self.cursorDir = 1
+		self.coverAfterPreview()
 		for _ in range(int(config.EMC.list_skip_size.value)):
 			self["list"].instance.moveSelection( self["list"].instance.moveDown )
 		self.updateAfterKeyPress()
 
 	def moveEnd(self):
+		self.coverAfterPreview()
 		self["list"].instance.moveSelection( self["list"].instance.moveEnd )
 		self.updateAfterKeyPress()
 
@@ -2082,9 +2090,22 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			self.session.open(MessageBox, _("Trashcan create failed. Check mounts and permissions."), MessageBox.TYPE_ERROR)
 			emcDebugOut("[EMCMS] trashcanCreate exception:\n" + str(e))
 
+#	def dlMovieInfo(self):
+#		selectedlist = self["list"].makeSelectionList()[:]
+#		service = selectedlist[0]
+#		if os.path.isfile(service.getPath()):
+#			moviename = str(self["list"].getNameOfService(service))
+#			self.session.open(DownloadMovieInfo, service, moviename)
+
 	def dlMovieInfo(self):
 		selectedlist = self["list"].makeSelectionList()[:]
 		service = selectedlist[0]
-		if os.path.isfile(service.getPath()):
+		path = service.getPath()
+		if path and not path == config.EMC.movie_trashcan_path.value:
 			moviename = str(self["list"].getNameOfService(service))
-			self.session.open(DownloadMovieInfo, service, moviename)
+			excl = ["..", "Latest Recordings", _("Latest Recordings")]
+			if moviename and moviename not in excl:
+				spath = getInfoFile(path)[0]
+				self.session.open(DownloadMovieInfo, spath, moviename)
+			else:
+				self.session.open(MessageBox, (_('No valid eventname!')), MessageBox.TYPE_INFO, 5)

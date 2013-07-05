@@ -176,7 +176,7 @@ class Info:
 		if not self.__extendeddescription:
 
 			exts = [".txt"]
-			txtpath = getInfoFile(path, exts)
+			txtpath = getInfoFile(path, exts)[1]
 
 			if os.path.exists(txtpath):
 				txtdescarr = open(txtpath).readlines()
