@@ -591,7 +591,7 @@ class EMCImdbScan(Screen):
 		pass
 
 	def ok(self):
-		if self.check == "true":
+		if self.check == "true" and self.menulist:
 			data_list = []
 			m_title = self["menulist"].getCurrent()[0][0]
 			m_poster_path = self["menulist"].getCurrent()[0][1]
@@ -972,7 +972,7 @@ class getCover(Screen):
 		self.close(False)
 
 	def ok(self):
-		if self.check == "true":
+		if self.check == "true" and self.menulist:
 			shutil.move(self.path, self.o_path)
 			print "EMC iMDB: mv poster to real path - %s %s" % (self.path, self.o_path) 
 			self.check = "false"
