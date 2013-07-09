@@ -26,6 +26,7 @@ import time
 
 from datetime import datetime
 
+from Components.config import config
 from Components.Language import language
 from EMCTasker import emcDebugOut
 from IsoFileSupport import IsoSupport
@@ -291,7 +292,7 @@ class EitList():
 								short_event_descriptor = short_event_descriptor.decode("cp1252").encode("utf-8")
 							except UnicodeDecodeError:
 								short_event_descriptor = short_event_descriptor.decode("iso-8859-1").encode("utf-8")
-							if (lang == "cs") or (lang == "sk"):
+							if (lang == "cs") or (lang == "sk") or (config.EMC.langsupp.value == "CZ&SK"):
 								short_event_descriptor = str(convertCharSpecCZSK(short_event_descriptor))
 					self.eit['name'] = short_event_descriptor
 					
@@ -311,7 +312,7 @@ class EitList():
 								extended_event_descriptor = extended_event_descriptor.decode("cp1252").encode("utf-8")
 							except UnicodeDecodeError:
 								extended_event_descriptor = extended_event_descriptor.decode("iso-8859-1").encode("utf-8")
-							if (lang == "cs") or (lang == "sk"):
+							if (lang == "cs") or (lang == "sk") or (config.EMC.langsupp.value == "CZ&SK"):
 								extended_event_descriptor = str(convertCharSpecCZSK(extended_event_descriptor))
 					self.eit['description'] = extended_event_descriptor
 					
