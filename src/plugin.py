@@ -220,6 +220,9 @@ bqt_choices = [	("",		_("HomeEnd")),
 				("Skip",	_("Skip")),
 				("Folder",	_("Change Folder"))]
 
+extra_support_lang_choices = [("No",	_("No")),
+					("CZ&SK",	"CZ&SK")]
+
 #Think about using AZ or ("A",False) as dict key / permanent sort store value
 #TODO use an OrderedDict
 sort_modes =	{		("D-")	:	( _("Date sort descending (D-)"),		("D",False),	_("Date sort"),		),
@@ -247,6 +250,7 @@ config.EMC.about                     = ConfigSelection(default = "1", choices = 
 config.EMC.extmenu_plugin            = ConfigYesNo(default = False)
 config.EMC.extmenu_list              = ConfigYesNo(default = False)
 config.EMC.epglang                   = ConfigSelection(default = language.getActiveLanguage(), choices                    = langList())
+config.EMC.langsupp                  = ConfigSelection(default = "No", choices = extra_support_lang_choices)
 config.EMC.sublang1                  = ConfigSelection(default = language.lang[language.getActiveLanguage()][0], choices  = langList())
 config.EMC.sublang2                  = ConfigSelection(default = language.lang[language.getActiveLanguage()][0], choices  = langList())
 config.EMC.sublang3                  = ConfigSelection(default = language.lang[language.getActiveLanguage()][0], choices  = langList())
