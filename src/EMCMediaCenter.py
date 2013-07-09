@@ -251,7 +251,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 		if self.picload and picInfo:
 			ptr = self.picload.getData()
 			if ptr != None:
-				self["Cover"].instance.setPixmap(ptr.__deref__())
+				self["Cover"].instance.setPixmap(ptr)
 				self["Cover"].show()
 
 	def CoolAVSwitch(self):

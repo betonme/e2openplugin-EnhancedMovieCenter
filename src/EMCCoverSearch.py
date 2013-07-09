@@ -614,7 +614,7 @@ class EMCImdbScan(Screen):
 				ptr = self.picload.getData()
 				if ptr != None:
 					print "anzeigen"
-					self["poster"].instance.setPixmap(ptr.__deref__())
+					self["poster"].instance.setPixmap(ptr)
 					self["poster"].show()
 				else:
 					print "nicht angezeigt"
@@ -940,7 +940,7 @@ class getCover(Screen):
 					#        ptr = LoadPixmap("/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/no_poster.png")
 					#        print "EMC iMDB: Load default NO Poster."
 					#if ptr is not None:
-					#        self["poster"].instance.setPixmap(ptr.__deref__())
+					#        self["poster"].instance.setPixmap(ptr)
 					#        print "EMC iMDB: Load Poster - %s" % m_title
 				else:
 					print "EMC iMDB: No url found for - %s" % m_title
@@ -962,7 +962,7 @@ class getCover(Screen):
 				ptr = self.picload.getData()
 				if ptr != None:
 					print "EMC iMDB: Load Poster - %s" % self.m_title
-					self["poster"].instance.setPixmap(ptr.__deref__())
+					self["poster"].instance.setPixmap(ptr)
 					self["poster"].show()
 
 	def exit(self):

@@ -111,6 +111,8 @@ cmtBMEMC   = "BEMC"
 cmtDir     = "D"
 cmtVLC     = "V"
 
+MinCacheLimit = 10
+
 # Grouped custom types
 virVLC     = frozenset([cmtVLC, vlcSrv, vlcDir])
 virAll     = frozenset([cmtBME2, cmtBMEMC, cmtVLC, cmtLRec, cmtTrash, cmtUp, cmtDir, vlcSrv, vlcDir])
@@ -178,7 +180,7 @@ def getPlayerService(path, name="", ext=None):
 		path = path.replace(":","") # because of VLC player
 		#service = eServiceReference("2:0:1:0:0:0:0:0:0:0:" + path)
 		service = eServiceReference(ENIGMA_SERVICE_ID, 0, path)
-		print "service valid=", service.valid()
+		print "[EMC] service valid=", service.valid()
 		service.setData(0, DEFAULT_VIDEO_PID)
 		service.setData(1, DEFAULT_AUDIO_PID)
 	if name:
@@ -389,6 +391,10 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 		PermanentSort.__init__(self)
 		
 		self.currentPath = config.EMC.movie_homepath.value
+
+		self.cacheDirectoryList = {}
+		self.cacheFileList = {}
+
 		self.list = []
 		from Plugins.Extensions.EnhancedMovieCenter.plugin import sort_modes
 		self.actualSort = sort_modes.get( config.EMC.moviecenter_sort.value )[1]
@@ -552,7 +558,7 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 	def getServiceOfIndex(self, index):
 		return self.list[index] and self.list[index][0]
 	
-	def createDirListRecursive(self, path):
+	def createDirListRecursive(self, path, useCache = True):
 		dirstack, subdirlist, subfilelist, filelist = [], [], [], []
 		
 		dappend = dirstack.append
@@ -571,7 +577,7 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 			if directory.find( config.EMC.movie_trashcan_path.value ) == -1:
 				
 				# Get entries
-				subdirlist, subfilelist = self.createDirList( directory )
+				subdirlist, subfilelist = self.createDirList(directory, useCache)
 				
 				# Found new directories to search within, use only their path
 				for d, name, ext in subdirlist:
@@ -592,8 +598,8 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 		del pathsplitext
 		# We don't want any folders
 		return [], filelist
-	
-	def createDirList(self, path):
+
+	def __createDirList(self, path):
 		subdirlist, filelist = [], []
 		dvdStruct = None
 		pathname, ext = "", ""
@@ -692,7 +698,7 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 								dappend( (pathname, dir, cmtDir) )
 				# We only want the topdir
 				break
-		
+
 		del dappend
 		del fappend
 		del splitext
@@ -700,6 +706,27 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 		del pathisfile
 		del pathisdir
 		del pathislink
+		return subdirlist, filelist
+
+	def reloadDirList(self, path):
+		return self.createDirList(path, False)
+
+	def createDirList(self, path, useCache = True):
+		subdirlist, filelist = [], []
+		if config.EMC.files_cache.value and useCache and self.cacheDirectoryList.has_key(path) and self.cacheFileList.has_key(path):
+			subdirlist = self.cacheDirectoryList[path]
+			filelist = self.cacheFileList[path]
+		else:
+			subdirlist, filelist = self.__createDirList(path)
+			if config.EMC.files_cache.value:
+				if (len(subdirlist)>MinCacheLimit) or (len(filelist)>MinCacheLimit):
+					self.cacheDirectoryList[path] = subdirlist
+					self.cacheFileList[path] = filelist
+				else:
+					if self.cacheDirectoryList.has_key(path):
+						del self.cacheDirectoryList[path]
+					if self.cacheFileList.has_key(path):
+						del self.cacheFileList[path]
 		return subdirlist, filelist
 
 	def createLatestRecordingsList(self):
@@ -725,7 +752,7 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 			if directory.find( config.EMC.movie_trashcan_path.value ) == -1:
 				
 				# Get entries
-				subdirlist, subfilelist = self.createDirList( directory )
+				subdirlist, subfilelist = self.createDirList(directory, False)
 				
 				# Found new directories to search within, use only their path
 				for d, name, ext in subdirlist:
@@ -808,7 +835,7 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 
 	def reloadInternal(self, currentPath, simulate=False, recursive=False):
 		#TODO add parameter reset list sort
-		emcDebugOut("[MC] LOAD PATH:\n" + str(currentPath))
+		emcDebugOut("[EMC] LOAD PATH:\n" + str(currentPath))
 		customlist, subdirlist, filelist, tmplist = [], [], [], []
 		resetlist = True 
 		nextSort = None
@@ -823,9 +850,9 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 			
 			# Read subdirectories and filenames
 			if not recursive:
-				subdirlist, filelist = self.createDirList(currentPath)
+				subdirlist, filelist = self.createDirList(currentPath, True)
 			else:
-				subdirlist, filelist = self.createDirListRecursive(currentPath)
+				subdirlist, filelist = self.createDirListRecursive(currentPath, True)
 				
 			if not simulate:
 				customlist = self.createCustomList(currentPath)
