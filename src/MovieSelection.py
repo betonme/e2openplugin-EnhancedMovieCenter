@@ -1039,13 +1039,16 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		
 		# Display the free space
 		if os.path.exists(self.currentPath):
-			stat = os.statvfs(self.currentPath)
-			free = (stat.f_bavail if stat.f_bavail!=0 else stat.f_bfree) * stat.f_bsize / 1024 / 1024
-			if free >= 10240:	#unit in Giga bytes if more than 10 GB free
-				title = "(%d GB) " %(free/1024)
-			else:
-				title = "(%d MB) " %(free)
-		
+			try:
+				stat = os.statvfs(self.currentPath)
+				free = (stat.f_bavail if stat.f_bavail!=0 else stat.f_bfree) * stat.f_bsize / 1024 / 1024
+				if free >= 10240:	#unit in Giga bytes if more than 10 GB free
+					title = "(%d GB) " %(free/1024)
+				else:
+					title = "(%d MB) " %(free)
+			except OSError:
+				title = "(? GB) "
+
 		# Display the current path
 		path = self.currentPath
 		path = path.replace(config.EMC.movie_homepath.value, "...")
