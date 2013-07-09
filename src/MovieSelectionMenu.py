@@ -66,6 +66,8 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 			if currentPath == config.EMC.movie_pathlimit.value:
 				self.menu.append((_("Directory up"), boundFunction(self.close, "dirup")))
 			
+			self.menu.append((_("Reload current directory"), boundFunction(self.close, "reloadwithoutcache")))
+			
 			self.menu.append((_("Play last"), boundFunction(self.close, "Play last")))
 			
 			self.menu.append((_("Play All"), boundFunction(self.close, "playall")))

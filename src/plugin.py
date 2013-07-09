@@ -265,6 +265,7 @@ config.EMC.debug                     = ConfigYesNo(default = False)
 config.EMC.folder                    = ConfigTextWOHelp(default = "/hdd/EMC", fixed_size = False, visible_width= 22)
 config.EMC.debugfile                 = ConfigTextWOHelp(default = "output.txt", fixed_size = False, visible_width= 22)
 config.EMC.ml_disable                = ConfigYesNo(default = False)
+config.EMC.files_cache               = ConfigYesNo(default = False)
 # Color keys selection list array dict: longdescription, shortdescription, functionpointer
 config.EMC.movie_redfunc             = ConfigSelection(default = "DL", choices = red_choices)
 config.EMC.movie_greenfunc           = ConfigSelection(default = "ST", choices = green_choices)

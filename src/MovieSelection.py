@@ -223,6 +223,7 @@ class SelectionEventInfo:
 			jpgpath = ""
 			exts = [".jpg", ".png", "_md.jpg", "_md.png"]
 			jpgpath = getInfoFile(path, exts)[1]
+			print "EMC jpgpath", jpgpath
 
 			if path.endswith("/.."):
 				jpgpath = "/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/cover_tr.png"
@@ -252,7 +253,7 @@ class SelectionEventInfo:
 		if self.picload and picInfo:
 			ptr = self.picload.getData()
 			if ptr != None:
-				self["Cover"].instance.setPixmap(ptr.__deref__())
+				self["Cover"].instance.setPixmap(ptr)
 				self["Cover"].show()
 				self["CoverBg"].show()
 			del self.picload
@@ -261,7 +262,7 @@ class SelectionEventInfo:
 		if self.picload and picInfo:
 			ptr = self.picload.getData()
 			if ptr != None:
-				self["Cover"].instance.setPixmap(ptr.__deref__())
+				self["Cover"].instance.setPixmap(ptr)
 				if config.EMC.movie_cover.value:
 					if self.cover:
 						self["Cover"].show()
@@ -669,6 +670,12 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		if self.returnService: print "EMC ret chnSer " +str(self.returnService.toString())
 		self.reloadList(path)
 
+	def reloadListWithoutCache(self):
+		# realod files and directories for current path without using cache
+		if config.EMC.files_cache.value:
+			self["list"].reloadDirList(self.currentPath)
+		self.reloadList(self.currentPath)
+
 	def CoolKey0(self):
 		# Movie home
 		self.setStackNextDirectory( self.currentPath, self["list"].getCurrent() )
@@ -879,6 +886,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			elif selection == "imdb": self.imdb()
 			elif selection == "rename": self.rename()
 			elif selection == "emptytrash": purgeExpired(emptyTrash=True)
+			elif selection == "reloadwithoutcache": self.reloadListWithoutCache()
 
 	def openMenu(self):
 		current = self.getCurrent()
@@ -935,7 +943,9 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			
 		# Collect imdb data
 		self.session.open(EMCImdbScan, filelist)
-	
+		self.reloadList(self.currentPath)
+		self.moveToIndex(0)
+
 	def markAll(self):
 		for i in xrange( len (self["list"]) ):
 			self["list"].toggleSelection( index=i )
