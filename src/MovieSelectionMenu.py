@@ -96,7 +96,11 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 				if os.path.isfile(service.getPath()):
 					self.menu.append((_("Copy Movie"), boundFunction(self.close, "Copy Movie")))
 					self.menu.append((_("Move Movie"), boundFunction(self.close, "Move Movie")))
-					self.menu.append((_("Download Movie Information"), boundFunction(self.close, "Movie Information")))
+					#self.menu.append((_("Download Movie Information"), boundFunction(self.close, "Movie Information")))
+				if service.getPath() != config.EMC.movie_trashcan_path.value:
+					if not service.getPath().endswith("/..") and not service.getPath().endswith("/Latest Recordings"):
+						self.menu.append((_("Download Movie Information"), boundFunction(self.close, "Movie Information")))
+						#self.menu.append((_("Download Movie Cover"), boundFunction(self.close, "dlcover")))
 			
 			if self.service or self.selections:
 				self.menu.append((_("Rename selected movie(s)"), boundFunction(self.renameMovies)))

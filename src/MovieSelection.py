@@ -2111,14 +2111,11 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 #			self.session.open(DownloadMovieInfo, service, moviename)
 
 	def dlMovieInfo(self):
-		selectedlist = self["list"].makeSelectionList()[:]
-		service = selectedlist[0]
-		path = service.getPath()
-		if path and not path == config.EMC.movie_trashcan_path.value:
-			moviename = str(self["list"].getNameOfService(service))
-			excl = ["..", "Latest Recordings", _("Latest Recordings")]
-			if moviename and moviename not in excl:
-				spath = getInfoFile(path)[0]
-				self.session.open(DownloadMovieInfo, spath, moviename)
-			else:
-				self.session.open(MessageBox, (_('No valid eventname!')), MessageBox.TYPE_INFO, 5)
+		service = self["list"].getCurrent()
+		if service:
+			path = service.getPath()
+			if path and path != config.EMC.movie_trashcan_path.value:
+				if not path.endswith("/..") and not path.endswith("/Latest Recordings"):
+					moviename = service.getName()
+					spath = getInfoFile(path)[0]
+					self.session.open(DownloadMovieInfo, spath, moviename)
