@@ -175,11 +175,6 @@ class EMCImdbScan(Screen):
 		count_existing = 0
 		count_na = 0
 
-		if config.EMC.movie_show_format.value:
-			from MovieCenter import extVideo
-			for rem in extVideo:
-				rem = rem.replace("."," ")
-
 		for each in sorted(self.vm_list):			
 			(title, path) = each
 			if config.EMC.movie_show_format.value:
