@@ -12,6 +12,7 @@
 		<key id="KEY_POWER" mapto="leavePlayer" flags="m" />
 		<key id="KEY_TV" mapto="leavePlayer" flags="m" />
 		<key id="KEY_STOP" mapto="leavePlayer" flags="m" />
+		<key id="\x1b" mapto="leavePlayer" flags="m" />
 		<key id="KEY_EXIT" mapto="leavePlayer" flags="m" />
 		<key id="KEY_HOME" mapto="leavePlayer" flags="m" />
 		<key id="KEY_ESC" mapto="leavePlayer" flags="m" />
@@ -93,6 +94,8 @@
 		<key id="KEY_9" mapto="9" flags="m" />
 	</map>
 	<map context="EMCimdb">	
+		<key id="\x0a" mapto="EMCOK" flags="m" />
+		<key id="\x1b" mapto="EMCEXIT" flags="m" />
 		<key id="KEY_OK" mapto="EMCOK" flags="m" />
 		<key id="KEY_MENU" mapto="EMCMenu" flags="m" />
 		<key id="KEY_EXIT" mapto="EMCEXIT" flags="m" />
@@ -103,6 +106,8 @@
 		<key id="KEY_YELLOW" mapto="EMCYellow" flags="m" />
 	</map>
 	<map context="EMCMovieInfo">
+		<key id="\x0a" mapto="EMCOK" flags="m" />
+		<key id="\x1b" mapto="EMCEXIT" flags="m" />
 		<key id="KEY_EXIT" mapto="EMCEXIT" flags="m" />
 		<key id="KEY_OK" mapto="EMCOK" flags="m" />
 		<key id="KEY_INFO" mapto="EMCINFO" flags="b" />

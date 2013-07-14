@@ -508,7 +508,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 		return self.service
 
 	def movieSelected(self, playlist, playall=None):
-		print "movieSelected"
+		print "EMC movieSelected"
 		
 		if playlist is not None and len(playlist) > 0:
 			self.playcount = -1

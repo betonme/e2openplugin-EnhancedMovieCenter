@@ -37,7 +37,7 @@ from Screens.LocationBox import LocationBox
 from Tools import Notifications
 from Tools.Notifications import AddPopup
 from Tools.BoundFunction import boundFunction
-from enigma import getDesktop, eServiceReference, eTimer, iPlayableService, eServiceCenter
+from enigma import getDesktop, eServiceReference, eTimer, iPlayableService, eServiceCenter, gPixmapPtr
 
 # Movie preview
 from Components.VideoWindow import VideoWindow
@@ -205,7 +205,7 @@ class SelectionEventInfo:
 			if config.EMC.movie_cover.value:
 				#print "EMC: InitPig C"
 				self["Video"].hide()
-				self["Cover"].instance.setPixmap(None)
+				self["Cover"].instance.setPixmap(gPixmapPtr())
 				self["Cover"].hide()
 				self["CoverBg"].hide()
 			if config.EMC.movie_preview.value:
@@ -667,7 +667,8 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		path = os.path.normpath(path)
 		self.returnService = service
 		#TODOret
-		if self.returnService: print "EMC ret chnSer " +str(self.returnService.toString())
+		if self.returnService: 
+			print "EMC ret chnSer " +str(self.returnService.toString())
 		self.reloadList(path)
 
 	def reloadListWithoutCache(self):
@@ -1210,7 +1211,8 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			self.moveToService(self.returnService)
 			self.returnService = None
 			#TODOret 
-			if self.returnService: print "EMC ret retSer " +str(self.returnService.toString())
+			if self.returnService:
+				print "EMC ret retSer " +str(self.returnService.toString())
 		
 		elif ifunknown and self.playerInstance:
 			# Get current service from movie player
@@ -1401,7 +1403,8 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		# Long TV reload  list - finds new movies 
 		self.returnService = self.getNextSelectedService(self.getCurrent(), self.tmpSelList)
 		#TODOret 
-		if self.returnService: print "EMC ret triSer " +str(self.returnService.toString())
+		if self.returnService:
+			print "EMC ret triSer " +str(self.returnService.toString())
 		self.reloadList()
 
 	def reloadList(self, path=None):
