@@ -71,10 +71,13 @@ extList     = extMedia | extDir
 # Additional file types
 extTS       = frozenset([".ts"])
 extM2ts     = frozenset([".m2ts"])
-extDvd      = frozenset([".iso", ".img", ".ifo"])
+#extDvd      = frozenset([".iso", ".img", ".ifo"])
+extIfo      = frozenset([".ifo"])
+extIso      = frozenset([".iso", ".img"])
+extDvd      = extIfo | extIso
 extVLC      = frozenset([vlcFil])
 extBlu      = frozenset([".bdmv"])
-# blue movie disk movie
+# blue disk movie
 # mimetype("video/x-bluray") ext (".bdmv")
 
 # Player types
@@ -318,10 +321,23 @@ def dirInfo(folder, bsize=False):
 	#TODO Improve performance
 	count = 0
 	size = 0
+	structlist = ["video_ts", "bdmv"]
+	if config.EMC.cfghide_enable.value:
+		hideitemlist = readBasicCfgFile("/etc/enigma2/emc-hide.cfg") or []
+	else:
+		hideitemlist = []
+	extCount = extList - extBlu - extIfo
 	if os.path.exists(folder):
 		#for m in os.listdir(path):
 		for (path, dirs, files) in os.walk(folder):
-			count += len(dirs)
+			for dir in dirs:
+				if config.EMC.cfghide_enable.value and hideitemlist:
+					if dir in hideitemlist or (dir[0:1] == "." and ".*" in hideitemlist):
+						dirs.remove(dir)			# hidden dir's subtree won't be explored
+					if dir.lower() in structlist:
+						count += 1						# add dvd/blustructure movies
+						dirs.remove(dir)			# structure's subtree won't be explored
+			#count += len(dirs)					# don't count dirs
 			for m in files:
 				if os.path.splitext(m)[1].lower() in extList:
 					count += 1
