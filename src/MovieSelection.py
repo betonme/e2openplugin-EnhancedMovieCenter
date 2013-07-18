@@ -1802,6 +1802,10 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 				for x in self.tmpSelList:
 					self.lastPlayedCheck(x)
 				self["list"].resetSelection()
+				if self.delCurrentlyPlaying:
+					if self.playerInstance is not None:
+						self.session.nav.stopService()
+						self.close()
 			elif not delete:
 				self.session.openWithCallback(self.trashcanCreate, MessageBox, _("Delete failed because the trashcan directory does not exist. Attempt to create it now?"), MessageBox.TYPE_YESNO)
 			emcDebugOut("[EMCMS] deleteMovie")
