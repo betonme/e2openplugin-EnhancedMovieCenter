@@ -71,6 +71,8 @@ from MovieInfo import DownloadMovieInfo
 from MetaSupport import getInfoFile
 
 from MovieCenter import extList, extVideo, extMedia, extDir, plyAll, plyDVD, cmtBME2, cmtBMEMC, cmtDir
+from MovieCenter import getMovieNameWithoutExt, getMovieNameWithoutPhrases
+
 global extList, extVideo, extMedia, extDir, plyAll, plyDVD, cmtBME2, cmtBMEMC, cmtDir
 
 
@@ -1157,6 +1159,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		except ImportError:
 			IMDB = None
 		if IMDB is not None:
+			name = getMovieNameWithoutPhrases(getMovieNameWithoutExt(name))
 			self.session.open(IMDB, name, False)
 
 	def TMDBInfo(self):
@@ -1168,6 +1171,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		except ImportError:
 			TMDbMain = None
 		if TMDbMain is not None:
+			name = getMovieNameWithoutPhrases(getMovieNameWithoutExt(name))
 			self.session.open(TMDbMain, name)
 
 	def CSFDInfo(self):
@@ -1179,6 +1183,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		except ImportError:
 			CSFD = None
 		if CSFD is not None:
+			name = getMovieNameWithoutPhrases(getMovieNameWithoutExt(name))
 			self.session.open(CSFD, name, False)
 
 	def rename(self):
@@ -2148,8 +2153,7 @@ class IMDbEventViewSimple(EventViewSimple):
 			})
 
 	def InfoDetail(self):
-		nameM = self.event.getEventName()
-		print "nameM", nameM
+		nameM = getMovieNameWithoutPhrases(getMovieNameWithoutExt(self.event.getEventName()))
 		if nameM!="":
 			if config.EMC.InfoLong.value == "IMDbSearch":
 				self.IMDbSearchName(nameM)

@@ -11,7 +11,9 @@ from Screens.MessageBox import MessageBox
 from Components.config import *
 from Components.ConfigList import *
 
-import json, os, re
+from MovieCenter import getMovieNameWithoutExt, getMovieNameWithoutPhrases
+
+import json, os
 from urllib2 import Request, urlopen
 
 config.EMC.movieinfo = ConfigSubsection()
@@ -29,11 +31,11 @@ class DownloadMovieInfo(Screen):
 		<widget name="movielist" position="10,54" size="670,379" scrollbarMode="showOnDemand"/>
 		<widget name="resulttext" position="5,433" size="700,22" zPosition="0" font="Regular;21" valign="center" transparent="1" foregroundColor="#00bab329" backgroundColor="#000000"/>
 		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key_menu.png" position="5,460" size="35,25" alphatest="on" />
-		<eLabel text="Setup" position="45,460" size="300,25" font="Regular;18" halign="left" valign="center" transparent="1" />
+		<widget name="setup" position="45,460" size="300,25" font="Regular;18" halign="left" valign="center" transparent="1" />
 		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key_ok.png" position="280,460" size="35,25" alphatest="on" />
-		<eLabel text="Save" position="320,460" size="300,25" font="Regular;18" halign="left" valign="center" transparent="1" />
-		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key_info.png" position="560,460" size="35,25" alphatest="on" />
-		<eLabel text="Movie Info" position="600,460" size="300,25" font="Regular;18" halign="left" valign="center" transparent="1" />
+		<widget name="save" position="320,460" size="300,25" font="Regular;18" halign="left" valign="center" transparent="1" />
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key_info.png" position="505,460" size="35,25" alphatest="on" />
+		<widget name="movieinfo" position="545,460" size="300,25" font="Regular;18" halign="left" valign="center" transparent="1" />
 	</screen>"""
 
 #	def __init__(self, session, service, moviename):
@@ -42,7 +44,6 @@ class DownloadMovieInfo(Screen):
 		self.session = session
 #		self.service = service
 		self.spath = spath
-		self.moviename = moviename
 		self["actions"] = HelpableActionMap(self, "EMCMovieInfo",
 		{
 			"EMCEXIT":		self.exit,
@@ -51,29 +52,16 @@ class DownloadMovieInfo(Screen):
 			"EMCINFO":		self.info,
 		}, -1)
 
-		substitutelist = [("."," "), ("_"," "), ("-"," "), ("1080p",""), ("720p",""), ("x264",""), ("h264",""), ("1080i",""), ("AC3","")]
+		self.onLayoutFinish.append(self.layoutFinished)
 #		(moviepath,ext) = os.path.splitext(service.getPath())  #do we need this line ?
 
-#		if config.EMC.movie_show_format:
-#			extVideo = ["ts", "avi", "divx", "f4v", "flv", "img", "ifo", "iso", "m2ts", "m4v", "mkv", "mov", "mp4", "mpeg", "mpg", "mts", "vob", "wmv"]
-#			for rem in extVideo:
-#				moviename = moviename.replace(rem,"")
+		self.moviename = getMovieNameWithoutExt(moviename)
+		moviename = getMovieNameWithoutPhrases(self.moviename) 
 
-		if config.EMC.movie_show_format.value:
-			from MovieCenter import extVideo
-			for rem in extVideo:
-				rem = rem.replace("."," ")
-				if moviename.endswith(rem):
-					moviename = moviename[:-len(rem)]
-					break
-
-		# Remove phrases which are encapsulated in [*] from the movietitle
-		moviename = re.sub(r'\[.*\]', "", moviename)
-
-		for (phrase,sub) in substitutelist:
-			moviename = moviename.replace(phrase,sub)
-
-		self["movie_name"] = Label("Search results for:   " + moviename)
+		self["movie_name"] = Label(_("Search results for:") + "   " + moviename)
+		self["setup"] = Label(_("Setup"))
+		self["save"] = Label(_("Save"))
+		self["movieinfo"] = Label(_("Movie Info"))
 
 		response=self.fetchdata("http://api.themoviedb.org/3/search/movie?api_key=8789cfd3fbab7dccf1269c3d7d867aff&query=" + moviename.replace(" ","+"))
 		if response is not None:
@@ -83,15 +71,18 @@ class DownloadMovieInfo(Screen):
 				movielist.append((_(str(mov["title"])), mov["id"]))
 
 			self["movielist"] = MenuList(movielist)
-			self["resulttext"] = Label(str(len(movies)) + " movies found!")
+			self["resulttext"] = Label(str(len(movies)) + " " + _("movies found!"))
 		else:
 			self["movielist"] = MenuList([])
 			self["resulttext"] = Label(_("An error occured! Internet connection broken?"))
 
+	def layoutFinished(self):
+		self.setTitle(_("Movie Information Download (TMDb)"))
+
 	def exit(self):
 		self.close()
 
-	def ok(self):		
+	def ok(self):
 		sel = self["movielist"].l.getCurrentSelection()
 		if sel is not None:
 			id = sel[1]
@@ -112,19 +103,19 @@ class DownloadMovieInfo(Screen):
 			blurb = (str(response["overview"])).encode('utf-8')
 
 			if config.EMC.movieinfo.ldruntime.value == '1':
-				runtime = ("Runtime: " + str(response["runtime"]) + " Minutes\n").encode('utf-8')
-				if runtime == "Runtime: 0 Minutes\n":
-					runtime = "Runtime: unknown\n"
+				runtime = (_("Runtime:") + " " + str(response["runtime"]).encode('utf-8') + " " + _("Minutes") + "\n")
+				if response["runtime"] == 0:
+					runtime = _("Runtime: unknown") + "\n"
 			else:
 				runtime = ""
 
 			if config.EMC.movieinfo.ldreleasedate.value  == '1':
-				releasedate = ("Release Date: " + str(response["release_date"]) + "\n").encode('utf-8')	
+				releasedate = (_("Release Date:") + " " + str(response["release_date"]).encode('utf-8') + "\n")
 			else:
 				releasedate = ""
 
 			if config.EMC.movieinfo.ldvote.value  == '1':
-				vote = ("Vote: " + str(response["vote_average"]) + "\n").encode('utf-8')
+				vote = (_("Vote:") + " " + str(response["vote_average"]).encode('utf-8') + "\n")
 			else:
 				vote = ""
 
@@ -136,7 +127,7 @@ class DownloadMovieInfo(Screen):
 						genres = i["name"]
 					else:
 						genres = genres + ", " + i["name"]
-				genres = ("Genre: " + genres + "\n").encode('utf-8')
+				genres = (_("Genre:") + " " + genres.encode('utf-8') + "\n")
 			else:
 				genres = ""
 			
@@ -148,11 +139,11 @@ class DownloadMovieInfo(Screen):
 						countries = i["name"]
 					else:
 						countries = countries + ", " + i["name"]
-				countries = ("Production Countries: " + countries + "\n").encode('utf-8')
+				countries = (_("Production Countries:") + " " + countries.encode('utf-8') + "\n")
 			else:
-				countries = ""			
+				countries = ""
 
-			return ("Content: " + blurb + "\n\n" + runtime + genres + countries + releasedate + vote)
+			return (_("Content:") + " " + blurb + "\n\n" + runtime + genres + countries + releasedate + vote)
 		else:
 			self.session.open(MessageBox, _("An error occured! Internet connection broken?"), MessageBox.TYPE_ERROR, 10)
 			return None
@@ -188,8 +179,9 @@ class MovieInfoPreview(Screen):
 		Screen.__init__(self, session)
 		#self.session = session
 		self.preview = preview
-		self["movie_name"] = Label("Movie Information Preview for:   " + moviename)
+		self["movie_name"] = Label(_("Movie Information Preview for:") + "   " + moviename)
 		self["previewtext"]=Label(_(str(preview)))
+		self.onLayoutFinish.append(self.layoutFinished)
 		self["actions"] = HelpableActionMap(self, "EMCMovieInfo",
 		{
 			"EMCEXIT":		self.close,
@@ -200,6 +192,8 @@ class MovieInfoPreview(Screen):
 			#"EMCRed":		self.red,
 		}, -1)
 
+	def layoutFinished(self):
+		self.setTitle(_("Movie Information Preview"))
 
 class MovieInfoSetup(Screen, ConfigListScreen):
 	skin = """
@@ -222,7 +216,6 @@ class MovieInfoSetup(Screen, ConfigListScreen):
 		self.list.append(getConfigListEntry(_("Load Release Date:"), config.EMC.movieinfo.ldreleasedate))
 		self.list.append(getConfigListEntry(_("Load Vote:"), config.EMC.movieinfo.ldvote))
 
-		
 		ConfigListScreen.__init__(self, self.list, session)
 		self["actions"] = HelpableActionMap(self, "EMCMovieInfo",
 		{
@@ -235,7 +228,11 @@ class MovieInfoSetup(Screen, ConfigListScreen):
 		}, -1)
 		self["key_red"] = Button(_("Cancel"))
 		self["key_green"] = Button(_("OK"))
-		
+		self.onLayoutFinish.append(self.layoutFinished)
+
+	def layoutFinished(self):
+		self.setTitle(_("Movie Information Download Setup"))
+
 	def exit(self):
 		self.close()
 

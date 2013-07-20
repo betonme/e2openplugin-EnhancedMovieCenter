@@ -34,6 +34,8 @@ from Tools.BoundFunction import boundFunction
 from DelayedFunction import DelayedFunction
 from time import time
 
+from MovieCenter import getMovieNameWithoutExt, getMovieNameWithoutPhrases
+
 import re, urllib, urllib2, os, time, shutil
 
 config.EMC.imdb = ConfigSubsection()
@@ -184,13 +186,7 @@ class EMCImdbScan(Screen):
 
 		for each in sorted(self.vm_list):			
 			(title, path) = each
-			if config.EMC.movie_show_format.value:
-				from MovieCenter import extVideo
-				for rem in extVideo:
-					rem = rem.replace("."," ")
-					if title.endswith(rem):
-						title = title[:-len(rem)]  
-						break
+			title = getMovieNameWithoutPhrases(getMovieNameWithoutExt(title))
 			path = re.sub(self.file_format + "$", '.jpg', path)
 			if os.path.exists(path):
 				count_existing += 1
@@ -295,13 +291,7 @@ class EMCImdbScan(Screen):
 			#if self.search_list:
 			if not len(self.search_list) == 0:
 				(title, path) = self.search_list.pop()
-				if config.EMC.movie_show_format.value:
-					from MovieCenter import extVideo
-					for rem in extVideo:
-						rem = rem.replace("."," ")
-						if title.endswith(rem):
-							title = title[:-len(rem)]  
-							break
+				title = getMovieNameWithoutPhrases(getMovieNameWithoutExt(title))
 
 				self.start_time = time.clock()
 
@@ -540,13 +530,7 @@ class EMCImdbScan(Screen):
 	def display_na(self, search_title, path):
 		self.counter += 1
 		self.counter_no_poster = self.counter_no_poster + 1
-		if config.EMC.movie_show_format.value:
-			from MovieCenter import extVideo
-			for rem in extVideo:
-				rem = rem.replace("."," ")
-				if search_title.endswith(rem):
-					search_title = search_title[:-len(rem)]  
-					break
+		search_title = getMovieNameWithoutPhrases(getMovieNameWithoutExt(search_title))
 		self.count = ("%s: %s " + _("from") + " %s") % (self.showSearchSiteName, self.counter, self.count_movies)
 		self["info"].setText(self.count)
 		self["m_info"].setText(search_title)
@@ -561,13 +545,7 @@ class EMCImdbScan(Screen):
 	def display_exist(self, search_title, path):
 		self.counter += 1
 		self.counter_exist = self.counter_exist + 1
-		if config.EMC.movie_show_format.value:
-			from MovieCenter import extVideo
-			for rem in extVideo:
-				rem = rem.replace("."," ")
-				if search_title.endswith(rem):
-					search_title = search_title[:-len(rem)]  
-					break
+		search_title = getMovieNameWithoutPhrases(getMovieNameWithoutExt(search_title))
 		self.count = ("%s: %s " + _("from") + " %s") % (self.showSearchSiteName, self.counter, self.count_movies)
 		self["info"].setText(self.count)
 		self["m_info"].setText(search_title)
@@ -582,13 +560,7 @@ class EMCImdbScan(Screen):
 	def display_download(self, movie_title, search_title, path):
 		self.counter += 1
 		self.counter_download = self.counter_download + 1
-		if config.EMC.movie_show_format.value:
-			from MovieCenter import extVideo
-			for rem in extVideo:
-				rem = rem.replace("."," ")
-				if search_title.endswith(rem):
-					search_title = search_title[:-len(rem)]  
-					break
+		search_title = getMovieNameWithoutPhrases(getMovieNameWithoutExt(search_title))
 		self.end_time = time.clock()
 		elapsed = (self.end_time - self.start_time) * 10
 		self.count = ("%s: %s " + _("from") + " %s") % (self.showSearchSiteName, self.counter, self.count_movies)

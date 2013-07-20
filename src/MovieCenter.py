@@ -21,6 +21,7 @@
 import math
 import os
 import random
+import re
 
 from collections import defaultdict
 from time import time
@@ -116,6 +117,8 @@ cmtVLC     = "V"
 
 MinCacheLimit = 10
 
+substitutelist = [("."," "), ("_"," "), ("-"," "), ("1080p",""), ("720p",""), ("x264",""), ("h264",""), ("1080i",""), ("AC3","")]
+
 # Grouped custom types
 virVLC     = frozenset([cmtVLC, vlcSrv, vlcDir])
 virAll     = frozenset([cmtBME2, cmtBMEMC, cmtVLC, cmtLRec, cmtTrash, cmtUp, cmtDir, vlcSrv, vlcDir])
@@ -189,6 +192,22 @@ def getPlayerService(path, name="", ext=None):
 	if name:
 		service.setName(name)
 	return service
+
+def getMovieNameWithoutExt(moviename=""):
+	if config.EMC.movie_show_format.value:
+		for rem in extVideo:
+			rem = rem.replace("."," ")
+			if moviename.endswith(rem):
+				moviename = moviename[:-len(rem)]
+				break
+	return moviename
+
+def getMovieNameWithoutPhrases(moviename=""):
+	# Remove phrases which are encapsulated in [*] from the movietitle
+	moviename = re.sub(r'\[.*\]', "", moviename)
+	for (phrase,sub) in substitutelist:
+		moviename = moviename.replace(phrase,sub)
+	return moviename
 
 def getProgress(service, length=0, last=0, forceRecalc=False, cuts=None):
 	# All calculations are done in seconds
