@@ -239,7 +239,7 @@ class SelectionEventInfo:
 				self.picload = ePicLoad()
 				self.picload.PictureData.get().append(self.showCoverCallback)
 				if self.picload:
-					self.picload.setPara((size.width(), size.height(), sc[0], sc[1], False, 1, "#ffffffff")) # Background dynamically
+					self.picload.setPara((size.width(), size.height(), sc[0], sc[1], False, 1, "#00000000")) # Background dynamically
 					if self.picload.startDecode(jpgpath) != 0:
 						del self.picload
 			else:
