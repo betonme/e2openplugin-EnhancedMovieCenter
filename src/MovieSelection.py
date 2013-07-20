@@ -34,6 +34,7 @@ from Screens.HelpMenu import HelpableScreen
 from Screens.MessageBox import MessageBox
 from Screens.ChoiceBox import ChoiceBox
 from Screens.LocationBox import LocationBox
+from Screens.EventView import EventViewSimple
 from Tools import Notifications
 from Tools.Notifications import AddPopup
 from Tools.BoundFunction import boundFunction
@@ -1187,13 +1188,12 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 							self["list"].makeSelectionList() or self.getCurrent() )
 
 	def showEventInformation(self):
-		from Screens.EventView import EventViewSimple
 		from ServiceReference import ServiceReference
 		
 		# Get our customized event
 		evt = self["list"].getCurrentEvent()
 		if evt:
-			self.session.open(EventViewSimple, evt, ServiceReference(self.getCurrent()))
+			self.session.open(IMDbEventViewSimple, evt, ServiceReference(self.getCurrent()))
 
 	def openBludiscPlayer(self, blupath):
 		try:
@@ -2126,3 +2126,72 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 					moviename = service.getName()
 					spath = getInfoFile(path)[0]
 					self.session.open(DownloadMovieInfo, spath, moviename)
+
+#****************************************************************************************
+# add possibility to call IMDb/TMDB/CSFD from movie detail via blue key
+class IMDbEventViewSimple(EventViewSimple):
+	def __init__(self, session, Event, Ref, callback=None, similarEPGCB=None):
+		EventViewSimple.__init__(self, session, Event, Ref, callback, similarEPGCB)
+		self.skinName = "EventView"
+		if config.EMC.InfoLong.value == "IMDbSearch":
+			text_blue = _("IMDb")
+		elif config.EMC.InfoLong.value == "TMDBInfo":
+			text_blue = _("TMDb")
+		elif config.EMC.InfoLong.value == "CSFDInfo":
+			text_blue = _("CSFD")
+		else:
+			text_blue = _("IMDb")
+		self["key_blue"].setText(text_blue)
+		self["epgactions"] = ActionMap(["EventViewEPGActions"],
+			{
+				"openMultiServiceEPG": self.InfoDetail,
+			})
+
+	def InfoDetail(self):
+		nameM = self.event.getEventName()
+		print "nameM", nameM
+		if nameM!="":
+			if config.EMC.InfoLong.value == "IMDbSearch":
+				self.IMDbSearchName(nameM)
+			elif config.EMC.InfoLong.value == "TMDBInfo":
+				self.TMDBInfoName(nameM)
+			elif config.EMC.InfoLong.value == "CSFDInfo":
+				self.CSFDInfoName(nameM)
+			else:
+				self.IMDbSearchName(nameM)
+
+	def setService(self, service):
+		EventViewSimple.setService(self, service)
+		if self.isRecording:
+			self["channel"].setText("")
+
+	def setEvent(self, event):
+		EventViewSimple.setEvent(self, event)
+		if (self.isRecording) and (event.getDuration()==0):
+			self["duration"].setText("")
+
+	def IMDbSearchName(self, name):
+		try:
+			from Plugins.Extensions.IMDb.plugin import IMDB
+		except ImportError:
+			IMDB = None
+		if IMDB is not None:
+			self.session.open(IMDB, name, False)
+
+	def TMDBInfoName(self, name):
+		try:
+			from Plugins.Extensions.TMDb.plugin import TMDbMain
+		except ImportError:
+			TMDbMain = None
+		if TMDbMain is not None:
+			self.session.open(TMDbMain, name)
+
+	def CSFDInfoName(self, name):
+		try:
+			from Plugins.Extensions.CSFD.plugin import CSFD
+		except ImportError:
+			CSFD = None
+		if CSFD is not None:
+			self.session.open(CSFD, name, False)
+
+#****************************************************************************************

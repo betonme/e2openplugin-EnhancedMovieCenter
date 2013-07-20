@@ -48,6 +48,7 @@ from DelayedFunction import DelayedFunction
 from CutListSupport import CutList
 from InfoBarSupport import InfoBarSupport
 from Components.Sources.EMCCurrentService import EMCCurrentService
+from ServiceSupport import ServiceCenter
 
 # Cover
 from Components.AVSwitch import AVSwitch
@@ -99,7 +100,9 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 			Cool = open(skin)
 			self.skin = Cool.read()
 			Cool.close()
-		
+
+		self.serviceHandler = ServiceCenter.getInstance()
+
 		# EMC Source
 		self["Service"] = EMCCurrentService(session.nav, self)
 		
@@ -182,6 +185,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 				"EMCGreen":	(self.CoolAVSwitch,			_("Format AVSwitch")),
 				"seekFwd": (self.seekFwd, _("Seek forward")),
 				"seekBack": (self.seekBack, _("Seek backward")),
+				"movieInfo": (self.infoMovie, _("Movie information")),
 			}, 2) # lower priority
 		
 		self["MenuActions"].prio = 2
@@ -261,6 +265,24 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 			config.av.policy_43.value = "scale"
 		else:
 			config.av.policy_43.value = "pillarbox"
+
+	def getCurrentEvent(self):
+		service = self.currentlyPlayedMovie()
+		if service:
+			info = self.serviceHandler.info(service)
+			return info and info.getEvent(service)
+
+	def infoMovie(self):
+		try:
+			from MovieSelection import IMDbEventViewSimple
+			from ServiceReference import ServiceReference
+			service = self.currentlyPlayedMovie()
+
+			evt = self.getCurrentEvent()
+			if evt:
+				self.session.open(IMDbEventViewSimple, evt, ServiceReference(service))
+		except Exception, e:
+			emcDebugOut("[EMCPlayer] showMovies detail exception:\n" + str(e))
 
 	def __onShow(self):
 		if self.firstStart:

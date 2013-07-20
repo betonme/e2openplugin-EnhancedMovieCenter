@@ -482,7 +482,8 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 
 	# Overwrite Screen close function
 	def close(self):
-		self.session.openWithCallback(self.closed, MessageBox, EMCAbout, MessageBox.TYPE_INFO)
+#		self.session.openWithCallback(self.closed, MessageBox, EMCAbout, MessageBox.TYPE_INFO)
+		pass
 
 	def closed(self, dummy=None):
 		# Call baseclass function
