@@ -205,6 +205,11 @@ move_choices = [("d",	_("down")),
 				("b",	_("up/down")),
 				("o",	_("off")) ]
 
+cover_background_choices = [("#00000000",	_("type 1 - OSD + black (#00000000)")),
+				("#FFFFFFFF",	_("type 2 - transparent + white (#FFFFFFFF)")),
+				("#00FFFFFF",	_("type 3 - OSD + black (#00FFFFFF)")),
+				("#FF000000",	_("type 4 - transparent + black (#FF000000)")) ]
+
 bookmark_choices = [("No",		_("No")),
 					("E2",		_("E2 Bookmarks")),
 					("EMC",		_("EMC Bookmarks")),
@@ -269,7 +274,7 @@ config.EMC.debug                     = ConfigYesNo(default = False)
 config.EMC.folder                    = ConfigTextWOHelp(default = "/hdd/EMC", fixed_size = False, visible_width= 22)
 config.EMC.debugfile                 = ConfigTextWOHelp(default = "output.txt", fixed_size = False, visible_width= 22)
 config.EMC.ml_disable                = ConfigYesNo(default = False)
-config.EMC.files_cache               = ConfigYesNo(default = False)
+config.EMC.files_cache               = ConfigYesNo(default = True)
 # Color keys selection list array dict: longdescription, shortdescription, functionpointer
 config.EMC.movie_redfunc             = ConfigSelection(default = "DL", choices = red_choices)
 config.EMC.movie_greenfunc           = ConfigSelection(default = "ST", choices = green_choices)
@@ -283,6 +288,7 @@ config.EMC.CoolStartHome             = ConfigYesNo(default = False)
 config.EMC.movie_descdelay           = ConfigSelectionNumber(50, 60000, 50, default= 200)
 config.EMC.movie_cover               = ConfigYesNo(default = False)
 config.EMC.movie_cover_delay         = ConfigSelectionNumber(50, 60000, 50, default= 500)
+config.EMC.movie_cover_background    = ConfigSelection(default = "#00000000", choices = cover_background_choices)
 config.EMC.movie_preview             = ConfigYesNo(default = False)
 config.EMC.movie_preview_delay       = ConfigSelectionNumber(50, 60000, 50, default= 2000)
 config.EMC.movie_preview_offset      = ConfigSelectionNumber(0, 60000, 1, default= 5)

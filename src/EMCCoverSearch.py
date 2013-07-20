@@ -90,13 +90,13 @@ class EMCImdbScan(Screen):
 				<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key-green.png" position="10,278" size="30,30" alphatest="on" />
 				<widget name="ButtonGreenText" position="50,285" size="300,22" valign="center" halign="left" zPosition="1" font="Regular;20" transparent="1" />
 				<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key-yellow.png" position="10,418" size="30,30" alphatest="on" />
-				<eLabel text="Manage Cover" position="50,425" size="300,22" font="Regular;21" halign="left" valign="center" transparent="1" />
+				<widget name="Manage Cover" position="50,425" size="300,22" font="Regular;21" halign="left" valign="center" transparent="1" />
 				<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key-red.png" position="10,453" size="30,30" alphatest="on" />
 				<widget name="ButtonRedText" position="50,460" size="300,22" valign="center" halign="left" zPosition="1" font="Regular;20" transparent="1" />
 				<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key_menu.png" position="10,495" size="35,25" alphatest="on" />
-				<eLabel text="Setup" position="50,498" size="300,22" font="Regular;21" halign="left" valign="center" transparent="1" />
+				<widget name="Setup" position="50,498" size="300,22" font="Regular;21" halign="left" valign="center" transparent="1" />
 				<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key_ok.png" position="10,530" size="35,25" alphatest="on" />
-				<eLabel text="Single search" position="50,533" size="300,22" font="Regular;21" halign="left" valign="center" transparent="1" />
+				<widget name="Single search" position="50,533" size="300,22" font="Regular;21" halign="left" valign="center" transparent="1" />
 			</screen>"""
 	else:
 		skin = """
@@ -119,13 +119,13 @@ class EMCImdbScan(Screen):
 				<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key-green.png" position="5,352" size="30,25" alphatest="on" />
 				<widget name="ButtonGreenText" position="45,352" size="300,25" valign="center" halign="left" zPosition="1" font="Regular;18" transparent="1" />
 				<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key-yellow.png" position="5,382" size="30,25" alphatest="on" />
-				<eLabel text="Manage Cover" position="45,382" size="300,25" font="Regular;18" halign="left" valign="center" transparent="1" />
+				<widget name="Manage Cover" position="45,382" size="300,25" font="Regular;18" halign="left" valign="center" transparent="1" />
 				<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key-red.png" position="5,412" size="30,25" alphatest="on" />
 				<widget name="ButtonRedText" position="45,412" size="300,25" valign="center" halign="left" zPosition="1" font="Regular;18" transparent="1" />
 				<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key_menu.png" position="5,442" size="35,25" alphatest="on" />
-				<eLabel text="Setup" position="45,442" size="300,25" font="Regular;18" halign="left" valign="center" transparent="1" />
+				<widget name="Setup" position="45,442" size="300,25" font="Regular;18" halign="left" valign="center" transparent="1" />
 				<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key_ok.png" position="5,472" size="35,25" alphatest="on" />
-				<eLabel text="Single search" position="45,472" size="300,25" font="Regular;18" halign="left" valign="center" transparent="1" />
+				<widget name="Single search" position="45,472" size="300,25" font="Regular;18" halign="left" valign="center" transparent="1" />
 			</screen>"""
 
 	def __init__(self, session, data):
@@ -157,6 +157,9 @@ class EMCImdbScan(Screen):
 		self["no_poster"] = Label("")
 		self["done_msg"] = Label(_("Press green button to start search"))
 		self["info"].setText("")
+		self["Manage Cover"] = Label(_("Manage Cover"))
+		self["Setup"] = Label(_("Setup"))
+		self["Single search"] = Label(_("Single search"))
 		self.no_image_poster = "/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/no_poster.png"
 		self.check = "false"
 		self["menulist"].onSelectionChanged.append(self.showInfo)
@@ -165,8 +168,12 @@ class EMCImdbScan(Screen):
 		self.picload = ePicLoad()
 		#self.picload.PictureData.get().append(self.showCoverCallback)
 		self.file_format = "(.ts|.avi|.mkv|.divx|.f4v|.flv|.img|.iso|.m2ts|.m4v|.mov|.mp4|.mpeg|.mpg|.mts|.vob|.wmv)"
+		self.onLayoutFinish.append(self.layoutFinished)
 
 		self.setShowSearchSiteName()
+
+	def layoutFinished(self):
+		self.setTitle(_("EMC Cover search"))
 
 	def verwaltung(self):
 		self.menulist = []
