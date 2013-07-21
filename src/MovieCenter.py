@@ -1785,38 +1785,38 @@ class MovieCenter(GUIComponent):
 				#TODO config.EMC.movie_date_format.value not used here
 
 				if ext == cmtVLC:
-					datetext = _("VLC")
-					if not config.EMC.movie_icons.value:
-						pixmap = self.pic_vlc
+					pixmap = self.pic_vlc
+					if config.EMC.directories_info.value == "D":
+						datetext = _("VLC")
 
 				elif ext == vlcSrv:
 					pixmap = self.pic_vlc
-					if not config.EMC.movie_icons.value:
+					if config.EMC.directories_info.value == "D":
 						datetext = _("VLC-Server")
 
 				elif ext == vlcDir:
 					pixmap = self.pic_vlc_dir
-					if not config.EMC.movie_icons.value:
+					if config.EMC.directories_info.value == "D":
 						datetext = _("VLC-Dir")
 
 				elif ext == cmtLRec:
 					pixmap = self.pic_latest
-					if not config.EMC.movie_icons.value:
+					if config.EMC.directories_info.value == "D":
 						datetext = _("Latest")
 
 				elif ext == cmtUp:
 					pixmap = self.pic_back
-					if not config.EMC.movie_icons.value:
+					if config.EMC.directories_info.value == "D":
 						datetext = _("Up")
 
 				elif ext == cmtBME2:
 					pixmap = self.pic_e2bookmark
-					if not config.EMC.movie_icons.value:
+					if config.EMC.directories_info.value == "D":
 						datetext = _("Bookmark")
 
 				elif ext == cmtBMEMC:
 					pixmap = self.pic_emcbookmark
-					if not config.EMC.movie_icons.value:
+					if config.EMC.directories_info.value == "D":
 						datetext = _("Bookmark")
 
 				elif ext == cmtTrash:
@@ -1843,11 +1843,14 @@ class MovieCenter(GUIComponent):
 							pixmap = self.pic_trashcan
 					else:
 						pixmap = self.pic_trashcan
-						if not config.EMC.movie_icons.value:
+						if config.EMC.directories_info.value == "D":
 							datetext = _("Trashcan")
 
 				elif ext == cmtDir:
 					pixmap = self.pic_directory
+
+					if config.EMC.directories_ontop.value and title not in self.topdirlist:
+						pixmap = self.pic_col_dir
 
 #					if isLink:
 #						if config.EMC.directories_ontop.value:
@@ -1873,21 +1876,27 @@ class MovieCenter(GUIComponent):
 						elif config.EMC.directories_info.value == "S":
 							count, size = dirInfo(path, bsize=True)
 							datetext = " ( %.2f GB ) " % (size)
+						elif config.EMC.directories_info.value == "D":
+							datetext = _("Directory")
+							if isLink:
+								datetext = _("Link")
+							if config.EMC.directories_ontop.value and title not in self.topdirlist:
+								datetext = _("Collection")
 						else:
 							# Should never happen
 							pixmap = self.pic_directory
 							datetext = _("Directory")
 
-					# Directory
-					else:
-						if not config.EMC.movie_icons.value:
-							datetext = _("Directory")
-							if isLink:
-								datetext = _("Link")
-						else:
-							if config.EMC.directories_ontop.value and title not in self.topdirlist:
-								datetext = _("Collection")
-								pixmap = self.pic_col_dir
+#					# Directory
+#					else:
+#						if not config.EMC.movie_icons.value:
+#							datetext = _("Directory")
+#							if isLink:
+#								datetext = _("Link")
+#						else:
+#							if config.EMC.directories_ontop.value and title not in self.topdirlist:
+#								datetext = _("Collection")
+#								pixmap = self.pic_col_dir
 
 				else:
 					# Should never happen

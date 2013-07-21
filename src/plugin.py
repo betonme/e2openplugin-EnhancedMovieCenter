@@ -146,9 +146,10 @@ date_choices = [	("",					_("Off")),
 					("%m/%d %H:%M",			_("MM/DD HH:MM")) ]
 
 dirinfo_choices = [	("",	_("Off")),
-					("C",	_("( # )")),		# Count
-					("CS",	_("( # / GB )")),	# Count / Size
-					("S",	_("( GB )")) ]		# Size
+					("D",	_("Description")),		# Description
+					("C",	_("( # )")),					# Count
+					("CS",	_("( # / GB )")),		# Count / Size
+					("S",	_("( GB )")) ]				# Size
 
 progress_choices = [("PB",	_("ProgressBar")),
 					("P",	_("Percent (%)")),
