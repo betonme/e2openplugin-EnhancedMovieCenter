@@ -1930,17 +1930,23 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 							# really delete!
 							if not offline.deleteFromDisk(0):
 								result = True
-						if result == False:
-							self.session.open(MessageBox, _("Delete failed!"), MessageBox.TYPE_ERROR)
-							return
+							if result == False:
+								self.session.open(MessageBox, _("Delete failed!"), MessageBox.TYPE_ERROR)
+								return
+							else:
+								self.removeService(service)
+								self.setReturnCursor()
+								path = path.replace("'","\'")
+								c.append( 'rm -f "'+ path +'."*' )
+								cmd.append( c )
 						else:
+							path = service.getPath()
 							self.removeService(service)
 							self.setReturnCursor()
-							path = path.replace("'","\'")
+							path = path.rsplit(".",1)[0]
 							c.append( 'rm -f "'+ path +'."*' )
 							cmd.append( c )
 					#TEST_E2DELETE
-						
 					else:
 						path = path.replace("'","\'")
 						# create a time stamp with touch
