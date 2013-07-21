@@ -50,6 +50,7 @@ from enigma import ePicLoad, getDesktop
 #from Tools.LoadPixmap import LoadPixmap
 
 # EMC internal
+from EMCFileCache import movieFileCache
 from DelayedFunction import DelayedFunction
 from EnhancedMovieCenter import _
 from EMCTasker import emcTasker, emcDebugOut
@@ -94,6 +95,7 @@ def purgeExpired(emptyTrash=False):
 				return
 		
 		if os.path.exists(movie_trashpath):
+			movieFileCache.delPathFromCache(movie_trashpath)
 			if config.EMC.movie_trashcan_clean.value is True or emptyTrash:
 				# Trashcan cleanup
 				purgeCmd = ""
@@ -1646,6 +1648,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			self.multiSelectIdx = None
 			self.updateTitle()
 		if self.browsingVLC(): return
+		movieFileCache.delPathFromCache(self.currentPath)
 		self.permanentDel  = permanently or not config.EMC.movie_trashcan_enable.value
 		self.permanentDel |= self.currentPath == config.EMC.movie_trashcan_path.value
 		self.permanentDel |= self.mountpoint(self.currentPath) != self.mountpoint(config.EMC.movie_trashcan_path.value)
@@ -1656,6 +1659,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			if single and self["list"].currentSelIsDirectory():
 				if not config.EMC.movie_trashcan_enable.value or config.EMC.movie_delete_validation.value or self.permanentDel:
 					path = current.getPath()
+					movieFileCache.delPathFromCache(path)
 					if os.path.islink(path):
 						msg = _("Do you really want to remove your link\n%s?") % (path)
 					else:
@@ -1681,6 +1685,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 					self.remRecsToStop = False
 					for service in selectedlist:
 						path = service.getPath()
+						movieFileCache.delPathFromCache(os.path.dirname(path))
 						if self["list"].recControl.isRecording(path):
 							self.recsToStop.append(path)
 						if config.EMC.remote_recordings.value and self["list"].recControl.isRemoteRecording(path):
@@ -1705,6 +1710,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 	def deleteE2BookmarkConfirmed(self, service, confirm):
 		if confirm and service and config.movielist and config.movielist.videodirs:
 			path = service.getPath()
+			movieFileCache.delPathFromCache(os.path.dirname(path))
 			if self.removeE2Bookmark(path):
 				# If service is not in list, don't care about it.
 				self.removeServiceOfType(service, cmtBME2)
@@ -1713,6 +1719,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 	def deleteEMCBookmark(self, service):
 		if service:
 			path = service.getPath()
+			movieFileCache.delPathFromCache(os.path.dirname(path))
 			if self.isEMCBookmark(path):
 				if config.EMC.movie_delete_validation.value:
 					self.session.openWithCallback(
@@ -1725,6 +1732,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 	def deleteEMCBookmarkConfirmed(self, service, confirm):
 		if confirm and service:
 			path = service.getPath()
+			movieFileCache.delPathFromCache(os.path.dirname(path))
 			if self.removeEMCBookmark(path):
 				# If service is not in list, don't care about it.
 				self.removeServiceOfType(service, cmtBMEMC)
@@ -1792,12 +1800,14 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 	def deleteMovieConfimation(self, confirmed):
 		current = self.getCurrent()
 		pathname = os.path.dirname(current.getPath())
+		movieFileCache.delPathFromCache(pathname)
 		if confirmed and self.tmpSelList is not None and len(self.tmpSelList)>0:
 			if self.delCurrentlyPlaying:
 				if self.playerInstance is not None:
 					self.playerInstance.removeFromPlaylist(self.tmpSelList)
 			delete = not config.EMC.movie_trashcan_enable.value or self.permanentDel
 			if os.path.exists(config.EMC.movie_trashcan_path.value) or delete:
+				movieFileCache.delPathFromCache(config.EMC.movie_trashcan_path.value)
 				# if the user doesn't want to keep the movies in the trash, purge immediately
 				if not self.isPathLocked(pathname):
 					self.execFileOp(config.EMC.movie_trashcan_path.value, current, self.tmpSelList, op="delete", purgeTrash=delete)
@@ -1831,6 +1841,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			if self.isPathLocked(path) or self.isLowerPathLocked(path):
 				self.session.open(MessageBox, _("This folder is locked or contains a locked subfolder, unlock it first!"), MessageBox.TYPE_ERROR, 10)
 			elif service:
+				movieFileCache.delPathFromCache(path)
 				emcTasker.shellExecute('rm -rf "' + path + '"')
 				self.removeService(service)
 
@@ -1838,6 +1849,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		if confirm and service:
 			path = service.getPath()
 			if path != "..":
+				movieFileCache.delPathFromCache(os.path.dirname(path))
 				if os.path.islink(path):
 					emcTasker.shellExecute("rm -f '" + path + "'")
 					self.removeService(service)
@@ -1898,9 +1910,11 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		print "EMC ret exeFil " +str(self.returnService.toString())
 		cmd = []
 		association = []
+		movieFileCache.delPathFromCache(targetPath)
 		for service in selectedlist:
 			#path = os.path.splitext( self["list"].getFilePathOfService(service) )[0]
 			path = os.path.splitext( service.getPath() )[0]
+			movieFileCache.delPathFromCache(os.path.dirname(service.getPath()))
 			if path is not None:
 				if op=="delete":	# target == trashcan
 					c = []
@@ -1925,7 +1939,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 							path = path.replace("'","\'")
 							c.append( 'rm -f "'+ path +'."*' )
 							cmd.append( c )
-						#TEST_E2DELETE
+					#TEST_E2DELETE
 						
 					else:
 						path = path.replace("'","\'")
@@ -1933,7 +1947,6 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 						c.append( 'touch "'+ path +'."*' )
 						# move movie into the trashcan
 						c.append( 'mv "'+ path +'."* "'+ targetPath +'/"' )
-						
 						#TEST_E2DELETE <- decrement indent
 						cmd.append( c )
 						association.append( (self.delCB, service) )	# put in a callback for this particular movie
@@ -1951,7 +1964,6 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 					# different self.mountpoint? -> reset user&group
 					if self.mountpoint(targetPath) != self.mountpoint(config.EMC.movie_homepath.value):		# CIFS to HDD is ok!
 						# need to change file ownership to match target filesystem file creation
-						
 						tfile = targetPath + "/owner_test"
 						path = path.replace("'","\'")
 						sfile = "\""+ path +".\"*"

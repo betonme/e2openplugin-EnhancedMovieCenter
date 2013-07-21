@@ -37,6 +37,7 @@ from enigma import eListboxPythonMultiContent, eListbox, gFont, RT_HALIGN_LEFT, 
 from timer import TimerEntry
 
 from . import _
+from EMCFileCache import movieFileCache
 from RecordingsControl import RecordingsControl, getRecording
 from DelayedFunction import DelayedFunction
 from EMCTasker import emcDebugOut
@@ -50,7 +51,6 @@ from PermanentSort import PermanentSort
 from E2Bookmarks import E2Bookmarks
 from EMCBookmarks import EMCBookmarks
 from ServiceSupport import ServiceCenter
-
 
 global extAudio, extDvd, extVideo, extPlaylist, extList, extMedia, extBlu
 global cmtDir, cmtUp, cmtTrash, cmtLRec, cmtVLC, cmtBME2, cmtBMEMC, virVLC, virAll, virToE, virToD
@@ -114,8 +114,6 @@ cmtBME2    = "BE2"
 cmtBMEMC   = "BEMC"
 cmtDir     = "D"
 cmtVLC     = "V"
-
-MinCacheLimit = 10
 
 substitutelist = [("."," "), ("_"," "), ("-"," "), ("1080p",""), ("720p",""), ("x264",""), ("h264",""), ("1080i",""), ("AC3","")]
 
@@ -415,8 +413,6 @@ def detectBLUStructure(checkPath):
 def MultiContentEntryProgress(pos = (0, 0), size = (0, 0), percent = None, borderWidth = None, foreColor = None, foreColorSelected = None, backColor = None, backColorSelected = None):
 	return (eListboxPythonMultiContent.TYPE_PROGRESS, pos[0], pos[1], size[0], size[1], percent, borderWidth, foreColor, foreColorSelected, backColor, backColorSelected)
 
-
-
 moviecenterdata = None
 
 class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBookmarks):
@@ -426,9 +422,6 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 		PermanentSort.__init__(self)
 		
 		self.currentPath = config.EMC.movie_homepath.value
-
-		self.cacheDirectoryList = {}
-		self.cacheFileList = {}
 
 		self.list = []
 		from Plugins.Extensions.EnhancedMovieCenter.plugin import sort_modes
@@ -748,20 +741,11 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 
 	def createDirList(self, path, useCache = True):
 		subdirlist, filelist = [], []
-		if config.EMC.files_cache.value and useCache and self.cacheDirectoryList.has_key(path) and self.cacheFileList.has_key(path):
-			subdirlist = self.cacheDirectoryList[path]
-			filelist = self.cacheFileList[path]
+		if useCache and movieFileCache.IsPathInCache(path):
+			subdirlist, filelist = movieFileCache.getCacheForPath(path)
 		else:
 			subdirlist, filelist = self.__createDirList(path)
-			if config.EMC.files_cache.value:
-				if (len(subdirlist)>MinCacheLimit) or (len(filelist)>MinCacheLimit):
-					self.cacheDirectoryList[path] = subdirlist
-					self.cacheFileList[path] = filelist
-				else:
-					if self.cacheDirectoryList.has_key(path):
-						del self.cacheDirectoryList[path]
-					if self.cacheFileList.has_key(path):
-						del self.cacheFileList[path]
+			movieFileCache.addPathToCache(path, subdirlist, filelist)
 		return subdirlist, filelist
 
 	def createLatestRecordingsList(self):
@@ -1377,8 +1361,6 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 				if service in self.highlightsCpy:
 					self.highlightsCpy.remove(service)
 
-
-		
 
 moviecenter = None
 									

@@ -34,6 +34,7 @@ from Screens.LocationBox import LocationBox
 from Tools.BoundFunction import boundFunction
 from Tools.Notifications import AddPopup
 
+from EMCFileCache import movieFileCache
 from EMCTasker import emcTasker, emcDebugOut
 from EnhancedMovieCenter import _
 from Plugins.Extensions.EnhancedMovieCenter.plugin import pluginOpen as emcsetup
@@ -198,6 +199,7 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 			else:
 				try:
 					os.mkdir(name)
+					movieFileCache.delPathFromCache(currentPath)
 				except Exception, e:
 					emcDebugOut("[EMCMM] createDir exception:\n" + str(e))
 				self.close("reload")
@@ -215,14 +217,18 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 		if not locked:
 			if confirmed:
 				emcTasker.shellExecute('touch "' + currentPath + '/dir.lock"')
+				movieFileCache.delPathFromCache(currentPath)
 				for root, dirs, files in os.walk(currentPath):
 					for dir in dirs:
+						movieFileCache.delPathFromCache(root + '/' + dir)
 						emcTasker.shellExecute('touch "' + root + '/' + dir +  '/dir.lock"')
 		else:
 			if confirmed:
 				emcTasker.shellExecute('rm -f "' + currentPath + '/dir.lock"')
+				movieFileCache.delPathFromCache(currentPath)
 				for root, dirs, files in os.walk(currentPath):
 					for dir in dirs:
+						movieFileCache.delPathFromCache(root + '/' + dir)
 						emcTasker.shellExecute('rm -rf "' + root + '/' + dir +  '/dir.lock"')
 			
 	def createLink(self, path):
@@ -243,6 +249,8 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 			self.close(None)
 		else:
 			try:
+				movieFileCache.delPathFromCache(currentPath)
+				movieFileCache.delPathFromCache(linkPath)
 				name = os.path.basename(linkPath)
 				cmd = 'ln -s "'+ linkPath +'" "'+ os.path.join(currentPath, name) +'"'
 				if cmd != "":
@@ -292,6 +300,7 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 
 	def remRogueFilesCB(self, confirmed):
 		if confirmed:
+			movieFileCache.delPathFromCache(self.currentPath)
 			check = RogueFileCheck(self.currentPath)
 			path = config.EMC.movie_trashcan_enable.value and config.EMC.movie_trashcan_path.value
 			emcTasker.shellExecute( check.getScript(path) )
@@ -351,6 +360,7 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 			and path == config.EMC.movie_homepath.value:
 			#TODO Avoid reload
 			# Just a remove service will do the job
+			movieFileCache.delPathFromCache(path)
 			self.close("reload")
 		else:
 			self.close(None)
@@ -361,6 +371,7 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 			and path == config.EMC.movie_homepath.value:
 			#TODO Avoid reload
 			# If the custom entry has sortingkeys, maybe an addService will do it
+			movieFileCache.delPathFromCache(path)
 			self.close("reload")
 		else:
 			self.close(None)
@@ -381,6 +392,7 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 			and path == config.EMC.movie_homepath.value:
 			#TODO Avoid reload
 			# Just a remove service will do the job
+			movieFileCache.delPathFromCache(path)
 			self.close("reload")
 		else:
 			self.close(None)
@@ -408,4 +420,5 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 		if confirm:
 			file = self.service.getPath() + ".cuts"
 			emcTasker.shellExecute('rm -f "' + file + '"')		
+			movieFileCache.delPathFromCache(os.path.dirname(self.service.getPath()))
 		self.close("reload")
