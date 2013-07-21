@@ -483,7 +483,7 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 	# Overwrite Screen close function
 	def close(self):
 #		self.session.openWithCallback(self.closed, MessageBox, EMCAbout, MessageBox.TYPE_INFO)
-		pass
+		Screen.close(self)
 
 	def closed(self, dummy=None):
 		# Call baseclass function
@@ -528,9 +528,9 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 		config.EMC.needsreload.value = True
 
 		if isinstance(config.EMC.movie_finished_clean.notifiers, dict):
-			config.EMC.movie_finished_clean.notifiers = { }
+			config.EMC.movie_finished_clean.clearNotifiers()
 		elif isinstance(config.EMC.movie_finished_clean.notifiers, list):
-			config.EMC.movie_finished_clean.notifiers = [ ]
+			config.EMC.movie_finished_clean.clearNotifiers()
 		
 		for i, entry in enumerate( self.list ):
 			if entry[1].isChanged():
