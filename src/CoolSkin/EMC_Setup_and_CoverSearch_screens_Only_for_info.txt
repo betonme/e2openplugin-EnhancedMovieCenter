@@ -1,4 +1,4 @@
-<!-- Skin defaults from the EMC-Setup screen and CoverSearch screens. Only for info to skin this by self -->
+<!-- Skin defaults from the EMC-Setup screen, CoverSearch screens and MovieInfo screens. Only for info to skin this by self -->
 
 
 <!-- EnhancedMovieCenter Menu --- It's a E2 default Screen !!!  -->
@@ -67,4 +67,32 @@
 	<widget name="poster" zPosition="2" position="10,10" size="185,230" alphatest="on" />
 	<widget name="menulist" position="220,10" size="760,507" selectionPixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/cursor.png" scrollbarMode="showOnDemand" transparent="1" enableWrapAround="on" />
 	<widget name="info" position="10,535" size="990,24" zPosition="0" font="Regular;21" halign="left" valign="center" transparent="1" foregroundColor="#ffffff" backgroundColor="#000000"/>
+</screen>
+
+<!-- EMC MovieInfo - DownloadMovieInfo -->
+<screen name="EMCDownloadMovieInfo" position="center,center" size="700,500" title="Movie Information Download (TMDb)">
+	<widget name="movie_name" position="5,5" size="695,44" zPosition="0" font="Regular;21" valign="center" transparent="1" foregroundColor="#00bab329" backgroundColor="#000000"/>
+	<widget name="movielist" position="10,54" size="670,379" scrollbarMode="showOnDemand"/>
+	<widget name="resulttext" position="5,433" size="700,22" zPosition="0" font="Regular;21" valign="center" transparent="1" foregroundColor="#00bab329" backgroundColor="#000000"/>
+	<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key_menu.png" position="5,460" size="35,25" alphatest="on" />
+	<widget name="setup" position="45,460" size="300,25" font="Regular;18" halign="left" valign="center" transparent="1" />
+	<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key_ok.png" position="280,460" size="35,25" alphatest="on" />
+	<widget name="save" position="320,460" size="300,25" font="Regular;18" halign="left" valign="center" transparent="1" />
+	<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key_info.png" position="505,460" size="35,25" alphatest="on" />
+	<widget name="movieinfo" position="545,460" size="300,25" font="Regular;18" halign="left" valign="center" transparent="1" />
+</screen>
+
+<!-- EMC MovieInfo - MovieInfoPreview -->
+<screen name="EMCMovieInfoPreview" position="center,center" size="800,450" title="Movie Information Preview">
+	<widget name="movie_name" position="5,5" size="795,44" zPosition="0" font="Regular;21" valign="center" transparent="1" foregroundColor="#00bab329" backgroundColor="#000000"/>
+	<widget name="previewtext" position="10,53" size="760,380" font="Regular;20" />
+</screen>
+
+<!-- EMC MovieInfo - MovieInfoSetup -->
+<screen name="EMCMovieInfoSetup" position="center,center" size="600,450" title="Movie Information Download Setup">
+	<widget name="config" position="5,10" size="570,350" scrollbarMode="showOnDemand" />
+	<widget name="key_red" position="0,390" size="140,40" valign="center" halign="center" zPosition="5" transparent="1" foregroundColor="#ffffff" font="Regular;18"/>
+	<widget name="key_green" position="140,390" size="140,40" valign="center" halign="center" zPosition="5" transparent="1" foregroundColor="#ffffff" font="Regular;18"/>
+	<ePixmap name="red" pixmap="skin_default/buttons/red.png" position="0,390" size="140,40" zPosition="4" transparent="1" alphatest="on"/>
+	<ePixmap name="green" pixmap="skin_default/buttons/green.png" position="140,390" size="140,40" zPosition="4" transparent="1" alphatest="on"/>
 </screen>

@@ -26,7 +26,7 @@ config.EMC.movieinfo.ldgenre = ConfigSelection(default='1', choices=[('1', _('Ye
 
 class DownloadMovieInfo(Screen):
 	skin = """
-		<screen position="center,center" size="700,500" title="Movie Information Download (TMDb)">
+		<screen name="EMCDownloadMovieInfo" position="center,center" size="700,500" title="Movie Information Download (TMDb)">
 		<widget name="movie_name" position="5,5" size="695,44" zPosition="0" font="Regular;21" valign="center" transparent="1" foregroundColor="#00bab329" backgroundColor="#000000"/>
 		<widget name="movielist" position="10,54" size="670,379" scrollbarMode="showOnDemand"/>
 		<widget name="resulttext" position="5,433" size="700,22" zPosition="0" font="Regular;21" valign="center" transparent="1" foregroundColor="#00bab329" backgroundColor="#000000"/>
@@ -170,7 +170,7 @@ class DownloadMovieInfo(Screen):
 
 class MovieInfoPreview(Screen):
 	skin = """
-		<screen position="center,center" size="800,450" title="Movie Information Preview">
+		<screen name="EMCMovieInfoPreview" position="center,center" size="800,450" title="Movie Information Preview">
 		<widget name="movie_name" position="5,5" size="795,44" zPosition="0" font="Regular;21" valign="center" transparent="1" foregroundColor="#00bab329" backgroundColor="#000000"/>
 		<widget name="previewtext" position="10,53" size="760,380" font="Regular;20" />
 	</screen>"""
@@ -197,7 +197,7 @@ class MovieInfoPreview(Screen):
 
 class MovieInfoSetup(Screen, ConfigListScreen):
 	skin = """
-		<screen position="center,center" size="600,450" title="Movie Information Download Setup">
+		<screen name="EMCMovieInfoSetup" position="center,center" size="600,450" title="Movie Information Download Setup">
 		<widget name="config" position="5,10" size="570,350" scrollbarMode="showOnDemand" />
 		<widget name="key_red" position="0,390" size="140,40" valign="center" halign="center" zPosition="5" transparent="1" foregroundColor="#ffffff" font="Regular;18"/>
 		<widget name="key_green" position="140,390" size="140,40" valign="center" halign="center" zPosition="5" transparent="1" foregroundColor="#ffffff" font="Regular;18"/>
