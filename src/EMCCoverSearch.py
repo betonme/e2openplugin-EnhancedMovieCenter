@@ -22,6 +22,7 @@ from Components.Button import Button
 
 from twisted.web import client
 from twisted.web.client import downloadPage, getPage
+from twisted.internet import defer
 
 from Components.config import *
 from Components.ConfigList import *
@@ -734,41 +735,26 @@ class getCover(Screen):
 		self.check = "false"
 		self.path = "/tmp/tmp.jpg"
 		self.cover_count = 0
-		self.search_check = 0
 		self.einzel_start_time = time.clock()
 		self.einzel_elapsed = time.clock()
 		self.einzel_end_time = time.clock()
-		
+
 		self.picload = ePicLoad()
 		#self.picload.PictureData.get().append(self.showCoverCallback)
-		
+
+		self["info"].setText((_("found") + " %s " + _("covers")) % (self.cover_count))
 		if config.EMC.imdb.singlesearch.value == "0":
 			self.searchCover(self.title)
-			#self.search_done()
-		
-		if config.EMC.imdb.singlesearch.value == "1":
+		elif config.EMC.imdb.singlesearch.value == "1":
 			self.searchtvdb(self.title)
-			#self.search_done()
-		
-		if config.EMC.imdb.singlesearch.value == "2":
+		elif config.EMC.imdb.singlesearch.value == "2":
 			self.searchcsfd(self.title)
-			#self.search_done()
-		
-		if config.EMC.imdb.singlesearch.value == "3":
+		elif config.EMC.imdb.singlesearch.value == "3":
 			self.searchcsfd(self.title)
 			self.searchtvdb(self.title)
 			self.searchCover(self.title)
-			#self.search_done()
-			#self.check = "true"
-			#self.showInfo()
-			#self.einzel_end_time = time.clock()
-			#self.einzel_elapsed = (self.einzel_end_time - self.einzel_start_time)
-			#self["info"].setText(_("found %s covers in %.1f sec") % (self.cover_count, self.einzel_elapsed))
 
-	def searchcsfd_detail(self, url, title):
-		getPage(url).addCallback(self.showCovers_detail_csfd, title).addErrback(self.errorLoad, title)
-
-	def showCovers_detail_csfd(self, data, title):
+	def showCovers_adddetail_csfd(self, data, title):
 		title_s = re.findall('<title>(.*?)\|', data, re.S)
 		if title_s:
 			if title_s[0] != "Vyhled\xc3\xa1v\xc3\xa1n\xc3\xad ":
@@ -784,7 +770,7 @@ class getCover(Screen):
 			self.cover_count = self.cover_count + 1
 			csfd_url = "http:" + bild[0].replace('\\','').strip()
 			self.menulist.append(showCoverlist(csfd_title, csfd_url, self.o_path, "csfd: "))
-			self.showInfo()
+			self["info"].setText((_("found") + " %s " + _("covers")) % (self.cover_count))
 			bild = re.findall('<h3>Plak.*?ty</h3>(.*?)</table>', data, re.S)
 			if bild:
 				bild1 = re.findall('style=\"background-image\: url\(\'(.*?)\'\)\;', bild[0], re.DOTALL | re.IGNORECASE)
@@ -794,24 +780,20 @@ class getCover(Screen):
 						self.cover_count = self.cover_count + 1
 						csfd_url = "http:" + each.replace('\\','').strip()
 						self.menulist.append(showCoverlist(csfd_title, csfd_url, self.o_path, "csfd: "))
-						self.showInfo()
+						self["info"].setText((_("found") + " %s " + _("covers")) % (self.cover_count))
 				else:
 					print "EMC csfd 3 : no else covers - %s" % title
 			else:
 				print "EMC csfd 2 : no else covers - %s" % title
 		else:
 			print "EMC csfd 1 : keine infos gefunden - %s" % title
-		self.einzel_end_time = time.clock()
-		self.einzel_elapsed = self.einzel_end_time - self.einzel_start_time
-		self["info"].setText((_("found") + " %s " + _("covers in") + " %.1f " + _("sec")) % (self.cover_count, self.einzel_elapsed))
 
+	@defer.inlineCallbacks
 	def searchcsfd(self, title):
 		print "EMC csfd - searchcsfd: ", title
 		search_title = urllib.quote(title.replace('+', ' ').replace('-', ' '))
 		url = "http://www.csfd.cz/hledat/?q=%s" % search_title
-		getPage(url).addCallback(self.showCovers_csfd, title).addErrback(self.errorLoad, title)
-
-	def showCovers_csfd(self, data, title):
+		data = yield getPage(url).addErrback(self.errorLoad, title)
 		bild = re.findall('<img src=\"(//img.csfd.cz/files/images/film/posters/.*?|//img.csfd.cz/posters/.*?)\".*?<h3 class="subject"><a href="(.*?)" class="film c.">(.*?)</a>.*?</li>', data, re.DOTALL | re.IGNORECASE)
 		if bild:
 			for each in bild:
@@ -821,88 +803,39 @@ class getCover(Screen):
 				csfd_detail_url = "http://www.csfd.cz" + each[1]
 				csfd_url = "http:" + each[0]
 				self.menulist.append(showCoverlist(csfd_title, csfd_url, self.o_path, 'csfd: '))
-				self.searchcsfd_detail(csfd_detail_url, csfd_title)
+				data1 = yield getPage(csfd_detail_url).addErrback(self.errorLoad, csfd_title)
+				self.showCovers_adddetail_csfd(data1, csfd_title)
+				self["info"].setText((_("found") + " %s " + _("covers")) % (self.cover_count))
 		else:
-			title_s = re.findall('<title>(.*?)\|', data, re.DOTALL | re.IGNORECASE)
-			if title_s:
-				print "title_s", title_s[0]
-				if title_s[0] != "Vyhled\xc3\xa1v\xc3\xa1n\xc3\xad ":
-					csfd_title = title_s[0]
-				else:
-					csfd_title = title
-				print "EMC iMDB csfd: Movie name - %s" % csfd_title
-			else:
-				csfd_title = title
+			self.showCovers_adddetail_csfd(data, title)
+			self["info"].setText((_("found") + " %s " + _("covers")) % (self.cover_count))
+		self.search_done()
 
-			bild = re.findall('<img src="(//img.csfd.cz/files/images/film/posters/.*?|//img.csfd.cz/posters/.*?)" alt="poster"', data, re.DOTALL | re.IGNORECASE)
-			if bild:
-				print "EMC iMDB csfd: Cover Select - %s" % title
-				self.cover_count = self.cover_count + 1
-				csfd_url = "http:" + bild[0].replace('\\','').strip()
-				self.menulist.append(showCoverlist(csfd_title, csfd_url, self.o_path, "csfd: "))
-				bild = re.findall('<h3>Plak.*?ty</h3>(.*?)</table>', data, re.S)
-				if bild:
-					bild1 = re.findall('style=\"background-image\: url\(\'(.*?)\'\)\;', bild[0], re.DOTALL | re.IGNORECASE)
-					if bild1:
-						for each in bild1:
-							print "EMC iMDB - csfd: Cover Select - %s" % title
-							self.cover_count = self.cover_count + 1
-							csfd_url = "http:" + each.replace('\\','').strip()
-							self.menulist.append(showCoverlist(csfd_title, csfd_url, self.o_path, "csfd: "))
-					else:
-						print "EMC iMDB csfd 3 : no else covers - %s" % title
-				else:
-					print "EMC iMDB csfd 2 : no else covers - %s" % title
-			else:
-				print "EMC iMDB csfd 1 : keine infos gefunden - %s" % title
-
-		self["menulist"].l.setList(self.menulist)
-		self["menulist"].l.setItemHeight(28)
-		self.search_check += 1
-		if not config.EMC.imdb.singlesearch.value == "3":		
-			self.check = "true"
-		self.showInfo()
-		self.einzel_end_time = time.clock()
-		self.einzel_elapsed = self.einzel_end_time - self.einzel_start_time
-		self["info"].setText((_("found") + " %s " + _("covers in") + " %.1f " + _("sec")) % (self.cover_count, self.einzel_elapsed))
-
+	@defer.inlineCallbacks
 	def searchtvdb(self, title):
 		url = "http://www.thetvdb.com/api/GetSeries.php?seriesname=%s&language=de" % title.replace(' ','+')
-		getPage(url).addCallback(self.parsetvdb, title).addErrback(self.errorLoad, title)
-
-	def parsetvdb(self, data, title):
+		data = yield getPage(url).addErrback(self.errorLoad, title)
 		id = re.findall('<id>(.*?)</id>', data)
 		if id:
 			url = "http://www.thetvdb.com/api/2AAF0562E31BCEEC/series/%s/" % id[0]
-			getPage(url).addCallback(self.showCovers_tvdb, title).addErrback(self.errorLoad, title)
+			data = yield getPage(url).addErrback(self.errorLoad, title)
+			bild = re.findall('<poster>(.*?)</poster>', data)
+			if bild:
+				print "EMB iMDB: Cover Select - %s" % title
+				self.cover_count = self.cover_count + 1
+				print "EMC http://www.thetvdb.com/banners/_cache/%s" % bild[0]
+				tvdb_url = "http://www.thetvdb.com/banners/_cache/%s" % bild[0]
+				self.menulist.append(showCoverlist(title, tvdb_url, self.o_path, "tvdb: "))
+				self["info"].setText((_("found") + " %s " + _("covers")) % (self.cover_count))
+			else:
+				#self["info"].setText(_("Nothing found for %s") % title)
+				print "EMC iMDB tvdb: keine infos gefunden - %s" % title
+		self.search_done()
 
-	def showCovers_tvdb(self, data, title):
-		bild = re.findall('<poster>(.*?)</poster>', data)
-		if bild:
-			print "EMB iMDB: Cover Select - %s" % title
-			self.cover_count = self.cover_count + 1
-			print "EMC http://www.thetvdb.com/banners/_cache/%s" % bild[0]
-			tvdb_url = "http://www.thetvdb.com/banners/_cache/%s" % bild[0]
-			self.menulist.append(showCoverlist(title, tvdb_url, self.o_path, "tvdb: "))
-		else:
-			#self["info"].setText(_("Nothing found for %s") % title)
-			print "EMC iMDB tvdb: keine infos gefunden - %s" % title
-
-		self["menulist"].l.setList(self.menulist)
-		self["menulist"].l.setItemHeight(28)
-		self.search_check += 1 
-		if not config.EMC.imdb.singlesearch.value == "3":		
-			self.check = "true"
-			self.showInfo()
-			self.einzel_end_time = time.clock()
-			self.einzel_elapsed = (self.einzel_end_time - self.einzel_start_time)
-			self["info"].setText((_("found") + " %s " + _("covers in") + " %.1f " + _("sec")) % (self.cover_count, self.einzel_elapsed))
-
+	@defer.inlineCallbacks
 	def searchCover(self, title):
 		url = "http://m.imdb.com/find?q=%s" % title.replace(' ','+')
-		getPage(url).addCallback(self.showCovers, title).addErrback(self.errorLoad, title)
-
-	def showCovers(self, data, title):
+		data = yield getPage(url).addErrback(self.errorLoad, title)
 		print "EMB iMDB: Cover Select - %s" % title
 		#print data
 		bild = re.findall('<img src="http://ia.media-imdb.com/images/(.*?)".*?<a href="/title/(.*?)/".*?">(.*?)</a>.*?\((.*?)\)', data, re.S)
@@ -915,29 +848,19 @@ class getCover(Screen):
 				imdb_url = re.findall('(.*?)\.', imdb_url)
 				extra_imdb_convert = "._V1_SX320.jpg"
 				imdb_url = "http://ia.media-imdb.com/images/%s%s" % (imdb_url[0], extra_imdb_convert)
-
 				self.menulist.append(showCoverlist(imdb_title, imdb_url, self.o_path, "imdb: "))
+				self["info"].setText((_("found") + " %s " + _("covers")) % (self.cover_count))
 		else:
-			self["info"].setText(_("Nothing found for %s") % title)
 			print "EMC iMDB: keine infos gefunden - %s" % title
-
-		self["menulist"].l.setList(self.menulist)
-		self["menulist"].l.setItemHeight(28)
-		self.search_check += 1
-
-		#if not config.EMC.imdb.singlesearch.value == "3":
-		self.check = "true"
-		self.showInfo()
-		self.einzel_end_time = time.clock()
-		self.einzel_elapsed = (self.einzel_end_time - self.einzel_start_time)
-		self["info"].setText((_("found") + " %s " + _("covers in") + " %.1f " + _("sec")) % (self.cover_count, self.einzel_elapsed))
+		self.search_done()
 
 	def errorLoad(self, error, title):
 		print "EMC keine daten zu %s gefunden." % title
 		print error
 
 	def search_done(self):
-		#if self.search_check == "2":
+		self["menulist"].l.setList(self.menulist)
+		self["menulist"].l.setItemHeight(28)
 		self.check = "true"
 		self.showInfo()
 		self.einzel_end_time = time.clock()
