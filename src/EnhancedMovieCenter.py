@@ -528,9 +528,15 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 		config.EMC.needsreload.value = True
 
 		if isinstance(config.EMC.movie_finished_clean.notifiers, dict):
-			config.EMC.movie_finished_clean.clearNotifiers()
+			if hasattr( config.EMC.movie_finished_clean, "clearNotifiers" ):
+				config.EMC.movie_finished_clean.clearNotifiers()
+			else:
+				config.EMC.movie_finished_clean.notifiers = { }
 		elif isinstance(config.EMC.movie_finished_clean.notifiers, list):
-			config.EMC.movie_finished_clean.clearNotifiers()
+			if hasattr( config.EMC.movie_finished_clean, "clearNotifiers" ):
+				config.EMC.movie_finished_clean.clearNotifiers()
+			else:
+				config.EMC.movie_finished_clean.notifiers = [ ]
 		
 		for i, entry in enumerate( self.list ):
 			if entry[1].isChanged():
