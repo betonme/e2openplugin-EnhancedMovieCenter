@@ -1429,6 +1429,7 @@ class MovieCenter(GUIComponent):
 		
 		self.pic_back            = LoadPixmap(cached=True, path='/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/back.png')
 		self.pic_directory       = LoadPixmap(cached=True, path='/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/dir.png')
+		self.pic_directory_locked= LoadPixmap(cached=True, path='/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/dir_locked.png')
 		self.pic_movie_default   = LoadPixmap(cached=True, path='/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/movie_default.png')
 		self.pic_movie_unwatched = LoadPixmap(cached=True, path='/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/movie_unwatched.png')
 		self.pic_movie_watching  = LoadPixmap(cached=True, path='/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/movie_watching.png')
@@ -1829,7 +1830,10 @@ class MovieCenter(GUIComponent):
 							datetext = _("Trashcan")
 
 				elif ext == cmtDir:
-					pixmap = self.pic_directory
+					if os.path.isfile(path + "/dir.lock"):
+						pixmap = self.pic_directory_locked
+					else:
+						pixmap = self.pic_directory
 
 					if config.EMC.directories_ontop.value and title not in self.topdirlist:
 						pixmap = self.pic_col_dir
