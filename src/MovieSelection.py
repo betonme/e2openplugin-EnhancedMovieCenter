@@ -1907,7 +1907,12 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 	def execFileOp(self, targetPath, current, selectedlist, op="move", purgeTrash=False):
 		self.returnService = self.getNextSelectedService(current, selectedlist)
 		#TODOret
-		print "EMC ret exeFil " +str(self.returnService.toString())
+		if self.returnService:
+			print "EMC ret exeFil " +str(self.returnService.toString())
+		else:
+			print "EMC ret exeFil - op:", op
+			print "EMC ret exeFil - targetpath:", targetPath
+			print "EMC ret exeFil - selectedlist:", selectedlist
 		cmd = []
 		association = []
 		movieFileCache.delPathFromCache(targetPath)
