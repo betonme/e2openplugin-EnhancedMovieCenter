@@ -166,11 +166,6 @@ class Info:
 		#Show txt-Information in ExtendedDescription if meta but no eit
 		self.__extendeddescription = eit and eit.getEitDescription() \
 																	or ""
-
-		#Show Path in ExtendedDescription if no eit or txt file
-		#ToDo: make configurable in EMC Setup ?
-		show_path_extdescr = False		#True
-
 		#No Description in *.eit file or no *.eit file exists
 		#Try reading description from *.txt file
 		if not self.__extendeddescription:
@@ -185,7 +180,7 @@ class Info:
 					txtdesc += line
 				self.__extendeddescription = txtdesc
 
-			elif show_path_extdescr:
+			elif config.EMC.show_path_extdescr.value:
 				if config.EMC.movie_real_path.value:
 					desc = os.path.realpath(path)
 				else:
