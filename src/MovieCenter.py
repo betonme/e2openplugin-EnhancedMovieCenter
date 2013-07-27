@@ -408,6 +408,21 @@ def detectBLUStructure(checkPath):
 	if fileExists( blupath ):
 		return blupath
 	return None
+	
+def detectBLUISO(checkPath):
+	dir, fileext = os.path.splitext(checkPath)
+	if fileext =='.iso':
+		if not os.path.exists('/tmp/EMCISO'):
+			os.system('mkdir /tmp/EMCISO')
+		else:
+			if os.path.ismount('/tmp/EMCISO'):
+				os.system('umount -d -f /tmp/EMCISO')
+		os.system('mount -r "' + checkPath + '" ' + '/tmp/EMCISO')
+		if detectBLUStructure('/tmp/EMCISO'):
+			os.system('umount -d -f /tmp/EMCISO')
+			return True
+		os.system('umount -d -f /tmp/EMCISO')
+	return False	
 
 # muss drinnen bleiben sonst crashed es bei foreColorSelected
 def MultiContentEntryProgress(pos = (0, 0), size = (0, 0), percent = None, borderWidth = None, foreColor = None, foreColorSelected = None, backColor = None, backColorSelected = None):

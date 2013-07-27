@@ -54,7 +54,7 @@ from EMCFileCache import movieFileCache
 from DelayedFunction import DelayedFunction
 from EnhancedMovieCenter import _
 from EMCTasker import emcTasker, emcDebugOut
-from MovieCenter import MovieCenter, getPlayerService, getProgress, detectBLUStructure
+from MovieCenter import MovieCenter, getPlayerService, getProgress, detectBLUStructure, detectBLUISO
 from MovieSelectionMenu import MovieMenu
 from EMCMediaCenter import EMCMediaCenter
 from VlcPluginInterface import VlcPluginInterfaceSel
@@ -1499,8 +1499,13 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			# detectBLUStructure
 			path = current.getPath()
 			if detectBLUStructure(os.path.dirname(path)):
-				blupath = os.path.dirname(path)
-				self.openBludiscPlayer(blupath)
+				self.openBludiscPlayer(os.path.dirname(path))
+				
+			#detectBLUISO
+			elif detectBLUISO(path):
+				os.system('umount -d -f /tmp/EMCISO') #not really necessary, but just to play safe!
+				os.system('mount -r "' + path + '" ' + '/tmp/EMCISO')
+				self.openBludiscPlayer(os.path.realpath('/tmp/EMCISO/'))				
 
 			elif self["list"].currentSelIsVirtual():
 				# Open folder and reload movielist
