@@ -1500,12 +1500,14 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			path = current.getPath()
 			if detectBLUStructure(os.path.dirname(path)):
 				self.openBludiscPlayer(os.path.dirname(path))
-				
+
 			#detectBLUISO
 			elif detectBLUISO(path):
+				if not os.path.exists('/tmp/EMCISO/'):
+					os.system('mkdir /tmp/EMCISO/')
 				os.system('umount -d -f /tmp/EMCISO') #not really necessary, but just to play safe!
 				os.system('mount -r "' + path + '" ' + '/tmp/EMCISO')
-				self.openBludiscPlayer(os.path.realpath('/tmp/EMCISO/'))				
+				self.openBludiscPlayer(os.path.realpath('/tmp/EMCISO/'))
 
 			elif self["list"].currentSelIsVirtual():
 				# Open folder and reload movielist

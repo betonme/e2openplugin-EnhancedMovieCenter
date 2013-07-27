@@ -410,18 +410,21 @@ def detectBLUStructure(checkPath):
 	return None
 	
 def detectBLUISO(checkPath):
+	random.seed()
+	mountdir = '/tmp/EMCISO' + str(random.getrandbits(16))
 	dir, fileext = os.path.splitext(checkPath)
 	if fileext =='.iso':
-		if not os.path.exists('/tmp/EMCISO'):
-			os.system('mkdir /tmp/EMCISO')
+		if not os.path.exists(mountdir):
+			os.system('mkdir ' + mountdir)
 		else:
-			if os.path.ismount('/tmp/EMCISO'):
-				os.system('umount -d -f /tmp/EMCISO')
-		os.system('mount -r "' + checkPath + '" ' + '/tmp/EMCISO')
-		if detectBLUStructure('/tmp/EMCISO'):
-			os.system('umount -d -f /tmp/EMCISO')
+			os.system('umount -d -f ' + mountdir)
+		os.system('mount -r "' + checkPath + '" ' + mountdir)
+		if detectBLUStructure(mountdir):
+			os.system('umount -d -f ' + mountdir)
+			os.system('rmdir ' + mountdir)
 			return True
-		os.system('umount -d -f /tmp/EMCISO')
+		os.system('umount -d -f ' + mountdir)
+		os.system('rmdir ' + mountdir)
 	return False	
 
 # muss drinnen bleiben sonst crashed es bei foreColorSelected
@@ -1644,8 +1647,13 @@ class MovieCenter(GUIComponent):
 						elif ext in extAudio:
 							pixmap = self.pic_mp3
 						# dvd iso or structure
-						elif ext in extDvd:
-							if movieWatching:
+						elif ext in extDvd:							
+							print "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+							if detectBLUISO(service.getPath()):
+								print "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+								
+								pixmap = self.pic_brd_default
+							elif movieWatching:
 								pixmap = self.pic_dvd_watching
 							elif movieFinished:
 								pixmap = self.pic_dvd_finished
