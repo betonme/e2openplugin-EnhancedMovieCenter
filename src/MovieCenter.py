@@ -1646,12 +1646,9 @@ class MovieCenter(GUIComponent):
 						# audio
 						elif ext in extAudio:
 							pixmap = self.pic_mp3
-						# dvd iso or structure
+						# DVD/BD iso or structure
 						elif ext in extDvd:							
-							print "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
-							if detectBLUISO(service.getPath()):
-								print "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
-								
+							if detectBLUISO(service.getPath()):					
 								pixmap = self.pic_brd_default
 							elif movieWatching:
 								pixmap = self.pic_dvd_watching
