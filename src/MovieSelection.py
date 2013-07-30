@@ -119,8 +119,8 @@ def purgeExpired(emptyTrash=False):
 										# really delete!
 										if not offline.deleteFromDisk(0):
 											result = True
-									#Avoids trashcan failure if trashcan contains .m2ts-files
-									if ext == '.m2ts':
+									#Workaround: Avoids trashcan failure if trashcan contains *.m2ts or *.iso files
+									if ext == '.m2ts' or ext == '.iso':
 										result = True
 									if result == False:
 										AddPopup(
