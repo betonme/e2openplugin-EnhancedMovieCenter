@@ -971,6 +971,8 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 				
 				sorttitle = title.lower()
 				
+				if date is None:
+					date = datetime.fromtimestamp(0)
 				append((service, sorttitle, date, title, path, 0, 0, ext, 0))
 		
 		# Add file entries to the list
@@ -1037,7 +1039,7 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 						try:
 							date = datetime(date/10000, date%10000/100, date%100, dtime/100, dtime%100)
 						except ValueError, e:
-							date = ""
+							date = datetime.fromtimestamp(0)
 				
 				# If the user wants it, extract information from the meta and eit files
 				# But it is very slow
@@ -1083,6 +1085,8 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 				# Set date priority here
 				# Fallback get date from filesystem, but it is very slow
 				date = date or pathexists(path) and datetime.fromtimestamp( pathgetmtime(path) ) or None
+				if date is None:
+					date = datetime.fromtimestamp(0)
 				
 				# Create sortkeys
 				#if not sortdate: sortdate = date and date.strftime( "%Y%m%d %H%M" ) or ""
@@ -1108,7 +1112,6 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 				if (movie_hide_mov and self.serviceMoving(service)) \
 					or (movie_hide_del and self.serviceDeleting(service)):
 					continue
-				
 				append((service, sorttitle, date, title, path, 0, length, ext, int(cutnr or 0)))
 		
 		# Cleanup before continue

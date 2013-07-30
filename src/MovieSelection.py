@@ -1190,7 +1190,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 
 	def rename(self):
 		self.session.openWithCallback(
-							self.reloadList,
+							self.reloadListWithoutCache,
 							MovieRetitle,
 							self["list"].makeSelectionList() or self.getCurrent() )
 
@@ -1412,6 +1412,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		#TODOret 
 		if self.returnService:
 			print "EMC ret triSer " +str(self.returnService.toString())
+		movieFileCache.delPathFromCache(self.currentPath)
 		self.reloadList()
 
 	def reloadList(self, path=None):
@@ -2140,7 +2141,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			os.makedirs(config.EMC.movie_trashcan_path.value)
 			if self.currentPath == os.path.dirname(config.EMC.movie_trashcan_path.value):
 				# reload to show the trashcan only if the current path will contain the trashcan
-				self.reloadList()
+				self.reloadListWithoutCache()
 		except Exception, e:
 			self.session.open(MessageBox, _("Trashcan create failed. Check mounts and permissions."), MessageBox.TYPE_ERROR)
 			emcDebugOut("[EMCMS] trashcanCreate exception:\n" + str(e))
