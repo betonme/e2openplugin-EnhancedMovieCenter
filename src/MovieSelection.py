@@ -2177,7 +2177,7 @@ class IMDbEventViewSimple(EventViewSimple):
 			text_blue = _("CSFD")
 		else:
 			text_blue = _("IMDb")
-		self["key_blue"].setText(text_blue)
+		self["key_blue"] = Button(text_blue)
 		self["epgactions"] = ActionMap(["EventViewEPGActions"],
 			{
 				"openMultiServiceEPG": self.InfoDetail,
