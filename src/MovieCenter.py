@@ -201,8 +201,9 @@ def getMovieNameWithoutExt(moviename=""):
 	return moviename
 
 def getMovieNameWithoutPhrases(moviename=""):
-	# Remove phrases which are encapsulated in [*] from the movietitle
+	# Remove phrases which are encapsulated in [*] or (*) from the movietitle
 	moviename = re.sub(r'\[.*\]', "", moviename)
+	moviename = re.sub(r'\(.*\)', "", moviename)
 	for (phrase,sub) in substitutelist:
 		moviename = moviename.replace(phrase,sub)
 	return moviename
