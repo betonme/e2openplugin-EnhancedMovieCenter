@@ -47,6 +47,15 @@ global extTS
 
 
 class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
+	skin = """
+	<screen name="EMCMenu" position="center,center" size="600,500" title="EMC menu">
+	<eLabel position="0,0" size="600,2" backgroundColor="grey" zPosition="5" />
+	<widget source="title" render="Label" position="10,10" size="580,35" font="Regular;27" halign="center" />
+	<widget source="menu" render="Listbox" position="10,55" size="580,450" scrollbarMode="showOnDemand" enableWrapAround="1">
+		<convert type="StringList" />
+	</widget>
+	</screen>"""
+
 	def __init__(self, session, menumode, mselection, mlist, service, selections, currentPath):
 		Screen.__init__(self, session)
 		self.mode = menumode
@@ -168,7 +177,6 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 				"cancel":   self.close,
 				"red":      self.redButton,
 			})
-		self.skinName = "Menu"
 		self.onShow.append(self.onDialogShow)
 
 	def redButton(self):
