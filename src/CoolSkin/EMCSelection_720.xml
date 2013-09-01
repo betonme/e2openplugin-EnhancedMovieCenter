@@ -67,12 +67,12 @@
 		<convert type="EMCEventName">ExtendedDescription</convert>
 	</widget>
 	<!-- Color Buttons -->
-	<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key-red.png" position="70,534" size="20,20" alphatest="on" />
-	<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key-green.png" position="220,534" size="20,20" alphatest="on" />
-	<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key-yellow.png" position="370,534" size="20,20" alphatest="on" />
+	<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key-red.png" position="40,534" size="20,20" alphatest="on" />
+	<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key-green.png" position="200,534" size="20,20" alphatest="on" />
+	<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key-yellow.png" position="340,534" size="20,20" alphatest="on" />
 	<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key-blue.png" position="520,534" size="20,20" alphatest="on" />
-	<widget name="key_red" position="95,537" size="145,20" zPosition="1" font="Regular;20" halign="left" valign="center" foregroundColor="#9F1313" backgroundColor="#18080911" transparent="1" />
-	<widget name="key_green" position="245,537" size="145,20" zPosition="1" font="Regular;20" halign="left" valign="center" foregroundColor="#00389416" backgroundColor="#18080911" transparent="1" />
-	<widget name="key_yellow" position="395,537" size="145,20" zPosition="1" font="Regular;20" halign="left" valign="center" foregroundColor="#B59E01" backgroundColor="#18080911" transparent="1" />
-	<widget name="key_blue" position="545,537" size="145,20" zPosition="1" font="Regular;20" halign="left" valign="center" foregroundColor="#1E28B6" backgroundColor="#18080911" transparent="1" />
+	<widget name="key_red" position="65,537" size="145,30" zPosition="1" font="Regular;20" halign="left" valign="top" foregroundColor="#9F1313" backgroundColor="#18080911" transparent="1" />
+	<widget name="key_green" position="225,537" size="145,30" zPosition="1" font="Regular;20" halign="left" valign="top" foregroundColor="#00389416" backgroundColor="#18080911" transparent="1" />
+	<widget name="key_yellow" position="365,537" size="155,30" zPosition="1" font="Regular;20" halign="left" valign="top" foregroundColor="#B59E01" backgroundColor="#18080911" transparent="1" />
+	<widget name="key_blue" position="545,537" size="145,30" zPosition="1" font="Regular;20" halign="left" valign="top" foregroundColor="#1E28B6" backgroundColor="#18080911" transparent="1" />
 </screen>

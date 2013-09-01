@@ -2,10 +2,9 @@
 
 
 <!-- EnhancedMovieCenter Menu -->
-<screen name="EMCMenu" position="center,center" size="600,500" title="EMC menu">
-	<eLabel position="0,0" size="600,2" backgroundColor="grey" zPosition="5" />
+<screen name="EMCMenu" position="center,center" size="600,480" title="EMC menu">
 	<widget source="title" render="Label" position="10,10" size="580,35" font="Regular;27" halign="center" />
-	<widget source="menu" render="Listbox" position="10,55" size="580,450" scrollbarMode="showOnDemand" enableWrapAround="1">
+	<widget source="menu" render="Listbox" position="10,55" size="580,430" scrollbarMode="showOnDemand" enableWrapAround="1">
 		<convert type="StringList" />
 	</widget>
 </screen>
