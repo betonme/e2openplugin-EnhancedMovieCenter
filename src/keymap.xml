@@ -26,9 +26,11 @@
 	<map context="EMCGeneralPlayerActions">
 		<key id="KEY_RADIO" mapto="showExtensions" flags="b" />
 		<key id="KEY_GREEN" mapto="EMCGreen" flags="m" />
+		<key id="KEY_INFO" mapto="movieInfo" flags="m" />		
+<!--  With "KEY_LEFT" & "KEY_RIGHT" at map "EMCDVDPlayerActions" works also in the regular player.
 		<key id="KEY_LEFT" mapto="seekBack" flags="b" />
 		<key id="KEY_RIGHT" mapto="seekFwd" flags="b" />
-		<key id="KEY_INFO" mapto="movieInfo" flags="m" />
+-->
 	</map>
 	<map context="EMCDVDPlayerActions">
 		<key id="KEY_MENU" mapto="dvdMenu" flags="mr" />
