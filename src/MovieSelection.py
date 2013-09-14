@@ -230,10 +230,10 @@ class SelectionEventInfo:
 			jpgpath = getInfoFile(path, exts)[1]
 			print "EMC jpgpath", jpgpath
 
-			if path.endswith("/.."):
-				jpgpath = "/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/cover_tr.png"
+			#if path.endswith("/.."):
+				#jpgpath = "/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/cover_tr.png"
 
-			if not os.path.exists(jpgpath):
+			if config.EMC.movie_cover_fallback.value and not os.path.exists(jpgpath):
 				no_poster = _("no_poster.png")
 				jpgpath = "/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/" + no_poster
 

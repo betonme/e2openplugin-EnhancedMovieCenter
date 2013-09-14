@@ -290,6 +290,7 @@ config.EMC.movie_descdelay           = ConfigSelectionNumber(50, 60000, 50, defa
 config.EMC.movie_cover               = ConfigYesNo(default = False)
 config.EMC.movie_cover_delay         = ConfigSelectionNumber(50, 60000, 50, default= 500)
 config.EMC.movie_cover_background    = ConfigSelection(default = "#00000000", choices = cover_background_choices)
+config.EMC.movie_cover_fallback	     = ConfigYesNo(default = True)
 config.EMC.movie_preview             = ConfigYesNo(default = False)
 config.EMC.movie_preview_delay       = ConfigSelectionNumber(50, 60000, 50, default= 2000)
 config.EMC.movie_preview_offset      = ConfigSelectionNumber(0, 60000, 1, default= 5)
