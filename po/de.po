@@ -2161,6 +2161,10 @@ msgstr ""
 msgid "VLC Server not reachable"
 msgstr "VLC-Server ist nicht erreichbar"
 
+#: src/MovieSelectionMenu.py:69
+msgid "Reload current directory"
+msgstr "Aktuelles Verzeichnis erneut laden"
+
 #~ msgid ""
 #~ " movies found!\n"
 #~ "Information of the best match\n"
