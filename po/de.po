@@ -4,7 +4,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-06-21 23:02+0100\n"
 "PO-Revision-Date: \n"
-"Last-Translator: Swiss-MAD\n"
+"Last-Translator: mike99 <mike99@gmx.net>\n"
 "Language-Team: Swiss-MAD\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
@@ -504,6 +504,14 @@ msgstr ""
 "Bei \"rauf/runter\" wird in die zuletzt bewegte Richtung gesprungen."
 
 #: src/EnhancedMovieCenter.py:300
+msgid "Show symlinks"
+msgstr "Zeige Symlinks"
+
+#: src/EnhancedMovieCenter.py:300
+msgid "HELP_Show symlinks"
+msgstr "Symlinks anzeigen."
+
+#: src/EnhancedMovieCenter.py:300
 msgid "Show directories"
 msgstr "Zeige Verzeichnisse"
 
@@ -567,6 +575,14 @@ msgstr "Zeige Lesezeichen in der Filmliste"
 #: src/EnhancedMovieCenter.py:307
 msgid "HELP_Show Bookmarks in movielist"
 msgstr "Zeige Lesezeichen in der Filmliste"
+
+#: src/EnhancedMovieCenter.py:309
+msgid "Use cache for files and directories"
+msgstr "Verwende Cache für Dateien und Verzeichnisse"
+
+#: src/EnhancedMovieCenter.py:309
+msgid "HELP_Use cache for files and directories"
+msgstr "Verwende Cache für Dateien und Verzeichnisse"
 
 #: src/EnhancedMovieCenter.py:309
 msgid "HELP_separator_hide&performance"
