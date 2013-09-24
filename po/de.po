@@ -530,11 +530,11 @@ msgstr ""
 "oder beides zusammen eingeblendet werden."
 
 #: src/EnhancedMovieCenter.py:303
-msgid "Show Directories within the movielist"
+msgid "Show directories within movielist"
 msgstr "Zeige Verzeichnisse innerhalb der Filmliste"
 
 #: src/EnhancedMovieCenter.py:303
-msgid "HELP_Show Directories within the movielist"
+msgid "HELP_Show directories within movielist"
 msgstr ""
 "Wenn aktiviert, werden die Verzeichnisse nicht zu Beginn der Filmliste "
 "sondern sortiert innerhalb der Filmliste angezeigt."
@@ -612,13 +612,25 @@ msgstr ""
 "verhindern."
 
 #: src/EnhancedMovieCenter.py:312
-msgid "Scan for Movie Structures"
+msgid "Scan for movie structures"
 msgstr "Suche nach Filmstrukturen"
 
 #: src/EnhancedMovieCenter.py:312
-msgid "HELP_Scan for Movie Structures"
+msgid "HELP_Scan for movie structures"
 msgstr ""
 "Hiermit kann die Suche nach Filmstrukturen in Verzeichnissen generell "
+"unterbunden werden.\n"
+"Dies kann unbeabsichtiges Aufwecken von Festplatten oder Netzlaufwerken "
+"verhindern."
+
+#: src/EnhancedMovieCenter.py:315
+msgid "Scan for bluray structures"
+msgstr "Suche nach Bluray-Strukturen"
+
+#: src/EnhancedMovieCenter.py:315
+msgid "HELP_Scan for bluray structures"
+msgstr ""
+"Hiermit kann die Suche nach DVD-Strukturen in Verzeichnissen generell "
 "unterbunden werden.\n"
 "Dies kann unbeabsichtiges Aufwecken von Festplatten oder Netzlaufwerken "
 "verhindern."
@@ -710,6 +722,14 @@ msgstr ""
 "Bei Problemen mit Spinnern oder NAS wake up, diese Option ausschalten. (Pfad "
 "wird bei \"Extended Description\" angezeigt.)"
 
+#: src/EnhancedMovieCenter.py:326
+msgid "Show Path if no extended description available"
+msgstr "Zeige Pfad, wenn keine ausführliche Beschreibung"
+
+#: src/EnhancedMovieCenter.py:326
+msgid "HELP_Show Path if no extended description available"
+msgstr "Zeige Pfad, wenn keine ausführliche Beschreibung verfügbar ist."
+
 #: src/EnhancedMovieCenter.py:325
 msgid "Listbox is skin able"
 msgstr "Filmliste ist Skinbar"
@@ -739,6 +759,14 @@ msgstr "Icons anzeigen"
 msgid "HELP_Show movie icons"
 msgstr ""
 "In der Filmliste wird bei jeder Aufnahme ein passendes Icon vorne angestellt."
+
+#: src/EnhancedMovieCenter.py:333
+msgid "Show link arrow"
+msgstr "Zeige Pfeil bei Symlinks"
+
+#: src/EnhancedMovieCenter.py:333
+msgid "HELP_Show link arrow"
+msgstr "Zeige Pfeil bei Symlinks."
 
 #: src/EnhancedMovieCenter.py:330
 msgid "Show movie progress"
@@ -799,6 +827,22 @@ msgstr ""
 "Wenn Cover anzeigen eingestellt ist, kann hiermit die Verzögerung zum "
 "Anzeigen der Covers eingestellt werden. Dies verhindert, dass die Cover beim "
 "Zappen duch die Filmliste eingelesen werden müssen."
+
+#: src/EnhancedMovieCenter.py:340
+msgid "Cover background"
+msgstr "Cover hintergrund"
+
+#: src/EnhancedMovieCenter.py:340
+msgid "HELP_Cover background"
+msgstr "Hier können Sie den Cover hintergrund ändern."
+
+#: src/EnhancedMovieCenter.py:340
+msgid "Show fallback cover"
+msgstr "Zeige Cover hintergrund"
+
+#: src/EnhancedMovieCenter.py:340
+msgid "HELP_Fallback Cover"
+msgstr "Hier können Sie den Cover hintergrund aktivieren/deaktivieren."
 
 #: src/EnhancedMovieCenter.py:337
 msgid "Show movie preview"
