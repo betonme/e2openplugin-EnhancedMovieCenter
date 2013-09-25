@@ -647,7 +647,7 @@ class EMCImdbScan(Screen):
 			self.setShowSearchSiteName()
 			print "EMC was ist settteeedd:", self.showSearchSiteName
 			self.showInfo()
-			self["done_msg"].setText(_("Search site set to: %s" % self.showSearchSiteName))
+			self["done_msg"].setText(_("Search site set to: %s") % (self.showSearchSiteName))
 			#DelayedFunction(3000, self["done_msg"].hide)
 
 	def setupFinished2(self, result):
