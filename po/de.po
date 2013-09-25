@@ -44,6 +44,10 @@ msgstr "Alle"
 msgid "Search"
 msgstr "Suchen"
 
+#: src/EMCCoverSearch.py:162
+msgid "Manage Cover"
+msgstr "Verwalte Cover"
+
 #: src/EMCCoverSearch.py:147 src/MovieSelection.py:1739
 #: src/MovieSelectionMenu.py:75 src/plugin.py:167 src/plugin.py:187
 msgid "Delete"
@@ -2225,6 +2229,20 @@ msgstr "VLC-Server ist nicht erreichbar"
 msgid "Reload current directory"
 msgstr "Aktuelles Verzeichnis erneut laden"
 
+#: src/EMCCoverSearch.py:178
+msgid "EMC Cover search"
+msgstr "EMC-Cover Suche"
+
+msgid "EMC Cover search setup"
+msgstr "Einstellungen, EMC-Cover-Suche"
+
+#: src/EMCCoverSearch.py:163 src/MovieInfo.py:62
+msgid "Setup"
+msgstr "Einstellungen"
+
+msgid "Single search"
+msgstr "Einfache Suche"
+
 #~ msgid ""
 #~ " movies found!\n"
 #~ "Information of the best match\n"
@@ -2280,12 +2298,6 @@ msgstr "Aktuelles Verzeichnis erneut laden"
 
 #~ msgid "Directory is not empty."
 #~ msgstr "Verzeichnis ist nicht leer."
-
-#~ msgid "EMC Cover search"
-#~ msgstr "EMC-Cover Suche"
-
-#~ msgid "EMC Cover search setup"
-#~ msgstr "Einstellungen, EMC-Cover-Suche"
 
 #~ msgid "Enigma daily auto-restart"
 #~ msgstr "Täglicher Enigma Auto-Neustart"
@@ -2345,9 +2357,6 @@ msgstr "Aktuelles Verzeichnis erneut laden"
 
 #~ msgid "Show E2 Bookmarks in movielist"
 #~ msgstr "E2 Lesezeichen in Filmliste anzeigen"
-
-#~ msgid "Single search"
-#~ msgstr "Einfache Suche"
 
 #~ msgid "Sort file A to Z at startup"
 #~ msgstr "Sortiere Filmliste A bis Z beim Start"
