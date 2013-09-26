@@ -1865,7 +1865,7 @@ msgid "Move Movie"
 msgstr "Verschiebe Film"
 
 #: src/MovieSelectionMenu.py:97
-msgid "Download ation"
+msgid "Download Movie Information"
 msgstr "Film-Infos herunterladen"
 
 #: src/MovieSelectionMenu.py:100
