@@ -1417,6 +1417,10 @@ msgstr "Nein"
 msgid "An error occured! Internet connection broken?"
 msgstr "Ein Fehler ist aufgetreten! Keine Internet Verbindung?"
 
+#: src/MovieInfo.py:80
+msgid "Movie Information Download (TMDb)"
+msgstr "Film Informationen Download (TMDb)"
+
 #: src/MovieInfo.py:90
 msgid "Movie Information downloaded successfully!"
 msgstr "Film Informationen erfolgreich geladen!"
@@ -1861,7 +1865,7 @@ msgid "Move Movie"
 msgstr "Verschiebe Film"
 
 #: src/MovieSelectionMenu.py:97
-msgid "Download Movie Information"
+msgid "Download ation"
 msgstr "Film-Infos herunterladen"
 
 #: src/MovieSelectionMenu.py:100
@@ -2243,6 +2247,27 @@ msgstr "Einstellungen"
 msgid "Single search"
 msgstr "Einfache Suche"
 
+#: src/MovieInfo.py:64
+msgid "Movie Info"
+msgstr "Film Info"
+
+msgid "movies found!"
+msgstr "Filme gefunden!"
+
+msgid "Search results for:"
+msgstr "Suchresultat für:"
+
+#: src/MovieInfo.py:196
+msgid "Movie Information Preview"
+msgstr "Film Informationen Vorschau"
+
+msgid "Movie Information Preview for:"
+msgstr "Film Informationen Vorschau für:"
+
+#: src/MovieInfo.py:234
+msgid "Movie Information Download Setup"
+msgstr "Einstellungen Film-Information Download"
+
 #~ msgid ""
 #~ " movies found!\n"
 #~ "Information of the best match\n"
@@ -2283,9 +2308,6 @@ msgstr "Einfache Suche"
 
 #~ msgid " (P)"
 #~ msgstr " (P)"
-
-#~ msgid " movies found!"
-#~ msgstr "Filme gefunden!"
 
 #~ msgid "Blue"
 #~ msgstr "Blau"
@@ -2346,14 +2368,8 @@ msgstr "Einfache Suche"
 #~ msgid "Move selected movie(s)"
 #~ msgstr "Ausgewählte Film(e) verschieben"
 
-#~ msgid "Movie Information Preview for:   "
-#~ msgstr "Film Informationen Vorschau für:"
-
 #~ msgid "Red"
 #~ msgstr "Rot"
-
-#~ msgid "Search results for:   "
-#~ msgstr "Suchresultat für:"
 
 #~ msgid "Show E2 Bookmarks in movielist"
 #~ msgstr "E2 Lesezeichen in Filmliste anzeigen"
