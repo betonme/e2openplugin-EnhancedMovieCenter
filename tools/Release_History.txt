@@ -12,3 +12,4 @@ enigma2-plugin-extensions-enhancedmoviecenter_3.7.0beta20130330_all.ipk --> SHA-
 enigma2-plugin-extensions-enhancedmoviecenter_3.7.1beta20130621_all.ipk --> SHA-1: 9f99fa17950881066464e6b9e38599b2742e5b87
 enigma2-plugin-extensions-enhancedmoviecenter_3.7.2beta20130726_all.ipk --> SHA-1: 5b069ed7e663a90c7b28e0e4b703746324695783
 enigma2-plugin-extensions-enhancedmoviecenter_3.7.3beta20130802_all.ipk --> SHA-1: fc6b7ccfaa7d5aa109588c827bc3e1ff1c7a2c00
+enigma2-plugin-extensions-enhancedmoviecenter_3.7.4beta20131015_all.ipk --> SHA-1: 
