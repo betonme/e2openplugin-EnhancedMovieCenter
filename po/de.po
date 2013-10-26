@@ -895,19 +895,21 @@ msgstr ""
 
 #: src/EnhancedMovieCenter.py:341
 msgid "Cover background"
-msgstr "Cover hintergrund"
+msgstr "Cover Hintergrund"
 
 #: src/EnhancedMovieCenter.py:341
 msgid "HELP_Cover background"
-msgstr "Hier können Sie den Cover hintergrund ändern."
+msgstr "Hier kann der Cover Hintergrund angepasst werden."
 
 #: src/EnhancedMovieCenter.py:342
 msgid "Show fallback cover"
-msgstr "Zeige Cover hintergrund"
+msgstr "Zeige Cover Hintergrund wenn kein Cover vorhanden"
 
 #: src/EnhancedMovieCenter.py:342
 msgid "HELP_Fallback Cover"
-msgstr "Hier können Sie den Cover hintergrund aktivieren/deaktivieren."
+msgstr ""
+"Bei \"NEIN\", wird der Cover Hintergrund nur angezeigt, wenn auch ein Cover "
+"vorhanden ist."
 
 #: src/EnhancedMovieCenter.py:344
 msgid "Show movie preview"
