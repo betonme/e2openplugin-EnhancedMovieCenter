@@ -57,7 +57,7 @@ def convertCharSpecCZSK(text):
 	return text
 
 def parseMJD(MJD):
-	# Parse 16 bit unsigned int containing Modified Julian Date, 
+	# Parse 16 bit unsigned int containing Modified Julian Date,
 	# as per DVB-SI spec
 	# returning year,month,day
 	YY = int( (MJD - 15078.2) / 365.25 )
@@ -65,7 +65,7 @@ def parseMJD(MJD):
 	D  = MJD - 14956 - int(YY*365.25) - int(MM * 30.6001)
 	K=0
 	if MM == 14 or MM == 15: K=1
-	
+
 	return (1900 + YY+K), (MM-1-K*12), D
 
 def unBCD(byte):
@@ -76,19 +76,19 @@ def unBCD(byte):
 # Description
 # http://de.wikipedia.org/wiki/Event_Information_Table
 class EitList():
-	
+
 	EIT_SHORT_EVENT_DESCRIPTOR 		= 0x4d
 	EIT_EXTENDED_EVENT_DESCRIPOR 	=	0x4e
-	
+
 	def __init__(self, path=None):
 		self.eit_file = None
 		self.eit_mtime = 0
-		
+
 		#TODO
 		# The dictionary implementation could be very slow
 		self.eit = {}
 		self.iso = None
-		
+
 		self.__newPath(path)
 		self.__readEitFile()
 
@@ -188,16 +188,16 @@ class EitList():
 			if self.eit_mtime == mtime:
 				# File has not changed
 				pass
-				
+
 			else:
 				#print "EMC TEST count Eit " + str(path)
-				
+
 				# New path or file has changed
 				self.eit_mtime = mtime
-				
+
 				# Read data from file
 				# OE1.6 with Pyton 2.6
-				#with open(self.eit_file, 'r') as file: lines = file.readlines()	
+				#with open(self.eit_file, 'r') as file: lines = file.readlines()
 				f = None
 				try:
 					f = open(path, 'rb')
@@ -208,7 +208,7 @@ class EitList():
 				finally:
 					if f is not None:
 						f.close()
-					
+
 				# Parse the data
 				if data and 12 <= len(data):
 					# go through events
@@ -221,16 +221,16 @@ class EitList():
 					running_status  = (e[8] & 0xe000) >> 13
 					free_CA_mode    = e[8] & 0x1000
 					descriptors_len = e[8] & 0x0fff
-					
+
 					if running_status in [1,2]:
 						self.eit['when'] = "NEXT"
 					elif running_status in [3,4]:
 						self.eit['when'] = "NOW"
-					
+
 					self.eit['startdate'] = date
 					self.eit['starttime'] = time
 					self.eit['duration'] = duration
-					
+
 					pos = pos + 12
 					short_event_descriptor = []
 					extended_event_descriptor = []
@@ -273,9 +273,9 @@ class EitList():
 						else:
 							#print "unsopported descriptor: %x %x" %(rec, pos + 12)
 							#print data[pos:pos+length]
-							pass 
+							pass
 						pos += length
-					
+
 					# Very bad but there can be both encodings
 					# User files can be in cp1252
 					# Is there no other way?
@@ -291,11 +291,13 @@ class EitList():
 							try:
 								short_event_descriptor = short_event_descriptor.decode("cp1252").encode("utf-8")
 							except UnicodeDecodeError:
-								short_event_descriptor = short_event_descriptor.decode("iso-8859-1").encode("utf-8")
+								# do nothing, otherwise cyrillic wont properly displayed
+								#short_event_descriptor = short_event_descriptor.decode("iso-8859-1").encode("utf-8")
+								pass
 							if (lang == "cs") or (lang == "sk") or (config.EMC.langsupp.value == "CZ&SK"):
 								short_event_descriptor = str(convertCharSpecCZSK(short_event_descriptor))
 					self.eit['name'] = short_event_descriptor
-					
+
 					# Very bad but there can be both encodings
 					# User files can be in cp1252
 					# Is there no other way?
@@ -311,15 +313,17 @@ class EitList():
 							try:
 								extended_event_descriptor = extended_event_descriptor.decode("cp1252").encode("utf-8")
 							except UnicodeDecodeError:
-								extended_event_descriptor = extended_event_descriptor.decode("iso-8859-1").encode("utf-8")
+								# do nothing, otherwise cyrillic wont properly displayed
+								#extended_event_descriptor = extended_event_descriptor.decode("iso-8859-1").encode("utf-8")
+								pass
 							if (lang == "cs") or (lang == "sk") or (config.EMC.langsupp.value == "CZ&SK"):
 								extended_event_descriptor = str(convertCharSpecCZSK(extended_event_descriptor))
 					self.eit['description'] = extended_event_descriptor
-					
+
 				else:
 					# No date clear all
 					self.eit = {}
-				
+
 		else:
 			# No path or no file clear all
 			self.eit = {}
