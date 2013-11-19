@@ -1731,7 +1731,7 @@ msgstr "Definitief verwijderen"
 #: - Enhanced Movie
 #: Center\EMC-SVN\Locale/MovieSelectionMenu.py:70
 msgid "Empty trashcan"
-msgstr "Prullenak legen"
+msgstr "Prullenbak legen"
 
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC
 #: - Enhanced Movie
