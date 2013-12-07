@@ -63,14 +63,14 @@ global sidDVB, sidDVD, sidMP3
 
 # Media types
 extAudio    = frozenset([".ac3", ".dts", ".flac", ".m3u", ".m4a", ".mp2", ".mp3", ".ogg", ".wav", ".wma"])
-extVideo    = frozenset([".ts", ".avi", ".divx", ".f4v", ".flv", ".img", ".ifo", ".iso", ".m2ts", ".m4v", ".mkv", ".mov", ".mp4", ".mpeg", ".mpg", ".mts", ".vob", ".wmv", ".bdmv"])
+extVideo    = frozenset([".ts", ".trp", ".avi", ".divx", ".f4v", ".flv", ".img", ".ifo", ".iso", ".m2ts", ".m4v", ".mkv", ".mov", ".mp4", ".mpeg", ".mpg", ".mts", ".vob", ".wmv", ".bdmv"])
 extPlaylist = frozenset([".m3u"])
 extMedia    = extAudio | extVideo | extPlaylist
 extDir      = frozenset([""])
 extList     = extMedia | extDir
 
 # Additional file types
-extTS       = frozenset([".ts"])
+extTS       = frozenset([".ts", ".trp"])
 extM2ts     = frozenset([".m2ts"])
 #extDvd      = frozenset([".iso", ".img", ".ifo"])
 extIfo      = frozenset([".ifo"])
