@@ -1414,16 +1414,20 @@ class MovieCenter(GUIComponent):
 		
 		#IDEA self.CoolIconPos
 		self.CoolMoviePos = 100
+		self.CoolMovieHPos = 0
 		self.CoolMovieSize = 490
 		self.CoolFolderSize = 550
 		self.CoolTitleColor = 0
 		self.CoolDatePos = -1
+		self.CoolDateHPos = 0
 		self.CoolDateWidth = 110
 		self.CoolDateColor = 0
 		self.CoolHighlightColor = 0
 		self.CoolProgressPos = -1
+		self.CoolProgressHPos = 0
 		self.CoolBarPos = -1
 		self.CoolBarHPos = 8
+		self.CoolIconHPos = 0
 		
 		self.CoolBarSize = parseSize("55,10", ((1,1),(1,1)))
 		self.CoolBarSizeSa = parseSize("55,10", ((1,1),(1,1)))
@@ -1500,14 +1504,20 @@ class MovieCenter(GUIComponent):
 				
 				elif attrib == "CoolMoviePos":
 					self.CoolMoviePos = int(value)
+				elif attrib == "CoolMovieHPos":
+					self.CoolMovieHPos = int(value)
 				elif attrib == "CoolMovieSize":
 					self.CoolMovieSize = int(value)
+				elif attrib == "CoolIconHPos":
+					self.CoolIconHPos = int(value)
 				elif attrib == "CoolFolderSize":
 					self.CoolFolderSize = int(value)
 				elif attrib == "CoolTitleColor":
 					self.CoolTitleColor = int(value)
 				elif attrib == "CoolDatePos":
 					self.CoolDatePos = int(value)
+				elif attrib == "CoolDateHPos":
+					self.CoolDateHPos = int(value)
 				elif attrib == "CoolDateWidth":
 					self.CoolDateWidth = int(value)
 				elif attrib == "CoolDateColor":
@@ -1519,6 +1529,8 @@ class MovieCenter(GUIComponent):
 				
 				elif attrib == "CoolProgressPos":
 					self.CoolProgressPos = int(value)
+				elif attrib == "CoolProgressHPos":
+					self.CoolProgressHPos = int(value)
 				elif attrib == "CoolBarPos":
 					self.CoolBarPos = int(value)
 				elif attrib == "CoolBarHPos":
@@ -1706,16 +1718,16 @@ class MovieCenter(GUIComponent):
 
 				if selnumtxt is None:
 					if config.EMC.movie_icons.value:
-						append(MultiContentEntryPixmapAlphaTest(pos=(5,2), size=(24,24), png=pixmap, **{}))
+						append(MultiContentEntryPixmapAlphaTest(pos=(5,2 + self.CoolIconHPos), size=(24,24), png=pixmap, **{}))
 						# Media files hide symlink arrow icons
 						if isLink and config.EMC.link_icons.value:
-							append(MultiContentEntryPixmapAlphaTest(pos=(7,13), size=(9,10), png=self.pic_link, **{}))
+							append(MultiContentEntryPixmapAlphaTest(pos=(7,13 + self.CoolIconHPos), size=(9,10), png=self.pic_link, **{}))
 						offset = 35
 					else:
 						offset = 5
 				else:
 
-					append(MultiContentEntryText(pos=(5, 0), size=(26, globalHeight), font=3, flags=RT_HALIGN_LEFT, text=selnumtxt))
+					append(MultiContentEntryText(pos=(5, self.CoolIconHPos), size=(26, globalHeight), font=3, flags=RT_HALIGN_LEFT, text=selnumtxt))
 					offset += 35
 				
 				if not config.EMC.skin_able.value:
@@ -1771,16 +1783,16 @@ class MovieCenter(GUIComponent):
 					if CoolBarPos != -1:
 						append(MultiContentEntryProgress(pos=(CoolBarPos, self.CoolBarHPos -2), size = (self.CoolBarSizeSa.width(), self.CoolBarSizeSa.height()), percent = progress, borderWidth = 1, foreColor = color, foreColorSelected=color, backColor = self.BackColor, backColorSelected = None))
 					if CoolProgressPos != -1:
-						append(MultiContentEntryText(pos=(CoolProgressPos, 0), size=(progressWidth, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text="%d%%" % (progress)))
+						append(MultiContentEntryText(pos=(CoolProgressPos, self.CoolProgressHPos), size=(progressWidth, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text="%d%%" % (progress)))
 					if CoolDatePos != -1:
-						append(MultiContentEntryText(pos=(CoolDatePos, 2), size=(self.CoolDateWidth, globalHeight), font=4, text=datetext, color = colordate, color_sel = colorhighlight, flags=RT_HALIGN_CENTER))
+						append(MultiContentEntryText(pos=(CoolDatePos, self.CoolDateHPos), size=(self.CoolDateWidth, globalHeight), font=4, text=datetext, color = colordate, color_sel = colorhighlight, flags=RT_HALIGN_CENTER))
 #					append(MultiContentEntryText(pos=(self.CoolMoviePos, 0), size=(self.CoolMovieSize, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text=title, color = colortitle, color_sel = colorhighlight))
 
 					# Media files - hide icons and align left
 					CoolMoviePos = self.CoolMoviePos
 					if not config.EMC.movie_icons.value and selnumtxt is None:
 						CoolMoviePos = self.CoolMoviePos - 30
-					append(MultiContentEntryText(pos=(CoolMoviePos, 0), size=(self.CoolMovieSize, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text=title, color = colortitle, color_sel = colorhighlight))
+					append(MultiContentEntryText(pos=(CoolMoviePos, self.CoolMovieHPos), size=(self.CoolMovieSize, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text=title, color = colortitle, color_sel = colorhighlight))
 
 			else:
 				# Directory and vlc directories
@@ -1922,18 +1934,18 @@ class MovieCenter(GUIComponent):
 
 				# Directories and links - hide icons and align left
 				if config.EMC.movie_icons.value:
-					append(MultiContentEntryPixmapAlphaTest(pos=(5,2), size=(24,24), png=pixmap, **{}))
+					append(MultiContentEntryPixmapAlphaTest(pos=(5,2 + self.CoolIconHPos), size=(24,24), png=pixmap, **{}))
 					# Directories hide symlink arrow icons
 					if isLink and config.EMC.link_icons.value:
-						append(MultiContentEntryPixmapAlphaTest(pos=(7,13), size=(9,10), png=self.pic_link, **{}))
+						append(MultiContentEntryPixmapAlphaTest(pos=(7,13 + self.CoolIconHPos), size=(9,10), png=self.pic_link, **{}))
 					# Directory left side
-					append(MultiContentEntryText(pos=(self.CoolMoviePos, 0), size=(self.CoolFolderSize, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text=title))
+					append(MultiContentEntryText(pos=(self.CoolMoviePos, self.CoolMovieHPos), size=(self.CoolFolderSize, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text=title))
 				else:
 					# Directory left side
-					append(MultiContentEntryText(pos=(5, 0), size=(self.CoolFolderSize, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text=title))
+					append(MultiContentEntryText(pos=(5, self.CoolMovieHPos), size=(self.CoolFolderSize, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text=title))
 
 				# Directory right side
-				append(MultiContentEntryText(pos=(self.l.getItemSize().width() - self.CoolDateWidth, 0), size=(self.CoolDateWidth, globalHeight), font=2, flags=RT_HALIGN_CENTER, text=datetext))
+				append(MultiContentEntryText(pos=(self.l.getItemSize().width() - self.CoolDateWidth, self.CoolMovieHPos), size=(self.CoolDateWidth, globalHeight), font=2, flags=RT_HALIGN_CENTER, text=datetext))
 			del append
 			return res
 		except Exception, e:
