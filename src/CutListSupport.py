@@ -30,14 +30,18 @@ from Screens.InfoBarGenerics import InfoBarCueSheetSupport, InfoBarSeek
 from EMCTasker import emcDebugOut
 from IsoFileSupport import IsoSupport
 
+from RecordingsControl import getRecording
+
 try:
 	from Plugins.Extensions.CutlistDownloader.plugin import bestCutlist#
 except ImportError as ie:
 	hasCutlistDownloader = False
 else:
 	hasCutlistDownloader = True
-	
 
+# [Cutlist.Workaround] Enable Cutlist-Workaround: 
+# Creates an Backup of the Cutlist during recording and merge it with the cutlist-File from enigma after recording
+DO_CUTLIST_WORKAROUND = True
 # Cut File support class
 # Description
 # http://git.opendreambox.org/?p=enigma2.git;a=blob;f=doc/FILEFORMAT
@@ -183,7 +187,22 @@ class CutList():
 		print "Cutlist updateCuesheet"
 		try:
 			# Use non native cuesheet support
-			self.__readCutFile(True)
+			# [Cutlist.Workaround] merge with Backup-File if exists
+			savefileexists = False
+			if DO_CUTLIST_WORKAROUND:
+				cutspath = self.cut_file + ".save"
+				if os.path.exists(cutspath):
+					emcDebugOut("[Cutlist.Workaround] Reading from Backup-File")
+					savefileexists = True
+					self.__readCutFileWithPath(cutspath, True)
+				else:
+					emcDebugOut("[Cutlist.Workaround] No Backup-File found: ")
+			cutspath = self.cut_file
+			self.__readCutFileWithPath(cutspath, True)
+			self.__writeCutFile()
+			if savefileexists:
+				emcDebugOut("[Cutlist.Workaround] Delete Backup-File ")
+				os.remove(cutspath)
 		except Exception, e:
 			emcDebugOut("[CUTS] updateCuesheet exception:" + str(e))
 
@@ -355,10 +374,13 @@ class CutList():
 						self.cut_list.remove(cp)
 
 	##############################################################################
+	# [Cutlist.Workaround] add Param path in __readCutFile to merge with backup-File
 	## File IO Functions
 	def __readCutFile(self, update=False):
+		self.__readCutFileWithPath(self.cut_file, update)
+	
+	def __readCutFileWithPath(self, path, update=False):
 		data = ""
-		path = self.cut_file
 		if path and os.path.exists(path):
 			mtime = os.path.getmtime(path)
 			if self.cut_mtime == mtime:
@@ -423,6 +445,25 @@ class CutList():
 				if f is not None:
 					f.close()
 			
+			# [Cutlist.Workaround]
+			# Always make a backup-copy when recording, it will be merged with enigma-cutfile after recording
+			if DO_CUTLIST_WORKAROUND:
+				recFileName=self.cut_file[:-5]
+				record = getRecording(recFileName)
+				if record:
+					savepath = self.cut_file + ".save"
+					fsave = None
+					try:
+						emcDebugOut("[Cutlist.Workaround] Creating backupfile: " + str(savepath))
+						fsave = open(savepath, 'wb')
+						if data:
+							fsave.write(data)
+					except Exception, e:
+						emcDebugOut("[Cutlist.Workaround] Exception in __writeCutFile: " + str(e))
+					finally:
+						if fsave is not None:
+							fsave.close()
+					
 			# Save file timestamp
 			if path and os.path.exists(path):
 				self.cut_mtime = os.path.getmtime(path)
