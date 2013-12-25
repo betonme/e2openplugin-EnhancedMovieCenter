@@ -1180,6 +1180,7 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 			path = os.path.dirname(timer.Filename)
 			if os.path.realpath(path) == os.path.realpath(self.currentPath):
 				# EMC shows the directory which contains the recording
+				filename = timer.Filename + ".ts"
 				if timer.state == TimerEntry.StateRunning:
 					if not self.list:
 						# Empty list it will be better to reload it complete
@@ -1190,13 +1191,19 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 						# We have to add the new recording
 						emcDebugOut("[MC] Timer started - add recording")
 						# Timer filname is without extension
-						filename = timer.Filename + ".ts"
 						DelayedFunction(3000, self.globalReload, filename)
 				elif timer.state == TimerEntry.StateEnded:
 					#MAYBE Just refresh the ended record
 					# But it is fast enough
 					emcDebugOut("[MC] Timer ended")
 					DelayedFunction(3000, self.globalRefresh)
+					# [Cutlist.Workaround] Initiate the Merge
+					DelayedFunction(3000, self.mergeCutListAfterRecording, filename)
+
+	def mergeCutListAfterRecording(self, path):
+		emcDebugOut("[Cutlist.Workaround] MovieCenter.mergeCutListAfterRecording: " + str(path))
+		cuts = CutList( path )
+		cuts.updateFromCuesheet()
 
 	def getNextService(self, service):
 		#IDEA: Optionally loop over all

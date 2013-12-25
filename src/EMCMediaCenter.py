@@ -308,8 +308,9 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 			#TODO Problem with VLC
 			path = service and service.getPath()
 			if os.path.exists(path): #TODO use ext != vlc but must be prepared first
-				cutspath = path + ".cuts"
-				if os.path.exists(cutspath):
+				# Why should the file be removed? Maybe that's the problem with "no Cutlist while recording"
+				#cutspath = path + ".cuts"
+				#if os.path.exists(cutspath):
 					# prepare cut list
 					#try:
 					#	# Workaround for not working E2 cue.setCutListEnable not working :-(
@@ -319,12 +320,12 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 					#except:
 					#	pass
 					# Workaround for E2 dvb player bug in combination with running recordings and existings cutlists
-					record = getRecording(path)
-					if record:
-						try:
-							os.remove(cutspath)
-						except:
-							pass
+					#record = getRecording(path)
+					#if record:
+						#try:
+							# os.remove(cutspath)
+						#except:
+						#	pass
 				# Further cutlist handling
 				toggleProgressService(service, True)
 				self.service = service
@@ -572,6 +573,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 				desc = audioInfo.getDescription()
 				trackList += [str(lang) + " " + str(desc)]
 			for audiolang in [config.EMC.audlang1.value, config.EMC.audlang2.value, config.EMC.audlang3.value]:
+				# Joe Debug
 				if self.tryAudioEnable(trackList, audiolang, tracks): break
 		except Exception, e:
 			emcDebugOut("[EMCPlayer] audioTrack exception:\n" + str(e))
