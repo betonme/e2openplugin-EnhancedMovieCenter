@@ -248,7 +248,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 			sc = AVSwitch().getFramebufferScale() # Maybe save during init
 			size = self["Cover"].instance.size()
 			if self.picload:
-				self.picload.setPara((size.width(), size.height(), sc[0], sc[1], False, 1, "#ffffffff")) # Background dynamically
+				self.picload.setPara((size.width(), size.height(), sc[0], sc[1], False, 1, config.EMC.movie_cover_background.value)) # Background dynamically
 				self.picload.startDecode(jpgpath)
 
 	def showCoverCallback(self, picInfo=None):
