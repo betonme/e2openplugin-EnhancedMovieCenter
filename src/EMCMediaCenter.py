@@ -871,6 +871,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 	# InfoBarShowHide Key_Ok
 	def toggleShow(self):
 		### Cover anzeige
+		self.LongButtonPressed = False
 		service = self.playlist[self.playcount]
 		cover_path = re.sub(self.file_format + "$", '.png', service.getPath())
 		if not os.path.exists(cover_path):
