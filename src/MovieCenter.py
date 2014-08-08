@@ -82,12 +82,13 @@ extBlu      = frozenset([".bdmv"])
 # mimetype("video/x-bluray") ext (".bdmv")
 
 # Player types
-plyDVB      = extTS																		# ServiceDVB
-plyM2TS     = extM2ts																	# ServiceM2TS
-plyDVD      = extDvd																	# ServiceDVD
-plyMP3      = extMedia - plyDVB - plyM2TS - plyDVD		# ServiceMP3 GStreamer
-plyVLC      = extVLC																	# VLC Plugin
-plyAll      = plyDVB | plyM2TS | plyDVD | plyMP3 | plyVLC
+plyDVB      = extTS																										# ServiceDVB
+plyM2TS     = extM2ts																									# ServiceM2TS
+plyDVD      = extDvd																									# ServiceDVD
+plyMP3      = extMedia - plyDVB - plyM2TS - plyDVD - extBlu						# ServiceMP3 GStreamer
+plyVLC      = extVLC																									# VLC Plugin
+#plyBLU      = extBlu | extIso																				# BludiscPlayer Plugin
+plyAll      = plyDVB | plyM2TS | plyDVD | plyMP3 | plyVLC | extBlu
 
 
 # Type definitions
@@ -1598,7 +1599,12 @@ class MovieCenter(GUIComponent):
 				colordate = None
 				colorhighlight = None
 				selnumtxt = None
-				
+
+				bluiso = False
+				if ext in extIso:
+					if detectBLUISO(service.getPath()):
+						bluiso = True
+
 				# Playable files
 				latest = date and (datetime.today()-date).days < 1
 				
@@ -1626,11 +1632,6 @@ class MovieCenter(GUIComponent):
 					datetext = "   VLC   "
 					pixmap = self.pic_vlc
 					color = self.DefaultColor
-					
-				#elif ext in extBlu:
-				#	datetext = ext
-				#	pixmap = self.pic_brd_default
-				#	color = self.DefaultColor
 
 				else:
 					# Media file
@@ -1669,25 +1670,24 @@ class MovieCenter(GUIComponent):
 						# audio
 						elif ext in extAudio:
 							pixmap = self.pic_mp3
-						# DVD/BD iso or structure
-						elif ext in extDvd:							
-							if detectBLUISO(service.getPath()):					
-								pixmap = self.pic_brd_default
-							elif movieWatching:
+						# dvd iso/structure
+						elif ext in extDvd and not bluiso:
+							if movieWatching:
 								pixmap = self.pic_dvd_watching
 							elif movieFinished:
 								pixmap = self.pic_dvd_finished
 							else:
 								pixmap = self.pic_dvd_default
-
-						# TODO: Progress.value for blue structure
-						elif ext in extBlu:
+						# blue iso/structure
+						elif ext in extBlu or bluiso:
+							pixmap = self.pic_brd_default
+							# TODO: Progress.value for blue iso/structure
 							#if movieWatching:
 							#	pixmap = self.pic_brd_watching
 							#elif movieFinished:
 							#	pixmap = self.pic_brd_finished
 							#else:
-							pixmap = self.pic_brd_default
+							#	pixmap = self.pic_brd_default
 
 						# playlists
 						elif ext in extPlaylist:
@@ -1695,7 +1695,7 @@ class MovieCenter(GUIComponent):
 						# all others
 						else:
 							pixmap = self.pic_movie_default
-					
+
 					# Color
 					if movieUnwatched:
 						color = self.UnwatchedColor
@@ -1715,18 +1715,11 @@ class MovieCenter(GUIComponent):
 				elif service in self.highlightsDel: selnumtxt = "X"
 				elif service in self.highlightsCpy: selnumtxt = "+"
 				elif selnum > 0: selnumtxt = "%02d" % selnum
-				
-#				if config.EMC.movie_icons.value and selnumtxt is None:
-#					append(MultiContentEntryPixmapAlphaTest(pos=(5,2), size=(24,24), png=pixmap, **{}))
-#					if isLink:
-#						append(MultiContentEntryPixmapAlphaTest(pos=(7,13), size=(9,10), png=self.pic_link, **{}))
-#					offset = 35
-#				if selnumtxt is not None:
 
 				if selnumtxt is None:
 					if config.EMC.movie_icons.value:
 						append(MultiContentEntryPixmapAlphaTest(pos=(5,2 + self.CoolIconHPos), size=(24,24), png=pixmap, **{}))
-						# Media files hide symlink arrow icons
+						# hide symlink arrow
 						if isLink and config.EMC.link_icons.value:
 							append(MultiContentEntryPixmapAlphaTest(pos=(7,13 + self.CoolIconHPos), size=(9,10), png=self.pic_link, **{}))
 						offset = 35
@@ -1738,15 +1731,20 @@ class MovieCenter(GUIComponent):
 					offset += 35
 				
 				if not config.EMC.skin_able.value:
-					if config.EMC.movie_progress.value == "PB":
-						append(MultiContentEntryProgress(pos=(offset, self.CoolBarHPos), size = (self.CoolBarSize.width(), self.CoolBarSize.height()), percent = progress, borderWidth = 1, foreColor = color, foreColorSelected=color, backColor = self.BackColor, backColorSelected = None))
-						offset += self.CoolBarSize.width() + 10
-					elif config.EMC.movie_progress.value == "P":
-						append(MultiContentEntryText(pos=(offset, 0), size=(progressWidth, globalHeight), font=usedFont, flags=RT_HALIGN_CENTER, text="%d%%" % (progress), color = color, color_sel = colorhighlight, backcolor = self.BackColor, backcolor_sel = self.BackColorSel))
-						offset += progressWidth + 5
-					
+					# TODO: Progress.value for blue structure
+					if not ext in extBlu and not bluiso:
+						if config.EMC.movie_progress.value == "PB":
+							append(MultiContentEntryProgress(pos=(offset, self.CoolBarHPos), size = (self.CoolBarSize.width(), self.CoolBarSize.height()), percent = progress, borderWidth = 1, foreColor = color, foreColorSelected=color, backColor = self.BackColor, backColorSelected = None))
+							offset += self.CoolBarSize.width() + 10
+
+						elif config.EMC.movie_progress.value == "P":
+							append(MultiContentEntryText(pos=(offset, 0), size=(progressWidth, globalHeight), font=usedFont, flags=RT_HALIGN_CENTER, text="%d%%" % (progress), color = color, color_sel = colorhighlight, backcolor = self.BackColor, backcolor_sel = self.BackColorSel))
+							offset += progressWidth + 5
+
 					if config.EMC.movie_date_format.value:
 						append(MultiContentEntryText(pos=(self.l.getItemSize().width() - self.CoolDateWidth, 0), size=(self.CoolDateWidth, globalHeight), font=4, color = colordate, color_sel = colorhighlight, backcolor = self.BackColor, backcolor_sel = self.BackColorSel, flags=RT_HALIGN_CENTER, text=datetext))
+
+					# Media files left side not skin_able
 					append(MultiContentEntryText(pos=(offset, 0), size=(self.l.getItemSize().width() - offset - self.CoolDateWidth -5, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text=title, color = colortitle, color_sel = colorhighlight, backcolor = self.BackColor, backcolor_sel = self.BackColorSel))
 				
 				else:
@@ -1780,12 +1778,9 @@ class MovieCenter(GUIComponent):
 						CoolProgressPos = -1
 
 					# TODO: Progress.value for blue structure
-					if ext in extBlu:
+					if ext in extBlu or bluiso:
 						CoolProgressPos = -1
 						CoolBarPos = -1
-						# CoolDatePos = self.l.getItemSize().width() - self.CoolDateWidth 0)
-						CoolDatePos = self.CoolBarPos
-						datetext = _("Bluray")
 
 					if CoolBarPos != -1:
 						append(MultiContentEntryProgress(pos=(CoolBarPos, self.CoolBarHPos -2), size = (self.CoolBarSizeSa.width(), self.CoolBarSizeSa.height()), percent = progress, borderWidth = 1, foreColor = color, foreColorSelected=color, backColor = self.BackColor, backColorSelected = None))
@@ -1793,13 +1788,9 @@ class MovieCenter(GUIComponent):
 						append(MultiContentEntryText(pos=(CoolProgressPos, self.CoolProgressHPos), size=(progressWidth, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text="%d%%" % (progress)))
 					if CoolDatePos != -1:
 						append(MultiContentEntryText(pos=(CoolDatePos, self.CoolDateHPos), size=(self.CoolDateWidth, globalHeight), font=4, text=datetext, color = colordate, color_sel = colorhighlight, flags=RT_HALIGN_CENTER))
-#					append(MultiContentEntryText(pos=(self.CoolMoviePos, 0), size=(self.CoolMovieSize, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text=title, color = colortitle, color_sel = colorhighlight))
 
-					# Media files - hide icons and align left
-					CoolMoviePos = self.CoolMoviePos
-					if not config.EMC.movie_icons.value and selnumtxt is None:
-						CoolMoviePos = self.CoolMoviePos - 30
-					append(MultiContentEntryText(pos=(CoolMoviePos, self.CoolMovieHPos), size=(self.CoolMovieSize, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text=title, color = colortitle, color_sel = colorhighlight))
+					# Media files left side
+					append(MultiContentEntryText(pos=(self.CoolMoviePos, 0), size=(self.CoolMovieSize, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text=title, color = colortitle, color_sel = colorhighlight))
 
 			else:
 				# Directory and vlc directories
@@ -1881,19 +1872,6 @@ class MovieCenter(GUIComponent):
 					if config.EMC.directories_ontop.value and title not in self.topdirlist:
 						pixmap = self.pic_col_dir
 
-#					if isLink:
-#						if config.EMC.directories_ontop.value:
-#							if title in topdirlist:
-#								datetext = _("Link")					#TopLink
-#								pixmap = self.pic_directory
-#							else:
-#								datetext = _("Collection")		#ColLink
-#								pixmap = self.pic_col_dir
-#						else:
-#							datetext = _("Link")
-#							pixmap = self.pic_directory
-#					elif config.EMC.directories_info.value:
-
 					# Directory and symlink-direcory info.value
 					if config.EMC.directories_info.value:
 						if config.EMC.directories_info.value == "C":
@@ -1916,40 +1894,22 @@ class MovieCenter(GUIComponent):
 							pixmap = self.pic_directory
 							datetext = _("Directory")
 
-#					# Directory
-#					else:
-#						if not config.EMC.movie_icons.value:
-#							datetext = _("Directory")
-#							if isLink:
-#								datetext = _("Link")
-#						else:
-#							if config.EMC.directories_ontop.value and title not in self.topdirlist:
-#								datetext = _("Collection")
-#								pixmap = self.pic_col_dir
-
 				else:
 					# Should never happen
 					pixmap = self.pic_directory
 					datetext = _("UNKNOWN")
-									
-#				# Is there any way to combine it for both files and directories?
-#				append(MultiContentEntryPixmapAlphaTest(pos=(5,2), size=(24,24), png=pixmap, **{}))
-#				if isLink:
-#					append(MultiContentEntryPixmapAlphaTest(pos=(7,13), size=(9,10), png=self.pic_link, **{}))
-#				# Directory left side
-#				append(MultiContentEntryText(pos=(30, 0), size=(self.CoolFolderSize, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text=title))
 
-				# Directories and links - hide icons and align left
+#				# Is there any way to combine it for both files and directories?
 				if config.EMC.movie_icons.value:
-					append(MultiContentEntryPixmapAlphaTest(pos=(5,2 + self.CoolIconHPos), size=(24,24), png=pixmap, **{}))
-					# Directories hide symlink arrow icons
+					append(MultiContentEntryPixmapAlphaTest(pos=(5,2), size=(24,24), png=pixmap, **{}))
+					# hide symlink arrow
 					if isLink and config.EMC.link_icons.value:
 						append(MultiContentEntryPixmapAlphaTest(pos=(7,13 + self.CoolIconHPos), size=(9,10), png=self.pic_link, **{}))
-					# Directory left side
-					append(MultiContentEntryText(pos=(self.CoolMoviePos, self.CoolMovieHPos), size=(self.CoolFolderSize, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text=title))
-				else:
-					# Directory left side
-					append(MultiContentEntryText(pos=(5, self.CoolMovieHPos), size=(self.CoolFolderSize, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text=title))
+
+				# Directory left side
+				append(MultiContentEntryText(pos=(35, 0 + self.CoolIconHPos), size=(self.CoolFolderSize, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text=title))
+				# TODO: Directory left side - skin able
+				#append(MultiContentEntryText(pos=(self.CoolMoviePos, 0), size=(self.CoolFolderSize, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text=title))
 
 				# Directory right side
 				append(MultiContentEntryText(pos=(self.l.getItemSize().width() - self.CoolDateWidth, self.CoolMovieHPos), size=(self.CoolDateWidth, globalHeight), font=2, flags=RT_HALIGN_CENTER, text=datetext))
