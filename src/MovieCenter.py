@@ -205,6 +205,7 @@ def getMovieNameWithoutPhrases(moviename=""):
 	# Remove phrases which are encapsulated in [*] or (*) from the movietitle
 	moviename = re.sub(r'\[.*\]', "", moviename)
 	moviename = re.sub(r'\(.*\)', "", moviename)
+	moviename = re.sub(r' S\d\dE\d\d .*', "", moviename)
 	for (phrase,sub) in substitutelist:
 		moviename = moviename.replace(phrase,sub)
 	return moviename
