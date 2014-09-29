@@ -572,7 +572,7 @@ msgstr ""
 
 #: src/EnhancedMovieCenter.py:300
 msgid "Show symlinks"
-msgstr "Zeige Symlinks"
+msgstr "Symlinks anzeigen"
 
 #: src/EnhancedMovieCenter.py:300
 msgid "HELP_Show symlinks"
@@ -580,7 +580,7 @@ msgstr "Symlinks anzeigen."
 
 #: src/EnhancedMovieCenter.py:302
 msgid "Show directories"
-msgstr "Zeige Verzeichnisse"
+msgstr "Verzeichnisse anzeigen"
 
 #: src/EnhancedMovieCenter.py:302
 msgid "HELP_Show directories"
@@ -588,7 +588,7 @@ msgstr "Verzeichnisse werden in der Filmliste eingeblendet."
 
 #: src/EnhancedMovieCenter.py:303
 msgid "Show directories information"
-msgstr "Zeige Verzeichnis Informationen"
+msgstr "Verzeichnis-Informationen anzeigen"
 
 #: src/EnhancedMovieCenter.py:303
 msgid "HELP_Show directories information"
@@ -598,7 +598,7 @@ msgstr ""
 
 #: src/EnhancedMovieCenter.py:304
 msgid "Show directories within movielist"
-msgstr "Zeige Verzeichnisse innerhalb der Filmliste"
+msgstr "Verzeichnisse innerhalb der Filmliste anzeigen"
 
 #: src/EnhancedMovieCenter.py:304
 msgid "HELP_Show directories within movielist"
@@ -637,11 +637,11 @@ msgstr ""
 
 #: src/EnhancedMovieCenter.py:308
 msgid "Show Bookmarks in movielist"
-msgstr "Zeige Lesezeichen in der Filmliste"
+msgstr "Lesezeichen in der Filmliste anzeigen"
 
 #: src/EnhancedMovieCenter.py:308
 msgid "HELP_Show Bookmarks in movielist"
-msgstr "Zeige Lesezeichen in der Filmliste"
+msgstr "Lesezeichen in der Filmliste anzeigen"
 
 #: src/EnhancedMovieCenter.py:309
 msgid "Use cache for files and directories"
@@ -760,7 +760,7 @@ msgstr ""
 
 #: src/EnhancedMovieCenter.py:323
 msgid "Show Movie Format"
-msgstr "Zeige Filmformat"
+msgstr "Filmformat anzeigen"
 
 #: src/EnhancedMovieCenter.py:323
 msgid "HELP_Show Movie Format"
@@ -768,7 +768,7 @@ msgstr "Dateiendung (Dateityp) wird dem Titel angehängt."
 
 #: src/EnhancedMovieCenter.py:324
 msgid "Show Cut-Nr if exist"
-msgstr "Zeige Schnitt-Nr. falls vorhanden"
+msgstr "Schnitt-Nr. falls vorhanden anzeigen"
 
 #: src/EnhancedMovieCenter.py:324
 msgid "HELP_Show Cut-Nr if exist"
@@ -829,11 +829,11 @@ msgstr ""
 
 #: src/EnhancedMovieCenter.py:334
 msgid "Show link arrow"
-msgstr "Zeige Pfeil bei Symlinks"
+msgstr "Pfeil bei Symlinks anzeigen"
 
 #: src/EnhancedMovieCenter.py:334
 msgid "HELP_Show link arrow"
-msgstr "Zeige Pfeil bei Symlinks."
+msgstr "Pfeil bei Symlinks anzeigen."
 
 #: src/EnhancedMovieCenter.py:335
 msgid "Show movie progress"
@@ -878,7 +878,7 @@ msgstr "Markieren neuer Aufnahmen mit einem Stern"
 #: src/EnhancedMovieCenter.py:339 src/MovieSelection.py:1359
 #: src/MovieSelection.py:1375 src/MovieSelection.py:1391
 msgid "Show Cover"
-msgstr "Zeige Cover"
+msgstr "Cover anzeigen"
 
 #: src/EnhancedMovieCenter.py:339
 msgid "HELP_Show Cover"
@@ -915,7 +915,7 @@ msgstr ""
 
 #: src/EnhancedMovieCenter.py:344
 msgid "Show movie preview"
-msgstr "Zeige Filmvorschau"
+msgstr "Filmvorschau anzeigen"
 
 #: src/EnhancedMovieCenter.py:344
 msgid "HELP_Show movie preview"
@@ -1050,7 +1050,7 @@ msgstr ""
 
 #: src/EnhancedMovieCenter.py:365
 msgid "Show trashcan directory"
-msgstr "Zeige Papierkorbverzeichnis"
+msgstr "Papierkorb-Verzeichnis anzeigen"
 
 #: src/EnhancedMovieCenter.py:365
 msgid "HELP_Show trashcan directory"
@@ -1061,7 +1061,7 @@ msgstr ""
 
 #: src/EnhancedMovieCenter.py:366
 msgid "Show trashcan information"
-msgstr "Zeige Papierkorb Informationen"
+msgstr "Papierkorb Informationen anzeigen"
 
 #: src/EnhancedMovieCenter.py:366
 msgid "HELP_Dynamic trashcan"
@@ -1968,7 +1968,7 @@ msgstr "Aktuelles Verzeichnis erneut laden"
 
 #: src/MovieSelectionMenu.py:80 src/plugin.py:170 src/plugin.py:190
 msgid "Play last"
-msgstr "letzter Film"
+msgstr "Letzter Film"
 
 #: src/MovieSelectionMenu.py:85
 msgid "Cover search"
@@ -2008,7 +2008,7 @@ msgstr "Verzeichnis erstellen"
 
 #: src/MovieSelectionMenu.py:102
 msgid "(Un-)Lock Directory"
-msgstr "(Ent-)Sperre Verzeichnis"
+msgstr "Sperre/Entsperre Verzeichnis"
 
 #: src/MovieSelectionMenu.py:106
 msgid "Copy Movie"
