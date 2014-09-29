@@ -4,7 +4,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-10-15 23:35+0100\n"
 "PO-Revision-Date: \n"
-"Last-Translator: Swiss-MAD\n"
+"Last-Translator: mike99 <mike99@gmx.net>\n"
 "Language-Team: Swiss-MAD\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
@@ -364,7 +364,9 @@ msgstr "Starte EMC mit"
 
 #: src/EnhancedMovieCenter.py:267
 msgid "HELP_Start EMC with"
-msgstr "Setze eine Start-Taste für EMC."
+msgstr ""
+"Hier können Sie eine Taste auswählen,\n"
+"mit der EMC gestartet wird."
 
 #: src/EnhancedMovieCenter.py:268
 msgid "Show plugin config in extensions menu"
@@ -374,7 +376,7 @@ msgstr "EMC-Setup im Erweiterungsmenü anzeigen"
 msgid "HELP_Show plugin config in extensions menu"
 msgstr ""
 "Einblenden des EMC-Setup im Erweiterungsmenü.\n"
-"(Das Erweiterungsmenu ist im Normalfall unter der Taste [blau] zu erreichen)."
+"Das Erweiterungsmenu ist im Normalfall mit der Taste (blau) zu erreichen."
 
 #: src/EnhancedMovieCenter.py:269
 msgid "Show EMC in extensions menu"
@@ -421,7 +423,7 @@ msgstr ""
 
 #: src/EnhancedMovieCenter.py:275
 msgid "Long Red button function"
-msgstr "Funktion der roten Taste (lange)"
+msgstr "Funktion der roten Taste (lang)"
 
 #: src/EnhancedMovieCenter.py:275
 msgid "HELP_Long Red button function"
@@ -1037,7 +1039,7 @@ msgstr ""
 
 #: src/EnhancedMovieCenter.py:364
 msgid "Trashcan path"
-msgstr "Papierkorbverzeichnis"
+msgstr "Papierkorb-Verzeichnis"
 
 #: src/EnhancedMovieCenter.py:364
 msgid "HELP_Trashcan path"
@@ -1234,11 +1236,11 @@ msgstr "Hier kann die bevorzugte Sprache des EPGs eingestellt werden."
 
 #: src/EnhancedMovieCenter.py:391
 msgid "Extra support for language"
-msgstr ""
+msgstr "Zusätzliche Sprachunterstützung"
 
 #: src/EnhancedMovieCenter.py:391
 msgid "HELP_Extra support for selected language"
-msgstr ""
+msgstr "Hier kann die zusätzliche Sprachunterstützung aktiviert werden."
 
 #: src/EnhancedMovieCenter.py:392
 msgid "Enable playback auto-subtitling"
@@ -1993,8 +1995,8 @@ msgid "Remove rogue files"
 msgstr "Verwaiste Dateien entfernen"
 
 #: src/MovieSelectionMenu.py:97
-msgid "Delete cut file"
-msgstr "Lösche .cut Datei"
+msgid "Delete cut file(s)"
+msgstr "Lösche .cut Dateien"
 
 #: src/MovieSelectionMenu.py:99
 msgid "Create link"
@@ -2070,7 +2072,7 @@ msgstr "Entferne permanente Sortierung vom Ursprung"
 
 #: src/MovieSelectionMenu.py:157
 msgid "EMC Setup"
-msgstr "EMC-Setup"
+msgstr "EMC-Einstellungen"
 
 #: src/MovieSelectionMenu.py:160
 msgid "Choose plugin"
