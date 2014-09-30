@@ -354,9 +354,9 @@ msgstr "EMC deaktivieren"
 #: src/EnhancedMovieCenter.py:265
 msgid "HELP_Disable EMC"
 msgstr ""
-"Deaktiviert die Filmliste von EMC komplett. Jedoch spezielle Funktionen wie "
-"[Timerlisten bereinigung], [Papierkorbleerung] oder [autom. E2-Neustart] "
-"arbeiten im Hintergrund weiter."
+"Deaktiviert die Filmliste von EMC komplett.\n"
+"Jedoch spezielle Funktionen wie Timerlisten bereinigung, Papierkorbleerung "
+"oder autom. E2-Neustart arbeiten im Hintergrund weiter."
 
 #: src/EnhancedMovieCenter.py:267
 msgid "Start EMC with"
@@ -376,7 +376,7 @@ msgstr "EMC-Setup im Erweiterungsmenü anzeigen"
 msgid "HELP_Show plugin config in extensions menu"
 msgstr ""
 "Einblenden des EMC-Setup im Erweiterungsmenü.\n"
-"Das Erweiterungsmenu ist im Normalfall mit der Taste (blau) zu erreichen."
+"Das Erweiterungsmenu ist im Normalfall mit der blauen Taste zu erreichen."
 
 #: src/EnhancedMovieCenter.py:269
 msgid "Show EMC in extensions menu"
@@ -386,7 +386,7 @@ msgstr "EMC im Erweiterungsmenü anzeigen"
 msgid "HELP_Show EMC in extensions menu"
 msgstr ""
 "Einblenden des EMC-Plugins im Erweiterungsmenü.\n"
-"(Das Erweiterungsmenü ist im Normalfall unter der Taste [blau] zu erreichen)."
+"Das Erweiterungsmenü ist im Normalfall mit der blauen Taste zu erreichen."
 
 #: src/EnhancedMovieCenter.py:271
 msgid "HELP_Key assignment Separator"
@@ -517,7 +517,8 @@ msgstr "Funktion der Info-Taste (lang)"
 #: src/EnhancedMovieCenter.py:288
 msgid "HELP_LongInfo Button"
 msgstr ""
-"Hier kann die Funktion der Info-Taste bei langem Drücken eingestellt werden."
+"Der Info-Taste (lang gedrückt) kann eine zur Auswahl stehenden Funktion "
+"zugeordnet werden."
 
 #: src/EnhancedMovieCenter.py:291
 msgid "Movie home at start"
@@ -905,7 +906,7 @@ msgstr "Hier kann der Cover Hintergrund angepasst werden."
 
 #: src/EnhancedMovieCenter.py:342
 msgid "Show fallback cover"
-msgstr "Zeige Cover Hintergrund wenn kein Cover vorhanden"
+msgstr "Cover-Hintergrund anzeigen, wenn kein Cover vorhanden"
 
 #: src/EnhancedMovieCenter.py:342
 msgid "HELP_Fallback Cover"
@@ -1003,7 +1004,7 @@ msgstr ""
 
 #: src/EnhancedMovieCenter.py:354
 msgid "Show real length of running records"
-msgstr "Zeige tatsächliche Länge der Aufnahme"
+msgstr "Tatsächliche Länge der Aufnahme anzeigen"
 
 #: src/EnhancedMovieCenter.py:354
 msgid "HELP_Show real length of running records"
@@ -1133,7 +1134,7 @@ msgstr ""
 
 #: src/EnhancedMovieCenter.py:376
 msgid "Display directory reading text"
-msgstr "Zeige <Lese Verzeichnis...> Text"
+msgstr "Text beim Verzeichnis einlesen anzeigen"
 
 #: src/EnhancedMovieCenter.py:376
 msgid "HELP_Display directory reading text"
