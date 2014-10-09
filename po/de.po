@@ -792,11 +792,11 @@ msgstr ""
 
 #: src/EnhancedMovieCenter.py:326
 msgid "Show Path if no extended description available"
-msgstr "Zeige Pfad, wenn keine ausführliche Beschreibung"
+msgstr "Pfad anzeigen, wenn keine ausführliche Beschreibung"
 
 #: src/EnhancedMovieCenter.py:326
 msgid "HELP_Show Path if no extended description available"
-msgstr "Zeige Pfad, wenn keine ausführliche Beschreibung verfügbar ist."
+msgstr "Pfad anzeigen, wenn keine ausführliche Beschreibung verfügbar ist."
 
 #: src/EnhancedMovieCenter.py:329
 msgid "Listbox is skin able"
