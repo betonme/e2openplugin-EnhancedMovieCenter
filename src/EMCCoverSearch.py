@@ -858,7 +858,11 @@ class getCover(Screen):
 		if self.picload:
 			self.picload.setPara((size.width(), size.height(), sc[0], sc[1], False, 1, "#00000000")) # Background dynamically
 			#self.picload.startDecode(poster_path)
-			if self.picload.startDecode(poster_path, False) == 0: 
+			if not is7080hd:
+				result = self.picload.startDecode(poster_path, 0, 0, False)
+			else:
+				result = self.picload.startDecode(poster_path, False)
+			if result == 0:
 				#def showCoverCallback(self, picInfo=None):
 				#if picInfo:
 				ptr = self.picload.getData()
