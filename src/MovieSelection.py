@@ -242,7 +242,10 @@ class SelectionEventInfo:
 				sc = AVSwitch().getFramebufferScale()
 				size = self["Cover"].instance.size()
 				self.picload = ePicLoad()
-				self.picload.PictureData.get().append(self.showCoverCallback)
+				try:
+					self.picload_conn = self.picload.PictureData.connect(self.showCoverCallback)
+				except:
+					self.picload.PictureData.get().append(self.showCoverCallback)
 				if self.picload:
 					self.picload.setPara((size.width(), size.height(), sc[0], sc[1], False, 1, config.EMC.movie_cover_background.value))
 					if self.picload.startDecode(jpgpath) != 0:
@@ -485,13 +488,23 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		self.busy = False			# Allow playback only in one mode: PlayEntry / PlayLast / PlayAll / ShuffleAll
 
 		self.delayTimer = eTimer()
-		self.delayTimer.callback.append(self.updateInfoDelayed)
-		
+		try:
+			self.delayTimer_conn = self.delayTimer.timeout.connect(self.updateInfoDelayed)
+		except:
+			self.delayTimer.callback.append(self.updateInfoDelayed)
+
 		self.coverTimer = eTimer()
-		self.coverTimer.callback.append(self.showCoverDelayed)
+		try:
+			self.coverTimer_conn = self.coverTimer.timeout.connect(self.showCoverDelayed)
+		except:
+			self.coverTimer.callback.append(self.showCoverDelayed)
+
 		self.previewTimer = eTimer()
-		self.previewTimer.callback.append(self.showPreviewDelayed)
-		
+		try:
+			self.previewTimer_conn = self.previewTimer.timeout.connect(self.showPreviewDelayed)
+		except:
+				self.previewTimer.callback.append(self.showPreviewDelayed)
+
 		self.onShow.append(self.onDialogShow)
 		self.onHide.append(self.onDialogHide)
 		self["list"].onSelectionChanged.append(self.selectionChanged)

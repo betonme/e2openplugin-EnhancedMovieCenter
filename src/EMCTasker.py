@@ -55,8 +55,15 @@ class EMCExecutioner:
 	def __init__(self, identifier):
 		self.identifier = identifier   #TODO could be remove
 		self.container = eConsoleAppContainer()
-		self.container.appClosed.append(self.runFinished)
-		self.container.dataAvail.append(self.dataAvail)	# this will cause interfilesystem transfers to stall Enigma
+		try:
+			self.container_appClosed_conn = self.container.appClosed.connect(self.runFinished)
+			# this will cause interfilesystem transfers to stall Enigma
+			self.container_dataAvail_conn = self.container.dataAvail.connect(self.dataAvail)
+		except:
+			self.container_appClosed_conn = None
+			self.container_dataAvail_conn = None
+			self.container.appClosed.append(self.runFinished)
+			self.container.dataAvail.append(self.dataAvail)	# this will cause interfilesystem transfers to stall Enigma
 		self.script = deque()
 		self.associated = deque()
 		self.executing = ""
@@ -154,7 +161,10 @@ class EMCExecutioner:
 class EMCTasker:
 	def __init__(self):
 		self.restartTimer = eTimer()
-		self.restartTimer.timeout.get().append(self.RestartTimerStart)
+		try:
+			self.restartTimer_conn = self.restartTimer.timeout.connect(self.RestartTimerStart)
+		except:
+			self.restartTimer.timeout.get().append(self.RestartTimerStart)
 		self.minutes = 0
 		self.timerActive = False
 		self.executioners = []

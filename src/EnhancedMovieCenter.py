@@ -219,7 +219,10 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 		self.createConfig()
 		
 		self.reloadTimer = eTimer()
-		self.reloadTimer.callback.append(self.createConfig)
+		try:
+			self.reloadTimer_conn = self.reloadTimer.timeout.connect(self.createConfig)
+		except:
+			self.reloadTimer.callback.append(self.createConfig)
 		
 		# Override selectionChanged because our config tuples have a size bigger than 2 
 		def selectionChanged():

@@ -1945,7 +1945,14 @@ class MovieCenter(GUIComponent):
 	def postWidgetCreate(self, instance):
 		instance.setWrapAround(True)
 		instance.setContent(self.l)
-		instance.selectionChanged.get().append(self.selectionChanged)
+		try:
+			self.selectionChanged_conn = instance.selectionChanged.connect(self.selectionChanged)
+		except:
+			instance.selectionChanged.get().append(self.selectionChanged)
+
+	def preWidgetRemove(self, instance):
+		instance.setContent(None)
+		self.selectionChanged_conn = None
 
 	def removeService(self, service):
 		if service:

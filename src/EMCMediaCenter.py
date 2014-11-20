@@ -226,7 +226,10 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 		self.service = None
 		
 		self.picload = ePicLoad()
-		self.picload.PictureData.get().append(self.showCoverCallback)
+		try:
+			self.picload_conn = self.picload.PictureData.connect(self.showCoverCallback)
+		except:
+			self.picload.PictureData.get().append(self.showCoverCallback)
 		
 		# Record events
 		try:

@@ -36,7 +36,11 @@ class DelayedFunction:
 				self.params = params
 				self.timer = None
 				self.timer = eTimer()
-				self.timer.timeout.get().append(self.timerLaunch)
+				self.timer_conn = None
+				try:
+					self.timer_conn = self.timer.timeout.connect(self.timerLaunch)
+				except:
+					self.timer.timeout.get().append(self.timerLaunch)
 				self.timer.start(delay, False)
 		except Exception, e:
 			emcDebugOut("[spDF] __init__ exception:\n%s:%s" %(str(self.function),str(e)))
@@ -47,6 +51,7 @@ class DelayedFunction:
 			instanceTab.remove(self)
 			self.timer.stop()
 			self.timer.timeout.get().remove(self.timerLaunch)
+			self.timer_conn = None
 			self.timer = None
 		except Exception, e:
 			emcDebugOut("[spDF] timer cancel exception:\n%s:%s" %(str(self.function),str(e)))
