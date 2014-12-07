@@ -1051,7 +1051,13 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 					# read title from META
 					meta = MetaList(path)
 					if meta:
-						metastring = meta.getMetaName()
+						try:
+							if meta.getMetaDescription() == '':
+								metastring = meta.getMetaName()
+							else:
+								metastring = meta.getMetaName() + ' - ' + meta.getMetaDescription()
+						except:
+							metastring = meta.getMetaName()
 						if not date:
 							date = meta.getMetaDate()
 						# Improve performance and avoid calculation of movie length
