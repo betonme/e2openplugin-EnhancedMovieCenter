@@ -125,6 +125,28 @@ class MetaList():
 	def	getMetaFileSize(self):
 		return self.__mk_int( self.meta[self.FILESIZE] )
 
+	def getMetaTitle(self, eventgenre=False, eventyear=False):
+		title, genre, year = "", "", ""
+		desc = self.getMetaDescription()
+		x1 = len(desc.split(',', -1)) -1
+		x2 = x1 -1
+		title = desc.replace(desc.split(',', -1)[x1], '').replace(desc.split(',', -1)[x2], '').replace(',,', '')
+		if title.startswith(','):
+			title = title.replace(',', '')
+		if len(title) >= 50:
+			title = ''
+		if eventgenre:
+			genre = desc.split(',', -1)[x2]
+			if len(genre) >= 25:
+				genre = ''
+		if eventyear:
+			year = desc.split(',', -1)[x1]
+			if len(year) >= 25:
+				year = ''
+			else:
+				year = year[-4:len(year)]
+		return title, genre, year
+
 	# Wrapper
 	def getMetaDate(self):
 		#TODO transform during read on init
