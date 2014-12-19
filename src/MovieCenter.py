@@ -255,6 +255,39 @@ def getProgress(service, length=0, last=0, forceRecalc=False, cuts=None):
 		progress = 0
 	return progress, length
 
+def getMetaTitle(path, eventgenre=False, eventyear=False):
+	meta = MetaList(path)
+	title = ""
+	genre = ""
+	year = ""
+	if meta:
+		desc = meta.getMetaDescription()
+		x1 = len(desc.split(',', -1)) -1
+		x2 = x1 -1
+		title = desc.replace(desc.split(',', -1)[x1], '').replace(desc.split(',', -1)[x2], '').replace(',,', '')
+		if title.startswith(','):
+			title = title.replace(',', '')
+		if len(title) >= 50:
+			title = ''
+		try:
+			title.decode('utf-8')
+		except UnicodeDecodeError:
+			try:
+				title = title.decode('cp1252').encode('utf-8')
+			except UnicodeDecodeError:
+				title = title.decode('iso-8859-1').encode('utf-8')
+		if eventgenre:
+			genre = desc.split(',', -1)[x2]
+			if len(genre) >= 25:
+				genre = ''
+		if eventyear:
+			year = desc.split(',', -1)[x1]
+			if len(year) >= 25:
+				year = ''
+			else:
+				year = year[-4:len(year)]
+	return title, genre, year
+
 def getRecordProgress(path):
 	# The progress of all recordings is updated
 	# - on show dialog
@@ -517,18 +550,31 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 			mode = self.actualSort[0]
 		if order is None:
 			order = self.actualSort[1]
-		
+
+		movie_metaload = config.EMC.movie_metaload.value
 		if mode == "D":	# Date sort
 			if not order:
-				sortlist.sort( key=lambda x: (x[2],x[1],-x[8]), reverse=True )
+				if movie_metaload:
+					sortlist.sort( key=lambda x: (x[2],x[1],x[9],-x[8]), reverse=True )
+				else:
+					sortlist.sort( key=lambda x: (x[2],x[1],-x[8]), reverse=True )
 			else:
-				sortlist.sort( key=lambda x: (x[2], x[1], x[8]), reverse=True )
+				if movie_metaload:
+					sortlist.sort( key=lambda x: (x[2],x[1],x[9], x[8]), reverse=True )
+				else:
+					sortlist.sort( key=lambda x: (x[2], x[1], x[8]), reverse=True )
 		
 		elif mode == "A":	# Alpha sort
 			if not order:
-				sortlist.sort( key=lambda x: (x[1],x[2],x[8]) )
+				if movie_metaload:
+					sortlist.sort( key=lambda x: (x[1],x[9],x[2],x[8]) )
+				else:
+					sortlist.sort( key=lambda x: (x[1],x[2],x[8]) )
 			else:
-				sortlist.sort( key=lambda x: (x[1],x[2],-x[8]) )
+				if movie_metaload:
+					sortlist.sort( key=lambda x: (x[1],x[9],x[2],-x[8]) )
+				else:
+					sortlist.sort( key=lambda x: (x[1],x[2],-x[8]) )
 		
 		elif mode == "P":	# Progress
 			if not order:
@@ -945,6 +991,7 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 		date = datetime.fromtimestamp(0)
 		cutnr = ""
 		metastring, eitstring = "", ""
+		eventtitle, eventgenre, eventyear = "", "", ""
 		
 		# Add custom entries and sub directories to the list
 		customlist += subdirlist
@@ -991,6 +1038,7 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 				length = 0 
 				#TODO metalength, eitlength and priority handling
 				metastring, eitstring = "", ""
+				eventtitle, eventgenre, eventyear = "", "", ""
 				#metadate, eitdate = "", ""
 				sorttitle = ""
 				#sortdate = ""
@@ -1051,13 +1099,7 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 					# read title from META
 					meta = MetaList(path)
 					if meta:
-						try:
-							if meta.getMetaDescription() == '':
-								metastring = meta.getMetaName()
-							else:
-								metastring = meta.getMetaName() + ' - ' + meta.getMetaDescription()
-						except:
-							metastring = meta.getMetaName()
+						metastring = meta.getMetaName()
 						if not date:
 							date = meta.getMetaDate()
 						# Improve performance and avoid calculation of movie length
@@ -1090,6 +1132,10 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 						title = title.decode("cp1252").encode("utf-8")
 					except UnicodeDecodeError:
 						title = title.decode("iso-8859-1").encode("utf-8")
+				if movie_metaload:
+					eventtitle, eventgenre, eventyear = getMetaTitle(path, eventgenre=True, eventyear=True)
+					eventtitle = eventtitle.lower()
+					eventgenre = eventgenre.lower()
 				
 				# Set date priority here
 				# Fallback get date from filesystem, but it is very slow
@@ -1121,7 +1167,7 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 				if (movie_hide_mov and self.serviceMoving(service)) \
 					or (movie_hide_del and self.serviceDeleting(service)):
 					continue
-				append((service, sorttitle, date, title, path, 0, length, ext, int(cutnr or 0)))
+				append((service, sorttitle, date, title, path, 0, length, ext, int(cutnr or 0), eventtitle, eventgenre, eventyear))
 		
 		# Cleanup before continue
 		del append
@@ -1583,6 +1629,7 @@ class MovieCenter(GUIComponent):
 				emcDebugOut("[MC] External observer exception: \n" + str(e))
 
 	def buildMovieCenterEntry(self, service, sorttitle, date, title, path, selnum, length, ext, *args):
+		movie_metaload = config.EMC.movie_metaload.value
 		#TODO remove before release
 		try:
 			offset = 0
@@ -1752,6 +1799,10 @@ class MovieCenter(GUIComponent):
 						append(MultiContentEntryText(pos=(self.l.getItemSize().width() - self.CoolDateWidth, 0), size=(self.CoolDateWidth, globalHeight), font=4, color = colordate, color_sel = colorhighlight, backcolor = self.BackColor, backcolor_sel = self.BackColorSel, flags=RT_HALIGN_CENTER, text=datetext))
 
 					# Media files left side not skin_able
+					if movie_metaload:
+						eventtitle = getMetaTitle(path)[0]
+						if eventtitle != "":
+							title = title + " - " + eventtitle
 					append(MultiContentEntryText(pos=(offset, 0), size=(self.l.getItemSize().width() - offset - self.CoolDateWidth -5, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text=title, color = colortitle, color_sel = colorhighlight, backcolor = self.BackColor, backcolor_sel = self.BackColorSel))
 				
 				else:
@@ -1797,6 +1848,10 @@ class MovieCenter(GUIComponent):
 						append(MultiContentEntryText(pos=(CoolDatePos, self.CoolDateHPos), size=(self.CoolDateWidth, globalHeight), font=4, text=datetext, color = colordate, color_sel = colorhighlight, flags=RT_HALIGN_CENTER))
 
 					# Media files left side
+					if movie_metaload:
+						eventtitle = getMetaTitle(path)[0]
+						if eventtitle != "":
+							title = title + " - " + eventtitle
 					append(MultiContentEntryText(pos=(self.CoolMoviePos, 0), size=(self.CoolMovieSize, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text=title, color = colortitle, color_sel = colorhighlight))
 
 			else:
