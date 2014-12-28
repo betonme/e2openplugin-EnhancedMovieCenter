@@ -29,7 +29,7 @@ from datetime import datetime
 
 from Components.config import *
 from Components.GUIComponent import GUIComponent
-from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
+from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaBlend
 from Tools.LoadPixmap import LoadPixmap
 from Tools.Directories import fileExists
 from skin import parseColor, parseFont, parseSize
@@ -1738,10 +1738,10 @@ class MovieCenter(GUIComponent):
 
 				if selnumtxt is None:
 					if config.EMC.movie_icons.value:
-						append(MultiContentEntryPixmapAlphaTest(pos=(5,2 + self.CoolIconHPos), size=(24,24), png=pixmap, **{}))
+						append(MultiContentEntryPixmapAlphaBlend(pos=(5,2 + self.CoolIconHPos), size=(24,24), png=pixmap, **{}))
 						# hide symlink arrow
 						if isLink and config.EMC.link_icons.value:
-							append(MultiContentEntryPixmapAlphaTest(pos=(7,13 + self.CoolIconHPos), size=(9,10), png=self.pic_link, **{}))
+							append(MultiContentEntryPixmapAlphaBlend(pos=(7,13 + self.CoolIconHPos), size=(9,10), png=self.pic_link, **{}))
 						offset = 35
 					else:
 						offset = 5
@@ -1932,10 +1932,10 @@ class MovieCenter(GUIComponent):
 
 #				# Is there any way to combine it for both files and directories?
 				if config.EMC.movie_icons.value:
-					append(MultiContentEntryPixmapAlphaTest(pos=(5,2), size=(24,24), png=pixmap, **{}))
+					append(MultiContentEntryPixmapAlphaBlend(pos=(5,2), size=(24,24), png=pixmap, **{}))
 					# hide symlink arrow
 					if isLink and config.EMC.link_icons.value:
-						append(MultiContentEntryPixmapAlphaTest(pos=(7,13 + self.CoolIconHPos), size=(9,10), png=self.pic_link, **{}))
+						append(MultiContentEntryPixmapAlphaBlend(pos=(7,13 + self.CoolIconHPos), size=(9,10), png=self.pic_link, **{}))
 
 				# Directory left side
 				append(MultiContentEntryText(pos=(35, 0 + self.CoolIconHPos), size=(self.CoolFolderSize, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text=title))

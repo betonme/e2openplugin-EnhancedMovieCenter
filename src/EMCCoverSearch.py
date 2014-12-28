@@ -8,7 +8,7 @@ from Components.ActionMap import *
 from Components.Label import Label
 from Components.MenuList import MenuList
 
-from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaTest
+from Components.MultiContent import MultiContentEntryText
 from Components.Pixmap import Pixmap
 from enigma import ePicLoad, gPixmapPtr
 from Tools.LoadPixmap import LoadPixmap
@@ -204,7 +204,7 @@ class EMCImdbScan(Screen):
 		count_existing = 0
 		count_na = 0
 
-		for each in sorted(self.vm_list):			
+		for each in sorted(self.vm_list):
 			(title, path) = each
 			title = getMovieNameWithoutPhrases(getMovieNameWithoutExt(title))
 			path = re.sub(self.file_format + "$", '.jpg', path)
@@ -661,7 +661,7 @@ class getCover(Screen):
 				<widget name="info" position="10,535" size="990,24" zPosition="0" font="Regular;21" halign="left" valign="center" transparent="1" foregroundColor="#ffffff" backgroundColor="#000000"/>
 			</screen>"""
 	else:
-		skin = """			
+		skin = """
 			<screen position="center,center" size="620,500" title="EMC Cover Selecter" >
 				<widget name="poster" zPosition="2" position="5,10" size="115,150" alphatest="on" />
 				<widget name="menulist" position="125,10" size="490,422" selectionPixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/cursor.png" scrollbarMode="showOnDemand" transparent="1" enableWrapAround="on" />

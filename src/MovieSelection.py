@@ -658,7 +658,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 	def bqtNextFolder(self):
 		dirlist = self.bqtListFolders()
 		try:
-			pos = (dirlist.index(self.currentPath) + 1) % len(dirlist)			
+			pos = (dirlist.index(self.currentPath) + 1) % len(dirlist)
 		except:
 			pos = 0		
 		self.setNextPath(dirlist[pos])
