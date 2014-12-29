@@ -26,6 +26,7 @@ import re
 from collections import defaultdict
 from time import time
 from datetime import datetime
+from threading import Thread
 
 from Components.config import *
 from Components.GUIComponent import GUIComponent
@@ -33,7 +34,7 @@ from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixm
 from Tools.LoadPixmap import LoadPixmap
 from Tools.Directories import fileExists
 from skin import parseColor, parseFont, parseSize
-from enigma import eListboxPythonMultiContent, eListbox, gFont, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_HALIGN_CENTER, eServiceReference, eServiceCenter
+from enigma import eListboxPythonMultiContent, eListbox, gFont, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_HALIGN_CENTER, eServiceReference, eServiceCenter, ePythonMessagePump
 from timer import TimerEntry
 
 from . import _
@@ -51,6 +52,7 @@ from PermanentSort import PermanentSort
 from E2Bookmarks import E2Bookmarks
 from EMCBookmarks import EMCBookmarks
 from ServiceSupport import ServiceCenter
+from ThreadQueue import ThreadQueue
 
 global extAudio, extDvd, extVideo, extPlaylist, extList, extMedia, extBlu
 global cmtDir, cmtUp, cmtTrash, cmtLRec, cmtVLC, cmtBME2, cmtBMEMC, virVLC, virAll, virToE, virToD
@@ -433,6 +435,105 @@ def detectBLUISO(checkPath):
 # muss drinnen bleiben sonst crashed es bei foreColorSelected
 def MultiContentEntryProgress(pos = (0, 0), size = (0, 0), percent = None, borderWidth = None, foreColor = None, foreColorSelected = None, backColor = None, backColorSelected = None):
 	return (eListboxPythonMultiContent.TYPE_PROGRESS, pos[0], pos[1], size[0], size[1], percent, borderWidth, foreColor, foreColorSelected, backColor, backColorSelected)
+
+def refresh():
+	# TODO: go over MovieCenter directly, thats not the best way, but works for the moment
+	try:
+		global moviecenter
+		if moviecenter:
+			moviecenter.refreshList()
+	except:
+		pass
+
+THREAD_WORKING = 1
+THREAD_FINISHED = 2
+
+class CountSizeWorker(Thread):
+	def __init__(self):
+		Thread.__init__(self)
+		self.__running = False
+		self.__cancel = False
+		self.fstart = False
+		self.__messages = ThreadQueue()
+		self.__messagePump = ePythonMessagePump()
+		self.__list = []
+
+	def __getMessagePump(self):
+		return self.__messagePump
+	MessagePump = property(__getMessagePump)
+
+	def __getMessageQueue(self):
+		return self.__messages
+	Message = property(__getMessageQueue)
+
+	def __getRunning(self):
+		return self.__running
+	isRunning = property(__getRunning)
+
+	def isListEmpty(self):
+		return not self.__list
+
+	def getListLength(self):
+		return len(self.__list)
+
+	def Cancel(self):
+		self.__cancel = True
+
+	def Start(self, item, fstart=False):
+		if not self.__running:
+			self.__running = True
+#			print'[EMC] CountSizeWorker Start'
+			self.__list = [item]
+			if fstart:
+				self.fstart = True
+				self.start() # Start blocking code in Thread
+			else:
+				delay = int(config.EMC.count_size_delay.value) * 60000
+				DelayedFunction(delay, self.start) # Start blocking code in Thread
+		else:
+			self.__list.append(item)
+
+	def run(self):
+		while self.__list:
+			item = self.__list.pop(0)
+#			print'[EMC] CountSizeWorker processing: ', item
+			# do processing stuff here
+			result = None
+
+			try:
+				result = dirInfo(item, bsize=True)
+			except Exception, e:
+				print('[EMC] CountSizeWorker result get failed!!!', str(e))
+
+				# Exception finish job with error
+				result = str(e)
+
+			try:
+#				print'[EMC] PathToDatabase result ', result
+				if result:
+#					print'[EMC] CountSizeWorker have result !!!!!!!'
+					self.__messages.push((2, result))
+					self.__messagePump.send(0)
+				else:
+#					print'[EMC] CountSizeWorker result FAILED !!!!!!!'
+					self.__messages.push((1, result))
+					self.__messagePump.send(0)
+			except Exception, e:
+				print('[EMC] CountSizeWorker Exception result failed: ', str(e))
+
+		self.__messages.push((0, result,))
+		self.__messagePump.send(0)
+		self.__running = False
+		Thread.__init__(self)
+		if self.fstart:
+#			print'[EMC] CountSizeWorker list is empty, finish !!!'
+			self.fstart = False
+		else:
+#			print'[EMC] CountSizeWorker list is empty, finish !!!'
+			refresh()
+#			print'[EMC] CountSizeWorker getting refreshList !!!'
+
+countsizeworker = CountSizeWorker()
 
 moviecenterdata = None
 

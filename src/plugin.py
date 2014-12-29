@@ -276,6 +276,19 @@ config.EMC.folder                    = ConfigTextWOHelp(default = "/hdd/EMC", fi
 config.EMC.debugfile                 = ConfigTextWOHelp(default = "output.txt", fixed_size = False, visible_width= 22)
 config.EMC.ml_disable                = ConfigYesNo(default = False)
 config.EMC.files_cache               = ConfigYesNo(default = False)
+nget = False    # this is needed for vti-image at th moment
+try:
+	ngettext("%d minute", "%d minutes", 30)
+	nget = True
+except Exception, e:
+	print "[EMC] ngettext failed:", e
+delayminlist = []
+for i in range(1, 60):
+	if nget:
+		delayminlist.append(("%d" % i, ngettext("%d minute", "%d minutes", i) % i))
+	else:
+		delayminlist.append(("%d" % i))
+config.EMC.count_size_delay          = ConfigSelection(default = "0", choices = [("0", _("No"))] + delayminlist)
 # Color keys selection list array dict: longdescription, shortdescription, functionpointer
 config.EMC.movie_redfunc             = ConfigSelection(default = "DL", choices = red_choices)
 config.EMC.movie_greenfunc           = ConfigSelection(default = "ST", choices = green_choices)
