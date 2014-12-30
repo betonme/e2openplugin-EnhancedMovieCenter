@@ -32,7 +32,7 @@ from Components.config import *
 from Components.GUIComponent import GUIComponent
 from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixmapAlphaBlend
 from Tools.LoadPixmap import LoadPixmap
-from Tools.Directories import fileExists
+from Tools.Directories import fileExists, resolveFilename, SCOPE_CURRENT_SKIN    # SCOPE_CURRENT_SKIN is needed for vti-images, also for other ?
 from skin import parseColor, parseFont, parseSize
 from enigma import eListboxPythonMultiContent, eListbox, gFont, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_HALIGN_CENTER, eServiceReference, eServiceCenter, ePythonMessagePump
 from timer import TimerEntry
@@ -371,6 +371,7 @@ def dirInfo(folder, bsize=False):
 							size += os.path.getsize(filename)
 	if size:
 		size /= (1024.0 * 1024.0 * 1024.0)
+	movieFileCache.addCountSizeToCache(folder, count, size)
 	return count, size
 
 def detectDVDStructure(checkPath):
@@ -488,7 +489,7 @@ class CountSizeWorker(Thread):
 				self.fstart = True
 				self.start() # Start blocking code in Thread
 			else:
-				delay = int(config.EMC.count_size_delay.value) * 60000
+				delay = int(config.EMC.count_size_delay.value) * 1000
 				DelayedFunction(delay, self.start) # Start blocking code in Thread
 		else:
 			self.__list.append(item)
@@ -873,6 +874,11 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 
 	def reloadDirList(self, path):
 		return self.createDirList(path, False)
+
+	def createStartCountSizeList(self, path):
+		subdirlist = self.__createDirList(path)[0]
+		for x in subdirlist:
+			countsizeworker.Start(x[0], fstart=True)
 
 	def createDirList(self, path, useCache = True):
 		subdirlist, filelist = [], []
@@ -1534,7 +1540,9 @@ class MovieCenter(GUIComponent):
 		
 		global moviecenter
 		moviecenter = self
-		
+
+		self.startWorker = False
+
 		self.serviceHandler = ServiceCenter.getInstance()
 		
 		self.CoolFont = parseFont("Regular;20", ((1,1),(1,1)))
@@ -1585,6 +1593,10 @@ class MovieCenter(GUIComponent):
 		self.pic_back            = LoadPixmap(cached=True, path='/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/back.png')
 		self.pic_directory       = LoadPixmap(cached=True, path='/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/dir.png')
 		self.pic_directory_locked= LoadPixmap(cached=True, path='/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/dir_locked.png')
+		if fileExists(resolveFilename(SCOPE_CURRENT_SKIN, 'emc/dir_search.png')):
+			self.pic_directory_search = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'emc/dir_search.png'))
+		else:
+			self.pic_directory_search = LoadPixmap(cached=True, path='/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/dir_search.png')
 		self.pic_movie_default   = LoadPixmap(cached=True, path='/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/movie_default.png')
 		self.pic_movie_unwatched = LoadPixmap(cached=True, path='/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/movie_unwatched.png')
 		self.pic_movie_watching  = LoadPixmap(cached=True, path='/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/movie_watching.png')
@@ -1872,6 +1884,9 @@ class MovieCenter(GUIComponent):
 						eventtitle = meta.getMetaTitle()[0]
 						if eventtitle != "":
 							title = title + " - " + eventtitle
+						if eventtitle == "" and config.EMC.movie_metaload_all.value:
+							eventtitle = meta.getMetaDescription()
+							title = title + " - " + eventtitle
 					append(MultiContentEntryText(pos=(offset, 0), size=(self.l.getItemSize().width() - offset - self.CoolDateWidth -5, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text=title, color = colortitle, color_sel = colorhighlight, backcolor = self.BackColor, backcolor_sel = self.BackColorSel))
 				
 				else:
@@ -1922,6 +1937,9 @@ class MovieCenter(GUIComponent):
 						eventtitle = meta.getMetaTitle()[0]
 						if eventtitle != "":
 							title = title + " - " + eventtitle
+						if eventtitle == "" and config.EMC.movie_metaload_all.value:
+							eventtitle = meta.getMetaDescription()
+							title = title + " - " + eventtitle
 					append(MultiContentEntryText(pos=(self.CoolMoviePos, 0), size=(self.CoolMovieSize, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text=title, color = colortitle, color_sel = colorhighlight))
 
 			else:
@@ -1935,36 +1953,43 @@ class MovieCenter(GUIComponent):
 
 				if ext == cmtVLC:
 					pixmap = self.pic_vlc
+					datepic = None
 					if config.EMC.directories_info.value == "D":
 						datetext = _("VLC")
 
 				elif ext == vlcSrv:
 					pixmap = self.pic_vlc
+					datepic = None
 					if config.EMC.directories_info.value == "D":
 						datetext = _("VLC-Server")
 
 				elif ext == vlcDir:
 					pixmap = self.pic_vlc_dir
+					datepic = None
 					if config.EMC.directories_info.value == "D":
 						datetext = _("VLC-Dir")
 
 				elif ext == cmtLRec:
 					pixmap = self.pic_latest
+					datepic = None
 					if config.EMC.directories_info.value == "D":
 						datetext = _("Latest")
 
 				elif ext == cmtUp:
 					pixmap = self.pic_back
+					datepic = None
 					if config.EMC.directories_info.value == "D":
 						datetext = _("Up")
 
 				elif ext == cmtBME2:
 					pixmap = self.pic_e2bookmark
+					datepic = None
 					if config.EMC.directories_info.value == "D":
 						datetext = _("Bookmark")
 
 				elif ext == cmtBMEMC:
 					pixmap = self.pic_emcbookmark
+					datepic = None
 					if config.EMC.directories_info.value == "D":
 						datetext = _("Bookmark")
 
@@ -2005,16 +2030,41 @@ class MovieCenter(GUIComponent):
 						pixmap = self.pic_col_dir
 
 					# Directory and symlink-direcory info.value
+					getValues = movieFileCache.getCountSizeFromCache(path)
 					if config.EMC.directories_info.value:
 						if config.EMC.directories_info.value == "C":
-							count, size = dirInfo(path)
-							datetext = " ( %d ) " % (count)
+							count = 0
+							if getValues is not None:
+								count, size = getValues
+								if self.startWorker:
+									countsizeworker.Start(path)
+								datetext = " ( %d ) " % (count)
+							else:
+								countsizeworker.Start(path)
+								datetext = ""
+								datepic = self.pic_directory_search
 						elif config.EMC.directories_info.value == "CS":
-							count, size = dirInfo(path, bsize=True)
-							datetext = " (%d / %.0f GB) " % (count, size)
+							count, size = 0, 0
+							if getValues is not None:
+								count, size = getValues
+								if self.startWorker:
+									countsizeworker.Start(path)
+								datetext = " (%d / %.0f GB) " % (count, size)
+							else:
+								countsizeworker.Start(path)
+								datetext = ""
+								datepic = self.pic_directory_search
 						elif config.EMC.directories_info.value == "S":
-							count, size = dirInfo(path, bsize=True)
-							datetext = " ( %.2f GB ) " % (size)
+							size = 0
+							if getValues is not None:
+								count, size = getValues
+								if self.startWorker:
+									countsizeworker.Start(path)
+								datetext = " ( %.2f GB ) " % (size)
+							else:
+								countsizeworker.Start(path)
+								datetext = ""
+								datepic = self.pic_directory_search
 						elif config.EMC.directories_info.value == "D":
 							datetext = _("Directory")
 							if isLink:
@@ -2044,7 +2094,29 @@ class MovieCenter(GUIComponent):
 				#append(MultiContentEntryText(pos=(self.CoolMoviePos, 0), size=(self.CoolFolderSize, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text=title))
 
 				# Directory right side
-				append(MultiContentEntryText(pos=(self.l.getItemSize().width() - self.CoolDateWidth, self.CoolMovieHPos), size=(self.CoolDateWidth, globalHeight), font=2, flags=RT_HALIGN_CENTER, text=datetext))
+				val = config.EMC.directories_info.value
+				if val == "C" or val == "CS" or val == "S":
+					if datetext != "":
+						append(MultiContentEntryText(pos=(self.l.getItemSize().width() - self.CoolDateWidth, self.CoolMovieHPos), size=(self.CoolDateWidth, globalHeight), font=2, flags=RT_HALIGN_CENTER, text=datetext))
+					else:
+						useIcon = config.EMC.count_size_default_icon.value
+						if useIcon:
+							if datepic is not None:
+								append(MultiContentEntryPixmapAlphaBlend(pos=(self.l.getItemSize().width() - self.CoolDateWidth /2, self.CoolMovieHPos), size=(self.CoolDateWidth, globalHeight), png=self.pic_directory_search, **{}))
+						else:
+							if datepic is not None:
+								count = config.EMC.count_default_text.value
+								countsize = config.EMC.count_size_default_text.value
+								size = config.EMC.size_default_text.value
+								if val == "C":
+									datetext = count
+								elif val == "CS":
+									datetext = countsize
+								elif val == "S":
+									datetext = size
+							append(MultiContentEntryText(pos=(self.l.getItemSize().width() - self.CoolDateWidth, self.CoolMovieHPos), size=(self.CoolDateWidth, globalHeight), font=2, flags=RT_HALIGN_CENTER, text=datetext))	
+				else:
+					append(MultiContentEntryText(pos=(self.l.getItemSize().width() - self.CoolDateWidth, self.CoolMovieHPos), size=(self.CoolDateWidth, globalHeight), font=2, flags=RT_HALIGN_CENTER, text=datetext))
 			del append
 			return res
 		except Exception, e:
@@ -2139,6 +2211,7 @@ class MovieCenter(GUIComponent):
 		#for entry in self.list:
 		#	if self.recControl.isRecording(entry[4]):
 		#		self.invalidateService(entry[0])
+		self.startWorker = False
 		self.l.invalidate()
 
 	def reload(self, currentPath, simulate=False, recursive=False):
@@ -2146,6 +2219,30 @@ class MovieCenter(GUIComponent):
 		self.l.setList( list )
 		return list
 	
+	def moveUp(self):
+		self.startWorker = False
+		self.instance.moveSelection(self.instance.moveUp)
+
+	def moveDown(self):
+		self.startWorker = False
+		self.instance.moveSelection(self.instance.moveDown)
+
+	def pageUp(self):
+		self.startWorker = False
+		self.instance.moveSelection(self.instance.pageUp)
+
+	def pageDown(self):
+		self.startWorker = False
+		self.instance.moveSelection(self.instance.pageDown)
+
+	def moveTop(self):
+		self.startWorker = False
+		self.instance.moveSelection(self.instance.moveTop)
+
+	def moveEnd(self):
+		self.startWorker = False
+		self.instance.moveSelection(self.instance.moveEnd)
+
 	def moveToIndex(self, index):
 		self.instance.moveSelectionTo(index)
 
@@ -2184,6 +2281,7 @@ class MovieCenter(GUIComponent):
 		except:	return False
 
 	def getCurrentSelDir(self):
+		self.startWorker = True
 		try:	return self.getListEntry(self.getCurrentIndex())[4]
 		except:	return False
 
