@@ -76,6 +76,17 @@ from MovieCenter import getMovieNameWithoutExt, getMovieNameWithoutPhrases
 
 global extList, extVideo, extMedia, extDir, plyAll, plyDVD, cmtBME2, cmtBMEMC, cmtDir
 
+# Get Count and Size-values at start to CacheList
+def startCountSizeCache():
+	try:
+		movie_homepath = os.path.join(config.EMC.movie_homepath.value)
+		global moviecenterdata
+		from MovieCenter import MovieCenterData, moviecenterdata
+		if moviecenterdata is None:
+			moviecenterdata = MovieCenterData()
+		moviecenterdata.createStartCountSizeList(movie_homepath)
+	except Exception, e:
+		emcDebugOut("[EMC] startCountSizeCache get failed !!!\n" + str(e))
 
 # Move all trashcan operations to a separate file / class
 def purgeExpired(emptyTrash=False):
@@ -751,49 +762,49 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 	def moveUp(self):
 		self.cursorDir = -1
 		self.coverAfterPreview()
-		self["list"].instance.moveSelection( self["list"].instance.moveUp )
+		self["list"].moveUp()
 		self.updateAfterKeyPress()
 
 	def moveDown(self):
 		self.cursorDir = 1
 		self.coverAfterPreview()
-		self["list"].instance.moveSelection( self["list"].instance.moveDown )
+		self["list"].moveDown()
 		self.updateAfterKeyPress()
 
 	def pageUp(self):
 		self.cursorDir = 0
 		self.coverAfterPreview()
-		self["list"].instance.moveSelection( self["list"].instance.pageUp )
+		self["list"].pageUp()
 		self.updateAfterKeyPress()
 
 	def pageDown(self):
 		self.cursorDir = 0
 		self.coverAfterPreview()
-		self["list"].instance.moveSelection( self["list"].instance.pageDown )
+		self["list"].pageDown()
 		self.updateAfterKeyPress()
 
 	def moveTop(self):
 		self.coverAfterPreview()
-		self["list"].instance.moveSelection( self["list"].instance.moveTop )
+		self["list"].moveTop()
 		self.updateAfterKeyPress()
 		
 	def moveSkipUp(self):
 		self.coverAfterPreview()
 		self.cursorDir = -1
 		for _ in range(int(config.EMC.list_skip_size.value)):
-			self["list"].instance.moveSelection( self["list"].instance.moveUp )
+			self["list"].moveUp()
 		self.updateAfterKeyPress()
 		
 	def moveSkipDown(self):
 		self.cursorDir = 1
 		self.coverAfterPreview()
 		for _ in range(int(config.EMC.list_skip_size.value)):
-			self["list"].instance.moveSelection( self["list"].instance.moveDown )
+			self["list"].moveDown()
 		self.updateAfterKeyPress()
 
 	def moveEnd(self):
 		self.coverAfterPreview()
-		self["list"].instance.moveSelection( self["list"].instance.moveEnd )
+		self["list"].moveEnd()
 		self.updateAfterKeyPress()
 
 	def multiSelect(self, index=-1):
@@ -2034,6 +2045,13 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			association.append((self.postFileOp))
 			# Sync = True: Run script for one file do association and continue with next file
 			emcTasker.shellExecute(cmd, association, True)	# first move, then delete if expiration limit is 0
+		val = config.EMC.directories_info.value
+		if val == "C" or val == "CS" or val == "S":
+			from MovieCenter import countsizeworker
+			countsizeworker.Start(targetPath)
+			path = os.path.dirname(service.getPath())
+			if path is not None:
+				countsizeworker.Start(path)
 
 	def postFileOp(self):
 		self.tmpSelList = None
