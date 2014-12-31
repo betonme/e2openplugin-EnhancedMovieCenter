@@ -1734,9 +1734,11 @@ class MovieCenter(GUIComponent):
 				selnumtxt = None
 
 				bluiso = False
-				if ext in extIso:
-					if detectBLUISO(service.getPath()):
-						bluiso = True
+				checkIso = config.EMC.check_blustruct_iso.value
+				if checkIso:
+					if ext in extIso:
+						if detectBLUISO(service.getPath()):
+							bluiso = True
 
 				# Playable files
 				latest = date and (datetime.today()-date).days < 1

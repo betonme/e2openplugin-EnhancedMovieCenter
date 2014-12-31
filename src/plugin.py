@@ -369,6 +369,7 @@ config.EMC.bookmarks                 = ConfigSelection(default = "No", choices =
 config.EMC.check_dvdstruct           = ConfigYesNo(default = True)
 config.EMC.check_moviestruct         = ConfigYesNo(default = False)
 config.EMC.check_blustruct           = ConfigYesNo(default = True)
+config.EMC.check_blustruct_iso       = ConfigYesNo(default = True)
 #config.EMC.check_movie_cutting      = ConfigYesNo(default = True)
 config.EMC.movie_hide_mov            = ConfigYesNo(default = False)
 config.EMC.movie_hide_del            = ConfigYesNo(default = False)
