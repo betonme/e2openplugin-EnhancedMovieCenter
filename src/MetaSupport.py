@@ -130,9 +130,9 @@ class MetaList():
 		#TODO transform during read on init
 		return self.__secondsToDate( self.getMetaRecordingTime() )
 
-	def getMetaTitle(self, eventgenre=False, eventyear=False):
+	def getMetaTitle(self):
 		#TODO make it better and --> for example get the right title from other meta like "title only"
-		title, genre, year = "", "", ""
+		title = ""
 		desc = self.getMetaDescription()
 		try:
 			x1 = len(desc.split(',', -1)) -1
@@ -142,19 +142,9 @@ class MetaList():
 				title = title.replace(',', '')
 			if len(title) >= 50:
 				title = ''
-			if eventgenre:
-				genre = desc.split(',', -1)[x2]
-				if len(genre) >= 25:
-					genre = ''
-			if eventyear:
-				year = desc.split(',', -1)[x1]
-				if len(year) >= 25:
-					year = ''
-				else:
-					year = year[-4:len(year)]
 		except Exception, e:
 			emcDebugOut("[EMC] getMetaTitle failed !!!\n" + str(e))
-		return title, genre, year
+		return title
 
 	##############################################################################
 	## File IO Functions

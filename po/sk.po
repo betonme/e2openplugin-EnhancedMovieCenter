@@ -13,6 +13,78 @@ msgstr ""
 "Language: sk_SK\n"
 "X-Generator: Poedit 1.5.5\n"
 
+#: src/EnhancedMovieCenter.py:314
+msgid "HELP_Get Count and Size at start to cache"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:314
+msgid "Get Count and Size at start to cache"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:315
+msgid "HELP_Delay for Get Count and Size at start to cache"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:315
+msgid "Delay for Get Count and Size at start to cache"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:316
+msgid "HELP_Delay to get Count and Size in List"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:316
+msgid "Delay to get Count and Size in List"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:317
+msgid "HELP_Text shown for initially unknown file count"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:317
+msgid "Text shown for initially unknown file count"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:318
+msgid "HELP_Text shown for initially unknown count and size"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:318
+msgid "Text shown for initially unknown count and size"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:319
+msgid "HELP_Text shown for initially unknown directory size"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:319
+msgid "Text shown for initially unknown directory size"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:320
+msgid "HELP_Icon shown for initially unknown count / size"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:320
+msgid "Icon shown for initially unknown count / size"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:334
+msgid "HELP_Scan for bluray structures in .iso"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:334
+msgid "Scan for bluray structures in .iso"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:340
+msgid "HELP_Load all for non showing titles from .meta files"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:340
+msgid "Load all for non showing titles from .meta files"
+msgstr ""
+
 #: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
 #: Center\EMC-SVN\Locale\ALL_No_Help_/EMCMediaCenter.py:115
 #: Center\EMC-SVN\Locale\ALL_No_Help_/EMCMediaCenter.py:121
