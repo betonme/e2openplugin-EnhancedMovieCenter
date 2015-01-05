@@ -146,9 +146,12 @@ class InfoBarSupport(	InfoBarBase, \
 			if last is not None:
 				self.resume_point = last
 				l = last / 90000
-				if config.usage.on_movie_start.value == "ask":
-					Notifications.AddNotificationWithCallback(self.playLastCB, MessageBox, _("Do you want to resume this playback?") + "\n" + (_("Resume position at %s") % ("%d:%02d:%02d" % (l/3600, l%3600/60, l%60))), timeout=10)
-				elif config.usage.on_movie_start.value == "resume":
+				val = config.usage.on_movie_start.value
+				if val == "ask" or val == "ask yes":
+					Notifications.AddNotificationWithCallback(self.playLastCB, MessageBox, _("Do you want to resume this playback?") + "\n" + (_("Resume position at %s") % ("%d:%02d:%02d" % (l/3600, l%3600/60, l%60))), timeout=10, default=True)
+				elif val == "ask no":
+					Notifications.AddNotificationWithCallback(self.playLastCB, MessageBox, _("Do you want to resume this playback?") + "\n" + (_("Resume position at %s") % ("%d:%02d:%02d" % (l/3600, l%3600/60, l%60))), timeout=10, default=False)
+				elif val == "resume":
 					Notifications.AddNotificationWithCallback(self.playLastCB, MessageBox, _("Resuming playback"), timeout=2, type=MessageBox.TYPE_INFO)
 			elif config.EMC.movie_jump_first_mark.value == True:
 				self.jumpToFirstMark()
