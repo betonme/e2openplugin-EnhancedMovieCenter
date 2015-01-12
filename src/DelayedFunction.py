@@ -54,7 +54,6 @@ class DelayedFunction:
 				self.timer_conn = None
 			except:
 				self.timer.timeout.get().remove(self.timerLaunch)
-			self.timer_conn = None
 			self.timer = None
 		except Exception, e:
 			emcDebugOut("[spDF] timer cancel exception:\n%s:%s" %(str(self.function),str(e)))
