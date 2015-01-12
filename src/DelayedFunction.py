@@ -50,7 +50,10 @@ class DelayedFunction:
 			global instanceTab
 			instanceTab.remove(self)
 			self.timer.stop()
-			self.timer.timeout.get().remove(self.timerLaunch)
+			try:
+				self.timer_conn = None
+			except:
+				self.timer.timeout.get().remove(self.timerLaunch)
 			self.timer_conn = None
 			self.timer = None
 		except Exception, e:
@@ -61,7 +64,10 @@ class DelayedFunction:
 			global instanceTab
 			instanceTab.remove(self)
 			self.timer.stop()
-			self.timer.timeout.get().remove(self.timerLaunch)
+			try:
+				self.timer_conn = None
+			except:
+				self.timer.timeout.get().remove(self.timerLaunch)
 			self.timer = None
 			self.function(*self.params)
 		except Exception, e:
