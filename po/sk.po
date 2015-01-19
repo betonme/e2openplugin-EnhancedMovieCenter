@@ -1,162 +1,260 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: EMC\n"
+"Project-Id-Version: EMC V.4.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-11-07 00:05+0100\n"
-"PO-Revision-Date: 2013-03-30 22:17+0100\n"
-"Last-Translator: Swiss-MAD\n"
+"POT-Creation-Date: 2015-01-19 17:53+0100\n"
+"PO-Revision-Date: 2015-01-19 17:53+0100\n"
+"Last-Translator: dhwz <dhwz@gulli.com>\n"
 "Language-Team: ANONLANGUAGE <anon@anon.org>\n"
+"Language: sk_SK\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: utf-8\n"
-"Language: sk_SK\n"
-"X-Generator: Poedit 1.5.5\n"
+"X-Generator: Poedit 1.7.1\n"
+"X-Poedit-Basepath: ../\n"
+"X-Poedit-SearchPath-0: src\n"
 
-#: src/EnhancedMovieCenter.py:314
-msgid "HELP_Get Count and Size at start to cache"
+#: src/EMCCoverSearch.py:45
+msgid "themoviedb.org"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:314
-msgid "Get Count and Size at start to cache"
+#: src/EMCCoverSearch.py:46
+msgid "imdb.de"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:315
-msgid "HELP_Delay for Get Count and Size at start to cache"
+#: src/EMCCoverSearch.py:46
+msgid "thetvdb.com"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:315
-msgid "Delay for Get Count and Size at start to cache"
+#: src/EMCCoverSearch.py:46
+msgid "csfd.cz"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:316
-msgid "HELP_Delay to get Count and Size in List"
+#: src/EMCCoverSearch.py:46
+msgid "all"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:316
-msgid "Delay to get Count and Size in List"
+#: src/EMCCoverSearch.py:80 src/EMCCoverSearch.py:213
+#: src/EMCCoverSearch.py:223 src/EMCCoverSearch.py:299
+msgid "Exist"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:317
-msgid "HELP_Text shown for initially unknown file count"
+#: src/EMCCoverSearch.py:80 src/EMCCoverSearch.py:216
+#: src/EMCCoverSearch.py:223 src/EMCCoverSearch.py:350
+#: src/EMCCoverSearch.py:380
+msgid "N/A"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:317
-msgid "Text shown for initially unknown file count"
+#: src/EMCCoverSearch.py:168
+msgid "Search"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:318
-msgid "HELP_Text shown for initially unknown count and size"
+#: src/EMCCoverSearch.py:170 src/MovieSelection.py:1774
+#: src/MovieSelectionMenu.py:86 src/plugin.py:168 src/plugin.py:188
+msgid "Delete"
+msgstr "Zmazať"
+
+#: src/EMCCoverSearch.py:180
+msgid "Press green button to start search"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:318
-msgid "Text shown for initially unknown count and size"
+#: src/EMCCoverSearch.py:182
+msgid "Manage Cover"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:319
-msgid "HELP_Text shown for initially unknown directory size"
+#: src/EMCCoverSearch.py:183 src/MovieInfo.py:62
+msgid "Setup"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:319
-msgid "Text shown for initially unknown directory size"
+#: src/EMCCoverSearch.py:184
+msgid "Single search"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:320
-msgid "HELP_Icon shown for initially unknown count / size"
+#: src/EMCCoverSearch.py:198
+msgid "EMC Cover search"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:320
-msgid "Icon shown for initially unknown count / size"
+#: src/EMCCoverSearch.py:223
+msgid "Total"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:334
-msgid "HELP_Scan for bluray structures in .iso"
+#: src/EMCCoverSearch.py:278 src/EMCCoverSearch.py:302
+#: src/EMCCoverSearch.py:385
+#, python-format
+msgid "Exist: %s"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:334
-msgid "Scan for bluray structures in .iso"
+#: src/EMCCoverSearch.py:279 src/EMCCoverSearch.py:301
+#: src/EMCCoverSearch.py:384
+#, python-format
+msgid "No Cover: %s"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:340
-msgid "HELP_Load all for non showing titles from .meta files"
+#: src/EMCCoverSearch.py:280 src/EMCCoverSearch.py:303
+#: src/EMCCoverSearch.py:386
+#, python-format
+msgid "Download: %s"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:340
-msgid "Load all for non showing titles from .meta files"
+#: src/EMCCoverSearch.py:281
+msgid "Searching..."
 msgstr ""
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/EMCMediaCenter.py:115
-#: Center\EMC-SVN\Locale\ALL_No_Help_/EMCMediaCenter.py:121
+#: src/EMCCoverSearch.py:289
+msgid "Creating Search List.."
+msgstr ""
+
+#: src/EMCCoverSearch.py:329
+msgid "No Movies found!"
+msgstr ""
+
+#: src/EMCCoverSearch.py:382
+msgid "from"
+msgstr ""
+
+#: src/EMCCoverSearch.py:395
+msgid "movies in"
+msgstr ""
+
+#: src/EMCCoverSearch.py:395
+msgid "sec found. Avg. Speed:"
+msgstr ""
+
+#: src/EMCCoverSearch.py:395
+msgid "sec."
+msgstr ""
+
+#: src/EMCCoverSearch.py:446
+#, python-format
+msgid "%s removed."
+msgstr ""
+
+#: src/EMCCoverSearch.py:489
+#, python-format
+msgid "Search site set to: %s"
+msgstr ""
+
+#: src/EMCCoverSearch.py:627 src/EnhancedMovieCenter.py:205
+#: src/MovieInfo.py:229 src/MovieRetitle.py:33
+msgid "Cancel"
+msgstr "Zrušiť"
+
+#: src/EMCCoverSearch.py:628 src/MovieInfo.py:230
+msgid "OK"
+msgstr ""
+
+#: src/EMCCoverSearch.py:631
+msgid "Search Site:"
+msgstr ""
+
+#: src/EMCCoverSearch.py:632
+msgid "themoviedb cover resolution:"
+msgstr ""
+
+#: src/EMCCoverSearch.py:633
+msgid "Save description to movie.txt file:"
+msgstr ""
+
+#: src/EMCCoverSearch.py:634
+msgid "Single Search:"
+msgstr ""
+
+#: src/EMCCoverSearch.py:688
+#, python-format
+msgid "Searching for %s"
+msgstr ""
+
+#: src/EMCCoverSearch.py:700 src/EMCCoverSearch.py:728
+#: src/EMCCoverSearch.py:738 src/EMCCoverSearch.py:763
+#: src/EMCCoverSearch.py:766 src/EMCCoverSearch.py:784
+#: src/EMCCoverSearch.py:807 src/EMCCoverSearch.py:823
+msgid "found"
+msgstr ""
+
+#: src/EMCCoverSearch.py:700 src/EMCCoverSearch.py:728
+#: src/EMCCoverSearch.py:738 src/EMCCoverSearch.py:763
+#: src/EMCCoverSearch.py:766 src/EMCCoverSearch.py:784
+#: src/EMCCoverSearch.py:807
+msgid "covers"
+msgstr ""
+
+#: src/EMCCoverSearch.py:823
+msgid "covers in"
+msgstr ""
+
+#: src/EMCCoverSearch.py:823
+msgid "sec"
+msgstr ""
+
+#: src/EMCMediaCenter.py:146 src/EMCMediaCenter.py:151
 msgid "Stop playback"
 msgstr "Zastaviť prehrávanie"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/EMCMediaCenter.py:116
-#: Center\EMC-SVN\Locale\ALL_No_Help_/EMCMediaCenter.py:122
-#, fuzzy
-msgid "Format AVSwitch"
-msgstr "Formát AVSwitch"
-
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/EMCMediaCenter.py:127
+#: src/EMCMediaCenter.py:156
 #, fuzzy
 msgid "show DVD main menu"
 msgstr "zobraziť hlavné menu DVD"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/EMCMediaCenter.py:129
+#: src/EMCMediaCenter.py:158
 msgid "forward to the next chapter"
 msgstr "skočiť na ďalšiu kapitolu"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/EMCMediaCenter.py:130
+#: src/EMCMediaCenter.py:159
 msgid "rewind to the previous chapter"
 msgstr "skočiť na predošlú kapitolu"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/EMCMediaCenter.py:131
+#: src/EMCMediaCenter.py:160
 msgid "jump forward to the next title"
 msgstr "skočiť na ďalšiu položku"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/EMCMediaCenter.py:132
+#: src/EMCMediaCenter.py:161
 msgid "jump back to the previous title"
 msgstr "skočiť na predošú položku"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/EMCMediaCenter.py:133
+#: src/EMCMediaCenter.py:162
 msgid "(show optional DVD audio menu)"
 msgstr "(zobraziť volitelné DVD audio menu)"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/EMCMediaCenter.py:134
+#: src/EMCMediaCenter.py:163
 msgid "switch to the next audio track"
 msgstr "prepnúť ďalšiu zvukovú stopu"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/EMCMediaCenter.py:135
+#: src/EMCMediaCenter.py:164
 msgid "switch to the next subtitle language"
 msgstr "prepnúť predošlú zvukovú stopu"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/EMCMediaCenter.py:136
+#: src/EMCMediaCenter.py:165
 msgid "switch to the next angle"
 msgstr "prepnúť další uhol"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/EMCMediaCenter.py:155
+#: src/EMCMediaCenter.py:184
 #, fuzzy
 msgid "view extensions..."
 msgstr "zobraziť rozšírenia..."
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/EMCMediaCenter.py:278
+#: src/EMCMediaCenter.py:185
+#, fuzzy
+msgid "Format AVSwitch"
+msgstr "Formát AVSwitch"
+
+#: src/EMCMediaCenter.py:186
+msgid "Seek forward"
+msgstr ""
+
+#: src/EMCMediaCenter.py:187
+msgid "Seek backward"
+msgstr ""
+
+#: src/EMCMediaCenter.py:188
+msgid "Movie information"
+msgstr ""
+
+#: src/EMCMediaCenter.py:347
 msgid "No DVD-Player found!"
 msgstr "DVD prehrávač nenájdený"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/EMCMediaCenter.py:316
+#: src/EMCMediaCenter.py:395
 #, fuzzy
 msgid ""
 "Skipping movie, the file does not exist.\n"
@@ -165,792 +263,1497 @@ msgstr ""
 "Preskakujem film, súbor neexistuje.\n"
 "\n"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/EMCMediaCenter.py:623
+#: src/EMCMediaCenter.py:434
+msgid ""
+"EMC\n"
+"Zap to Live TV of record"
+msgstr ""
+
+#: src/EMCMediaCenter.py:810
 msgid "Chap."
 msgstr "Kap."
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/EMCMediaCenter.py:624
+#: src/EMCMediaCenter.py:811
 msgid "Chapter"
 msgstr "Kapitola"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/EMCMediaCenter.py:625
+#: src/EMCMediaCenter.py:812
 msgid "Title"
 msgstr "Názov"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/EMCTasker.py:189
-msgid "Next Enigma auto-restart in "
-msgstr "Nasledujúci štart enigmy o "
-
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/EMCTasker.py:191
-msgid "Enigma auto-restart is currently not active."
-msgstr "Automatický reštart enigmy nie je momentálne aktívny."
-
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/EMCTasker.py:203
-msgid ""
-"EMC Enigma2 auto-restart launching, continue? Select no to postpone by one "
-"hour."
+#: src/EMCTasker.py:202
+msgid "Next auto-start in "
 msgstr ""
-"Aktivuje sa automatický reštart enigmy, pokračovať? Zvoľte nie na odloženie "
-"o 1 hodinu."
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/EnhancedMovieCenter.py:148
-msgid "Cancel"
-msgstr "Zrušiť"
+#: src/EMCTasker.py:204
+msgid "auto-start is currently not active."
+msgstr ""
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/EnhancedMovieCenter.py:149
+#: src/EMCTasker.py:216
+msgid ""
+"Your Box is about to go into Standby, continue?\n"
+" Select no to delay one hour"
+msgstr ""
+
+#: src/EMCTasker.py:218
+msgid ""
+"Your Box is about to go into DeepStandby, continue?\n"
+" Select no to delay one hour"
+msgstr ""
+
+#: src/EMCTasker.py:220
+msgid ""
+"Your Box is about to go into Reboot, continue?\n"
+" Select no to delay one hour"
+msgstr ""
+
+#: src/EMCTasker.py:222
+msgid ""
+"Your Box is about to go into E2 Restart, continue?\n"
+" Select no to delay one hour"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:143 src/EnhancedMovieCenter.py:164
+msgid "Custom"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:144
+msgid "Default"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:145
+msgid "Performance"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:146
+msgid "Information"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:206 src/MovieInfo.py:63 src/MovieRetitle.py:32
 msgid "Save"
 msgstr "Uložiť"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/EnhancedMovieCenter.py:197
+#: src/EnhancedMovieCenter.py:266
 msgid "About"
 msgstr "O rozšírení"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/EnhancedMovieCenter.py:199
+#: src/EnhancedMovieCenter.py:266
+msgid "HELP_About"
+msgstr "Otorí dialóg O..."
+
+#: src/EnhancedMovieCenter.py:268
 msgid "Disable EMC"
 msgstr "Zakázať EMC"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/EnhancedMovieCenter.py:201
+#: src/EnhancedMovieCenter.py:268
+msgid "HELP_Disable EMC"
+msgstr ""
+"Úplne zakáže EMC. Niektoré špeciálne funckie ako [čistenie zoznamu "
+"časovačov],[čistenie koša] and [automatický reštart] zostanú aktívne na "
+"pozadí."
+
+#: src/EnhancedMovieCenter.py:270
 msgid "Start EMC with"
 msgstr "Ako spustiť EMC"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/EnhancedMovieCenter.py:202
+#: src/EnhancedMovieCenter.py:270
+msgid "HELP_Start EMC with"
+msgstr "Nastaví priame tlačidlo na otovrenie EMC."
+
+#: src/EnhancedMovieCenter.py:271
 msgid "Show plugin config in extensions menu"
 msgstr "Ukázať nastavenie rozšírenia v rozšírenom menu"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/EnhancedMovieCenter.py:203
+#: src/EnhancedMovieCenter.py:271
+msgid "HELP_Show plugin config in extensions menu"
+msgstr ""
+"Zobraziť alebo skryť konfiguráciu EMC v rozšírenej ponuke.\n"
+"Rozšírená ponuka je štandardne dostupná cez [modré] tlačidlo."
+
+#: src/EnhancedMovieCenter.py:272
 msgid "Show EMC in extensions menu"
 msgstr "Ukázať EMC v rozšírenom menu"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/EnhancedMovieCenter.py:206
+#: src/EnhancedMovieCenter.py:272
+msgid "HELP_Show EMC in extensions menu"
+msgstr ""
+"Zobraziť alebo skryť zapnutie moduu EMC v rozšírenej ponuke.\n"
+"Rozšírená ponuka je štandardne dostupná cez [modré] tlačidlo."
+
+#: src/EnhancedMovieCenter.py:274
+msgid "HELP_Key assignment Separator"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:275
+msgid "Bouquet buttons behaviour"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:275
+msgid "HELP_Bouquet buttons behaviour"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:276
+msgid "List entries to skip"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:276
+msgid "HELP_List entries to skip"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:277
+msgid "Red button function"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:277
+msgid "HELP_Red button function"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:278
+msgid "Long Red button function"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:278
+msgid "HELP_Long Red button function"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:281
+msgid "Yellow button function"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:281
+msgid "HELP_Yellow button function"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:282
+msgid "Long Yellow button function"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:282
+msgid "HELP_Long Yellow button function"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:283
+msgid "Blue button function"
+msgstr "Funkcia modrého tlačítka"
+
+#: src/EnhancedMovieCenter.py:283
+msgid "HELP_Blue button function"
+msgstr "A selection of functions can be assigned to the blue button."
+
+#: src/EnhancedMovieCenter.py:284
+msgid "Long Blue button function"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:284
+msgid "HELP_Long Blue button function"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:286 src/EnhancedMovieCenter.py:293
+#: src/EnhancedMovieCenter.py:302 src/EnhancedMovieCenter.py:323
+#: src/EnhancedMovieCenter.py:332 src/EnhancedMovieCenter.py:352
+#: src/EnhancedMovieCenter.py:379
+msgid " "
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:287
+msgid "daily auto-start"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:287
+msgid "HELP_Daily auto-start"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:288
+msgid "auto-start window begin"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:288
+msgid "HELP_auto-start window begin"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:289
+msgid "auto-start window end"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:289
+msgid "HELP_auto-start window end"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:290
+msgid "Force standby after auto-restart"
+msgstr "Vynútiť standby po autoreštarte"
+
+#: src/EnhancedMovieCenter.py:290
+msgid "HELP_Force standby after auto-start"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:291
+msgid "LongInfo Button"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:291
+msgid "HELP_LongInfo Button"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:294
 msgid "Movie home at start"
 msgstr "Pri štarte začať v domove filmov"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/EnhancedMovieCenter.py:207
-msgid "Sort file A to Z at startup"
-msgstr "Zoradiť súbory pri štarte abecedne"
+#: src/EnhancedMovieCenter.py:294
+msgid "HELP_Movie home at start"
+msgstr ""
+"EMC sa vždy spustí v \"Domovskom priečinku\" filmov.\n"
+"(V ďalšej položke môžete nastaviť \"Domovský priečinok\" filmov)."
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/EnhancedMovieCenter.py:208
-msgid "File order reverse"
-msgstr "Filmový zoznam usporiadaný reverzne"
+#: src/EnhancedMovieCenter.py:295
+msgid "Default sort mode"
+msgstr ""
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/EnhancedMovieCenter.py:210
+#: src/EnhancedMovieCenter.py:295
+msgid "HELP_Sort mode at startup"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:297
 msgid "Movie home home path"
 msgstr "Umiestnenie adresára Domov filmov"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/EnhancedMovieCenter.py:211
+#: src/EnhancedMovieCenter.py:297
+msgid "HELP_Movie home home path"
+msgstr "Nastaví \"Domovský priečinok\" filmov."
+
+#: src/EnhancedMovieCenter.py:298
 msgid "EMC path access limit"
 msgstr "Ohraničenie prístupu cesty EMC"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/EnhancedMovieCenter.py:213
+#: src/EnhancedMovieCenter.py:298
+msgid "HELP_EMC path access limit"
+msgstr ""
+"Obmedziť prístupovú cestu z vašeho \"Domovského priečinku\" filmov.\n"
+"Tlačidlami [<] a [>] (vedľa tlačidla 0) je možné obíjsť toto obmedzenie."
+
+#: src/EnhancedMovieCenter.py:300
 msgid "Cursor predictive move after selection"
 msgstr "Kurzor zoznamu odhadne posun po výbere"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/EnhancedMovieCenter.py:216
+#: src/EnhancedMovieCenter.py:300
+msgid "HELP_Cursor predictive move after selection"
+msgstr ""
+"Po vybraní tlačidlom [VIDEO/PVR], kurzor sa presunie do vybraného "
+"priečinku.\n"
+"Tlačidlami \"hore/dole\" kurzor sleduje posledný nastavený smer."
+
+#: src/EnhancedMovieCenter.py:303
+msgid "Show symlinks"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:303
+msgid "HELP_Show symlinks"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:305
 #, fuzzy
 msgid "Show directories"
 msgstr "Zobraziť priečinky"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/EnhancedMovieCenter.py:217
+#: src/EnhancedMovieCenter.py:305
+msgid "HELP_Show directories"
+msgstr "Zobraziť alebo skryť priečinky v zozname filmov"
+
+#: src/EnhancedMovieCenter.py:306
 #, fuzzy
 msgid "Show directories information"
 msgstr "Zobraziť informácie o priečinkoch"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/EnhancedMovieCenter.py:218
+#: src/EnhancedMovieCenter.py:306
+msgid "HELP_Show directories information"
+msgstr "Zobrazí počet nahrávok a/alebo koľko miesta na disku zaberajú."
+
+#: src/EnhancedMovieCenter.py:307
+msgid "Show directories within movielist"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:307
+msgid "HELP_Show directories within movielist"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:308
+msgid "Configured directories at the top of movielist"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:308
+msgid "HELP_Configure in etc\\enigma2\\emc-topdir.cfg"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:309
 #, fuzzy
 msgid "Show Latest Recordings directory"
 msgstr "Zobraziť priečinok s Poslenými Nahrávkami"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/EnhancedMovieCenter.py:219
+#: src/EnhancedMovieCenter.py:309
+msgid "HELP_Show Latest Recordings directory"
+msgstr ""
+"Zobrazí virtuálny priečinok vo vašom \"Domovskom priečinku\" filmov so "
+"zoznamom posledných nahrávok. Rovnako aj zo všetkých pod-priečinkov vo vašom "
+"\"Domovskom priečinku\" filmov.\n"
+"(Iba jedna strana)"
+
+#: src/EnhancedMovieCenter.py:310
 #, fuzzy
 msgid "Show VLC directory"
 msgstr "Zobraziť priečinok VLC"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/EnhancedMovieCenter.py:220
-msgid "Show E2 Bookmarks in movielist"
-msgstr "Zobraziť záložky E2 v zozname filmov"
+#: src/EnhancedMovieCenter.py:310
+msgid "HELP_Show VLC directory"
+msgstr ""
+"Zobraziť alebo skryť priečinok VLC v prípade, ak VlcPlayerExtended modul je "
+"nainštalovaný."
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/EnhancedMovieCenter.py:223
+#: src/EnhancedMovieCenter.py:311
+msgid "Show Bookmarks in movielist"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:311
+msgid "HELP_Show Bookmarks in movielist"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:312
+msgid "Use cache for files and directories"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:312
+msgid "HELP_Use cache for files and directories"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:314
+msgid "HELP_separator_hide&performance"
+msgstr "Nastavenia skrývania súborov/priečinkov a výkonu."
+
+#: src/EnhancedMovieCenter.py:315
 #, fuzzy
 msgid "Hide configured entries"
 msgstr "Skryť nakonfigurované položky"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/EnhancedMovieCenter.py:224
+#: src/EnhancedMovieCenter.py:315
+msgid "HELP_cfghide_enable"
+msgstr ""
+"Skryje súbory a priečinky v '/etc/enigma2/emc-hide.cfg'.\n"
+"Zmena týchto nastavení vyžaduje reštarovanie prijímača!"
+
+#: src/EnhancedMovieCenter.py:316
 msgid "Scan for DVD structures"
 msgstr "Rozpoznať DVD súbory"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/EnhancedMovieCenter.py:225
+#: src/EnhancedMovieCenter.py:316
+msgid "HELP_Scan for DVD structures"
+msgstr ""
+"Zakáže prehladávanie DVD štruktúr vo všetkých priečinkoch.\n"
+"Týmto sa zabráni nechcenému prebudeniu (sieťových) diskov."
+
+#: src/EnhancedMovieCenter.py:317
+msgid "Scan for movie structures"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:317
+msgid "HELP_Scan for movie structures"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:318
+msgid "Scan for bluray structures"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:318
+msgid "HELP_Scan for bluray structures"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:319
+msgid "Scan for bluray structures in .iso"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:319
+msgid "HELP_Scan for bluray structures in .iso"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:320
 msgid "Suppress scan in selected folders"
 msgstr "Zakázať skenovanie vo vybraných priečinkoch"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/EnhancedMovieCenter.py:226
+#: src/EnhancedMovieCenter.py:320
+msgid "HELP_cfgscan_suppress"
+msgstr ""
+"Don't parse for DVD-structures in subdirectories from paths listed in '/etc/"
+"enigma2/emc-noscan.cfg'. This avoids unwanted wake up of (network)disks.\n"
+"Changing this setting requires a Enigma2 restart!"
+
+#: src/EnhancedMovieCenter.py:321
 msgid "Scan linked folders"
 msgstr "Skenovať nalinkované priečinky"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/EnhancedMovieCenter.py:229
+#: src/EnhancedMovieCenter.py:321
+msgid "HELP_scan_linked"
+msgstr ""
+"Disable the parsing for DVD-structures in Symlinks refering to "
+"subdirectories.\n"
+"This avoids unwanted wake up of (network)disks."
+
+#: src/EnhancedMovieCenter.py:324
 msgid "Try to load titles from .meta files"
 msgstr "Pokúsiť sa načítať názvy z .meta súborov"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/EnhancedMovieCenter.py:230
+#: src/EnhancedMovieCenter.py:324
+msgid "HELP_Try to load titles from .meta files"
+msgstr ""
+"Titles will be loaded from the .meta if availiable.\n"
+"Otherwise the title will be extracted from the filename.\n"
+"(Is .meta and .eit activatetd, the .meta will be read first.)"
+
+#: src/EnhancedMovieCenter.py:325
 #, fuzzy
 msgid "Try to load titles from .eit files"
 msgstr "Pokúsiť sa načítať titulky zo súborov .eit"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/EnhancedMovieCenter.py:231
+#: src/EnhancedMovieCenter.py:325
+msgid "HELP_Try to load titles from .eit files"
+msgstr ""
+"Titles will be loaded from the .eit if availiable.\n"
+"Otherwise the title will be extracted from the filename.\n"
+"(Is .meta and .eit activatetd, the .meta will be read first.)"
+
+#: src/EnhancedMovieCenter.py:326
 msgid "Replace special chars in title"
 msgstr "Zameniť špeciálne znaky názve filmu"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/EnhancedMovieCenter.py:232
+#: src/EnhancedMovieCenter.py:326
+msgid "HELP_Replace special chars in title"
+msgstr "Replace underscores and points in titles with spaces."
+
+#: src/EnhancedMovieCenter.py:327
 msgid "Show Movie Format"
 msgstr "Ukázať formát filmu"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/EnhancedMovieCenter.py:233
+#: src/EnhancedMovieCenter.py:327
+msgid "HELP_Show Movie Format"
+msgstr "The file extention (file format) will be appended to the title."
+
+#: src/EnhancedMovieCenter.py:328
 msgid "Show Cut-Nr if exist"
 msgstr "Zobraziť čísla rozdelení, ak existujú"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/EnhancedMovieCenter.py:236
+#: src/EnhancedMovieCenter.py:328
+msgid "HELP_Show Cut-Nr if exist"
+msgstr ""
+"If Enigma2 reboots during a recording the recording is continued "
+"automatically with an index number at the end of the filename.\n"
+"With this option the index is appended to the title."
+
+#: src/EnhancedMovieCenter.py:329
+msgid "Resolve links and show real path"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:329
+msgid "HELP_Resolve links and show real path"
+msgstr ""
+"Path of links will be resolved.\n"
+"On problems with spinner or NAS wakeup, disable this option. (Path will be "
+"displayed as \"Extended Description\".)"
+
+#: src/EnhancedMovieCenter.py:330
+msgid "Show Path if no extended description available"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:330
+msgid "HELP_Show Path if no extended description available"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:333
 msgid "Listbox is skin able"
 msgstr "Listbox je skinovateľný"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/EnhancedMovieCenter.py:238
+#: src/EnhancedMovieCenter.py:333
+msgid "HELP_Listbox is skin able"
+msgstr ""
+"The visual display of the MovieList from the Skin (if availiable) will be "
+"used (only <widget name=\"list\").\n"
+"Otherwise the EMC Setup will be applied."
+
+#: src/EnhancedMovieCenter.py:335
 #, fuzzy
 msgid "Date format"
 msgstr "Formát dátumu"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/EnhancedMovieCenter.py:240
+#: src/EnhancedMovieCenter.py:335
+msgid "HELP_Date format"
+msgstr ""
+"Select the date and time format, which will be displayed behind the files."
+
+#: src/EnhancedMovieCenter.py:337
 msgid "Show movie icons"
 msgstr "Vo filmovom zozname sa zobrazia ikony filmov"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/EnhancedMovieCenter.py:241
+#: src/EnhancedMovieCenter.py:337
+msgid "HELP_Show movie icons"
+msgstr "A corresponding icon is displayed in the MovieList."
+
+#: src/EnhancedMovieCenter.py:338
+msgid "Show link arrow"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:338
+msgid "HELP_Show link arrow"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:339
 msgid "Show movie progress"
 msgstr "Ukázať progres filmu"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/EnhancedMovieCenter.py:242
+#: src/EnhancedMovieCenter.py:339
+msgid "HELP_Show movie progress"
+msgstr "A progress bar in front of the movies is displayed in the MovieList."
+
+#: src/EnhancedMovieCenter.py:340
 msgid "Short watching percent"
 msgstr "Krátko pozrené v percentách"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/EnhancedMovieCenter.py:243
+#: src/EnhancedMovieCenter.py:340
+msgid "HELP_Short watching percent"
+msgstr ""
+"Specifies what percentage of progress is classified as \"being watched\". \n"
+"The progress bar will change to blue."
+
+#: src/EnhancedMovieCenter.py:341
 msgid "Finished watching percent"
 msgstr "Úplne pozrené v percentách"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/EnhancedMovieCenter.py:246
+#: src/EnhancedMovieCenter.py:341
+msgid "HELP_Finished watching percent"
+msgstr ""
+"Specifies what percentage of progress is classified as \"seen\". \n"
+"The progress bar will change to green."
+
+#: src/EnhancedMovieCenter.py:342
+msgid "Mark new recordings with a star"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:342
+msgid "HELP_Mark new recordings with a star"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:343 src/MovieSelection.py:1372
+#: src/MovieSelection.py:1388 src/MovieSelection.py:1404
+msgid "Show Cover"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:343
+msgid "HELP_Show Cover"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:344
+msgid "Cover delay in ms"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:344
+msgid "HELP_Cover delay in ms"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:345
+msgid "Cover background"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:345
+msgid "HELP_Cover background"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:346
+msgid "Show fallback cover"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:346
+msgid "HELP_Fallback Cover"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:348
+msgid "Show movie preview"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:348
+msgid "HELP_Show movie preview"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:349
+msgid "Movie preview delay in ms"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:349
+msgid "HELP_Movie preview delay in ms"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:350
+msgid "Start movie preview before last position"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:350
+msgid "HELP_Movie preview offset in seconds"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:353
 msgid "No resume below 10 seconds"
 msgstr "Nepokračovať v prehrávaní pod 10 sekúnd"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/EnhancedMovieCenter.py:247
+#: src/EnhancedMovieCenter.py:353
+msgid "HELP_No resume below 10 seconds"
+msgstr ""
+"Ignores the Start Marker below 10 seconds.\n"
+"If playback is stopped during the first 10 seconds, no Resume will be "
+"proposed at next playback."
+
+#: src/EnhancedMovieCenter.py:354
 msgid "Jump to first mark when playing movie"
 msgstr "Preskočiť na prvú značku pri prehrávaní filmu"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/EnhancedMovieCenter.py:248
+#: src/EnhancedMovieCenter.py:354
+msgid "HELP_Jump to first mark when playing movie"
+msgstr ""
+"Jumps automatically to the first Marker if availiable in the beginning of a "
+"recording.\n"
+"(Can help to skip the lead time automatically.)"
+
+#: src/EnhancedMovieCenter.py:355
 msgid "Rewind finished movies before playing"
 msgstr "Pred spustením pretočiť dopozerané filmy na začiatok"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/EnhancedMovieCenter.py:249
+#: src/EnhancedMovieCenter.py:355
+msgid "HELP_Rewind finished movies before playing"
+msgstr ""
+"If a recording with status \"seen\" is restarted, the movie will be replayed "
+"from the beginning."
+
+#: src/EnhancedMovieCenter.py:356
 msgid "Always save last played progress as marker"
 msgstr "Vždy uložiť priebeh prehrávania ako značku"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/EnhancedMovieCenter.py:252
+#: src/EnhancedMovieCenter.py:356
+msgid "HELP_Always save last played progress as marker"
+msgstr ""
+"With this option a marker is set for the position every time the playback is "
+"stopped.\n"
+"When restarting the playback the < > buttons can be used to jump to this "
+"position (independent from the resume function)."
+
+#: src/EnhancedMovieCenter.py:357
+msgid "Zap to channel after record EOF"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:357
+msgid "HELP_Zap to channel after record EOF"
+msgstr ""
+"If the player reach the end of a running record, because of fast forward or "
+"jump forward, close emc and zap directly to the live tv channel of the "
+"record."
+
+#: src/EnhancedMovieCenter.py:358
+msgid "Show real length of running records"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:358
+msgid "HELP_Show real length of running records"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:362
+msgid "Download cutlist from Cutlist.at"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:362
+msgid "HELP_Download cutlist from Cutlist.at"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:366
+msgid "HELP_separator_Trashcan settings"
+msgstr "Settings for Trashcan"
+
+#: src/EnhancedMovieCenter.py:367
 #, fuzzy
 msgid "Trashcan enable"
 msgstr "Použiť kôš"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/EnhancedMovieCenter.py:253
+#: src/EnhancedMovieCenter.py:367
+msgid "HELP_Trashcan enable"
+msgstr ""
+"Enable the trashcan functionality. On delete all files will be first move to "
+"the trashcan directory."
+
+#: src/EnhancedMovieCenter.py:368
 msgid "Trashcan path"
 msgstr "Umiestnenie koša"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/EnhancedMovieCenter.py:254
+#: src/EnhancedMovieCenter.py:368
+msgid "HELP_Trashcan path"
+msgstr ""
+"Set your trashcan path.\n"
+"Pressing [delete] will move the recordings to the activated trashcan instead "
+"of deleting the files immediately."
+
+#: src/EnhancedMovieCenter.py:369
 #, fuzzy
 msgid "Show trashcan directory"
 msgstr "Zobraziť priečinok koša"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/EnhancedMovieCenter.py:255
+#: src/EnhancedMovieCenter.py:369
+msgid "HELP_Show trashcan directory"
+msgstr ""
+"Display the trashcan directory in EMC.\n"
+"(When is hidden, however you can access the trashcan over the EMC [MENU])"
+
+#: src/EnhancedMovieCenter.py:370
 #, fuzzy
 msgid "Show trashcan information"
 msgstr "Zobraziť informácie o koši"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/EnhancedMovieCenter.py:256
+#: src/EnhancedMovieCenter.py:370
+msgid "HELP_Dynamic trashcan"
+msgstr ""
+"Display amount of recordings and/or how many disk space these are using in "
+"your trashcan."
+
+#: src/EnhancedMovieCenter.py:371
 msgid "Delete validation"
 msgstr "Zmazať overovanie"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/EnhancedMovieCenter.py:258
+#: src/EnhancedMovieCenter.py:371
+msgid "HELP_Delete validation"
+msgstr ""
+"When activated and the trashcan is used, EMC will never ask for a "
+"confirmation."
+
+#: src/EnhancedMovieCenter.py:373
 msgid "Enable daily trashcan cleanup"
 msgstr "Povoliť denné vyprázdnenie koša"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/EnhancedMovieCenter.py:259
+#: src/EnhancedMovieCenter.py:373
+msgid "HELP_Enable daily trashcan cleanup"
+msgstr ""
+"EMC deletes old files in your trashcan, when they reach the expiration limit "
+"you set in the next entry."
+
+#: src/EnhancedMovieCenter.py:374
 #, fuzzy
 msgid "Daily cleanup time"
 msgstr "Čas denného čistenia"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/EnhancedMovieCenter.py:260
+#: src/EnhancedMovieCenter.py:374
+msgid "HELP_Daily cleanup time"
+msgstr ""
+"Time when EMC deletes all files in the trashcan beyond the expiration limit."
+
+#: src/EnhancedMovieCenter.py:375
 msgid "How many days files may remain in trashcan"
 msgstr "Koľko dní majú filmy zostať v koši?"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/EnhancedMovieCenter.py:261
+#: src/EnhancedMovieCenter.py:375
+msgid "HELP_How many days files may remain in trashcan"
+msgstr ""
+"Set how many days files may remain in trashcan before EMC deletes them "
+"permanently.\n"
+"(When set to [0] the files will deleted immediately)."
+
+#: src/EnhancedMovieCenter.py:376
 msgid "Move finished movies in trashcan"
 msgstr "Premiesniť dopozerané filmy do koša"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/EnhancedMovieCenter.py:262
+#: src/EnhancedMovieCenter.py:376
+msgid "HELP_Move finished movies in trashcan"
+msgstr ""
+"Move all finished (watched) recordings from \"Movie home\" to the trashcan, "
+"when they reach the expiration limit you set in the next entry."
+
+#: src/EnhancedMovieCenter.py:377
 msgid "Age of finished movies in movie folder (days)"
 msgstr "Vek dopozeraných filmov v priečinku filmu (dni)"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/EnhancedMovieCenter.py:265
+#: src/EnhancedMovieCenter.py:377
+msgid "HELP_Age of finished movies in movie folder (days)"
+msgstr ""
+"Set how many days finished (watched) recordings may remain in your \"Movie "
+"home\"."
+
+#: src/EnhancedMovieCenter.py:380
 msgid "Display directory reading text"
 msgstr "Zobraziť text načítavania adresára"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/EnhancedMovieCenter.py:266
+#: src/EnhancedMovieCenter.py:380
+msgid "HELP_Display directory reading text"
+msgstr ""
+"Display the message \"Reading directory...\" during the directory reading."
+
+#: src/EnhancedMovieCenter.py:381
 msgid "EMC always reload after open"
 msgstr "Vždy po otvoreni znovunačítať filmový zoznam"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/EnhancedMovieCenter.py:267
+#: src/EnhancedMovieCenter.py:381
+msgid "HELP_EMC always reload after open"
+msgstr ""
+"Directory is reread with every start of EMC.\n"
+"(Otherwise the directory is read from cache onwards the 2nd start.)"
+
+#: src/EnhancedMovieCenter.py:382
 msgid "EMC re-open list after STOP-press"
 msgstr "Znovu otvoriť filmový zoznam po stiskutí STOP"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/EnhancedMovieCenter.py:268
+#: src/EnhancedMovieCenter.py:382
+msgid "HELP_EMC re-open list after STOP-press"
+msgstr ""
+"If playback is stopped, the EMC MovieList is displayed again.\n"
+"(Otherwise TV Modus gets active again.)"
+
+#: src/EnhancedMovieCenter.py:383
 msgid "EMC re-open list after Movie end"
 msgstr "Znovu otvoriť filmový zoznam po stiskutí STOP"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/EnhancedMovieCenter.py:270
+#: src/EnhancedMovieCenter.py:383
+msgid "HELP_EMC re-open list after Movie end"
+msgstr ""
+"If playback reaches the end, the EMC MovieList is displayed again.\n"
+"(Otherwise TV Modus gets active again.)"
+
+#: src/EnhancedMovieCenter.py:385
 msgid "Leave Movie with Exit"
 msgstr "Ukončiť film s tlačítkom EXIT"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/EnhancedMovieCenter.py:271
-msgid "Blue button function"
-msgstr "Funkcia modrého tlačítka"
+#: src/EnhancedMovieCenter.py:385
+msgid "HELP_Leave Movie with Exit"
+msgstr ""
+"The playback of a recording can be stopped with the EXIT button, additional "
+"to the Stop button."
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/EnhancedMovieCenter.py:273
+#: src/EnhancedMovieCenter.py:387
 msgid "Hide movies being moved"
 msgstr "Ukryť presúvané filmy"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/EnhancedMovieCenter.py:274
+#: src/EnhancedMovieCenter.py:387
+msgid "HELP_Hide movies being moved"
+msgstr ""
+"The recording will be hidden from the MovieList while moving.\n"
+"(Anyhow the move action will be executed in background.)"
+
+#: src/EnhancedMovieCenter.py:388
 msgid "Hide movies being deleted"
 msgstr "Ukryť zmazané filmy"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/EnhancedMovieCenter.py:276
+#: src/EnhancedMovieCenter.py:388
+msgid "HELP_Hide movies being deleted"
+msgstr ""
+"The recording will be hidden from the MovieList while deleting.\n"
+"(Anyhow the delete action will be executed in background.)"
+
+#: src/EnhancedMovieCenter.py:390
 #, fuzzy
 msgid "Enable remote recordings"
 msgstr "Enable remote recordings"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/EnhancedMovieCenter.py:277
+#: src/EnhancedMovieCenter.py:390
+msgid "HELP_Enable remote recordings"
+msgstr ""
+"Detect recordings from a other Dreambox to a common volume.\n"
+"This recording get a spezial icon"
+
+#: src/EnhancedMovieCenter.py:391
 msgid "Automatic timers list cleaning"
 msgstr "Automatické mazanie zoznamu časovačov"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/EnhancedMovieCenter.py:279
-msgid "Enigma daily auto-restart"
-msgstr "Denný autoreštart enigmy"
+#: src/EnhancedMovieCenter.py:391
+msgid "HELP_Automatic timers list cleaning"
+msgstr "Finished Timers will be removed from the TimerList automatically."
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/EnhancedMovieCenter.py:280
-msgid "Enigma auto-restart window begin"
-msgstr "Okno autoreštartu enigmy začiatok"
+#: src/EnhancedMovieCenter.py:393
+msgid "HELP_Language Separator"
+msgstr "Language settings"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/EnhancedMovieCenter.py:281
-msgid "Enigma auto-restart window end"
-msgstr "Okno autoreštartu enigmy koniec"
-
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/EnhancedMovieCenter.py:282
-msgid "Force standby after auto-restart"
-msgstr "Vynútiť standby po autoreštarte"
-
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/EnhancedMovieCenter.py:285
+#: src/EnhancedMovieCenter.py:394
 msgid "Preferred EPG language"
 msgstr "Preferovaný jazyk EPG"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/EnhancedMovieCenter.py:286
+#: src/EnhancedMovieCenter.py:394
+msgid "HELP_Preferred EPG language"
+msgstr "Here you can specify the prefered language for the EPG."
+
+#: src/EnhancedMovieCenter.py:395
+msgid "Extra support for language"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:395
+msgid "HELP_Extra support for selected language"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:396
 msgid "Enable playback auto-subtitling"
 msgstr "Povoliť titulky pri prehrávaní"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/EnhancedMovieCenter.py:287
+#: src/EnhancedMovieCenter.py:396
+msgid "HELP_Enable playback auto-subtitling"
+msgstr "Activate the automatic selection of the subtitle languages."
+
+#: src/EnhancedMovieCenter.py:397
 msgid "Primary playback subtitle language"
 msgstr "Primárny jazyk titulkov pri prehrávaní"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/EnhancedMovieCenter.py:288
+#: src/EnhancedMovieCenter.py:397
+msgid "HELP_Primary playback subtitle language"
+msgstr ""
+"First language which should be selected, if availiable, for the subtitles."
+
+#: src/EnhancedMovieCenter.py:398
 msgid "Secondary playback subtitle language"
 msgstr "Sekundárny jazyk titulkov pri prehrávaní"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/EnhancedMovieCenter.py:289
+#: src/EnhancedMovieCenter.py:398
+msgid "HELP_Secondary playback subtitle language"
+msgstr ""
+"Second language which should be selected, if availiable, for the subtitles."
+
+#: src/EnhancedMovieCenter.py:399
 msgid "Tertiary playback subtitle language"
 msgstr "Tretí jazyk titulkov pri prehrávaní"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/EnhancedMovieCenter.py:290
+#: src/EnhancedMovieCenter.py:399
+msgid "HELP_Tertiary playback subtitle language"
+msgstr ""
+"Third language which should be selected, if availiable, for the subtitles."
+
+#: src/EnhancedMovieCenter.py:400
 msgid "Enable playback auto-language selection"
 msgstr "Povoliť automatický výber jazyka  pri prehrávaní"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/EnhancedMovieCenter.py:291
+#: src/EnhancedMovieCenter.py:400
+msgid "HELP_Enable playback auto-language selection"
+msgstr "Activate the automatic selection of the audio channel."
+
+#: src/EnhancedMovieCenter.py:401
 msgid "Primary playback audio language"
 msgstr "Primárny jazyk zvuku pri prehrávaní"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/EnhancedMovieCenter.py:292
+#: src/EnhancedMovieCenter.py:401
+msgid "HELP_Primary playback audio language"
+msgstr "First audio channel which should be selected, if availiable."
+
+#: src/EnhancedMovieCenter.py:402
 msgid "Secondary playback audio language"
 msgstr "Sekundárny jazyk zvuku pri prehrávaní"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/EnhancedMovieCenter.py:293
+#: src/EnhancedMovieCenter.py:402
+msgid "HELP_Secondary playback audio language"
+msgstr "Second audio channel which should be selected, if availiable."
+
+#: src/EnhancedMovieCenter.py:403
 msgid "Tertiary playback audio language"
 msgstr "Tretí jazyk zvuku pri prehrávaní"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/EnhancedMovieCenter.py:296
+#: src/EnhancedMovieCenter.py:403
+msgid "HELP_Tertiary playback audio language"
+msgstr "Third audio channel which should be selected, if availiable."
+
+#: src/EnhancedMovieCenter.py:405 src/EnhancedMovieCenter.py:410
+msgid "HELP_Advanced options separator"
+msgstr "Advanced settings"
+
+#: src/EnhancedMovieCenter.py:406
 msgid "Description field update delay"
 msgstr "Oneskorenie aktualizácie poľa popisu"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/EnhancedMovieCenter.py:297
+#: src/EnhancedMovieCenter.py:406
+msgid "HELP_Description field update delay"
+msgstr ""
+"Delay for displaying the description in the filmlist.\n"
+"(Improves the navigation speed when pressing multiple times the up/down "
+"button. Because the description is only loaded after the choosen delay.)"
+
+#: src/EnhancedMovieCenter.py:407
 msgid "Key period value (50-900)"
 msgstr "Opakovacia doba tlačítka (50-900)"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/EnhancedMovieCenter.py:298
+#: src/EnhancedMovieCenter.py:407
+msgid "HELP_Key period value (50-900)"
+msgstr "Time untill resending the button when keeping the button pressed."
+
+#: src/EnhancedMovieCenter.py:408
 msgid "Key repeat value (250-900)"
 msgstr "Opakovacia frekvencia tlačítka (250-900)"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/EnhancedMovieCenter.py:301
+#: src/EnhancedMovieCenter.py:408
+msgid "HELP_Key repeat value (250-900)"
+msgstr "Speed of resending the button when keeping the button pressed."
+
+#: src/EnhancedMovieCenter.py:411
 msgid "Enable EMC debug output"
 msgstr "Povoliť ladiace informácie"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/EnhancedMovieCenter.py:302
+#: src/EnhancedMovieCenter.py:411
+msgid "HELP_Enable EMC debug output"
+msgstr ""
+"Activate the EMC-debugging.  The log-file will be saved in the directory "
+"\"EMC output directory\".\n"
+"ACTIVATE ONLY IN CASE OF PROBLEMS !!!"
+
+#: src/EnhancedMovieCenter.py:412
 msgid "EMC output directory"
 msgstr "Výstupný adresár EMC"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/EnhancedMovieCenter.py:303
+#: src/EnhancedMovieCenter.py:412
+msgid "HELP_EMC output directory"
+msgstr "Select the output directory for the log-file."
+
+#: src/EnhancedMovieCenter.py:413
 msgid "Debug output file name"
 msgstr "Názov súboru s ladiacimi informáciami"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/EnhancedMovieCenter.py:394
+#: src/EnhancedMovieCenter.py:413
+msgid "HELP_Debug output file name"
+msgstr "Name of the log-file for debugging."
+
+#: src/EnhancedMovieCenter.py:475
+msgid "Load default settings will overwrite all settings, really load them?"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:565
 msgid "Some settings changes require GUI restart to take effect."
 msgstr "Niektoré zmeny nastavenia vyžadujú reštart GUI, aby sa prejavili."
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/EnhancedMovieCenter.py:409
+#: src/EnhancedMovieCenter.py:583
+msgid "Really close without saving settings?"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:601
+msgid "Select Location"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:602 src/MovieSelection.py:2081
+#: src/MovieSelection.py:2135 src/MovieSelectionMenu.py:246
 msgid "Choose directory"
 msgstr "Vybrať adresár"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/EnhancedMovieCenter.py:421
+#: src/EnhancedMovieCenter.py:620
 #, python-format
 msgid "Given path %s does not exist. Please change."
 msgstr "Zadaná cesta %s neexistuje. Prosím, zmeňte ju."
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/EnhancedMovieCenter.py:429
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieSelection.py:1302
+#: src/EnhancedMovieCenter.py:628 src/MovieSelection.py:2159
 msgid "Trashcan create failed. Check mounts and permissions."
 msgstr "Vytvorenie koša zlyhalo. Overte oprávnenia a pripojené body."
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/InfoBarSupport.py:119
+#: src/InfoBarSupport.py:110
 msgid "jump to previous marked position"
 msgstr "Preskočiť na predchádzajúcu značku"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/InfoBarSupport.py:120
+#: src/InfoBarSupport.py:111
 msgid "jump to next marked position"
 msgstr "Preskočiť na nasledujúcu značku"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/InfoBarSupport.py:121
+#: src/InfoBarSupport.py:112
 msgid "toggle a cut mark at the current position"
 msgstr "prepnúť strihovú značku na aktuálnej pozícii"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/InfoBarSupport.py:156
+#: src/InfoBarSupport.py:151 src/InfoBarSupport.py:153
 msgid "Do you want to resume this playback?"
 msgstr "Chcete pokračovať v prehrávaní?"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/InfoBarSupport.py:156
+#: src/InfoBarSupport.py:151 src/InfoBarSupport.py:153
 #, fuzzy, python-format
 msgid "Resume position at %s"
 msgstr "Pokračovať v pozícii na %s"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/InfoBarSupport.py:158
+#: src/InfoBarSupport.py:155
 #, fuzzy
 msgid "Resuming playback"
 msgstr "Pokračovanie v prehrávaní"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieCenter.py:689
+#: src/MovieCenter.py:848
+msgid "Latest Recordings"
+msgstr "Najnovšie nahrávky"
+
+#: src/MovieCenter.py:1816
 msgid "VLC"
 msgstr ""
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieCenter.py:692
+#: src/MovieCenter.py:1821
 msgid "VLC-Server"
 msgstr ""
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieCenter.py:695
+#: src/MovieCenter.py:1826
 msgid "VLC-Dir"
 msgstr ""
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieCenter.py:698
+#: src/MovieCenter.py:1831
 #, fuzzy
 msgid "Latest"
 msgstr "Najnovšie"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieCenter.py:701
+#: src/MovieCenter.py:1836
 #, fuzzy
 msgid "Up"
 msgstr "Hore"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieCenter.py:704
+#: src/MovieCenter.py:1841 src/MovieCenter.py:1846
 #, fuzzy
 msgid "Bookmark"
 msgstr "Záložka"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieCenter.py:733
-msgid "Link"
-msgstr "Odkaz"
+#: src/MovieCenter.py:1863 src/MovieCenter.py:1873
+msgid "Trashcan"
+msgstr ""
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieCenter.py:746
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieCenter.py:748
+#: src/MovieCenter.py:1896 src/MovieCenter.py:1904
 msgid "Directory"
 msgstr "Adresár"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieCenter.py:753
+#: src/MovieCenter.py:1898
+msgid "Link"
+msgstr "Odkaz"
+
+#: src/MovieCenter.py:1900
+msgid "Collection"
+msgstr ""
+
+#: src/MovieCenter.py:1909
 msgid "UNKNOWN"
 msgstr "NEZNÁMY"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieCenter.py:1131
-msgid "Latest Recordings"
-msgstr "Najnovšie nahrávky"
+#: src/MovieInfo.py:20
+msgid "German"
+msgstr ""
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieSelection.py:96
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieSelection.py:712
+#: src/MovieInfo.py:20
+msgid "English"
+msgstr ""
+
+#: src/MovieInfo.py:21 src/MovieInfo.py:22 src/MovieInfo.py:23
+#: src/MovieInfo.py:24 src/MovieInfo.py:25
+msgid "Yes"
+msgstr ""
+
+#: src/MovieInfo.py:21 src/MovieInfo.py:22 src/MovieInfo.py:23
+#: src/MovieInfo.py:24 src/MovieInfo.py:25 src/plugin.py:214 src/plugin.py:219
+#: src/plugin.py:229
+msgid "No"
+msgstr ""
+
+#: src/MovieInfo.py:61
+msgid "Search results for:"
+msgstr ""
+
+#: src/MovieInfo.py:64
+msgid "Movie Info"
+msgstr ""
+
+#: src/MovieInfo.py:74
+msgid "movies found!"
+msgstr ""
+
+#: src/MovieInfo.py:77 src/MovieInfo.py:148
+msgid "An error occured! Internet connection broken?"
+msgstr ""
+
+#: src/MovieInfo.py:80
+msgid "Movie Information Download (TMDb)"
+msgstr ""
+
+#: src/MovieInfo.py:95
+msgid "Movie Information downloaded successfully!"
+msgstr ""
+
+#: src/MovieInfo.py:106
+msgid "Runtime:"
+msgstr ""
+
+#: src/MovieInfo.py:106
+msgid "Minutes"
+msgstr ""
+
+#: src/MovieInfo.py:108
+msgid "Runtime: unknown"
+msgstr ""
+
+#: src/MovieInfo.py:113
+msgid "Release Date:"
+msgstr ""
+
+#: src/MovieInfo.py:118
+msgid "Vote:"
+msgstr ""
+
+#: src/MovieInfo.py:130
+msgid "Genre:"
+msgstr ""
+
+#: src/MovieInfo.py:142
+msgid "Production Countries:"
+msgstr ""
+
+#: src/MovieInfo.py:146
+msgid "Content:"
+msgstr ""
+
+#: src/MovieInfo.py:182
+msgid "Movie Information Preview for:"
+msgstr ""
+
+#: src/MovieInfo.py:196
+msgid "Movie Information Preview"
+msgstr ""
+
+#: src/MovieInfo.py:212
+msgid "Language:"
+msgstr ""
+
+#: src/MovieInfo.py:213
+msgid "Load Runtime:"
+msgstr ""
+
+#: src/MovieInfo.py:214
+msgid "Load Genre:"
+msgstr ""
+
+#: src/MovieInfo.py:215
+msgid "Load Production Countries:"
+msgstr ""
+
+#: src/MovieInfo.py:216
+msgid "Load Release Date:"
+msgstr ""
+
+#: src/MovieInfo.py:217
+msgid "Load Vote:"
+msgstr ""
+
+#: src/MovieInfo.py:234
+msgid "Movie Information Download Setup"
+msgstr ""
+
+#: src/MovieRetitle.py:28 src/MovieRetitle.py:64
+msgid "Location:"
+msgstr ""
+
+#: src/MovieRetitle.py:79
+msgid "Foldername:"
+msgstr ""
+
+#: src/MovieRetitle.py:81
+msgid "Filename:"
+msgstr ""
+
+#: src/MovieRetitle.py:82
+msgid "Movietitle:"
+msgstr ""
+
+#: src/MovieRetitle.py:83
+msgid "Description:"
+msgstr ""
+
+#: src/MovieRetitle.py:113
+msgid "Change Foldername"
+msgstr ""
+
+#: src/MovieRetitle.py:115
+msgid "Change File/Moviename and/or Description"
+msgstr ""
+
+#: src/MovieSelection.py:90
+msgid ""
+"EMC: Skipping Trashcan Cleanup\n"
+"Movie Home Path is equal to or a subfolder of the Trashcan"
+msgstr ""
+
+#: src/MovieSelection.py:127
+msgid "EMC Trashcan Cleanup failed!"
+msgstr ""
+
+#: src/MovieSelection.py:237
+msgid "no_poster.png"
+msgstr ""
+
+#: src/MovieSelection.py:409 src/MovieSelection.py:1312
 msgid "Reading directory..."
 msgstr "Načítavam adresár..."
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieSelection.py:107
+#: src/MovieSelection.py:427
 msgid "Play selected movie(s)"
 msgstr "Prehrať vybraný/é film(y)"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieSelection.py:109
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieSelectionMenu.py:64
+#: src/MovieSelection.py:429 src/MovieSelectionMenu.py:82
 msgid "Play All"
 msgstr "Prehrať všetky"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieSelection.py:110
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieSelectionMenu.py:65
+#: src/MovieSelection.py:430 src/MovieSelectionMenu.py:83
 #, fuzzy
 msgid "Shuffle All"
 msgstr "Premiešať všetko"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieSelection.py:111
+#: src/MovieSelection.py:431
 msgid "Close EMC"
 msgstr "Ukončiť EMC"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieSelection.py:112
+#: src/MovieSelection.py:432
 msgid "Open menu"
 msgstr "Otvoriť menu"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieSelection.py:113
+#: src/MovieSelection.py:433
 msgid "Show event info"
 msgstr "Ukázať info udalosti"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieSelection.py:114
-msgid "IMDBSearch"
-msgstr "Vyhľadávanie v IMDB"
+#: src/MovieSelection.py:434
+msgid "IMDBSearch / TMDBInfo / CSFDInfo"
+msgstr ""
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieSelection.py:115
-msgid "Delete file or empty dir"
-msgstr "Zmazať súbor alebo vyprázdniť adresár"
-
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieSelection.py:116
-msgid "Toggle sort mode"
-msgstr "Prepnúť spôsob zoraďovania"
-
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieSelection.py:117
-msgid "Move selected movie(s)"
-msgstr "Presunúť vybraný/é film(y)"
-
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieSelection.py:118
-#, fuzzy
-msgid "Copy selected movie(s)"
-msgstr "Kopírovať vybraný(é) film(y)"
-
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieSelection.py:119
-msgid "Movie home / Play last (configurable)"
-msgstr "Domov filmov/prehrať posledné (nastaviteľné)"
-
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieSelection.py:122
-#, fuzzy
-msgid "Open E2 bookmarks"
-msgstr "Otvoriť E2 záložky"
-
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieSelection.py:123
+#: src/MovieSelection.py:448
 msgid "Move cursor page up"
 msgstr "Presun kurzoru o stranu nahor"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieSelection.py:124
+#: src/MovieSelection.py:449
 msgid "Move cursor page down"
 msgstr "Presun kurzoru o stranu nadol"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieSelection.py:125
+#: src/MovieSelection.py:450
 msgid "Move cursor up"
 msgstr "Presun kurzoru hore"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieSelection.py:126
+#: src/MovieSelection.py:451
 msgid "Move cursor down"
 msgstr "Presun kurzoru dolu"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieSelection.py:127
-msgid "Move cursor to the top"
-msgstr "Presunúť kurzor na začiatok"
+#: src/MovieSelection.py:452
+msgid ""
+"Move cursor to the top / Move cursor x entries up / Switch Folders in Movie "
+"Home (up)"
+msgstr ""
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieSelection.py:128
-msgid "Move cursor to the end"
-msgstr "Presunúť kurzor na koniec"
+#: src/MovieSelection.py:453
+msgid ""
+"Move cursor to the end / Move cursor x entries down / Switch Folders in "
+"Movie Home (down)"
+msgstr ""
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieSelection.py:129
+#: src/MovieSelection.py:454
 msgid "Directory forward"
 msgstr "Nasledujúci priečinok"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieSelection.py:131
+#: src/MovieSelection.py:456
 msgid "Directory back"
 msgstr "Predchádzajúci priečinok"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieSelection.py:133
+#: src/MovieSelection.py:458
 msgid "Toggle service selection"
 msgstr "Prepnúť výber služby"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieSelection.py:134
+#: src/MovieSelection.py:459
 msgid "Remove service selection"
 msgstr "Odstrániť výber služieb"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieSelection.py:135
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieSelection.py:137
+#: src/MovieSelection.py:460 src/MovieSelection.py:462
 msgid "Available plugins menu"
 msgstr "Ponuka dostupných modulov"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieSelection.py:138
+#: src/MovieSelection.py:463
 msgid "Reload movie file list"
 msgstr "Znovunačítať zoznam súborov filmov"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieSelection.py:139
+#: src/MovieSelection.py:464
 #, fuzzy
 msgid "Open Timer List"
 msgstr "Otvoriť zoznam časovačov"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieSelection.py:140
+#: src/MovieSelection.py:465
 msgid "Toggle viewed / not viewed"
 msgstr "Prepnúť videné/nevidené"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieSelection.py:142
+#: src/MovieSelection.py:467
 msgid "Start / end multiselection"
 msgstr "Začiatok / koniec viacnasobného výberu"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieSelection.py:374
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieSelectionMenu.py:83
+#: src/MovieSelection.py:855
+msgid "E2 Bookmark"
+msgstr ""
+
+#: src/MovieSelection.py:856 src/MovieSelectionMenu.py:132
 #, fuzzy
 msgid "Open E2 Bookmark path"
 msgstr "Otvoriť cestu k Open E2 záložkám"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieSelection.py:412
+#: src/MovieSelection.py:923
 msgid "No script operation for VLC streams."
 msgstr "Žiaden skript pre VLC streamy."
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieSelection.py:428
+#: src/MovieSelection.py:939
 msgid "Does not contain any scripts."
 msgstr "Neobsahuje žiadne skripty."
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieSelection.py:432
+#: src/MovieSelection.py:943
 #, fuzzy
 msgid "Choose script"
 msgstr "Vybrať skript"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieSelection.py:443
+#: src/MovieSelection.py:973
 msgid "No functionality set..."
 msgstr "Nenastavená funkcionalita..."
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieSelection.py:457
+#: src/MovieSelection.py:1056
 msgid "*** Multiselection active ***"
 msgstr "*** Multivýber aktívny ***"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieSelection.py:720
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieSelection.py:1019
-msgid "Delete"
-msgstr "Zmazať"
-
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieSelection.py:725
-msgid "Alpha sort"
-msgstr "Abecedne"
-
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieSelection.py:727
-msgid "Date sort"
-msgstr "Podľa dátumu"
-
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieSelection.py:729
-msgid " (P)"
+#: src/MovieSelection.py:1098
+msgid " <P>"
 msgstr ""
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieSelection.py:731
-msgid "Move"
-msgstr "Presunúť"
+#: src/MovieSelection.py:1345
+msgid "Sort Mode"
+msgstr ""
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieSelection.py:830
+#: src/MovieSelection.py:1346
+msgid "Sort Order"
+msgstr ""
+
+#: src/MovieSelection.py:1370 src/MovieSelection.py:1386
+#: src/MovieSelection.py:1402
+msgid "Hide Cover"
+msgstr ""
+
+#: src/MovieSelection.py:1374 src/MovieSelection.py:1390
+#: src/MovieSelection.py:1406 src/plugin.py:176 src/plugin.py:196
+msgid "Button disabled"
+msgstr ""
+
+#: src/MovieSelection.py:1375 src/MovieSelection.py:1391
+#: src/MovieSelection.py:1407
+msgid "Cover disabled in EMC-Setup"
+msgstr ""
+
+#: src/MovieSelection.py:1543
 msgid "File not available."
 msgstr "Súbor nie je k dispozícii."
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieSelection.py:841
+#: src/MovieSelection.py:1554
 msgid "Last played movie/playlist not available..."
 msgstr "Posledne hraný film/zoznam nedostupný"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieSelection.py:845
+#: src/MovieSelection.py:1558
 #, fuzzy
 msgid "Play last movie starting"
 msgstr "Prehrať posledný film zašínajúci"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieSelection.py:860
+#: src/MovieSelection.py:1577
 #, fuzzy
 msgid "Play All starting"
 msgstr "Prehrať všetky začínajúce"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieSelection.py:878
+#: src/MovieSelection.py:1596
 #, fuzzy
 msgid "Shuffle All starting"
 msgstr "Zamiešať všetky začínajúce"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieSelection.py:906
+#: src/MovieSelection.py:1628
 msgid "Not stopping any repeating timers. Modify them with the timer editor."
 msgstr "Nezastavujem opakujúce časovače. Editujte ich editorom časovača."
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieSelection.py:913
+#: src/MovieSelection.py:1635
 msgid "Stop ongoing recording?\n"
 msgstr "Zastaviť prebiehajúce nahrávanie?\n"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieSelection.py:960
+#: src/MovieSelection.py:1685
 #, python-format
 msgid ""
 "Do you really want to remove your link\n"
@@ -959,8 +1762,7 @@ msgstr ""
 "Určite chcete zmazať váš odkaz\n"
 "%s?"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieSelection.py:962
+#: src/MovieSelection.py:1687
 #, python-format
 msgid ""
 "Do you really want to remove your directory\n"
@@ -969,9 +1771,8 @@ msgstr ""
 "Určite chcete zmazať váš adresár\n"
 "%s?"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieSelection.py:996
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieSelectionMenu.py:232
+#: src/MovieSelection.py:1727 src/MovieSelection.py:1749
+#: src/MovieSelectionMenu.py:359 src/MovieSelectionMenu.py:391
 #, python-format
 msgid ""
 "Do you really want to remove your bookmark\n"
@@ -980,8 +1781,7 @@ msgstr ""
 "Určite chcete zmazať vašu záložku\n"
 "%s?"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieSelection.py:1013
+#: src/MovieSelection.py:1768
 msgid ""
 " Deleting remotely recorded and it will display an rec-error dialog on the "
 "other DB."
@@ -989,23 +1789,19 @@ msgstr ""
 " Mazanie vzdialene nahratých a zobrazenie dialógu chyby nahrávania na druhom "
 "DB."
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieSelection.py:1019
+#: src/MovieSelection.py:1774
 msgid " permanently"
 msgstr " natrvalo"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieSelection.py:1036
+#: src/MovieSelection.py:1791
 msgid " currently played?"
 msgstr " momentálne prehrávané?"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieSelection.py:1056
+#: src/MovieSelection.py:1811
 msgid " all selected video files?"
 msgstr " všetky vybrané video súbory?"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieSelection.py:1061
+#: src/MovieSelection.py:1816
 msgid ""
 " all selected video files? The currently playing movie is also one of the "
 "selections and its playback will be stopped."
@@ -1013,32 +1809,38 @@ msgstr ""
 " všetky vybrané video súbory? Momentálne prehrávaný súbor je jedným z "
 "vybratých a jeho prehrávanie sa zastaví."
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieSelection.py:1063
+#: src/MovieSelection.py:1818
 msgid "Delete error:\n"
 msgstr "Chyba pri mazaní:\n"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieSelection.py:1080
+#: src/MovieSelection.py:1836
+msgid "This element belongs to a locked folder and cannot be deleted!"
+msgstr ""
+
+#: src/MovieSelection.py:1846
 msgid ""
 "Delete failed because the trashcan directory does not exist. Attempt to "
 "create it now?"
 msgstr ""
 "Zmazanie zlyhalo, pretože kôš neexistuje. Mám sa pokúsiť ho vytvoriť teraz?"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieSelection.py:1092
-msgid "Directory is not empty."
-msgstr "Adresár nie je prázdny."
+#: src/MovieSelection.py:1863
+msgid "This folder is locked or contains a locked subfolder, unlock it first!"
+msgstr ""
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieSelection.py:1097
+#: src/MovieSelection.py:1880
+msgid "Directory is not empty! Do you really want to delete it?"
+msgstr ""
+
+#: src/MovieSelection.py:1885
 msgid "Cannot delete the parent directory."
 msgstr "Nemôžem zmazať nadradený adresár."
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieSelection.py:1229
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieSelection.py:1241
+#: src/MovieSelection.py:1960
+msgid "Delete failed!"
+msgstr ""
+
+#: src/MovieSelection.py:2068 src/MovieSelection.py:2089
 #, fuzzy
 msgid ""
 "How to move files:\n"
@@ -1049,15 +1851,11 @@ msgstr ""
 "Vyberte filmy s VIDEO-tlačidlom, premiesnite kurzor ponad priečinok, kam "
 "chcete filmy presunúť a stlačte žlté tlačidlo."
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieSelection.py:1239
-#, fuzzy
-msgid "Move file(s): Choose directory"
-msgstr "Presunúť súbor(y): Výber priečinku"
+#: src/MovieSelection.py:2080
+msgid "Move file(s):"
+msgstr ""
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieSelection.py:1274
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieSelection.py:1286
+#: src/MovieSelection.py:2122 src/MovieSelection.py:2143
 #, fuzzy
 msgid ""
 "How to copy files:\n"
@@ -1068,149 +1866,198 @@ msgstr ""
 "Vyberte filmy s VIDEO-tlačidlom, premiesnite kurzor ponad priečinok, kam "
 "chcete filmy zkopírovať a dlhšie podržte žlté tlačidlo."
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieSelection.py:1284
-#, fuzzy
-msgid "Copy file(s): Choose directory"
-msgstr "Kopírovať súbor(y): Výber priečinku"
+#: src/MovieSelection.py:2134
+msgid "Copy file(s):"
+msgstr ""
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieSelectionMenu.py:56
+#: src/MovieSelection.py:2186 src/MovieSelection.py:2192
+msgid "IMDb"
+msgstr ""
+
+#: src/MovieSelection.py:2188
+msgid "TMDb"
+msgstr ""
+
+#: src/MovieSelection.py:2190
+msgid "CSFD"
+msgstr ""
+
+#: src/MovieSelectionMenu.py:70
 msgid "Choose operation"
 msgstr "Výber operácie"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieSelectionMenu.py:58
+#: src/MovieSelectionMenu.py:73 src/plugin.py:167 src/plugin.py:187
+msgid "Movie home"
+msgstr "Domov filmovv"
+
+#: src/MovieSelectionMenu.py:76
 #, fuzzy
 msgid "Directory up"
 msgstr "Priečinok nahor"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieSelectionMenu.py:60
-#: Center\EMC-SVN\Locale\ALL_No_Help_/plugin.py:153
+#: src/MovieSelectionMenu.py:78
+msgid "Reload current directory"
+msgstr ""
+
+#: src/MovieSelectionMenu.py:80 src/plugin.py:170 src/plugin.py:190
 msgid "Play last"
 msgstr "Prehrať posledné"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieSelectionMenu.py:62
-#: Center\EMC-SVN\Locale\ALL_No_Help_/plugin.py:152
-msgid "Movie home"
-msgstr "Domov filmovv"
+#: src/MovieSelectionMenu.py:85
+msgid "Cover search"
+msgstr ""
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieSelectionMenu.py:69
+#: src/MovieSelectionMenu.py:90
 msgid "Delete permanently"
 msgstr "Zmazať natrvalo"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieSelectionMenu.py:70
+#: src/MovieSelectionMenu.py:91
 msgid "Empty trashcan"
 msgstr "Vyprázdniť kôš"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieSelectionMenu.py:71
+#: src/MovieSelectionMenu.py:92
 msgid "Go to trashcan"
 msgstr "Prejsť ku košu"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieSelectionMenu.py:72
+#: src/MovieSelectionMenu.py:94
 msgid "Mark all movies"
 msgstr "Označiť všetky filmy"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieSelectionMenu.py:73
+#: src/MovieSelectionMenu.py:95
 msgid "Remove rogue files"
 msgstr "Odstrániť osirelé súbory"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieSelectionMenu.py:74
+#: src/MovieSelectionMenu.py:97
+msgid "Delete cut file(s)"
+msgstr ""
+
+#: src/MovieSelectionMenu.py:99
 #, fuzzy
 msgid "Create link"
 msgstr "Vytvoriť odkaz"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieSelectionMenu.py:75
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieSelectionMenu.py:121
+#: src/MovieSelectionMenu.py:100 src/MovieSelectionMenu.py:199
 msgid "Create directory"
 msgstr "Vytvoriť priečinok"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieSelectionMenu.py:77
+#: src/MovieSelectionMenu.py:102
+msgid "(Un-)Lock Directory"
+msgstr ""
+
+#: src/MovieSelectionMenu.py:106
+msgid "Copy Movie"
+msgstr ""
+
+#: src/MovieSelectionMenu.py:107 src/plugin.py:169 src/plugin.py:189
+msgid "Move Movie"
+msgstr ""
+
+#: src/MovieSelectionMenu.py:111
+msgid "Download Movie Information"
+msgstr ""
+
+#: src/MovieSelectionMenu.py:115
+msgid "Rename selected movie(s)"
+msgstr ""
+
+#: src/MovieSelectionMenu.py:116
 msgid "Remove cut list marker"
 msgstr "Odstrániť značku zoznamu strihu"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieSelectionMenu.py:85
+#: src/MovieSelectionMenu.py:134
 msgid "Add directory to E2 Bookmarks"
 msgstr "Pridať priečinok do E2 záložiek"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieSelectionMenu.py:87
+#: src/MovieSelectionMenu.py:136
 msgid "Remove directory from E2 Bookmarks"
 msgstr "Vymazať priečinok z E2 záložiek"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieSelectionMenu.py:89
+#: src/MovieSelectionMenu.py:138
 #, fuzzy
 msgid "Remove selected E2 Bookmark"
 msgstr "Vymazať vybrané E2 záložky"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieSelectionMenu.py:90
+#: src/MovieSelectionMenu.py:140
+msgid "Open EMC Bookmark path"
+msgstr ""
+
+#: src/MovieSelectionMenu.py:142
+msgid "Add directory to EMC Bookmarks"
+msgstr ""
+
+#: src/MovieSelectionMenu.py:144
+msgid "Remove directory from EMC Bookmarks"
+msgstr ""
+
+#: src/MovieSelectionMenu.py:146
+msgid "Remove selected EMC Bookmark"
+msgstr ""
+
+#: src/MovieSelectionMenu.py:148
 #, fuzzy
 msgid "Set permanent sort"
 msgstr "Nastaviť trvalé triedenie"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieSelectionMenu.py:92
+#: src/MovieSelectionMenu.py:150
 #, fuzzy
 msgid "Remove permanent sort"
 msgstr "Odstrániť trvalé triedenie"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieSelectionMenu.py:96
+#: src/MovieSelectionMenu.py:154
 msgid "Remove permanent sort from parent"
 msgstr "Odstraniť trvalé triedenie z rodiča"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieSelectionMenu.py:98
+#: src/MovieSelectionMenu.py:157
 #, fuzzy
 msgid "EMC Setup"
 msgstr "EMC Nastavenie"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieSelectionMenu.py:101
+#: src/MovieSelectionMenu.py:160
 msgid "Choose plugin"
 msgstr "Vybrať modul"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieSelectionMenu.py:120
-msgid "Enter name for new directory."
-msgstr "Zadajte názov nového adresára."
+#: src/MovieSelectionMenu.py:166
+msgid "Choose bookmark"
+msgstr ""
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieSelectionMenu.py:127
-msgid "Directory "
-msgstr "Priečinok"
+#: src/MovieSelectionMenu.py:198
+msgid "Enter name for new directory:"
+msgstr ""
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieSelectionMenu.py:141
-#, fuzzy
-msgid "Create Link: Choose directory"
-msgstr "Vytrvoriť odkaz: Výber priečinku"
+#: src/MovieSelectionMenu.py:205
+#, python-format
+msgid "Directory %s already exists!"
+msgstr ""
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieSelectionMenu.py:165
+#: src/MovieSelectionMenu.py:219
+#, python-format
+msgid "Do you really want to lock the directory %s and all its subfolders?"
+msgstr ""
+
+#: src/MovieSelectionMenu.py:221
+#, python-format
+msgid ""
+"The directory %s is already locked. Do you want to unlock it and all its "
+"subfolders?"
+msgstr ""
+
+#: src/MovieSelectionMenu.py:245
+msgid "Create Link"
+msgstr ""
+
+#: src/MovieSelectionMenu.py:276
 msgid "Permanently delete all files in trashcan?"
 msgstr "Zmazať všetky súbory v koši natrvalo?"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieSelectionMenu.py:175
+#: src/MovieSelectionMenu.py:288
 msgid "Movie Selection Menu"
 msgstr "Menu pre zoznam filmov"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieSelectionMenu.py:187
+#: src/MovieSelectionMenu.py:296
+msgid "exception "
+msgstr ""
+
+#: src/MovieSelectionMenu.py:305
 msgid ""
 "Locate rogue files and remove them? (permanently if no trashcan available, "
 "may take a minute or so)"
@@ -1218,129 +2065,256 @@ msgstr ""
 "Lokalizovať osirelé súbory a odstániť ich? (natrvalo, ak nie je kôš k "
 "dispozícii, bude trvať okolo minúty)"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/MovieSelectionMenu.py:203
+#: src/MovieSelectionMenu.py:322
 msgid "Remove all cut file marker permanently?"
 msgstr "Odstrániť všetky značky zoznamov strihu navždy?"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/plugin.py:51
+#: src/MovieSelectionMenu.py:424
+msgid ""
+"Do you really want to delete the cut file?\n"
+"If you have selected a directory, all cut files within the folder and its "
+"subfolders will be deleted!"
+msgstr ""
+
+#: src/RogueFileCheck.py:45
+msgid " files\n"
+msgstr " súborov\n"
+
+#: src/RogueFileCheck.py:46
+msgid "No rogue files found."
+msgstr "Osirelé súbory neboli nájdené"
+
+#: src/RogueFileCheck.py:47
+#, fuzzy
+msgid ""
+"Found rogue files:\n"
+"\n"
+msgstr ""
+"Nájdené osirelé súbory:\n"
+"\n"
+
+#: src/VlcPluginInterface.py:159
+msgid "VLC Server not reachable"
+msgstr "VLC Server je nedostupný"
+
+#: src/plugin.py:55
 #, fuzzy
 msgid "no"
 msgstr "nie"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/plugin.py:51
+#: src/plugin.py:55
 msgid "yes"
 msgstr "áno"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/plugin.py:128
+#: src/plugin.py:133
 msgid "No override"
 msgstr "Neprepísať"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/plugin.py:129
+#: src/plugin.py:134
 msgid "Video-button"
 msgstr "Tlačidlo videa"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/plugin.py:130
+#: src/plugin.py:135
 msgid "TV-button"
 msgstr "Tlačidlo TV"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/plugin.py:131
+#: src/plugin.py:136
 msgid "Radio-button"
 msgstr "Tlačidlo rádií"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/plugin.py:132
+#: src/plugin.py:137
 msgid "Quick-button"
 msgstr "Rychlé tlačidlo "
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/plugin.py:133
+#: src/plugin.py:138
 msgid "Timeshift-button"
 msgstr "Tlačidlo časového posunu"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/plugin.py:136
-#: Center\EMC-SVN\Locale\ALL_No_Help_/plugin.py:142
-#: Center\EMC-SVN\Locale\ALL_No_Help_/plugin.py:150
+#: src/plugin.py:141 src/plugin.py:148 src/plugin.py:157
 #, fuzzy
 msgid "Off"
 msgstr "Vypnuté"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/plugin.py:137
+#: src/plugin.py:142
 msgid "DD.MM.YYYY"
 msgstr ""
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/plugin.py:138
+#: src/plugin.py:143
 msgid "DD.MM HH:MM"
 msgstr ""
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/plugin.py:139
+#: src/plugin.py:144
+msgid "DD.MM. HH:MM"
+msgstr ""
+
+#: src/plugin.py:145
 msgid "YYYY/MM/DD"
 msgstr ""
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/plugin.py:140
+#: src/plugin.py:146
 msgid "MM/DD HH:MM"
 msgstr ""
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/plugin.py:143
+#: src/plugin.py:149
+msgid "Description"
+msgstr ""
+
+#: src/plugin.py:150
 msgid "( # )"
 msgstr ""
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/plugin.py:144
+#: src/plugin.py:151
 msgid "( # / GB )"
 msgstr ""
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/plugin.py:145
+#: src/plugin.py:152
 msgid "( GB )"
 msgstr ""
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/plugin.py:147
+#: src/plugin.py:154
 msgid "ProgressBar"
 msgstr ""
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/plugin.py:148
+#: src/plugin.py:155
 #, fuzzy
 msgid "Percent (%)"
 msgstr "Percento (%)"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/plugin.py:149
+#: src/plugin.py:156
 #, fuzzy
 msgid "Movie Color"
 msgstr "Farebnosť Filmu"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/plugin.py:155
+#: src/plugin.py:171 src/plugin.py:191
+msgid "Cover Search"
+msgstr ""
+
+#: src/plugin.py:172 src/plugin.py:192
+msgid "Download Movie Info"
+msgstr ""
+
+#: src/plugin.py:173 src/plugin.py:193
+msgid "Copy File"
+msgstr ""
+
+#: src/plugin.py:174 src/plugin.py:194
+#, fuzzy
+msgid "Open E2 bookmarks"
+msgstr "Otvoriť E2 záložky"
+
+#: src/plugin.py:175
+msgid "Toggle Cover Button"
+msgstr ""
+
+#: src/plugin.py:180
+msgid "Sort Options"
+msgstr ""
+
+#: src/plugin.py:205
 msgid "down"
 msgstr "dolu"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/plugin.py:156
+#: src/plugin.py:206
 msgid "up/down"
 msgstr "hore / dolu"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/plugin.py:157
+#: src/plugin.py:207
 msgid "off"
 msgstr "vypnuté"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/plugin.py:216
+#: src/plugin.py:209
+msgid "type 1 - OSD + black (#00000000)"
+msgstr ""
+
+#: src/plugin.py:210
+msgid "type 2 - transparent + white (#FFFFFFFF)"
+msgstr ""
+
+#: src/plugin.py:211
+msgid "type 3 - OSD + black (#00FFFFFF)"
+msgstr ""
+
+#: src/plugin.py:212
+msgid "type 4 - transparent + black (#FF000000)"
+msgstr ""
+
+#: src/plugin.py:215
+msgid "E2 Bookmarks"
+msgstr ""
+
+#: src/plugin.py:216
+msgid "EMC Bookmarks"
+msgstr ""
+
+#: src/plugin.py:217
+msgid "Both"
+msgstr ""
+
+#: src/plugin.py:220
+msgid "Standby"
+msgstr ""
+
+#: src/plugin.py:221
+msgid "DeepStandby"
+msgstr ""
+
+#: src/plugin.py:222
+msgid "Reboot"
+msgstr ""
+
+#: src/plugin.py:223
+msgid "E2 Restart"
+msgstr ""
+
+#: src/plugin.py:225
+msgid "HomeEnd"
+msgstr ""
+
+#: src/plugin.py:226
+msgid "Skip"
+msgstr ""
+
+#: src/plugin.py:227
+msgid "Change Folder"
+msgstr ""
+
+#: src/plugin.py:234
+msgid "Date sort descending (D-)"
+msgstr ""
+
+#: src/plugin.py:234 src/plugin.py:237
+msgid "Date sort"
+msgstr "Podľa dátumu"
+
+#: src/plugin.py:235
+msgid "Alpha sort ascending (AZ)"
+msgstr ""
+
+#: src/plugin.py:235 src/plugin.py:238
+msgid "Alpha sort"
+msgstr "Abecedne"
+
+#: src/plugin.py:236
+msgid "Progress sort ascending (P+)"
+msgstr ""
+
+#: src/plugin.py:236 src/plugin.py:239
+msgid "Progress sort"
+msgstr ""
+
+#: src/plugin.py:237
+msgid "Date sort ascending (D+)"
+msgstr ""
+
+#: src/plugin.py:238
+msgid "Alpha sort descending (ZA)"
+msgstr ""
+
+#: src/plugin.py:239
+msgid "Progress sort descending (P-)"
+msgstr ""
+
+#: src/plugin.py:329
 msgid ""
 "ATTENTION\n"
 "\n"
@@ -1358,554 +2332,129 @@ msgstr ""
 "\n"
 "Potvrdte modrým tlačidlom a následne stlačte zelené."
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/plugin.py:298
+#: src/plugin.py:363
+msgid "IMDb Search"
+msgstr ""
+
+#: src/plugin.py:363
+msgid "TMDB Info"
+msgstr ""
+
+#: src/plugin.py:363
+msgid "CSFD Info"
+msgstr ""
+
+#: src/plugin.py:453
 msgid "configuration"
 msgstr "nastavenie"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/plugin.py:301
+#: src/plugin.py:456
 msgid "movie manipulation list"
 msgstr "zoznam manipulovaných filmov"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/RogueFileCheck.py:40
-msgid " files\n"
-msgstr " súborov\n"
+#~ msgid "Next Enigma auto-restart in "
+#~ msgstr "Nasledujúci štart enigmy o "
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/RogueFileCheck.py:41
-msgid "No rogue files found."
-msgstr "Osirelé súbory neboli nájdené"
+#~ msgid "Enigma auto-restart is currently not active."
+#~ msgstr "Automatický reštart enigmy nie je momentálne aktívny."
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/RogueFileCheck.py:42
+#~ msgid ""
+#~ "EMC Enigma2 auto-restart launching, continue? Select no to postpone by "
+#~ "one hour."
+#~ msgstr ""
+#~ "Aktivuje sa automatický reštart enigmy, pokračovať? Zvoľte nie na "
+#~ "odloženie o 1 hodinu."
+
+#~ msgid "Sort file A to Z at startup"
+#~ msgstr "Zoradiť súbory pri štarte abecedne"
+
+#~ msgid "File order reverse"
+#~ msgstr "Filmový zoznam usporiadaný reverzne"
+
+#~ msgid "Show E2 Bookmarks in movielist"
+#~ msgstr "Zobraziť záložky E2 v zozname filmov"
+
+#~ msgid "Enigma daily auto-restart"
+#~ msgstr "Denný autoreštart enigmy"
+
+#~ msgid "Enigma auto-restart window begin"
+#~ msgstr "Okno autoreštartu enigmy začiatok"
+
+#~ msgid "Enigma auto-restart window end"
+#~ msgstr "Okno autoreštartu enigmy koniec"
+
+#~ msgid "IMDBSearch"
+#~ msgstr "Vyhľadávanie v IMDB"
+
+#~ msgid "Delete file or empty dir"
+#~ msgstr "Zmazať súbor alebo vyprázdniť adresár"
+
+#~ msgid "Toggle sort mode"
+#~ msgstr "Prepnúť spôsob zoraďovania"
+
+#~ msgid "Move selected movie(s)"
+#~ msgstr "Presunúť vybraný/é film(y)"
+
 #, fuzzy
-msgid ""
-"Found rogue files:\n"
-"\n"
-msgstr ""
-"Nájdené osirelé súbory:\n"
-"\n"
+#~ msgid "Copy selected movie(s)"
+#~ msgstr "Kopírovať vybraný(é) film(y)"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\ALL_No_Help_/VlcPluginInterface.py:118
-msgid "VLC Server not reachable"
-msgstr "VLC Server je nedostupný"
+#~ msgid "Movie home / Play last (configurable)"
+#~ msgstr "Domov filmov/prehrať posledné (nastaviteľné)"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\HELP_/EnhancedMovieCenter.py:2
-msgid "HELP_About"
-msgstr "Otorí dialóg O..."
+#~ msgid "Move cursor to the top"
+#~ msgstr "Presunúť kurzor na začiatok"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\HELP_/EnhancedMovieCenter.py:4
-msgid "HELP_Disable EMC"
-msgstr ""
-"Úplne zakáže EMC. Niektoré špeciálne funckie ako [čistenie zoznamu "
-"časovačov],[čistenie koša] and [automatický reštart] zostanú aktívne na "
-"pozadí."
+#~ msgid "Move cursor to the end"
+#~ msgstr "Presunúť kurzor na koniec"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\HELP_/EnhancedMovieCenter.py:6
-msgid "HELP_Start EMC with"
-msgstr "Nastaví priame tlačidlo na otovrenie EMC."
+#~ msgid "Move"
+#~ msgstr "Presunúť"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\HELP_/EnhancedMovieCenter.py:7
-msgid "HELP_Show plugin config in extensions menu"
-msgstr ""
-"Zobraziť alebo skryť konfiguráciu EMC v rozšírenej ponuke.\n"
-"Rozšírená ponuka je štandardne dostupná cez [modré] tlačidlo."
+#~ msgid "Directory is not empty."
+#~ msgstr "Adresár nie je prázdny."
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\HELP_/EnhancedMovieCenter.py:8
-msgid "HELP_Show EMC in extensions menu"
-msgstr ""
-"Zobraziť alebo skryť zapnutie moduu EMC v rozšírenej ponuke.\n"
-"Rozšírená ponuka je štandardne dostupná cez [modré] tlačidlo."
+#, fuzzy
+#~ msgid "Move file(s): Choose directory"
+#~ msgstr "Presunúť súbor(y): Výber priečinku"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\HELP_/EnhancedMovieCenter.py:11
-msgid "HELP_Movie home at start"
-msgstr ""
-"EMC sa vždy spustí v \"Domovskom priečinku\" filmov.\n"
-"(V ďalšej položke môžete nastaviť \"Domovský priečinok\" filmov)."
+#, fuzzy
+#~ msgid "Copy file(s): Choose directory"
+#~ msgstr "Kopírovať súbor(y): Výber priečinku"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\HELP_/EnhancedMovieCenter.py:12
-msgid "HELP_Sort file A to Z at startup"
-msgstr "Zoznam filmov bude triedený abecedne od A-Z."
+#~ msgid "Enter name for new directory."
+#~ msgstr "Zadajte názov nového adresára."
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\HELP_/EnhancedMovieCenter.py:13
-msgid "HELP_File order reverse"
-msgstr ""
-"Zoznam filmov bude triedený opačne.\n"
-"Nezáleží či je vybrané triedenie chronologicky, alebo abecedne."
+#~ msgid "Directory "
+#~ msgstr "Priečinok"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\HELP_/EnhancedMovieCenter.py:15
-msgid "HELP_Movie home home path"
-msgstr "Nastaví \"Domovský priečinok\" filmov."
+#, fuzzy
+#~ msgid "Create Link: Choose directory"
+#~ msgstr "Vytrvoriť odkaz: Výber priečinku"
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\HELP_/EnhancedMovieCenter.py:16
-msgid "HELP_EMC path access limit"
-msgstr ""
-"Obmedziť prístupovú cestu z vašeho \"Domovského priečinku\" filmov.\n"
-"Tlačidlami [<] a [>] (vedľa tlačidla 0) je možné obíjsť toto obmedzenie."
+#~ msgid "HELP_Sort file A to Z at startup"
+#~ msgstr "Zoznam filmov bude triedený abecedne od A-Z."
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\HELP_/EnhancedMovieCenter.py:18
-msgid "HELP_Cursor predictive move after selection"
-msgstr ""
-"Po vybraní tlačidlom [VIDEO/PVR], kurzor sa presunie do vybraného "
-"priečinku.\n"
-"Tlačidlami \"hore/dole\" kurzor sleduje posledný nastavený smer."
+#~ msgid "HELP_File order reverse"
+#~ msgstr ""
+#~ "Zoznam filmov bude triedený opačne.\n"
+#~ "Nezáleží či je vybrané triedenie chronologicky, alebo abecedne."
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\HELP_/EnhancedMovieCenter.py:21
-msgid "HELP_Show directories"
-msgstr "Zobraziť alebo skryť priečinky v zozname filmov"
+#~ msgid "HELP_Show E2 Bookmarks in movielist"
+#~ msgstr ""
+#~ "Zobraziť virtuálne priečinky vo vašom \"Domovskom adresári\" filmov "
+#~ "reprezentujúce vaše Enigma2 záložky."
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\HELP_/EnhancedMovieCenter.py:22
-msgid "HELP_Show directories information"
-msgstr "Zobrazí počet nahrávok a/alebo koľko miesta na disku zaberajú."
+#~ msgid "HELP_Enigma daily auto-restart"
+#~ msgstr "Enigma2 will be restarted daily during the defined time frame."
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\HELP_/EnhancedMovieCenter.py:23
-msgid "HELP_Show Latest Recordings directory"
-msgstr ""
-"Zobrazí virtuálny priečinok vo vašom \"Domovskom priečinku\" filmov so "
-"zoznamom posledných nahrávok. Rovnako aj zo všetkých pod-priečinkov vo vašom "
-"\"Domovskom priečinku\" filmov.\n"
-"(Iba jedna strana)"
+#~ msgid "HELP_Enigma auto-restart window begin"
+#~ msgstr "Start of the time frame for the automatic Enigma2 restart."
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\HELP_/EnhancedMovieCenter.py:24
-msgid "HELP_Show VLC directory"
-msgstr ""
-"Zobraziť alebo skryť priečinok VLC v prípade, ak VlcPlayerExtended modul je "
-"nainštalovaný."
+#~ msgid "HELP_Enigma auto-restart window end"
+#~ msgstr "End of the time frame for the automatic Enigma2 restart."
 
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\HELP_/EnhancedMovieCenter.py:25
-msgid "HELP_Show E2 Bookmarks in movielist"
-msgstr ""
-"Zobraziť virtuálne priečinky vo vašom \"Domovskom adresári\" filmov "
-"reprezentujúce vaše Enigma2 záložky."
-
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\HELP_/EnhancedMovieCenter.py:27
-msgid "HELP_separator_hide&performance"
-msgstr "Nastavenia skrývania súborov/priečinkov a výkonu."
-
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\HELP_/EnhancedMovieCenter.py:28
-msgid "HELP_cfghide_enable"
-msgstr ""
-"Skryje súbory a priečinky v '/etc/enigma2/emc-hide.cfg'.\n"
-"Zmena týchto nastavení vyžaduje reštarovanie prijímača!"
-
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\HELP_/EnhancedMovieCenter.py:29
-msgid "HELP_Scan for DVD structures"
-msgstr ""
-"Zakáže prehladávanie DVD štruktúr vo všetkých priečinkoch.\n"
-"Týmto sa zabráni nechcenému prebudeniu (sieťových) diskov."
-
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\HELP_/EnhancedMovieCenter.py:30
-msgid "HELP_cfgscan_suppress"
-msgstr ""
-"Don't parse for DVD-structures in subdirectories from paths listed in '/etc/"
-"enigma2/emc-noscan.cfg'. This avoids unwanted wake up of (network)disks.\n"
-"Changing this setting requires a Enigma2 restart!"
-
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\HELP_/EnhancedMovieCenter.py:31
-msgid "HELP_scan_linked"
-msgstr ""
-"Disable the parsing for DVD-structures in Symlinks refering to "
-"subdirectories.\n"
-"This avoids unwanted wake up of (network)disks."
-
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\HELP_/EnhancedMovieCenter.py:34
-msgid "HELP_Try to load titles from .meta files"
-msgstr ""
-"Titles will be loaded from the .meta if availiable.\n"
-"Otherwise the title will be extracted from the filename.\n"
-"(Is .meta and .eit activatetd, the .meta will be read first.)"
-
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\HELP_/EnhancedMovieCenter.py:35
-msgid "HELP_Try to load titles from .eit files"
-msgstr ""
-"Titles will be loaded from the .eit if availiable.\n"
-"Otherwise the title will be extracted from the filename.\n"
-"(Is .meta and .eit activatetd, the .meta will be read first.)"
-
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\HELP_/EnhancedMovieCenter.py:36
-msgid "HELP_Replace special chars in title"
-msgstr "Replace underscores and points in titles with spaces."
-
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\HELP_/EnhancedMovieCenter.py:37
-msgid "HELP_Show Movie Format"
-msgstr "The file extention (file format) will be appended to the title."
-
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\HELP_/EnhancedMovieCenter.py:38
-msgid "HELP_Show Cut-Nr if exist"
-msgstr ""
-"If Enigma2 reboots during a recording the recording is continued "
-"automatically with an index number at the end of the filename.\n"
-"With this option the index is appended to the title."
-
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\HELP_/EnhancedMovieCenter.py:39
-msgid "HELP_Resolve links and show real path"
-msgstr ""
-"Path of links will be resolved.\n"
-"On problems with spinner or NAS wakeup, disable this option. (Path will be "
-"displayed as \"Extended Description\".)"
-
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\HELP_/EnhancedMovieCenter.py:42
-msgid "HELP_Listbox is skin able"
-msgstr ""
-"The visual display of the MovieList from the Skin (if availiable) will be "
-"used (only <widget name=\"list\").\n"
-"Otherwise the EMC Setup will be applied."
-
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\HELP_/EnhancedMovieCenter.py:44
-msgid "HELP_Date format"
-msgstr ""
-"Select the date and time format, which will be displayed behind the files."
-
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\HELP_/EnhancedMovieCenter.py:46
-msgid "HELP_Show movie icons"
-msgstr "A corresponding icon is displayed in the MovieList."
-
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\HELP_/EnhancedMovieCenter.py:47
-msgid "HELP_Show movie progress"
-msgstr "A progress bar in front of the movies is displayed in the MovieList."
-
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\HELP_/EnhancedMovieCenter.py:48
-msgid "HELP_Short watching percent"
-msgstr ""
-"Specifies what percentage of progress is classified as \"being watched\". \n"
-"The progress bar will change to blue."
-
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\HELP_/EnhancedMovieCenter.py:49
-msgid "HELP_Finished watching percent"
-msgstr ""
-"Specifies what percentage of progress is classified as \"seen\". \n"
-"The progress bar will change to green."
-
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\HELP_/EnhancedMovieCenter.py:52
-msgid "HELP_No resume below 10 seconds"
-msgstr ""
-"Ignores the Start Marker below 10 seconds.\n"
-"If playback is stopped during the first 10 seconds, no Resume will be "
-"proposed at next playback."
-
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\HELP_/EnhancedMovieCenter.py:53
-msgid "HELP_Jump to first mark when playing movie"
-msgstr ""
-"Jumps automatically to the first Marker if availiable in the beginning of a "
-"recording.\n"
-"(Can help to skip the lead time automatically.)"
-
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\HELP_/EnhancedMovieCenter.py:54
-msgid "HELP_Rewind finished movies before playing"
-msgstr ""
-"If a recording with status \"seen\" is restarted, the movie will be replayed "
-"from the beginning."
-
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\HELP_/EnhancedMovieCenter.py:55
-msgid "HELP_Always save last played progress as marker"
-msgstr ""
-"With this option a marker is set for the position every time the playback is "
-"stopped.\n"
-"When restarting the playback the < > buttons can be used to jump to this "
-"position (independent from the resume function)."
-
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\HELP_/EnhancedMovieCenter.py:56
-msgid "HELP_Zap to channel after record EOF"
-msgstr ""
-"If the player reach the end of a running record, because of fast forward or "
-"jump forward, close emc and zap directly to the live tv channel of the "
-"record."
-
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\HELP_/EnhancedMovieCenter.py:58
-msgid "HELP_separator_Trashcan settings"
-msgstr "Settings for Trashcan"
-
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\HELP_/EnhancedMovieCenter.py:59
-msgid "HELP_Trashcan enable"
-msgstr ""
-"Enable the trashcan functionality. On delete all files will be first move to "
-"the trashcan directory."
-
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\HELP_/EnhancedMovieCenter.py:60
-msgid "HELP_Trashcan path"
-msgstr ""
-"Set your trashcan path.\n"
-"Pressing [delete] will move the recordings to the activated trashcan instead "
-"of deleting the files immediately."
-
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\HELP_/EnhancedMovieCenter.py:61
-msgid "HELP_Show trashcan directory"
-msgstr ""
-"Display the trashcan directory in EMC.\n"
-"(When is hidden, however you can access the trashcan over the EMC [MENU])"
-
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\HELP_/EnhancedMovieCenter.py:62
-msgid "HELP_Dynamic trashcan"
-msgstr ""
-"Display amount of recordings and/or how many disk space these are using in "
-"your trashcan."
-
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\HELP_/EnhancedMovieCenter.py:63
-msgid "HELP_Delete validation"
-msgstr ""
-"When activated and the trashcan is used, EMC will never ask for a "
-"confirmation."
-
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\HELP_/EnhancedMovieCenter.py:65
-msgid "HELP_Enable daily trashcan cleanup"
-msgstr ""
-"EMC deletes old files in your trashcan, when they reach the expiration limit "
-"you set in the next entry."
-
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\HELP_/EnhancedMovieCenter.py:66
-msgid "HELP_Daily cleanup time"
-msgstr ""
-"Time when EMC deletes all files in the trashcan beyond the expiration limit."
-
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\HELP_/EnhancedMovieCenter.py:67
-msgid "HELP_How many days files may remain in trashcan"
-msgstr ""
-"Set how many days files may remain in trashcan before EMC deletes them "
-"permanently.\n"
-"(When set to [0] the files will deleted immediately)."
-
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\HELP_/EnhancedMovieCenter.py:68
-msgid "HELP_Move finished movies in trashcan"
-msgstr ""
-"Move all finished (watched) recordings from \"Movie home\" to the trashcan, "
-"when they reach the expiration limit you set in the next entry."
-
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\HELP_/EnhancedMovieCenter.py:69
-msgid "HELP_Age of finished movies in movie folder (days)"
-msgstr ""
-"Set how many days finished (watched) recordings may remain in your \"Movie "
-"home\"."
-
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\HELP_/EnhancedMovieCenter.py:72
-msgid "HELP_Display directory reading text"
-msgstr ""
-"Display the message \"Reading directory...\" during the directory reading."
-
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\HELP_/EnhancedMovieCenter.py:73
-msgid "HELP_EMC always reload after open"
-msgstr ""
-"Directory is reread with every start of EMC.\n"
-"(Otherwise the directory is read from cache onwards the 2nd start.)"
-
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\HELP_/EnhancedMovieCenter.py:74
-msgid "HELP_EMC re-open list after STOP-press"
-msgstr ""
-"If playback is stopped, the EMC MovieList is displayed again.\n"
-"(Otherwise TV Modus gets active again.)"
-
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\HELP_/EnhancedMovieCenter.py:75
-msgid "HELP_EMC re-open list after Movie end"
-msgstr ""
-"If playback reaches the end, the EMC MovieList is displayed again.\n"
-"(Otherwise TV Modus gets active again.)"
-
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\HELP_/EnhancedMovieCenter.py:77
-msgid "HELP_Leave Movie with Exit"
-msgstr ""
-"The playback of a recording can be stopped with the EXIT button, additional "
-"to the Stop button."
-
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\HELP_/EnhancedMovieCenter.py:78
-msgid "HELP_Blue button function"
-msgstr "A selection of functions can be assigned to the blue button."
-
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\HELP_/EnhancedMovieCenter.py:80
-msgid "HELP_Hide movies being moved"
-msgstr ""
-"The recording will be hidden from the MovieList while moving.\n"
-"(Anyhow the move action will be executed in background.)"
-
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\HELP_/EnhancedMovieCenter.py:81
-msgid "HELP_Hide movies being deleted"
-msgstr ""
-"The recording will be hidden from the MovieList while deleting.\n"
-"(Anyhow the delete action will be executed in background.)"
-
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\HELP_/EnhancedMovieCenter.py:83
-msgid "HELP_Enable remote recordings"
-msgstr ""
-"Detect recordings from a other Dreambox to a common volume.\n"
-"This recording get a spezial icon"
-
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\HELP_/EnhancedMovieCenter.py:84
-msgid "HELP_Automatic timers list cleaning"
-msgstr "Finished Timers will be removed from the TimerList automatically."
-
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\HELP_/EnhancedMovieCenter.py:86
-msgid "HELP_Enigma daily auto-restart"
-msgstr "Enigma2 will be restarted daily during the defined time frame."
-
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\HELP_/EnhancedMovieCenter.py:87
-msgid "HELP_Enigma auto-restart window begin"
-msgstr "Start of the time frame for the automatic Enigma2 restart."
-
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\HELP_/EnhancedMovieCenter.py:88
-msgid "HELP_Enigma auto-restart window end"
-msgstr "End of the time frame for the automatic Enigma2 restart."
-
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\HELP_/EnhancedMovieCenter.py:89
-msgid "HELP_Force standby after auto-restart"
-msgstr ""
-"After the automatic Enigma2 restart, the Dreambox will be switched to "
-"Standby."
-
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\HELP_/EnhancedMovieCenter.py:91
-msgid "HELP_Language Separator"
-msgstr "Language settings"
-
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\HELP_/EnhancedMovieCenter.py:92
-msgid "HELP_Preferred EPG language"
-msgstr "Here you can specify the prefered language for the EPG."
-
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\HELP_/EnhancedMovieCenter.py:93
-msgid "HELP_Enable playback auto-subtitling"
-msgstr "Activate the automatic selection of the subtitle languages."
-
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\HELP_/EnhancedMovieCenter.py:94
-msgid "HELP_Primary playback subtitle language"
-msgstr ""
-"First language which should be selected, if availiable, for the subtitles."
-
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\HELP_/EnhancedMovieCenter.py:95
-msgid "HELP_Secondary playback subtitle language"
-msgstr ""
-"Second language which should be selected, if availiable, for the subtitles."
-
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\HELP_/EnhancedMovieCenter.py:96
-msgid "HELP_Tertiary playback subtitle language"
-msgstr ""
-"Third language which should be selected, if availiable, for the subtitles."
-
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\HELP_/EnhancedMovieCenter.py:97
-msgid "HELP_Enable playback auto-language selection"
-msgstr "Activate the automatic selection of the audio channel."
-
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\HELP_/EnhancedMovieCenter.py:98
-msgid "HELP_Primary playback audio language"
-msgstr "First audio channel which should be selected, if availiable."
-
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\HELP_/EnhancedMovieCenter.py:99
-msgid "HELP_Secondary playback audio language"
-msgstr "Second audio channel which should be selected, if availiable."
-
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\HELP_/EnhancedMovieCenter.py:100
-msgid "HELP_Tertiary playback audio language"
-msgstr "Third audio channel which should be selected, if availiable."
-
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\HELP_/EnhancedMovieCenter.py:102
-#: Center\EMC-SVN\Locale\HELP_/EnhancedMovieCenter.py:107
-msgid "HELP_Advanced options separator"
-msgstr "Advanced settings"
-
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\HELP_/EnhancedMovieCenter.py:103
-msgid "HELP_Description field update delay"
-msgstr ""
-"Delay for displaying the description in the filmlist.\n"
-"(Improves the navigation speed when pressing multiple times the up/down "
-"button. Because the description is only loaded after the choosen delay.)"
-
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\HELP_/EnhancedMovieCenter.py:104
-msgid "HELP_Key period value (50-900)"
-msgstr "Time untill resending the button when keeping the button pressed."
-
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\HELP_/EnhancedMovieCenter.py:105
-msgid "HELP_Key repeat value (250-900)"
-msgstr "Speed of resending the button when keeping the button pressed."
-
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\HELP_/EnhancedMovieCenter.py:108
-msgid "HELP_Enable EMC debug output"
-msgstr ""
-"Activate the EMC-debugging.  The log-file will be saved in the directory "
-"\"EMC output directory\".\n"
-"ACTIVATE ONLY IN CASE OF PROBLEMS !!!"
-
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\HELP_/EnhancedMovieCenter.py:109
-msgid "HELP_EMC output directory"
-msgstr "Select the output directory for the log-file."
-
-#: e:\Daten_alt\Dreambox\_Dream-Soft\EMC - Enhanced Movie
-#: Center\EMC-SVN\Locale\HELP_/EnhancedMovieCenter.py:110
-msgid "HELP_Debug output file name"
-msgstr "Name of the log-file for debugging."
+#~ msgid "HELP_Force standby after auto-restart"
+#~ msgstr ""
+#~ "After the automatic Enigma2 restart, the Dreambox will be switched to "
+#~ "Standby."

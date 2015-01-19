@@ -76,17 +76,6 @@ from MovieCenter import getMovieNameWithoutExt, getMovieNameWithoutPhrases
 
 global extList, extVideo, extMedia, extDir, plyAll, plyDVD, cmtBME2, cmtBMEMC, cmtDir
 
-# Get Count and Size-values at start to CacheList
-def startCountSizeCache():
-	try:
-		movie_homepath = os.path.join(config.EMC.movie_homepath.value)
-		global moviecenterdata
-		from MovieCenter import MovieCenterData, moviecenterdata
-		if moviecenterdata is None:
-			moviecenterdata = MovieCenterData()
-		moviecenterdata.createStartCountSizeList(movie_homepath)
-	except Exception, e:
-		emcDebugOut("[EMC] startCountSizeCache get failed !!!\n" + str(e))
 
 # Move all trashcan operations to a separate file / class
 def purgeExpired(emptyTrash=False):
@@ -491,8 +480,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		if self.currentPath == None:
 			self.currentPath = config.EMC.movie_homepath.value
 		self.tmpSelList = None		# Used for file operations
-		self.tmpSelPath = None          # Also used for file operations
-
+		
 		# Key press short long handling
 		#TODO We have to rework this key press handling in order to allow different user defined color key functions
 		self.toggle = True		# Used for long / short key press detection: Toggle sort mode / order, Toggle selection / reset selection 
@@ -763,49 +751,49 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 	def moveUp(self):
 		self.cursorDir = -1
 		self.coverAfterPreview()
-		self["list"].moveUp()
+		self["list"].instance.moveSelection( self["list"].instance.moveUp )
 		self.updateAfterKeyPress()
 
 	def moveDown(self):
 		self.cursorDir = 1
 		self.coverAfterPreview()
-		self["list"].moveDown()
+		self["list"].instance.moveSelection( self["list"].instance.moveDown )
 		self.updateAfterKeyPress()
 
 	def pageUp(self):
 		self.cursorDir = 0
 		self.coverAfterPreview()
-		self["list"].pageUp()
+		self["list"].instance.moveSelection( self["list"].instance.pageUp )
 		self.updateAfterKeyPress()
 
 	def pageDown(self):
 		self.cursorDir = 0
 		self.coverAfterPreview()
-		self["list"].pageDown()
+		self["list"].instance.moveSelection( self["list"].instance.pageDown )
 		self.updateAfterKeyPress()
 
 	def moveTop(self):
 		self.coverAfterPreview()
-		self["list"].moveTop()
+		self["list"].instance.moveSelection( self["list"].instance.moveTop )
 		self.updateAfterKeyPress()
 		
 	def moveSkipUp(self):
 		self.coverAfterPreview()
 		self.cursorDir = -1
 		for _ in range(int(config.EMC.list_skip_size.value)):
-			self["list"].moveUp()
+			self["list"].instance.moveSelection( self["list"].instance.moveUp )
 		self.updateAfterKeyPress()
 		
 	def moveSkipDown(self):
 		self.cursorDir = 1
 		self.coverAfterPreview()
 		for _ in range(int(config.EMC.list_skip_size.value)):
-			self["list"].moveDown()
+			self["list"].instance.moveSelection( self["list"].instance.moveDown )
 		self.updateAfterKeyPress()
 
 	def moveEnd(self):
 		self.coverAfterPreview()
-		self["list"].moveEnd()
+		self["list"].instance.moveSelection( self["list"].instance.moveEnd )
 		self.updateAfterKeyPress()
 
 	def multiSelect(self, index=-1):
@@ -970,7 +958,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			# Simulate a recursive reload to get all files and titles
 			# walk through entire tree below current path. Might take a bit long on huge disks...
 			selectedlist = self["list"].reload(self.currentPath, simulate=True, recursive=True)
-			filelist = [ (title , path ) for (service, sorttitle, date, title, path, selnum, length, ext, cutnr, sorteventtitle, eventtitle) in selectedlist ]
+			filelist = [ (title , path ) for (service, sorttitle, date, title, path, selnum, length, ext, cutnr) in selectedlist ]
 			
 		# Collect imdb data
 		self.session.open(EMCImdbScan, filelist)
@@ -1148,20 +1136,17 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 
 	def toggleSelectionList(self):
 		#WORKAROUND E2 doesn't send dedicated short or long pressed key events
-		if self["list"].currentSelIsDirectory():
-			self.moveDirectory()
-		else:
-			if self.toggle == False:
-				self.toggle = True
-				return
-			if self["list"].currentSelIsPlayable():
-				self["list"].toggleSelection()
-			# Move cursor
-			if config.EMC.moviecenter_selmove.value != "o":
-				if self.cursorDir == -1 and config.EMC.moviecenter_selmove.value == "b":
-					self.moveToIndex( max(self.getCurrentIndex()-1, 0) )
-				else:
-					self.moveToIndex( min(self.getCurrentIndex()+1, len(self["list"])-1) )
+		if self.toggle == False:
+			self.toggle = True
+			return
+		if self["list"].currentSelIsPlayable():
+			self["list"].toggleSelection()
+		# Move cursor
+		if config.EMC.moviecenter_selmove.value != "o":
+			if self.cursorDir == -1 and config.EMC.moviecenter_selmove.value == "b":
+				self.moveToIndex( max(self.getCurrentIndex()-1, 0) )
+			else:
+				self.moveToIndex( min(self.getCurrentIndex()+1, len(self["list"])-1) )
 
 	def resetSelectionList(self):
 		if self.multiSelectIdx:
@@ -2049,13 +2034,6 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			association.append((self.postFileOp))
 			# Sync = True: Run script for one file do association and continue with next file
 			emcTasker.shellExecute(cmd, association, True)	# first move, then delete if expiration limit is 0
-		val = config.EMC.directories_info.value
-		if val == "C" or val == "CS" or val == "S":
-			from MovieCenter import countsizeworker
-			countsizeworker.Start(targetPath)
-			path = os.path.dirname(service.getPath())
-			if path is not None:
-				countsizeworker.Start(path)
 
 	def postFileOp(self):
 		self.tmpSelList = None
@@ -2170,69 +2148,6 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			current = self.getCurrent()
 			self.execFileOp(targetPath, current, self.tmpSelList, op="copy")
 			emcDebugOut("[EMCMS] cpDirSelected")
-
-	def moveDirectory(self):
-		selectedPath = self["list"].getCurrentSelDir()
-		try:
-			self.tmpSelPath = selectedPath
-			self.session.openWithCallback(
-				self.mvDirectorySelected,
-				LocationBox,
-					windowTitle = _("Move Directory:"),
-					text = _("Choose directory"),
-					currDir = str(self.currentPath)+"/",
-					bookmarks = config.movielist.videodirs,
-					autoAdd = False,
-					editDir = True,
-					inhibitDirs = ["/bin", "/boot", "/dev", "/etc", "/home", "/lib", "/proc", "/run", "/sbin", "/sys", "/usr", "/var"],
-					minFree = 100 )
-		except Exception, e:
-			print('[EMC] moveDirectory get failed: ', str(e))
-		emcDebugOut("[EMCMS] moveDirectory")
-
-	def mvDirectorySelected(self, targetPath):
-		selSize = 0
-		freeSize = 0
-		if targetPath is not None:
-			try:
-				if os.path.exists(self.tmpSelPath):
-					for (path, dirs, files) in os.walk(self.tmpSelPath):
-						for m in files:
-							filename = os.path.join(path, m)
-							if os.path.exists(filename):
-								selSize += os.path.getsize(filename)
-				if selSize:
-					selSize /= (1024.0 * 1024.0 * 1024.0)
-
-				stat = os.statvfs(targetPath)
-				free = (stat.f_bavail if stat.f_bavail!=0 else stat.f_bfree) * stat.f_bsize / 1024 / 1024
-				freeSize += free/1024
-			except Exception, e:
-				print('[EMC] mvDirectorySelected get sizes failed: ', str(e))
-
-			if freeSize >= selSize:
-				cmd = []
-				association = []
-				movieFileCache.delPathFromCache(targetPath)
-				movieFileCache.delPathFromCache(self.tmpSelPath)
-				movieFileCache.delPathFromCache(self.currentPath)
-				cmd.append( 'mv "'+ self.tmpSelPath +'" "'+ targetPath +'"' )
-				try:
-					if cmd:
-						association.append((self.initCursor, False)) # Set new Cursor position
-						association.append((self.postDirectoryOp))
-						# Sync = True: Run script for one file do association and continue with next file
-						emcTasker.shellExecute(cmd, association, True)	# first move, then delete if expiration limit is 0
-				except Exception, e:
-					print('[EMC] mvDirectorySelected execute get failed: ', str(e))
-		emcDebugOut("[EMCMS] mvDirectorySelected")
-
-	def postDirectoryOp(self):
-		self.tmpSelPath = None
-		try:
-				self["list"].reload(self.currentPath)
-		except Exception, e:
-				print('[EMC] postDirectoryOp - refreshList get failed!!!', str(e))
 
 	def trashcanCreate(self, confirmed):
 		try:
