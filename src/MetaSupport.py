@@ -118,33 +118,17 @@ class MetaList():
 	def getMetaTags(self):
 		return self.meta[self.TAGS]
 
-	def getMetaLength(self):
+	def	getMetaLength(self):
 		#TODO calculate during read on init
 		return self.__ptsToSeconds( self.__mk_int( self.meta[self.LENGTH] ) )
 		
-	def getMetaFileSize(self):
+	def	getMetaFileSize(self):
 		return self.__mk_int( self.meta[self.FILESIZE] )
 
 	# Wrapper
 	def getMetaDate(self):
 		#TODO transform during read on init
 		return self.__secondsToDate( self.getMetaRecordingTime() )
-
-	def getMetaTitle(self):
-		#TODO make it better and --> for example get the right title from other meta like "title only"
-		title = ""
-		desc = self.getMetaDescription()
-		try:
-			x1 = len(desc.split(',', -1)) -1
-			x2 = x1 -1
-			title = desc.replace(desc.split(',', -1)[x1], '').replace(desc.split(',', -1)[x2], '').replace(',,', '')
-			if title.startswith(','):
-				title = title.replace(',', '')
-			if len(title) >= 50:
-				title = ''
-		except Exception, e:
-			emcDebugOut("[EMC] getMetaTitle failed !!!\n" + str(e))
-		return title
 
 	##############################################################################
 	## File IO Functions

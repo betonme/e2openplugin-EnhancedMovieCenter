@@ -122,12 +122,6 @@ def EMCStartup(session):
 	
 	setupKeyResponseValues()
 	DelayedFunction(5000, cleanupSetup)
-        # read Count and Size from Homepath to open MovieSelection faster with settings "C", "CS" or "S"
-	if config.EMC.count_size_start_cache.value:
-		from MovieSelection import startCountSizeCache
-		delay = int(config.EMC.count_size_start_delay.value) * 60000
-		DelayedFunction(delay, startCountSizeCache)
-		emcDebugOut("Get Count and Size to cache in " + str(delay/60000) + " minutes")
 
 	# Go into standby if the reason for restart was EMC auto-restart
 	if config.EMC.restart.value != "":
@@ -310,15 +304,6 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 #			(  _("Show symlinkdirectories_information")           , config.EMC.symlinkdir_info          , None                  , None                  , 0     , [-1]        , _("HELP_Show symlink_directories_information")           , False             , True ),
 			(  _("Show directories")                              , config.EMC.directories_show         , None                  , None                  , 0     , []          , _("HELP_Show directories")                               , None              , True ),
 			(  _("Show directories information")                  , config.EMC.directories_info         , None                  , None                  , 0     , [-1]        , _("HELP_Show directories information")                   , ""                , "CS" ),
-			# TODO: get this entrys only for values "C", "CS", "S"
-			(  _("Get Count and Size at start to cache")          , config.EMC.count_size_start_cache   , None                  , None                  , 0     , [-2,-1]     , _("HELP_Get Count and Size at start to cache")           , None              , None ),
-			(  _("Delay for Get Count and Size at start to cache"), config.EMC.count_size_start_delay   , None                  , None                  , 0     , [-3,-2,-1]  , _("HELP_Delay for Get Count and Size at start to cache") , None              , None ),
-			(  _("Delay to get Count and Size in List")           , config.EMC.count_size_delay         , None                  , None                  , 0     , [-4,-3]     , _("HELP_Delay to get Count and Size in List")            , None              , None ),
-			(  _("Text shown for initially unknown file count")   , config.EMC.count_default_text       , None                  , None                  , 0     , [-5,-4,-1]  , _("HELP_Text shown for initially unknown file count")    , None              , None ),
-			(  _("Text shown for initially unknown count and size"), config.EMC.count_size_default_text , None                  , None                  , 0     , [-6,-5,-2]  , _("HELP_Text shown for initially unknown count and size"), None              , None ),
-			(  _("Text shown for initially unknown directory size"), config.EMC.size_default_text       , None                  , None                  , 0     , [-7,-6,-3]  , _("HELP_Text shown for initially unknown directory size"), None              , None ),
-			(  _("Icon shown for initially unknown count / size") , config.EMC.count_size_default_icon  , None                  , None                  , 0     , [-8,-7,-4]  , _("HELP_Icon shown for initially unknown count / size")  , None              , None ),
-
 			(  _("Show directories within movielist")             , config.EMC.directories_ontop        , None                  , None                  , 0     , [-2]        , _("HELP_Show directories within movielist")              , False             , True ),
 			(  _("Configured directories at the top of movielist"), config.EMC.cfgtopdir_enable         , None                  , None                  , 0     , [-3,-1]     , _("HELP_Configure in etc\enigma2\emc-topdir.cfg")        , False             , True ),
 			(  _("Show Latest Recordings directory")              , config.EMC.latest_recordings        , None                  , None                  , 0     , []          , _("HELP_Show Latest Recordings directory")               , None              , True ),
@@ -337,7 +322,6 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 			
 			(  separator                                          , config.EMC.about                    , None                  , None                  , 0     , []          , _(" ")                                                    , None              , None ),
 			(  _("Try to load titles from .meta files")           , config.EMC.movie_metaload           , None                  , None                  , 0     , []          , _("HELP_Try to load titles from .meta files")            , False             , True ),
-			(  _("Load all for non showing titles from .meta files"), config.EMC.movie_metaload_all     , None                  , None                  , 0     , [-1]        , _("HELP_Load all for non showing titles from .meta files"), None             , True ),
 			(  _("Try to load titles from .eit files")            , config.EMC.movie_eitload            , None                  , None                  , 0     , []          , _("HELP_Try to load titles from .eit files")             , False             , True ),
 			(  _("Replace special chars in title")                , config.EMC.replace_specialchars     , None                  , None                  , 2     , []          , _("HELP_Replace special chars in title")                 , False             , None ),
 			(  _("Show Movie Format")                             , config.EMC.movie_show_format        , None                  , None                  , 0     , []          , _("HELP_Show Movie Format")                              , False             , True ),
