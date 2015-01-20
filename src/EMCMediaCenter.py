@@ -74,18 +74,18 @@ class EMCMoviePlayerSummary(Screen):
 
 
 class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
-	
+
 	ENABLE_RESUME_SUPPORT = True
 	ALLOW_SUSPEND = True
-	
+
 	def __init__(self, session, playlist, playall=None, lastservice=None):
-		
-		# The CutList must be initialized very first  
+
+		# The CutList must be initialized very first
 		CutList.__init__(self)
 		Screen.__init__(self, session)
 		HelpableScreen.__init__(self)
 		InfoBarSupport.__init__(self)
-		
+
 		# Skin
 		self.skinName = "EMCMediaCenter"
 		skin = None
@@ -105,7 +105,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 
 		# EMC Source
 		self["Service"] = EMCCurrentService(session.nav, self)
-		
+
 		# Events
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
 			{
@@ -129,7 +129,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 				iPlayableService.evUser+12: self.__menuClosed,
 				iPlayableService.evUser+13: self.__osdAngleInfoAvail
 			})
-			
+
 			# Keymap
 	#		self["SeekActions"] = HelpableActionMap(self, "InfobarSeekActions", 							-1 higher priority
 	#		self["MovieListActions"] = HelpableActionMap(self, "InfobarMovieListActions", 		0
@@ -137,9 +137,9 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 	#		self["EPGActions"] = HelpableActionMap(self, "InfobarEPGActions",									0
 	#		self["CueSheetActions"] = HelpableActionMap(self, actionmap,											1 lower priority
 	#		self["InstantExtensionsActions"] = HelpableActionMap(self, "InfobarExtensions", 	1 lower priority
-	#		self["NumberActions"] = NumberActionMap( [ "NumberActions"],											0 Set by EMC to 2 very lower priority 
-	#		self["TeletextActions"] = HelpableActionMap(self, "InfobarTeletextActions",				0 Set by EMC to 2 very lower priority 
-	#		self["MenuActions"] = HelpableActionMap(self, "InfobarMenuActions",  							0 Set by EMC to 2 very lower priority 
+	#		self["NumberActions"] = NumberActionMap( [ "NumberActions"],											0 Set by EMC to 2 very lower priority
+	#		self["TeletextActions"] = HelpableActionMap(self, "InfobarTeletextActions",				0 Set by EMC to 2 very lower priority
+	#		self["MenuActions"] = HelpableActionMap(self, "InfobarMenuActions",  							0 Set by EMC to 2 very lower priority
 		if config.EMC.movie_exit.value:
 			self["actions"] = HelpableActionMap(self, "CoolPlayerActions",
 				{
@@ -150,7 +150,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 				{
 					"leavePlayer":	(self.leavePlayer, 		_("Stop playback")),
 				}) # default priority
-		
+
 		self["DVDPlayerPlaybackActions"] = HelpableActionMap(self, "EMCDVDPlayerActions",
 			{
 				"dvdMenu": (self.enterDVDMenu, _("show DVD main menu")),
@@ -166,7 +166,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 			}, 1) # lower priority
 		# Only enabled if playing a dvd
 		self["DVDPlayerPlaybackActions"].setEnabled(False)
-		
+
 		self["DVDMenuActions"] = ActionMap(["WizardActions"],
 			{
 				"left": self.keyLeft,
@@ -178,7 +178,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 			}, 2) # lower priority
 		# Only enabled during DVD Menu
 		self["DVDMenuActions"].setEnabled(False)
-		
+
 		self["GeneralPlayerPlaybackActions"] = HelpableActionMap(self, "EMCGeneralPlayerActions",
 			{
 				"showExtensions": (self.openExtensions, _("view extensions...")),
@@ -187,15 +187,15 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 				"seekBack": (self.seekBack, _("Seek backward")),
 				"movieInfo": (self.infoMovie, _("Movie information")),
 			}, 2) # lower priority
-		
+
 		self["MenuActions"].prio = 2
 		if "TeletextActions" in self:
 			self["TeletextActions"].prio = 2
 		self["NumberActions"].prio = 2
-		
+
 		# Cover Anzeige
 		self["Cover"] = Pixmap()
-		
+
 		# DVD Player
 		self["audioLabel"] = Label("")
 		self["subtitleLabel"] = Label("")
@@ -212,31 +212,31 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 		self.currentTitle = 0
 		self.in_menu = None
 		self.dvdScreen = None
-		
+
 		# Further initialization
 		self.firstStart = True
 		self.stopped = False
 		self.closedByDelete = False
 		self.closeAll = False
-		
+
 		self.lastservice = lastservice or self.session.nav.getCurrentlyPlayingServiceReference()
 		self.playlist = playlist
 		self.playall = playall
 		self.playcount = -1
 		self.service = None
-		
+
 		self.picload = ePicLoad()
 		try:
 			self.picload_conn = self.picload.PictureData.connect(self.showCoverCallback)
 		except:
 			self.picload.PictureData.get().append(self.showCoverCallback)
-		
+
 		# Record events
 		try:
 			NavigationInstance.instance.RecordTimer.on_state_change.append(self.recEvent)
 		except Exception, e:
 			emcDebugOut("[EMCMediaCenter] Record observer add exception:\n" + str(e))
-		
+
 		# Dialog Events
 		self.onShown.append(self.__onShow)  # Don't use onFirstExecBegin() it will crash
 		self.onClose.append(self.__onClose)
@@ -304,7 +304,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 			except StopIteration:
 				self.playall = None
 				self.playlist = []
-			
+
 		if (self.playcount + 1) < len(self.playlist):
 			self.playcount += 1
 			service = self.playlist[self.playcount]
@@ -332,7 +332,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 				# Further cutlist handling
 				toggleProgressService(service, True)
 				self.service = service
-				
+
 				if service and service.type == sidDVD:
 					# Only import DVDPlayer, if we want to play a DVDPlayer format
 					if fileExists("%so"%dvdPlayerPlg) or fileExists("%sc"%dvdPlayerPlg):
@@ -357,7 +357,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 						self.dvdScreen = None
 					self["TeletextActions"].setEnabled(True)
 					self["DVDPlayerPlaybackActions"].setEnabled(False)
-				
+
 				# Check if the video preview is active and already running
 		#				if config.EMC.movie_preview.value:
 		#					ref = self.session.nav.getCurrentlyPlayingServiceReference()
@@ -369,14 +369,14 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 		#						self.downloadCuesheet()
 		#							#print "EMC cue.setCutListEnable(1)"
 		#						#return
-				
-				# Is this really necessary 
+
+				# Is this really necessary
 				# TEST for M2TS Audio problem
-				#self.session.nav.stopService() 
-				
+				#self.session.nav.stopService()
+
 				# Start playing movie
 				self.session.nav.playService(service)
-				
+
 				if service and service.type == sidDVD:
 					# Seek will cause problems with DVDPlayer!
 					# ServiceDVD needs this to start
@@ -394,7 +394,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 			else:
 				self.session.open(MessageBox, _("Skipping movie, the file does not exist.\n\n") + service.getPath(), MessageBox.TYPE_ERROR, 10)
 				self.evEOF(needToClose)
-				
+
 		else:
 			if needToClose or config.usage.on_movie_eof.value != "pause":
 				self.closedByDelete = needToClose
@@ -403,18 +403,18 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 	def leavePlayer(self, stopped=True):
 		#TEST is stopped really necessary
 		self.stopped = stopped
-		
+
 		self.setSubtitleState(False)
 		if self.dvdScreen:
 			self.dvdScreen.close()
-		
+
 		# Possible Problem: Avoid GeneratorExit exception
 		#if self.playall:
 		#	playall.close()
-		
+
 		if self.service and self.service.type != sidDVB:
 			self.updateCutList( self.getSeekPlayPosition(), self.getSeekLength() )
-		
+
 		reopen = False
 		try:
 #			self.recordings.returnService = self.service
@@ -443,7 +443,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 			#self.service = None
 		except Exception, e:
 			emcDebugOut("[EMCPlayer] leave exception:\n" + str(e))
-		
+
 		self.close(reopen, self.service)
 
 	def recEvent(self, timer):
@@ -535,15 +535,15 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 
 	def movieSelected(self, playlist, playall=None):
 		print "EMC movieSelected"
-		
+
 		if playlist is not None and len(playlist) > 0:
 			self.playcount = -1
 			self.playlist = playlist
 			self.playall = playall
-			
+
 			if self.service.type != sidDVB:
 				self.updateCutList( self.getSeekPlayPosition(), self.getSeekLength() )
-			
+
 			self.evEOF()	# start playback of the first movie
 
 	##############################################################################
@@ -591,7 +591,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 					self.subtitles_enabled = True
 					return True
 		return False
-	
+
 	def setSubtitleState(self, enabled):
 		try:
 			if not config.EMC.autosubs.value or not enabled: return
@@ -623,7 +623,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 
 	def keyOk(self):
 		self.sendKey(iServiceKeys.keyOk)
-			
+
 	def keyBack(self):
 		self.leavePlayer()
 
@@ -672,7 +672,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 
 	def enterDVDMenu(self):
 		self.sendKey(iServiceKeys.keyUser+7)
-	
+
 	def nextAngle(self):
 		self.sendKey(iServiceKeys.keyUser+8)
 
@@ -698,7 +698,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 			# Force show dvd screen
 			#self.dvdScreen.hide()
 			self.dvdScreen.show()
-		
+
 	def __serviceStopped(self):
 		print "EMC MediaCenter serviceStopped"
 		if self.dvdScreen:
@@ -843,7 +843,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 		cover_path = re.sub(self.file_format + "$", '.png', service.getPath())
 		if not os.path.exists(cover_path):
 			cover_path = re.sub(self.file_format + "$", '.jpg', service.getPath())
-		self.showCover(cover_path)	
+		self.showCover(cover_path)
 		if self.in_menu:
 			pass
 			#self.hide()
@@ -879,7 +879,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 		cover_path = re.sub(self.file_format + "$", '.png', service.getPath())
 		if not os.path.exists(cover_path):
 			cover_path = re.sub(self.file_format + "$", '.jpg', service.getPath())
-		
+
 		if not self.in_menu:
 			### Cover anzeige
 			self.showCover(cover_path)
@@ -903,7 +903,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 			return
 		if not playing:
 			return
-		
+
 		if self.in_menu:
 			self.hide()
 		if config.EMC.record_eof_zap.value and self.service:
@@ -914,11 +914,11 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 			record = getRecording(self.service.getPath())
 			if record:
 				begin, end, service = record
-				
+
 				# Seek play position and record length differ about one second
 				#last = ( time() - begin ) * 90000
 				#if last < (self.getSeekPlayPosition() + 1*90000):
-				
+
 				# Zap to new channel
 				self.lastservice = service
 				self.service = None
@@ -931,17 +931,17 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 				##if self.seekstate == self.SEEK_STATE_EOF:
 				##	self.setSeekState(self.SEEK_STATE_PLAY)
 				#	return
-		
+
 		if self.service.type != sidDVB:
 			self.updateCutList( self.getSeekPlayPosition(), self.getSeekLength() )
-		
+
 		self.evEOF()
 
 	##############################################################################
 	## Oozoon image specific
 	def up(self):
 		self.showMovies()
-		
+
 	def down(self):
 		self.showMovies()
 

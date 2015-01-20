@@ -64,43 +64,43 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 		self.selections = selections
 		self.currentPath = currentPath
 		self.reloadafterclose = False
-		
+
 		self.menu = []
 		if menumode == "normal":
 			self["title"] = StaticText(_("Choose operation"))
-			
+
 			if os.path.realpath(self.currentPath) != os.path.realpath(config.EMC.movie_homepath.value):
 				self.menu.append((_("Movie home"), boundFunction(self.close, "Movie home")))
-			
+
 			if currentPath == config.EMC.movie_pathlimit.value:
 				self.menu.append((_("Directory up"), boundFunction(self.close, "dirup")))
-			
+
 			self.menu.append((_("Reload current directory"), boundFunction(self.close, "reloadwithoutcache")))
-			
+
 			self.menu.append((_("Play last"), boundFunction(self.close, "Play last")))
-			
+
 			self.menu.append((_("Play All"), boundFunction(self.close, "playall")))
 			self.menu.append((_("Shuffle All"), boundFunction(self.close, "shuffleall")))
-			
+
 			self.menu.append((_("Cover search"), boundFunction(self.close, "imdb")))
 			self.menu.append((_("Delete"), boundFunction(self.close, "del")))
-			
+
 			if config.EMC.movie_trashcan_enable.value and os.path.exists(config.EMC.movie_trashcan_path.value):
 				if service:
 					self.menu.append((_("Delete permanently"), boundFunction(self.close, "delete")))
 				self.menu.append((_("Empty trashcan"), boundFunction(self.emptyTrash)))
 				self.menu.append((_("Go to trashcan"), boundFunction(self.close, "trash")))
-			
+
 			self.menu.append((_("Mark all movies"), boundFunction(self.close, "markall")))
 			self.menu.append((_("Remove rogue files"), boundFunction(self.remRogueFiles)))
-			
+
 			self.menu.append((_("Delete cut file(s)"), boundFunction(self.deleteCutFileQ)))
-			
+
 			self.menu.append((_("Create link"), boundFunction(self.createLink, currentPath)))
 			self.menu.append((_("Create directory"), boundFunction(self.createDir, currentPath)))
-			
+
 			self.menu.append((_("(Un-)Lock Directory"), boundFunction(self.lockDir, currentPath)))
-			
+
 			if service:
 				if os.path.isfile(service.getPath()):
 					self.menu.append((_("Copy Movie"), boundFunction(self.close, "Copy Movie")))
@@ -110,7 +110,7 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 					if not service.getPath().endswith("/..") and not service.getPath().endswith("/Latest Recordings"):
 						self.menu.append((_("Download Movie Information"), boundFunction(self.close, "Movie Information")))
 						#self.menu.append((_("Download Movie Cover"), boundFunction(self.close, "dlcover")))
-			
+
 			if self.service or self.selections:
 				self.menu.append((_("Rename selected movie(s)"), boundFunction(self.renameMovies)))
 				self.menu.append((_("Remove cut list marker"), boundFunction(self.remCutListMarker)))
@@ -128,7 +128,7 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 				if show_plugins:
 					# Only valid for ts files: CutListEditor, DVDBurn, ...
 					self.menu.extend([(p.description, boundFunction(self.execPlugin, p)) for p in plugins.getPlugins(PluginDescriptor.WHERE_MOVIELIST)])
-			
+
 			self.menu.append((_("Open E2 Bookmark path"), boundFunction(self.close, "openE2Bookmarks")))
 			if not self.isE2Bookmark(currentPath):
 				self.menu.append((_("Add directory to E2 Bookmarks"), boundFunction(self.addDirToE2Bookmarks, currentPath)))
@@ -136,7 +136,7 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 				self.menu.append((_("Remove directory from E2 Bookmarks"), boundFunction(self.removeDirFromE2Bookmarks, currentPath)))
 			if service and self.isE2Bookmark(service.getPath()):
 				self.menu.append((_("Remove selected E2 Bookmark"), boundFunction(self.close, "removeE2Bookmark", service)))
-			
+
 			self.menu.append((_("Open EMC Bookmark path"), boundFunction(self.close, "openEMCBookmarks")))
 			if not self.isEMCBookmark(currentPath):
 				self.menu.append((_("Add directory to EMC Bookmarks"), boundFunction(self.addDirToEMCBookmarks, currentPath)))
@@ -144,7 +144,7 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 				self.menu.append((_("Remove directory from EMC Bookmarks"), boundFunction(self.removeDirFromEMCBookmarks, currentPath)))
 			if service and self.isEMCBookmark(service.getPath()):
 				self.menu.append((_("Remove selected EMC Bookmark"), boundFunction(self.close, "removeEMCBookmark", service)))
-			
+
 			self.menu.append((_("Set permanent sort"), boundFunction(self.setPermanentSort, currentPath, mlist.actualSort)))
 			if mlist.hasFolderPermanentSort(currentPath):
 				self.menu.append((_("Remove permanent sort"), boundFunction(self.removePermanentSort, currentPath)))
@@ -152,16 +152,16 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 				path = mlist.hasParentPermanentSort(currentPath)
 				if path:
 					self.menu.append((_("Remove permanent sort from parent"), boundFunction(self.removePermanentSort, path)))
-			
+
 			#self.menu.append((_("Open shell script menu"), boundFunction(self.close, "oscripts")))
 			self.menu.append((_("EMC Setup"), boundFunction(self.execPlugin, emcsetup)))
-			
+
 		elif menumode == "plugins":
 			self["title"] = StaticText(_("Choose plugin"))
 			if self.service is not None:
 				for p in plugins.getPlugins(PluginDescriptor.WHERE_MOVIELIST):
 					self.menu.append((p.description, boundFunction(self.execPlugin, p)))
-					
+
 		elif menumode == "emcBookmarks":
 			self["title"] = StaticText(_("Choose bookmark"))
 			bm = self.getEMCBookmarks()
@@ -212,7 +212,7 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 				self.close("reload")
 		else:
 			self.close(None)
-			
+
 	def lockDir(self, currentPath):
 		self.hide
 		if not os.path.exists(currentPath + '/dir.lock'):
@@ -237,7 +237,7 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 					for dir in dirs:
 						movieFileCache.delPathFromCache(root + '/' + dir)
 						emcTasker.shellExecute('rm -rf "' + root + '/' + dir +  '/dir.lock"')
-			
+
 	def createLink(self, path):
 		self.session.openWithCallback(
 				boundFunction( self.createLinkCB, path ),
@@ -338,7 +338,7 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 			plugin(self.session, self.service, self.selections)
 		except:
 			plugin(session=self.session, service=self.service)
-		
+
 		#self.close("reload")
 
 	def addDirToE2Bookmarks(self, path):
@@ -411,7 +411,7 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 	def removePermanentSort(self, path):
 		self.mlist.removePermanentSort(path)
 		self.close("updatetitle")
-	
+
 	# Overwrite Screen close function
 	def close(self, parameter = None):
 		if parameter is None:
@@ -419,7 +419,7 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 				parameter = "reload"
 		# Call baseclass function
 		Screen.close(self, parameter)
-		
+
 	def deleteCutFileQ(self):
 		self.session.openWithCallback(self.deleteCutFile, MessageBox, _("Do you really want to delete the cut file?\nIf you have selected a directory, all cut files within the folder and its subfolders will be deleted!"))
 
