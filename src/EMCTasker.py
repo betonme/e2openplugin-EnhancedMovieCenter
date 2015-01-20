@@ -78,12 +78,12 @@ class EMCExecutioner:
 		#			list of commands: [cmd, cmd]
 		#  associated = single callback: callback
 		#				single tuple:    (callback, args)
-		#				list of tuples:  [(callback),(callback, args),(...)]  
+		#				list of tuples:  [(callback),(callback, args),(...)]
 		#    callback = function to be executed
 		#    args = single parameter:    arg or (arg) or (a, b) or [a,b]
 		#			multiple parameters: arg1, arg2
 		#  sync (synchronous callback):
-		#    True  = After every command, one callback entry is executed, additionally callbacks will be executed after the last command 
+		#    True  = After every command, one callback entry is executed, additionally callbacks will be executed after the last command
 		#            If the callback entry is a tuple or list, alle subcallbacks will be executed
 		#    False = All callbacks are executed at the end
 		if not sync or not isinstance(script, list):
@@ -94,7 +94,7 @@ class EMCExecutioner:
 			for s, a in izip_longest(script, associated):
 				self.script.append( s )
 				self.associated.append( [a] )
-		
+
 		if self.executing == "":
 			emcDebugOut("[emcTasker] Run script")
 			self.execCurrent()
@@ -107,7 +107,7 @@ class EMCExecutioner:
 			if script:
 				if isinstance(script, list):
 					script = '; '.join( script )
-				
+
 				self.executing = quote( script )
 				self.container.execute( "sh -c " + self.executing )
 				emcDebugOut("[emcTasker] executing: " + self.executing )
@@ -138,19 +138,19 @@ class EMCExecutioner:
 						#emcDebugOut("[emcTasker] runFinished exception:\n" + str(e))
 						pass
 			self.returnData = ""
-			
+
 			if self.script:
 				# There is more to be executed
 				emcDebugOut("[emcTasker] sh exec rebound")
 				self.execCurrent()
 			else:
 				self.executing = ""
-				
+
 				#TODO MAYBE we want do cleanup the whole container
 				#del self.container.dataAvail[:]
 				#del self.container.appClosed[:]
 				#del self.container
-			
+
 		except Exception, e:
 			emcDebugOut("[emcTasker] runFinished exception:\n" + str(e))
 

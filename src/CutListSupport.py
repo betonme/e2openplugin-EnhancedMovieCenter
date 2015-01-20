@@ -39,7 +39,7 @@ except ImportError as ie:
 else:
 	hasCutlistDownloader = True
 
-# [Cutlist.Workaround] Enable Cutlist-Workaround: 
+# [Cutlist.Workaround] Enable Cutlist-Workaround:
 # Creates an Backup of the Cutlist during recording and merge it with the cutlist-File from enigma after recording
 DO_CUTLIST_WORKAROUND = True
 # Cut File support class
@@ -56,24 +56,24 @@ class CutList():
 	# Has to be remove before starting a player
 	CUT_TYPE_SAVEDLAST = 4
 	CUT_TYPE_LENGTH = 5
-	
+
 	# Toggle Types
 	CUT_TOGGLE_START = 0
 	CUT_TOGGLE_RESUME = 1
 	CUT_TOGGLE_FINISHED = 2
 	CUT_TOGGLE_START_FOR_PLAY = 3
 	CUT_TOGGLE_FOR_PLAY = 4
-	
+
 	# Additional cut_list information
 	#		cut_list[x][0] = pts   = long long
 	#		cut_list[x][1] = what  = long
-	
+
 	# Constants
 	ENABLE_RESUME_SUPPORT = True
 	MOVIE_FINISHED = 0xFFFFFFFFFFFFFFFF
-	
+
 	INSORT_SCOPE = 45000  # 0.5 seconds * 90 * 1000
-	
+
 	def __init__(self, path=None):
 		# Is already initialized in InfoBar and EMCMediaCenter
 		#InfoBarCueSheetSupport.__init__(self)
@@ -83,7 +83,7 @@ class CutList():
 		self.cut_mtime = 0
 		self.cut_list = []
 		self.iso = None
-		
+
 		self.__newPath(path)
 		self.__readCutFile()
 		self.__verifyCutList()
@@ -120,25 +120,25 @@ class CutList():
 		return service.cueSheet()
 
 	##############################################################################
-	## Overwrite Functions 
+	## Overwrite Functions
 
 	# InfoBarCueSheetSupport
 	def downloadCuesheet(self):
 		try:
 			service = hasattr(self, "service") and self.service
-			
+
 			# Is there native cuesheet support
 			cue = self.__getCuesheet() #InfoBarCueSheetSupport._InfoBarCueSheetSupport__getCuesheet(self)
-			if cue:
-				# Native cuesheet support
-				self.cut_list = cue.getCutList()
-			else:
+			if cue is None or (cue and not cue.getCutList()):
 				# No native cuesheet support
 				if service:
 					path = service.getPath()
 					self.__newPath(path)
 					self.__readCutFile()
-			
+			else:
+				# Native cuesheet support
+				self.cut_list = cue.getCutList()
+
 			#print "CUTSTEST0 ", self.cut_list
 			if config.EMC.cutlist_at_download.value:
 				if service and hasCutlistDownloader:
@@ -146,7 +146,7 @@ class CutList():
 						bestCutlist(service, self.cutlistDownloaded)
 					except Exception, e:
 						emcDebugOut("[EMC] Plugin CutlistDownloader exception:" + str(e))
-			
+
 			#MAYBE: If the cutlist is empty we can check the EPG NowNext Events
 		except Exception, e:
 			emcDebugOut("[CUTS] downloadCutList exception:" + str(e))
@@ -165,13 +165,11 @@ class CutList():
 			# Always check for saving the last marker
 			if config.EMC.movie_save_lastplayed.value is True:
 				self.__saveOldLast()
-			
+
 			# Is there native cuesheet support
 			cue = InfoBarCueSheetSupport._InfoBarCueSheetSupport__getCuesheet(self)
-			if cue:
-				# Native cuesheet support
-				cue.setCutList(self.cut_list)
-			else:
+
+			if cue is None or (cue and not cue.getCutList()):
 				# No native cuesheet support
 				# Update local cut list, maybe there is a newer one
 				#TODO to be tested
@@ -180,6 +178,9 @@ class CutList():
 					path = self.service.getPath()
 					self.__newPath(path)
 					self.__writeCutFile()
+			else:
+				# Native cuesheet support
+				cue.setCutList(self.cut_list)
 		except Exception, e:
 			emcDebugOut("[CUTS] uploadCuesheet exception:" + str(e))
 
@@ -214,11 +215,11 @@ class CutList():
 	## Get Functions
 	def getCutList(self):
 		return self.cut_list
-	
+
 	def getCutListMTime(self):
 		return self.cut_mtime
-		
-	# Wrapper in seconds 
+
+	# Wrapper in seconds
 	def getCutListLast(self):
 		return self.__ptsToSeconds( self.__getCutListLast() )
 
@@ -227,7 +228,7 @@ class CutList():
 
 	def getCutListSavedLast(self):
 		return self.__ptsToSeconds( self.__getCutListSavedLast() )
-		
+
 	# Internal from cutlist in pts
 	def __getCutListLast(self):
 		if self.cut_list:
@@ -308,10 +309,10 @@ class CutList():
 		self.__removeSavedLast(savedLast)
 		newLast = 0
 		newSaved = 0
-		
+
 		#if savedLast == oldLast:
 		#	print "Cutlist if savedLast == oldLast: " + str(savedLast) + " toggle: " + str(toggle) + " " + str(self.cut_file)
-		
+
 		if toggle == self.CUT_TOGGLE_START:
 			newLast = 0
 		elif toggle == self.CUT_TOGGLE_RESUME:
@@ -329,7 +330,7 @@ class CutList():
 			newLast = oldLast
 			savedLast = 0
 			oldLast = 0
-		
+
 		newSaved = savedLast or oldLast
 		self.__replaceLast(newLast)
 		self.__appendSavedLast(newSaved)
@@ -378,7 +379,7 @@ class CutList():
 	## File IO Functions
 	def __readCutFile(self, update=False):
 		self.__readCutFileWithPath(self.cut_file, update)
-	
+
 	def __readCutFileWithPath(self, path, update=False):
 		data = ""
 		if path and os.path.exists(path):
@@ -386,18 +387,18 @@ class CutList():
 			if self.cut_mtime == mtime:
 				# File has not changed
 				pass
-				
+
 			else:
 				# New path or file has changed
 				self.cut_mtime = mtime
-				
+
 				if not update:
 					# No update clear all
 					self.cut_list = []
-				
+
 				# Read data from file
 				# OE1.6 with Pyton 2.6
-				#with open(path, 'rb') as f: data = f.read()	
+				#with open(path, 'rb') as f: data = f.read()
 				f = None
 				try:
 					f = open(path, 'rb')
@@ -407,7 +408,7 @@ class CutList():
 				finally:
 					if f is not None:
 						f.close()
-						
+
 				# Parse and unpack data
 				if data:
 					pos = 0
@@ -425,12 +426,12 @@ class CutList():
 		data = ""
 		path = self.cut_file
 		if path:
-			
+
 			# Generate and pack data
 			if self.cut_list:
 				for (pts, what) in self.cut_list:
 					data += struct.pack('>QI', pts, what)
-			
+
 			# Write data to file
 			# OE1.6 with Pyton 2.6
 			#with open(path, 'wb') as f: f.write(data)
@@ -444,7 +445,7 @@ class CutList():
 			finally:
 				if f is not None:
 					f.close()
-			
+
 			# [Cutlist.Workaround]
 			# Always make a backup-copy when recording, it will be merged with enigma-cutfile after recording
 			if DO_CUTLIST_WORKAROUND:
@@ -463,7 +464,7 @@ class CutList():
 					finally:
 						if fsave is not None:
 							fsave.close()
-					
+
 			# Save file timestamp
 			if path and os.path.exists(path):
 				self.cut_mtime = os.path.getmtime(path)
