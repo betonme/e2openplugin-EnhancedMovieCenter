@@ -1,2 +1,19 @@
-*.pyo
+# Windows image file caches
+Thumbs.db
 
+# Folder config file
+Desktop.ini
+
+# Mac crap
+.DS_Store
+
+# Eclipse Files
+.pydevproject
+.project
+.settings
+
+# Python Files
+.pyo
+
+# Ignore *.mo Files in po-folder
+/po/*.mo
