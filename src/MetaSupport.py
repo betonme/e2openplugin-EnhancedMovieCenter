@@ -39,7 +39,7 @@ class MetaList():
 	TAGS = 4
 	LENGTH = 5
 	FILESIZE = 6
-	
+
 	def __init__(self, path=None):
 		self.meta_file = None
 		self.meta_mtime = 0
@@ -74,7 +74,7 @@ class MetaList():
 			if self.meta_file != path:
 				self.meta_file = path
 				self.meta_mtime = 0
-	
+
 	def __ptsToSeconds(self, pts):
 		# Meta files are using the presentation time stamp time format
 		# pts has a resolution of 90kHz
@@ -90,10 +90,10 @@ class MetaList():
 	## Get Functions
 	def getMetaList(self):
 		return self.meta
-		
+
 	def getMetaMTime(self):
 		return self.meta_mtime
-		
+
 	def getMetaServiceReference(self):
 		return self.meta[self.SERVICE]
 
@@ -114,14 +114,14 @@ class MetaList():
 	def getMetaRecordingTime(self):
 		# Time in seconds since 1970
 		return self.__mk_int( self.meta[self.RECTIME] )
-	
+
 	def getMetaTags(self):
 		return self.meta[self.TAGS]
 
 	def	getMetaLength(self):
 		#TODO calculate during read on init
 		return self.__ptsToSeconds( self.__mk_int( self.meta[self.LENGTH] ) )
-		
+
 	def	getMetaFileSize(self):
 		return self.__mk_int( self.meta[self.FILESIZE] )
 
@@ -140,16 +140,16 @@ class MetaList():
 			if self.meta_mtime == mtime:
 				# File has not changed
 				pass
-				
+
 			else:
 				#print "EMC TEST count Meta " + str(path)
-				
+
 				# New path or file has changed
 				self.meta_mtime = mtime
-				
+
 				# Read data from file
 				# OE1.6 with Pyton 2.6
-				#with open(self.meta_file, 'r') as file: lines = file.readlines()	
+				#with open(self.meta_file, 'r') as file: lines = file.readlines()
 				f = None
 				try:
 					f = open(path, 'r')
@@ -159,7 +159,7 @@ class MetaList():
 				finally:
 					if f is not None:
 						f.close()
-					
+
 				# Parse the lines
 				if lines:
 					# Strip lines and extract information
@@ -170,7 +170,7 @@ class MetaList():
 				else:
 					# No date clear all
 					self.meta = ["","","","","","",""]
-					
+
 		else:
 			# No path or no file clear all
 			self.meta = ["","","","","","",""]

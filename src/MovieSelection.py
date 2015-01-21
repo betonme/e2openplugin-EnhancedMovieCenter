@@ -234,7 +234,7 @@ class SelectionEventInfo:
 				#jpgpath = "/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/cover_tr.png"
 
 			if config.EMC.movie_cover_fallback.value and not os.path.exists(jpgpath):
-				no_poster = _("no_poster.png")
+				no_poster = "no_poster.png"
 				jpgpath = "/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/" + no_poster
 
 			#TODO avoid os.path.exists double check
@@ -1095,7 +1095,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		# Display a permanent sort marker if it is set
 		perm = self["list"].isEqualPermanentSort()
 		if perm == True:
-			title += _(" <P>")
+			title += " <P>"
 
 		self.setTitle(title)
 

@@ -16,7 +16,7 @@ class EMCClockToText(Converter, object):
 	FORMAT = 4
 	AS_LENGTH = 5
 	TIMESTAMP = 6
-	
+
 	def __init__(self, type):
 		Converter.__init__(self, type)
 		if type == "WithSeconds":
@@ -27,7 +27,7 @@ class EMCClockToText(Converter, object):
 			self.type = self.DATE
 		elif type == "AsLength":
 			self.type = self.AS_LENGTH
-		elif type == "Timestamp":	
+		elif type == "Timestamp":
 			self.type = self.TIMESTAMP
 		elif str(type).find("Format") != -1:
 			self.type = self.FORMAT
@@ -47,13 +47,13 @@ class EMCClockToText(Converter, object):
 			return "%d:%02d" % (time / 60, time % 60)
 		elif self.type == self.TIMESTAMP:
 			return str(time)
-		
-		if time > (31 * 24 * 60 * 60): 
+
+		if time > (31 * 24 * 60 * 60):
 		# No Recording should be longer than 1 month :-)
 			t = localtime(time)
 		else:
 			t = gmtime(time)
-		
+
 		if self.type == self.WITH_SECONDS:
 			return "%2d:%02d:%02d" % (t.tm_hour, t.tm_min, t.tm_sec)
 		elif self.type == self.DEFAULT:
@@ -65,7 +65,7 @@ class EMCClockToText(Converter, object):
 				t2 = ["Montag","Dienstag","Mittwoch","Donnerstag","Freitag","Samstag","Sonntag"][t.tm_wday]
 				m2 = ["Januar","Februar",u"M\xe4rz","April","Mai","Juni","Juli","August","September","Oktober","November","Dezember"][t.tm_mon - 1]
 				CoolString = CoolString.replace('%A', t2)
-				CoolString = CoolString.replace('%B', m2)				
+				CoolString = CoolString.replace('%B', m2)
 			return strftime(CoolString, t)
 		elif self.type == self.FORMAT:
 			pos = self.fmt_string.find('%')

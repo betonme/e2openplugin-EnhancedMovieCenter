@@ -26,12 +26,9 @@ from Components.config import *
 
 from __init__ import _
 
-
 global extRogue
 
-
 extRogue = frozenset([".ap", ".cuts", ".cutsr", ".meta", ".sc", ".eit", ".ts_mp.jpg", ".gm", "dvd.cuts"])
-
 
 class RogueFileCheck:
 	def __init__(self, path, avoid=""):

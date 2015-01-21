@@ -20,10 +20,8 @@
 #	<http://www.gnu.org/licenses/>.
 #
 
-
 from Components.Converter.ServicePosition import ServicePosition
 from Components.Element import cached
-
 
 class EMCRecordPosition(ServicePosition):
 	def __init__(self, type):

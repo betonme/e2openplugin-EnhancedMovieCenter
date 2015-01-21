@@ -62,7 +62,6 @@ import NavigationInstance
 
 dvdPlayerPlg = "%s%s"%(resolveFilename(SCOPE_PLUGINS), "Extensions/DVDPlayer/plugin.py")
 
-
 class EMCMoviePlayerSummary(Screen):
 	def __init__(self, session, parent):
 		Screen.__init__(self, session, parent)
@@ -71,7 +70,6 @@ class EMCMoviePlayerSummary(Screen):
 		else:
 			self.skinName = ["EMCMoviePlayerSummary"]
 		self["Service"] = EMCCurrentService(session.nav, parent)
-
 
 class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 

@@ -22,15 +22,13 @@
 from Components.Element import cached
 from Components.Sources.ServiceEvent import ServiceEvent
 
-
 class EMCServiceEvent(ServiceEvent):
 	def __init__(self, servicecenter):
 		ServiceEvent.__init__(self)
 		self.servicecenter = servicecenter
-	
+
 	@cached
 	def getInfo(self):
 		return self.service and self.servicecenter and self.servicecenter.info(self.service)
-	
-	info = property(getInfo)
 
+	info = property(getInfo)

@@ -24,7 +24,6 @@ from Components.Converter.Converter import Converter
 from Components.Converter.EventName import EventName
 from Components.Element import cached, ElementError
 
-
 class EMCEventName(EventName):
 	def __init__(self, type):
 		EventName.__init__(self, type)

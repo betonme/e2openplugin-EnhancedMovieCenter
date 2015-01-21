@@ -29,12 +29,11 @@ import NavigationInstance
 from EMCTasker import emcTasker, emcDebugOut
 from DelayedFunction import DelayedFunction
 
-
 def getRecording(filename):
 	try:
 		if filename[0] == "/": 			filename = os.path.basename(filename)
 		if filename.endswith(".ts"):	filename = filename[:-3]
-		
+
 		for timer in NavigationInstance.instance.RecordTimer.timer_list:
 			try: timer.Filename
 			except: timer.calculateFilename()
@@ -105,7 +104,7 @@ class RecordingsControl:
 			inform = False
 			try: timer.Filename
 			except: timer.calculateFilename()
-			
+
 			filename = os.path.basename(timer.Filename)
 			if timer.state == timer.StatePrepared:	pass
 			elif timer.state == timer.StateRunning:	# timer.isRunning()
@@ -142,7 +141,7 @@ class RecordingsControl:
 			NavigationInstance.instance.RecordTimer.cleanup()
 		except Exception, e:
 			emcDebugOut("[emcRC] timerCleanup exception:\n" + str(e))
-		
+
 	def isRecording(self, filename):
 		try:
 			if filename[0] == "/": 			filename = os.path.basename(filename)
@@ -181,9 +180,9 @@ class RecordingsControl:
 
 	def isCutting(self, filename):
 		try:
-			if filename.endswith("_.ts"):	
+			if filename.endswith("_.ts"):
 				if not os.path.exists(filename[:-2]+"eit"):
-					return True 
+					return True
 			return False
 		except Exception, e:
 			emcDebugOut("[emcRC] isCutting exception:\n" + str(e))

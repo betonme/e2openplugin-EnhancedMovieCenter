@@ -48,7 +48,7 @@
 		<convert type="EMCServicePosition">Gauge</convert> <!-- EMC Converter needed, to display markers on not *.ts files -->
 	</widget>
 	<!-- Infobar Cover -->
-	<widget name="Cover" position="50,256" size="100,150" zPosition="1" alphatest="on" />	
+	<widget name="Cover" position="50,256" size="100,150" zPosition="1" alphatest="on" />
 	<!-- Entire movie length -->
 	<widget source="Service" render="Label" position="462,492" size="100,22" font="Regular;22" halign="center" valign="center" backgroundColor="#00282828" transparent="1">
 		<convert type="EMCServicePosition">Length,ShowHours</convert>
@@ -61,7 +61,7 @@
 	<widget source="Service" render="Label" position="889,492" size="100,22" font="Regular;22" halign="left" valign="center" backgroundColor="#00282828" transparent="1">
 		<convert type="EMCServicePosition">Remaining,Negate,ShowHours</convert>
 	</widget>
-	<!-- Chapter Label only for DVD -->	
+	<!-- Chapter Label only for DVD -->
 	<widget name="chapterLabel" position="64,446" size="500,19" zPosition="1" halign="left" font="Regular;19"  backgroundColor="#00000000" transparent="1" />
 	<!-- Audio Label only for DVD -->
 	<widget name="audioLabel" position="859,446" size="105,19" zPosition="1" halign="right" font="Regular;19" backgroundColor="#00000000" transparent="1" />

@@ -28,7 +28,6 @@ from EMCTasker import emcTasker, emcDebugOut
 global CFG_FILE
 CFG_FILE = "/etc/enigma2/emc-bookmarks.cfg"
 
-
 class EMCBookmarks():
 	def __init__(self):
 		#TODO store local self.emcbookmarks = []

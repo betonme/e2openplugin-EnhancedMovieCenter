@@ -18,7 +18,7 @@
 	<!-- Cover Mini Tv -->
 	<widget name="CoverBg" position="40,385" size="195,147" zPosition="4" alphatest="off" transparent="0" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/cover_bg.png" />
 	<widget name="Cover" position="40,385" size="195,147" zPosition="5" alphatest="blend" />
-	<!-- EMC Movie List  -->	
+	<!-- EMC Movie List  -->
 	<widget name="list" position="40,43" size="645,289" zPosition="2" itemHeight="22" CoolFont="Regular;20" CoolSelectFont="Regular;20" CoolFolderSize="500" CoolMoviePos="92" CoolMovieSize="447" CoolTitleColor="0" CoolDateFont="Regular;20" CoolDatePos="541" CoolDateWidth="110" CoolDateColor="0" CoolHighlightColor="0" CoolBarPos="30" CoolBarHPos="6" CoolBarSize="55,14" CoolBarSizeSa="55,14" CoolProgressPos="1000" DefaultColor="#FFFFFF" UnwatchedColor="#FFFFFF" WatchingColor="#3486F4" FinishedColor="#46D93A" RecordingColor="#9F1313" BackColorSel="#00000000" foregroundColorSelected="#ffffff" scrollbarMode="showNever" selectionPixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/Select700x22.png" backgroundColor="#00000000" transparent="1" />
 	<!-- EMC wait text  -->
 	<widget name="wait" position="40,348" size="640,27" zPosition="3" font="Regular;25" foregroundColor="#00bab329" backgroundColor="#00000000" halign="center" valign="center" transparent="1" />
@@ -53,7 +53,7 @@
 			<convert type="EMCMovieInfo">FileSize</convert>
 	</widget>
 	<!-- File Name -->
-	<!-- 
+	<!--
 		<widget source="Service" render="Label" position="0,420" size="720,22" font="Regular;22" foregroundColor="#00bab329" backgroundColor="#18080911" halign="center" noWrap="1" transparent="1">
 			<convert type="EMCEventName">Name</convert>
 		</widget>

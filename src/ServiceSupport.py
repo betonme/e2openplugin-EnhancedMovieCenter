@@ -40,18 +40,17 @@ class ServiceCenter:
 		global instance
 		instance = eServiceCenter.getInstance()
 		instance.info = self.info
-		
+
 	@staticmethod
 	def getInstance():
 		global instance
 		if instance is None:
 			ServiceCenter()
 		return instance
-	
+
 	#TODO avoid recreation of ServiceInfo if service is equal
 	def info(self, service):
 		return ServiceInfo(service)
-
 
 class ServiceInfo:
 	def __init__(self, service):
@@ -70,7 +69,7 @@ class ServiceInfo:
 	def getLength(self, service):
 		#self.newService(service)
 		return self.info and self.info.getLength(service) or 0
-	
+
 	def getInfoString(self, service, type):
 		#self.newService(service)
 		if type == iServiceInformation.sServiceref:
@@ -87,17 +86,17 @@ class ServiceInfo:
 			# Return time in seconds
 			return self.info and self.info.getMTime() or 0
 		return None
-	
+
 	def getInfoObject(self, service, type):
 		#self.newService(service)
 		if type == iServiceInformation.sFileSize:
 			return self.info and self.info.getSize() or None
 		return None
-	
+
 	def getName(self, service):
 		#self.newService(service)
 		return self.info and self.info.getName() or ""
-	
+
 	def getEvent(self, service):
 		#self.newService(service)
 		return self.info
@@ -105,11 +104,11 @@ class ServiceInfo:
 
 class Info:
 	def __init__(self, service):
-		
+
 		self.__name = service and service.getName() or ""
-		
+
 		self.path = path = service and service.getPath()
-		
+
 		#self.isLink = os.path.islink(path)
 		self.isfile = os.path.isfile(path)
 		isreal = os.path.isdir(path)
@@ -130,38 +129,38 @@ class Info:
 
 		# Information which we need later
 		self.__cutlist = path and CutList(path) or []		#TODO dynamic or not
-		
+
 		self.__size = self.isfile and os.stat(path).st_size \
 								or self.isdir and config.EMC.directories_info.value and self.getFolderSize(path) \
 								or None
 								#TODO or isdvd
-		
+
 		self.__mtime = self.isfile and hasattr(service, "date") and mktime(service.date.timetuple()) or None #long(os.stat(path).st_mtime) or 0
 									#TODO show same time as list
 									#TODO or isdir but show only start date
-		
+
 		self.__reference = service or ""
 		self.__rec_ref_str = meta and meta.getMetaServiceReference() or ""
-		
+
 		#TODO dynamic or not
 		self.__shortdescription = meta and meta.getMetaDescription() \
 													or eit and eit.getEitShortDescription() \
 													or self.__name
 		self.__tags = meta and meta.getMetaTags() or ""
-		
+
 		self.__eventname = meta and meta.getMetaName() \
 											or eit and eit.getEitName() \
 											or self.__name
-		
+
 		#TODO dynamic or not
 		#
 		#self.__extendeddescription = meta and meta.getMetaDescription() \
 		#															or eit and eit.getEitDescription() \
 		#															or ""
-		## meta file has no extendeddescrition 
+		## meta file has no extendeddescrition
 #		self.__extendeddescription = eit and eit.getEitDescription() \
 #																	or meta and meta.getMetaDescription() \
-#																	or "" 
+#																	or ""
 
 		#Show txt-Information in ExtendedDescription if meta but no eit
 		self.__extendeddescription = eit and eit.getEitDescription() \
@@ -185,7 +184,7 @@ class Info:
 					desc = os.path.realpath(path)
 				else:
 					desc = path
-				
+
 				# Very bad but there can be both encodings
 				# E2 recordings are always in utf8
 				# User files can be in cp1252
@@ -203,40 +202,40 @@ class Info:
 				self.__extendeddescription = ""
 
 		self.__id = 0
-		
+
 		#TODO move upto ServiceInfo
 		service.cueSheet = self.cueSheet
 
 	def cueSheet(self):
 		return self.__cutlist
-	
+
 	def getName(self):
 		#EventName NAME
 		return self.__name
-	
+
 	def getServiceReference(self):
 		return self.__rec_ref_str
-	
+
 	#def getServiceName(self):
 	#	#MovieInfo MOVIE_REC_SERVICE_NAME
 	#	return ServiceReference(self.__reference).getServiceName() or ""
-	
+
 	def getTags(self):
 		return self.__tags
-	
+
 	def getEventName(self):
 		return self.__eventname
-	
+
 	def getShortDescription(self):
 		#MovieInfo MOVIE_META_DESCRIPTION
 		#MovieInfo SHORT_DESCRIPTION
 		#EventName SHORT_DESCRIPTION
 		return self.__shortdescription
-	
+
 	def getExtendedDescription(self):
 		#EventName EXTENDED_DESCRIPTION
 		return self.__extendeddescription
-	
+
 	def getEventId(self):
 		#EventName ID
 		return self.__id
@@ -253,16 +252,16 @@ class Info:
 
 	def getMTime(self):
 		return self.__mtime
-	
+
 	def getSize(self):
 		return self.__size
-	
+
 	def getLength(self, service=None):
 		#TODO read from meta eit
 		#E2 will read / calculate it directly from ts file
 		# Should stay dynamic if it is a copy or move
 		#self.newService(service)
-		
+
 		# If it is a record we will force to use the timer duration
 		length = 0
 		if config.EMC.record_show_real_length.value:
@@ -281,17 +280,17 @@ class Info:
 		if length <= 0:
 			length = self.__cutlist and self.__cutlist.getCutListLength()
 		return length or 0
-	
+
 	def getBeginTime(self):
 		return self.getMTime()
-	
+
 	def getDuration(self):
 		return self.getLength()
-	
+
 	def getFolderSize(self, loadPath):
 		folder_size = 0
 		for (path, dirs, files) in os.walk(loadPath):
-			for file in files:    
+			for file in files:
 				filename = os.path.join(path, file)
 				if os.path.exists(filename):
 					#TODO maybe use os.stat like in movieselection updateinfo

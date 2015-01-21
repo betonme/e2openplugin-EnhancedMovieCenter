@@ -45,7 +45,6 @@ from RogueFileCheck import RogueFileCheck
 from MovieCenter import extTS
 global extTS
 
-
 class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 	skin = """
 	<screen name="EMCMenu" position="center,center" size="600,480" title="EMC menu">

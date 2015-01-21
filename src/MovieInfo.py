@@ -56,7 +56,7 @@ class DownloadMovieInfo(Screen):
 #		(moviepath,ext) = os.path.splitext(service.getPath())  #do we need this line ?
 
 		self.moviename = getMovieNameWithoutExt(moviename)
-		moviename = getMovieNameWithoutPhrases(self.moviename) 
+		moviename = getMovieNameWithoutPhrases(self.moviename)
 
 		self["movie_name"] = Label(_("Search results for:") + "   " + moviename)
 		self["setup"] = Label(_("Setup"))
@@ -130,7 +130,7 @@ class DownloadMovieInfo(Screen):
 				genres = (_("Genre:") + " " + genres.encode('utf-8') + "\n")
 			else:
 				genres = ""
-			
+
 			if config.EMC.movieinfo.ldcountries.value  == '1':
 				countrylist = response["production_countries"]
 				countries  = ""
@@ -204,7 +204,7 @@ class MovieInfoSetup(Screen, ConfigListScreen):
 		<ePixmap name="red" pixmap="skin_default/buttons/red.png" position="0,390" size="140,40" zPosition="4" transparent="1" alphatest="on"/>
 		<ePixmap name="green" pixmap="skin_default/buttons/green.png" position="140,390" size="140,40" zPosition="4" transparent="1" alphatest="on"/>
 	</screen>"""
-	
+
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		#self.session = session
@@ -241,7 +241,7 @@ class MovieInfoSetup(Screen, ConfigListScreen):
 			x[1].save()
 		configfile.save()
 		self.close(True)
-		
+
 	def red(self):
 		for x in self["config"].list:
 			x[1].cancel()

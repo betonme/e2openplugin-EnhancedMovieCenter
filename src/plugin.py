@@ -40,7 +40,6 @@ from __init__ import _, language
 from EMCTasker import emcTasker, emcDebugOut
 import copy
 
-
 class ConfigTextWOHelp(ConfigText):
 	def __init__(self, default = "", fixed_size = True, visible_width = False):
 		ConfigText.__init__(self, default, fixed_size, visible_width)
@@ -88,7 +87,7 @@ class ConfirmBox(MessageBox):
 	def __init__(self, session, text, key1, key2, type):
 		MessageBox.__init__(self, session, text=text, type=type, enable_input=False)
 		self.skinName = "MessageBox"
-		self["actions"] = ActionMap(["OkCancelActions","ColorActions"], 
+		self["actions"] = ActionMap(["OkCancelActions","ColorActions"],
 			{
 				"ok": self.cancel,
 				"cancel": self.cancel,
@@ -96,7 +95,7 @@ class ConfirmBox(MessageBox):
 				key2: self.secondAction,
 			}, -1)
 		self.firstKey = False
-		eActionMap.getInstance().bindAction('', 0x7FFFFFFF, self.action) 
+		eActionMap.getInstance().bindAction('', 0x7FFFFFFF, self.action)
 
 	def firstAction(self):
 		self.firstKey = True
@@ -241,7 +240,7 @@ sort_modes =	{		("D-")	:	( _("Date sort descending (D-)"),		("D",False),	_("Date
 									# If you add a new sort order, you have to think about
 									#  Order false has to be the preferred state
 									#  Both order possibilities should be in the list
-									# Following functions are invoved, but they are all implemented dynamically 
+									# Following functions are invoved, but they are all implemented dynamically
 									#  MovieCenter.reload -> Add new parameter if necessary
 									#   Don't worry about buildMovieCenterEntry(*args):
 									#  MovieSelection.initButtons -> Set next button text
@@ -411,7 +410,7 @@ def autostart(reason, **kwargs):
 			gSession = kwargs["session"]
 			EMCStartup(gSession)
 			emcTasker.Initialize(gSession)
-			
+
 			if not config.EMC.ml_disable.value:
 				try:
 					from Screens.InfoBar import InfoBar
@@ -423,7 +422,7 @@ def autostart(reason, **kwargs):
 					elif value == "timeshiftStart":		InfoBar.startTimeshift = showMoviesNew
 				except Exception, e:
 					emcDebugOut("[spStartup] MovieCenter launch override exception:\n" + str(e))
-				
+
 				#try:
 				#	from MovieSelection import EMCSelection
 				#	gSession.openWithCallback(showMoviesCallback, EMCSelection)
@@ -444,9 +443,9 @@ def recordingsOpen(session, *args, **kwargs):
 def Plugins(**kwargs):
 	from EnhancedMovieCenter import EMCVersion
 	descriptors = []
-	
+
 	descriptors.append( PluginDescriptor(where = PluginDescriptor.WHERE_SESSIONSTART, fnc = autostart) )
-	
+
 	show_p = [ PluginDescriptor.WHERE_PLUGINMENU ]
 	if config.EMC.extmenu_plugin.value:
 		show_p.append( PluginDescriptor.WHERE_EXTENSIONSMENU )

@@ -43,7 +43,6 @@ from MovieCenter import sidDVD, sidDVB
 
 SeekbarPlg = "%s%s"%(resolveFilename(SCOPE_PLUGINS), "Extensions/Seekbar/plugin.py")
 
-
 # Overwrite Seekbar
 def EMCkeyOK(self):
 	sel = self["config"].getCurrent()[1]
@@ -101,7 +100,7 @@ class InfoBarSupport(	InfoBarBase, \
 				#InfoBarCueSheetSupport
 				#InfoBarMoviePlayerSummarySupport
 			x.__init__(self)
-			
+
 		# Initialize InfoBarCueSheetSupport because we cannot override __serviceStarted
 		#def __init__(self, actionmap = "InfobarCueSheetActions"):
 		actionmap = "InfobarCueSheetActions"
@@ -111,11 +110,11 @@ class InfoBarSupport(	InfoBarBase, \
 				"jumpNextMark": (self.jumpNextMark, _("jump to next marked position")),
 				"toggleMark": (self.toggleMark, _("toggle a cut mark at the current position"))
 			}, prio=1)
-			
+
 		self.cut_list = [ ]
 		self.is_closing = False
 		self.resume_point = 0
-		
+
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
 			{
 				iPlayableService.evStart: self.__serviceStarted,
@@ -123,26 +122,26 @@ class InfoBarSupport(	InfoBarBase, \
 
 	##############################################################################
 	## Override from InfoBarGenerics.py
-	
+
 	# InfoBarCueSheetSupport
 	def __serviceStarted(self):
 		if self.is_closing:
 			return
 		print "new service started! trying to download cuts!"
 		self.downloadCuesheet()
-		
+
 		# From Merlin2 InfoBarCueSheetSupport __serviceStarted
 		if config.usage.on_movie_start.value == "beginning" and config.EMC.movie_jump_first_mark.value == True:
 			self.jumpToFirstMark()
 			return
-		
+
 		if self.ENABLE_RESUME_SUPPORT:
 			last = None
-			
+
 			for (pts, what) in self.cut_list:
 				if what == self.CUT_TYPE_LAST:
 					last = pts
-					
+
 			if last is not None:
 				self.resume_point = last
 				l = last / 90000
@@ -157,7 +156,7 @@ class InfoBarSupport(	InfoBarBase, \
 				self.jumpToFirstMark()
 		elif config.EMC.movie_jump_first_mark.value == True:
 			self.jumpToFirstMark()
-	
+
 	def playLastCB(self, answer):
 		if answer == True:
 			self.doSeek(self.resume_point)
@@ -167,7 +166,7 @@ class InfoBarSupport(	InfoBarBase, \
 		elif self.service and self.service.type == sidDVD:
 			DelayedFunction(50, boundFunction(self.dvdPlayerWorkaround))
 		self.showAfterSeek()
-	
+
 	def numberEntered(self, retval):
 		if retval and retval > 0 and retval != "":
 			self.zapToNumber(retval)
@@ -177,7 +176,7 @@ class InfoBarSupport(	InfoBarBase, \
 			seekable = self.getSeek()
 			if seekable:
 				seekable.seekChapter(number)
-	
+
 	# From Merlin2
 	def jumpToFirstMark(self):
 		firstMark = None
@@ -187,11 +186,11 @@ class InfoBarSupport(	InfoBarBase, \
 		# EMC enhancement: increase recording margin to make sure we get the correct mark
 		margin = config.recording.margin_before.value*60*90000 *2 or 20*60*90000
 		middle = (self.getSeekLength() or 90*60*90000) / 2
-		
+
 		for (pts, what) in self.cut_list:
 			if what == self.CUT_TYPE_MARK:
 				if pts != None and ( current_pos < pts and pts < margin and pts < middle ):
-					if firstMark == None or pts < firstMark: 
+					if firstMark == None or pts < firstMark:
 						firstMark = pts
 		if firstMark is not None:
 			self.start_point = firstMark
@@ -281,12 +280,12 @@ class InfoBarSupport(	InfoBarBase, \
 		play = self.getSeekPlayPosition()
 		length = self.getSeekLength()
 		end = length and length - 2 * 90000
-		
+
 		# Validate play and end values
 		if play and end and play < end and 0 < end:
 			# InfoBarSeek
 			InfoBarSeek.doSeek(self, end)
-		
+
 		#TODO find a better solution
 		# If player is in pause mode do not call eof
 		if state != self.SEEK_STATE_PAUSE:

@@ -58,7 +58,6 @@ global vlcSrv, vlcDir, vlcFil
 global plyDVB, plyM2TS, plyDVD, plyMP3, plyVLC, plyAll
 global sidDVB, sidDVD, sidMP3
 
-
 # Set definitions
 
 # Media types

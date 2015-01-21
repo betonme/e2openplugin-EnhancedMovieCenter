@@ -29,7 +29,7 @@
 	<widget source="Service" render="EMCPositionGauge" position="216,613" size="828,16" zPosition="4" transparent="1" >
 		<convert type="EMCServicePosition">Gauge</convert>
 	</widget>
-	
+
 	<widget source="Service" render="Label" position="230,637" size="100,30" font="Regular;22" halign="left" backgroundColor="#00000000" transparent="1">
 		<convert type="EMCServicePosition">Position,ShowHours</convert>
 	</widget>
@@ -43,7 +43,7 @@
 	<!-- <widget name="Cover" position="50,320" size="230,230" zPosition="1" alphatest="on" /> -->
 	<widget name="Cover" position="50,400" size="120,150" zPosition="1" alphatest="on" />
 	<!-- <widget name="Cover" position="50,593" size="71,71" zPosition="1" alphatest="on" /> -->
-	
+
 	<ePixmap position="50,677" size="40,20" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/EMCMoviePlayer/format_off.png"  zPosition="1" alphatest="blend" />
 	<widget source="session.CurrentService" render="Pixmap" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/EMCMoviePlayer/format_on.png" position="50,677" size="40,20" zPosition="2" alphatest="blend">
 		<convert type="ServiceInfo">IsWidescreen</convert>
@@ -55,8 +55,8 @@
 		<convert type="ServiceInfo">VideoWidth</convert>
 		<convert type="ValueRange">721,1980</convert>
 		<convert type="ConditionalShowHide"/>
-	</widget>	
-	
+	</widget>
+
 	<ePixmap position="180,680" size="26,16" pixmap="skin_default/icons/icon_dolby.png" zPosition="3" alphatest="on" />
 	<widget name="audioLabel" position="210,677" size="100,22" font="Regular;18" backgroundColor="#00000000" zPosition="3" transparent="1" />
 

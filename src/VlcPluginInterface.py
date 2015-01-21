@@ -73,7 +73,6 @@ except:
 	DEFAULT_VIDEO_PID = 0x44
 	DEFAULT_AUDIO_PID = 0x45
 
-
 class VlcFileListWrapper:
 	def __init__(self):
 		pass
@@ -81,7 +80,6 @@ class VlcFileListWrapper:
 		return None, None
 	def getPrevFile(self):
 		return None, None
-
 
 class VlcPluginInterfaceSel():
 	def __init__(self):
@@ -103,7 +101,6 @@ class VlcPluginInterfaceSel():
 				self.close()
 		except Exception, e:
 			emcDebugOut("[EMC_VLC] vlcMovieSelected exception:\n" + str(e))
-
 
 class VlcPluginInterfaceList():
 	def __init__(self):
@@ -139,7 +136,7 @@ class VlcPluginInterfaceList():
 		self.vlcServer = None
 		if self.vlcServers:
 			for srv in self.vlcServers:
-				if srv.getName() == serverName: 
+				if srv.getName() == serverName:
 					emcDebugOut("[EMC_VLC] srv = " + str(srv))
 					server = srv	# find the server
 		if server is not None:
@@ -153,7 +150,7 @@ class VlcPluginInterfaceList():
 				path = os.path.join(baseDir, vlcPath)
 				# Load path
 				emcDebugOut("[EMC_VLC] path = " + path)
-				try: 
+				try:
 					(vlcFiles, vlcDirs) = server.getFilesAndDirs(path, None)
 				except URLError:
 					self.session.open(MessageBox, _("VLC Server not reachable"), MessageBox.TYPE_ERROR)
@@ -177,5 +174,5 @@ class VlcPluginInterfaceList():
 							emcDebugOut("[EMC_VLC] file = " + str(name))
 			except Exception, e:
 				emcDebugOut("[EMC_VLC] reloadVlcFilelist exception:\n" + str(e))
-		
+
 		return vlcdirlist, vlcfilelist

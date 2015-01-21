@@ -28,7 +28,6 @@ from collections import Callable, deque
 from pipes import quote
 from itertools import izip_longest
 
-
 def emcDebugOut(outtxt, outfile=None, fmode="aw", forced=False):
 	try:	# fails if called too early during Enigma startup
 		if config.EMC.debug.value or forced:
@@ -291,6 +290,5 @@ class EMCTasker:
 					self.timerActive = True
 		except Exception, e:
 			emcDebugOut("[emcTasker] RestartTimerStart exception:\n" + str(e))
-
 
 emcTasker = EMCTasker()

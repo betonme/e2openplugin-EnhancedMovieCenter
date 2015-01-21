@@ -28,14 +28,12 @@ from EMCTasker import emcDebugOut
 
 from Components.config import *
 
-
 global CFG_FILE
 CFG_FILE = "/etc/enigma2/emc-permsort.cfg"
 
-
 # PermanentSort class
 class PermanentSort():
-	
+
 	def __init__(self, path=None):
 		self.__permanentSort = defaultdict(list)
 		self.__permanentSort.update( self.__readPermanentSortCfgFile() )
@@ -82,7 +80,7 @@ class PermanentSort():
 		data = {}
 		if os.path.exists(CFG_FILE):
 			f = None
-			
+
 			# Read from file
 			try:
 				f = open(CFG_FILE, "rb")
@@ -92,7 +90,7 @@ class PermanentSort():
 			finally:
 				if f is not None:
 					f.close()
-			
+
 			# Parse the data
 			try:
 				for key, value in data.items():
@@ -103,9 +101,9 @@ class PermanentSort():
 						data[key] = (value, sort_modes.get( config.EMC.moviecenter_sort.value )[1][1])
 			except Exception, e:
 				emcDebugOut("[EMC] Exception in readPermanentSortCfgFile Parse: " + str(e))
-			
+
 		return data
-	
+
 	def __writePermanentSortCfgFile(self, data):
 		f = None
 		try:

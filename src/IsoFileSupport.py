@@ -24,14 +24,13 @@ import os
 
 from EMCTasker import emcDebugOut
 
-
 class IsoSupport():
 
 	def __init__(self, path=None):
 		self.iso_file = None
 		self.iso_mtime = 0
 		self.iso_name = ""
-					
+
 		self.__newPath(path)
 		#TODO Temporary deactivated because of massive performance issues
 		#self.__readISOFile()
@@ -70,13 +69,13 @@ class IsoSupport():
 				if self.iso_mtime == mtime:
 					# File has not changed
 					pass
-					
+
 				else:
 					#print "EMC TEST count Eit " + str(path)
-					
+
 					# New path or file has changed
 					self.iso_mtime = mtime
-					
+
 					# Read data from file
 					f = None
 					try:
@@ -90,14 +89,13 @@ class IsoSupport():
 					finally:
 						if f is not None:
 							f.close()
-							
+
 					# Parse the name
 					self.iso_name = name.split('\0')[0]
-					
+
 			else:
 				# No path or no file clear all
 				self.iso_name = ""
-						
+
 		except Exception, e:
 			emcDebugOut("[META] Exception in readMetaFile: " + str(e))
-	

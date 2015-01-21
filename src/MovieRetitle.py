@@ -16,7 +16,6 @@ from enigma import eServiceReference, iServiceInformation, getDesktop, ePoint
 # Plugin internal
 from ServiceSupport import ServiceCenter
 
-
 class MovieRetitle(Screen, ConfigListScreen):
 	def __init__(self, session, services):
 		Screen.__init__(self, session)
@@ -24,11 +23,11 @@ class MovieRetitle(Screen, ConfigListScreen):
 		self.skinName = ["MovieRetitle", "Setup"]
 		self.list = [ ]
 		ConfigListScreen.__init__(self, self.list, session)
-		
+
 		self["Path"] = Label(_("Location:"))# + ' ' + os.path.dirname(os.path.splitext(path)[0]))
 		self["HelpWindow"] = Pixmap()
 		self.onLayoutFinish.append(self.setCustomTitle)
-		
+
 		self["key_green"] = StaticText(_("Save"))
 		self["key_red"] = StaticText(_("Cancel"))
 		self["actions"] = ActionMap(["SetupActions"],
@@ -37,7 +36,7 @@ class MovieRetitle(Screen, ConfigListScreen):
 			"save": self.keyGo,
 			"cancel": self.keyCancel,
 		}, -2)
-		
+
 		self["VirtualKB"] = ActionMap(["VirtualKeyboardActions"],
 		{
 			"showVirtualKeyboard": self.KeyText,
@@ -46,14 +45,14 @@ class MovieRetitle(Screen, ConfigListScreen):
 		self["HelpWindow"] = Pixmap()
 		self["VKeyIcon"] = Pixmap()
 		self["VKeyIcon"].hide()
-		
+
 		self.serviceHandler = ServiceCenter.getInstance()
-		
+
 		if isinstance(services, list):
 			self.services = services
 		else:
 			self.services = [services]
-		
+
 		self.buildSetup(self.services.pop())
 
 	def buildSetup(self, service):
@@ -93,7 +92,7 @@ class MovieRetitle(Screen, ConfigListScreen):
 				if self.has_key("HelpWindow"):
 					if self["config"].getCurrent()[1].help_window.instance is not None:
 						helpwindowpos = self["HelpWindow"].getPosition()
-						
+
 						if helpwindowpos:
 							helpwindowposx, helpwindowposy = helpwindowpos
 							if helpwindowposx and helpwindowposy:
@@ -132,7 +131,7 @@ class MovieRetitle(Screen, ConfigListScreen):
 			self.buildSetup(service)
 		else:
 			self.close()
-	
+
 	def keyCancel(self):
 		self.close()
 
@@ -142,7 +141,7 @@ class MovieRetitle(Screen, ConfigListScreen):
 			meta_file = service.getPath() + ".meta"
 		else:
 			meta_file = service.getPath() + ".ts.meta"
-		
+
 		# Create new meta for ts files
 		if not os.path.exists(meta_file):
 			if os.path.isfile(service.getPath()):

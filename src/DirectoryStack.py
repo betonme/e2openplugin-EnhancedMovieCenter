@@ -26,10 +26,9 @@ from collections import deque
 
 from EMCTasker import emcDebugOut
 
-
 # DirectoryStack class
 class DirectoryStack():
-	
+
 	def __init__(self):
 		self.__stackForward = deque()
 		self.__stackBackward = deque( maxlen = 10 )

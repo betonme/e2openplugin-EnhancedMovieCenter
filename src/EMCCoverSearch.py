@@ -68,7 +68,7 @@ class imdblist(MenuList):
 
 def imdb_show(title, pp, elapsed, genre, search_title):
 	res = [ (title, pp, elapsed, genre, search_title) ]
-	s1=_("Exist") + "|" + _("N/A")
+	s1=_("Exist") + "|" + "N/A"
 	if not re.match('.*?(' + s1 + ')', elapsed):
 		elapsed = "%s ms." % elapsed
 	res.append(MultiContentEntryText(pos=(0, 0), size=(650, 24), font=4, text=search_title, flags=RT_HALIGN_LEFT))
@@ -204,14 +204,14 @@ class EMCImdbScan(Screen):
 				self.menulist.append(imdb_show(title, path, _("Exist"), "", title))
 			else:
 				count_na += 1
-				self.menulist.append(imdb_show(title, path, _("N/A"), "", title))
+				self.menulist.append(imdb_show(title, path, "N/A", "", title))
 
 		if self.menulist:
 			self["menulist"].l.setList(self.menulist)
 			self["menulist"].l.setItemHeight(28)
 			self.check = True
 			self.showInfo()
-			self["done_msg"].setText((_("Total") + ": %s - " + _("Exist") + ": %s - " + _("N/A") + ": %s") % (self.count_movies, count_existing, count_na))
+			self["done_msg"].setText((_("Total") + ": %s - " + _("Exist") + ": %s - " + "N/A" + ": %s") % (self.count_movies, count_existing, count_na))
 
 	def setShowSearchSiteName(self):
 		if config.EMC.imdb.search.value == "0":
@@ -338,7 +338,7 @@ class EMCImdbScan(Screen):
 					downloadPage(purl, cover_path).addErrback(self.dataError)
 			else:
 				self.counter_no_poster += 1
-				self.menulist.append(imdb_show(title, cover_path, _("N/A"), "", title))
+				self.menulist.append(imdb_show(title, cover_path, "N/A", "", title))
 
 			# get description
 			if config.EMC.imdb.savetotxtfile.value:
@@ -368,7 +368,7 @@ class EMCImdbScan(Screen):
 						getPage(iurl, headers={'Content-Type':'application/x-www-form-urlencoded'}).addCallback(self.getInfos, id, type, cover_path).addErrback(self.dataError)
 			else:
 				self.counter_no_poster += 1
-				self.menulist.append(imdb_show(title, cover_path, _("N/A"), "", title))
+				self.menulist.append(imdb_show(title, cover_path, "N/A", "", title))
 
 		self.count = ("%s: %s " + _("from") + " %s") % (self.showSearchSiteName, self.counting, self.count_total)
 		self["info"].setText(self.count)
