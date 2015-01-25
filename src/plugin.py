@@ -335,12 +335,20 @@ config.EMC.symlinks_show             = ConfigYesNo(default = True)
 config.EMC.directories_ontop         = ConfigYesNo(default = False)
 config.EMC.cfgtopdir_enable          = ConfigYesNo(default = False)
 config.EMC.directories_info          = ConfigSelection(default = "", choices = dirinfo_choices)
+config.EMC.count_size_start_cache    = ConfigYesNo(default = False)
 nget = False    # this is needed for vti-image at the moment
 try:
 	ngettext("%d second", "%d seconds", 30)
 	nget = True
 except Exception, e:
 	print "[EMC] ngettext failed:", e
+delayminlist = []
+for i in range(1, 60):
+	if nget:
+		delayminlist.append(("%d" % i, ngettext("%d minute", "%d minutes", i) % i))
+	else:
+		delayminlist.append(("%d" % i))
+config.EMC.count_size_start_delay    = ConfigSelection(default = "0", choices = [("0", _("No"))] + delayminlist)
 delayseclist = []
 for i in range(1, 90):
 	if nget:
@@ -348,6 +356,10 @@ for i in range(1, 90):
 	else:
 		delayseclist.append(("%d" % i))
 config.EMC.count_size_delay          = ConfigSelection(default = "0", choices = [("0", _("No"))] + delayseclist)
+config.EMC.count_default_text        = ConfigTextWOHelp(default = " ( 0 ) ", fixed_size  = False, visible_width= 22)
+config.EMC.count_size_default_text   = ConfigTextWOHelp(default = " (0 / 0 GB) ", fixed_size  = False, visible_width= 22)
+config.EMC.size_default_text         = ConfigTextWOHelp(default = " ( 0 GB ) ", fixed_size  = False, visible_width= 22)
+config.EMC.count_size_default_icon   = ConfigYesNo(default = False)
 #config.EMC.symlinkdir_info           = ConfigYesNo(default = False)
 config.EMC.latest_recordings         = ConfigYesNo(default = True)
 config.EMC.mark_latest_files         = ConfigYesNo(default = True)
