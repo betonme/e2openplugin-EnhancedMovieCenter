@@ -90,6 +90,8 @@ class InfoBarSupport(	InfoBarBase, \
 											#InfoBarMoviePlayerSummarySupport
 
 	def __init__(self):
+		self.allowPiP = True         # both are needed here !
+		self.allowPiPSwap = False    # this is needed for vti-images
 
 		for x in	InfoBarShowHide, InfoBarMenu, \
 				InfoBarBase, InfoBarSeek, InfoBarShowMovies, \
@@ -115,8 +117,6 @@ class InfoBarSupport(	InfoBarBase, \
 			
 		self.cut_list = [ ]
 		self.is_closing = False
-		self.allowPiP = True
-		self.allowPiPSwap = False   # this is needed for vti-images
 		self.resume_point = 0
 		
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
