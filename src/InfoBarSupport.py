@@ -84,8 +84,9 @@ class InfoBarSupport(	InfoBarBase, \
 											InfoBarServiceErrorPopupSupport, \
 											InfoBarExtensions, \
 											InfoBarPlugins, \
-											InfoBarNumberZap ):
-											#InfoBarPiP
+											InfoBarNumberZap, \
+											InfoBarPiP, \
+											InfoBarEPG ):
 											#InfoBarMoviePlayerSummarySupport
 
 	def __init__(self):
@@ -96,8 +97,8 @@ class InfoBarSupport(	InfoBarBase, \
 				InfoBarServiceNotifications, InfoBarPVRState, \
 				InfoBarSubtitleSupport, \
 				InfoBarTeletextPlugin, InfoBarServiceErrorPopupSupport, InfoBarExtensions, InfoBarNotifications, \
-				InfoBarPlugins, InfoBarNumberZap:
-				#InfoBarPiP
+				InfoBarPlugins, InfoBarNumberZap, \
+				InfoBarPiP, InfoBarEPG:
 				#InfoBarCueSheetSupport
 				#InfoBarMoviePlayerSummarySupport
 			x.__init__(self)
@@ -114,6 +115,8 @@ class InfoBarSupport(	InfoBarBase, \
 			
 		self.cut_list = [ ]
 		self.is_closing = False
+		self.allowPiP = True
+		self.allowPiPSwap = False   # this is needed for vti-images
 		self.resume_point = 0
 		
 		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=

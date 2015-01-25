@@ -224,6 +224,9 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 		self.playall = playall
 		self.playcount = -1
 		self.service = None
+		self.allowPiP = True
+		self.allowPiPSwap = False			# this is needed for vti-image
+		self.servicelist = InfoBar.instance.servicelist
 
 		self.picload = ePicLoad()
 		try:
@@ -938,12 +941,27 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 		self.evEOF()
 
 	##############################################################################
-	## Oozoon image specific
+	## Oozoon image specific and make now the PiPzap possible
 	def up(self):
-		self.showMovies()
+		try:
+			if self.servicelist and self.servicelist.dopipzap:
+				if "keep" not in config.usage.servicelist_cursor_behavior.value:
+					self.servicelist.moveUp()
+				self.session.execDialog(self.servicelist)
+		except:
+			self.showMovies()
 
 	def down(self):
-		self.showMovies()
+		try:
+			if self.servicelist and self.servicelist.dopipzap:
+				if "keep" not in config.usage.servicelist_cursor_behavior.value:
+					self.servicelist.moveDown()
+				self.session.execDialog(self.servicelist)
+		except:
+			self.showMovies()
+
+	def swapPiP(self):     # this is needed for oe-images to deactivate the Pip-swapping in this first way
+		pass
 
 	##############################################################################
 	## LT image specific
