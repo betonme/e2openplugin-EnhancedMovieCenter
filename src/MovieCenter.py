@@ -371,6 +371,8 @@ def dirInfo(folder, bsize=False):
 							size += os.path.getsize(filename)
 	if size:
 		size /= (1024.0 * 1024.0 * 1024.0)
+#	if ext != cmtTrash:
+#		movieFileCache.addCountSizeToCache(folder, count, size)
 	return count, size
 
 def detectDVDStructure(checkPath):
@@ -869,6 +871,11 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 			subdirlist, filelist = self.__createDirList(path)
 			movieFileCache.addPathToCache(path, subdirlist, filelist)
 		return subdirlist, filelist
+
+	def createStartCountSizeList(self, path):
+		subdirlist = self.__createDirList(path)[0]
+		for x in subdirlist:
+			countsizeworker.Start(x[0], fstart=True)
 
 	def createLatestRecordingsList(self):
 		# Make currentPath more flexible

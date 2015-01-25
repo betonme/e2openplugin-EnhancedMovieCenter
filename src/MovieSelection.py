@@ -77,6 +77,18 @@ from MovieCenter import getMovieNameWithoutExt, getMovieNameWithoutPhrases
 global extList, extVideo, extMedia, extDir, plyAll, plyDVD, cmtBME2, cmtBMEMC, cmtDir
 
 
+# Get Count and Size-values at start to CacheList
+def startCountSizeCache():
+	try:
+		movie_homepath = os.path.join(config.EMC.movie_homepath.value)
+		global moviecenterdata
+		from MovieCenter import MovieCenterData, moviecenterdata
+		if moviecenterdata is None:
+			moviecenterdata = MovieCenterData()
+		moviecenterdata.createStartCountSizeList(movie_homepath)
+	except Exception, e:
+		emcDebugOut("[EMC] startCountSizeCache get failed !!!\n" + str(e))
+
 # Move all trashcan operations to a separate file / class
 def purgeExpired(emptyTrash=False):
 	try:

@@ -25,6 +25,25 @@ class EMCFileCache():
 	def __init__(self):
 		self.cacheDirectoryList = {}
 		self.cacheFileList = {}
+		self.cacheCountSizeList = {}
+
+	def addCountSizeToCache(self, path, count, size):
+#		print "EMC addCountSizeToCache", path
+		if self.cacheCountSizeList.has_key(path):
+			lastcount, lastsize = self.cacheCountSizeList[path]
+			if lastcount != count or lastsize != size:
+				del self.cacheCountSizeList[path]
+				self.cacheCountSizeList[path] = count, size
+		else:
+			self.cacheCountSizeList[path] = count, size
+#		print "EMC addCountSizeToCache", self.cacheCountSizeList
+
+	def getCountSizeFromCache(self, path):
+		if self.cacheCountSizeList.has_key(path):
+			return self.cacheCountSizeList[path]
+		else:
+			return None
+#		print "EMC getCountSizeFromCache", self.cacheCountSizeList
 
 	def addPathToCache(self, path, subdirlist, filelist):
 		print "EMC addPathToCache", path
