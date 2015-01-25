@@ -335,6 +335,19 @@ config.EMC.symlinks_show             = ConfigYesNo(default = True)
 config.EMC.directories_ontop         = ConfigYesNo(default = False)
 config.EMC.cfgtopdir_enable          = ConfigYesNo(default = False)
 config.EMC.directories_info          = ConfigSelection(default = "", choices = dirinfo_choices)
+nget = False    # this is needed for vti-image at the moment
+try:
+	ngettext("%d second", "%d seconds", 30)
+	nget = True
+except Exception, e:
+	print "[EMC] ngettext failed:", e
+delayseclist = []
+for i in range(1, 90):
+	if nget:
+		delayseclist.append(("%d" % i, ngettext("%d second", "%d seconds", i) % i))
+	else:
+		delayseclist.append(("%d" % i))
+config.EMC.count_size_delay          = ConfigSelection(default = "0", choices = [("0", _("No"))] + delayseclist)
 #config.EMC.symlinkdir_info           = ConfigYesNo(default = False)
 config.EMC.latest_recordings         = ConfigYesNo(default = True)
 config.EMC.mark_latest_files         = ConfigYesNo(default = True)
