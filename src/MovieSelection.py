@@ -764,49 +764,49 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 	def moveUp(self):
 		self.cursorDir = -1
 		self.coverAfterPreview()
-		self["list"].instance.moveSelection( self["list"].instance.moveUp )
+		self["list"].moveUp()
 		self.updateAfterKeyPress()
 
 	def moveDown(self):
 		self.cursorDir = 1
 		self.coverAfterPreview()
-		self["list"].instance.moveSelection( self["list"].instance.moveDown )
+		self["list"].moveDown()
 		self.updateAfterKeyPress()
 
 	def pageUp(self):
 		self.cursorDir = 0
 		self.coverAfterPreview()
-		self["list"].instance.moveSelection( self["list"].instance.pageUp )
+		self["list"].pageUp()
 		self.updateAfterKeyPress()
 
 	def pageDown(self):
 		self.cursorDir = 0
 		self.coverAfterPreview()
-		self["list"].instance.moveSelection( self["list"].instance.pageDown )
+		self["list"].pageDown()
 		self.updateAfterKeyPress()
 
 	def moveTop(self):
 		self.coverAfterPreview()
-		self["list"].instance.moveSelection( self["list"].instance.moveTop )
+		self["list"].moveTop()
 		self.updateAfterKeyPress()
 
 	def moveSkipUp(self):
 		self.coverAfterPreview()
 		self.cursorDir = -1
 		for _ in range(int(config.EMC.list_skip_size.value)):
-			self["list"].instance.moveSelection( self["list"].instance.moveUp )
+			self["list"].moveUp()
 		self.updateAfterKeyPress()
 
 	def moveSkipDown(self):
 		self.cursorDir = 1
 		self.coverAfterPreview()
 		for _ in range(int(config.EMC.list_skip_size.value)):
-			self["list"].instance.moveSelection( self["list"].instance.moveDown )
+			self["list"].moveDown()
 		self.updateAfterKeyPress()
 
 	def moveEnd(self):
 		self.coverAfterPreview()
-		self["list"].instance.moveSelection( self["list"].instance.moveEnd )
+		self["list"].moveEnd()
 		self.updateAfterKeyPress()
 
 	def multiSelect(self, index=-1):
@@ -971,7 +971,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			# Simulate a recursive reload to get all files and titles
 			# walk through entire tree below current path. Might take a bit long on huge disks...
 			selectedlist = self["list"].reload(self.currentPath, simulate=True, recursive=True)
-			filelist = [ (title , path ) for (service, sorttitle, date, title, path, selnum, length, ext, cutnr) in selectedlist ]
+			filelist = [ (title , path ) for (service, sorttitle, date, title, path, selnum, length, ext, cutnr, sorteventtitle, eventtitle, metaref, sortyear, sortmonth, sortday) in selectedlist ]
 
 		# Collect imdb data
 		self.session.open(EMCImdbScan, filelist)
