@@ -599,6 +599,76 @@ msgstr ""
 "Bei Verzeichnissen kann die Anzahl Aufnahmen, die eingenommene Datenmenge, "
 "oder beides zusammen eingeblendet werden."
 
+#: src/EnhancedMovieCenter.py:332
+msgid "Get Count and Size at start to cache"
+msgstr "Anzahl und Größe beim Start aus dem Cache lesen"
+
+#: src/EnhancedMovieCenter.py:332
+msgid "HELP_Get Count and Size at start to cache"
+msgstr ""
+"Hiermit werden bei Verzeichnissen die Anzahl der Filme, die\n"
+"eingenommene Datenmenge, oder beides zusammen aus dem Cache bestimmt."
+
+#: src/EnhancedMovieCenter.py:333
+msgid "Delay for Get Count and Size at start to cache"
+msgstr "Verzögerung für Anzahl und Größe beim Start aus dem Cache lesen"
+
+#: src/EnhancedMovieCenter.py:333
+msgid "HELP_Delay for Get Count and Size at start to cache"
+msgstr ""
+"Hier kann eine Verzögerungszeit angegeben werden bevor die Anzahl der Filme, die\n"
+"eingenommene Datenmenge, oder beides zusammen aus dem Cache gelesen und angezeigt wird."
+
+#: src/EnhancedMovieCenter.py:334
+msgid "Delay to get Count and Size in List"
+msgstr "Verzögerung für Anzahl und Größe in der Liste anzuzeigen"
+
+#: src/EnhancedMovieCenter.py:334
+msgid "HELP_Delay to get Count and Size in List"
+msgstr ""
+"Hier kann eine Verzögerungszeit angegeben werden bevor die Anzahl der Filme,\n"
+"die eingenommene Datenmenge, oder beides zusammen in der Liste angezeigt wird."
+
+#: src/EnhancedMovieCenter.py:335
+msgid "Text shown for initially unknown file count"
+msgstr "Dargestellter Text für anfangs unbekannte Datei Anzahl"
+
+#: src/EnhancedMovieCenter.py:335
+msgid "HELP_Text shown for initially unknown file count"
+msgstr ""
+"Hier kann bestimmt werden wie der Text bei Verzeichnissen aussehen soll\n"
+"der gezeigt wird wenn anfangs die Anzahl der Dateien unbekannt ist."
+
+#: src/EnhancedMovieCenter.py:336
+msgid "Text shown for initially unknown count and size"
+msgstr "Dargestellter Text für anfangs unbekannte Anzahl und Größe"
+
+#: src/EnhancedMovieCenter.py:336
+msgid "HELP_Text shown for initially unknown count and size"
+msgstr ""
+"Hier kann bestimmt werden wie der Text bei Verzeichnissen aussehen soll der\n"
+"gezeigt wird wenn anfangs die Anzahl, und die eingenommene Datenmenge unbekannt ist."
+
+#: src/EnhancedMovieCenter.py:337
+msgid "Text shown for initially unknown directory size"
+msgstr "Dargestellter Text für anfangs unbekannte Verzeichnis Größe"
+
+#: src/EnhancedMovieCenter.py:337
+msgid "HELP_Text shown for initially unknown directory size"
+msgstr ""
+"Hier kann bestimmt werden wie der Text bei Verzeichnissen aussehen soll\n"
+"der gezeigt wird wenn anfangs die eingenommene Datenmenge unbekannt ist."
+
+#: src/EnhancedMovieCenter.py:338
+msgid "Icon shown for initially unknown count / size"
+msgstr "Zeige Symbol bei anfangs unbekannter Anzahl und Größe"
+
+#: src/EnhancedMovieCenter.py:338
+msgid "HELP_Icon shown for initially unknown count / size"
+msgstr ""
+"Hier kann bestimmt werden ob ein Symbol bei Verzeichnissen gezeigt wird\n"
+"wenn anfangs die Anzahl, und/oder die eingenommene Datenmenge unbekannt ist."
+
 #: src/EnhancedMovieCenter.py:307
 msgid "Show directories within movielist"
 msgstr "Verzeichnisse innerhalb der Filmliste anzeigen"
@@ -700,18 +770,22 @@ msgstr "Suche nach Bluray-Strukturen"
 #: src/EnhancedMovieCenter.py:318
 msgid "HELP_Scan for bluray structures"
 msgstr ""
-"Hiermit kann die Suche nach DVD-Strukturen in Verzeichnissen generell "
+"Hiermit kann die Suche nach Bluray-Strukturen in Verzeichnissen generell "
 "unterbunden werden.\n"
 "Dies kann unbeabsichtiges Aufwecken von Festplatten oder Netzlaufwerken "
 "verhindern."
 
 #: src/EnhancedMovieCenter.py:319
 msgid "Scan for bluray structures in .iso"
-msgstr ""
+msgstr "Suche nach Bluray-Strukturen in .iso"
 
 #: src/EnhancedMovieCenter.py:319
 msgid "HELP_Scan for bluray structures in .iso"
 msgstr ""
+"Hiermit kann die Suche nach Bluray-Strukturen in .iso in Verzeichnissen generell "
+unterbunden werden.\n"
+"Dies kann unbeabsichtiges Aufwecken von Festplatten oder Netzlaufwerken "
+"verhindern."
 
 #: src/EnhancedMovieCenter.py:320
 msgid "Suppress scan in selected folders"
@@ -747,6 +821,16 @@ msgstr ""
 "Titel wird wenn vorhanden aus der .meta geladen.\n"
 "Ansonsten wird der Titel aus dem Dateinamen extrahiert.\n"
 "(Ist .meta und .eit aktiviert, wird erst die .meta gelesen.)"
+
+#: src/EnhancedMovieCenter.py:358
+msgid "Load all for non showing titles from .meta files"
+msgstr "Lade alles für nicht anzeigbare Titel aus den .meta Dateien"
+
+#: src/EnhancedMovieCenter.py:358
+msgid "HELP_Load all for non showing titles from .meta files"
+msgstr ""
+"Wenn kein Titel aus den .meta Dateien ausgelesen werden kann, lade\n"
+"alles verfügbare um den Titel doch noch erfolgreich anzeigen zu können."
 
 #: src/EnhancedMovieCenter.py:325
 msgid "Try to load titles from .eit files"
@@ -845,6 +929,38 @@ msgstr "Pfeil bei Symlinks anzeigen"
 #: src/EnhancedMovieCenter.py:338
 msgid "HELP_Show link arrow"
 msgstr "Pfeil bei Symlinks anzeigen."
+
+#: src/EnhancedMovieCenter.py:374
+msgid "Show movie picons"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:374
+msgid "HELP_Show movie picons"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:376
+msgid "Position movie picons"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:376
+msgid "HELP_Position movie picons"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:377
+msgid "Own Path to movie picons"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:377
+msgid "HELP_Own Path to movie picons"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:378
+msgid "Path to movie picons"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:378
+msgid "HELP_Path to movie picons"
+msgstr ""
 
 #: src/EnhancedMovieCenter.py:339
 msgid "Show movie progress"
