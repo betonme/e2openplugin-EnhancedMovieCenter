@@ -231,22 +231,28 @@ extra_support_lang_choices = [("No",	_("No")),
 
 #Think about using AZ or ("A",False) as dict key / permanent sort store value
 #TODO use an OrderedDict
-sort_modes =	{		("D-")	:	( _("Date sort descending (D-)"),		("D",False),	_("Date sort"),		),
-						("AZ")	:	( _("Alpha sort ascending (AZ)"),		("A",False),	_("Alpha sort"),	),
-						("P+")	:	( _("Progress sort ascending (P+)"),	("P",False),	_("Progress sort"),	),
-						("D+")	:	( _("Date sort ascending (D+)"),		("D",True),		_("Date sort"),		),
-						("ZA")	:	( _("Alpha sort descending (ZA)"),		("A",True),		_("Alpha sort"),	),
-						("P-")	:	( _("Progress sort descending (P-)"),	("P",True),		_("Progress sort"),	),
+sort_modes =	{		("D-")	  :	( _("Date sort descending (D-)"),		("D",False),		_("Date sort"),				),
+				("AZ")	  :	( _("Alpha sort ascending (AZ)"),		("A",False),	 	_("Alpha sort"),			),
+				("AZD-")  :	( _("Alpha sort ascending (AZD-)"),		("ADN",False),		_("Alpha sort date newest"),		),
+				("AZM")   :	( _("Alpha sort ascending with meta (AZM)"),	("AM",False), 	 	_("Alpha sort meta"),			),
+				("AZMD-") :	( _("Alpha sort ascending with meta (AZMD-)"),	("AMDN",False),		_("Alpha sort meta date newest"),	),
+				("P+")	  :	( _("Progress sort ascending (P+)"),		("P",False),		_("Progress sort"),			),
+				("D+")	  :	( _("Date sort ascending (D+)"),		("D",True),		_("Date sort"),				),
+				("ZA")	  :	( _("Alpha sort descending (ZA)"),		("A",True),		_("Alpha sort"),			),
+				("ZAD+")  :	( _("Alpha sort descending (ZAD+)"),		("ADN",True),		_("Alpha sort date newest"),		),
+				("ZAM")	  :	( _("Alpha sort descending with meta (ZAM)"),	("AM",True),		_("Alpha sort meta"),			),
+				("ZAMD+") :	( _("Alpha sort descending with meta (ZAMD+)"),	("AMDN",True),		_("Alpha sort meta date newest"),	),
+				("P-")	  :	( _("Progress sort descending (P-)"),		("P",True),		_("Progress sort"),			),
 				}
-									# If you add a new sort order, you have to think about
-									#  Order false has to be the preferred state
-									#  Both order possibilities should be in the list
-									# Following functions are invoved, but they are all implemented dynamically 
-									#  MovieCenter.reload -> Add new parameter if necessary
-									#   Don't worry about buildMovieCenterEntry(*args):
-									#  MovieSelection.initButtons -> Set next button text
-									#  Green short will go through all types: D A
-									#  Green long will only toggle the sort order: normal reverse
+				# If you add a new sort order, you have to think about
+				#  Order false has to be the preferred state
+				#  Both order possibilities should be in the list
+				# Following functions are invoved, but they are all implemented dynamically
+				#  MovieCenter.reload -> Add new parameter if necessary
+				#   Don't worry about buildMovieCenterEntry(*args):
+				#  MovieSelection.initButtons -> Set next button text
+				#  Green short will go through all types: D A
+				#  Green long will only toggle the sort order: normal reverse
 
 sort_choices = [ (k, v[0]) for k, v in sort_modes.items() ]
 
