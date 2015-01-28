@@ -783,7 +783,7 @@ msgstr "Suche nach Bluray-Strukturen in .iso"
 msgid "HELP_Scan for bluray structures in .iso"
 msgstr ""
 "Hiermit kann die Suche nach Bluray-Strukturen in .iso in Verzeichnissen generell "
-unterbunden werden.\n"
+"unterbunden werden.\n"
 "Dies kann unbeabsichtiges Aufwecken von Festplatten oder Netzlaufwerken "
 "verhindern."
 
