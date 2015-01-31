@@ -948,6 +948,8 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 				if "keep" not in config.usage.servicelist_cursor_behavior.value:
 					self.servicelist.moveUp()
 				self.session.execDialog(self.servicelist)
+			else:
+				self.showMovies()
 		except:
 			self.showMovies()
 
@@ -957,6 +959,8 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 				if "keep" not in config.usage.servicelist_cursor_behavior.value:
 					self.servicelist.moveDown()
 				self.session.execDialog(self.servicelist)
+			else:
+				self.showMovies()
 		except:
 			self.showMovies()
 
