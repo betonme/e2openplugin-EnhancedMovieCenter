@@ -1176,7 +1176,9 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		selectedlist = self["list"].makeSelectionList()[:]
 		if selectedlist:
 			for service in selectedlist:
-				self["list"].toggleSelection(service)
+				#self["list"].toggleSelection(service) # orig, let it and wait for tests from others
+				# unselect for reopen the list without the last corsor-pos is selected
+				self["list"].unselectService(service)
 
 	def toggleProgress(self, service=None):
 		if self.multiSelectIdx:
