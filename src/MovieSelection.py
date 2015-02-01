@@ -590,6 +590,10 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			self.coverTimer.stop()
 		if self.previewTimer.isActive():
 			self.previewTimer.stop()
+
+		# reset selected Files List, to reopen the list without the last selected
+		self.resetSelectionList()
+
 		self.close()
 
 	def redFunc(self):
@@ -2053,6 +2057,12 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 
 	def postFileOp(self):
 		self.tmpSelList = None
+
+		# reload list to get the new index, otherwise you can not select again after that
+		try:
+				self["list"].reload(self.currentPath)
+		except Exception, e:
+				print('[EMC] postFileOp - refreshList get failed!!!', str(e))
 
 	def moveMovie(self):
 		# Avoid starting move and copy at the same time
