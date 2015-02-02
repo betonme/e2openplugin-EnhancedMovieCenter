@@ -186,7 +186,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 				"seekFwd": (self.seekFwd, _("Seek forward")),
 				"seekBack": (self.seekBack, _("Seek backward")),
 				"movieInfo": (self.infoMovie, _("Movie information")),
-			}, 2) # lower priority
+			}) # default priority
 
 		self["MenuActions"].prio = 2
 		if "TeletextActions" in self:
