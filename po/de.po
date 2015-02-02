@@ -2153,6 +2153,10 @@ msgstr "Umbenennen ausgewählter Filme"
 msgid "Remove cut list marker"
 msgstr "Entferne Marker der aktuellen Aufnahme"
 
+#: src/MovieSelectionMenu.py:117
+msgid "Reset marker from selected movie(s)"
+msgstr "Entferne Marker ausgewählter Filme"
+
 #: src/MovieSelectionMenu.py:134
 msgid "Add directory to E2 Bookmarks"
 msgstr "Verz. zu E2-Lesezeichen hinzufügen"
@@ -2252,9 +2256,13 @@ msgstr ""
 "Verwaiste Dateien ermitteln und löschen ? (Wenn kein Papierkorb vorhanden "
 "wird sofort gelöscht, das kann etwas dauern)"
 
-#: src/MovieSelectionMenu.py:322
+#: src/MovieSelectionMenu.py:323
 msgid "Remove all cut file marker permanently?"
 msgstr "Entferne alle Filmmarker entgültig?"
+
+#: src/MovieSelectionMenu.py:337
+msgid "Remove all marker permanently?"
+msgstr "Entferne alle Marker entgültig?"
 
 #: src/MovieSelectionMenu.py:424
 msgid ""

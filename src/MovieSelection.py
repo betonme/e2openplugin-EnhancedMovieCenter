@@ -911,6 +911,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			elif selection == "del": self.deleteFile()
 			elif selection == "delete": self.deleteFile(True)
 			elif selection == "cutlistmarker": self.removeCutListMarker()
+			elif selection == "resMarker": self.resetMarker()
 			elif selection == "openE2Bookmarks": self.openE2Bookmarks()
 			elif selection == "removeE2Bookmark": self.deleteE2Bookmark(parameter)
 			elif selection == "openEMCBookmarks": self.openEMCBookmarks()
@@ -1680,6 +1681,9 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 				cuts.removeMarksCutList()
 				self["list"].unselectService(service)
 			emcDebugOut("[EMCMS] cut list marker removed permanently")
+
+	def resetMarker(self):
+		self.resetSelectionList()
 
 	def mountpoint(self, path, first=True):
 		if first: path = os.path.realpath(path)
