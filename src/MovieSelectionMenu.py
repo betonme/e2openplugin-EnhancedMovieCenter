@@ -114,6 +114,7 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 			if self.service or self.selections:
 				self.menu.append((_("Rename selected movie(s)"), boundFunction(self.renameMovies)))
 				self.menu.append((_("Remove cut list marker"), boundFunction(self.remCutListMarker)))
+				self.menu.append((_("Reset marker from selected movie(s)"), boundFunction(self.resMarker)))
 				show_plugins = True
 				if self.selections:
 					for service in self.selections:
@@ -327,6 +328,47 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 			self.close("cutlistmarker")
 		else:
 			self.close(None)
+
+	def resMarker(self):
+		self.hide()
+		self.session.openWithCallback(
+				self.resMarkerCB,
+				MessageBox,
+				_("Remove all marker permanently?"),
+				MessageBox.TYPE_YESNO )
+
+	def resMarkerCB(self, confirm):
+		if confirm:
+			try:
+				if self.selections:
+					for service in self.selections:
+						path = service.getPath() + ".cuts"
+						self.delMarker(path)
+					self.close("resMarker")
+				else:
+					if self.service:
+						path = self.service.getPath() + ".cuts"
+						self.delMarker(path)
+					self.close()
+			except:
+				self.close()
+		else:
+			self.close(None)
+
+	def delMarker(self, path):
+		f = open(path, 'rb')
+		cutlist = []
+		while 1:
+			data = f.read(cutsParser.size)
+			if len(data) < cutsParser.size:
+				break
+			cut, cutType = cutsParser.unpack(data)
+			if cutType != 3:
+				cutlist.append(data)
+		f.close()
+		f = open(path, 'wb')
+		f.write(''.join(cutlist))
+		f.close()
 
 	def renameMovies(self):
 		self.close("rename")
