@@ -2276,7 +2276,10 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 class IMDbEventViewSimple(EventViewSimple):
 	def __init__(self, session, Event, Ref, callback=None, similarEPGCB=None):
 		EventViewSimple.__init__(self, session, Event, Ref, callback, similarEPGCB)
-		self.skinName = "EventView"
+		try:
+			self.skinName = "EventViewSimple"
+		except:
+			self.skinName = "EventView"
 		if config.EMC.InfoLong.value == "IMDbSearch":
 			text_blue = _("IMDb")
 		elif config.EMC.InfoLong.value == "TMDBInfo":
