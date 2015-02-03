@@ -436,53 +436,53 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 
 		self["actions"] = HelpableActionMap(self, "PluginMovieSelectionActions",
 			{
-				"EMCOK":				(self.entrySelected,					_("Play selected movie(s)")),
-#				"EMCOKL":				(self.unUsed,									"-"),
-				"EMCPLAY":			(self.playAll,								_("Play All")),
-				"EMCSHUFFLE":		(self.shuffleAll,							_("Shuffle All")),
-				"EMCEXIT":			(self.abort, 									_("Close EMC")),
-				"EMCMENU":			(self.openMenu,								_("Open menu")),
-				"EMCINFO":			(self.showEventInformation,		_("Show event info")),
-				"EMCINFOL":			(self.CoolInfoLong,						_("IMDBSearch / TMDBInfo / CSFDInfo")),
+				"EMCOK":		(self.entrySelected,		_("Play selected movie(s)")),
+#				"EMCOKL":		(self.unUsed,			"-"),
+				"EMCPLAY":		(self.playAll,			_("Play All")),
+				"EMCSHUFFLE":		(self.shuffleAll,		_("Shuffle All")),
+				"EMCEXIT":		(self.abort,			_("Close EMC")),
+				"EMCMENU":		(self.openMenu,			_("Open menu")),
+				"EMCINFO":		(self.showEventInformation,	_("Show event info")),
+				"EMCINFOL":		(self.CoolInfoLong,		_("IMDBSearch / TMDBInfo / CSFDInfo")),
 
-				"EMCRed":				(self.redFunc,								helptext[0]), 							#redhelptext),
-				"EMCGREEN":			(self.greenFuncShort,					helptext[2]), 							#greenhelptext),
-				"EMCYELLOW":		(self.yellowFunc,							helptext[4]), 							#yellowhelptext),
-				"EMCBLUE":			(self.blueFunc,								helptext[6]), 							#bluehelptext),
+				"EMCRed":		(self.redFunc,			helptext[0]),			#redhelptext),
+				"EMCGREEN":		(self.greenFuncShort,		helptext[2]),			#greenhelptext),
+				"EMCYELLOW":		(self.yellowFunc,		helptext[4]),			#yellowhelptext),
+				"EMCBLUE":		(self.blueFunc,			helptext[6]),			#bluehelptext),
 
-				"EMCREDL":			(self.redFuncLong,						helptext[1]), 							#redlonghelptext),
-				"EMCGREENL":		(self.greenFuncLong,					helptext[3]), 							#greenlonghelptext),
-				"EMCYELLOWL":		(self.yellowFuncLong,					helptext[5]), 							#yellowlonghelptext),
-				"EMCBlueL":			(self.blueFuncLong,						helptext[7]), 							#bluelonghelptext),
-#				"EMCBlueL":			(self.openE2Bookmarks,				_("Open E2 bookmarks")),
-#				"EMCBlueL":			(self.openEMCBookmarks,				_("Open EMC bookmarks")),
+				"EMCREDL":		(self.redFuncLong,		helptext[1]),			#redlonghelptext),
+				"EMCGREENL":		(self.greenFuncLong,		helptext[3]),			#greenlonghelptext),
+				"EMCYELLOWL":		(self.yellowFuncLong,		helptext[5]), 			#yellowlonghelptext),
+				"EMCBlueL":		(self.blueFuncLong,		helptext[7]),			#bluelonghelptext),
+#				"EMCBlueL":		(self.openE2Bookmarks,		_("Open E2 bookmarks")),
+#				"EMCBlueL":		(self.openEMCBookmarks,		_("Open EMC bookmarks")),
 
-				"EMCLeft":			(self.pageUp,									_("Move cursor page up")),
-				"EMCRight":			(self.pageDown,								_("Move cursor page down")),
-				"EMCUp":				(self.moveUp,									_("Move cursor up")),
-				"EMCDown":			(self.moveDown,								_("Move cursor down")),
-				"EMCBqtPlus":		(self.bqtPlus,								_("Move cursor to the top / Move cursor x entries up / Switch Folders in Movie Home (up)")),
-				"EMCBqtMnus":		(self.bqtMnus,								_("Move cursor to the end / Move cursor x entries down / Switch Folders in Movie Home (down)")),
-				"EMCArrowNext":	(self.CoolForward,						_("Directory forward")),
-#				"EMCArrowNextL":	(self.unUsed,								"-"),
-				"EMCArrowPrevious":	(self.CoolBack,						_("Directory back")),
-#				"EMCArrowPreviousL":(self.directoryUp,				_("Directory up")),
-				"EMCVIDEOB":		(self.toggleSelectionList,		_("Toggle service selection")),
-				"EMCVIDEOL":		(self.resetSelectionList,			_("Remove service selection")),
-				"EMCAUDIO":			(self.openMenuPlugins,				_("Available plugins menu")),
-#				"EMCAUDIOL":		(self.unUsed,									"-"),
-				"EMCMENUL":			(self.openMenuPlugins,				_("Available plugins menu")),
-				"EMCTV":				(self.triggerReloadList,			_("Reload movie file list")),
-				"EMCTVL":				(self.CoolTimerList,					_("Open Timer List")),
-				"EMCRADIO":			(self.toggleProgress,					_("Toggle viewed / not viewed")),
-#				"EMCRADIOL":		(self.unUsed,									"-"),
-				"EMCTEXT":			(self.multiSelect,						_("Start / end multiselection")),
-#				"EMCTEXTL":			(self.unUsed,									"-"),
-				"0":						(self.CoolKey0,								"-"),
-				"4":						(self.CoolAVSwitch,						"-"),
-				"7":						(self.CoolTVGuide,						"-"),
-				"8":						(self.CoolSingleGuide,				"-"),
-				"9":						(self.CoolEasyGuide,					"-"),
+				"EMCLeft":		(self.pageUp,			_("Move cursor page up")),
+				"EMCRight":		(self.pageDown,			_("Move cursor page down")),
+				"EMCUp":		(self.moveUp,			_("Move cursor up")),
+				"EMCDown":		(self.moveDown,			_("Move cursor down")),
+				"EMCBqtPlus":		(self.bqtPlus,			_("Move cursor to the top / Move cursor x entries up / Switch Folders in Movie Home (up)")),
+				"EMCBqtMnus":		(self.bqtMnus,			_("Move cursor to the end / Move cursor x entries down / Switch Folders in Movie Home (down)")),
+				"EMCArrowNext":		(self.CoolForward,		_("Directory forward")),
+#				"EMCArrowNextL":	(self.unUsed,			"-"),
+				"EMCArrowPrevious":	(self.CoolBack,			_("Directory back")),
+#				"EMCArrowPreviousL":	(self.directoryUp,		_("Directory up")),
+				"EMCVIDEOB":		(self.toggleSelectionList,	_("Toggle service selection")),
+				"EMCVIDEOL":		(self.resetSelectionList,	_("Remove service selection")),
+				"EMCAUDIO":		(self.openMenuPlugins,		_("Available plugins menu")),
+#				"EMCAUDIOL":		(self.unUsed,			"-"),
+				"EMCMENUL":		(self.openMenuPlugins,		_("Available plugins menu")),
+				"EMCTV":		(self.triggerReloadList,	_("Reload movie file list")),
+				"EMCTVL":		(self.CoolTimerList,		_("Open Timer List")),
+				"EMCRADIO":		(self.toggleProgress,		_("Toggle viewed / not viewed")),
+#				"EMCRADIOL":		(self.unUsed,			"-"),
+				"EMCTEXT":		(self.multiSelect,		_("Start / end multiselection")),
+#				"EMCTEXTL":		(self.unUsed,			"-"),
+				"0":			(self.CoolKey0,			"-"),
+				"4":			(self.CoolAVSwitch,		"-"),
+				"7":			(self.CoolTVGuide,		"-"),
+				"8":			(self.CoolSingleGuide,		"-"),
+				"9":			(self.CoolEasyGuide,		"-"),
 			}, prio=-3)
 			# give them a little more priority to win over baseclass buttons
 		self["actions"].csel = self
@@ -1234,9 +1234,17 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		from ServiceReference import ServiceReference
 
 		# Get our customized event
-		evt = self["list"].getCurrentEvent()
-		if evt:
-			self.session.open(IMDbEventViewSimple, evt, ServiceReference(self.getCurrent()))
+		# first we check if the first entry is "..", securitly for possible BSOD on openXTA-image
+		try:
+			if self["list"].getCurrentSelDir().endswith("/.."):
+				pass
+			else:
+				evt = self["list"].getCurrentEvent()
+				if evt:
+					self.session.open(IMDbEventViewSimple, evt, ServiceReference(self.getCurrent()))
+		except Exception, e:
+			print('[EMC] showEventInformation exception failure: ', str(e))
+			pass
 
 	def openBludiscPlayer(self, blupath):
 		try:
