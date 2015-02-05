@@ -613,7 +613,7 @@ msgstr ""
 
 #: src/EnhancedMovieCenter.py:333
 msgid "Delay for Get Count and Size at start to cache"
-msgstr "Verzögerung für Anzahl / Größe beim Start in den Cache"
+msgstr "Cacheverzögerung für Anzahl / Größe beim Start"
 
 #: src/EnhancedMovieCenter.py:333
 msgid "HELP_Delay for Get Count and Size at start to cache"
