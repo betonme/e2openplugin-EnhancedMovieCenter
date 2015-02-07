@@ -1969,7 +1969,7 @@ class MovieCenter(GUIComponent):
 								if piconPos == "nr":
 									if config.EMC.movie_date_format.value != "":
 										piconX = self.l.getItemSize().width() - self.CoolDateWidth - piconW - 5
-                                                                                textSizeX = self.l.getItemSize().width() - textX - self.CoolDateWidth - piconW - 15
+										textSizeX = self.l.getItemSize().width() - textX - self.CoolDateWidth - piconW - 15
 									else:
 										piconX = self.l.getItemSize().width() - piconW - 5
 										textSizeX = self.l.getItemSize().width() - textX - 15 - piconW
