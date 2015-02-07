@@ -618,14 +618,14 @@ msgstr "Cacheverzögerung für Anzahl / Größe beim Start"
 #: src/EnhancedMovieCenter.py:333
 msgid "HELP_Delay for Get Count and Size at start to cache"
 msgstr ""
-"Hier kann eine Verzögerungszeit angegeben werden bevor die\n"
-"Anzahl der Dateien und der belegte Speicherplatz beim\n"
-"Start gelesen und in den Cache geschrieben wird. Ohne\n"
-"Verzögerungszeit kann sich das Starten der Box verlangsamen!!!"
+"Hier kann eine Verzögerungszeit angegeben werden, damit\n"
+"Anzahl und der belegte Speicherplatz der Dateien nicht beim\n"
+"Booten eingelesen wird. Ohne Verzögerungszeit kann sich\n"
+"das Starten der Box verlangsamen!"
 
 #: src/EnhancedMovieCenter.py:334
 msgid "Delay to get Count and Size in List"
-msgstr "Verzögerung für Anzahl / Größe in Liste anzeigen"
+msgstr "Anzahl / Größe in der Liste verzögern"
 
 #: src/EnhancedMovieCenter.py:334
 msgid "HELP_Delay to get Count and Size in List"
