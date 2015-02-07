@@ -2174,8 +2174,11 @@ class MovieCenter(GUIComponent):
 							datetext = _("Trashcan")
 
 				elif ext == cmtDir:
-					if os.path.isfile(path + "/dir.lock"):
-						pixmap = self.pic_directory_locked
+					if path not in self.nostructscan:
+						if os.path.isfile(path + "/dir.lock"):
+							pixmap = self.pic_directory_locked
+						else:
+							pixmap = self.pic_directory
 					else:
 						pixmap = self.pic_directory
 
