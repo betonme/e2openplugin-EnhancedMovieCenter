@@ -20,6 +20,7 @@
 #
 
 import os
+import struct
 
 from Components.config import *
 from Components.PluginComponent import plugins
@@ -44,6 +45,8 @@ from EMCBookmarks import EMCBookmarks
 from RogueFileCheck import RogueFileCheck
 from MovieCenter import extTS
 global extTS
+
+cutsParser = struct.Struct('>QI') # big-endian, 64-bit PTS and 32-bit type
 
 
 class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
@@ -350,7 +353,8 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 						path = self.service.getPath() + ".cuts"
 						self.delMarker(path)
 					self.close()
-			except:
+			except Exception, e:
+				print("[EMC] Exception in resMarkerCB: " + str(e))
 				self.close()
 		else:
 			self.close(None)
