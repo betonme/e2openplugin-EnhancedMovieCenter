@@ -1954,7 +1954,6 @@ class MovieCenter(GUIComponent):
 						if config.EMC.movie_picons.value:
 							piconPos = config.EMC.movie_picons_pos.value
 							if metaref != "1_0_0_0_0_0_0_0_0_0":
-#								global imgVti
 								if imgVti:
 									picon = config.EMC.movie_picons_path.value + "/" + metaref + '.png'
 								else:
@@ -2071,7 +2070,6 @@ class MovieCenter(GUIComponent):
 							title = title + " - " + eventtitle
 					if ext in extTS:
 						if CoolPiconPos != -1 and CoolMoviePiconPos != -1:
-#							global imgVti
 							if imgVti:
 								picon = config.EMC.movie_picons_path.value + "/" + metaref + '.png'
 							else:
@@ -2281,8 +2279,12 @@ class MovieCenter(GUIComponent):
 				# Directory right side
 				val = config.EMC.directories_info.value
 				if val == "C" or val == "CS" or val == "S":
+					if config.EMC.count_size_position.value == "1":
+						halign = RT_HALIGN_RIGHT
+					else:
+						halign = RT_HALIGN_CENTER
 					if datetext != "":
-						append(MultiContentEntryText(pos=(self.l.getItemSize().width() - self.CoolCSWidth, self.CoolMovieHPos), size=(self.CoolCSWidth, globalHeight), font=2, flags=RT_HALIGN_CENTER, text=datetext))
+						append(MultiContentEntryText(pos=(self.l.getItemSize().width() - self.CoolCSWidth, self.CoolMovieHPos), size=(self.CoolCSWidth, globalHeight), font=2, flags=halign, text=datetext))
 					else:
 						useIcon = config.EMC.count_size_default_icon.value
 						if useIcon:
@@ -2299,7 +2301,7 @@ class MovieCenter(GUIComponent):
 									datetext = countsize
 								elif val == "S":
 									datetext = size
-							append(MultiContentEntryText(pos=(self.l.getItemSize().width() - self.CoolDateWidth, self.CoolMovieHPos), size=(self.CoolDateWidth, globalHeight), font=2, flags=RT_HALIGN_CENTER, text=datetext))
+							append(MultiContentEntryText(pos=(self.l.getItemSize().width() - self.CoolDateWidth, self.CoolMovieHPos), size=(self.CoolDateWidth, globalHeight), font=2, flags=halign, text=datetext))
 				else:
 					append(MultiContentEntryText(pos=(self.l.getItemSize().width() - self.CoolDateWidth, self.CoolMovieHPos), size=(self.CoolDateWidth, globalHeight), font=2, flags=RT_HALIGN_CENTER, text=datetext))
 			del append
