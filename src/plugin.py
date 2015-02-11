@@ -371,6 +371,7 @@ config.EMC.count_default_text        = ConfigTextWOHelp(default = " ( 0 ) ", fix
 config.EMC.count_size_default_text   = ConfigTextWOHelp(default = " (0 / 0 GB) ", fixed_size  = False, visible_width= 22)
 config.EMC.size_default_text         = ConfigTextWOHelp(default = " ( 0 GB ) ", fixed_size  = False, visible_width= 22)
 config.EMC.count_size_default_icon   = ConfigYesNo(default = False)
+config.EMC.count_size_position       = ConfigSelection(default = '0', choices = [ ('0', _("center")), ('1', _("right")) ])
 #config.EMC.symlinkdir_info           = ConfigYesNo(default = False)
 config.EMC.latest_recordings         = ConfigYesNo(default = True)
 config.EMC.mark_latest_files         = ConfigYesNo(default = True)

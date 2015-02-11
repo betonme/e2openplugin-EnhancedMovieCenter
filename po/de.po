@@ -678,6 +678,17 @@ msgstr ""
 "gezeigt wird wenn anfangs die Anzahl der Dateien, und / oder\n"
 "der belegte Speicherplatz unbekannt ist."
 
+#: src/EnhancedMovieCenter.py:339
+msgid "Horizontal alignment for count / size"
+msgstr "Horizontale Ausrichtung von Anzahl und Größe"
+
+#: src/EnhancedMovieCenter.py:339
+msgid "HELP_Horizontal alignment for count / size"
+msgstr ""
+"Hier kann die Horizontale Ausrichtung des Textes für\n"
+"Anzahl und Größe bestimmt werden.\n"
+"Ob die Anzeige zentiert, oder rechtbündig gezeigt wird."
+
 #: src/EnhancedMovieCenter.py:307
 msgid "Show directories within movielist"
 msgstr "Verzeichnisse innerhalb der Filmliste anzeigen"
