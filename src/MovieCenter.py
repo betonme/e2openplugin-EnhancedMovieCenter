@@ -913,10 +913,11 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 	def createLatestRecordingsList(self):
 		# Make currentPath more flexible
 		#MAYBE: What about using current folder for latest recording lookup?
-		dirstack, subdirlist, filelist, subfilelist = [], [], [], []
+		dirstack, subdirlist, filelist, subfilelist, newfilelist = [], [], [], [], []
 
 		dappend = dirstack.append
 		fextend = filelist.extend
+		nfextend = newfilelist.extend
 		pathreal = os.path.realpath
 		pathislink = os.path.islink
 		pathsplitext = os.path.splitext
@@ -947,14 +948,36 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 				# Store the media files
 				fextend( [ (p,f,e) for p,f,e in subfilelist if e in extTS ] )
 
+		val = int(config.EMC.latest_recordings_limit.value)
+		if val != -1:
+			for path, name, ext in filelist:
+				fdate = self.checkDate(path)
+				nowDate = time()         # time from now in seconds, 86400 is one day
+				if fdate >= nowDate - val:
+					nfextend( [ (path, name, ext) ] )
+
 		del dappend
 		del fextend
+		del nfextend
 		del pathreal
 		del pathislink
 		del pathsplitext
 
 		# Sorting is done through our default sorting algorithm
-		return filelist
+		if val != -1:
+			return newfilelist
+		else:
+			return filelist
+
+	def checkDate(self, path):
+		date = 0
+		try:
+			if path:
+				getdate = os.stat(path)
+				date = getdate[8]
+		except Exception, e:
+			emcDebugOut("[EMC] Exception in checkDate: " + str(e))
+		return date
 
 	def createFileInfo(self, pathname):
 		# Create info for new record
