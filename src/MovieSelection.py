@@ -2075,12 +2075,16 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		# reload list to get the new index, otherwise you can not select again after that
 		try:
 				# TODO: dirty way at the moment
-				# this is needed to get all new Count and Size-values for currentDirectory after moving, copy, ...
+				# this is needed to get all new Count and Size-values
+				# for currentDirectory after moving, copy, ...
 				val = config.EMC.directories_info.value
 				if val == "C" or val == "CS" or val == "S":
 					from MovieCenter import moviecenterdata
-					moviecenterdata.createStartCountSizeList(self.currentPath)
-				self["list"].refreshList()
+					moviecenterdata.createStartCountSizeList(self.currentPath)   # TODO: check if we need that anymore
+					self["list"].refreshList(True)
+				# this we need to get the new position values,
+				# otherwise no select for other files in the same directory after that
+				self["list"].reload(self.currentPath)
 		except Exception, e:
 				print('[EMC] postFileOp - refreshList get failed!!!', str(e))
 
