@@ -2410,7 +2410,7 @@ class MovieCenter(GUIComponent):
 		if idx < 0: return
 		self.l.invalidateEntry( idx ) # force redraw of the item
 
-	def refreshList(self):
+	def refreshList(self, worker=False):
 		# Just invalidate the whole list to force rebuild the entries
 		# Updates the progress of all entries
 		#IDEA Extend the list and mark the recordings
@@ -2421,7 +2421,7 @@ class MovieCenter(GUIComponent):
 		#for entry in self.list:
 		#	if self.recControl.isRecording(entry[4]):
 		#		self.invalidateService(entry[0])
-		self.startWorker = False
+		self.startWorker = worker
 		self.l.invalidate()
 
 	def reload(self, currentPath, simulate=False, recursive=False):
