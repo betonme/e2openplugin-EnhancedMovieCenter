@@ -16,6 +16,45 @@ msgstr ""
 "X-Poedit-Basepath: ../\n"
 "X-Poedit-SearchPath-0: src\n"
 
+#: src/plugin.py:381 src/plugin.py:385
+msgid "%d Day"
+msgstr "%d Tag"
+
+#: src/plugin.py:381 src/plugin.py:387
+msgid "%d Days"
+msgstr "%d Tage"
+
+#: src/plugin.py:391 src/plugin.py:395
+msgid "%d Week"
+msgstr "%d Woche"
+
+#: src/plugin.py:391 src/plugin.py:397
+msgid "%d Weeks"
+msgstr "%d Wochen"
+
+#: src/plugin.py:401 src/plugin.py:405
+msgid "%d Month"
+msgstr "%d Monat"
+
+#: src/plugin.py:401 src/plugin.py:407
+msgid "%d Months"
+msgstr "%d Monate"
+
+#: src/plugin.py:408
+msgid "No limit"
+msgstr "Kein Limit"
+
+#: src/EnhancedMovieCenter.py:344
+msgid "Latest Recordings directory limit"
+msgstr "Verzeichnis \"Neueste Aufnahmen\" Zeitlimit"
+
+#: src/EnhancedMovieCenter.py:344
+msgid "HELP_Latest Recordings directory limit"
+msgstr ""
+"Hier kann ein Zeitlimit für die Aufnahmen angegeben werden,\n"
+"die im Verzeichnis \"Neueste Aufnahmen\" angezeigt\n"
+"werden sollen."
+
 #: src/EMCCoverSearch.py:45
 msgid "themoviedb.org"
 msgstr "themoviedb.org"

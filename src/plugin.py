@@ -374,6 +374,38 @@ config.EMC.count_size_default_icon   = ConfigYesNo(default = False)
 config.EMC.count_size_position       = ConfigSelection(default = '0', choices = [ ('0', _("center")), ('1', _("right")) ])
 #config.EMC.symlinkdir_info           = ConfigYesNo(default = False)
 config.EMC.latest_recordings         = ConfigYesNo(default = True)
+limitreclist = []
+for i in range(86400,604800,86400):
+	if nget:
+		d = i / 86400
+		limitreclist.append(("%d" % i, ngettext("%d Day", "%d Days", d) % d))
+	else:
+		d = i / 86400
+		if d <= 2:
+			limitreclist.append(("%d" % i, _("%d Day", d)))  # test this on vti !!! I dont know if it works !
+		else:
+			limitreclist.append(("%d" % i, _("%d Days", d)))  # test this on vti !!! I dont know if it works !
+for i in range(604800,2419200,604800):
+	if nget:
+		w = i / 604800
+		limitreclist.append(("%d" % i, ngettext("%d Week", "%d Weeks", w) % w))
+	else:
+		w = i / 604800
+		if w <= 2:
+			limitreclist.append(("%d" % i, _("%d Week", w)))  # test this on vti !!! I dont know if it works !
+		else:
+			limitreclist.append(("%d" % i, _("%d Weeks", w)))  # test this on vti !!! I dont know if it works !
+for i in range(2419200,31449600,2419200):
+	if nget:
+		m = i / 2419200
+		limitreclist.append(("%d" % i, ngettext("%d Month", "%d Months", m) % m))
+	else:
+		m = i / 2419200
+		if m <= 2:
+			limitreclist.append(("%d" % i, _("%d Month", m)))  # test this on vti !!! I dont know if it works !
+		else:
+			limitreclist.append(("%d" % i, _("%d Months", m)))  # test this on vti !!! I dont know if it works !
+config.EMC.latest_recordings_limit   = ConfigSelection(default = "-1", choices = [("-1", _("No limit"))] + limitreclist)
 config.EMC.mark_latest_files         = ConfigYesNo(default = True)
 config.EMC.vlc                       = ConfigYesNo(default = False)
 config.EMC.bookmarks                 = ConfigSelection(default = "No", choices = bookmark_choices)
