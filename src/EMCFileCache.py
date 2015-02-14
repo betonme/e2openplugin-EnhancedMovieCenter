@@ -45,6 +45,10 @@ class EMCFileCache():
 			return None
 #		print "EMC getCountSizeFromCache", self.cacheCountSizeList
 
+	def delcacheCountSizeList(self):
+		self.cacheCountSizeList = {}
+		print "EMC delete cacheCountSizeList", self.cacheCountSizeList
+
 	def addPathToCache(self, path, subdirlist, filelist):
 		print "EMC addPathToCache", path
 		if config.EMC.files_cache.value:
