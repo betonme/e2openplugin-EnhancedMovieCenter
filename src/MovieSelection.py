@@ -1204,15 +1204,13 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		name = ''
 		if (self["list"].getCurrentSelName()):
 			name = (self["list"].getCurrentSelName())
+		name = getMovieNameWithoutPhrases(getMovieNameWithoutExt(name))
 		try:
 			from Plugins.Extensions.IMDb.plugin import IMDB
 		except ImportError:
 			IMDB = None
 
-		# we know now if a saved detail exists to use it directly,
-		# now we can try to open EMCImdb to see the details without to open the search-Site of imdb-plugin,
-		# or we use the old way to search with imdb-plugin if is exists
-		# now try open imdb-plugin
+		# now try open imdb-plugin to see the details without to open the search-Site
 		# TODO: we need a check to get which version is installed, like "getargs"
 		# otherwise we dont know if newer options are available !!!
 		if IMDB is not None:
