@@ -53,7 +53,8 @@ msgid "HELP_Latest Recordings directory limit"
 msgstr ""
 "Hier kann ein Zeitlimit für die Aufnahmen angegeben werden,\n"
 "die im Verzeichnis \"Neueste Aufnahmen\" angezeigt\n"
-"werden sollen."
+"werden sollen.\n"
+"Im Vti-Image sind die Werte in Tagen zum einstellen."
 
 #: src/EMCCoverSearch.py:45
 msgid "themoviedb.org"

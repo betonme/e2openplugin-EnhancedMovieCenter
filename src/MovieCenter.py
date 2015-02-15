@@ -950,6 +950,8 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 
 		val = int(config.EMC.latest_recordings_limit.value)
 		if val != -1:
+			if imgVti:			# is needed for vti, "val" is 1-365 in days
+				val = val * 86400
 			for path, name, ext in filelist:
 				fdate = self.checkDate(path)
 				nowDate = time()         # time from now in seconds, 86400 is one day
