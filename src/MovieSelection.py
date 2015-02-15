@@ -1189,6 +1189,18 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		self["list"].toggleProgress(service)
 
 	def IMDbSearch(self):
+		# first get current path without extension of selected entry, for saving imdb-details as new function 
+		path = self["list"].getCurrentSelDir()
+		savepath = os.path.splitext(path)[0]
+
+		# now we check if the selected entry has saved details from imdb, to use it directly
+		# at the moment without saved "poster.jpg"
+		detailpath = savepath + ".imdbquery2.html"
+		if os.path.exists(detailpath):
+			localfile = True
+		else:
+			localfile = False
+
 		name = ''
 		if (self["list"].getCurrentSelName()):
 			name = (self["list"].getCurrentSelName())
@@ -1196,9 +1208,22 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			from Plugins.Extensions.IMDb.plugin import IMDB
 		except ImportError:
 			IMDB = None
+
+		# we know now if a saved detail exists to use it directly,
+		# now we can try to open EMCImdb to see the details without to open the search-Site of imdb-plugin,
+		# or we use the old way to search with imdb-plugin if is exists
+		# now try open imdb-plugin
+		# TODO: we need a check to get which version is installed, like "getargs"
+		# otherwise we dont know if newer options are available !!!
 		if IMDB is not None:
-			name = getMovieNameWithoutPhrases(getMovieNameWithoutExt(name))
-			self.session.open(IMDB, name, False)
+			try:
+				if localfile:
+					self.session.open(IMDB, name, False, True, savepath, detailpath)
+				else:
+					self.session.open(IMDB, name, False, True, savepath)
+			except Exception, e:
+				print('[EMC] EMCImdb-version exception failure: ', str(e))
+				self.session.open(IMDB, name, False)
 
 	def TMDBInfo(self):
 		name = ''
