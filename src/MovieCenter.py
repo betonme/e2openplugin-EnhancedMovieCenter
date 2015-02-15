@@ -930,23 +930,27 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 		# Search files through all given paths
 		for directory in dirstack:
 
-			# Avoid trashcan subdirectories
-			if directory.find( config.EMC.movie_trashcan_path.value ) == -1:
+			# first we check entrys in "emc-noscan.cfg",
+			# to load the list faster and dont wakeup any devices
+			if not self.checkNoScanPath(directory):
 
-				# Get entries
-				subdirlist, subfilelist = self.createDirList(directory, False)
+				# Avoid trashcan subdirectories
+				if directory.find( config.EMC.movie_trashcan_path.value ) == -1:
 
-				# Found new directories to search within, use only their path
-				for d, name, ext in subdirlist:
-					# Resolve symbolic links and get the real path
-					d = pathreal( d )
+					# Get entries
+					subdirlist, subfilelist = self.createDirList(directory, False)
 
-					# Avoid duplicate directories and ignore links
-					if d not in dirstack and not pathislink( d ):
-						dappend( d )
+					# Found new directories to search within, use only their path
+					for d, name, ext in subdirlist:
+						# Resolve symbolic links and get the real path
+						d = pathreal( d )
 
-				# Store the media files
-				fextend( [ (p,f,e) for p,f,e in subfilelist if e in extTS ] )
+						# Avoid duplicate directories and ignore links
+						if d not in dirstack and not pathislink( d ):
+							dappend( d )
+
+					# Store the media files
+					fextend( [ (p,f,e) for p,f,e in subfilelist if e in extTS ] )
 
 		val = int(config.EMC.latest_recordings_limit.value)
 		if val != -1:
@@ -970,6 +974,14 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 			return newfilelist
 		else:
 			return filelist
+
+	def checkNoScanPath(self, path):
+		check = False
+		for line in self.nostructscan:
+			if line in path:
+				check = True
+				break
+		return check
 
 	def checkDate(self, path):
 		date = 0
