@@ -443,7 +443,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 				"EMCEXIT":		(self.abort,			_("Close EMC")),
 				"EMCMENU":		(self.openMenu,			_("Open menu")),
 				"EMCINFO":		(self.showEventInformation,	_("Show event info")),
-				"EMCINFOL":		(self.CoolInfoLong,		_("IMDBSearch / TMDBInfo / CSFDInfo")),
+				"EMCINFOL":		(self.CoolInfoLong,		_("IMDBSearch / TMDBInfo / TMBDInfo / CSFDInfo")),
 
 				"EMCRed":		(self.redFunc,			helptext[0]),			#redhelptext),
 				"EMCGREEN":		(self.greenFuncShort,		helptext[2]),			#greenhelptext),
@@ -557,6 +557,8 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			self.IMDbSearch()
 		elif config.EMC.InfoLong.value == "TMDBInfo":
 			self.TMDBInfo()
+		elif config.EMC.InfoLong.value == "TMBDInfo":
+			self.TMBDInfo()
 		elif config.EMC.InfoLong.value == "CSFDInfo":
 			self.CSFDInfo()
 		else:
@@ -1234,6 +1236,18 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		if TMDbMain is not None:
 			name = getMovieNameWithoutPhrases(getMovieNameWithoutExt(name))
 			self.session.open(TMDbMain, name)
+
+	def TMBDInfo(self):
+		name = ''
+		if (self["list"].getCurrentSelName()):
+			name = (self["list"].getCurrentSelName())
+		try:
+			from Plugins.Extensions.TMBD.plugin import TMBD
+		except ImportError:
+			TMBD = None
+		if TMBD is not None:
+			name = getMovieNameWithoutPhrases(getMovieNameWithoutExt(name))
+			self.session.open(TMBD, name)
 
 	def CSFDInfo(self):
 		name = ''
