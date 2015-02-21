@@ -56,6 +56,14 @@ msgstr ""
 "werden sollen.\n"
 "Im Vti-Image sind die Werte in Tagen zum einstellen."
 
+#: src/EnhancedMovieCenter.py:345
+msgid "Latest Recordings directory use emc-noscan.cfg"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:345
+msgid "HELP_Latest Recordings directory use emc-noscan.cfg"
+msgstr ""
+
 #: src/EMCCoverSearch.py:45
 msgid "themoviedb.org"
 msgstr "themoviedb.org"

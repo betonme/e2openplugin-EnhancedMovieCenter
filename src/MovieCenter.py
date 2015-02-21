@@ -977,10 +977,11 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 
 	def checkNoScanPath(self, path):
 		check = False
-		for line in self.nostructscan:
-			if line in path:
-				check = True
-				break
+		if config.EMC.latest_recordings_noscan.value:
+			for line in self.nostructscan:
+				if line in path:
+					check = True
+					break
 		return check
 
 	def checkDate(self, path):
