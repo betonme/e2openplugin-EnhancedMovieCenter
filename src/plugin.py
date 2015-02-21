@@ -389,6 +389,7 @@ else:
 	for i in range(1,365):
 		limitreclist.append(("%d" % i))
 config.EMC.latest_recordings_limit   = ConfigSelection(default = "-1", choices = [("-1", _("No limit"))] + limitreclist)
+config.EMC.latest_recordings_noscan  = ConfigYesNo(default = False)
 config.EMC.mark_latest_files         = ConfigYesNo(default = True)
 config.EMC.vlc                       = ConfigYesNo(default = False)
 config.EMC.bookmarks                 = ConfigSelection(default = "No", choices = bookmark_choices)
