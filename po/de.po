@@ -2174,6 +2174,10 @@ msgid "Cover search"
 msgstr "Cover suchen"
 
 #: src/MovieSelectionMenu.py:90
+msgid "Directory-Cover search"
+msgstr "Verzeichnis-Cover suchen"
+
+#: src/MovieSelectionMenu.py:90
 msgid "Delete permanently"
 msgstr "Endgültig löschen"
 
