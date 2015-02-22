@@ -416,7 +416,10 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 		#	playall.close()
 
 		if self.service and self.service.type != sidDVB:
-			self.updateCutList( self.getSeekPlayPosition(), self.getSeekLength() )
+			if self.getSeekPlayPosition() == 0:
+				self.updateCutList( self.getSeekLength(), self.getSeekLength() )
+			else:
+				self.updateCutList( self.getSeekPlayPosition(), self.getSeekLength() )
 
 		reopen = False
 		try:
@@ -934,9 +937,9 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 				##if self.seekstate == self.SEEK_STATE_EOF:
 				##	self.setSeekState(self.SEEK_STATE_PLAY)
 				#	return
-
-		if self.service.type != sidDVB:
-			self.updateCutList( self.getSeekPlayPosition(), self.getSeekLength() )
+# deactivated, but let this and wait for replys, otherwise we make a "else:" on this way !!!
+#		if self.service.type != sidDVB:
+#			self.updateCutList( self.getSeekPlayPosition(), self.getSeekLength() )
 
 		self.evEOF()
 
