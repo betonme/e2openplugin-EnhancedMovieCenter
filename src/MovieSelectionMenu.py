@@ -86,6 +86,8 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 			self.menu.append((_("Shuffle All"), boundFunction(self.close, "shuffleall")))
 
 			self.menu.append((_("Cover search"), boundFunction(self.close, "imdb")))
+			if os.path.isdir(service.getPath()):
+				self.menu.append((_("Directory-Cover search "), boundFunction(self.close, "imdbdirectory")))
 			self.menu.append((_("Delete"), boundFunction(self.close, "del")))
 
 			if config.EMC.movie_trashcan_enable.value and os.path.exists(config.EMC.movie_trashcan_path.value):

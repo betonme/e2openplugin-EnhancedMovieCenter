@@ -923,6 +923,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			elif selection == "markall": self.markAll()
 			elif selection == "updatetitle": self.updateTitle()
 			elif selection == "imdb": self.imdb()
+			elif selection == "imdbdirectory": self.imdbDirectory()
 			elif selection == "rename": self.rename()
 			elif selection == "emptytrash": purgeExpired(emptyTrash=True)
 			elif selection == "reloadwithoutcache": self.reloadListWithoutCache()
@@ -979,6 +980,18 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			# walk through entire tree below current path. Might take a bit long on huge disks...
 			selectedlist = self["list"].reload(self.currentPath, simulate=True, recursive=True)
 			filelist = [ (title , path ) for (service, sorttitle, date, title, path, selnum, length, ext, cutnr, sorteventtitle, eventtitle, metaref, sortyear, sortmonth, sortday) in selectedlist ]
+
+		# Collect imdb data
+		self.session.open(EMCImdbScan, filelist)
+		self.reloadList(self.currentPath)
+		self.moveToIndex(0)
+
+	def imdbDirectory(self):
+		filelist = []
+
+		if self["list"].currentSelIsDirectory():
+			current = self.getCurrent()
+			filelist = [ (self["list"].getCurrentSelName() , current.getPath() ) ]
 
 		# Collect imdb data
 		self.session.open(EMCImdbScan, filelist)
