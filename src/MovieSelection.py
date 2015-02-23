@@ -30,6 +30,7 @@ from Components.config import *
 from Components.Label import Label
 from Components.ServiceEventTracker import ServiceEventTracker
 from Screens.Screen import Screen
+from Screens.ParentalControlSetup import ProtectedScreen
 from Screens.HelpMenu import HelpableScreen
 from Screens.MessageBox import MessageBox
 from Screens.ChoiceBox import ChoiceBox
@@ -374,7 +375,7 @@ class SelectionEventInfo:
 			infobar.unPauseService()
 
 
-class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfaceSel, DirectoryStack, E2Bookmarks, EMCBookmarks):
+class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfaceSel, DirectoryStack, E2Bookmarks, EMCBookmarks, ProtectedScreen):
 
 	# Define static member variables
 	def attrgetter(attr, default=None):
@@ -392,6 +393,8 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 
 	def __init__(self, session, returnService=None, playerInstance=None):
 		Screen.__init__(self, session)
+		if config.ParentalControl.configured.value:
+			ProtectedScreen.__init__(self)
 		SelectionEventInfo.__init__(self)
 		VlcPluginInterfaceSel.__init__(self)
 		DirectoryStack.__init__(self)
@@ -521,6 +524,12 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		self.onShow.append(self.onDialogShow)
 		self.onHide.append(self.onDialogHide)
 		self["list"].onSelectionChanged.append(self.selectionChanged)
+
+	def isProtected(self):
+		try:
+			return config.ParentalControl.setuppinactive.value and config.ParentalControl.config_sections.movie_list.value
+		except:
+			pass
 
 	def CoolAVSwitch(self):
 		if config.av.policy_43.value == "pillarbox":
