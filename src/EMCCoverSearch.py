@@ -18,6 +18,7 @@ from Plugins.Plugin import PluginDescriptor
 from Screens.Screen import Screen
 from Tools.Directories import fileExists
 from Screens.Menu import boundFunction
+from Screens.LocationBox import LocationBox
 from Components.PluginComponent import plugins
 
 from Components.Button import Button
@@ -42,7 +43,7 @@ from MovieCenter import getMovieNameWithoutExt, getMovieNameWithoutPhrases
 import re, urllib, urllib2, os, time, shutil
 
 config.EMC.imdb = ConfigSubsection()
-config.EMC.imdb.search = ConfigSelection(default='1', choices=[('1', _('themoviedb.org'))])
+config.EMC.imdb.search = ConfigSelection(default='1', choices=[('0', _('imdb.de')), ('1', _('themoviedb.org')), ('2', _('csfd.cz')), ('3', _('all'))])
 config.EMC.imdb.singlesearch = ConfigSelection(default='0', choices=[('0', _('imdb.de')), ('1', _('thetvdb.com')), ('2', _('csfd.cz')), ('3', _('all'))])
 config.EMC.imdb.themoviedb_coversize = ConfigSelection(default="w185", choices = ["w92", "w185", "w500", "original"])
 config.EMC.imdb.savetotxtfile = ConfigYesNo(default = False)
@@ -155,13 +156,13 @@ class EMCImdbScan(Screen):
 		self.m_list = data
 		self["actions"] = HelpableActionMap(self, "EMCimdb",
 		{
-			"EMCEXIT":		self.exit,
-			"EMCOK":		self.ok,
-			"EMCGreen":		self.imdb,
-			"EMCRed":		self.red,
+			"EMCEXIT":	self.exit,
+			"EMCOK":	self.ok,
+			"EMCGreen":	self.search,
+			"EMCRed":	self.red,
 			"EMCYellow":	self.verwaltung,
 			"EMCRedLong":	self.redLong,
-			"EMCMenu":		self.config,
+			"EMCMenu":	self.config,
 		}, -1)
 		
 		self["ButtonGreen"] = Pixmap()
@@ -193,6 +194,8 @@ class EMCImdbScan(Screen):
 		self.onLayoutFinish.append(self.layoutFinished)
 
 		self.setShowSearchSiteName()
+
+		self.defaultSingleVal = None
 
 	def layoutFinished(self):
 		self.setTitle(_("EMC Cover search"))
@@ -259,6 +262,46 @@ class EMCImdbScan(Screen):
 	def no_cover(self):
 		if os.path.exists(self.no_image_poster):
 			DelayedFunction(500, self.poster_resize(self.no_image_poster))
+
+	def search(self):
+		if config.EMC.imdb.search.value == "0":               # imdb
+			self.imdbsearch()
+		elif config.EMC.imdb.search.value == "1":             # tmdb
+			self.imdb()
+		elif config.EMC.imdb.search.value == "2":             # csfd
+			self.csfdsearch()
+		elif config.EMC.imdb.search.value == "3":             # all
+			self.searchall()
+
+	def getPosterPathList(self):
+		ndata_list = []
+		if self.m_list != []:
+			for x in self.m_list:    # first we make a new list, otherwise the .ts-file(s) are gone after that
+				title = x[0]
+				coverpath = os.path.splitext(x[1])[0] + ".jpg"
+				ndata_list.extend( [ (title, coverpath) ] )
+		return ndata_list
+
+	def imdbsearch(self):
+		data_list = self.getPosterPathList()
+		if data_list != []:
+			self.defaultSingleVal = config.EMC.imdb.singlesearch.value
+			config.EMC.imdb.singlesearch.value = "0"
+			self.session.openWithCallback(self.setupFinished2, getCover, data_list)
+
+	def csfdsearch(self):
+		data_list = self.getPosterPathList()
+		if data_list != []:
+			self.defaultSingleVal = config.EMC.imdb.singlesearch.value
+			config.EMC.imdb.singlesearch.value = "2"
+			self.session.openWithCallback(self.setupFinished2, getCover, data_list)
+
+	def searchall(self):
+		data_list = self.getPosterPathList()
+		if data_list != []:
+			self.defaultSingleVal = config.EMC.imdb.singlesearch.value
+			config.EMC.imdb.singlesearch.value = "3"
+			self.session.openWithCallback(self.setupFinished2, getCover, data_list)
 
 	def imdb(self):
 		if self.running:
@@ -497,6 +540,7 @@ class EMCImdbScan(Screen):
 			self["done_msg"].show()
 			self["done_msg"].setText("Cover is Saved.")
 			#DelayedFunction(3000, self["done_msg"].hide)
+		config.EMC.imdb.singlesearch.value = self.defaultSingleVal
 
 	def decodeHtml(self, text):
 		text = text.replace('&auml;','ä')
@@ -877,9 +921,71 @@ class getCover(Screen):
 		self.check = "false"
 		self.close(False)
 
-	def ok(self):
+	def ok(self, choose=False):
+		movie_homepath = os.path.realpath(config.EMC.movie_homepath.value)
+		if choose:
+			self.chooseDirectory(movie_homepath)
 		if self.check == "true" and self.menulist:
-			shutil.move(self.path, self.o_path)
-			print "EMC iMDB: mv poster to real path - %s %s" % (self.path, self.o_path) 
+			try:
+				shutil.move(self.path, self.o_path)
+				print "EMC iMDB: mv poster to real path - %s %s" % (self.path, self.o_path)
+				self.check = "false"
+				self.close(True)
+			except Exception, e:
+				print('[EMCCoverSearch] save Cover execute get failed: ', str(e))
+				try:
+					self.session.openWithCallback(self.saveCoverHomepath, MessageBox, _("Can not save " + self.o_path + " !\n Save Cover now in " + movie_homepath + " ?"), MessageBox.TYPE_YESNO, 10)
+				except Exception, e:
+					print('[EMCCoverSearch] save Cover in homepath execute get failed: ', str(e))
+
+	def saveCoverHomepath(self, result):
+		if result:
+			movie_homepath = os.path.realpath(config.EMC.movie_homepath.value)
+			try:
+				shutil.move(self.path, movie_homepath + "/" + self.o_path.replace(self.o_path[:-len(self.o_path) + self.o_path.rfind('/') + 1],''))
+				self.check = "false"
+				self.close(True)
+			except Exception, e:
+				print('[EMCCoverSearch] saveCoverHomepath execute get failed: ', str(e))
+				try:
+					self.session.openWithCallback(self.chooseCallback, MessageBox, _("Can not save Cover in " + movie_homepath + " !\n\n Now you can select another folder to save the Cover."), MessageBox.TYPE_YESNO, 10)
+				except Exception, e:
+					print('[EMCCoverSearch] save Cover get failed: ', str(e))
+		else:
 			self.check = "false"
-			self.close(True)
+			self.close(False)
+
+	def chooseCallback(self, result):
+		if result:
+			self.check = "false"
+			self.ok(True)
+		else:
+			self.check = "false"
+			self.close(False)
+
+	def chooseDirectory(self, choosePath):
+		if choosePath is not None:
+			self.session.openWithCallback(
+					self.moveCoverTo,
+					LocationBox,
+						windowTitle = _("Move Cover to:"),
+						text = _("Choose directory"),
+						currDir = str(choosePath)+"/",
+						bookmarks = config.movielist.videodirs,
+						autoAdd = False,
+						editDir = True,
+						inhibitDirs = ["/bin", "/boot", "/dev", "/etc", "/home", "/lib", "/proc", "/run", "/sbin", "/sys", "/usr", "/var"],
+						minFree = 100 )
+
+	def moveCoverTo(self, targetPath):
+		if targetPath is not None:
+			try:
+				shutil.move(self.path, targetPath + "/" + self.o_path.replace(self.o_path[:-len(self.o_path) + self.o_path.rfind('/') + 1],''))
+				self.check = "false"
+				self.close(True)
+			except Exception, e:
+				print('[EMCCoverSearch] moveCoverTo execute get failed: ', str(e))
+				self.chooseDirectory(targetPath)
+		else:
+			self.check = "false"
+			self.close(False)
