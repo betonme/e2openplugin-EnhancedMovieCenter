@@ -984,11 +984,23 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		if selectedlist:
 			# The selectedList only contains the services
 			filelist = [ (service.getName() , service.getPath() ) for service in selectedlist ]
+			# Collect imdb data
+			self.session.open(EMCImdbScan, filelist)
+			self.reloadList(self.currentPath)
+			self.moveToIndex(0)
 		else:
+			self.session.openWithCallback(self.imdbCallback, MessageBox, _("Cover search with all Files in Subdirectories?\n\nThis may take a while on huge Disks, or Directories!"), MessageBox.TYPE_YESNO, 10)
+
+	def imdbCallback(self, result):
+		filelist = []
+
+		if result:
 			# Simulate a recursive reload to get all files and titles
 			# walk through entire tree below current path. Might take a bit long on huge disks...
 			selectedlist = self["list"].reload(self.currentPath, simulate=True, recursive=True)
 			filelist = [ (title , path ) for (service, sorttitle, date, title, path, selnum, length, ext, cutnr, sorteventtitle, eventtitle, metaref, sortyear, sortmonth, sortday) in selectedlist ]
+		else:
+			filelist = [ (title , path ) for (service, sorttitle, date, title, path, selnum, length, ext, cutnr, sorteventtitle, eventtitle, metaref, sortyear, sortmonth, sortday) in self["list"].getList() if ext in plyAll ]
 
 		# Collect imdb data
 		self.session.open(EMCImdbScan, filelist)

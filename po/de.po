@@ -2173,6 +2173,13 @@ msgstr "Letzter Film"
 msgid "Cover search"
 msgstr "Cover suchen"
 
+#: src/MovieSelection.py:992
+msgid "Cover search with all Files in Subdirectories?\n\nThis may take a while on huge Disks, or Directories!"
+msgstr ""
+"Cover suchen mit allen Dateien in den Unterverzeichnissen?\n"
+"\n"
+"Das kann eine Weile dauern auf grossen Laufwerken, oder Verzeichnissen!"
+
 #: src/MovieSelectionMenu.py:90
 msgid "Directory-Cover search"
 msgstr "Verzeichnis-Cover suchen"
