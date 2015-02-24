@@ -151,9 +151,10 @@ class EMCImdbScan(Screen):
 				<widget name="Single search" position="45,472" size="300,25" font="Regular;18" halign="left" valign="center" transparent="1" />
 			</screen>"""
 
-	def __init__(self, session, data):
+	def __init__(self, session, data, folder=False):
 		Screen.__init__(self, session, data)
 		self.m_list = data
+		self.isFolder = folder
 		self["actions"] = HelpableActionMap(self, "EMCimdb",
 		{
 			"EMCEXIT":	self.exit,
@@ -495,7 +496,16 @@ class EMCImdbScan(Screen):
 		if self.check and self.menulist:
 			data_list = []
 			m_title = self["menulist"].getCurrent()[0][0]
-			m_poster_path = self["menulist"].getCurrent()[0][1]
+			# safety way for default-SearchSite, we need better way
+			# should we save the Cover in the folder directly ?
+			# or like it is at the moment ?
+			if self.isFolder:
+				if self.m_list != []:
+					for x in self.m_list:
+						title = x[0]
+						m_poster_path = os.path.splitext(x[1])[0] + ".jpg"
+			else:
+				m_poster_path = self["menulist"].getCurrent()[0][1]
 			data_list = [(m_title, m_poster_path)]
 			self.session.openWithCallback(self.setupFinished2, getCover, data_list)
 
