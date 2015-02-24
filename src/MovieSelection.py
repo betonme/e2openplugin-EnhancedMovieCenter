@@ -1003,7 +1003,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			filelist = [ (self["list"].getCurrentSelName() , current.getPath() ) ]
 
 		# Collect imdb data
-		self.session.open(EMCImdbScan, filelist)
+		self.session.open(EMCImdbScan, filelist, True)
 		self.reloadList(self.currentPath)
 		self.moveToIndex(0)
 
