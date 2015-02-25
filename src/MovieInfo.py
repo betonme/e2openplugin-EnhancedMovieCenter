@@ -24,6 +24,7 @@ config.EMC.movieinfo.ldreleasedate = ConfigSelection(default='1', choices=[('1',
 config.EMC.movieinfo.ldvote = ConfigSelection(default='1', choices=[('1', _('Yes')), ('0', _('No'))])
 config.EMC.movieinfo.ldgenre = ConfigSelection(default='1', choices=[('1', _('Yes')), ('0', _('No'))])
 
+
 class DownloadMovieInfo(Screen):
 	skin = """
 		<screen name="EMCDownloadMovieInfo" position="center,center" size="700,500" title="Movie Information Download (TMDb)">
@@ -64,14 +65,19 @@ class DownloadMovieInfo(Screen):
 		self["movieinfo"] = Label(_("Movie Info"))
 
 		response=self.fetchdata("http://api.themoviedb.org/3/search/movie?api_key=8789cfd3fbab7dccf1269c3d7d867aff&query=" + moviename.replace(" ","+"))
-		if response is not None:
+		response1=self.fetchdata("http://api.themoviedb.org/3/search/tv?api_key=8789cfd3fbab7dccf1269c3d7d867aff&query=" + moviename.replace(" ","+"))
+		if response or response1 is not None:
 			movies = response["results"]
 			movielist = []
 			for mov in movies:
-				movielist.append((_(str(mov["title"])), mov["id"]))
+				movielist.append((_(str(mov["title"])), mov["id"], "movie"))
+
+			tvshows = response1["results"]
+			for shows in tvshows:
+				movielist.append((_(str(shows["name"])), shows["id"], "tvshows"))
 
 			self["movielist"] = MenuList(movielist)
-			self["resulttext"] = Label(str(len(movies)) + " " + _("movies found!"))
+			self["resulttext"] = Label(str(len(movies) + len(tvshows)) + " " + _("movies found!"))
 		else:
 			self["movielist"] = MenuList([])
 			self["resulttext"] = Label(_("An error occured! Internet connection broken?"))
@@ -86,7 +92,8 @@ class DownloadMovieInfo(Screen):
 		sel = self["movielist"].l.getCurrentSelection()
 		if sel is not None:
 			id = sel[1]
-			info = self.getMovieInfo(id)
+			cat = sel[2]
+			info = self.getMovieInfo(id, cat)
 			if info is not None:
 #				(moviepath,ext) = os.path.splitext(self.service.getPath())
 				moviepath = os.path.splitext(self.spath)[0]
@@ -95,63 +102,115 @@ class DownloadMovieInfo(Screen):
 				self.session.open(MessageBox, (_('Movie Information downloaded successfully!')), MessageBox.TYPE_INFO, 5)
 				self.exit()
 
-	def getMovieInfo(self, id):
+	def getMovieInfo(self, id, cat):
 		lang = config.EMC.movieinfo.language.value
 		response = self.fetchdata("http://api.themoviedb.org/3/movie/" + str(id) + "?api_key=8789cfd3fbab7dccf1269c3d7d867aff&language=" + lang)
+		response1 = self.fetchdata("http://api.themoviedb.org/3/tv/" + str(id) + "?api_key=8789cfd3fbab7dccf1269c3d7d867aff&language=" + lang)
 
-		if response is not None:
-			blurb = (str(response["overview"])).encode('utf-8')
+		if cat == "movie":
+			if response is not None:
+				blurb = (str(response["overview"])).encode('utf-8')
 
-			if config.EMC.movieinfo.ldruntime.value == '1':
-				runtime = (_("Runtime:") + " " + str(response["runtime"]).encode('utf-8') + " " + _("Minutes") + "\n")
-				if response["runtime"] == 0:
-					runtime = _("Runtime: unknown") + "\n"
+				if config.EMC.movieinfo.ldruntime.value == '1':
+					runtime = (_("Runtime:") + " " + str(response["runtime"]).encode('utf-8') + " " + _("Minutes") + "\n")
+					if response["runtime"] == 0:
+						runtime = _("Runtime: unknown") + "\n"
+				else:
+					runtime = ""
+
+				if config.EMC.movieinfo.ldreleasedate.value  == '1':
+					releasedate = (_("Release Date:") + " " + str(response["release_date"]).encode('utf-8') + "\n")
+				else:
+					releasedate = ""
+
+				if config.EMC.movieinfo.ldvote.value  == '1':
+					vote = (_("Vote:") + " " + str(response["vote_average"]).encode('utf-8') + "\n")
+				else:
+					vote = ""
+
+				if config.EMC.movieinfo.ldgenre.value == '1':
+					genrelist = response["genres"]
+					genres = ""
+					for i in genrelist:
+						if genres == "":
+							genres = i["name"]
+						else:
+							genres = genres + ", " + i["name"]
+					genres = (_("Genre:") + " " + genres.encode('utf-8') + "\n")
+				else:
+					genres = ""
+
+				if config.EMC.movieinfo.ldcountries.value  == '1':
+					countrylist = response["production_countries"]
+					countries  = ""
+					for i in countrylist:
+						if countries == "":
+							countries = i["name"]
+						else:
+							countries = countries + ", " + i["name"]
+					countries = (_("Production Countries:") + " " + countries.encode('utf-8') + "\n")
+				else:
+					countries = ""
+
+				return (_("Content:") + " " + blurb + "\n\n" + runtime + genres + countries + releasedate + vote)
 			else:
-				runtime = ""
+				self.session.open(MessageBox, _("An error occured! Internet connection broken?"), MessageBox.TYPE_ERROR, 10)
+				return None
 
-			if config.EMC.movieinfo.ldreleasedate.value  == '1':
-				releasedate = (_("Release Date:") + " " + str(response["release_date"]).encode('utf-8') + "\n")
-			else:
-				releasedate = ""
+		if cat == "tvshows":
+			if response1 is not None:
+				blurb = (str(response1["overview"])).encode('utf-8')
 
-			if config.EMC.movieinfo.ldvote.value  == '1':
-				vote = (_("Vote:") + " " + str(response["vote_average"]).encode('utf-8') + "\n")
-			else:
-				vote = ""
+				if config.EMC.movieinfo.ldruntime.value == '1':
+					runtime = (_("Runtime:") + " " + str(response1["episode_run_time"]).encode('utf-8') + " " + _("Minutes") + "\n")
+					if response1["episode_run_time"] == 0:
+						runtime = _("Runtime: unknown") + "\n"
+				else:
+					runtime = ""
 
-			if config.EMC.movieinfo.ldgenre.value == '1':
-				genrelist = response["genres"]
-				genres = ""
-				for i in genrelist:
-					if genres == "":
-						genres = i["name"]
-					else:
-						genres = genres + ", " + i["name"]
-				genres = (_("Genre:") + " " + genres.encode('utf-8') + "\n")
-			else:
-				genres = ""
+				if config.EMC.movieinfo.ldreleasedate.value  == '1':
+					releasedate = (_("Release Date:") + " " + str(response1["first_air_date"]).encode('utf-8') + "\n")
+				else:
+					releasedate = ""
+
+				if config.EMC.movieinfo.ldvote.value  == '1':
+					vote = (_("Vote:") + " " + str(response1["vote_average"]).encode('utf-8') + "\n")
+				else:
+					vote = ""
+
+				if config.EMC.movieinfo.ldgenre.value == '1':
+					genrelist = response1["genres"]
+					genres = ""
+					for i in genrelist:
+						if genres == "":
+							genres = i["name"]
+						else:
+							genres = genres + ", " + i["name"]
+					genres = (_("Genre:") + " " + genres.encode('utf-8') + "\n")
+				else:
+					genres = ""
 			
-			if config.EMC.movieinfo.ldcountries.value  == '1':
-				countrylist = response["production_countries"]
-				countries  = ""
-				for i in countrylist:
-					if countries == "":
-						countries = i["name"]
-					else:
-						countries = countries + ", " + i["name"]
-				countries = (_("Production Countries:") + " " + countries.encode('utf-8') + "\n")
-			else:
-				countries = ""
+				if config.EMC.movieinfo.ldcountries.value  == '1':
+					countrylist = response1["origin_country"]
+					countries  = ""
+					for i in countrylist:
+						if countries == "":
+							countries = i
+						else:
+							countries = countries + ", " + i
+					countries = (_("Production Countries:") + " " + countries.encode('utf-8') + "\n")
+				else:
+					countries = ""
 
-			return (_("Content:") + " " + blurb + "\n\n" + runtime + genres + countries + releasedate + vote)
-		else:
-			self.session.open(MessageBox, _("An error occured! Internet connection broken?"), MessageBox.TYPE_ERROR, 10)
-			return None
+				return (_("Content:") + " " + blurb + "\n\n" + runtime + genres + countries + releasedate + vote)
+			else:
+				self.session.open(MessageBox, _("An error occured! Internet connection broken?"), MessageBox.TYPE_ERROR, 10)
+				return None
 
 	def info(self):
 		sel = self["movielist"].l.getCurrentSelection()
 		if sel is not None:
-			preview = self.getMovieInfo(sel[1])
+			preview = self.getMovieInfo(sel[1], sel[2])
 			self.session.open(MovieInfoPreview, preview, self.moviename)
 
 	def fetchdata(self, url):
