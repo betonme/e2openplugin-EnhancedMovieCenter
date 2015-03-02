@@ -58,11 +58,11 @@ msgstr ""
 
 #: src/EnhancedMovieCenter.py:345
 msgid "Latest Recordings directory use emc-noscan.cfg"
-msgstr ""
+msgstr "Im Verzeichnis \"Letzte Aufnahmen\" die emc-noscan.cfg benutzen"
 
 #: src/EnhancedMovieCenter.py:345
 msgid "HELP_Latest Recordings directory use emc-noscan.cfg"
-msgstr ""
+msgstr "Im Verzeichnis \"Letzte Aufnahmen\"\n die emc-noscan.cfg benutzen."
 
 #: src/EMCCoverSearch.py:45
 msgid "themoviedb.org"
