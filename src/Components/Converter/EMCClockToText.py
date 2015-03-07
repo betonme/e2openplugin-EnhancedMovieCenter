@@ -38,7 +38,7 @@ class EMCClockToText(Converter, object):
 	@cached
 	def getText(self):
 		time = self.source.time
-		if not time or time > 169735005176:
+		if not time or time > 169735005176 or time < 11:
 			return ""
 
 		if self.type == self.IN_MINUTES:
