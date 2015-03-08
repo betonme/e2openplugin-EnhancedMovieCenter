@@ -678,6 +678,8 @@ class imdbSetup(Screen, ConfigListScreen):
 	def __init__(self, session):
 		Screen.__init__(self, session)
 
+		self.setTitle(_("EMC Cover search setup"))
+
 		self["key_red"] = Button(_("Cancel"))
 		self["key_green"] = Button(_("OK"))
 
@@ -725,6 +727,8 @@ class getCover(Screen):
 	def __init__(self, session, data):
 		Screen.__init__(self, session, data)
 
+		self.setTitle(_("EMC Cover Selecter"))
+
 		self["actions"] = HelpableActionMap(self, "EMCimdb",
 		{
 			"EMCEXIT":	self.exit,
@@ -734,7 +738,6 @@ class getCover(Screen):
 		}, -1)
 
 		(title, o_path) = data.pop()
-		self.title = title
 		self.o_path = o_path
 		self.menulist = []
 		self["menulist"] = imdblist([])

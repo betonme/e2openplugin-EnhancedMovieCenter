@@ -1019,7 +1019,7 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 			if currentPath == pathreal(config.EMC.movie_homepath.value):
 				if trashcan and config.EMC.movie_trashcan_enable.value and config.EMC.movie_trashcan_show.value:
 					append( (	config.EMC.movie_trashcan_path.value,
-										os.path.basename(config.EMC.movie_trashcan_path.value) or "trashcan",
+										_(os.path.basename(config.EMC.movie_trashcan_path.value)) or _("trashcan"),
 										cmtTrash) )
 
 				if config.EMC.latest_recordings.value:

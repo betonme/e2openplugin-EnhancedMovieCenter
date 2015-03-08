@@ -16,29 +16,41 @@ msgstr ""
 "X-Poedit-Basepath: ../\n"
 "X-Poedit-SearchPath-0: src\n"
 
+#: src/MovieCenter.py:1863 src/MovieCenter.py:1873
+msgid "trashcan"
+msgstr "Papierkorb"
+
+#: src/EMCCoverSearch.py:681
+msgid "EMC Cover search setup"
+msgstr "EMC-Coversuche - Einstellungen"
+
+#: src/EMCCoverSearch.py:730
+msgid "EMC Cover Selecter"
+msgstr "EMC-Cover Auswahl"
+
 #: src/plugin.py:381 src/plugin.py:385
-msgid "%d Day"
-msgstr "%d Tag"
+msgid "Day"
+msgstr "Tag"
 
 #: src/plugin.py:381 src/plugin.py:387
-msgid "%d Days"
-msgstr "%d Tage"
+msgid "Days"
+msgstr "Tage"
 
 #: src/plugin.py:391 src/plugin.py:395
-msgid "%d Week"
-msgstr "%d Woche"
+msgid "Week"
+msgstr "Woche"
 
 #: src/plugin.py:391 src/plugin.py:397
-msgid "%d Weeks"
-msgstr "%d Wochen"
+msgid "Weeks"
+msgstr "Wochen"
 
 #: src/plugin.py:401 src/plugin.py:405
-msgid "%d Month"
-msgstr "%d Monat"
+msgid "Month"
+msgstr "Monat"
 
 #: src/plugin.py:401 src/plugin.py:407
-msgid "%d Months"
-msgstr "%d Monate"
+msgid "Months"
+msgstr "Monate"
 
 #: src/plugin.py:408
 msgid "No limit"
@@ -2675,9 +2687,6 @@ msgstr "Film-Änderungsliste"
 
 #~ msgid "Nothing found for %s"
 #~ msgstr "Nichts für %s gefunden."
-
-#~ msgid "EMC Cover search setup"
-#~ msgstr "Einstellungen, EMC-Cover-Suche"
 
 #~ msgid ""
 #~ " movies found!\n"
