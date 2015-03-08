@@ -378,13 +378,28 @@ limitreclist = []
 if nget:
 	for i in range(86400,604800,86400):
 		d = i / 86400
-		limitreclist.append(("%d" % i, ngettext("%d Day", "%d Days", d) % d))
+		if i == 86400:
+			val = _("Day")
+			limitreclist.append(("%d" % i, ("%d" % d + " " + val)))
+		else:
+			val = _("Days")
+			limitreclist.append(("%d" % i, ("%d" % d + " " + val)))
 	for i in range(604800,2419200,604800):
 		w = i / 604800
-		limitreclist.append(("%d" % i, ngettext("%d Week", "%d Weeks", w) % w))
+		if i == 604800:
+			val = _("Week")
+			limitreclist.append(("%d" % i, ("%d" % w + " " + val)))
+		else:
+			val = _("Weeks")
+			limitreclist.append(("%d" % i, ("%d" % w + " " + val)))
 	for i in range(2419200,31449600,2419200):
 		m = i / 2419200
-		limitreclist.append(("%d" % i, ngettext("%d Month", "%d Months", m) % m))
+		if i == 2419200:
+			val = _("Month")
+			limitreclist.append(("%d" % i, ("%d" % m + " " + val)))
+		else:
+			val = _("Months")
+			limitreclist.append(("%d" % i, ("%d" % m + " " + val)))
 else:
 	for i in range(1,365):
 		limitreclist.append(("%d" % i))
