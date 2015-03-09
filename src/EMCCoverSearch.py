@@ -720,7 +720,7 @@ class getCover(Screen):
 				<widget name="info" position="10,460" size="605,21" zPosition="0" font="Regular;20" halign="left" valign="center" transparent="1" foregroundColor="#ffffff" backgroundColor="#000000"/>
 			</screen>"""
 
-	def __init__(self, session, data):
+	def __init__(self, session, data, val=None):
 		Screen.__init__(self, session, data)
 
 		self.setTitle(_("EMC Cover Selecter"))
@@ -753,16 +753,26 @@ class getCover(Screen):
 		#self.picload_conn = self.picload.PictureData.connect(self.showCoverCallback)
 
 		self["info"].setText((_("found") + " %s " + _("covers")) % (self.cover_count))
-		if config.EMC.imdb.singlesearch.value == "0":
-			self.searchCover(self.m_title)
-		elif config.EMC.imdb.singlesearch.value == "1":
-			self.searchtvdb(self.m_title)
-		elif config.EMC.imdb.singlesearch.value == "2":
-			self.searchcsfd(self.m_title)
-		elif config.EMC.imdb.singlesearch.value == "3":
-			self.searchcsfd(self.m_title)
-			self.searchtvdb(self.m_title)
-			self.searchCover(self.m_title)
+		if val is not None:
+			if val == "0":
+				self.searchCover(self.m_title)
+			elif val == "2":
+				self.searchcsfd(self.m_title)
+			elif val == "3":
+				self.searchcsfd(self.m_title)
+				self.searchtvdb(self.m_title)
+				self.searchCover(self.m_title)
+		else:
+			if config.EMC.imdb.singlesearch.value == "0":
+				self.searchCover(self.m_title)
+			elif config.EMC.imdb.singlesearch.value == "1":
+				self.searchtvdb(self.m_title)
+			elif config.EMC.imdb.singlesearch.value == "2":
+				self.searchcsfd(self.m_title)
+			elif config.EMC.imdb.singlesearch.value == "3":
+				self.searchcsfd(self.m_title)
+				self.searchtvdb(self.m_title)
+				self.searchCover(self.m_title)
 
 	def showCovers_adddetail_csfd(self, data, title):
 		title_s = re.findall('<title>(.*?)\|', data, re.S)
