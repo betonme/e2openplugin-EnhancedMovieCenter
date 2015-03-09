@@ -196,8 +196,6 @@ class EMCImdbScan(Screen):
 
 		self.setShowSearchSiteName()
 
-		self.defaultSingleVal = None
-
 	def layoutFinished(self):
 		self.setTitle(_("EMC Cover search"))
 
@@ -286,23 +284,20 @@ class EMCImdbScan(Screen):
 	def imdbsearch(self):
 		data_list = self.getPosterPathList()
 		if data_list != []:
-			self.defaultSingleVal = config.EMC.imdb.singlesearch.value
-			config.EMC.imdb.singlesearch.value = "0"
-			self.session.openWithCallback(self.setupFinished2, getCover, data_list)
+			val = "0"
+			self.session.openWithCallback(self.setupFinished2, getCover, data_list, val)
 
 	def csfdsearch(self):
 		data_list = self.getPosterPathList()
 		if data_list != []:
-			self.defaultSingleVal = config.EMC.imdb.singlesearch.value
-			config.EMC.imdb.singlesearch.value = "2"
-			self.session.openWithCallback(self.setupFinished2, getCover, data_list)
+			val = "2"
+			self.session.openWithCallback(self.setupFinished2, getCover, data_list, val)
 
 	def searchall(self):
 		data_list = self.getPosterPathList()
 		if data_list != []:
-			self.defaultSingleVal = config.EMC.imdb.singlesearch.value
-			config.EMC.imdb.singlesearch.value = "3"
-			self.session.openWithCallback(self.setupFinished2, getCover, data_list)
+			val = "3"
+			self.session.openWithCallback(self.setupFinished2, getCover, data_list, val)
 
 	def imdb(self):
 		if self.running:
@@ -550,7 +545,6 @@ class EMCImdbScan(Screen):
 			self["done_msg"].show()
 			self["done_msg"].setText("Cover is Saved.")
 			#DelayedFunction(3000, self["done_msg"].hide)
-		config.EMC.imdb.singlesearch.value = self.defaultSingleVal
 
 	def decodeHtml(self, text):
 		text = text.replace('&auml;','ä')
@@ -712,15 +706,17 @@ class getCover(Screen):
 	if getDesktop(0).size().width() == 1280:
 		skin = """
 			<screen position="center,center" size="1000,560" title="EMC Cover Selecter" >
+				<widget name="m_info" position="200,10" size="760,24" zPosition="0" font="Regular;24" halign="center" valign="center" transparent="1" foregroundColor="#00bab329" backgroundColor="#000000"/>
 				<widget name="poster" zPosition="2" position="10,10" size="185,230" alphatest="on" />
-				<widget name="menulist" position="220,10" size="760,507" selectionPixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/cursor.png" scrollbarMode="showOnDemand" transparent="1" enableWrapAround="on" />
+				<widget name="menulist" position="220,40" size="760,477" selectionPixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/cursor.png" scrollbarMode="showOnDemand" transparent="1" enableWrapAround="on" />
 				<widget name="info" position="10,535" size="990,24" zPosition="0" font="Regular;21" halign="left" valign="center" transparent="1" foregroundColor="#ffffff" backgroundColor="#000000"/>
 			</screen>"""
 	else:
 		skin = """
 			<screen position="center,center" size="620,500" title="EMC Cover Selecter" >
+				<widget name="m_info" position="125,10" size="490,22" zPosition="0" font="Regular;21" halign="center" valign="center" transparent="1" foregroundColor="#00bab329" backgroundColor="#000000"/>
 				<widget name="poster" zPosition="2" position="5,10" size="115,150" alphatest="on" />
-				<widget name="menulist" position="125,10" size="490,422" selectionPixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/cursor.png" scrollbarMode="showOnDemand" transparent="1" enableWrapAround="on" />
+				<widget name="menulist" position="125,40" size="490,392" selectionPixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/cursor.png" scrollbarMode="showOnDemand" transparent="1" enableWrapAround="on" />
 				<widget name="info" position="10,460" size="605,21" zPosition="0" font="Regular;20" halign="left" valign="center" transparent="1" foregroundColor="#ffffff" backgroundColor="#000000"/>
 			</screen>"""
 
@@ -738,11 +734,13 @@ class getCover(Screen):
 		}, -1)
 
 		(title, o_path) = data.pop()
+		self.m_title = title
+		self["m_info"] = Label(("%s") % self.m_title)
 		self.o_path = o_path
 		self.menulist = []
 		self["menulist"] = imdblist([])
 		self["poster"] = Pixmap()
-		self["info"] = Label(_("Searching for %s") % self.title)
+		self["info"] = Label(_("Searching for %s") % self.m_title)
 		self["menulist"].onSelectionChanged.append(self.showInfo)
 		self.check = "false"
 		self.path = "/tmp/tmp.jpg"
@@ -756,15 +754,15 @@ class getCover(Screen):
 
 		self["info"].setText((_("found") + " %s " + _("covers")) % (self.cover_count))
 		if config.EMC.imdb.singlesearch.value == "0":
-			self.searchCover(self.title)
+			self.searchCover(self.m_title)
 		elif config.EMC.imdb.singlesearch.value == "1":
-			self.searchtvdb(self.title)
+			self.searchtvdb(self.m_title)
 		elif config.EMC.imdb.singlesearch.value == "2":
-			self.searchcsfd(self.title)
+			self.searchcsfd(self.m_title)
 		elif config.EMC.imdb.singlesearch.value == "3":
-			self.searchcsfd(self.title)
-			self.searchtvdb(self.title)
-			self.searchCover(self.title)
+			self.searchcsfd(self.m_title)
+			self.searchtvdb(self.m_title)
+			self.searchCover(self.m_title)
 
 	def showCovers_adddetail_csfd(self, data, title):
 		title_s = re.findall('<title>(.*?)\|', data, re.S)
