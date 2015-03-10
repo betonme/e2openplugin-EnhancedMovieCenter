@@ -68,6 +68,7 @@ from EMCCoverSearch import EMCImdbScan
 from MovieRetitle import MovieRetitle
 from Components.Sources.EMCServiceEvent import EMCServiceEvent
 from MovieInfo import DownloadMovieInfo
+from EMCPlayList import emcplaylist, EMCPlaylistScreen
 
 #from MetaSupport import MetaList
 from MetaSupport import getInfoFile
@@ -647,6 +648,8 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			self.deleteFile()
 		elif value == "MV":
 			self.moveMovie()
+		elif value == "AP":
+			self.addPlaylist()
 		elif value == "PL":
 			self.playLast()
 		elif value == "CS":
@@ -908,6 +911,10 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 	def menuCallback(self, selection=None, parameter=None):
 		if selection is not None:
 			if selection == "Play last": self.playLast()
+			elif selection == "addPlaylist": self.addPlaylist()
+			elif selection == "playPlaylist": self.playPlaylist()
+			elif selection == "showPlaylist": self.showPlaylist()
+			elif selection == "delPlaylist": self.delPlaylist()
 			elif selection == "playall": self.playAll()
 			elif selection == "shuffleall": self.shuffleAll()
 			elif selection == "Movie home": self.changeDir(config.EMC.movie_homepath.value)
@@ -938,14 +945,22 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			elif selection == "reloadwithoutcache": self.reloadListWithoutCache()
 
 	def openMenu(self):
+		# first we check if playlist exists
+		playlist = False
+		if not emcplaylist.isCurrentPlaylistEmpty():
+			playlist = True
 		current = self.getCurrent()
 		#if not self["list"].currentSelIsPlayable(): current = None
-		self.session.openWithCallback(self.menuCallback, MovieMenu, "normal", self, self["list"], current, self["list"].makeSelectionList(), self.currentPath)
+		self.session.openWithCallback(self.menuCallback, MovieMenu, "normal", self, self["list"], current, self["list"].makeSelectionList(), self.currentPath, playlist)
 
 	def openMenuPlugins(self):
+		# first we check if playlist exists
+		playlist = False
+		if not emcplaylist.isCurrentPlaylistEmpty():
+			playlist = True
 		current = self.getCurrent()
 		if self["list"].currentSelIsPlayable():
-			self.session.openWithCallback(self.menuCallback, MovieMenu, "plugins", self, self["list"], current, self["list"].makeSelectionList(), self.currentPath)
+			self.session.openWithCallback(self.menuCallback, MovieMenu, "plugins", self, self["list"], current, self["list"].makeSelectionList(), self.currentPath, playlist)
 
 	def openScriptMenu(self):
 		#TODO actually not used and not working
@@ -1644,6 +1659,50 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 				else:
 					self.session.open(MessageBox, _("File not available."), MessageBox.TYPE_ERROR, 10)
 
+	def addPlaylist(self):
+		if self["list"].currentSelIsPlayable():
+			current = self.getCurrent()
+			name = self["list"].getCurrentSelName()
+			path = current.getPath()
+			emcplaylist.addToCurrentPlaylist(path, name, current)
+			self.session.open(MessageBox, _("File added to current Playlist."), MessageBox.TYPE_INFO, 2, True)
+
+	def playPlaylist(self):
+		playlist = []
+		tmpplaylist = []
+		if emcplaylist.getCurrentPlaylist() != {}:
+			for x in emcplaylist.getCurrentPlaylist():
+				tmpplaylist.append(emcplaylist.getCurrentPlaylistEntry(x))
+
+			tmpplaylist.sort( key=lambda x: (x[0]) )
+
+			for x in tmpplaylist:
+				playlist.append(x[2])
+
+			if self.playerInstance is None:
+				self.close(playlist, False, self.lastservice)
+				self.busy = False
+			else:
+				self.playerInstance.movieSelected(playlist, False)
+				self.busy = False
+				self.close()
+
+	def showPlaylist(self):
+		self.session.open(EMCPlaylistScreen)
+
+	def delPlaylist(self):
+		emcplaylist.delCurrentPlaylist()
+
+	def playPlaylistOrig(self):
+		if self.currentPlaylist != []:
+			if self.playerInstance is None:
+				self.close(self.currentPlaylist, False, self.lastservice)
+				self.busy = False
+			else:
+				self.playerInstance.movieSelected(self.currentPlaylist, False)
+				self.busy = False
+				self.close()
+
 	def playLast(self):
 		# Avoid starting several times in different modes
 		if self.busy:
@@ -1968,8 +2027,11 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 				self.session.open(MessageBox, _("This folder is locked or contains a locked subfolder, unlock it first!"), MessageBox.TYPE_ERROR, 10)
 			elif service:
 				movieFileCache.delPathFromCache(path)
-				emcTasker.shellExecute('rm -rf "' + path + '"')
-				self.removeService(service)
+				cmd = []
+				association = []
+				cmd.append('rm -rf "' + path + '"')
+				association.append((self.postFileOp))
+				emcTasker.shellExecute(cmd, association, True)
 
 	def delPathSelConfirmed(self, service, confirm):
 		if confirm and service:

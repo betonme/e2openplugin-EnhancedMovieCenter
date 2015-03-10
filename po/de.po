@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: EMC V.4.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-31 21:10+0100\n"
+"POT-Creation-Date: 2015-03-10 19:51+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: daTa deVil <http://opena.tv>\n"
 "Language-Team: openATV\n"
@@ -15,6 +15,42 @@ msgstr ""
 "X-Poedit-KeywordsList: -;gettext;gettext_noop;_()\n"
 "X-Poedit-Basepath: ../\n"
 "X-Poedit-SearchPath-0: src\n"
+
+#: src/EMCPlayList.py:75
+msgid "Delete Entry"
+msgstr "Eintrag löschen"
+
+#: src/EMCPlayList.py:76
+msgid "Delete All"
+msgstr "Alle Löschen"
+
+#: src/EMCPlayList.py:67
+msgid "EMC Playlist - current playlist"
+msgstr "EMC Playlist - aktuelle Wiedergabeliste"
+
+#: src/MovieSelection.py:1668
+msgid "File added to current Playlist."
+msgstr "Datei zur aktuellen Playlist hinzugefügt."
+
+#: src/MovieSelectionMenu.py:87
+msgid "Add to current Playlist"
+msgstr "Zur aktuellen Playlist hinzufügen"
+
+#: src/MovieSelectionMenu.py:89
+msgid "Play current Playlist"
+msgstr "Aktuelle Playlist abspielen"
+
+#: src/MovieSelectionMenu.py:90
+msgid "Show current Playlist"
+msgstr "Aktuelle Playlist anzeigen"
+
+#: src/MovieSelectionMenu.py:91
+msgid "Delete current Playlist"
+msgstr "Aktuelle Playlist löschen"
+
+#: src/plugin.py:170 src/plugin.py:191
+msgid "Add to Playlist"
+msgstr "Playlist hinzufügen"
 
 #: src/MovieCenter.py:1863 src/MovieCenter.py:1873
 msgid "trashcan"

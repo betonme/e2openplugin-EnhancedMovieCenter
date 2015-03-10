@@ -43,7 +43,7 @@ from PermanentSort import PermanentSort
 from E2Bookmarks import E2Bookmarks
 from EMCBookmarks import EMCBookmarks
 from RogueFileCheck import RogueFileCheck
-from MovieCenter import extTS
+from MovieCenter import extTS, extMedia
 global extTS
 
 cutsParser = struct.Struct('>QI') # big-endian, 64-bit PTS and 32-bit type
@@ -58,7 +58,7 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 	</widget>
 	</screen>"""
 
-	def __init__(self, session, menumode, mselection, mlist, service, selections, currentPath):
+	def __init__(self, session, menumode, mselection, mlist, service, selections, currentPath, playlist=False):
 		Screen.__init__(self, session)
 		self.mode = menumode
 		self.mselection = mselection
@@ -66,6 +66,7 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 		self.service = service
 		self.selections = selections
 		self.currentPath = currentPath
+		self.plist = playlist
 		self.reloadafterclose = False
 
 		self.menu = []
@@ -79,6 +80,15 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 				self.menu.append((_("Directory up"), boundFunction(self.close, "dirup")))
 
 			self.menu.append((_("Reload current directory"), boundFunction(self.close, "reloadwithoutcache")))
+
+			if service:
+				ext = os.path.splitext(service.getPath())[1].lower()
+				if ext in extMedia:
+					self.menu.append((_("Add to current Playlist"), boundFunction(self.close, "addPlaylist")))
+			if self.plist:
+				self.menu.append((_("Play current Playlist"), boundFunction(self.close, "playPlaylist")))
+				self.menu.append((_("Show current Playlist"), boundFunction(self.close, "showPlaylist")))
+				self.menu.append((_("Delete current Playlist"), boundFunction(self.close, "delPlaylist")))
 
 			self.menu.append((_("Play last"), boundFunction(self.close, "Play last")))
 
