@@ -132,7 +132,7 @@ def langListSel():
 
 launch_choices = [	("None",			_("No override")),
 					("showMovies",		_("Video-button")),
-					("showTv",			_("TV-button")),
+					("showTv",		_("TV-button")),
 					("showRadio",		_("Radio-button")),
 					("openQuickbutton",	_("Quick-button")),
 					("timeshiftStart",	_("Timeshift-button")) ]
@@ -147,9 +147,9 @@ date_choices = [	("",					_("Off")),
 
 dirinfo_choices = [	("",	_("Off")),
 					("D",	_("Description")),		# Description
-					("C",	_("( # )")),					# Count
+					("C",	_("( # )")),			# Count
 					("CS",	_("( # / GB )")),		# Count / Size
-					("S",	_("( GB )")) ]				# Size
+					("S",	_("( GB )")) ]			# Size
 
 progress_choices = [("PB",	_("ProgressBar")),
 					("P",	_("Percent (%)")),
@@ -167,13 +167,14 @@ progress_choices = [("PB",	_("ProgressBar")),
 colorbutton_choices = 	[("MH",	_("Movie home")),
 							 ("DL",	_("Delete")),
 							 ("MV",	_("Move Movie")),
+							 ("AP",	_("Add to Playlist")),
 							 ("PL",	_("Play last")),
 							 ("CS",	_("Cover Search")),
 							 ("MI",	_("Download Movie Info")),
 							 ("CP",	_("Copy File")),
 							 ("E2",	_("Open E2 bookmarks")),
 							 ("TC",	_("Toggle Cover Button")),
-							 ("",		_("Button disabled"))]
+							 ("",	_("Button disabled"))]
 
 red_choices = colorbutton_choices
 green_choices = copy.copy(colorbutton_choices)
@@ -187,13 +188,14 @@ blue_choices = colorbutton_choices
 longcolorbutton_choices = 	[("MH",	_("Movie home")),
 							 ("DL",	_("Delete")),
 							 ("MV",	_("Move Movie")),
+							 ("AP",	_("Add to Playlist")),
 							 ("PL",	_("Play last")),
 							 ("CS",	_("Cover Search")),
 							 ("MI",	_("Download Movie Info")),
 							 ("CP",	_("Copy File")),
 							 ("E2",	_("Open E2 bookmarks")),
 #							 ("TC",	_("Toggle Cover Button")),
-							 ("",		_("Button disabled"))]
+							 ("",	_("Button disabled"))]
 
 #longblueyellowgreen_choices.extend()
 
