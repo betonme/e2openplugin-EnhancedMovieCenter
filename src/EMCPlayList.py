@@ -1,6 +1,7 @@
 #!/usr/bin/python
 # encoding: utf-8
 
+from __init__ import _
 from enigma import eListboxPythonMultiContent, RT_VALIGN_CENTER, gFont
 
 from Screens.Screen import Screen
@@ -66,7 +67,6 @@ class EMCPlaylistScreen(Screen):
 		</screen>"""
 
 	def __init__(self, session):
-		self.title = _("EMC Playlist - current playlist")
 		Screen.__init__(self, session)
 
 		self.playlist = PlayList()
@@ -95,7 +95,7 @@ class EMCPlaylistScreen(Screen):
 		pass
 
 	def __layoutFinished(self):
-		self.setTitle(self.title)
+		self.setTitle(_("EMC Playlist - current playlist"))
 
 	def readPlaylist(self):
 		tmpplaylist = []
