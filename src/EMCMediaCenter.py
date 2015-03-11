@@ -220,6 +220,8 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 		self.closeAll = False
 
 		self.lastservice = lastservice or self.session.nav.getCurrentlyPlayingServiceReference()
+		if not self.lastservice:
+			self.lastservice = InfoBar.instance.servicelist.servicelist.getCurrent()
 		self.playlist = playlist
 		self.playall = playall
 		self.playcount = -1
@@ -450,6 +452,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 		except Exception, e:
 			emcDebugOut("[EMCPlayer] leave exception:\n" + str(e))
 
+		self.session.nav.stopService()
 		self.close(reopen, self.service)
 
 	def recEvent(self, timer):
