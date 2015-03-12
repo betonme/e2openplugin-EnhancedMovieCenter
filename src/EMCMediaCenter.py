@@ -228,6 +228,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 		self.service = None
 		self.allowPiP = True
 		self.allowPiPSwap = False			# this is needed for vti-image
+		self.realSeekLength = None
 		self.servicelist = InfoBar.instance.servicelist
 
 		self.picload = ePicLoad()
@@ -297,6 +298,8 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 			# Avoid new playback if the user switches between MovieSelection and MoviePlayer
 			self.firstStart = False
 			self.evEOF()	# begin playback
+			if self.service and self.service.type != sidDVB:
+				self.realSeekLength = self.getSeekLength()
 
 	def evEOF(self, needToClose=False):
 		# see if there are more to play
@@ -382,6 +385,9 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 				# Start playing movie
 				self.session.nav.playService(service)
 
+				if self.service and self.service.type != sidDVB:
+					self.realSeekLength = self.getSeekLength()
+
 				if service and service.type == sidDVD:
 					# Seek will cause problems with DVDPlayer!
 					# ServiceDVD needs this to start
@@ -418,10 +424,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 		#	playall.close()
 
 		if self.service and self.service.type != sidDVB:
-			if self.getSeekPlayPosition() == 0:
-				self.updateCutList( self.getSeekLength(), self.getSeekLength() )
-			else:
-				self.updateCutList( self.getSeekPlayPosition(), self.getSeekLength() )
+			self.makeUpdateCutList()
 
 		reopen = False
 		try:
@@ -551,7 +554,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 			self.playall = playall
 
 			if self.service.type != sidDVB:
-				self.updateCutList( self.getSeekPlayPosition(), self.getSeekLength() )
+				self.makeUpdateCutList()
 
 			self.evEOF()	# start playback of the first movie
 
@@ -940,11 +943,20 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 				##if self.seekstate == self.SEEK_STATE_EOF:
 				##	self.setSeekState(self.SEEK_STATE_PLAY)
 				#	return
-# deactivated, but let this and wait for replys, otherwise we make a "else:" on this way !!!
-#		if self.service.type != sidDVB:
-#			self.updateCutList( self.getSeekPlayPosition(), self.getSeekLength() )
+
+		if self.service.type != sidDVB:
+			self.makeUpdateCutList()
 
 		self.evEOF()
+
+	def makeUpdateCutList(self):
+		if self.getSeekPlayPosition() == 0:
+			if self.realSeekLength is not None:
+				self.updateCutList( self.realSeekLength, self.realSeekLength )
+			else:
+				self.updateCutList( self.getSeekLength(), self.getSeekLength() )
+		else:
+			self.updateCutList( self.getSeekPlayPosition(), self.getSeekLength() )
 
 	##############################################################################
 	## Oozoon image specific and make now the PiPzap possible
