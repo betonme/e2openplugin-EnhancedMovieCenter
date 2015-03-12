@@ -1664,8 +1664,13 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			current = self.getCurrent()
 			name = self["list"].getCurrentSelName()
 			path = current.getPath()
-			emcplaylist.addToCurrentPlaylist(path, name, current)
-			self.session.open(MessageBox, _("File added to current Playlist."), MessageBox.TYPE_INFO, 2, True)
+			added = emcplaylist.addToCurrentPlaylist(path, name, current)
+			# todo: make pop-window without switching the screen
+			if config.EMC.playlist_message.value:
+				if added:
+					self.session.open(MessageBox, _("File added to current Playlist."), MessageBox.TYPE_INFO, 2, True)
+				else:
+					self.session.open(MessageBox, _("File exists in current Playlist."), MessageBox.TYPE_INFO, 2, True)
 
 	def playPlaylist(self):
 		playlist = []

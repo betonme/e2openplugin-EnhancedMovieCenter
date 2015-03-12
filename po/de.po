@@ -16,6 +16,16 @@ msgstr ""
 "X-Poedit-Basepath: ../\n"
 "X-Poedit-SearchPath-0: src\n"
 
+#: src/EnhancedMovieCenter.py:455
+msgid "Show message if file added to playlist"
+msgstr "Zeige Benachrichtigung bei \"zur Playlist hinzufügen\""
+
+#: src/EnhancedMovieCenter.py:455
+msgid "HELP_Show message if file added to playlist"
+msgstr ""
+"Zeigt eine Nachricht, ob die Datei zur Wiedergabeliste hinzugefügt\n"
+"werden konnte, oder nicht."
+
 #: src/EMCPlayList.py:75
 msgid "Delete Entry"
 msgstr "Eintrag löschen"
@@ -28,9 +38,13 @@ msgstr "Alle Löschen"
 msgid "EMC Playlist - current playlist"
 msgstr "EMC Playlist - aktuelle Wiedergabeliste"
 
-#: src/MovieSelection.py:1668
+#: src/MovieSelection.py:1671
 msgid "File added to current Playlist."
 msgstr "Datei zur aktuellen Playlist hinzugefügt."
+
+#: src/MovieSelection.py:1673
+msgid "File exists in current Playlist."
+msgstr "Datei ist schon in der aktuellen Playlist."
 
 #: src/MovieSelectionMenu.py:87
 msgid "Add to current Playlist"

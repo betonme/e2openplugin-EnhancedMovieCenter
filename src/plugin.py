@@ -430,6 +430,8 @@ config.EMC.remote_recordings         = ConfigYesNo(default = False)
 config.EMC.bqt_keys                  = ConfigSelection(default = "", choices = bqt_choices)
 config.EMC.list_skip_size            = ConfigSelectionNumber(3, 10, 1, default = 5)
 
+config.EMC.playlist_message          = ConfigYesNo(default = True)
+
 config.EMC.InfoLong                  = ConfigSelection(choices = [("IMDbSearch", _("IMDb Search")), ("TMDBInfo", _("TMDB Info")), ("TMBDInfo", _("TMBD Info")), ('CSFDInfo', _('CSFD Info'))], default = "IMDbSearch")
 
 def checkList(cfg):
