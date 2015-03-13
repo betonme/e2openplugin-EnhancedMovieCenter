@@ -1,6 +1,8 @@
 #!/usr/bin/python
 # encoding: utf-8
 
+import os
+
 from __init__ import _
 from enigma import eListboxPythonMultiContent, RT_VALIGN_CENTER, RT_HALIGN_RIGHT, gFont, eListbox
 
@@ -8,9 +10,15 @@ from Screens.Screen import Screen
 
 from Components.ActionMap import ActionMap
 from Components.Button import Button
+from Components.config import config
 from Components.GUIComponent import GUIComponent
 
 from skin import parseColor, parseFont
+
+from MetaSupport import MetaList
+from MovieCenter import plyDVB
+
+global plyDVB
 
 
 class EMCPlaylist():
@@ -204,9 +212,25 @@ class PlayList(GUIComponent):
 				pos += 1
 				self.addEntry(pos, x)
 
+	def getMetaInfos(self, path):
+		eventtitle = ""
+		meta = MetaList(path)
+		if meta:
+			eventtitle = meta.getMetaTitle()
+		return eventtitle
+
 	def playlistEntrys(self, pos, name, service):
 		entrys = [ service ]
 		pos = str(pos)
+		metastring = ""
+		movie_metaload = config.EMC.movie_metaload.value
+		if movie_metaload:
+			path = service.getPath()
+			ext = os.path.splitext(path)[1].lower()
+			if ext in plyDVB:
+				metastring = self.getMetaInfos(path)
+				if metastring != "":
+					name = name + " - " + metastring
 		entrys.append((eListboxPythonMultiContent.TYPE_TEXT, 5, 1, 45, 26, 0, RT_VALIGN_CENTER|RT_HALIGN_RIGHT, pos, self.posColor, self.posColorSel))
 		entrys.append((eListboxPythonMultiContent.TYPE_TEXT,80, 1, 610, 26, 1, RT_VALIGN_CENTER, name, self.nameColor, self.nameColorSel))
 		return entrys
