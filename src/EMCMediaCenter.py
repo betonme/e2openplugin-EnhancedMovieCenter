@@ -557,6 +557,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 				self.makeUpdateCutList()
 
 			self.evEOF()	# start playback of the first movie
+		self.refreshCover()
 
 	##############################################################################
 	## Audio and Subtitles
@@ -710,10 +711,6 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 			# Force show dvd screen
 			#self.dvdScreen.hide()
 			self.dvdScreen.show()
-		try:
-			self.refreshCover()
-		except Exception, e:
-			print "[EMCMediaCenter] refreshCover exception:", e
 
 	def __serviceStopped(self):
 		print "EMC MediaCenter serviceStopped"
