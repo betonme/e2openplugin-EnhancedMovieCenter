@@ -251,7 +251,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 	### Cover anzeige
 	def showCover(self, jpgpath):
 		if not os.path.exists(jpgpath):
-			self["Cover"].show()
+			self["Cover"].hide()
 			#jpgpath = "/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/no_poster.png"
 		else:
 			sc = AVSwitch().getFramebufferScale() # Maybe save during init
@@ -557,6 +557,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 				self.makeUpdateCutList()
 
 			self.evEOF()	# start playback of the first movie
+		self.refreshCover()
 
 	##############################################################################
 	## Audio and Subtitles
@@ -828,6 +829,14 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 		#except:
 		#	pass
 
+	def refreshCover(self):
+		### Cover anzeige
+		service = self.playlist[self.playcount]
+		cover_path = re.sub(self.file_format + "$", '.png', service.getPath())
+		if not os.path.exists(cover_path):
+			cover_path = re.sub(self.file_format + "$", '.jpg', service.getPath())
+		self.showCover(cover_path)
+
 	##############################################################################
 	## Implement functions for InfoBarGenerics.py
 	# InfoBarShowMovies
@@ -851,11 +860,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 
 	def doShow(self):
 		### Cover anzeige
-		service = self.playlist[self.playcount]
-		cover_path = re.sub(self.file_format + "$", '.png', service.getPath())
-		if not os.path.exists(cover_path):
-			cover_path = re.sub(self.file_format + "$", '.jpg', service.getPath())
-		self.showCover(cover_path)
+		self.refreshCover()
 		if self.in_menu:
 			pass
 			#self.hide()
