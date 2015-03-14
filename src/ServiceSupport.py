@@ -280,6 +280,8 @@ class Info:
 			length = info and info.getLength(service) or 0
 		if length <= 0:
 			length = self.__cutlist and self.__cutlist.getCutListLength()
+		if length > 86400:
+			length = 0
 		return length or 0
 	
 	def getBeginTime(self):
