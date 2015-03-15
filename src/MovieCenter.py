@@ -622,7 +622,7 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 		#   no sub tuples are possible
 		#   no negotiation is possible
 		# Faster if separate? sortlist.reverse()
-		# Tuple: (service, sorttitle, date, title, path, selectionnumber, length, ext, cutnr)
+		# Tuple: (service, sorttitle, date, title, path, selectionnumber, length, ext, cutnr, sorteventtitle, eventtitle, metaref, sortyear, sortmonth, sortday, sorthour, sortmin)
 		mode, order = self.actualSort
 		if mode is None:
 			mode = self.actualSort[0]
@@ -650,9 +650,9 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 
 		elif mode == "ADN":	# Alpha sort with new date, newest first
 			if not order:
-				sortlist.sort( key=lambda x: (x[1],-x[12],-x[13],-x[14],x[8]) )
+				sortlist.sort( key=lambda x: (x[1],-x[12],-x[13],-x[14],-x[15],-x[16],x[8]) )
 			else:
-				sortlist.sort( key=lambda x: (x[1],x[12],x[13],x[14],-x[8]) )
+				sortlist.sort( key=lambda x: (x[1],x[12],x[13],x[14],x[15],x[16],-x[8]) )
 
 		elif mode == "AM":	# Alpha sort with meta
 			if not order:
@@ -662,9 +662,9 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 
 		elif mode == "AMDN":	# Alpha sort with meta and new date, newest first
 			if not order:
-				sortlist.sort( key=lambda x: (x[1],x[9],-x[12],-x[13],-x[14],x[8]) )
+				sortlist.sort( key=lambda x: (x[1],x[9],-x[12],-x[13],-x[14],-x[15],-x[16],x[8]) )
 			else:
-				sortlist.sort( key=lambda x: (x[1],x[9],x[12],x[13],x[14],-x[8]) )
+				sortlist.sort( key=lambda x: (x[1],x[9],x[12],x[13],x[14],x[15],x[16],-x[8]) )
 
 		elif mode == "P":	# Progress
 			if not order:
@@ -1126,7 +1126,7 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 		metastring, eitstring = "", ""
 		sorteventtitle, eventtitle = "", ""
 		metaref = ""
-		sortyear, sortmonth, sortday = "", "", ""
+		sortyear, sortmonth, sortday, sorthour, sortmin = "", "", "", "", ""
 
 		# Add custom entries and sub directories to the list
 		customlist += subdirlist
@@ -1158,7 +1158,7 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 
 				if date is None:
 					date = datetime.fromtimestamp(0)
-				append((service, sorttitle, date, title, path, 0, 0, ext, 0, sorteventtitle, eventtitle, metaref, 0, 0, 0))
+				append((service, sorttitle, date, title, path, 0, 0, ext, 0, sorteventtitle, eventtitle, metaref, 0, 0, 0, 0, 0))
 
 		# Add file entries to the list
 		if filelist is not None:
@@ -1180,7 +1180,7 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 				sorteventtitle = ""
 				eventtitle = ""
 				metaref = ""
-				sortyear, sortmonth, sortday = "", "", ""
+				sortyear, sortmonth, sortday, sorthour, sortmin = "", "", "", "", ""
 
 				# Remove extension
 				if not ext:
@@ -1310,17 +1310,20 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 				# get a better date to sort with other values
 				sdate = str(date)
 				sdate = sdate.split(' ', -1)
+				stime = sdate[1].split(':', -1)
 				sdate = sdate[0].split('-', -1)
 				sortyear = sdate[0]
 				sortmonth = sdate[1]
 				sortday = sdate[2]
+				sorthour = stime[0]
+				sortmin = stime[1]
 
 				# Check config settings
 				#TODO These checks should be done earlier but there we don't have the service yet
 				if (movie_hide_mov and self.serviceMoving(service)) \
 					or (movie_hide_del and self.serviceDeleting(service)):
 					continue
-				append((service, sorttitle, date, title, path, 0, length, ext, int(cutnr or 0), sorteventtitle, eventtitle, metaref, int(sortyear or 0), int(sortmonth or 0), int(sortday or 0)))
+				append((service, sorttitle, date, title, path, 0, length, ext, int(cutnr or 0), sorteventtitle, eventtitle, metaref, int(sortyear or 0), int(sortmonth or 0), int(sortday or 0), int(sorthour or 0), int(sortmin or 0)))
 
 		# Cleanup before continue
 		del append
