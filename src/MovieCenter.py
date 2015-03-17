@@ -2197,7 +2197,10 @@ class MovieCenter(GUIComponent):
 							datetext = " (%d / %.0f GB) " % (count, size)
 						elif config.EMC.movie_trashcan_info.value == "S":
 							count, size = dirInfo(path, bsize=True)
-							datetext = " ( %.2f GB ) " % (size)
+							if size >= 100:
+								datetext = " ( %.2f TB ) " % (size/1024.0)
+							else:
+								datetext = " ( %.2f GB ) " % (size)
 						else:
 							# Should never happen
 							datetext = _("Trashcan")
@@ -2284,7 +2287,10 @@ class MovieCenter(GUIComponent):
 								count, size = getValues
 								if self.startWorker:
 									countsizeworker.Start(path)
-								datetext = " ( %.2f GB ) " % (size)
+								if size >= 100:
+									datetext = " ( %.2f TB ) " % (size/1024.0)
+								else:
+									datetext = " ( %.2f GB ) " % (size)
 							else:
 								countsizeworker.Start(path)
 								datetext = ""
