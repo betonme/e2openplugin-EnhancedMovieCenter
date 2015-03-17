@@ -1660,17 +1660,34 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 					self.session.open(MessageBox, _("File not available."), MessageBox.TYPE_ERROR, 10)
 
 	def addPlaylist(self):
-		if self["list"].currentSelIsPlayable():
-			current = self.getCurrent()
-			name = self["list"].getCurrentSelName()
-			path = current.getPath()
-			added = emcplaylist.addToCurrentPlaylist(path, name, current)
-			# todo: make pop-window without switching the screen
+		selectedlist = self["list"].makeSelectionList()[:]
+		if selectedlist:
+			add = ""
+			exist = ""
+			for service in selectedlist:
+				name = service.getName()
+				path = service.getPath()
+				added = emcplaylist.addToCurrentPlaylist(path, name, service)
+				if len(selectedlist) >= 1:
+					if added:
+						add += "%s\n" % name
+					else:
+						exist += "%s\n" % name
+				self["list"].unselectService(service)
 			if config.EMC.playlist_message.value:
-				if added:
-					self.session.open(MessageBox, _("File added to current Playlist."), MessageBox.TYPE_INFO, 2, True)
+				if len(selectedlist) == 1:
+					if added:
+						mes = _("File added to current Playlist.")
+					else:
+						mes = _("File exists in current Playlist.")
 				else:
-					self.session.open(MessageBox, _("File exists in current Playlist."), MessageBox.TYPE_INFO, 2, True)
+					if exist == "":
+						mes = _("Files added to current Playlist.")
+					elif exist != "" and add != "":
+						mes =  _("Files added to current Playlist:\n%s\n\nFiles exists in current Playlist:\n%s") % (add, exist)
+					elif exist != "" and add == "":
+						mes = _("Files exists in current Playlist:\n%s") % exist
+				self.session.open(MessageBox, mes, MessageBox.TYPE_INFO, 2, True)
 
 	def playPlaylist(self):
 		playlist = []

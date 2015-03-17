@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: EMC\n"
 "POT-Creation-Date: 2013-10-22 22:01+0100\n"
-"PO-Revision-Date: 2015-03-17 20:34+0100\n"
+"PO-Revision-Date: 2015-03-17 21:10+0100\n"
 "Last-Translator: daTa deVil <http://opena.tv>\n"
 "Language-Team: openATV\n"
 "MIME-Version: 1.0\n"
@@ -12,6 +12,18 @@ msgstr ""
 "X-Poedit-KeywordsList: _;gettext;gettext_noop;_()\n"
 "X-Poedit-Basepath: ../\n"
 "X-Poedit-SearchPath-0: src\n"
+
+#: src/EMCPlayList.py:75
+msgid "Files added to current Playlist."
+msgstr ""
+
+#: src/EMCPlayList.py:75
+msgid "Files added to current Playlist:\n%s\n\nFiles exists in current Playlist:\n%s"
+msgstr ""
+
+#: src/EMCPlayList.py:75
+msgid "Files exists in current Playlist:\n%s"
+msgstr ""
 
 #: src/EnhancedMovieCenter.py:455
 msgid "Show message if file added to playlist"
