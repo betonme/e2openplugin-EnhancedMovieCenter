@@ -229,7 +229,8 @@ bqt_choices = [	("",		_("HomeEnd")),
 				("Folder",	_("Change Folder"))]
 
 extra_support_lang_choices = [("No",	_("No")),
-					("CZ&SK",	"CZ&SK")]
+					("CZ&SK",	"CZ&SK"),
+                                        ("HR",		"HR")]
 
 #Think about using AZ or ("A",False) as dict key / permanent sort store value
 #TODO use an OrderedDict
