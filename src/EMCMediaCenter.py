@@ -268,12 +268,32 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 				self["Cover"].show()
 
 	def CoolAVSwitch(self):
-		if config.av.policy_43.value == "pillarbox":
-			config.av.policy_43.value = "panscan"
-		elif config.av.policy_43.value == "panscan":
-			config.av.policy_43.value = "scale"
-		else:
-			config.av.policy_43.value = "pillarbox"
+		idx = 0
+		choices = []
+		if os.path.exists("/proc/stb/video/policy_choices"):
+			f = open("/proc/stb/video/policy_choices")
+			entrys = f.readline().replace("\n", "").split(" ", -1)
+			for x in entrys:
+				idx += 1
+				entry = idx, x
+				choices.append(entry)
+			f.close()
+		act = open("/proc/stb/video/policy").read()[:-1]
+		for x in choices:
+			if act == x[1]:
+				actIdx = x[0]
+		if actIdx == len(choices):
+			actIdx = 0
+		for x in choices:
+			if x[0] == actIdx + 1:
+				newChoice = x[1]
+		try:
+			if os.path.exists("/proc/stb/video/policy"):
+				f = open("/proc/stb/video/policy", "w")
+				f.write(newChoice)
+				f.close()
+		except Exception, e:
+			print("[EMCMediaCenter] CoolAVSwitch exception:" + str(e))
 
 	def getCurrentEvent(self):
 		service = self.currentlyPlayedMovie()
