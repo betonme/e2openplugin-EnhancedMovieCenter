@@ -307,7 +307,7 @@ class EitList():
 							if (lang == "cs") or (lang == "sk") or (config.EMC.langsupp.value == "CZ&SK"):
 								short_event_descriptor = str(convertCharSpecCZSK(short_event_descriptor))
 							if (lang == "hr") or (config.EMC.langsupp.value == "HR"):
-								extended_event_descriptor = str(convertCharSpecHR(short_event_descriptor))
+								short_event_descriptor = str(convertCharSpecHR(short_event_descriptor))
 					self.eit['name'] = short_event_descriptor
 
 					# Very bad but there can be both encodings
