@@ -244,7 +244,7 @@ sort_modes =	{		("D-")	  :	( _("Date sort descending (D-)"),				("D",False),		_(
 				("ZA")	  :	( _("Alpha sort descending (ZA)"),				("A",True),		_("Alpha sort"),			),
 				("ZAD+")  :	( _("Alpha sort descending, Date ascending (ZAD+)"),		("ADN",True),		_("Alpha sort date newest"),		),
 				("ZAM")	  :	( _("Alpha sort descending with meta (ZAM)"),			("AM",True),		_("Alpha sort meta"),			),
-				("ZAMD+") :	( _("Alpha sort descending with meta Date ascending (ZAMD+)"),	("AMDN",True),		_("Alpha sort meta date newest"),	),
+				("ZAMD+") :	( _("Alpha sort descending with meta, Date ascending (ZAMD+)"),	("AMDN",True),		_("Alpha sort meta date newest"),	),
 				("P-")	  :	( _("Progress sort descending (P-)"),				("P",True),		_("Progress sort"),			),
 				}
 				# If you add a new sort order, you have to think about

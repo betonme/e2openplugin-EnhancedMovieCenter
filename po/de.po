@@ -2693,15 +2693,15 @@ msgstr "Alpha. Sortierung absteigend (ZA)"
 
 #: src/plugin.py:242
 msgid "Alpha sort descending, Date ascending (ZAD+)"
-msgstr "Alpha. Sortierung absteigend, Datum aufsteigend (ZA)"
+msgstr "Alpha. Sortierung absteigend, Datum aufsteigend (ZAD+)"
 
 #: src/plugin.py:243
 msgid "Alpha sort descending with meta (ZAM)"
-msgstr "Alpha. Sortierung absteigend mit meta-infos (ZA)"
+msgstr "Alpha. Sortierung absteigend mit meta-infos (ZAM)"
 
 #: src/plugin.py:244
 msgid "Alpha sort descending with meta, Date ascending (ZAMD+)"
-msgstr "Alpha. Sortierung absteigend mit meta, Datum aufsteigend (ZA)"
+msgstr "Alpha. Sortierung absteigend mit meta, Datum aufsteigend (ZAMD+)"
 
 #: src/plugin.py:245
 msgid "Progress sort descending (P-)"
