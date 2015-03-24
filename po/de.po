@@ -74,10 +74,14 @@ msgid "Play current Playlist"
 msgstr "Aktuelle Playlist abspielen"
 
 #: src/MovieSelectionMenu.py:90
+msgid "Play random current Playlist"
+msgstr "Aktuelle Playlist zufällig abspielen"
+
+#: src/MovieSelectionMenu.py:91
 msgid "Show current Playlist"
 msgstr "Aktuelle Playlist anzeigen"
 
-#: src/MovieSelectionMenu.py:91
+#: src/MovieSelectionMenu.py:92
 msgid "Delete current Playlist"
 msgstr "Aktuelle Playlist löschen"
 

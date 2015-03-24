@@ -87,6 +87,7 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 					self.menu.append((_("Add to current Playlist"), boundFunction(self.close, "addPlaylist")))
 			if self.plist:
 				self.menu.append((_("Play current Playlist"), boundFunction(self.close, "playPlaylist")))
+				self.menu.append((_("Play random current Playlist"), boundFunction(self.close, "playPlaylistRandom")))
 				self.menu.append((_("Show current Playlist"), boundFunction(self.close, "showPlaylist")))
 				self.menu.append((_("Delete current Playlist"), boundFunction(self.close, "delPlaylist")))
 

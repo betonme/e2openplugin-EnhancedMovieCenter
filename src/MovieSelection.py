@@ -23,6 +23,7 @@ import os
 from time import time
 #from thread import start_new_thread
 from threading import Thread
+from random import shuffle
 
 from Components.ActionMap import ActionMap, HelpableActionMap
 from Components.Button import Button
@@ -913,6 +914,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			if selection == "Play last": self.playLast()
 			elif selection == "addPlaylist": self.addPlaylist()
 			elif selection == "playPlaylist": self.playPlaylist()
+			elif selection == "playPlaylistRandom": self.playPlaylist(True)
 			elif selection == "showPlaylist": self.showPlaylist()
 			elif selection == "delPlaylist": self.delPlaylist()
 			elif selection == "playall": self.playAll()
@@ -1689,7 +1691,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 						mes = _("Files exists in current Playlist:\n%s") % exist
 				self.session.open(MessageBox, mes, MessageBox.TYPE_INFO, 2, True)
 
-	def playPlaylist(self):
+	def playPlaylist(self, random=False):
 		playlist = []
 		tmpplaylist = []
 		if emcplaylist.getCurrentPlaylist() != {}:
@@ -1700,6 +1702,9 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 
 			for x in tmpplaylist:
 				playlist.append(x[2])
+
+			if random:
+				shuffle(playlist)
 
 			if self.playerInstance is None:
 				self.close(playlist, False, self.lastservice)
@@ -1714,16 +1719,6 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 
 	def delPlaylist(self):
 		emcplaylist.delCurrentPlaylist()
-
-	def playPlaylistOrig(self):
-		if self.currentPlaylist != []:
-			if self.playerInstance is None:
-				self.close(self.currentPlaylist, False, self.lastservice)
-				self.busy = False
-			else:
-				self.playerInstance.movieSelected(self.currentPlaylist, False)
-				self.busy = False
-				self.close()
 
 	def playLast(self):
 		# Avoid starting several times in different modes

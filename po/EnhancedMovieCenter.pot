@@ -62,10 +62,14 @@ msgid "Play current Playlist"
 msgstr ""
 
 #: src/MovieSelectionMenu.py:90
-msgid "Show current Playlist"
+msgid "Play random current Playlist"
 msgstr ""
 
 #: src/MovieSelectionMenu.py:91
+msgid "Show current Playlist"
+msgstr ""
+
+#: src/MovieSelectionMenu.py:92
 msgid "Delete current Playlist"
 msgstr ""
 
