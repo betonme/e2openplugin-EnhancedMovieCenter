@@ -40,6 +40,7 @@ from Screens.EventView import EventViewSimple
 from Tools import Notifications
 from Tools.Notifications import AddPopup
 from Tools.BoundFunction import boundFunction
+from Tools.Directories import fileExists
 from enigma import getDesktop, eServiceReference, eTimer, iPlayableService, eServiceCenter, gPixmapPtr
 
 # Movie preview
@@ -74,10 +75,10 @@ from EMCPlayList import emcplaylist, EMCPlaylistScreen
 #from MetaSupport import MetaList
 from MetaSupport import getInfoFile
 
-from MovieCenter import extList, extVideo, extMedia, extDir, plyAll, plyDVD, cmtBME2, cmtBMEMC, cmtDir
+from MovieCenter import extList, extVideo, extMedia, extDir, plyAll, plyDVD, cmtBME2, cmtBMEMC, cmtDir, plyDVB
 from MovieCenter import getMovieNameWithoutExt, getMovieNameWithoutPhrases
 
-global extList, extVideo, extMedia, extDir, plyAll, plyDVD, cmtBME2, cmtBMEMC, cmtDir
+global extList, extVideo, extMedia, extDir, plyAll, plyDVD, cmtBME2, cmtBMEMC, cmtDir, plyDVB
 
 
 # Get Count and Size-values at start to CacheList
@@ -498,6 +499,9 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			self.currentPath = config.EMC.movie_homepath.value
 		self.tmpSelList = None		# Used for file operations
 		self.tmpSelPath = None		# also used for file operations
+		self.deleteAllOther = False     # also used for file operations
+		self.tmpSelListOther = None	# also used for file operations
+		self.deleteAllOtherList = False # also used for file operations
 
 		# Key press short long handling
 		#TODO We have to rework this key press handling in order to allow different user defined color key functions
@@ -1959,7 +1963,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 				if not self.delCurrentlyPlaying:
 					if not config.EMC.movie_trashcan_enable.value or config.EMC.movie_delete_validation.value or self.permanentDel:
 						self.session.openWithCallback(
-								self.deleteMovieConfimation,
+								self.checkExt,
 								MessageBox,
 								delStr + "?\n" + rm_add + name,
 								MessageBox.TYPE_YESNO )
@@ -1987,7 +1991,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 					if not self.delCurrentlyPlaying:
 						if not config.EMC.movie_trashcan_enable.value or config.EMC.movie_delete_validation.value or self.permanentDel:
 							self.session.openWithCallback(
-									self.deleteMovieConfimation,
+									self.checkExt,
 									MessageBox,
 									delStr + _(" all selected video files?") + "\n" + rm_add + movienames,
 									MessageBox.TYPE_YESNO )
@@ -1998,6 +2002,107 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		except Exception, e:
 			self.session.open(MessageBox, _("Delete error:\n") + str(e), MessageBox.TYPE_ERROR)
 			emcDebugOut("[EMCMS] deleteMovieQ exception:\n" + str(e))
+
+	def checkExt(self, confirmed):
+		# we make it for more than one file, so we use this for all delete-ways in the future
+		other = ""
+		otherCount = 0
+		otherFiles = False
+		if confirmed:
+			entrycount = len(self.tmpSelList)
+			if entrycount == 1:
+				nameCount = 0
+				service = self.tmpSelList[0]
+				path = os.path.splitext( service.getPath() )[0]
+				# before we go, let us check if other mediafiles with the same name exists
+				# if they dont exists, we go directly to delete with all others files they need it
+				for x in extVideo:
+					f = path + str(x)
+					if fileExists(f):
+						nameCount += 1
+				if nameCount <= 1:
+					self.deleteOtherConfimation(True)
+				else:
+					# we search for other files for this file, like covers, etc.
+					extsOther = [".eit", ".jpg", ".txt", ".poster.jpg", ".imdbquery2.html"]
+					for x in extsOther:
+						f = path + str(x)
+						if fileExists(f):
+							other += "%s\n" % f
+							otherFiles = True
+					if otherFiles:
+						otherMes = _("The following files are used for other entrys in List !\n\nAlso delete these files?\n\n%s") % other
+						self.deleteOtherQ(otherMes)
+					else:
+						self.deleteMovieConfimation(True)
+
+			if entrycount > 1:
+				checkList = []
+				pathList = []
+				for service in self.tmpSelList:
+					pathList.append(service.getPath())
+
+				for service in self.tmpSelList:
+					nameCount = 0
+					path = os.path.splitext( service.getPath() )[0]
+					# before we go, let us check if other mediafiles with the same name exists
+					# if they dont exists, we go directly to delete with all others files they need it
+					for x in extVideo:
+						f = path + str(x)
+						if fileExists(f):
+							if f == service.getPath():
+								nameCount += 1
+							if f not in pathList:
+								nameCount += 1
+					if nameCount > 1:
+						checkList.append(service)
+
+				if checkList != []:
+					self.tmpSelListOther = checkList
+
+				if self.tmpSelListOther is not None:
+					for x in self.tmpSelListOther:
+						path = os.path.splitext( x.getPath() )[0]
+						extsOther = [".eit", ".jpg", ".txt", ".poster.jpg", ".imdbquery2.html"]
+						for x in extsOther:
+							f = path + str(x)
+							if fileExists(f):
+								otherCount += 1
+								if otherCount <= 9:
+									other += "%s\n" % f
+								if otherCount == 10:
+									other += "%s\n...." % f
+								otherFiles = True
+
+					if otherFiles:
+						otherMes = _("The following files are used for other entrys in List !\n\nAlso delete these files?\n\n%s") % other
+						self.deleteOtherListQ(otherMes)
+					else:
+						self.deleteMovieConfimation(True)
+				else:
+					self.deleteOtherListConfimation(True)
+
+	def deleteOtherQ(self, otherMes):
+		self.session.openWithCallback(self.deleteOtherConfimation, MessageBox, otherMes, MessageBox.TYPE_YESNO )
+
+	def deleteOtherConfimation(self, confirmed):
+		if confirmed:
+			self.deleteAllOther = True
+		else:
+			self.deleteAllOther = False
+		self.deleteMovieConfimation(True)
+
+	def deleteOtherListQ(self, otherMes):
+		self.session.openWithCallback(self.deleteOtherListConfimation, MessageBox, otherMes, MessageBox.TYPE_YESNO )
+
+	def deleteOtherListConfimation(self, confirmed):
+		if confirmed:
+			self.deleteAllOther = True
+			self.deleteAllOtherList = True
+		else:
+			self.deleteAllOther = True
+			self.deleteAllOtherList = False
+		self.deleteMovieConfimation(True)
 
 	def deleteMovieConfimation(self, confirmed):
 		current = self.getCurrent()
@@ -2121,10 +2226,91 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		cmd = []
 		association = []
 		movieFileCache.delPathFromCache(targetPath)
+		# TODO:
+		# can we make one way for both Lists ?
+		if self.tmpSelListOther is not None:
+			for x in self.tmpSelListOther:
+				ext = os.path.splitext( x.getPath() )[1]
+				path = os.path.splitext( x.getPath() )[0]
+				movieFileCache.delPathFromCache(os.path.dirname(x.getPath()))
+				if path is not None:
+					if op=="delete":	# target == trashcan
+						c = []
+						if purgeTrash or self.currentPath == targetPath or self.mountpoint(self.currentPath) != self.mountpoint(targetPath):
+							# direct delete from the trashcan or network mount (no copy to trashcan from different mountpoint)
+							#c.append( 'rm -f "'+ path +'."*' )
+
+							#TEST_E2DELETE
+							serviceHandler = eServiceCenter.getInstance()
+							offline = serviceHandler.offlineOperations(x)
+							result = False
+							if offline is not None:
+								# really delete!
+								if not offline.deleteFromDisk(0):
+									result = True
+								if result == False:
+									self.session.open(MessageBox, _("Delete failed!"), MessageBox.TYPE_ERROR)
+									return
+								else:
+									self.removeService(x)
+									self.setReturnCursor()
+									path = path.replace("'","\'")
+									c.append( 'rm -f "'+ path +'."*' )
+									cmd.append( c )
+							else:
+								path = x.getPath()
+								self.removeService(x)
+								self.setReturnCursor()
+								path = path.rsplit(".",1)[0]
+								c.append( 'rm -f "'+ path +'."*' )
+								cmd.append( c )
+						#TEST_E2DELETE
+						else:
+							path = path.replace("'","\'")
+							if ext in plyDVB:
+								if self.deleteAllOtherList:
+									extsOther = [".eit", ".jpg", ".txt", ".poster.jpg", ".imdbquery2.html"]
+									for x in extsOther:
+										f = path + str(x)
+										if fileExists(f):
+											c.append( 'touch "'+ f +'"' )
+											c.append( 'mv "'+ f +'" "'+ targetPath +'/"' )
+								# create a time stamp with touch
+								c.append( 'touch "'+ path + str(ext) +'"' )
+								c.append( 'touch "'+ path + str(ext) +'."*' )
+								# move movie into the trashcan
+								c.append( 'mv "'+ path + str(ext) +'" "'+ targetPath +'/"' )
+								c.append( 'mv "'+ path + str(ext) +'."* "'+ targetPath +'/"' )
+							else:
+								if self.deleteAllOtherList:
+									extsOther = [".eit", ".jpg", ".txt", ".poster.jpg", ".imdbquery2.html"]
+									for x in extsOther:
+										f = path + str(x)
+										if fileExists(f):
+											c.append( 'touch "'+ f +'"' )
+											c.append( 'mv "'+ f +'" "'+ targetPath +'/"' )
+								f = path + str(ext)
+								if fileExists(f):
+									c.append( 'touch "'+ f +'"' )
+									c.append( 'mv "'+ f +'" "'+ targetPath +'/"' )
+								cuts = path + str(ext) + ".cuts"
+								if fileExists(cuts):
+									c.append( 'touch "'+ cuts +'"' )
+									c.append( 'mv "'+ cuts +'" "'+ targetPath +'/"' )
+
+							#TEST_E2DELETE <- decrement indent
+							cmd.append( c )
+
 		for service in selectedlist:
 			#path = os.path.splitext( self["list"].getFilePathOfService(service) )[0]
+			# first we need the file-extension
+			ext = os.path.splitext( service.getPath() )[1]
 			path = os.path.splitext( service.getPath() )[0]
 			movieFileCache.delPathFromCache(os.path.dirname(service.getPath()))
+			if self.tmpSelListOther is not None:
+				for x in self.tmpSelListOther:
+					if x == service:
+						path = None
 			if path is not None:
 				if op=="delete":	# target == trashcan
 					c = []
@@ -2159,10 +2345,37 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 					#TEST_E2DELETE
 					else:
 						path = path.replace("'","\'")
-						# create a time stamp with touch
-						c.append( 'touch "'+ path +'."*' )
-						# move movie into the trashcan
-						c.append( 'mv "'+ path +'."* "'+ targetPath +'/"' )
+						if ext in plyDVB:
+							if self.deleteAllOther:
+								extsOther = [".eit", ".jpg", ".txt", ".poster.jpg", ".imdbquery2.html"]
+								for x in extsOther:
+									f = path + str(x)
+									if fileExists(f):
+										c.append( 'touch "'+ f +'"' )
+										c.append( 'mv "'+ f +'" "'+ targetPath +'/"' )
+							# create a time stamp with touch
+							c.append( 'touch "'+ path + str(ext) +'"' )
+							c.append( 'touch "'+ path + str(ext) +'."*' )
+							# move movie into the trashcan
+							c.append( 'mv "'+ path + str(ext) +'" "'+ targetPath +'/"' )
+							c.append( 'mv "'+ path + str(ext) +'."* "'+ targetPath +'/"' )
+						else:
+							if self.deleteAllOther:
+								extsOther = [".eit", ".jpg", ".txt", ".poster.jpg", ".imdbquery2.html"]
+								for x in extsOther:
+									f = path + str(x)
+									if fileExists(f):
+										c.append( 'touch "'+ f +'"' )
+										c.append( 'mv "'+ f +'" "'+ targetPath +'/"' )
+							f = path + str(ext)
+							if fileExists(f):
+								c.append( 'touch "'+ f +'"' )
+								c.append( 'mv "'+ f +'" "'+ targetPath +'/"' )
+							cuts = path + str(ext) + ".cuts"
+							if fileExists(cuts):
+								c.append( 'touch "'+ cuts +'"' )
+								c.append( 'mv "'+ cuts +'" "'+ targetPath +'/"' )
+
 						#TEST_E2DELETE <- decrement indent
 						cmd.append( c )
 						association.append( (self.delCB, service) )	# put in a callback for this particular movie
@@ -2221,6 +2434,9 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 
 	def postFileOp(self):
 		self.tmpSelList = None
+		self.tmpSelListOther = None
+		self.deleteAllOther = False
+		self.deleteAllOtherList = False
 
 		# reload list to get the new index, otherwise you can not select again after that
 		try:
