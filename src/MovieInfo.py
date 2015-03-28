@@ -301,7 +301,7 @@ class MovieInfoPreview(Screen):
 		self["previewcover"] = Pixmap()
 		self.picload = ePicLoad()
 		self.picload.PictureData.get().append(self.showPreviewCoverCB)
-                self["movie_name"] = Label(_("Movie Information Preview for:") + "   " + moviename)
+		self["movie_name"] = Label(_("Movie Information Preview for:") + "   " + moviename)
 		self["previewtext"]= ScrollLabel(_(str(preview)))
 		self.onLayoutFinish.append(self.layoutFinished)
 		self["actions"] = HelpableActionMap(self, "EMCMovieInfo",
