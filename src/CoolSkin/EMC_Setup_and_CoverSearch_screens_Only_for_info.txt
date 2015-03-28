@@ -83,9 +83,10 @@
 </screen>
 
 <!-- EMC MovieInfo - MovieInfoPreview -->
-<screen name="EMCMovieInfoPreview" position="center,center" size="800,450" title="Movie Information Preview">
-	<widget name="movie_name" position="5,5" size="795,44" zPosition="0" font="Regular;21" valign="center" transparent="1" foregroundColor="#00bab329" backgroundColor="#000000"/>
-	<widget name="previewtext" position="10,53" size="760,380" font="Regular;20" />
+<screen name="EMCMovieInfoPreview" position="center,center" size="800,550" title="Movie Information Preview">
+	<widget name="movie_name" position="20,5" size="650,100" zPosition="0" font="Regular;21" valign="center" transparent="1" foregroundColor="unbab329" backgroundColor="black" />
+	<widget name="previewtext" position="20,152" size="760,380" font="Regular;20" scrollbarMode="showOnDemand" />
+	<widget name="previewcover" position="684,6" size="100,140" alphatest="blend" zPosition="2" />
 </screen>
 
 <!-- EMC MovieInfo - MovieInfoSetup -->
