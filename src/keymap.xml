@@ -118,5 +118,7 @@
 		<key id="KEY_MENU" mapto="EMCMenu" flags="m" />
 		<key id="KEY_GREEN" mapto="EMCGreen" flags="m" />
 		<key id="KEY_RED" mapto="EMCRed" flags="b" />
+		<key id="KEY_UP" mapto="EMCUp" flags="m" />
+		<key id="KEY_DOWN" mapto="EMCDown" flags="m" />
 	</map>
 </keymap>

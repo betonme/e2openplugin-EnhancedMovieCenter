@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: EMC V.4.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-03-25 20:57+0100\n"
+"POT-Creation-Date: 2015-03-28 22:03+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: daTa deVil <http://opena.tv>\n"
 "Language-Team: openATV\n"
@@ -15,6 +15,21 @@ msgstr ""
 "X-Poedit-KeywordsList: -;gettext;gettext_noop;_()\n"
 "X-Poedit-Basepath: ../\n"
 "X-Poedit-SearchPath-0: src\n"
+
+#: src/MovieInfo.py:121
+msgid "Cover %s exists!\n\nDo you want to replace the existing cover?"
+msgstr ""
+"Cover %s exestiert schon!\n"
+"\n"
+"Wollen Sie das exestierende Cover ersetzen?"
+
+#: src/MovieInfo.py:374
+msgid "Save Cover"
+msgstr "Cover speichern"
+
+#: src/MovieInfo.py:375
+msgid "Coversize"
+msgstr "Covergröße"
 
 #: src/MovieSelection.py:2034 src/MovieSelection.py:2078
 msgid "The following files are used for other entrys in List !\n\nAlso delete these files?\n\n%s"

@@ -5,8 +5,8 @@ from Components.ActionMap import ActionMap, HelpableActionMap
 from Components.MenuList import MenuList
 from Components.Button import Button
 from Components.Label import Label
+from Components.ScrollLabel import ScrollLabel
 from Screens.Screen import Screen
-from Components.Label import Label
 from Screens.MessageBox import MessageBox
 from Components.config import *
 from Components.ConfigList import *
@@ -15,6 +15,13 @@ from MovieCenter import getMovieNameWithoutExt, getMovieNameWithoutPhrases
 
 import json, os
 from urllib2 import Request, urlopen
+from twisted.web.client import downloadPage
+
+# Cover
+from Tools.Directories import fileExists
+from Components.AVSwitch import AVSwitch
+from Components.Pixmap import Pixmap
+from enigma import ePicLoad, eTimer
 
 config.EMC.movieinfo = ConfigSubsection()
 config.EMC.movieinfo.language = ConfigSelection(default='de', choices=[('de', _('German')), ('en', _('English'))])
@@ -23,6 +30,8 @@ config.EMC.movieinfo.ldcountries = ConfigSelection(default='1', choices=[('1', _
 config.EMC.movieinfo.ldreleasedate = ConfigSelection(default='1', choices=[('1', _('Yes')), ('0', _('No'))])
 config.EMC.movieinfo.ldvote = ConfigSelection(default='1', choices=[('1', _('Yes')), ('0', _('No'))])
 config.EMC.movieinfo.ldgenre = ConfigSelection(default='1', choices=[('1', _('Yes')), ('0', _('No'))])
+config.EMC.movieinfo.coversave = ConfigYesNo(default = False)
+config.EMC.movieinfo.coversize = ConfigSelection(default="w185", choices = ["w92", "w185", "w500", "original"])
 
 
 class DownloadMovieInfo(Screen):
@@ -45,6 +54,7 @@ class DownloadMovieInfo(Screen):
 		self.session = session
 #		self.service = service
 		self.spath = spath
+		self.posterUrl = None
 		self["actions"] = HelpableActionMap(self, "EMCMovieInfo",
 		{
 			"EMCEXIT":		self.exit,
@@ -100,12 +110,50 @@ class DownloadMovieInfo(Screen):
 
 				file(moviepath + ".txt",'w').write(info)
 				self.session.open(MessageBox, (_('Movie Information downloaded successfully!')), MessageBox.TYPE_INFO, 5)
+
+				if config.EMC.movieinfo.coversave.value:
+					self.getPoster()
 				self.exit()
+
+	def getPoster(self):
+		moviepath = os.path.splitext(self.spath)[0]
+		if fileExists(moviepath + ".jpg"):
+			self.session.openWithCallback(self.posterCallback, MessageBox, _("Cover %s exists!\n\nDo you want to replace the existing cover?") % (moviepath + ".jpg"), MessageBox.TYPE_YESNO)
+		else:
+			self.savePoster()
+
+	def posterCallback(self, result):
+		if result:
+			moviepath = os.path.splitext(self.spath)[0]
+			if fileExists(moviepath + ".jpg"):
+				os.remove(moviepath + ".jpg")
+			self.savePoster()
+
+	def savePoster(self):
+		try:
+			moviepath = os.path.splitext(self.spath)[0]
+			coverpath = moviepath + ".jpg"
+			if self.posterUrl is not None:
+				url = "http://image.tmdb.org/t/p/%s%s" % (config.EMC.movieinfo.coversize.value, self.posterUrl)
+				downloadPage(url, coverpath).addErrback(self.dataError)
+		except Exception, e:
+			print('[EMC] MovieInfo savePoster exception failure: ', str(e))
+
+	def dataError(self, error):
+		print "[EMC] MovieInfo ERROR:", error
 
 	def getMovieInfo(self, id, cat):
 		lang = config.EMC.movieinfo.language.value
 		response = self.fetchdata("http://api.themoviedb.org/3/movie/" + str(id) + "?api_key=8789cfd3fbab7dccf1269c3d7d867aff&language=" + lang)
 		response1 = self.fetchdata("http://api.themoviedb.org/3/tv/" + str(id) + "?api_key=8789cfd3fbab7dccf1269c3d7d867aff&language=" + lang)
+
+		if config.EMC.movieinfo.coversave.value:
+			if cat == "movie":
+				if response is not None:
+					self.posterUrl = (str(response["poster_path"])).encode('utf-8')
+			if cat == "tvshows":
+				if response1 is not None:
+					self.posterUrl = (str(response1["poster_path"])).encode('utf-8')
 
 		if cat == "movie":
 			if response is not None:
@@ -211,7 +259,17 @@ class DownloadMovieInfo(Screen):
 		sel = self["movielist"].l.getCurrentSelection()
 		if sel is not None:
 			preview = self.getMovieInfo(sel[1], sel[2])
-			self.session.open(MovieInfoPreview, preview, self.moviename)
+			if self.posterUrl is not None and config.EMC.movieinfo.coversave.value:
+				try:
+					coverpath = "/tmp/previewCover.jpg"
+					url = "http://image.tmdb.org/t/p/%s%s" % (config.EMC.movieinfo.coversize.value, self.posterUrl)
+					downloadPage(url, coverpath).addErrback(self.dataError)
+					self.session.open(MovieInfoPreview, preview, self.moviename, True)
+				except Exception, e:
+					print('[EMC] MovieInfo getPreviewPoster exception failure: ', str(e))
+					self.session.open(MovieInfoPreview, preview, self.moviename)
+			else:
+				self.session.open(MovieInfoPreview, preview, self.moviename)
 
 	def fetchdata(self, url):
 		try:
@@ -229,30 +287,69 @@ class DownloadMovieInfo(Screen):
 
 class MovieInfoPreview(Screen):
 	skin = """
-		<screen name="EMCMovieInfoPreview" position="center,center" size="800,450" title="Movie Information Preview">
-		<widget name="movie_name" position="5,5" size="795,44" zPosition="0" font="Regular;21" valign="center" transparent="1" foregroundColor="#00bab329" backgroundColor="#000000"/>
-		<widget name="previewtext" position="10,53" size="760,380" font="Regular;20" />
+		<screen name="EMCMovieInfoPreview" position="center,center" size="800,550" title="Movie Information Preview">
+		<widget name="movie_name" position="20,5" size="650,100" zPosition="0" font="Regular;21" valign="center" transparent="1" foregroundColor="unbab329" backgroundColor="black" />
+		<widget name="previewtext" position="20,152" size="760,380" font="Regular;20" scrollbarMode="showOnDemand" />
+		<widget name="previewcover" position="684,6" size="100,140" alphatest="blend" zPosition="2" />
 	</screen>"""
 
-	def __init__(self, session, preview, moviename):
+	def __init__(self, session, preview, moviename, previewCover=False):
 		Screen.__init__(self, session)
 		#self.session = session
 		self.preview = preview
+		self.previewCover = previewCover
+		self["previewcover"] = Pixmap()
+		self.picload = ePicLoad()
+		self.picload.PictureData.get().append(self.showPreviewCoverCB)
 		self["movie_name"] = Label(_("Movie Information Preview for:") + "   " + moviename)
-		self["previewtext"]=Label(_(str(preview)))
+		self["previewtext"]= ScrollLabel(_(str(preview)))
 		self.onLayoutFinish.append(self.layoutFinished)
 		self["actions"] = HelpableActionMap(self, "EMCMovieInfo",
 		{
-			"EMCEXIT":		self.close,
-			#"EMCOK":		self.red,
-			#"EMCMenu":		self.setup,
-			#"EMCINFO":		self.info,
+			"EMCEXIT":	self.exit,
+			"EMCUp":	self.pageUp,
+			"EMCDown":	self.pageDown,
+			#"EMCOK":	self.red,
+			#"EMCMenu":	self.setup,
+			#"EMCINFO":	self.info,
 			#"EMCGreen":	self.green,
-			#"EMCRed":		self.red,
+			#"EMCRed":	self.red,
 		}, -1)
+		self.previewTimer = eTimer()
+		self.previewTimer.callback.append(self.showPreviewCover)
+
+	def pageUp(self):
+		self["previewtext"].pageUp()
+
+	def pageDown(self):
+		self["previewtext"].pageDown()
+
+	def showPreviewCoverCB(self, picInfo=None):
+		ptr = self.picload.getData()
+		if ptr != None:
+			self["previewcover"].instance.setPixmap(ptr.__deref__())
+			self["previewcover"].show()
+		else:
+			self["previewcover"].hide()
+
+	def showPreviewCover(self):
+		if fileExists("/tmp/previewCover.jpg"):
+			previewpath = "/tmp/previewCover.jpg"
+		else:
+			previewpath = "/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/no_poster.png"
+		sc = AVSwitch().getFramebufferScale()
+		self.picload.setPara((self["previewcover"].instance.size().width(), self["previewcover"].instance.size().height(), sc[0], sc[1], False, 1, "#00000000"))
+		self.picload.startDecode(previewpath)
 
 	def layoutFinished(self):
 		self.setTitle(_("Movie Information Preview"))
+		if self.previewCover:
+			self.previewTimer.start(300, True)
+
+	def exit(self):
+		if fileExists("/tmp/previewCover.jpg"):
+			os.remove("/tmp/previewCover.jpg")
+		self.close()
 
 class MovieInfoSetup(Screen, ConfigListScreen):
 	skin = """
@@ -274,6 +371,8 @@ class MovieInfoSetup(Screen, ConfigListScreen):
 		self.list.append(getConfigListEntry(_("Load Production Countries:"), config.EMC.movieinfo.ldcountries))
 		self.list.append(getConfigListEntry(_("Load Release Date:"), config.EMC.movieinfo.ldreleasedate))
 		self.list.append(getConfigListEntry(_("Load Vote:"), config.EMC.movieinfo.ldvote))
+		self.list.append(getConfigListEntry(_("Save Cover"), config.EMC.movieinfo.coversave))
+		self.list.append(getConfigListEntry(_("Coversize"), config.EMC.movieinfo.coversize))
 
 		ConfigListScreen.__init__(self, self.list, session)
 		self["actions"] = HelpableActionMap(self, "EMCMovieInfo",
