@@ -461,12 +461,13 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 			else:
 				emcDebugOut("[EMCPlayer] closed due to playlist EOF")
 				if self.closeAll:
-					AddPopup(
-								_("EMC\nZap to Live TV of record"),
-								MessageBox.TYPE_INFO,
-								3,
-								"EMCCloseAllAndZap"
-							)
+					if config.EMC.record_eof_zap.value == "1":
+						AddPopup(
+									_("EMC\nZap to Live TV of record"),
+									MessageBox.TYPE_INFO,
+									3,
+									"EMCCloseAllAndZap"
+								)
 				else:
 					if config.EMC.movie_reopenEOF.value: # did the player close while movie list was open?
 						#self.recordings.show()
@@ -943,7 +944,8 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 
 		if self.in_menu:
 			self.hide()
-		if config.EMC.record_eof_zap.value and self.service:
+		val = config.EMC.record_eof_zap.value
+		if val == "0" or val == "1" and self.service:
 			#TEST
 			# get path from iPlayableService
 			#ref = self.session.nav.getCurrentlyPlayingServiceReference()
