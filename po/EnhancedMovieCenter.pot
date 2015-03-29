@@ -13,6 +13,14 @@ msgstr ""
 "X-Poedit-Basepath: ../\n"
 "X-Poedit-SearchPath-0: src\n"
 
+#: src/plugin.py:321
+msgid "Yes, without Message"
+msgstr ""
+
+#: src/plugin.py:321
+msgid "Yes, with Message"
+msgstr ""
+
 #: src/MovieInfo.py:121
 msgid "Cover %s exists!\n\nDo you want to replace the existing cover?"
 msgstr ""
