@@ -22,6 +22,7 @@ from Tools.Directories import fileExists
 from Components.AVSwitch import AVSwitch
 from Components.Pixmap import Pixmap
 from enigma import ePicLoad, eTimer
+import shutil
 
 config.EMC.movieinfo = ConfigSubsection()
 config.EMC.movieinfo.language = ConfigSelection(default='de', choices=[('de', _('German')), ('en', _('English'))])
@@ -32,6 +33,163 @@ config.EMC.movieinfo.ldvote = ConfigSelection(default='1', choices=[('1', _('Yes
 config.EMC.movieinfo.ldgenre = ConfigSelection(default='1', choices=[('1', _('Yes')), ('0', _('No'))])
 config.EMC.movieinfo.coversave = ConfigYesNo(default = False)
 config.EMC.movieinfo.coversize = ConfigSelection(default="w185", choices = ["w92", "w185", "w500", "original"])
+
+def getMovieList(moviename):
+	response = fetchdata("http://api.themoviedb.org/3/search/movie?api_key=8789cfd3fbab7dccf1269c3d7d867aff&query=" + moviename.replace(" ","+").replace("&","%26"))
+	response1 = fetchdata("http://api.themoviedb.org/3/search/tv?api_key=8789cfd3fbab7dccf1269c3d7d867aff&query=" + moviename.replace(" ","+").replace("&","%26"))
+	movielist = []
+	idx = 0
+	if response or response1 is not None:
+		movies = response["results"]
+		movielist = []
+		for mov in movies:
+			movielist.append((_(str(mov["title"])), mov["id"], "movie"))
+
+		tvshows = response1["results"]
+		for shows in tvshows:
+			movielist.append((_(str(shows["name"])), shows["id"], "tvshows"))
+
+		idx = len(movies) + len(tvshows)
+
+        return movielist, idx
+
+def fetchdata(url):
+	try:
+		headers = {"Accept": "application/json"}
+		request = Request(url, headers=headers)
+		jsonresponse = urlopen(request).read()
+		response = json.loads(jsonresponse)
+		return response
+	except:
+		return None
+
+def getMovieInfo(id, cat):
+	lang = config.EMC.movieinfo.language.value
+	posterUrl = None
+	response = fetchdata("http://api.themoviedb.org/3/movie/" + str(id) + "?api_key=8789cfd3fbab7dccf1269c3d7d867aff&language=" + lang)
+	response1 = fetchdata("http://api.themoviedb.org/3/tv/" + str(id) + "?api_key=8789cfd3fbab7dccf1269c3d7d867aff&language=" + lang)
+
+	if config.EMC.movieinfo.coversave.value:
+		if cat == "movie":
+			if response is not None:
+				posterUrl = (str(response["poster_path"])).encode('utf-8')
+		if cat == "tvshows":
+			if response1 is not None:
+				posterUrl = (str(response1["poster_path"])).encode('utf-8')
+		if posterUrl is not None:
+			getTempCover(posterUrl)
+
+	if cat == "movie":
+		if response is not None:
+			blurb = (str(response["overview"])).encode('utf-8')
+
+			if config.EMC.movieinfo.ldruntime.value == '1':
+				runtime = (_("Runtime:") + " " + str(response["runtime"]).encode('utf-8') + " " + _("Minutes") + "\n")
+				if response["runtime"] == 0:
+					runtime = _("Runtime: unknown") + "\n"
+			else:
+				runtime = ""
+
+			if config.EMC.movieinfo.ldreleasedate.value  == '1':
+				releasedate = (_("Release Date:") + " " + str(response["release_date"]).encode('utf-8') + "\n")
+			else:
+				releasedate = ""
+
+			if config.EMC.movieinfo.ldvote.value  == '1':
+				vote = (_("Vote:") + " " + str(response["vote_average"]).encode('utf-8') + "\n")
+			else:
+				vote = ""
+
+			if config.EMC.movieinfo.ldgenre.value == '1':
+				genrelist = response["genres"]
+				genres = ""
+				for i in genrelist:
+					if genres == "":
+						genres = i["name"]
+					else:
+						genres = genres + ", " + i["name"]
+				genres = (_("Genre:") + " " + genres.encode('utf-8') + "\n")
+			else:
+				genres = ""
+
+			if config.EMC.movieinfo.ldcountries.value  == '1':
+				countrylist = response["production_countries"]
+				countries  = ""
+				for i in countrylist:
+					if countries == "":
+						countries = i["name"]
+					else:
+						countries = countries + ", " + i["name"]
+				countries = (_("Production Countries:") + " " + countries.encode('utf-8') + "\n")
+			else:
+				countries = ""
+
+			return (_("Content:") + " " + blurb + "\n\n" + runtime + genres + countries + releasedate + vote)
+		else:
+			session.open(MessageBox, _("An error occured! Internet connection broken?"), MessageBox.TYPE_ERROR, 10)
+			return None
+
+	if cat == "tvshows":
+		if response1 is not None:
+			blurb = (str(response1["overview"])).encode('utf-8')
+
+			if config.EMC.movieinfo.ldruntime.value == '1':
+				runtime = (_("Runtime:") + " " + str(response1["episode_run_time"]).encode('utf-8') + " " + _("Minutes") + "\n")
+				if response1["episode_run_time"] == 0:
+					runtime = _("Runtime: unknown") + "\n"
+			else:
+				runtime = ""
+
+			if config.EMC.movieinfo.ldreleasedate.value  == '1':
+				releasedate = (_("Release Date:") + " " + str(response1["first_air_date"]).encode('utf-8') + "\n")
+			else:
+				releasedate = ""
+
+			if config.EMC.movieinfo.ldvote.value  == '1':
+				vote = (_("Vote:") + " " + str(response1["vote_average"]).encode('utf-8') + "\n")
+			else:
+				vote = ""
+
+			if config.EMC.movieinfo.ldgenre.value == '1':
+				genrelist = response1["genres"]
+				genres = ""
+				for i in genrelist:
+					if genres == "":
+						genres = i["name"]
+					else:
+						genres = genres + ", " + i["name"]
+				genres = (_("Genre:") + " " + genres.encode('utf-8') + "\n")
+			else:
+				genres = ""
+
+			if config.EMC.movieinfo.ldcountries.value  == '1':
+				countrylist = response1["origin_country"]
+				countries  = ""
+				for i in countrylist:
+					if countries == "":
+						countries = i
+					else:
+						countries = countries + ", " + i
+				countries = (_("Production Countries:") + " " + countries.encode('utf-8') + "\n")
+			else:
+				countries = ""
+
+			return (_("Content:") + " " + blurb + "\n\n" + runtime + genres + countries + releasedate + vote)
+		else:
+			session.open(MessageBox, _("An error occured! Internet connection broken?"), MessageBox.TYPE_ERROR, 10)
+			return None
+
+def getTempCover(posterUrl):
+	if posterUrl is not None and config.EMC.movieinfo.coversave.value:
+		try:
+			coverpath = "/tmp/previewCover.jpg"
+			url = "http://image.tmdb.org/t/p/%s%s" % (config.EMC.movieinfo.coversize.value, posterUrl)
+			downloadPage(url, coverpath).addErrback(dataError)
+		except Exception, e:
+			print('[EMC] MovieInfo getTempCover exception failure: ', str(e))
+
+def dataError(error):
+	print "[EMC] MovieInfo ERROR:", error
 
 
 class DownloadMovieInfo(Screen):
@@ -54,7 +212,6 @@ class DownloadMovieInfo(Screen):
 		self.session = session
 #		self.service = service
 		self.spath = spath
-		self.posterUrl = None
 		self["actions"] = HelpableActionMap(self, "EMCMovieInfo",
 		{
 			"EMCEXIT":		self.exit,
@@ -74,20 +231,10 @@ class DownloadMovieInfo(Screen):
 		self["save"] = Label(_("Save"))
 		self["movieinfo"] = Label(_("Movie Info"))
 
-		response=self.fetchdata("http://api.themoviedb.org/3/search/movie?api_key=8789cfd3fbab7dccf1269c3d7d867aff&query=" + moviename.replace(" ","+"))
-		response1=self.fetchdata("http://api.themoviedb.org/3/search/tv?api_key=8789cfd3fbab7dccf1269c3d7d867aff&query=" + moviename.replace(" ","+"))
-		if response or response1 is not None:
-			movies = response["results"]
-			movielist = []
-			for mov in movies:
-				movielist.append((_(str(mov["title"])), mov["id"], "movie"))
-
-			tvshows = response1["results"]
-			for shows in tvshows:
-				movielist.append((_(str(shows["name"])), shows["id"], "tvshows"))
-
-			self["movielist"] = MenuList(movielist)
-			self["resulttext"] = Label(str(len(movies) + len(tvshows)) + " " + _("movies found!"))
+		movielist = getMovieList(moviename)
+		if movielist is not None:
+			self["movielist"] = MenuList(movielist[0])
+			self["resulttext"] = Label(str(movielist[1]) + " " + _("movies found!"))
 		else:
 			self["movielist"] = MenuList([])
 			self["resulttext"] = Label(_("An error occured! Internet connection broken?"))
@@ -103,11 +250,9 @@ class DownloadMovieInfo(Screen):
 		if sel is not None:
 			id = sel[1]
 			cat = sel[2]
-			info = self.getMovieInfo(id, cat)
+			info = getMovieInfo(id, cat)
 			if info is not None:
-#				(moviepath,ext) = os.path.splitext(self.service.getPath())
 				moviepath = os.path.splitext(self.spath)[0]
-
 				file(moviepath + ".txt",'w').write(info)
 				self.session.open(MessageBox, (_('Movie Information downloaded successfully!')), MessageBox.TYPE_INFO, 5)
 
@@ -133,153 +278,23 @@ class DownloadMovieInfo(Screen):
 		try:
 			moviepath = os.path.splitext(self.spath)[0]
 			coverpath = moviepath + ".jpg"
-			if self.posterUrl is not None:
-				url = "http://image.tmdb.org/t/p/%s%s" % (config.EMC.movieinfo.coversize.value, self.posterUrl)
-				downloadPage(url, coverpath).addErrback(self.dataError)
+			if fileExists("/tmp/previewCover.jpg"):
+				shutil.copy2("/tmp/previewCover.jpg", coverpath)
 		except Exception, e:
 			print('[EMC] MovieInfo savePoster exception failure: ', str(e))
-
-	def dataError(self, error):
-		print "[EMC] MovieInfo ERROR:", error
-
-	def getMovieInfo(self, id, cat):
-		lang = config.EMC.movieinfo.language.value
-		response = self.fetchdata("http://api.themoviedb.org/3/movie/" + str(id) + "?api_key=8789cfd3fbab7dccf1269c3d7d867aff&language=" + lang)
-		response1 = self.fetchdata("http://api.themoviedb.org/3/tv/" + str(id) + "?api_key=8789cfd3fbab7dccf1269c3d7d867aff&language=" + lang)
-
-		if config.EMC.movieinfo.coversave.value:
-			if cat == "movie":
-				if response is not None:
-					self.posterUrl = (str(response["poster_path"])).encode('utf-8')
-			if cat == "tvshows":
-				if response1 is not None:
-					self.posterUrl = (str(response1["poster_path"])).encode('utf-8')
-
-		if cat == "movie":
-			if response is not None:
-				blurb = (str(response["overview"])).encode('utf-8')
-
-				if config.EMC.movieinfo.ldruntime.value == '1':
-					runtime = (_("Runtime:") + " " + str(response["runtime"]).encode('utf-8') + " " + _("Minutes") + "\n")
-					if response["runtime"] == 0:
-						runtime = _("Runtime: unknown") + "\n"
-				else:
-					runtime = ""
-
-				if config.EMC.movieinfo.ldreleasedate.value  == '1':
-					releasedate = (_("Release Date:") + " " + str(response["release_date"]).encode('utf-8') + "\n")
-				else:
-					releasedate = ""
-
-				if config.EMC.movieinfo.ldvote.value  == '1':
-					vote = (_("Vote:") + " " + str(response["vote_average"]).encode('utf-8') + "\n")
-				else:
-					vote = ""
-
-				if config.EMC.movieinfo.ldgenre.value == '1':
-					genrelist = response["genres"]
-					genres = ""
-					for i in genrelist:
-						if genres == "":
-							genres = i["name"]
-						else:
-							genres = genres + ", " + i["name"]
-					genres = (_("Genre:") + " " + genres.encode('utf-8') + "\n")
-				else:
-					genres = ""
-
-				if config.EMC.movieinfo.ldcountries.value  == '1':
-					countrylist = response["production_countries"]
-					countries  = ""
-					for i in countrylist:
-						if countries == "":
-							countries = i["name"]
-						else:
-							countries = countries + ", " + i["name"]
-					countries = (_("Production Countries:") + " " + countries.encode('utf-8') + "\n")
-				else:
-					countries = ""
-
-				return (_("Content:") + " " + blurb + "\n\n" + runtime + genres + countries + releasedate + vote)
-			else:
-				self.session.open(MessageBox, _("An error occured! Internet connection broken?"), MessageBox.TYPE_ERROR, 10)
-				return None
-
-		if cat == "tvshows":
-			if response1 is not None:
-				blurb = (str(response1["overview"])).encode('utf-8')
-
-				if config.EMC.movieinfo.ldruntime.value == '1':
-					runtime = (_("Runtime:") + " " + str(response1["episode_run_time"]).encode('utf-8') + " " + _("Minutes") + "\n")
-					if response1["episode_run_time"] == 0:
-						runtime = _("Runtime: unknown") + "\n"
-				else:
-					runtime = ""
-
-				if config.EMC.movieinfo.ldreleasedate.value  == '1':
-					releasedate = (_("Release Date:") + " " + str(response1["first_air_date"]).encode('utf-8') + "\n")
-				else:
-					releasedate = ""
-
-				if config.EMC.movieinfo.ldvote.value  == '1':
-					vote = (_("Vote:") + " " + str(response1["vote_average"]).encode('utf-8') + "\n")
-				else:
-					vote = ""
-
-				if config.EMC.movieinfo.ldgenre.value == '1':
-					genrelist = response1["genres"]
-					genres = ""
-					for i in genrelist:
-						if genres == "":
-							genres = i["name"]
-						else:
-							genres = genres + ", " + i["name"]
-					genres = (_("Genre:") + " " + genres.encode('utf-8') + "\n")
-				else:
-					genres = ""
-			
-				if config.EMC.movieinfo.ldcountries.value  == '1':
-					countrylist = response1["origin_country"]
-					countries  = ""
-					for i in countrylist:
-						if countries == "":
-							countries = i
-						else:
-							countries = countries + ", " + i
-					countries = (_("Production Countries:") + " " + countries.encode('utf-8') + "\n")
-				else:
-					countries = ""
-
-				return (_("Content:") + " " + blurb + "\n\n" + runtime + genres + countries + releasedate + vote)
-			else:
-				self.session.open(MessageBox, _("An error occured! Internet connection broken?"), MessageBox.TYPE_ERROR, 10)
-				return None
 
 	def info(self):
 		sel = self["movielist"].l.getCurrentSelection()
 		if sel is not None:
-			preview = self.getMovieInfo(sel[1], sel[2])
-			if self.posterUrl is not None and config.EMC.movieinfo.coversave.value:
+			preview = getMovieInfo(sel[1], sel[2])
+			if config.EMC.movieinfo.coversave.value:
 				try:
-					coverpath = "/tmp/previewCover.jpg"
-					url = "http://image.tmdb.org/t/p/%s%s" % (config.EMC.movieinfo.coversize.value, self.posterUrl)
-					downloadPage(url, coverpath).addErrback(self.dataError)
 					self.session.open(MovieInfoPreview, preview, self.moviename, True)
 				except Exception, e:
 					print('[EMC] MovieInfo getPreviewPoster exception failure: ', str(e))
 					self.session.open(MovieInfoPreview, preview, self.moviename)
 			else:
 				self.session.open(MovieInfoPreview, preview, self.moviename)
-
-	def fetchdata(self, url):
-		try:
-			headers = {"Accept": "application/json"}
-			request = Request(url, headers=headers)
-			jsonresponse = urlopen(request).read()
-			response = json.loads(jsonresponse)
-			return response
-		except:
-			return None
 
 	def setup(self):
 		self.session.open(MovieInfoSetup)
@@ -290,26 +305,52 @@ class MovieInfoPreview(Screen):
 		<screen name="EMCMovieInfoPreview" position="center,center" size="800,550" title="Movie Information Preview">
 		<widget name="movie_name" position="20,5" size="650,100" zPosition="0" font="Regular;21" valign="center" transparent="1" foregroundColor="unbab329" backgroundColor="black" />
 		<widget name="previewtext" position="20,152" size="760,380" font="Regular;20" scrollbarMode="showOnDemand" />
+		<widget name="previewlist" position="20,152" size="760,380" font="Regular;20" scrollbarMode="showOnDemand" />
 		<widget name="previewcover" position="684,6" size="100,140" alphatest="blend" zPosition="2" />
 	</screen>"""
 
-	def __init__(self, session, preview, moviename, previewCover=False):
+	def __init__(self, session, preview, moviename, previewCover=False, previewMode=False):
 		Screen.__init__(self, session)
 		#self.session = session
 		self.preview = preview
+		self.moviename = moviename
 		self.previewCover = previewCover
+		self.previewMode = previewMode
 		self["previewcover"] = Pixmap()
 		self.picload = ePicLoad()
 		self.picload.PictureData.get().append(self.showPreviewCoverCB)
-		self["movie_name"] = Label(_("Movie Information Preview for:") + "   " + moviename)
-		self["previewtext"]= ScrollLabel(_(str(preview)))
+		self["previewlist"] = MenuList([])
+		self.page = 0
+		if self.preview is not None:
+			self["previewlist"].hide()
+			self["movie_name"] = Label(_("Movie Information Preview for:") + "   " + moviename)
+			self["previewtext"] = ScrollLabel(_(str(preview)))
+		else:
+			movielist = getMovieList(moviename)
+			if movielist is not None:
+				self["previewlist"] = MenuList(movielist[0])
+				self["previewtext"] = ScrollLabel()
+				if movielist[1] > 1:
+					self["movie_name"] = Label(_("Search results for:") + "   " + moviename)
+					self.page = 1
+				else:
+					sel = self["previewlist"].l.getCurrentSelection()
+					if sel is not None:
+						preview = getMovieInfo(sel[1], sel[2])
+					self["previewlist"].hide()
+					self["movie_name"] = Label(_("Movie Information Preview for:") + "   " + moviename)
+					self["previewtext"].setText(_(str(preview)))
+					self.page = 0
+			else:
+				self["movie_name"] = Label(_("Search results for:") + "   " + moviename)
+				self["previewtext"] = ScrollLabel(_("Nothing was found !"))
 		self.onLayoutFinish.append(self.layoutFinished)
 		self["actions"] = HelpableActionMap(self, "EMCMovieInfo",
 		{
 			"EMCEXIT":	self.exit,
 			"EMCUp":	self.pageUp,
 			"EMCDown":	self.pageDown,
-			#"EMCOK":	self.red,
+			"EMCOK":	self.ok,
 			#"EMCMenu":	self.setup,
 			#"EMCINFO":	self.info,
 			#"EMCGreen":	self.green,
@@ -318,11 +359,32 @@ class MovieInfoPreview(Screen):
 		self.previewTimer = eTimer()
 		self.previewTimer.callback.append(self.showPreviewCover)
 
+	def ok(self):
+		if self.page == 0:
+			pass
+		else:
+			sel = self["previewlist"].l.getCurrentSelection()
+			if sel is not None:
+				preview = getMovieInfo(sel[1], sel[2])
+				self["previewlist"].hide()
+				self["movie_name"].setText(_("Movie Information Preview for:") + "   " + self.moviename)
+				self["previewtext"].setText(_(str(preview)))
+				self["previewtext"].show()
+				if self.previewCover:
+					self.previewTimer.start(300, True)
+				self.page = 0
+
 	def pageUp(self):
-		self["previewtext"].pageUp()
+		if self.page == 0:
+			self["previewtext"].pageUp()
+		if self.page == 1:
+			self["previewlist"].up()
 
 	def pageDown(self):
-		self["previewtext"].pageDown()
+		if self.page == 0:
+			self["previewtext"].pageDown()
+		if self.page == 1:
+			self["previewlist"].down()
 
 	def showPreviewCoverCB(self, picInfo=None):
 		ptr = self.picload.getData()
@@ -343,7 +405,9 @@ class MovieInfoPreview(Screen):
 
 	def layoutFinished(self):
 		self.setTitle(_("Movie Information Preview"))
-		if self.previewCover:
+		if self.page == 1:
+			self["previewtext"].hide()
+		if self.previewCover and not self.page == 1:
 			self.previewTimer.start(300, True)
 
 	def exit(self):
