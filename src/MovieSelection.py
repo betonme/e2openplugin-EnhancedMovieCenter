@@ -69,7 +69,7 @@ from ServiceSupport import ServiceCenter
 from EMCCoverSearch import EMCImdbScan
 from MovieRetitle import MovieRetitle
 from Components.Sources.EMCServiceEvent import EMCServiceEvent
-from MovieInfo import DownloadMovieInfo
+from MovieInfo import DownloadMovieInfo, MovieInfoPreview
 from EMCPlayList import emcplaylist, EMCPlaylistScreen
 
 #from MetaSupport import MetaList
@@ -449,7 +449,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 				"EMCEXIT":		(self.abort,			_("Close EMC")),
 				"EMCMENU":		(self.openMenu,			_("Open menu")),
 				"EMCINFO":		(self.showEventInformation,	_("Show event info")),
-				"EMCINFOL":		(self.CoolInfoLong,		_("IMDBSearch / TMDBInfo / TMBDInfo / CSFDInfo")),
+				"EMCINFOL":		(self.CoolInfoLong,		_("IMDBSearch / EMC-TMDBInfo / TMDBInfo / TMBDInfo / CSFDInfo")),
 
 				"EMCRed":		(self.redFunc,			helptext[0]),			#redhelptext),
 				"EMCGREEN":		(self.greenFuncShort,		helptext[2]),			#greenhelptext),
@@ -570,6 +570,8 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 	def CoolInfoLong(self):
 		if config.EMC.InfoLong.value == "IMDbSearch":
 			self.IMDbSearch()
+		elif config.EMC.InfoLong.value == "EMC-TMDBInfo":
+			self.EMCTMDBInfo()
 		elif config.EMC.InfoLong.value == "TMDBInfo":
 			self.TMDBInfo()
 		elif config.EMC.InfoLong.value == "TMBDInfo":
@@ -1279,6 +1281,19 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			except Exception, e:
 				print('[EMC] EMCImdb-version exception failure: ', str(e))
 				self.session.open(IMDB, name, False)
+
+	def EMCTMDBInfo(self):
+		isDirectory = False
+		service = self["list"].getCurrent()
+		if service:
+			path = service.getPath()
+			if path and path != config.EMC.movie_trashcan_path.value:
+				if not path.endswith("/..") and not path.endswith("/Latest Recordings"):
+					name = service.getName()
+					spath = getInfoFile(path)[0]
+					if self["list"].currentSelIsDirectory():
+						isDirectory = True
+					self.session.open(MovieInfoPreview, None, name, True, True, spath, isDirectory)
 
 	def TMDBInfo(self):
 		name = ''
