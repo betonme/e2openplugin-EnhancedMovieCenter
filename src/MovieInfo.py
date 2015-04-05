@@ -68,6 +68,9 @@ def fetchdata(url):
 def getMovieInfo(id, cat, getAll=True):
 	lang = config.EMC.movieinfo.language.value
 	posterUrl = None
+
+	# TODO: try a loop here,
+	# to get the details if answer is to slow
 	response = fetchdata("http://api.themoviedb.org/3/movie/" + str(id) + "?api_key=8789cfd3fbab7dccf1269c3d7d867aff&language=" + lang)
 	response1 = fetchdata("http://api.themoviedb.org/3/tv/" + str(id) + "?api_key=8789cfd3fbab7dccf1269c3d7d867aff&language=" + lang)
 
@@ -130,8 +133,7 @@ def getMovieInfo(id, cat, getAll=True):
 				return (_("Content:") + " " + blurb + "\n\n" + _("Runtime:") + " " + runtime + " " + _("Minutes") + "\n" + _("Genre:") + " " + genres + "\n" + _("Production Countries:") + " " + countries + "\n" + _("Release Date:") + " " + releasedate + "\n" + _("Vote:") + " " + vote + "\n")
 			else:
 				return blurb, runtime, genres, countries, releasedate, vote
-		else:    # try this way again, not tested
-			session.open(MessageBox, _("An error occured! Internet connection broken?"), MessageBox.TYPE_ERROR, 10)
+		else:
 			return None
 
 	if cat == "tvshows":
@@ -184,7 +186,6 @@ def getMovieInfo(id, cat, getAll=True):
 			else:
 				return blurb, runtime, genres, countries, releasedate, vote
 		else:
-			session.open(MessageBox, _("An error occured! Internet connection broken?"), MessageBox.TYPE_ERROR, 10)
 			return None
 
 def getTempCover(posterUrl):
@@ -267,6 +268,8 @@ class DownloadMovieInfo(Screen):
 				if config.EMC.movieinfo.coversave.value:
 					self.getPoster()
 				self.exit()
+			else:
+				self.session.open(MessageBox, _("An error occured! Internet connection broken?"), MessageBox.TYPE_ERROR, 10)
 
 	def getPoster(self):
 		moviepath = os.path.splitext(self.spath)[0]
@@ -295,14 +298,17 @@ class DownloadMovieInfo(Screen):
 		sel = self["movielist"].l.getCurrentSelection()
 		if sel is not None:
 			preview = getMovieInfo(sel[1], sel[2])
-			if config.EMC.movieinfo.coversave.value:
-				try:
-					self.session.open(MovieInfoPreview, preview, self.moviename, True)
-				except Exception, e:
-					print('[EMC] MovieInfo getPreviewPoster exception failure: ', str(e))
+			if preview is not None:
+				if config.EMC.movieinfo.coversave.value:
+					try:
+						self.session.open(MovieInfoPreview, preview, self.moviename, True)
+					except Exception, e:
+						print('[EMC] MovieInfo getPreviewPoster exception failure: ', str(e))
+						self.session.open(MovieInfoPreview, preview, self.moviename)
+				else:
 					self.session.open(MovieInfoPreview, preview, self.moviename)
 			else:
-				self.session.open(MovieInfoPreview, preview, self.moviename)
+				self.session.open(MessageBox, _("An error occured! Internet connection broken?"), MessageBox.TYPE_ERROR, 10)
 
 	def setup(self):
 		self.session.open(MovieInfoSetup)
@@ -394,9 +400,10 @@ class MovieInfoPreview(Screen):
 					sel = self["previewlist"].l.getCurrentSelection()
 					if sel is not None:
 						preview = getMovieInfo(sel[1], sel[2])
-						self.id = sel[1]
-						self.cat = sel[2]
-						self["previewtext"].setText(_(str(preview)))
+						if preview is not None:
+							self.id = sel[1]
+							self.cat = sel[2]
+							self["previewtext"].setText(_(str(preview)))
 					self["previewlist"].hide()
 					self["movie_name"] = Label(_("Movie Information Preview for:") + "   " + moviename)
 			else:
@@ -425,13 +432,16 @@ class MovieInfoPreview(Screen):
 			sel = self["previewlist"].l.getCurrentSelection()
 			if sel is not None:
 				preview = getMovieInfo(sel[1], sel[2])
-				self["previewlist"].hide()
-				self.page = 0
-				self["movie_name"].setText(_("Movie Information Preview for:") + "   " + self.moviename)
-				if self.previewCover:
-					self.previewTimer.start(300, True)
-				self["previewtext"].setText(_(str(preview)))
-				self.switchPage(sel[1], sel[2])
+				if preview is not None:
+					self["previewlist"].hide()
+					self.page = 0
+					self["movie_name"].setText(_("Movie Information Preview for:") + "   " + self.moviename)
+					if self.previewCover:
+						self.previewTimer.start(300, True)
+					self["previewtext"].setText(_(str(preview)))
+					self.switchPage(sel[1], sel[2])
+				else:
+					self.session.open(MessageBox, _("An error occured! Internet connection broken?"), MessageBox.TYPE_ERROR, 10)
 
 	def pageUp(self):
 		if self.page == 0:
