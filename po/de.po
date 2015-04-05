@@ -31,13 +31,17 @@ msgstr ""
 "\n"
 "Wollen Sie das exestierende Cover ersetzen?"
 
-#: src/MovieInfo.py:374
+#: src/MovieInfo.py:614
 msgid "Save Cover"
 msgstr "Cover speichern"
 
-#: src/MovieInfo.py:375
+#: src/MovieInfo.py:615
 msgid "Coversize"
 msgstr "Covergröße"
+
+#: src/MovieInfo.py:616
+msgid "Show new Skin Version"
+msgstr "Zeige neue Skin Version(braucht aktuelle skin-änderungen)"
 
 #: src/MovieSelection.py:2034 src/MovieSelection.py:2078
 msgid "The following files are used for other entrys in List !\n\nAlso delete these files?\n\n%s"

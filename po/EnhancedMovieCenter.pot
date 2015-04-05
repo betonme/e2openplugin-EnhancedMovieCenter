@@ -25,12 +25,16 @@ msgstr ""
 msgid "Cover %s exists!\n\nDo you want to replace the existing cover?"
 msgstr ""
 
-#: src/MovieInfo.py:374
+#: src/MovieInfo.py:614
 msgid "Save Cover"
 msgstr ""
 
-#: src/MovieInfo.py:375
+#: src/MovieInfo.py:615
 msgid "Coversize"
+msgstr ""
+
+#: src/MovieInfo.py:616
+msgid "Show new Skin Version"
 msgstr ""
 
 #: src/MovieSelection.py:2034 src/MovieSelection.py:2078

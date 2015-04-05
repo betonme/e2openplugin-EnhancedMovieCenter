@@ -433,7 +433,7 @@ config.EMC.list_skip_size            = ConfigSelectionNumber(3, 10, 1, default =
 
 config.EMC.playlist_message          = ConfigYesNo(default = True)
 
-config.EMC.InfoLong                  = ConfigSelection(choices = [("IMDbSearch", _("IMDb Search")), ("TMDBInfo", _("TMDB Info")), ("TMBDInfo", _("TMBD Info")), ('CSFDInfo', _('CSFD Info'))], default = "IMDbSearch")
+config.EMC.InfoLong                  = ConfigSelection(choices = [("IMDbSearch", _("IMDb Search")), ("EMC-TMDBInfo", _("EMC-TMDB Info")), ("TMDBInfo", _("TMDB Info")), ("TMBDInfo", _("TMBD Info")), ('CSFDInfo', _('CSFD Info'))], default = "IMDbSearch")
 
 def checkList(cfg):
 	for choices in cfg.choices.choices:
