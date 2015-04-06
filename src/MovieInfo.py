@@ -318,7 +318,7 @@ class MovieInfoPreview(Screen):
 	skin = """
 		<screen name="EMCMovieInfoPreview" position="center,center" size="1000,515" title="Movie Information Preview">
 		<widget name="movie_name" position="20,5" size="960,42" zPosition="0" font="Regular;21" valign="center" halign="center" transparent="1" foregroundColor="unbab329" backgroundColor="black" />
-		<widget name="previewtext" position="20,62" size="960,390" font="Regular;20" scrollbarMode="showOnDemand" />
+		<widget name="previewtext" position="20,62" size="960,390" font="Regular;20" />
 		<widget name="previewlist" position="20,62" size="960,390" font="Regular;20" scrollbarMode="showOnDemand" />
 		<widget name="previewcover" position="20,62" size="204,285" alphatest="blend" zPosition="2" />
 		<widget name="contenttxt" position="240,62" size="740,285" font="Regular;20" />
