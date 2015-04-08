@@ -438,20 +438,21 @@ class MovieInfoPreview(Screen):
 		}, -1)
 
 	def save(self):
-		moviepath = os.path.splitext(self.spath)[0]
-		if self.isDirectory:
-			moviepath = moviepath + "/" + self.moviename
-		try:
-			txtpath = moviepath + ".txt"
-			if fileExists("/tmp/previewTxt.txt"):
-				shutil.copy2("/tmp/previewTxt.txt", txtpath)
-		except Exception, e:
-			print('[EMC] MovieInfo saveTxt exception failure: ', str(e))
+		if self.page == 0 and self.spath is not None:
+			moviepath = os.path.splitext(self.spath)[0]
+			if self.isDirectory:
+				moviepath = moviepath + "/" + self.moviename
+			try:
+				txtpath = moviepath + ".txt"
+				if fileExists("/tmp/previewTxt.txt"):
+					shutil.copy2("/tmp/previewTxt.txt", txtpath)
+			except Exception, e:
+				print('[EMC] MovieInfo saveTxt exception failure: ', str(e))
 
-		self.session.open(MessageBox, (_('Movie Information downloaded successfully!')), MessageBox.TYPE_INFO, 5)
+			self.session.open(MessageBox, (_('Movie Information downloaded successfully!')), MessageBox.TYPE_INFO, 5)
 
-		if config.EMC.movieinfo.coversave.value:
-			self.getPoster()
+			if config.EMC.movieinfo.coversave.value:
+				self.getPoster()
 
 	def getPoster(self):
 		moviepath = os.path.splitext(self.spath)[0]
@@ -501,7 +502,7 @@ class MovieInfoPreview(Screen):
 
 	def pageUp(self):
 		if self.page == 0:
-			if config.EMC.movieinfo.shownewversion.value:
+			if config.EMC.movieinfo.shownewversion.value and self.spath is not None:
 				self["contenttxt"].pageUp()
 			else:
 				self["previewtext"].pageUp()
@@ -510,7 +511,7 @@ class MovieInfoPreview(Screen):
 
 	def pageDown(self):
 		if self.page == 0:
-			if config.EMC.movieinfo.shownewversion.value:
+			if config.EMC.movieinfo.shownewversion.value and self.spath is not None:
 				self["contenttxt"].pageDown()
 			else:
 				self["previewtext"].pageDown()
