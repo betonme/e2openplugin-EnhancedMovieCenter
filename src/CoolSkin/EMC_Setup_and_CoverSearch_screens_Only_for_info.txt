@@ -82,17 +82,15 @@
 	<widget name="movieinfo" position="545,460" size="300,25" font="Regular;18" halign="left" valign="center" transparent="1" />
 </screen>
 
-<!-- EMC MovieInfo - MovieInfoPreview - old version-->
+<!-- EMC MovieInfo - MovieInfoPreview -->
 <screen name="EMCMovieInfoPreview" position="center,center" size="800,550" title="Movie Information Preview">
 	<widget name="movie_name" position="20,5" size="650,100" zPosition="0" font="Regular;21" valign="center" transparent="1" foregroundColor="unbab329" backgroundColor="black" />
 	<widget name="previewtext" position="20,152" size="760,380" font="Regular;20" scrollbarMode="showOnDemand" />
-	<widget name="previewcover" position="684,6" size="100,140" alphatest="blend" zPosition="2" />
 </screen>
 
-<!-- EMC MovieInfo - MovieInfoPreview - new version-->
-<screen name="EMCMovieInfoPreview" position="center,center" size="1000,515" title="Movie Information Preview">
+<!-- EMC MovieInfoTMDb - MovieInfoTMDb -->
+<screen name="EMCMovieInfoTMDb" position="center,center" size="1000,515" title="Movie Information TMDb">
 	<widget name="movie_name" position="20,5" size="960,42" zPosition="0" font="Regular;21" valign="center" halign="center" transparent="1" foregroundColor="unbab329" backgroundColor="black" />
-	<widget name="previewtext" position="20,62" size="960,390" font="Regular;20" scrollbarMode="showOnDemand" />
 	<widget name="previewlist" position="20,62" size="960,390" font="Regular;20" scrollbarMode="showOnDemand" />
 	<widget name="previewcover" position="20,62" size="204,285" alphatest="blend" zPosition="2" />
 	<widget name="contenttxt" position="240,62" size="740,285" font="Regular;20" />
@@ -102,8 +100,8 @@
 	<widget name="genretxt" position="240,397" size="230,25" font="Regular;20" />
 	<widget name="country" position="530,362" size="200,25" font="Regular;20" foregroundColor="#000066FF" />
 	<widget name="countrytxt" position="750,362" size="230,25" font="Regular;20" />
-	<widget name="release" position="530,402" size="200,25" font="Regular;20" foregroundColor="#000066FF" />
-	<widget name="releasetxt" position="750,402" size="230,25" font="Regular;20" />
+	<widget name="release" position="530,397" size="200,25" font="Regular;20" foregroundColor="#000066FF" />
+	<widget name="releasetxt" position="750,397" size="230,25" font="Regular;20" />
 	<widget name="rating" position="20,432" size="200,25" font="Regular;20" foregroundColor="#000066FF" />
 	<widget name="ratingtxt" position="240,432" size="230,25" font="Regular;20" />
 	<widget name="starsbg" position="530,435" size="210,21" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/starsbar_empty_10.png" zPosition="3" alphatest="blend" />
@@ -112,7 +110,7 @@
 	<widget name="setup" position="45,475" size="150,25" font="Regular;18" halign="center" valign="center" transparent="1" />
 	<widget name="key_menu" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key_menu_line.png" position="45,500" size="150,2" alphatest="on" />
 	<widget name="save" position="320,475" size="150,25" font="Regular;18" halign="center" valign="center" transparent="1" />
-	<widget name="key_red" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key-red_line.png" position="320,500" size="150,2" alphatest="on" />
+	<widget name="key_green" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key-green_line.png" position="320,500" size="150,2" alphatest="on" />
 </screen>
 
 <!-- EMC MovieInfo - MovieInfoSetup -->
