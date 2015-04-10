@@ -69,7 +69,7 @@ from ServiceSupport import ServiceCenter
 from EMCCoverSearch import EMCImdbScan
 from MovieRetitle import MovieRetitle
 from Components.Sources.EMCServiceEvent import EMCServiceEvent
-from MovieInfo import DownloadMovieInfo, MovieInfoPreview
+from MovieInfo import DownloadMovieInfo, MovieInfoTMDb
 from EMCPlayList import emcplaylist, EMCPlaylistScreen
 
 #from MetaSupport import MetaList
@@ -1293,7 +1293,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 					spath = getInfoFile(path)[0]
 					if self["list"].currentSelIsDirectory():
 						isDirectory = True
-					self.session.open(MovieInfoPreview, None, name, True, True, spath, isDirectory)
+					self.session.open(MovieInfoTMDb, name, spath, isDirectory)
 
 	def TMDBInfo(self):
 		name = ''
@@ -2658,14 +2658,17 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 #			self.session.open(DownloadMovieInfo, service, moviename)
 
 	def dlMovieInfo(self):
-		service = self["list"].getCurrent()
-		if service:
-			path = service.getPath()
-			if path and path != config.EMC.movie_trashcan_path.value:
-				if not path.endswith("/..") and not path.endswith("/Latest Recordings"):
-					moviename = service.getName()
-					spath = getInfoFile(path)[0]
-					self.session.open(DownloadMovieInfo, spath, moviename)
+		if config.EMC.movieinfo.switch_newold.value:
+			self.EMCTMDBInfo()
+		else:
+			service = self["list"].getCurrent()
+			if service:
+				path = service.getPath()
+				if path and path != config.EMC.movie_trashcan_path.value:
+					if not path.endswith("/..") and not path.endswith("/Latest Recordings"):
+						moviename = service.getName()
+						spath = getInfoFile(path)[0]
+						self.session.open(DownloadMovieInfo, spath, moviename)
 
 #****************************************************************************************
 # add possibility to call IMDb/TMDB/CSFD from movie detail via blue key

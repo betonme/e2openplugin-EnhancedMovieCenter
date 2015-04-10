@@ -34,7 +34,7 @@ config.EMC.movieinfo.ldvote = ConfigSelection(default='1', choices=[('1', _('Yes
 config.EMC.movieinfo.ldgenre = ConfigSelection(default='1', choices=[('1', _('Yes')), ('0', _('No'))])
 config.EMC.movieinfo.coversave = ConfigYesNo(default = False)
 config.EMC.movieinfo.coversize = ConfigSelection(default="w185", choices = ["w92", "w185", "w500", "original"])
-config.EMC.movieinfo.shownewversion = ConfigYesNo(default = False)
+config.EMC.movieinfo.switch_newold = ConfigYesNo(default = False)
 config.EMC.movieinfo.cover_delay = ConfigSelectionNumber(50, 60000, 50, default= 500)
 
 def getMovieList(moviename):
@@ -313,14 +313,7 @@ class DownloadMovieInfo(Screen):
 		if sel is not None:
 			preview = getMovieInfo(sel[1], sel[2])
 			if preview is not None:
-				if config.EMC.movieinfo.coversave.value:
-					try:
-						self.session.open(MovieInfoPreview, preview, self.moviename, True)
-					except Exception, e:
-						print('[EMC] MovieInfo getPreviewPoster exception failure: ', str(e))
-						self.session.open(MovieInfoPreview, preview, self.moviename)
-				else:
-					self.session.open(MovieInfoPreview, preview, self.moviename)
+				self.session.open(MovieInfoPreview, preview, self.moviename)
 			else:
 				self.session.open(MessageBox, _("An error occured! Internet connection broken?"), MessageBox.TYPE_ERROR, 10)
 
@@ -330,9 +323,36 @@ class DownloadMovieInfo(Screen):
 
 class MovieInfoPreview(Screen):
 	skin = """
-		<screen name="EMCMovieInfoPreview" position="center,center" size="1000,515" title="Movie Information Preview">
+		<screen name="EMCMovieInfoPreview" position="center,center" size="800,450" title="Movie Information Preview">
+		<widget name="movie_name" position="5,5" size="795,44" zPosition="0" font="Regular;21" valign="center" transparent="1" foregroundColor="#00bab329" backgroundColor="#000000"/>
+		<widget name="previewtext" position="10,53" size="760,380" font="Regular;20" />
+	</screen>"""
+
+	def __init__(self, session, preview, moviename):
+		Screen.__init__(self, session)
+		#self.session = session
+		self.preview = preview
+		self["movie_name"] = Label(_("Movie Information Preview for:") + "   " + moviename)
+		self["previewtext"]=Label(_(str(preview)))
+		self.onLayoutFinish.append(self.layoutFinished)
+		self["actions"] = HelpableActionMap(self, "EMCMovieInfo",
+		{
+			"EMCEXIT":	self.close,
+			#"EMCOK":	self.red,
+			#"EMCMenu":	self.setup,
+			#"EMCINFO":	self.info,
+			#"EMCGreen":	self.green,
+			#"EMCRed":	self.red,
+		}, -1)
+
+	def layoutFinished(self):
+		self.setTitle(_("Movie Information Preview"))
+
+
+class MovieInfoTMDb(Screen):
+	skin = """
+		<screen name="EMCMovieInfoTMDb" position="center,center" size="1000,515" title="Movie Information TMDb">
 		<widget name="movie_name" position="20,5" size="960,42" zPosition="0" font="Regular;21" valign="center" halign="center" transparent="1" foregroundColor="unbab329" backgroundColor="black" />
-		<widget name="previewtext" position="20,62" size="960,390" font="Regular;20" />
 		<widget name="previewlist" position="20,62" size="960,390" font="Regular;20" scrollbarMode="showOnDemand" />
 		<widget name="previewcover" position="20,62" size="204,285" alphatest="blend" zPosition="2" />
 		<widget name="contenttxt" position="240,62" size="740,285" font="Regular;20" />
@@ -357,16 +377,12 @@ class MovieInfoPreview(Screen):
 
 # page 0 = details
 # page 1 = list
-# config.EMC.movieinfo.shownewversion - switch between old style and new style
-	def __init__(self, session, preview, moviename, previewCover=False, previewMode=False, spath=None, isDirectory=False):
+	def __init__(self, session, moviename, spath=None, isDirectory=False):
 		Screen.__init__(self, session)
 		#self.session = session
-		self.preview = preview
 		self.moviename = getMovieNameWithoutExt(moviename)
 		moviename = getMovieNameWithoutPhrases(self.moviename)
 		self.movielist = None
-		self.previewCover = previewCover
-		self.previewMode = previewMode
 		self.spath = spath
 		self.isDirectory = isDirectory
 		self["previewcover"] = Pixmap()
@@ -398,32 +414,25 @@ class MovieInfoPreview(Screen):
 		self["save"] = Label(_("Save"))
 		self["key_green"] = Pixmap()
 		self.ratingstars = -1
-		if self.preview is not None:
-			self["previewlist"].hide()
-			self["movie_name"] = Label(_("Movie Information Preview for:") + "   " + moviename)
-			self["previewtext"] = ScrollLabel(_(str(preview)))
-		else:
-			self.movielist = getMovieList(moviename)
-			if self.movielist is not None:
-				self["previewlist"] = MenuList(self.movielist[0])
-				self["previewtext"] = ScrollLabel()
-				if self.movielist[1] > 1:
-					self.page = 1
-					self["movie_name"] = Label(_("Search results for:") + "   " + moviename)
-				else:
-					self.page = 0
-					sel = self["previewlist"].l.getCurrentSelection()
-					if sel is not None:
-						preview = getMovieInfo(sel[1], sel[2])
-						if preview is not None:
-							self.id = sel[1]
-							self.cat = sel[2]
-							self["previewtext"].setText(_(str(preview)))
-					self["previewlist"].hide()
-					self["movie_name"] = Label(_("Movie Information Preview for:") + "   " + moviename)
-			else:
+		self.movielist = getMovieList(moviename)
+		if self.movielist is not None:
+			self["previewlist"] = MenuList(self.movielist[0])
+			if self.movielist[1] > 1:
+				self.page = 1
 				self["movie_name"] = Label(_("Search results for:") + "   " + moviename)
-				self["previewtext"] = ScrollLabel(_("Nothing was found !"))
+			else:
+				self.page = 0
+				sel = self["previewlist"].l.getCurrentSelection()
+				if sel is not None:
+					preview = getMovieInfo(sel[1], sel[2])
+					if preview is not None:
+						self.id = sel[1]
+						self.cat = sel[2]
+				self["previewlist"].hide()
+				self["movie_name"] = Label(_("Movie Information Preview for:") + "   " + moviename)
+		else:
+			self["movie_name"] = Label(_("Search results for:") + "   " + moviename)
+			self["contenttxt"].setText(_("Nothing was found !"))
 		self.onLayoutFinish.append(self.layoutFinished)
 		self["actions"] = HelpableActionMap(self, "EMCMovieInfo",
 		{
@@ -436,6 +445,80 @@ class MovieInfoPreview(Screen):
 			#"EMCINFO":	self.info,
 			#"EMCRed":	self.red,
 		}, -1)
+
+	def layoutFinished(self):
+		self.setTitle(_("Movie Information TMDb"))
+		self.switchPage()
+
+	def switchPage(self, id=None, cat=None):
+		if self.page == 1:
+			self["previewlist"].show()
+			self["runtime"].hide()
+			self["genre"].hide()
+			self["country"].hide()
+			self["release"].hide()
+			self["rating"].hide()
+			self["contenttxt"].hide()
+			self["runtimetxt"].hide()
+			self["genretxt"].hide()
+			self["countrytxt"].hide()
+			self["releasetxt"].hide()
+			self["ratingtxt"].hide()
+			self["stars"].hide()
+			self["starsbg"].hide()
+			self["previewcover"].hide()
+			self["save"].hide()
+			self["key_green"].hide()
+		else:
+			self["runtime"].setText(_("Runtime:"))
+			self["genre"].setText(_("Genre:"))
+			self["country"].setText(_("Production Countries:"))
+			self["release"].setText(_("Release Date:"))
+			self["rating"].setText(_("Vote:"))
+			if id is None:
+				if self.id is not None:
+					id = self.id
+			if cat is None:
+				if self.cat is not None:
+					cat = self.cat
+			if id is not None or cat is not None:
+				content, runtime, genres, countries, release, vote = getMovieInfo(id, cat, False)
+				self["runtime"].show()
+				self["genre"].show()
+				self["country"].show()
+				self["release"].show()
+				self["rating"].show()
+				self["contenttxt"].show()
+				self["runtimetxt"].show()
+				self["genretxt"].show()
+				self["countrytxt"].show()
+				self["releasetxt"].show()
+				self["ratingtxt"].show()
+				self["contenttxt"].setText(content)
+				if runtime != "":
+					self["runtimetxt"].setText(runtime + " " + _("Minutes"))
+				else:
+					self["runtimetxt"].setText(runtime)
+				self["genretxt"].setText(genres)
+				self["countrytxt"].setText(countries)
+				self["releasetxt"].setText(release)
+				if vote:
+					self["ratingtxt"].setText(vote.replace('\n','') + " / 10")
+					self.ratingstars = int(10*round(float(vote.replace(',','.')),1))
+					if self.ratingstars > 0:
+						self["starsbg"].show()
+						self["stars"].show()
+						self["stars"].setValue(self.ratingstars)
+					else:
+						self["starsbg"].show()
+						self["stars"].hide()
+				else:
+					self["ratingtxt"].setText(" 0 / 10")
+					self["starsbg"].show()
+					self["stars"].hide()
+				self["save"].show()
+				self["key_green"].show()
+				self.previewTimer.start(int(config.EMC.movieinfo.cover_delay.value), True)
 
 	def save(self):
 		if self.page == 0 and self.spath is not None:
@@ -493,28 +576,20 @@ class MovieInfoPreview(Screen):
 					self["previewlist"].hide()
 					self.page = 0
 					self["movie_name"].setText(_("Movie Information Preview for:") + "   " + self.moviename)
-					if self.previewCover:
-						self.previewTimer.start(int(config.EMC.movieinfo.cover_delay.value), True)
-					self["previewtext"].setText(_(str(preview)))
+					self.previewTimer.start(int(config.EMC.movieinfo.cover_delay.value), True)
 					self.switchPage(sel[1], sel[2])
 				else:
 					self.session.open(MessageBox, _("An error occured! Internet connection broken?"), MessageBox.TYPE_ERROR, 10)
 
 	def pageUp(self):
 		if self.page == 0:
-			if config.EMC.movieinfo.shownewversion.value and self.spath is not None:
-				self["contenttxt"].pageUp()
-			else:
-				self["previewtext"].pageUp()
+			self["contenttxt"].pageUp()
 		if self.page == 1:
 			self["previewlist"].up()
 
 	def pageDown(self):
 		if self.page == 0:
-			if config.EMC.movieinfo.shownewversion.value and self.spath is not None:
-				self["contenttxt"].pageDown()
-			else:
-				self["previewtext"].pageDown()
+			self["contenttxt"].pageDown()
 		if self.page == 1:
 			self["previewlist"].down()
 
@@ -535,113 +610,6 @@ class MovieInfoPreview(Screen):
 		sc = AVSwitch().getFramebufferScale()
 		self.picload.setPara((self["previewcover"].instance.size().width(), self["previewcover"].instance.size().height(), sc[0], sc[1], False, 1, "#00000000"))
 		self.picload.startDecode(previewpath)
-
-	def layoutFinished(self):
-		self.setTitle(_("Movie Information Preview"))
-		self.switchPage()
-
-	def switchPage(self, id=None, cat=None):
-		if self.page == 1:
-			self["previewlist"].show()
-			self["runtime"].hide()
-			self["genre"].hide()
-			self["country"].hide()
-			self["release"].hide()
-			self["rating"].hide()
-			self["previewtext"].hide()
-			self["contenttxt"].hide()
-			self["runtimetxt"].hide()
-			self["genretxt"].hide()
-			self["countrytxt"].hide()
-			self["releasetxt"].hide()
-			self["ratingtxt"].hide()
-			self["stars"].hide()
-			self["starsbg"].hide()
-			self["previewcover"].hide()
-			self["save"].hide()
-			self["key_green"].hide()
-		if self.page == 0 and self.preview is not None:
-			self["runtime"].hide()
-			self["genre"].hide()
-			self["country"].hide()
-			self["release"].hide()
-			self["rating"].hide()
-			self["contenttxt"].hide()
-			self["runtimetxt"].hide()
-			self["genretxt"].hide()
-			self["countrytxt"].hide()
-			self["releasetxt"].hide()
-			self["ratingtxt"].hide()
-			self["save"].hide()
-			self["key_green"].hide()
-		else:
-			if self.previewCover and not self.page == 1:
-				if config.EMC.movieinfo.shownewversion.value:
-					self["previewtext"].hide()
-					self["runtime"].setText(_("Runtime:"))
-					self["genre"].setText(_("Genre:"))
-					self["country"].setText(_("Production Countries:"))
-					self["release"].setText(_("Release Date:"))
-					self["rating"].setText(_("Vote:"))
-					if id is None:
-						if self.id is not None:
-							id = self.id
-					if cat is None:
-						if self.cat is not None:
-							cat = self.cat
-					if id is not None or cat is not None:
-							content, runtime, genres, countries, release, vote = getMovieInfo(id, cat, False)
-							self["runtime"].show()
-							self["genre"].show()
-							self["country"].show()
-							self["release"].show()
-							self["rating"].show()
-							self["contenttxt"].show()
-							self["runtimetxt"].show()
-							self["genretxt"].show()
-							self["countrytxt"].show()
-							self["releasetxt"].show()
-							self["ratingtxt"].show()
-							self["contenttxt"].setText(content)
-							if runtime != "":
-								self["runtimetxt"].setText(runtime + " " + _("Minutes"))
-							else:
-								self["runtimetxt"].setText(runtime)
-							self["genretxt"].setText(genres)
-							self["countrytxt"].setText(countries)
-							self["releasetxt"].setText(release)
-							if vote:
-								self["ratingtxt"].setText(vote.replace('\n','') + " / 10")
-								self.ratingstars = int(10*round(float(vote.replace(',','.')),1))
-								if self.ratingstars > 0:
-									self["starsbg"].show()
-									self["stars"].show()
-									self["stars"].setValue(self.ratingstars)
-								else:
-									self["starsbg"].show()
-									self["stars"].hide()
-							else:
-								self["ratingtxt"].setText(" 0 / 10")
-								self["starsbg"].show()
-								self["stars"].hide()
-							self["save"].show()
-							self["key_green"].show()
-							self.previewTimer.start(int(config.EMC.movieinfo.cover_delay.value), True)
-				else:
-					self["previewtext"].show()
-					self["runtime"].hide()
-					self["genre"].hide()
-					self["country"].hide()
-					self["release"].hide()
-					self["rating"].hide()
-					self["contenttxt"].hide()
-					self["runtimetxt"].hide()
-					self["genretxt"].hide()
-					self["countrytxt"].hide()
-					self["releasetxt"].hide()
-					self["ratingtxt"].hide()
-					self["save"].hide()
-					self["key_green"].hide()
 
 	def exit(self):
 		if self.movielist is not None:
@@ -683,7 +651,7 @@ class MovieInfoSetup(Screen, ConfigListScreen):
 		self.list.append(getConfigListEntry(_("Load Vote:"), config.EMC.movieinfo.ldvote))
 		self.list.append(getConfigListEntry(_("Save Cover"), config.EMC.movieinfo.coversave))
 		self.list.append(getConfigListEntry(_("Coversize"), config.EMC.movieinfo.coversize))
-		self.list.append(getConfigListEntry(_("Show new Skin Version"), config.EMC.movieinfo.shownewversion))
+		self.list.append(getConfigListEntry(_("Switch complete to new Version"), config.EMC.movieinfo.switch_newold))
 		self.list.append(getConfigListEntry(_("Cover delay in ms"), config.EMC.movieinfo.cover_delay))
 
 		ConfigListScreen.__init__(self, self.list, session)
