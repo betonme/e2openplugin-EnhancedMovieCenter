@@ -63,17 +63,17 @@ emcplaylist = EMCPlaylist()
 
 class EMCPlaylistScreen(Screen):
 	skin = """
-		<screen position="center,center" size="710,510" title="EMC Playlist" >
-			<widget name="playlist" position="5,5" size="700,450" scrollbarMode="showOnDemand" posColor="#FFFFFF" posColorSel="#FFFFFF" nameColor="#FFFFFF" nameColorSel="#FFFFFF" />
-			<ePixmap pixmap="skin_default/buttons/red.png" position="17,460" zPosition="0" size="140,40" alphatest="on" />
-			<ePixmap pixmap="skin_default/buttons/green.png" position="192,460" zPosition="0" size="140,40" alphatest="on" />
-			<ePixmap pixmap="skin_default/buttons/yellow.png" position="372,460" zPosition="0" size="140,40" alphatest="on" />
-			<ePixmap pixmap="skin_default/buttons/blue.png" position="552,460" zPosition="0" size="140,40" alphatest="on" />
-			<widget name="cancel" position="17,460" size="140,40" valign="center" halign="center" zPosition="1" font="Regular;17" transparent="1" backgroundColor="red" />
-			<widget name="ok" position="192,460" size="140,40" valign="center" halign="center" zPosition="1" font="Regular;17" transparent="1" backgroundColor="green" />
-			<widget name="delete" position="372,460" size="140,40" valign="center" halign="center" zPosition="1" font="Regular;17" transparent="1" backgroundColor="yellow" />
-			<widget name="deleteall" position="552,460" size="140,40" valign="center" halign="center" zPosition="1" font="Regular;17" transparent="1" backgroundColor="blue" /> 
-		</screen>"""
+		<screen name="EMCPlaylist"  position="center,center" size="710,510" title="EMC Playlist" >
+		<widget name="playlist" position="5,5" size="700,450" scrollbarMode="showOnDemand" posColor="#FFFFFF" posColorSel="#FFFFFF" nameColor="#FFFFFF" nameColorSel="#FFFFFF" />
+		<ePixmap pixmap="skin_default/buttons/red.png" position="17,460" zPosition="0" size="140,40" alphatest="on" />
+		<ePixmap pixmap="skin_default/buttons/green.png" position="192,460" zPosition="0" size="140,40" alphatest="on" />
+		<ePixmap pixmap="skin_default/buttons/yellow.png" position="372,460" zPosition="0" size="140,40" alphatest="on" />
+		<ePixmap pixmap="skin_default/buttons/blue.png" position="552,460" zPosition="0" size="140,40" alphatest="on" />
+		<widget name="cancel" position="17,460" size="140,40" valign="center" halign="center" zPosition="1" font="Regular;17" transparent="1" backgroundColor="red" />
+		<widget name="ok" position="192,460" size="140,40" valign="center" halign="center" zPosition="1" font="Regular;17" transparent="1" backgroundColor="green" />
+		<widget name="delete" position="372,460" size="140,40" valign="center" halign="center" zPosition="1" font="Regular;17" transparent="1" backgroundColor="yellow" />
+		<widget name="deleteall" position="552,460" size="140,40" valign="center" halign="center" zPosition="1" font="Regular;17" transparent="1" backgroundColor="blue" /> 
+	</screen>"""
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
