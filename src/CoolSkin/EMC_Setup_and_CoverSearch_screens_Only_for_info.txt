@@ -1,4 +1,4 @@
-<!-- Skin defaults from the EMC-Setup screen, CoverSearch screens and MovieInfo screens. Only for info to skin this by self -->
+<!-- Skin defaults from the EMC-Setup screen, EMCPlaylist, CoverSearch screens and MovieInfo screens. Only for info to skin this by self -->
 
 
 <!-- EnhancedMovieCenter Menu -->
@@ -21,6 +21,19 @@
 	<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key-green.png" position="412,455" zPosition="0" size="140,40" transparent="1" alphatest="on" />
 	<widget name="key_red" position="66,455" zPosition="1" size="140,40" font="EMCRegularFont;20" valign="center" halign="center" backgroundColor="#9f1313" transparent="1" shadowColor="#000000" shadowOffset="-1,-1" />
 	<widget name="key_green" position="412,455" zPosition="1" size="140,40" font="EMCRegularFont;20" valign="center" halign="center" backgroundColor="#1f771f" transparent="1" shadowColor="#000000" shadowOffset="-1,-1" />
+</screen>
+
+<!-- EMC Playlist -->
+<screen name="EMCPlaylist"  position="center,center" size="710,510" title="EMC Playlist" >
+	<widget name="playlist" position="5,5" size="700,450" scrollbarMode="showOnDemand" posColor="#FFFFFF" posColorSel="#FFFFFF" nameColor="#FFFFFF" nameColorSel="#FFFFFF" />
+	<ePixmap pixmap="skin_default/buttons/red.png" position="17,460" zPosition="0" size="140,40" alphatest="on" />
+	<ePixmap pixmap="skin_default/buttons/green.png" position="192,460" zPosition="0" size="140,40" alphatest="on" />
+	<ePixmap pixmap="skin_default/buttons/yellow.png" position="372,460" zPosition="0" size="140,40" alphatest="on" />
+	<ePixmap pixmap="skin_default/buttons/blue.png" position="552,460" zPosition="0" size="140,40" alphatest="on" />
+	<widget name="cancel" position="17,460" size="140,40" valign="center" halign="center" zPosition="1" font="Regular;17" transparent="1" backgroundColor="red" />
+	<widget name="ok" position="192,460" size="140,40" valign="center" halign="center" zPosition="1" font="Regular;17" transparent="1" backgroundColor="green" />
+	<widget name="delete" position="372,460" size="140,40" valign="center" halign="center" zPosition="1" font="Regular;17" transparent="1" backgroundColor="yellow" />
+	<widget name="deleteall" position="552,460" size="140,40" valign="center" halign="center" zPosition="1" font="Regular;17" transparent="1" backgroundColor="blue" /> 
 </screen>
 
 <!-- Cover Search -->
