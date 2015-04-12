@@ -46,11 +46,11 @@ def getMovieList(moviename):
 		movies = response["results"]
 		movielist = []
 		for mov in movies:
-			movielist.append((_(str(mov["title"])), mov["id"], "movie"))
+			movielist.append((_(str(mov["title"]) + " - " + _("Movies")), mov["id"], "movie"))
 
 		tvshows = response1["results"]
 		for shows in tvshows:
-			movielist.append((_(str(shows["name"])), shows["id"], "tvshows"))
+			movielist.append((_(str(shows["name"]) + " - " + _("TV Shows")), shows["id"], "tvshows"))
 
 		idx = len(movies) + len(tvshows)
 
@@ -66,7 +66,7 @@ def fetchdata(url):
 	except:
 		return None
 
-def getMovieInfo(id, cat, getAll=True):
+def getMovieInfo(id, cat, getAll=True, onlyPoster=False):
 	lang = config.EMC.movieinfo.language.value
 	posterUrl = None
 
@@ -83,6 +83,8 @@ def getMovieInfo(id, cat, getAll=True):
 			posterUrl = (str(response1["poster_path"])).encode('utf-8')
 	if posterUrl is not None:
 		getTempCover(posterUrl)
+	if onlyPoster:
+		return
 
 	if cat == "movie":
 		if response is not None:
@@ -205,6 +207,8 @@ def getTempTxt(txt):
 def getTempCover(posterUrl):
 	if posterUrl is not None:
 		try:
+			if fileExists("/tmp/previewCover.jpg"):
+				os.remove("/tmp/previewCover.jpg")
 			coverpath = "/tmp/previewCover.jpg"
 			url = "http://image.tmdb.org/t/p/%s%s" % (config.EMC.movieinfo.coversize.value, posterUrl)
 			downloadPage(url, coverpath).addErrback(dataError)
@@ -353,7 +357,7 @@ class MovieInfoTMDb(Screen):
 	skin = """
 		<screen name="EMCMovieInfoTMDb" position="center,center" size="1000,515" title="Movie Information TMDb">
 		<widget name="movie_name" position="20,5" size="960,42" zPosition="0" font="Regular;21" valign="center" halign="center" transparent="1" foregroundColor="unbab329" backgroundColor="black" />
-		<widget name="previewlist" position="20,62" size="960,390" font="Regular;20" scrollbarMode="showOnDemand" />
+		<widget name="previewlist" position="240,62" size="740,380" font="Regular;20" scrollbarMode="showOnDemand" />
 		<widget name="previewcover" position="20,62" size="204,285" alphatest="blend" zPosition="2" />
 		<widget name="contenttxt" position="240,62" size="740,285" font="Regular;20" />
 		<widget name="runtime" position="20,362" size="200,25" font="Regular;20" foregroundColor="#000066FF" />
@@ -390,6 +394,8 @@ class MovieInfoTMDb(Screen):
 		self.picload.PictureData.get().append(self.showPreviewCoverCB)
 		self.previewTimer = eTimer()
 		self.previewTimer.callback.append(self.showPreviewCover)
+		self.selectionTimer = eTimer()
+		self.selectionTimer.callback.append(self.updateSelection)
 		self["previewlist"] = MenuList([])
 		self.page = 0
 		self.id = None
@@ -445,6 +451,18 @@ class MovieInfoTMDb(Screen):
 			#"EMCINFO":	self.info,
 			#"EMCRed":	self.red,
 		}, -1)
+		self["previewlist"].onSelectionChanged.append(self.selectionChanged)
+
+	def selectionChanged(self):
+		if self.page == 1:
+			self.selectionTimer.start(int(config.EMC.movieinfo.cover_delay.value), True)
+
+	def updateSelection(self):
+		if self.page == 1:
+			sel = self["previewlist"].l.getCurrentSelection()
+			if sel is not None:
+				getMovieInfo(sel[1], sel[2], False, True)
+				self.previewTimer.start(int(config.EMC.movieinfo.cover_delay.value), True)
 
 	def layoutFinished(self):
 		self.setTitle(_("Movie Information TMDb"))
@@ -453,6 +471,7 @@ class MovieInfoTMDb(Screen):
 	def switchPage(self, id=None, cat=None):
 		if self.page == 1:
 			self["previewlist"].show()
+			self.selectionChanged()
 			self["runtime"].hide()
 			self["genre"].hide()
 			self["country"].hide()
@@ -466,7 +485,6 @@ class MovieInfoTMDb(Screen):
 			self["ratingtxt"].hide()
 			self["stars"].hide()
 			self["starsbg"].hide()
-			self["previewcover"].hide()
 			self["save"].hide()
 			self["key_green"].hide()
 		else:
@@ -571,26 +589,25 @@ class MovieInfoTMDb(Screen):
 		else:
 			sel = self["previewlist"].l.getCurrentSelection()
 			if sel is not None:
-				preview = getMovieInfo(sel[1], sel[2])
-				if preview is not None:
-					self["previewlist"].hide()
-					self.page = 0
-					self["movie_name"].setText(_("Movie Information Preview for:") + "   " + self.moviename)
-					self.previewTimer.start(int(config.EMC.movieinfo.cover_delay.value), True)
-					self.switchPage(sel[1], sel[2])
-				else:
-					self.session.open(MessageBox, _("An error occured! Internet connection broken?"), MessageBox.TYPE_ERROR, 10)
+				self["previewlist"].hide()
+				self.page = 0
+				self["movie_name"].setText(_("Movie Information Preview for:") + "   " + self.moviename)
+				self.switchPage(sel[1], sel[2])
 
 	def pageUp(self):
 		if self.page == 0:
 			self["contenttxt"].pageUp()
 		if self.page == 1:
+			if self.selectionTimer.isActive():
+				self.selectionTimer.stop()
 			self["previewlist"].up()
 
 	def pageDown(self):
 		if self.page == 0:
 			self["contenttxt"].pageDown()
 		if self.page == 1:
+			if self.selectionTimer.isActive():
+				self.selectionTimer.stop()
 			self["previewlist"].down()
 
 	def showPreviewCoverCB(self, picInfo=None):

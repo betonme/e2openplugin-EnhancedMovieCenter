@@ -16,6 +16,14 @@ msgstr ""
 "X-Poedit-Basepath: ../\n"
 "X-Poedit-SearchPath-0: src\n"
 
+#: src/MovieInfo.py:49
+msgid "Movies"
+msgstr "Filme"
+
+#: src/MovieInfo.py:53
+msgid "TV Shows"
+msgstr "Serien"
+
 #: src/MovieInfo.py:654
 msgid "Switch complete to new Version"
 msgstr "Wechsel komplett zur neuen Version"
