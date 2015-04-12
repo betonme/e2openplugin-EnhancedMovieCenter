@@ -1945,7 +1945,11 @@ class MovieCenter(GUIComponent):
 
 				colortitle = color
 				colordate = color
-				colorhighlight = color
+				#colorhighlight = color
+				if color == self.WatchingColor or color == self.FinishedColor or color == self.RecordingColor:
+					colorhighlight = color
+				else:
+					colorhighlight = self.FrontColorSel
 
 				# Get entry selection number
 				if service in self.highlightsMov: selnumtxt = "-->"
