@@ -633,20 +633,20 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 		if mode == "D":	# Date sort
 			if not order:
 				if movie_metaload:
-					sortlist.sort( key=lambda x: (x[2],x[1],x[9],-x[8]), reverse=True )
+					sortlist.sort( key=lambda x: (-x[12],-x[13],-x[14],-x[15],-x[16],x[1],x[9],-x[8]) )
 				else:
-					sortlist.sort( key=lambda x: (x[2],x[1],-x[8]), reverse=True )
+					sortlist.sort( key=lambda x: (-x[12],-x[13],-x[14],-x[15],-x[16],x[1],-x[8]) )
 			else:
 				if movie_metaload:
-					sortlist.sort( key=lambda x: (x[2], x[1], x[9], x[8]), reverse=True )
+					sortlist.sort( key=lambda x: (x[12],x[13],x[14],x[15],x[16], x[1], x[9], x[8]), reverse=True )
 				else:
-					sortlist.sort( key=lambda x: (x[2], x[1], x[8]), reverse=True )
+					sortlist.sort( key=lambda x: (x[12],x[13],x[14],x[15],x[16], x[1], x[8]), reverse=True )
 
 		elif mode == "A":	# Alpha sort
 			if not order:
-				sortlist.sort( key=lambda x: (x[1],x[2],x[8]) )
+				sortlist.sort( key=lambda x: (x[1],-x[12],-x[13],-x[14],-x[15],-x[16],x[8]) )
 			else:
-				sortlist.sort( key=lambda x: (x[1],x[2],-x[8]) )
+				sortlist.sort( key=lambda x: (x[1],x[12],x[13],x[14],x[15],x[16],-x[8]) )
 
 		elif mode == "ADN":	# Alpha sort with new date, newest first
 			if not order:
@@ -656,9 +656,9 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 
 		elif mode == "AM":	# Alpha sort with meta
 			if not order:
-				sortlist.sort( key=lambda x: (x[1],x[9],x[2],x[8]) )
+				sortlist.sort( key=lambda x: (x[1],x[9],-x[12],-x[13],-x[14],-x[15],-x[16],x[8]) )
 			else:
-				sortlist.sort( key=lambda x: (x[1],x[9],x[2],-x[8]) )
+				sortlist.sort( key=lambda x: (x[1],x[9],x[12],x[13],x[14],x[15],x[16],-x[8]) )
 
 		elif mode == "AMDN":	# Alpha sort with meta and new date, newest first
 			if not order:
@@ -984,15 +984,27 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 					break
 		return check
 
-	def checkDate(self, path):
+	def checkDate(self, path, dirDate=False):
 		date = 0
+		year, month, day, hour, min = "", "", "", "", ""
 		try:
 			if path:
 				getdate = os.stat(path)
-				date = getdate[8]
+				if dirDate:
+					from time import strftime, localtime
+					year = strftime('%Y', localtime(getdate[8]))
+					month = strftime('%m', localtime(getdate[8]))
+					day = strftime('%d', localtime(getdate[8]))
+					hour = strftime('%H', localtime(getdate[8]))
+					min = strftime('%M', localtime(getdate[8]))
+				else:
+					date = getdate[8]
 		except Exception, e:
 			emcDebugOut("[EMC] Exception in checkDate: " + str(e))
-		return date
+		if dirDate:
+			return year, month, day, hour, min
+		else:
+			return date
 
 	def createFileInfo(self, pathname):
 		# Create info for new record
@@ -1157,8 +1169,17 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 				sorttitle = title.lower()
 
 				if date is None:
-					date = datetime.fromtimestamp(0)
-				append((service, sorttitle, date, title, path, 0, 0, ext, 0, sorteventtitle, eventtitle, metaref, 0, 0, 0, 0, 0))
+					date = datetime.fromtimestamp(0
+
+				# we get now the real date for folders
+				# so we can sort this, if they are in the list, not at top
+				newDate = self.checkDate(path, True)
+				sortyear = newDate[0]
+				sortmonth = newDate[1]
+				sortday = newDate[2]
+				sorthour = newDate[3]
+				sortmin = newDate[4]
+				append((service, sorttitle, date, title, path, 0, 0, ext, 0, sorteventtitle, eventtitle, metaref, int(sortyear or 0), int(sortmonth or 0), int(sortday or 0), int(sorthour or 0), int(sortmin or 0)))
 
 		# Add file entries to the list
 		if filelist is not None:
