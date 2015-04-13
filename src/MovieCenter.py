@@ -1169,7 +1169,7 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 				sorttitle = title.lower()
 
 				if date is None:
-					date = datetime.fromtimestamp(0
+					date = datetime.fromtimestamp(0)
 
 				# we get now the real date for folders
 				# so we can sort this, if they are in the list, not at top
