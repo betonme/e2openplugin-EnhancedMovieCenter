@@ -1173,12 +1173,15 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 
 				# we get now the real date for folders
 				# so we can sort this, if they are in the list, not at top
-				newDate = self.checkDate(path, True)
-				sortyear = newDate[0]
-				sortmonth = newDate[1]
-				sortday = newDate[2]
-				sorthour = newDate[3]
-				sortmin = newDate[4]
+				if path.endswith("Latest Recordings"):
+					pass
+				else:
+					newDate = self.checkDate(path, True)
+					sortyear = newDate[0]
+					sortmonth = newDate[1]
+					sortday = newDate[2]
+					sorthour = newDate[3]
+					sortmin = newDate[4]
 				append((service, sorttitle, date, title, path, 0, 0, ext, 0, sorteventtitle, eventtitle, metaref, int(sortyear or 0), int(sortmonth or 0), int(sortday or 0), int(sorthour or 0), int(sortmin or 0)))
 
 		# Add file entries to the list
