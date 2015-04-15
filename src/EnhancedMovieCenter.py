@@ -68,6 +68,11 @@ def checkImg():
 	except Exception, e:
 		print "[EMC] checkImg is not Vti", e
 
+def image():
+	if imgVti:
+		return 30, 18
+	else:
+		return 28, 20
 
 def setEPGLanguage(dummyself=None, dummy=None):
 	if config.EMC.epglang.value:
@@ -197,17 +202,17 @@ def next_predefined_settings(key=""):
 
 class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 	skin = """
-		<screen name="EnhancedMovieCenterMenu" position="center,center" size="620,500" title="EnhancedMovieCenterMenu">
-		<widget name="config" position="10,10" size="605,353 " enableWrapAround="1" scrollbarMode="showOnDemand" />
-		<eLabel position="0,362" size="620,2" backgroundColor="#999999" zPosition="1" />
-		<widget source="help" render="Label" position="10,367" size="605,88" font="Regular;20" foregroundColor="#999999" />
-		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key-red.png" position="50,455" zPosition="0" size="140,40" transparent="1" alphatest="on" />
-		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key-green.png" position="240,455" zPosition="0" size="140,40" transparent="1" alphatest="on" />
-		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key-blue.png" position="430,455" zPosition="0" size="140,40" transparent="1" alphatest="on" />
-		<widget name="key_red" position="50,455" zPosition="1" size="140,40" font="Regular;20" valign="center" halign="center" backgroundColor="#9f1313" transparent="1" shadowColor="#000000" shadowOffset="-1,-1" />
-		<widget name="key_green" position="240,455" zPosition="1" size="140,40" font="Regular;20" valign="center" halign="center" backgroundColor="#1f771f" transparent="1" shadowColor="#000000" shadowOffset="-1,-1" />
-		<widget name="key_blue" position="430,455" zPosition="1" size="140,40" font="Regular;20" valign="center" halign="center" backgroundColor="#18188b" transparent="1" shadowColor="#000000" shadowOffset="-1,-1" />
-	</screen>"""
+		<screen name="EnhancedMovieCenterMenu" position="center,center" size="670,520" title="EnhancedMovieCenterMenu">
+		<widget name="config" position="10,10" size="655,353 "  itemHeight="%s" font="Regular;%s" enableWrapAround="1" scrollbarMode="showOnDemand" />
+		<eLabel position="0,362" size="670,2" backgroundColor="#999999" zPosition="1" />
+		<widget source="help" render="Label" position="10,367" size="655,108" font="Regular;20" foregroundColor="#999999" />
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key-red.png" position="75,475" zPosition="0" size="140,40" transparent="1" alphatest="on" />
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key-green.png" position="265,475" zPosition="0" size="140,40" transparent="1" alphatest="on" />
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key-blue.png" position="455,475" zPosition="0" size="140,40" transparent="1" alphatest="on" />
+		<widget name="key_red" position="75,475" zPosition="1" size="140,40" font="Regular;20" valign="center" halign="center" backgroundColor="#9f1313" transparent="1" shadowColor="#000000" shadowOffset="-1,-1" />
+		<widget name="key_green" position="265,475" zPosition="1" size="140,40" font="Regular;20" valign="center" halign="center" backgroundColor="#1f771f" transparent="1" shadowColor="#000000" shadowOffset="-1,-1" />
+		<widget name="key_blue" position="455,475" zPosition="1" size="140,40" font="Regular;20" valign="center" halign="center" backgroundColor="#18188b" transparent="1" shadowColor="#000000" shadowOffset="-1,-1" />
+	</screen>""" % image()
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		self.skinName = "EnhancedMovieCenterMenu"

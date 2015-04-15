@@ -17,6 +17,7 @@ from skin import parseColor, parseFont
 
 from MetaSupport import MetaList
 from MovieCenter import plyDVB
+from EnhancedMovieCenter import imgVti
 
 global plyDVB
 
@@ -63,8 +64,8 @@ emcplaylist = EMCPlaylist()
 
 class EMCPlaylistScreen(Screen):
 	skin = """
-		<screen name="EMCPlaylist"  position="center,center" size="710,510" title="EMC Playlist" >
-		<widget name="playlist" position="5,5" size="700,450" scrollbarMode="showOnDemand" posColor="#FFFFFF" posColorSel="#FFFFFF" nameColor="#FFFFFF" nameColorSel="#FFFFFF" />
+		<screen position="center,center" size="710,510" title="EMC Playlist" >
+		<widget name="playlist" position="5,5" size="700,450" itemHeight="30" scrollbarMode="showOnDemand" posColor="#FFFFFF" posColorSel="#FFFFFF" nameColor="#FFFFFF" nameColorSel="#FFFFFF" />
 		<ePixmap pixmap="skin_default/buttons/red.png" position="17,460" zPosition="0" size="140,40" alphatest="on" />
 		<ePixmap pixmap="skin_default/buttons/green.png" position="192,460" zPosition="0" size="140,40" alphatest="on" />
 		<ePixmap pixmap="skin_default/buttons/yellow.png" position="372,460" zPosition="0" size="140,40" alphatest="on" />
@@ -133,8 +134,12 @@ class PlayList(GUIComponent):
 	def __init__(self, enableWrapAround = True):
 		GUIComponent.__init__(self)
 
-		self.posFont = parseFont("Regular;20", ((1,1),(1,1)))
-		self.nameFont = parseFont("Regular;20", ((1,1),(1,1)))
+		if imgVti:
+			self.posFont = parseFont("Regular;18", ((1,1),(1,1)))
+			self.nameFont = parseFont("Regular;18", ((1,1),(1,1)))
+		else:
+			self.posFont = parseFont("Regular;20", ((1,1),(1,1)))
+			self.nameFont = parseFont("Regular;20", ((1,1),(1,1)))
 
 		self.itemHeight = 30
 
