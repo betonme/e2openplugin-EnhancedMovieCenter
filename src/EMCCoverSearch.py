@@ -39,6 +39,7 @@ from DelayedFunction import DelayedFunction
 from time import time
 
 from MovieCenter import getMovieNameWithoutExt, getMovieNameWithoutPhrases
+from EnhancedMovieCenter import imgVti
 
 import re, urllib, urllib2, os, time, shutil
 
@@ -47,6 +48,23 @@ config.EMC.imdb.search = ConfigSelection(default='1', choices=[('0', _('imdb.de'
 config.EMC.imdb.singlesearch = ConfigSelection(default='0', choices=[('0', _('imdb.de')), ('1', _('thetvdb.com')), ('2', _('csfd.cz')), ('3', _('all'))])
 config.EMC.imdb.themoviedb_coversize = ConfigSelection(default="w185", choices = ["w92", "w185", "w500", "original"])
 config.EMC.imdb.savetotxtfile = ConfigYesNo(default = False)
+
+def image(item=True, itemfont=False, pixmap=False):
+	if item:
+		if imgVti:
+			return 37
+		else:
+			return 28
+	if itemfont:
+		if imgVti:
+			return 37, 21
+		else:
+			return 28, 20
+	if pixmap:
+		if imgVti:
+			return "/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/cursor_vti.png"
+		else:
+			return "/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/cursor.png"
 
 try:
 	from enigma import eMediaDatabase
@@ -81,14 +99,14 @@ def imdb_show(title, pp, elapsed, genre, search_title):
 	s1=_("Exist") + "|" + _("N/A")
 	if not re.match('.*?(' + s1 + ')', elapsed):
 		elapsed = "%s ms." % elapsed
-	res.append(MultiContentEntryText(pos=(0, 0), size=(650, 24), font=4, text=search_title, flags=RT_HALIGN_LEFT))
-	res.append(MultiContentEntryText(pos=(660, 0), size=(172, 24), font=4, text=elapsed, flags=RT_HALIGN_LEFT))
+	res.append(MultiContentEntryText(pos=(0, 0), size=(650, image()), font=4, text=search_title, flags=RT_HALIGN_LEFT))
+	res.append(MultiContentEntryText(pos=(660, 0), size=(172, image()), font=4, text=elapsed, flags=RT_HALIGN_LEFT))
 	return res
 
 def showCoverlist(title, url, path, art):
 	res = [ (title, url, path) ]
 	title = art + title
-	res.append(MultiContentEntryText(pos=(0, 0), size=(550, 24), font=4, text=title, flags=RT_HALIGN_LEFT))
+	res.append(MultiContentEntryText(pos=(0, 0), size=(550, image()), font=4, text=title, flags=RT_HALIGN_LEFT))
 	return res
 
 class EMCImdbScan(Screen):
@@ -100,7 +118,7 @@ class EMCImdbScan(Screen):
 				<!-- aktual movie name -->
 				<widget name="m_info" position="200,40" size="800,24" zPosition="0" font="Regular;24" halign="center" valign="center" transparent="1" foregroundColor="#00bab329" backgroundColor="#000000"/>
 				<!-- Movie Listbox -->
-				<widget name="menulist" position="220,80" size="772,420" selectionPixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/cursor.png" scrollbarMode="showOnDemand" transparent="1" enableWrapAround="on" />
+				<widget name="menulist" position="220,80" size="772,420" selectionPixmap="%s" scrollbarMode="showOnDemand" transparent="1" enableWrapAround="on" />
 				<!-- Cover picture -->
 				<widget name="poster" position="10,40" size="185,230" zPosition="4" alphatest="on" />
 				<!-- Amount of "downloaded", "exist", and "not found" covers -->
@@ -120,7 +138,7 @@ class EMCImdbScan(Screen):
 				<widget name="Setup" position="50,498" size="300,22" font="Regular;21" halign="left" valign="center" transparent="1" />
 				<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key_ok.png" position="10,530" size="35,25" alphatest="on" />
 				<widget name="Single search" position="50,533" size="300,22" font="Regular;21" halign="left" valign="center" transparent="1" />
-			</screen>"""
+			</screen>""" % image(False, False, True)
 	else:
 		skin = """
 			<screen position="center,center" size="620,500" title="EMC Cover search">
@@ -219,7 +237,7 @@ class EMCImdbScan(Screen):
 
 		if self.menulist:
 			self["menulist"].l.setList(self.menulist)
-			self["menulist"].l.setItemHeight(28)
+			self["menulist"].l.setItemHeight(image())
 			self.check = True
 			self.showInfo()
 			self["done_msg"].setText((_("Total") + ": %s - " + _("Exist") + ": %s - " + _("N/A") + ": %s") % (self.count_movies, count_existing, count_na))
@@ -341,7 +359,7 @@ class EMCImdbScan(Screen):
 					self["exist"].setText(_("Exist: %s") % str(self.counter_exist))
 					self["download"].setText(_("Download: %s") % str(self.counter_download))
 					self["menulist"].l.setList(self.menulist)
-					self["menulist"].l.setItemHeight(28)
+					self["menulist"].l.setItemHeight(image())
 					self.check = True
 					print "EMC iMDB: Cover vorhanden - %s" % title
 				else:
@@ -424,7 +442,7 @@ class EMCImdbScan(Screen):
 		self["exist"].setText(_("Exist: %s") % str(self.counter_exist))
 		self["download"].setText(_("Download: %s") % str(self.counter_download))
 		self["menulist"].l.setList(self.menulist)
-		self["menulist"].l.setItemHeight(28)
+		self["menulist"].l.setItemHeight(image())
 		self.check = True
 
 		if self.counting == self.count_total:
@@ -669,12 +687,12 @@ class EMCImdbScan(Screen):
 class imdbSetup(Screen, ConfigListScreen):
 	skin = """
 		<screen position="center,center" size="550,400" title="EMC Cover search setup" >
-			<widget name="config" position="20,10" size="510,330" scrollbarMode="showOnDemand" />
+			<widget name="config" position="20,10" size="510,330" itemHeight="%s" font="Regular;%s" scrollbarMode="showOnDemand" />
 			<widget name="key_red" position="0,350" size="140,40" valign="center" halign="center" zPosition="5" transparent="1" foregroundColor="#ffffff" font="Regular;18"/>
 			<widget name="key_green" position="140,350" size="140,40" valign="center" halign="center" zPosition="5" transparent="1" foregroundColor="#ffffff" font="Regular;18"/>
 			<ePixmap name="red" pixmap="skin_default/buttons/red.png" position="0,350" size="140,40" zPosition="4" transparent="1" alphatest="on"/>
 			<ePixmap name="green" pixmap="skin_default/buttons/green.png" position="140,350" size="140,40" zPosition="4" transparent="1" alphatest="on"/>
-		</screen>"""
+		</screen>""" % image(False, True)
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -715,17 +733,17 @@ class getCover(Screen):
 			<screen position="center,center" size="1000,560" title="EMC Cover Selecter" >
 				<widget name="m_info" position="200,10" size="760,24" zPosition="0" font="Regular;24" halign="center" valign="center" transparent="1" foregroundColor="#00bab329" backgroundColor="#000000"/>
 				<widget name="poster" zPosition="2" position="10,10" size="185,230" alphatest="on" />
-				<widget name="menulist" position="220,40" size="760,477" selectionPixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/cursor.png" scrollbarMode="showOnDemand" transparent="1" enableWrapAround="on" />
+				<widget name="menulist" position="220,40" size="760,477" selectionPixmap="%s" scrollbarMode="showOnDemand" transparent="1" enableWrapAround="on" />
 				<widget name="info" position="10,535" size="990,24" zPosition="0" font="Regular;21" halign="left" valign="center" transparent="1" foregroundColor="#ffffff" backgroundColor="#000000"/>
-			</screen>"""
+			</screen>""" % image(False, False, True)
 	else:
 		skin = """
 			<screen position="center,center" size="620,500" title="EMC Cover Selecter" >
 				<widget name="m_info" position="125,10" size="490,22" zPosition="0" font="Regular;21" halign="center" valign="center" transparent="1" foregroundColor="#00bab329" backgroundColor="#000000"/>
 				<widget name="poster" zPosition="2" position="5,10" size="115,150" alphatest="on" />
-				<widget name="menulist" position="125,40" size="490,392" selectionPixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/cursor.png" scrollbarMode="showOnDemand" transparent="1" enableWrapAround="on" />
+				<widget name="menulist" position="125,40" size="490,392" selectionPixmap="%s" scrollbarMode="showOnDemand" transparent="1" enableWrapAround="on" />
 				<widget name="info" position="10,460" size="605,21" zPosition="0" font="Regular;20" halign="left" valign="center" transparent="1" foregroundColor="#ffffff" backgroundColor="#000000"/>
-			</screen>"""
+			</screen>""" % image(False, False, True)
 
 	def __init__(self, session, data, val=None):
 		Screen.__init__(self, session, data)

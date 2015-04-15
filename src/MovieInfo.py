@@ -13,6 +13,7 @@ from Components.config import *
 from Components.ConfigList import *
 
 from MovieCenter import getMovieNameWithoutExt, getMovieNameWithoutPhrases
+from EnhancedMovieCenter import imgVti
 
 import json, os
 from urllib2 import Request, urlopen
@@ -36,6 +37,18 @@ config.EMC.movieinfo.coversave = ConfigYesNo(default = False)
 config.EMC.movieinfo.coversize = ConfigSelection(default="w185", choices = ["w92", "w185", "w500", "original"])
 config.EMC.movieinfo.switch_newold = ConfigYesNo(default = False)
 config.EMC.movieinfo.cover_delay = ConfigSelectionNumber(50, 60000, 50, default= 500)
+
+def image(newTmdb=False, menu=False):
+	if newTmdb:
+		if imgVti:
+			return 37, 21
+		else:
+			return 28, 20
+	if menu:
+		if imgVti:
+			return 30, 18
+		else:
+			return 28, 20
 
 def getMovieList(moviename):
 	response = fetchdata("http://api.themoviedb.org/3/search/movie?api_key=8789cfd3fbab7dccf1269c3d7d867aff&query=" + moviename.replace(" ","+").replace("&","%26"))
@@ -221,7 +234,7 @@ def dataError(error):
 
 class DownloadMovieInfo(Screen):
 	skin = """
-		<screen name="EMCDownloadMovieInfo" position="center,center" size="700,500" title="Movie Information Download (TMDb)">
+		<screen name="DownloadMovieInfo" position="center,center" size="700,500" title="Movie Information Download (TMDb)">
 		<widget name="movie_name" position="5,5" size="695,44" zPosition="0" font="Regular;21" valign="center" transparent="1" foregroundColor="#00bab329" backgroundColor="#000000"/>
 		<widget name="movielist" position="10,54" size="670,379" scrollbarMode="showOnDemand"/>
 		<widget name="resulttext" position="5,433" size="700,22" zPosition="0" font="Regular;21" valign="center" transparent="1" foregroundColor="#00bab329" backgroundColor="#000000"/>
@@ -327,7 +340,7 @@ class DownloadMovieInfo(Screen):
 
 class MovieInfoPreview(Screen):
 	skin = """
-		<screen name="EMCMovieInfoPreview" position="center,center" size="800,450" title="Movie Information Preview">
+		<screen name="MovieInfoPreview" position="center,center" size="800,450" title="Movie Information Preview">
 		<widget name="movie_name" position="5,5" size="795,44" zPosition="0" font="Regular;21" valign="center" transparent="1" foregroundColor="#00bab329" backgroundColor="#000000"/>
 		<widget name="previewtext" position="10,53" size="760,380" font="Regular;20" />
 	</screen>"""
@@ -355,9 +368,9 @@ class MovieInfoPreview(Screen):
 
 class MovieInfoTMDb(Screen):
 	skin = """
-		<screen name="EMCMovieInfoTMDb" position="center,center" size="1000,515" title="Movie Information TMDb">
+		<screen name="MovieInfoTMDb" position="center,center" size="1000,515" title="Movie Information TMDb">
 		<widget name="movie_name" position="20,5" size="960,42" zPosition="0" font="Regular;21" valign="center" halign="center" transparent="1" foregroundColor="unbab329" backgroundColor="black" />
-		<widget name="previewlist" position="240,62" size="740,392" itemHeight="28" font="Regular;20" scrollbarMode="showOnDemand" />
+		<widget name="previewlist" position="240,62" size="740,392" itemHeight="%s" font="Regular;%s" scrollbarMode="showOnDemand" />
 		<widget name="previewcover" position="20,62" size="204,285" alphatest="blend" zPosition="2" />
 		<widget name="contenttxt" position="240,62" size="740,285" font="Regular;20" />
 		<widget name="runtime" position="20,362" size="200,25" font="Regular;20" foregroundColor="#000066FF" />
@@ -377,7 +390,7 @@ class MovieInfoTMDb(Screen):
 		<widget name="key_menu" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key_menu_line.png" position="45,500" size="150,2" alphatest="on" />
 		<widget name="save" position="320,475" size="150,25" font="Regular;18" halign="center" valign="center" transparent="1" />
 		<widget name="key_green" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key-green_line.png" position="320,500" size="150,2" alphatest="on" />
-	</screen>"""
+	</screen>""" % image(True)
 
 # page 0 = details
 # page 1 = list
@@ -649,12 +662,12 @@ class MovieInfoTMDb(Screen):
 class MovieInfoSetup(Screen, ConfigListScreen):
 	skin = """
 		<screen name="EMCMovieInfoSetup" position="center,center" size="600,450" title="Movie Information Download Setup">
-		<widget name="config" position="5,10" size="570,350" scrollbarMode="showOnDemand" />
+		<widget name="config" position="5,10" size="570,350" itemHeight="%s" font="Regular;%s" scrollbarMode="showOnDemand" />
 		<widget name="key_red" position="0,390" size="140,40" valign="center" halign="center" zPosition="5" transparent="1" foregroundColor="#ffffff" font="Regular;18"/>
 		<widget name="key_green" position="140,390" size="140,40" valign="center" halign="center" zPosition="5" transparent="1" foregroundColor="#ffffff" font="Regular;18"/>
 		<ePixmap name="red" pixmap="skin_default/buttons/red.png" position="0,390" size="140,40" zPosition="4" transparent="1" alphatest="on"/>
 		<ePixmap name="green" pixmap="skin_default/buttons/green.png" position="140,390" size="140,40" zPosition="4" transparent="1" alphatest="on"/>
-	</screen>"""
+	</screen>""" % image(False, True)
 	
 	def __init__(self, session):
 		Screen.__init__(self, session)
