@@ -1283,7 +1283,6 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 				self.session.open(IMDB, name, False)
 
 	def EMCTMDBInfo(self):
-		isDirectory = False
 		service = self["list"].getCurrent()
 		if service:
 			path = service.getPath()
@@ -1291,9 +1290,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 				if not path.endswith("/..") and not path.endswith("/Latest Recordings"):
 					name = service.getName()
 					spath = getInfoFile(path)[0]
-					if self["list"].currentSelIsDirectory():
-						isDirectory = True
-					self.session.open(MovieInfoTMDb, name, spath, isDirectory)
+					self.session.open(MovieInfoTMDb, name, spath)
 
 	def TMDBInfo(self):
 		name = ''
