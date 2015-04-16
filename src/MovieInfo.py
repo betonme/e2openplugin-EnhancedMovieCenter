@@ -394,14 +394,13 @@ class MovieInfoTMDb(Screen):
 
 # page 0 = details
 # page 1 = list
-	def __init__(self, session, moviename, spath=None, isDirectory=False):
+	def __init__(self, session, moviename, spath=None):
 		Screen.__init__(self, session)
 		#self.session = session
 		self.moviename = getMovieNameWithoutExt(moviename)
 		moviename = getMovieNameWithoutPhrases(self.moviename)
 		self.movielist = None
 		self.spath = spath
-		self.isDirectory = isDirectory
 		self["previewcover"] = Pixmap()
 		self.picload = ePicLoad()
 		self.picload.PictureData.get().append(self.showPreviewCoverCB)
@@ -452,6 +451,12 @@ class MovieInfoTMDb(Screen):
 		else:
 			self["movie_name"] = Label(_("Search results for:") + "   " + moviename)
 			self["contenttxt"].setText(_("Nothing was found !"))
+
+		# for file-operations
+		self.txtsaved = False
+		self.jpgsaved = False
+		self.mpath = None
+
 		self.onLayoutFinish.append(self.layoutFinished)
 		self["actions"] = HelpableActionMap(self, "EMCMovieInfo",
 		{
@@ -551,50 +556,71 @@ class MovieInfoTMDb(Screen):
 				self["key_green"].show()
 				self.previewTimer.start(int(config.EMC.movieinfo.cover_delay.value), True)
 
+	def showMsg(self, askNo=False):
+		if self.txtsaved and self.jpgsaved:
+			msg = (_('Movie Information and Cover downloaded successfully!'))
+		elif self.txtsaved and not self.jpgsaved:
+			if config.EMC.movieinfo.coversave.value:
+				if askNo:
+					msg = (_('Movie Information downloaded successfully!'))
+				else:
+					msg = (_('Movie Information downloaded successfully!\n\nCan not write Movie Cover File\n\n%s') % (self.mpath + ".jpg"))
+			else:
+				msg = (_('Movie Information downloaded successfully!'))
+		elif self.jpgsaved and not self.txtsaved:
+			msg = (_('Movie Cover downloaded successfully!\n\nCan not write Movie Information File\n\n%s') % (self.mpath + ".txt"))
+		elif not self.jpgsaved and not self.txtsaved:
+			msg = (_('Can not write Movie Information and Cover File\n\n%s\n%s') % (self.mpath + ".txt", self.mpath + ".jpg"))
+		elif not self.txtsaved and not config.EMC.movieinfo.coversave.value:
+			msg = (_('Can not write Movie Information File\n\n%s') % (self.mpath + ".txt"))
+
+		self.session.open(MessageBox, msg, MessageBox.TYPE_INFO, 5)
+
 	def save(self):
 		if self.page == 0 and self.spath is not None:
-			moviepath = os.path.splitext(self.spath)[0]
-			if self.isDirectory:
-				moviepath = moviepath + "/" + self.moviename
+			self.txtsaved = False
+			self.mpath = os.path.splitext(self.spath)[0]
 			try:
-				txtpath = moviepath + ".txt"
+				txtpath = self.mpath + ".txt"
 				if fileExists("/tmp/previewTxt.txt"):
 					shutil.copy2("/tmp/previewTxt.txt", txtpath)
+					self.txtsaved = True
 			except Exception, e:
 				print('[EMC] MovieInfo saveTxt exception failure: ', str(e))
 
-			self.session.open(MessageBox, (_('Movie Information downloaded successfully!')), MessageBox.TYPE_INFO, 5)
-
 			if config.EMC.movieinfo.coversave.value:
 				self.getPoster()
+			else:
+				self.showMsg()
 
 	def getPoster(self):
-		moviepath = os.path.splitext(self.spath)[0]
-		if self.isDirectory:
-			moviepath = moviepath + "/" + self.moviename
-
-		if fileExists(moviepath + ".jpg"):
-			self.session.openWithCallback(self.posterCallback, MessageBox, _("Cover %s exists!\n\nDo you want to replace the existing cover?") % (moviepath + ".jpg"), MessageBox.TYPE_YESNO)
+		if fileExists(self.mpath + ".jpg"):
+			self.session.openWithCallback(self.posterCallback, MessageBox, _("Cover %s exists!\n\nDo you want to replace the existing cover?") % (self.mpath + ".jpg"), MessageBox.TYPE_YESNO)
 		else:
-			self.savePoster(moviepath)
+			self.savePoster()
 
 	def posterCallback(self, result):
 		if result:
-			moviepath = os.path.splitext(self.spath)[0]
-			if self.isDirectory:
-				moviepath = moviepath + "/" + self.moviename
+			try:
+				if fileExists(self.mpath + ".jpg"):
+					os.remove(self.mpath + ".jpg")
+			except Exception, e:
+				print('[EMC] MovieInfo posterCallback exception failure: ', str(e))
+			self.savePoster()
+		else:
+			self.showMsg(True)
 
-			if fileExists(moviepath + ".jpg"):
-				os.remove(moviepath + ".jpg")
-			self.savePoster(moviepath)
-
-	def savePoster(self, moviepath):
+	def savePoster(self):
+		self.jpgsaved = False
 		try:
-			coverpath = moviepath + ".jpg"
+			coverpath = self.mpath + ".jpg"
 			if fileExists("/tmp/previewCover.jpg"):
 				shutil.copy2("/tmp/previewCover.jpg", coverpath)
+				self.jpgsaved = True
 		except Exception, e:
 			print('[EMC] MovieInfo savePoster exception failure: ', str(e))
+
+		self.showMsg()
 
 	def ok(self):
 		if self.page == 0:
@@ -652,6 +678,10 @@ class MovieInfoTMDb(Screen):
 					os.remove("/tmp/previewCover.jpg")
 				if fileExists("/tmp/previewTxt.txt"):
 					os.remove("/tmp/previewTxt.txt")
+				if self.selectionTimer.isActive():
+					self.selectionTimer.stop()
+				if self.previewTimer.isActive():
+					self.previewTimer.stop()
 				self.close()
 		else:
 			self.close()

@@ -13,6 +13,26 @@ msgstr ""
 "X-Poedit-Basepath: ../\n"
 "X-Poedit-SearchPath-0: src\n"
 
+#: src/MovieInfo.py:575
+msgid "Can not write Movie Information File\n\n%s"
+msgstr ""
+
+#: src/MovieInfo.py:573
+msgid "Can not write Movie Information and Cover File\n\n%s\n%s"
+msgstr ""
+
+#: src/MovieInfo.py:571
+msgid "Movie Cover downloaded successfully!\n\nCan not write Movie Information File\n\n%s"
+msgstr ""
+
+#: src/MovieInfo.py:566
+msgid "Movie Information downloaded successfully!\n\nCan not write Movie Cover File\n\n%s"
+msgstr ""
+
+#: src/MovieInfo.py:561
+msgid "Movie Information and Cover downloaded successfully!"
+msgstr ""
+
 #: src/MovieInfo.py:49
 msgid "Movies"
 msgstr ""
