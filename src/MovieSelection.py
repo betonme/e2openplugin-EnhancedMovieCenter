@@ -75,10 +75,10 @@ from EMCPlayList import emcplaylist, EMCPlaylistScreen
 #from MetaSupport import MetaList
 from MetaSupport import getInfoFile
 
-from MovieCenter import extList, extVideo, extMedia, extDir, plyAll, plyDVD, cmtBME2, cmtBMEMC, cmtDir, plyDVB
+from MovieCenter import extList, extVideo, extMedia, extDir, plyAll, plyDVD, cmtBME2, cmtBMEMC, cmtDir, plyDVB, extPlaylist
 from MovieCenter import getMovieNameWithoutExt, getMovieNameWithoutPhrases
 
-global extList, extVideo, extMedia, extDir, plyAll, plyDVD, cmtBME2, cmtBMEMC, cmtDir, plyDVB
+global extList, extVideo, extMedia, extDir, plyAll, plyDVD, cmtBME2, cmtBMEMC, cmtDir, plyDVB, extPlaylist
 
 
 # Get Count and Size-values at start to CacheList
@@ -1665,6 +1665,8 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 				# TODO full integration of the VLC Player
 				entry = self["list"].list[ self.getCurrentIndex() ]
 				self.vlcMovieSelected(entry)
+			elif os.path.splitext(path)[1] in extPlaylist:
+				self.playlistSelected(path)
 			else:
 				playlist = self["list"].makeSelectionList()
 				if not self["list"].serviceMoving(playlist[0]) and not self["list"].serviceDeleting(playlist[0]):
@@ -1676,6 +1678,27 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 					self.openPlayer(playlist, playall)
 				else:
 					self.session.open(MessageBox, _("File not available."), MessageBox.TYPE_ERROR, 10)
+
+	def playlistSelected(self, path):
+		playlist = []
+		if fileExists(path):
+			plist = open(path, "r")
+			while True:
+				service = plist.readline()
+				if service == "":
+					break
+				service = service.replace('\n','')
+				servicepath = os.path.dirname(path) + "/" + service
+				ext = os.path.splitext(service)[1]
+				playlist.append(getPlayerService(servicepath, service, ext))
+
+		if self.playerInstance is None:
+			self.close(playlist, False, self.lastservice)
+			self.busy = False
+		else:
+			self.playerInstance.movieSelected(playlist, False)
+			self.busy = False
+			self.close()
 
 	def addPlaylist(self):
 		selectedlist = self["list"].makeSelectionList()[:]
