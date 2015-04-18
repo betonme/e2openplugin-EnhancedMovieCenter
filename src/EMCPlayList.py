@@ -7,6 +7,7 @@ from __init__ import _
 from enigma import eListboxPythonMultiContent, RT_VALIGN_CENTER, RT_HALIGN_RIGHT, gFont, eListbox
 
 from Screens.Screen import Screen
+from Screens.InputBox import InputBox
 
 from Components.ActionMap import ActionMap
 from Components.Button import Button
@@ -66,14 +67,15 @@ class EMCPlaylistScreen(Screen):
 	skin = """
 		<screen position="center,center" size="710,510" title="EMC Playlist" >
 		<widget name="playlist" position="5,5" size="700,450" itemHeight="30" scrollbarMode="showOnDemand" posColor="#FFFFFF" posColorSel="#FFFFFF" nameColor="#FFFFFF" nameColorSel="#FFFFFF" />
-		<ePixmap pixmap="skin_default/buttons/red.png" position="17,460" zPosition="0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/green.png" position="192,460" zPosition="0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/yellow.png" position="372,460" zPosition="0" size="140,40" alphatest="on" />
-		<ePixmap pixmap="skin_default/buttons/blue.png" position="552,460" zPosition="0" size="140,40" alphatest="on" />
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/line_blue_playlist.png" position="25,453" size="660,2" alphatest="on" />
 		<widget name="cancel" position="17,460" size="140,40" valign="center" halign="center" zPosition="1" font="Regular;17" transparent="1" backgroundColor="red" />
-		<widget name="ok" position="192,460" size="140,40" valign="center" halign="center" zPosition="1" font="Regular;17" transparent="1" backgroundColor="green" />
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key-red_line.png" position="12,492" size="150,2" zPosition="0" alphatest="on" />
+		<widget name="save" position="192,460" size="140,40" valign="center" halign="center" zPosition="1" font="Regular;17" transparent="1" backgroundColor="green" />
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key-green_line.png" position="187,492" size="150,2" zPosition="0" alphatest="on" />
 		<widget name="delete" position="372,460" size="140,40" valign="center" halign="center" zPosition="1" font="Regular;17" transparent="1" backgroundColor="yellow" />
-		<widget name="deleteall" position="552,460" size="140,40" valign="center" halign="center" zPosition="1" font="Regular;17" transparent="1" backgroundColor="blue" /> 
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key-yellow_line.png" position="367,492" size="150,2" zPosition="0" alphatest="on" />
+		<widget name="deleteall" position="552,460" size="140,40" valign="center" halign="center" zPosition="1" font="Regular;17" transparent="1" backgroundColor="blue" />
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key-blue_line.png" position="547,492" size="150,2" zPosition="0" alphatest="on" />
 	</screen>"""
 
 	def __init__(self, session):
@@ -83,7 +85,7 @@ class EMCPlaylistScreen(Screen):
 
 		self["playlist"] = PlayList()
 
-		self["ok"] = Button(_("OK"))
+		self["save"] = Button(_("Save"))
 		self["cancel"] = Button(_("Cancel"))
 		self["delete"] = Button(_("Delete Entry"))
 		self["deleteall"] = Button(_("Delete All"))
@@ -91,8 +93,9 @@ class EMCPlaylistScreen(Screen):
 		self["actions"] = ActionMap(["SetupActions", "ColorActions"], 
 		{
 			"ok": self.keyOk,
-			"ok": self.keyGreen,
 			"cancel": self.keyRed,
+			"red": self.keyRed,
+			"green": self.keyGreen,
 			"yellow": self.keyYellow,
 			"blue": self.keyBlue,
 		}, -2)
@@ -113,7 +116,22 @@ class EMCPlaylistScreen(Screen):
 		self.close()
 
 	def keyGreen(self):
-		self.close()
+		self.session.openWithCallback(self.save, InputBox, title=_("Change the filename to save current Playlist:"), windowTitle = _("Save current Playlist"), text="/media/hdd/EmcPlaylist001")
+
+	def save(self, filename):
+		if filename:
+			tmplist = []
+			plist = emcplaylist.getCurrentPlaylist()
+			for x in plist:
+				tmplist.append(emcplaylist.getCurrentPlaylistEntry(x))
+
+			tmplist.sort( key=lambda x: (x[0]) )
+
+			file = open(filename + ".e2pls", "w")
+			for x in tmplist:
+				file.write(str(x[2].toString()).replace(":%s" % x[1], "") + "\n")
+				file.close()
+		
 
 	def keyYellow(self):
 		current = self["playlist"].getCurrent()

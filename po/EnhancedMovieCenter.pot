@@ -13,6 +13,14 @@ msgstr ""
 "X-Poedit-Basepath: ../\n"
 "X-Poedit-SearchPath-0: src\n"
 
+#: src/EMCPlayList.py:119
+msgid "Change the filename to save current Playlist:"
+msgstr ""
+
+#: src/EMCPlayList.py:119
+msgid "Save current Playlist"
+msgstr ""
+
 #: src/MovieInfo.py:575
 msgid "Can not write Movie Information File\n\n%s"
 msgstr ""

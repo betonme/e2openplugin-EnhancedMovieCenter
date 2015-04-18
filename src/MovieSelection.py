@@ -1683,14 +1683,26 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		playlist = []
 		if fileExists(path):
 			plist = open(path, "r")
-			while True:
-				service = plist.readline()
-				if service == "":
-					break
-				service = service.replace('\n','')
-				servicepath = os.path.dirname(path) + "/" + service
-				ext = os.path.splitext(service)[1]
-				playlist.append(getPlayerService(servicepath, service, ext))
+			if os.path.splitext(path)[1] == ".m3u":
+				while True:
+					service = plist.readline()
+					if service == "":
+						break
+					service = service.replace('\n','')
+					servicepath = os.path.dirname(path) + "/" + service
+					ext = os.path.splitext(service)[1]
+					playlist.append(getPlayerService(servicepath, service, ext))
+			else:
+				while True:
+					service = plist.readline()
+					if service == "":
+						break
+					service = service.replace('\n','')
+					spos = service.find('/')
+					servicepath = service[spos:]
+					service = servicepath.split('/')[-1]
+					ext = os.path.splitext(servicepath)[1]
+					playlist.append(getPlayerService(servicepath, service, ext))
 
 		if self.playerInstance is None:
 			self.close(playlist, False, self.lastservice)
