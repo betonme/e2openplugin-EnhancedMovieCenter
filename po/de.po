@@ -16,9 +16,61 @@ msgstr ""
 "X-Poedit-Basepath: ../\n"
 "X-Poedit-SearchPath-0: src\n"
 
+#: src/EMCCoverSearch.py:571
+msgid "Cover is Saved."
+msgstr "Cover gespeichert."
+
+#: src/EMCPlayList.py:388
+msgid "Enter Name for Playlist"
+msgstr "Geben Sie einen Namen für die Wiedergabeliste ein"
+
+#: src/EMCPlayList.py:364
+msgid "EMC Playlist Setup"
+msgstr "EMC Wiedergabeliste Einstellungen"
+
+#: src/EMCPlayList.py:350
+msgid "Always save current Playlist"
+msgstr "Aktuelle Wiedergabeliste immer speichern"
+
+#: src/EMCPlayList.py:349
+msgid "Default Playlist name"
+msgstr "Standardname für Wiedergabeliste"
+
+#: src/EMCPlayList.py:348
+msgid "Default Playlist path"
+msgstr "Standardverzeichnis für Wiedergabeliste"
+
+#: src/EMCPlayList.py:185
+msgid "Can not save current Playlist!"
+msgstr "Konnte aktuelle Wiedergabeliste nicht speichern!"
+
+#: src/EMCPlayList.py:182
+msgid "Current Playlist saved successfully!"
+msgstr "Aktuelle Wiedergabeliste erfolgreich gespeichert!"
+
+#: src/EMCPlayList.py:160
+msgid "Playlist with same name exists!\n\nTry to save the Playlist with another name?"
+msgstr ""
+"Eine Wiedergabeliste mit dem selben Namen exestiert schon!\n"
+"\n"
+"Wollen Sie die Wiedergabeliste unter einen anderen Namen speichern?"
+
+#: src/EMCPlayList.py:128
+msgid "Setup open"
+msgstr "Einstellungen öffnen"
+
+#: src/EMCPlayList.py:127
+msgid "Playlist open"
+msgstr "Wiedergabeliste öffnen"
+
+#: src/EMCPlayList.py:126
+msgid "EMC Playlist Menu"
+msgstr "EMC Wiedergabeliste Menü"
+
+
 #: src/MovieSelectionMenu.py:91 src/MovieSelectionMenu.py:196
 msgid "Playlist Options"
-msgstr "Playlist Optionen"
+msgstr "Wiedergabeliste Optionen"
 
 #: src/EMCPlayList.py:119
 msgid "Change the filename to save current Playlist:"
@@ -26,7 +78,7 @@ msgstr "Ändern sie den Dateinamen zum speichern der aktuellen Playlist:"
 
 #: src/EMCPlayList.py:119
 msgid "Save current Playlist"
-msgstr "Aktuelle Playlist speichern"
+msgstr "Aktuelle Wiedergabeliste speichern"
 
 #: src/MovieInfo.py:575
 msgid "Can not write Movie Information File\n\n%s"
@@ -119,26 +171,26 @@ msgstr ""
 
 #: src/EMCPlayList.py:75
 msgid "Files added to current Playlist."
-msgstr "Dateien zur aktuellen Playlist hinzugefügt."
+msgstr "Dateien zur aktuellen Wiedergabeliste hinzugefügt."
 
 #: src/EMCPlayList.py:75
 msgid "Files added to current Playlist:\n%s\n\nFiles exists in current Playlist:\n%s"
 msgstr ""
-"Dateien zur aktuellen Playlist hinzugefügt:\n"
+"Dateien zur aktuellen Wiedergabeliste hinzugefügt:\n"
 "%s\n"
 "\n"
-"Dateien sind schon in der aktuellen Playlist:\n"
+"Dateien sind schon in der aktuellen Wiedergabeliste:\n"
 "%s"
 
 #: src/EMCPlayList.py:75
 msgid "Files exists in current Playlist:\n%s"
 msgstr ""
-"Dateien sind schon in der aktuellen Playlist:\n"
+"Dateien sind schon in der aktuellen Wiedergabeliste:\n"
 "%s"
 
 #: src/EnhancedMovieCenter.py:455
 msgid "Show message if file added to playlist"
-msgstr "Zeige Benachrichtigung bei \"zur Playlist hinzufügen\""
+msgstr "Zeige Benachrichtigung bei \"zur Wiedergabeliste hinzufügen\""
 
 #: src/EnhancedMovieCenter.py:455
 msgid "HELP_Show message if file added to playlist"
@@ -160,31 +212,31 @@ msgstr "EMC Playlist - aktuelle Wiedergabeliste"
 
 #: src/MovieSelection.py:1671
 msgid "File added to current Playlist."
-msgstr "Datei zur aktuellen Playlist hinzugefügt."
+msgstr "Datei zur aktuellen Wiedergabeliste hinzugefügt."
 
 #: src/MovieSelection.py:1673
 msgid "File exists in current Playlist."
-msgstr "Datei ist schon in der aktuellen Playlist."
+msgstr "Datei ist schon in der aktuellen Wiedergabeliste."
 
 #: src/MovieSelectionMenu.py:87
 msgid "Add to current Playlist"
-msgstr "Zur aktuellen Playlist hinzufügen"
+msgstr "Zur aktuellen Wiedergabeliste hinzufügen"
 
 #: src/MovieSelectionMenu.py:89
 msgid "Play current Playlist"
-msgstr "Aktuelle Playlist abspielen"
+msgstr "Aktuelle Wiedergabeliste abspielen"
 
 #: src/MovieSelectionMenu.py:90
 msgid "Play random current Playlist"
-msgstr "Aktuelle Playlist zufällig abspielen"
+msgstr "Aktuelle Wiedergabeliste zufällig abspielen"
 
 #: src/MovieSelectionMenu.py:91
 msgid "Show current Playlist"
-msgstr "Aktuelle Playlist anzeigen"
+msgstr "Aktuelle Wiedergabeliste anzeigen"
 
 #: src/MovieSelectionMenu.py:92
 msgid "Delete current Playlist"
-msgstr "Aktuelle Playlist löschen"
+msgstr "Aktuelle Wiedergabeliste löschen"
 
 #: src/plugin.py:170 src/plugin.py:191
 msgid "Add to Playlist"

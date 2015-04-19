@@ -568,7 +568,7 @@ class EMCImdbScan(Screen):
 			self.verwaltung()
 			#self.showInfo()
 			self["done_msg"].show()
-			self["done_msg"].setText("Cover is Saved.")
+			self["done_msg"].setText(_("Cover is Saved."))
 			#DelayedFunction(3000, self["done_msg"].hide)
 
 	def decodeHtml(self, text):

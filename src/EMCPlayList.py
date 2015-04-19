@@ -9,12 +9,15 @@ from enigma import eListboxPythonMultiContent, RT_VALIGN_CENTER, RT_HALIGN_RIGHT
 from Screens.Screen import Screen
 from Screens.ChoiceBox import ChoiceBox
 from Screens.InputBox import InputBox
-
+from Screens.LocationBox import LocationBox
+from Screens.MessageBox import MessageBox
+from Screens.VirtualKeyBoard import VirtualKeyBoard
 from Components.ActionMap import ActionMap
 from Components.Button import Button
 from Components.config import *
 from Components.ConfigList import *
 from Components.GUIComponent import GUIComponent
+from Tools.Directories import fileExists
 
 from skin import parseColor, parseFont
 
@@ -25,6 +28,8 @@ from EnhancedMovieCenter import imgVti
 global plyDVB
 
 config.EMC.playlist = ConfigSubsection()
+config.EMC.playlist.default_playlist_path = ConfigDirectory(default = "/media/hdd/")
+config.EMC.playlist.default_playlist_name = ConfigText(default = "EmcPlaylist")
 config.EMC.playlist.save_default_list = ConfigYesNo(default = False)
 
 
@@ -85,11 +90,9 @@ class EMCPlaylistScreen(Screen):
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
-
 		self.skinName = "EMCPlaylist"
-
+		self.spath = config.EMC.playlist.default_playlist_path.value + config.EMC.playlist.default_playlist_name.value
 		self["playlist"] = PlayList()
-
 		self["save"] = Button(_("Save"))
 		self["cancel"] = Button(_("Cancel"))
 		self["delete"] = Button(_("Delete Entry"))
@@ -138,7 +141,29 @@ class EMCPlaylistScreen(Screen):
 		self.close()
 
 	def keyGreen(self):
-		self.session.openWithCallback(self.save, InputBox, title=_("Change the filename to save current Playlist:"), windowTitle = _("Save current Playlist"), text="/media/hdd/EmcPlaylist001")
+		if emcplaylist.getCurrentPlaylist() != {}:
+			self.checkPlaylistExist()
+
+	def checkPlaylistExist(self, path=None):
+		if path is not None:
+			if fileExists(path + ".e2pls"):
+				self.showMessage()
+			else:
+				self.save(path)
+		else:
+			if fileExists(self.spath + ".e2pls"):
+				self.showMessage()
+			else:
+				self.save(self.spath)
+
+	def showMessage(self):
+		self.session.openWithCallback(self.showMessageCB, MessageBox, (_("Playlist with same name exists!\n\nTry to save the Playlist with another name?")), MessageBox.TYPE_YESNO)
+
+	def showMessageCB(self, result):
+		if result:
+			self.session.openWithCallback(self.checkPlaylistExist, InputBox, title=_("Change the filename to save current Playlist:"), windowTitle = _("Save current Playlist"), text=self.spath)
+		else:
+			return
 
 	def save(self, filename):
 		if filename:
@@ -149,11 +174,15 @@ class EMCPlaylistScreen(Screen):
 
 			tmplist.sort( key=lambda x: (x[0]) )
 
-			file = open(filename + ".e2pls", "w")
-			for x in tmplist:
-				file.write(str(x[2].toString()).replace(":%s" % x[1], "") + "\n")
-			file.close()
-		
+			try:
+				file = open(filename + ".e2pls", "w")
+				for x in tmplist:
+					file.write(str(x[2].toString()).replace(":%s" % x[1], "") + "\n")
+				file.close()
+				self.session.open(MessageBox, (_("Current Playlist saved successfully!")), MessageBox.TYPE_INFO, 5)
+			except Exception, e:
+				print('[EMCPlayList] savePlaylist get failed: ', str(e))
+				self.session.open(MessageBox, (_("Can not save current Playlist!")), MessageBox.TYPE_ERROR, 10)
 
 	def keyYellow(self):
 		current = self["playlist"].getCurrent()
@@ -316,7 +345,9 @@ class EMCPlaylistSetup(Screen, ConfigListScreen):
 		Screen.__init__(self, session)
 		#self.session = session
 		self.list = []
-		self.list.append(getConfigListEntry(_("Save default Playlist"), config.EMC.playlist.save_default_list))
+		self.list.append(getConfigListEntry(_("Default Playlist path"), config.EMC.playlist.default_playlist_path))
+		self.list.append(getConfigListEntry(_("Default Playlist name"), config.EMC.playlist.default_playlist_name))
+		self.list.append(getConfigListEntry(_("Always save current Playlist"), config.EMC.playlist.save_default_list))
 
 		ConfigListScreen.__init__(self, self.list, session)
 		self["actions"] = ActionMap(["SetupActions", "ColorActions"],
@@ -332,11 +363,52 @@ class EMCPlaylistSetup(Screen, ConfigListScreen):
 	def layoutFinished(self):
 		self.setTitle(_("EMC Playlist Setup"))
 
+	def openDirectoryBrowser(self, path):
+		try:
+			self.session.openWithCallback(
+				self.openDirectoryBrowserCB,
+				LocationBox,
+					windowTitle = _("Choose Directory:"),
+					text = _("Choose directory"),
+					currDir = str(path),
+					bookmarks = config.movielist.videodirs,
+					autoAdd = False,
+					editDir = True,
+					inhibitDirs = ["/bin", "/boot", "/dev", "/etc", "/home", "/lib", "/proc", "/run", "/sbin", "/sys", "/usr", "/var"],
+					minFree = 15 )
+		except Exception, e:
+			print('[EMCPlayList] openDirectoryBrowser get failed: ', str(e))
+
+	def openDirectoryBrowserCB(self, path):
+		if path is not None:
+			config.EMC.playlist.default_playlist_path.setValue(path)
+
+	def openVirtualKeyboard(self, name):
+		try:
+			self.session.openWithCallback(lambda x : self.openVirtualKeyboardCB(x, 'playlist_name'), VirtualKeyBoard, title = (_('Enter Name for Playlist')), text = name)
+		except Exception, e:
+			print('[EMCPlayList] openVirtualKeyboard get failed: ', str(e))
+
+	def openVirtualKeyboardCB(self, callback = None, entry = None):
+		if callback is not None and len(callback) and entry is not None and len(entry):
+			if entry == 'playlist_name':
+				config.EMC.playlist.default_playlist_name.setValue(callback)
+
 	def ok(self):
-		self.close()
+		if self["config"].getCurrent()[1] == config.EMC.playlist.default_playlist_path:
+			self.openDirectoryBrowser(config.EMC.playlist.default_playlist_path.value)
+		elif self["config"].getCurrent()[1] == config.EMC.playlist.default_playlist_name:
+			self.openVirtualKeyboard(config.EMC.playlist.default_playlist_name.value)
+		else:
+			self.exit()       # should we use save on this way too?
 
 	def exit(self):
-		self.close()
+		for x in self["config"].list:
+			x[1].cancel()
+		self.close(False)
 
 	def save(self):
-		self.close()
+		for x in self["config"].list:
+			x[1].save()
+		configfile.save()
+		self.close(True)

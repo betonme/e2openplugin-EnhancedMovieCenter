@@ -13,6 +13,54 @@ msgstr ""
 "X-Poedit-Basepath: ../\n"
 "X-Poedit-SearchPath-0: src\n"
 
+#: src/EMCCoverSearch.py:571
+msgid "Cover is Saved."
+msgstr ""
+
+#: src/EMCPlayList.py:388
+msgid "Enter Name for Playlist"
+msgstr ""
+
+#: src/EMCPlayList.py:364
+msgid "EMC Playlist Setup"
+msgstr ""
+
+#: src/EMCPlayList.py:350
+msgid "Always save current Playlist"
+msgstr ""
+
+#: src/EMCPlayList.py:349
+msgid "Default Playlist name"
+msgstr ""
+
+#: src/EMCPlayList.py:348
+msgid "Default Playlist path"
+msgstr ""
+
+#: src/EMCPlayList.py:185
+msgid "Can not save current Playlist!"
+msgstr ""
+
+#: src/EMCPlayList.py:182
+msgid "Current Playlist saved successfully!"
+msgstr ""
+
+#: src/EMCPlayList.py:160
+msgid "Playlist with same name exists!\n\nTry to save the Playlist with another name?"
+msgstr ""
+
+#: src/EMCPlayList.py:128
+msgid "Setup open"
+msgstr ""
+
+#: src/EMCPlayList.py:127
+msgid "Playlist open"
+msgstr ""
+
+#: src/EMCPlayList.py:126
+msgid "EMC Playlist Menu"
+msgstr ""
+
 #: src/MovieSelectionMenu.py:91 src/MovieSelectionMenu.py:196
 msgid "Playlist Options"
 msgstr ""
