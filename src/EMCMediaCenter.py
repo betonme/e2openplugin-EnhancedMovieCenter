@@ -184,7 +184,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 				"seekFwd": (self.seekFwd, _("Seek forward")),
 				"seekBack": (self.seekBack, _("Seek backward")),
 				"movieInfo": (self.infoMovie, _("Movie information")),
-			}, 2) # lower priority
+			}) # default priority
 
 		self["MenuActions"].prio = 2
 		if "TeletextActions" in self:
@@ -218,10 +218,16 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 		self.closeAll = False
 
 		self.lastservice = lastservice or self.session.nav.getCurrentlyPlayingServiceReference()
+		if not self.lastservice:
+			self.lastservice = InfoBar.instance.servicelist.servicelist.getCurrent()
 		self.playlist = playlist
 		self.playall = playall
 		self.playcount = -1
 		self.service = None
+		self.allowPiP = True
+		self.allowPiPSwap = False			# this is needed for vti-image
+		self.realSeekLength = None
+		self.servicelist = InfoBar.instance.servicelist
 
 		self.picload = ePicLoad()
 		try:
@@ -243,7 +249,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 	### Cover anzeige
 	def showCover(self, jpgpath):
 		if not os.path.exists(jpgpath):
-			self["Cover"].show()
+			self["Cover"].hide()
 			#jpgpath = "/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/no_poster.png"
 		else:
 			sc = AVSwitch().getFramebufferScale() # Maybe save during init
@@ -260,12 +266,32 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 				self["Cover"].show()
 
 	def CoolAVSwitch(self):
-		if config.av.policy_43.value == "pillarbox":
-			config.av.policy_43.value = "panscan"
-		elif config.av.policy_43.value == "panscan":
-			config.av.policy_43.value = "scale"
-		else:
-			config.av.policy_43.value = "pillarbox"
+		idx = 0
+		choices = []
+		if os.path.exists("/proc/stb/video/policy_choices"):
+			f = open("/proc/stb/video/policy_choices")
+			entrys = f.readline().replace("\n", "").split(" ", -1)
+			for x in entrys:
+				idx += 1
+				entry = idx, x
+				choices.append(entry)
+			f.close()
+		act = open("/proc/stb/video/policy").read()[:-1]
+		for x in choices:
+			if act == x[1]:
+				actIdx = x[0]
+		if actIdx == len(choices):
+			actIdx = 0
+		for x in choices:
+			if x[0] == actIdx + 1:
+				newChoice = x[1]
+		try:
+			if os.path.exists("/proc/stb/video/policy"):
+				f = open("/proc/stb/video/policy", "w")
+				f.write(newChoice)
+				f.close()
+		except Exception, e:
+			print("[EMCMediaCenter] CoolAVSwitch exception:" + str(e))
 
 	def getCurrentEvent(self):
 		service = self.currentlyPlayedMovie()
@@ -290,6 +316,8 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 			# Avoid new playback if the user switches between MovieSelection and MoviePlayer
 			self.firstStart = False
 			self.evEOF()	# begin playback
+			if self.service and self.service.type != sidDVB:
+				self.realSeekLength = self.getSeekLength()
 
 	def evEOF(self, needToClose=False):
 		# see if there are more to play
@@ -375,6 +403,9 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 				# Start playing movie
 				self.session.nav.playService(service)
 
+				if self.service and self.service.type != sidDVB:
+					self.realSeekLength = self.getSeekLength()
+
 				if service and service.type == sidDVD:
 					# Seek will cause problems with DVDPlayer!
 					# ServiceDVD needs this to start
@@ -411,7 +442,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 		#	playall.close()
 
 		if self.service and self.service.type != sidDVB:
-			self.updateCutList( self.getSeekPlayPosition(), self.getSeekLength() )
+			self.makeUpdateCutList()
 
 		reopen = False
 		try:
@@ -428,12 +459,13 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 			else:
 				emcDebugOut("[EMCPlayer] closed due to playlist EOF")
 				if self.closeAll:
-					AddPopup(
-								_("EMC\nZap to Live TV of record"),
-								MessageBox.TYPE_INFO,
-								3,
-								"EMCCloseAllAndZap"
-							)
+					if config.EMC.record_eof_zap.value == "1":
+						AddPopup(
+									_("EMC\nZap to Live TV of record"),
+									MessageBox.TYPE_INFO,
+									3,
+									"EMCCloseAllAndZap"
+								)
 				else:
 					if config.EMC.movie_reopenEOF.value: # did the player close while movie list was open?
 						#self.recordings.show()
@@ -442,6 +474,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 		except Exception, e:
 			emcDebugOut("[EMCPlayer] leave exception:\n" + str(e))
 
+		self.session.nav.stopService()
 		self.close(reopen, self.service)
 
 	def recEvent(self, timer):
@@ -540,9 +573,10 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 			self.playall = playall
 
 			if self.service.type != sidDVB:
-				self.updateCutList( self.getSeekPlayPosition(), self.getSeekLength() )
+				self.makeUpdateCutList()
 
 			self.evEOF()	# start playback of the first movie
+		self.refreshCover()
 
 	##############################################################################
 	## Audio and Subtitles
@@ -814,6 +848,14 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 		#except:
 		#	pass
 
+	def refreshCover(self):
+		### Cover anzeige
+		service = self.playlist[self.playcount]
+		cover_path = re.sub(self.file_format + "$", '.png', service.getPath())
+		if not os.path.exists(cover_path):
+			cover_path = re.sub(self.file_format + "$", '.jpg', service.getPath())
+		self.showCover(cover_path)
+
 	##############################################################################
 	## Implement functions for InfoBarGenerics.py
 	# InfoBarShowMovies
@@ -837,11 +879,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 
 	def doShow(self):
 		### Cover anzeige
-		service = self.playlist[self.playcount]
-		cover_path = re.sub(self.file_format + "$", '.png', service.getPath())
-		if not os.path.exists(cover_path):
-			cover_path = re.sub(self.file_format + "$", '.jpg', service.getPath())
-		self.showCover(cover_path)
+		self.refreshCover()
 		if self.in_menu:
 			pass
 			#self.hide()
@@ -904,7 +942,8 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 
 		if self.in_menu:
 			self.hide()
-		if config.EMC.record_eof_zap.value and self.service:
+		val = config.EMC.record_eof_zap.value
+		if val == "0" or val == "1" and self.service:
 			#TEST
 			# get path from iPlayableService
 			#ref = self.session.nav.getCurrentlyPlayingServiceReference()
@@ -931,17 +970,45 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 				#	return
 
 		if self.service.type != sidDVB:
-			self.updateCutList( self.getSeekPlayPosition(), self.getSeekLength() )
+			self.makeUpdateCutList()
 
 		self.evEOF()
 
+	def makeUpdateCutList(self):
+		if self.getSeekPlayPosition() == 0:
+			if self.realSeekLength is not None:
+				self.updateCutList( self.realSeekLength, self.realSeekLength )
+			else:
+				self.updateCutList( self.getSeekLength(), self.getSeekLength() )
+		else:
+			self.updateCutList( self.getSeekPlayPosition(), self.getSeekLength() )
+
 	##############################################################################
-	## Oozoon image specific
+	## Oozoon image specific and make now the PiPzap possible
 	def up(self):
-		self.showMovies()
+		try:
+			if self.servicelist and self.servicelist.dopipzap:
+				if "keep" not in config.usage.servicelist_cursor_behavior.value:
+					self.servicelist.moveUp()
+				self.session.execDialog(self.servicelist)
+			else:
+				self.showMovies()
+		except:
+			self.showMovies()
 
 	def down(self):
-		self.showMovies()
+		try:
+			if self.servicelist and self.servicelist.dopipzap:
+				if "keep" not in config.usage.servicelist_cursor_behavior.value:
+					self.servicelist.moveDown()
+				self.session.execDialog(self.servicelist)
+			else:
+				self.showMovies()
+		except:
+			self.showMovies()
+
+	def swapPiP(self):     # this is needed for oe-images to deactivate the Pip-swapping in this first way
+		pass
 
 	##############################################################################
 	## LT image specific

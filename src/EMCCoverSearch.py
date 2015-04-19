@@ -18,6 +18,7 @@ from Plugins.Plugin import PluginDescriptor
 from Screens.Screen import Screen
 from Tools.Directories import fileExists
 from Screens.Menu import boundFunction
+from Screens.LocationBox import LocationBox
 from Components.PluginComponent import plugins
 
 from Components.Button import Button
@@ -38,20 +39,47 @@ from DelayedFunction import DelayedFunction
 from time import time
 
 from MovieCenter import getMovieNameWithoutExt, getMovieNameWithoutPhrases
+from EnhancedMovieCenter import imgVti
 
 import re, urllib, urllib2, os, time, shutil
 
 config.EMC.imdb = ConfigSubsection()
-config.EMC.imdb.search = ConfigSelection(default='1', choices=[('1', _('themoviedb.org'))])
+config.EMC.imdb.search = ConfigSelection(default='1', choices=[('0', _('imdb.de')), ('1', _('themoviedb.org')), ('2', _('csfd.cz')), ('3', _('all'))])
 config.EMC.imdb.singlesearch = ConfigSelection(default='0', choices=[('0', _('imdb.de')), ('1', _('thetvdb.com')), ('2', _('csfd.cz')), ('3', _('all'))])
 config.EMC.imdb.themoviedb_coversize = ConfigSelection(default="w185", choices = ["w92", "w185", "w500", "original"])
 config.EMC.imdb.savetotxtfile = ConfigYesNo(default = False)
 
+def image(item=True, itemfont=False, pixmap=False):
+	if item:
+		if imgVti:
+			return 37
+		else:
+			return 28
+	if itemfont:
+		if imgVti:
+			return 37, 21
+		else:
+			return 28, 20
+	if pixmap:
+		if imgVti:
+			return "/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/cursor_vti.png"
+		else:
+			return "/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/cursor.png"
+
 try:
 	from enigma import eMediaDatabase
-	isDreamOS = True
+	is7080hd = True
 except:
-	isDreamOS = False
+	try:
+		file = open("/proc/stb/info/model", "r")
+		dev = file.readline().strip()
+		file.close()
+		if dev == "dm7080":
+			is7080hd = True
+		else:
+			is7080hd = False
+	except:
+			is7080hd = False
 
 class AppURLopener(urllib.FancyURLopener):
 	version = "Mozilla/5.0 (X11; U; Linux x86_64; de; rv:1.9.0.15) Gecko/2009102815 Ubuntu/9.04 (jaunty) Firefox/3."
@@ -68,17 +96,17 @@ class imdblist(MenuList):
 
 def imdb_show(title, pp, elapsed, genre, search_title):
 	res = [ (title, pp, elapsed, genre, search_title) ]
-	s1=_("Exist") + "|" + "N/A"
+	s1=_("Exist") + "|" + _("N/A")
 	if not re.match('.*?(' + s1 + ')', elapsed):
 		elapsed = "%s ms." % elapsed
-	res.append(MultiContentEntryText(pos=(0, 0), size=(650, 24), font=4, text=search_title, flags=RT_HALIGN_LEFT))
-	res.append(MultiContentEntryText(pos=(660, 0), size=(172, 24), font=4, text=elapsed, flags=RT_HALIGN_LEFT))
+	res.append(MultiContentEntryText(pos=(0, 0), size=(650, image()), font=4, text=search_title, flags=RT_HALIGN_LEFT))
+	res.append(MultiContentEntryText(pos=(660, 0), size=(172, image()), font=4, text=elapsed, flags=RT_HALIGN_LEFT))
 	return res
 
 def showCoverlist(title, url, path, art):
 	res = [ (title, url, path) ]
 	title = art + title
-	res.append(MultiContentEntryText(pos=(0, 0), size=(550, 24), font=4, text=title, flags=RT_HALIGN_LEFT))
+	res.append(MultiContentEntryText(pos=(0, 0), size=(550, image()), font=4, text=title, flags=RT_HALIGN_LEFT))
 	return res
 
 class EMCImdbScan(Screen):
@@ -90,7 +118,7 @@ class EMCImdbScan(Screen):
 				<!-- aktual movie name -->
 				<widget name="m_info" position="200,40" size="800,24" zPosition="0" font="Regular;24" halign="center" valign="center" transparent="1" foregroundColor="#00bab329" backgroundColor="#000000"/>
 				<!-- Movie Listbox -->
-				<widget name="menulist" position="220,80" size="772,420" selectionPixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/cursor.png" scrollbarMode="showOnDemand" transparent="1" enableWrapAround="on" />
+				<widget name="menulist" position="220,80" size="772,420" selectionPixmap="%s" scrollbarMode="showOnDemand" transparent="1" enableWrapAround="on" />
 				<!-- Cover picture -->
 				<widget name="poster" position="10,40" size="185,230" zPosition="4" alphatest="on" />
 				<!-- Amount of "downloaded", "exist", and "not found" covers -->
@@ -110,7 +138,7 @@ class EMCImdbScan(Screen):
 				<widget name="Setup" position="50,498" size="300,22" font="Regular;21" halign="left" valign="center" transparent="1" />
 				<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key_ok.png" position="10,530" size="35,25" alphatest="on" />
 				<widget name="Single search" position="50,533" size="300,22" font="Regular;21" halign="left" valign="center" transparent="1" />
-			</screen>"""
+			</screen>""" % image(False, False, True)
 	else:
 		skin = """
 			<screen position="center,center" size="620,500" title="EMC Cover search">
@@ -141,20 +169,21 @@ class EMCImdbScan(Screen):
 				<widget name="Single search" position="45,472" size="300,25" font="Regular;18" halign="left" valign="center" transparent="1" />
 			</screen>"""
 
-	def __init__(self, session, data):
+	def __init__(self, session, data, folder=False):
 		Screen.__init__(self, session, data)
 		self.m_list = data
+		self.isFolder = folder
 		self["actions"] = HelpableActionMap(self, "EMCimdb",
 		{
-			"EMCEXIT":		self.exit,
-			"EMCOK":		self.ok,
-			"EMCGreen":		self.imdb,
-			"EMCRed":		self.red,
+			"EMCEXIT":	self.exit,
+			"EMCOK":	self.ok,
+			"EMCGreen":	self.search,
+			"EMCRed":	self.red,
 			"EMCYellow":	self.verwaltung,
 			"EMCRedLong":	self.redLong,
-			"EMCMenu":		self.config,
+			"EMCMenu":	self.config,
 		}, -1)
-
+		
 		self["ButtonGreen"] = Pixmap()
 		self["ButtonGreenText"] = Label(_("Search"))
 		self["ButtonRed"] = Pixmap()
@@ -204,14 +233,14 @@ class EMCImdbScan(Screen):
 				self.menulist.append(imdb_show(title, path, _("Exist"), "", title))
 			else:
 				count_na += 1
-				self.menulist.append(imdb_show(title, path, "N/A", "", title))
+				self.menulist.append(imdb_show(title, path, _("N/A"), "", title))
 
 		if self.menulist:
 			self["menulist"].l.setList(self.menulist)
-			self["menulist"].l.setItemHeight(28)
+			self["menulist"].l.setItemHeight(image())
 			self.check = True
 			self.showInfo()
-			self["done_msg"].setText((_("Total") + ": %s - " + _("Exist") + ": %s - " + "N/A" + ": %s") % (self.count_movies, count_existing, count_na))
+			self["done_msg"].setText((_("Total") + ": %s - " + _("Exist") + ": %s - " + _("N/A") + ": %s") % (self.count_movies, count_existing, count_na))
 
 	def setShowSearchSiteName(self):
 		if config.EMC.imdb.search.value == "0":
@@ -250,6 +279,43 @@ class EMCImdbScan(Screen):
 	def no_cover(self):
 		if os.path.exists(self.no_image_poster):
 			DelayedFunction(500, self.poster_resize(self.no_image_poster))
+
+	def search(self):
+		if config.EMC.imdb.search.value == "0":               # imdb
+			self.imdbsearch()
+		elif config.EMC.imdb.search.value == "1":             # tmdb
+			self.imdb()
+		elif config.EMC.imdb.search.value == "2":             # csfd
+			self.csfdsearch()
+		elif config.EMC.imdb.search.value == "3":             # all
+			self.searchall()
+
+	def getPosterPathList(self):
+		ndata_list = []
+		if self.m_list != []:
+			for x in self.m_list:    # first we make a new list, otherwise the .ts-file(s) are gone after that
+				title = x[0]
+				coverpath = os.path.splitext(x[1])[0] + ".jpg"
+				ndata_list.extend( [ (title, coverpath) ] )
+		return ndata_list
+
+	def imdbsearch(self):
+		data_list = self.getPosterPathList()
+		if data_list != []:
+			val = "0"
+			self.session.openWithCallback(self.setupFinished2, getCover, data_list, val)
+
+	def csfdsearch(self):
+		data_list = self.getPosterPathList()
+		if data_list != []:
+			val = "2"
+			self.session.openWithCallback(self.setupFinished2, getCover, data_list, val)
+
+	def searchall(self):
+		data_list = self.getPosterPathList()
+		if data_list != []:
+			val = "3"
+			self.session.openWithCallback(self.setupFinished2, getCover, data_list, val)
 
 	def imdb(self):
 		if self.running:
@@ -293,7 +359,7 @@ class EMCImdbScan(Screen):
 					self["exist"].setText(_("Exist: %s") % str(self.counter_exist))
 					self["download"].setText(_("Download: %s") % str(self.counter_download))
 					self["menulist"].l.setList(self.menulist)
-					self["menulist"].l.setItemHeight(28)
+					self["menulist"].l.setItemHeight(image())
 					self.check = True
 					print "EMC iMDB: Cover vorhanden - %s" % title
 				else:
@@ -338,7 +404,7 @@ class EMCImdbScan(Screen):
 					downloadPage(purl, cover_path).addErrback(self.dataError)
 			else:
 				self.counter_no_poster += 1
-				self.menulist.append(imdb_show(title, cover_path, "N/A", "", title))
+				self.menulist.append(imdb_show(title, cover_path, _("N/A"), "", title))
 
 			# get description
 			if config.EMC.imdb.savetotxtfile.value:
@@ -368,7 +434,7 @@ class EMCImdbScan(Screen):
 						getPage(iurl, headers={'Content-Type':'application/x-www-form-urlencoded'}).addCallback(self.getInfos, id, type, cover_path).addErrback(self.dataError)
 			else:
 				self.counter_no_poster += 1
-				self.menulist.append(imdb_show(title, cover_path, "N/A", "", title))
+				self.menulist.append(imdb_show(title, cover_path, _("N/A"), "", title))
 
 		self.count = ("%s: %s " + _("from") + " %s") % (self.showSearchSiteName, self.counting, self.count_total)
 		self["info"].setText(self.count)
@@ -376,7 +442,7 @@ class EMCImdbScan(Screen):
 		self["exist"].setText(_("Exist: %s") % str(self.counter_exist))
 		self["download"].setText(_("Download: %s") % str(self.counter_download))
 		self["menulist"].l.setList(self.menulist)
-		self["menulist"].l.setItemHeight(28)
+		self["menulist"].l.setItemHeight(image())
 		self.check = True
 
 		if self.counting == self.count_total:
@@ -403,8 +469,8 @@ class EMCImdbScan(Screen):
 	def writeTofile(self, text, cover_path):
 		print cover_path
 		if not fileExists(cover_path.replace('.jpg','.txt')):
-			wFile = open(cover_path.replace('.jpg','.txt'),"w")
-			wFile.write(text)
+			wFile = open(cover_path.replace('.jpg','.txt'),"w") 
+			wFile.write(text) 
 			wFile.close()
 
 	def dataError(self, error):
@@ -417,7 +483,7 @@ class EMCImdbScan(Screen):
 	def errorLoad(self, error, search_title):
 		print "EMC keine daten zu %s gefunden." % search_title
 		#print "Please report: %s" % str(error)
-
+		
 	def exit(self):
 		self.check = False
 		if self.picload:
@@ -443,7 +509,16 @@ class EMCImdbScan(Screen):
 		if self.check and self.menulist:
 			data_list = []
 			m_title = self["menulist"].getCurrent()[0][0]
-			m_poster_path = self["menulist"].getCurrent()[0][1]
+			# safety way for default-SearchSite, we need better way
+			# should we save the Cover in the folder directly ?
+			# or like it is at the moment ?
+			if self.isFolder:
+				if self.m_list != []:
+					for x in self.m_list:
+						title = x[0]
+						m_poster_path = os.path.splitext(x[1])[0] + ".jpg"
+			else:
+				m_poster_path = self["menulist"].getCurrent()[0][1]
 			data_list = [(m_title, m_poster_path)]
 			self.session.openWithCallback(self.setupFinished2, getCover, data_list)
 
@@ -454,16 +529,26 @@ class EMCImdbScan(Screen):
 			scale = AVSwitch().getFramebufferScale()
 			size = self["poster"].instance.size()
 			self.picload.setPara((size.width(), size.height(), scale[0], scale[1], False, 1, "#00000000"))
-			if isDreamOS:
-				result = self.picload.startDecode(poster_path, False)
+			if is7080hd:
+				try:
+					if self.picload.startDecode(poster_path, False) == 0:
+						ptr = self.picload.getData()
+						if ptr != None:
+							self["poster"].instance.setPixmap(ptr)
+							self["poster"].show()
+				except:
+					if self.picload.startDecode(poster_path, 0, 0, False) == 0:
+						ptr = self.picload.getData()
+						if ptr != None:
+							self["poster"].instance.setPixmap(ptr)
+							self["poster"].show()
 			else:
-				result = self.picload.startDecode(poster_path, 0, 0, False)
-			if result == 0:
-				ptr = self.picload.getData()
-				if ptr != None:
-					self["poster"].instance.setPixmap(ptr)
-					self["poster"].show()
-
+				if self.picload.startDecode(poster_path, 0, 0, False) == 0:
+					ptr = self.picload.getData()
+					if ptr != None:
+						self["poster"].instance.setPixmap(ptr)
+						self["poster"].show()
+		
 	def config(self):
 		self.session.openWithCallback(self.setupFinished, imdbSetup)
 
@@ -483,7 +568,7 @@ class EMCImdbScan(Screen):
 			self.verwaltung()
 			#self.showInfo()
 			self["done_msg"].show()
-			self["done_msg"].setText("Cover is Saved.")
+			self["done_msg"].setText(_("Cover is Saved."))
 			#DelayedFunction(3000, self["done_msg"].hide)
 
 	def decodeHtml(self, text):
@@ -594,7 +679,7 @@ class EMCImdbScan(Screen):
 					'AC3MD','AC3','AC3D','TS','DVDSCR','COMPLETE','INTERNAL','DTSD','XViD','DIVX','DUBBED','LINE.DUBBED','DD51','DVDR9','DVDR5','h264','AVC',
 					'WEBHDTVRiP','WEBHDRiP','WEBRiP','WEBHDTV','WebHD','HDTVRiP','HDRiP','HDTV','ITUNESHD','REPACK','SYNC']
 		text = text.replace('.wmv','').replace('.flv','').replace('.ts','').replace('.m2ts','').replace('.mkv','').replace('.avi','').replace('.mpeg','').replace('.mpg','').replace('.iso','')
-
+		
 		for word in cutlist:
 			text = re.sub('(\_|\-|\.|\+)'+word+'(\_|\-|\.|\+)','+', text, flags=re.I)
 		text = text.replace('.',' ').replace('-',' ').replace('_',' ').replace('+','')
@@ -602,15 +687,17 @@ class EMCImdbScan(Screen):
 class imdbSetup(Screen, ConfigListScreen):
 	skin = """
 		<screen position="center,center" size="550,400" title="EMC Cover search setup" >
-			<widget name="config" position="20,10" size="510,330" scrollbarMode="showOnDemand" />
+			<widget name="config" position="20,10" size="510,330" itemHeight="%s" font="Regular;%s" scrollbarMode="showOnDemand" />
 			<widget name="key_red" position="0,350" size="140,40" valign="center" halign="center" zPosition="5" transparent="1" foregroundColor="#ffffff" font="Regular;18"/>
 			<widget name="key_green" position="140,350" size="140,40" valign="center" halign="center" zPosition="5" transparent="1" foregroundColor="#ffffff" font="Regular;18"/>
 			<ePixmap name="red" pixmap="skin_default/buttons/red.png" position="0,350" size="140,40" zPosition="4" transparent="1" alphatest="on"/>
 			<ePixmap name="green" pixmap="skin_default/buttons/green.png" position="140,350" size="140,40" zPosition="4" transparent="1" alphatest="on"/>
-		</screen>"""
+		</screen>""" % image(False, True)
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
+
+		self.setTitle(_("EMC Cover search setup"))
 
 		self["key_red"] = Button(_("Cancel"))
 		self["key_green"] = Button(_("OK"))
@@ -644,20 +731,24 @@ class getCover(Screen):
 	if getDesktop(0).size().width() == 1280:
 		skin = """
 			<screen position="center,center" size="1000,560" title="EMC Cover Selecter" >
+				<widget name="m_info" position="200,10" size="760,24" zPosition="0" font="Regular;24" halign="center" valign="center" transparent="1" foregroundColor="#00bab329" backgroundColor="#000000"/>
 				<widget name="poster" zPosition="2" position="10,10" size="185,230" alphatest="on" />
-				<widget name="menulist" position="220,10" size="760,507" selectionPixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/cursor.png" scrollbarMode="showOnDemand" transparent="1" enableWrapAround="on" />
+				<widget name="menulist" position="220,40" size="760,477" selectionPixmap="%s" scrollbarMode="showOnDemand" transparent="1" enableWrapAround="on" />
 				<widget name="info" position="10,535" size="990,24" zPosition="0" font="Regular;21" halign="left" valign="center" transparent="1" foregroundColor="#ffffff" backgroundColor="#000000"/>
-			</screen>"""
+			</screen>""" % image(False, False, True)
 	else:
 		skin = """
 			<screen position="center,center" size="620,500" title="EMC Cover Selecter" >
+				<widget name="m_info" position="125,10" size="490,22" zPosition="0" font="Regular;21" halign="center" valign="center" transparent="1" foregroundColor="#00bab329" backgroundColor="#000000"/>
 				<widget name="poster" zPosition="2" position="5,10" size="115,150" alphatest="on" />
-				<widget name="menulist" position="125,10" size="490,422" selectionPixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/cursor.png" scrollbarMode="showOnDemand" transparent="1" enableWrapAround="on" />
+				<widget name="menulist" position="125,40" size="490,392" selectionPixmap="%s" scrollbarMode="showOnDemand" transparent="1" enableWrapAround="on" />
 				<widget name="info" position="10,460" size="605,21" zPosition="0" font="Regular;20" halign="left" valign="center" transparent="1" foregroundColor="#ffffff" backgroundColor="#000000"/>
-			</screen>"""
+			</screen>""" % image(False, False, True)
 
-	def __init__(self, session, data):
+	def __init__(self, session, data, val=None):
 		Screen.__init__(self, session, data)
+
+		self.setTitle(_("EMC Cover Selecter"))
 
 		self["actions"] = HelpableActionMap(self, "EMCimdb",
 		{
@@ -668,12 +759,13 @@ class getCover(Screen):
 		}, -1)
 
 		(title, o_path) = data.pop()
-		self.title = title
+		self.m_title = title
+		self["m_info"] = Label(("%s") % self.m_title)
 		self.o_path = o_path
 		self.menulist = []
 		self["menulist"] = imdblist([])
 		self["poster"] = Pixmap()
-		self["info"] = Label(_("Searching for %s") % self.title)
+		self["info"] = Label(_("Searching for %s") % self.m_title)
 		self["menulist"].onSelectionChanged.append(self.showInfo)
 		self.check = "false"
 		self.path = "/tmp/tmp.jpg"
@@ -686,16 +778,26 @@ class getCover(Screen):
 		#self.picload_conn = self.picload.PictureData.connect(self.showCoverCallback)
 
 		self["info"].setText((_("found") + " %s " + _("covers")) % (self.cover_count))
-		if config.EMC.imdb.singlesearch.value == "0":
-			self.searchCover(self.title)
-		elif config.EMC.imdb.singlesearch.value == "1":
-			self.searchtvdb(self.title)
-		elif config.EMC.imdb.singlesearch.value == "2":
-			self.searchcsfd(self.title)
-		elif config.EMC.imdb.singlesearch.value == "3":
-			self.searchcsfd(self.title)
-			self.searchtvdb(self.title)
-			self.searchCover(self.title)
+		if val is not None:
+			if val == "0":
+				self.searchCover(self.m_title)
+			elif val == "2":
+				self.searchcsfd(self.m_title)
+			elif val == "3":
+				self.searchcsfd(self.m_title)
+				self.searchtvdb(self.m_title)
+				self.searchCover(self.m_title)
+		else:
+			if config.EMC.imdb.singlesearch.value == "0":
+				self.searchCover(self.m_title)
+			elif config.EMC.imdb.singlesearch.value == "1":
+				self.searchtvdb(self.m_title)
+			elif config.EMC.imdb.singlesearch.value == "2":
+				self.searchcsfd(self.m_title)
+			elif config.EMC.imdb.singlesearch.value == "3":
+				self.searchcsfd(self.m_title)
+				self.searchtvdb(self.m_title)
+				self.searchCover(self.m_title)
 
 	def showCovers_adddetail_csfd(self, data, title):
 		title_s = re.findall('<title>(.*?)\|', data, re.S)
@@ -824,7 +926,7 @@ class getCover(Screen):
 				urllib.urlcleanup()
 				if os.path.exists(self.path):
 					self.poster_resize(self.path, m_title)
-
+					
 					#ptr = LoadPixmap(self.path)
 					#if ptr is None:
 					#        ptr = LoadPixmap("/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/no_poster.png")
@@ -845,11 +947,17 @@ class getCover(Screen):
 		size = self["poster"].instance.size()
 		if self.picload:
 			self.picload.setPara((size.width(), size.height(), sc[0], sc[1], False, 1, "#00000000")) # Background dynamically
-			if isDreamOS:
-				result = self.picload.startDecode(poster_path, False)
-			else:
+			#self.picload.startDecode(poster_path)
+			if not is7080hd:
 				result = self.picload.startDecode(poster_path, 0, 0, False)
+			else:
+				try:
+					result = self.picload.startDecode(poster_path, False)
+				except:
+					result = self.picload.startDecode(poster_path, 0, 0, False)
 			if result == 0:
+				#def showCoverCallback(self, picInfo=None):
+				#if picInfo:
 				ptr = self.picload.getData()
 				if ptr != None:
 					print "EMC iMDB: Load Poster - %s" % self.m_title
@@ -862,9 +970,71 @@ class getCover(Screen):
 		self.check = "false"
 		self.close(False)
 
-	def ok(self):
+	def ok(self, choose=False):
+		movie_homepath = os.path.realpath(config.EMC.movie_homepath.value)
+		if choose:
+			self.chooseDirectory(movie_homepath)
 		if self.check == "true" and self.menulist:
-			shutil.move(self.path, self.o_path)
-			print "EMC iMDB: mv poster to real path - %s %s" % (self.path, self.o_path)
+			try:
+				shutil.move(self.path, self.o_path)
+				print "EMC iMDB: mv poster to real path - %s %s" % (self.path, self.o_path)
+				self.check = "false"
+				self.close(True)
+			except Exception, e:
+				print('[EMCCoverSearch] save Cover execute get failed: ', str(e))
+				try:
+					self.session.openWithCallback(self.saveCoverHomepath, MessageBox, _("Can not save " + self.o_path + " !\n Save Cover now in " + movie_homepath + " ?"), MessageBox.TYPE_YESNO, 10)
+				except Exception, e:
+					print('[EMCCoverSearch] save Cover in homepath execute get failed: ', str(e))
+
+	def saveCoverHomepath(self, result):
+		if result:
+			movie_homepath = os.path.realpath(config.EMC.movie_homepath.value)
+			try:
+				shutil.move(self.path, movie_homepath + "/" + self.o_path.replace(self.o_path[:-len(self.o_path) + self.o_path.rfind('/') + 1],''))
+				self.check = "false"
+				self.close(True)
+			except Exception, e:
+				print('[EMCCoverSearch] saveCoverHomepath execute get failed: ', str(e))
+				try:
+					self.session.openWithCallback(self.chooseCallback, MessageBox, _("Can not save Cover in " + movie_homepath + " !\n\n Now you can select another folder to save the Cover."), MessageBox.TYPE_YESNO, 10)
+				except Exception, e:
+					print('[EMCCoverSearch] save Cover get failed: ', str(e))
+		else:
 			self.check = "false"
-			self.close(True)
+			self.close(False)
+
+	def chooseCallback(self, result):
+		if result:
+			self.check = "false"
+			self.ok(True)
+		else:
+			self.check = "false"
+			self.close(False)
+
+	def chooseDirectory(self, choosePath):
+		if choosePath is not None:
+			self.session.openWithCallback(
+					self.moveCoverTo,
+					LocationBox,
+						windowTitle = _("Move Cover to:"),
+						text = _("Choose directory"),
+						currDir = str(choosePath)+"/",
+						bookmarks = config.movielist.videodirs,
+						autoAdd = False,
+						editDir = True,
+						inhibitDirs = ["/bin", "/boot", "/dev", "/etc", "/home", "/lib", "/proc", "/run", "/sbin", "/sys", "/usr", "/var"],
+						minFree = 100 )
+
+	def moveCoverTo(self, targetPath):
+		if targetPath is not None:
+			try:
+				shutil.move(self.path, targetPath + "/" + self.o_path.replace(self.o_path[:-len(self.o_path) + self.o_path.rfind('/') + 1],''))
+				self.check = "false"
+				self.close(True)
+			except Exception, e:
+				print('[EMCCoverSearch] moveCoverTo execute get failed: ', str(e))
+				self.chooseDirectory(targetPath)
+		else:
+			self.check = "false"
+			self.close(False)

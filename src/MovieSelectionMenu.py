@@ -20,6 +20,7 @@
 #
 
 import os
+import struct
 
 from Components.config import *
 from Components.PluginComponent import plugins
@@ -42,19 +43,29 @@ from PermanentSort import PermanentSort
 from E2Bookmarks import E2Bookmarks
 from EMCBookmarks import EMCBookmarks
 from RogueFileCheck import RogueFileCheck
-from MovieCenter import extTS
+from MovieCenter import extTS, extMedia
+from EnhancedMovieCenter import imgVti
 global extTS
+
+cutsParser = struct.Struct('>QI') # big-endian, 64-bit PTS and 32-bit type
+
+def image():
+	if imgVti:
+		return 30, 18
+	else:
+		return 28, 20
+
 
 class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 	skin = """
 	<screen name="EMCMenu" position="center,center" size="600,480" title="EMC menu">
 	<widget source="title" render="Label" position="10,10" size="580,35" font="Regular;27" halign="center" />
-	<widget source="menu" render="Listbox" position="10,55" size="580,430" scrollbarMode="showOnDemand" enableWrapAround="1">
+	<widget source="menu" render="Listbox" position="10,55" size="580,430" itemHeight="%s" font="Regular;%s" scrollbarMode="showOnDemand" enableWrapAround="1">
 		<convert type="StringList" />
 	</widget>
-	</screen>"""
+	</screen>""" % image()
 
-	def __init__(self, session, menumode, mselection, mlist, service, selections, currentPath):
+	def __init__(self, session, menumode, mselection, mlist, service, selections, currentPath, playlist=False):
 		Screen.__init__(self, session)
 		self.mode = menumode
 		self.mselection = mselection
@@ -62,6 +73,7 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 		self.service = service
 		self.selections = selections
 		self.currentPath = currentPath
+		self.plist = playlist
 		self.reloadafterclose = False
 
 		self.menu = []
@@ -76,16 +88,25 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 
 			self.menu.append((_("Reload current directory"), boundFunction(self.close, "reloadwithoutcache")))
 
+			self.menu.append((_("Playlist Options"), boundFunction(self.close, "emcPlaylist")))
+			if service is not None:
+				ext = os.path.splitext(service.getPath())[1].lower()
+				if ext in extMedia:
+					self.menu.append((_("Add to current Playlist"), boundFunction(self.close, "addPlaylist")))
+
 			self.menu.append((_("Play last"), boundFunction(self.close, "Play last")))
 
 			self.menu.append((_("Play All"), boundFunction(self.close, "playall")))
 			self.menu.append((_("Shuffle All"), boundFunction(self.close, "shuffleall")))
 
 			self.menu.append((_("Cover search"), boundFunction(self.close, "imdb")))
+			if service is not None:
+				if os.path.isdir(service.getPath()):
+					self.menu.append((_("Directory-Cover search"), boundFunction(self.close, "imdbdirectory")))
 			self.menu.append((_("Delete"), boundFunction(self.close, "del")))
 
 			if config.EMC.movie_trashcan_enable.value and os.path.exists(config.EMC.movie_trashcan_path.value):
-				if service:
+				if service is not None:
 					self.menu.append((_("Delete permanently"), boundFunction(self.close, "delete")))
 				self.menu.append((_("Empty trashcan"), boundFunction(self.emptyTrash)))
 				self.menu.append((_("Go to trashcan"), boundFunction(self.close, "trash")))
@@ -100,7 +121,7 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 
 			self.menu.append((_("(Un-)Lock Directory"), boundFunction(self.lockDir, currentPath)))
 
-			if service:
+			if service is not None:
 				if os.path.isfile(service.getPath()):
 					self.menu.append((_("Copy Movie"), boundFunction(self.close, "Copy Movie")))
 					self.menu.append((_("Move Movie"), boundFunction(self.close, "Move Movie")))
@@ -110,9 +131,10 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 						self.menu.append((_("Download Movie Information"), boundFunction(self.close, "Movie Information")))
 						#self.menu.append((_("Download Movie Cover"), boundFunction(self.close, "dlcover")))
 
-			if self.service or self.selections:
+			if self.service is not None or self.selections:
 				self.menu.append((_("Rename selected movie(s)"), boundFunction(self.renameMovies)))
 				self.menu.append((_("Remove cut list marker"), boundFunction(self.remCutListMarker)))
+				self.menu.append((_("Reset marker from selected movie(s)"), boundFunction(self.resMarker)))
 				show_plugins = True
 				if self.selections:
 					for service in self.selections:
@@ -133,16 +155,18 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 				self.menu.append((_("Add directory to E2 Bookmarks"), boundFunction(self.addDirToE2Bookmarks, currentPath)))
 			else:
 				self.menu.append((_("Remove directory from E2 Bookmarks"), boundFunction(self.removeDirFromE2Bookmarks, currentPath)))
-			if service and self.isE2Bookmark(service.getPath()):
-				self.menu.append((_("Remove selected E2 Bookmark"), boundFunction(self.close, "removeE2Bookmark", service)))
+			if service is not None:
+				if self.isE2Bookmark(service.getPath()):
+					self.menu.append((_("Remove selected E2 Bookmark"), boundFunction(self.close, "removeE2Bookmark", service)))
 
 			self.menu.append((_("Open EMC Bookmark path"), boundFunction(self.close, "openEMCBookmarks")))
 			if not self.isEMCBookmark(currentPath):
 				self.menu.append((_("Add directory to EMC Bookmarks"), boundFunction(self.addDirToEMCBookmarks, currentPath)))
 			else:
 				self.menu.append((_("Remove directory from EMC Bookmarks"), boundFunction(self.removeDirFromEMCBookmarks, currentPath)))
-			if service and self.isEMCBookmark(service.getPath()):
-				self.menu.append((_("Remove selected EMC Bookmark"), boundFunction(self.close, "removeEMCBookmark", service)))
+			if service is not None:
+				if self.isEMCBookmark(service.getPath()):
+					self.menu.append((_("Remove selected EMC Bookmark"), boundFunction(self.close, "removeEMCBookmark", service)))
 
 			self.menu.append((_("Set permanent sort"), boundFunction(self.setPermanentSort, currentPath, mlist.actualSort)))
 			if mlist.hasFolderPermanentSort(currentPath):
@@ -167,6 +191,18 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 			if bm:
 				for line in bm:
 					self.menu.append((line, boundFunction(self.close, line)))
+
+		elif menumode == "emcPlaylist":
+			self["title"] = StaticText(_("Playlist Options"))
+			self.menu.append((_("Show current Playlist"), boundFunction(self.close, "showPlaylist")))
+			if service is not None:
+				ext = os.path.splitext(service.getPath())[1].lower()
+				if ext in extMedia:
+					self.menu.append((_("Add to current Playlist"), boundFunction(self.close, "addPlaylist")))
+			if self.plist:
+				self.menu.append((_("Play current Playlist"), boundFunction(self.close, "playPlaylist")))
+				self.menu.append((_("Play random current Playlist"), boundFunction(self.close, "playPlaylistRandom")))
+				self.menu.append((_("Delete current Playlist"), boundFunction(self.close, "delPlaylist")))
 
 		self["menu"] = List(self.menu)
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"],
@@ -326,6 +362,48 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 			self.close("cutlistmarker")
 		else:
 			self.close(None)
+
+	def resMarker(self):
+		self.hide()
+		self.session.openWithCallback(
+				self.resMarkerCB,
+				MessageBox,
+				_("Remove all marker permanently?"),
+				MessageBox.TYPE_YESNO )
+
+	def resMarkerCB(self, confirm):
+		if confirm:
+			try:
+				if self.selections:
+					for service in self.selections:
+						path = service.getPath() + ".cuts"
+						self.delMarker(path)
+					self.close("resMarker")
+				else:
+					if self.service:
+						path = self.service.getPath() + ".cuts"
+						self.delMarker(path)
+					self.close()
+			except Exception, e:
+				print("[EMC] Exception in resMarkerCB: " + str(e))
+				self.close()
+		else:
+			self.close(None)
+
+	def delMarker(self, path):
+		f = open(path, 'rb')
+		cutlist = []
+		while 1:
+			data = f.read(cutsParser.size)
+			if len(data) < cutsParser.size:
+				break
+			cut, cutType = cutsParser.unpack(data)
+			if cutType != 3:
+				cutlist.append(data)
+		f.close()
+		f = open(path, 'wb')
+		f.write(''.join(cutlist))
+		f.close()
 
 	def renameMovies(self):
 		self.close("rename")

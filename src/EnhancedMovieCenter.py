@@ -48,11 +48,31 @@ except ImportError as ie:
 else:
 	hasCutlistDownloader = True
 
+
 from DelayedFunction import DelayedFunction
 from EMCTasker import emcTasker, emcDebugOut
 
-EMCVersion = "V3.7.4beta20131015"
+
+EMCVersion = "V4.0.0beta20150405"
 EMCAbout = "\n  Enhanced Movie Center " +EMCVersion+ "\n\n  (C) 2012 by\n  Coolman, Betonme, dirtylion, Jojojoxx, mr.scotty & Swiss-MAD \n\n  If you like this plugin and you want to support it,\n  or if just want to say ''thanks'',\n  please donate via PayPal. \n\n  Thanks a lot ! \n\n  PayPal: enhancedmoviecenter@gmail.com"
+
+# Check if image is vti, is needed for build entrys in MovieCenter with picons
+global imgVti
+imgVti = False
+
+def checkImg():
+	global imgVti
+	try:
+		from enigma import BT_FIXRATIO
+		imgVti = True
+	except Exception, e:
+		print "[EMC] checkImg is not Vti", e
+
+def image():
+	if imgVti:
+		return 30, 18
+	else:
+		return 28, 20
 
 def setEPGLanguage(dummyself=None, dummy=None):
 	if config.EMC.epglang.value:
@@ -60,6 +80,7 @@ def setEPGLanguage(dummyself=None, dummy=None):
 		eServiceEvent.setEPGLanguage(config.EMC.epglang.value)
 language.addCallback(setEPGLanguage)
 DelayedFunction(5000, setEPGLanguage)
+
 
 def setupKeyResponseValues(dummyself=None, dummy=None):
 	# currently not working on DM500/DM600, wrong input dev files?
@@ -74,6 +95,7 @@ def setupKeyResponseValues(dummyself=None, dummy=None):
 	os.write(e2, s2)
 	os.close(e1)
 	os.close(e2)
+
 
 # Only one trashclean instance is allowed
 trashCleanCall = None
@@ -111,12 +133,24 @@ def cleanupSetup(dummy=None):
 
 def EMCStartup(session):
 	emcDebugOut("+++ EMC "+EMCVersion+" startup")
-
+	
 	if config.EMC.epglang.value:
 		eServiceEvent.setEPGLanguage(config.EMC.epglang.value)
-
+	
 	setupKeyResponseValues()
 	DelayedFunction(5000, cleanupSetup)
+
+	# Check the image to use a global in vti.images
+	checkImg()
+
+        # read Count and Size from Homepath to open MovieSelection faster with directory-info settings "C", "CS" or "S"
+	if config.EMC.count_size_start_cache.value:
+		val = config.EMC.directories_info.value
+		if val == "C" or val == "CS" or val == "S":
+			from MovieSelection import startCountSizeCache
+			delay = int(config.EMC.count_size_start_delay.value) * 60000
+			DelayedFunction(delay, startCountSizeCache)
+			emcDebugOut("Get Count and Size to cache in " + str(delay/60000) + " minutes")
 
 	# Go into standby if the reason for restart was EMC auto-restart
 	if config.EMC.restart.value != "":
@@ -156,7 +190,7 @@ def get_predefined_value(key):
 
 def next_predefined_settings(key=""):
 	if key not in predefined_settings:
-		key = _("Custom")
+		key = _("Custom") 
 	pdvcycle = cycle(predefined_settings.items())
 	for k, v in pdvcycle:
 		if k == key:
@@ -168,59 +202,58 @@ def next_predefined_settings(key=""):
 
 class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 	skin = """
-		<screen name="EnhancedMovieCenterMenu" position="center,center" size="620,500" title="EnhancedMovieCenterMenu">
-		<widget name="config" position="10,10" size="605,353 " enableWrapAround="1" scrollbarMode="showOnDemand" />
-		<eLabel position="0,362" size="620,2" backgroundColor="#999999" zPosition="1" />
-		<widget source="help" render="Label" position="10,367" size="605,88" font="Regular;20" foregroundColor="#999999" />
-		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key-red.png" position="50,455" zPosition="0" size="140,40" transparent="1" alphatest="on" />
-		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key-green.png" position="240,455" zPosition="0" size="140,40" transparent="1" alphatest="on" />
-		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key-blue.png" position="430,455" zPosition="0" size="140,40" transparent="1" alphatest="on" />
-		<widget name="key_red" position="50,455" zPosition="1" size="140,40" font="Regular;20" valign="center" halign="center" backgroundColor="#9f1313" transparent="1" shadowColor="#000000" shadowOffset="-1,-1" />
-		<widget name="key_green" position="240,455" zPosition="1" size="140,40" font="Regular;20" valign="center" halign="center" backgroundColor="#1f771f" transparent="1" shadowColor="#000000" shadowOffset="-1,-1" />
-		<widget name="key_blue" position="430,455" zPosition="1" size="140,40" font="Regular;20" valign="center" halign="center" backgroundColor="#18188b" transparent="1" shadowColor="#000000" shadowOffset="-1,-1" />
-	</screen>"""
-
+		<screen name="EnhancedMovieCenterMenu" position="center,center" size="670,520" title="EnhancedMovieCenterMenu">
+		<widget name="config" position="10,10" size="655,353 "  itemHeight="%s" font="Regular;%s" enableWrapAround="1" scrollbarMode="showOnDemand" />
+		<eLabel position="0,362" size="670,2" backgroundColor="#999999" zPosition="1" />
+		<widget source="help" render="Label" position="10,367" size="655,108" font="Regular;20" foregroundColor="#999999" />
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key-red.png" position="75,475" zPosition="0" size="140,40" transparent="1" alphatest="on" />
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key-green.png" position="265,475" zPosition="0" size="140,40" transparent="1" alphatest="on" />
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key-blue.png" position="455,475" zPosition="0" size="140,40" transparent="1" alphatest="on" />
+		<widget name="key_red" position="75,475" zPosition="1" size="140,40" font="Regular;20" valign="center" halign="center" backgroundColor="#9f1313" transparent="1" shadowColor="#000000" shadowOffset="-1,-1" />
+		<widget name="key_green" position="265,475" zPosition="1" size="140,40" font="Regular;20" valign="center" halign="center" backgroundColor="#1f771f" transparent="1" shadowColor="#000000" shadowOffset="-1,-1" />
+		<widget name="key_blue" position="455,475" zPosition="1" size="140,40" font="Regular;20" valign="center" halign="center" backgroundColor="#18188b" transparent="1" shadowColor="#000000" shadowOffset="-1,-1" />
+	</screen>""" % image()
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		self.skinName = "EnhancedMovieCenterMenu"
 		self.skin = EnhancedMovieCenterMenu.skin
 		self.screenTitle = "Enhanced Movie Center "+ EMCVersion + " (Setup)"
-
+		
 		self["actions"] = ActionMap(["SetupActions", "OkCancelActions", "EMCConfigActions"],
 		{
-			"ok":						self.keyOK,
-			"cancel":				self.keyCancel,
-			"red":					self.keyCancel,
-			"green": 				self.keySaveNew,
-			"blueshort": 		self.loadPredefinedSettings,
-			"bluelong":			self.loadDefaultSettings,
+			"ok":		self.keyOK,
+			"cancel":	self.keyCancel,
+			"red":		self.keyCancel,
+			"green": 	self.keySaveNew,
+			"blueshort": 	self.loadPredefinedSettings,
+			"bluelong":	self.loadDefaultSettings,
 			"nextBouquet":	self.bouquetPlus,
 			"prevBouquet":	self.bouquetMinus,
 		}, -2) # higher priority
-
+		
 		self["key_red"] = Button(_("Cancel"))
 		self["key_green"] = Button(_("Save"))
 #		self["key_yellow"] = Button(" ")
 		self["key_blue"] = Button()
 		self["help"] = StaticText()
-
+		
 		# Key short / long pressed detection
 		self.keylong = False
-
+		
 		self.list = []
 		self.EMCConfig = []
 		ConfigListScreen.__init__(self, self.list, session = session, on_change = self.changedEntry)
 		self.needsRestartFlag = False
 		self.defineConfig()
 		self.createConfig()
-
+		
 		self.reloadTimer = eTimer()
 		try:
 			self.reloadTimer_conn = self.reloadTimer.timeout.connect(self.createConfig)
 		except:
 			self.reloadTimer.callback.append(self.createConfig)
-
-		# Override selectionChanged because our config tuples have a size bigger than 2
+		
+		# Override selectionChanged because our config tuples have a size bigger than 2 
 		def selectionChanged():
 			current = self["config"].getCurrent()
 			if self["config"].current != current:
@@ -233,34 +266,34 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 				x()
 		self["config"].selectionChanged = selectionChanged
 		self["config"].onSelectionChanged.append(self.updateHelp)
-
+		
 		#Todo Remove if there is another solution, maybe thinkabout xml
 		config.EMC.movie_finished_clean.addNotifier(self.changedEntry, initial_call = False, immediate_feedback = True)
 
 		self.onShow.append(self.onDialogShow)
 
 	def defineConfig(self):
-
+		
 		separator = "".ljust(250,"-")
-
-#         _config list entry
-#         _                                                       , config element
-#         _                                                       ,                                     , function called on save
-#         _                                                       ,                                     ,                       , function called if user has pressed OK
-#         _                                                       ,                                     ,                       ,                       , usage setup level from E2
-#         _                                                       ,                                     ,                       ,                       ,   0: simple+
-#         _                                                       ,                                     ,                       ,                       ,   1: intermediate+
-#         _                                                       ,                                     ,                       ,                       ,   2: expert+
-#         _                                                       ,                                     ,                       ,                       ,       , depends on relative parent entries
-#         _                                                       ,                                     ,                       ,                       ,       ,   parent config value must be true
-#         _                                                       ,                                     ,                       ,                       ,       ,   a selection value "" is False
-#         _                                                       ,                                     ,                       ,                       ,       ,             , _context sensitive help text
-#         _                                                       ,                                     ,                       ,                       ,       ,             ,                                                          , performance value
-#         _                                                       ,                                     ,                       ,                       ,       ,             ,                                                          ,                   , information value
-#         _ 0                                                     , 1                                   , 2                     , 3                     , 4     , 5           , 6                                                        , 7                 , 8
-		self.EMCConfig = [
+		
+#         _config list entry                                
+#         _                                                 , config element                     
+#         _                                                 ,                                     , function called on save
+#         _                                                 ,                                     ,                       , function called if user has pressed OK
+#         _                                                 ,                                     ,                       ,                       , usage setup level from E2
+#         _                                                 ,                                     ,                       ,                       ,   0: simple+
+#         _                                                 ,                                     ,                       ,                       ,   1: intermediate+
+#         _                                                 ,                                     ,                       ,                       ,   2: expert+
+#         _                                                 ,                                     ,                       ,                       ,       , depends on relative parent entries
+#         _                                                 ,                                     ,                       ,                       ,       ,   parent config value must be true
+#         _                                                 ,                                     ,                       ,                       ,       ,   a selection value "" is False 
+#         _                                                 ,                                     ,                       ,                       ,       ,             , _context sensitive help text
+#         _                                                 ,                                     ,                       ,                       ,       ,             ,                                                          , performance value
+#         _                                                 ,                                     ,                       ,                       ,       ,             ,                                                          ,                   , information value
+#         _ 0                                               , 1                                   , 2                     , 3                     , 4     , 5           , 6                                                        , 7                 , 8
+		self.EMCConfig = [	
 			(  _("About")                                         , config.EMC.about                    , None                  , self.showInfo         , 0     , []          , _("HELP_About")                                          , None              , None ),
-
+			
 			(  _("Disable EMC")                                   , config.EMC.ml_disable               , self.needsRestart     , None                  , 1     , []          , _("HELP_Disable EMC")                                    , None              , None ),
 
 			(  _("Start EMC with")                                , config.EMC.movie_launch             , self.launchListSet    , None                  , 0     , []          , _("HELP_Start EMC with")                                 , None              , None ),
@@ -279,34 +312,46 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 			(  _("Blue button function")                          , config.EMC.movie_bluefunc           , None                  , None                  , 0     , []          , _("HELP_Blue button function")                           , None              , None ),
 			(  _("Long Blue button function")                     , config.EMC.movie_longbluefunc       , None                  , None                  , 0     , []          , _("HELP_Long Blue button function")                      , None              , None ),
 
-			(  separator                                          , config.EMC.about                    , None                  , None                  , 0     , []          , " "                                                      , None              , None ),
+			(  separator                                          , config.EMC.about                    , None                  , None                  , 0     , []          , _(" ")                                                    , None              , None ),
 			(  _("daily auto-start")                              , config.EMC.restart                  , self.autoRestartInfo  , self.autoRestartInfo  , 1     , []          , _("HELP_Daily auto-start")                               , None              , None ),
 			(  _("auto-start window begin")                       , config.EMC.restart_begin            , None                  , None                  , 1     , [-1]        , _("HELP_auto-start window begin")                        , None              , None ),
 			(  _("auto-start window end")                         , config.EMC.restart_end              , None                  , None                  , 1     , [-2]        , _("HELP_auto-start window end")                          , None              , None ),
 			(  _("Force standby after auto-restart")              , config.EMC.restart_stby             , None                  , None                  , 1     , [-3]        , _("HELP_Force standby after auto-start")                 , None              , None ),
 			(  _("LongInfo Button")                               , config.EMC.InfoLong                 , None                  , None                  , 0     , []          , _("HELP_LongInfo Button")                                , None              , None ),
 
-			(  separator                                          , config.EMC.about                    , None                  , None                  , 0     , []          , " "                                                      , None              , None ),
+			(  separator                                          , config.EMC.about                    , None                  , None                  , 0     , []          , _(" ")                                                    , None              , None ),
 			(  _("Movie home at start")                           , config.EMC.CoolStartHome            , None                  , None                  , 0     , []          , _("HELP_Movie home at start")                            , False             , None ),
 			(  _("Default sort mode")                             , config.EMC.moviecenter_sort         , None                  , None                  , 0     , []          , _("HELP_Sort mode at startup")                           , None              , None ),
-
+	
 			(  _("Movie home home path")                          , config.EMC.movie_homepath           , self.validatePath     , self.openLocationBox  , 0     , []          , _("HELP_Movie home home path")                           , None              , None ),
 			(  _("EMC path access limit")                         , config.EMC.movie_pathlimit          , self.validatePath     , self.openLocationBox  , 1     , []          , _("HELP_EMC path access limit")                          , None              , None ),
-
+			
 			(  _("Cursor predictive move after selection")        , config.EMC.moviecenter_selmove      , None                  , None                  , 0     , []          , _("HELP_Cursor predictive move after selection")         , None              , None ),
-
-			(  separator                                          , config.EMC.about                    , None                  , None                  , 0     , []          , " "                                                      , None              , None ),
+			
+			(  separator                                          , config.EMC.about                    , None                  , None                  , 0     , []          , _(" ")                                                   , None              , None ),
 			(  _("Show symlinks")                                 , config.EMC.symlinks_show            , None                  , None                  , 0     , []          , _("HELP_Show symlinks")                                  , None              , True ),
 #			(  _("Show symlinkdirectories_information")           , config.EMC.symlinkdir_info          , None                  , None                  , 0     , [-1]        , _("HELP_Show symlink_directories_information")           , False             , True ),
 			(  _("Show directories")                              , config.EMC.directories_show         , None                  , None                  , 0     , []          , _("HELP_Show directories")                               , None              , True ),
 			(  _("Show directories information")                  , config.EMC.directories_info         , None                  , None                  , 0     , [-1]        , _("HELP_Show directories information")                   , ""                , "CS" ),
-			(  _("Show directories within movielist")             , config.EMC.directories_ontop        , None                  , None                  , 0     , [-2]        , _("HELP_Show directories within movielist")              , False             , True ),
-			(  _("Configured directories at the top of movielist"), config.EMC.cfgtopdir_enable         , None                  , None                  , 0     , [-3,-1]     , _("HELP_Configure in etc\enigma2\emc-topdir.cfg")        , False             , True ),
+			# TODO: get this entrys only for values "C", "CS", "S"
+			(  _("Get Count and Size at start to cache")          , config.EMC.count_size_start_cache   , None                  , None                  , 0     , [-2,-1]     , _("HELP_Get Count and Size at start to cache")           , None              , None ),
+			(  _("Delay for Get Count and Size at start to cache"), config.EMC.count_size_start_delay   , None                  , None                  , 0     , [-3,-2,-1]  , _("HELP_Delay for Get Count and Size at start to cache") , None              , None ),
+			(  _("Delay to get Count and Size in List")           , config.EMC.count_size_delay         , None                  , None                  , 0     , [-4,-3]     , _("HELP_Delay to get Count and Size in List")            , None              , None ),
+			(  _("Text shown for initially unknown file count")   , config.EMC.count_default_text       , None                  , None                  , 0     , [-5,-4,-1]  , _("HELP_Text shown for initially unknown file count")    , None              , None ),
+			(  _("Text shown for initially unknown count and size"), config.EMC.count_size_default_text , None                  , None                  , 0     , [-6,-5,-2]  , _("HELP_Text shown for initially unknown count and size"), None              , None ),
+			(  _("Text shown for initially unknown directory size"), config.EMC.size_default_text       , None                  , None                  , 0     , [-7,-6,-3]  , _("HELP_Text shown for initially unknown directory size"), None              , None ),
+			(  _("Icon shown for initially unknown count / size") , config.EMC.count_size_default_icon  , None                  , None                  , 0     , [-8,-7,-4]  , _("HELP_Icon shown for initially unknown count / size")  , None              , None ),
+			(  _("Horizontal alignment for count / size")         , config.EMC.count_size_position      , None                  , None                  , 0     , [-9,-8]     , _("HELP_Horizontal alignment for count / size")          , None              , None ),
+
+			(  _("Show directories within movielist")             , config.EMC.directories_ontop        , None                  , None                  , 0     , [-10]       , _("HELP_Show directories within movielist")              , False             , True ),
+			(  _("Configured directories at the top of movielist"), config.EMC.cfgtopdir_enable         , None                  , None                  , 0     , [-11,-1]    , _("HELP_Configure in etc\enigma2\emc-topdir.cfg")        , False             , True ),
 			(  _("Show Latest Recordings directory")              , config.EMC.latest_recordings        , None                  , None                  , 0     , []          , _("HELP_Show Latest Recordings directory")               , None              , True ),
+			(  _("Latest Recordings directory limit")             , config.EMC.latest_recordings_limit  , None                  , None                  , 0     , [-1]        , _("HELP_Latest Recordings directory limit")              , None              , True ),
+			(  _("Latest Recordings directory use emc-noscan.cfg"), config.EMC.latest_recordings_noscan , None                  , None                  , 0     , [-2]        , _("HELP_Latest Recordings directory use emc-noscan.cfg") , None              , True ),
 			(  _("Show VLC directory")                            , config.EMC.vlc                      , None                  , None                  , 0     , []          , _("HELP_Show VLC directory")                             , None              , True ),
 			(  _("Show Bookmarks in movielist")                   , config.EMC.bookmarks                , None                  , None                  , 0     , []          , _("HELP_Show Bookmarks in movielist")                    , "No"              , "Both" ),
 			(  _("Use cache for files and directories")           , config.EMC.files_cache              , None                  , None                  , 0     , []          , _("HELP_Use cache for files and directories")            , True              , None ),
-
+			
 			(  separator                                          , config.EMC.about                    , None                  , None                  , 1     , []          , _("HELP_separator_hide&performance")                     , None              , None ),
 			(  _("Hide configured entries")                       , config.EMC.cfghide_enable           , None                  , None                  , 1     , []          , _("HELP_cfghide_enable")                                 , True              , True ),
 			(  _("Scan for DVD structures")                       , config.EMC.check_dvdstruct          , None                  , None                  , 1     , []          , _("HELP_Scan for DVD structures")                       , False             , True ),
@@ -315,23 +360,31 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 			(  _("Scan for bluray structures in .iso")            , config.EMC.check_blustruct_iso      , None                  , None                  , 0     , []          , _("HELP_Scan for bluray structures in .iso")             , False             , True ),
 			(  _("Suppress scan in selected folders")             , config.EMC.cfgscan_suppress         , None                  , None                  , 1     , []          , _("HELP_cfgscan_suppress")                               , True              , True ),
 			(  _("Scan linked folders")                           , config.EMC.scan_linked              , None                  , None                  , 1     , []          , _("HELP_scan_linked")                                    , False             , True ),
-
-			(  separator                                          , config.EMC.about                    , None                  , None                  , 0     , []          , " "                                                      , None              , None ),
+			
+			(  separator                                          , config.EMC.about                    , None                  , None                  , 0     , []          , _(" ")                                                    , None              , None ),
 			(  _("Try to load titles from .meta files")           , config.EMC.movie_metaload           , None                  , None                  , 0     , []          , _("HELP_Try to load titles from .meta files")            , False             , True ),
+			(  _("Load all for non showing titles from .meta files"), config.EMC.movie_metaload_all     , None                  , None                  , 0     , [-1]        , _("HELP_Load all for non showing titles from .meta files"), None             , True ),
 			(  _("Try to load titles from .eit files")            , config.EMC.movie_eitload            , None                  , None                  , 0     , []          , _("HELP_Try to load titles from .eit files")             , False             , True ),
 			(  _("Replace special chars in title")                , config.EMC.replace_specialchars     , None                  , None                  , 2     , []          , _("HELP_Replace special chars in title")                 , False             , None ),
 			(  _("Show Movie Format")                             , config.EMC.movie_show_format        , None                  , None                  , 0     , []          , _("HELP_Show Movie Format")                              , False             , True ),
 			(  _("Show Cut-Nr if exist")                          , config.EMC.movie_show_cutnr         , None                  , None                  , 0     , []          , _("HELP_Show Cut-Nr if exist")                           , False             , True ),
 			(  _("Resolve links and show real path")              , config.EMC.movie_real_path          , None                  , None                  , 0     , []          , _("HELP_Resolve links and show real path")               , False             , True ),
 			(  _("Show Path if no extended description available"), config.EMC.show_path_extdescr       , None                  , None                  , 0     , []          , _("HELP_Show Path if no extended description available") , False             , True ),
-
-			(  separator                                          , config.EMC.about                    , None                  , None                  , 0     , []          , " "                                                      , None              , None ),
+			
+			(  separator                                          , config.EMC.about                    , None                  , None                  , 0     , []          , _(" ")                                                    , None              , None ),
 			(  _("Listbox is skin able")                          , config.EMC.skin_able                , None                  , None                  , 0     , []          , _("HELP_Listbox is skin able")                           , None              , None ),
-
+			
 			(  _("Date format")                                   , config.EMC.movie_date_format        , None                  , None                  , 0     , []          , _("HELP_Date format")                                    , None              , None ),
-
+			
 			(  _("Show movie icons")                              , config.EMC.movie_icons              , None                  , None                  , 0     , []          , _("HELP_Show movie icons")                               , False             , True ),
 			(  _("Show link arrow")                               , config.EMC.link_icons               , None                  , None                  , 0     , [-1]        , _("HELP_Show link arrow")                                , False             , True ),
+
+			(  _("Show movie picons")                             , config.EMC.movie_picons             , None                  , None                  , 0     , []          , _("HELP_Show movie picons")                              , None              , None ),
+			# TODO: this entry only for "List is not skin able"
+			(  _("Position movie picons")                         , config.EMC.movie_picons_pos         , None                  , None                  , 0     , [-1]        , _("HELP_Position movie picons")                          , None              , None ),
+			(  _("Own Path to movie picons")                      , config.EMC.movie_picons_path_own    , None                  , None                  , 0     , [-2]        , _("HELP_Own Path to movie picons")                       , None              , None ),
+			(  _("Path to movie picons")                          , config.EMC.movie_picons_path        , None                  , self.openLocationBox  , 0     , [-3,-1]     , _("HELP_Path to movie picons")                           , None              , None ),
+
 			(  _("Show movie progress")                           , config.EMC.movie_progress           , None                  , None                  , 0     , []          , _("HELP_Show movie progress")                            , ""                , "PB" ),
 			(  _("Short watching percent")                        , config.EMC.movie_watching_percent   , None                  , None                  , 0     , [-1]        , _("HELP_Short watching percent")                         , None              , None ),
 			(  _("Finished watching percent")                     , config.EMC.movie_finished_percent   , None                  , None                  , 0     , [-2]        , _("HELP_Finished watching percent")                      , None              , None ),
@@ -345,7 +398,7 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 			(  _("Movie preview delay in ms")                     , config.EMC.movie_preview_delay      , None                  , None                  , 0     , [-1]        , _("HELP_Movie preview delay in ms")                      , 3000              , None ),
 			(  _("Start movie preview before last position")      , config.EMC.movie_preview_offset     , None                  , None                  , 0     , [-2]        , _("HELP_Movie preview offset in seconds")                , None              , None ),
 
-			(  separator                                          , config.EMC.about                    , None                  , None                  , 0     , []          , " "                                                      , None              , None ),
+			(  separator                                          , config.EMC.about                    , None                  , None                  , 0     , []          , _(" ")                                                    , None              , None ),
 			(  _("No resume below 10 seconds")                    , config.EMC.movie_ignore_firstcuts   , None                  , None                  , 1     , []          , _("HELP_No resume below 10 seconds")                     , None              , None ),
 			(  _("Jump to first mark when playing movie")         , config.EMC.movie_jump_first_mark    , None                  , None                  , 1     , []          , _("HELP_Jump to first mark when playing movie")          , None              , None ),
 			(  _("Rewind finished movies before playing")         , config.EMC.movie_rewind_finished    , None                  , None                  , 1     , []          , _("HELP_Rewind finished movies before playing")          , None              , None ),
@@ -365,24 +418,24 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 			(  _("Show trashcan directory")                       , config.EMC.movie_trashcan_show      , None                  , None                  , 0     , [-2]        , _("HELP_Show trashcan directory")                        , None              , True ),
 			(  _("Show trashcan information")                     , config.EMC.movie_trashcan_info      , None                  , None                  , 0     , [-3,-1]     , _("HELP_Dynamic trashcan")                               , ""                , "CS" ),
 			(  _("Delete validation")                             , config.EMC.movie_delete_validation  , None                  , None                  , 0     , [-4]        , _("HELP_Delete validation")                              , None              , None ),
-
+			
 			(  _("Enable daily trashcan cleanup")                 , config.EMC.movie_trashcan_clean     , self.trashCleanupSetup, None                  , 0     , [-5]        , _("HELP_Enable daily trashcan cleanup")                  , None              , None ),
 			(  _("Daily cleanup time")                            , config.EMC.movie_trashcan_ctime     , None                  , None                  , 0     , [-6,-1]     , _("HELP_Daily cleanup time")                             , None              , None ),
 			(  _("How many days files may remain in trashcan")    , config.EMC.movie_trashcan_limit     , None                  , None                  , 0     , [-7,-2]     , _("HELP_How many days files may remain in trashcan")     , None              , None ),
 			(  _("Move finished movies in trashcan")              , config.EMC.movie_finished_clean     , None                  , None                  , 2     , [-8,-3]     , _("HELP_Move finished movies in trashcan")               , None              , None ),
 			(  _("Age of finished movies in movie folder (days)") , config.EMC.movie_finished_limit     , None                  , None                  , 2     , [-9,-4,-1]  , _("HELP_Age of finished movies in movie folder (days)")  , None              , None ),
-
-			(  separator                                          , config.EMC.about                    , None                  , None                  , 0     , []          , " "                                                      , None              , None ),
+			
+			(  separator                                          , config.EMC.about                    , None                  , None                  , 0     , []          , _(" ")                                                    , None              , None ),
 			(  _("Display directory reading text")                , config.EMC.moviecenter_loadtext     , None                  , None                  , 1     , []          , _("HELP_Display directory reading text")                 , None              , None ),
 			(  _("EMC always reload after open")                  , config.EMC.movie_reload             , None                  , None                  , 1     , []          , _("HELP_EMC always reload after open")                   , False             , None ),
 			(  _("EMC re-open list after STOP-press")             , config.EMC.movie_reopen             , None                  , None                  , 1     , []          , _("HELP_EMC re-open list after STOP-press")              , None              , None ),
 			(  _("EMC re-open list after Movie end")              , config.EMC.movie_reopenEOF          , None                  , None                  , 1     , []          , _("HELP_EMC re-open list after Movie end")               , None              , None ),
-
+			
 			(  _("Leave Movie with Exit")                         , config.EMC.movie_exit               , None                  , None                  , 0     , []          , _("HELP_Leave Movie with Exit")                          , None              , None ),
-
+			
 			(  _("Hide movies being moved")                       , config.EMC.movie_hide_mov           , None                  , None                  , 1     , []          , _("HELP_Hide movies being moved")                        , None              , None ),
 			(  _("Hide movies being deleted")                     , config.EMC.movie_hide_del           , None                  , None                  , 1     , []          , _("HELP_Hide movies being deleted")                      , None              , None ),
-
+			
 			(  _("Enable remote recordings")                      , config.EMC.remote_recordings        , None                  , None                  , 1     , []          , _("HELP_Enable remote recordings")                       , False             , None ),
 			(  _("Automatic timers list cleaning")                , config.EMC.timer_autocln            , None                  , None                  , 1     , []          , _("HELP_Automatic timers list cleaning")                 , None              , None ),
 
@@ -402,6 +455,9 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 			(  _("Description field update delay")                , config.EMC.movie_descdelay          , None                  , None                  , 2     , []          , _("HELP_Description field update delay")                 , None              , None ),
 			(  _("Key period value (50-900)")                     , config.EMC.key_period               , setupKeyResponseValues, None                  , 2     , []          , _("HELP_Key period value (50-900)")                      , None              , None ),
 			(  _("Key repeat value (250-900)")                    , config.EMC.key_repeat               , setupKeyResponseValues, None                  , 2     , []          , _("HELP_Key repeat value (250-900)")                     , None              , None ),
+			# new playlist-options
+			(  separator                                          , config.EMC.about                    , None                  , None                  , 0     , []          , _("HELP_Advanced options separator")                     , None              , None ),
+			(  _("Show message if file added to playlist")        , config.EMC.playlist_message         , None                  , None                  , 0     , []          , _("HELP_Show message if file added to playlist")         , None              , None ),
 
 			(  separator                                          , config.EMC.about                    , None                  , None                  , 2     , []          , _("HELP_Advanced options separator")                     , None              , None ),
 			(  _("Enable EMC debug output")                       , config.EMC.debug                    , self.dbgChange        , None                  , 2     , []          , _("HELP_Enable EMC debug output")                        , False             , None ),
@@ -539,7 +595,7 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 				config.EMC.movie_finished_clean.clearNotifiers()
 			else:
 				config.EMC.movie_finished_clean.notifiers = [ ]
-
+		
 		for i, entry in enumerate( self.list ):
 			if entry[1].isChanged():
 				if entry[2] is not None:
@@ -552,7 +608,7 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 				for parent in entry[5]:
 					if self.list[i+parent][2] is not None:
 						# execute parent value changed -function
-						if self.list[i+parent][2](self.EMCConfig[i+parent][1]) is not None:
+						if self.list[i+parent][2](self.EMCConfig[i+parent][1]) is not None:	
 							# Stop exiting, user has to correct the config
 							config.EMC.movie_finished_clean.addNotifier(self.changedEntry, initial_call = False, immediate_feedback = True)
 							return
@@ -591,7 +647,7 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 		try:
 			if element:
 				path = os.path.normpath( element.value )
-				self.session.openWithCallback(
+				self.session.openWithCallback( 
 					self.dirSelected,
 					LocationBox,
 						windowTitle = _("Select Location"),
@@ -600,7 +656,7 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 						bookmarks = config.movielist.videodirs,
 						autoAdd = False,
 						editDir = True,
-						inhibitDirs = ["/bin", "/boot", "/dev", "/etc", "/lib", "/proc", "/sbin", "/sys", "/usr", "/var"],
+						inhibitDirs = ["/bin", "/boot", "/dev", "/etc", "/lib", "/proc", "/sbin", "/sys", "/var"],
 						minFree = 100 )
 		except: pass
 
@@ -624,3 +680,4 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 				self.session.open(MessageBox, _("Trashcan create failed. Check mounts and permissions."), MessageBox.TYPE_ERROR)
 				emcDebugOut("[EMCMS] trashcanCreate exception:\n" + str(e))
 		cleanupSetup()
+	

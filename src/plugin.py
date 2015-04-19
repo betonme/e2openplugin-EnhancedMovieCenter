@@ -40,6 +40,7 @@ from __init__ import _, language
 from EMCTasker import emcTasker, emcDebugOut
 import copy
 
+
 class ConfigTextWOHelp(ConfigText):
 	def __init__(self, default = "", fixed_size = True, visible_width = False):
 		ConfigText.__init__(self, default, fixed_size, visible_width)
@@ -87,7 +88,7 @@ class ConfirmBox(MessageBox):
 	def __init__(self, session, text, key1, key2, type):
 		MessageBox.__init__(self, session, text=text, type=type, enable_input=False)
 		self.skinName = "MessageBox"
-		self["actions"] = ActionMap(["OkCancelActions","ColorActions"],
+		self["actions"] = ActionMap(["OkCancelActions","ColorActions"], 
 			{
 				"ok": self.cancel,
 				"cancel": self.cancel,
@@ -95,7 +96,7 @@ class ConfirmBox(MessageBox):
 				key2: self.secondAction,
 			}, -1)
 		self.firstKey = False
-		eActionMap.getInstance().bindAction('', 0x7FFFFFFF, self.action)
+		eActionMap.getInstance().bindAction('', 0x7FFFFFFF, self.action) 
 
 	def firstAction(self):
 		self.firstKey = True
@@ -131,7 +132,7 @@ def langListSel():
 
 launch_choices = [	("None",			_("No override")),
 					("showMovies",		_("Video-button")),
-					("showTv",			_("TV-button")),
+					("showTv",		_("TV-button")),
 					("showRadio",		_("Radio-button")),
 					("openQuickbutton",	_("Quick-button")),
 					("timeshiftStart",	_("Timeshift-button")) ]
@@ -146,9 +147,9 @@ date_choices = [	("",					_("Off")),
 
 dirinfo_choices = [	("",	_("Off")),
 					("D",	_("Description")),		# Description
-					("C",	_("( # )")),					# Count
+					("C",	_("( # )")),			# Count
 					("CS",	_("( # / GB )")),		# Count / Size
-					("S",	_("( GB )")) ]				# Size
+					("S",	_("( GB )")) ]			# Size
 
 progress_choices = [("PB",	_("ProgressBar")),
 					("P",	_("Percent (%)")),
@@ -166,13 +167,14 @@ progress_choices = [("PB",	_("ProgressBar")),
 colorbutton_choices = 	[("MH",	_("Movie home")),
 							 ("DL",	_("Delete")),
 							 ("MV",	_("Move Movie")),
+							 ("AP",	_("Add to Playlist")),
 							 ("PL",	_("Play last")),
 							 ("CS",	_("Cover Search")),
 							 ("MI",	_("Download Movie Info")),
 							 ("CP",	_("Copy File")),
 							 ("E2",	_("Open E2 bookmarks")),
 							 ("TC",	_("Toggle Cover Button")),
-							 ("",		_("Button disabled"))]
+							 ("",	_("Button disabled"))]
 
 red_choices = colorbutton_choices
 green_choices = copy.copy(colorbutton_choices)
@@ -186,13 +188,14 @@ blue_choices = colorbutton_choices
 longcolorbutton_choices = 	[("MH",	_("Movie home")),
 							 ("DL",	_("Delete")),
 							 ("MV",	_("Move Movie")),
+							 ("AP",	_("Add to Playlist")),
 							 ("PL",	_("Play last")),
 							 ("CS",	_("Cover Search")),
 							 ("MI",	_("Download Movie Info")),
 							 ("CP",	_("Copy File")),
 							 ("E2",	_("Open E2 bookmarks")),
 #							 ("TC",	_("Toggle Cover Button")),
-							 ("",		_("Button disabled"))]
+							 ("",	_("Button disabled"))]
 
 #longblueyellowgreen_choices.extend()
 
@@ -226,26 +229,33 @@ bqt_choices = [	("",		_("HomeEnd")),
 				("Folder",	_("Change Folder"))]
 
 extra_support_lang_choices = [("No",	_("No")),
-					("CZ&SK",	"CZ&SK")]
+					("CZ&SK",	"CZ&SK"),
+					("HR",		"HR")]
 
 #Think about using AZ or ("A",False) as dict key / permanent sort store value
 #TODO use an OrderedDict
-sort_modes =	{		("D-")	:	( _("Date sort descending (D-)"),		("D",False),	_("Date sort"),		),
-						("AZ")	:	( _("Alpha sort ascending (AZ)"),		("A",False),	_("Alpha sort"),	),
-						("P+")	:	( _("Progress sort ascending (P+)"),	("P",False),	_("Progress sort"),	),
-						("D+")	:	( _("Date sort ascending (D+)"),		("D",True),		_("Date sort"),		),
-						("ZA")	:	( _("Alpha sort descending (ZA)"),		("A",True),		_("Alpha sort"),	),
-						("P-")	:	( _("Progress sort descending (P-)"),	("P",True),		_("Progress sort"),	),
+sort_modes =	{		("D-")	  :	( _("Date sort descending (D-)"),				("D",False),		_("Date sort"),				),
+				("AZ")	  :	( _("Alpha sort ascending (AZ)"),				("A",False),	 	_("Alpha sort"),			),
+				("AZD-")  :	( _("Alpha sort ascending, Date descending (AZD-)"),		("ADN",False),		_("Alpha sort date newest"),		),
+				("AZM")   :	( _("Alpha sort ascending with meta (AZM)"),			("AM",False), 	 	_("Alpha sort meta"),			),
+				("AZMD-") :	( _("Alpha sort ascending with meta, Date descending (AZMD-)"),	("AMDN",False),		_("Alpha sort meta date newest"),	),
+				("P+")	  :	( _("Progress sort ascending (P+)"),				("P",False),		_("Progress sort"),			),
+				("D+")	  :	( _("Date sort ascending (D+)"),				("D",True),		_("Date sort"),				),
+				("ZA")	  :	( _("Alpha sort descending (ZA)"),				("A",True),		_("Alpha sort"),			),
+				("ZAD+")  :	( _("Alpha sort descending, Date ascending (ZAD+)"),		("ADN",True),		_("Alpha sort date newest"),		),
+				("ZAM")	  :	( _("Alpha sort descending with meta (ZAM)"),			("AM",True),		_("Alpha sort meta"),			),
+				("ZAMD+") :	( _("Alpha sort descending with meta, Date ascending (ZAMD+)"),	("AMDN",True),		_("Alpha sort meta date newest"),	),
+				("P-")	  :	( _("Progress sort descending (P-)"),				("P",True),		_("Progress sort"),			),
 				}
-									# If you add a new sort order, you have to think about
-									#  Order false has to be the preferred state
-									#  Both order possibilities should be in the list
-									# Following functions are invoved, but they are all implemented dynamically
-									#  MovieCenter.reload -> Add new parameter if necessary
-									#   Don't worry about buildMovieCenterEntry(*args):
-									#  MovieSelection.initButtons -> Set next button text
-									#  Green short will go through all types: D A
-									#  Green long will only toggle the sort order: normal reverse
+				# If you add a new sort order, you have to think about
+				#  Order false has to be the preferred state
+				#  Both order possibilities should be in the list
+				# Following functions are invoved, but they are all implemented dynamically
+				#  MovieCenter.reload -> Add new parameter if necessary
+				#   Don't worry about buildMovieCenterEntry(*args):
+				#  MovieSelection.initButtons -> Set next button text
+				#  Green short will go through all types: D A
+				#  Green long will only toggle the sort order: normal reverse
 
 sort_choices = [ (k, v[0]) for k, v in sort_modes.items() ]
 
@@ -296,6 +306,10 @@ config.EMC.movie_preview_offset      = ConfigSelectionNumber(0, 60000, 1, defaul
 config.EMC.skin_able                 = ConfigYesNo(default = False)
 config.EMC.movie_icons               = ConfigYesNo(default = True)
 config.EMC.link_icons                = ConfigYesNo(default = True)
+config.EMC.movie_picons              = ConfigYesNo(default = False)
+config.EMC.movie_picons_pos          = ConfigSelection(default = 'nl', choices = [ ('nl', _("left from Name")), ('nr', _("right from Name")) ])
+config.EMC.movie_picons_path_own     = ConfigYesNo(default = False)
+config.EMC.movie_picons_path         = ConfigTextWOHelp(default = "/usr/share/enigma2/picon", fixed_size  = False, visible_width= 35)
 config.EMC.movie_progress            = ConfigSelection(default = "PB", choices = progress_choices)
 config.EMC.movie_watching_percent    = ConfigSelectionNumber(0, 30, 1, default = 5)
 config.EMC.movie_finished_percent    = ConfigSelectionNumber(50, 100, 1, default = 80)
@@ -304,10 +318,11 @@ config.EMC.movie_ignore_firstcuts    = ConfigYesNo(default = True)
 config.EMC.movie_jump_first_mark     = ConfigYesNo(default = True)
 config.EMC.movie_rewind_finished     = ConfigYesNo(default = True)
 config.EMC.movie_save_lastplayed     = ConfigYesNo(default = False)
-config.EMC.record_eof_zap            = ConfigYesNo(default = True)
+config.EMC.record_eof_zap            = ConfigSelection(default = '0', choices = [ ('0', _("Yes, without Message")), ('1', _("Yes, with Message")), ('2', _("No")) ])
 config.EMC.record_show_real_length   = ConfigYesNo(default = True)
 config.EMC.cutlist_at_download       = ConfigYesNo(default = False)
 config.EMC.movie_metaload            = ConfigYesNo(default = True)
+config.EMC.movie_metaload_all        = ConfigYesNo(default = False)
 config.EMC.movie_eitload             = ConfigYesNo(default = False)
 config.EMC.movie_exit                = ConfigYesNo(default = False)
 config.EMC.movie_reopen              = ConfigYesNo(default = True)
@@ -334,8 +349,65 @@ config.EMC.symlinks_show             = ConfigYesNo(default = True)
 config.EMC.directories_ontop         = ConfigYesNo(default = False)
 config.EMC.cfgtopdir_enable          = ConfigYesNo(default = False)
 config.EMC.directories_info          = ConfigSelection(default = "", choices = dirinfo_choices)
+config.EMC.count_size_start_cache    = ConfigYesNo(default = False)
+nget = False    # this is needed for vti-image at the moment
+try:
+	ngettext("%d second", "%d seconds", 30)
+	nget = True
+except Exception, e:
+	print "[EMC] ngettext failed:", e
+delayminlist = []
+for i in range(1, 60):
+	if nget:
+		delayminlist.append(("%d" % i, ngettext("%d minute", "%d minutes", i) % i))
+	else:
+		delayminlist.append(("%d" % i))
+config.EMC.count_size_start_delay    = ConfigSelection(default = "0", choices = [("0", _("No"))] + delayminlist)
+delayseclist = []
+for i in range(1, 90):
+	if nget:
+		delayseclist.append(("%d" % i, ngettext("%d second", "%d seconds", i) % i))
+	else:
+		delayseclist.append(("%d" % i))
+config.EMC.count_size_delay          = ConfigSelection(default = "0", choices = [("0", _("No"))] + delayseclist)
+config.EMC.count_default_text        = ConfigTextWOHelp(default = " ( 0 ) ", fixed_size  = False, visible_width= 22)
+config.EMC.count_size_default_text   = ConfigTextWOHelp(default = " (0 / 0 GB) ", fixed_size  = False, visible_width= 22)
+config.EMC.size_default_text         = ConfigTextWOHelp(default = " ( 0 GB ) ", fixed_size  = False, visible_width= 22)
+config.EMC.count_size_default_icon   = ConfigYesNo(default = False)
+config.EMC.count_size_position       = ConfigSelection(default = '0', choices = [ ('0', _("center")), ('1', _("right")) ])
 #config.EMC.symlinkdir_info           = ConfigYesNo(default = False)
 config.EMC.latest_recordings         = ConfigYesNo(default = True)
+limitreclist = []
+if nget:
+	for i in range(86400,604800,86400):
+		d = i / 86400
+		if i == 86400:
+			val = _("Day")
+			limitreclist.append(("%d" % i, ("%d" % d + " " + val)))
+		else:
+			val = _("Days")
+			limitreclist.append(("%d" % i, ("%d" % d + " " + val)))
+	for i in range(604800,2419200,604800):
+		w = i / 604800
+		if i == 604800:
+			val = _("Week")
+			limitreclist.append(("%d" % i, ("%d" % w + " " + val)))
+		else:
+			val = _("Weeks")
+			limitreclist.append(("%d" % i, ("%d" % w + " " + val)))
+	for i in range(2419200,31449600,2419200):
+		m = i / 2419200
+		if i == 2419200:
+			val = _("Month")
+			limitreclist.append(("%d" % i, ("%d" % m + " " + val)))
+		else:
+			val = _("Months")
+			limitreclist.append(("%d" % i, ("%d" % m + " " + val)))
+else:
+	for i in range(1,365):
+		limitreclist.append(("%d" % i))
+config.EMC.latest_recordings_limit   = ConfigSelection(default = "-1", choices = [("-1", _("No limit"))] + limitreclist)
+config.EMC.latest_recordings_noscan  = ConfigYesNo(default = False)
 config.EMC.mark_latest_files         = ConfigYesNo(default = True)
 config.EMC.vlc                       = ConfigYesNo(default = False)
 config.EMC.bookmarks                 = ConfigSelection(default = "No", choices = bookmark_choices)
@@ -359,7 +431,9 @@ config.EMC.remote_recordings         = ConfigYesNo(default = False)
 config.EMC.bqt_keys                  = ConfigSelection(default = "", choices = bqt_choices)
 config.EMC.list_skip_size            = ConfigSelectionNumber(3, 10, 1, default = 5)
 
-config.EMC.InfoLong                  = ConfigSelection(choices = [("IMDbSearch", _("IMDb Search")), ("TMDBInfo", _("TMDB Info")), ('CSFDInfo', _('CSFD Info'))], default = "IMDbSearch")
+config.EMC.playlist_message          = ConfigYesNo(default = True)
+
+config.EMC.InfoLong                  = ConfigSelection(choices = [("IMDbSearch", _("IMDb Search")), ("EMC-TMDBInfo", _("EMC-TMDB Info")), ("TMDBInfo", _("TMDB Info")), ("TMBDInfo", _("TMBD Info")), ('CSFDInfo', _('CSFD Info'))], default = "IMDbSearch")
 
 def checkList(cfg):
 	for choices in cfg.choices.choices:
@@ -410,7 +484,7 @@ def autostart(reason, **kwargs):
 			gSession = kwargs["session"]
 			EMCStartup(gSession)
 			emcTasker.Initialize(gSession)
-
+			
 			if not config.EMC.ml_disable.value:
 				try:
 					from Screens.InfoBar import InfoBar
@@ -422,7 +496,7 @@ def autostart(reason, **kwargs):
 					elif value == "timeshiftStart":		InfoBar.startTimeshift = showMoviesNew
 				except Exception, e:
 					emcDebugOut("[spStartup] MovieCenter launch override exception:\n" + str(e))
-
+				
 				#try:
 				#	from MovieSelection import EMCSelection
 				#	gSession.openWithCallback(showMoviesCallback, EMCSelection)
@@ -443,9 +517,9 @@ def recordingsOpen(session, *args, **kwargs):
 def Plugins(**kwargs):
 	from EnhancedMovieCenter import EMCVersion
 	descriptors = []
-
+	
 	descriptors.append( PluginDescriptor(where = PluginDescriptor.WHERE_SESSIONSTART, fnc = autostart) )
-
+	
 	show_p = [ PluginDescriptor.WHERE_PLUGINMENU ]
 	if config.EMC.extmenu_plugin.value:
 		show_p.append( PluginDescriptor.WHERE_EXTENSIONSMENU )
