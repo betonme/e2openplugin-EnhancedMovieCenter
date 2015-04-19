@@ -16,6 +16,10 @@ msgstr ""
 "X-Poedit-Basepath: ../\n"
 "X-Poedit-SearchPath-0: src\n"
 
+#: src/MovieSelectionMenu.py:91 src/MovieSelectionMenu.py:196
+msgid "Playlist Options"
+msgstr "Playlist Optionen"
+
 #: src/EMCPlayList.py:119
 msgid "Change the filename to save current Playlist:"
 msgstr "Ändern sie den Dateinamen zum speichern der aktuellen Playlist:"
@@ -2539,6 +2543,9 @@ msgid ""
 "If you have selected a directory, all cut files within the folder and its "
 "subfolders will be deleted!"
 msgstr ""
+"Sollen wirklich alle Cut-Files gelöscht werden?\n"
+"Bei Ordnerauswahl werden auch alle Cut-Files in den "
+"Unterordnern gelöscht!"
 
 #: src/RogueFileCheck.py:45
 msgid " files\n"

@@ -7,11 +7,13 @@ from __init__ import _
 from enigma import eListboxPythonMultiContent, RT_VALIGN_CENTER, RT_HALIGN_RIGHT, gFont, eListbox
 
 from Screens.Screen import Screen
+from Screens.ChoiceBox import ChoiceBox
 from Screens.InputBox import InputBox
 
 from Components.ActionMap import ActionMap
 from Components.Button import Button
-from Components.config import config
+from Components.config import *
+from Components.ConfigList import *
 from Components.GUIComponent import GUIComponent
 
 from skin import parseColor, parseFont
@@ -21,6 +23,9 @@ from MovieCenter import plyDVB
 from EnhancedMovieCenter import imgVti
 
 global plyDVB
+
+config.EMC.playlist = ConfigSubsection()
+config.EMC.playlist.save_default_list = ConfigYesNo(default = False)
 
 
 class EMCPlaylist():
@@ -94,6 +99,7 @@ class EMCPlaylistScreen(Screen):
 		{
 			"ok": self.keyOk,
 			"cancel": self.keyRed,
+			"menu": self.keySetup,
 			"red": self.keyRed,
 			"green": self.keyGreen,
 			"yellow": self.keyYellow,
@@ -111,6 +117,22 @@ class EMCPlaylistScreen(Screen):
 
 	def keyOk(self):
 		self.close()
+
+	def keySetup(self):
+		menu = []
+		text = _("EMC Playlist Menu")
+		menu.append((_("Playlist open"), self.openPlaylist))
+		menu.append((_("Setup open"), self.showSetup))
+		def boxAction(choice):
+			if choice:
+				choice[1]()
+		self.session.openWithCallback(boxAction, ChoiceBox, title=text, list=menu)
+
+	def openPlaylist(self):
+		self.close()
+
+	def showSetup(self):
+		self.session.open(EMCPlaylistSetup)
 
 	def keyRed(self):
 		self.close()
@@ -130,7 +152,7 @@ class EMCPlaylistScreen(Screen):
 			file = open(filename + ".e2pls", "w")
 			for x in tmplist:
 				file.write(str(x[2].toString()).replace(":%s" % x[1], "") + "\n")
-				file.close()
+			file.close()
 		
 
 	def keyYellow(self):
@@ -272,3 +294,49 @@ class PlayList(GUIComponent):
 
 	def setItemHeight(self):
 		self.l.setItemHeight(self.itemHeight)
+
+
+def image():
+	if imgVti:
+		return 30, 18
+	else:
+		return 28, 20
+
+class EMCPlaylistSetup(Screen, ConfigListScreen):
+	skin = """
+		<screen position="center,center" size="600,435" title="EMC Playlist Setup">
+		<widget name="config" position="5,10" size="590,350" itemHeight="%s" font="Regular;%s" scrollbarMode="showOnDemand" />
+		<widget name="cancel" position="105,390" size="140,30" valign="center" halign="center" zPosition="1" font="Regular;19" transparent="1" backgroundColor="red" />
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key-red_line.png" position="100,417" size="150,2" zPosition="0" alphatest="on" />
+		<widget name="save" position="355,390" size="140,30" valign="center" halign="center" zPosition="1" font="Regular;19" transparent="1" backgroundColor="green" />
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key-green_line.png" position="350,417" size="150,2" zPosition="0" alphatest="on" />
+	</screen>""" % image()
+
+	def __init__(self, session):
+		Screen.__init__(self, session)
+		#self.session = session
+		self.list = []
+		self.list.append(getConfigListEntry(_("Save default Playlist"), config.EMC.playlist.save_default_list))
+
+		ConfigListScreen.__init__(self, self.list, session)
+		self["actions"] = ActionMap(["SetupActions", "ColorActions"],
+		{
+			"ok": self.ok,
+			"cancel": self.exit,
+			"green": self.save,
+		}, -2)
+		self["cancel"] = Button(_("Cancel"))
+		self["save"] = Button(_("Save"))
+		self.onLayoutFinish.append(self.layoutFinished)
+
+	def layoutFinished(self):
+		self.setTitle(_("EMC Playlist Setup"))
+
+	def ok(self):
+		self.close()
+
+	def exit(self):
+		self.close()
+
+	def save(self):
+		self.close()

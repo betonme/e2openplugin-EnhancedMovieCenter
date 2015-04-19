@@ -13,6 +13,10 @@ msgstr ""
 "X-Poedit-Basepath: ../\n"
 "X-Poedit-SearchPath-0: src\n"
 
+#: src/MovieSelectionMenu.py:91 src/MovieSelectionMenu.py:196
+msgid "Playlist Options"
+msgstr ""
+
 #: src/EMCPlayList.py:119
 msgid "Change the filename to save current Playlist:"
 msgstr ""
