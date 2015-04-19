@@ -88,15 +88,11 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 
 			self.menu.append((_("Reload current directory"), boundFunction(self.close, "reloadwithoutcache")))
 
+			self.menu.append((_("Playlist Options"), boundFunction(self.close, "emcPlaylist")))
 			if service is not None:
 				ext = os.path.splitext(service.getPath())[1].lower()
 				if ext in extMedia:
 					self.menu.append((_("Add to current Playlist"), boundFunction(self.close, "addPlaylist")))
-			if self.plist:
-				self.menu.append((_("Play current Playlist"), boundFunction(self.close, "playPlaylist")))
-				self.menu.append((_("Play random current Playlist"), boundFunction(self.close, "playPlaylistRandom")))
-				self.menu.append((_("Show current Playlist"), boundFunction(self.close, "showPlaylist")))
-				self.menu.append((_("Delete current Playlist"), boundFunction(self.close, "delPlaylist")))
 
 			self.menu.append((_("Play last"), boundFunction(self.close, "Play last")))
 
@@ -195,6 +191,18 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 			if bm:
 				for line in bm:
 					self.menu.append((line, boundFunction(self.close, line)))
+
+		elif menumode == "emcPlaylist":
+			self["title"] = StaticText(_("Playlist Options"))
+			self.menu.append((_("Show current Playlist"), boundFunction(self.close, "showPlaylist")))
+			if service is not None:
+				ext = os.path.splitext(service.getPath())[1].lower()
+				if ext in extMedia:
+					self.menu.append((_("Add to current Playlist"), boundFunction(self.close, "addPlaylist")))
+			if self.plist:
+				self.menu.append((_("Play current Playlist"), boundFunction(self.close, "playPlaylist")))
+				self.menu.append((_("Play random current Playlist"), boundFunction(self.close, "playPlaylistRandom")))
+				self.menu.append((_("Delete current Playlist"), boundFunction(self.close, "delPlaylist")))
 
 		self["menu"] = List(self.menu)
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"],

@@ -918,6 +918,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 	def menuCallback(self, selection=None, parameter=None):
 		if selection is not None:
 			if selection == "Play last": self.playLast()
+			elif selection == "emcPlaylist": self.openPlaylistOptions()
 			elif selection == "addPlaylist": self.addPlaylist()
 			elif selection == "playPlaylist": self.playPlaylist()
 			elif selection == "playPlaylistRandom": self.playPlaylist(True)
@@ -951,6 +952,14 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			elif selection == "rename": self.rename()
 			elif selection == "emptytrash": purgeExpired(emptyTrash=True)
 			elif selection == "reloadwithoutcache": self.reloadListWithoutCache()
+
+	def openPlaylistOptions(self):
+		# first we check if playlist exists
+		playlist = False
+		if not emcplaylist.isCurrentPlaylistEmpty():
+			playlist = True
+		current = self.getCurrent()
+		self.session.openWithCallback(self.menuCallback, MovieMenu, "emcPlaylist", self, self["list"], current, self["list"].makeSelectionList(), self.currentPath, playlist)
 
 	def openMenu(self):
 		# first we check if playlist exists
