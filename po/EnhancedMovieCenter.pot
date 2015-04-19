@@ -2,9 +2,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: EMC\n"
 "POT-Creation-Date: 2013-10-22 22:01+0100\n"
-"PO-Revision-Date: 2013-10-22 22:02+0100\n"
-"Last-Translator: Swiss-MAD\n"
-"Language-Team: \n"
+"PO-Revision-Date: 2015-04-10 20:54+0100\n"
+"Last-Translator: daTa deVil <http://opena.tv>\n"
+"Language-Team: openATV\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -12,6 +12,422 @@ msgstr ""
 "X-Poedit-KeywordsList: _;gettext;gettext_noop;_()\n"
 "X-Poedit-Basepath: ../\n"
 "X-Poedit-SearchPath-0: src\n"
+
+#: src/EMCCoverSearch.py:571
+msgid "Cover is Saved."
+msgstr ""
+
+#: src/EMCPlayList.py:388
+msgid "Enter Name for Playlist"
+msgstr ""
+
+#: src/EMCPlayList.py:364
+msgid "EMC Playlist Setup"
+msgstr ""
+
+#: src/EMCPlayList.py:350
+msgid "Always save current Playlist"
+msgstr ""
+
+#: src/EMCPlayList.py:349
+msgid "Default Playlist name"
+msgstr ""
+
+#: src/EMCPlayList.py:348
+msgid "Default Playlist path"
+msgstr ""
+
+#: src/EMCPlayList.py:185
+msgid "Can not save current Playlist!"
+msgstr ""
+
+#: src/EMCPlayList.py:182
+msgid "Current Playlist saved successfully!"
+msgstr ""
+
+#: src/EMCPlayList.py:160
+msgid "Playlist with same name exists!\n\nTry to save the Playlist with another name?"
+msgstr ""
+
+#: src/EMCPlayList.py:128
+msgid "Setup open"
+msgstr ""
+
+#: src/EMCPlayList.py:127
+msgid "Playlist open"
+msgstr ""
+
+#: src/EMCPlayList.py:126
+msgid "EMC Playlist Menu"
+msgstr ""
+
+#: src/MovieSelectionMenu.py:91 src/MovieSelectionMenu.py:196
+msgid "Playlist Options"
+msgstr ""
+
+#: src/EMCPlayList.py:119
+msgid "Change the filename to save current Playlist:"
+msgstr ""
+
+#: src/EMCPlayList.py:119
+msgid "Save current Playlist"
+msgstr ""
+
+#: src/MovieInfo.py:575
+msgid "Can not write Movie Information File\n\n%s"
+msgstr ""
+
+#: src/MovieInfo.py:573
+msgid "Can not write Movie Information and Cover File\n\n%s\n%s"
+msgstr ""
+
+#: src/MovieInfo.py:571
+msgid "Movie Cover downloaded successfully!\n\nCan not write Movie Information File\n\n%s"
+msgstr ""
+
+#: src/MovieInfo.py:566
+msgid "Movie Information downloaded successfully!\n\nCan not write Movie Cover File\n\n%s"
+msgstr ""
+
+#: src/MovieInfo.py:561
+msgid "Movie Information and Cover downloaded successfully!"
+msgstr ""
+
+#: src/MovieInfo.py:49
+msgid "Movies"
+msgstr ""
+
+#: src/MovieInfo.py:53
+msgid "TV Shows"
+msgstr ""
+
+#: src/MovieInfo.py:654
+msgid "Switch complete to new Version"
+msgstr ""
+
+#: src/MovieInfo.py:354
+msgid "Movie Information TMDb"
+msgstr ""
+
+#: src/plugin.py:321
+msgid "Yes, without Message"
+msgstr ""
+
+#: src/plugin.py:321
+msgid "Yes, with Message"
+msgstr ""
+
+#: src/MovieInfo.py:121
+msgid "Cover %s exists!\n\nDo you want to replace the existing cover?"
+msgstr ""
+
+#: src/MovieInfo.py:614
+msgid "Save Cover"
+msgstr ""
+
+#: src/MovieInfo.py:615
+msgid "Coversize"
+msgstr ""
+
+#: src/MovieInfo.py:616
+msgid "Show new Skin Version"
+msgstr ""
+
+#: src/MovieSelection.py:2034 src/MovieSelection.py:2078
+msgid "The following files are used for other entrys in List !\n\nAlso delete these files?\n\n%s"
+msgstr ""
+
+#: src/EMCPlayList.py:75
+msgid "Files added to current Playlist."
+msgstr ""
+
+#: src/EMCPlayList.py:75
+msgid "Files added to current Playlist:\n%s\n\nFiles exists in current Playlist:\n%s"
+msgstr ""
+
+#: src/EMCPlayList.py:75
+msgid "Files exists in current Playlist:\n%s"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:455
+msgid "Show message if file added to playlist"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:455
+msgid "HELP_Show message if file added to playlist"
+msgstr ""
+
+#: src/EMCPlayList.py:75
+msgid "Delete Entry"
+msgstr ""
+
+#: src/EMCPlayList.py:76
+msgid "Delete All"
+msgstr ""
+
+#: src/EMCPlayList.py:67
+msgid "EMC Playlist - current playlist"
+msgstr ""
+
+#: src/MovieSelection.py:1668
+msgid "File added to current Playlist."
+msgstr ""
+
+#: src/MovieSelection.py:1673
+msgid "File exists in current Playlist."
+msgstr ""
+
+#: src/MovieSelectionMenu.py:87
+msgid "Add to current Playlist"
+msgstr ""
+
+#: src/MovieSelectionMenu.py:89
+msgid "Play current Playlist"
+msgstr ""
+
+#: src/MovieSelectionMenu.py:90
+msgid "Play random current Playlist"
+msgstr ""
+
+#: src/MovieSelectionMenu.py:91
+msgid "Show current Playlist"
+msgstr ""
+
+#: src/MovieSelectionMenu.py:92
+msgid "Delete current Playlist"
+msgstr ""
+
+#: src/plugin.py:170 src/plugin.py:191
+msgid "Add to Playlist"
+msgstr ""
+
+#: src/MovieCenter.py:1863 src/MovieCenter.py:1873
+msgid "trashcan"
+msgstr ""
+
+#: src/EMCCoverSearch.py:681
+msgid "EMC Cover search setup"
+msgstr ""
+
+#: src/EMCCoverSearch.py:730
+msgid "EMC Cover Selecter"
+msgstr ""
+
+#: src/MovieSelection.py:992
+msgid "Cover search with all Files in Subdirectories?\n\nThis may take a while on huge Disks, or Directories!"
+msgstr ""
+
+#: src/MovieSelectionMenu.py:90
+msgid "Directory-Cover search"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:345
+msgid "Latest Recordings directory use emc-noscan.cfg"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:345
+msgid "HELP_Latest Recordings directory use emc-noscan.cfg"
+msgstr ""
+
+#: src/plugin.py:381 src/plugin.py:385
+msgid "Day"
+msgstr ""
+
+#: src/plugin.py:381 src/plugin.py:387
+msgid "Days"
+msgstr ""
+
+#: src/plugin.py:391 src/plugin.py:395
+msgid "Week"
+msgstr ""
+
+#: src/plugin.py:391 src/plugin.py:397
+msgid "Weeks"
+msgstr ""
+
+#: src/plugin.py:401 src/plugin.py:405
+msgid "Month"
+msgstr ""
+
+#: src/plugin.py:401 src/plugin.py:407
+msgid "Months"
+msgstr ""
+
+#: src/plugin.py:408
+msgid "No limit"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:344
+msgid "Latest Recordings directory limit"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:344
+msgid "HELP_Latest Recordings directory limit"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:339
+msgid "Horizontal alignment for count / size"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:339
+msgid "HELP_Horizontal alignment for count / size"
+msgstr ""
+
+#: src/MovieSelectionMenu.py:117
+msgid "Reset marker from selected movie(s)"
+msgstr ""
+
+#: src/MovieSelectionMenu.py:337
+msgid "Remove all marker permanently?"
+msgstr ""
+
+#: src/plugin.py:236
+msgid "Alpha sort ascending, Date descending (AZD-)"
+msgstr ""
+
+#: src/plugin.py:236 src/plugin.py:242
+msgid "Alpha sort date newest"
+msgstr ""
+
+#: src/plugin.py:237
+msgid "Alpha sort ascending with meta (AZM)"
+msgstr ""
+
+#: src/plugin.py:237 src/plugin.py:243
+msgid "Alpha sort meta"
+msgstr ""
+
+#: src/plugin.py:238
+msgid "Alpha sort ascending with meta, Date descending (AZMD-)"
+msgstr ""
+
+#: src/plugin.py:238 src/plugin.py:243
+msgid "Alpha sort meta date newest"
+msgstr ""
+
+#: src/plugin.py:242
+msgid "Alpha sort descending, Date ascending (ZAD+)"
+msgstr ""
+
+#: src/plugin.py:243
+msgid "Alpha sort descending with meta (ZAM)"
+msgstr ""
+
+#: src/plugin.py:244
+msgid "Alpha sort descending with meta, Date ascending (ZAMD+)"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:332
+msgid "Get Count and Size at start to cache"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:332
+msgid "HELP_Get Count and Size at start to cache"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:333
+msgid "Delay for Get Count and Size at start to cache"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:333
+msgid "HELP_Delay for Get Count and Size at start to cache"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:334
+msgid "Delay to get Count and Size in List"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:334
+msgid "HELP_Delay to get Count and Size in List"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:335
+msgid "Text shown for initially unknown file count"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:335
+msgid "HELP_Text shown for initially unknown file count"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:336
+msgid "Text shown for initially unknown count and size"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:336
+msgid "HELP_Text shown for initially unknown count and size"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:337
+msgid "Text shown for initially unknown directory size"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:337
+msgid "HELP_Text shown for initially unknown directory size"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:338
+msgid "Icon shown for initially unknown count / size"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:338
+msgid "HELP_Icon shown for initially unknown count / size"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:319
+msgid "Scan for bluray structures in .iso"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:319
+msgid "HELP_Scan for bluray structures in .iso"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:358
+msgid "Load all for non showing titles from .meta files"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:358
+msgid "HELP_Load all for non showing titles from .meta files"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:374
+msgid "Show movie picons"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:374
+msgid "HELP_Show movie picons"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:376
+msgid "Position movie picons"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:376
+msgid "HELP_Position movie picons"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:377
+msgid "Own Path to movie picons"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:377
+msgid "HELP_Own Path to movie picons"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:378
+msgid "Path to movie picons"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:378
+msgid "HELP_Path to movie picons"
+msgstr ""
+
+#: src/plugin.py:307
+msgid "right from Name"
+msgstr ""
+
+#: src/plugin.py:307
+msgid "left from Name"
+msgstr ""
 
 #: src/EMCCoverSearch.py:43 src/EMCCoverSearch.py:44
 msgid "imdb.de"
