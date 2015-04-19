@@ -67,7 +67,6 @@ msgstr "Wiedergabeliste öffnen"
 msgid "EMC Playlist Menu"
 msgstr "EMC Wiedergabeliste Menü"
 
-
 #: src/MovieSelectionMenu.py:91 src/MovieSelectionMenu.py:196
 msgid "Playlist Options"
 msgstr "Wiedergabeliste Optionen"
