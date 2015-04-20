@@ -34,7 +34,7 @@ from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixm
 from Tools.LoadPixmap import LoadPixmap
 from Tools.Directories import fileExists, resolveFilename, SCOPE_CURRENT_SKIN
 from skin import parseColor, parseFont, parseSize
-from enigma import eListboxPythonMultiContent, eListbox, gFont, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_HALIGN_CENTER, eServiceReference, eServiceCenter, ePythonMessagePump, loadPNG, BT_SCALE
+from enigma import eListboxPythonMultiContent, eListbox, gFont, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_HALIGN_CENTER, eServiceReference, eServiceCenter, ePythonMessagePump, loadPNG
 from timer import TimerEntry
 
 from . import _
@@ -58,12 +58,12 @@ from EnhancedMovieCenter import imgVti, imgDream
 global imgVti
 global imgDream
 if imgVti:
-	from enigma import BT_FIXRATIO as BT_KEEP_ASPECT_RATIO
+	from enigma import BT_SCALE, BT_FIXRATIO as BT_KEEP_ASPECT_RATIO
 elif imgDream:
 	from enigma import SCALE_ASPECT as BT_KEEP_ASPECT_RATIO
 else:
 	from Components.Renderer.Picon import getPiconName
-	from enigma import BT_KEEP_ASPECT_RATIO
+	from enigma import BT_SCALE, BT_KEEP_ASPECT_RATIO
 
 global extAudio, extDvd, extVideo, extPlaylist, extList, extMedia, extBlu
 global cmtDir, cmtUp, cmtTrash, cmtLRec, cmtVLC, cmtBME2, cmtBMEMC, virVLC, virAll, virToE, virToD
@@ -2055,7 +2055,10 @@ class MovieCenter(GUIComponent):
 										textX += piconW + 5
 										textSizeX = self.l.getItemSize().width() - textX - 5
 								# Special way for vti-images, directly over "eListboxPythonMultiContent", they have no "flags=..", only "options=.."
-								append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, piconX, piconY, piconW, piconH, picon, None, None, BT_SCALE | BT_KEEP_ASPECT_RATIO))
+								if imgDream:
+									append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, piconX, piconY, piconW, piconH, picon, None, None, BT_KEEP_ASPECT_RATIO))
+								else:
+									append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, piconX, piconY, piconW, piconH, picon, None, None, BT_SCALE | BT_KEEP_ASPECT_RATIO))
 
 								append(MultiContentEntryText(pos=(textX, textY), size=(textSizeX, textSizeY), font=usedFont, flags=RT_HALIGN_LEFT, text=title, color = colortitle, color_sel = colorhighlight, backcolor = self.BackColor, backcolor_sel = self.BackColorSel))
 							else:
@@ -2158,7 +2161,10 @@ class MovieCenter(GUIComponent):
 							if self.CoolPiconWidth == -1:
 								self.CoolPiconWidth = 110
 							# Special way for vti-images, directly over "eListboxPythonMultiContent", they have no "flags=..", only "options=.."
-							append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, CoolPiconPos, self.CoolPiconHPos, self.CoolPiconWidth, self.CoolPiconHeight, picon, None, None, BT_SCALE | BT_KEEP_ASPECT_RATIO))
+							if imgDream:
+								append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, CoolPiconPos, self.CoolPiconHPos, self.CoolPiconWidth, self.CoolPiconHeight, picon, None, None, BT_KEEP_ASPECT_RATIO))
+							else:
+								append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, CoolPiconPos, self.CoolPiconHPos, self.CoolPiconWidth, self.CoolPiconHeight, picon, None, None, BT_SCALE | BT_KEEP_ASPECT_RATIO))
 
 							append(MultiContentEntryText(pos=(self.CoolMoviePiconPos, 0), size=(self.CoolMoviePiconSize, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text=title, color = colortitle, color_sel = colorhighlight))
 						else:
