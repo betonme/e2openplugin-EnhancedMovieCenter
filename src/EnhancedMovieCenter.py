@@ -56,17 +56,25 @@ from EMCTasker import emcTasker, emcDebugOut
 EMCVersion = "V4.0.0beta20150405"
 EMCAbout = "\n  Enhanced Movie Center " +EMCVersion+ "\n\n  (C) 2012 by\n  Coolman, Betonme, dirtylion, Jojojoxx, mr.scotty & Swiss-MAD \n\n  If you like this plugin and you want to support it,\n  or if just want to say ''thanks'',\n  please donate via PayPal. \n\n  Thanks a lot ! \n\n  PayPal: enhancedmoviecenter@gmail.com"
 
-# Check if image is vti, is needed for build entrys in MovieCenter with picons
+# Check if image is vti or dream, is needed for build entrys in MovieCenter with picons
 global imgVti
+global imgDream
 imgVti = False
+imgDream = False
 
 def checkImg():
 	global imgVti
+	global imgDream
 	try:
 		from enigma import BT_FIXRATIO
 		imgVti = True
 	except Exception, e:
 		print "[EMC] checkImg is not Vti", e
+	try:
+		from enigma import SCALE_ASPECT
+		imgDream = True
+	except Exception, e:
+		print "[EMC] checkImg is not dream", e
 
 def image():
 	if imgVti:

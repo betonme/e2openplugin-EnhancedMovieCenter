@@ -53,11 +53,14 @@ from E2Bookmarks import E2Bookmarks
 from EMCBookmarks import EMCBookmarks
 from ServiceSupport import ServiceCenter
 from ThreadQueue import ThreadQueue
-from EnhancedMovieCenter import imgVti
+from EnhancedMovieCenter import imgVti, imgDream
 
 global imgVti
+global imgDream
 if imgVti:
 	from enigma import BT_FIXRATIO as BT_KEEP_ASPECT_RATIO
+elif imgDream:
+	from enigma import SCALE_ASPECT as BT_KEEP_ASPECT_RATIO
 else:
 	from Components.Renderer.Picon import getPiconName
 	from enigma import BT_KEEP_ASPECT_RATIO
@@ -497,8 +500,9 @@ class CountSizeWorker(Thread):
 				self.fstart = True
 				self.start() # Start blocking code in Thread
 			else:
-				delay = int(config.EMC.count_size_delay.value) * 1000
-				DelayedFunction(delay, self.start) # Start blocking code in Thread
+			#	delay = int(config.EMC.count_size_delay.value) * 1000                 # deactivated for tests on dream-images
+			#	DelayedFunction(delay, self.start) # Start blocking code in Thread
+				self.start() # Start blocking code in Thread
 		else:
 			self.__list.append(item)
 
@@ -2022,7 +2026,7 @@ class MovieCenter(GUIComponent):
 						if config.EMC.movie_picons.value:
 							piconPos = config.EMC.movie_picons_pos.value
 							if metaref != "1_0_0_0_0_0_0_0_0_0":
-								if imgVti:
+								if imgVti or imgDream:
 									picon = config.EMC.movie_picons_path.value + "/" + metaref + '.png'
 								else:
 									if config.EMC.movie_picons_path_own.value:
@@ -2138,7 +2142,7 @@ class MovieCenter(GUIComponent):
 							title = title + " - " + eventtitle
 					if ext in extTS:
 						if CoolPiconPos != -1 and CoolMoviePiconPos != -1:
-							if imgVti:
+							if imgVti or imgDream:
 								picon = config.EMC.movie_picons_path.value + "/" + metaref + '.png'
 							else:
 								if config.EMC.movie_picons_path_own.value:

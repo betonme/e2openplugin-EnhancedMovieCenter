@@ -403,11 +403,20 @@ class MovieInfoTMDb(Screen):
 		self.spath = spath
 		self["previewcover"] = Pixmap()
 		self.picload = ePicLoad()
-		self.picload.PictureData.get().append(self.showPreviewCoverCB)
+		try:
+			self.picload_conn = self.picload.PictureData.connect(self.showPreviewCoverCB)
+		except:
+			self.picload.PictureData.get().append(self.showPreviewCoverCB)
 		self.previewTimer = eTimer()
-		self.previewTimer.callback.append(self.showPreviewCover)
+		try:
+			self.previewTimer_conn = self.previewTimer.timeout.connect(self.showPreviewCover)
+		except:
+			self.previewTimer.callback.append(self.showPreviewCover)
 		self.selectionTimer = eTimer()
-		self.selectionTimer.callback.append(self.updateSelection)
+		try:
+			self.selectionTimer_conn = self.selectionTimer.timeout.connect(self.updateSelection)
+		except:
+			self.selectionTimer.callback.append(self.updateSelection)
 		self["previewlist"] = MenuList([])
 		self.page = 0
 		self.id = None
