@@ -148,17 +148,8 @@ def EMCStartup(session):
 	setupKeyResponseValues()
 	DelayedFunction(5000, cleanupSetup)
 
-	# Check the image to use a global in vti.images
+	# Check the image to use a global in vti- and dream-images
 	checkImg()
-
-        # read Count and Size from Homepath to open MovieSelection faster with directory-info settings "C", "CS" or "S"
-	if config.EMC.count_size_start_cache.value:
-		val = config.EMC.directories_info.value
-		if val == "C" or val == "CS" or val == "S":
-			from MovieSelection import startCountSizeCache
-			delay = int(config.EMC.count_size_start_delay.value) * 60000
-			DelayedFunction(delay, startCountSizeCache)
-			emcDebugOut("Get Count and Size to cache in " + str(delay/60000) + " minutes")
 
 	# Go into standby if the reason for restart was EMC auto-restart
 	if config.EMC.restart.value != "":
@@ -342,9 +333,6 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 			(  _("Show directories")                              , config.EMC.directories_show         , None                  , None                  , 0     , []          , _("HELP_Show directories")                               , None              , True ),
 			(  _("Show directories information")                  , config.EMC.directories_info         , None                  , None                  , 0     , [-1]        , _("HELP_Show directories information")                   , ""                , "CS" ),
 			# TODO: get this entrys only for values "C", "CS", "S"
-			(  _("Get Count and Size at start to cache")          , config.EMC.count_size_start_cache   , None                  , None                  , 0     , [-2,-1]     , _("HELP_Get Count and Size at start to cache")           , None              , None ),
-			(  _("Delay for Get Count and Size at start to cache"), config.EMC.count_size_start_delay   , None                  , None                  , 0     , [-3,-2,-1]  , _("HELP_Delay for Get Count and Size at start to cache") , None              , None ),
-			(  _("Delay to get Count and Size in List")           , config.EMC.count_size_delay         , None                  , None                  , 0     , [-4,-3]     , _("HELP_Delay to get Count and Size in List")            , None              , None ),
 			(  _("Text shown for initially unknown file count")   , config.EMC.count_default_text       , None                  , None                  , 0     , [-5,-4,-1]  , _("HELP_Text shown for initially unknown file count")    , None              , None ),
 			(  _("Text shown for initially unknown count and size"), config.EMC.count_size_default_text , None                  , None                  , 0     , [-6,-5,-2]  , _("HELP_Text shown for initially unknown count and size"), None              , None ),
 			(  _("Text shown for initially unknown directory size"), config.EMC.size_default_text       , None                  , None                  , 0     , [-7,-6,-3]  , _("HELP_Text shown for initially unknown directory size"), None              , None ),

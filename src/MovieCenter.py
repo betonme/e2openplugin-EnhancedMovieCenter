@@ -34,7 +34,7 @@ from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixm
 from Tools.LoadPixmap import LoadPixmap
 from Tools.Directories import fileExists, resolveFilename, SCOPE_CURRENT_SKIN
 from skin import parseColor, parseFont, parseSize
-from enigma import eListboxPythonMultiContent, eListbox, gFont, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_HALIGN_CENTER, eServiceReference, eServiceCenter, ePythonMessagePump, loadPNG
+from enigma import eListboxPythonMultiContent, eListbox, gFont, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_HALIGN_CENTER, eServiceReference, eServiceCenter, loadPNG
 from timer import TimerEntry
 
 from . import _
@@ -52,7 +52,6 @@ from PermanentSort import PermanentSort
 from E2Bookmarks import E2Bookmarks
 from EMCBookmarks import EMCBookmarks
 from ServiceSupport import ServiceCenter
-from ThreadQueue import ThreadQueue
 from EnhancedMovieCenter import imgVti, imgDream
 
 global imgVti
@@ -382,8 +381,6 @@ def dirInfo(folder, bsize=False):
 							size += os.path.getsize(filename)
 	if size:
 		size /= (1024.0 * 1024.0 * 1024.0)
-	if folder != cmtTrash:
-		movieFileCache.addCountSizeToCache(folder, count, size)
 	return count, size
 
 def detectDVDStructure(checkPath):
@@ -448,106 +445,6 @@ def detectBLUISO(checkPath):
 # muss drinnen bleiben sonst crashed es bei foreColorSelected
 def MultiContentEntryProgress(pos = (0, 0), size = (0, 0), percent = None, borderWidth = None, foreColor = None, foreColorSelected = None, backColor = None, backColorSelected = None):
 	return (eListboxPythonMultiContent.TYPE_PROGRESS, pos[0], pos[1], size[0], size[1], percent, borderWidth, foreColor, foreColorSelected, backColor, backColorSelected)
-
-def refresh():
-	# TODO: go over MovieCenter directly, thats not the best way, but works for the moment
-	try:
-		global moviecenter
-		if moviecenter:
-			moviecenter.refreshList()
-	except:
-		pass
-
-THREAD_WORKING = 1
-THREAD_FINISHED = 2
-
-class CountSizeWorker(Thread):
-	def __init__(self):
-		Thread.__init__(self)
-		self.__running = False
-		self.__cancel = False
-		self.fstart = False
-		self.__messages = ThreadQueue()
-		self.__messagePump = ePythonMessagePump()
-		self.__list = []
-
-	def __getMessagePump(self):
-		return self.__messagePump
-	MessagePump = property(__getMessagePump)
-
-	def __getMessageQueue(self):
-		return self.__messages
-	Message = property(__getMessageQueue)
-
-	def __getRunning(self):
-		return self.__running
-	isRunning = property(__getRunning)
-
-	def isListEmpty(self):
-		return not self.__list
-
-	def getListLength(self):
-		return len(self.__list)
-
-	def Cancel(self):
-		self.__cancel = True
-
-	def Start(self, item, fstart=False):
-		if not self.__running:
-			self.__running = True
-#			print'[EMC] CountSizeWorker Start'
-			self.__list = [item]
-			if fstart:
-				self.fstart = True
-				self.start() # Start blocking code in Thread
-			else:
-			#	delay = int(config.EMC.count_size_delay.value) * 1000                 # deactivated for tests on dream-images
-			#	DelayedFunction(delay, self.start) # Start blocking code in Thread
-				self.start() # Start blocking code in Thread
-		else:
-			self.__list.append(item)
-
-	def run(self):
-		while self.__list:
-			item = self.__list.pop(0)
-#			print'[EMC] CountSizeWorker processing: ', item
-			# do processing stuff here
-			result = None
-
-			try:
-				result = dirInfo(item, bsize=True)
-			except Exception, e:
-				print('[EMC] CountSizeWorker result get failed!!!', str(e))
-
-				# Exception finish job with error
-				result = str(e)
-
-			try:
-#				print'[EMC] PathToDatabase result ', result
-				if result:
-#					print'[EMC] CountSizeWorker have result !!!!!!!'
-					self.__messages.push((2, result))
-					self.__messagePump.send(0)
-				else:
-#					print'[EMC] CountSizeWorker result FAILED !!!!!!!'
-					self.__messages.push((1, result))
-					self.__messagePump.send(0)
-			except Exception, e:
-				print('[EMC] CountSizeWorker Exception result failed: ', str(e))
-
-		self.__messages.push((0, result,))
-		self.__messagePump.send(0)
-		self.__running = False
-		Thread.__init__(self)
-		if self.fstart:
-#			print'[EMC] CountSizeWorker list is empty, finish !!!'
-			self.fstart = False
-		else:
-#			print'[EMC] CountSizeWorker list is empty, finish !!!'
-			refresh()
-#			print'[EMC] CountSizeWorker getting refreshList !!!'
-
-countsizeworker = CountSizeWorker()
 
 moviecenterdata = None
 
@@ -908,11 +805,6 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 			subdirlist, filelist = self.__createDirList(path)
 			movieFileCache.addPathToCache(path, subdirlist, filelist)
 		return subdirlist, filelist
-
-	def createStartCountSizeList(self, path):
-		subdirlist = self.__createDirList(path)[0]
-		for x in subdirlist:
-			countsizeworker.Start(x[0], fstart=True)
 
 	def createLatestRecordingsList(self):
 		# Make currentPath more flexible
@@ -1651,8 +1543,6 @@ class MovieCenter(GUIComponent):
 		global moviecenter
 		moviecenter = self
 
-		self.startWorker = False
-
 		self.serviceHandler = ServiceCenter.getInstance()
 
 		self.CoolFont = parseFont("Regular;20", ((1,1),(1,1)))
@@ -2266,73 +2156,48 @@ class MovieCenter(GUIComponent):
 						pixmap = self.pic_col_dir
 
 					# Directory and symlink-direcory info.value
-					getValues = movieFileCache.getCountSizeFromCache(path)
 					if config.EMC.directories_info.value:
 						if config.EMC.directories_info.value == "C":
-							count = 0
-							if getValues is not None:
-								count, size = getValues
-								if self.startWorker:
-									countsizeworker.Start(path)
-								datetext = " ( %d ) " % (count)
-							else:
-								countsizeworker.Start(path)
-								datetext = ""
-								datepic = self.pic_directory_search
+							count, size = dirInfo(path)
+							datetext = " ( %d ) " % (count)
 						elif config.EMC.directories_info.value == "CS":
-							count, size = 0, 0
-							if getValues is not None:
-								count, size = getValues
-								if self.startWorker:
-									countsizeworker.Start(path)
-								if size >= 1000:
-									size /= 1024.0
-									datetext = " (%d / %.0f TB) " % (count, size)
-								else:
-									datetext = " (%d / %.0f GB) " % (count, size)
-								# TODO: make this easier, but hold it on the right side
-								self.CoolCSWidth = 110
-								if size or count >=99:
-									if size >= 99 and count <=99:
-										self.CoolCSWidth = 125
-									elif size <= 99 and count >= 99:
-										if count >= 999:
-											if size <= 10:
-												self.CoolCSWidth = 135
-											else:
-												self.CoolCSWidth = 145
-										elif count >= 9999:
-											if size <= 10:
-												self.CoolCSWidth = 140
-											else:
-												self.CoolCSWidth = 160
+							count, size = dirInfo(path, bsize=True)
+							if size >= 1000:
+								size /= 1024.0
+								datetext = " (%d / %.0f TB) " % (count, size)
+							else:
+								datetext = " (%d / %.0f GB) " % (count, size)
+							# TODO: make this easier, but hold it on the right side
+							self.CoolCSWidth = 110
+							if size or count >=99:
+								if size >= 99 and count <=99:
+									self.CoolCSWidth = 125
+								elif size <= 99 and count >= 99:
+									if count >= 999:
+										if size <= 10:
+											self.CoolCSWidth = 135
 										else:
-											self.CoolCSWidth = 125
-									elif size >= 99 and count >= 99:
-										if count >= 999:
 											self.CoolCSWidth = 145
-										elif count >= 9999:
-											self.CoolCSWidth = 160
-										else:
+									elif count >= 9999:
+										if size <= 10:
 											self.CoolCSWidth = 140
-							else:
-								countsizeworker.Start(path)
-								datetext = ""
-								datepic = self.pic_directory_search
+										else:
+											self.CoolCSWidth = 160
+									else:
+										self.CoolCSWidth = 125
+								elif size >= 99 and count >= 99:
+									if count >= 999:
+										self.CoolCSWidth = 145
+									elif count >= 9999:
+										self.CoolCSWidth = 160
+									else:
+										self.CoolCSWidth = 140
 						elif config.EMC.directories_info.value == "S":
-							size = 0
-							if getValues is not None:
-								count, size = getValues
-								if self.startWorker:
-									countsizeworker.Start(path)
-								if size >= 100:
-									datetext = " ( %.2f TB ) " % (size/1024.0)
-								else:
-									datetext = " ( %.2f GB ) " % (size)
+							count, size = dirInfo(path, bsize=True)
+							if size >= 100:
+								datetext = " ( %.2f TB ) " % (size/1024.0)
 							else:
-								countsizeworker.Start(path)
-								datetext = ""
-								datepic = self.pic_directory_search
+								datetext = " ( %.2f GB ) " % (size)
 						elif config.EMC.directories_info.value == "D":
 							datetext = _("Directory")
 							if isLink:
@@ -2472,7 +2337,7 @@ class MovieCenter(GUIComponent):
 		if idx < 0: return
 		self.l.invalidateEntry( idx ) # force redraw of the item
 
-	def refreshList(self, worker=False):
+	def refreshList(self):
 		# Just invalidate the whole list to force rebuild the entries
 		# Updates the progress of all entries
 		#IDEA Extend the list and mark the recordings
@@ -2483,7 +2348,6 @@ class MovieCenter(GUIComponent):
 		#for entry in self.list:
 		#	if self.recControl.isRecording(entry[4]):
 		#		self.invalidateService(entry[0])
-		self.startWorker = worker
 		self.l.invalidate()
 
 	def reload(self, currentPath, simulate=False, recursive=False):
@@ -2492,27 +2356,21 @@ class MovieCenter(GUIComponent):
 		return list
 
 	def moveUp(self):
-		self.startWorker = False
 		self.instance.moveSelection(self.instance.moveUp)
 
 	def moveDown(self):
-		self.startWorker = False
 		self.instance.moveSelection(self.instance.moveDown)
 
 	def pageUp(self):
-		self.startWorker = False
 		self.instance.moveSelection(self.instance.pageUp)
 
 	def pageDown(self):
-		self.startWorker = False
 		self.instance.moveSelection(self.instance.pageDown)
 
 	def moveTop(self):
-		self.startWorker = False
 		self.instance.moveSelection(self.instance.moveTop)
 
 	def moveEnd(self):
-		self.startWorker = False
 		self.instance.moveSelection(self.instance.moveEnd)
 
 	def moveToIndex(self, index):
@@ -2553,7 +2411,6 @@ class MovieCenter(GUIComponent):
 		except:	return False
 
 	def getCurrentSelDir(self):
-		self.startWorker = True
 		try:	return self.getListEntry(self.getCurrentIndex())[4]
 		except:	return False
 

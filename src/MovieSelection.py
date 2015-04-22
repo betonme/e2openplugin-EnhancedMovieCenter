@@ -81,18 +81,6 @@ from MovieCenter import getMovieNameWithoutExt, getMovieNameWithoutPhrases
 global extList, extVideo, extMedia, extDir, plyAll, plyDVD, cmtBME2, cmtBMEMC, cmtDir, plyDVB, extPlaylist
 
 
-# Get Count and Size-values at start to CacheList
-def startCountSizeCache():
-	try:
-		movie_homepath = os.path.join(config.EMC.movie_homepath.value)
-		global moviecenterdata
-		from MovieCenter import MovieCenterData, moviecenterdata
-		if moviecenterdata is None:
-			moviecenterdata = MovieCenterData()
-		moviecenterdata.createStartCountSizeList(movie_homepath)
-	except Exception, e:
-		emcDebugOut("[EMC] startCountSizeCache get failed !!!\n" + str(e))
-
 # Move all trashcan operations to a separate file / class
 def purgeExpired(emptyTrash=False):
 	try:
@@ -2496,16 +2484,11 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 
 		# reload list to get the new index, otherwise you can not select again after that
 		try:
-				val = config.EMC.directories_info.value
-				if val == "C" or val == "CS" or val == "S":
-					# we make now hardreset
-					movieFileCache.delcacheCountSizeList()
-					self["list"].refreshList(True)
-				# this we need to get the new position values,
-				# otherwise no select for other files in the same directory after that
-				self["list"].reload(self.currentPath)
+			# this we need to get the new position values,
+			# otherwise no select for other files in the same directory after that
+			self["list"].reload(self.currentPath)
 		except Exception, e:
-				print('[EMC] postFileOp exception: ', str(e))
+			print('[EMC] postFileOp exception: ', str(e))
 
 	def moveMovie(self):
 		# Avoid starting move and copy at the same time
