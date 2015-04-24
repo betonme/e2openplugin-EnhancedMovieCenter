@@ -356,7 +356,7 @@ config.EMC.count_size_default_icon   = ConfigYesNo(default = False)
 config.EMC.count_size_position       = ConfigSelection(default = '0', choices = [ ('0', _("center")), ('1', _("right")) ])
 #config.EMC.symlinkdir_info           = ConfigYesNo(default = False)
 config.EMC.latest_recordings         = ConfigYesNo(default = True)
-nget = False # this is needed for vti-image at the moment
+nget = False    # this is needed for vti-image at the moment
 try:
 	ngettext("%d second", "%d seconds", 30)
 	nget = True
