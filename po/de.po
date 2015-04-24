@@ -884,41 +884,6 @@ msgstr ""
 "Bei Verzeichnissen kann die Anzahl Aufnahmen, der belegte Speicherplatz "
 "oder beides zusammen eingeblendet werden."
 
-#: src/EnhancedMovieCenter.py:332
-msgid "Get Count and Size at start to cache"
-msgstr "Anzahl / Größe beim Start in den Cache"
-
-#: src/EnhancedMovieCenter.py:332
-msgid "HELP_Get Count and Size at start to cache"
-msgstr ""
-"Hiermit werden bei Verzeichnissen die Anzahl der Dateien und\n"
-"der belegte Speicherplatz beim Start gelesen und in den\n"
-"Cache geschrieben. Dies beschleunigt das Öffnen von EMC mit\n"
-"aktivierter Verzeichnisinformation."
-
-#: src/EnhancedMovieCenter.py:333
-msgid "Delay for Get Count and Size at start to cache"
-msgstr "Cacheverzögerung für Anzahl / Größe beim Start"
-
-#: src/EnhancedMovieCenter.py:333
-msgid "HELP_Delay for Get Count and Size at start to cache"
-msgstr ""
-"Hier kann eine Verzögerungszeit angegeben werden, damit\n"
-"Anzahl und der belegte Speicherplatz der Dateien nicht beim\n"
-"Booten eingelesen wird. Ohne Verzögerungszeit kann sich\n"
-"das Starten der Box verlangsamen!"
-
-#: src/EnhancedMovieCenter.py:334
-msgid "Delay to get Count and Size in List"
-msgstr "Anzahl / Größe in der Liste verzögern"
-
-#: src/EnhancedMovieCenter.py:334
-msgid "HELP_Delay to get Count and Size in List"
-msgstr ""
-"Hier kann eine Verzögerungszeit angegeben werden bevor die\n"
-"Anzahl der Dateien, der belegte Speicherplatz oder\n"
-"beides zusammen in der Liste angezeigt wird."
-
 #: src/EnhancedMovieCenter.py:335
 msgid "Text shown for initially unknown file count"
 msgstr "Text für anfangs unbekannte Dateianzahl"

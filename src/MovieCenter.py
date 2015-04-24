@@ -34,7 +34,7 @@ from Components.MultiContent import MultiContentEntryText, MultiContentEntryPixm
 from Tools.LoadPixmap import LoadPixmap
 from Tools.Directories import fileExists, resolveFilename, SCOPE_CURRENT_SKIN
 from skin import parseColor, parseFont, parseSize
-from enigma import eListboxPythonMultiContent, eListbox, gFont, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_HALIGN_CENTER, eServiceReference, eServiceCenter, loadPNG
+from enigma import eListboxPythonMultiContent, eListbox, gFont, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_HALIGN_CENTER, eServiceReference, eServiceCenter, ePythonMessagePump, loadPNG, getDesktop
 from timer import TimerEntry
 
 from . import _
@@ -52,17 +52,17 @@ from PermanentSort import PermanentSort
 from E2Bookmarks import E2Bookmarks
 from EMCBookmarks import EMCBookmarks
 from ServiceSupport import ServiceCenter
-from EnhancedMovieCenter import imgVti, imgDream
+from ThreadQueue import ThreadQueue
+from EnhancedMovieCenter import imgVti, newPiconRenderer
 
 global imgVti
-global imgDream
+global newPiconRenderer
 if imgVti:
 	from enigma import BT_SCALE, BT_FIXRATIO as BT_KEEP_ASPECT_RATIO
-elif imgDream:
-	from enigma import SCALE_ASPECT as BT_KEEP_ASPECT_RATIO
-else:
-	from Components.Renderer.Picon import getPiconName
-	from enigma import BT_SCALE, BT_KEEP_ASPECT_RATIO
+
+if newPiconRenderer:
+		from Components.Renderer.Picon import getPiconName
+		from enigma import BT_SCALE, BT_KEEP_ASPECT_RATIO
 
 global extAudio, extDvd, extVideo, extPlaylist, extList, extMedia, extBlu
 global cmtDir, cmtUp, cmtTrash, cmtLRec, cmtVLC, cmtBME2, cmtBMEMC, virVLC, virAll, virToE, virToD
@@ -380,6 +380,8 @@ def dirInfo(folder, bsize=False):
 							size += os.path.getsize(filename)
 	if size:
 		size /= (1024.0 * 1024.0 * 1024.0)
+	if folder != cmtTrash:
+		movieFileCache.addCountSizeToCache(folder, count, size)
 	return count, size
 
 def detectDVDStructure(checkPath):
@@ -444,6 +446,73 @@ def detectBLUISO(checkPath):
 # muss drinnen bleiben sonst crashed es bei foreColorSelected
 def MultiContentEntryProgress(pos = (0, 0), size = (0, 0), percent = None, borderWidth = None, foreColor = None, foreColorSelected = None, backColor = None, backColorSelected = None):
 	return (eListboxPythonMultiContent.TYPE_PROGRESS, pos[0], pos[1], size[0], size[1], percent, borderWidth, foreColor, foreColorSelected, backColor, backColorSelected)
+
+THREAD_WORKING = 1
+THREAD_FINISHED = 2
+
+class CountSizeWorker(Thread):
+	def __init__(self):
+		Thread.__init__(self)
+		self.__running = False
+		self.__messages = ThreadQueue()
+		self.__messagePump = ePythonMessagePump()
+		self.__list = ThreadQueue()
+
+	def __getMessagePump(self):
+		return self.__messagePump
+	MessagePump = property(__getMessagePump)
+
+	def __getMessageQueue(self):
+		return self.__messages
+	Message = property(__getMessageQueue)
+
+	def __getRunning(self):
+		return self.__running
+	isRunning = property(__getRunning)
+
+	def isListEmpty(self):
+		return self.__list.empty()
+
+	def getListLength(self):
+		return len(self.__list)
+
+	def Cancel(self):
+		self.__running = False
+
+	def add(self, item):
+		self.__list.push(item)
+		if not self.__running:
+			self.__running = True
+#			print'[EMC] CountSizeWorker Start'
+			self.start()
+
+	def run(self):
+		while not self.__list.empty():
+			if not self.__running: break
+
+			item = self.__list.pop()
+#			print'[EMC] CountSizeWorker processing: ', item
+			result = None
+
+			try:
+				result = dirInfo(item, bsize=True)
+			except Exception, e:
+				print('[EMC] CountSizeWorker result exception:', str(e))
+
+				# Exception finish job with error
+				result = str(e)
+
+			if result:
+				if self.__running:
+					self.__messages.push((2, result))
+			else:
+				self.__messages.push((1, result))
+
+		self.__messagePump.send(0)
+		self.__running = False
+		Thread.__init__(self)
+
+countsizeworker = CountSizeWorker()
 
 moviecenterdata = None
 
@@ -1542,6 +1611,14 @@ class MovieCenter(GUIComponent):
 		global moviecenter
 		moviecenter = self
 
+		screenwidth = getDesktop(0).size().width()
+		if screenwidth and screenwidth == 1920:
+			self.fullhd = True
+		else:
+			self.fullhd = False
+
+		self.startWorker = False
+
 		self.serviceHandler = ServiceCenter.getInstance()
 
 		self.CoolFont = parseFont("Regular;20", ((1,1),(1,1)))
@@ -1742,7 +1819,13 @@ class MovieCenter(GUIComponent):
 			append = res.append
 
 			isLink = os.path.islink(path)
-			usedFont = int(config.EMC.skin_able.value)
+			#usedFont = int(config.EMC.skin_able.value)
+			if int(config.EMC.skin_able.value):
+				usedFont = 1
+				usedDateFont = 4
+			else:
+				usedFont = 0
+				usedDateFont = 2
 
 			#TODOret print "EMC ret bldSer " +str(service.toString())
 
@@ -1901,7 +1984,7 @@ class MovieCenter(GUIComponent):
 							offset += progressWidth + 5
 
 					if config.EMC.movie_date_format.value:
-						append(MultiContentEntryText(pos=(self.l.getItemSize().width() - self.CoolDateWidth, 0), size=(self.CoolDateWidth, globalHeight), font=4, color = colordate, color_sel = colorhighlight, backcolor = self.BackColor, backcolor_sel = self.BackColorSel, flags=RT_HALIGN_CENTER, text=datetext))
+						append(MultiContentEntryText(pos=(self.l.getItemSize().width() - self.CoolDateWidth, 0), size=(self.CoolDateWidth, globalHeight), font=usedDateFont, color = colordate, color_sel = colorhighlight, backcolor = self.BackColor, backcolor_sel = self.BackColorSel, flags=RT_HALIGN_CENTER, text=datetext))
 
 					# Media files left side not skin_able
 					if movie_metaload:
@@ -1916,13 +1999,13 @@ class MovieCenter(GUIComponent):
 						if config.EMC.movie_picons.value:
 							piconPos = config.EMC.movie_picons_pos.value
 							if metaref != "1_0_0_0_0_0_0_0_0_0":
-								if imgVti or imgDream:
-									picon = config.EMC.movie_picons_path.value + "/" + metaref + '.png'
-								else:
+								if newPiconRenderer:
 									if config.EMC.movie_picons_path_own.value:
 										picon = config.EMC.movie_picons_path.value + "/" + metaref + '.png'
 									else:
 										picon = getPiconName(metaref)
+								else:
+									picon = config.EMC.movie_picons_path.value + "/" + metaref + '.png'
 								picon = loadPNG(picon)
 								piconH = self.l.getItemSize().height() - 6
 								piconW = piconH * 2 - 5
@@ -1944,10 +2027,10 @@ class MovieCenter(GUIComponent):
 										textX += piconW + 5
 										textSizeX = self.l.getItemSize().width() - textX - 5
 								# Special way for vti-images, directly over "eListboxPythonMultiContent", they have no "flags=..", only "options=.."
-								if imgDream:
-									append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, piconX, piconY, piconW, piconH, picon, None, None, BT_KEEP_ASPECT_RATIO))
-								else:
+								if newPiconRenderer or imgVti:
 									append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, piconX, piconY, piconW, piconH, picon, None, None, BT_SCALE | BT_KEEP_ASPECT_RATIO))
+								else:
+									append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, piconX, piconY, piconW, piconH, picon, None, None))
 
 								append(MultiContentEntryText(pos=(textX, textY), size=(textSizeX, textSizeY), font=usedFont, flags=RT_HALIGN_LEFT, text=title, color = colortitle, color_sel = colorhighlight, backcolor = self.BackColor, backcolor_sel = self.BackColorSel))
 							else:
@@ -2027,7 +2110,7 @@ class MovieCenter(GUIComponent):
 					if CoolProgressPos != -1:
 						append(MultiContentEntryText(pos=(CoolProgressPos, self.CoolProgressHPos), size=(progressWidth, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text="%d%%" % (progress)))
 					if CoolDatePos != -1:
-						append(MultiContentEntryText(pos=(CoolDatePos, self.CoolDateHPos), size=(self.CoolDateWidth, globalHeight), font=4, text=datetext, color = colordate, color_sel = colorhighlight, flags=RT_HALIGN_CENTER))
+						append(MultiContentEntryText(pos=(CoolDatePos, self.CoolDateHPos), size=(self.CoolDateWidth, globalHeight), font=usedDateFont, text=datetext, color = colordate, color_sel = colorhighlight, flags=RT_HALIGN_CENTER))
 
 					# Media files left side
 					if movie_metaload:
@@ -2035,13 +2118,13 @@ class MovieCenter(GUIComponent):
 							title = title + " - " + eventtitle
 					if ext in extTS:
 						if CoolPiconPos != -1 and CoolMoviePiconPos != -1:
-							if imgVti or imgDream:
-								picon = config.EMC.movie_picons_path.value + "/" + metaref + '.png'
-							else:
+							if newPiconRenderer:
 								if config.EMC.movie_picons_path_own.value:
 									picon = config.EMC.movie_picons_path.value + "/" + metaref + '.png'
 								else:
 									picon = getPiconName(metaref)
+							else:
+								picon = config.EMC.movie_picons_path.value + "/" + metaref + '.png'
 							picon = loadPNG(picon)
 							if self.CoolPiconHeight == -1:
 								self.CoolPiconHeight = self.l.getItemSize().height() - 6
@@ -2050,10 +2133,10 @@ class MovieCenter(GUIComponent):
 							if self.CoolPiconWidth == -1:
 								self.CoolPiconWidth = 110
 							# Special way for vti-images, directly over "eListboxPythonMultiContent", they have no "flags=..", only "options=.."
-							if imgDream:
-								append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, CoolPiconPos, self.CoolPiconHPos, self.CoolPiconWidth, self.CoolPiconHeight, picon, None, None, BT_KEEP_ASPECT_RATIO))
-							else:
+							if newPiconRenderer or imgVti:
 								append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, CoolPiconPos, self.CoolPiconHPos, self.CoolPiconWidth, self.CoolPiconHeight, picon, None, None, BT_SCALE | BT_KEEP_ASPECT_RATIO))
+							else:
+								append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, CoolPiconPos, self.CoolPiconHPos, self.CoolPiconWidth, self.CoolPiconHeight, picon, None, None))
 
 							append(MultiContentEntryText(pos=(self.CoolMoviePiconPos, 0), size=(self.CoolMoviePiconSize, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text=title, color = colortitle, color_sel = colorhighlight))
 						else:
@@ -2155,48 +2238,73 @@ class MovieCenter(GUIComponent):
 						pixmap = self.pic_col_dir
 
 					# Directory and symlink-direcory info.value
+					getValues = movieFileCache.getCountSizeFromCache(path)
 					if config.EMC.directories_info.value:
 						if config.EMC.directories_info.value == "C":
-							count, size = dirInfo(path)
-							datetext = " ( %d ) " % (count)
+							count = 0
+							if getValues is not None:
+								count, size = getValues
+								if self.startWorker:
+									countsizeworker.add(path)
+								datetext = " ( %d ) " % (count)
+							else:
+								countsizeworker.add(path)
+								datetext = ""
+								datepic = self.pic_directory_search
 						elif config.EMC.directories_info.value == "CS":
-							count, size = dirInfo(path, bsize=True)
-							if size >= 1000:
-								size /= 1024.0
-								datetext = " (%d / %.0f TB) " % (count, size)
-							else:
-								datetext = " (%d / %.0f GB) " % (count, size)
-							# TODO: make this easier, but hold it on the right side
-							self.CoolCSWidth = 110
-							if size or count >=99:
-								if size >= 99 and count <=99:
-									self.CoolCSWidth = 125
-								elif size <= 99 and count >= 99:
-									if count >= 999:
-										if size <= 10:
-											self.CoolCSWidth = 135
-										else:
-											self.CoolCSWidth = 145
-									elif count >= 9999:
-										if size <= 10:
-											self.CoolCSWidth = 140
-										else:
-											self.CoolCSWidth = 160
-									else:
+							count, size = 0, 0
+							if getValues is not None:
+								count, size = getValues
+								if self.startWorker:
+									countsizeworker.add(path)
+								if size >= 1000:
+									size /= 1024.0
+									datetext = " (%d / %.0f TB) " % (count, size)
+								else:
+									datetext = " (%d / %.0f GB) " % (count, size)
+								# TODO: make this easier, but hold it on the right side
+								self.CoolCSWidth = 110
+								if size or count >=99:
+									if size >= 99 and count <=99:
 										self.CoolCSWidth = 125
-								elif size >= 99 and count >= 99:
-									if count >= 999:
-										self.CoolCSWidth = 145
-									elif count >= 9999:
-										self.CoolCSWidth = 160
-									else:
-										self.CoolCSWidth = 140
-						elif config.EMC.directories_info.value == "S":
-							count, size = dirInfo(path, bsize=True)
-							if size >= 100:
-								datetext = " ( %.2f TB ) " % (size/1024.0)
+									elif size <= 99 and count >= 99:
+										if count >= 999:
+											if size <= 10:
+												self.CoolCSWidth = 135
+											else:
+												self.CoolCSWidth = 145
+										elif count >= 9999:
+											if size <= 10:
+												self.CoolCSWidth = 140
+											else:
+												self.CoolCSWidth = 160
+										else:
+											self.CoolCSWidth = 125
+									elif size >= 99 and count >= 99:
+										if count >= 999:
+											self.CoolCSWidth = 145
+										elif count >= 9999:
+											self.CoolCSWidth = 160
+										else:
+											self.CoolCSWidth = 140
 							else:
-								datetext = " ( %.2f GB ) " % (size)
+								countsizeworker.add(path)
+								datetext = ""
+								datepic = self.pic_directory_search
+						elif config.EMC.directories_info.value == "S":
+							size = 0
+							if getValues is not None:
+								count, size = getValues
+								if self.startWorker:
+									countsizeworker.add(path)
+								if size >= 100:
+									datetext = " ( %.2f TB ) " % (size/1024.0)
+								else:
+									datetext = " ( %.2f GB ) " % (size)
+							else:
+								countsizeworker.add(path)
+								datetext = ""
+								datepic = self.pic_directory_search
 						elif config.EMC.directories_info.value == "D":
 							datetext = _("Directory")
 							if isLink:
@@ -2228,17 +2336,21 @@ class MovieCenter(GUIComponent):
 				# Directory right side
 				val = config.EMC.directories_info.value
 				if val == "C" or val == "CS" or val == "S":
+					if self.fullhd:
+						CoolCSWidth = int(self.CoolCSWidth * 1.5)
+					else:
+						CoolCSWidth = self.CoolCSWidth
 					if config.EMC.count_size_position.value == "1":
 						halign = RT_HALIGN_RIGHT
 					else:
 						halign = RT_HALIGN_CENTER
 					if datetext != "":
-						append(MultiContentEntryText(pos=(self.l.getItemSize().width() - self.CoolCSWidth, self.CoolMovieHPos), size=(self.CoolCSWidth, globalHeight), font=2, flags=halign, text=datetext))
+						append(MultiContentEntryText(pos=(self.l.getItemSize().width() - CoolCSWidth, self.CoolMovieHPos), size=(CoolCSWidth, globalHeight), font=usedDateFont, flags=halign, text=datetext))
 					else:
 						useIcon = config.EMC.count_size_default_icon.value
 						if useIcon:
 							if datepic is not None:
-								append(MultiContentEntryPixmapAlphaBlend(pos=(self.l.getItemSize().width() - self.CoolDateWidth /2, self.CoolMovieHPos), size=(self.CoolCSWidth, globalHeight), png=self.pic_directory_search, **{}))
+								append(MultiContentEntryPixmapAlphaBlend(pos=(self.l.getItemSize().width() - self.CoolDateWidth /2, self.CoolMovieHPos), size=(CoolCSWidth, globalHeight), png=self.pic_directory_search, **{}))
 						else:
 							if datepic is not None:
 								count = config.EMC.count_default_text.value
@@ -2250,9 +2362,9 @@ class MovieCenter(GUIComponent):
 									datetext = countsize
 								elif val == "S":
 									datetext = size
-							append(MultiContentEntryText(pos=(self.l.getItemSize().width() - self.CoolDateWidth, self.CoolMovieHPos), size=(self.CoolDateWidth, globalHeight), font=2, flags=halign, text=datetext))
+							append(MultiContentEntryText(pos=(self.l.getItemSize().width() - self.CoolDateWidth, self.CoolMovieHPos), size=(self.CoolDateWidth, globalHeight), font=usedDateFont, flags=halign, text=datetext))
 				else:
-					append(MultiContentEntryText(pos=(self.l.getItemSize().width() - self.CoolDateWidth, self.CoolMovieHPos), size=(self.CoolDateWidth, globalHeight), font=2, flags=RT_HALIGN_CENTER, text=datetext))
+					append(MultiContentEntryText(pos=(self.l.getItemSize().width() - self.CoolDateWidth, self.CoolMovieHPos), size=(self.CoolDateWidth, globalHeight), font=usedDateFont, flags=RT_HALIGN_CENTER, text=datetext))
 			del append
 			return res
 		except Exception, e:
@@ -2336,7 +2448,7 @@ class MovieCenter(GUIComponent):
 		if idx < 0: return
 		self.l.invalidateEntry( idx ) # force redraw of the item
 
-	def refreshList(self):
+	def refreshList(self, worker=False):
 		# Just invalidate the whole list to force rebuild the entries
 		# Updates the progress of all entries
 		#IDEA Extend the list and mark the recordings
@@ -2347,6 +2459,7 @@ class MovieCenter(GUIComponent):
 		#for entry in self.list:
 		#	if self.recControl.isRecording(entry[4]):
 		#		self.invalidateService(entry[0])
+		self.startWorker = worker
 		self.l.invalidate()
 
 	def reload(self, currentPath, simulate=False, recursive=False):
@@ -2355,21 +2468,27 @@ class MovieCenter(GUIComponent):
 		return list
 
 	def moveUp(self):
+		self.startWorker = False
 		self.instance.moveSelection(self.instance.moveUp)
 
 	def moveDown(self):
+		self.startWorker = False
 		self.instance.moveSelection(self.instance.moveDown)
 
 	def pageUp(self):
+		self.startWorker = False
 		self.instance.moveSelection(self.instance.pageUp)
 
 	def pageDown(self):
+		self.startWorker = False
 		self.instance.moveSelection(self.instance.pageDown)
 
 	def moveTop(self):
+		self.startWorker = False
 		self.instance.moveSelection(self.instance.moveTop)
 
 	def moveEnd(self):
+		self.startWorker = False
 		self.instance.moveSelection(self.instance.moveEnd)
 
 	def moveToIndex(self, index):
@@ -2410,6 +2529,7 @@ class MovieCenter(GUIComponent):
 		except:	return False
 
 	def getCurrentSelDir(self):
+		self.startWorker = True
 		try:	return self.getListEntry(self.getCurrentIndex())[4]
 		except:	return False
 

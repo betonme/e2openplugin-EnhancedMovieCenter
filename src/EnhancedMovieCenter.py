@@ -58,23 +58,23 @@ EMCAbout = "\n  Enhanced Movie Center " +EMCVersion+ "\n\n  (C) 2012 by\n  Coolm
 
 # Check if image is vti or dream, is needed for build entrys in MovieCenter with picons
 global imgVti
-global imgDream
+global newPiconRenderer
 imgVti = False
-imgDream = False
+newPiconRenderer = False
 
 def checkImg():
 	global imgVti
-	global imgDream
+	global newPiconRenderer
 	try:
 		from enigma import BT_FIXRATIO
 		imgVti = True
 	except Exception, e:
 		print "[EMC] checkImg is not Vti", e
 	try:
-		from enigma import SCALE_ASPECT
-		imgDream = True
+		from Components.Renderer.Picon import getPiconName
+		newPiconRenderer = True
 	except Exception, e:
-		print "[EMC] checkImg is not dream", e
+		print "[EMC] checkImg is not newPiconRenderer", e
 
 def image():
 	if imgVti:
@@ -148,7 +148,7 @@ def EMCStartup(session):
 	setupKeyResponseValues()
 	DelayedFunction(5000, cleanupSetup)
 
-	# Check the image to use a global in vti- and dream-images
+	# Check the image to use global for various images
 	checkImg()
 
 	# Go into standby if the reason for restart was EMC auto-restart
@@ -332,15 +332,14 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 #			(  _("Show symlinkdirectories_information")           , config.EMC.symlinkdir_info          , None                  , None                  , 0     , [-1]        , _("HELP_Show symlink_directories_information")           , False             , True ),
 			(  _("Show directories")                              , config.EMC.directories_show         , None                  , None                  , 0     , []          , _("HELP_Show directories")                               , None              , True ),
 			(  _("Show directories information")                  , config.EMC.directories_info         , None                  , None                  , 0     , [-1]        , _("HELP_Show directories information")                   , ""                , "CS" ),
-			# TODO: get this entrys only for values "C", "CS", "S"
-			(  _("Text shown for initially unknown file count")   , config.EMC.count_default_text       , None                  , None                  , 0     , [-5,-4,-1]  , _("HELP_Text shown for initially unknown file count")    , None              , None ),
-			(  _("Text shown for initially unknown count and size"), config.EMC.count_size_default_text , None                  , None                  , 0     , [-6,-5,-2]  , _("HELP_Text shown for initially unknown count and size"), None              , None ),
-			(  _("Text shown for initially unknown directory size"), config.EMC.size_default_text       , None                  , None                  , 0     , [-7,-6,-3]  , _("HELP_Text shown for initially unknown directory size"), None              , None ),
-			(  _("Icon shown for initially unknown count / size") , config.EMC.count_size_default_icon  , None                  , None                  , 0     , [-8,-7,-4]  , _("HELP_Icon shown for initially unknown count / size")  , None              , None ),
-			(  _("Horizontal alignment for count / size")         , config.EMC.count_size_position      , None                  , None                  , 0     , [-9,-8]     , _("HELP_Horizontal alignment for count / size")          , None              , None ),
+			(  _("Text shown for initially unknown file count")   , config.EMC.count_default_text       , None                  , None                  , 0     , [-2,-1]     , _("HELP_Text shown for initially unknown file count")    , None              , None ),
+			(  _("Text shown for initially unknown count and size"), config.EMC.count_size_default_text , None                  , None                  , 0     , [-3,-2]     , _("HELP_Text shown for initially unknown count and size"), None              , None ),
+			(  _("Text shown for initially unknown directory size"), config.EMC.size_default_text       , None                  , None                  , 0     , [-4,-3]     , _("HELP_Text shown for initially unknown directory size"), None              , None ),
+			(  _("Icon shown for initially unknown count / size") , config.EMC.count_size_default_icon  , None                  , None                  , 0     , [-5,-4]     , _("HELP_Icon shown for initially unknown count / size")  , None              , None ),
+			(  _("Horizontal alignment for count / size")         , config.EMC.count_size_position      , None                  , None                  , 0     , [-6,-5]     , _("HELP_Horizontal alignment for count / size")          , None              , None ),
 
-			(  _("Show directories within movielist")             , config.EMC.directories_ontop        , None                  , None                  , 0     , [-10]       , _("HELP_Show directories within movielist")              , False             , True ),
-			(  _("Configured directories at the top of movielist"), config.EMC.cfgtopdir_enable         , None                  , None                  , 0     , [-11,-1]    , _("HELP_Configure in etc\enigma2\emc-topdir.cfg")        , False             , True ),
+			(  _("Show directories within movielist")             , config.EMC.directories_ontop        , None                  , None                  , 0     , [-7]        , _("HELP_Show directories within movielist")              , False             , True ),
+			(  _("Configured directories at the top of movielist"), config.EMC.cfgtopdir_enable         , None                  , None                  , 0     , [-8,-1]     , _("HELP_Configure in etc\enigma2\emc-topdir.cfg")        , False             , True ),
 			(  _("Show Latest Recordings directory")              , config.EMC.latest_recordings        , None                  , None                  , 0     , []          , _("HELP_Show Latest Recordings directory")               , None              , True ),
 			(  _("Latest Recordings directory limit")             , config.EMC.latest_recordings_limit  , None                  , None                  , 0     , [-1]        , _("HELP_Latest Recordings directory limit")              , None              , True ),
 			(  _("Latest Recordings directory use emc-noscan.cfg"), config.EMC.latest_recordings_noscan , None                  , None                  , 0     , [-2]        , _("HELP_Latest Recordings directory use emc-noscan.cfg") , None              , True ),

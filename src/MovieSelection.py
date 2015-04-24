@@ -513,11 +513,23 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		try:
 			self.previewTimer_conn = self.previewTimer.timeout.connect(self.showPreviewDelayed)
 		except:
-				self.previewTimer.callback.append(self.showPreviewDelayed)
+			self.previewTimer.callback.append(self.showPreviewDelayed)
 
 		self.onShow.append(self.onDialogShow)
 		self.onHide.append(self.onDialogHide)
 		self["list"].onSelectionChanged.append(self.selectionChanged)
+
+		from MovieCenter import countsizeworker
+		try:
+			self.csw_pump_recv_msg_conn = countsizeworker.MessagePump.recv_msg.connect(self.gotThreadMsg)
+		except:
+			countsizeworker.MessagePump.recv_msg.get().append(self.gotThreadMsg)
+
+	def gotThreadMsg(self, msg):
+		from MovieCenter import countsizeworker
+		msg = countsizeworker.Message.pop()
+		if msg[0] == 2:
+			self["list"].refreshList()
 
 	def isProtected(self):
 		try:
@@ -600,6 +612,14 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 
 		# reset selected Files List, to reopen the list without the last selected
 		self.resetSelectionList()
+
+		from MovieCenter import countsizeworker
+		countsizeworker.Cancel()
+		try:
+			countsizeworker.MessagePump.recv_msg.get().remove(self.gotThreadMsg)
+		except:
+			pass
+		self.csw_pump_recv_msg_conn = None
 
 		self.close()
 
@@ -2484,6 +2504,11 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 
 		# reload list to get the new index, otherwise you can not select again after that
 		try:
+			val = config.EMC.directories_info.value
+			if val == "C" or val == "CS" or val == "S":
+				# we make now hardreset
+				movieFileCache.delcacheCountSizeList()
+				self["list"].refreshList(True)
 			# this we need to get the new position values,
 			# otherwise no select for other files in the same directory after that
 			self["list"].reload(self.currentPath)

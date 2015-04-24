@@ -317,30 +317,6 @@ msgstr ""
 msgid "Alpha sort descending with meta, Date ascending (ZAMD+)"
 msgstr ""
 
-#: src/EnhancedMovieCenter.py:332
-msgid "Get Count and Size at start to cache"
-msgstr ""
-
-#: src/EnhancedMovieCenter.py:332
-msgid "HELP_Get Count and Size at start to cache"
-msgstr ""
-
-#: src/EnhancedMovieCenter.py:333
-msgid "Delay for Get Count and Size at start to cache"
-msgstr ""
-
-#: src/EnhancedMovieCenter.py:333
-msgid "HELP_Delay for Get Count and Size at start to cache"
-msgstr ""
-
-#: src/EnhancedMovieCenter.py:334
-msgid "Delay to get Count and Size in List"
-msgstr ""
-
-#: src/EnhancedMovieCenter.py:334
-msgid "HELP_Delay to get Count and Size in List"
-msgstr ""
-
 #: src/EnhancedMovieCenter.py:335
 msgid "Text shown for initially unknown file count"
 msgstr ""
