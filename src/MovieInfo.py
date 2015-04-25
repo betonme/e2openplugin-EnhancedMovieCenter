@@ -41,14 +41,14 @@ config.EMC.movieinfo.cover_delay = ConfigSelectionNumber(50, 60000, 50, default=
 def image(newTmdb=False, menu=False):
 	if newTmdb:
 		if imgVti:
-			return 37, 21
+			return 37
 		else:
-			return 28, 20
+			return 28
 	if menu:
 		if imgVti:
-			return 30, 18
+			return 30
 		else:
-			return 28, 20
+			return 28
 
 def getMovieList(moviename):
 	response = fetchdata("http://api.themoviedb.org/3/search/movie?api_key=8789cfd3fbab7dccf1269c3d7d867aff&query=" + moviename.replace(" ","+").replace("&","%26"))
@@ -369,8 +369,8 @@ class MovieInfoPreview(Screen):
 class MovieInfoTMDb(Screen):
 	skin = """
 		<screen name="MovieInfoTMDb" position="center,center" size="1000,515" title="Movie Information TMDb">
-		<widget name="movie_name" position="20,5" size="960,42" zPosition="0" font="Regular;21" valign="center" halign="center" transparent="1" foregroundColor="unbab329" backgroundColor="black" />
-		<widget name="previewlist" position="240,62" size="740,392" itemHeight="%s" font="Regular;%s" scrollbarMode="showOnDemand" />
+		<widget name="movie_name" position="20,5" size="960,42" zPosition="0" font="Regular;21" valign="center" halign="center" transparent="1" foregroundColor="#00bab329" backgroundColor="#000000" />
+		<widget name="previewlist" position="240,62" size="740,392" itemHeight="%s" scrollbarMode="showOnDemand" />
 		<widget name="previewcover" position="20,62" size="204,285" alphatest="blend" zPosition="2" />
 		<widget name="contenttxt" position="240,62" size="740,285" font="Regular;20" />
 		<widget name="runtime" position="20,362" size="200,25" font="Regular;20" foregroundColor="#000066FF" />
@@ -701,7 +701,7 @@ class MovieInfoTMDb(Screen):
 class MovieInfoSetup(Screen, ConfigListScreen):
 	skin = """
 		<screen name="EMCMovieInfoSetup" position="center,center" size="600,450" title="Movie Information Download Setup">
-		<widget name="config" position="5,10" size="570,350" itemHeight="%s" font="Regular;%s" scrollbarMode="showOnDemand" />
+		<widget name="config" position="5,10" size="570,350" itemHeight="%s" scrollbarMode="showOnDemand" />
 		<widget name="key_red" position="0,390" size="140,40" valign="center" halign="center" zPosition="5" transparent="1" foregroundColor="#ffffff" font="Regular;18"/>
 		<widget name="key_green" position="140,390" size="140,40" valign="center" halign="center" zPosition="5" transparent="1" foregroundColor="#ffffff" font="Regular;18"/>
 		<ePixmap name="red" pixmap="skin_default/buttons/red.png" position="0,390" size="140,40" zPosition="4" transparent="1" alphatest="on"/>

@@ -78,9 +78,9 @@ def checkImg():
 
 def image():
 	if imgVti:
-		return 30, 18
+		return 30
 	else:
-		return 28, 20
+		return 28
 
 def setEPGLanguage(dummyself=None, dummy=None):
 	if config.EMC.epglang.value:
@@ -202,7 +202,7 @@ def next_predefined_settings(key=""):
 class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 	skin = """
 		<screen name="EnhancedMovieCenterMenu" position="center,center" size="670,520" title="EnhancedMovieCenterMenu">
-		<widget name="config" position="10,10" size="655,353 "  itemHeight="%s" font="Regular;%s" enableWrapAround="1" scrollbarMode="showOnDemand" />
+		<widget name="config" position="10,10" size="655,353 " itemHeight="%s" enableWrapAround="1" scrollbarMode="showOnDemand" />
 		<eLabel position="0,362" size="670,2" backgroundColor="#999999" zPosition="1" />
 		<widget source="help" render="Label" position="10,367" size="655,108" font="Regular;20" foregroundColor="#999999" />
 		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key-red.png" position="75,475" zPosition="0" size="140,40" transparent="1" alphatest="on" />

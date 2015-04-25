@@ -57,9 +57,9 @@ def image(item=True, itemfont=False, pixmap=False):
 			return 28
 	if itemfont:
 		if imgVti:
-			return 37, 21
+			return 37
 		else:
-			return 28, 20
+			return 28
 	if pixmap:
 		if imgVti:
 			return "/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/cursor_vti.png"
@@ -687,7 +687,7 @@ class EMCImdbScan(Screen):
 class imdbSetup(Screen, ConfigListScreen):
 	skin = """
 		<screen position="center,center" size="550,400" title="EMC Cover search setup" >
-			<widget name="config" position="20,10" size="510,330" itemHeight="%s" font="Regular;%s" scrollbarMode="showOnDemand" />
+			<widget name="config" position="20,10" size="510,330" itemHeight="%s" scrollbarMode="showOnDemand" />
 			<widget name="key_red" position="0,350" size="140,40" valign="center" halign="center" zPosition="5" transparent="1" foregroundColor="#ffffff" font="Regular;18"/>
 			<widget name="key_green" position="140,350" size="140,40" valign="center" halign="center" zPosition="5" transparent="1" foregroundColor="#ffffff" font="Regular;18"/>
 			<ePixmap name="red" pixmap="skin_default/buttons/red.png" position="0,350" size="140,40" zPosition="4" transparent="1" alphatest="on"/>

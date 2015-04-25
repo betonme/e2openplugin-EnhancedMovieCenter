@@ -51,16 +51,16 @@ cutsParser = struct.Struct('>QI') # big-endian, 64-bit PTS and 32-bit type
 
 def image():
 	if imgVti:
-		return 30, 18
+		return 30
 	else:
-		return 28, 20
+		return 28
 
 
 class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 	skin = """
 	<screen name="EMCMenu" position="center,center" size="600,480" title="EMC menu">
 	<widget source="title" render="Label" position="10,10" size="580,35" font="Regular;27" halign="center" />
-	<widget source="menu" render="Listbox" position="10,55" size="580,430" itemHeight="%s" font="Regular;%s" scrollbarMode="showOnDemand" enableWrapAround="1">
+	<widget source="menu" render="Listbox" position="10,55" size="580,430" itemHeight="%s" scrollbarMode="showOnDemand" enableWrapAround="1">
 		<convert type="StringList" />
 	</widget>
 	</screen>""" % image()
