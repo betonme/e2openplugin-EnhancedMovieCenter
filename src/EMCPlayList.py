@@ -327,14 +327,14 @@ class PlayList(GUIComponent):
 
 def image():
 	if imgVti:
-		return 30, 18
+		return 30
 	else:
-		return 28, 20
+		return 28
 
 class EMCPlaylistSetup(Screen, ConfigListScreen):
 	skin = """
 		<screen position="center,center" size="600,435" title="EMC Playlist Setup">
-		<widget name="config" position="5,10" size="590,350" itemHeight="%s" font="Regular;%s" scrollbarMode="showOnDemand" />
+		<widget name="config" position="5,10" size="590,350" itemHeight="%s" scrollbarMode="showOnDemand" />
 		<widget name="cancel" position="105,390" size="140,30" valign="center" halign="center" zPosition="1" font="Regular;19" transparent="1" backgroundColor="red" />
 		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key-red_line.png" position="100,417" size="150,2" zPosition="0" alphatest="on" />
 		<widget name="save" position="355,390" size="140,30" valign="center" halign="center" zPosition="1" font="Regular;19" transparent="1" backgroundColor="green" />
