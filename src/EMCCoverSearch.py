@@ -30,7 +30,7 @@ from twisted.internet import defer
 from Components.config import *
 from Components.ConfigList import *
 
-from enigma import eListboxPythonMultiContent, eListbox, gFont, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_HALIGN_CENTER, loadPNG, RT_WRAP, eServiceReference
+from enigma import eListboxPythonMultiContent, eListbox, gFont, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_HALIGN_CENTER, RT_VALIGN_CENTER, loadPNG, RT_WRAP, eServiceReference
 from enigma import getDesktop
 from enigma import loadJPG
 
@@ -51,10 +51,16 @@ config.EMC.imdb.savetotxtfile = ConfigYesNo(default = False)
 
 def image(item=True, itemfont=False, pixmap=False):
 	if item:
-		if imgVti:
-			return 37
+		if getDesktop(0).size().width() == 1920:
+			if imgVti:
+				return 42
+			else:
+				return 40
 		else:
-			return 28
+			if imgVti:
+				return 37
+			else:
+				return 28
 	if itemfont:
 		if imgVti:
 			return 37
@@ -93,20 +99,28 @@ class imdblist(MenuList):
 		self.l.setFont(3, gFont("Regular", 20))
 		self.l.setFont(4, gFont("Regular", 22))
 		self.l.setFont(5, gFont("Regular", 24))
+		self.l.setFont(6, gFont("Regular", 28))
 
 def imdb_show(title, pp, elapsed, genre, search_title):
 	res = [ (title, pp, elapsed, genre, search_title) ]
 	s1=_("Exist") + "|" + _("N/A")
 	if not re.match('.*?(' + s1 + ')', elapsed):
 		elapsed = "%s ms." % elapsed
-	res.append(MultiContentEntryText(pos=(0, 0), size=(650, image()), font=4, text=search_title, flags=RT_HALIGN_LEFT))
-	res.append(MultiContentEntryText(pos=(660, 0), size=(172, image()), font=4, text=elapsed, flags=RT_HALIGN_LEFT))
+	if getDesktop(0).size().width() == 1920:
+		res.append(MultiContentEntryText(pos=(0, 0), size=(650, image()), font=6, text=search_title, flags=RT_HALIGN_LEFT|RT_VALIGN_CENTER))
+		res.append(MultiContentEntryText(pos=(660, 0), size=(172, image()), font=6, text=elapsed, flags=RT_HALIGN_LEFT|RT_VALIGN_CENTER))
+	else:
+		res.append(MultiContentEntryText(pos=(0, 0), size=(650, image()), font=4, text=search_title, flags=RT_HALIGN_LEFT|RT_VALIGN_CENTER))
+		res.append(MultiContentEntryText(pos=(660, 0), size=(172, image()), font=4, text=elapsed, flags=RT_HALIGN_LEFT|RT_VALIGN_CENTER))
 	return res
 
 def showCoverlist(title, url, path, art):
 	res = [ (title, url, path) ]
 	title = art + title
-	res.append(MultiContentEntryText(pos=(0, 0), size=(550, image()), font=4, text=title, flags=RT_HALIGN_LEFT))
+	if getDesktop(0).size().width() == 1920:
+		res.append(MultiContentEntryText(pos=(0, 0), size=(550, image()), font=6, text=title, flags=RT_HALIGN_LEFT|RT_VALIGN_CENTER))
+	else:
+		res.append(MultiContentEntryText(pos=(0, 0), size=(550, image()), font=4, text=title, flags=RT_HALIGN_LEFT|RT_VALIGN_CENTER))
 	return res
 
 class EMCImdbScan(Screen):
@@ -905,7 +919,7 @@ class getCover(Screen):
 
 	def search_done(self):
 		self["menulist"].l.setList(self.menulist)
-		self["menulist"].l.setItemHeight(28)
+		self["menulist"].l.setItemHeight(image())
 		self.check = "true"
 		self.showInfo()
 		self.einzel_end_time = time.clock()

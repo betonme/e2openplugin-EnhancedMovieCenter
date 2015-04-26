@@ -1641,6 +1641,7 @@ class MovieCenter(GUIComponent):
 		self.CoolBarPos = -1
 		self.CoolBarHPos = 8
 		self.CoolIconHPos = 0
+		self.CoolSelNumTxtWidth = 26
 
 		self.CoolBarSize = parseSize("55,10", ((1,1),(1,1)))
 		self.CoolBarSizeSa = parseSize("55,10", ((1,1),(1,1)))
@@ -1756,6 +1757,8 @@ class MovieCenter(GUIComponent):
 				elif attrib == "CoolTimePos":
 					pass
 
+				elif attrib == "CoolSelNumTxtWidth":
+					self.CoolSelNumTxtWidth = int(value)
 				elif attrib == "CoolProgressPos":
 					self.CoolProgressPos = int(value)
 				elif attrib == "CoolProgressHPos":
@@ -1967,9 +1970,8 @@ class MovieCenter(GUIComponent):
 					else:
 						offset = 5
 				else:
-
-					append(MultiContentEntryText(pos=(5, self.CoolIconHPos), size=(26, globalHeight), font=3, flags=RT_HALIGN_LEFT, text=selnumtxt))
-					offset += 35
+					append(MultiContentEntryText(pos=(5, self.CoolIconHPos), size=(self.CoolSelNumTxtWidth, globalHeight), font=3, flags=RT_HALIGN_LEFT, text=selnumtxt))
+					offset += 5 + self.CoolSelNumTxtWidth + 4
 
 				movie_metaload = config.EMC.movie_metaload.value
 				if not config.EMC.skin_able.value:
