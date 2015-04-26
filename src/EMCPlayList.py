@@ -4,7 +4,7 @@
 import os
 
 from __init__ import _
-from enigma import eListboxPythonMultiContent, RT_VALIGN_CENTER, RT_HALIGN_RIGHT, gFont, eListbox
+from enigma import eListboxPythonMultiContent, RT_VALIGN_CENTER, RT_HALIGN_RIGHT, gFont, eListbox, getDesktop
 
 from Screens.Screen import Screen
 from Screens.ChoiceBox import ChoiceBox
@@ -12,7 +12,7 @@ from Screens.InputBox import InputBox
 from Screens.LocationBox import LocationBox
 from Screens.MessageBox import MessageBox
 from Screens.VirtualKeyBoard import VirtualKeyBoard
-from Components.ActionMap import ActionMap
+from Components.ActionMap import *
 from Components.Button import Button
 from Components.config import *
 from Components.ConfigList import *
@@ -74,40 +74,55 @@ class EMCPlaylist():
 emcplaylist = EMCPlaylist()
 
 class EMCPlaylistScreen(Screen):
-	skin = """
-		<screen position="center,center" size="710,510" title="EMC Playlist" >
-		<widget name="playlist" position="5,5" size="700,450" itemHeight="30" scrollbarMode="showOnDemand" posColor="#FFFFFF" posColorSel="#FFFFFF" nameColor="#FFFFFF" nameColorSel="#FFFFFF" />
-		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/line_blue_playlist.png" position="25,453" size="660,2" alphatest="on" />
-		<widget name="cancel" position="17,460" size="140,40" valign="center" halign="center" zPosition="1" font="Regular;17" transparent="1" backgroundColor="red" />
-		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key-red_line.png" position="12,492" size="150,2" zPosition="0" alphatest="on" />
-		<widget name="save" position="192,460" size="140,40" valign="center" halign="center" zPosition="1" font="Regular;17" transparent="1" backgroundColor="green" />
-		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key-green_line.png" position="187,492" size="150,2" zPosition="0" alphatest="on" />
-		<widget name="delete" position="372,460" size="140,40" valign="center" halign="center" zPosition="1" font="Regular;17" transparent="1" backgroundColor="yellow" />
-		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key-yellow_line.png" position="367,492" size="150,2" zPosition="0" alphatest="on" />
-		<widget name="deleteall" position="552,460" size="140,40" valign="center" halign="center" zPosition="1" font="Regular;17" transparent="1" backgroundColor="blue" />
-		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key-blue_line.png" position="547,492" size="150,2" zPosition="0" alphatest="on" />
-	</screen>"""
+	if getDesktop(0).size().width() == 1920:
+		skin = """
+			<screen position="center,center" size="992,714" title="EMC Playlist" >
+			<widget name="playlist" position="5,5" size="982,630" itemHeight="40" scrollbarMode="showOnDemand" posWidth="63" nameWidth="852" posColor="#FFFFFF" posColorSel="#FFFFFF" nameColor="#FFFFFF" nameColorSel="#FFFFFF" />
+			<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/line_blue_playlist.png" position="170,653" size="660,2" alphatest="on" />
+			<widget name="cancel" position="27,657" size="180,40" valign="center" halign="center" zPosition="1" font="Regular;26" transparent="1" backgroundColor="red" />
+			<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key-red_line.png" position="42,692" size="150,2" zPosition="0" alphatest="on" />
+			<widget name="save" position="282,657" size="180,40" valign="center" halign="center" zPosition="1" font="Regular;26" transparent="1" backgroundColor="green" />
+			<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key-green_line.png" position="297,692" size="150,2" zPosition="0" alphatest="on" />
+			<widget name="delete" position="535,657" size="180,40" valign="center" halign="center" zPosition="1" font="Regular;26" transparent="1" backgroundColor="yellow" />
+			<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key-yellow_line.png" position="550,692" size="150,2" zPosition="0" alphatest="on" />
+			<widget name="deleteall" position="785,657" size="180,40" valign="center" halign="center" zPosition="1" font="Regular;26" transparent="1" backgroundColor="blue" />
+			<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key-blue_line.png" position="800,692" size="150,2" zPosition="0" alphatest="on" />
+		</screen>"""
+	else:
+		skin = """
+			<screen position="center,center" size="710,510" title="EMC Playlist" >
+			<widget name="playlist" position="5,5" size="700,450" itemHeight="30" scrollbarMode="showOnDemand" posWidth="45" nameWidth="610" posColor="#FFFFFF" posColorSel="#FFFFFF" nameColor="#FFFFFF" nameColorSel="#FFFFFF" />
+			<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/line_blue_playlist.png" position="25,453" size="660,2" alphatest="on" />
+			<widget name="cancel" position="17,460" size="140,40" valign="center" halign="center" zPosition="1" font="Regular;17" transparent="1" backgroundColor="red" />
+			<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key-red_line.png" position="12,492" size="150,2" zPosition="0" alphatest="on" />
+			<widget name="save" position="192,460" size="140,40" valign="center" halign="center" zPosition="1" font="Regular;17" transparent="1" backgroundColor="green" />
+			<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key-green_line.png" position="187,492" size="150,2" zPosition="0" alphatest="on" />
+			<widget name="delete" position="372,460" size="140,40" valign="center" halign="center" zPosition="1" font="Regular;17" transparent="1" backgroundColor="yellow" />
+			<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key-yellow_line.png" position="367,492" size="150,2" zPosition="0" alphatest="on" />
+			<widget name="deleteall" position="552,460" size="140,40" valign="center" halign="center" zPosition="1" font="Regular;17" transparent="1" backgroundColor="blue" />
+			<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key-blue_line.png" position="547,492" size="150,2" zPosition="0" alphatest="on" />
+		</screen>"""
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		self.skinName = "EMCPlaylist"
-		self.spath = config.EMC.playlist.default_playlist_path.value + config.EMC.playlist.default_playlist_name.value
+		self.spath = None
 		self["playlist"] = PlayList()
 		self["save"] = Button(_("Save"))
 		self["cancel"] = Button(_("Cancel"))
 		self["delete"] = Button(_("Delete Entry"))
 		self["deleteall"] = Button(_("Delete All"))
 
-		self["actions"] = ActionMap(["SetupActions", "ColorActions"], 
+		self["actions"] = HelpableActionMap(self, "PluginMovieSelectionActions",
 		{
-			"ok": self.keyOk,
-			"cancel": self.keyRed,
-			"menu": self.keySetup,
-			"red": self.keyRed,
-			"green": self.keyGreen,
-			"yellow": self.keyYellow,
-			"blue": self.keyBlue,
-		}, -2)
+			"EMCOK":	self.keyOk,
+			"EMCEXIT":	self.keyRed,
+			"EMCMENU":	self.keySetup,
+			"EMCRed":	self.keyRed,
+			"EMCGREEN":	self.keyGreen,
+			"EMCYELLOW":	self.keyYellow,
+			"EMCBLUE":	self.keyBlue,
+		}, -1)
 
 		self.onClose.append(self.__closed)
 		self.onLayoutFinish.append(self.__layoutFinished)
@@ -142,6 +157,7 @@ class EMCPlaylistScreen(Screen):
 
 	def keyGreen(self):
 		if emcplaylist.getCurrentPlaylist() != {}:
+			self.spath = config.EMC.playlist.default_playlist_path.value + config.EMC.playlist.default_playlist_name.value
 			self.checkPlaylistExist()
 
 	def checkPlaylistExist(self, path=None):
@@ -203,19 +219,31 @@ class PlayList(GUIComponent):
 	def __init__(self, enableWrapAround = True):
 		GUIComponent.__init__(self)
 
-		if imgVti:
-			self.posFont = parseFont("Regular;18", ((1,1),(1,1)))
-			self.nameFont = parseFont("Regular;18", ((1,1),(1,1)))
+		self.screenwidth = getDesktop(0).size().width()
+		if self.screenwidth and self.screenwidth == 1920:
+			if imgVti:
+				self.posFont = parseFont("Regular;26", ((1,1),(1,1)))
+				self.nameFont = parseFont("Regular;26", ((1,1),(1,1)))
+			else:
+				self.posFont = parseFont("Regular;28", ((1,1),(1,1)))
+				self.nameFont = parseFont("Regular;28", ((1,1),(1,1)))
+			self.itemHeight = 40
 		else:
-			self.posFont = parseFont("Regular;20", ((1,1),(1,1)))
-			self.nameFont = parseFont("Regular;20", ((1,1),(1,1)))
-
-		self.itemHeight = 30
+			if imgVti:
+				self.posFont = parseFont("Regular;18", ((1,1),(1,1)))
+				self.nameFont = parseFont("Regular;18", ((1,1),(1,1)))
+			else:
+				self.posFont = parseFont("Regular;20", ((1,1),(1,1)))
+				self.nameFont = parseFont("Regular;20", ((1,1),(1,1)))
+			self.itemHeight = 30
 
 		self.posColor = 0xFFFFFF
 		self.posColorSel = 0xFFFFFF
 		self.nameColor = 0xFFFFFF
 		self.nameColorSel = 0xFFFFFF
+
+		self.posWidth = -1
+		self.nameWidth = -1
 
 		self.l = eListboxPythonMultiContent()
 		self.l.setFont(0, self.posFont)
@@ -240,6 +268,10 @@ class PlayList(GUIComponent):
 				elif attrib == "nameFont":
 					self.nameFont = parseFont(value, ((1,1),(1,1)))
 					self.l.setFont(1, self.nameFont)
+				elif attrib == "posWidth":
+					self.posWidth = int(value)
+				elif attrib == "nameWidth":
+					self.nameWidth = int(value)
 				elif attrib == "posColor":
 					self.posColor = parseColor(value).argb()
 				elif attrib == "posColorSel":
@@ -305,8 +337,12 @@ class PlayList(GUIComponent):
 				metastring = self.getMetaInfos(path)
 				if metastring != "":
 					name = name + " - " + metastring
-		entrys.append((eListboxPythonMultiContent.TYPE_TEXT, 5, 1, 45, 26, 0, RT_VALIGN_CENTER|RT_HALIGN_RIGHT, pos, self.posColor, self.posColorSel))
-		entrys.append((eListboxPythonMultiContent.TYPE_TEXT,80, 1, 610, 26, 1, RT_VALIGN_CENTER, name, self.nameColor, self.nameColorSel))
+		if self.screenwidth and self.screenwidth == 1920:
+			entrys.append((eListboxPythonMultiContent.TYPE_TEXT, 5, 1, self.posWidth, 34, 0, RT_VALIGN_CENTER|RT_HALIGN_RIGHT, pos, self.posColor, self.posColorSel))
+			entrys.append((eListboxPythonMultiContent.TYPE_TEXT,5 + self.posWidth + 30, 1, self.nameWidth, 34, 1, RT_VALIGN_CENTER, name, self.nameColor, self.nameColorSel))
+		else:
+			entrys.append((eListboxPythonMultiContent.TYPE_TEXT, 5, 1, self.posWidth, 26, 0, RT_VALIGN_CENTER|RT_HALIGN_RIGHT, pos, self.posColor, self.posColorSel))
+			entrys.append((eListboxPythonMultiContent.TYPE_TEXT,5 + self.posWidth + 20, 1, self.nameWidth, 26, 1, RT_VALIGN_CENTER, name, self.nameColor, self.nameColorSel))
 		return entrys
 
 	def addEntry(self, pos, entry):
@@ -326,20 +362,36 @@ class PlayList(GUIComponent):
 
 
 def image():
-	if imgVti:
-		return 30
+	if getDesktop(0).size().width() == 1920:
+		if imgVti:
+			return 40
+		else:
+			return 38
 	else:
-		return 28
+		if imgVti:
+			return 30
+		else:
+			return 28
 
 class EMCPlaylistSetup(Screen, ConfigListScreen):
-	skin = """
-		<screen position="center,center" size="600,435" title="EMC Playlist Setup">
-		<widget name="config" position="5,10" size="590,350" itemHeight="%s" scrollbarMode="showOnDemand" />
-		<widget name="cancel" position="105,390" size="140,30" valign="center" halign="center" zPosition="1" font="Regular;19" transparent="1" backgroundColor="red" />
-		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key-red_line.png" position="100,417" size="150,2" zPosition="0" alphatest="on" />
-		<widget name="save" position="355,390" size="140,30" valign="center" halign="center" zPosition="1" font="Regular;19" transparent="1" backgroundColor="green" />
-		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key-green_line.png" position="350,417" size="150,2" zPosition="0" alphatest="on" />
-	</screen>""" % image()
+	if getDesktop(0).size().width() == 1920:
+		skin = """
+			<screen position="center,center" size="750,535" title="EMC Playlist Setup">
+			<widget name="config" position="5,10" size="740,450" itemHeight="%s" scrollbarMode="showOnDemand" />
+			<widget name="cancel" position="155,480" size="140,40" valign="center" halign="center" zPosition="1" font="Regular;26" transparent="1" backgroundColor="red" />
+			<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key-red_line.png" position="150,517" size="150,2" zPosition="0" alphatest="on" />
+			<widget name="save" position="465,480" size="140,40" valign="center" halign="center" zPosition="1" font="Regular;26" transparent="1" backgroundColor="green" />
+			<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key-green_line.png" position="460,517" size="150,2" zPosition="0" alphatest="on" />
+		</screen>""" % image()
+	else:
+		skin = """
+			<screen position="center,center" size="600,435" title="EMC Playlist Setup">
+			<widget name="config" position="5,10" size="590,350" itemHeight="%s" scrollbarMode="showOnDemand" />
+			<widget name="cancel" position="105,390" size="140,30" valign="center" halign="center" zPosition="1" font="Regular;19" transparent="1" backgroundColor="red" />
+			<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key-red_line.png" position="100,417" size="150,2" zPosition="0" alphatest="on" />
+			<widget name="save" position="355,390" size="140,30" valign="center" halign="center" zPosition="1" font="Regular;19" transparent="1" backgroundColor="green" />
+			<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key-green_line.png" position="350,417" size="150,2" zPosition="0" alphatest="on" />
+		</screen>""" % image()
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
