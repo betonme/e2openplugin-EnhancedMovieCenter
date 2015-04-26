@@ -525,11 +525,24 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		except:
 			countsizeworker.MessagePump.recv_msg.get().append(self.gotThreadMsg)
 
+		self.onClose.append(self.cancelThreadMsg)
+
 	def gotThreadMsg(self, msg):
+		print'[EMCMovieSeletion] gotThreadMsg'
 		from MovieCenter import countsizeworker
 		msg = countsizeworker.Message.pop()
 		if msg[0] == 2:
 			self["list"].refreshList()
+
+	def cancelThreadMsg(self):
+		print'[EMCMovieSeletion] cancelThreadMsg'
+		from MovieCenter import countsizeworker
+		countsizeworker.Cancel()
+		try:
+			countsizeworker.MessagePump.recv_msg.get().remove(self.gotThreadMsg)
+		except:
+			pass
+		self.csw_pump_recv_msg_conn = None
 
 	def isProtected(self):
 		try:
@@ -612,14 +625,6 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 
 		# reset selected Files List, to reopen the list without the last selected
 		self.resetSelectionList()
-
-		from MovieCenter import countsizeworker
-		countsizeworker.Cancel()
-		try:
-			countsizeworker.MessagePump.recv_msg.get().remove(self.gotThreadMsg)
-		except:
-			pass
-		self.csw_pump_recv_msg_conn = None
 
 		self.close()
 
