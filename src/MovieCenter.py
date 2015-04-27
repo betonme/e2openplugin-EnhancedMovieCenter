@@ -1653,6 +1653,7 @@ class MovieCenter(GUIComponent):
 		self.CoolPiconWidth = -1
 		self.CoolPiconHeight = -1
 		self.CoolCSWidth = 110
+		self.CoolDirInfoWidth = -1
 
 		self.DefaultColor = 0xFFFFFF
 		self.TitleColor = 0xFFFFFF
@@ -1757,6 +1758,8 @@ class MovieCenter(GUIComponent):
 				elif attrib == "CoolTimePos":
 					pass
 
+				elif attrib == "CoolDirInfoWidth":
+					self.CoolDirInfoWidth = int(value)
 				elif attrib == "CoolSelNumTxtWidth":
 					self.CoolSelNumTxtWidth = int(value)
 				elif attrib == "CoolProgressPos":
@@ -1999,15 +2002,25 @@ class MovieCenter(GUIComponent):
 					textSizeY = globalHeight
 					if ext in extTS:
 						if config.EMC.movie_picons.value:
-							piconPos = config.EMC.movie_picons_pos.value
-							if metaref != "1_0_0_0_0_0_0_0_0_0":
-								if newPiconRenderer:
-									if config.EMC.movie_picons_path_own.value:
-										picon = config.EMC.movie_picons_path.value + "/" + metaref + '.png'
-									else:
-										picon = getPiconName(metaref)
-								else:
+							# first we need to check if picon-file exists
+							# TODO(next days): bring this out from here
+							# make "metaref" to nothing in/over reloadInternal
+							# this is only Gui-stuff here
+							# same for isSkinable, and make the code shorter for that
+							if newPiconRenderer:
+								if config.EMC.movie_picons_path_own.value:
 									picon = config.EMC.movie_picons_path.value + "/" + metaref + '.png'
+								else:
+									picon = getPiconName(metaref)
+							else:
+								picon = config.EMC.movie_picons_path.value + "/" + metaref + '.png'
+							if fileExists(picon):
+								piconExists = True
+							else:
+								piconExists = False
+							# now we can build the entrys
+							piconPos = config.EMC.movie_picons_pos.value
+							if metaref and metaref != "1_0_0_0_0_0_0_0_0_0" and piconExists:
 								picon = loadPNG(picon)
 								piconH = self.l.getItemSize().height() - 6
 								piconW = piconH * 2 - 5
@@ -2090,18 +2103,6 @@ class MovieCenter(GUIComponent):
 					else:
 						CoolProgressPos = -1
 
-					# get picon-values
-					if config.EMC.movie_picons.value:
-						if metaref != "1_0_0_0_0_0_0_0_0_0":
-							CoolPiconPos = self.CoolPiconPos
-							CoolMoviePiconPos = self.CoolMoviePiconPos
-						else:
-							CoolPiconPos = -1
-							CoolMoviePiconPos = -1
-					else:
-						CoolPiconPos = -1
-						CoolMoviePiconPos = -1
-
 					# TODO: Progress.value for blue structure
 					if ext in extBlu or bluiso:
 						CoolProgressPos = -1
@@ -2118,15 +2119,32 @@ class MovieCenter(GUIComponent):
 					if movie_metaload:
 						if eventtitle != "":
 							title = title + " - " + eventtitle
+					# get picon-values
+					if config.EMC.movie_picons.value:
+						# first we need to check if picon-file exists
+						if newPiconRenderer:
+							if config.EMC.movie_picons_path_own.value:
+								picon = config.EMC.movie_picons_path.value + "/" + metaref + '.png'
+							else:
+								picon = getPiconName(metaref)
+						else:
+							picon = config.EMC.movie_picons_path.value + "/" + metaref + '.png'
+						if fileExists(picon):
+							piconExists = True
+						else:
+							piconExists = False
+						if metaref and metaref != "1_0_0_0_0_0_0_0_0_0" and piconExists:
+							CoolPiconPos = self.CoolPiconPos
+							CoolMoviePiconPos = self.CoolMoviePiconPos
+						else:
+							CoolPiconPos = -1
+							CoolMoviePiconPos = -1
+					else:
+						CoolPiconPos = -1
+						CoolMoviePiconPos = -1
+
 					if ext in extTS:
 						if CoolPiconPos != -1 and CoolMoviePiconPos != -1:
-							if newPiconRenderer:
-								if config.EMC.movie_picons_path_own.value:
-									picon = config.EMC.movie_picons_path.value + "/" + metaref + '.png'
-								else:
-									picon = getPiconName(metaref)
-							else:
-								picon = config.EMC.movie_picons_path.value + "/" + metaref + '.png'
 							picon = loadPNG(picon)
 							if self.CoolPiconHeight == -1:
 								self.CoolPiconHeight = self.l.getItemSize().height() - 6
@@ -2222,6 +2240,7 @@ class MovieCenter(GUIComponent):
 						else:
 							# Trashcan is empty
 							pixmap = self.pic_trashcan
+						self.CoolCSWidth = 110
 					else:
 						pixmap = self.pic_trashcan
 						if config.EMC.directories_info.value == "D":
@@ -2339,15 +2358,27 @@ class MovieCenter(GUIComponent):
 				val = config.EMC.directories_info.value
 				if val == "C" or val == "CS" or val == "S":
 					if self.fullhd:
-						CoolCSWidth = int(self.CoolCSWidth * 1.5)
+						if not config.EMC.skin_able.value:
+							CoolCSWidth = int(self.CoolCSWidth * 1.5)
+						else:
+							if self.CoolDirInfoWidth != -1:
+								CoolCSWidth = self.CoolDirInfoWidth
+							else:
+								CoolCSWidth = int(self.CoolCSWidth * 1.5)
 					else:
-						CoolCSWidth = self.CoolCSWidth
+						if not config.EMC.skin_able.value:
+							CoolCSWidth = self.CoolCSWidth
+						else:
+							if self.CoolDirInfoWidth != -1:
+								CoolCSWidth = self.CoolDirInfoWidth
+							else:
+								CoolCSWidth = self.CoolCSWidth
 					if config.EMC.count_size_position.value == "1":
 						halign = RT_HALIGN_RIGHT
 					else:
 						halign = RT_HALIGN_CENTER
 					if datetext != "":
-						append(MultiContentEntryText(pos=(self.l.getItemSize().width() - CoolCSWidth, self.CoolMovieHPos), size=(CoolCSWidth, globalHeight), font=usedDateFont, flags=halign, text=datetext))
+						append(MultiContentEntryText(pos=(self.l.getItemSize().width() - CoolCSWidth - 5, self.CoolMovieHPos), size=(CoolCSWidth, globalHeight), font=usedDateFont, flags=halign, text=datetext))
 					else:
 						useIcon = config.EMC.count_size_default_icon.value
 						if useIcon:
