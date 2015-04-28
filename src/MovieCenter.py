@@ -613,9 +613,9 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 
 		elif mode == "A":	# Alpha sort
 			if not order:
-				sortlist.sort( key=lambda x: (x[1],-x[12],-x[13],-x[14],-x[15],-x[16],x[8]) )
-			else:
 				sortlist.sort( key=lambda x: (x[1],x[12],x[13],x[14],x[15],x[16],-x[8]) )
+			else:
+				sortlist.sort( key=lambda x: (x[1],-x[12],-x[13],-x[14],-x[15],-x[16],x[8]) )
 
 		elif mode == "ADN":	# Alpha sort with new date, newest first
 			if not order:
@@ -625,9 +625,9 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 
 		elif mode == "AM":	# Alpha sort with meta
 			if not order:
-				sortlist.sort( key=lambda x: (x[1],x[9],-x[12],-x[13],-x[14],-x[15],-x[16],x[8]) )
-			else:
 				sortlist.sort( key=lambda x: (x[1],x[9],x[12],x[13],x[14],x[15],x[16],-x[8]) )
+			else:
+				sortlist.sort( key=lambda x: (x[1],x[9],-x[12],-x[13],-x[14],-x[15],-x[16],x[8]) )
 
 		elif mode == "AMDN":	# Alpha sort with meta and new date, newest first
 			if not order:
