@@ -613,9 +613,9 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 
 		elif mode == "A":	# Alpha sort
 			if not order:
-				sortlist.sort( key=lambda x: (x[1],x[12],x[13],x[14],x[15],x[16],-x[8]) )
+				sortlist.sort( key=lambda x: (x[1],x[12],x[13],x[14],x[15],x[16],x[8]) )
 			else:
-				sortlist.sort( key=lambda x: (x[1],-x[12],-x[13],-x[14],-x[15],-x[16],x[8]) )
+				sortlist.sort( key=lambda x: (x[1],-x[12],-x[13],-x[14],-x[15],-x[16],-x[8]) )
 
 		elif mode == "ADN":	# Alpha sort with new date, newest first
 			if not order:
@@ -625,9 +625,9 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 
 		elif mode == "AM":	# Alpha sort with meta
 			if not order:
-				sortlist.sort( key=lambda x: (x[1],x[9],x[12],x[13],x[14],x[15],x[16],-x[8]) )
+				sortlist.sort( key=lambda x: (x[1],x[9],x[12],x[13],x[14],x[15],x[16],x[8]) )
 			else:
-				sortlist.sort( key=lambda x: (x[1],x[9],-x[12],-x[13],-x[14],-x[15],-x[16],x[8]) )
+				sortlist.sort( key=lambda x: (x[1],x[9],-x[12],-x[13],-x[14],-x[15],-x[16],-x[8]) )
 
 		elif mode == "AMDN":	# Alpha sort with meta and new date, newest first
 			if not order:
@@ -1140,12 +1140,13 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 				if path.endswith("Latest Recordings"):
 					pass
 				else:
-					newDate = self.checkDate(path, True)
-					sortyear = newDate[0]
-					sortmonth = newDate[1]
-					sortday = newDate[2]
-					sorthour = newDate[3]
-					sortmin = newDate[4]
+					if title not in self.topdirlist:
+						newDate = self.checkDate(path, True)
+						sortyear = newDate[0]
+						sortmonth = newDate[1]
+						sortday = newDate[2]
+						sorthour = newDate[3]
+						sortmin = newDate[4]
 				append((service, sorttitle, date, title, path, 0, 0, ext, 0, sorteventtitle, eventtitle, metaref, int(sortyear or 0), int(sortmonth or 0), int(sortday or 0), int(sorthour or 0), int(sortmin or 0)))
 
 		# Add file entries to the list

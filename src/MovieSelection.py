@@ -2078,78 +2078,79 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		otherCount = 0
 		otherFiles = False
 		if confirmed:
-			entrycount = len(self.tmpSelList)
-			if entrycount == 1:
-				nameCount = 0
-				service = self.tmpSelList[0]
-				path = os.path.splitext( service.getPath() )[0]
-				# before we go, let us check if other mediafiles with the same name exists
-				# if they dont exists, we go directly to delete with all others files they need it
-				for x in extVideo:
-					f = path + str(x)
-					if fileExists(f):
-						nameCount += 1
-				if nameCount <= 1:
-					self.deleteOtherConfimation(True)
-				else:
-					# we search for other files for this file, like covers, etc.
-					extsOther = [".eit", ".jpg", ".txt", ".poster.jpg", ".imdbquery2.html"]
-					for x in extsOther:
-						f = path + str(x)
-						if fileExists(f):
-							other += "%s\n" % f
-							otherFiles = True
-					if otherFiles:
-						otherMes = _("The following files are used for other entrys in List !\n\nAlso delete these files?\n\n%s") % other
-						self.deleteOtherQ(otherMes)
-					else:
-						self.deleteMovieConfimation(True)
-
-			if entrycount > 1:
-				checkList = []
-				pathList = []
-				for service in self.tmpSelList:
-					pathList.append(service.getPath())
-
-				for service in self.tmpSelList:
+			if self.tmpSelList is not None:
+				entrycount = len(self.tmpSelList)
+				if entrycount == 1:
 					nameCount = 0
+					service = self.tmpSelList[0]
 					path = os.path.splitext( service.getPath() )[0]
 					# before we go, let us check if other mediafiles with the same name exists
 					# if they dont exists, we go directly to delete with all others files they need it
 					for x in extVideo:
 						f = path + str(x)
 						if fileExists(f):
-							if f == service.getPath():
-								nameCount += 1
-							if f not in pathList:
-								nameCount += 1
-					if nameCount > 1:
-						checkList.append(service)
-
-				if checkList != []:
-					self.tmpSelListOther = checkList
-
-				if self.tmpSelListOther is not None:
-					for x in self.tmpSelListOther:
-						path = os.path.splitext( x.getPath() )[0]
+							nameCount += 1
+					if nameCount <= 1:
+						self.deleteOtherConfimation(True)
+					else:
+						# we search for other files for this file, like covers, etc.
 						extsOther = [".eit", ".jpg", ".txt", ".poster.jpg", ".imdbquery2.html"]
 						for x in extsOther:
 							f = path + str(x)
 							if fileExists(f):
-								otherCount += 1
-								if otherCount <= 9:
-									other += "%s\n" % f
-								if otherCount == 10:
-									other += "%s\n...." % f
+								other += "%s\n" % f
 								otherFiles = True
+						if otherFiles:
+							otherMes = _("The following files are used for other entrys in List !\n\nAlso delete these files?\n\n%s") % other
+							self.deleteOtherQ(otherMes)
+						else:
+							self.deleteMovieConfimation(True)
 
-					if otherFiles:
-						otherMes = _("The following files are used for other entrys in List !\n\nAlso delete these files?\n\n%s") % other
-						self.deleteOtherListQ(otherMes)
+				if entrycount > 1:
+					checkList = []
+					pathList = []
+					for service in self.tmpSelList:
+						pathList.append(service.getPath())
+
+					for service in self.tmpSelList:
+						nameCount = 0
+						path = os.path.splitext( service.getPath() )[0]
+						# before we go, let us check if other mediafiles with the same name exists
+						# if they dont exists, we go directly to delete with all others files they need it
+						for x in extVideo:
+							f = path + str(x)
+							if fileExists(f):
+								if f == service.getPath():
+									nameCount += 1
+								if f not in pathList:
+									nameCount += 1
+						if nameCount > 1:
+							checkList.append(service)
+
+					if checkList != []:
+						self.tmpSelListOther = checkList
+
+					if self.tmpSelListOther is not None:
+						for x in self.tmpSelListOther:
+							path = os.path.splitext( x.getPath() )[0]
+							extsOther = [".eit", ".jpg", ".txt", ".poster.jpg", ".imdbquery2.html"]
+							for x in extsOther:
+								f = path + str(x)
+								if fileExists(f):
+									otherCount += 1
+									if otherCount <= 9:
+										other += "%s\n" % f
+									if otherCount == 10:
+										other += "%s\n...." % f
+									otherFiles = True
+
+						if otherFiles:
+							otherMes = _("The following files are used for other entrys in List !\n\nAlso delete these files?\n\n%s") % other
+							self.deleteOtherListQ(otherMes)
+						else:
+							self.deleteMovieConfimation(True)
 					else:
-						self.deleteMovieConfimation(True)
-				else:
-					self.deleteOtherListConfimation(True)
+						self.deleteOtherListConfimation(True)
 
 	def deleteOtherQ(self, otherMes):
 		self.session.openWithCallback(self.deleteOtherConfimation, MessageBox, otherMes, MessageBox.TYPE_YESNO )
