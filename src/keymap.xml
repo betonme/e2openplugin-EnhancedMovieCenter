@@ -27,6 +27,8 @@
 		<key id="KEY_RADIO" mapto="showExtensions" flags="b" />
 		<key id="KEY_GREEN" mapto="EMCGreen" flags="m" />
 		<key id="KEY_INFO" mapto="movieInfo" flags="b" />
+		<key id="KEY_PREVIOUS" mapto="prevTitle" flags="b" />
+		<key id="KEY_NEXT" mapto="nextTitle" flags="b" />
 <!--  With "KEY_LEFT" & "KEY_RIGHT" at map "EMCDVDPlayerActions" works also in the regular player.
 		<key id="KEY_LEFT" mapto="seekBack" flags="b" />
 		<key id="KEY_RIGHT" mapto="seekFwd" flags="b" />

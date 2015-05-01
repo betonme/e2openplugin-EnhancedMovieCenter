@@ -180,9 +180,11 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 		self["GeneralPlayerPlaybackActions"] = HelpableActionMap(self, "EMCGeneralPlayerActions",
 			{
 				"showExtensions": (self.openExtensions, _("view extensions...")),
-				"EMCGreen":	(self.CoolAVSwitch,			_("Format AVSwitch")),
+				"EMCGreen":	(self.CoolAVSwitch, _("Format AVSwitch")),
 				"seekFwd": (self.seekFwd, _("Seek forward")),
 				"seekBack": (self.seekBack, _("Seek backward")),
+				"nextTitle": (self.nextTitle, _("jump forward to the next title")),
+				"prevTitle": (self.prevTitle, _("jump back to the previous title")),
 				"movieInfo": (self.infoMovie, _("Movie information")),
 			}) # default priority
 
@@ -691,16 +693,26 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 				self.showAfterSeek()
 
 	def nextTitle(self):
-		if self.sendKey(iServiceKeys.keyUser+5):
-			if config.usage.show_infobar_on_skip.value:
-				# InfoBarSeek
-				self.showAfterSeek()
+		if self.dvdScreen:
+			if self.sendKey(iServiceKeys.keyUser+5):
+				if config.usage.show_infobar_on_skip.value:
+					# InfoBarSeek
+					self.showAfterSeek()
+		else:
+			if len(self.playlist) > 1:
+				self.evEOF(False)
 
 	def prevTitle(self):
-		if self.sendKey(iServiceKeys.keyUser+6):
-			if config.usage.show_infobar_on_skip.value:
-				# InfoBarSeek
-				self.showAfterSeek()
+		if self.dvdScreen:
+			if self.sendKey(iServiceKeys.keyUser+6):
+				if config.usage.show_infobar_on_skip.value:
+					# InfoBarSeek
+					self.showAfterSeek()
+		else:
+			if len(self.playlist) > 1:
+				if self.playcount >= 1:
+					self.playcount -= 2
+					self.evEOF(False)
 
 	def enterDVDMenu(self):
 		self.sendKey(iServiceKeys.keyUser+7)
