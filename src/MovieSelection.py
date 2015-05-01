@@ -1043,9 +1043,9 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			# Simulate a recursive reload to get all files and titles
 			# walk through entire tree below current path. Might take a bit long on huge disks...
 			selectedlist = self["list"].reload(self.currentPath, simulate=True, recursive=True)
-			filelist = [ (title , path ) for (service, sorttitle, date, title, path, selnum, length, ext, cutnr, sorteventtitle, eventtitle, metaref, sortyear, sortmonth, sortday, sorthour, sortmin) in selectedlist ]
+			filelist = [ (title , path ) for (service, sorttitle, date, title, path, selnum, length, ext, cutnr, sorteventtitle, eventtitle, piconpath, sortyear, sortmonth, sortday, sorthour, sortmin) in selectedlist ]
 		else:
-			filelist = [ (title , path ) for (service, sorttitle, date, title, path, selnum, length, ext, cutnr, sorteventtitle, eventtitle, metaref, sortyear, sortmonth, sortday, sorthour, sortmin) in self["list"].getList() if ext in plyAll ]
+			filelist = [ (title , path ) for (service, sorttitle, date, title, path, selnum, length, ext, cutnr, sorteventtitle, eventtitle, piconpath, sortyear, sortmonth, sortday, sorthour, sortmin) in self["list"].getList() if ext in plyAll ]
 
 		# Collect imdb data
 		self.session.open(EMCImdbScan, filelist)

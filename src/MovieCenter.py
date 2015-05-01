@@ -591,7 +591,7 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 		#   no sub tuples are possible
 		#   no negotiation is possible
 		# Faster if separate? sortlist.reverse()
-		# Tuple: (service, sorttitle, date, title, path, selectionnumber, length, ext, cutnr, sorteventtitle, eventtitle, metaref, sortyear, sortmonth, sortday, sorthour, sortmin)
+		# Tuple: (service, sorttitle, date, title, path, selectionnumber, length, ext, cutnr, sorteventtitle, eventtitle, piconpath, sortyear, sortmonth, sortday, sorthour, sortmin)
 		mode, order = self.actualSort
 		if mode is None:
 			mode = self.actualSort[0]
@@ -1101,7 +1101,7 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 		cutnr = ""
 		metastring, eitstring = "", ""
 		sorteventtitle, eventtitle = "", ""
-		metaref = ""
+		piconpath = ""
 		sortyear, sortmonth, sortday, sorthour, sortmin = "", "", "", "", ""
 
 		# Add custom entries and sub directories to the list
@@ -1147,7 +1147,7 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 						sortday = newDate[2]
 						sorthour = newDate[3]
 						sortmin = newDate[4]
-				append((service, sorttitle, date, title, path, 0, 0, ext, 0, sorteventtitle, eventtitle, metaref, int(sortyear or 0), int(sortmonth or 0), int(sortday or 0), int(sorthour or 0), int(sortmin or 0)))
+				append((service, sorttitle, date, title, path, 0, 0, ext, 0, sorteventtitle, eventtitle, piconpath, int(sortyear or 0), int(sortmonth or 0), int(sortday or 0), int(sorthour or 0), int(sortmin or 0)))
 
 		# Add file entries to the list
 		if filelist is not None:
@@ -1168,7 +1168,7 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 				#sortkeyalpha, sortkeydate = "", ""
 				sorteventtitle = ""
 				eventtitle = ""
-				metaref = ""
+				piconpath = ""
 				sortyear, sortmonth, sortday, sorthour, sortmin = "", "", "", "", ""
 
 				# Remove extension
@@ -1244,7 +1244,7 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 								date = eit.getEitDate()
 							if not length:
 								length = eit.getEitLengthInSeconds()
-
+				# get piconpath
 				if config.EMC.movie_picons.value:
 					meta = MetaList(path)
 					metaref = meta.getMetaServiceReference()
@@ -1252,6 +1252,16 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 						pos = metaref.rfind(':')
 						if pos != -1:
 							metaref = metaref[:pos].rstrip(':').replace(':', '_')
+					# now we need to check if picon-file exists
+					if newPiconRenderer:
+						if config.EMC.movie_picons_path_own.value:
+							picon = config.EMC.movie_picons_path.value + "/" + metaref + '.png'
+						else:
+							picon = getPiconName(metaref)
+					else:
+						picon = config.EMC.movie_picons_path.value + "/" + metaref + '.png'
+					if fileExists(picon):
+						piconpath = picon
 
 				# Priority and fallback handling
 
@@ -1312,7 +1322,7 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 				if (movie_hide_mov and self.serviceMoving(service)) \
 					or (movie_hide_del and self.serviceDeleting(service)):
 					continue
-				append((service, sorttitle, date, title, path, 0, length, ext, int(cutnr or 0), sorteventtitle, eventtitle, metaref, int(sortyear or 0), int(sortmonth or 0), int(sortday or 0), int(sorthour or 0), int(sortmin or 0)))
+				append((service, sorttitle, date, title, path, 0, length, ext, int(cutnr or 0), sorteventtitle, eventtitle, piconpath, int(sortyear or 0), int(sortmonth or 0), int(sortday or 0), int(sorthour or 0), int(sortmin or 0)))
 
 		# Cleanup before continue
 		del append
@@ -1811,7 +1821,7 @@ class MovieCenter(GUIComponent):
 			except Exception, e:
 				emcDebugOut("[MC] External observer exception: \n" + str(e))
 
-	def buildMovieCenterEntry(self, service, sorttitle, date, title, path, selnum, length, ext, cutnr, sorteventtitle, eventtitle, metaref, *args):
+	def buildMovieCenterEntry(self, service, sorttitle, date, title, path, selnum, length, ext, cutnr, sorteventtitle, eventtitle, piconpath, *args):
 		#TODO remove before release
 		try:
 			offset = 0
@@ -2003,26 +2013,9 @@ class MovieCenter(GUIComponent):
 					textSizeY = globalHeight
 					if ext in extTS:
 						if config.EMC.movie_picons.value:
-							# first we need to check if picon-file exists
-							# TODO(next days): bring this out from here
-							# make "metaref" to nothing in/over reloadInternal
-							# this is only Gui-stuff here
-							# same for isSkinable, and make the code shorter for that
-							if newPiconRenderer:
-								if config.EMC.movie_picons_path_own.value:
-									picon = config.EMC.movie_picons_path.value + "/" + metaref + '.png'
-								else:
-									picon = getPiconName(metaref)
-							else:
-								picon = config.EMC.movie_picons_path.value + "/" + metaref + '.png'
-							if fileExists(picon):
-								piconExists = True
-							else:
-								piconExists = False
-							# now we can build the entrys
 							piconPos = config.EMC.movie_picons_pos.value
-							if metaref and metaref != "1_0_0_0_0_0_0_0_0_0" and piconExists:
-								picon = loadPNG(picon)
+							if piconpath:
+								picon = loadPNG(piconpath)
 								piconH = self.l.getItemSize().height() - 6
 								piconW = piconH * 2 - 5
 								piconY = 2
@@ -2120,21 +2113,10 @@ class MovieCenter(GUIComponent):
 					if movie_metaload:
 						if eventtitle != "":
 							title = title + " - " + eventtitle
-					# get picon-values
+
+					# show picons only, if we have piconpath
 					if config.EMC.movie_picons.value:
-						# first we need to check if picon-file exists
-						if newPiconRenderer:
-							if config.EMC.movie_picons_path_own.value:
-								picon = config.EMC.movie_picons_path.value + "/" + metaref + '.png'
-							else:
-								picon = getPiconName(metaref)
-						else:
-							picon = config.EMC.movie_picons_path.value + "/" + metaref + '.png'
-						if fileExists(picon):
-							piconExists = True
-						else:
-							piconExists = False
-						if metaref and metaref != "1_0_0_0_0_0_0_0_0_0" and piconExists:
+						if piconpath:
 							CoolPiconPos = self.CoolPiconPos
 							CoolMoviePiconPos = self.CoolMoviePiconPos
 						else:
@@ -2146,7 +2128,7 @@ class MovieCenter(GUIComponent):
 
 					if ext in extTS:
 						if CoolPiconPos != -1 and CoolMoviePiconPos != -1:
-							picon = loadPNG(picon)
+							picon = loadPNG(piconpath)
 							if self.CoolPiconHeight == -1:
 								self.CoolPiconHeight = self.l.getItemSize().height() - 6
 							if self.CoolPiconHPos == -1:
