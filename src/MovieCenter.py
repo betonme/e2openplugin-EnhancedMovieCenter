@@ -2000,6 +2000,12 @@ class MovieCenter(GUIComponent):
 							offset += progressWidth + 5
 
 					if config.EMC.movie_date_format.value:
+						if config.EMC.movie_date_format.value == "%d.%m.%Y %H:%M":
+							self.CoolDateWidth = 160
+						elif config.EMC.movie_date_format.value == "%Y/%m/%d %H:%M":
+							self.CoolDateWidth = 162
+						else:
+							self.CoolDateWidth = 110
 						append(MultiContentEntryText(pos=(self.l.getItemSize().width() - self.CoolDateWidth, 0), size=(self.CoolDateWidth, globalHeight), font=usedDateFont, color = colordate, color_sel = colorhighlight, backcolor = self.BackColor, backcolor_sel = self.BackColorSel, flags=RT_HALIGN_CENTER, text=datetext))
 
 					# Media files left side not skin_able

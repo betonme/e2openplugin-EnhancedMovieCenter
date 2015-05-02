@@ -16,6 +16,14 @@ msgstr ""
 "X-Poedit-Basepath: ../\n"
 "X-Poedit-SearchPath-0: src\n"
 
+#: src/plugin.py:147
+msgid "YYYY/MM/DD HH:MM"
+msgstr "JJJJ/MM/TT HH:MM"
+
+#: src/plugin.py:143
+msgid "DD.MM.YYYY HH:MM"
+msgstr "TT.MM.JJJJ HH:MM"
+
 #: src/EMCCoverSearch.py:571
 msgid "Cover is Saved."
 msgstr "Cover gespeichert."
