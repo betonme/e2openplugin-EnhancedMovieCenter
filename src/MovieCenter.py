@@ -1137,7 +1137,7 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 
 				# we get now the real date for folders
 				# so we can sort this, if they are in the list, not at top
-				if path.endswith("Latest Recordings"):
+				if path.find("Latest Recordings"):
 					pass
 				else:
 					if title not in self.topdirlist:
