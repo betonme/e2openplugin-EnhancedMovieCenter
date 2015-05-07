@@ -2258,19 +2258,15 @@ class MovieCenter(GUIComponent):
 								if self.startWorker:
 									if useNoScan:
 										if not self.checkNoScanPath(path):
-											print "[EMC][Fisch] countsizeworker.add 1a",path
 											countsizeworker.add(path)
 									else:
-										print "[EMC][Fisch] countsizeworker.add 1b",path
 										countsizeworker.add(path)
 								datetext = " ( %d ) " % (count)
 							else:
 								if useNoScan:
 									if not self.checkNoScanPath(path):
-										print "[EMC][Fisch] countsizeworker.add 1c",path
 										countsizeworker.add(path)
 								else:
-									print "[EMC][Fisch] countsizeworker.add 1d",path
 									countsizeworker.add(path)
 								datetext = ""
 								datepic = self.pic_directory_search
@@ -2281,10 +2277,8 @@ class MovieCenter(GUIComponent):
 								if self.startWorker:
 									if useNoScan:
 										if not self.checkNoScanPath(path):
-											print "[EMC][Fisch] countsizeworker.add 1e",path
 											countsizeworker.add(path)
 									else:
-										print "[EMC][Fisch] countsizeworker.add 1f",path
 										countsizeworker.add(path)
 								if size >= 1000:
 									size /= 1024.0
@@ -2319,10 +2313,8 @@ class MovieCenter(GUIComponent):
 							else:
 								if useNoScan:
 									if not self.checkNoScanPath(path):
-										print "[EMC][Fisch] countsizeworker.add 1g",path
 										countsizeworker.add(path)
 								else:
-									print "[EMC][Fisch] countsizeworker.add 1h",path
 									countsizeworker.add(path)
 								datetext = ""
 								datepic = self.pic_directory_search
@@ -2333,10 +2325,8 @@ class MovieCenter(GUIComponent):
 								if self.startWorker:
 									if useNoScan:
 										if not self.checkNoScanPath(path):
-											print "[EMC][Fisch] countsizeworker.add 1i",path
 											countsizeworker.add(path)
 									else:
-										print "[EMC][Fisch] countsizeworker.add 1j",path
 										countsizeworker.add(path)
 								if size >= 100:
 									datetext = " ( %.2f TB ) " % (size/1024.0)
@@ -2345,10 +2335,8 @@ class MovieCenter(GUIComponent):
 							else:
 								if useNoScan:
 									if not self.checkNoScanPath(path):
-										print "[EMC][Fisch] countsizeworker.add 1k",path
 										countsizeworker.add(path)
 								else:
-									print "[EMC][Fisch] countsizeworker.add 1l",path
 									countsizeworker.add(path)
 								datetext = ""
 								datepic = self.pic_directory_search
