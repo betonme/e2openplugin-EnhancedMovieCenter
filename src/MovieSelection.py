@@ -2222,7 +2222,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 				cmd = []
 				association = []
 				cmd.append('rm -rf "' + path + '"')
-				association.append((self.postFileOp))
+				association.append((self.postFileOp,None,path))
 				emcTasker.shellExecute(cmd, association, True)
 
 	def delPathSelConfirmed(self, service, confirm):
@@ -2296,6 +2296,8 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		cmd = []
 		association = []
 		movieFileCache.delPathFromCache(targetPath)
+		source_path = None
+		dest_path = None
 		# TODO:
 		# can we make one way for both Lists ?
 		if self.tmpSelListOther is not None:
@@ -2327,6 +2329,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 									path = path.replace("'","\'")
 									c.append( 'rm -f "'+ path +'."*' )
 									cmd.append( c )
+									dest_path = path
 							else:
 								path = x.getPath()
 								self.removeService(x)
@@ -2334,6 +2337,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 								path = path.rsplit(".",1)[0]
 								c.append( 'rm -f "'+ path +'."*' )
 								cmd.append( c )
+								dest_path = path
 						#TEST_E2DELETE
 						else:
 							path = path.replace("'","\'")
@@ -2370,6 +2374,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 
 							#TEST_E2DELETE <- decrement indent
 							cmd.append( c )
+							dest_path = path
 
 		for service in selectedlist:
 			#path = os.path.splitext( self["list"].getFilePathOfService(service) )[0]
@@ -2405,6 +2410,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 								path = path.replace("'","\'")
 								c.append( 'rm -f "'+ path +'."*' )
 								cmd.append( c )
+								dest_path = path
 						else:
 							path = service.getPath()
 							self.removeService(service)
@@ -2412,6 +2418,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 							path = path.rsplit(".",1)[0]
 							c.append( 'rm -f "'+ path +'."*' )
 							cmd.append( c )
+							dest_path = path
 					#TEST_E2DELETE
 					else:
 						path = path.replace("'","\'")
@@ -2448,6 +2455,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 
 						#TEST_E2DELETE <- decrement indent
 						cmd.append( c )
+						dest_path = path
 						association.append( (self.delCB, service) )	# put in a callback for this particular movie
 						self["list"].highlightService(True, "del", service)
 						#TEST_E2DELETE
@@ -2468,6 +2476,8 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 						sfile = "\""+ path +".\"*"
 						c.append( "touch %s;ls -l %s | while read flags i owner group crap;do chown $owner:$group %s;done;rm %s" %(tfile,tfile,sfile,tfile) )
 					c.append( 'mv "'+ path +'."* "'+ targetPath +'/"' )
+					source_path = path
+					dest_path = targetPath
 					cmd.append( c )
 					association.append( (self.moveCB, service) )	# put in a callback for this particular movie
 					self["list"].highlightService(True, "move", service)
@@ -2489,6 +2499,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 						sfile = "\""+ path +".\"*"
 						c.append( "touch %s;ls -l %s | while read flags i owner group crap;do chown $owner:$group %s;done;rm %s" %(tfile,tfile,sfile,tfile) )
 					c.append( 'cp "'+ path +'."* "'+ targetPath +'/"' )
+					dest_path = targetPath
 					cmd.append( c )
 					association.append( (self.copyCB, service) )	# put in a callback for this particular movie
 					self["list"].highlightService(True, "copy", service)
@@ -2498,11 +2509,12 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		self["list"].resetSelection()
 		if cmd:
 			association.append((self.initCursor, False)) # Set new Cursor position
-			association.append((self.postFileOp))
+			association.append((self.postFileOp,source_path,dest_path))
 			# Sync = True: Run script for one file do association and continue with next file
 			emcTasker.shellExecute(cmd, association, True)	# first move, then delete if expiration limit is 0
 
-	def postFileOp(self):
+	def postFileOp(self,source_path,dest_path):
+		#print "[EMC] postFileOp",source_path,dest_path
 		self.tmpSelList = None
 		self.tmpSelListOther = None
 		self.deleteAllOther = False
@@ -2512,8 +2524,11 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		try:
 			val = config.EMC.directories_info.value
 			if val == "C" or val == "CS" or val == "S":
-				# we make now hardreset
-				movieFileCache.delcacheCountSizeList()
+				if config.EMC.rescan_only_affected_dirs.value:
+					movieFileCache.delcacheCountSizeListEntriesOnFileOp(source_path,dest_path)
+				else:
+					# we make now hardreset
+					movieFileCache.delcacheCountSizeList()
 				self["list"].refreshList(True)
 			# this we need to get the new position values,
 			# otherwise no select for other files in the same directory after that

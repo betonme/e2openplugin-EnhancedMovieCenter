@@ -941,7 +941,7 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 
 	def checkNoScanPath(self, path):
 		check = False
-		if config.EMC.latest_recordings_noscan.value:
+		if config.EMC.latest_recordings_noscan.value or config.EMC.dir_info_usenoscan.value:
 			for line in self.nostructscan:
 				if line in path:
 					check = True
@@ -2248,6 +2248,7 @@ class MovieCenter(GUIComponent):
 						pixmap = self.pic_col_dir
 
 					# Directory and symlink-direcory info.value
+					useNoScan = config.EMC.dir_info_usenoscan.value
 					getValues = movieFileCache.getCountSizeFromCache(path)
 					if config.EMC.directories_info.value:
 						if config.EMC.directories_info.value == "C":
@@ -2255,10 +2256,22 @@ class MovieCenter(GUIComponent):
 							if getValues is not None:
 								count, size = getValues
 								if self.startWorker:
-									countsizeworker.add(path)
+									if useNoScan:
+										if not self.checkNoScanPath(path):
+											print "[EMC][Fisch] countsizeworker.add 1a",path
+											countsizeworker.add(path)
+									else:
+										print "[EMC][Fisch] countsizeworker.add 1b",path
+										countsizeworker.add(path)
 								datetext = " ( %d ) " % (count)
 							else:
-								countsizeworker.add(path)
+								if useNoScan:
+									if not self.checkNoScanPath(path):
+										print "[EMC][Fisch] countsizeworker.add 1c",path
+										countsizeworker.add(path)
+								else:
+									print "[EMC][Fisch] countsizeworker.add 1d",path
+									countsizeworker.add(path)
 								datetext = ""
 								datepic = self.pic_directory_search
 						elif config.EMC.directories_info.value == "CS":
@@ -2266,7 +2279,13 @@ class MovieCenter(GUIComponent):
 							if getValues is not None:
 								count, size = getValues
 								if self.startWorker:
-									countsizeworker.add(path)
+									if useNoScan:
+										if not self.checkNoScanPath(path):
+											print "[EMC][Fisch] countsizeworker.add 1e",path
+											countsizeworker.add(path)
+									else:
+										print "[EMC][Fisch] countsizeworker.add 1f",path
+										countsizeworker.add(path)
 								if size >= 1000:
 									size /= 1024.0
 									datetext = " (%d / %.0f TB) " % (count, size)
@@ -2298,7 +2317,13 @@ class MovieCenter(GUIComponent):
 										else:
 											self.CoolCSWidth = 140
 							else:
-								countsizeworker.add(path)
+								if useNoScan:
+									if not self.checkNoScanPath(path):
+										print "[EMC][Fisch] countsizeworker.add 1g",path
+										countsizeworker.add(path)
+								else:
+									print "[EMC][Fisch] countsizeworker.add 1h",path
+									countsizeworker.add(path)
 								datetext = ""
 								datepic = self.pic_directory_search
 						elif config.EMC.directories_info.value == "S":
@@ -2306,13 +2331,25 @@ class MovieCenter(GUIComponent):
 							if getValues is not None:
 								count, size = getValues
 								if self.startWorker:
-									countsizeworker.add(path)
+									if useNoScan:
+										if not self.checkNoScanPath(path):
+											print "[EMC][Fisch] countsizeworker.add 1i",path
+											countsizeworker.add(path)
+									else:
+										print "[EMC][Fisch] countsizeworker.add 1j",path
+										countsizeworker.add(path)
 								if size >= 100:
 									datetext = " ( %.2f TB ) " % (size/1024.0)
 								else:
 									datetext = " ( %.2f GB ) " % (size)
 							else:
-								countsizeworker.add(path)
+								if useNoScan:
+									if not self.checkNoScanPath(path):
+										print "[EMC][Fisch] countsizeworker.add 1k",path
+										countsizeworker.add(path)
+								else:
+									print "[EMC][Fisch] countsizeworker.add 1l",path
+									countsizeworker.add(path)
 								datetext = ""
 								datepic = self.pic_directory_search
 						elif config.EMC.directories_info.value == "D":
