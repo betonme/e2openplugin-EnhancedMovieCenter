@@ -2308,7 +2308,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 				if path is not None:
 					if op=="delete":	# target == trashcan
 						c = []
-						if purgeTrash or self.currentPath == targetPath or self.mountpoint(self.currentPath) != self.mountpoint(targetPath):
+						if purgeTrash or self.currentPath == targetPath or self.mountpoint(self.currentPath) != self.mountpoint(targetPath) or self.mountpoint(x.getPath()) != self.mountpoint(config.EMC.movie_trashcan_path.value):
 							# direct delete from the trashcan or network mount (no copy to trashcan from different mountpoint)
 							#c.append( 'rm -f "'+ path +'."*' )
 
@@ -2389,7 +2389,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			if path is not None:
 				if op=="delete":	# target == trashcan
 					c = []
-					if purgeTrash or self.currentPath == targetPath or self.mountpoint(self.currentPath) != self.mountpoint(targetPath):
+					if purgeTrash or self.currentPath == targetPath or self.mountpoint(self.currentPath) != self.mountpoint(targetPath) or self.mountpoint(service.getPath()) != self.mountpoint(config.EMC.movie_trashcan_path.value):
 						# direct delete from the trashcan or network mount (no copy to trashcan from different mountpoint)
 						#c.append( 'rm -f "'+ path +'."*' )
 
