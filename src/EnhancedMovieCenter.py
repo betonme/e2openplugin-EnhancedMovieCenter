@@ -175,7 +175,7 @@ def checkMutagen():
 		try:
 			result = commands.getoutput('opkg list|grep mutagen')
 		except:
-			result = commands.getoutput('list|grep mutagen')      # this for oe2.2 ?
+			result = commands.getoutput('apt-cache search mutagen')
 		if result.startswith('python-mutagen'):
 			return True
 		else:
@@ -509,13 +509,13 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 
 	def downloadMutagen(self, element):
 		if element.value == True:
-			cmd = "opkg install python-mutagen"
-			cmd2 = "install python-mutagen"
+			cmd = "opkg install python-mutagen - "		# securitly for dreamboxupdate without the other packages ?
+			cmd2 = "apt-get install python-mutagen - "	# securitly for dreamboxupdate without the other packages ?
 			from Screens.Console import Console
 			try:
 				self.session.open(Console, _("Install Mutagen-package"), [cmd])
 			except:
-				self.session.open(Console, _("Install Mutagen-package"), [cmd2])      # this for oe2.2 ?
+				self.session.open(Console, _("Install Mutagen-package"), [cmd2])
 
 	def createConfig(self):
 		list = []
