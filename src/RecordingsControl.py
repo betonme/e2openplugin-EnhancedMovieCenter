@@ -108,6 +108,14 @@ class RecordingsControl:
 			filename = os.path.basename(timer.Filename)
 			if timer.state == timer.StatePrepared:	pass
 			elif timer.state == timer.StateRunning:	# timer.isRunning()
+				if config.EMC.files_cache.value:
+					cutfilename = "/" + filename
+					realpath = timer.Filename.replace(cutfilename, '')
+					ext = ".ts"
+					recname = timer.Filename + ext, filename + ext, ext
+					from EMCFileCache import movieFileCache
+					if movieFileCache.IsPathInCache(realpath):
+						movieFileCache.addRecToCacheFileList(realpath, recname)
 				if not filename in self.recDict:
 					begin = timer.begin
 					if timer.autoincrease:

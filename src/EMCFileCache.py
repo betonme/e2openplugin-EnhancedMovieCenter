@@ -90,6 +90,14 @@ class EMCFileCache():
 				if self.cacheFileList.has_key(path):
 					del self.cacheFileList[path]
 
+	def addRecToCacheFileList(self, path, rec):
+		if config.EMC.files_cache.value:
+			if self.cacheFileList.has_key(path):
+				filelist = self.cacheFileList[path]
+				filelist.append(rec)
+				del self.cacheFileList[path]
+				self.cacheFileList[path] = filelist
+
 	def getCacheForPath(self, path):
 		print "EMC getCacheForPath", path
 		if config.EMC.files_cache.value and self.cacheDirectoryList.has_key(path) and self.cacheFileList.has_key(path):
