@@ -172,7 +172,10 @@ def EMCStartup(session):
 def checkMutagen():
 	try:
 		import commands
-		result = commands.getoutput('opkg list|grep mutagen')
+		try:
+			result = commands.getoutput('opkg list|grep mutagen')
+		except:
+			result = commands.getoutput('list|grep mutagen')      # this for oe2.2 ?
 		if result.startswith('python-mutagen'):
 			return True
 		else:
@@ -507,8 +510,12 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 	def downloadMutagen(self, element):
 		if element.value == True:
 			cmd = "opkg install python-mutagen"
+			cmd2 = "install python-mutagen"
 			from Screens.Console import Console
-			self.session.open(Console, _("Install Mutagen-package"), [cmd])
+			try:
+				self.session.open(Console, _("Install Mutagen-package"), [cmd])
+			except:
+				self.session.open(Console, _("Install Mutagen-package"), [cmd2])      # this for oe2.2 ?
 
 	def createConfig(self):
 		list = []

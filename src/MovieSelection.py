@@ -2104,10 +2104,6 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			delStr = _("Delete") + _(" permanently")*self.permanentDel
 			if entrycount == 1:
 				service = selectedlist[0]
-# new test for deleting over LatestRecordings
-#				self.permanentDel |= self.mountpoint(service.getPath()) != self.mountpoint(config.EMC.movie_trashcan_path.value)
-			#	delStr = _("Delete") + _(" permanently")*self.permanentDel
-
 				name = self["list"].getNameOfService(service)
 				if not self.delCurrentlyPlaying:
 					if not config.EMC.movie_trashcan_enable.value or config.EMC.movie_delete_validation.value or self.permanentDel:
@@ -2372,7 +2368,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		else:
 			print "EMC ret exeFil - op:", op
 			print "EMC ret exeFil - targetpath:", targetPath
-			print "EMC ret exeFil - selectedlist:", selectedlist 
+			print "EMC ret exeFil - selectedlist:", selectedlist
 		cmd = []
 		association = []
 		movieFileCache.delPathFromCache(targetPath)
