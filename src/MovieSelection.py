@@ -80,6 +80,14 @@ from MovieCenter import getMovieNameWithoutExt, getMovieNameWithoutPhrases
 
 global extList, extVideo, extMedia, extDir, plyAll, plyDVD, cmtBME2, cmtBMEMC, cmtDir, plyDVB, extPlaylist
 
+# we try to get mutagen if is installed
+isMutagen = False
+try:
+	from mutagen.mp3 import MP3
+	isMutagen = True
+except Exception, e:
+	print "[EMCMS] python-mutagen is not available:", e
+
 
 # Move all trashcan operations to a separate file / class
 def purgeExpired(emptyTrash=False):
@@ -200,6 +208,18 @@ class SelectionEventInfo:
 		self["Cover"] = Pixmap()
 		self["CoverBg"] = Pixmap()
 		self["CoverBg"].hide()
+		# audio-tags (python-mutagen is needed)
+		self["name"] = Label("")		# title
+		self["artistAT"] = Label("")		# artist-label
+		self["artistATtxt"] = Label("")	# artist-text
+		self["albumAT"] = Label("")		# album-label
+		self["albumATtxt"] = Label("")		# album-text
+		self["genreAT"] = Label("")		# genre-label
+		self["genreATtxt"] = Label("")		# genre-text
+		self["runtimeAT"] = Label("")		# runtime-label
+		self["runtimeATtxt"] = Label("")	# runtime-text
+		self["date"] = Label("")		# date-text
+		self["size"] = Label("")		# size-text
 
 	def initPig(self):
 		if not (config.EMC.movie_cover.value or config.EMC.movie_preview.value):
@@ -225,6 +245,50 @@ class SelectionEventInfo:
 
 	def updateEventInfo(self, service):
 		self["Service"].newService(service)
+		if isMutagen and config.EMC.mutagen_show.value:
+			if service:
+				ext = os.path.splitext(service.getPath())[1].lower()
+				exts = [".mp3", ".flac", ".m4a", ".mp4", ".aac", ".ogg"]
+				if ext.lower() in exts:
+					self.updateEventInfoAudio(service, ext)
+				else:
+					self.hideAudioLabels()
+
+	def updateEventInfoAudio(self, service, ext):
+		from MutagenSupport import getAudioMetaData, getAudioFileSize, getAudioFileDate
+		title, genre, artist, album, length = getAudioMetaData(service, ext)
+                size = getAudioFileSize(service.getPath())
+		date = getAudioFileDate(service.getPath())
+		if (title or genre or artist or album or length) != "":
+			if title == service.getPath():
+				title = service.getName()
+			self["name"].setText(title)			# title
+			self["artistAT"].setText(_("Artist:"))		# artist-label
+			self["artistATtxt"].setText(artist)		# artist-text
+			self["albumAT"].setText(_("Album:"))		# album-label
+			self["albumATtxt"].setText(album)		# album-text
+			self["genreAT"].setText(_("Genre:"))		# genre-label
+			self["genreATtxt"].setText(genre)		# genre-text
+			self["runtimeAT"].setText(_("Runtime:"))	# runtime-label
+			self["runtimeATtxt"].setText(length)		# runtime-text
+			self["date"].setText(date)
+			self["size"].setText("%.0f MB" % size)
+			self["Service"].newService(None)		# kill normal view
+		else:
+			self.hideAudioLabels()
+
+	def hideAudioLabels(self):
+		self["name"].setText("")
+		self["artistAT"].setText("")
+		self["artistATtxt"].setText("")
+		self["albumAT"].setText("")
+		self["albumATtxt"].setText("")
+		self["genreAT"].setText("")
+		self["genreATtxt"].setText("")
+		self["runtimeAT"].setText("")
+		self["runtimeATtxt"].setText("")
+		self["date"].setText("")
+		self["size"].setText("")
 
 	def showCover(self, service=None):
 		if service:
@@ -233,6 +297,18 @@ class SelectionEventInfo:
 			exts = [".jpg", ".png", "_md.jpg", "_md.png"]
 			jpgpath = getInfoFile(path, exts)[1]
 			print "EMC jpgpath", jpgpath
+
+			# lets try if audio-file selected and tags contains cover and we using mutagen for embedded covers
+			ext = os.path.splitext(service.getPath())[1].lower()
+			exts = [".mp3", ".flac", ".m4a", ".mp4", ".aac", ".ogg"]
+			if ext.lower() in exts:
+				if isMutagen and config.EMC.mutagen_show.value and not os.path.exists(jpgpath):
+					if fileExists("/tmp/.emcAudioTag.jpg"):
+						jpgpath = "/tmp/.emcAudioTag.jpg"
+					elif fileExists("/tmp/.emcAudioTag.png"):
+						jpgpath = "/tmp/.emcAudioTag.png"
+					elif fileExists("/tmp/.emcAudioTag.gif"):
+						jpgpath = "/tmp/.emcAudioTag.gif"
 
 			#if path.endswith("/.."):
 				#jpgpath = "/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/cover_tr.png"
@@ -2028,6 +2104,10 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			delStr = _("Delete") + _(" permanently")*self.permanentDel
 			if entrycount == 1:
 				service = selectedlist[0]
+# new test for deleting over LatestRecordings
+#				self.permanentDel |= self.mountpoint(service.getPath()) != self.mountpoint(config.EMC.movie_trashcan_path.value)
+			#	delStr = _("Delete") + _(" permanently")*self.permanentDel
+
 				name = self["list"].getNameOfService(service)
 				if not self.delCurrentlyPlaying:
 					if not config.EMC.movie_trashcan_enable.value or config.EMC.movie_delete_validation.value or self.permanentDel:
@@ -2292,7 +2372,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		else:
 			print "EMC ret exeFil - op:", op
 			print "EMC ret exeFil - targetpath:", targetPath
-			print "EMC ret exeFil - selectedlist:", selectedlist
+			print "EMC ret exeFil - selectedlist:", selectedlist 
 		cmd = []
 		association = []
 		movieFileCache.delPathFromCache(targetPath)

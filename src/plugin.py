@@ -420,8 +420,10 @@ config.EMC.cfgscan_suppress          = ConfigYesNo(default = False)
 config.EMC.remote_recordings         = ConfigYesNo(default = False)
 config.EMC.bqt_keys                  = ConfigSelection(default = "", choices = bqt_choices)
 config.EMC.list_skip_size            = ConfigSelectionNumber(3, 10, 1, default = 5)
-
 config.EMC.playlist_message          = ConfigYesNo(default = True)
+
+config.EMC.mutagen_download          = ConfigYesNo(default = False)
+config.EMC.mutagen_show              = ConfigYesNo(default = False)
 
 config.EMC.InfoLong                  = ConfigSelection(choices = [("IMDbSearch", _("IMDb Search")), ("EMC-TMDBInfo", _("EMC-TMDB Info")), ("TMDBInfo", _("TMDB Info")), ("TMBDInfo", _("TMBD Info")), ('CSFDInfo', _('CSFD Info'))], default = "IMDbSearch")
 

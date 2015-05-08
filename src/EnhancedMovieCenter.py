@@ -48,10 +48,17 @@ except ImportError as ie:
 else:
 	hasCutlistDownloader = True
 
+# lets see if mutagen is installed
+try:
+	from mutagen.mp3 import MP3
+except ImportError as ie:
+	hasMutagen = False
+else:
+	hasMutagen = True
+
 
 from DelayedFunction import DelayedFunction
 from EMCTasker import emcTasker, emcDebugOut
-
 
 EMCVersion = "V4.0.0beta20150405"
 EMCAbout = "\n  Enhanced Movie Center " +EMCVersion+ "\n\n  (C) 2012 by\n  Coolman, Betonme, dirtylion, Jojojoxx, mr.scotty & Swiss-MAD \n\n  If you like this plugin and you want to support it,\n  or if just want to say ''thanks'',\n  please donate via PayPal. \n\n  Thanks a lot ! \n\n  PayPal: enhancedmoviecenter@gmail.com"
@@ -160,6 +167,18 @@ def EMCStartup(session):
 			emcDebugOut("+++ Going into Standby mode after auto-restart")
 			Notifications.AddNotification(Screens.Standby.Standby)
 			emcTasker.shellExecute("rm -f " + flag)
+
+# lets see if mutagen is available
+def checkMutagen():
+	try:
+		import commands
+		result = commands.getoutput('opkg list|grep mutagen')
+		if result.startswith('python-mutagen'):
+			return True
+		else:
+			return False
+	except Exception, e:
+		print "[EMC] checkMutagen Exception:", e
 
 # Predefined settings:
 #  Index 0: Custom should always be the first one:           User edited vlues in the config
@@ -456,13 +475,40 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 			# new playlist-options
 			(  separator                                          , config.EMC.about                    , None                  , None                  , 0     , []          , _("HELP_Advanced options separator")                     , None              , None ),
 			(  _("Show message if file added to playlist")        , config.EMC.playlist_message         , None                  , None                  , 0     , []          , _("HELP_Show message if file added to playlist")         , None              , None ),
-
+                ]
+                )
+		if checkMutagen() or hasMutagen:
+			self.EMCConfig.extend(
+		[
+			(  separator                                          , config.EMC.about                    , None                  , None                  , 0     , []          , _("HELP_Advanced audio metadata options separator")      , None              , None ),
+		]
+		)
+		if checkMutagen() and not hasMutagen:
+			self.EMCConfig.extend(
+		[
+			(  _("Download Mutagen-package for audio metadata")   , config.EMC.mutagen_download         , self.downloadMutagen  , None                  , 0     , []          , _("HELP_Download Mutagen-package for audio metadata")    , None              , None ),
+		]
+		)
+		if hasMutagen:
+			self.EMCConfig.extend(
+		[
+			(  _("Show audio metadata (needs skin-changes)")      , config.EMC.mutagen_show             , None                  , None                  , 0     , []          , _("HELP_Show audio metadata (needs skin-changes)")       , None              , None ),
+		]
+		)
+		self.EMCConfig.extend(
+		[
 			(  separator                                          , config.EMC.about                    , None                  , None                  , 2     , []          , _("HELP_Advanced options separator")                     , None              , None ),
 			(  _("Enable EMC debug output")                       , config.EMC.debug                    , self.dbgChange        , None                  , 2     , []          , _("HELP_Enable EMC debug output")                        , False             , None ),
 			(  _("EMC output directory")                          , config.EMC.folder                   , self.validatePath     , self.openLocationBox  , 2     , [-1]        , _("HELP_EMC output directory")                           , None              , None ),
 			(  _("Debug output file name")                        , config.EMC.debugfile                , self.validatePath     , None                  , 2     , [-2]        , _("HELP_Debug output file name")                         , None              , None ),
 		]
 		)
+
+	def downloadMutagen(self, element):
+		if element.value == True:
+			cmd = "opkg install python-mutagen"
+			from Screens.Console import Console
+			self.session.open(Console, _("Install Mutagen-package"), [cmd])
 
 	def createConfig(self):
 		list = []

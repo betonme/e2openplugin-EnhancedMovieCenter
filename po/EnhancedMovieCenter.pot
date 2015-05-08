@@ -13,6 +13,26 @@ msgstr ""
 "X-Poedit-Basepath: ../\n"
 "X-Poedit-SearchPath-0: src\n"
 
+#: src/EnhancedMovieCenter.py:483
+msgid "HELP_Advanced audio metadata options separator"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:489
+msgid "Download Mutagen-package for audio metadata"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:489
+msgid "HELP_Download Mutagen-package for audio metadata"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:495
+msgid "Show audio metadata (needs skin-changes)"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:485
+msgid "HELP_Show audio metadata (needs skin-changes)"
+msgstr ""
+
 #: src/plugin.py:147
 msgid "YYYY/MM/DD HH:MM"
 msgstr ""
