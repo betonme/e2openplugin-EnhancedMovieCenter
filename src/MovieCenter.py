@@ -2395,13 +2395,10 @@ class MovieCenter(GUIComponent):
 	def addCountsizeworker(self,path):
 		if config.EMC.dir_info_usenoscan.value:
 			if self.checkNoScanPath(self.currentPath): #always scan sub-dirs of active no-scan dir
-				print "[EMC][Fisch]addCountsizeworker 1",path,"getCurrentSelDir",self.getCurrentSelDir()
 				countsizeworker.add(path)
 			elif not self.checkNoScanPath(path):
-				print "[EMC][Fisch]addCountsizeworker 2",path
 				countsizeworker.add(path)
 		else:
-			print "[EMC][Fisch]addCountsizeworker 3",path
 			countsizeworker.add(path)
 
 	def getCurrent(self):
@@ -2568,7 +2565,6 @@ class MovieCenter(GUIComponent):
 			path = self.getListEntry(self.getCurrentIndex())[4]
 			if enteringDir and config.EMC.dir_info_usenoscan.value and self.checkNoScanPath(path):# for initial scan only: ... and not movieFileCache.IsPathInCountSizeList(path):
 				#scan 'noscan' path when entered
-				print "[EMC][Fisch]getCurrentSelDir",path
 				countsizeworker.add(path)
 			return path
 		except:
