@@ -2601,7 +2601,12 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			val = config.EMC.directories_info.value
 			if val == "C" or val == "CS" or val == "S":
 				if config.EMC.rescan_only_affected_dirs.value:
-					movieFileCache.delcacheCountSizeListEntriesOnFileOp(source_path,dest_path)
+					rescanPaths = movieFileCache.delcacheCountSizeListEntriesOnFileOp(source_path,dest_path)
+					val = config.EMC.directories_info.value
+					if val == "C" or val == "CS" or val == "S":
+						for path in rescanPaths:
+							from MovieCenter import countsizeworker
+							countsizeworker.add(path)
 				else:
 					# we make now hardreset
 					movieFileCache.delcacheCountSizeList()
