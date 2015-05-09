@@ -16,9 +16,17 @@ try:
 	from mutagen.oggvorbis import OggVorbis
 	from mutagen.easymp4 import EasyMP4
 	from mutagen.mp4 import MP4, MP4Cover
+	from mutagen.apev2 import APEv2File
 	isMutagen = True
 except Exception, e:
 	print "[EMCMutagenSupport] python-mutagen is not available:", e
+# we try to get new mutagen aac-support - version 1.27 and higher
+isMutagenAAC = False
+try:
+	from mutagen.aac import AAC
+	isMutagenAAC = True
+except Exception, e:
+	print "[EMCMutagenSupport] new mutagen aac-support is not available:", e
 
 from EMCTasker import emcDebugOut
 
@@ -58,8 +66,23 @@ def getAudioMetaData(service, ext):
 				audio = EasyMP4(os.path.join(path))
 			except:
 				audio = None
+		# first for older mutagen-package(under 1.27)
+		# APEv2 is tagged from tools like "mp3tag"
+		# no tagging in new mutagen.aac
+		elif ext.lower() == ".aac":
+			try:
+				audio = APEv2File(os.path.join(path))
+			except:
+				audio = None
 		if audio:
-			length = str(datetime.timedelta(seconds=int(audio.info.length)))
+			if ext.lower() != ".aac":
+				length = str(datetime.timedelta(seconds=int(audio.info.length)))
+			else:
+				if isMutagenAAC:
+					getlength = AAC(os.path.join(path))
+					length = str(datetime.timedelta(seconds=int(getlength.info.length)))
+				else:
+					length = str(datetime.timedelta(seconds=int(audio._Info.length)))
 			title = audio.get('title', [service.getPath()])[0]
 			try:
 				genre = audio.get('genre', [''])[0]
@@ -155,7 +178,13 @@ def getAudioFileDate(path):
 	try:
 		if path:
 			getdate = os.stat(path)
-			date = time.strftime('%A, %d. %B %Y', time.localtime(getdate.st_mtime))
+			# this way for translate the date in the right language
+			# needed on Vti- or Pkt-images
+			daystr = _(time.strftime('%A', time.localtime(getdate.st_mtime)))
+			daynr = _(time.strftime('%d', time.localtime(getdate.st_mtime)))
+			monthstr = _(time.strftime('%B', time.localtime(getdate.st_mtime)))
+			year = _(time.strftime('%Y', time.localtime(getdate.st_mtime)))
+			date = daystr + ", " + daynr + ". " + monthstr + " " + year
 	except Exception, e:
 		emcDebugOut("[EMCMutagenSupport] Exception in getFileDate: " + str(e))
 	return date

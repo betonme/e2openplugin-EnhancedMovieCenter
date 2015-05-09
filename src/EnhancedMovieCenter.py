@@ -509,8 +509,8 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 
 	def downloadMutagen(self, element):
 		if element.value == True:
-			cmd = "opkg install python-mutagen - "		# securitly for dreamboxupdate without the other packages ?
-			cmd2 = "apt-get install python-mutagen - "	# securitly for dreamboxupdate without the other packages ?
+			cmd = "opkg install python-mutagen"
+			cmd2 = "apt-get install python-mutagen"
 			from Screens.Console import Console
 			try:
 				self.session.open(Console, _("Install Mutagen-package"), [cmd])

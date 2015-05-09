@@ -18,23 +18,28 @@ msgstr ""
 
 #: src/EnhancedMovieCenter.py:483
 msgid "HELP_Advanced audio metadata options separator"
-msgstr ""
+msgstr "Erweiterte Audio Metadaten Einstellungen"
 
 #: src/EnhancedMovieCenter.py:489
 msgid "Download Mutagen-package for audio metadata"
-msgstr ""
+msgstr "Mutagen Paket für Audio Metadaten herunterladen"
 
 #: src/EnhancedMovieCenter.py:489
 msgid "HELP_Download Mutagen-package for audio metadata"
 msgstr ""
+"Mutagen-paket für Audio Metadaten ist verfügbar.\n"
+"Nach dem speichern wird versucht es zu installieren."
 
 #: src/EnhancedMovieCenter.py:495
 msgid "Show audio metadata (needs skin-changes)"
-msgstr ""
+msgstr "Zeige Audio Metadaten (braucht neue Skinänderungen)"
 
 #: src/EnhancedMovieCenter.py:485
 msgid "HELP_Show audio metadata (needs skin-changes)"
 msgstr ""
+"Zeige Audio Metadaten in der Filmliste.\n"
+"Benötigt neue Skinänderungen, damit die Details\n"
+"angezeigt werden können"
 
 #: src/plugin.py:147
 msgid "YYYY/MM/DD HH:MM"
