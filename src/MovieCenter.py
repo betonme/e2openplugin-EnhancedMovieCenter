@@ -2248,7 +2248,6 @@ class MovieCenter(GUIComponent):
 						pixmap = self.pic_col_dir
 
 					# Directory and symlink-direcory info.value
-					useNoScan = config.EMC.dir_info_usenoscan.value
 					getValues = movieFileCache.getCountSizeFromCache(path)
 					if config.EMC.directories_info.value:
 						if config.EMC.directories_info.value == "C":
@@ -2256,18 +2255,10 @@ class MovieCenter(GUIComponent):
 							if getValues is not None:
 								count, size = getValues
 								if self.startWorker:
-									if useNoScan:
-										if not self.checkNoScanPath(path):
-											countsizeworker.add(path)
-									else:
-										countsizeworker.add(path)
+									self.addCountsizeworker(path)
 								datetext = " ( %d ) " % (count)
 							else:
-								if useNoScan:
-									if not self.checkNoScanPath(path):
-										countsizeworker.add(path)
-								else:
-									countsizeworker.add(path)
+								self.addCountsizeworker(path)
 								datetext = ""
 								datepic = self.pic_directory_search
 						elif config.EMC.directories_info.value == "CS":
@@ -2275,11 +2266,7 @@ class MovieCenter(GUIComponent):
 							if getValues is not None:
 								count, size = getValues
 								if self.startWorker:
-									if useNoScan:
-										if not self.checkNoScanPath(path):
-											countsizeworker.add(path)
-									else:
-										countsizeworker.add(path)
+									self.addCountsizeworker(path)
 								if size >= 1000:
 									size /= 1024.0
 									datetext = " (%d / %.0f TB) " % (count, size)
@@ -2311,11 +2298,7 @@ class MovieCenter(GUIComponent):
 										else:
 											self.CoolCSWidth = 140
 							else:
-								if useNoScan:
-									if not self.checkNoScanPath(path):
-										countsizeworker.add(path)
-								else:
-									countsizeworker.add(path)
+								self.addCountsizeworker(path)
 								datetext = ""
 								datepic = self.pic_directory_search
 						elif config.EMC.directories_info.value == "S":
@@ -2323,21 +2306,13 @@ class MovieCenter(GUIComponent):
 							if getValues is not None:
 								count, size = getValues
 								if self.startWorker:
-									if useNoScan:
-										if not self.checkNoScanPath(path):
-											countsizeworker.add(path)
-									else:
-										countsizeworker.add(path)
+									self.addCountsizeworker(path)
 								if size >= 100:
 									datetext = " ( %.2f TB ) " % (size/1024.0)
 								else:
 									datetext = " ( %.2f GB ) " % (size)
 							else:
-								if useNoScan:
-									if not self.checkNoScanPath(path):
-										countsizeworker.add(path)
-								else:
-									countsizeworker.add(path)
+								self.addCountsizeworker(path)
 								datetext = ""
 								datepic = self.pic_directory_search
 						elif config.EMC.directories_info.value == "D":
@@ -2416,6 +2391,18 @@ class MovieCenter(GUIComponent):
 			return res
 		except Exception, e:
 			emcDebugOut("[EMCMS] build exception:\n" + str(e))
+
+	def addCountsizeworker(self,path):
+		if config.EMC.dir_info_usenoscan.value:
+			if self.checkNoScanPath(self.currentPath): #always scan sub-dirs of active no-scan dir
+				print "[EMC][Fisch]addCountsizeworker 1",path,"getCurrentSelDir",self.getCurrentSelDir()
+				countsizeworker.add(path)
+			elif not self.checkNoScanPath(path):
+				print "[EMC][Fisch]addCountsizeworker 2",path
+				countsizeworker.add(path)
+		else:
+			print "[EMC][Fisch]addCountsizeworker 3",path
+			countsizeworker.add(path)
 
 	def getCurrent(self):
 		l = self.l.getCurrentSelection()
@@ -2575,10 +2562,17 @@ class MovieCenter(GUIComponent):
 		try:	return self.getTypeOfIndex(index) in extMedia
 		except:	return False
 
-	def getCurrentSelDir(self):
+	def getCurrentSelDir(self, enteringDir=False):
 		self.startWorker = True
-		try:	return self.getListEntry(self.getCurrentIndex())[4]
-		except:	return False
+		try:	
+			path = self.getListEntry(self.getCurrentIndex())[4]
+			if enteringDir and config.EMC.dir_info_usenoscan.value and self.checkNoScanPath(path):# for initial scan only: ... and not movieFileCache.IsPathInCountSizeList(path):
+				#scan 'noscan' path when entered
+				print "[EMC][Fisch]getCurrentSelDir",path
+				countsizeworker.add(path)
+			return path
+		except:
+			return "none"
 
 	def getCurrentSelName(self):
 		try: return self.getListEntry(self.getCurrentIndex())[3]

@@ -60,6 +60,12 @@ class EMCFileCache():
 					#else:
 						#print "EMC delcacheCountSizeListEntriesOnFileOp NOT deleting",k," due to OP on path ",path
 
+	def IsPathInCountSizeList(self, path):
+		if self.cacheCountSizeList.has_key(path):
+			return True
+		else:
+			return False
+
 	def addPathToCache(self, path, subdirlist, filelist):
 		print "EMC addPathToCache", path
 		if config.EMC.files_cache.value:

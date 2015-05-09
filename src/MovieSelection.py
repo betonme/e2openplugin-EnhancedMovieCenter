@@ -1758,7 +1758,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 
 			elif self["list"].currentSelIsVirtual():
 				# Open folder and reload movielist
-				self.setNextPath( self["list"].getCurrentSelDir() )
+				self.setNextPath( self["list"].getCurrentSelDir(True) )
 			elif self.browsingVLC():
 				# TODO full integration of the VLC Player
 				entry = self["list"].list[ self.getCurrentIndex() ]
