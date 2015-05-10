@@ -13,6 +13,22 @@ msgstr ""
 "X-Poedit-Basepath: ../\n"
 "X-Poedit-SearchPath-0: src\n"
 
+#: src/EMCPlayList.py:552
+msgid "EMC Filebrowser"
+msgstr ""
+
+#: src/EMCPlayList.py:538
+msgid "Open"
+msgstr ""
+
+#: src/EMCPlayList.py:154
+msgid "Default Playlist is not empty!\n\nSave default Playlist?"
+msgstr ""
+
+#: src/MovieSelectionMenu.py:206
+msgid "Playlist Setup"
+msgstr ""
+
 #: src/EnhancedMovieCenter.py:483
 msgid "HELP_Advanced audio metadata options separator"
 msgstr ""

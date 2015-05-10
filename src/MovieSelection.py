@@ -1009,6 +1009,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			if selection == "Play last": self.playLast()
 			elif selection == "emcPlaylist": self.openPlaylistOptions()
 			elif selection == "addPlaylist": self.addPlaylist()
+			elif selection == "setupPlaylist": self.setupPlaylist()
 			elif selection == "playPlaylist": self.playPlaylist()
 			elif selection == "playPlaylistRandom": self.playPlaylist(True)
 			elif selection == "showPlaylist": self.showPlaylist()
@@ -1776,6 +1777,9 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 					self.openPlayer(playlist, playall)
 				else:
 					self.session.open(MessageBox, _("File not available."), MessageBox.TYPE_ERROR, 10)
+
+	def setupPlaylist(self):
+		self.session.open(EMCPlaylistSetup)
 
 	def playlistSelected(self, path):
 		playlist = []
