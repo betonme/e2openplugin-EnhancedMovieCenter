@@ -70,7 +70,7 @@ from EMCCoverSearch import EMCImdbScan
 from MovieRetitle import MovieRetitle
 from Components.Sources.EMCServiceEvent import EMCServiceEvent
 from MovieInfo import DownloadMovieInfo, MovieInfoTMDb
-from EMCPlayList import emcplaylist, EMCPlaylistScreen
+from EMCPlayList import emcplaylist, EMCPlaylistScreen, EMCPlaylistSetup
 
 #from MetaSupport import MetaList
 from MetaSupport import getInfoFile
