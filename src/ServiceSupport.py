@@ -172,34 +172,44 @@ class Info:
 			exts = [".txt"]
 			txtpath = getInfoFile(path, exts)[1]
 
-			if os.path.exists(txtpath):
-				txtdescarr = open(txtpath).readlines()
-				txtdesc = ""
-				for line in txtdescarr:
-					txtdesc += line
-				self.__extendeddescription = txtdesc
-
-			elif config.EMC.show_path_extdescr.value:
-				if config.EMC.movie_real_path.value:
-					desc = os.path.realpath(path)
-				else:
-					desc = path
-
-				# Very bad but there can be both encodings
-				# E2 recordings are always in utf8
-				# User files can be in cp1252
-				#TODO Is there no other way?
-				try:
-					desc.decode('utf-8')
-				except UnicodeDecodeError:
-					try:
-						desc = path.decode("cp1252").encode("utf-8")
-					except UnicodeDecodeError:
-						desc = path.decode("iso-8859-1").encode("utf-8")
-				self.__extendeddescription = desc
+			# read the playlist-entrys to show the list as overview
+			if ext == ".e2pls":
+				from EMCPlayList import readPlaylist
+				plistdesc = ""
+				plist = readPlaylist(service.getPath())
+				for x in plist:
+					plistdesc += x
+				self.__extendeddescription = plistdesc
 			else:
-#				self.__extendeddescription = "No eit or txt file found"
-				self.__extendeddescription = ""
+
+				if os.path.exists(txtpath):
+					txtdescarr = open(txtpath).readlines()
+					txtdesc = ""
+					for line in txtdescarr:
+						txtdesc += line
+					self.__extendeddescription = txtdesc
+
+				elif config.EMC.show_path_extdescr.value:
+					if config.EMC.movie_real_path.value:
+						desc = os.path.realpath(path)
+					else:
+						desc = path
+
+					# Very bad but there can be both encodings
+					# E2 recordings are always in utf8
+					# User files can be in cp1252
+					#TODO Is there no other way?
+					try:
+						desc.decode('utf-8')
+					except UnicodeDecodeError:
+						try:
+							desc = path.decode("cp1252").encode("utf-8")
+						except UnicodeDecodeError:
+							desc = path.decode("iso-8859-1").encode("utf-8")
+					self.__extendeddescription = desc
+				else:
+#					self.__extendeddescription = "No eit or txt file found"
+					self.__extendeddescription = ""
 
 		self.__id = 0
 

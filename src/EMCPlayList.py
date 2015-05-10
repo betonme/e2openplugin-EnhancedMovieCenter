@@ -35,6 +35,23 @@ config.EMC.playlist.default_playlist_name = ConfigText(default = "EmcPlaylist")
 config.EMC.playlist.save_default_list = ConfigYesNo(default = False)
 
 
+def readPlaylist(path):
+	if path:
+		overview = []
+		plist = open(path, "r")
+		if os.path.splitext(path)[1] == ".e2pls":
+			while True:
+				service = plist.readline()
+				if service == "":
+					break
+				service = service.replace('\n','')
+				spos = service.find('/')
+				servicepath = service[spos:]
+				service = servicepath.split('/')[-1]
+				name = service + "\n"
+				overview.append(name)
+		return overview
+
 class EMCPlaylist():
 	def __init__(self):
 		self.currentPlaylist = {}
