@@ -13,6 +13,14 @@ msgstr ""
 "X-Poedit-Basepath: ../\n"
 "X-Poedit-SearchPath-0: src\n"
 
+#: src/EnhancedMovieCenter.py:501
+msgid "Upgrade/Download Mutagen v1.28(experimental)"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:501
+msgid "HELP_Upgrade/Download Mutagen v1.28(experimental)"
+msgstr ""
+
 #: src/EMCPlayList.py:552
 msgid "EMC Filebrowser"
 msgstr ""

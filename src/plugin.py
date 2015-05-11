@@ -424,6 +424,7 @@ config.EMC.playlist_message          = ConfigYesNo(default = True)
 
 config.EMC.mutagen_download          = ConfigYesNo(default = False)
 config.EMC.mutagen_show              = ConfigYesNo(default = False)
+config.EMC.mutagen_download_128      = ConfigYesNo(default = False)
 
 config.EMC.InfoLong                  = ConfigSelection(choices = [("IMDbSearch", _("IMDb Search")), ("EMC-TMDBInfo", _("EMC-TMDB Info")), ("TMDBInfo", _("TMDB Info")), ("TMBDInfo", _("TMBD Info")), ('CSFDInfo', _('CSFD Info'))], default = "IMDbSearch")
 

@@ -170,6 +170,8 @@ def EMCStartup(session):
 
 # lets see if mutagen is available
 def checkMutagen():
+	if hasMutagen:
+		return False
 	try:
 		import commands
 		try:
@@ -478,11 +480,7 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 			# new playlist-options
 			(  separator                                          , config.EMC.about                    , None                  , None                  , 0     , []          , _("HELP_Advanced options separator")                     , None              , None ),
 			(  _("Show message if file added to playlist")        , config.EMC.playlist_message         , None                  , None                  , 0     , []          , _("HELP_Show message if file added to playlist")         , None              , None ),
-                ]
-                )
-		if checkMutagen() or hasMutagen:
-			self.EMCConfig.extend(
-		[
+
 			(  separator                                          , config.EMC.about                    , None                  , None                  , 0     , []          , _("HELP_Advanced audio metadata options separator")      , None              , None ),
 		]
 		)
@@ -500,12 +498,40 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 		)
 		self.EMCConfig.extend(
 		[
+			(  _("Upgrade/Download Mutagen v1.28(experimental)")  , config.EMC.mutagen_download_128     , self.getNewMutagen    , None                  , 0     , []          , _("HELP_Upgrade/Download Mutagen v1.28(experimental)")   , None              , None ),
+
 			(  separator                                          , config.EMC.about                    , None                  , None                  , 2     , []          , _("HELP_Advanced options separator")                     , None              , None ),
 			(  _("Enable EMC debug output")                       , config.EMC.debug                    , self.dbgChange        , None                  , 2     , []          , _("HELP_Enable EMC debug output")                        , False             , None ),
 			(  _("EMC output directory")                          , config.EMC.folder                   , self.validatePath     , self.openLocationBox  , 2     , [-1]        , _("HELP_EMC output directory")                           , None              , None ),
 			(  _("Debug output file name")                        , config.EMC.debugfile                , self.validatePath     , None                  , 2     , [-2]        , _("HELP_Debug output file name")                         , None              , None ),
 		]
 		)
+
+	def getNewMutagen(self, element):
+		if element.value == True:
+			try:
+				from twisted.web.client import downloadPage
+				tmppath = "/tmp/mutagen-1.28.tar.gz"
+				url = "https://bitbucket.org/lazka/mutagen/downloads/mutagen-1.28.tar.gz"
+				downloadPage(url, tmppath).addCallback(self.mutagenDlDone).addErrback(self.mutagenDlError)
+			except Exception, e:
+				print('[EMC] getNewMutagen exception failure: ', str(e))
+
+	def mutagenDlDone(self, data):
+		from Tools.Directories import fileExists
+		if fileExists("/tmp/mutagen-1.28.tar.gz"):
+			cmd = []
+			cmd.append( 'tar -xzf /tmp/mutagen-1.28.tar.gz mutagen-1.28/mutagen -C /tmp' )
+			cmd.append( 'rm /tmp/mutagen-1.28.tar.gz' )
+			if not os.path.exists("/usr/lib/python2.7/site-packages/mutagen"):
+				cmd.append( 'mkdir /usr/lib/python2.7/site-packages/mutagen' )
+			cmd.append( 'cp -r /tmp/mutagen-1.28/mutagen /usr/lib/python2.7/site-packages' )
+			cmd.append( 'rm -r /tmp/mutagen-1.28' )
+			emcTasker.shellExecute(cmd, None, False)
+			print "[EMC] mutagenDlDone data:", data
+
+	def mutagenDlError(self, error):
+		print "[EMC] mutagenDlError ERROR:", error
 
 	def downloadMutagen(self, element):
 		if element.value == True:
