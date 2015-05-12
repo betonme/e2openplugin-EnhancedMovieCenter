@@ -49,6 +49,19 @@
 		<convert type="EMCServiceTime">StartTime</convert>
 		<convert type="EMCClockToText">Date</convert>
 	</widget>
+	<!-- this for audio metadata -->
+	<widget name="name" position="69,337" size="380,55" valign="center" halign="center" font="Regular;22" backgroundColor="un444444" foregroundColor="unbab329" transparent="1" />
+	<widget name="artistAT" position="50,401" size="150,25" font="Regular;20" backgroundColor="un444444" foregroundColor="unbab329" transparent="1" noWrap="1" />
+	<widget name="albumAT" position="50,462" size="150,25" font="Regular;20" backgroundColor="un444444" foregroundColor="unbab329" transparent="1" noWrap="1" />
+	<widget name="genreAT" position="50,523" size="150,25" font="Regular;20" backgroundColor="un444444" foregroundColor="unbab329" transparent="1" noWrap="1" />
+	<widget name="runtimeAT" position="50,584" size="150,25" font="Regular;20" backgroundColor="un444444" foregroundColor="unbab329" transparent="1" noWrap="1" />
+	<widget name="artistATtxt" position="210,401" size="265,50" font="Regular;19" halign="right" backgroundColor="un444444" foregroundColor="white" transparent="1" noWrap="1" />
+	<widget name="albumATtxt" position="210,462" size="265,50" font="Regular;19" halign="right" backgroundColor="un444444" foregroundColor="white" transparent="1" noWrap="1" />
+	<widget name="genreATtxt" position="210,523" size="265,50" font="Regular;19" halign="right" backgroundColor="un444444" foregroundColor="white" transparent="1" noWrap="1" />
+	<widget name="runtimeATtxt" position="210,584" size="265,50" font="Regular;19" halign="right" backgroundColor="un444444" foregroundColor="white" transparent="1" noWrap="1" />
+	<widget name="date" position="50,640" size="270,25" font="Regular;17" halign="left" backgroundColor="un444444" foregroundColor="unbab329" transparent="1" />
+	<widget name="size" position="375,640" size="100,25" font="Regular;17" halign="right" backgroundColor="un444444" foregroundColor="unbab329" transparent="1" />
+	<!-- end of new audio metadata -->
 	<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key-red.png" position="70,668" size="30,30" alphatest="on" />
 	<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key-green.png" position="375,668" size="30,30" alphatest="on" />
 	<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key-yellow.png" position="680,668" size="30,30" alphatest="on" />

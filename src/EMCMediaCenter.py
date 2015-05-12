@@ -71,6 +71,17 @@ class EMCMoviePlayerSummary(Screen):
 			self.skinName = ["EMCMoviePlayerSummary"]
 		self["Service"] = EMCCurrentService(session.nav, parent)
 
+def getSkin():
+	skin = None
+	CoolWide = getDesktop(0).size().width()
+	if CoolWide == 720:
+		skin = "/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/CoolSkin/EMCMediaCenter_720.xml"
+	elif CoolWide == 1024:
+		skin = "/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/CoolSkin/EMCMediaCenter_1024.xml"
+	elif CoolWide >= 1280:
+		skin = "/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/CoolSkin/EMCMediaCenter_1280.xml"
+	return skin
+
 class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 
 	ENABLE_RESUME_SUPPORT = True
@@ -85,15 +96,11 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 		InfoBarSupport.__init__(self)
 
 		# Skin
-		self.skinName = "EMCMediaCenter"
-		skin = None
-		CoolWide = getDesktop(0).size().width()
-		if CoolWide == 720:
-			skin = "/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/CoolSkin/EMCMediaCenter_720.xml"
-		elif CoolWide == 1024:
-			skin = "/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/CoolSkin/EMCMediaCenter_1024.xml"
-		elif CoolWide == 1280:
-			skin = "/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/CoolSkin/EMCMediaCenter_1280.xml"
+		if config.EMC.use_orig_skin.value:
+			self.skinName = "EMCMediaCenterOwn"
+		else:
+			self.skinName = "EMCMediaCenter"
+		skin = getSkin()
 		if skin:
 			Cool = open(skin)
 			self.skin = Cool.read()

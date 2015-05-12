@@ -211,7 +211,7 @@ class SelectionEventInfo:
 		# audio-tags (python-mutagen is needed)
 		self["name"] = Label("")		# title
 		self["artistAT"] = Label("")		# artist-label
-		self["artistATtxt"] = Label("")	# artist-text
+		self["artistATtxt"] = Label("")		# artist-text
 		self["albumAT"] = Label("")		# album-label
 		self["albumATtxt"] = Label("")		# album-text
 		self["genreAT"] = Label("")		# genre-label
@@ -441,6 +441,17 @@ class SelectionEventInfo:
 			infobar.pauseService()
 			infobar.unPauseService()
 
+def getSkin():
+	skin = None
+	CoolWide = getDesktop(0).size().width()
+	if CoolWide == 720:
+		skin = "/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/CoolSkin/EMCSelection_720.xml"
+	elif CoolWide == 1024:
+		skin = "/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/CoolSkin/EMCSelection_1024.xml"
+	elif CoolWide >= 1280:
+		skin = "/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/CoolSkin/EMCSelection_1280.xml"
+	return skin
+
 
 class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfaceSel, DirectoryStack, E2Bookmarks, EMCBookmarks, ProtectedScreen):
 
@@ -466,15 +477,12 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		VlcPluginInterfaceSel.__init__(self)
 		DirectoryStack.__init__(self)
 
-		self.skinName = "EMCSelection"
-		skin = None
-		CoolWide = getDesktop(0).size().width()
-		if CoolWide == 720:
-			skin = "/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/CoolSkin/EMCSelection_720.xml"
-		elif CoolWide == 1024:
-			skin = "/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/CoolSkin/EMCSelection_1024.xml"
-		elif CoolWide == 1280:
-			skin = "/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/CoolSkin/EMCSelection_1280.xml"
+		# Skin
+		if config.EMC.use_orig_skin.value:
+			self.skinName = "EMCSelectionOwn"
+		else:
+			self.skinName = ["EMCSelectionExtended", "EMCSelection"]
+		skin = getSkin()
 		if skin:
 			Cool = open(skin)
 			self.skin = Cool.read()

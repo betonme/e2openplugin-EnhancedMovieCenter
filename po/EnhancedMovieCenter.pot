@@ -13,6 +13,18 @@ msgstr ""
 "X-Poedit-Basepath: ../\n"
 "X-Poedit-SearchPath-0: src\n"
 
+#: src/EnhancedMovieCenter.py:484
+msgid "HELP_Advanced Skin options separator"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:485
+msgid "Use original EMC-skin (needs reopen)"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:485
+msgid "HELP_Use original EMC-skin (needs reopen)"
+msgstr ""
+
 #: src/EnhancedMovieCenter.py:501
 msgid "Upgrade/Download Mutagen v1.28(experimental)"
 msgstr ""

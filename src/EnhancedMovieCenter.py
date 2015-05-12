@@ -477,9 +477,13 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 			(  _("Description field update delay")                , config.EMC.movie_descdelay          , None                  , None                  , 2     , []          , _("HELP_Description field update delay")                 , None              , None ),
 			(  _("Key period value (50-900)")                     , config.EMC.key_period               , setupKeyResponseValues, None                  , 2     , []          , _("HELP_Key period value (50-900)")                      , None              , None ),
 			(  _("Key repeat value (250-900)")                    , config.EMC.key_repeat               , setupKeyResponseValues, None                  , 2     , []          , _("HELP_Key repeat value (250-900)")                     , None              , None ),
-			# new playlist-options
+
 			(  separator                                          , config.EMC.about                    , None                  , None                  , 0     , []          , _("HELP_Advanced options separator")                     , None              , None ),
 			(  _("Show message if file added to playlist")        , config.EMC.playlist_message         , None                  , None                  , 0     , []          , _("HELP_Show message if file added to playlist")         , None              , None ),
+
+			(  separator                                          , config.EMC.about                    , None                  , None                  , 0     , []          , _("HELP_Advanced Skin options separator")                , None              , None ),
+			(  _("Use original EMC-skin (needs reopen)")          , config.EMC.use_orig_skin            , None                  , None                  , 0     , []          , _("HELP_Use original EMC-skin (needs reopen)")           , None              , None ),
+
 
 			(  separator                                          , config.EMC.about                    , None                  , None                  , 0     , []          , _("HELP_Advanced audio metadata options separator")      , None              , None ),
 		]
