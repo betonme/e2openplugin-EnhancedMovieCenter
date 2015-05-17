@@ -2316,6 +2316,12 @@ class MovieCenter(GUIComponent):
 								datetext = ""
 								datepic = self.pic_directory_search
 						elif config.EMC.directories_info.value == "D":
+							if config.EMC.directories_size_skin.value:
+								if getValues is not None:
+									if self.startWorker:
+										self.addCountsizeworker(path)
+								else:
+									self.addCountsizeworker(path)
 							datetext = _("Directory")
 							if isLink:
 								datetext = _("Link")
@@ -2326,6 +2332,13 @@ class MovieCenter(GUIComponent):
 							pixmap = self.pic_directory
 							datetext = _("Directory")
 
+					else: # config.EMC.directories_info.value == ""
+						if config.EMC.directories_size_skin.value:
+							if getValues is not None:
+								if self.startWorker:
+									self.addCountsizeworker(path)
+							else:
+								self.addCountsizeworker(path)
 				else:
 					# Should never happen
 					pixmap = self.pic_directory

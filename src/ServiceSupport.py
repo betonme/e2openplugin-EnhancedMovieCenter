@@ -131,7 +131,7 @@ class Info:
 		self.__cutlist = path and CutList(path) or []		#TODO dynamic or not
 
 		self.__size = self.isfile and os.stat(path).st_size \
-								or self.isdir and config.EMC.directories_info.value and self.getFolderSize(path) \
+								or self.isdir and (config.EMC.directories_info.value or config.EMC.directories_size_skin.value) and self.getFolderSize(path) \
 								or None
 								#TODO or isdvd
 
@@ -301,9 +301,10 @@ class Info:
 
 	def getFolderSize(self, loadPath):
 		folder_size = 0
-		getValues = movieFileCache.getCountSizeFromCache(loadPath)
-		if getValues is not None:
-			count, size = getValues
-			if size is not None:
-				folder_size = size * 1024 * 1024 * 1024
+		if config.EMC.directories_size_skin.value:
+			getValues = movieFileCache.getCountSizeFromCache(loadPath)
+			if getValues is not None:
+				count, size = getValues
+				if size is not None:
+					folder_size = size * 1024 * 1024 * 1024
 		return folder_size
