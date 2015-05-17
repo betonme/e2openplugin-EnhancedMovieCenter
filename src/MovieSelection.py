@@ -617,6 +617,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		msg = countsizeworker.Message.pop()
 		if msg[0] == 2:
 			self["list"].refreshList()
+			self.updateInfo()
 
 	def cancelThreadMsg(self):
 		print'[EMCMovieSeletion] cancelThreadMsg'

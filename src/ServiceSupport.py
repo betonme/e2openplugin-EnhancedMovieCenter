@@ -28,6 +28,7 @@ from Components.config import *
 from Components.Element import cached
 from enigma import eServiceCenter, iServiceInformation, eServiceReference
 from ServiceReference import ServiceReference
+from EMCFileCache import movieFileCache
 
 from CutListSupport import CutList
 from MetaSupport import MetaList, getInfoFile
@@ -111,9 +112,8 @@ class Info:
 
 		#self.isLink = os.path.islink(path)
 		self.isfile = os.path.isfile(path)
-		isreal = os.path.isdir(path)
+		self.isdir = os.path.isdir(path)
 		ext = path and os.path.splitext(path)[1].lower()
-		self.isdir = isreal and hasattr(service, "ext") and ext == "DIR" or False
 
 		#TODO dynamic or not
 		#if config.EMC.movie_metaload.value:
@@ -301,10 +301,9 @@ class Info:
 
 	def getFolderSize(self, loadPath):
 		folder_size = 0
-		for (path, dirs, files) in os.walk(loadPath):
-			for file in files:
-				filename = os.path.join(path, file)
-				if os.path.exists(filename):
-					#TODO maybe use os.stat like in movieselection updateinfo
-					folder_size += os.path.getsize(filename)
+		getValues = movieFileCache.getCountSizeFromCache(loadPath)
+		if getValues is not None:
+			count, size = getValues
+			if size is not None:
+				folder_size = size * 1024 * 1024 * 1024
 		return folder_size
