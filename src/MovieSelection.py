@@ -1179,7 +1179,6 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		self.updateInfo()
 
 	def updateInfo(self, immediately=False):
-		print "[EMC][Fisch] updateInfo",datetime.now()
 		self.resetInfo()
 		if immediately:
 			self.updateInfoDelayed()
