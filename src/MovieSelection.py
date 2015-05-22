@@ -617,7 +617,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		msg = countsizeworker.Message.pop()
 		if msg[0] == 2:
 			self["list"].refreshList()
-			self.updateInfo()
+			self.updateInfo(True) # immediately=True
 
 	def cancelThreadMsg(self):
 		print'[EMCMovieSeletion] cancelThreadMsg'
@@ -1178,23 +1178,33 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			self.multiSelect( self.getCurrentIndex() )
 		self.updateInfo()
 
-	def updateInfo(self):
+	def updateInfo(self, immediately=False):
+		print "[EMC][Fisch] updateInfo",datetime.now()
 		self.resetInfo()
-		self.delayTimer.start(int(config.EMC.movie_descdelay.value), True)
+		if immediately:
+			self.updateInfoDelayed()
+		else:
+			self.delayTimer.start(int(config.EMC.movie_descdelay.value), True)
 
 		if self.already_shown and self.shown:
 			# Movie cover
 			if config.EMC.movie_cover.value:
 				# Show cover only for media files and directories
 				#if self["list"].currentSelIsPlayable() or self["list"].currentSelIsDirectory():
-				self.coverTimer.start(int(config.EMC.movie_cover_delay.value), True)
+				if immediately:
+					self.showCoverDelayed()
+				else:
+					self.coverTimer.start(int(config.EMC.movie_cover_delay.value), True)
 			# Movie preview
 			if config.EMC.movie_preview.value:
 				# Play preview only if it is a video file
 				#if self["list"].currentSelIsPlayable():
 				if self.playerInstance is None:
 					#print "EMC: start preview timer"
-					self.previewTimer.start(int(config.EMC.movie_preview_delay.value), True)
+					if immediately:
+						self.showPreviewDelayed()
+					else:
+						self.previewTimer.start(int(config.EMC.movie_preview_delay.value), True)
 
 	def updateInfoDelayed(self):
 		self.updateTitle()
