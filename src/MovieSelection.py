@@ -257,7 +257,7 @@ class SelectionEventInfo:
 	def updateEventInfoAudio(self, service, ext):
 		from MutagenSupport import getAudioMetaData, getAudioFileSize, getAudioFileDate
 		title, genre, artist, album, length = getAudioMetaData(service, ext)
-                size = getAudioFileSize(service.getPath())
+		size = getAudioFileSize(service.getPath())
 		date = getAudioFileDate(service.getPath())
 		if (title or genre or artist or album or length) != "":
 			if title == service.getPath():
