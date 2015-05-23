@@ -118,6 +118,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 		# If we enable them, the sound will be delayed for about 2 seconds ?
 				iPlayableService.evStart: self.__serviceStarted,
 				iPlayableService.evStopped: self.__serviceStopped,
+				iPlayableService.evUpdatedInfo: self.__updatedInfo,
 				#iPlayableService.evEnd: self.__evEnd,
 				#iPlayableService.evEOF: self.__evEOF,
 				#iPlayableService.evUser: self.__timeUpdated,
@@ -327,6 +328,9 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 			self.evEOF()	# begin playback
 			if self.service and self.service.type != sidDVB:
 				self.realSeekLength = self.getSeekLength()
+
+	def __updatedInfo(self):
+		self.setAudioTrack()
 
 	def evEOF(self, needToClose=False):
 		# see if there are more to play
@@ -589,36 +593,35 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 
 	##############################################################################
 	## Audio and Subtitles
-	def tryAudioEnable(self, alist, match, tracks):
-		index = 0
-		for e in alist:
-			if e.find(match) >= 0:
-				emcDebugOut("[EMCPlayer] audio track match: " + str(e))
-				tracks.selectTrack(index)
-				return True
-			index += 1
-		return False
-
 	def setAudioTrack(self):
 		try:
 			if not config.EMC.autoaudio.value: return
-			from Tools.ISO639 import LanguageCodes as langC
 			service = self.session.nav.getCurrentService()
 			#tracks = service and service.audioTracks()
 			tracks = service and self.getServiceInterface("audioTracks")
 			nTracks = tracks and tracks.getNumberOfTracks() or 0
 			if not nTracks: return
+			idx = 0
 			trackList = []
 			for i in xrange(nTracks):
-				audioInfo = tracks.getTrackInfo(i)
+			        audioInfo = tracks.getTrackInfo(i)
 				lang = audioInfo.getLanguage()
-				if langC.has_key(lang):
-					lang = langC[lang][0]
 				desc = audioInfo.getDescription()
-				trackList += [str(lang) + " " + str(desc)]
+				track = idx, lang,  desc
+				idx += 1
+				trackList += [track]
+			seltrack = tracks.getCurrentTrack()
 			for audiolang in [config.EMC.audlang1.value, config.EMC.audlang2.value, config.EMC.audlang3.value]:
-				# Joe Debug
-				if self.tryAudioEnable(trackList, audiolang, tracks): break
+			        # Joe Debug
+			        audiolang = audiolang.split("_")[0]
+				for x in trackList:
+					if audiolang == x[1] and seltrack == x[0]:
+						emcDebugOut("[EMCPlayer] audio track is current selected track: " + str(x))
+						return
+					elif audiolang == x[1] and seltrack != x[0]:
+						emcDebugOut("[EMCPlayer] audio track match: " + str(x))
+						tracks.selectTrack(x[0])
+						return
 		except Exception, e:
 			emcDebugOut("[EMCPlayer] audioTrack exception:\n" + str(e))
 
