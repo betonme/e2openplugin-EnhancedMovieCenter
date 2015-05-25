@@ -2572,16 +2572,10 @@ class MovieCenter(GUIComponent):
 		try:	return self.getTypeOfIndex(index) in extMedia
 		except:	return False
 
-	def getCurrentSelDir(self, enteringDir=False):
+	def getCurrentSelDir(self):
 		self.startWorker = True
-		try:	
-			path = self.getListEntry(self.getCurrentIndex())[4]
-			if enteringDir and config.EMC.dir_info_usenoscan.value and self.checkNoScanPath(path):# for initial scan only: ... and not movieFileCache.IsPathInCountSizeList(path):
-				#scan 'noscan' path when entered
-				countsizeworker.add(path)
-			return path
-		except:
-			return "none"
+		try: return self.getListEntry(self.getCurrentIndex())[4]
+		except: return False
 
 	def getCurrentSelName(self):
 		try: return self.getListEntry(self.getCurrentIndex())[3]

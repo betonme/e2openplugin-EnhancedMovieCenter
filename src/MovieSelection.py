@@ -818,6 +818,11 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		return dirlist
 
 	def changeDir(self, path, service=None):
+		if config.EMC.dir_info_usenoscan.value:
+			from MovieCenter import countsizeworker
+			if self["list"].checkNoScanPath(path) and not self["list"].checkNoScanPath(self.currentPath):
+				#scan 'no-scan' path when entered
+				countsizeworker.add(path)
 		path = os.path.normpath(path)
 		self.returnService = service
 		#TODOret
@@ -1777,7 +1782,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 
 			elif self["list"].currentSelIsVirtual():
 				# Open folder and reload movielist
-				self.setNextPath( self["list"].getCurrentSelDir(True) )
+				self.setNextPath( self["list"].getCurrentSelDir() )
 			elif self.browsingVLC():
 				# TODO full integration of the VLC Player
 				entry = self["list"].list[ self.getCurrentIndex() ]
