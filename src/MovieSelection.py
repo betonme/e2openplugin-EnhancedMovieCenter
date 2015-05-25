@@ -245,15 +245,17 @@ class SelectionEventInfo:
 				self["Video"].hide()
 
 	def updateEventInfo(self, service):
-		self["Service"].newService(service)
-		if isMutagen and config.EMC.mutagen_show.value:
-			if service:
-				ext = os.path.splitext(service.getPath())[1].lower()
-				exts = [".mp3", ".flac", ".m4a", ".mp4", ".aac", ".ogg"]
-				if ext.lower() in exts:
-					self.updateEventInfoAudio(service, ext)
-				else:
-					self.hideAudioLabels()
+		isExtHDDSleeping = service and mountPoints.isExtHDDSleeping(service.getPath(),self["list"])
+		if not isExtHDDSleeping:
+			self["Service"].newService(service)
+			if isMutagen and config.EMC.mutagen_show.value:
+				if service:
+					ext = os.path.splitext(service.getPath())[1].lower()
+					exts = [".mp3", ".flac", ".m4a", ".mp4", ".aac", ".ogg"]
+					if ext.lower() in exts:
+						self.updateEventInfoAudio(service, ext)
+					else:
+						self.hideAudioLabels()
 
 	def updateEventInfoAudio(self, service, ext):
 		from MutagenSupport import getAudioMetaData, getAudioFileSize, getAudioFileDate
@@ -818,12 +820,26 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		dirlist.sort()
 		return dirlist
 
+	def postWakeHDD(self,path):
+		mountPoints.postWakeHDDtimerStart(path)
+		from MovieCenter import countsizeworker
+		countsizeworker.add(path)
+		self["list"].refreshList()
+		self.updateInfo(True) # immediately=True (immediately after wake-up)
+
 	def changeDir(self, path, service=None):
 		if config.EMC.dir_info_usenoscan.value:
 			from MovieCenter import countsizeworker
 			if self["list"].checkNoScanPath(path) and not self["list"].checkNoScanPath(self.currentPath):
-				#scan 'no-scan' path when entered
-				countsizeworker.add(path)
+				#entering no-scan directory
+				if config.EMC.noscan_wake_on_entry.value:
+					mountPoints.wakeHDD(path,self.postWakeHDD) #wake device, then re-scan path and update everything
+				else:
+					#scan 'no-scan' path when entered
+					countsizeworker.add(path)
+			#if self["list"].checkNoScanPath(self.currentPath) and not self["list"].checkNoScanPath(path):
+			#	#scan 'no-scan' path when leaving no-scan directory
+			#	countsizeworker.add(self.currentPath)
 		path = os.path.normpath(path)
 		self.returnService = service
 		#TODOret

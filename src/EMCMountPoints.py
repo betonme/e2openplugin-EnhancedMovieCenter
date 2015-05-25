@@ -20,15 +20,82 @@
 #
 
 import os
+from enigma import eTimer
+from Components.config import config
+from EMCTasker import emcTasker
 
 class EMCMountPoints:
 	def __init__(self):		
-		pass
+		self.lastCurrentMountPoint = ""
+		self.lastCurrentMountPointDevice = ""
+
+		self.postWakeHDDtimer = eTimer()
+		try:
+			self.postWakeHDDtimer_conn = self.postWakeHDDtimer.timeout.connect(self.postWakeHDDtimerTimeout)
+		except:
+			self.postWakeHDDtimer.callback.append(self.postWakeHDDtimerTimeout)
+
+		self.postWakeHDDtimerActive = False
+		self.postWakeHDDtimerDevice = ""
 
 	def mountpoint(self, path, first=True):
 		if first: path = os.path.realpath(path)
 		if os.path.ismount(path) or len(path)==0: return path
 		return self.mountpoint(os.path.dirname(path), False)
+
+	def getMountPointDevice(self, path):
+		try:
+			from Components.Harddisk import getProcMounts
+			procMounts = getProcMounts()
+		except:
+			# http://git.opendreambox.org/?p=enigma2.git;a=blob;f=usr/lib/enigma2/python/Components/Harddisk.py
+			from Components.Harddisk import Util
+			procMounts = Util.mtab(virt=False)
+		device = ""
+		for x in procMounts:
+			for entry in x:
+				if path == entry:
+					device = x[0]
+		return device
+
+	def getMountPointDeviceCached(self, path):
+		# single 'cache' entry, allows following changing mounts
+		mountPoint = self.mountpoint(path)
+		if mountPoint != self.lastCurrentMountPoint:
+			self.lastCurrentMountPoint = mountPoint
+			self.lastCurrentMountPointDevice = self.getMountPointDevice(mountPoint)
+		return self.lastCurrentMountPointDevice
+
+	def postWakeHDDtimerStart(self, path):
+		self.postWakeHDDtimer.stop()
+		self.postWakeHDDtimer.start(30000,True) # within 30s after waking the HDD, this timer indicates that the HDD is active (we know it better than the harddiskmanager)
+		self.postWakeHDDtimerActive = True
+		self.postWakeHDDtimerDevice = self.getMountPointDeviceCached(path)
+
+	def postWakeHDDtimerTimeout(self):
+		self.postWakeHDDtimer.stop()
+		self.postWakeHDDtimerActive = False
+
+	def isExtHDDSleeping(self, path, MovieCenterInst):
+		isExtHDDSleeping = False
+		if config.EMC.dir_info_usenoscan.value:
+			device = self.getMountPointDeviceCached(path)
+			if MovieCenterInst.checkNoScanPath(path) and not (self.postWakeHDDtimerActive and self.postWakeHDDtimerDevice == device):
+				try:
+					from Components.Harddisk import harddiskmanager
+					for hdd in harddiskmanager.HDDList():
+						if device.startswith(hdd[1].getDeviceName()):
+							isExtHDDSleeping = hdd[1].isSleeping()
+							break
+				except:
+					pass
+		return isExtHDDSleeping
+
+	def wakeHDD(self, path, postWakeCommand):
+		association = []
+		association.append((postWakeCommand,path))
+		#wake the device a path is residing on by reading a random sector
+		emcTasker.shellExecute("dd if=`df " + path + " | awk 'NR == 2 {print $1}'` bs=4096 count=1 of=/dev/null skip=$[($[RANDOM] + 32768*$[RANDOM]) % 1048576];echo 'wakeDevice finished'", association, False)
 
 mountPoints = EMCMountPoints()
 		

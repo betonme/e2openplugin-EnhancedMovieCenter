@@ -19,7 +19,7 @@
 
 from Components.config import config
 
-MinCacheLimit = 10
+MinCacheLimit = config.EMC.min_file_cache_limit
 
 class EMCFileCache():
 	def __init__(self):

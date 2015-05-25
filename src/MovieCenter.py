@@ -942,9 +942,10 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 
 	def checkNoScanPath(self, path):
 		check = False
+		device = mountPoints.getMountPointDeviceCached(path)
 		if config.EMC.latest_recordings_noscan.value or config.EMC.dir_info_usenoscan.value:
 			for line in self.nostructscan:
-				if line in path:
+				if (line in path) or (line in device):
 					check = True
 					break
 		return check
@@ -1223,7 +1224,7 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 				# If the user wants it, extract information from the meta and eit files
 				# But it is very slow
 
-				if movie_metaload:
+				if movie_metaload and not mountPoints.isExtHDDSleeping(str(currentPath),self):
 					# read title from META
 					meta = MetaList(path)
 					if meta:
@@ -1236,7 +1237,7 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 						# Improve performance and avoid calculation of movie length
 						length = meta.getMetaLength()
 
-				if not metastring and movie_eitload:
+				if not metastring and movie_eitload and not mountPoints.isExtHDDSleeping(str(currentPath),self):
 						# read title from EIT
 						eit = EitList(path)
 						if eit:
@@ -1246,7 +1247,7 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 							if not length:
 								length = eit.getEitLengthInSeconds()
 				# get piconpath
-				if config.EMC.movie_picons.value:
+				if config.EMC.movie_picons.value and not mountPoints.isExtHDDSleeping(str(currentPath),self):
 					meta = MetaList(path)
 					metaref = meta.getMetaServiceReference()
 					if config.EMC.movie_picons_path_own.value:
@@ -1893,7 +1894,7 @@ class MovieCenter(GUIComponent):
 					if config.EMC.movie_date_format.value:
 						datetext = date.strftime( config.EMC.movie_date_format.value )
 
-					if config.EMC.movie_progress.value:
+					if config.EMC.movie_progress.value and not mountPoints.isExtHDDSleeping(path,self):
 						# Calculate progress and state
 						progress, updlen = getProgress(service, length) or 0
 						if updlen:
@@ -2237,7 +2238,7 @@ class MovieCenter(GUIComponent):
 							datetext = _("Trashcan")
 
 				elif ext == cmtDir:
-					if path not in self.nostructscan:
+					if not mountPoints.isExtHDDSleeping(path,self):
 						if os.path.isfile(path + "/dir.lock"):
 							pixmap = self.pic_directory_locked
 						else:
