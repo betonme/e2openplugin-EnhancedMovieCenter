@@ -54,6 +54,7 @@ from enigma import ePicLoad, getDesktop
 
 # EMC internal
 from EMCFileCache import movieFileCache
+from EMCMountPoints import mountPoints
 from DelayedFunction import DelayedFunction
 from EnhancedMovieCenter import _
 from EMCTasker import emcTasker, emcDebugOut
@@ -2016,11 +2017,6 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 	def resetMarker(self):
 		self.resetSelectionList()
 
-	def mountpoint(self, path, first=True):
-		if first: path = os.path.realpath(path)
-		if os.path.ismount(path) or len(path)==0: return path
-		return self.mountpoint(os.path.dirname(path), False)
-
 	def deleteFile(self, permanently=False):
 		if self.multiSelectIdx:
 			self.multiSelectIdx = None
@@ -2029,7 +2025,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		movieFileCache.delPathFromCache(self.currentPath)
 		self.permanentDel  = permanently or not config.EMC.movie_trashcan_enable.value
 		self.permanentDel |= self.currentPath == config.EMC.movie_trashcan_path.value
-		self.permanentDel |= self.mountpoint(self.currentPath) != self.mountpoint(config.EMC.movie_trashcan_path.value)
+		self.permanentDel |= mountPoints.mountpoint(self.currentPath) != mountPoints.mountpoint(config.EMC.movie_trashcan_path.value)
 		current = self.getCurrent()	# make sure there is atleast one entry in the list
 		if current is not None:
 			selectedlist = self["list"].makeSelectionList()[:]
@@ -2411,7 +2407,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 				if path is not None:
 					if op=="delete":	# target == trashcan
 						c = []
-						if purgeTrash or self.currentPath == targetPath or self.mountpoint(self.currentPath) != self.mountpoint(targetPath) or self.mountpoint(x.getPath()) != self.mountpoint(config.EMC.movie_trashcan_path.value):
+						if purgeTrash or self.currentPath == targetPath or mountPoints.mountpoint(self.currentPath) != mountPoints.mountpoint(targetPath) or mountPoints.mountpoint(x.getPath()) != mountPoints.mountpoint(config.EMC.movie_trashcan_path.value):
 							# direct delete from the trashcan or network mount (no copy to trashcan from different mountpoint)
 							#c.append( 'rm -f "'+ path +'."*' )
 
@@ -2492,7 +2488,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			if path is not None:
 				if op=="delete":	# target == trashcan
 					c = []
-					if purgeTrash or self.currentPath == targetPath or self.mountpoint(self.currentPath) != self.mountpoint(targetPath) or self.mountpoint(service.getPath()) != self.mountpoint(config.EMC.movie_trashcan_path.value):
+					if purgeTrash or self.currentPath == targetPath or mountPoints.mountpoint(self.currentPath) != mountPoints.mountpoint(targetPath) or mountPoints.mountpoint(service.getPath()) != mountPoints.mountpoint(config.EMC.movie_trashcan_path.value):
 						# direct delete from the trashcan or network mount (no copy to trashcan from different mountpoint)
 						#c.append( 'rm -f "'+ path +'."*' )
 
@@ -2567,12 +2563,12 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 							self.setReturnCursor()
 				elif op == "move":
 					c = []
-					#if self.mountpoint(self.currentPath) == self.mountpoint(targetPath):
+					#if mountPoints.mountpoint(self.currentPath) == mountPoints.mountpoint(targetPath):
 					#	#self.removeService(service)	# normal direct move
 					#	pass
 					#else:
 					# different self.mountpoint? -> reset user&group
-					if self.mountpoint(targetPath) != self.mountpoint(config.EMC.movie_homepath.value):		# CIFS to HDD is ok!
+					if mountPoints.mountpoint(targetPath) != mountPoints.mountpoint(config.EMC.movie_homepath.value):		# CIFS to HDD is ok!
 						# need to change file ownership to match target filesystem file creation
 						tfile = targetPath + "/owner_test"
 						path = path.replace("'","\'")
@@ -2590,12 +2586,12 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 					self.moveRecCheck(service, targetPath)
 				elif op == "copy":
 					c = []
-					#if self.mountpoint(self.currentPath) == self.mountpoint(targetPath):
+					#if mountPoints.mountpoint(self.currentPath) == mountPoints.mountpoint(targetPath):
 					#	#self.removeService(service)	# normal direct move
 					#	pass
 					#else:
 					# different self.mountpoint? -> reset user&group
-					if self.mountpoint(targetPath) != self.mountpoint(config.EMC.movie_homepath.value):		# CIFS to HDD is ok!
+					if mountPoints.mountpoint(targetPath) != mountPoints.mountpoint(config.EMC.movie_homepath.value):		# CIFS to HDD is ok!
 						# need to change file ownership to match target filesystem file creation
 						tfile = targetPath + "/owner_test"
 						path = path.replace("'","\'")

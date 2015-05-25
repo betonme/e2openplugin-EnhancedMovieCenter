@@ -39,6 +39,7 @@ from timer import TimerEntry
 
 from . import _
 from EMCFileCache import movieFileCache
+from EMCMountPoints import mountPoints
 from RecordingsControl import RecordingsControl, getRecording
 from DelayedFunction import DelayedFunction
 from EMCTasker import emcDebugOut
