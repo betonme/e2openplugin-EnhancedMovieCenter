@@ -13,6 +13,14 @@ msgstr ""
 "X-Poedit-Basepath: ../\n"
 "X-Poedit-SearchPath-0: src\n"
 
+#: src/EnhancedMovieCenter.py:475
+msgid "Enable playback AC3-track first"
+msgstr ""
+
+#: src/EnhancedMovieCenter.py:475
+msgid "HELP_Enable playback AC3-track first"
+msgstr ""
+
 #: src/EnhancedMovieCenter.py:484
 msgid "HELP_Advanced Skin options separator"
 msgstr ""

@@ -118,7 +118,6 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 		# If we enable them, the sound will be delayed for about 2 seconds ?
 				iPlayableService.evStart: self.__serviceStarted,
 				iPlayableService.evStopped: self.__serviceStopped,
-				iPlayableService.evUpdatedInfo: self.__updatedInfo,
 				#iPlayableService.evEnd: self.__evEnd,
 				#iPlayableService.evEOF: self.__evEOF,
 				#iPlayableService.evUser: self.__timeUpdated,
@@ -329,9 +328,6 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 			if self.service and self.service.type != sidDVB:
 				self.realSeekLength = self.getSeekLength()
 
-	def __updatedInfo(self):
-		self.setAudioTrack()
-
 	def evEOF(self, needToClose=False):
 		# see if there are more to play
 		print "EMC PLAYER evEOF", self.playall, self.playcount, self.playlist
@@ -431,7 +427,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 					#TODO Do we need this
 					#self.doSeek(0)
 					#TODO AutoSelect subtitle for DVD Player is not implemented yet
-					DelayedFunction(200, self.setAudioTrack)
+					DelayedFunction(750, self.setAudioTrack)      # we need that to configure! on some images it comes with 200 too early
 					DelayedFunction(400, self.setSubtitleState, True)
 			else:
 				self.session.open(MessageBox, _("Skipping movie, the file does not exist.\n\n") + service.getPath(), MessageBox.TYPE_ERROR, 10)
@@ -596,6 +592,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 	def setAudioTrack(self):
 		try:
 			if not config.EMC.autoaudio.value: return
+		#	from Tools.ISO639 import LanguageCodes as langC
 			service = self.session.nav.getCurrentService()
 			#tracks = service and service.audioTracks()
 			tracks = service and self.getServiceInterface("audioTracks")
@@ -604,26 +601,67 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 			idx = 0
 			trackList = []
 			for i in xrange(nTracks):
-			        audioInfo = tracks.getTrackInfo(i)
+				audioInfo = tracks.getTrackInfo(i)
 				lang = audioInfo.getLanguage()
+		#		if langC.has_key(lang):
+		#			lang = langC[lang][0]
 				desc = audioInfo.getDescription()
 				track = idx, lang,  desc
 				idx += 1
 				trackList += [track]
 			seltrack = tracks.getCurrentTrack()
-			for audiolang in [config.EMC.audlang1.value, config.EMC.audlang2.value, config.EMC.audlang3.value]:
-			        # Joe Debug
-			        audiolang = audiolang.split("_")[0]
-				for x in trackList:
-					if audiolang == x[1] and seltrack == x[0]:
-						emcDebugOut("[EMCPlayer] audio track is current selected track: " + str(x))
-						return
-					elif audiolang == x[1] and seltrack != x[0]:
-						emcDebugOut("[EMCPlayer] audio track match: " + str(x))
-						tracks.selectTrack(x[0])
-						return
+			# we need default selected language from image
+			# to set the audiotrack if "config.EMC.autoaudio.value" are not set
+			from Components.Language import language
+			syslang = language.getLanguage()[:2]
+		#	syslang = langC[syslang][0]
+			if config.EMC.autoaudio.value:
+				audiolang = [config.EMC.audlang1.value, config.EMC.audlang2.value, config.EMC.audlang3.value]
+				caudiolang = True
+			else:
+				audiolang = syslang
+				caudiolang = False
+			useAc3 = config.EMC.autoaudio_ac3.value       # emc has new value, in some images it gives different values for that
+			if useAc3:
+				matchedAc3 = self.tryAudioTrack(tracks, audiolang, caudiolang, trackList, seltrack, useAc3)
+				if matchedAc3: return
+				matchedMpeg = self.tryAudioTrack(tracks, audiolang, caudiolang, trackList, seltrack, False)
+				if matchedMpeg: return
+				tracks.selectTrack(0)    # fallback to track 1(0)
+				return
+			else:
+				matchedMpeg = self.tryAudioTrack(tracks, audiolang, caudiolang, trackList, seltrack, False)
+				if matchedMpeg:	return
+				matchedAc3 = self.tryAudioTrack(tracks, audiolang, caudiolang, trackList, seltrack, useAc3)
+				if matchedAc3: return
+				tracks.selectTrack(0)    # fallback to track 1(0)
 		except Exception, e:
 			emcDebugOut("[EMCPlayer] audioTrack exception:\n" + str(e))
+
+	def tryAudioTrack(self, tracks, audiolang, caudiolang, trackList, seltrack, useAc3):
+		for entry in audiolang:
+			if caudiolang:
+				entry = entry.split("_")[0]
+			for x in trackList:
+				if entry == x[1] and seltrack == x[0]:
+					if useAc3:
+						if x[2].startswith('AC'):
+							emcDebugOut("[EMCPlayer] audio track is current selected track: " + str(x))
+							return True
+					else:
+						emcDebugOut("[EMCPlayer] audio track is current selected track: " + str(x))
+						return True
+				elif entry == x[1] and seltrack != x[0]:
+					if useAc3:
+					        if x[2].startswith('AC'):
+							emcDebugOut("[EMCPlayer] audio track match: " + str(x))
+							tracks.selectTrack(x[0])
+							return True
+					else:
+						emcDebugOut("[EMCPlayer] audio track match: " + str(x))
+						tracks.selectTrack(x[0])
+						return True
+		return False
 
 	def trySubEnable(self, slist, match):
 		for e in slist:

@@ -276,6 +276,7 @@ config.EMC.audlang2                  = ConfigSelection(default = language.lang[l
 config.EMC.audlang3                  = ConfigSelection(default = language.lang[language.getActiveLanguage()][0], choices  = langList())
 config.EMC.autosubs                  = ConfigYesNo(default = False)
 config.EMC.autoaudio                 = ConfigYesNo(default = False)
+config.EMC.autoaudio_ac3             = ConfigYesNo(default = False)		
 config.EMC.key_period                = ConfigSelectionNumber(50, 900, 50, default = 100)
 config.EMC.key_repeat                = ConfigSelectionNumber(250, 900, 50, default= 500)
 config.EMC.restart                   = ConfigSelection(choices = restart_choices, default = "")
