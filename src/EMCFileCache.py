@@ -18,6 +18,7 @@
 #
 
 from Components.config import config
+import os
 
 MinCacheLimit = config.EMC.min_file_cache_limit.getValue()
 
@@ -25,6 +26,7 @@ class EMCFileCache():
 	def __init__(self):
 		self.cacheDirectoryList = {}
 		self.cacheFileList = {}
+		self.cacheLinkList = {}
 		self.cacheCountSizeList = {}
 
 	def addCountSizeToCache(self, path, count, size):
@@ -74,7 +76,11 @@ class EMCFileCache():
 		if config.EMC.files_cache.value:
 			if (len(subdirlist)>MinCacheLimit) or (len(filelist)>MinCacheLimit):
 				self.cacheDirectoryList[path] = subdirlist
+				for p, n, e in subdirlist:
+					self.cacheLinkList[p] = os.path.islink(p)
 				self.cacheFileList[path] = filelist
+				for p, n, e in filelist:
+					self.cacheLinkList[p] = os.path.islink(p)
 			else:
 				if self.cacheDirectoryList.has_key(path):
 					del self.cacheDirectoryList[path]
@@ -87,6 +93,8 @@ class EMCFileCache():
 		if config.EMC.files_cache.value:
 			if len(subdirlist)>MinCacheLimit:
 				self.cacheDirectoryList[path] = subdirlist
+				for p, n, e in subdirlist:
+					self.cacheLinkList[p] = os.path.islink(p)
 			else:
 				if self.cacheDirectoryList.has_key(path):
 					del self.cacheDirectoryList[path]
@@ -95,6 +103,8 @@ class EMCFileCache():
 		if config.EMC.files_cache.value:
 			if len(filelist)>MinCacheLimit:
 				self.cacheFileList[path] = filelist
+				for p, n, e in filelist:
+					self.cacheLinkList[p] = os.path.islink(p)
 			else:
 				if self.cacheFileList.has_key(path):
 					del self.cacheFileList[path]
@@ -117,6 +127,12 @@ class EMCFileCache():
 			return subdirlist, filelist
 		else:
 			return None, None
+
+	def getLinkInfoFromCacheForPath(self, path):
+		if config.EMC.files_cache.value and self.cacheLinkList.has_key(path):
+			return self.cacheLinkList[path]
+		else:
+			return None
 
 	def getDirsFromCacheForPath(self, path):
 		if config.EMC.files_cache.value and self.cacheDirectoryList.has_key(path):

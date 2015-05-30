@@ -832,7 +832,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			from MovieCenter import countsizeworker
 			if self["list"].checkNoScanPath(path) and not self["list"].checkNoScanPath(self.currentPath):
 				#entering no-scan directory
-				if config.EMC.noscan_wake_on_entry.value:
+				if config.EMC.noscan_wake_on_entry.value and mountPoints.isExtHDDSleeping(path,self["list"]):
 					mountPoints.wakeHDD(path,self.postWakeHDD) #wake device, then re-scan path and update everything
 				else:
 					#scan 'no-scan' path when entered
@@ -1534,6 +1534,8 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		self.lastservice = self.lastservice or self.session.nav.getCurrentlyPlayingServiceReference()
 
 		self.initButtons()
+		if config.EMC.noscan_wake_on_entry.value and mountPoints.isExtHDDSleeping(self.currentPath,self["list"]):
+			mountPoints.wakeHDD(self.currentPath,self.postWakeHDD)
 
 		if config.EMC.needsreload.value:
 			config.EMC.needsreload.value = False
