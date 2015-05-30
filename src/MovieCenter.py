@@ -942,8 +942,8 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 
 	def checkNoScanPath(self, path):
 		check = False
-		device = mountPoints.getMountPointDeviceCached(path)
 		if config.EMC.latest_recordings_noscan.value or config.EMC.dir_info_usenoscan.value:
+			device = mountPoints.getMountPointDeviceCached(path)
 			for line in self.nostructscan:
 				if (line in path) or (line in device):
 					check = True
