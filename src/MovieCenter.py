@@ -2407,7 +2407,7 @@ class MovieCenter(GUIComponent):
 					if config.EMC.movie_icons.value:
 						append(MultiContentEntryText(pos=(35, 2), size=(self.CoolFolderSize, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text=title))
 					else:
-						append(MultiContentEntryText(pos=(5, 2), size=(self.CoolFolderSize, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text=title))
+						append(MultiContentEntryText(pos=(5, 2), size=(self.CoolFolderSize + 35, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text=title))
 				else:
 					if config.EMC.movie_icons.value:
 						append(MultiContentEntryText(pos=(self.CoolIconPos + self.CoolIconSize.width() + 5, self.CoolIconHPos), size=(self.CoolFolderSize, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text=title))
