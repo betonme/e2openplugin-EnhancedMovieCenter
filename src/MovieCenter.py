@@ -958,13 +958,13 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 				getdate = os.stat(path)
 				if dirDate:
 					from time import strftime, localtime
-					year = strftime('%Y', localtime(getdate[8]))
-					month = strftime('%m', localtime(getdate[8]))
-					day = strftime('%d', localtime(getdate[8]))
-					hour = strftime('%H', localtime(getdate[8]))
-					min = strftime('%M', localtime(getdate[8]))
+					year = strftime('%Y', localtime(getdate[9]))
+					month = strftime('%m', localtime(getdate[9]))
+					day = strftime('%d', localtime(getdate[9]))
+					hour = strftime('%H', localtime(getdate[9]))
+					min = strftime('%M', localtime(getdate[9]))
 				else:
-					date = getdate[8]
+					date = getdate[9]
 		except Exception, e:
 			emcDebugOut("[EMC] Exception in checkDate: " + str(e))
 		if dirDate:
@@ -1139,7 +1139,7 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 
 				# we get now the real date for folders
 				# so we can sort this, if they are in the list, not at top
-				if path.find("Latest Recordings"):
+				if path.endswith("Latest Recordings"):
 					pass
 				else:
 					if title not in self.topdirlist:
@@ -1603,6 +1603,15 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 					self.highlightsCpy.remove(service)
 
 
+def loadPix(name):
+	plugindir = '/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/'
+	if fileExists(resolveFilename(SCOPE_CURRENT_SKIN, 'emc/'+name)):
+		pic = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'emc/'+name))
+	else:
+		pic = LoadPixmap(cached=True, path=plugindir+name)
+	return pic
+
+
 moviecenter = None
 
 class MovieCenter(GUIComponent):
@@ -1654,7 +1663,17 @@ class MovieCenter(GUIComponent):
 		self.CoolProgressHPos = 0
 		self.CoolBarPos = -1
 		self.CoolBarHPos = 8
-		self.CoolIconHPos = 0
+		self.CoolIconHPos = 2
+		# we have now reached a point, where we need a
+		# general change in buildMovieCenterEntry for that
+		# for example:
+		# we can make now all values like that
+		# so it gives more possibilities for skinners, but needs real changes then !
+		# self.CoolIconPos = parsePosition("5,2", ((1,1),(1,1)))
+		# self.CoolIconSize = parseSize("24,24", ((1,1),(1,1)))
+		self.CoolIconPos = 5
+		self.CoolIconSize = parseSize("24,24", ((1,1),(1,1)))
+
 		self.CoolSelNumTxtWidth = 26
 
 		self.CoolBarSize = parseSize("55,10", ((1,1),(1,1)))
@@ -1690,38 +1709,35 @@ class MovieCenter(GUIComponent):
 		self.l.setBuildFunc(self.buildMovieCenterEntry)
 		self.l.setItemHeight(28)
 
-		self.pic_back            = LoadPixmap(cached=True, path='/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/back.png')
-		self.pic_directory       = LoadPixmap(cached=True, path='/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/dir.png')
-		self.pic_directory_locked= LoadPixmap(cached=True, path='/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/dir_locked.png')
-		if fileExists(resolveFilename(SCOPE_CURRENT_SKIN, 'emc/dir_search.png')):
-			self.pic_directory_search = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'emc/dir_search.png'))
-		else:
-			self.pic_directory_search = LoadPixmap(cached=True, path='/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/dir_search.png')
-		self.pic_movie_default   = LoadPixmap(cached=True, path='/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/movie_default.png')
-		self.pic_movie_unwatched = LoadPixmap(cached=True, path='/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/movie_unwatched.png')
-		self.pic_movie_watching  = LoadPixmap(cached=True, path='/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/movie_watching.png')
-		self.pic_movie_finished  = LoadPixmap(cached=True, path='/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/movie_finished.png')
-		self.pic_movie_rec       = LoadPixmap(cached=True, path='/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/movie_rec.png')
-		self.pic_movie_recrem    = LoadPixmap(cached=True, path='/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/movie_recrem.png')
-		self.pic_movie_cut       = LoadPixmap(cached=True, path='/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/movie_cut.png')
-		self.pic_e2bookmark      = LoadPixmap(cached=True, path='/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/e2bookmark.png')
-		self.pic_emcbookmark     = LoadPixmap(cached=True, path='/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/emcbookmark.png')
-		self.pic_trashcan        = LoadPixmap(cached=True, path='/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/trashcan.png')
-		self.pic_trashcan_full   = LoadPixmap(cached=True, path='/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/trashcan_full.png')
-		self.pic_mp3             = LoadPixmap(cached=True, path='/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/music.png')
-		self.pic_dvd_default     = LoadPixmap(cached=True, path='/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/dvd_default.png')
-		self.pic_dvd_watching    = LoadPixmap(cached=True, path='/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/dvd_watching.png')
-		self.pic_dvd_finished    = LoadPixmap(cached=True, path='/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/dvd_finished.png')
-		self.pic_brd_default     = LoadPixmap(cached=True, path='/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/brd_default.png')
+		self.pic_back            = loadPix('back.png')
+		self.pic_directory       = loadPix('dir.png')
+		self.pic_directory_locked= loadPix('dir_locked.png')
+		self.pic_directory_search= loadPix('dir_search.png')
+		self.pic_movie_default   = loadPix('movie_default.png')
+		self.pic_movie_unwatched = loadPix('movie_unwatched.png')
+		self.pic_movie_watching  = loadPix('movie_watching.png')
+		self.pic_movie_finished  = loadPix('movie_finished.png')
+		self.pic_movie_rec       = loadPix('movie_rec.png')
+		self.pic_movie_recrem    = loadPix('movie_recrem.png')
+		self.pic_movie_cut       = loadPix('movie_cut.png')
+		self.pic_e2bookmark      = loadPix('e2bookmark.png')
+		self.pic_emcbookmark     = loadPix('emcbookmark.png')
+		self.pic_trashcan        = loadPix('trashcan.png')
+		self.pic_trashcan_full   = loadPix('trashcan_full.png')
+		self.pic_mp3             = loadPix('music.png')
+		self.pic_dvd_default     = loadPix('dvd_default.png')
+		self.pic_dvd_watching    = loadPix('dvd_watching.png')
+		self.pic_dvd_finished    = loadPix('dvd_finished.png')
+		self.pic_brd_default     = loadPix('brd_default.png')
 		# TODO: Progress.value for blue structure
-		#self.pic_brd_watching    = LoadPixmap(cached=True, path='/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/brd_watching.png')
-		#self.pic_brd_finished    = LoadPixmap(cached=True, path='/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/brd_finished.png')
-		self.pic_playlist        = LoadPixmap(cached=True, path='/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/playlist.png')
-		self.pic_vlc             = LoadPixmap(cached=True, path='/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/vlc.png')
-		self.pic_vlc_dir         = LoadPixmap(cached=True, path='/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/vlcdir.png')
-		self.pic_link            = LoadPixmap(cached=True, path='/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/link.png')
-		self.pic_latest          = LoadPixmap(cached=True, path='/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/virtual.png')
-		self.pic_col_dir         = LoadPixmap(cached=True, path='/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/coldir.png')
+		#self.pic_brd_watching    = loadPix('brd_watching.png')
+		#self.pic_brd_finished    = loadPix('brd_finished.png')
+		self.pic_playlist        = loadPix('playlist.png')
+		self.pic_vlc             = loadPix('vlc.png')
+		self.pic_vlc_dir         = loadPix('vlcdir.png')
+		self.pic_link            = loadPix('link.png')
+		self.pic_latest          = loadPix('virtual.png')
+		self.pic_col_dir         = loadPix('coldir.png')
 
 		self.onSelectionChanged = []
 
@@ -1755,6 +1771,11 @@ class MovieCenter(GUIComponent):
 					self.CoolMoviePiconSize = int(value)
 				elif attrib == "CoolIconHPos":
 					self.CoolIconHPos = int(value)
+				elif attrib == "CoolIconPos":
+					self.CoolIconPos = int(value)
+				elif attrib == "CoolIconSize":
+					self.CoolIconSize = parseSize(value, ((1,1),(1,1)))
+
 				elif attrib == "CoolFolderSize":
 					self.CoolFolderSize = int(value)
 				elif attrib == "CoolTitleColor":
@@ -1980,21 +2001,35 @@ class MovieCenter(GUIComponent):
 				elif service in self.highlightsCpy: selnumtxt = "+"
 				elif selnum > 0: selnumtxt = "%02d" % selnum
 
+				# TODO: make this shorter
 				if selnumtxt is None:
 					if config.EMC.movie_icons.value:
-						append(MultiContentEntryPixmapAlphaBlend(pos=(5,2 + self.CoolIconHPos), size=(24,24), png=pixmap, **{}))
-						# hide symlink arrow
-						if isLink and config.EMC.link_icons.value:
-							append(MultiContentEntryPixmapAlphaBlend(pos=(7,13 + self.CoolIconHPos), size=(9,10), png=self.pic_link, **{}))
-						offset = 35
+						if not config.EMC.skin_able.value:
+							# hide symlink arrow
+							if isLink and config.EMC.link_icons.value:
+								append(MultiContentEntryPixmapAlphaBlend(pos=(5,2), size=(24,24), png=self.pic_link, **{}))
+							else:
+								append(MultiContentEntryPixmapAlphaBlend(pos=(5,2), size=(24,24), png=pixmap, **{}))
+							offset = 35
+						else:
+							if isLink and config.EMC.link_icons.value:
+								append(MultiContentEntryPixmapAlphaBlend(pos=(self.CoolIconPos,self.CoolIconHPos), size=(self.CoolIconSize.width(),self.CoolIconSize.height()), png=self.pic_link, **{}))
+							else:
+								append(MultiContentEntryPixmapAlphaBlend(pos=(self.CoolIconPos,self.CoolIconHPos), size=(self.CoolIconSize.width(),self.CoolIconSize.height()), png=pixmap, **{}))
+							offset = self.CoolIconPos + self.CoolIconSize.width() + 5
 					else:
 						offset = 5
 				else:
-					append(MultiContentEntryText(pos=(5, self.CoolIconHPos), size=(self.CoolSelNumTxtWidth, globalHeight), font=3, flags=RT_HALIGN_LEFT, text=selnumtxt))
-					offset += 5 + self.CoolSelNumTxtWidth + 4
+					if not config.EMC.skin_able.value:
+						append(MultiContentEntryText(pos=(5, 2), size=(self.CoolSelNumTxtWidth, globalHeight), font=3, flags=RT_HALIGN_LEFT, text=selnumtxt))
+						offset += 5 + self.CoolSelNumTxtWidth + 4
+					else:
+						append(MultiContentEntryText(pos=(self.CoolIconPos, self.CoolIconHPos), size=(self.CoolSelNumTxtWidth, globalHeight), font=3, flags=RT_HALIGN_LEFT, text=selnumtxt))
+						offset += 5 + self.CoolSelNumTxtWidth + 4
 
 				movie_metaload = config.EMC.movie_metaload.value
 				if not config.EMC.skin_able.value:
+
 					# TODO: Progress.value for blue structure
 					if not ext in extBlu and not bluiso:
 						if config.EMC.movie_progress.value == "PB":
@@ -2351,11 +2386,20 @@ class MovieCenter(GUIComponent):
 					datetext = _("UNKNOWN")
 
 				# Is there any way to combine it for both files and directories?
+				# it is, but not with this hole code
 				if config.EMC.movie_icons.value:
-					append(MultiContentEntryPixmapAlphaBlend(pos=(5,2), size=(24,24), png=pixmap, **{}))
-					# hide symlink arrow
-					if isLink and config.EMC.link_icons.value:
-						append(MultiContentEntryPixmapAlphaBlend(pos=(7,13 + self.CoolIconHPos), size=(9,10), png=self.pic_link, **{}))
+					# TODO: make this shorter
+					if not config.EMC.skin_able.value:
+						# hide symlink arrow
+						if isLink and config.EMC.link_icons.value:
+							append(MultiContentEntryPixmapAlphaBlend(pos=(5,2), size=(24,24), png=self.pic_link, **{}))
+						else:
+							append(MultiContentEntryPixmapAlphaBlend(pos=(5,2), size=(24,24), png=pixmap, **{}))
+					else:
+						if isLink and config.EMC.link_icons.value:
+							append(MultiContentEntryPixmapAlphaBlend(pos=(self.CoolIconPos,self.CoolIconHPos), size=(self.CoolIconSize.width(),self.CoolIconSize.height()), png=self.pic_link, **{}))
+						else:
+							append(MultiContentEntryPixmapAlphaBlend(pos=(self.CoolIconPos,self.CoolIconHPos), size=(self.CoolIconSize.width(),self.CoolIconSize.height()), png=pixmap, **{}))
 
 				# Directory left side
 				append(MultiContentEntryText(pos=(35, 0 + self.CoolIconHPos), size=(self.CoolFolderSize, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text=title))
