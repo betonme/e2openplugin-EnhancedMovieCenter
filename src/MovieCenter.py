@@ -2402,7 +2402,17 @@ class MovieCenter(GUIComponent):
 							append(MultiContentEntryPixmapAlphaBlend(pos=(self.CoolIconPos,self.CoolIconHPos), size=(self.CoolIconSize.width(),self.CoolIconSize.height()), png=pixmap, **{}))
 
 				# Directory left side
-				append(MultiContentEntryText(pos=(35, 0 + self.CoolIconHPos), size=(self.CoolFolderSize, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text=title))
+				# TODO: make this shorter
+				if not config.EMC.skin_able.value:
+					if config.EMC.movie_icons.value:
+						append(MultiContentEntryText(pos=(35, 2), size=(self.CoolFolderSize, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text=title))
+					else:
+						append(MultiContentEntryText(pos=(5, 2), size=(self.CoolFolderSize, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text=title))
+				else:
+					if config.EMC.movie_icons.value:
+						append(MultiContentEntryText(pos=(self.CoolIconPos + self.CoolIconSize.width() + 5, self.CoolIconHPos), size=(self.CoolFolderSize, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text=title))
+					else:
+						append(MultiContentEntryText(pos=(5, self.CoolIconHPos), size=(self.CoolFolderSize + self.CoolIconSize.width(), globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text=title))
 				# TODO: Directory left side - skin able
 				#append(MultiContentEntryText(pos=(self.CoolMoviePos, 0), size=(self.CoolFolderSize, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text=title))
 
