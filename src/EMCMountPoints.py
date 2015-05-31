@@ -26,8 +26,7 @@ from EMCTasker import emcTasker
 
 class EMCMountPoints:
 	def __init__(self):		
-		self.lastCurrentMountPoint = ""
-		self.lastCurrentMountPointDevice = ""
+		self.mountPointDeviceCache = {}
 
 		self.postWakeHDDtimer = eTimer()
 		try:
@@ -59,12 +58,13 @@ class EMCMountPoints:
 		return device
 
 	def getMountPointDeviceCached(self, path):
-		# single 'cache' entry, allows following changing mounts
 		mountPoint = self.mountpoint(path)
-		if mountPoint != self.lastCurrentMountPoint:
-			self.lastCurrentMountPoint = mountPoint
-			self.lastCurrentMountPointDevice = self.getMountPointDevice(mountPoint)
-		return self.lastCurrentMountPointDevice
+		if self.mountPointDeviceCache.has_key(mountPoint):
+			mountPointDevice = self.mountPointDeviceCache[mountPoint]
+		else:
+			mountPointDevice = self.getMountPointDevice(mountPoint)
+			self.mountPointDeviceCache[mountPoint] = mountPointDevice
+		return mountPointDevice
 
 	def postWakeHDDtimerStart(self, path):
 		self.postWakeHDDtimer.stop()
