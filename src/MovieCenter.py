@@ -2001,21 +2001,18 @@ class MovieCenter(GUIComponent):
 				elif service in self.highlightsCpy: selnumtxt = "+"
 				elif selnum > 0: selnumtxt = "%02d" % selnum
 
-				# TODO: make this shorter
 				if selnumtxt is None:
 					if config.EMC.movie_icons.value:
+						# hide symlink arrow
+						if isLink and config.EMC.link_icons.value:
+							selPic = self.pic_link
+						else:
+							selPic = pixmap
 						if not config.EMC.skin_able.value:
-							# hide symlink arrow
-							if isLink and config.EMC.link_icons.value:
-								append(MultiContentEntryPixmapAlphaBlend(pos=(5,2), size=(24,24), png=self.pic_link, **{}))
-							else:
-								append(MultiContentEntryPixmapAlphaBlend(pos=(5,2), size=(24,24), png=pixmap, **{}))
+							append(MultiContentEntryPixmapAlphaBlend(pos=(5,2), size=(24,24), png=selPic, **{}))
 							offset = 35
 						else:
-							if isLink and config.EMC.link_icons.value:
-								append(MultiContentEntryPixmapAlphaBlend(pos=(self.CoolIconPos,self.CoolIconHPos), size=(self.CoolIconSize.width(),self.CoolIconSize.height()), png=self.pic_link, **{}))
-							else:
-								append(MultiContentEntryPixmapAlphaBlend(pos=(self.CoolIconPos,self.CoolIconHPos), size=(self.CoolIconSize.width(),self.CoolIconSize.height()), png=pixmap, **{}))
+							append(MultiContentEntryPixmapAlphaBlend(pos=(self.CoolIconPos,self.CoolIconHPos), size=(self.CoolIconSize.width(),self.CoolIconSize.height()), png=selPic, **{}))
 							offset = self.CoolIconPos + self.CoolIconSize.width() + 5
 					else:
 						offset = 5
@@ -2149,7 +2146,6 @@ class MovieCenter(GUIComponent):
 						CoolProgressPos = -1
 						CoolBarPos = -1
 
-					# TODO: make this shorter
 					if CoolBarPos != -1:
 						if config.EMC.movie_icons.value:
 							append(MultiContentEntryProgress(pos=(CoolBarPos, self.CoolBarHPos -2), size = (self.CoolBarSizeSa.width(), self.CoolBarSizeSa.height()), percent = progress, borderWidth = 1, foreColor = color, foreColorSelected=color, backColor = self.BackColor, backColorSelected = None))
@@ -2188,7 +2184,6 @@ class MovieCenter(GUIComponent):
 						CoolPiconPos = -1
 						CoolMoviePiconPos = -1
 
-					# TODO: make this orgy shorter
 					progressval = config.EMC.movie_progress.value
 					if ext in extTS:
 						if CoolPiconPos != -1 and CoolMoviePiconPos != -1:
@@ -2201,132 +2196,84 @@ class MovieCenter(GUIComponent):
 								self.CoolPiconWidth = 110
 							# Special way for vti-images, directly over "eListboxPythonMultiContent", they have no "flags=..", only "options=.."
 							if newPiconRenderer or imgVti:
+								progresssub = 0
+								numsub = 0
 								if config.EMC.movie_icons.value:
-									if progressval == "PB" or progressval == "P":
-										append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, CoolPiconPos, self.CoolPiconHPos, self.CoolPiconWidth, self.CoolPiconHeight, picon, None, None, BT_SCALE | BT_KEEP_ASPECT_RATIO))
-									else:
+									if progressval == "MC" or progressval == "":
 										if self.CoolBarPos < CoolPiconPos:
 											progresssub = self.CoolBarSizeSa.width() + 5
-										else:
-											progresssub = 0
-										append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, CoolPiconPos - progresssub, self.CoolPiconHPos, self.CoolPiconWidth, self.CoolPiconHeight, picon, None, None, BT_SCALE | BT_KEEP_ASPECT_RATIO))
 								else:
 									if selnumtxt is None:
 										numsub = self.CoolIconSize.width()
-									else:
-										numsub = 0
-									if progressval == "PB" or progressval == "P":
-										append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, CoolPiconPos - numsub, self.CoolPiconHPos, self.CoolPiconWidth, self.CoolPiconHeight, picon, None, None, BT_SCALE | BT_KEEP_ASPECT_RATIO))
-									else:
+									if progressval == "MC" or progressval == "":
 										if self.CoolBarPos < CoolPiconPos:
 											progresssub = self.CoolBarSizeSa.width()
-										else:
-											progresssub = 0
-										append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, CoolPiconPos - numsub - progresssub, self.CoolPiconHPos, self.CoolPiconWidth, self.CoolPiconHeight, picon, None, None, BT_SCALE | BT_KEEP_ASPECT_RATIO))
+								append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, CoolPiconPos - numsub - progresssub, self.CoolPiconHPos, self.CoolPiconWidth, self.CoolPiconHeight, picon, None, None, BT_SCALE | BT_KEEP_ASPECT_RATIO))
 							else:
+								progresssub = 0
+								numsub = 0
 								if config.EMC.movie_icons.value:
-									if progressval == "PB" or progressval == "P":
-										append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, CoolPiconPos, self.CoolPiconHPos, self.CoolPiconWidth, self.CoolPiconHeight, picon, None, None))
-									else:
+									if progressval == "MC" or progressval == "":
 										if self.CoolBarPos < CoolPiconPos:
 											progresssub = self.CoolBarSizeSa.width() + 5
-										else:
-											progresssub = 0
-										append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, CoolPiconPos - progresssub, self.CoolPiconHPos, self.CoolPiconWidth, self.CoolPiconHeight, picon, None, None))
 								else:
 									if selnumtxt is None:
 										numsub = self.CoolIconSize.width()
-									else:
-										numsub = 0
-									if progressval == "PB" or progressval == "P":
-										append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, CoolPiconPos - numsub, self.CoolPiconHPos, self.CoolPiconWidth, self.CoolPiconHeight, picon, None, None))
-									else:
+									if progressval == "MC" or progressval == "":
 										if self.CoolBarPos < CoolPiconPos:
 											progresssub = self.CoolBarSizeSa.width()
-										else:
-											progresssub = 0
-										append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, CoolPiconPos - numsub - progresssub, self.CoolPiconHPos, self.CoolPiconWidth, self.CoolPiconHeight, picon, None, None))
+								append((eListboxPythonMultiContent.TYPE_PIXMAP_ALPHABLEND, CoolPiconPos - numsub - progresssub, self.CoolPiconHPos, self.CoolPiconWidth, self.CoolPiconHeight, picon, None, None))
 
+							progresssub = 0
+							progressadd = 0
+							numsub = 0
 							if config.EMC.movie_icons.value:
-								if progressval == "PB" or progressval == "P":
-									append(MultiContentEntryText(pos=(self.CoolMoviePiconPos, 0), size=(self.CoolMoviePiconSize, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text=title, color = colortitle, color_sel = colorhighlight))
-								else:
+								if progressval == "MC" or progressval == "":
+									progressadd = self.CoolBarSizeSa.width()
 									if self.CoolBarPos < self.CoolMoviePiconPos:
 										progresssub = self.CoolBarSizeSa.width() + 5
-										progressadd = self.CoolBarSizeSa.width()
-									else:
-										progresssub = 0
-										progressadd = self.CoolBarSizeSa.width()
-									append(MultiContentEntryText(pos=(self.CoolMoviePiconPos - progresssub, 0), size=(self.CoolMoviePiconSize + progressadd, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text=title, color = colortitle, color_sel = colorhighlight))
 							else:
 								if selnumtxt is None:
 									numsub = self.CoolIconSize.width()
-								else:
-									numsub = 0
-								if progressval == "PB" or progressval == "P":
-									append(MultiContentEntryText(pos=(self.CoolMoviePiconPos - numsub, 0), size=(self.CoolMoviePiconSize + numsub, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text=title, color = colortitle, color_sel = colorhighlight))
-								else:
+								if progressval == "MC" or progressval == "":
+									progressadd = self.CoolBarSizeSa.width()
 									if self.CoolBarPos < self.CoolMoviePiconPos:
 										progresssub = self.CoolBarSizeSa.width()
-										progressadd = self.CoolBarSizeSa.width()
-									else:
-										progresssub = 0
-										progressadd = self.CoolBarSizeSa.width()
-									append(MultiContentEntryText(pos=(self.CoolMoviePiconPos - numsub - progresssub, 0), size=(self.CoolMoviePiconSize + numsub + progressadd, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text=title, color = colortitle, color_sel = colorhighlight))
+							append(MultiContentEntryText(pos=(self.CoolMoviePiconPos - numsub - progresssub, 0), size=(self.CoolMoviePiconSize + numsub + progressadd, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text=title, color = colortitle, color_sel = colorhighlight))
 						else:
+							progresssub = 0
+							progressadd = 0
+							numsub = 0
 							if config.EMC.movie_icons.value:
-								if progressval == "PB" or progressval == "P":
-									append(MultiContentEntryText(pos=(self.CoolMoviePos, 0), size=(self.CoolMovieSize, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text=title, color = colortitle, color_sel = colorhighlight))
-								else:
+								if progressval == "MC" or progressval == "":
+									progressadd = self.CoolBarSizeSa.width()
 									if self.CoolBarPos < self.CoolMoviePos:
 										progresssub = self.CoolBarSizeSa.width() + 10
-										progressadd = self.CoolBarSizeSa.width()
-									else:
-										progresssub = 0
-										progressadd = self.CoolBarSizeSa.width()
-									append(MultiContentEntryText(pos=(self.CoolMoviePos - progresssub, 0), size=(self.CoolMovieSize + progressadd, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text=title, color = colortitle, color_sel = colorhighlight))
 							else:
 								if selnumtxt is None:
 									numsub = self.CoolIconSize.width()
-								else:
-									numsub = 0
-								if progressval == "PB" or progressval == "P":
-									append(MultiContentEntryText(pos=(self.CoolMoviePos - numsub, 0), size=(self.CoolMovieSize + numsub, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text=title, color = colortitle, color_sel = colorhighlight))
-								else:
+								if progressval == "MC" or progressval == "":
+									progressadd = self.CoolBarSizeSa.width()
 									if self.CoolBarPos <= self.CoolMoviePos:
 										progresssub = self.CoolBarSizeSa.width()
-										progressadd = self.CoolBarSizeSa.width()
-									else:
-										progresssub = 0
-										progressadd = self.CoolBarSizeSa.width()
-									append(MultiContentEntryText(pos=(self.CoolMoviePos - numsub - progresssub, 0), size=(self.CoolMovieSize + numsub + progressadd, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text=title, color = colortitle, color_sel = colorhighlight))
+							append(MultiContentEntryText(pos=(self.CoolMoviePos - numsub - progresssub, 0), size=(self.CoolMovieSize + numsub + progressadd, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text=title, color = colortitle, color_sel = colorhighlight))
 					else:
+						progresssub = 0
+						progressadd = 0
+						numsub = 0
 						if config.EMC.movie_icons.value:
-							if progressval == "PB" or progressval == "P":
-								append(MultiContentEntryText(pos=(self.CoolMoviePos, 0), size=(self.CoolMovieSize, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text=title, color = colortitle, color_sel = colorhighlight))
-							else:
+							if progressval == "MC" or progressval == "":
+								progressadd = self.CoolBarSizeSa.width()
 								if self.CoolBarPos < self.CoolMoviePos:
 									progresssub = self.CoolBarSizeSa.width() + 10
-									progressadd = self.CoolBarSizeSa.width()
-								else:
-									progresssub = 0
-									progressadd = self.CoolBarSizeSa.width()
-								append(MultiContentEntryText(pos=(self.CoolMoviePos - progresssub, 0), size=(self.CoolMovieSize + progressadd, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text=title, color = colortitle, color_sel = colorhighlight))
 						else:
 							if selnumtxt is None:
 								numsub = self.CoolIconSize.width()
-							else:
-								numsub = 0
-							if progressval == "PB" or progressval == "P":
-								append(MultiContentEntryText(pos=(self.CoolMoviePos - numsub, 0), size=(self.CoolMovieSize + numsub, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text=title, color = colortitle, color_sel = colorhighlight))
-							else:
+							if progressval == "MC" or progressval == "":
+								progressadd = self.CoolBarSizeSa.width()
 								if self.CoolBarPos < self.CoolMoviePos:
 									progresssub = self.CoolBarSizeSa.width()
-									progressadd = self.CoolBarSizeSa.width()
-								else:
-									progresssub = 0
-									progressadd = self.CoolBarSizeSa.width()
-								append(MultiContentEntryText(pos=(self.CoolMoviePos - numsub - progresssub, 0), size=(self.CoolMovieSize + numsub + progressadd, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text=title, color = colortitle, color_sel = colorhighlight))
+						append(MultiContentEntryText(pos=(self.CoolMoviePos - numsub - progresssub, 0), size=(self.CoolMovieSize + numsub + progressadd, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text=title, color = colortitle, color_sel = colorhighlight))
 
 			else:
 				# Directory and vlc directories
@@ -2522,30 +2469,32 @@ class MovieCenter(GUIComponent):
 				# Is there any way to combine it for both files and directories?
 				# it is, but not with this hole code
 				if config.EMC.movie_icons.value:
-					# TODO: make this shorter
-					if not config.EMC.skin_able.value:
-						# hide symlink arrow
-						if isLink and config.EMC.link_icons.value:
-							append(MultiContentEntryPixmapAlphaBlend(pos=(5,2), size=(24,24), png=self.pic_link, **{}))
-						else:
-							append(MultiContentEntryPixmapAlphaBlend(pos=(5,2), size=(24,24), png=pixmap, **{}))
+					# hide symlink arrow
+					if isLink and config.EMC.link_icons.value:
+						dirPic = self.pic_link
 					else:
-						if isLink and config.EMC.link_icons.value:
-							append(MultiContentEntryPixmapAlphaBlend(pos=(self.CoolIconPos,self.CoolIconHPos), size=(self.CoolIconSize.width(),self.CoolIconSize.height()), png=self.pic_link, **{}))
-						else:
-							append(MultiContentEntryPixmapAlphaBlend(pos=(self.CoolIconPos,self.CoolIconHPos), size=(self.CoolIconSize.width(),self.CoolIconSize.height()), png=pixmap, **{}))
+						dirPic = pixmap
+					if not config.EMC.skin_able.value:
+						append(MultiContentEntryPixmapAlphaBlend(pos=(5,2), size=(24,24), png=dirPic, **{}))
+					else:
+						append(MultiContentEntryPixmapAlphaBlend(pos=(self.CoolIconPos,self.CoolIconHPos), size=(self.CoolIconSize.width(),self.CoolIconSize.height()), png=dirPic, **{}))
 
 				# Directory left side
 				if not config.EMC.skin_able.value:
+					dirTitleSize = (self.CoolFolderSize, globalHeight)   # this is not realy mutable ?!
 					if config.EMC.movie_icons.value:
-						append(MultiContentEntryText(pos=(35, 2), size=(self.CoolFolderSize, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text=title))
+						dirTitlePos = (35, 2)
 					else:
-						append(MultiContentEntryText(pos=(5, 2), size=(self.CoolFolderSize, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text=title))
+						dirTitlePos = (5, 2)
 				else:
 					if config.EMC.movie_icons.value:
-						append(MultiContentEntryText(pos=(self.CoolIconPos + self.CoolIconSize.width() + 5, self.CoolIconHPos), size=(self.CoolFolderSize, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text=title))
+						dirTitlePos = (self.CoolIconPos + self.CoolIconSize.width() + 5, self.CoolIconHPos)
+						dirTitleSize = (self.CoolFolderSize, globalHeight)
 					else:
-						append(MultiContentEntryText(pos=(5, self.CoolIconHPos), size=(self.CoolFolderSize + self.CoolIconSize.width(), globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text=title))
+						dirTitlePos = (5, self.CoolIconHPos)
+						dirTitleSize = (self.CoolFolderSize + self.CoolIconSize.width(), globalHeight)
+				append(MultiContentEntryText(pos=dirTitlePos, size=dirTitleSize, font=usedFont, flags=RT_HALIGN_LEFT, text=title))
+
 				# TODO: Directory left side - skin able
 				#append(MultiContentEntryText(pos=(self.CoolMoviePos, 0), size=(self.CoolFolderSize, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text=title))
 
