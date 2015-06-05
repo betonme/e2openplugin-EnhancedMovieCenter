@@ -1035,44 +1035,52 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		if path is not None:
 			self.changeDir(path)
 
-	def menuCallback(self, selection=None, parameter=None):
-		if selection is not None:
-			if selection == "Play last": self.playLast()
-			elif selection == "emcPlaylist": self.openPlaylistOptions()
-			elif selection == "addPlaylist": self.addPlaylist()
-			elif selection == "setupPlaylist": self.setupPlaylist()
-			elif selection == "playPlaylist": self.playPlaylist()
-			elif selection == "playPlaylistRandom": self.playPlaylist(True)
-			elif selection == "showPlaylist": self.showPlaylist()
-			elif selection == "delPlaylist": self.delPlaylist()
-			elif selection == "playall": self.playAll()
-			elif selection == "shuffleall": self.shuffleAll()
-			elif selection == "Movie home": self.changeDir(config.EMC.movie_homepath.value)
-			elif selection == "Copy Movie": self.copyMovie()
-			elif selection == "Move Movie": self.moveMovie()
-			elif selection == "Movie Information": self.dlMovieInfo()
-			elif selection == "reload": self.initList()
-			elif selection == "plugin": self.onDialogShow()
-			elif selection == "setup": self.onDialogShow()
-			elif selection == "ctrash": purgeExpired()
-			elif selection == "trash": self.changeDir(config.EMC.movie_trashcan_path.value)
-			elif selection == "del": self.deleteFile()
-			elif selection == "delete": self.deleteFile(True)
-			elif selection == "cutlistmarker": self.removeCutListMarker()
-			elif selection == "resMarker": self.resetMarker()
-			elif selection == "openE2Bookmarks": self.openE2Bookmarks()
-			elif selection == "removeE2Bookmark": self.deleteE2Bookmark(parameter)
-			elif selection == "openEMCBookmarks": self.openEMCBookmarks()
-			elif selection == "removeEMCBookmark": self.deleteEMCBookmark(parameter)
-			elif selection == "dirup": self.directoryUp()
-			elif selection == "oscripts": self.openScriptMenu()
-			elif selection == "markall": self.markAll()
-			elif selection == "updatetitle": self.updateTitle()
-			elif selection == "imdb": self.imdb()
-			elif selection == "imdbdirectory": self.imdbDirectory()
-			elif selection == "rename": self.rename()
-			elif selection == "emptytrash": purgeExpired(emptyTrash=True)
-			elif selection == "reloadwithoutcache": self.reloadListWithoutCache()
+	def menuCallback(self, parameter=None, selection=None):
+		if parameter is not None:
+			if parameter == "Play last": self.playLast()
+			elif parameter == "emcPlaylist": self.openPlaylistOptions()
+			elif parameter == "addPlaylist": self.addPlaylist()
+			elif parameter == "setupPlaylist": self.setupPlaylist()
+			elif parameter == "playPlaylist": self.playPlaylist()
+			elif parameter == "playPlaylistRandom": self.playPlaylist(True)
+			elif parameter == "showPlaylist": self.showPlaylist()
+			elif parameter == "delPlaylist": self.delPlaylist()
+			elif parameter == "playall": self.playAll()
+			elif parameter == "shuffleall": self.shuffleAll()
+			elif parameter == "Movie home": self.changeDir(config.EMC.movie_homepath.value)
+			elif parameter == "Copy Movie":
+				if selection is not None:
+					self.copyMovie(selection)
+				else:
+					self.copyMovie()
+			elif parameter == "Move Movie":
+				if selection is not None:
+					self.moveMovie(selection)
+				else:
+					self.moveMovie()
+			elif parameter == "Movie Information": self.dlMovieInfo()
+			elif parameter == "reload": self.initList()
+			elif parameter == "plugin": self.onDialogShow()
+			elif parameter == "setup": self.onDialogShow()
+			elif parameter == "ctrash": purgeExpired()
+			elif parameter == "trash": self.changeDir(config.EMC.movie_trashcan_path.value)
+			elif parameter == "del": self.deleteFile()
+			elif parameter == "delete": self.deleteFile(True)
+			elif parameter == "cutlistmarker": self.removeCutListMarker()
+			elif parameter == "resMarker": self.resetMarker()
+			elif parameter == "openE2Bookmarks": self.openE2Bookmarks()
+			elif parameter == "removeE2Bookmark": self.deleteE2Bookmark(parameter)
+			elif parameter == "openEMCBookmarks": self.openEMCBookmarks()
+			elif parameter == "removeEMCBookmark": self.deleteEMCBookmark(parameter)
+			elif parameter == "dirup": self.directoryUp()
+			elif parameter == "oscripts": self.openScriptMenu()
+			elif parameter == "markall": self.markAll()
+			elif parameter == "updatetitle": self.updateTitle()
+			elif parameter == "imdb": self.imdb()
+			elif parameter == "imdbdirectory": self.imdbDirectory()
+			elif parameter == "rename": self.rename()
+			elif parameter == "emptytrash": purgeExpired(emptyTrash=True)
+			elif parameter == "reloadwithoutcache": self.reloadListWithoutCache()
 
 	def openPlaylistOptions(self):
 		# first we check if playlist exists
@@ -2666,7 +2674,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		except Exception, e:
 			print('[EMC] postFileOp exception: ', str(e))
 
-	def moveMovie(self):
+	def moveMovie(self, selection=None):
 		# Avoid starting move and copy at the same time
 		#WORKAROUND E2 doesn't send dedicated short or long pressed key events
 		if self.move == False:
@@ -2676,46 +2684,64 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			self.multiSelectIdx = None
 			self.updateTitle()
 		if self.browsingVLC() or self["list"].getCurrentSelDir() == "VLC servers": return
-		current = self.getCurrent()
-		if current is not None:
-			selectedlist = self["list"].makeSelectionList()
-			dialog = False
-			if self["list"].currentSelIsDirectory():
-				if current != selectedlist[0]:	# first selection != cursor pos?
-					targetPath = self.currentPath
-					if self["list"].getCurrentSelDir() == "..":
-						targetPath = os.path.dirname(targetPath)
+		# move way over menu and selected files
+		if selection is not None:
+			try:
+				self.tmpSelList = selection
+				self.session.openWithCallback(
+					self.mvDirSelected,
+					LocationBox,
+						windowTitle = _("Move file(s):"),
+						text = _("Choose directory"),
+						currDir = str(self.currentPath)+"/",
+						bookmarks = config.movielist.videodirs,
+						autoAdd = False,
+						editDir = True,
+						inhibitDirs = ["/bin", "/boot", "/dev", "/etc", "/lib", "/proc", "/sbin", "/sys", "/usr", "/var"],
+						minFree = 100 )
+			except Exception, e:
+				emcDebugOut("[EMCMS] moveMovie exception failure: ", str(e))
+		else:
+			current = self.getCurrent()
+			if current is not None:
+				selectedlist = self["list"].makeSelectionList()
+				dialog = False
+				if self["list"].currentSelIsDirectory():
+					if current != selectedlist[0]:	# first selection != cursor pos?
+						targetPath = self.currentPath
+						if self["list"].getCurrentSelDir() == "..":
+							targetPath = os.path.dirname(targetPath)
+						else:
+							#targetPath += "/" + self["list"].getCurrentSelDir()
+							targetPath = self["list"].getCurrentSelDir()
+						self.tmpSelList = selectedlist[:]
+						self.execFileOp(targetPath, current, self.tmpSelList)
+						self["list"].resetSelection()
 					else:
-						#targetPath += "/" + self["list"].getCurrentSelDir()
-						targetPath = self["list"].getCurrentSelDir()
-					self.tmpSelList = selectedlist[:]
-					self.execFileOp(targetPath, current, self.tmpSelList)
-					self["list"].resetSelection()
+						if len(selectedlist) == 1:
+							self.session.open(MessageBox, _("How to move files:\nSelect some movies with the VIDEO-button, move the cursor on top of the destination directory and press yellow."), MessageBox.TYPE_ERROR, 10)
+						else:
+							dialog = True
 				else:
-					if len(selectedlist) == 1:
+					dialog = True
+				if dialog:
+					try:
+						if len(selectedlist)==1 and self["list"].serviceBusy(selectedlist[0]): return
+						self.tmpSelList = selectedlist[:]
+						self.session.openWithCallback(
+							self.mvDirSelected,
+							LocationBox,
+								windowTitle = _("Move file(s):"),
+								text = _("Choose directory"),
+								currDir = str(self.currentPath)+"/",
+								bookmarks = config.movielist.videodirs,
+								autoAdd = False,
+								editDir = True,
+								inhibitDirs = ["/bin", "/boot", "/dev", "/etc", "/lib", "/proc", "/sbin", "/sys", "/usr", "/var"],
+								minFree = 100 )
+					except:
 						self.session.open(MessageBox, _("How to move files:\nSelect some movies with the VIDEO-button, move the cursor on top of the destination directory and press yellow."), MessageBox.TYPE_ERROR, 10)
-					else:
-						dialog = True
-			else:
-				dialog = True
-			if dialog:
-				try:
-					if len(selectedlist)==1 and self["list"].serviceBusy(selectedlist[0]): return
-					self.tmpSelList = selectedlist[:]
-					self.session.openWithCallback(
-						self.mvDirSelected,
-						LocationBox,
-							windowTitle = _("Move file(s):"),
-							text = _("Choose directory"),
-							currDir = str(self.currentPath)+"/",
-							bookmarks = config.movielist.videodirs,
-							autoAdd = False,
-							editDir = True,
-							inhibitDirs = ["/bin", "/boot", "/dev", "/etc", "/lib", "/proc", "/sbin", "/sys", "/usr", "/var"],
-							minFree = 100 )
-				except:
-					self.session.open(MessageBox, _("How to move files:\nSelect some movies with the VIDEO-button, move the cursor on top of the destination directory and press yellow."), MessageBox.TYPE_ERROR, 10)
-			emcDebugOut("[EMCMS] moveMovie")
+				emcDebugOut("[EMCMS] moveMovie")
 
 	def mvDirSelected(self, targetPath):
 		if targetPath is not None:
@@ -2723,53 +2749,71 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			self.execFileOp(targetPath, current, self.tmpSelList)
 			emcDebugOut("[EMCMS] mvDirSelected")
 
-	def copyMovie(self):
+	def copyMovie(self, selection=None):
 		# Avoid starting move and copy at the same time
 		self.move = False
 		if self.multiSelectIdx:
 			self.multiSelectIdx = None
 			self.updateTitle()
 		if self.browsingVLC() or self["list"].getCurrentSelDir() == "VLC servers": return
-		current = self.getCurrent()
-		if current is not None:
-			selectedlist = self["list"].makeSelectionList()
-			dialog = False
-			if self["list"].currentSelIsDirectory():
-				if current != selectedlist[0]:	# first selection != cursor pos?
-					targetPath = self.currentPath
-					if self["list"].getCurrentSelDir() == "..":
-						targetPath = os.path.dirname(targetPath)
+		# copy way over menu and selected files
+		if selection is not None:
+			try:
+				self.tmpSelList = selection
+				self.session.openWithCallback(
+					self.cpDirSelected,
+					LocationBox,
+						windowTitle = _("Copy file(s):"),
+						text = _("Choose directory"),
+						currDir = str(self.currentPath)+"/",
+						bookmarks = config.movielist.videodirs,
+						autoAdd = False,
+						editDir = True,
+						inhibitDirs = ["/bin", "/boot", "/dev", "/etc", "/lib", "/proc", "/sbin", "/sys", "/usr", "/var"],
+						minFree = 100 )
+			except Exception, e:
+				emcDebugOut("[EMCMS] copyMovie exception failure: ", str(e))
+		else:
+			current = self.getCurrent()
+			if current is not None:
+				selectedlist = self["list"].makeSelectionList()
+				dialog = False
+				if self["list"].currentSelIsDirectory():
+					if current != selectedlist[0]:	# first selection != cursor pos?
+						targetPath = self.currentPath
+						if self["list"].getCurrentSelDir() == "..":
+							targetPath = os.path.dirname(targetPath)
+						else:
+							#targetPath += "/" + self["list"].getCurrentSelDir()
+							targetPath = self["list"].getCurrentSelDir()
+						self.tmpSelList = selectedlist[:]
+						self.execFileOp(targetPath, current, self.tmpSelList, op="copy")
+						self["list"].resetSelection()
 					else:
-						#targetPath += "/" + self["list"].getCurrentSelDir()
-						targetPath = self["list"].getCurrentSelDir()
-					self.tmpSelList = selectedlist[:]
-					self.execFileOp(targetPath, current, self.tmpSelList, op="copy")
-					self["list"].resetSelection()
+						if len(selectedlist) == 1:
+							self.session.open(MessageBox, _("How to copy files:\nSelect some movies with the VIDEO-button, move the cursor on top of the destination directory and press yellow long."), MessageBox.TYPE_ERROR, 10)
+						else:
+							dialog = True
 				else:
-					if len(selectedlist) == 1:
+					dialog = True
+				if dialog:
+					try:
+						if len(selectedlist)==1 and self["list"].serviceBusy(selectedlist[0]): return
+						self.tmpSelList = selectedlist[:]
+						self.session.openWithCallback(
+							self.cpDirSelected,
+							LocationBox,
+								windowTitle = _("Copy file(s):"),
+								text = _("Choose directory"),
+								currDir = str(self.currentPath)+"/",
+								bookmarks = config.movielist.videodirs,
+								autoAdd = False,
+								editDir = True,
+								inhibitDirs = ["/bin", "/boot", "/dev", "/etc", "/lib", "/proc", "/sbin", "/sys", "/usr", "/var"],
+								minFree = 100 )
+					except:
 						self.session.open(MessageBox, _("How to copy files:\nSelect some movies with the VIDEO-button, move the cursor on top of the destination directory and press yellow long."), MessageBox.TYPE_ERROR, 10)
-					else:
-						dialog = True
-			else:
-				dialog = True
-			if dialog:
-				try:
-					if len(selectedlist)==1 and self["list"].serviceBusy(selectedlist[0]): return
-					self.tmpSelList = selectedlist[:]
-					self.session.openWithCallback(
-						self.cpDirSelected,
-						LocationBox,
-							windowTitle = _("Copy file(s):"),
-							text = _("Choose directory"),
-							currDir = str(self.currentPath)+"/",
-							bookmarks = config.movielist.videodirs,
-							autoAdd = False,
-							editDir = True,
-							inhibitDirs = ["/bin", "/boot", "/dev", "/etc", "/lib", "/proc", "/sbin", "/sys", "/usr", "/var"],
-							minFree = 100 )
-				except:
-					self.session.open(MessageBox, _("How to copy files:\nSelect some movies with the VIDEO-button, move the cursor on top of the destination directory and press yellow long."), MessageBox.TYPE_ERROR, 10)
-			emcDebugOut("[EMCMS] copyMovie")
+				emcDebugOut("[EMCMS] copyMovie")
 
 	def cpDirSelected(self, targetPath):
 		if targetPath is not None:

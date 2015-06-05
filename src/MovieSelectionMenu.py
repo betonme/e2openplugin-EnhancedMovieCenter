@@ -123,8 +123,14 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 
 			if service is not None:
 				if os.path.isfile(service.getPath()):
-					self.menu.append((_("Copy Movie"), boundFunction(self.close, "Copy Movie")))
-					self.menu.append((_("Move Movie"), boundFunction(self.close, "Move Movie")))
+					# can we use it for both ?
+					# selections comes also with one file !!! so we can it use.
+					if self.selections:
+						self.menu.append((_("Copy Movie"), boundFunction(self.close, "Copy Movie", self.selections)))
+						self.menu.append((_("Move Movie"), boundFunction(self.close, "Move Movie", self.selections)))
+					else:
+						self.menu.append((_("Copy Movie"), boundFunction(self.close, "Copy Movie")))
+						self.menu.append((_("Move Movie"), boundFunction(self.close, "Move Movie")))
 					#self.menu.append((_("Download Movie Information"), boundFunction(self.close, "Movie Information")))
 				if service.getPath() != config.EMC.movie_trashcan_path.value:
 					if not service.getPath().endswith("/..") and not service.getPath().endswith("/Latest Recordings"):
@@ -491,12 +497,15 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 		self.close("updatetitle")
 
 	# Overwrite Screen close function
-	def close(self, parameter = None):
+	def close(self, parameter = None, selections = None):
 		if parameter is None:
 			if self.reloadafterclose:
 				parameter = "reload"
 		# Call baseclass function
-		Screen.close(self, parameter)
+		if selections is not None:
+			Screen.close(self, parameter, selections)
+		else:
+			Screen.close(self, parameter)
 
 	def deleteCutFileQ(self):
 		self.session.openWithCallback(self.deleteCutFile, MessageBox, _("Do you really want to delete the cut file?\nIf you have selected a directory, all cut files within the folder and its subfolders will be deleted!"))
