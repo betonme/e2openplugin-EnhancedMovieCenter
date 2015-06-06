@@ -159,7 +159,7 @@ progress_choices = [("PB",	_("ProgressBar")),
 					("",	_("Off")) ]
 
 #blueyellowgreen_choices = 	[("MH",	_("Movie home")),
-#							 ("MV", _("Move Movie")),
+#							 ("MV", _("Move File")),
 #							 ("PL",	_("Play last")),
 #							 ("CS",	_("Cover Search")),
 #							 ("MI",	_("Download Movie Info")),
@@ -168,7 +168,7 @@ progress_choices = [("PB",	_("ProgressBar")),
 
 colorbutton_choices = 	[("MH",	_("Movie home")),
 							 ("DL",	_("Delete")),
-							 ("MV",	_("Move Movie")),
+							 ("MV",	_("Move File")),
 							 ("AP",	_("Add to Playlist")),
 							 ("PL",	_("Play last")),
 							 ("CS",	_("Cover Search")),
@@ -189,7 +189,7 @@ blue_choices = colorbutton_choices
 
 longcolorbutton_choices = 	[("MH",	_("Movie home")),
 							 ("DL",	_("Delete")),
-							 ("MV",	_("Move Movie")),
+							 ("MV",	_("Move File")),
 							 ("AP",	_("Add to Playlist")),
 							 ("PL",	_("Play last")),
 							 ("CS",	_("Cover Search")),

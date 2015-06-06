@@ -103,11 +103,17 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 			if service is not None:
 				if os.path.isdir(service.getPath()):
 					self.menu.append((_("Directory-Cover search"), boundFunction(self.close, "imdbdirectory")))
-			self.menu.append((_("Delete"), boundFunction(self.close, "del")))
+			if self.selections:
+				self.menu.append((_("Delete"), boundFunction(self.close, "del", self.selections)))
+			else:
+				self.menu.append((_("Delete"), boundFunction(self.close, "del")))
 
 			if config.EMC.movie_trashcan_enable.value and os.path.exists(config.EMC.movie_trashcan_path.value):
 				if service is not None:
-					self.menu.append((_("Delete permanently"), boundFunction(self.close, "delete")))
+					if self.selections:
+						self.menu.append((_("Delete permanently"), boundFunction(self.close, "delete", self.selections)))
+					else:
+						self.menu.append((_("Delete permanently"), boundFunction(self.close, "delete")))
 				self.menu.append((_("Empty trashcan"), boundFunction(self.emptyTrash)))
 				self.menu.append((_("Go to trashcan"), boundFunction(self.close, "trash")))
 
@@ -126,11 +132,11 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 					# can we use it for both ?
 					# selections comes also with one file !!! so we can it use.
 					if self.selections:
-						self.menu.append((_("Copy Movie"), boundFunction(self.close, "Copy Movie", self.selections)))
-						self.menu.append((_("Move Movie"), boundFunction(self.close, "Move Movie", self.selections)))
+						self.menu.append((_("Copy Files"), boundFunction(self.close, "Copy Movie", self.selections)))
+						self.menu.append((_("Move Files"), boundFunction(self.close, "Move Movie", self.selections)))
 					else:
-						self.menu.append((_("Copy Movie"), boundFunction(self.close, "Copy Movie")))
-						self.menu.append((_("Move Movie"), boundFunction(self.close, "Move Movie")))
+						self.menu.append((_("Copy File"), boundFunction(self.close, "Copy Movie")))
+						self.menu.append((_("Move File"), boundFunction(self.close, "Move Movie")))
 					#self.menu.append((_("Download Movie Information"), boundFunction(self.close, "Movie Information")))
 				if service.getPath() != config.EMC.movie_trashcan_path.value:
 					if not service.getPath().endswith("/..") and not service.getPath().endswith("/Latest Recordings"):

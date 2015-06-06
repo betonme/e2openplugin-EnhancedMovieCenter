@@ -615,7 +615,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		self.onClose.append(self.cancelThreadMsg)
 
 	def gotThreadMsg(self, msg):
-		print'[EMCMovieSeletion] gotThreadMsg'
+		print'[EMCMovieSelection] gotThreadMsg'
 		from MovieCenter import countsizeworker
 		msg = countsizeworker.Message.pop()
 		if msg[0] == 2:
@@ -623,7 +623,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			self.updateInfo(True) # immediately=True
 
 	def cancelThreadMsg(self):
-		print'[EMCMovieSeletion] cancelThreadMsg'
+		print'[EMCMovieSelection] cancelThreadMsg'
 		from MovieCenter import countsizeworker
 		countsizeworker.Cancel()
 		try:
@@ -1064,8 +1064,16 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			elif parameter == "setup": self.onDialogShow()
 			elif parameter == "ctrash": purgeExpired()
 			elif parameter == "trash": self.changeDir(config.EMC.movie_trashcan_path.value)
-			elif parameter == "del": self.deleteFile()
-			elif parameter == "delete": self.deleteFile(True)
+			elif parameter == "del":
+				if selection is not None:
+					self.deleteFile(False, selection)
+				else:
+					self.deleteFile()
+			elif parameter == "delete":
+				if selection is not None:
+					self.deleteFile(True, selection)
+				else:
+					self.deleteFile(True)
 			elif parameter == "cutlistmarker": self.removeCutListMarker()
 			elif parameter == "resMarker": self.resetMarker()
 			elif parameter == "openE2Bookmarks": self.openE2Bookmarks()
@@ -2043,7 +2051,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 	def resetMarker(self):
 		self.resetSelectionList()
 
-	def deleteFile(self, permanently=False):
+	def deleteFile(self, permanently=False, selection=None):
 		if self.multiSelectIdx:
 			self.multiSelectIdx = None
 			self.updateTitle()
@@ -2054,8 +2062,13 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		self.permanentDel |= mountPoints.mountpoint(self.currentPath) != mountPoints.mountpoint(config.EMC.movie_trashcan_path.value)
 		current = self.getCurrent()	# make sure there is atleast one entry in the list
 		if current is not None:
-			selectedlist = self["list"].makeSelectionList()[:]
-			single = len(selectedlist) == 1 and current==selectedlist[0]
+			# delete way over menu and selected files
+			if selection is not None:
+				selectedlist = selection
+				single = len(selectedlist) == 1 and current==selectedlist[0]
+			else:
+				selectedlist = self["list"].makeSelectionList()[:]
+				single = len(selectedlist) == 1 and current==selectedlist[0]
 			if single and self["list"].currentSelIsDirectory():
 				if not config.EMC.movie_trashcan_enable.value or config.EMC.movie_delete_validation.value or self.permanentDel:
 					path = current.getPath()

@@ -2240,12 +2240,20 @@ msgstr ""
 msgid "(Un-)Lock Directory"
 msgstr ""
 
-#: src/MovieSelectionMenu.py:106
-msgid "Copy Movie"
+#: src/MovieSelectionMenu.py:135
+msgid "Copy Files"
 msgstr ""
 
-#: src/MovieSelectionMenu.py:107 src/plugin.py:169 src/plugin.py:189
-msgid "Move Movie"
+#: src/MovieSelectionMenu.py:138 src/plugin.py:166 src/plugin.py:176 src/plugin.py:197
+msgid "Copy File"
+msgstr ""
+
+#: src/MovieSelectionMenu.py:136
+msgid "Move Files"
+msgstr ""
+
+#: src/MovieSelectionMenu.py:139 src/plugin.py:162 src/plugin.py:171 src/plugin.py:192
+msgid "Move File"
 msgstr ""
 
 #: src/MovieSelectionMenu.py:111
@@ -2449,10 +2457,6 @@ msgstr ""
 
 #: src/plugin.py:172 src/plugin.py:192
 msgid "Download Movie Info"
-msgstr ""
-
-#: src/plugin.py:173 src/plugin.py:193
-msgid "Copy File"
 msgstr ""
 
 #: src/plugin.py:174 src/plugin.py:194
