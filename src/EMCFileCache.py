@@ -18,6 +18,7 @@
 #
 
 from Components.config import config
+from datetime import datetime
 import os
 
 MinCacheLimit = config.EMC.min_file_cache_limit.getValue()
@@ -27,6 +28,7 @@ class EMCFileCache():
 		self.cacheDirectoryList = {}
 		self.cacheFileList = {}
 		self.cacheLinkList = {}
+		self.cacheDateList = {}
 		self.cacheCountSizeList = {}
 
 	def addCountSizeToCache(self, path, count, size):
@@ -78,13 +80,17 @@ class EMCFileCache():
 				self.cacheDirectoryList[path] = subdirlist
 				for p, n, e in subdirlist:
 					self.cacheLinkList[p] = os.path.islink(p)
+					self.cacheDateList[p] = os.path.exists(p) and datetime.fromtimestamp( os.path.getmtime(p) ) or None
 				self.cacheFileList[path] = filelist
 				for p, n, e in filelist:
 					self.cacheLinkList[p] = os.path.islink(p)
+					self.cacheDateList[p] = os.path.exists(p) and datetime.fromtimestamp( os.path.getmtime(p) ) or None
 			else:
 				if self.cacheDirectoryList.has_key(path):
+					self.deleteAssociatedListEntries(self.cacheDirectoryList[path])
 					del self.cacheDirectoryList[path]
 				if self.cacheFileList.has_key(path):
+					self.deleteAssociatedListEntries(self.cacheFileList[path])
 					del self.cacheFileList[path]
 #		print "EMC DirectoryCache", self.cacheDirectoryList
 #		print "EMC FileCache", self.cacheFileList
@@ -95,8 +101,10 @@ class EMCFileCache():
 				self.cacheDirectoryList[path] = subdirlist
 				for p, n, e in subdirlist:
 					self.cacheLinkList[p] = os.path.islink(p)
+					self.cacheDateList[p] = os.path.exists(p) and datetime.fromtimestamp( os.path.getmtime(p) ) or None
 			else:
 				if self.cacheDirectoryList.has_key(path):
+					self.deleteAssociatedListEntries(self.cacheDirectoryList[path])
 					del self.cacheDirectoryList[path]
 
 	def addPathWithFilesToCache(self, path, filelist):
@@ -105,8 +113,10 @@ class EMCFileCache():
 				self.cacheFileList[path] = filelist
 				for p, n, e in filelist:
 					self.cacheLinkList[p] = os.path.islink(p)
+					self.cacheDateList[p] = os.path.exists(p) and datetime.fromtimestamp( os.path.getmtime(p) ) or None
 			else:
 				if self.cacheFileList.has_key(path):
+					self.deleteAssociatedListEntries(self.cacheFileList[path])
 					del self.cacheFileList[path]
 
 	def addRecToCacheFileList(self, path, rec):
@@ -131,6 +141,12 @@ class EMCFileCache():
 	def getLinkInfoFromCacheForPath(self, path):
 		if config.EMC.files_cache.value and self.cacheLinkList.has_key(path):
 			return self.cacheLinkList[path]
+		else:
+			return None
+
+	def getDateInfoFromCacheForPath(self, path):
+		if config.EMC.files_cache.value and self.cacheDateList.has_key(path):
+			return self.cacheDateList[path]
 		else:
 			return None
 
@@ -171,8 +187,10 @@ class EMCFileCache():
 			path = path[:-1]
 		print "EMC delPathFromCache", path
 		if self.cacheDirectoryList.has_key(path):
+			self.deleteAssociatedListEntries(self.cacheDirectoryList[path])
 			del self.cacheDirectoryList[path]
 		if self.cacheFileList.has_key(path):
+			self.deleteAssociatedListEntries(self.cacheFileList[path])
 			del self.cacheFileList[path]
 #		print "EMC DirectoryCache", self.cacheDirectoryList
 #		print "EMC FileCache", self.cacheFileList
@@ -181,12 +199,21 @@ class EMCFileCache():
 		if len(path)>1 and path[-1]=="/":
 			path = path[:-1]
 		if self.cacheDirectoryList.has_key(path):
+			self.deleteAssociatedListEntries(self.cacheDirectoryList[path])
 			del self.cacheDirectoryList[path]
 
 	def delPathFromFileCache(self, path):
 		if len(path)>1 and path[-1]=="/":
 			path = path[:-1]
 		if self.cacheFileList.has_key(path):
+			self.deleteAssociatedListEntries(self.cacheFileList[path])
 			del self.cacheFileList[path]
+
+	def deleteAssociatedListEntries(self, list):
+		for p, n, e in list:
+			if self.cacheLinkList.has_key(p):
+				del self.cacheLinkList[p]
+			if self.cacheDateList.has_key(p):
+				del self.cacheDateList[p]
 
 movieFileCache = EMCFileCache()

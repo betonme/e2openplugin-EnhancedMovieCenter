@@ -1286,6 +1286,7 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 
 				# Set date priority here
 				# Fallback get date from filesystem, but it is very slow
+				date = date or movieFileCache.getDateInfoFromCacheForPath(path)
 				date = date or pathexists(path) and datetime.fromtimestamp( pathgetmtime(path) ) or None
 				if date is None:
 					date = datetime.fromtimestamp(0)

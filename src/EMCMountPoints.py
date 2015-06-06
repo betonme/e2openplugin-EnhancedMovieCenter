@@ -58,12 +58,12 @@ class EMCMountPoints:
 		return device
 
 	def getMountPointDeviceCached(self, path):
-		mountPoint = self.mountpoint(path)
-		if self.mountPointDeviceCache.has_key(mountPoint):
-			mountPointDevice = self.mountPointDeviceCache[mountPoint]
+		if self.mountPointDeviceCache.has_key(path):
+			mountPointDevice = self.mountPointDeviceCache[path]
 		else:
+			mountPoint = self.mountpoint(path)
 			mountPointDevice = self.getMountPointDevice(mountPoint)
-			self.mountPointDeviceCache[mountPoint] = mountPointDevice
+			self.mountPointDeviceCache[path] = mountPointDevice
 		return mountPointDevice
 
 	def postWakeHDDtimerStart(self, path):
