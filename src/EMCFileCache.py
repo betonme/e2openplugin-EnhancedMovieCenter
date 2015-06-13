@@ -95,30 +95,6 @@ class EMCFileCache():
 #		print "EMC DirectoryCache", self.cacheDirectoryList
 #		print "EMC FileCache", self.cacheFileList
 
-	def addPathWithDirsToCache(self, path, subdirlist):
-		if config.EMC.files_cache.value:
-			if len(subdirlist)>MinCacheLimit:
-				self.cacheDirectoryList[path] = subdirlist
-				for p, n, e in subdirlist:
-					self.cacheLinkList[p] = os.path.islink(p)
-					self.cacheDateList[p] = os.path.exists(p) and datetime.fromtimestamp( os.path.getmtime(p) ) or None
-			else:
-				if self.cacheDirectoryList.has_key(path):
-					self.deleteAssociatedListEntries(self.cacheDirectoryList[path])
-					del self.cacheDirectoryList[path]
-
-	def addPathWithFilesToCache(self, path, filelist):
-		if config.EMC.files_cache.value:
-			if len(filelist)>MinCacheLimit:
-				self.cacheFileList[path] = filelist
-				for p, n, e in filelist:
-					self.cacheLinkList[p] = os.path.islink(p)
-					self.cacheDateList[p] = os.path.exists(p) and datetime.fromtimestamp( os.path.getmtime(p) ) or None
-			else:
-				if self.cacheFileList.has_key(path):
-					self.deleteAssociatedListEntries(self.cacheFileList[path])
-					del self.cacheFileList[path]
-
 	def addRecToCacheFileList(self, path, rec):
 		if config.EMC.files_cache.value:
 			if self.cacheFileList.has_key(path):
