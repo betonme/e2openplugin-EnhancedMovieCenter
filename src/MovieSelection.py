@@ -2700,7 +2700,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		# move way over menu and selected files
 		if selection is not None:
 			try:
-				self.tmpSelList = selection
+				self.tmpSelList = selection[:]
 				self.session.openWithCallback(
 					self.mvDirSelected,
 					LocationBox,
@@ -2772,7 +2772,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		# copy way over menu and selected files
 		if selection is not None:
 			try:
-				self.tmpSelList = selection
+				self.tmpSelList = selection[:]
 				self.session.openWithCallback(
 					self.cpDirSelected,
 					LocationBox,
