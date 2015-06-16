@@ -203,7 +203,7 @@ class CutList():
 			self.__writeCutFile()
 			if savefileexists:
 				emcDebugOut("[Cutlist.Workaround] Delete Backup-File ")
-				os.remove(cutspath)
+				os.remove(cutspath + '.save')
 		except Exception, e:
 			emcDebugOut("[CUTS] updateCuesheet exception:" + str(e))
 

@@ -484,6 +484,18 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 			emcDebugOut("[EMCPlayer] leave exception:\n" + str(e))
 
 		self.session.nav.stopService()
+		# [Cutlist.Workaround] - part 2
+		# Always make a backup-copy when recording is running and we stopped the playback
+		if self.stopped:
+			if self.service and self.service.type == sidDVB:
+				recFileName=self.service.getPath()
+				record = getRecording(recFileName)
+				if record:
+					cutspath = recFileName + '.cuts'
+					bcutspath = cutspath + '.save'
+					if os.path.exists(cutspath):
+						import shutil
+						shutil.copy2(cutspath, bcutspath)
 		self.close(reopen, self.service)
 
 	def recEvent(self, timer):
