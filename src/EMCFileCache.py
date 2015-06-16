@@ -73,18 +73,18 @@ class EMCFileCache():
 		else:
 			return False
 
-	def addPathToCache(self, path, subdirlist, filelist):
+	def addPathToCache(self, path, subdirlist, filelist, MovieCenterInst):
 		print "EMC addPathToCache", path
 		if config.EMC.files_cache.value:
 			if (len(subdirlist)>MinCacheLimit) or (len(filelist)>MinCacheLimit):
 				self.cacheDirectoryList[path] = subdirlist
 				for p, n, e in subdirlist:
 					self.cacheLinkList[p] = os.path.islink(p)
-					self.cacheDateList[p] = os.path.exists(p) and datetime.fromtimestamp( os.path.getmtime(p) ) or None
+					self.cacheDateList[p] = os.path.exists(p) and MovieCenterInst.checkDate(p, True)
 				self.cacheFileList[path] = filelist
 				for p, n, e in filelist:
 					self.cacheLinkList[p] = os.path.islink(p)
-					self.cacheDateList[p] = os.path.exists(p) and datetime.fromtimestamp( os.path.getmtime(p) ) or None
+					self.cacheDateList[p] = os.path.exists(p) and MovieCenterInst.checkDate(p, False)
 			else:
 				if self.cacheDirectoryList.has_key(path):
 					self.deleteAssociatedListEntries(self.cacheDirectoryList[path])

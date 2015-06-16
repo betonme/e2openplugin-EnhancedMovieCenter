@@ -872,7 +872,7 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 			subdirlist, filelist = movieFileCache.getCacheForPath(path)
 		else:
 			subdirlist, filelist = self.__createDirList(path)
-			movieFileCache.addPathToCache(path, subdirlist, filelist)
+			movieFileCache.addPathToCache(path, subdirlist, filelist, self)
 		return subdirlist, filelist
 
 	def createLatestRecordingsList(self):
@@ -1094,7 +1094,6 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 		# Avoid dots
 		append = tmplist.append
 		pathexists = os.path.exists
-		pathgetmtime = os.path.getmtime
 		pathsplitext = os.path.splitext
 
 		service = None
@@ -1143,7 +1142,11 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 					pass
 				else:
 					if title not in self.topdirlist:
-						newDate = self.checkDate(path, True)
+						newDate = None
+						if config.EMC.files_cache.value:
+							newDate = movieFileCache.getDateInfoFromCacheForPath(path)
+						if newDate is None:
+							newDate = newDate or self.checkDate(path, True)
 						sortyear = newDate[0]
 						sortmonth = newDate[1]
 						sortday = newDate[2]
@@ -1286,8 +1289,12 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 
 				# Set date priority here
 				# Fallback get date from filesystem, but it is very slow
-				date = date or movieFileCache.getDateInfoFromCacheForPath(path)
-				date = date or pathexists(path) and datetime.fromtimestamp( pathgetmtime(path) ) or None
+				if config.EMC.files_cache.value and not date:
+					date = movieFileCache.getDateInfoFromCacheForPath(path)
+					if date is not None:
+						date = datetime.fromtimestamp(date)
+				if date is None:
+					date = pathexists(path) and datetime.fromtimestamp( self.checkDate(path) ) or None
 				if date is None:
 					date = datetime.fromtimestamp(0)
 
@@ -1331,7 +1338,6 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 		# Cleanup before continue
 		del append
 		del pathexists
-		del pathgetmtime
 		del pathsplitext
 
 		if not simulate:
@@ -1860,7 +1866,9 @@ class MovieCenter(GUIComponent):
 			res = [ None ]
 			append = res.append
 
-			isLink = movieFileCache.getLinkInfoFromCacheForPath(path)
+			isLink = None
+			if config.EMC.files_cache.value:
+				isLink = movieFileCache.getLinkInfoFromCacheForPath(path)
 			if isLink is None:
 				isLink = os.path.islink(path)
 			isExtHDDSleeping = mountPoints.isExtHDDSleeping(path,self)
