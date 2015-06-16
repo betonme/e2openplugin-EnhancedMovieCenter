@@ -28,15 +28,25 @@ from EMCTasker import emcDebugOut
 
 from Components.config import *
 
+from Tools.XMLTools import stringToXML
+import xml.etree.cElementTree
+
 global CFG_FILE
 CFG_FILE = "/etc/enigma2/emc-permsort.cfg"
+global XML_FILE
+XML_FILE = "/etc/enigma2/emc-permsort.xml"
 
 # PermanentSort class
 class PermanentSort():
 
 	def __init__(self, path=None):
 		self.__permanentSort = defaultdict(list)
-		self.__permanentSort.update( self.__readPermanentSortCfgFile() )
+		if os.path.exists(XML_FILE):
+			self.__permanentSort.update( self.__readPermanentSortXmlFile() )
+		else:
+			#read old format and convert to xml
+			self.__permanentSort.update( self.__readPermanentSortCfgFile() )
+			self.__writePermanentSortXmlFile(self.__permanentSort)
 
 	def hasPermanentSort(self, path):
 		return self.hasFolderPermanentSort(path) or self.hasParentPermanentSort(path)
@@ -59,7 +69,7 @@ class PermanentSort():
 	def setPermanentSort(self, path, sort):
 		path = os.path.normpath(path)
 		self.__permanentSort[path] = sort
-		self.__writePermanentSortCfgFile(self.__permanentSort)
+		self.__writePermanentSortXmlFile(self.__permanentSort)
 
 	def getPermanentSort(self, path):
 		path = os.path.normpath(path)
@@ -74,7 +84,60 @@ class PermanentSort():
 		path = os.path.normpath(path)
 		if path in self.__permanentSort:
 			del self.__permanentSort[path]
-			self.__writePermanentSortCfgFile(self.__permanentSort)
+			self.__writePermanentSortXmlFile(self.__permanentSort)
+
+	def __readPermanentSortXmlFile(self):
+		data = {}
+		if os.path.exists(XML_FILE):
+			f = None
+
+			# Read from file
+			try:
+				f = open(XML_FILE, "rb")
+				doc = xml.etree.cElementTree.parse(f)
+				root = doc.getroot()
+			except Exception, e:
+				emcDebugOut("[EMC] Exception in __readPermanentSortXmlFile Load: " + str(e))
+			finally:
+				if f is not None:
+					f.close()
+
+			# Parse the data
+			try:
+				for entry in root.findall("entry"):
+					key = entry.get("key")
+					modestring = entry.get("modestring")
+					from Plugins.Extensions.EnhancedMovieCenter.plugin import sort_modes
+					value = sort_modes.get(modestring)[1]
+					data[key] = value
+			except Exception, e:
+				emcDebugOut("[EMC] Exception in __readPermanentSortXmlFile Parse: " + str(e))
+
+		return data
+
+	def __writePermanentSortXmlFile(self, data):
+		f = None
+		try:
+			from Plugins.Extensions.EnhancedMovieCenter.plugin import sort_modes
+			list = ['<?xml version="1.0" ?>\n']
+			list.append('<PermanentSort>\n')
+			for key, value in data.items():
+				modestring = [k for k,v in sort_modes.items() if v[1]==value][0]
+				list.append('<entry')
+				list.append(' key="' + str(key) + '"')
+				list.append(' modestring="' + str(modestring) + '"')
+				list.append('>')
+				list.append('</entry>\n')
+			list.append('</PermanentSort>\n')
+
+			f = open(XML_FILE, "wb")
+			for x in list:
+				f.write(x)
+		except Exception, e:
+			emcDebugOut("[EMC] Exception in __writePermanentSortXmlFile: " + str(e))
+		finally:
+			if f is not None:
+				f.close()
 
 	def __readPermanentSortCfgFile(self):
 		data = {}
@@ -104,13 +167,13 @@ class PermanentSort():
 
 		return data
 
-	def __writePermanentSortCfgFile(self, data):
-		f = None
-		try:
-			f = open(CFG_FILE, "wb")
-			pickle.dump(data, f)
-		except Exception, e:
-			emcDebugOut("[EMC] Exception in writePermanentSortCfgFile: " + str(e))
-		finally:
-			if f is not None:
-				f.close()
+#	def __writePermanentSortCfgFile(self, data):
+#		f = None
+#		try:
+#			f = open(CFG_FILE, "wb")
+#			pickle.dump(data, f)
+#		except Exception, e:
+#			emcDebugOut("[EMC] Exception in writePermanentSortCfgFile: " + str(e))
+#		finally:
+#			if f is not None:
+#				f.close()
