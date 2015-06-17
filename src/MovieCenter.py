@@ -528,7 +528,7 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 		self.list = []
 		from Plugins.Extensions.EnhancedMovieCenter.plugin import sort_modes
 		self.actualSort = sort_modes.get( config.EMC.moviecenter_sort.value )[1]
-		self.returnSort = []
+		self.returnSort = None
 		self.selectionList = None
 
 		self.recControl = RecordingsControl(self.recStateChange)
