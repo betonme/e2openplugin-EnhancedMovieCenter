@@ -572,6 +572,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 
 		if self.currentPath == None:
 			self.currentPath = config.EMC.movie_homepath.value
+		self.lastCurrentPath = None
 		self.tmpSelList = None		# Used for file operations
 		self.tmpSelPath = None		# also used for file operations
 		self.deleteAllOther = False     # also used for file operations
@@ -692,10 +693,17 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			# Reload only if path is not movie home
 			if self.currentPath != config.EMC.movie_homepath.value:
 				#DelayedFunction(1000, self.changeDir, config.EMC.movie_homepath.value)
-				self.currentPath = config.EMC.movie_homepath.value
-				config.EMC.needsreload.value = True
+				# we want only to homepath if we close the list when no file is played in background
+				if self.playerInstance is None:
+					self.currentPath = config.EMC.movie_homepath.value
+					config.EMC.needsreload.value = True
 		if self.playerInstance is not None:
 			self.playerInstance.movieSelected(None)
+			# with this we come to last path
+			# works only if we play one file
+			# not tested for a playlist at the moment
+			# if playlist, we need path for that ---> self.session.nav.getCurrentlyPlayingServiceReference()  ? TODO: test it
+			self.currentPath = self.lastCurrentPath
 		else:
 			config.av.policy_43.cancel() # reload the default setting
 
@@ -1547,13 +1555,19 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 
 	def onDialogShow(self):
 		# Movie preview
+		# this we need for "if config.EMC.needsreload.value" is True
+		isReload = config.EMC.needsreload.value
+		# this we need if we open the list when file is played
+		if self.playerInstance is not None:
+			self.lastCurrentPath = self.currentPath
+
 		self.lastservice = self.lastservice or self.session.nav.getCurrentlyPlayingServiceReference()
 
 		self.initButtons()
 		if config.EMC.noscan_wake_on_entry.value and mountPoints.isExtHDDSleeping(self.currentPath,self["list"]):
 			mountPoints.wakeHDD(self.currentPath,self.postWakeHDD)
 
-		if config.EMC.needsreload.value:
+		if isReload:
 			config.EMC.needsreload.value = False
 			self["list"].resetSorting()
 			self.initList()
@@ -1570,11 +1584,29 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		else:
 			# Refresh is done automatically
 			#self["list"].refreshList()
-			self.initCursor(False)
-			self.updateInfo()
+			# this we need if "config.EMC.movie_reload.value=False"
+			# if we have changed the directory when file was played
+			# open with the last directory we have entered
+			# but we want the directory from the last played/selected file
+			# not tested with playlist
+			if isReload:
+		#		self.initCursor(False)   # we need it not on "onfig.EMC.needsreload.value" is True ! "initList" make this ! But we let this for the next days to see if problems with that !
+				self.updateInfo()
+			else:
+				if self.returnService != self.getCurrent():
+					self.initList()
+				else:
+					self.initCursor(False)   # we need it only if "config.EMC.needsreload.value" is False ! But False from begin !
+					self.updateInfo()
 
 	def onDialogHide(self):
-		self.returnService = self.getCurrent() #self.getNextSelectedService(self.getCurrent(), self.tmpSelList)
+		if self.playerInstance is not None:
+			# with this we come to last selected/played file
+			# works only if we play one file
+			# not tested for a playlist at the moment
+			self.returnService = self.session.nav.getCurrentlyPlayingServiceReference()
+		else:
+			self.returnService = self.getCurrent() #self.getNextSelectedService(self.getCurrent(), self.tmpSelList)
 
 	def getCurrentIndex(self):
 		return self["list"].getCurrentIndex()
