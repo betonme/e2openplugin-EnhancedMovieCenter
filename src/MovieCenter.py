@@ -954,7 +954,7 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 		date = 0
 		year, month, day, hour, min = "", "", "", "", ""
 		try:
-			if path:
+			if path and os.path.exists(path):
 				getdate = os.stat(path)
 				if dirDate:
 					from time import strftime, localtime
@@ -1138,7 +1138,7 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 
 				# we get now the real date for folders
 				# so we can sort this, if they are in the list, not at top
-				if path.endswith("Latest Recordings"):
+				if path.endswith("Latest Recordings") or path.endswith("VLC servers"):
 					pass
 				else:
 					if title not in self.topdirlist:
