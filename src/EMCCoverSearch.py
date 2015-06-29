@@ -118,7 +118,7 @@ def showCoverlist(title, url, path, art):
 	res = [ (title, url, path) ]
 	title = art + title
 	if getDesktop(0).size().width() == 1920:
-		res.append(MultiContentEntryText(pos=(0, 0), size=(550, image()), font=6, text=title, flags=RT_HALIGN_LEFT|RT_VALIGN_CENTER))
+		res.append(MultiContentEntryText(pos=(0, 0), size=(1800, image()), font=6, text=title, flags=RT_HALIGN_LEFT|RT_VALIGN_CENTER))
 	else:
 		res.append(MultiContentEntryText(pos=(0, 0), size=(550, image()), font=4, text=title, flags=RT_HALIGN_LEFT|RT_VALIGN_CENTER))
 	return res
