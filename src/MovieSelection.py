@@ -1593,7 +1593,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		#		self.initCursor(False)   # we need it not on "onfig.EMC.needsreload.value" is True ! "initList" make this ! But we let this for the next days to see if problems with that !
 				self.updateInfo()
 			else:
-				if self.returnService != self.getCurrent():
+				if self.returnService and self.returnService != self.getCurrent():
 					self.initList()
 				else:
 					self.initCursor(False)   # we need it only if "config.EMC.needsreload.value" is False ! But False from begin !
