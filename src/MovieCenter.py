@@ -1318,15 +1318,19 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 				# Bad workaround to get all information into our Service Source
 				service.date = date
 				# get a better date to sort with other values
-				sdate = str(date)
-				sdate = sdate.split(' ', -1)
-				stime = sdate[1].split(':', -1)
-				sdate = sdate[0].split('-', -1)
-				sortyear = sdate[0]
-				sortmonth = sdate[1]
-				sortday = sdate[2]
-				sorthour = stime[0]
-				sortmin = stime[1]
+				try:
+					sdate = str(date)
+					sdate = sdate.split(' ', -1)
+					if len(sdate) >= 1:
+						stime = sdate[1].split(':', -1)
+						sorthour = stime[0]
+						sortmin = stime[1]
+					sdate = sdate[0].split('-', -1)
+					sortyear = sdate[0]
+					sortmonth = sdate[1]
+					sortday = sdate[2]
+				except Exception, e:
+					emcDebugOut("[EMC] Exception in get new date-sort values: " + str(e) + "\n" + "trying with this date: " + str(date))
 
 				# Check config settings
 				#TODO These checks should be done earlier but there we don't have the service yet
