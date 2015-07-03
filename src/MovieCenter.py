@@ -1293,7 +1293,7 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 					date = movieFileCache.getDateInfoFromCacheForPath(path)
 					if date is not None:
 						date = datetime.fromtimestamp(date)
-				if date is None:
+				if not date:
 					date = pathexists(path) and datetime.fromtimestamp( self.checkDate(path) ) or None
 				if date is None:
 					date = datetime.fromtimestamp(0)
