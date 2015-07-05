@@ -52,36 +52,36 @@ class PermanentSort():
 		return self.hasFolderPermanentSort(path) or self.hasParentPermanentSort(path)
 
 	def hasFolderPermanentSort(self, path):
-		path = os.path.normpath(path)
+		path = os.path.normpath(path).decode('utf-8')
 		if path in self.__permanentSort:
 			return True
 		else:
 			return False
 
 	def hasParentPermanentSort(self, path):
-		path = os.path.normpath(path)
+		path = os.path.normpath(path).decode('utf-8')
 		while len(path)>1:
-			path = os.path.dirname(path)
+			path = os.path.dirname(path).decode('utf-8')
 			if path in self.__permanentSort:
 				return path
 		return False
 
 	def setPermanentSort(self, path, sort):
-		path = os.path.normpath(path)
+		path = os.path.normpath(path).decode('utf-8')
 		self.__permanentSort[path] = sort
 		self.__writePermanentSortXmlFile(self.__permanentSort)
 
 	def getPermanentSort(self, path):
-		path = os.path.normpath(path)
+		path = os.path.normpath(path).decode('utf-8')
 		while len(path)>1:
 			if path in self.__permanentSort:
 				sort, order = self.__permanentSort[path]
 				return sort, order
-			path = os.path.dirname(path)
+			path = os.path.dirname(path).decode('utf-8')
 		return None
 
 	def removePermanentSort(self, path):
-		path = os.path.normpath(path)
+		path = os.path.normpath(path).decode('utf-8')
 		if path in self.__permanentSort:
 			del self.__permanentSort[path]
 			self.__writePermanentSortXmlFile(self.__permanentSort)
