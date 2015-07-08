@@ -75,6 +75,7 @@ def image(item=True, itemfont=False, pixmap=False):
 try:
 	from enigma import eMediaDatabase
 	is7080hd = True
+	isDreamOS = True
 except:
 	try:
 		file = open("/proc/stb/info/model", "r")
@@ -85,7 +86,8 @@ except:
 		else:
 			is7080hd = False
 	except:
-			is7080hd = False
+		is7080hd = False
+	isDreamOS = False
 
 class AppURLopener(urllib.FancyURLopener):
 	version = "Mozilla/5.0 (X11; U; Linux x86_64; de; rv:1.9.0.15) Gecko/2009102815 Ubuntu/9.04 (jaunty) Firefox/3."
@@ -543,7 +545,7 @@ class EMCImdbScan(Screen):
 			scale = AVSwitch().getFramebufferScale()
 			size = self["poster"].instance.size()
 			self.picload.setPara((size.width(), size.height(), scale[0], scale[1], False, 1, "#00000000"))
-			if is7080hd:
+			if is7080hd and isDreamOS:
 				try:
 					if self.picload.startDecode(poster_path, False) == 0:
 						ptr = self.picload.getData()
@@ -962,13 +964,10 @@ class getCover(Screen):
 		if self.picload:
 			self.picload.setPara((size.width(), size.height(), sc[0], sc[1], False, 1, "#00000000")) # Background dynamically
 			#self.picload.startDecode(poster_path)
-			if not is7080hd:
-				result = self.picload.startDecode(poster_path, 0, 0, False)
+			if is7080hd and isDreamOS:
+				result = self.picload.startDecode(poster_path, False)
 			else:
-				try:
-					result = self.picload.startDecode(poster_path, False)
-				except:
-					result = self.picload.startDecode(poster_path, 0, 0, False)
+				result = self.picload.startDecode(poster_path, 0, 0, False)
 			if result == 0:
 				#def showCoverCallback(self, picInfo=None):
 				#if picInfo:
