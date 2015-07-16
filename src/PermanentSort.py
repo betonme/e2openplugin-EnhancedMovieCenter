@@ -124,7 +124,7 @@ class PermanentSort():
 			for key, value in data.items():
 				modestring = [k for k,v in sort_modes.items() if v[1]==value][0]
 				list.append('<entry')
-				list.append(' key="' + str(key) + '"')
+				list.append(' key="' + stringToXML(str(key)) + '"')
 				list.append(' modestring="' + str(modestring) + '"')
 				list.append('>')
 				list.append('</entry>\n')
