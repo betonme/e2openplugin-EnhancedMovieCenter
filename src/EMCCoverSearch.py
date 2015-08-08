@@ -74,19 +74,8 @@ def image(item=True, itemfont=False, pixmap=False):
 
 try:
 	from enigma import eMediaDatabase
-	is7080hd = True
 	isDreamOS = True
 except:
-	try:
-		file = open("/proc/stb/info/model", "r")
-		dev = file.readline().strip()
-		file.close()
-		if dev == "dm7080":
-			is7080hd = True
-		else:
-			is7080hd = False
-	except:
-		is7080hd = False
 	isDreamOS = False
 
 class AppURLopener(urllib.FancyURLopener):
@@ -199,7 +188,7 @@ class EMCImdbScan(Screen):
 			"EMCRedLong":	self.redLong,
 			"EMCMenu":	self.config,
 		}, -1)
-		
+
 		self["ButtonGreen"] = Pixmap()
 		self["ButtonGreenText"] = Label(_("Search"))
 		self["ButtonRed"] = Pixmap()
@@ -485,8 +474,8 @@ class EMCImdbScan(Screen):
 	def writeTofile(self, text, cover_path):
 		print cover_path
 		if not fileExists(cover_path.replace('.jpg','.txt')):
-			wFile = open(cover_path.replace('.jpg','.txt'),"w") 
-			wFile.write(text) 
+			wFile = open(cover_path.replace('.jpg','.txt'),"w")
+			wFile.write(text)
 			wFile.close()
 
 	def dataError(self, error):
@@ -499,7 +488,7 @@ class EMCImdbScan(Screen):
 	def errorLoad(self, error, search_title):
 		print "EMC keine daten zu %s gefunden." % search_title
 		#print "Please report: %s" % str(error)
-		
+
 	def exit(self):
 		self.check = False
 		if self.picload:
@@ -545,26 +534,19 @@ class EMCImdbScan(Screen):
 			scale = AVSwitch().getFramebufferScale()
 			size = self["poster"].instance.size()
 			self.picload.setPara((size.width(), size.height(), scale[0], scale[1], False, 1, "#00000000"))
-			if is7080hd and isDreamOS:
-				try:
-					if self.picload.startDecode(poster_path, False) == 0:
-						ptr = self.picload.getData()
-						if ptr != None:
-							self["poster"].instance.setPixmap(ptr)
-							self["poster"].show()
-				except:
-					if self.picload.startDecode(poster_path, 0, 0, False) == 0:
-						ptr = self.picload.getData()
-						if ptr != None:
-							self["poster"].instance.setPixmap(ptr)
-							self["poster"].show()
+			if isDreamOS:
+				if self.picload.startDecode(poster_path, False) == 0:
+					ptr = self.picload.getData()
+					if ptr != None:
+						self["poster"].instance.setPixmap(ptr)
+						self["poster"].show()
 			else:
 				if self.picload.startDecode(poster_path, 0, 0, False) == 0:
 					ptr = self.picload.getData()
 					if ptr != None:
 						self["poster"].instance.setPixmap(ptr)
 						self["poster"].show()
-		
+
 	def config(self):
 		self.session.openWithCallback(self.setupFinished, imdbSetup)
 
@@ -695,7 +677,7 @@ class EMCImdbScan(Screen):
 					'AC3MD','AC3','AC3D','TS','DVDSCR','COMPLETE','INTERNAL','DTSD','XViD','DIVX','DUBBED','LINE.DUBBED','DD51','DVDR9','DVDR5','h264','AVC',
 					'WEBHDTVRiP','WEBHDRiP','WEBRiP','WEBHDTV','WebHD','HDTVRiP','HDRiP','HDTV','ITUNESHD','REPACK','SYNC']
 		text = text.replace('.wmv','').replace('.flv','').replace('.ts','').replace('.m2ts','').replace('.mkv','').replace('.avi','').replace('.mpeg','').replace('.mpg','').replace('.iso','')
-		
+
 		for word in cutlist:
 			text = re.sub('(\_|\-|\.|\+)'+word+'(\_|\-|\.|\+)','+', text, flags=re.I)
 		text = text.replace('.',' ').replace('-',' ').replace('_',' ').replace('+','')
@@ -942,7 +924,7 @@ class getCover(Screen):
 				urllib.urlcleanup()
 				if os.path.exists(self.path):
 					self.poster_resize(self.path, m_title)
-					
+
 					#ptr = LoadPixmap(self.path)
 					#if ptr is None:
 					#        ptr = LoadPixmap("/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/no_poster.png")
@@ -964,7 +946,7 @@ class getCover(Screen):
 		if self.picload:
 			self.picload.setPara((size.width(), size.height(), sc[0], sc[1], False, 1, "#00000000")) # Background dynamically
 			#self.picload.startDecode(poster_path)
-			if is7080hd and isDreamOS:
+			if isDreamOS:
 				result = self.picload.startDecode(poster_path, False)
 			else:
 				result = self.picload.startDecode(poster_path, 0, 0, False)
