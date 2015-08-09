@@ -2649,7 +2649,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 					# different self.mountpoint? -> reset user&group
 					if mountPoints.mountpoint(targetPath) != mountPoints.mountpoint(config.EMC.movie_homepath.value):		# CIFS to HDD is ok!
 						# need to change file ownership to match target filesystem file creation
-						tfile = targetPath + "/owner_test"
+						tfile = "\""+ targetPath + "/owner_test" + "\""
 						path = path.replace("'","\'")
 						sfile = "\""+ path +".\"*"
 						c.append( "touch %s;ls -l %s | while read flags i owner group crap;do chown $owner:$group %s;done;rm %s" %(tfile,tfile,sfile,tfile) )
@@ -2672,7 +2672,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 					# different self.mountpoint? -> reset user&group
 					if mountPoints.mountpoint(targetPath) != mountPoints.mountpoint(config.EMC.movie_homepath.value):		# CIFS to HDD is ok!
 						# need to change file ownership to match target filesystem file creation
-						tfile = targetPath + "/owner_test"
+						tfile = "\""+ targetPath + "/owner_test" + "\""
 						path = path.replace("'","\'")
 						sfile = "\""+ path +".\"*"
 						c.append( "touch %s;ls -l %s | while read flags i owner group crap;do chown $owner:$group %s;done;rm %s" %(tfile,tfile,sfile,tfile) )
