@@ -748,7 +748,7 @@ msgid "HELP_Horizontal alignment for count / size"
 msgstr ""
 "Hier kann die horizontale Ausrichtung des Textes für\n"
 "Anzahl und Größe bestimmt werden.\n"
-"Ob die Anzeige zentriert, oder rechtsbündig gezeigt wird."
+"Ob die Anzeige zentriert oder rechtsbündig gezeigt wird."
 
 #: EnhancedMovieCenter.py:366
 msgid "Show directory size in skin"
@@ -841,22 +841,22 @@ msgstr ""
 
 #: EnhancedMovieCenter.py:377
 msgid "After file OPs only re-scan affected dirs"
-msgstr "Nach Dateioperationen, nur betroffene Verzeichnisse scannen"
+msgstr "Nach Dateioperationen nur betroffene Verzeichnisse scannen"
 
 #: EnhancedMovieCenter.py:377
 msgid "HELP_After file OPs only re-scan affected dirs"
-msgstr "Nach Dateioperationen, werden nur die Verzeichnisse neu gecsannt, die auch betroffen waren."
+msgstr "Nach Dateioperationen werden nur die Verzeichnisse neu gecsannt, die auch betroffen waren."
 
 #: EnhancedMovieCenter.py:378
 msgid "Wake device when entering dir from emc-noscan.cfg"
-msgstr "Wecke Geräte, beim Eintritt in Verzeichnisse aus der emc-noscan.cfg"
+msgstr "Wecke Geräte beim Eintritt in Verzeichnisse aus der emc-noscan.cfg"
 
 #: EnhancedMovieCenter.py:378
 msgid "HELP_Wake device when entering dir from emc-noscan.cfg"
 msgstr ""
-"Wenn aktiviert, werden Geräte beim Eintritt in das Verzeichnis, aus dem StandBy geholt, auch wenn sie in der\n"
+"Wenn aktiviert, werden Geräte aus dem StandBy geholt, wenn ein in der \n"
 "'/etc/enigma2/emc-noscan.cfg'\n"
-"enthalten sind."
+"enthaltenes Verzeichnis betreten wird."
 
 #: EnhancedMovieCenter.py:380
 msgid "HELP_separator_hide&performance"
@@ -951,7 +951,7 @@ msgstr "Lade alles für nicht anzeigbare Titel aus .meta Dateien"
 msgid "HELP_Load all for non showing titles from .meta files"
 msgstr ""
 "Wenn kein Titel aus den .meta Dateien ausgelesen werden\n"
-"kann, lade alles verfügbare um den Titel doch noch erfolgreich anzeigen zu können."
+"kann, lade alles verfügbare, um den Titel doch noch erfolgreich anzeigen zu können."
 
 #: EnhancedMovieCenter.py:392
 msgid "Try to load titles from .eit files"
@@ -1145,7 +1145,7 @@ msgstr "Cover-Hintergrund anzeigen, wenn kein Cover vorhanden"
 
 #: EnhancedMovieCenter.py:420
 msgid "HELP_Fallback Cover"
-msgstr "Bei \"NEIN\", wird der Cover Hintergrund nur angezeigt, wenn auch ein Cover vorhanden ist."
+msgstr "Bei \"NEIN\" wird der Cover Hintergrund nur angezeigt, wenn auch ein Cover vorhanden ist."
 
 #: EnhancedMovieCenter.py:422
 msgid "Show movie preview"
