@@ -520,7 +520,6 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 			del self.picload
 		if self.lastservice:
 			self.session.nav.playService(self.lastservice)
-			self.lastservice = None
 		# Record events
 		try:
 			NavigationInstance.instance.RecordTimer.on_state_change.remove(self.recEvent)
