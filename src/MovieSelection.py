@@ -2207,10 +2207,10 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 								delStr + "?\n" + rm_add + name,
 								MessageBox.TYPE_YESNO )
 					else:
-						self.deleteMovieConfimation(True)
+						self.checkExt(True)
 				else:
 					self.session.openWithCallback(
-							self.deleteMovieConfimation,
+							self.checkExt,
 							MessageBox,
 							delStr + _(" currently played?") + "\n" + rm_add + name,
 							MessageBox.TYPE_YESNO )
@@ -2235,9 +2235,9 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 									delStr + _(" all selected video files?") + "\n" + rm_add + movienames,
 									MessageBox.TYPE_YESNO )
 						else:
-							self.deleteMovieConfimation(True)
+							self.checkExt(True)
 					else:
-						self.session.openWithCallback(self.deleteMovieConfimation, MessageBox, delStr + _(" all selected video files? The currently playing movie is also one of the selections and its playback will be stopped.") + "\n" + rm_add + movienames, MessageBox.TYPE_YESNO)
+						self.session.openWithCallback(self.checkExt, MessageBox, delStr + _(" all selected video files? The currently playing movie is also one of the selections and its playback will be stopped.") + "\n" + rm_add + movienames, MessageBox.TYPE_YESNO)
 		except Exception, e:
 			self.session.open(MessageBox, _("Delete error:\n") + str(e), MessageBox.TYPE_ERROR)
 			emcDebugOut("[EMCMS] deleteMovieQ exception:\n" + str(e))
