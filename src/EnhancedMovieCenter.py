@@ -75,6 +75,16 @@ def checkImg():
 	try:
 		from enigma import BT_FIXRATIO
 		imgVti = True
+		try:
+			from boxbranding import getImageDistro
+			distro = getImageDistro()
+			imgVti = 'vti' in distro.lower()
+		except:
+			imgVti = False
+		if imgVti:
+			print"[EMC] checkImg is Vti"
+		else:
+			print "[EMC] checkImg is not Vti"
 	except Exception, e:
 		print "[EMC] checkImg is not Vti", e
 	try:
