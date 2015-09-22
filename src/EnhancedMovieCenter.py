@@ -72,16 +72,31 @@ newPiconRenderer = False
 def checkImg():
 	global imgVti
 	global newPiconRenderer
+	check = False
 	try:
-		from enigma import BT_FIXRATIO
-		imgVti = True
-	except Exception, e:
-		print "[EMC] checkImg is not Vti", e
+		from boxbranding import getImageDistro
+		distro = getImageDistro()
+		imgVti = 'vti' in distro.lower()
+		check = True
+	except:
+		try:
+			from enigma import BT_FIXRATIO
+			imgVti = True
+			check = True
+		except Exception, e:
+			print "[EMC] checkImg is not Vti", e
+	if check:
+		if imgVti:
+			print "[EMC] checkImg is Vti"
+		else:
+			print "[EMC] checkImg is not Vti"
 	try:
 		from Components.Renderer.Picon import getPiconName
 		newPiconRenderer = True
 	except Exception, e:
 		print "[EMC] checkImg is not newPiconRenderer", e
+	else:
+		print "[EMC] checkImg is newPiconRenderer"
 
 def image():
 	if imgVti:
