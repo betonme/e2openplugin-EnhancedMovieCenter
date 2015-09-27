@@ -366,9 +366,9 @@ def dirInfo(folder, bsize=False):
 				if config.EMC.cfghide_enable.value and hideitemlist:
 					if dir in hideitemlist or (dir[0:1] == "." and ".*" in hideitemlist):
 						dirs.remove(dir)			# hidden dir's subtree won't be explored
-					if dir.lower() in structlist:
-						count += 1						# add dvd/blustructure movies
-						dirs.remove(dir)			# structure's subtree won't be explored
+				if dir.lower() in structlist:
+					count += 1						# add dvd/blustructure movies
+					dirs.remove(dir)			# structure's subtree won't be explored
 			#count += len(dirs)					# don't count dirs
 			for m in files:
 				if os.path.splitext(m)[1].lower() in extList:
