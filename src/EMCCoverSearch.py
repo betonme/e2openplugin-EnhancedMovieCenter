@@ -55,7 +55,12 @@ def image(item=True, itemfont=False, pixmap=False):
 			if imgVti:
 				return 42
 			else:
-				return 40
+				return 40	
+		elif getDesktop(0).size().width() == 3840:
+			if imgVti:
+				return 70
+			else:
+				return 70				
 		else:
 			if imgVti:
 				return 37
@@ -91,6 +96,7 @@ class imdblist(MenuList):
 		self.l.setFont(4, gFont("Regular", 22))
 		self.l.setFont(5, gFont("Regular", 24))
 		self.l.setFont(6, gFont("Regular", 28))
+		self.l.setFont(7, gFont("Regular", 54))
 
 def imdb_show(title, pp, elapsed, genre, search_title):
 	res = [ (title, pp, elapsed, genre, search_title) ]
@@ -100,6 +106,9 @@ def imdb_show(title, pp, elapsed, genre, search_title):
 	if getDesktop(0).size().width() == 1920:
 		res.append(MultiContentEntryText(pos=(0, 0), size=(650, image()), font=6, text=search_title, flags=RT_HALIGN_LEFT|RT_VALIGN_CENTER))
 		res.append(MultiContentEntryText(pos=(660, 0), size=(172, image()), font=6, text=elapsed, flags=RT_HALIGN_LEFT|RT_VALIGN_CENTER))
+	elif getDesktop(0).size().width() == 3840:
+		res.append(MultiContentEntryText(pos=(0, 0), size=(950, image()), font=7, text=search_title, flags=RT_HALIGN_LEFT|RT_VALIGN_CENTER))
+		res.append(MultiContentEntryText(pos=(960, 0), size=(250, image()), font=7, text=elapsed, flags=RT_HALIGN_LEFT|RT_VALIGN_CENTER))	
 	else:
 		res.append(MultiContentEntryText(pos=(0, 0), size=(650, image()), font=4, text=search_title, flags=RT_HALIGN_LEFT|RT_VALIGN_CENTER))
 		res.append(MultiContentEntryText(pos=(660, 0), size=(172, image()), font=4, text=elapsed, flags=RT_HALIGN_LEFT|RT_VALIGN_CENTER))
@@ -110,6 +119,8 @@ def showCoverlist(title, url, path, art):
 	title = art + title
 	if getDesktop(0).size().width() == 1920:
 		res.append(MultiContentEntryText(pos=(0, 0), size=(1800, image()), font=6, text=title, flags=RT_HALIGN_LEFT|RT_VALIGN_CENTER))
+	elif getDesktop(0).size().width() == 3840:
+		res.append(MultiContentEntryText(pos=(0, 0), size=(3800, image()), font=7, text=title, flags=RT_HALIGN_LEFT|RT_VALIGN_CENTER))	
 	else:
 		res.append(MultiContentEntryText(pos=(0, 0), size=(550, image()), font=4, text=title, flags=RT_HALIGN_LEFT|RT_VALIGN_CENTER))
 	return res

@@ -1861,7 +1861,7 @@ class MovieCenter(GUIComponent):
 		try:
 			offset = 0
 			progressWidth = 55
-			globalHeight = 40
+			globalHeight = 80
 			progress = 0
 			pixmap = None
 			color = None
