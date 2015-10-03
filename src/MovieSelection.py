@@ -1,4 +1,4 @@
-#!/usr/bin/python
+﻿#!/usr/bin/python
 # encoding: utf-8
 #
 # Copyright (C) 2011 by Coolman & Swiss-MAD
@@ -1411,7 +1411,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		self["list"].toggleProgress(service)
 
 	def IMDbSearch(self):
-		# first get current path without extension of selected entry, for saving imdb-details as new function 
+		# first get current path without extension of selected entry, for saving imdb-details as new function
 		path = self["list"].getCurrentSelDir()
 		savepath = os.path.splitext(path)[0]
 

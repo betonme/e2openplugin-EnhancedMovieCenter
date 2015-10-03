@@ -1,4 +1,4 @@
-#!/usr/bin/python
+﻿#!/usr/bin/python
 # encoding: utf-8
 #
 # Copyright (C) 2011 by Coolman & Swiss-MAD
@@ -25,7 +25,7 @@ from Components.config import config
 from EMCTasker import emcTasker
 
 class EMCMountPoints:
-	def __init__(self):		
+	def __init__(self):
 		self.mountPointDeviceCache = {}
 
 		self.postWakeHDDtimer = eTimer()
@@ -98,5 +98,5 @@ class EMCMountPoints:
 		emcTasker.shellExecute("dd if=`df " + path + " | awk 'NR == 2 {print $1}'` bs=4096 count=1 of=/dev/null skip=$[($[RANDOM] + 32768*$[RANDOM]) % 1048576];echo 'wakeDevice finished'", association, False)
 
 mountPoints = EMCMountPoints()
-		
+
 #****************************************************************************************

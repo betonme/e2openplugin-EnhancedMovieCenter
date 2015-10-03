@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+﻿# -*- coding: utf-8 -*-
 # mod by einfall (09.11.2014)
 # change to themoviedb.org / thetvdb.com - Api
 
@@ -55,12 +55,12 @@ def image(item=True, itemfont=False, pixmap=False):
 			if imgVti:
 				return 42
 			else:
-				return 40	
+				return 40
 		elif getDesktop(0).size().width() == 3840:
 			if imgVti:
 				return 70
 			else:
-				return 70				
+				return 70
 		else:
 			if imgVti:
 				return 37
@@ -108,7 +108,7 @@ def imdb_show(title, pp, elapsed, genre, search_title):
 		res.append(MultiContentEntryText(pos=(660, 0), size=(172, image()), font=6, text=elapsed, flags=RT_HALIGN_LEFT|RT_VALIGN_CENTER))
 	elif getDesktop(0).size().width() == 3840:
 		res.append(MultiContentEntryText(pos=(0, 0), size=(950, image()), font=7, text=search_title, flags=RT_HALIGN_LEFT|RT_VALIGN_CENTER))
-		res.append(MultiContentEntryText(pos=(960, 0), size=(250, image()), font=7, text=elapsed, flags=RT_HALIGN_LEFT|RT_VALIGN_CENTER))	
+		res.append(MultiContentEntryText(pos=(960, 0), size=(250, image()), font=7, text=elapsed, flags=RT_HALIGN_LEFT|RT_VALIGN_CENTER))
 	else:
 		res.append(MultiContentEntryText(pos=(0, 0), size=(650, image()), font=4, text=search_title, flags=RT_HALIGN_LEFT|RT_VALIGN_CENTER))
 		res.append(MultiContentEntryText(pos=(660, 0), size=(172, image()), font=4, text=elapsed, flags=RT_HALIGN_LEFT|RT_VALIGN_CENTER))
@@ -120,7 +120,7 @@ def showCoverlist(title, url, path, art):
 	if getDesktop(0).size().width() == 1920:
 		res.append(MultiContentEntryText(pos=(0, 0), size=(1800, image()), font=6, text=title, flags=RT_HALIGN_LEFT|RT_VALIGN_CENTER))
 	elif getDesktop(0).size().width() == 3840:
-		res.append(MultiContentEntryText(pos=(0, 0), size=(3800, image()), font=7, text=title, flags=RT_HALIGN_LEFT|RT_VALIGN_CENTER))	
+		res.append(MultiContentEntryText(pos=(0, 0), size=(3800, image()), font=7, text=title, flags=RT_HALIGN_LEFT|RT_VALIGN_CENTER))
 	else:
 		res.append(MultiContentEntryText(pos=(0, 0), size=(550, image()), font=4, text=title, flags=RT_HALIGN_LEFT|RT_VALIGN_CENTER))
 	return res

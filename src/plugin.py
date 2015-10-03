@@ -1,4 +1,4 @@
-#!/usr/bin/python
+﻿#!/usr/bin/python
 # encoding: utf-8
 #
 # Copyright (C) 2011 by Coolman & Swiss-MAD
@@ -88,7 +88,7 @@ class ConfirmBox(MessageBox):
 	def __init__(self, session, text, key1, key2, type):
 		MessageBox.__init__(self, session, text=text, type=type, enable_input=False)
 		self.skinName = "MessageBox"
-		self["actions"] = ActionMap(["OkCancelActions","ColorActions"], 
+		self["actions"] = ActionMap(["OkCancelActions","ColorActions"],
 			{
 				"ok": self.cancel,
 				"cancel": self.cancel,
@@ -96,7 +96,7 @@ class ConfirmBox(MessageBox):
 				key2: self.secondAction,
 			}, -1)
 		self.firstKey = False
-		eActionMap.getInstance().bindAction('', 0x7FFFFFFF, self.action) 
+		eActionMap.getInstance().bindAction('', 0x7FFFFFFF, self.action)
 
 	def firstAction(self):
 		self.firstKey = True
@@ -276,7 +276,7 @@ config.EMC.audlang2                  = ConfigSelection(default = language.lang[l
 config.EMC.audlang3                  = ConfigSelection(default = language.lang[language.getActiveLanguage()][0], choices  = langList())
 config.EMC.autosubs                  = ConfigYesNo(default = False)
 config.EMC.autoaudio                 = ConfigYesNo(default = False)
-config.EMC.autoaudio_ac3             = ConfigYesNo(default = False)		
+config.EMC.autoaudio_ac3             = ConfigYesNo(default = False)
 config.EMC.key_period                = ConfigSelectionNumber(50, 900, 50, default = 100)
 config.EMC.key_repeat                = ConfigSelectionNumber(250, 900, 50, default= 500)
 config.EMC.restart                   = ConfigSelection(choices = restart_choices, default = "")
@@ -482,7 +482,7 @@ def autostart(reason, **kwargs):
 			gSession = kwargs["session"]
 			EMCStartup(gSession)
 			emcTasker.Initialize(gSession)
-			
+
 			if not config.EMC.ml_disable.value:
 				try:
 					from Screens.InfoBar import InfoBar
@@ -494,7 +494,7 @@ def autostart(reason, **kwargs):
 					elif value == "timeshiftStart":		InfoBar.startTimeshift = showMoviesNew
 				except Exception, e:
 					emcDebugOut("[spStartup] MovieCenter launch override exception:\n" + str(e))
-				
+
 				#try:
 				#	from MovieSelection import EMCSelection
 				#	gSession.openWithCallback(showMoviesCallback, EMCSelection)
@@ -515,9 +515,9 @@ def recordingsOpen(session, *args, **kwargs):
 def Plugins(**kwargs):
 	from EnhancedMovieCenter import EMCVersion
 	descriptors = []
-	
+
 	descriptors.append( PluginDescriptor(where = PluginDescriptor.WHERE_SESSIONSTART, fnc = autostart) )
-	
+
 	show_p = [ PluginDescriptor.WHERE_PLUGINMENU ]
 	if config.EMC.extmenu_plugin.value:
 		show_p.append( PluginDescriptor.WHERE_EXTENSIONSMENU )

@@ -1,4 +1,4 @@
-#!/usr/bin/python
+﻿#!/usr/bin/python
 # encoding: utf-8
 #
 # In case of reuse of this source code please do not remove this copyright.

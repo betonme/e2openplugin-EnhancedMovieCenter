@@ -1,4 +1,4 @@
-import os
+﻿import os
 
 # for localized messages
 from __init__ import _

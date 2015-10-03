@@ -1,4 +1,4 @@
-#!/usr/bin/python
+﻿#!/usr/bin/python
 # encoding: utf-8
 
 import os
@@ -92,7 +92,7 @@ def getAudioMetaData(service, ext):
 			album = audio.get('album', [''])[0]
 			# now we try to get embedded covers
 			if ext.lower() == ".mp3":
-				try: 
+				try:
 					scover = ID3(service.getPath())
 				except:
 					scover = None
@@ -138,7 +138,7 @@ def getAudioMetaData(service, ext):
 						except Exception, e:
 							emcDebugOut("[EMCMutagenSupport] Exception in OggEmbeddedCover: " + str(e))
 			elif ext.lower() == ".mp4" or ext.lower() == ".m4a":
-				try: 
+				try:
 					scover = MP4(service.getPath())
 				except:
 					scover = None
@@ -148,7 +148,7 @@ def getAudioMetaData(service, ext):
 						writeTmpCover(scover, ".jpg")
 					except Exception, e:
 						emcDebugOut("[EMCMutagenSupport] Exception in Mp4-M4aEmbeddedCover: " + str(e))
-	
+
 			return title.encode('utf-8'), genre.encode('utf-8'), artist.encode('utf-8'), album.encode('utf-8'), length.encode('utf-8')
 
 	return title, genre, artist, album, length

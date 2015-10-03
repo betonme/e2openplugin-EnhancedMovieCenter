@@ -1,4 +1,4 @@
-#!/usr/bin/python
+﻿#!/usr/bin/python
 # encoding: utf-8
 
 import os
@@ -292,7 +292,7 @@ class PlayList(GUIComponent):
 			else:
 				self.posFont = parseFont("Regular;56", ((1,1),(1,1)))
 				self.nameFont = parseFont("Regular;56", ((1,1),(1,1)))
-			self.itemHeight = 70	
+			self.itemHeight = 70
 		else:
 			if imgVti:
 				self.posFont = parseFont("Regular;18", ((1,1),(1,1)))
@@ -407,7 +407,7 @@ class PlayList(GUIComponent):
 			entrys.append((eListboxPythonMultiContent.TYPE_TEXT,5 + self.posWidth + 30, 1, self.nameWidth, 34, 1, RT_VALIGN_CENTER, name, self.nameColor, self.nameColorSel))
 		elif self.screenwidth and self.screenwidth == 3840:
 			entrys.append((eListboxPythonMultiContent.TYPE_TEXT, 5, 1, self.posWidth, 60, 0, RT_VALIGN_CENTER|RT_HALIGN_RIGHT, pos, self.posColor, self.posColorSel))
-			entrys.append((eListboxPythonMultiContent.TYPE_TEXT,5 + self.posWidth + 58, 1, self.nameWidth, 60, 1, RT_VALIGN_CENTER, name, self.nameColor, self.nameColorSel))	
+			entrys.append((eListboxPythonMultiContent.TYPE_TEXT,5 + self.posWidth + 58, 1, self.nameWidth, 60, 1, RT_VALIGN_CENTER, name, self.nameColor, self.nameColorSel))
 		else:
 			entrys.append((eListboxPythonMultiContent.TYPE_TEXT, 5, 1, self.posWidth, 26, 0, RT_VALIGN_CENTER|RT_HALIGN_RIGHT, pos, self.posColor, self.posColorSel))
 			entrys.append((eListboxPythonMultiContent.TYPE_TEXT,5 + self.posWidth + 20, 1, self.nameWidth, 26, 1, RT_VALIGN_CENTER, name, self.nameColor, self.nameColorSel))
