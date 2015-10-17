@@ -297,7 +297,7 @@ config.EMC.movie_longredfunc         = ConfigSelection(default = "DL", choices =
 #config.EMC.movie_longgreenfunc       = ConfigSelection(default = "CS", choices = longgreen_choices)
 config.EMC.movie_longyellowfunc      = ConfigSelection(default = "MV", choices = longyellow_choices)
 config.EMC.movie_longbluefunc        = ConfigSelection(default = "MH", choices = longblue_choices)
-config.EMC.CoolStartHome             = ConfigYesNo(default = False)
+config.EMC.CoolStartHome             = ConfigSelection(default = "false", choices = [("true", _("yes")), ("false", _("no")), ("after_standby", _("after standby"))])
 config.EMC.movie_descdelay           = ConfigSelectionNumber(50, 60000, 50, default= 200)
 config.EMC.movie_cover               = ConfigYesNo(default = False)
 config.EMC.movie_cover_delay         = ConfigSelectionNumber(50, 60000, 50, default= 500)

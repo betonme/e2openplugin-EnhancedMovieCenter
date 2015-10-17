@@ -358,7 +358,7 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 			(  _("LongInfo Button")                               , config.EMC.InfoLong                 , None                  , None                  , 0     , []          , _("HELP_LongInfo Button")                                , None              , None ),
 
 			(  separator                                          , config.EMC.about                    , None                  , None                  , 0     , []          , _(" ")                                                    , None              , None ),
-			(  _("Movie home at start")                           , config.EMC.CoolStartHome            , None                  , None                  , 0     , []          , _("HELP_Movie home at start")                            , False             , None ),
+			(  _("Movie home at start")                           , config.EMC.CoolStartHome            , None                  , None                  , 0     , []          , _("HELP_Movie home at start")                            , "false"            , None ),
 			(  _("Default sort mode")                             , config.EMC.moviecenter_sort         , None                  , None                  , 0     , []          , _("HELP_Sort mode at startup")                           , None              , None ),
 
 			(  _("Movie home home path")                          , config.EMC.movie_homepath           , self.validatePath     , self.openLocationBox  , 0     , []          , _("HELP_Movie home home path")                           , None              , None ),

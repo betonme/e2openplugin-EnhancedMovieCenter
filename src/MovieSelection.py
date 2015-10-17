@@ -615,6 +615,17 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 
 		self.onClose.append(self.cancelThreadMsg)
 
+		try:
+			config.misc.standbyCounter.addNotifier(self._onStandby, initial_call = False)
+		except:
+			print'[EMCMovieSelection] failed in config.misc.standbyCounter.addNotifier(self._onStandby, initial_call = False)'
+
+	def _onStandby(self, element):
+		if config.EMC.CoolStartHome.value == "after_standby":
+			if self.currentPath != config.EMC.movie_homepath.value:
+				self.currentPath = config.EMC.movie_homepath.value
+				config.EMC.needsreload.value = True
+
 	def gotThreadMsg(self, msg):
 		print'[EMCMovieSelection] gotThreadMsg'
 		from MovieCenter import countsizeworker
@@ -689,7 +700,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		self.session.open(MessageBox, EMCAbout, MessageBox.TYPE_INFO)
 
 	def abort(self):
-		if config.EMC.CoolStartHome.value:
+		if config.EMC.CoolStartHome.value == "true":
 			# Reload only if path is not movie home
 			if self.currentPath != config.EMC.movie_homepath.value:
 				#DelayedFunction(1000, self.changeDir, config.EMC.movie_homepath.value)
@@ -1576,7 +1587,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			or len(self["list"]) == 0:
 			self.initList()
 
-		#elif config.EMC.CoolStartHome.value:
+		#elif config.EMC.CoolStartHome.value == "true":
 		#	# Reload only if path is not movie home
 		#	if self.currentPath != config.EMC.movie_homepath.value:
 		#		self.changeDir(config.EMC.movie_homepath.value)
