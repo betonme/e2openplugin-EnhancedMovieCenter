@@ -958,13 +958,13 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 				getdate = os.stat(path)
 				if dirDate:
 					from time import strftime, localtime
-					year = strftime('%Y', localtime(getdate[9]))
-					month = strftime('%m', localtime(getdate[9]))
-					day = strftime('%d', localtime(getdate[9]))
-					hour = strftime('%H', localtime(getdate[9]))
-					min = strftime('%M', localtime(getdate[9]))
+					year = strftime('%Y', localtime(getdate[8]))
+					month = strftime('%m', localtime(getdate[8]))
+					day = strftime('%d', localtime(getdate[8]))
+					hour = strftime('%H', localtime(getdate[8]))
+					min = strftime('%M', localtime(getdate[8]))
 				else:
-					date = getdate[9]
+					date = getdate[8]
 		except Exception, e:
 			emcDebugOut("[EMC] Exception in checkDate: " + str(e))
 		if dirDate:
