@@ -2258,7 +2258,7 @@ class MovieCenter(GUIComponent):
 									progressadd = self.CoolBarSizeSa.width()
 									if self.CoolBarPos < self.CoolMoviePiconPos:
 										progresssub = self.CoolBarSizeSa.width()
-							append(MultiContentEntryText(pos=(self.CoolMoviePiconPos - numsub - progresssub, 0), size=(self.CoolMoviePiconSize + numsub + progressadd, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text=title, color = colortitle, color_sel = colorhighlight))
+							append(MultiContentEntryText(pos=(self.CoolMoviePiconPos - numsub - progresssub, self.CoolMovieHPos), size=(self.CoolMoviePiconSize + numsub + progressadd, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text=title, color = colortitle, color_sel = colorhighlight))
 						else:
 							progresssub = 0
 							progressadd = 0
@@ -2275,7 +2275,7 @@ class MovieCenter(GUIComponent):
 									progressadd = self.CoolBarSizeSa.width()
 									if self.CoolBarPos <= self.CoolMoviePos:
 										progresssub = self.CoolBarSizeSa.width()
-							append(MultiContentEntryText(pos=(self.CoolMoviePos - numsub - progresssub, 0), size=(self.CoolMovieSize + numsub + progressadd, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text=title, color = colortitle, color_sel = colorhighlight))
+							append(MultiContentEntryText(pos=(self.CoolMoviePos - numsub - progresssub, self.CoolMovieHPos), size=(self.CoolMovieSize + numsub + progressadd, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text=title, color = colortitle, color_sel = colorhighlight))
 					else:
 						progresssub = 0
 						progressadd = 0
@@ -2292,7 +2292,7 @@ class MovieCenter(GUIComponent):
 								progressadd = self.CoolBarSizeSa.width()
 								if self.CoolBarPos < self.CoolMoviePos:
 									progresssub = self.CoolBarSizeSa.width()
-						append(MultiContentEntryText(pos=(self.CoolMoviePos - numsub - progresssub, 0), size=(self.CoolMovieSize + numsub + progressadd, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text=title, color = colortitle, color_sel = colorhighlight))
+						append(MultiContentEntryText(pos=(self.CoolMoviePos - numsub - progresssub, self.CoolMovieHPos), size=(self.CoolMovieSize + numsub + progressadd, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text=title, color = colortitle, color_sel = colorhighlight))
 
 			else:
 				# Directory and vlc directories
@@ -2516,7 +2516,6 @@ class MovieCenter(GUIComponent):
 
 				# TODO: Directory left side - skin able
 				#append(MultiContentEntryText(pos=(self.CoolMoviePos, 0), size=(self.CoolFolderSize, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text=title))
-
 				# Directory right side
 				val = config.EMC.directories_info.value
 				if val == "C" or val == "CS" or val == "S":
@@ -2541,12 +2540,12 @@ class MovieCenter(GUIComponent):
 					else:
 						halign = RT_HALIGN_CENTER
 					if datetext != "":
-						append(MultiContentEntryText(pos=(self.l.getItemSize().width() - CoolCSWidth - 5, self.CoolMovieHPos), size=(CoolCSWidth, globalHeight), font=usedDateFont, flags=halign, text=datetext))
+						append(MultiContentEntryText(pos=(self.l.getItemSize().width() - CoolCSWidth - 5, self.CoolDateHPos), size=(CoolCSWidth, globalHeight), font=usedDateFont, flags=halign, text=datetext))
 					else:
 						useIcon = config.EMC.count_size_default_icon.value
 						if useIcon:
 							if datepic is not None:
-								append(MultiContentEntryPixmapAlphaBlend(pos=(self.l.getItemSize().width() - self.CoolDateWidth /2, self.CoolMovieHPos), size=(CoolCSWidth, globalHeight), png=self.pic_directory_search, **{}))
+								append(MultiContentEntryPixmapAlphaBlend(pos=(self.l.getItemSize().width() - self.CoolDateWidth /2, self.CoolDateHPos), size=(CoolCSWidth, globalHeight), png=self.pic_directory_search, **{}))
 						else:
 							if datepic is not None:
 								count = config.EMC.count_default_text.value
@@ -2558,9 +2557,9 @@ class MovieCenter(GUIComponent):
 									datetext = countsize
 								elif val == "S":
 									datetext = size
-							append(MultiContentEntryText(pos=(self.l.getItemSize().width() - self.CoolDateWidth, self.CoolMovieHPos), size=(self.CoolDateWidth, globalHeight), font=usedDateFont, flags=halign, text=datetext))
+							append(MultiContentEntryText(pos=(self.l.getItemSize().width() - self.CoolDateWidth, self.CoolDateHPos), size=(self.CoolDateWidth, globalHeight), font=usedDateFont, flags=halign, text=datetext))
 				else:
-					append(MultiContentEntryText(pos=(self.l.getItemSize().width() - self.CoolDateWidth, self.CoolMovieHPos), size=(self.CoolDateWidth, globalHeight), font=usedDateFont, flags=RT_HALIGN_CENTER, text=datetext))
+					append(MultiContentEntryText(pos=(self.l.getItemSize().width() - self.CoolDateWidth, self.CoolDateHPos), size=(self.CoolDateWidth, globalHeight), font=usedDateFont, flags=RT_HALIGN_CENTER, text=datetext))
 			del append
 			return res
 		except Exception, e:
