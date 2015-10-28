@@ -1804,6 +1804,8 @@ class MovieCenter(GUIComponent):
 				elif attrib == "CoolTimePos":
 					pass
 
+				elif attrib == "CoolCSWidth":
+					self.CoolCSWidth = int(value)
 				elif attrib == "CoolDirInfoWidth":
 					self.CoolDirInfoWidth = int(value)
 				elif attrib == "CoolSelNumTxtWidth":
@@ -1828,6 +1830,10 @@ class MovieCenter(GUIComponent):
 					self.CoolPiconWidth = int(value)
 				elif attrib == "CoolPiconHeight":
 					self.CoolPiconHeight = int(value)
+				elif attrib == "TitleColor":
+					self.TitleColor = parseColor(value).argb()
+				elif attrib == "DateColor":
+					self.DateColor = parseColor(value).argb()
 				elif attrib == "DefaultColor":
 					self.DefaultColor = parseColor(value).argb()
 				elif attrib == "BackColor":
