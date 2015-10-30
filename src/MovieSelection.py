@@ -228,9 +228,11 @@ class SelectionEventInfo:
 			self["Cover"].hide()
 			self["CoverBg"].hide()
 			self["Video"].show()
-			if self.lastservice:
+			if self.lastservice and not self.hide_miniTV:
 				self.session.nav.playService(self.lastservice)
 				self.lastservice = None
+			else:
+				self.session.nav.stopService()
 		else:
 			if config.EMC.movie_cover.value:
 				#print "EMC: InitPig C"
@@ -421,12 +423,15 @@ class SelectionEventInfo:
 					self["Cover"].hide()
 					self["CoverBg"].hide()
 					self.toggleCover()
+				self.hide_miniTV = self.hide_miniTV_next
 			else:
 				# Start LiveTV
-				if self.lastservice:
+				if self.lastservice and not self.hide_miniTV:
 					self.session.nav.playService(self.lastservice)
 					#print "EMC: showPreview show"
 					self["Video"].show()
+				else:
+					self.session.nav.stopService()
 
 		# If livetv is shown - don't stop it
 		elif lastserviceref and self.lastservice and lastserviceref != self.lastservice:
@@ -1564,6 +1569,20 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			# Move to next or last selected entry
 			self.moveToService(self.returnService)
 
+	def isCurrentlySeekable(self):
+		service = self.session.nav.getCurrentService()
+		if service is not None:
+			seek = service.seek()
+			if seek is not None:
+				if seek.isCurrentlySeekable():
+					return True
+				else:
+					return False
+			else:
+				return False
+		else:
+			return False
+
 	def onDialogShow(self):
 		# Movie preview
 		# this we need for "if config.EMC.needsreload.value" is True
@@ -1573,6 +1592,39 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			self.lastCurrentPath = self.currentPath
 
 		self.lastservice = self.lastservice or self.session.nav.getCurrentlyPlayingServiceReference()
+
+		self.hide_miniTV = False
+		self.hide_miniTV_next = False
+		if config.EMC.hide_miniTV.value == "all":
+			self.hide_miniTV = True
+			self.hide_miniTV_next = True
+		else:
+			ref = self.session.nav.getCurrentlyPlayingServiceReference()
+			if ref is not None:
+				try:
+					mypath = ref.getPath()
+				except:
+					mypath = ''
+				if mypath != '':
+					# playback
+					if config.EMC.hide_miniTV.value == "playback":
+						self.hide_miniTV = True
+						self.hide_miniTV_next = True
+				else:
+					if self.isCurrentlySeekable(): # timeshift active and play position "in the past"
+						# timeshift
+						if config.EMC.hide_miniTV.value == "liveTVorTS":
+							self.hide_miniTV = True						
+						if config.EMC.hide_miniTV.value in ("liveTVorTS", "liveTV"):
+							self.hide_miniTV_next = True # miniTV will be hidden as soon as timeshift position is lost
+					else:
+						# live TV
+						if config.EMC.hide_miniTV.value in ("liveTVorTS", "liveTV"):
+							self.hide_miniTV = True						
+							self.hide_miniTV_next = True
+
+		if self.hide_miniTV:
+			self.session.nav.stopService()
 
 		self.initButtons()
 		if config.EMC.noscan_wake_on_entry.value and mountPoints.isExtHDDSleeping(self.currentPath,self["list"]):
