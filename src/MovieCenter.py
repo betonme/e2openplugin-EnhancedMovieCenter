@@ -363,9 +363,6 @@ def dirInfo(folder, bsize=False):
 		#for m in os.listdir(path):
 		for (path, dirs, files) in os.walk(folder):
 			for dir in dirs:
-				if config.EMC.cfghide_enable.value and hideitemlist:
-					if dir in hideitemlist or (dir[0:1] == "." and ".*" in hideitemlist):
-						dirs.remove(dir)			# hidden dir's subtree won't be explored
 				if dir.lower() in structlist:
 					count += 1						# add dvd/blustructure movies
 					dirs.remove(dir)			# structure's subtree won't be explored
@@ -540,6 +537,8 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 		self.hideitemlist = readBasicCfgFile("/etc/enigma2/emc-hide.cfg") or []
 		self.nostructscan = readBasicCfgFile("/etc/enigma2/emc-noscan.cfg") or []
 		self.topdirlist = readBasicCfgFile("/etc/enigma2/emc-topdir.cfg") or []
+		
+		config.EMC.cfghide_enable.addNotifier(self.changedCfgHideEnable, initial_call = False, immediate_feedback = True)
 
 	def getList(self):
 		return self.list
@@ -795,10 +794,6 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 					if ext not in localExtList:
 						continue
 
-					if hideitemlist:
-						if file in hideitemlist or (file[0:1] == "." and ".*" in hideitemlist):
-							continue
-
 					pathname = pathjoin(path, file)
 
 					# Filter dead links
@@ -812,10 +807,6 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 						fappend( (pathname, file, ext) )
 
 				for dir in dirs:
-
-					if hideitemlist:
-						if dir in hideitemlist or (dir[0:1] == "." and ".*" in hideitemlist):
-							continue
 
 					pathname = pathjoin(path, dir)
 
@@ -1095,6 +1086,7 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 		append = tmplist.append
 		pathexists = os.path.exists
 		pathsplitext = os.path.splitext
+		hideitemlist = config.EMC.cfghide_enable.value and self.hideitemlist
 
 		service = None
 		title, sorttitle = "", ""
@@ -1109,6 +1101,9 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 		customlist += subdirlist
 		if customlist is not None:
 			for path, filename, ext in customlist:
+				if hideitemlist:
+					if filename in hideitemlist or (filename[0:1] == "." and filename[0:2] != ".." and ".*" in hideitemlist):
+						continue
 				sorttitle = ""
 				title = filename
 
@@ -1422,6 +1417,9 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 					DelayedFunction(3000, self.globalRefresh)
 					# [Cutlist.Workaround] Initiate the Merge
 					DelayedFunction(3000, self.mergeCutListAfterRecording, filename)
+
+	def changedCfgHideEnable(self, addNotifierDummy=None):
+		self.globalReload(self.currentPath)
 
 	def mergeCutListAfterRecording(self, path):
 		emcDebugOut("[Cutlist.Workaround] MovieCenter.mergeCutListAfterRecording: " + str(path))
