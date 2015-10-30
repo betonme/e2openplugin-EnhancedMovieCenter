@@ -2949,6 +2949,34 @@ msgstr ""
 msgid "VLC Server not reachable"
 msgstr "VLC-Server ist nicht erreichbar"
 
+#: EnhancedMovieCenter.py
+msgid "Hide mini TV"
+msgstr "Mini-TV ausblenden"
+
+#: EnhancedMovieCenter.py
+msgid "HELP_hide_miniTV"
+msgstr "Mini-TV ausblenden"
+
+#: EnhancedMovieCenter/plugin.py
+msgid "never hide"
+msgstr "Niemals ausblenden"
+
+#: EnhancedMovieCenter/plugin.py
+msgid "hide live TV"
+msgstr "Live-TV ausblenden"
+
+#: EnhancedMovieCenter/plugin.py
+msgid "hide live TV and timeshift"
+msgstr "Live-TV und Timeshift ausblenden"
+
+#: EnhancedMovieCenter/plugin.py
+msgid "hide playback"
+msgstr "Wiedergabe ausblenden"
+
+#: EnhancedMovieCenter/plugin.py
+msgid "always hide"
+msgstr "Immer ausblenden"
+
 #~ msgid "Show new Skin Version"
 #~ msgstr "Zeige neue Skin Version(braucht aktuelle skin-änderungen)"
 
