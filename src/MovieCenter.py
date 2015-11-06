@@ -1,4 +1,4 @@
-﻿#!/usr/bin/python
+#!/usr/bin/python
 # encoding: utf-8
 #
 # Copyright (C) 2011 by Coolman & Swiss-MAD
@@ -2507,10 +2507,10 @@ class MovieCenter(GUIComponent):
 						dirTitlePos = (5, 2)
 				else:
 					if config.EMC.movie_icons.value:
-						dirTitlePos = (self.CoolIconPos + self.CoolIconSize.width() + 5, self.CoolIconHPos)
+						dirTitlePos = (self.CoolIconPos + self.CoolIconSize.width() + 5, self.CoolMovieHPos)
 						dirTitleSize = (self.CoolFolderSize, globalHeight)
 					else:
-						dirTitlePos = (5, self.CoolIconHPos)
+						dirTitlePos = (5, self.CoolMovieHPos)
 						dirTitleSize = (self.CoolFolderSize + self.CoolIconSize.width(), globalHeight)
 				append(MultiContentEntryText(pos=dirTitlePos, size=dirTitleSize, font=usedFont, flags=RT_HALIGN_LEFT, text=title))
 
