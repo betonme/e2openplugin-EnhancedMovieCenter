@@ -79,6 +79,21 @@ def unBCD(byte):
 	return (byte>>4)*10 + (byte & 0xf)
 
 
+from Tools.ISO639 import LanguageCodes
+def language_iso639_2to3(alpha2):
+	ret = alpha2
+	if alpha2 in LanguageCodes:
+		language = LanguageCodes[alpha2]
+		for alpha, name in LanguageCodes.items():
+			if name == language:
+				if len(alpha) == 3:
+					return alpha
+	return ret
+#TEST
+#print LanguageCodes["sv"]
+#print language_iso639_2to3("sv")
+
+
 # Eit File support class
 # Description
 # http://de.wikipedia.org/wiki/Event_Information_Table
@@ -188,7 +203,9 @@ class EitList():
 	def __readEitFile(self):
 		data = ""
 		path = self.eit_file
-		lang = language.getLanguage()[:2]
+		
+		#lang = language.getLanguage()[:2]
+		lang = language_iso639_2to3( config.EMC.epglang.value[:2] )
 
 		if path and os.path.exists(path):
 			mtime = os.path.getmtime(path)
