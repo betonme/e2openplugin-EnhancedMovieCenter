@@ -257,7 +257,9 @@ class EitList():
 
 					pos = pos + 12
 					short_event_descriptor = []
+					short_event_descriptor_multi = []
 					extended_event_descriptor = []
+					extended_event_descriptor_multi = []
 					component_descriptor = []
 					content_descriptor = []
 					linkage_descriptor = []
@@ -269,21 +271,28 @@ class EitList():
 							descriptor_tag = ord(data[pos+1])
 							descriptor_length = ord(data[pos+2])
 							ISO_639_language_code = str(data[pos+3:pos+5])
+							event_name_length = ord(data[pos+5])
+							short_event_description = data[pos+6:pos+6+event_name_length]
 							if ISO_639_language_code == lang:
-								event_name_length = ord(data[pos+5])
-								short_event_descriptor.append(data[pos+6:pos+6+event_name_length])
+								short_event_descriptor.append(short_event_description)
+							short_event_descriptor_multi(short_event_description)
 							
 						elif rec == 0x4E:
 							ISO_639_language_code = str(data[pos+3:pos+5])
-							if ISO_639_language_code == lang:
-								for i in range (pos+8,pos+length):
-									if str(ord(data[i]))=="138":
+							extended_event_description = ""
+							extended_event_description_multi = ""
+							for i in range (pos+8,pos+length):
+								if str(ord(data[i]))=="138":
+									pass
+								else:
+									if data[i]== '\x10' or data[i]== '\x00' or  data[i]== '\x02':
 										pass
 									else:
-										if data[i]== '\x10' or data[i]== '\x00' or  data[i]== '\x02':
-											pass
-										else:
-											extended_event_descriptor.append(data[i])
+										extended_event_description += data[i]
+										extended_event_description_multi += data[i]
+							if ISO_639_language_code == lang:
+								extended_event_descriptor.append(extended_event_description)
+							extended_event_descriptor_multi.append(data[i])
 						elif rec == 0x50:
 							component_descriptor.append(data[pos+8:pos+length])
 						elif rec == 0x54:
@@ -301,7 +310,10 @@ class EitList():
 					# Very bad but there can be both encodings
 					# User files can be in cp1252
 					# Is there no other way?
-					short_event_descriptor = " ".join(short_event_descriptor)
+					if short_event_descriptor:
+						short_event_descriptor = "\n".join(short_event_descriptor)
+					else:
+						short_event_descriptor = "\n".join(short_event_descriptor_multi)
 					if short_event_descriptor:
 						#try:
 						#	short_event_descriptor = short_event_descriptor.decode("iso-8859-1").encode("utf-8")
@@ -325,7 +337,10 @@ class EitList():
 					# Very bad but there can be both encodings
 					# User files can be in cp1252
 					# Is there no other way?
-					extended_event_descriptor = "\n".join(extended_event_descriptor)
+					if extended_event_descriptor:
+						extended_event_descriptor = "\n".join(extended_event_descriptor)
+					else:
+						extended_event_descriptor = "\n".join(extended_event_descriptor_multi)
 					if extended_event_descriptor:
 						#try:
 						#	extended_event_descriptor = extended_event_descriptor.decode("iso-8859-1").encode("utf-8")
