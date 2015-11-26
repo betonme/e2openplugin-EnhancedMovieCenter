@@ -62,8 +62,13 @@ if imgVti:
 	from enigma import BT_SCALE, BT_FIXRATIO as BT_KEEP_ASPECT_RATIO
 
 if newPiconRenderer:
-		from Components.Renderer.Picon import getPiconName
+	from Components.Renderer.Picon import getPiconName
+	try:
 		from enigma import BT_SCALE, BT_KEEP_ASPECT_RATIO
+	except ImportError as ie:
+		newPiconRenderer = False
+		BT_SCALE = None
+		BT_KEEP_ASPECT_RATIO = None
 
 global extAudio, extDvd, extVideo, extPlaylist, extList, extMedia, extBlu
 global cmtDir, cmtUp, cmtTrash, cmtLRec, cmtVLC, cmtBME2, cmtBMEMC, virVLC, virAll, virToE, virToD
