@@ -275,7 +275,7 @@ class EitList():
 							short_event_description = data[pos+6:pos+6+event_name_length]
 							if ISO_639_language_code == lang:
 								short_event_descriptor.append(short_event_description)
-							short_event_descriptor_multi(short_event_description)
+							short_event_descriptor_multi.append(short_event_description)
 							
 						elif rec == 0x4E:
 							ISO_639_language_code = str(data[pos+3:pos+5])
@@ -292,7 +292,7 @@ class EitList():
 										extended_event_description_multi += data[i]
 							if ISO_639_language_code == lang:
 								extended_event_descriptor.append(extended_event_description)
-							extended_event_descriptor_multi.append(data[i])
+							extended_event_descriptor_multi.append(extended_event_description)
 						elif rec == 0x50:
 							component_descriptor.append(data[pos+8:pos+length])
 						elif rec == 0x54:
