@@ -2615,7 +2615,8 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 
 							#TEST_E2DELETE <- decrement indent
 							cmd.append( c )
-							dest_path = path
+							source_path = path
+							dest_path = targetPath
 
 		for service in selectedlist:
 			#path = os.path.splitext( self["list"].getFilePathOfService(service) )[0]
@@ -2696,7 +2697,8 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 
 						#TEST_E2DELETE <- decrement indent
 						cmd.append( c )
-						dest_path = path
+						source_path = path
+						dest_path = targetPath
 						association.append( (self.delCB, service) )	# put in a callback for this particular movie
 						self["list"].highlightService(True, "del", service)
 						#TEST_E2DELETE
