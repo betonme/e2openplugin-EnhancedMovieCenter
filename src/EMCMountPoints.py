@@ -68,7 +68,7 @@ class EMCMountPoints:
 
 	def postWakeHDDtimerStart(self, path):
 		self.postWakeHDDtimer.stop()
-		self.postWakeHDDtimer.start(30000,True) # within 30s after waking the HDD, this timer indicates that the HDD is active (we know it better than the harddiskmanager)
+		self.postWakeHDDtimer.start(500*int(config.usage.hdd_standby.value),True) # within 50% of the configured standby time after waking the HDD, this timer indicates that the HDD is active (we know it better than the harddiskmanager)
 		self.postWakeHDDtimerActive = True
 		self.postWakeHDDtimerDevice = self.getMountPointDeviceCached(path)
 
