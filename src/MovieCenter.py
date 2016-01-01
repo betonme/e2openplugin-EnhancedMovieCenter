@@ -893,7 +893,7 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 
 			# first we check entrys in "emc-noscan.cfg",
 			# to load the list faster and dont wakeup any devices
-			if not self.checkNoScanPath(directory):
+			if not ((config.EMC.latest_recordings_noscan.value or config.EMC.dir_info_usenoscan.value) and self.checkNoScanPath(directory)):
 
 				# Avoid trashcan subdirectories
 				if directory.find( config.EMC.movie_trashcan_path.value ) == -1:
@@ -938,12 +938,11 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 
 	def checkNoScanPath(self, path):
 		check = False
-		if config.EMC.latest_recordings_noscan.value or config.EMC.dir_info_usenoscan.value:
-			device = mountPoints.getMountPointDeviceCached(path)
-			for line in self.nostructscan:
-				if (line in path) or (line in device):
-					check = True
-					break
+		device = mountPoints.getMountPointDeviceCached(path)
+		for line in self.nostructscan:
+			if (line in path) or (line in device):
+				check = True
+				break
 		return check
 
 	def checkDate(self, path, dirDate=False):
@@ -1175,7 +1174,7 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 				eventtitle = ""
 				piconpath = ""
 				sortyear, sortmonth, sortday, sorthour, sortmin = "", "", "", "", ""
-				isExtHDDSleeping = mountPoints.isExtHDDSleeping(str(currentPath),self)
+				isExtHDDSleeping = config.EMC.limit_fileops_noscan.value and mountPoints.isExtHDDSleeping(str(currentPath),self)
 
 				# Remove extension
 				if not ext:
@@ -1885,7 +1884,7 @@ class MovieCenter(GUIComponent):
 				isLink = movieFileCache.getLinkInfoFromCacheForPath(path)
 			if isLink is None:
 				isLink = os.path.islink(path)
-			isExtHDDSleeping = mountPoints.isExtHDDSleeping(path,self)
+			isExtHDDSleeping = config.EMC.limit_fileops_noscan.value and mountPoints.isExtHDDSleeping(path,self)
 			#usedFont = int(config.EMC.skin_able.value)
 			if int(config.EMC.skin_able.value):
 				usedFont = 1

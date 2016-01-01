@@ -356,6 +356,7 @@ config.EMC.directories_info          = ConfigSelection(default = "", choices = d
 config.EMC.directories_size_skin     = ConfigYesNo(default = False)
 config.EMC.show_experimental_options = ConfigYesNo(default = False)
 config.EMC.dir_info_usenoscan        = ConfigYesNo(default = False)
+config.EMC.limit_fileops_noscan      = ConfigYesNo(default = False)
 config.EMC.rescan_only_affected_dirs = ConfigYesNo(default = False)
 config.EMC.noscan_wake_on_entry      = ConfigYesNo(default = False)
 config.EMC.min_file_cache_limit      = ConfigSelectionNumber(0, 20, 1, default = 10)

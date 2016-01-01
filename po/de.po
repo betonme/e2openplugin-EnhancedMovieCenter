@@ -858,6 +858,17 @@ msgstr ""
 "'/etc/enigma2/emc-noscan.cfg'\n"
 "enthaltenes Verzeichnis betreten wird."
 
+#: EnhancedMovieCenter.py:379
+msgid "Limit file operations in dirs from emc-noscan.cfg"
+msgstr "Vermeide Dateioperationen in Verzeichnissen aus der emc-noscan.cfg"
+
+#: EnhancedMovieCenter.py:379
+msgid "HELP_Limit file operations in dirs from emc-noscan.cfg"
+msgstr ""
+"Wenn aktiviert, wird versucht, Dateioperationen in den Verzeichnissen aus der \n"
+"'/etc/enigma2/emc-noscan.cfg'\n"
+"zu vermeiden."
+
 #: EnhancedMovieCenter.py:380
 msgid "HELP_separator_hide&performance"
 msgstr "Einstellungen zum Ausblenden von Dateien/Ordern und Performance."

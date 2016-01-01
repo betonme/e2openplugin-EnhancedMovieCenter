@@ -247,7 +247,7 @@ class SelectionEventInfo:
 				self["Video"].hide()
 
 	def updateEventInfo(self, service):
-		isExtHDDSleeping = service and mountPoints.isExtHDDSleeping(service.getPath(),self["list"])
+		isExtHDDSleeping = config.EMC.limit_fileops_noscan.value and service and mountPoints.isExtHDDSleeping(service.getPath(),self["list"])
 		if not isExtHDDSleeping:
 			self["Service"].newService(service)
 			if isMutagen and config.EMC.mutagen_show.value:
@@ -852,18 +852,14 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		self.updateInfo(True) # immediately=True (immediately after wake-up)
 
 	def changeDir(self, path, service=None):
-		if config.EMC.dir_info_usenoscan.value:
-			from MovieCenter import countsizeworker
-			if self["list"].checkNoScanPath(path) and not self["list"].checkNoScanPath(self.currentPath):
-				#entering no-scan directory
-				if config.EMC.noscan_wake_on_entry.value and mountPoints.isExtHDDSleeping(path,self["list"]):
-					mountPoints.wakeHDD(path,self.postWakeHDD) #wake device, then re-scan path and update everything
-				else:
-					#scan 'no-scan' path when entered
-					countsizeworker.add(path)
-			#if self["list"].checkNoScanPath(self.currentPath) and not self["list"].checkNoScanPath(path):
-			#	#scan 'no-scan' path when leaving no-scan directory
-			#	countsizeworker.add(self.currentPath)
+		if self["list"].checkNoScanPath(path) and not self["list"].checkNoScanPath(self.currentPath):
+			#entering no-scan directory
+			if config.EMC.noscan_wake_on_entry.value and mountPoints.isExtHDDSleeping(path,self["list"]):
+				mountPoints.wakeHDD(path,self.postWakeHDD) #wake device, then re-scan path and update everything
+			elif config.EMC.dir_info_usenoscan.value:
+				#scan 'no-scan' path when entered
+				from MovieCenter import countsizeworker
+				countsizeworker.add(path)
 		path = os.path.normpath(path)
 		self.returnService = service
 		#TODOret

@@ -78,17 +78,16 @@ class EMCMountPoints:
 
 	def isExtHDDSleeping(self, path, MovieCenterInst):
 		isExtHDDSleeping = False
-		if config.EMC.dir_info_usenoscan.value:
-			device = self.getMountPointDeviceCached(path)
-			if MovieCenterInst.checkNoScanPath(path) and not (self.postWakeHDDtimerActive and self.postWakeHDDtimerDevice == device):
-				try:
-					from Components.Harddisk import harddiskmanager
-					for hdd in harddiskmanager.HDDList():
-						if device.startswith(hdd[1].getDeviceName()):
-							isExtHDDSleeping = hdd[1].isSleeping()
-							break
-				except:
-					pass
+		device = self.getMountPointDeviceCached(path)
+		if not (self.postWakeHDDtimerActive and self.postWakeHDDtimerDevice == device):
+			try:
+				from Components.Harddisk import harddiskmanager
+				for hdd in harddiskmanager.HDDList():
+					if device.startswith(hdd[1].getDeviceName()):
+						isExtHDDSleeping = hdd[1].isSleeping()
+						break
+			except:
+				pass
 		return isExtHDDSleeping
 
 	def wakeHDD(self, path, postWakeCommand):
