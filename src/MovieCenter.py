@@ -1873,6 +1873,7 @@ class MovieCenter(GUIComponent):
 			globalHeight = 80
 			progress = 0
 			pixmap = None
+			datepic = None
 			color = None
 			datetext = ""
 
@@ -2350,23 +2351,9 @@ class MovieCenter(GUIComponent):
 
 				elif ext == cmtTrash:
 					if config.EMC.movie_trashcan_enable.value and config.EMC.movie_trashcan_info.value:
-						#TODO Improve performance
-						count = 0
-						if config.EMC.movie_trashcan_info.value == "C":
-							count, size = dirInfo(path)
-							datetext = " ( %d ) " % (count)
-						elif config.EMC.movie_trashcan_info.value == "CS":
-							count, size = dirInfo(path, bsize=True)
-							datetext = " (%d / %.0f GB) " % (count, size)
-						elif config.EMC.movie_trashcan_info.value == "S":
-							count, size = dirInfo(path, bsize=True)
-							if size >= 100:
-								datetext = " ( %.2f TB ) " % (size/1024.0)
-							else:
-								datetext = " ( %.2f GB ) " % (size)
-						else:
-							# Should never happen
-							datetext = _("Trashcan")
+
+						(count, size, datetext, datepic, dummy_pixmap) = self.getValues_startWorker(path,config.EMC.movie_trashcan_info.value,datetext,datepic,pixmap,True)
+
 						if count:
 							# Trashcan contains garbage
 							pixmap = self.pic_trashcan_full
@@ -2390,99 +2377,9 @@ class MovieCenter(GUIComponent):
 
 					if config.EMC.directories_ontop.value and title not in self.topdirlist:
 						pixmap = self.pic_col_dir
+						
+					(count, size, datetext, datepic, pixmap) = self.getValues_startWorker(path,config.EMC.directories_info.value,datetext,datepic,pixmap,False)
 
-					# Directory and symlink-direcory info.value
-					getValues = movieFileCache.getCountSizeFromCache(path)
-					if config.EMC.directories_info.value:
-						if config.EMC.directories_info.value == "C":
-							count = 0
-							if getValues is not None:
-								count, size = getValues
-								if self.startWorker:
-									self.addCountsizeworker(path)
-								datetext = " ( %d ) " % (count)
-							else:
-								self.addCountsizeworker(path)
-								datetext = ""
-								datepic = self.pic_directory_search
-						elif config.EMC.directories_info.value == "CS":
-							count, size = 0, 0
-							if getValues is not None:
-								count, size = getValues
-								if self.startWorker:
-									self.addCountsizeworker(path)
-								if size >= 1000:
-									size /= 1024.0
-									datetext = " (%d / %.0f TB) " % (count, size)
-								else:
-									datetext = " (%d / %.0f GB) " % (count, size)
-								# TODO: make this easier, but hold it on the right side
-								self.CoolCSWidth = 110
-								if size or count >=99:
-									if size >= 99 and count <=99:
-										self.CoolCSWidth = 125
-									elif size <= 99 and count >= 99:
-										if count >= 999:
-											if size <= 10:
-												self.CoolCSWidth = 135
-											else:
-												self.CoolCSWidth = 145
-										elif count >= 9999:
-											if size <= 10:
-												self.CoolCSWidth = 140
-											else:
-												self.CoolCSWidth = 160
-										else:
-											self.CoolCSWidth = 125
-									elif size >= 99 and count >= 99:
-										if count >= 999:
-											self.CoolCSWidth = 145
-										elif count >= 9999:
-											self.CoolCSWidth = 160
-										else:
-											self.CoolCSWidth = 140
-							else:
-								self.addCountsizeworker(path)
-								datetext = ""
-								datepic = self.pic_directory_search
-						elif config.EMC.directories_info.value == "S":
-							size = 0
-							if getValues is not None:
-								count, size = getValues
-								if self.startWorker:
-									self.addCountsizeworker(path)
-								if size >= 100:
-									datetext = " ( %.2f TB ) " % (size/1024.0)
-								else:
-									datetext = " ( %.2f GB ) " % (size)
-							else:
-								self.addCountsizeworker(path)
-								datetext = ""
-								datepic = self.pic_directory_search
-						elif config.EMC.directories_info.value == "D":
-							if config.EMC.directories_size_skin.value:
-								if getValues is not None:
-									if self.startWorker:
-										self.addCountsizeworker(path)
-								else:
-									self.addCountsizeworker(path)
-							datetext = _("Directory")
-							if isLink:
-								datetext = _("Link")
-							if config.EMC.directories_ontop.value and title not in self.topdirlist:
-								datetext = _("Collection")
-						else:
-							# Should never happen
-							pixmap = self.pic_directory
-							datetext = _("Directory")
-
-					else: # config.EMC.directories_info.value == ""
-						if config.EMC.directories_size_skin.value:
-							if getValues is not None:
-								if self.startWorker:
-									self.addCountsizeworker(path)
-							else:
-								self.addCountsizeworker(path)
 				else:
 					# Should never happen
 					pixmap = self.pic_directory
@@ -2567,6 +2464,105 @@ class MovieCenter(GUIComponent):
 			return res
 		except Exception, e:
 			emcDebugOut("[EMCMS] build exception:\n" + str(e))
+
+	def getValues_startWorker(self,path,config_EMC_info_value,datetext,datepic,pixmap,is_trashcan):
+		count, size = 0, 0
+		getValues = movieFileCache.getCountSizeFromCache(path)
+		if config_EMC_info_value:
+			if config_EMC_info_value == "C":
+				count = 0
+				if getValues is not None:
+					count, size = getValues
+					if self.startWorker:
+						self.addCountsizeworker(path)
+					datetext = " ( %d ) " % (count)
+				else:
+					self.addCountsizeworker(path)
+					datetext = ""
+					datepic = self.pic_directory_search
+			elif config_EMC_info_value == "CS":
+				count, size = 0, 0
+				if getValues is not None:
+					count, size = getValues
+					if self.startWorker:
+						self.addCountsizeworker(path)
+					if size >= 1000:
+						size /= 1024.0
+						datetext = " (%d / %.0f TB) " % (count, size)
+					else:
+						datetext = " (%d / %.0f GB) " % (count, size)
+					# TODO: make this easier, but hold it on the right side
+					self.CoolCSWidth = 110
+					if size or count >=99:
+						if size >= 99 and count <=99:
+							self.CoolCSWidth = 125
+						elif size <= 99 and count >= 99:
+							if count >= 999:
+								if size <= 10:
+									self.CoolCSWidth = 135
+								else:
+									self.CoolCSWidth = 145
+							elif count >= 9999:
+								if size <= 10:
+									self.CoolCSWidth = 140
+								else:
+									self.CoolCSWidth = 160
+							else:
+								self.CoolCSWidth = 125
+						elif size >= 99 and count >= 99:
+							if count >= 999:
+								self.CoolCSWidth = 145
+							elif count >= 9999:
+								self.CoolCSWidth = 160
+							else:
+								self.CoolCSWidth = 140
+				else:
+					self.addCountsizeworker(path)
+					datetext = ""
+					datepic = self.pic_directory_search
+			elif config_EMC_info_value == "S":
+				size = 0
+				if getValues is not None:
+					count, size = getValues
+					if self.startWorker:
+						self.addCountsizeworker(path)
+					if size >= 100:
+						datetext = " ( %.2f TB ) " % (size/1024.0)
+					else:
+						datetext = " ( %.2f GB ) " % (size)
+				else:
+					self.addCountsizeworker(path)
+					datetext = ""
+					datepic = self.pic_directory_search
+			elif config_EMC_info_value == "D" and not is_trashcan:
+				if config.EMC.directories_size_skin.value:
+					if getValues is not None:
+						if self.startWorker:
+							self.addCountsizeworker(path)
+					else:
+						self.addCountsizeworker(path)
+				datetext = _("Directory")
+				if isLink:
+					datetext = _("Link")
+				if config.EMC.directories_ontop.value and title not in self.topdirlist:
+					datetext = _("Collection")
+			else:
+				# Should never happen
+				pixmap = self.pic_directory
+				if is_trashcan:
+					datetext = _("Trashcan")
+				else:
+					datetext = _("Directory")
+
+		else: # config_EMC_info_value == ""
+			if config.EMC.directories_size_skin.value:
+				if getValues is not None:
+					if self.startWorker:
+						self.addCountsizeworker(path)
+				else:
+					self.addCountsizeworker(path)
+					
+		return (count, size, datetext, datepic, pixmap)
 
 	def addCountsizeworker(self,path):
 		if config.EMC.dir_info_usenoscan.value:
