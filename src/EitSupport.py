@@ -311,9 +311,9 @@ class EitList():
 					# User files can be in cp1252
 					# Is there no other way?
 					if short_event_descriptor:
-						short_event_descriptor = "\n".join(short_event_descriptor)
+						short_event_descriptor = "".join(short_event_descriptor)
 					else:
-						short_event_descriptor = "\n".join(short_event_descriptor_multi)
+						short_event_descriptor = "".join(short_event_descriptor_multi)
 					if short_event_descriptor:
 						#try:
 						#	short_event_descriptor = short_event_descriptor.decode("iso-8859-1").encode("utf-8")
@@ -338,9 +338,9 @@ class EitList():
 					# User files can be in cp1252
 					# Is there no other way?
 					if extended_event_descriptor:
-						extended_event_descriptor = "\n".join(extended_event_descriptor)
+						extended_event_descriptor = "".join(extended_event_descriptor)
 					else:
-						extended_event_descriptor = "\n".join(extended_event_descriptor_multi)
+						extended_event_descriptor = "".join(extended_event_descriptor_multi)
 					if extended_event_descriptor:
 						#try:
 						#	extended_event_descriptor = extended_event_descriptor.decode("iso-8859-1").encode("utf-8")
