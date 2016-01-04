@@ -905,22 +905,22 @@ msgstr ""
 
 #: EnhancedMovieCenter.py:384
 msgid "Scan for bluray structures"
-msgstr "Suche nach BluRay-Strukturen"
+msgstr "Suche nach Blu-ray Strukturen"
 
 #: EnhancedMovieCenter.py:384
 msgid "HELP_Scan for bluray structures"
 msgstr ""
-"Hiermit kann die Suche nach Bluray-Strukturen in Verzeichnissen generell unterbunden werden.\n"
+"Hiermit kann die Suche nach Blu-ray Strukturen in Verzeichnissen generell unterbunden werden.\n"
 "Dies kann unbeabsichtiges Aufwecken von Festplatten oder Netzlaufwerken verhindern."
 
 #: EnhancedMovieCenter.py:385
 msgid "Scan for bluray structures in .iso"
-msgstr "Suche nach BluRay-Strukturen in .iso"
+msgstr "Suche nach Blu-ray Strukturen in .iso"
 
 #: EnhancedMovieCenter.py:385
 msgid "HELP_Scan for bluray structures in .iso"
 msgstr ""
-"Hiermit kann die Suche nach Bluray-Strukturen in .iso in Verzeichnissen generell unterbunden werden.\n"
+"Hiermit kann die Suche nach Blu-ray Strukturen in .iso in Verzeichnissen generell unterbunden werden.\n"
 "Dies kann unbeabsichtiges Aufwecken von Festplatten oder Netzlaufwerken verhindern."
 
 #: EnhancedMovieCenter.py:386
