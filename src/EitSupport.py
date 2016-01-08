@@ -281,7 +281,7 @@ class EitList():
 							ISO_639_language_code = str(data[pos+3:pos+5])
 							extended_event_description = ""
 							extended_event_description_multi = ""
-							for i in range (pos+9,pos+length):
+							for i in range (pos+8,pos+length):
 								if str(ord(data[i]))=="138":
 									extended_event_description += '\n'
 									extended_event_description_multi += '\n'
