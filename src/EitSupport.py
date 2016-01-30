@@ -264,7 +264,8 @@ class EitList():
 					content_descriptor = []
 					linkage_descriptor = []
 					parental_rating_descriptor = []
-					while pos < len(data):
+					endpos = len(data) - 1
+					while pos < endpos:
 						rec = ord(data[pos])
 						length = ord(data[pos+1]) + 2
 						if rec == 0x4D:
