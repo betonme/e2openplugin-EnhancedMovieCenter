@@ -17,3 +17,7 @@ Desktop.ini
 
 # Ignore *.mo Files in po-folder
 /po/*.mo
+
+# For lunatic users of multiple revision control systems
+.svn
+.svnignore
