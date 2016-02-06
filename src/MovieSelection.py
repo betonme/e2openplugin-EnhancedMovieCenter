@@ -109,6 +109,7 @@ def purgeExpired(emptyTrash=False):
 
 		if os.path.exists(movie_trashpath):
 			movieFileCache.delPathFromCache(movie_trashpath)
+			movieFileCache.delcacheCountSizeListEntriesOnFileOp(None,movie_trashpath)
 			if config.EMC.movie_trashcan_clean.value is True or emptyTrash:
 				# Trashcan cleanup
 				purgeCmd = ""
