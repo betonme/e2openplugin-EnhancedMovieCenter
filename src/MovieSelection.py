@@ -109,7 +109,7 @@ def purgeExpired(emptyTrash=False):
 
 		if os.path.exists(movie_trashpath):
 			movieFileCache.delPathFromCache(movie_trashpath)
-			movieFileCache.delcacheCountSizeListEntriesOnFileOp(None,movie_trashpath)
+			movieFileCache.delcacheCountSizeListEntriesOnFileOp(movie_trashpath)
 			if config.EMC.movie_trashcan_clean.value is True or emptyTrash:
 				# Trashcan cleanup
 				purgeCmd = ""
@@ -2762,18 +2762,23 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 
 		# reload list to get the new index, otherwise you can not select again after that
 		try:
-			val = config.EMC.directories_info.value
-			if val == "C" or val == "CS" or val == "S":
-				if config.EMC.rescan_only_affected_dirs.value:
-					rescanPaths = movieFileCache.delcacheCountSizeListEntriesOnFileOp(source_path,dest_path)
-					val = config.EMC.directories_info.value
-					if val == "C" or val == "CS" or val == "S":
-						for path in rescanPaths:
-							from MovieCenter import countsizeworker
-							countsizeworker.add(path)
+			needsRefreshList = False
+			for path in [source_path,dest_path]:
+				if path == config.EMC.movie_trashcan_path.value:
+					val = config.EMC.movie_trashcan_info.value
 				else:
-					# we make now hardreset
-					movieFileCache.delcacheCountSizeList()
+					val = config.EMC.directories_info.value
+				if val == "C" or val == "CS" or val == "S":
+					if config.EMC.rescan_only_affected_dirs.value:
+						rescanPaths = movieFileCache.delcacheCountSizeListEntriesOnFileOp(path)
+						for p in rescanPaths:
+							from MovieCenter import countsizeworker
+							countsizeworker.add(p)
+					else:
+						# we make now hardreset
+						movieFileCache.delcacheCountSizeList()
+					needsRefreshList = True
+			if needsRefreshList:
 				self["list"].refreshList(True)
 			# this we need to get the new position values,
 			# otherwise no select for other files in the same directory after that
