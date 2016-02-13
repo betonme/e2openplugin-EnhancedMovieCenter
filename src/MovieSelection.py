@@ -91,7 +91,7 @@ except Exception, e:
 
 
 # Move all trashcan operations to a separate file / class
-def purgeExpired(emptyTrash=False):
+def purgeExpired(currentPath,postFileOp,emptyTrash=False):
 	try:
 		movie_trashpath = config.EMC.movie_trashcan_path.value
 		movie_homepath = os.path.realpath(config.EMC.movie_homepath.value)
@@ -150,7 +150,10 @@ def purgeExpired(emptyTrash=False):
 									#TEST_E2DELETE
 
 				if purgeCmd != "":
-					emcTasker.shellExecute(purgeCmd[2:])
+					association = []
+					if currentPath == movie_trashpath:
+						association.append((postFileOp,movie_trashpath,None))
+					emcTasker.shellExecute(purgeCmd[2:], association)
 					emcDebugOut("[EMCMS] trashcan cleanup activated")
 				else:
 					emcDebugOut("[EMCMS] trashcan cleanup: nothing to delete...")
@@ -1083,7 +1086,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			elif parameter == "reload": self.initList()
 			elif parameter == "plugin": self.onDialogShow()
 			elif parameter == "setup": self.onDialogShow()
-			elif parameter == "ctrash": purgeExpired()
+			elif parameter == "ctrash": purgeExpired(self.currentPath,self.postFileOp)
 			elif parameter == "trash": self.changeDir(config.EMC.movie_trashcan_path.value)
 			elif parameter == "del":
 				if selection is not None:
@@ -1108,7 +1111,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			elif parameter == "imdb": self.imdb()
 			elif parameter == "imdbdirectory": self.imdbDirectory()
 			elif parameter == "rename": self.rename()
-			elif parameter == "emptytrash": purgeExpired(emptyTrash=True)
+			elif parameter == "emptytrash": purgeExpired(self.currentPath,self.postFileOp,emptyTrash=True)
 			elif parameter == "reloadwithoutcache": self.reloadListWithoutCache()
 
 	def openPlaylistOptions(self):
