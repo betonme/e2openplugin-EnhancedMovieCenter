@@ -91,7 +91,7 @@ except Exception, e:
 
 
 # Move all trashcan operations to a separate file / class
-def purgeExpired(currentPath,postFileOp,emptyTrash=False):
+def purgeExpired(currentPath=None,postFileOp=None,emptyTrash=False):
 	try:
 		movie_trashpath = config.EMC.movie_trashcan_path.value
 		movie_homepath = os.path.realpath(config.EMC.movie_homepath.value)
