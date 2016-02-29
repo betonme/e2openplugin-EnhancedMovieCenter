@@ -1427,39 +1427,16 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		self["list"].toggleProgress(service)
 
 	def IMDbSearch(self):
-		# first get current path without extension of selected entry, for saving imdb-details as new function
-		path = self["list"].getCurrentSelDir()
-		savepath = os.path.splitext(path)[0]
-
-		# now we check if the selected entry has saved details from imdb, to use it directly
-		# at the moment without saved "poster.jpg"
-		detailpath = savepath + ".imdbquery2.html"
-		if os.path.exists(detailpath):
-			localfile = True
-		else:
-			localfile = False
-
 		name = ''
 		if (self["list"].getCurrentSelName()):
 			name = (self["list"].getCurrentSelName())
-		name = getMovieNameWithoutPhrases(getMovieNameWithoutExt(name))
 		try:
 			from Plugins.Extensions.IMDb.plugin import IMDB
 		except ImportError:
 			IMDB = None
-
-		# now try open imdb-plugin to see the details without to open the search-Site
-		# TODO: we need a check to get which version is installed, like "getargs"
-		# otherwise we dont know if newer options are available !!!
 		if IMDB is not None:
-			try:
-				if localfile:
-					self.session.open(IMDB, name, False, True, savepath, detailpath)
-				else:
-					self.session.open(IMDB, name, False, True, savepath)
-			except Exception, e:
-				print('[EMC] EMCImdb-version exception failure: ', str(e))
-				self.session.open(IMDB, name, False)
+			name = getMovieNameWithoutPhrases(getMovieNameWithoutExt(name))
+			self.session.open(IMDB, name, False)
 
 	def EMCTMDBInfo(self):
 		service = self["list"].getCurrent()
@@ -1614,13 +1591,13 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 					if self.isCurrentlySeekable(): # timeshift active and play position "in the past"
 						# timeshift
 						if config.EMC.hide_miniTV.value == "liveTVorTS":
-							self.hide_miniTV = True						
+							self.hide_miniTV = True
 						if config.EMC.hide_miniTV.value in ("liveTVorTS", "liveTV"):
 							self.hide_miniTV_next = True # miniTV will be hidden as soon as timeshift position is lost
 					else:
 						# live TV
 						if config.EMC.hide_miniTV.value in ("liveTVorTS", "liveTV"):
-							self.hide_miniTV = True						
+							self.hide_miniTV = True
 							self.hide_miniTV_next = True
 
 		if self.hide_miniTV:
