@@ -2563,11 +2563,11 @@ msgstr "Verwaiste Dateien ermitteln und löschen ? (Wenn kein Papierkorb vorhand
 
 #: MovieSelectionMenu.py:370
 msgid "Remove all cut file marker permanently?"
-msgstr "Entferne alle Filmmarker entgültig?"
+msgstr "Entferne alle Filmmarker endgültig?"
 
 #: MovieSelectionMenu.py:384
 msgid "Remove all marker permanently?"
-msgstr "Entferne alle Marker entgültig?"
+msgstr "Entferne alle Marker endgültig?"
 
 #: MovieSelectionMenu.py:517
 msgid ""
