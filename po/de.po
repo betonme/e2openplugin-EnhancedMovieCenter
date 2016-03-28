@@ -510,7 +510,7 @@ msgstr "Springen an den Anfang oder das Ende der Liste oder überspringe nur ein
 
 #: EnhancedMovieCenter.py:328
 msgid "List entries to skip"
-msgstr "Listenenträge überspringen"
+msgstr "Listeneinträge überspringen"
 
 #: EnhancedMovieCenter.py:328
 msgid "HELP_List entries to skip"
