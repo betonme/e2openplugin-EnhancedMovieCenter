@@ -4,16 +4,16 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-11 23:09+0200\n"
 "PO-Revision-Date: \n"
-"Last-Translator: mike99 <mike99@mail.to>\n"
+"Last-Translator: dhwz <dhwz@gmx.net>\n"
 "Language-Team: openATV\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Generator: Poedit 1.7.4\n"
+"X-Generator: Poedit 1.8.7\n"
 "X-Poedit-KeywordsList: -;gettext;gettext_noop;_()\n"
-"X-Poedit-Basepath: ../\n"
+"X-Poedit-Basepath: ..\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SearchPath-0: src\n"
 
@@ -433,19 +433,19 @@ msgstr "EMC Enigma2-Auto-Neustart beginnt. Fortsetzen? NEIN wählen um den Neust
 
 #: EnhancedMovieCenter.py:195 EnhancedMovieCenter.py:216
 msgid "Custom"
-msgstr "Benutzerdefiniert"
+msgstr ""
 
 #: EnhancedMovieCenter.py:196
 msgid "Default"
-msgstr "Standard"
+msgstr ""
 
 #: EnhancedMovieCenter.py:197
 msgid "Performance"
-msgstr "Leistung"
+msgstr ""
 
 #: EnhancedMovieCenter.py:198
 msgid "Information"
-msgstr "Information"
+msgstr ""
 
 #: EnhancedMovieCenter.py:318
 msgid "About"

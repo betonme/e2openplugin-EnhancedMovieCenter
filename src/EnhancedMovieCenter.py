@@ -207,10 +207,11 @@ def checkMutagen():
 #                                                                   Be careful, You have to specify a valid value
 #                                                                   None stands for not specified, will be ignored
 #														Name (Button),		Column,	ID (Title)
-predefined_settings = {	_("Custom") :				( None,		"" ),
-												_("Default") :			( None,		"D" ),
-												_("Performance") :	( 7,			"P" ),
-												_("Information") :	( 8,			"I" ) }
+predefined_settings = {	_("Custom") : ( None, "" ),
+						_("Default") : ( None, "D" ),
+						_("Performance") : ( 7, "P" ),
+						_("Information") : ( 8, "I" )
+						}
 
 def get_predefined_columns():
 	return [ v[0] for k,v in predefined_settings.iteritems() if v[0] is not None ]
