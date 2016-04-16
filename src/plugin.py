@@ -472,7 +472,7 @@ def showMoviesCallback(*args):
 	except Exception, e:
 		emcDebugOut("[showMoviesCallback] exception:\n" + str(e))
 
-def playerCallback(reopen, *args):
+def playerCallback(reopen=False, *args):
 	if reopen:
 		showMoviesNew(*args)
 
