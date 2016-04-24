@@ -231,7 +231,7 @@ class SelectionEventInfo:
 		except:
 			print "eDVBVolumecontrol.getInstance() failed"
 			self.volctrl = None
-		self.preMuteVolume = -1 # -1 = no value stored
+		self.preMute_muteState = None
 
 	def initPig(self):
 		if not (config.EMC.movie_cover.value or config.EMC.movie_preview.value):
@@ -253,15 +253,19 @@ class SelectionEventInfo:
 				self["CoverBg"].hide()
 				self["Video"].hide()
 
-	def getAudioVolume(self):
+	def isMuted(self):
 		if self.volctrl is not None:
-			return self.volctrl.getVolume()
+			return self.volctrl.isMuted()
 		else:
-			return -1
+			return None
 
-	def setAudioVolume(self, volume):
+	def volumeMute(self):
 		if self.volctrl is not None:
-			self.volctrl.setVolume(int(volume),int(volume))
+			self.volctrl.volumeMute()
+
+	def volumeUnMute(self):
+		if self.volctrl is not None:
+			self.volctrl.volumeUnMute()
 
 	def checkHideMiniTV_beforeFullscreen(self):
 		if self.hide_miniTV and (config.EMC.hide_miniTV_method.value == "singlePixelMuted"):
@@ -280,16 +284,17 @@ class SelectionEventInfo:
 					self.session.nav.playService(self.lastservice)
 					self["Video"].show()
 					self["Video"].instance.resize(eSize(*(2, 2))) #smallest possible size
-				if self.preMuteVolume == -1:
-					self.preMuteVolume = self.getAudioVolume()
-					self.setAudioVolume(0)
+				if self.preMute_muteState is None:
+					self.preMute_muteState = self.isMuted()
+					self.volumeMute()
 		else:
 			self.session.nav.stopService()			
 
 	def miniTV_unmute(self):
-		if not self.preMuteVolume == -1:
-			self.setAudioVolume(self.preMuteVolume)
-			self.preMuteVolume = -1
+		if self.preMute_muteState is not None:
+			if not self.preMute_muteState:
+				self.volumeUnMute()
+			self.preMute_muteState = None
 
 	def miniTV_resume(self):
 		if self.lastservice and not self.hide_miniTV:
@@ -748,6 +753,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 
 	def CoolTimerList(self):
 		from Screens.TimerEdit import TimerEditList
+		self.checkHideMiniTV_beforeFullscreen()
 		self.session.open(TimerEditList)
 
 	def CoolInfoLong(self):
@@ -767,6 +773,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 	def callHelpAction(self, *args):
 		HelpableScreen.callHelpAction(self, *args)
 		from EnhancedMovieCenter import EMCAbout
+		self.checkHideMiniTV_beforeFullscreen()
 		self.session.open(MessageBox, EMCAbout, MessageBox.TYPE_INFO)
 
 	def abort(self):
@@ -1210,6 +1217,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 	def openScriptMenu(self):
 		#TODO actually not used and not working
 		if self.browsingVLC():
+			self.checkHideMiniTV_beforeFullscreen()
 			self.session.open(MessageBox, _("No script operation for VLC streams."), MessageBox.TYPE_ERROR)
 			return
 		try:
@@ -1226,6 +1234,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 							list.append([e, pathe])
 
 			if len(list) == 0:
+				self.checkHideMiniTV_beforeFullscreen()
 				self.session.open(MessageBox, paths[0]+"\n   or" + paths[1]+"\n" + _("Does not contain any scripts."), MessageBox.TYPE_ERROR)
 				return
 
@@ -1246,6 +1255,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			# The selectedList only contains the services
 			filelist = [ (service.getName() , service.getPath() ) for service in selectedlist ]
 			# Collect imdb data
+			self.checkHideMiniTV_beforeFullscreen()
 			self.session.open(EMCImdbScan, filelist)
 			self.reloadList(self.currentPath)
 			self.moveToIndex(0)
@@ -1265,6 +1275,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			filelist = [ (title , path ) for (service, sorttitle, date, title, path, selnum, length, ext, cutnr, sorteventtitle, eventtitle, piconpath, sortyear, sortmonth, sortday, sorthour, sortmin) in self["list"].getList() if ext in plyAll ]
 
 		# Collect imdb data
+		self.checkHideMiniTV_beforeFullscreen()
 		self.session.open(EMCImdbScan, filelist)
 		self.reloadList(self.currentPath)
 		self.moveToIndex(0)
@@ -1277,6 +1288,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			filelist = [ (self["list"].getCurrentSelName() , current.getPath() ) ]
 
 		# Collect imdb data
+		self.checkHideMiniTV_beforeFullscreen()
 		self.session.open(EMCImdbScan, filelist, True)
 		self.reloadList(self.currentPath)
 		self.moveToIndex(0)
@@ -1286,6 +1298,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			self["list"].toggleSelection( index=i )
 
 	def unUsed(self):
+		self.checkHideMiniTV_beforeFullscreen()
 		self.session.open(MessageBox, _("No functionality set..."), MessageBox.TYPE_INFO)
 
 	def updateAfterKeyPress(self):
@@ -1505,6 +1518,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			IMDB = None
 		if IMDB is not None:
 			name = getMovieNameWithoutPhrases(getMovieNameWithoutExt(name))
+			self.checkHideMiniTV_beforeFullscreen()
 			self.session.open(IMDB, name, False)
 
 	def EMCTMDBInfo(self):
@@ -1515,6 +1529,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 				if not path.endswith("/..") and not path.endswith("/Latest Recordings"):
 					name = service.getName()
 					spath = getInfoFile(path)[0]
+					self.checkHideMiniTV_beforeFullscreen()
 					self.session.open(MovieInfoTMDb, name, spath)
 
 	def TMDBInfo(self):
@@ -1527,6 +1542,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			TMDbMain = None
 		if TMDbMain is not None:
 			name = getMovieNameWithoutPhrases(getMovieNameWithoutExt(name))
+			self.checkHideMiniTV_beforeFullscreen()
 			self.session.open(TMDbMain, name)
 
 	def TMBDInfo(self):
@@ -1539,6 +1555,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			TMBD = None
 		if TMBD is not None:
 			name = getMovieNameWithoutPhrases(getMovieNameWithoutExt(name))
+			self.checkHideMiniTV_beforeFullscreen()
 			self.session.open(TMBD, name)
 
 	def CSFDInfo(self):
@@ -1551,6 +1568,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			CSFD = None
 		if CSFD is not None:
 			name = getMovieNameWithoutPhrases(getMovieNameWithoutExt(name))
+			self.checkHideMiniTV_beforeFullscreen()
 			self.session.open(CSFD, name, False)
 
 	def rename(self):
@@ -1571,6 +1589,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			else:
 				evt = self["list"].getCurrentEvent()
 				if evt:
+					self.checkHideMiniTV_beforeFullscreen()
 					self.session.open(IMDbEventViewSimple, evt, ServiceReference(self.getCurrent()))
 		except Exception, e:
 			print('[EMC] showEventInformation exception failure: ', str(e))
@@ -1582,8 +1601,10 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		except ImportError:
 			BludiscMenu = None
 		if BludiscMenu is not None:
+			self.checkHideMiniTV_beforeFullscreen()
 			self.session.open(BludiscMenu, bd_mountpoint=blupath)
 		else:
+			self.checkHideMiniTV_beforeFullscreen()
 			self.session.open(MessageBox,"Plugin not found!", MessageBox.TYPE_ERROR)
 
 	def initCursor(self, ifunknown=True):
@@ -1985,9 +2006,11 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 					#self.miniTV_unmute() #moved to 'openPlayer', mute as long as possible
 					self.openPlayer(playlist, playall)
 				else:
+					self.checkHideMiniTV_beforeFullscreen()
 					self.session.open(MessageBox, _("File not available."), MessageBox.TYPE_ERROR, 10)
 
 	def setupPlaylist(self):
+		self.checkHideMiniTV_beforeFullscreen()
 		self.session.open(EMCPlaylistSetup)
 
 	def playlistSelected(self, path):
@@ -2051,6 +2074,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 						mes =  _("Files added to current Playlist:\n%s\n\nFiles exists in current Playlist:\n%s") % (add, exist)
 					elif exist != "" and add == "":
 						mes = _("Files exists in current Playlist:\n%s") % exist
+				self.checkHideMiniTV_beforeFullscreen()
 				self.session.open(MessageBox, mes, MessageBox.TYPE_INFO, 2, True)
 
 	def playPlaylist(self, random=False):
@@ -2077,6 +2101,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 				self.close()
 
 	def showPlaylist(self):
+		self.checkHideMiniTV_beforeFullscreen()
 		self.session.open(EMCPlaylistScreen)
 
 	def delPlaylist(self):
@@ -2091,6 +2116,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			self.multiSelectIdx = None
 			self.updateTitle()
 		if self.lastPlayed is None:
+			self.checkHideMiniTV_beforeFullscreen()
 			self.session.open(MessageBox, _("Last played movie/playlist not available..."), MessageBox.TYPE_ERROR, 10)
 		else:
 			self.busy = True
@@ -2165,6 +2191,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		for e in self.recsToStop:
 			stoppedAll = stoppedAll and self["list"].recControl.stopRecording(e)
 		if not stoppedAll:
+			self.checkHideMiniTV_beforeFullscreen()
 			self.session.open(MessageBox, _("Not stopping any repeating timers. Modify them with the timer editor."), MessageBox.TYPE_INFO, 10)
 
 	def stopRecordQ(self):
@@ -2366,6 +2393,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 						self.checkHideMiniTV_beforeFullscreen()
 						self.session.openWithCallback(self.checkExt, MessageBox, delStr + _(" all selected video files? The currently playing movie is also one of the selections and its playback will be stopped.") + "\n" + rm_add + movienames, MessageBox.TYPE_YESNO)
 		except Exception, e:
+			self.checkHideMiniTV_beforeFullscreen()
 			self.session.open(MessageBox, _("Delete error:\n") + str(e), MessageBox.TYPE_ERROR)
 			emcDebugOut("[EMCMS] deleteMovieQ exception:\n" + str(e))
 
@@ -2488,6 +2516,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 				if not self.isPathLocked(pathname):
 					self.execFileOp(config.EMC.movie_trashcan_path.value, current, self.tmpSelList, op="delete", purgeTrash=delete)
 				else:
+					self.checkHideMiniTV_beforeFullscreen()
 					self.session.open(MessageBox, _("This element belongs to a locked folder and cannot be deleted!"), MessageBox.TYPE_ERROR, 10)
 
 				for x in self.tmpSelList:
@@ -2524,6 +2553,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 	def delPathSelRecursive(self, service, path, confirm):
 		if confirm and path:
 			if self.isPathLocked(path) or self.isLowerPathLocked(path):
+				self.checkHideMiniTV_beforeFullscreen()
 				self.session.open(MessageBox, _("This folder is locked or contains a locked subfolder, unlock it first!"), MessageBox.TYPE_ERROR, 10)
 			elif service:
 				movieFileCache.delPathFromCache(path)
@@ -2550,6 +2580,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 						self.delPathSelRecursive(service, path, True)
 					self.setReturnCursor()
 			else:
+				self.checkHideMiniTV_beforeFullscreen()
 				self.session.open(MessageBox, _("Cannot delete the parent directory."), MessageBox.TYPE_ERROR, 10)
 
 	def scriptCB(self, result=None):
@@ -2630,6 +2661,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 								if not offline.deleteFromDisk(0):
 									result = True
 								if result == False:
+									self.checkHideMiniTV_beforeFullscreen()
 									self.session.open(MessageBox, _("Delete failed!"), MessageBox.TYPE_ERROR)
 									return
 								else:
@@ -2712,6 +2744,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 							if not offline.deleteFromDisk(0):
 								result = True
 							if result == False:
+								self.checkHideMiniTV_beforeFullscreen()
 								self.session.open(MessageBox, _("Delete failed!"), MessageBox.TYPE_ERROR)
 								return
 							else:
@@ -2903,6 +2936,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 						self["list"].resetSelection()
 					else:
 						if len(selectedlist) == 1:
+							self.checkHideMiniTV_beforeFullscreen()
 							self.session.open(MessageBox, _("How to move files:\nSelect some movies with the VIDEO-button, move the cursor on top of the destination directory and press yellow."), MessageBox.TYPE_ERROR, 10)
 						else:
 							dialog = True
@@ -2925,6 +2959,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 								inhibitDirs = ["/bin", "/boot", "/dev", "/etc", "/lib", "/proc", "/sbin", "/sys", "/usr", "/var"],
 								minFree = 100 )
 					except:
+						self.checkHideMiniTV_beforeFullscreen()
 						self.session.open(MessageBox, _("How to move files:\nSelect some movies with the VIDEO-button, move the cursor on top of the destination directory and press yellow."), MessageBox.TYPE_ERROR, 10)
 				emcDebugOut("[EMCMS] moveMovie")
 
@@ -2977,6 +3012,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 						self["list"].resetSelection()
 					else:
 						if len(selectedlist) == 1:
+							self.checkHideMiniTV_beforeFullscreen()
 							self.session.open(MessageBox, _("How to copy files:\nSelect some movies with the VIDEO-button, move the cursor on top of the destination directory and press yellow long."), MessageBox.TYPE_ERROR, 10)
 						else:
 							dialog = True
@@ -2999,6 +3035,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 								inhibitDirs = ["/bin", "/boot", "/dev", "/etc", "/lib", "/proc", "/sbin", "/sys", "/usr", "/var"],
 								minFree = 100 )
 					except:
+						self.checkHideMiniTV_beforeFullscreen()
 						self.session.open(MessageBox, _("How to copy files:\nSelect some movies with the VIDEO-button, move the cursor on top of the destination directory and press yellow long."), MessageBox.TYPE_ERROR, 10)
 				emcDebugOut("[EMCMS] copyMovie")
 
@@ -3079,6 +3116,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 				# reload to show the trashcan only if the current path will contain the trashcan
 				self.reloadListWithoutCache()
 		except Exception, e:
+			self.checkHideMiniTV_beforeFullscreen()
 			self.session.open(MessageBox, _("Trashcan create failed. Check mounts and permissions."), MessageBox.TYPE_ERROR)
 			emcDebugOut("[EMCMS] trashcanCreate exception:\n" + str(e))
 
@@ -3087,6 +3125,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 #		service = selectedlist[0]
 #		if os.path.isfile(service.getPath()):
 #			moviename = str(self["list"].getNameOfService(service))
+#			self.checkHideMiniTV_beforeFullscreen()
 #			self.session.open(DownloadMovieInfo, service, moviename)
 
 	def dlMovieInfo(self):
@@ -3100,6 +3139,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 					if not path.endswith("/..") and not path.endswith("/Latest Recordings"):
 						moviename = service.getName()
 						spath = getInfoFile(path)[0]
+						self.checkHideMiniTV_beforeFullscreen()
 						self.session.open(DownloadMovieInfo, spath, moviename)
 
 #****************************************************************************************
