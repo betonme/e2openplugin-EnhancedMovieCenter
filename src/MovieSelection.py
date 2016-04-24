@@ -282,6 +282,7 @@ class SelectionEventInfo:
 					self.session.nav.stopService()
 					self["Video"].hide()
 					self.session.nav.playService(self.lastservice)
+					self.lastservice = None
 					self["Video"].show()
 					self["Video"].instance.resize(eSize(*(2, 2))) #smallest possible size
 				if self.preMute_muteState is None:
@@ -299,6 +300,7 @@ class SelectionEventInfo:
 	def miniTV_resume(self):
 		if self.lastservice and not self.hide_miniTV:
 			self.session.nav.playService(self.lastservice)
+			self.lastservice = None
 			self.miniTV_unmute()
 		elif not self.lastservice:
 			self.session.nav.stopService()
