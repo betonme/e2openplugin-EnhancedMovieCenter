@@ -2,16 +2,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: EMC 4.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-11 23:09+0200\n"
-"PO-Revision-Date: 2015-09-09 15:37+0200\n"
-"Last-Translator: Joan González - Jglez3 <joan@gonzalezcrego.es>\n"
+"POT-Creation-Date: 2016-05-08 15:10+0200\n"
+"PO-Revision-Date: 2016-05-08 15:10+0200\n"
+"Last-Translator: neoatomic <neoatomic@users.noreply.github.com>\n"
 "Language-Team: Linux-Box\n"
 "Language: es_ES\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.8.4\n"
+"X-Generator: Poedit 1.8.7\n"
 
 #: EMCCoverSearch.py:47 EMCCoverSearch.py:48
 msgid "imdb.de"
@@ -514,8 +514,8 @@ msgstr "Comportamiento botones de bouquet"
 #: EnhancedMovieCenter.py:327
 msgid "HELP_Bouquet buttons behaviour"
 msgstr ""
-"Saltar al principio o al final de la lista o saltar sólo un cierto número "
-"de entradas"
+"Saltar al principio o al final de la lista o saltar sólo un cierto número de "
+"entradas"
 
 #: EnhancedMovieCenter.py:328
 msgid "List entries to skip"
@@ -613,8 +613,7 @@ msgstr "Forzar modo de espera tras el reinicio automático"
 #: EnhancedMovieCenter.py:342
 msgid "HELP_Force standby after auto-start"
 msgstr ""
-"Tras el reinicio automático de Enigma2, el deco se cambiará a modo de "
-"espera."
+"Tras el reinicio automático de Enigma2, el deco se cambiará a modo de espera."
 
 #: EnhancedMovieCenter.py:343
 msgid "LongInfo Button"
@@ -658,8 +657,8 @@ msgstr "Límite de acceso a la ruta de ECM"
 msgid "HELP_EMC path access limit"
 msgstr ""
 "Limite su ruta de acceso hacia fuera de su ruta inicial.\n"
-"Con los botones [<] y [>] (junto a la tecla número 0) es posible anular "
-"este límite."
+"Con los botones [<] y [>] (junto a la tecla número 0) es posible anular este "
+"límite."
 
 #: EnhancedMovieCenter.py:352
 msgid "Cursor predictive move after selection"
@@ -698,8 +697,7 @@ msgstr "Mostrar u ocultar los directorios en la lista de películas"
 
 #: EnhancedMovieCenter.py:359
 msgid "Configured directories at the top of movielist"
-msgstr ""
-"Directorios configurados en la parte superior de la lista de películas"
+msgstr "Directorios configurados en la parte superior de la lista de películas"
 
 #: EnhancedMovieCenter.py:359
 msgid "HELP_Configure in etc\\enigma2\\emc-topdir.cfg"
@@ -721,8 +719,8 @@ msgstr "Texto mostrado para el número de archivos inicialmente desconocidos"
 #: EnhancedMovieCenter.py:361
 msgid "HELP_Text shown for initially unknown file count"
 msgstr ""
-"Esta función determina como se muestra el texto al buscar en los "
-"directorios con un número de archivos desconocido."
+"Esta función determina como se muestra el texto al buscar en los directorios "
+"con un número de archivos desconocido."
 
 #: EnhancedMovieCenter.py:362
 msgid "Text shown for initially unknown count and size"
@@ -731,8 +729,8 @@ msgstr "Texto mostrado para número y tamaño inicialmente desconocidos"
 #: EnhancedMovieCenter.py:362
 msgid "HELP_Text shown for initially unknown count and size"
 msgstr ""
-"Esta función determina como se muestra el texto al buscar en los "
-"directorios con un número y tamaño de archivos desconocido."
+"Esta función determina como se muestra el texto al buscar en los directorios "
+"con un número y tamaño de archivos desconocido."
 
 #: EnhancedMovieCenter.py:363
 msgid "Text shown for initially unknown directory size"
@@ -840,8 +838,7 @@ msgstr "Mostrar opciones experimentales"
 #: EnhancedMovieCenter.py:375
 msgid "HELP_Show experimental options"
 msgstr ""
-"Mostrar opciones experimentales para evitar despertar discos duros, NAS, "
-"etc."
+"Mostrar opciones experimentales para evitar despertar discos duros, NAS, etc."
 
 #: EnhancedMovieCenter.py:376
 msgid "Don't auto scan size of dirs from emc-noscan.cfg"
@@ -850,8 +847,8 @@ msgstr "No autoescanear tamaño de los directorios desde emc-noscan.cfg"
 #: EnhancedMovieCenter.py:376
 msgid "HELP_Don't auto scan size of dirs from emc-noscan.cfg"
 msgstr ""
-"Si se activa, los directorios que se encuentren definidos en emc-noscan."
-"cfg, quedarán excluidos de la exploración para el tamaño de directorio."
+"Si se activa, los directorios que se encuentren definidos en emc-noscan.cfg, "
+"quedarán excluidos de la exploración para el tamaño de directorio."
 
 #: EnhancedMovieCenter.py:377
 msgid "After file OPs only re-scan affected dirs"
@@ -882,8 +879,7 @@ msgstr "Ocultar entradas configuradas"
 #: EnhancedMovieCenter.py:381
 msgid "HELP_cfghide_enable"
 msgstr ""
-"Ocultar archivos y directorios que aparecen en ‘/etc/enigma2/emc-hide."
-"cfg’.\n"
+"Ocultar archivos y directorios que aparecen en ‘/etc/enigma2/emc-hide.cfg’.\n"
 "El cambio de esta configuración requiere un reinicio de Enigma2."
 
 #: EnhancedMovieCenter.py:382
@@ -1048,8 +1044,7 @@ msgstr "Formato de fecha"
 #: EnhancedMovieCenter.py:402
 msgid "HELP_Date format"
 msgstr ""
-"Seleccione el formato de fecha y hora que se mostrará detrás de los "
-"archivos."
+"Seleccione el formato de fecha y hora que se mostrará detrás de los archivos."
 
 #: EnhancedMovieCenter.py:404
 msgid "Show movie icons"
@@ -1239,8 +1234,8 @@ msgid "HELP_Always save last played progress as marker"
 msgstr ""
 "Con esta opción se establece un marcador para la posición cada vez que se "
 "detiene la reproducción.\n"
-"Al reiniciar la reproducción los botones <> se pueden utilizar para saltar "
-"a esta posición (independiente de la función de reanudación)."
+"Al reiniciar la reproducción los botones <> se pueden utilizar para saltar a "
+"esta posición (independiente de la función de reanudación)."
 
 #: EnhancedMovieCenter.py:431
 msgid "Zap to channel after record EOF"
@@ -1334,8 +1329,8 @@ msgstr "Habilitar la limpieza diaria de la papelera"
 #: EnhancedMovieCenter.py:447
 msgid "HELP_Enable daily trashcan cleanup"
 msgstr ""
-"EMC elimina los archivos viejos de la papelera, cuando alcanzan el límite "
-"de vencimiento establecido en la siguiente entrada."
+"EMC elimina los archivos viejos de la papelera, cuando alcanzan el límite de "
+"vencimiento establecido en la siguiente entrada."
 
 #: EnhancedMovieCenter.py:448
 msgid "Daily cleanup time"
@@ -1344,8 +1339,8 @@ msgstr "Hora de limpieza diaria"
 #: EnhancedMovieCenter.py:448
 msgid "HELP_Daily cleanup time"
 msgstr ""
-"Se borrarán los archivos antigüos de la papelera que alcanzaron el tiempo "
-"de espera establecido."
+"Se borrarán los archivos antigüos de la papelera que alcanzaron el tiempo de "
+"espera establecido."
 
 #: EnhancedMovieCenter.py:449
 msgid "How many days files may remain in trashcan"
@@ -1580,9 +1575,8 @@ msgstr "Descripción campo de retardo de actualización"
 msgid "HELP_Description field update delay"
 msgstr ""
 "Retardo para la visualización de la descripción en la lista de películas.\n"
-"(Mejora la velocidad de navegación múltiples veces al pulsar el botón "
-"arriba/abajo debido a que la descripción sólo se carga después del retardo "
-"elegido.)"
+"(Mejora la velocidad de navegación múltiples veces al pulsar el botón arriba/"
+"abajo debido a que la descripción sólo se carga después del retardo elegido.)"
 
 #: EnhancedMovieCenter.py:482
 msgid "Key period value (50-900)"
@@ -1598,8 +1592,7 @@ msgstr "Valor de repetición de tecla (250-900)"
 
 #: EnhancedMovieCenter.py:483
 msgid "HELP_Key repeat value (250-900)"
-msgstr ""
-"Velocidad de repetición del botón cuando se mantiene pulsado el botón."
+msgstr "Velocidad de repetición del botón cuando se mantiene pulsado el botón."
 
 #: EnhancedMovieCenter.py:486
 msgid "Show message if file added to playlist"
@@ -2358,8 +2351,8 @@ msgid ""
 "Delete failed because the trashcan directory does not exist. Attempt to "
 "create it now?"
 msgstr ""
-"No se puede eliminar porque el directorio de la papelera no existe. "
-"¿Crearlo ahora?"
+"No se puede eliminar porque el directorio de la papelera no existe. ¿Crearlo "
+"ahora?"
 
 #: MovieSelection.py:2397
 msgid "This folder is locked or contains a locked subfolder, unlock it first!"
@@ -2643,8 +2636,8 @@ msgid ""
 "Locate rogue files and remove them? (permanently if no trashcan available, "
 "may take a minute or so)"
 msgstr ""
-"¿Localizar y eliminar archivos huérfanos? (Si la papelera no está "
-"disponible se eliminará permanentemente, lo que puede llevar algún tiempo)"
+"¿Localizar y eliminar archivos huérfanos? (Si la papelera no está disponible "
+"se eliminará permanentemente, lo que puede llevar algún tiempo)"
 
 #: MovieSelectionMenu.py:370
 msgid "Remove all cut file marker permanently?"
