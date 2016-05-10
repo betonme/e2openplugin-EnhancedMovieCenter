@@ -7,16 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-09-16 00:57+0200\n"
-"PO-Revision-Date: 2015-09-17 00:02+0200\n"
+"POT-Creation-Date: 2016-05-08 15:10+0200\n"
+"PO-Revision-Date: 2016-05-08 15:10+0200\n"
+"Last-Translator: neoatomic <neoatomic@users.noreply.github.com>\n"
 "Language-Team: \n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 1.8.4\n"
-"Last-Translator: Pr2 <dummy@dummy.com>\n"
-"Language: fr\n"
+"X-Generator: Poedit 1.8.7\n"
 
 #: EMCCoverSearch.py:47 EMCCoverSearch.py:48
 msgid "imdb.de"
@@ -833,8 +833,7 @@ msgstr ""
 
 #: EnhancedMovieCenter.py:378
 msgid "Wake device when entering dir from emc-noscan.cfg"
-msgstr ""
-"Réveiller le périphérique en entrant les répertoires de emc-noscan.cfg"
+msgstr "Réveiller le périphérique en entrant les répertoires de emc-noscan.cfg"
 
 #: EnhancedMovieCenter.py:378
 msgid "HELP_Wake device when entering dir from emc-noscan.cfg"
@@ -963,8 +962,7 @@ msgstr "Afficher le chemin si aucune description étendue n’est disponible"
 
 #: EnhancedMovieCenter.py:397
 msgid "HELP_Show Path if no extended description available"
-msgstr ""
-"AIDE_Afficher le chemin si aucune description étendue n’est disponible"
+msgstr "AIDE_Afficher le chemin si aucune description étendue n’est disponible"
 
 #: EnhancedMovieCenter.py:400
 msgid "Listbox is skin able"
@@ -1117,8 +1115,7 @@ msgstr "Démarrer la prévisualisation des films avant la dernière position"
 
 #: EnhancedMovieCenter.py:424
 msgid "HELP_Movie preview offset in seconds"
-msgstr ""
-"AIDE_Démarrer la prévisualisation des films avant la dernière position"
+msgstr "AIDE_Démarrer la prévisualisation des films avant la dernière position"
 
 #: EnhancedMovieCenter.py:427
 msgid "No resume below 10 seconds"
@@ -1146,8 +1143,7 @@ msgstr "AIDE_Rebobinner les films terminés avant de les lire"
 
 #: EnhancedMovieCenter.py:430
 msgid "Always save last played progress as marker"
-msgstr ""
-"Toujours sauvegarder la dernière progression de lecture comme marqueur"
+msgstr "Toujours sauvegarder la dernière progression de lecture comme marqueur"
 
 #: EnhancedMovieCenter.py:430
 msgid "HELP_Always save last played progress as marker"
@@ -1257,8 +1253,7 @@ msgstr "AIDE_Déplacer les fichiers terminés dans la corbeille"
 #: EnhancedMovieCenter.py:451
 msgid "Age of finished movies in movie folder (days)"
 msgstr ""
-"Durée de conservation des films terminés dans le répertoire des films "
-"(jours)"
+"Durée de conservation des films terminés dans le répertoire des films (jours)"
 
 #: EnhancedMovieCenter.py:451
 msgid "HELP_Age of finished movies in movie folder (days)"
@@ -2185,8 +2180,8 @@ msgid ""
 " all selected video files? The currently playing movie is also one of the "
 "selections and its playback will be stopped."
 msgstr ""
-" tous les fichiers vidéos sélectionés? Le film en cours de lecture est "
-"aussi un de la sélection et sa lecture sera arrêtée."
+" tous les fichiers vidéos sélectionés? Le film en cours de lecture est aussi "
+"un de la sélection et sa lecture sera arrêtée."
 
 #: MovieSelection.py:2242
 msgid "Delete error:\n"
@@ -2217,8 +2212,8 @@ msgid ""
 "Delete failed because the trashcan directory does not exist. Attempt to "
 "create it now?"
 msgstr ""
-"Impossible d’effacer car le répertoire de la corbeille n’existe pas. "
-"Essayer de le créer maintenant?"
+"Impossible d’effacer car le répertoire de la corbeille n’existe pas. Essayer "
+"de le créer maintenant?"
 
 #: MovieSelection.py:2397
 msgid "This folder is locked or contains a locked subfolder, unlock it first!"
@@ -2478,8 +2473,8 @@ msgid ""
 "The directory %s is already locked. Do you want to unlock it and all its "
 "subfolders?"
 msgstr ""
-"Le répertoire %s est déjà vérouillé. Voulez-vous le déverouiller et tous "
-"ses sous répertoires?"
+"Le répertoire %s est déjà vérouillé. Voulez-vous le déverouiller et tous ses "
+"sous répertoires?"
 
 #: MovieSelectionMenu.py:293
 msgid "Create Link"
@@ -2809,8 +2804,7 @@ msgstr ""
 "\n"
 "Cette option va déplacer tous les fichiers terminés du répertoire d’accueil "
 "des films automatiquement vers votre corbeille à l’heure indiquée.\n"
-"Au prochain nettoyage automatique de la corbeille les films seront "
-"effacés.\n"
+"Au prochain nettoyage automatique de la corbeille les films seront effacés.\n"
 "\n"
 "Confirmer ceci en appuyant sur le bouton bleu puis le bouton vert."
 

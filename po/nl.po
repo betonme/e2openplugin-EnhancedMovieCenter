@@ -2,255 +2,281 @@ msgid ""
 msgstr ""
 "Project-Id-Version: EMC V.4.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-19 17:53+0100\n"
+"POT-Creation-Date: 2016-05-09 14:57+0200\n"
 "PO-Revision-Date: \n"
-"Last-Translator: dhwz <dhwz@gulli.com>\n"
+"Last-Translator: neoatomic <neoatomic@users.noreply.github.com>\n"
 "Language-Team: \n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Poedit-Basepath: ../\n"
-"X-Generator: Poedit 1.7.1\n"
+"X-Poedit-Basepath: ..\n"
+"X-Generator: Poedit 1.8.7\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SearchPath-0: src\n"
 
-#: src/EMCCoverSearch.py:45
-msgid "themoviedb.org"
-msgstr ""
-
-#: src/EMCCoverSearch.py:46
+#: EMCCoverSearch.py:47 EMCCoverSearch.py:48
 msgid "imdb.de"
-msgstr ""
+msgstr "imdb.de"
 
-#: src/EMCCoverSearch.py:46
-msgid "thetvdb.com"
-msgstr ""
+#: EMCCoverSearch.py:47
+msgid "themoviedb.org"
+msgstr "themoviedb.org"
 
-#: src/EMCCoverSearch.py:46
+#: EMCCoverSearch.py:47 EMCCoverSearch.py:48
 msgid "csfd.cz"
-msgstr ""
+msgstr "csfd.cz"
 
-#: src/EMCCoverSearch.py:46
+#: EMCCoverSearch.py:47 EMCCoverSearch.py:48
 msgid "all"
-msgstr ""
+msgstr "Alles"
 
-#: src/EMCCoverSearch.py:80 src/EMCCoverSearch.py:213
-#: src/EMCCoverSearch.py:223 src/EMCCoverSearch.py:299
+#: EMCCoverSearch.py:48
+msgid "thetvdb.com"
+msgstr "thetvdb.com"
+
+#: EMCCoverSearch.py:97 EMCCoverSearch.py:238 EMCCoverSearch.py:248
+#: EMCCoverSearch.py:361
 msgid "Exist"
-msgstr ""
+msgstr "Bestaat"
 
-#: src/EMCCoverSearch.py:80 src/EMCCoverSearch.py:216
-#: src/EMCCoverSearch.py:223 src/EMCCoverSearch.py:350
-#: src/EMCCoverSearch.py:380
+#: EMCCoverSearch.py:97 EMCCoverSearch.py:241 EMCCoverSearch.py:248
+#: EMCCoverSearch.py:412 EMCCoverSearch.py:442
 msgid "N/A"
-msgstr ""
+msgstr "Niet beschikbaar"
 
-#: src/EMCCoverSearch.py:168
+#: EMCCoverSearch.py:193
 msgid "Search"
-msgstr ""
+msgstr "Zoek"
 
-#: src/EMCCoverSearch.py:170 src/MovieSelection.py:1774
-#: src/MovieSelectionMenu.py:86 src/plugin.py:168 src/plugin.py:188
+#: EMCCoverSearch.py:195 MovieSelection.py:2198 MovieSelectionMenu.py:107
+#: MovieSelectionMenu.py:109 plugin.py:170 plugin.py:191
 msgid "Delete"
 msgstr "Verwijderen"
 
-#: src/EMCCoverSearch.py:180
+#: EMCCoverSearch.py:205
 msgid "Press green button to start search"
-msgstr ""
+msgstr "Druk op de groene knop om te beginnen met zoeken"
 
-#: src/EMCCoverSearch.py:182
+#: EMCCoverSearch.py:207
 msgid "Manage Cover"
-msgstr ""
+msgstr "Beheer Cover"
 
-#: src/EMCCoverSearch.py:183 src/MovieInfo.py:62
+#: EMCCoverSearch.py:208 MovieInfo.py:270 MovieInfo.py:439
 msgid "Setup"
-msgstr ""
+msgstr "Instellingen"
 
-#: src/EMCCoverSearch.py:184
+#: EMCCoverSearch.py:209
 msgid "Single search"
-msgstr ""
+msgstr "Enkele zoekopdracht"
 
-#: src/EMCCoverSearch.py:198
+#: EMCCoverSearch.py:223
 msgid "EMC Cover search"
-msgstr ""
+msgstr "EMC Cover zoeken"
 
-#: src/EMCCoverSearch.py:223
+#: EMCCoverSearch.py:248
 msgid "Total"
-msgstr ""
+msgstr "Totaal"
 
-#: src/EMCCoverSearch.py:278 src/EMCCoverSearch.py:302
-#: src/EMCCoverSearch.py:385
+#: EMCCoverSearch.py:340 EMCCoverSearch.py:364 EMCCoverSearch.py:447
 #, python-format
 msgid "Exist: %s"
-msgstr ""
+msgstr "Bestaat: %s"
 
-#: src/EMCCoverSearch.py:279 src/EMCCoverSearch.py:301
-#: src/EMCCoverSearch.py:384
+#: EMCCoverSearch.py:341 EMCCoverSearch.py:363 EMCCoverSearch.py:446
 #, python-format
 msgid "No Cover: %s"
-msgstr ""
+msgstr "Geen Cover: %s"
 
-#: src/EMCCoverSearch.py:280 src/EMCCoverSearch.py:303
-#: src/EMCCoverSearch.py:386
+#: EMCCoverSearch.py:342 EMCCoverSearch.py:365 EMCCoverSearch.py:448
 #, python-format
 msgid "Download: %s"
-msgstr ""
+msgstr "Download: %s"
 
-#: src/EMCCoverSearch.py:281
+#: EMCCoverSearch.py:343
 msgid "Searching..."
-msgstr ""
+msgstr "Zoeken..."
 
-#: src/EMCCoverSearch.py:289
+#: EMCCoverSearch.py:351
 msgid "Creating Search List.."
-msgstr ""
+msgstr "Maak Zoek Lijst..."
 
-#: src/EMCCoverSearch.py:329
+#: EMCCoverSearch.py:391
 msgid "No Movies found!"
-msgstr ""
+msgstr "Geen Films Gevonden!"
 
-#: src/EMCCoverSearch.py:382
+#: EMCCoverSearch.py:444
 msgid "from"
-msgstr ""
+msgstr "van"
 
-#: src/EMCCoverSearch.py:395
+#: EMCCoverSearch.py:457
 msgid "movies in"
-msgstr ""
+msgstr "films in"
 
-#: src/EMCCoverSearch.py:395
+#: EMCCoverSearch.py:457
 msgid "sec found. Avg. Speed:"
-msgstr ""
+msgstr "sec gevonden. Gem. Snelheid:"
 
-#: src/EMCCoverSearch.py:395
+#: EMCCoverSearch.py:457
 msgid "sec."
-msgstr ""
+msgstr "sec."
 
-#: src/EMCCoverSearch.py:446
+#: EMCCoverSearch.py:508
 #, python-format
 msgid "%s removed."
-msgstr ""
+msgstr "%s verwijderd."
 
-#: src/EMCCoverSearch.py:489
+#: EMCCoverSearch.py:560
 #, python-format
 msgid "Search site set to: %s"
-msgstr ""
+msgstr "Zoeksite ingesteld op: %s"
 
-#: src/EMCCoverSearch.py:627 src/EnhancedMovieCenter.py:205
-#: src/MovieInfo.py:229 src/MovieRetitle.py:33
+#: EMCCoverSearch.py:569
+msgid "Cover is Saved."
+msgstr "Cover is Opgeslagen"
+
+#: EMCCoverSearch.py:698
+msgid "EMC Cover search setup"
+msgstr "EMC Cover zoeken instellingen"
+
+#: EMCCoverSearch.py:700 EMCPlayList.py:132 EMCPlayList.py:472
+#: EMCPlayList.py:545 EnhancedMovieCenter.py:257 MovieInfo.py:736
+#: MovieRetitle.py:32
 msgid "Cancel"
 msgstr "Annuleren"
 
-#: src/EMCCoverSearch.py:628 src/MovieInfo.py:230
+#: EMCCoverSearch.py:701 MovieInfo.py:737
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
-#: src/EMCCoverSearch.py:631
+#: EMCCoverSearch.py:704
 msgid "Search Site:"
-msgstr ""
+msgstr "Doorzoek Site:"
 
-#: src/EMCCoverSearch.py:632
+#: EMCCoverSearch.py:705
 msgid "themoviedb cover resolution:"
-msgstr ""
+msgstr "themoviedb cover resolutie:"
 
-#: src/EMCCoverSearch.py:633
+#: EMCCoverSearch.py:706
 msgid "Save description to movie.txt file:"
-msgstr ""
+msgstr "Informatie opslaan naar movie.txt:"
 
-#: src/EMCCoverSearch.py:634
+#: EMCCoverSearch.py:707
 msgid "Single Search:"
-msgstr ""
+msgstr "Enkele zoekopdracht:"
 
-#: src/EMCCoverSearch.py:688
+#: EMCCoverSearch.py:749
+msgid "EMC Cover Selecter"
+msgstr "EMC Cover Selecteren"
+
+#: EMCCoverSearch.py:766
 #, python-format
 msgid "Searching for %s"
-msgstr ""
+msgstr "Zoeken naar %s"
 
-#: src/EMCCoverSearch.py:700 src/EMCCoverSearch.py:728
-#: src/EMCCoverSearch.py:738 src/EMCCoverSearch.py:763
-#: src/EMCCoverSearch.py:766 src/EMCCoverSearch.py:784
-#: src/EMCCoverSearch.py:807 src/EMCCoverSearch.py:823
+#: EMCCoverSearch.py:778 EMCCoverSearch.py:816 EMCCoverSearch.py:826
+#: EMCCoverSearch.py:851 EMCCoverSearch.py:854 EMCCoverSearch.py:872
+#: EMCCoverSearch.py:895 EMCCoverSearch.py:911
 msgid "found"
-msgstr ""
+msgstr "gevonden"
 
-#: src/EMCCoverSearch.py:700 src/EMCCoverSearch.py:728
-#: src/EMCCoverSearch.py:738 src/EMCCoverSearch.py:763
-#: src/EMCCoverSearch.py:766 src/EMCCoverSearch.py:784
-#: src/EMCCoverSearch.py:807
+#: EMCCoverSearch.py:778 EMCCoverSearch.py:816 EMCCoverSearch.py:826
+#: EMCCoverSearch.py:851 EMCCoverSearch.py:854 EMCCoverSearch.py:872
+#: EMCCoverSearch.py:895
 msgid "covers"
-msgstr ""
+msgstr "covers"
 
-#: src/EMCCoverSearch.py:823
+#: EMCCoverSearch.py:911
 msgid "covers in"
-msgstr ""
+msgstr "covers in"
 
-#: src/EMCCoverSearch.py:823
+#: EMCCoverSearch.py:911
 msgid "sec"
-msgstr ""
+msgstr "sec"
 
-#: src/EMCMediaCenter.py:146 src/EMCMediaCenter.py:151
+#: EMCCoverSearch.py:981
+msgid "Can not save "
+msgstr "Kan niet opslaan"
+
+#: EMCCoverSearch.py:995
+msgid "Can not save Cover in "
+msgstr "Kan Cover niet opslaan in"
+
+#: EMCCoverSearch.py:1015
+msgid "Move Cover to:"
+msgstr "Verplaats Cover naar:"
+
+#: EMCCoverSearch.py:1016 EMCPlayList.py:485 EnhancedMovieCenter.py:739
+#: MovieSelection.py:2740 MovieSelection.py:2780 MovieSelection.py:2812
+#: MovieSelection.py:2852 MovieSelection.py:2877 MovieSelectionMenu.py:294
+msgid "Choose directory"
+msgstr "Kies map"
+
+#: EMCMediaCenter.py:151 EMCMediaCenter.py:156
 msgid "Stop playback"
 msgstr "Afspelen stoppen"
 
-#: src/EMCMediaCenter.py:156
+#: EMCMediaCenter.py:161
 msgid "show DVD main menu"
-msgstr "DVD-hoofdmenu weergeven"
+msgstr "Toon DVD-hoofdmenu"
 
-#: src/EMCMediaCenter.py:158
+#: EMCMediaCenter.py:163
 msgid "forward to the next chapter"
 msgstr "Naar het volgende hoofdstuk springen"
 
-#: src/EMCMediaCenter.py:159
+#: EMCMediaCenter.py:164
 msgid "rewind to the previous chapter"
 msgstr "Naar het vorige hoofdstuk springen"
 
-#: src/EMCMediaCenter.py:160
+#: EMCMediaCenter.py:165 EMCMediaCenter.py:193
 msgid "jump forward to the next title"
 msgstr "Naar de volgende titel springen"
 
-#: src/EMCMediaCenter.py:161
+#: EMCMediaCenter.py:166 EMCMediaCenter.py:194
 msgid "jump back to the previous title"
 msgstr "Naar de vorige titel springen"
 
-#: src/EMCMediaCenter.py:162
+#: EMCMediaCenter.py:167
 msgid "(show optional DVD audio menu)"
-msgstr "(optioneel DVD audiomenu weergeven)"
+msgstr "(Toon optioneel DVD audiomenu)"
 
-#: src/EMCMediaCenter.py:163
+#: EMCMediaCenter.py:168
 msgid "switch to the next audio track"
 msgstr "schakel naar het volgende geluidsspoor"
 
-#: src/EMCMediaCenter.py:164
+#: EMCMediaCenter.py:169
 msgid "switch to the next subtitle language"
 msgstr "schakel naar de volgende ondertitelingstaal"
 
-#: src/EMCMediaCenter.py:165
+#: EMCMediaCenter.py:170
 msgid "switch to the next angle"
 msgstr "schakel naar de volgende hoek (angle)"
 
-#: src/EMCMediaCenter.py:184
+#: EMCMediaCenter.py:189
 msgid "view extensions..."
 msgstr "Open extensie menu"
 
-#: src/EMCMediaCenter.py:185
+#: EMCMediaCenter.py:190
 msgid "Format AVSwitch"
 msgstr "AV-formaat wisselen"
 
-#: src/EMCMediaCenter.py:186
+#: EMCMediaCenter.py:191
 msgid "Seek forward"
-msgstr ""
+msgstr "Spoel vooruit"
 
-#: src/EMCMediaCenter.py:187
+#: EMCMediaCenter.py:192
 msgid "Seek backward"
-msgstr ""
+msgstr "Spoel achteruit"
 
-#: src/EMCMediaCenter.py:188
+#: EMCMediaCenter.py:195
 msgid "Movie information"
-msgstr ""
+msgstr "Film informatie"
 
-#: src/EMCMediaCenter.py:347
+#: EMCMediaCenter.py:382
 msgid "No DVD-Player found!"
 msgstr "Geen DVD-speler gevonden!"
 
-#: src/EMCMediaCenter.py:395
+#: EMCMediaCenter.py:433
 msgid ""
 "Skipping movie, the file does not exist.\n"
 "\n"
@@ -258,280 +284,382 @@ msgstr ""
 "Film overslaan, het bestand bestaat niet.\n"
 "\n"
 
-#: src/EMCMediaCenter.py:434
+#: EMCMediaCenter.py:473
 msgid ""
 "EMC\n"
 "Zap to Live TV of record"
 msgstr "Terug naar (live) TV Beeld"
 
-#: src/EMCMediaCenter.py:810
+#: EMCMediaCenter.py:914
 msgid "Chap."
 msgstr "Hfdstk"
 
-#: src/EMCMediaCenter.py:811
+#: EMCMediaCenter.py:915
 msgid "Chapter"
 msgstr "Hoofdstuk"
 
-#: src/EMCMediaCenter.py:812
+#: EMCMediaCenter.py:916
 msgid "Title"
 msgstr "Titel"
 
-#: src/EMCTasker.py:202
+#: EMCPlayList.py:131 EMCPlayList.py:473 EnhancedMovieCenter.py:258
+#: MovieInfo.py:271 MovieInfo.py:441 MovieRetitle.py:31
+msgid "Save"
+msgstr "Opslaan"
+
+#: EMCPlayList.py:133
+msgid "Delete Entry"
+msgstr "Verwijder invoer"
+
+#: EMCPlayList.py:134
+msgid "Delete All"
+msgstr "Alles Verwijderen"
+
+#: EMCPlayList.py:154
+msgid "EMC Playlist"
+msgstr "EMC Afspeellijst"
+
+#: EMCPlayList.py:161
+msgid "EMC Playlist Menu"
+msgstr "EMC Afspeellijst Menu"
+
+#: EMCPlayList.py:162
+msgid "Playlist open"
+msgstr "Afspeellijst openen"
+
+#: EMCPlayList.py:163
+msgid "Setup open"
+msgstr "Instellingen openen"
+
+#: EMCPlayList.py:171
+msgid ""
+"Default Playlist is not empty!\n"
+"\n"
+"Save default Playlist?"
+msgstr ""
+"Standaard Afspeellijst is niet leeg!\n"
+"\n"
+"Standaard afspeellijst opslaan?"
+
+#: EMCPlayList.py:233
+msgid ""
+"Playlist with same name exists!\n"
+"\n"
+"Try to save the Playlist with another name?"
+msgstr ""
+"Afspeellijst met dezelfde naam bestaat al!\n"
+"\n"
+"Probeer de Afspeellijst met een andere naam op te slaan?"
+
+#: EMCPlayList.py:237
+msgid "Change the filename to save current Playlist:"
+msgstr "Verander naam om Afspeellijst op te slaan:"
+
+#: EMCPlayList.py:237
+msgid "Save current Playlist"
+msgstr "Huidige Afspeellijst opslaan"
+
+#: EMCPlayList.py:255
+msgid "Current Playlist saved successfully!"
+msgstr "Huidige Afspeellijst succesvol opgeslagen!"
+
+#: EMCPlayList.py:258
+msgid "Can not save current Playlist!"
+msgstr "Kan huidige Afspeellijst niet opslaan!"
+
+#: EMCPlayList.py:461
+msgid "Default Playlist path"
+msgstr "Standaard Afspeellijst locatie"
+
+#: EMCPlayList.py:462
+msgid "Default Playlist name"
+msgstr "Standaard Afspeellijst naam"
+
+#: EMCPlayList.py:463
+msgid "Always save current Playlist"
+msgstr "Huidige Afspeellijst altijd opslaan"
+
+#: EMCPlayList.py:477
+msgid "EMC Playlist Setup"
+msgstr "EMC Afspeellijst Instellingen"
+
+#: EMCPlayList.py:484
+msgid "Choose Directory:"
+msgstr "Kies Locatie:"
+
+#: EMCPlayList.py:501
+msgid "Enter Name for Playlist"
+msgstr "Geef naam voor de Afspeellijst"
+
+#: EMCPlayList.py:546
+msgid "Open"
+msgstr "Open"
+
+#: EMCPlayList.py:560
+msgid "EMC Filebrowser"
+msgstr "EMC Bestandsbrowser"
+
+#: EMCTasker.py:201
 msgid "Next auto-start in "
-msgstr ""
+msgstr "Volgende auto-start in"
 
-#: src/EMCTasker.py:204
+#: EMCTasker.py:203
 msgid "auto-start is currently not active."
-msgstr ""
+msgstr "auto-start is momenteel niet actief."
 
-#: src/EMCTasker.py:216
+#: EMCTasker.py:215
 msgid ""
 "Your Box is about to go into Standby, continue?\n"
 " Select no to delay one hour"
 msgstr ""
+"Uw Box staat op het punt om in Standby the gaan, Doorgaan?\n"
+" Selecteer Nee voor uur uitstel"
 
-#: src/EMCTasker.py:218
+#: EMCTasker.py:217
 msgid ""
 "Your Box is about to go into DeepStandby, continue?\n"
 " Select no to delay one hour"
 msgstr ""
+"Uw Box staat op het punt om uit te schakelen, Doorgaan?\n"
+" Selecteer Nee voor uur uitstel"
 
-#: src/EMCTasker.py:220
+#: EMCTasker.py:219
 msgid ""
 "Your Box is about to go into Reboot, continue?\n"
 " Select no to delay one hour"
 msgstr ""
+"Uw Box staat op het punt om te herstarten, Doorgaan?\n"
+" Selecteer Nee voor uur uitstel"
 
-#: src/EMCTasker.py:222
+#: EMCTasker.py:221
 msgid ""
 "Your Box is about to go into E2 Restart, continue?\n"
 " Select no to delay one hour"
 msgstr ""
+"Uw Box staat op het punt om E2 te herstarten, Doorgaan?\n"
+" Selecteer Nee voor uur uitstel"
 
-#: src/EnhancedMovieCenter.py:143 src/EnhancedMovieCenter.py:164
+#: EnhancedMovieCenter.py:195 EnhancedMovieCenter.py:216
 msgid "Custom"
-msgstr ""
+msgstr "Voorkeur"
 
-#: src/EnhancedMovieCenter.py:144
+#: EnhancedMovieCenter.py:196
 msgid "Default"
-msgstr ""
+msgstr "Standaard"
 
-#: src/EnhancedMovieCenter.py:145
+#: EnhancedMovieCenter.py:197
 msgid "Performance"
-msgstr ""
+msgstr "Prestaties"
 
-#: src/EnhancedMovieCenter.py:146
+#: EnhancedMovieCenter.py:198
 msgid "Information"
-msgstr ""
+msgstr "Informatie"
 
-#: src/EnhancedMovieCenter.py:206 src/MovieInfo.py:63 src/MovieRetitle.py:32
-msgid "Save"
-msgstr "Bewaren"
-
-#: src/EnhancedMovieCenter.py:266
+#: EnhancedMovieCenter.py:318
 msgid "About"
-msgstr "Over"
+msgstr "EMC Info"
 
-#: src/EnhancedMovieCenter.py:266
+#: EnhancedMovieCenter.py:318
 msgid "HELP_About"
 msgstr "Opent het \"Info\" venster."
 
-#: src/EnhancedMovieCenter.py:268
+#: EnhancedMovieCenter.py:320
 msgid "Disable EMC"
-msgstr "EMC deactiveren"
+msgstr "EMC uitschakelen"
 
-#: src/EnhancedMovieCenter.py:268
+#: EnhancedMovieCenter.py:320
 msgid "HELP_Disable EMC"
 msgstr ""
 "EMC (FilmLijst) uitschakelen. Bepaalde speciale functies zoals [Timers "
 "opschonen],[Prullenbak legen] en [Auto-herstart] blijven actief op de "
 "achtergrond."
 
-#: src/EnhancedMovieCenter.py:270
+#: EnhancedMovieCenter.py:322
 msgid "Start EMC with"
-msgstr "Start EMC met"
+msgstr "EMC starten met"
 
-#: src/EnhancedMovieCenter.py:270
+#: EnhancedMovieCenter.py:322
 msgid "HELP_Start EMC with"
-msgstr "Knop voor het opstarten van EMC instellen."
+msgstr "Selecteer de knop voor het opstarten van EMC instellen."
 
-#: src/EnhancedMovieCenter.py:271
+#: EnhancedMovieCenter.py:323
 msgid "Show plugin config in extensions menu"
 msgstr "EMC instellingen in extensie menu laten zien"
 
-#: src/EnhancedMovieCenter.py:271
+#: EnhancedMovieCenter.py:323
 msgid "HELP_Show plugin config in extensions menu"
 msgstr ""
-"EMC-instellingen verbergen of weergeven in het extensie-menu.\n"
+"EMC-instellingen verbergen of tonen in het extensie-menu.\n"
 "Het extensie-menu is normaliter via de blauwe knop te bereiken."
 
-#: src/EnhancedMovieCenter.py:272
+#: EnhancedMovieCenter.py:324
 msgid "Show EMC in extensions menu"
 msgstr "EMC in extensie menu laten zien"
 
-#: src/EnhancedMovieCenter.py:272
+#: EnhancedMovieCenter.py:324
 msgid "HELP_Show EMC in extensions menu"
 msgstr ""
-"EMC-plugin verbergen of weergeven in het extensie-menu.\n"
+"EMC-plugin verbergen of tonen in het extensie-menu.\n"
 "Het extensie-menu is normaliter via de blauwe toets te bereiken."
 
-#: src/EnhancedMovieCenter.py:274
+#: EnhancedMovieCenter.py:326
 msgid "HELP_Key assignment Separator"
-msgstr ""
+msgstr "Knop toewijzing scheider"
 
-#: src/EnhancedMovieCenter.py:275
+#: EnhancedMovieCenter.py:327
 msgid "Bouquet buttons behaviour"
-msgstr ""
+msgstr "Functie van de Bouquet knop"
 
-#: src/EnhancedMovieCenter.py:275
+#: EnhancedMovieCenter.py:327
 msgid "HELP_Bouquet buttons behaviour"
-msgstr ""
+msgstr "Functie van de Bouquet knop"
 
-#: src/EnhancedMovieCenter.py:276
+#: EnhancedMovieCenter.py:328
 msgid "List entries to skip"
-msgstr ""
+msgstr "Sorteer invoer naar overslaan"
 
-#: src/EnhancedMovieCenter.py:276
+#: EnhancedMovieCenter.py:328
 msgid "HELP_List entries to skip"
-msgstr ""
+msgstr "Sorteer invoer naar overslaan"
 
-#: src/EnhancedMovieCenter.py:277
+#: EnhancedMovieCenter.py:329
 msgid "Red button function"
-msgstr ""
+msgstr "Functie van de Rode knop"
 
-#: src/EnhancedMovieCenter.py:277
+#: EnhancedMovieCenter.py:329
 msgid "HELP_Red button function"
-msgstr ""
+msgstr "Functie van de Rode knop"
 
-#: src/EnhancedMovieCenter.py:278
+#: EnhancedMovieCenter.py:330
 msgid "Long Red button function"
-msgstr ""
+msgstr "Functie van de Rode knop (lang) "
 
-#: src/EnhancedMovieCenter.py:278
+#: EnhancedMovieCenter.py:330
 msgid "HELP_Long Red button function"
-msgstr ""
+msgstr "Functie van de Rode knop (lang) "
 
-#: src/EnhancedMovieCenter.py:281
+#: EnhancedMovieCenter.py:333
 msgid "Yellow button function"
-msgstr ""
+msgstr "Functie van de Gele knop"
 
-#: src/EnhancedMovieCenter.py:281
+#: EnhancedMovieCenter.py:333
 msgid "HELP_Yellow button function"
-msgstr ""
+msgstr "Functie van de Gele knop"
 
-#: src/EnhancedMovieCenter.py:282
+#: EnhancedMovieCenter.py:334
 msgid "Long Yellow button function"
-msgstr ""
+msgstr "Functie van de Gele knop (lang)"
 
-#: src/EnhancedMovieCenter.py:282
+#: EnhancedMovieCenter.py:334
 msgid "HELP_Long Yellow button function"
-msgstr ""
+msgstr "Functie van de Gele knop (lang)"
 
-#: src/EnhancedMovieCenter.py:283
+#: EnhancedMovieCenter.py:335
 msgid "Blue button function"
-msgstr "Functie van de blauwe knop"
+msgstr "Functie van de Blauwe knop"
 
-#: src/EnhancedMovieCenter.py:283
+#: EnhancedMovieCenter.py:335
 msgid "HELP_Blue button function"
 msgstr "Een keuzelijst voor het toewijzen van een functie aan de blauwe knop."
 
-#: src/EnhancedMovieCenter.py:284
+#: EnhancedMovieCenter.py:336
 msgid "Long Blue button function"
-msgstr ""
+msgstr "Functie van de Blauwe knop (lang)"
 
-#: src/EnhancedMovieCenter.py:284
+#: EnhancedMovieCenter.py:336
 msgid "HELP_Long Blue button function"
-msgstr ""
+msgstr "Functie van de Blauwe knop (lang)"
 
-#: src/EnhancedMovieCenter.py:286 src/EnhancedMovieCenter.py:293
-#: src/EnhancedMovieCenter.py:302 src/EnhancedMovieCenter.py:323
-#: src/EnhancedMovieCenter.py:332 src/EnhancedMovieCenter.py:352
-#: src/EnhancedMovieCenter.py:379
+#: EnhancedMovieCenter.py:338 EnhancedMovieCenter.py:345
+#: EnhancedMovieCenter.py:354 EnhancedMovieCenter.py:389
+#: EnhancedMovieCenter.py:399 EnhancedMovieCenter.py:426
+#: EnhancedMovieCenter.py:453
 msgid " "
-msgstr ""
+msgstr " "
 
-#: src/EnhancedMovieCenter.py:287
+#: EnhancedMovieCenter.py:339
 msgid "daily auto-start"
-msgstr ""
+msgstr "Dagelijkse auto-start functie"
 
-#: src/EnhancedMovieCenter.py:287
+#: EnhancedMovieCenter.py:339
 msgid "HELP_Daily auto-start"
-msgstr ""
+msgstr "Selecteer welke functie de auto-start timer functie moet uitvoeren"
 
-#: src/EnhancedMovieCenter.py:288
+#: EnhancedMovieCenter.py:340
 msgid "auto-start window begin"
-msgstr ""
+msgstr "Tijdsvenster auto-start begin"
 
-#: src/EnhancedMovieCenter.py:288
+#: EnhancedMovieCenter.py:340
 msgid "HELP_auto-start window begin"
-msgstr ""
+msgstr " Stel de begin tijd in"
 
-#: src/EnhancedMovieCenter.py:289
+#: EnhancedMovieCenter.py:341
 msgid "auto-start window end"
-msgstr ""
+msgstr "Tijdsvenster auto-start einde"
 
-#: src/EnhancedMovieCenter.py:289
+#: EnhancedMovieCenter.py:341
 msgid "HELP_auto-start window end"
-msgstr ""
+msgstr "Stel de eind tijd in"
 
-#: src/EnhancedMovieCenter.py:290
+#: EnhancedMovieCenter.py:342
 msgid "Force standby after auto-restart"
 msgstr "Forceer Standby status na een auto-herstart"
 
-#: src/EnhancedMovieCenter.py:290
+#: EnhancedMovieCenter.py:342
 msgid "HELP_Force standby after auto-start"
-msgstr ""
+msgstr "Forceer standby na een automatische herstart"
 
-#: src/EnhancedMovieCenter.py:291
+#: EnhancedMovieCenter.py:343
 msgid "LongInfo Button"
-msgstr ""
+msgstr "Functie van de Info knop (lang)"
 
-#: src/EnhancedMovieCenter.py:291
+#: EnhancedMovieCenter.py:343
 msgid "HELP_LongInfo Button"
 msgstr ""
+"Selecteer welke functie het lang indrukken van de Info knop moet uitvoeren"
 
-#: src/EnhancedMovieCenter.py:294
+#: EnhancedMovieCenter.py:346
 msgid "Movie home at start"
-msgstr "Hoofdmap films na starten"
+msgstr "Standaardmap films na starten"
 
-#: src/EnhancedMovieCenter.py:294
+#: EnhancedMovieCenter.py:346
 msgid "HELP_Movie home at start"
 msgstr ""
-"EMC start steeds in de hoofdmap \"Movie home\".\n"
+"EMC start steeds in de Standaardmap \"Movie home\".\n"
 "(In de volgende regel kan de hoofdmap \"Movie home\" ingesteld worden)."
 
-#: src/EnhancedMovieCenter.py:295
+#: EnhancedMovieCenter.py:347
 msgid "Default sort mode"
-msgstr ""
+msgstr "Standaard Sorteer Modus"
 
-#: src/EnhancedMovieCenter.py:295
+#: EnhancedMovieCenter.py:347
 msgid "HELP_Sort mode at startup"
-msgstr ""
+msgstr "Standaard Sorteer Modus"
 
-#: src/EnhancedMovieCenter.py:297
+#: EnhancedMovieCenter.py:349
 msgid "Movie home home path"
-msgstr "Pad hoofdmap films"
+msgstr "Locatie Standaardmap films"
 
-#: src/EnhancedMovieCenter.py:297
+#: EnhancedMovieCenter.py:349
 msgid "HELP_Movie home home path"
-msgstr "Instellen hoofdmap \"Movie home\"."
+msgstr "Instellen Standaardmap voor Films \"Movie home\"."
 
-#: src/EnhancedMovieCenter.py:298
+#: EnhancedMovieCenter.py:350
 msgid "EMC path access limit"
-msgstr "EMC map beperkte toegang"
+msgstr "Locatie EMC beperkte toegang"
 
-#: src/EnhancedMovieCenter.py:298
+#: EnhancedMovieCenter.py:350
 msgid "HELP_EMC path access limit"
 msgstr ""
-"Beperk de toegang buiten de hoofdmap \"Movie home\".\n"
+"Beperk de toegang buiten de Standaardmap \"Movie home\".\n"
 "Met de [<] en [>] knoppen (naast de Nr.0 knop) is het mogelijk deze "
 "beperking te overschrijden."
 
-#: src/EnhancedMovieCenter.py:300
+#: EnhancedMovieCenter.py:352
 msgid "Cursor predictive move after selection"
 msgstr "Cursor na selectie verplaatsen"
 
-#: src/EnhancedMovieCenter.py:300
+#: EnhancedMovieCenter.py:352
 msgid "HELP_Cursor predictive move after selection"
 msgstr ""
 "De cursor wordt tijdens het kiezen met de [VIDEO/PVR] knop in de ingestelde "
@@ -539,165 +667,275 @@ msgstr ""
 "Met \"omhoog/omlaag\" verplaatst de cursor zich in de richting van de laatst "
 "uitgevoerde beweging."
 
-#: src/EnhancedMovieCenter.py:303
+#: EnhancedMovieCenter.py:355
 msgid "Show symlinks"
-msgstr ""
+msgstr "Toon symlinks"
 
-#: src/EnhancedMovieCenter.py:303
+#: EnhancedMovieCenter.py:355
 msgid "HELP_Show symlinks"
-msgstr ""
+msgstr "Toon symlinks"
 
-#: src/EnhancedMovieCenter.py:305
+#: EnhancedMovieCenter.py:357
 msgid "Show directories"
-msgstr "Mappen weergeven"
+msgstr "Toon mappen"
 
-#: src/EnhancedMovieCenter.py:305
+#: EnhancedMovieCenter.py:357
 msgid "HELP_Show directories"
-msgstr "Mappen in de filmlijst weergeven."
+msgstr "Toon mappen"
 
-#: src/EnhancedMovieCenter.py:306
+#: EnhancedMovieCenter.py:358
+msgid "Show directories within movielist"
+msgstr "Toon mappen in filmlijst"
+
+#: EnhancedMovieCenter.py:358
+msgid "HELP_Show directories within movielist"
+msgstr "Toon mappen in filmlijst"
+
+#: EnhancedMovieCenter.py:359
+msgid "Configured directories at the top of movielist"
+msgstr "Ingestelde mappen bovenaan Filmlijst"
+
+#: EnhancedMovieCenter.py:359
+msgid "HELP_Configure in etc\\enigma2\\emc-topdir.cfg"
+msgstr "Dit kan worden ingesteld in etc\\enigma2\\emc-topdir.cfg"
+
+#: EnhancedMovieCenter.py:360
 msgid "Show directories information"
-msgstr "Informatie over de mappen weergeven"
+msgstr "Toon informatie over de mappen"
 
-#: src/EnhancedMovieCenter.py:306
+#: EnhancedMovieCenter.py:360
 msgid "HELP_Show directories information"
 msgstr ""
 "Bij mappen kan het aantal opnames, de totale bestandsgrootte , of beide "
 "weergegeven worden."
 
-#: src/EnhancedMovieCenter.py:307
-msgid "Show directories within movielist"
+#: EnhancedMovieCenter.py:361
+msgid "Text shown for initially unknown file count"
 msgstr ""
+"Tekst die wordt weergegeven voor in eerste instantie onbekende Bestandstotaal"
 
-#: src/EnhancedMovieCenter.py:307
-msgid "HELP_Show directories within movielist"
+#: EnhancedMovieCenter.py:361
+msgid "HELP_Text shown for initially unknown file count"
 msgstr ""
+"Tekst die wordt weergegeven voor in eerste instantie onbekende Bestandstotaal"
 
-#: src/EnhancedMovieCenter.py:308
-msgid "Configured directories at the top of movielist"
+#: EnhancedMovieCenter.py:362
+msgid "Text shown for initially unknown count and size"
 msgstr ""
+"Tekst die wordt weergegeven voor in eerste instantie onbekende bestands "
+"totaal en grootte"
 
-#: src/EnhancedMovieCenter.py:308
-msgid "HELP_Configure in etc\\enigma2\\emc-topdir.cfg"
+#: EnhancedMovieCenter.py:362
+msgid "HELP_Text shown for initially unknown count and size"
 msgstr ""
+"Tekst die wordt weergegeven voor in eerste instantie onbekende bestands "
+"totaal en grootte"
 
-#: src/EnhancedMovieCenter.py:309
+#: EnhancedMovieCenter.py:363
+msgid "Text shown for initially unknown directory size"
+msgstr "Tekst getoond voor aanvankelijk onbekende mag grootte"
+
+#: EnhancedMovieCenter.py:363
+msgid "HELP_Text shown for initially unknown directory size"
+msgstr "Tekst getoond voor aanvankelijk onbekende mag grootte"
+
+#: EnhancedMovieCenter.py:364
+msgid "Icon shown for initially unknown count / size"
+msgstr "Pictogram voor in eerste instantie onbekende aantal / grootte"
+
+#: EnhancedMovieCenter.py:364
+msgid "HELP_Icon shown for initially unknown count / size"
+msgstr "Pictogram voor in eerste instantie onbekende aantal / grootte"
+
+#: EnhancedMovieCenter.py:365
+msgid "Horizontal alignment for count / size"
+msgstr "Horizontale uitlijning voor totaal / grootte"
+
+#: EnhancedMovieCenter.py:365
+msgid "HELP_Horizontal alignment for count / size"
+msgstr "Horizontale uitlijning voor totaal / grootte"
+
+#: EnhancedMovieCenter.py:366
+msgid "Show directory size in skin"
+msgstr "Toon map grote in skin"
+
+#: EnhancedMovieCenter.py:366
+msgid "HELP_Show directory size in skin"
+msgstr "Toon de gebruikte ruimte van een map in de Skin"
+
+#: EnhancedMovieCenter.py:368
 msgid "Show Latest Recordings directory"
-msgstr "Map met laatste opnames weergeven"
+msgstr "Toon map met laatste opnames"
 
-#: src/EnhancedMovieCenter.py:309
+#: EnhancedMovieCenter.py:368
 msgid "HELP_Show Latest Recordings directory"
 msgstr ""
-"Een virtuele map weergeven in \"Movie home\" met een lijst van de laatste "
+"Een virtuele map tonen in \"Movie home\" met een lijst van de laatste "
 "opnames. Eveneens voor de submappen van \"Movie home\".\n"
 "(Enkel 1 pagina)"
 
-#: src/EnhancedMovieCenter.py:310
-msgid "Show VLC directory"
-msgstr "VLC map weergeven"
+#: EnhancedMovieCenter.py:369
+msgid "Latest Recordings directory limit"
+msgstr "Nieuwste opnames map limiet"
 
-#: src/EnhancedMovieCenter.py:310
+#: EnhancedMovieCenter.py:369
+msgid "HELP_Latest Recordings directory limit"
+msgstr "Nieuwste opnames map limiet"
+
+#: EnhancedMovieCenter.py:370
+msgid "Latest Recordings directory use emc-noscan.cfg"
+msgstr "Nieuwste opnames map gebruik emc-noscan.cfg"
+
+#: EnhancedMovieCenter.py:370
+msgid "HELP_Latest Recordings directory use emc-noscan.cfg"
+msgstr "Nieuwste opnames map gebruik emc-noscan.cfg"
+
+#: EnhancedMovieCenter.py:371
+msgid "Show VLC directory"
+msgstr "Toon VLC map"
+
+#: EnhancedMovieCenter.py:371
 msgid "HELP_Show VLC directory"
 msgstr ""
-"VLC map verbergen of weergeven, enkel indien VlcPlayerExtended Plugin "
+"VLC map verbergen of tonen, enkel indien VlcPlayerExtended Plugin "
 "geïnstalleerd is."
 
-#: src/EnhancedMovieCenter.py:311
+#: EnhancedMovieCenter.py:372
 msgid "Show Bookmarks in movielist"
-msgstr ""
+msgstr "Toon bladwijzers in de Filmlijst"
 
-#: src/EnhancedMovieCenter.py:311
+#: EnhancedMovieCenter.py:372
 msgid "HELP_Show Bookmarks in movielist"
-msgstr ""
+msgstr "Toon bladwijzers in de Filmlijst"
 
-#: src/EnhancedMovieCenter.py:312
+#: EnhancedMovieCenter.py:373
 msgid "Use cache for files and directories"
-msgstr ""
+msgstr "Gebruikt cache voor bestanden en mappen"
 
-#: src/EnhancedMovieCenter.py:312
+#: EnhancedMovieCenter.py:373
 msgid "HELP_Use cache for files and directories"
-msgstr ""
+msgstr "Gebruikt cache voor bestanden en mappen"
 
-#: src/EnhancedMovieCenter.py:314
+#: EnhancedMovieCenter.py:374
+msgid "Minimum file cache limit (0=cache everything)"
+msgstr "Minimale bestands cache limiet ( 0=cache alles)"
+
+#: EnhancedMovieCenter.py:374
+msgid "HELP_Minimum file cache limit"
+msgstr "Minimale bestands cache limiet ( 0=cache alles)"
+
+#: EnhancedMovieCenter.py:375
+msgid "Show experimental options"
+msgstr "Toon experimentele instellingen"
+
+#: EnhancedMovieCenter.py:375
+msgid "HELP_Show experimental options"
+msgstr "Toont experimentele instellingen die kunnen worden gebruikt"
+
+#: EnhancedMovieCenter.py:376
+msgid "Don't auto scan size of dirs from emc-noscan.cfg"
+msgstr "Niet auto scannen naar map grootte van mappen uit EMC-noscan.cfg"
+
+#: EnhancedMovieCenter.py:376
+msgid "HELP_Don't auto scan size of dirs from emc-noscan.cfg"
+msgstr "Niet auto scannen naar map grootte van mappen uit EMC-noscan.cfg"
+
+#: EnhancedMovieCenter.py:377
+msgid "After file OPs only re-scan affected dirs"
+msgstr "Na bestand OPs alleen scannen opnieuw betroffen mappen"
+
+#: EnhancedMovieCenter.py:377
+msgid "HELP_After file OPs only re-scan affected dirs"
+msgstr "Na bestand OPs alleen scannen opnieuw betroffen mappen"
+
+#: EnhancedMovieCenter.py:378
+msgid "Wake device when entering dir from emc-noscan.cfg"
+msgstr "Apparaat ontwaken bij het invoeren van map uit emc-noscan.cfg"
+
+#: EnhancedMovieCenter.py:378
+msgid "HELP_Wake device when entering dir from emc-noscan.cfg"
+msgstr "Apparaat ontwaken bij het invoeren van map uit emc-noscan.cfg"
+
+#: EnhancedMovieCenter.py:380
 msgid "HELP_separator_hide&performance"
 msgstr ""
-"Instellingen voor het verbergen of weergeven van mappen/bestanden en de "
+"Instellingen voor het verbergen of tonen van mappen/bestanden en de "
 "prestaties."
 
-#: src/EnhancedMovieCenter.py:315
+#: EnhancedMovieCenter.py:381
 msgid "Hide configured entries"
-msgstr "Ingestelde bestanden en mappen verbergen"
+msgstr "Verberg bestanden en mappen"
 
-#: src/EnhancedMovieCenter.py:315
+#: EnhancedMovieCenter.py:381
 msgid "HELP_cfghide_enable"
 msgstr ""
 "Verberg bestanden en mappen die opgenomen zijn in '/etc/enigma2/emc-hide."
 "cfg'.\n"
 "Het aanpassen van deze instelling vereist een herstart van Enigma2!"
 
-#: src/EnhancedMovieCenter.py:316
+#: EnhancedMovieCenter.py:382
 msgid "Scan for DVD structures"
 msgstr "Naar DVD-structuren zoeken"
 
-#: src/EnhancedMovieCenter.py:316
+#: EnhancedMovieCenter.py:382
 msgid "HELP_Scan for DVD structures"
 msgstr ""
 "In geen enkele map naar DVD-structuren zoeken.\n"
 "Dit voorkomt het ongewenst opstarten van andere dragers zoals harde "
 "schijven, NAS e.d."
 
-#: src/EnhancedMovieCenter.py:317
+#: EnhancedMovieCenter.py:383
 msgid "Scan for movie structures"
-msgstr ""
+msgstr "Naar Film-structuren zoeken"
 
-#: src/EnhancedMovieCenter.py:317
+#: EnhancedMovieCenter.py:383
 msgid "HELP_Scan for movie structures"
-msgstr ""
+msgstr "Naar Film-structuren zoeken"
 
-#: src/EnhancedMovieCenter.py:318
+#: EnhancedMovieCenter.py:384
 msgid "Scan for bluray structures"
-msgstr ""
+msgstr "Naar Bluray-structuren zoeken"
 
-#: src/EnhancedMovieCenter.py:318
+#: EnhancedMovieCenter.py:384
 msgid "HELP_Scan for bluray structures"
-msgstr ""
+msgstr "Naar Bluray-structuren zoeken"
 
-#: src/EnhancedMovieCenter.py:319
+#: EnhancedMovieCenter.py:385
 msgid "Scan for bluray structures in .iso"
-msgstr ""
+msgstr "Naar Bluray-structuren zoeken in .iso"
 
-#: src/EnhancedMovieCenter.py:319
+#: EnhancedMovieCenter.py:385
 msgid "HELP_Scan for bluray structures in .iso"
-msgstr ""
+msgstr "Naar Bluray-structuren zoeken in .iso"
 
-#: src/EnhancedMovieCenter.py:320
+#: EnhancedMovieCenter.py:386
 msgid "Suppress scan in selected folders"
-msgstr "Onderdruk zoeken naar DVD-structuur in geselecteerde mappen"
+msgstr "Naar DVD-structuren zoeken blokkeren (mappen)"
 
-#: src/EnhancedMovieCenter.py:320
+#: EnhancedMovieCenter.py:386
 msgid "HELP_cfgscan_suppress"
 msgstr ""
-"Niet zoeken naar DVD-structuren in mappen waarvan de paden opgenomen zijn in "
-"'/etc/enigma2/emc-hide.cfg'.  Dit voorkomt het ongewenst opstarten van "
+"Niet zoeken naar DVD-structuren in mappen waarvan de locaties opgenomen zijn "
+"in '/etc/enigma2/emc-hide.cfg'.  Dit voorkomt het ongewenst opstarten van "
 "andere dragers zoals harde schijven, NAS e.d.\n"
 "Het aanpassen van deze instelling vereist een herstart van Enigma2!"
 
-#: src/EnhancedMovieCenter.py:321
+#: EnhancedMovieCenter.py:387
 msgid "Scan linked folders"
-msgstr "DVD-structuur zoeken in links"
+msgstr "Naar DVD-structuren zoeken blokkeren (symlinks)"
 
-#: src/EnhancedMovieCenter.py:321
+#: EnhancedMovieCenter.py:387
 msgid "HELP_scan_linked"
 msgstr ""
 "Niet in (submappen van) symlinks  naar DVD-structuren zoeken.\n"
 "Dit voorkomt het ongewenst opstarten van andere dragers zoals harde "
 "schijven, NAS e.d."
 
-#: src/EnhancedMovieCenter.py:324
+#: EnhancedMovieCenter.py:390
 msgid "Try to load titles from .meta files"
-msgstr "Proberen om titels uit .meta-bestand te lezen"
+msgstr "Probeer om titels uit .meta-bestand te lezen"
 
-#: src/EnhancedMovieCenter.py:324
+#: EnhancedMovieCenter.py:390
 msgid "HELP_Try to load titles from .meta files"
 msgstr ""
 "Titels worden van het .meta-bestand geladen indien beschikbaar.\n"
@@ -705,11 +943,19 @@ msgstr ""
 "(Indien zowel .meta als .eit geactiveerd zijn, wordt eerst het .meta-bestand "
 "gelezen.)"
 
-#: src/EnhancedMovieCenter.py:325
-msgid "Try to load titles from .eit files"
-msgstr "Proberen om titels uit .eit-bestand te lezen"
+#: EnhancedMovieCenter.py:391
+msgid "Load all for non showing titles from .meta files"
+msgstr "Laad alles voor niet gevonden titels uit .meta bestanden"
 
-#: src/EnhancedMovieCenter.py:325
+#: EnhancedMovieCenter.py:391
+msgid "HELP_Load all for non showing titles from .meta files"
+msgstr "Laad alles voor niet gevonden titels uit .meta bestanden"
+
+#: EnhancedMovieCenter.py:392
+msgid "Try to load titles from .eit files"
+msgstr "Probeer om titels uit .eit-bestand te lezen"
+
+#: EnhancedMovieCenter.py:392
 msgid "HELP_Try to load titles from .eit files"
 msgstr ""
 "Titels worden van het .eit-bestand geladen indien beschikbaar.\n"
@@ -717,222 +963,255 @@ msgstr ""
 "(Indien zowel .meta als .eit geactiveerd zijn, wordt eerst het .meta-bestand "
 "gelezen.)"
 
-#: src/EnhancedMovieCenter.py:326
+#: EnhancedMovieCenter.py:393
 msgid "Replace special chars in title"
 msgstr "Vervang speciale tekens in de titel"
 
-#: src/EnhancedMovieCenter.py:326
+#: EnhancedMovieCenter.py:393
 msgid "HELP_Replace special chars in title"
 msgstr "Vervang underscores en punten in de bestandsnaam door spatie."
 
-#: src/EnhancedMovieCenter.py:327
+#: EnhancedMovieCenter.py:394
 msgid "Show Movie Format"
-msgstr "Filmtype weergeven"
+msgstr "Toon Film formaat"
 
-#: src/EnhancedMovieCenter.py:327
+#: EnhancedMovieCenter.py:394
 msgid "HELP_Show Movie Format"
-msgstr "De bestandsextensie (bestandsformaat) wordt weergegeven."
+msgstr ""
+"De bestandsextensie (bestandsformaat) wordt weergegeven. bv *.mkv , *.mp4"
 
-#: src/EnhancedMovieCenter.py:328
+#: EnhancedMovieCenter.py:395
 msgid "Show Cut-Nr if exist"
-msgstr "EMC toont Cut-Nr. indien beschikbaar"
+msgstr "Toon EMC Cut-Nr. indien beschikbaar"
 
-#: src/EnhancedMovieCenter.py:328
+#: EnhancedMovieCenter.py:395
 msgid "HELP_Show Cut-Nr if exist"
 msgstr ""
 "Indien Enigma2 herstart tijdens een opname, wordt de opname automatisch "
 "hervat met een volgnummer aan het einde van de bestandsnaam.\n"
 "Met deze optie wordt dit volgnummer aan de titel toegevoegd."
 
-#: src/EnhancedMovieCenter.py:329
+#: EnhancedMovieCenter.py:396
 msgid "Resolve links and show real path"
-msgstr "Verwijder symlinks en laat echte pad(en) zien"
+msgstr "Verwijder symlinks en laat echte locatie zien"
 
-#: src/EnhancedMovieCenter.py:329
+#: EnhancedMovieCenter.py:396
 msgid "HELP_Resolve links and show real path"
 msgstr ""
 "Verwijzingen van (symbolische) links worden verwijderd. Bij problemen met "
-"\"spinners\" of het ontwaken van een NAS, deze keuze uitschakelen. (Het pad "
-"wordt bij \"Uitgebreide beschrijving\" getoond.)"
+"\"spinners\" of het ontwaken van een NAS, deze keuze uitschakelen. (De "
+"locatie wordt bij \"Uitgebreide beschrijving\" getoond.)"
 
-#: src/EnhancedMovieCenter.py:330
+#: EnhancedMovieCenter.py:397
 msgid "Show Path if no extended description available"
-msgstr ""
+msgstr "Toon locatie wanneer geen omschrijving beschikbaar is."
 
-#: src/EnhancedMovieCenter.py:330
+#: EnhancedMovieCenter.py:397
 msgid "HELP_Show Path if no extended description available"
-msgstr ""
+msgstr "Toon locatie wanneer geen omschrijving beschikbaar is."
 
-#: src/EnhancedMovieCenter.py:333
+#: EnhancedMovieCenter.py:400
 msgid "Listbox is skin able"
 msgstr "Filmlijst is skinbaar"
 
-#: src/EnhancedMovieCenter.py:333
+#: EnhancedMovieCenter.py:400
 msgid "HELP_Listbox is skin able"
 msgstr ""
 "De weergave van de FilmLijst volgens de Skin (indien beschikbaar) wordt "
 "toegepast (enkel <widget name=\"list\").\n"
 "Anders wordt de filmlijst weergegeven zoals in de EMC instellingen bepaald."
 
-#: src/EnhancedMovieCenter.py:335
+#: EnhancedMovieCenter.py:402
 msgid "Date format"
-msgstr "Datumweergave"
+msgstr "Toon Datum stijl"
 
-#: src/EnhancedMovieCenter.py:335
+#: EnhancedMovieCenter.py:402
 msgid "HELP_Date format"
 msgstr ""
 "Datum verbergen, of de datumweergave kiezen die in de filmlijst bij elke "
 "opname weergegeven wordt."
 
-#: src/EnhancedMovieCenter.py:337
+#: EnhancedMovieCenter.py:404
 msgid "Show movie icons"
-msgstr "Iconen weergeven"
+msgstr "Toon Film Iconen"
 
-#: src/EnhancedMovieCenter.py:337
+#: EnhancedMovieCenter.py:404
 msgid "HELP_Show movie icons"
 msgstr "Een overeenstemmend icon wordt weergegeven in de FilmLijst."
 
-#: src/EnhancedMovieCenter.py:338
+#: EnhancedMovieCenter.py:405
 msgid "Show link arrow"
-msgstr ""
+msgstr "Toon link pijl"
 
-#: src/EnhancedMovieCenter.py:338
+#: EnhancedMovieCenter.py:405
 msgid "HELP_Show link arrow"
-msgstr ""
+msgstr "Toon link pijl"
 
-#: src/EnhancedMovieCenter.py:339
+#: EnhancedMovieCenter.py:407
+msgid "Show movie picons"
+msgstr "Toon Film picons"
+
+#: EnhancedMovieCenter.py:407
+msgid "HELP_Show movie picons"
+msgstr "Toon Film picons"
+
+#: EnhancedMovieCenter.py:409
+msgid "Position movie picons"
+msgstr "Positie Film picons"
+
+#: EnhancedMovieCenter.py:409
+msgid "HELP_Position movie picons"
+msgstr "Stel de positie in van de Film picons"
+
+#: EnhancedMovieCenter.py:410
+msgid "Own Path to movie picons"
+msgstr "Eigen locatie van Film picons"
+
+#: EnhancedMovieCenter.py:410
+msgid "HELP_Own Path to movie picons"
+msgstr "Eigen locatie van Film picons"
+
+#: EnhancedMovieCenter.py:411
+msgid "Path to movie picons"
+msgstr "Locatie film picons"
+
+#: EnhancedMovieCenter.py:411
+msgid "HELP_Path to movie picons"
+msgstr "Locatie film picons"
+
+#: EnhancedMovieCenter.py:413
 msgid "Show movie progress"
-msgstr "Voortgang weergeven"
+msgstr "Toon Voortgang"
 
-#: src/EnhancedMovieCenter.py:339
+#: EnhancedMovieCenter.py:413
 msgid "HELP_Show movie progress"
 msgstr ""
 "Een voortgangsindicatie (balk of percentage) wordt weergegeven in de "
 "FilmLijst voor de filmnaam."
 
-#: src/EnhancedMovieCenter.py:340
+#: EnhancedMovieCenter.py:414
 msgid "Short watching percent"
 msgstr "Percentage kort afspelen"
 
-#: src/EnhancedMovieCenter.py:340
+#: EnhancedMovieCenter.py:414
 msgid "HELP_Short watching percent"
 msgstr ""
 "Specifieer welk percentage van de voortgang aanzien wordt als \"wordt "
 "afgespeeld\". \n"
 "De voortgangsbalk wordt blauw."
 
-#: src/EnhancedMovieCenter.py:341
+#: EnhancedMovieCenter.py:415
 msgid "Finished watching percent"
 msgstr "Percentage volledig afgespeeld"
 
-#: src/EnhancedMovieCenter.py:341
+#: EnhancedMovieCenter.py:415
 msgid "HELP_Finished watching percent"
 msgstr ""
 "Specifieer welk percentage van de voortgang aanzien wordt als \"gezien\". \n"
 "De voortgangsbalk wordt groen."
 
-#: src/EnhancedMovieCenter.py:342
+#: EnhancedMovieCenter.py:416
 msgid "Mark new recordings with a star"
-msgstr ""
+msgstr "Nieuwe opnamen markeren met ster"
 
-#: src/EnhancedMovieCenter.py:342
+#: EnhancedMovieCenter.py:416
 msgid "HELP_Mark new recordings with a star"
-msgstr ""
+msgstr "Nieuwe opnamen markeren met ster"
 
-#: src/EnhancedMovieCenter.py:343 src/MovieSelection.py:1372
-#: src/MovieSelection.py:1388 src/MovieSelection.py:1404
+#: EnhancedMovieCenter.py:417 MovieSelection.py:1696 MovieSelection.py:1712
+#: MovieSelection.py:1728
 msgid "Show Cover"
-msgstr ""
+msgstr "Toon Cover"
 
-#: src/EnhancedMovieCenter.py:343
+#: EnhancedMovieCenter.py:417
 msgid "HELP_Show Cover"
-msgstr ""
+msgstr "Toon Cover"
 
-#: src/EnhancedMovieCenter.py:344
+#: EnhancedMovieCenter.py:418 MovieInfo.py:724
 msgid "Cover delay in ms"
-msgstr ""
+msgstr "Vertraging Cover in ms"
 
-#: src/EnhancedMovieCenter.py:344
+#: EnhancedMovieCenter.py:418
 msgid "HELP_Cover delay in ms"
-msgstr ""
+msgstr "Vertraging Cover in ms"
 
-#: src/EnhancedMovieCenter.py:345
+#: EnhancedMovieCenter.py:419
 msgid "Cover background"
-msgstr ""
+msgstr "Cover achtergrond"
 
-#: src/EnhancedMovieCenter.py:345
+#: EnhancedMovieCenter.py:419
 msgid "HELP_Cover background"
-msgstr ""
+msgstr "Cover achtergrond"
 
-#: src/EnhancedMovieCenter.py:346
+#: EnhancedMovieCenter.py:420
 msgid "Show fallback cover"
-msgstr ""
+msgstr "Toon terugval Cover"
 
-#: src/EnhancedMovieCenter.py:346
+#: EnhancedMovieCenter.py:420
 msgid "HELP_Fallback Cover"
-msgstr ""
+msgstr "Toon terugval cover"
 
-#: src/EnhancedMovieCenter.py:348
+#: EnhancedMovieCenter.py:422
 msgid "Show movie preview"
-msgstr ""
+msgstr "Toon Film voorbeeld"
 
-#: src/EnhancedMovieCenter.py:348
+#: EnhancedMovieCenter.py:422
 msgid "HELP_Show movie preview"
-msgstr ""
+msgstr "Toon Film voorbeeld"
 
-#: src/EnhancedMovieCenter.py:349
+#: EnhancedMovieCenter.py:423
 msgid "Movie preview delay in ms"
-msgstr ""
+msgstr "Film voorbeeld vertraging in ms"
 
-#: src/EnhancedMovieCenter.py:349
+#: EnhancedMovieCenter.py:423
 msgid "HELP_Movie preview delay in ms"
-msgstr ""
+msgstr "Film voorbeeld vertraging in ms"
 
-#: src/EnhancedMovieCenter.py:350
+#: EnhancedMovieCenter.py:424
 msgid "Start movie preview before last position"
-msgstr ""
+msgstr "Start Film voorbeeld voor laatste positie"
 
-#: src/EnhancedMovieCenter.py:350
+#: EnhancedMovieCenter.py:424
 msgid "HELP_Movie preview offset in seconds"
-msgstr ""
+msgstr "Film voorbeeld offset vertraging in ms"
 
-#: src/EnhancedMovieCenter.py:353
+#: EnhancedMovieCenter.py:427
 msgid "No resume below 10 seconds"
 msgstr "Niet hervatten onder 10 sec."
 
-#: src/EnhancedMovieCenter.py:353
+#: EnhancedMovieCenter.py:427
 msgid "HELP_No resume below 10 seconds"
 msgstr ""
 "Markeerpunten tijdens de eerste 10 seconden negeren.\n"
 "Indien het afspelen tijdens de eerste 10 seconden onderbroken wordt, zal bij "
 "het volgende afspelen geen \"hervatten\" voorgesteld worden."
 
-#: src/EnhancedMovieCenter.py:354
+#: EnhancedMovieCenter.py:428
 msgid "Jump to first mark when playing movie"
 msgstr "Automatisch naar het eerste markeerpunt springen"
 
-#: src/EnhancedMovieCenter.py:354
+#: EnhancedMovieCenter.py:428
 msgid "HELP_Jump to first mark when playing movie"
 msgstr ""
 "Automatisch naar het eerste markeerpunt springen indien beschikbaar in het "
 "begin van een opname.\n"
 "(Kan helpen om de voorlooptijd automatisch te overbruggen.)"
 
-#: src/EnhancedMovieCenter.py:355
+#: EnhancedMovieCenter.py:429
 msgid "Rewind finished movies before playing"
 msgstr "Afgespeelde films terugspoelen voor het afspelen"
 
-#: src/EnhancedMovieCenter.py:355
+#: EnhancedMovieCenter.py:429
 msgid "HELP_Rewind finished movies before playing"
 msgstr ""
 "Indien een opname met de status \"gezien\" heeft, wordt de opname bij een "
 "volgende start weer vanaf het begin afgespeeld."
 
-#: src/EnhancedMovieCenter.py:356
+#: EnhancedMovieCenter.py:430
 msgid "Always save last played progress as marker"
 msgstr "Laatste afspeelpositie altijd als markeerpunt bewaren"
 
-#: src/EnhancedMovieCenter.py:356
+#: EnhancedMovieCenter.py:430
 msgid "HELP_Always save last played progress as marker"
 msgstr ""
 "Met deze optie wordt een markeerpunt op de afspeelpositie toegevoegd als het "
@@ -940,816 +1219,1026 @@ msgstr ""
 "Bij het hervatten van het afspelen kan met < > knoppen gesprongen worden "
 "naar deze posities (onafhankelijk van de functie \"afspelen hervatten\")."
 
-#: src/EnhancedMovieCenter.py:357
+#: EnhancedMovieCenter.py:431
 msgid "Zap to channel after record EOF"
 msgstr "Keer terug naar de zender na einde opname"
 
-#: src/EnhancedMovieCenter.py:357
+#: EnhancedMovieCenter.py:431
 msgid "HELP_Zap to channel after record EOF"
 msgstr "Nadat een opname is beëindigd wordt teruggekeerd naar de TV zender"
 
-#: src/EnhancedMovieCenter.py:358
+#: EnhancedMovieCenter.py:432
 msgid "Show real length of running records"
-msgstr ""
+msgstr "Toon werkelijke lengte van lopende opnames"
 
-#: src/EnhancedMovieCenter.py:358
+#: EnhancedMovieCenter.py:432
 msgid "HELP_Show real length of running records"
-msgstr ""
+msgstr "Toon werkelijke lengte van lopende opnames"
 
-#: src/EnhancedMovieCenter.py:362
+#: EnhancedMovieCenter.py:436
 msgid "Download cutlist from Cutlist.at"
-msgstr ""
+msgstr "Download cutlist van Cutlist.at"
 
-#: src/EnhancedMovieCenter.py:362
+#: EnhancedMovieCenter.py:436
 msgid "HELP_Download cutlist from Cutlist.at"
-msgstr ""
+msgstr "Download cutlist van Cutlist.at"
 
-#: src/EnhancedMovieCenter.py:366
+#: EnhancedMovieCenter.py:440
 msgid "HELP_separator_Trashcan settings"
 msgstr ""
 "Instellingen die betrekking hebben op de prullenbak en het automatische "
 "legen."
 
-#: src/EnhancedMovieCenter.py:367
+#: EnhancedMovieCenter.py:441
 msgid "Trashcan enable"
 msgstr "Prullenbak gebruiken"
 
-#: src/EnhancedMovieCenter.py:367
+#: EnhancedMovieCenter.py:441
 msgid "HELP_Trashcan enable"
 msgstr ""
 "Instellen van de prullenbak.\n"
 "Drukken op [verwijderen] zal de opnames naar de prullenbak verplaatsen i.p."
 "v. deze onmiddellijk te verwijderen."
 
-#: src/EnhancedMovieCenter.py:368
+#: EnhancedMovieCenter.py:442
 msgid "Trashcan path"
-msgstr "Pad prullenbak"
+msgstr "Locatie prullenbak"
 
-#: src/EnhancedMovieCenter.py:368
+#: EnhancedMovieCenter.py:442
 msgid "HELP_Trashcan path"
 msgstr ""
-"Instellen van het pad van de prullenbak.\n"
+"Instellen van de locatie van de prullenbak.\n"
 "Drukken op [verwijderen] zal de opnames naar de prullenbak verplaatsen i.p."
 "v. deze onmiddellijk te verwijderen."
 
-#: src/EnhancedMovieCenter.py:369
+#: EnhancedMovieCenter.py:443
 msgid "Show trashcan directory"
-msgstr "Prullenbak weergeven"
+msgstr "Toon Prullenbak"
 
-#: src/EnhancedMovieCenter.py:369
+#: EnhancedMovieCenter.py:443
 msgid "HELP_Show trashcan directory"
 msgstr ""
 "Laat de prullenbak in de filmlijst zien.\n"
 "(De prullenbak kan in elk geval via het menu worden opgeroepen, zelfs "
 "wanneer het verborgen is.)"
 
-#: src/EnhancedMovieCenter.py:370
+#: EnhancedMovieCenter.py:444
 msgid "Show trashcan information"
-msgstr "Prullenbak informatie weergeven"
+msgstr "Toon Prullenbak informatie"
 
-#: src/EnhancedMovieCenter.py:370
+#: EnhancedMovieCenter.py:444
 msgid "HELP_Dynamic trashcan"
 msgstr ""
 "Bij de prullenbak kan het aantal opnames, de totale bestandsgrootte , of "
 "beide samen weergegeven worden."
 
-#: src/EnhancedMovieCenter.py:371
+#: EnhancedMovieCenter.py:445
 msgid "Delete validation"
-msgstr "Bevestigen bij wissen"
+msgstr "Toon bevestigen bij wissen"
 
-#: src/EnhancedMovieCenter.py:371
+#: EnhancedMovieCenter.py:445
 msgid "HELP_Delete validation"
 msgstr ""
 "Indien actief en de prullenbak is in gebruik zal EMC nooit een bevestiging "
 "vragen."
 
-#: src/EnhancedMovieCenter.py:373
+#: EnhancedMovieCenter.py:447
 msgid "Enable daily trashcan cleanup"
-msgstr "Prullenbak dagelijks legen activeren"
+msgstr "Dagelijks Prullenbak leeg maken"
 
-#: src/EnhancedMovieCenter.py:373
+#: EnhancedMovieCenter.py:447
 msgid "HELP_Enable daily trashcan cleanup"
 msgstr ""
 "EMC verwijderd oude bestanden uit de prullenbak, van zodra ze de limiet "
 "bereiken die in de volgende regel ingesteld wordt."
 
-#: src/EnhancedMovieCenter.py:374
+#: EnhancedMovieCenter.py:448
 msgid "Daily cleanup time"
-msgstr "Tijdstip om dagelijks op te ruimen"
+msgstr "Tijdstip om dagelijks leeg maken"
 
-#: src/EnhancedMovieCenter.py:374
+#: EnhancedMovieCenter.py:448
 msgid "HELP_Daily cleanup time"
 msgstr ""
 "Tijdstip waarop EMC alle bestanden uit de prullenbak verwijderd die de "
 "limiet overschrijden."
 
-#: src/EnhancedMovieCenter.py:375
+#: EnhancedMovieCenter.py:449
 msgid "How many days files may remain in trashcan"
-msgstr "Aantal dagen mogen bestanden in de prullenbak blijven"
+msgstr "Hoe veel dagen mogen bestanden in Prullenbak blijven"
 
-#: src/EnhancedMovieCenter.py:375
+#: EnhancedMovieCenter.py:449
 msgid "HELP_How many days files may remain in trashcan"
 msgstr ""
 "Instellen hoeveel dagen de bestanden in de prullenbak blijven alvorens EMC "
 "deze definitief verwijderd.\n"
 "(Indien ingesteld op [0] worden de bestanden onmiddellijk verwijderd)."
 
-#: src/EnhancedMovieCenter.py:376
+#: EnhancedMovieCenter.py:450
 msgid "Move finished movies in trashcan"
 msgstr "Afgespeelde opnames  naar de prullenbak verplaatsen"
 
-#: src/EnhancedMovieCenter.py:376
+#: EnhancedMovieCenter.py:450
 msgid "HELP_Move finished movies in trashcan"
 msgstr ""
 "Verplaats alle afgespeelde (geziene) opnames van \"Movie home\" naar de "
 "prullenbak, van zodra ze de limiet bereiken die in de volgende regel "
 "ingesteld wordt."
 
-#: src/EnhancedMovieCenter.py:377
+#: EnhancedMovieCenter.py:451
 msgid "Age of finished movies in movie folder (days)"
 msgstr ""
 "Instellen hoeveel dagen de afgespeelde opnames in \"Movie home\" mogen "
 "blijven."
 
-#: src/EnhancedMovieCenter.py:377
+#: EnhancedMovieCenter.py:451
 msgid "HELP_Age of finished movies in movie folder (days)"
 msgstr ""
 "Instellen hoeveel dagen de afgespeelde opnames in \"Movie home\" mogen "
 "blijven."
 
-#: src/EnhancedMovieCenter.py:380
+#: EnhancedMovieCenter.py:454
 msgid "Display directory reading text"
-msgstr "Bericht bij actualiseren overzicht weergeven"
+msgstr "Toon Bericht bij actualiseren overzicht"
 
-#: src/EnhancedMovieCenter.py:380
+#: EnhancedMovieCenter.py:454
 msgid "HELP_Display directory reading text"
-msgstr ""
-"Bericht weergeven \"Mappen inlezen...\" tijdens het inlezen van mappen."
+msgstr "Toon bericht \"Mappen inlezen...\" tijdens het inlezen van mappen."
 
-#: src/EnhancedMovieCenter.py:381
+#: EnhancedMovieCenter.py:455
 msgid "EMC always reload after open"
-msgstr "EMC na openen altijd opnieuw inlezen"
+msgstr "EMC mappen verversen bij starten"
 
-#: src/EnhancedMovieCenter.py:381
+#: EnhancedMovieCenter.py:455
 msgid "HELP_EMC always reload after open"
 msgstr ""
 "Mappen opnieuw inlezen bij elke start van EMC.\n"
 "(Anders worden de gegevens uit een buffer ingelezen vanaf de 2de start.)"
 
-#: src/EnhancedMovieCenter.py:382
+#: EnhancedMovieCenter.py:456
 msgid "EMC re-open list after STOP-press"
-msgstr "EMC na op STOP gedrukt te hebben heropenen"
+msgstr "Toon EMC na op STOP gedrukt te hebben"
 
-#: src/EnhancedMovieCenter.py:382
+#: EnhancedMovieCenter.py:456
 msgid "HELP_EMC re-open list after STOP-press"
 msgstr ""
-"Indien het afspelen afgebroken wordt, de EMC FilmLijst opnieuw weergeven.\n"
+"Indien het afspelen afgebroken wordt, de EMC FilmLijst opnieuw tonen.\n"
 "(Anders wordt de TV-mode terug actief.)"
 
-#: src/EnhancedMovieCenter.py:383
+#: EnhancedMovieCenter.py:457
 msgid "EMC re-open list after Movie end"
-msgstr "EMC na einde van een film heropenen"
+msgstr "Toon EMC na einde van een film"
 
-#: src/EnhancedMovieCenter.py:383
+#: EnhancedMovieCenter.py:457
 msgid "HELP_EMC re-open list after Movie end"
 msgstr ""
-"Indien het afspelen het einde bereikt, de EMC FilmLijst opnieuw weergeven.\n"
+"Indien het afspelen het einde bereikt, de EMC FilmLijst opnieuw tonen.\n"
 "(Anders wordt de TV-mode terug actief.)"
 
-#: src/EnhancedMovieCenter.py:385
+#: EnhancedMovieCenter.py:459
 msgid "Leave Movie with Exit"
 msgstr "Stop afspelen met Exit?"
 
-#: src/EnhancedMovieCenter.py:385
+#: EnhancedMovieCenter.py:459
 msgid "HELP_Leave Movie with Exit"
 msgstr ""
 "Het afspelen van een opname kan afgebroken worden met de EXIT knop, "
 "bijkomend bij de STOP knop."
 
-#: src/EnhancedMovieCenter.py:387
+#: EnhancedMovieCenter.py:461
 msgid "Hide movies being moved"
 msgstr "Verberg films die verplaatst worden"
 
-#: src/EnhancedMovieCenter.py:387
+#: EnhancedMovieCenter.py:461
 msgid "HELP_Hide movies being moved"
 msgstr ""
 "De opname wordt verborgen tijdens het verplaatsen.\n"
 "(Het verplaatsen wordt altijd in de achtergrond uitgevoerd.)"
 
-#: src/EnhancedMovieCenter.py:388
+#: EnhancedMovieCenter.py:462
 msgid "Hide movies being deleted"
 msgstr "Verberg films die gewist worden"
 
-#: src/EnhancedMovieCenter.py:388
+#: EnhancedMovieCenter.py:462
 msgid "HELP_Hide movies being deleted"
 msgstr ""
 "De opname wordt verborgen tijdens het verwijderen.\n"
 "(Het verwijderen wordt altijd in de achtergrond uitgevoerd.)"
 
-#: src/EnhancedMovieCenter.py:390
+#: EnhancedMovieCenter.py:464
 msgid "Enable remote recordings"
-msgstr "Activeer herkenning opnames van een andere Box."
+msgstr "Detecteer opnames van een andere Box"
 
-#: src/EnhancedMovieCenter.py:390
+#: EnhancedMovieCenter.py:464
 msgid "HELP_Enable remote recordings"
 msgstr ""
 "Detecteer opnames van een andere Dreambox op een gemeenschappelijk volume "
 "(bijv. een NAS).\n"
 "Deze opnames krijgen een specifiek icoon."
 
-#: src/EnhancedMovieCenter.py:391
+#: EnhancedMovieCenter.py:465
 msgid "Automatic timers list cleaning"
 msgstr "Automatisch timers opschonen"
 
-#: src/EnhancedMovieCenter.py:391
+#: EnhancedMovieCenter.py:465
 msgid "HELP_Automatic timers list cleaning"
 msgstr "Verlopen Timers worden automatisch uit de TimerLijst verwijderd."
 
-#: src/EnhancedMovieCenter.py:393
+#: EnhancedMovieCenter.py:467
 msgid "HELP_Language Separator"
 msgstr "Taalinstellingen"
 
-#: src/EnhancedMovieCenter.py:394
+#: EnhancedMovieCenter.py:468
 msgid "Preferred EPG language"
-msgstr "Voorkeur EPG taal"
+msgstr "EPG taal voorkeur"
 
-#: src/EnhancedMovieCenter.py:394
+#: EnhancedMovieCenter.py:468
 msgid "HELP_Preferred EPG language"
 msgstr "Hier kan de voorkeurstaal voor de EPG ingesteld worden."
 
-#: src/EnhancedMovieCenter.py:395
+#: EnhancedMovieCenter.py:469
 msgid "Extra support for language"
-msgstr ""
+msgstr "Extra taal ondersteuning"
 
-#: src/EnhancedMovieCenter.py:395
+#: EnhancedMovieCenter.py:469
 msgid "HELP_Extra support for selected language"
-msgstr ""
+msgstr "Extra taal ondersteuning"
 
-#: src/EnhancedMovieCenter.py:396
+#: EnhancedMovieCenter.py:470
 msgid "Enable playback auto-subtitling"
-msgstr "Ondertiteling autom. laten zien"
+msgstr "Kies Ondertiteling automatisch"
 
-#: src/EnhancedMovieCenter.py:396
+#: EnhancedMovieCenter.py:470
 msgid "HELP_Enable playback auto-subtitling"
 msgstr "De automatische selectie van de ondertitels activeren."
 
-#: src/EnhancedMovieCenter.py:397
+#: EnhancedMovieCenter.py:471
 msgid "Primary playback subtitle language"
 msgstr "Eerste voorkeur voor ondertiteling"
 
-#: src/EnhancedMovieCenter.py:397
+#: EnhancedMovieCenter.py:471
 msgid "HELP_Primary playback subtitle language"
 msgstr ""
 "Eerste taal ondertitels, indien beschikbaar, die gekozen moeten worden."
 
-#: src/EnhancedMovieCenter.py:398
+#: EnhancedMovieCenter.py:472
 msgid "Secondary playback subtitle language"
 msgstr "Tweede voorkeur voor ondertiteling"
 
-#: src/EnhancedMovieCenter.py:398
+#: EnhancedMovieCenter.py:472
 msgid "HELP_Secondary playback subtitle language"
 msgstr ""
 "Tweede taal ondertitels, indien beschikbaar, die gekozen moeten worden."
 
-#: src/EnhancedMovieCenter.py:399
+#: EnhancedMovieCenter.py:473
 msgid "Tertiary playback subtitle language"
 msgstr "Derde voorkeur voor ondertiteling"
 
-#: src/EnhancedMovieCenter.py:399
+#: EnhancedMovieCenter.py:473
 msgid "HELP_Tertiary playback subtitle language"
 msgstr "Derde taal ondertitels, indien beschikbaar, die gekozen moeten worden."
 
-#: src/EnhancedMovieCenter.py:400
+#: EnhancedMovieCenter.py:474
 msgid "Enable playback auto-language selection"
-msgstr "Geluidsspoor autom. kiezen"
+msgstr "Kies Geluidsspoor automatisch"
 
-#: src/EnhancedMovieCenter.py:400
+#: EnhancedMovieCenter.py:474
 msgid "HELP_Enable playback auto-language selection"
 msgstr "De automatische selectie van het geluidsspooor activeren."
 
-#: src/EnhancedMovieCenter.py:401
+#: EnhancedMovieCenter.py:475
+msgid "Enable playback AC3-track first"
+msgstr "Kies AC3-geluidsspoor eerst"
+
+#: EnhancedMovieCenter.py:475
+msgid "HELP_Enable playback AC3-track first"
+msgstr "Kies AC3-geluidsspoor eerst"
+
+#: EnhancedMovieCenter.py:476
 msgid "Primary playback audio language"
 msgstr "Eerste voorkeur voor geluidsspoor"
 
-#: src/EnhancedMovieCenter.py:401
+#: EnhancedMovieCenter.py:476
 msgid "HELP_Primary playback audio language"
 msgstr "Eerste geluidsspoor, indien beschikbaar, dat gekozen moet worden."
 
-#: src/EnhancedMovieCenter.py:402
+#: EnhancedMovieCenter.py:477
 msgid "Secondary playback audio language"
 msgstr "Tweede voorkeur voor geluidsspoor"
 
-#: src/EnhancedMovieCenter.py:402
+#: EnhancedMovieCenter.py:477
 msgid "HELP_Secondary playback audio language"
 msgstr "Tweede geluidsspoor, indien beschikbaar, dat gekozen moet worden."
 
-#: src/EnhancedMovieCenter.py:403
+#: EnhancedMovieCenter.py:478
 msgid "Tertiary playback audio language"
 msgstr "Derde voorkeur voor geluidsspoor"
 
-#: src/EnhancedMovieCenter.py:403
+#: EnhancedMovieCenter.py:478
 msgid "HELP_Tertiary playback audio language"
 msgstr "Derde geluidsspoor, indien beschikbaar, dat gekozen moet worden."
 
-#: src/EnhancedMovieCenter.py:405 src/EnhancedMovieCenter.py:410
+#: EnhancedMovieCenter.py:480 EnhancedMovieCenter.py:485
+#: EnhancedMovieCenter.py:511
 msgid "HELP_Advanced options separator"
 msgstr "Geavanceerde instellingen"
 
-#: src/EnhancedMovieCenter.py:406
+#: EnhancedMovieCenter.py:481
 msgid "Description field update delay"
-msgstr "Vertraging actualisatie beschrijving"
+msgstr "Vertraging Film beschrijving weergeven"
 
-#: src/EnhancedMovieCenter.py:406
+#: EnhancedMovieCenter.py:481
 msgid "HELP_Description field update delay"
 msgstr ""
-"Vertraging voor het weergeven van de filmbeschrijving.\n"
+"Vertraging voor het tonen van de filmbeschrijving.\n"
 "(Versneld het snel bladeren met de omhoog/omlaag-knop in de filmlijst, omdat "
 "de beschrijving later ingelezen wordt.)"
 
-#: src/EnhancedMovieCenter.py:407
+#: EnhancedMovieCenter.py:482
 msgid "Key period value (50-900)"
 msgstr "Toetsduur (50-900)"
 
-#: src/EnhancedMovieCenter.py:407
+#: EnhancedMovieCenter.py:482
 msgid "HELP_Key period value (50-900)"
 msgstr ""
 "Tijd tot de knopdruk herhaald wordt bij blijvend indrukken van de knop."
 
-#: src/EnhancedMovieCenter.py:408
+#: EnhancedMovieCenter.py:483
 msgid "Key repeat value (250-900)"
 msgstr "Toets herhaalwaarde (250-900)"
 
-#: src/EnhancedMovieCenter.py:408
+#: EnhancedMovieCenter.py:483
 msgid "HELP_Key repeat value (250-900)"
 msgstr ""
 "Snelheid waarmee de knopdruk herhaald wordt bij blijvend indrukken van de "
 "knop."
 
-#: src/EnhancedMovieCenter.py:411
-msgid "Enable EMC debug output"
-msgstr "Debug output activeren"
+#: EnhancedMovieCenter.py:486
+msgid "Show message if file added to playlist"
+msgstr "Toon bericht bij toevoegen aan afspeellijst"
 
-#: src/EnhancedMovieCenter.py:411
+#: EnhancedMovieCenter.py:486
+msgid "HELP_Show message if file added to playlist"
+msgstr "Toon bericht bij toevoegen aan afspeellijst"
+
+#: EnhancedMovieCenter.py:488
+msgid "HELP_Advanced Skin options separator"
+msgstr "Geavanceerde Skin instellingen scheider"
+
+#: EnhancedMovieCenter.py:489
+msgid "Use original EMC-skin (needs reopen)"
+msgstr "Gebruik originele EMC-skin (herstart nodig)"
+
+#: EnhancedMovieCenter.py:489
+msgid "HELP_Use original EMC-skin (needs reopen)"
+msgstr "Gebruik originele EMC-skin (herstart nodig)"
+
+#: EnhancedMovieCenter.py:492
+msgid "HELP_Advanced audio metadata options separator"
+msgstr "Geavanceerde geluid meta-data instellingen scheider"
+
+#: EnhancedMovieCenter.py:498
+msgid "Download Mutagen-package for audio metadata"
+msgstr "Download Mutagen-pakket voor geluid metadata"
+
+#: EnhancedMovieCenter.py:498
+msgid "HELP_Download Mutagen-package for audio metadata"
+msgstr "Download Mutagen-pakket voor geluid metadata"
+
+#: EnhancedMovieCenter.py:504
+msgid "Show audio metadata (needs skin-changes)"
+msgstr "Toon geluids metadata (skin wijzigingen nodig)"
+
+#: EnhancedMovieCenter.py:504
+msgid "HELP_Show audio metadata (needs skin-changes)"
+msgstr "Toon geluids metadata (skin wijzigingen nodig)"
+
+#: EnhancedMovieCenter.py:509
+msgid "Upgrade/Download Mutagen v1.28(experimental)"
+msgstr "Update/Download Mutagen v1.28(experimenteel)"
+
+#: EnhancedMovieCenter.py:509
+msgid "HELP_Upgrade/Download Mutagen v1.28(experimental)"
+msgstr "Update/Download Mutagen v1.28(experimenteel)"
+
+#: EnhancedMovieCenter.py:512
+msgid "Enable EMC debug output"
+msgstr "ECM Debug logs activeren"
+
+#: EnhancedMovieCenter.py:512
 msgid "HELP_Enable EMC debug output"
 msgstr ""
 "Debuggen van EMC activeren. Het logbestand wordt in de map ingestelde \"EMC "
 "map\" geschreven.\n"
 "ENKEL BIJ PROBLEMEN ACTIVEREN !!!"
 
-#: src/EnhancedMovieCenter.py:412
+#: EnhancedMovieCenter.py:513
 msgid "EMC output directory"
-msgstr "EMC output map"
+msgstr "EMC Debug Locatie"
 
-#: src/EnhancedMovieCenter.py:412
+#: EnhancedMovieCenter.py:513
 msgid "HELP_EMC output directory"
 msgstr "Map voor het schrijven van EMC-debuginformatie instellen."
 
-#: src/EnhancedMovieCenter.py:413
+#: EnhancedMovieCenter.py:514
 msgid "Debug output file name"
-msgstr "Debug output bestandsnaam"
+msgstr "Debug Log bestandsnaam"
 
-#: src/EnhancedMovieCenter.py:413
+#: EnhancedMovieCenter.py:514
 msgid "HELP_Debug output file name"
 msgstr "Bestandsnaam van het logbestand voor het debuggen."
 
-#: src/EnhancedMovieCenter.py:475
+#: EnhancedMovieCenter.py:550 EnhancedMovieCenter.py:552
+msgid "Install Mutagen-package"
+msgstr "Installeer Mutagen-pakket"
+
+#: EnhancedMovieCenter.py:612
 msgid "Load default settings will overwrite all settings, really load them?"
 msgstr ""
+"Standaard instellingen, zal alle instellingen herstellen. Wilt u doorgaan?"
 
-#: src/EnhancedMovieCenter.py:565
+#: EnhancedMovieCenter.py:702
 msgid "Some settings changes require GUI restart to take effect."
 msgstr ""
 "Sommige veranderingen eisen een herstart van E2, de GUI a.u.b. opnieuw "
 "starten."
 
-#: src/EnhancedMovieCenter.py:583
+#: EnhancedMovieCenter.py:720
 msgid "Really close without saving settings?"
-msgstr ""
+msgstr "Afsluiten zonder opslaan?"
 
-#: src/EnhancedMovieCenter.py:601
+#: EnhancedMovieCenter.py:738
 msgid "Select Location"
 msgstr "Selecteer locatie"
 
-#: src/EnhancedMovieCenter.py:602 src/MovieSelection.py:2081
-#: src/MovieSelection.py:2135 src/MovieSelectionMenu.py:246
-msgid "Choose directory"
-msgstr "Kies map"
-
-#: src/EnhancedMovieCenter.py:620
+#: EnhancedMovieCenter.py:757
 #, python-format
 msgid "Given path %s does not exist. Please change."
-msgstr "Opgegeven pad %s bestaat niet. Veranderen a.u.b."
+msgstr "Opgegeven locatie %s bestaat niet. Veranderen a.u.b."
 
-#: src/EnhancedMovieCenter.py:628 src/MovieSelection.py:2159
+#: EnhancedMovieCenter.py:765 MovieSelection.py:2939
 msgid "Trashcan create failed. Check mounts and permissions."
 msgstr "Aanmaken prullenbak mislukt. Mounts en rechten controleren."
 
-#: src/InfoBarSupport.py:110
+#: InfoBarSupport.py:112
 msgid "jump to previous marked position"
 msgstr "Spring naar vorig markeerpunt"
 
-#: src/InfoBarSupport.py:111
+#: InfoBarSupport.py:113
 msgid "jump to next marked position"
 msgstr "Spring naar volgend markeerpunt"
 
-#: src/InfoBarSupport.py:112
+#: InfoBarSupport.py:114
 msgid "toggle a cut mark at the current position"
 msgstr "Markeerpunt op actuele positie schakelen"
 
-#: src/InfoBarSupport.py:151 src/InfoBarSupport.py:153
+#: InfoBarSupport.py:153 InfoBarSupport.py:155
 msgid "Do you want to resume this playback?"
 msgstr "Afspelen op positie"
 
-#: src/InfoBarSupport.py:151 src/InfoBarSupport.py:153
+#: InfoBarSupport.py:153 InfoBarSupport.py:155
 #, python-format
 msgid "Resume position at %s"
 msgstr "Hervatten vanaf positie %s"
 
-#: src/InfoBarSupport.py:155
+#: InfoBarSupport.py:157
 msgid "Resuming playback"
 msgstr "Afspelen hervatten"
 
-#: src/MovieCenter.py:848
+#: MovieCenter.py:1000
+msgid "trashcan"
+msgstr "Prullenbak"
+
+#: MovieCenter.py:1005
 msgid "Latest Recordings"
 msgstr "Laatste opnames"
 
-#: src/MovieCenter.py:1816
+#: MovieCenter.py:2304
 msgid "VLC"
 msgstr "VLC"
 
-#: src/MovieCenter.py:1821
+#: MovieCenter.py:2310
 msgid "VLC-Server"
 msgstr "VLC-Server"
 
-#: src/MovieCenter.py:1826
+#: MovieCenter.py:2316
 msgid "VLC-Dir"
 msgstr "VLC-Map"
 
-#: src/MovieCenter.py:1831
+#: MovieCenter.py:2322
 msgid "Latest"
 msgstr "Laatste"
 
-#: src/MovieCenter.py:1836
+#: MovieCenter.py:2328
 msgid "Up"
 msgstr "Omhoog"
 
-#: src/MovieCenter.py:1841 src/MovieCenter.py:1846
+#: MovieCenter.py:2334 MovieCenter.py:2340
 msgid "Bookmark"
 msgstr "Markering"
 
-#: src/MovieCenter.py:1863 src/MovieCenter.py:1873
+#: MovieCenter.py:2360 MovieCenter.py:2371
 msgid "Trashcan"
-msgstr ""
+msgstr "Prullenbak"
 
-#: src/MovieCenter.py:1896 src/MovieCenter.py:1904
+#: MovieCenter.py:2460 MovieCenter.py:2468
 msgid "Directory"
 msgstr "Map"
 
-#: src/MovieCenter.py:1898
+#: MovieCenter.py:2462
 msgid "Link"
 msgstr "Link"
 
-#: src/MovieCenter.py:1900
+#: MovieCenter.py:2464
 msgid "Collection"
-msgstr ""
+msgstr "Collectie"
 
-#: src/MovieCenter.py:1909
+#: MovieCenter.py:2480
 msgid "UNKNOWN"
 msgstr "ONBEKEND"
 
-#: src/MovieInfo.py:20
+#: MovieInfo.py:30
 msgid "German"
-msgstr ""
+msgstr "Duits"
 
-#: src/MovieInfo.py:20
+#: MovieInfo.py:30
 msgid "English"
-msgstr ""
+msgstr "Engels"
 
-#: src/MovieInfo.py:21 src/MovieInfo.py:22 src/MovieInfo.py:23
-#: src/MovieInfo.py:24 src/MovieInfo.py:25
+#: MovieInfo.py:31 MovieInfo.py:32 MovieInfo.py:33 MovieInfo.py:34
+#: MovieInfo.py:35
 msgid "Yes"
-msgstr ""
+msgstr "Ja"
 
-#: src/MovieInfo.py:21 src/MovieInfo.py:22 src/MovieInfo.py:23
-#: src/MovieInfo.py:24 src/MovieInfo.py:25 src/plugin.py:214 src/plugin.py:219
-#: src/plugin.py:229
+#: MovieInfo.py:31 MovieInfo.py:32 MovieInfo.py:33 MovieInfo.py:34
+#: MovieInfo.py:35 plugin.py:218 plugin.py:223 plugin.py:233 plugin.py:324
 msgid "No"
-msgstr ""
+msgstr "Nee"
 
-#: src/MovieInfo.py:61
-msgid "Search results for:"
-msgstr ""
+#: MovieInfo.py:62
+msgid "Movies"
+msgstr "Films"
 
-#: src/MovieInfo.py:64
-msgid "Movie Info"
-msgstr ""
+#: MovieInfo.py:62 MovieInfo.py:66
+msgid " - "
+msgstr " - "
 
-#: src/MovieInfo.py:74
-msgid "movies found!"
-msgstr ""
+#: MovieInfo.py:66
+msgid "TV Shows"
+msgstr "TV Series"
 
-#: src/MovieInfo.py:77 src/MovieInfo.py:148
-msgid "An error occured! Internet connection broken?"
-msgstr ""
-
-#: src/MovieInfo.py:80
-msgid "Movie Information Download (TMDb)"
-msgstr ""
-
-#: src/MovieInfo.py:95
-msgid "Movie Information downloaded successfully!"
-msgstr ""
-
-#: src/MovieInfo.py:106
-msgid "Runtime:"
-msgstr ""
-
-#: src/MovieInfo.py:106
-msgid "Minutes"
-msgstr ""
-
-#: src/MovieInfo.py:108
-msgid "Runtime: unknown"
-msgstr ""
-
-#: src/MovieInfo.py:113
-msgid "Release Date:"
-msgstr ""
-
-#: src/MovieInfo.py:118
-msgid "Vote:"
-msgstr ""
-
-#: src/MovieInfo.py:130
-msgid "Genre:"
-msgstr ""
-
-#: src/MovieInfo.py:142
-msgid "Production Countries:"
-msgstr ""
-
-#: src/MovieInfo.py:146
+#: MovieInfo.py:147 MovieInfo.py:202
 msgid "Content:"
-msgstr ""
+msgstr "Inhoud"
 
-#: src/MovieInfo.py:182
+#: MovieInfo.py:147 MovieInfo.py:202 MovieInfo.py:518 MovieSelection.py:275
+msgid "Runtime:"
+msgstr "Speeltijd:"
+
+#: MovieInfo.py:147 MovieInfo.py:202 MovieInfo.py:544
+msgid "Minutes"
+msgstr "Minuten"
+
+#: MovieInfo.py:147 MovieInfo.py:202 MovieInfo.py:519 MovieSelection.py:273
+msgid "Genre:"
+msgstr "Genre:"
+
+#: MovieInfo.py:147 MovieInfo.py:202 MovieInfo.py:520
+msgid "Production Countries:"
+msgstr "Productie Land(en):"
+
+#: MovieInfo.py:147 MovieInfo.py:202 MovieInfo.py:521
+msgid "Release Date:"
+msgstr "Publicatie Datum:"
+
+#: MovieInfo.py:147 MovieInfo.py:202 MovieInfo.py:522
+msgid "Vote:"
+msgstr "Stemmen:"
+
+#: MovieInfo.py:164
+msgid "unknown"
+msgstr "Onbekend"
+
+#: MovieInfo.py:269 MovieInfo.py:449 MovieInfo.py:461 MovieInfo.py:683
+msgid "Search results for:"
+msgstr "Zoer resultaten voor:"
+
+#: MovieInfo.py:272
+msgid "Movie Info"
+msgstr "Film Informatie"
+
+#: MovieInfo.py:277
+msgid "movies found!"
+msgstr "films gevonden!"
+
+#: MovieInfo.py:280 MovieInfo.py:303 MovieInfo.py:335
+msgid "An error occured! Internet connection broken?"
+msgstr "Fout opgetreden! Geen Internet verbinding?"
+
+#: MovieInfo.py:283
+msgid "Movie Information Download (TMDb)"
+msgstr "Download Film informatie (TMDb)"
+
+#: MovieInfo.py:297 MovieInfo.py:574 MovieInfo.py:578
+msgid "Movie Information downloaded successfully!"
+msgstr "Download Film informatie succesvol!"
+
+#: MovieInfo.py:308 MovieInfo.py:607
+#, python-format
+msgid ""
+"Cover %s exists!\n"
+"\n"
+"Do you want to replace the existing cover?"
+msgstr ""
+"Cover %s bestaad!\n"
+"\n"
+"Wil je de bestaande Cover overschrijven?"
+
+#: MovieInfo.py:352 MovieInfo.py:459 MovieInfo.py:642
 msgid "Movie Information Preview for:"
-msgstr ""
+msgstr "Film Informatie voorbeeld voor:"
 
-#: src/MovieInfo.py:196
+#: MovieInfo.py:366
 msgid "Movie Information Preview"
-msgstr ""
+msgstr "Film Informatie voorbeeld"
 
-#: src/MovieInfo.py:212
+#: MovieInfo.py:462
+msgid "Nothing was found !"
+msgstr "Niets gevonden !"
+
+#: MovieInfo.py:495
+msgid "Movie Information TMDb"
+msgstr "Film informatie TMDb"
+
+#: MovieInfo.py:570
+msgid "Movie Information and Cover downloaded successfully!"
+msgstr "Film informatie en Cover succesvol gedownload!"
+
+#: MovieInfo.py:576
+#, python-format
+msgid ""
+"Movie Information downloaded successfully!\n"
+"\n"
+"Can not write Movie Cover File\n"
+"\n"
+"%s"
+msgstr ""
+"Film informatie succesvol gedownload!\n"
+"\n"
+"Kan geen Film Cover bestand maken\n"
+"\n"
+"%s"
+
+#: MovieInfo.py:580
+#, python-format
+msgid ""
+"Movie Cover downloaded successfully!\n"
+"\n"
+"Can not write Movie Information File\n"
+"\n"
+"%s"
+msgstr ""
+"Film Cover succesvol gedownload!\n"
+"\n"
+"Kan geen Film Informatie bestand maken\n"
+"\n"
+"%s"
+
+#: MovieInfo.py:582
+#, python-format
+msgid ""
+"Can not write Movie Information and Cover File\n"
+"\n"
+"%s\n"
+"%s"
+msgstr ""
+"Kan Film Informatie en Cover bestand niet opslaan\n"
+"\n"
+"%s\n"
+"%s"
+
+#: MovieInfo.py:584
+#, python-format
+msgid ""
+"Can not write Movie Information File\n"
+"\n"
+"%s"
+msgstr ""
+"Kan Film Informatie niet opslaan\n"
+"\n"
+"%s"
+
+#: MovieInfo.py:715
 msgid "Language:"
-msgstr ""
+msgstr "Taal:"
 
-#: src/MovieInfo.py:213
+#: MovieInfo.py:716
 msgid "Load Runtime:"
-msgstr ""
+msgstr "Laat Speeltijd:"
 
-#: src/MovieInfo.py:214
+#: MovieInfo.py:717
 msgid "Load Genre:"
-msgstr ""
+msgstr "Laad Genre:"
 
-#: src/MovieInfo.py:215
+#: MovieInfo.py:718
 msgid "Load Production Countries:"
-msgstr ""
+msgstr "Laad Productie Land(en):"
 
-#: src/MovieInfo.py:216
+#: MovieInfo.py:719
 msgid "Load Release Date:"
-msgstr ""
+msgstr "Laad Publicatie Datum:"
 
-#: src/MovieInfo.py:217
+#: MovieInfo.py:720
 msgid "Load Vote:"
-msgstr ""
+msgstr "Laad Stemmen:"
 
-#: src/MovieInfo.py:234
+#: MovieInfo.py:721
+msgid "Save Cover"
+msgstr "Cover Opslaan"
+
+#: MovieInfo.py:722
+msgid "Coversize"
+msgstr "Cover grootte"
+
+#: MovieInfo.py:723
+msgid "Switch complete to new Version"
+msgstr "Overschakelen compleet nieuwe versie"
+
+#: MovieInfo.py:741
 msgid "Movie Information Download Setup"
-msgstr ""
+msgstr "Film Informatie Download instellingen"
 
-#: src/MovieRetitle.py:28 src/MovieRetitle.py:64
+#: MovieRetitle.py:27 MovieRetitle.py:63
 msgid "Location:"
-msgstr ""
+msgstr "Locatie:"
 
-#: src/MovieRetitle.py:79
+#: MovieRetitle.py:78
 msgid "Foldername:"
-msgstr ""
+msgstr "Map naam:"
 
-#: src/MovieRetitle.py:81
+#: MovieRetitle.py:80
 msgid "Filename:"
-msgstr ""
+msgstr "Bestandsnaam:"
 
-#: src/MovieRetitle.py:82
+#: MovieRetitle.py:81
 msgid "Movietitle:"
-msgstr ""
+msgstr "Film titel:"
 
-#: src/MovieRetitle.py:83
+#: MovieRetitle.py:82
 msgid "Description:"
-msgstr ""
+msgstr "Beschrijving:"
 
-#: src/MovieRetitle.py:113
+#: MovieRetitle.py:112
 msgid "Change Foldername"
-msgstr ""
+msgstr "Wijzig Map naam:"
 
-#: src/MovieRetitle.py:115
+#: MovieRetitle.py:114
 msgid "Change File/Moviename and/or Description"
-msgstr ""
+msgstr "Wijzig Bestand/Film naam en/of Inforamtie"
 
-#: src/MovieSelection.py:90
+#: MovieSelection.py:103
 msgid ""
 "EMC: Skipping Trashcan Cleanup\n"
 "Movie Home Path is equal to or a subfolder of the Trashcan"
 msgstr ""
+"EMC: Leegmaken Prullenbak overgeslagen\n"
+"Film standaard map is hetzelfde als de Prullenbak"
 
-#: src/MovieSelection.py:127
+#: MovieSelection.py:140
 msgid "EMC Trashcan Cleanup failed!"
-msgstr ""
+msgstr "Leegmaken EMC prullenbak mislukt!"
 
-#: src/MovieSelection.py:237
-msgid "no_poster.png"
-msgstr ""
+#: MovieSelection.py:269
+msgid "Artist:"
+msgstr "Artiest:"
 
-#: src/MovieSelection.py:409 src/MovieSelection.py:1312
+#: MovieSelection.py:271
+msgid "Album:"
+msgstr "Album:"
+
+#: MovieSelection.py:502 MovieSelection.py:1636
 msgid "Reading directory..."
 msgstr "Map lezen..."
 
-#: src/MovieSelection.py:427
+#: MovieSelection.py:520
 msgid "Play selected movie(s)"
 msgstr "Geselecteerde film(s) afspelen"
 
-#: src/MovieSelection.py:429 src/MovieSelectionMenu.py:82
+#: MovieSelection.py:522 MovieSelectionMenu.py:99
 msgid "Play All"
 msgstr "Alles afspelen"
 
-#: src/MovieSelection.py:430 src/MovieSelectionMenu.py:83
+#: MovieSelection.py:523 MovieSelectionMenu.py:100
 msgid "Shuffle All"
 msgstr "Alles willekeurig afspelen"
 
-#: src/MovieSelection.py:431
+#: MovieSelection.py:524
 msgid "Close EMC"
 msgstr "EMC sluiten"
 
-#: src/MovieSelection.py:432
+#: MovieSelection.py:525
 msgid "Open menu"
 msgstr "Menu openen"
 
-#: src/MovieSelection.py:433
+#: MovieSelection.py:526
 msgid "Show event info"
 msgstr "Toon event info"
 
-#: src/MovieSelection.py:434
-msgid "IMDBSearch / TMDBInfo / CSFDInfo"
-msgstr ""
+#: MovieSelection.py:527
+msgid "IMDBSearch / EMC-TMDBInfo / TMDBInfo / TMBDInfo / CSFDInfo"
+msgstr "IMDBSearch / EMC-TMDBInfo / TMDBInfo / TMBDInfo / CSFDInfo"
 
-#: src/MovieSelection.py:448
+#: MovieSelection.py:541
 msgid "Move cursor page up"
 msgstr "Cursor pagina omhoog"
 
-#: src/MovieSelection.py:449
+#: MovieSelection.py:542
 msgid "Move cursor page down"
 msgstr "Cursor pagina omlaag"
 
-#: src/MovieSelection.py:450
+#: MovieSelection.py:543
 msgid "Move cursor up"
 msgstr "Cursor omhoog"
 
-#: src/MovieSelection.py:451
+#: MovieSelection.py:544
 msgid "Move cursor down"
 msgstr "Cursor omlaag"
 
-#: src/MovieSelection.py:452
+#: MovieSelection.py:545
 msgid ""
 "Move cursor to the top / Move cursor x entries up / Switch Folders in Movie "
 "Home (up)"
 msgstr ""
+"Verplaats Cursor naar boven / verplaats de cursor x plekken omhoog / Switch "
+"mappen in film standaardmap (omhoog)"
 
-#: src/MovieSelection.py:453
+#: MovieSelection.py:546
 msgid ""
 "Move cursor to the end / Move cursor x entries down / Switch Folders in "
 "Movie Home (down)"
 msgstr ""
+"Verplaats de cursor naar het einde / verplaats de cursor x plekken naar "
+"beneden / Switch mappen in film standaardmap (naar beneden)"
 
-#: src/MovieSelection.py:454
+#: MovieSelection.py:547
 msgid "Directory forward"
 msgstr "Volgende map"
 
-#: src/MovieSelection.py:456
+#: MovieSelection.py:549
 msgid "Directory back"
 msgstr "Vorige map"
 
-#: src/MovieSelection.py:458
+#: MovieSelection.py:551
 msgid "Toggle service selection"
 msgstr "Verwissel zenderselectie"
 
-#: src/MovieSelection.py:459
+#: MovieSelection.py:552
 msgid "Remove service selection"
 msgstr "Verwijder zender selectie"
 
-#: src/MovieSelection.py:460 src/MovieSelection.py:462
+#: MovieSelection.py:553 MovieSelection.py:555
 msgid "Available plugins menu"
 msgstr "Menu beschikbare Plugins"
 
-#: src/MovieSelection.py:463
+#: MovieSelection.py:556
 msgid "Reload movie file list"
 msgstr "Filmoverzicht actualiseren"
 
-#: src/MovieSelection.py:464
+#: MovieSelection.py:557
 msgid "Open Timer List"
 msgstr "Timerlijst openen"
 
-#: src/MovieSelection.py:465
+#: MovieSelection.py:558
 msgid "Toggle viewed / not viewed"
 msgstr "Verwissel gezien / niet gezien"
 
-#: src/MovieSelection.py:467
+#: MovieSelection.py:560
 msgid "Start / end multiselection"
 msgstr "Start / Stop multiselectie"
 
-#: src/MovieSelection.py:855
+#: MovieSelection.py:1021
 msgid "E2 Bookmark"
-msgstr ""
+msgstr "E2 Bladwijzer"
 
-#: src/MovieSelection.py:856 src/MovieSelectionMenu.py:132
+#: MovieSelection.py:1022 MovieSelectionMenu.py:165
 msgid "Open E2 Bookmark path"
 msgstr "Open E2 markeringen"
 
-#: src/MovieSelection.py:923
+#: MovieSelection.py:1130
 msgid "No script operation for VLC streams."
 msgstr "Geen script werking voor VLC streams."
 
-#: src/MovieSelection.py:939
+#: MovieSelection.py:1146
 msgid "Does not contain any scripts."
 msgstr "Bevat geen scripts."
 
-#: src/MovieSelection.py:943
+#: MovieSelection.py:1150
 msgid "Choose script"
 msgstr "Kies script"
 
-#: src/MovieSelection.py:973
+#: MovieSelection.py:1169
+msgid ""
+"Cover search with all Files in Subdirectories?\n"
+"\n"
+"This may take a while on huge Disks, or Directories!"
+msgstr ""
+"Zoek Cover in onderliggende mappen?\n"
+"\n"
+"Dit kan een tijdje duren bij grootte HDD's of Mappen!"
+
+#: MovieSelection.py:1204
 msgid "No functionality set..."
 msgstr "Geen functie toegewezen..."
 
-#: src/MovieSelection.py:1056
+#: MovieSelection.py:1296
 msgid "*** Multiselection active ***"
 msgstr "*** Multiselectie actief ***"
 
-#: src/MovieSelection.py:1098
-msgid " <P>"
-msgstr ""
-
-#: src/MovieSelection.py:1345
+#: MovieSelection.py:1669
 msgid "Sort Mode"
-msgstr ""
+msgstr "Sorteer Modus"
 
-#: src/MovieSelection.py:1346
+#: MovieSelection.py:1670
 msgid "Sort Order"
-msgstr ""
+msgstr "Sorteer Volgorde"
 
-#: src/MovieSelection.py:1370 src/MovieSelection.py:1386
-#: src/MovieSelection.py:1402
+#: MovieSelection.py:1694 MovieSelection.py:1710 MovieSelection.py:1726
 msgid "Hide Cover"
-msgstr ""
+msgstr "Cover Verbergen"
 
-#: src/MovieSelection.py:1374 src/MovieSelection.py:1390
-#: src/MovieSelection.py:1406 src/plugin.py:176 src/plugin.py:196
+#: MovieSelection.py:1698 MovieSelection.py:1714 MovieSelection.py:1730
+#: plugin.py:179 plugin.py:200
 msgid "Button disabled"
-msgstr ""
+msgstr "Knop uitgeschakeld"
 
-#: src/MovieSelection.py:1375 src/MovieSelection.py:1391
-#: src/MovieSelection.py:1407
+#: MovieSelection.py:1699 MovieSelection.py:1715 MovieSelection.py:1731
 msgid "Cover disabled in EMC-Setup"
-msgstr ""
+msgstr "Cover uitgeschakeld in EMC-Instellingen"
 
-#: src/MovieSelection.py:1543
+#: MovieSelection.py:1869
 msgid "File not available."
 msgstr "Bestand niet beschikbaar."
 
-#: src/MovieSelection.py:1554
+#: MovieSelection.py:1925
+msgid "File added to current Playlist."
+msgstr "Bestand toegevoegd aan huidige Afspeellijst."
+
+#: MovieSelection.py:1927
+msgid "File exists in current Playlist."
+msgstr "Bestand bestaat in huidige Afspeellijst."
+
+#: MovieSelection.py:1930
+msgid "Files added to current Playlist."
+msgstr "Bestanden toegevoegd aan huidige Afspeellijst."
+
+#: MovieSelection.py:1932
+#, python-format
+msgid ""
+"Files added to current Playlist:\n"
+"%s\n"
+"\n"
+"Files exists in current Playlist:\n"
+"%s"
+msgstr ""
+"Bestanden toegevoegd aan huidige Afspeellijst:\n"
+"%s\n"
+"\n"
+"Reeds bestaande bestanden:\n"
+"%s"
+
+#: MovieSelection.py:1934
+#, python-format
+msgid ""
+"Files exists in current Playlist:\n"
+"%s"
+msgstr ""
+"Bestand bestaat in huidige Afspeellijst.\n"
+"%s"
+
+#: MovieSelection.py:1975
 msgid "Last played movie/playlist not available..."
 msgstr "Laatst afgespeelde film(lijst) niet beschikbaar..."
 
-#: src/MovieSelection.py:1558
+#: MovieSelection.py:1979
 msgid "Play last movie starting"
 msgstr "Laatste film afspelen"
 
-#: src/MovieSelection.py:1577
+#: MovieSelection.py:1998
 msgid "Play All starting"
 msgstr "Start met alles afspelen"
 
-#: src/MovieSelection.py:1596
+#: MovieSelection.py:2017
 msgid "Shuffle All starting"
 msgstr "Start alles afspelen in willekeurige volgorde"
 
-#: src/MovieSelection.py:1628
+#: MovieSelection.py:2049
 msgid "Not stopping any repeating timers. Modify them with the timer editor."
 msgstr "Herhalingstimers werden niet gestopt. Bewerk ze met de Timer-Editor."
 
-#: src/MovieSelection.py:1635
+#: MovieSelection.py:2056
 msgid "Stop ongoing recording?\n"
 msgstr "Lopende opname stoppen?\n"
 
-#: src/MovieSelection.py:1685
+#: MovieSelection.py:2109
 #, python-format
 msgid ""
 "Do you really want to remove your link\n"
@@ -1758,7 +2247,7 @@ msgstr ""
 "Wilt U uw link echt verwijderen\n"
 "%s?"
 
-#: src/MovieSelection.py:1687
+#: MovieSelection.py:2111
 #, python-format
 msgid ""
 "Do you really want to remove your directory\n"
@@ -1767,8 +2256,8 @@ msgstr ""
 "Wilt U uw map echt verwijderen\n"
 "%s?"
 
-#: src/MovieSelection.py:1727 src/MovieSelection.py:1749
-#: src/MovieSelectionMenu.py:359 src/MovieSelectionMenu.py:391
+#: MovieSelection.py:2151 MovieSelection.py:2173 MovieSelectionMenu.py:449
+#: MovieSelectionMenu.py:481
 #, python-format
 msgid ""
 "Do you really want to remove your bookmark\n"
@@ -1777,7 +2266,7 @@ msgstr ""
 "Wilt U uw markering echt verwijderen\n"
 "%s?"
 
-#: src/MovieSelection.py:1768
+#: MovieSelection.py:2192
 msgid ""
 " Deleting remotely recorded and it will display an rec-error dialog on the "
 "other DB."
@@ -1785,19 +2274,19 @@ msgstr ""
 "Verwijderen remote opnamen er zal een opnamefout worden getoond op de andere "
 "ontvanger."
 
-#: src/MovieSelection.py:1774
+#: MovieSelection.py:2198
 msgid " permanently"
 msgstr " permanent"
 
-#: src/MovieSelection.py:1791
+#: MovieSelection.py:2215
 msgid " currently played?"
 msgstr " wordt momenteel weergegeven?"
 
-#: src/MovieSelection.py:1811
+#: MovieSelection.py:2235
 msgid " all selected video files?"
 msgstr " alle geselecteerde videobestanden?"
 
-#: src/MovieSelection.py:1816
+#: MovieSelection.py:2240
 msgid ""
 " all selected video files? The currently playing movie is also one of the "
 "selections and its playback will be stopped."
@@ -1805,15 +2294,31 @@ msgstr ""
 " alle geselecteerde videobestanden? De film die nu wordt afgespeeld behoort "
 "ook tot de selectie en de weergave zal worden gestopt."
 
-#: src/MovieSelection.py:1818
+#: MovieSelection.py:2242
 msgid "Delete error:\n"
 msgstr "Fout tijdens verwijderen:\n"
 
-#: src/MovieSelection.py:1836
+#: MovieSelection.py:2274 MovieSelection.py:2318
+#, python-format
+msgid ""
+"The following files are used for other entrys in List !\n"
+"\n"
+"Also delete these files?\n"
+"\n"
+"%s"
+msgstr ""
+"Deze bestanden worden gebruikt door andere invoeren in de Lijst !\n"
+"\n"
+"Deze bestanden ook verwijderen?\n"
+"\n"
+"%s"
+
+#: MovieSelection.py:2362
 msgid "This element belongs to a locked folder and cannot be deleted!"
 msgstr ""
+"Dit element behoort tot een vergrendelde map en kan niet worden verwijderd!"
 
-#: src/MovieSelection.py:1846
+#: MovieSelection.py:2373
 msgid ""
 "Delete failed because the trashcan directory does not exist. Attempt to "
 "create it now?"
@@ -1821,23 +2326,29 @@ msgstr ""
 "Verwijderen mislukt omdat de map met de prullenbak niet is gevonden. Nu "
 "aanmaken?"
 
-#: src/MovieSelection.py:1863
+#: MovieSelection.py:2397
 msgid "This folder is locked or contains a locked subfolder, unlock it first!"
 msgstr ""
+"Deze map is vergrendeld of bevat een vergrendelde onderliggende map, "
+"ontgrendel deze eerst!"
 
-#: src/MovieSelection.py:1880
+#: MovieSelection.py:2417
 msgid "Directory is not empty! Do you really want to delete it?"
-msgstr ""
+msgstr "Map is niet leeg! Wilt u deze werkelijk verwijderen?"
 
-#: src/MovieSelection.py:1885
+#: MovieSelection.py:2422
 msgid "Cannot delete the parent directory."
 msgstr "Kan bovenliggende map niet verwijderen."
 
-#: src/MovieSelection.py:1960
+#: MovieSelection.py:2502 MovieSelection.py:2583
 msgid "Delete failed!"
-msgstr ""
+msgstr "Verwijderen mislukt!"
 
-#: src/MovieSelection.py:2068 src/MovieSelection.py:2089
+#: MovieSelection.py:2739 MovieSelection.py:2779
+msgid "Move file(s):"
+msgstr "Verplaats bestand(en):"
+
+#: MovieSelection.py:2767 MovieSelection.py:2788
 msgid ""
 "How to move files:\n"
 "Select some movies with the VIDEO-button, move the cursor on top of the "
@@ -1847,11 +2358,11 @@ msgstr ""
 "Selecteer een film met de VIDEO-knop, met de cursor de doelmap kiezen en "
 "daarna op de gele knop drukken."
 
-#: src/MovieSelection.py:2080
-msgid "Move file(s):"
-msgstr ""
+#: MovieSelection.py:2811 MovieSelection.py:2851
+msgid "Copy file(s):"
+msgstr "Kopieer bestand(en):"
 
-#: src/MovieSelection.py:2122 src/MovieSelection.py:2143
+#: MovieSelection.py:2839 MovieSelection.py:2860
 msgid ""
 "How to copy files:\n"
 "Select some movies with the VIDEO-button, move the cursor on top of the "
@@ -1861,192 +2372,238 @@ msgstr ""
 "Selecteer een film met de VIDEO-knop, met de cursor de doelmap kiezen en "
 "daarna lang (!) op de gele knop drukken."
 
-#: src/MovieSelection.py:2134
-msgid "Copy file(s):"
-msgstr ""
+#: MovieSelection.py:2876
+msgid "Move Directory:"
+msgstr "Film Map:"
 
-#: src/MovieSelection.py:2186 src/MovieSelection.py:2192
+#: MovieSelection.py:2969 MovieSelection.py:2975
 msgid "IMDb"
-msgstr ""
+msgstr "IMDb"
 
-#: src/MovieSelection.py:2188
+#: MovieSelection.py:2971
 msgid "TMDb"
-msgstr ""
+msgstr "TMDb"
 
-#: src/MovieSelection.py:2190
+#: MovieSelection.py:2973
 msgid "CSFD"
-msgstr ""
+msgstr "CSFD"
 
-#: src/MovieSelectionMenu.py:70
+#: MovieSelectionMenu.py:81
 msgid "Choose operation"
 msgstr "Kies functie"
 
-#: src/MovieSelectionMenu.py:73 src/plugin.py:167 src/plugin.py:187
+#: MovieSelectionMenu.py:84 plugin.py:169 plugin.py:190
 msgid "Movie home"
-msgstr "Hoofdmap films"
+msgstr "Standaardmap films"
 
-#: src/MovieSelectionMenu.py:76
+#: MovieSelectionMenu.py:87
 msgid "Directory up"
 msgstr "Bovenliggende map"
 
-#: src/MovieSelectionMenu.py:78
+#: MovieSelectionMenu.py:89
 msgid "Reload current directory"
-msgstr ""
+msgstr "Ververs huidige map"
 
-#: src/MovieSelectionMenu.py:80 src/plugin.py:170 src/plugin.py:190
+#: MovieSelectionMenu.py:91 MovieSelectionMenu.py:208
+msgid "Playlist Options"
+msgstr "Afspeellijst Instellingen"
+
+#: MovieSelectionMenu.py:95 MovieSelectionMenu.py:213
+msgid "Add to current Playlist"
+msgstr "Toevoegen aan huidige Afspeellijst"
+
+#: MovieSelectionMenu.py:97 plugin.py:173 plugin.py:194
 msgid "Play last"
 msgstr "Laatste afspelen"
 
-#: src/MovieSelectionMenu.py:85
+#: MovieSelectionMenu.py:102
 msgid "Cover search"
-msgstr ""
+msgstr "Zoek Cover"
 
-#: src/MovieSelectionMenu.py:90
+#: MovieSelectionMenu.py:105
+msgid "Directory-Cover search"
+msgstr "Map-Cover zoeken"
+
+#: MovieSelectionMenu.py:114 MovieSelectionMenu.py:116
 msgid "Delete permanently"
 msgstr "Definitief verwijderen"
 
-#: src/MovieSelectionMenu.py:91
+#: MovieSelectionMenu.py:117
 msgid "Empty trashcan"
 msgstr "Prullenbak legen"
 
-#: src/MovieSelectionMenu.py:92
+#: MovieSelectionMenu.py:118
 msgid "Go to trashcan"
 msgstr "Ga naar prullenbak"
 
-#: src/MovieSelectionMenu.py:94
+#: MovieSelectionMenu.py:120
 msgid "Mark all movies"
 msgstr "Alle bestanden markeren"
 
-#: src/MovieSelectionMenu.py:95
+#: MovieSelectionMenu.py:121
 msgid "Remove rogue files"
 msgstr "Weesbestanden verwijderen"
 
-#: src/MovieSelectionMenu.py:97
+#: MovieSelectionMenu.py:123
 msgid "Delete cut file(s)"
-msgstr ""
+msgstr "Verwijder geknipte bestand(en)"
 
-#: src/MovieSelectionMenu.py:99
+#: MovieSelectionMenu.py:125
 msgid "Create link"
 msgstr "Creëer Symlink"
 
-#: src/MovieSelectionMenu.py:100 src/MovieSelectionMenu.py:199
+#: MovieSelectionMenu.py:126 MovieSelectionMenu.py:247
 msgid "Create directory"
 msgstr "Map aanmaken"
 
-#: src/MovieSelectionMenu.py:102
+#: MovieSelectionMenu.py:128
 msgid "(Un-)Lock Directory"
-msgstr ""
+msgstr "Ont/Vergrendel Map"
 
-#: src/MovieSelectionMenu.py:106
-msgid "Copy Movie"
-msgstr ""
+#: MovieSelectionMenu.py:135
+msgid "Copy Files"
+msgstr "Bestanden kopiëren"
 
-#: src/MovieSelectionMenu.py:107 src/plugin.py:169 src/plugin.py:189
-msgid "Move Movie"
-msgstr ""
+#: MovieSelectionMenu.py:136
+msgid "Move Files"
+msgstr "Bestanden verplaatsen"
 
-#: src/MovieSelectionMenu.py:111
+#: MovieSelectionMenu.py:138 plugin.py:176 plugin.py:197
+msgid "Copy File"
+msgstr "Kopieer bestand"
+
+#: MovieSelectionMenu.py:139 plugin.py:171 plugin.py:192
+msgid "Move File"
+msgstr "Bestand verplaatsen"
+
+#: MovieSelectionMenu.py:143
 msgid "Download Movie Information"
-msgstr ""
+msgstr "Download Film informatie"
 
-#: src/MovieSelectionMenu.py:115
+#: MovieSelectionMenu.py:147
 msgid "Rename selected movie(s)"
-msgstr ""
+msgstr "Hernoem geselecteerde Film(s)"
 
-#: src/MovieSelectionMenu.py:116
+#: MovieSelectionMenu.py:148
 msgid "Remove cut list marker"
 msgstr "Alle markeringen verwijderen"
 
-#: src/MovieSelectionMenu.py:134
+#: MovieSelectionMenu.py:149
+msgid "Reset marker from selected movie(s)"
+msgstr "Verwijder markeringen van geselecteerde Film(s)"
+
+#: MovieSelectionMenu.py:167
 msgid "Add directory to E2 Bookmarks"
 msgstr "Map toevoegen aan E2 markeringen"
 
-#: src/MovieSelectionMenu.py:136
+#: MovieSelectionMenu.py:169
 msgid "Remove directory from E2 Bookmarks"
 msgstr "Verwijder huidige map als E2 markering"
 
-#: src/MovieSelectionMenu.py:138
+#: MovieSelectionMenu.py:172
 msgid "Remove selected E2 Bookmark"
 msgstr "Verwijder geselecteerde E2 markering"
 
-#: src/MovieSelectionMenu.py:140
+#: MovieSelectionMenu.py:174
 msgid "Open EMC Bookmark path"
-msgstr ""
+msgstr "Open EMC bladwijzer pad"
 
-#: src/MovieSelectionMenu.py:142
+#: MovieSelectionMenu.py:176
 msgid "Add directory to EMC Bookmarks"
-msgstr ""
+msgstr "Map toevoegen aan EMC bladwijzers"
 
-#: src/MovieSelectionMenu.py:144
+#: MovieSelectionMenu.py:178
 msgid "Remove directory from EMC Bookmarks"
-msgstr ""
+msgstr "Map verwijderen van EMC bladwijzers"
 
-#: src/MovieSelectionMenu.py:146
+#: MovieSelectionMenu.py:181
 msgid "Remove selected EMC Bookmark"
-msgstr ""
+msgstr "Verwijder geselecteerdeEMC bladwijzer"
 
-#: src/MovieSelectionMenu.py:148
+#: MovieSelectionMenu.py:183
 msgid "Set permanent sort"
 msgstr "Permanente sortering instellen"
 
-#: src/MovieSelectionMenu.py:150
+#: MovieSelectionMenu.py:185
 msgid "Remove permanent sort"
 msgstr "Permanente sortering verwijderen"
 
-#: src/MovieSelectionMenu.py:154
+#: MovieSelectionMenu.py:189
 msgid "Remove permanent sort from parent"
 msgstr "Permanent sorteren in de moedermap (parent dir) beëindigen"
 
-#: src/MovieSelectionMenu.py:157
+#: MovieSelectionMenu.py:192
 msgid "EMC Setup"
 msgstr "EMC Instellingen"
 
-#: src/MovieSelectionMenu.py:160
+#: MovieSelectionMenu.py:195
 msgid "Choose plugin"
 msgstr "Plugin kiezen"
 
-#: src/MovieSelectionMenu.py:166
+#: MovieSelectionMenu.py:201
 msgid "Choose bookmark"
 msgstr "Markering kiezen"
 
-#: src/MovieSelectionMenu.py:198
-msgid "Enter name for new directory:"
-msgstr ""
+#: MovieSelectionMenu.py:209
+msgid "Show current Playlist"
+msgstr "Toon huidige Afspeellijst"
 
-#: src/MovieSelectionMenu.py:205
+#: MovieSelectionMenu.py:215
+msgid "Play current Playlist"
+msgstr "Speel huidige Afspeellijst"
+
+#: MovieSelectionMenu.py:216
+msgid "Play random current Playlist"
+msgstr "Speel willekeurig uit huidige Afspeellijst"
+
+#: MovieSelectionMenu.py:217
+msgid "Delete current Playlist"
+msgstr "Verwijder huidige Afspeellijst"
+
+#: MovieSelectionMenu.py:218
+msgid "Playlist Setup"
+msgstr "Afspeellijst Instellingen"
+
+#: MovieSelectionMenu.py:246
+msgid "Enter name for new directory:"
+msgstr "Voer de naam van de nieuwe map in:"
+
+#: MovieSelectionMenu.py:253
 #, python-format
 msgid "Directory %s already exists!"
-msgstr ""
+msgstr "Map %s bestaat al!"
 
-#: src/MovieSelectionMenu.py:219
+#: MovieSelectionMenu.py:267
 #, python-format
 msgid "Do you really want to lock the directory %s and all its subfolders?"
-msgstr ""
+msgstr "Wil je echt de map %s en alle onderliggende mappen op vergrendelen?"
 
-#: src/MovieSelectionMenu.py:221
+#: MovieSelectionMenu.py:269
 #, python-format
 msgid ""
 "The directory %s is already locked. Do you want to unlock it and all its "
 "subfolders?"
 msgstr ""
+"De map %s is al vergrendeld. Wilt u deze ontgrendelen en alle onderliggende "
+"mappen?"
 
-#: src/MovieSelectionMenu.py:245
+#: MovieSelectionMenu.py:293
 msgid "Create Link"
-msgstr ""
+msgstr "Creëer Link"
 
-#: src/MovieSelectionMenu.py:276
+#: MovieSelectionMenu.py:324
 msgid "Permanently delete all files in trashcan?"
 msgstr "Alle films uit de prullenbak definitief verwijderen?"
 
-#: src/MovieSelectionMenu.py:288
+#: MovieSelectionMenu.py:336
 msgid "Movie Selection Menu"
 msgstr "Film Selectie Menu"
 
-#: src/MovieSelectionMenu.py:296
+#: MovieSelectionMenu.py:344
 msgid "exception "
-msgstr ""
+msgstr "Uitzondering"
 
-#: src/MovieSelectionMenu.py:305
+#: MovieSelectionMenu.py:353
 msgid ""
 "Locate rogue files and remove them? (permanently if no trashcan available, "
 "may take a minute or so)"
@@ -2054,250 +2611,297 @@ msgstr ""
 "Weesbestanden zoeken en verwijderen? (Als er geen prullenbak is worden deze "
 "meteen verwijderd - kan even duren)"
 
-#: src/MovieSelectionMenu.py:322
+#: MovieSelectionMenu.py:370
 msgid "Remove all cut file marker permanently?"
 msgstr "Alle cmarkeringen definitief verwijderen?"
 
-#: src/MovieSelectionMenu.py:424
+#: MovieSelectionMenu.py:384
+msgid "Remove all marker permanently?"
+msgstr "Verwijder alle markeringen voorgoed?"
+
+#: MovieSelectionMenu.py:517
 msgid ""
 "Do you really want to delete the cut file?\n"
 "If you have selected a directory, all cut files within the folder and its "
 "subfolders will be deleted!"
 msgstr ""
+"Wilt u echt het geknipte bestanden verwijderen?\n"
+"Als u een map hebt geselecteerd, zullen alle geknipte bestanden in de map en "
+"onderliggende mappen worden verwijderd!"
 
-#: src/RogueFileCheck.py:45
-msgid " files\n"
-msgstr " bestanden\n"
-
-#: src/RogueFileCheck.py:46
-msgid "No rogue files found."
-msgstr "Geen weesbestanden gevonden."
-
-#: src/RogueFileCheck.py:47
-msgid ""
-"Found rogue files:\n"
-"\n"
-msgstr ""
-"Weesbestanden gevonden:\n"
-"\n"
-
-#: src/VlcPluginInterface.py:159
-msgid "VLC Server not reachable"
-msgstr "VLC Server onbereikbaar"
-
-#: src/plugin.py:55
+#: plugin.py:55
 msgid "no"
 msgstr "nee"
 
-#: src/plugin.py:55
+#: plugin.py:55
 msgid "yes"
 msgstr "ja"
 
-#: src/plugin.py:133
+#: plugin.py:133
 msgid "No override"
 msgstr "Niet overschrijven"
 
-#: src/plugin.py:134
+#: plugin.py:134
 msgid "Video-button"
 msgstr "Video-knop"
 
-#: src/plugin.py:135
+#: plugin.py:135
 msgid "TV-button"
 msgstr "TV-knop"
 
-#: src/plugin.py:136
+#: plugin.py:136
 msgid "Radio-button"
 msgstr "Radio-knop"
 
-#: src/plugin.py:137
+#: plugin.py:137
 msgid "Quick-button"
 msgstr "Sneltoets"
 
-#: src/plugin.py:138
+#: plugin.py:138
 msgid "Timeshift-button"
 msgstr "Timeshift-knop"
 
-#: src/plugin.py:141 src/plugin.py:148 src/plugin.py:157
+#: plugin.py:141 plugin.py:150 plugin.py:159
 msgid "Off"
 msgstr "Uit"
 
-#: src/plugin.py:142
+#: plugin.py:142
 msgid "DD.MM.YYYY"
 msgstr "DD.MM.YYYY"
 
-#: src/plugin.py:143
+#: plugin.py:143
+msgid "DD.MM.YYYY HH:MM"
+msgstr "DD.MM.YYYY HH:MM"
+
+#: plugin.py:144
 msgid "DD.MM HH:MM"
 msgstr "DD.MM HH:MM"
 
-#: src/plugin.py:144
+#: plugin.py:145
 msgid "DD.MM. HH:MM"
-msgstr ""
+msgstr "DD.MM. HH:MM"
 
-#: src/plugin.py:145
+#: plugin.py:146
 msgid "YYYY/MM/DD"
 msgstr "YYYY/MM/DD"
 
-#: src/plugin.py:146
+#: plugin.py:147
+msgid "YYYY/MM/DD HH:MM"
+msgstr "YYYY/MM/DD HH:MM"
+
+#: plugin.py:148
 msgid "MM/DD HH:MM"
 msgstr "MM/DD hh:mm"
 
-#: src/plugin.py:149
+#: plugin.py:151
 msgid "Description"
-msgstr ""
+msgstr "Beschrijving"
 
-#: src/plugin.py:150
+#: plugin.py:152
 msgid "( # )"
 msgstr "( # )"
 
-#: src/plugin.py:151
+#: plugin.py:153
 msgid "( # / GB )"
 msgstr "( # / GB )"
 
-#: src/plugin.py:152
+#: plugin.py:154
 msgid "( GB )"
 msgstr "( GB )"
 
-#: src/plugin.py:154
+#: plugin.py:156
 msgid "ProgressBar"
 msgstr "Voortgangsbalk"
 
-#: src/plugin.py:155
+#: plugin.py:157
 msgid "Percent (%)"
 msgstr "Percent (%)"
 
-#: src/plugin.py:156
+#: plugin.py:158
 msgid "Movie Color"
 msgstr "Filmkleur"
 
-#: src/plugin.py:171 src/plugin.py:191
+#: plugin.py:172 plugin.py:193
+msgid "Add to Playlist"
+msgstr "Voeg toe aan Afspeellijst"
+
+#: plugin.py:174 plugin.py:195
 msgid "Cover Search"
-msgstr ""
+msgstr "Zoek Cover"
 
-#: src/plugin.py:172 src/plugin.py:192
+#: plugin.py:175 plugin.py:196
 msgid "Download Movie Info"
-msgstr ""
+msgstr "Download Film informatie"
 
-#: src/plugin.py:173 src/plugin.py:193
-msgid "Copy File"
-msgstr ""
-
-#: src/plugin.py:174 src/plugin.py:194
+#: plugin.py:177 plugin.py:198
 msgid "Open E2 bookmarks"
 msgstr "Open E2 markeringen"
 
-#: src/plugin.py:175
+#: plugin.py:178
 msgid "Toggle Cover Button"
-msgstr ""
+msgstr "Wissel Cover Knop"
 
-#: src/plugin.py:180
+#: plugin.py:183
 msgid "Sort Options"
-msgstr ""
+msgstr "Sorteer Instellingen"
 
-#: src/plugin.py:205
+#: plugin.py:209
 msgid "down"
 msgstr "omlaag"
 
-#: src/plugin.py:206
+#: plugin.py:210
 msgid "up/down"
 msgstr "omhoog/omlaag"
 
-#: src/plugin.py:207
+#: plugin.py:211
 msgid "off"
 msgstr "uit"
 
-#: src/plugin.py:209
+#: plugin.py:213
 msgid "type 1 - OSD + black (#00000000)"
-msgstr ""
+msgstr "type 1 - OSD + zwart (#00000000)"
 
-#: src/plugin.py:210
+#: plugin.py:214
 msgid "type 2 - transparent + white (#FFFFFFFF)"
-msgstr ""
+msgstr "type 2 - transparant + wit (#FFFFFFFF)"
 
-#: src/plugin.py:211
+#: plugin.py:215
 msgid "type 3 - OSD + black (#00FFFFFF)"
-msgstr ""
+msgstr "type 3 - OSD + zwart (#00FFFFFF)"
 
-#: src/plugin.py:212
+#: plugin.py:216
 msgid "type 4 - transparent + black (#FF000000)"
-msgstr ""
+msgstr "type 4 - transparant + zwart (#FF000000)"
 
-#: src/plugin.py:215
+#: plugin.py:219
 msgid "E2 Bookmarks"
-msgstr ""
+msgstr "E2 Baldwijzers"
 
-#: src/plugin.py:216
+#: plugin.py:220
 msgid "EMC Bookmarks"
-msgstr ""
+msgstr "EMC Bladwijzers"
 
-#: src/plugin.py:217
+#: plugin.py:221
 msgid "Both"
-msgstr ""
+msgstr "Beide"
 
-#: src/plugin.py:220
+#: plugin.py:224
 msgid "Standby"
-msgstr ""
+msgstr "Standby"
 
-#: src/plugin.py:221
+#: plugin.py:225
 msgid "DeepStandby"
-msgstr ""
+msgstr "Uitgeschakeld"
 
-#: src/plugin.py:222
+#: plugin.py:226
 msgid "Reboot"
-msgstr ""
+msgstr "Herstarten"
 
-#: src/plugin.py:223
+#: plugin.py:227
 msgid "E2 Restart"
-msgstr ""
+msgstr "E2 Herstarten"
 
-#: src/plugin.py:225
+#: plugin.py:229
 msgid "HomeEnd"
-msgstr ""
+msgstr "HomeEnd"
 
-#: src/plugin.py:226
+#: plugin.py:230
 msgid "Skip"
-msgstr ""
+msgstr "Overslaan"
 
-#: src/plugin.py:227
+#: plugin.py:231
 msgid "Change Folder"
-msgstr ""
+msgstr "Verander Map"
 
-#: src/plugin.py:234
+#: plugin.py:239
 msgid "Date sort descending (D-)"
-msgstr ""
+msgstr "Datum sort aflopend (D-)"
 
-#: src/plugin.py:234 src/plugin.py:237
+#: plugin.py:239 plugin.py:245
 msgid "Date sort"
 msgstr "Chronologisch"
 
-#: src/plugin.py:235
+#: plugin.py:240
 msgid "Alpha sort ascending (AZ)"
-msgstr ""
+msgstr "Alfabetisch sorteren (AZ)"
 
-#: src/plugin.py:235 src/plugin.py:238
+#: plugin.py:240 plugin.py:246
 msgid "Alpha sort"
-msgstr "Alfabetisch"
+msgstr "Alfabetisch sorteren"
 
-#: src/plugin.py:236
+#: plugin.py:241
+msgid "Alpha sort ascending, Date descending (AZD-)"
+msgstr "Alfa oplopend, datum aflopend (AZD-)"
+
+#: plugin.py:241 plugin.py:247
+msgid "Alpha sort date newest"
+msgstr "Alfabetisch nieuwste datum"
+
+#: plugin.py:242
+msgid "Alpha sort ascending with meta (AZM)"
+msgstr "Alfa oplopend met meta (AZM)"
+
+#: plugin.py:242 plugin.py:248
+msgid "Alpha sort meta"
+msgstr "Alfabetisch meta"
+
+#: plugin.py:243
+msgid "Alpha sort ascending with meta, Date descending (AZMD-)"
+msgstr "Alfa oplopend met meta, datum aflopend (AZMD-)"
+
+#: plugin.py:243 plugin.py:249
+msgid "Alpha sort meta date newest"
+msgstr "Alfa meta datum nieuwste"
+
+#: plugin.py:244
 msgid "Progress sort ascending (P+)"
-msgstr ""
+msgstr "Vooruitgang (P +) oplopend"
 
-#: src/plugin.py:236 src/plugin.py:239
+#: plugin.py:244 plugin.py:250
 msgid "Progress sort"
-msgstr ""
+msgstr "Vooruitgang sorteren"
 
-#: src/plugin.py:237
+#: plugin.py:245
 msgid "Date sort ascending (D+)"
-msgstr ""
+msgstr "Datum oplopend (D +)"
 
-#: src/plugin.py:238
+#: plugin.py:246
 msgid "Alpha sort descending (ZA)"
-msgstr ""
+msgstr "Alfa aflopend (ZA)"
 
-#: src/plugin.py:239
+#: plugin.py:247
+msgid "Alpha sort descending, Date ascending (ZAD+)"
+msgstr "Alfa aflopend, datum oplopend (ZAD+)"
+
+#: plugin.py:248
+msgid "Alpha sort descending with meta (ZAM)"
+msgstr "Alfa aflopend met meta (ZAM)"
+
+#: plugin.py:249
+msgid "Alpha sort descending with meta, Date ascending (ZAMD+)"
+msgstr "Alfa aflopend met meta, datum oplopend (ZAMD +)"
+
+#: plugin.py:250
 msgid "Progress sort descending (P-)"
-msgstr ""
+msgstr "Vooruitgang aflopend (P-)"
 
-#: src/plugin.py:329
+#: plugin.py:313
+msgid "left from Name"
+msgstr "links van de Naam"
+
+#: plugin.py:313
+msgid "right from Name"
+msgstr "rechts van de Naam"
+
+#: plugin.py:324
+msgid "Yes, without Message"
+msgstr "Ja, zonder bericht"
+
+#: plugin.py:324
+msgid "Yes, with Message"
+msgstr "Ja, met bericht"
+
+#: plugin.py:346
 msgid ""
 "ATTENTION\n"
 "\n"
@@ -2315,25 +2919,111 @@ msgstr ""
 "\n"
 "Bevestig deze keuze met de blauwe knop, gevolgd door de groene knop."
 
-#: src/plugin.py:363
+#: plugin.py:365
+msgid "center"
+msgstr "midden"
+
+#: plugin.py:365
+msgid "right"
+msgstr "rechts"
+
+#: plugin.py:370
+#, python-format
+msgid "%d second"
+msgid_plural "%d seconds"
+msgstr[0] "%d seconde"
+msgstr[1] "%d seconden"
+
+#: plugin.py:379
+msgid "Day"
+msgstr "Dag"
+
+#: plugin.py:382
+msgid "Days"
+msgstr "Dagen"
+
+#: plugin.py:387
+msgid "Week"
+msgstr "Week"
+
+#: plugin.py:390
+msgid "Weeks"
+msgstr "Weken"
+
+#: plugin.py:395
+msgid "Month"
+msgstr "Maand"
+
+#: plugin.py:398
+msgid "Months"
+msgstr "Maanden"
+
+#: plugin.py:403
+msgid "No limit"
+msgstr "Geen Limiet"
+
+#: plugin.py:434
 msgid "IMDb Search"
-msgstr ""
+msgstr "IMDb Zoeken"
 
-#: src/plugin.py:363
+#: plugin.py:434
+msgid "EMC-TMDB Info"
+msgstr "EMC-TMDB Info"
+
+#: plugin.py:434
 msgid "TMDB Info"
-msgstr ""
+msgstr "TMDB Info"
 
-#: src/plugin.py:363
+#: plugin.py:434
+msgid "TMBD Info"
+msgstr "TMBD Info"
+
+#: plugin.py:434
 msgid "CSFD Info"
-msgstr ""
+msgstr "CSFD Info"
 
-#: src/plugin.py:453
+#: plugin.py:524
 msgid "configuration"
 msgstr "Configuratie"
 
-#: src/plugin.py:456
+#: plugin.py:527
 msgid "movie manipulation list"
 msgstr "Film manipulatielijst"
+
+#: RogueFileCheck.py:42
+msgid " files\n"
+msgstr " bestanden\n"
+
+#: RogueFileCheck.py:43
+msgid "No rogue files found."
+msgstr "Geen weesbestanden gevonden."
+
+#: RogueFileCheck.py:44
+msgid ""
+"Found rogue files:\n"
+"\n"
+msgstr ""
+"Weesbestanden gevonden:\n"
+"\n"
+
+#: VlcPluginInterface.py:156
+msgid "VLC Server not reachable"
+msgstr "VLC Server onbereikbaar"
+
+#~ msgid "EMC Playlist - current playlist"
+#~ msgstr "ECM Afspeellijst - huidige afspeellijst"
+
+#~ msgid "no_poster.png"
+#~ msgstr "no_poster.png"
+
+#~ msgid " <P>"
+#~ msgstr " <P>"
+
+#~ msgid "Copy Movie"
+#~ msgstr "Kopieer Film"
+
+#~ msgid "Move Movie"
+#~ msgstr "Verplaats Film"
 
 #~ msgid "Next Enigma auto-restart in "
 #~ msgstr "Volgende Enigma2 auto-herstart in "
