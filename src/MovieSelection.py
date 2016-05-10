@@ -239,7 +239,7 @@ class SelectionEventInfo:
 			self["Cover"].hide()
 			self["CoverBg"].hide()
 			self["Video"].show()
-			self.miniTV_resume()
+			self.miniTV_resume(True)
 		else:
 			if config.EMC.movie_cover.value:
 				#print "EMC: InitPig C"
@@ -297,10 +297,13 @@ class SelectionEventInfo:
 				self.volumeUnMute()
 			self.preMute_muteState = None
 
-	def miniTV_resume(self):
+	def miniTV_resume(self,calledFromInitPig):
 		if self.lastservice and not self.hide_miniTV:
 			self.session.nav.playService(self.lastservice)
-			self.lastservice = None
+			if calledFromInitPig:
+				self.lastservice = None
+			else:
+				self["Video"].show()
 			self.miniTV_unmute()
 		elif not self.lastservice:
 			self.session.nav.stopService()
@@ -488,7 +491,7 @@ class SelectionEventInfo:
 				self.hide_miniTV = self.hide_miniTV_next
 			else:
 				# Start LiveTV
-				self.miniTV_resume()
+				self.miniTV_resume(False)
 
 		# If livetv is shown - don't stop it
 		elif lastserviceref and self.lastservice and lastserviceref != self.lastservice:
