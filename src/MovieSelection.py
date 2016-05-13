@@ -89,6 +89,11 @@ try:
 except Exception, e:
 	print "[EMCMS] python-mutagen is not available:", e
 
+try:
+	from enigma import eMediaDatabase
+	isDreamOS = True
+except:
+	isDreamOS = False
 
 # Move all trashcan operations to a separate file / class
 def purgeExpired(currentPath=None,postFileOp=None,emptyTrash=False):
@@ -268,13 +273,13 @@ class SelectionEventInfo:
 			self.volctrl.volumeUnMute()
 
 	def checkHideMiniTV_beforeFullscreen(self):
-		if self.hide_miniTV and (config.EMC.hide_miniTV_method.value == "singlePixelMuted"):
+		if self.hide_miniTV and (config.EMC.hide_miniTV_method.value == "singlePixelMuted") and not isDreamOS:
 			if not (config.EMC.movie_cover.value or config.EMC.movie_preview.value):
 				self.session.nav.stopService() #even if EMC.hide_miniTV_method is singlePixelMuted
 				self["Video"].hide()
 		
 	def miniTV_off(self):
-		if config.EMC.hide_miniTV_method.value == "singlePixelMuted":
+		if (config.EMC.hide_miniTV_method.value == "singlePixelMuted") and not isDreamOS:
 			if not (config.EMC.movie_cover.value or config.EMC.movie_preview.value):
 				if self.lastservice:
 					#workaround (strictly this sequence) for problems with movie aspect ratio on Gigablue Quad:
@@ -282,7 +287,6 @@ class SelectionEventInfo:
 					self.session.nav.stopService()
 					self["Video"].hide()
 					self.session.nav.playService(self.lastservice)
-					self.lastservice = None
 					self["Video"].show()
 					self["Video"].instance.resize(eSize(*(2, 2))) #smallest possible size
 				if self.preMute_muteState is None:

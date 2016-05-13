@@ -56,6 +56,11 @@ except ImportError as ie:
 else:
 	hasMutagen = True
 
+try:
+	from enigma import eMediaDatabase
+	isDreamOS = True
+except:
+	isDreamOS = False
 
 from DelayedFunction import DelayedFunction
 from EMCTasker import emcTasker, emcDebugOut
@@ -441,8 +446,13 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 			(  _("Movie preview delay in ms")                     , config.EMC.movie_preview_delay      , None                  , None                  , 0     , [-1]        , _("HELP_Movie preview delay in ms")                      , 3000              , None ),
 			(  _("Start movie preview before last position")      , config.EMC.movie_preview_offset     , None                  , None                  , 0     , [-2]        , _("HELP_Movie preview offset in seconds")                , None              , None ),
 			(  _("Hide mini TV")                                  , config.EMC.hide_miniTV              , None                  , None                  , 0     , []          , _("HELP_hide_miniTV")                                    , "never"           , "never" ),
+		]
+		if not isDreamOS:
+			self.EMCConfig.append(
 			(  _("Method of hiding mini TV")                      , config.EMC.hide_miniTV_method       , None                  , None                  , 0     , []          , _("HELP_hide_miniTV_method")                             , "stopService"     , "stopService" ),
-
+		)
+		self.EMCConfig.extend(
+		[
 			(  separator                                          , config.EMC.about                    , None                  , None                  , 0     , []          , _(" ")                                                    , None              , None ),
 			(  _("No resume below 10 seconds")                    , config.EMC.movie_ignore_firstcuts   , None                  , None                  , 1     , []          , _("HELP_No resume below 10 seconds")                     , None              , None ),
 			(  _("Jump to first mark when playing movie")         , config.EMC.movie_jump_first_mark    , None                  , None                  , 1     , []          , _("HELP_Jump to first mark when playing movie")          , None              , None ),
@@ -451,6 +461,7 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 			(  _("Zap to channel after record EOF")               , config.EMC.record_eof_zap           , None                  , None                  , 1     , []          , _("HELP_Zap to channel after record EOF")                , None              , None ),
 			(  _("Show real length of running records")           , config.EMC.record_show_real_length  , None                  , None                  , 1     , []          , _("HELP_Show real length of running records")            , None              , True ),
 		]
+		)
 		if hasCutlistDownloader:
 			self.EMCConfig.append(
 			(  _("Download cutlist from Cutlist.at")              , config.EMC.cutlist_at_download      , None                  , None                  , 1     , []          , _("HELP_Download cutlist from Cutlist.at")               , False             , True ),
