@@ -2989,10 +2989,6 @@ msgid "always hide"
 msgstr "Immer ausblenden"
 
 #: EnhancedMovieCenter.py
-msgid "HELP_hide_miniTV"
-msgstr "Legt fest, in welchen Situationen der Mini-Bildschirm verborgen werden soll."
-
-#: EnhancedMovieCenter.py
 msgid "Method of hiding mini TV"
 msgstr "Methode zum Ausblenden des Mini-TV"
 
