@@ -4,7 +4,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-08-11 23:09+0200\n"
 "PO-Revision-Date: \n"
-"Last-Translator: dhwz <dhwz@gmx.net>\n"
+"Last-Translator: Fischreiher\n"
 "Language-Team: openATV\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
@@ -341,7 +341,7 @@ msgid ""
 "\n"
 "Try to save the Playlist with another name?"
 msgstr ""
-"Eine Wiedergabeliste mit dem selben Namen exestiert schon!\n"
+"Eine Wiedergabeliste mit dem selben Namen existiert schon!\n"
 "\n"
 "Wollen Sie die Wiedergabeliste unter einen anderen Namen speichern?"
 
@@ -2987,6 +2987,28 @@ msgstr "Wiedergabe ausblenden"
 #: EnhancedMovieCenter/plugin.py
 msgid "always hide"
 msgstr "Immer ausblenden"
+
+#: EnhancedMovieCenter.py
+msgid "HELP_hide_miniTV"
+msgstr "Legt fest, in welchen Situationen der Mini-Bildschirm verborgen werden soll."
+
+#: EnhancedMovieCenter.py
+msgid "Method of hiding mini TV"
+msgstr "Methode zum Ausblenden des Mini-TV"
+
+#: EnhancedMovieCenter.py
+msgid "stop service"
+msgstr "Empfang stoppen"
+
+#: EnhancedMovieCenter.py
+msgid "single pixel TV, muted"
+msgstr "1-Pixel-Bild, stumm"
+
+#: EnhancedMovieCenter.py
+msgid "HELP_hide_miniTV_method"
+msgstr ""
+"Gegen Filmwiedergabe mit verzerrtem Seitenverhältnis (z.B. Gigablue Quad) kann es helfen,\n"
+"Live-TV nicht zu stoppen, sondern den Mini-TV ersatzweise auf 1 Pixel zu reduzieren."
 
 #~ msgid "Show new Skin Version"
 #~ msgstr "Zeige neue Skin Version(braucht aktuelle skin-änderungen)"
