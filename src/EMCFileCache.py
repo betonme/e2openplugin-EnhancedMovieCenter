@@ -22,13 +22,22 @@ from datetime import datetime
 import os
 
 MinCacheLimit = config.EMC.min_file_cache_limit.getValue()
+pathisfile = os.path.isfile
+pathisdir  = os.path.isdir
+pathislink = os.path.islink
+pathexists = os.path.exists
+
+idx_isLink=0
+idx_isDir=1
+idx_isFile=2
+idx_Date=3
+idx_num=4
 
 class EMCFileCache():
 	def __init__(self):
 		self.cacheDirectoryList = {}
 		self.cacheFileList = {}
-		self.cacheLinkList = {}
-		self.cacheDateList = {}
+		self.cacheAttributeList = {}
 		self.cacheCountSizeList = {}
 
 	def addCountSizeToCache(self, path, count, size):
@@ -78,12 +87,22 @@ class EMCFileCache():
 			if (len(subdirlist)>MinCacheLimit) or (len(filelist)>MinCacheLimit):
 				self.cacheDirectoryList[path] = subdirlist
 				for p, n, e in subdirlist:
-					self.cacheLinkList[p] = os.path.islink(p)
-					self.cacheDateList[p] = os.path.exists(p) and MovieCenterInst.checkDate(p, True)
+					if not (p in self.cacheAttributeList):
+						AttributeList=[None]*idx_num
+						AttributeList[idx_isLink] = pathislink(p)
+						AttributeList[idx_isDir]  = True # we are in subdirlist
+						AttributeList[idx_isFile] = False # we are in subdirlist
+						AttributeList[idx_Date]   = pathexists(p) and MovieCenterInst.checkDate(p, True)
+						self.cacheAttributeList[p] = AttributeList
 				self.cacheFileList[path] = filelist
 				for p, n, e in filelist:
-					self.cacheLinkList[p] = os.path.islink(p)
-					self.cacheDateList[p] = os.path.exists(p) and MovieCenterInst.checkDate(p, False)
+					if not (p in self.cacheAttributeList):
+						AttributeList=[None]*idx_num
+						AttributeList[idx_isLink] = pathislink(p)
+						AttributeList[idx_isDir]  = False # we are in filelist, no entry is a real directrory ...
+						AttributeList[idx_isFile] = pathisfile(p) # ... but filelist might contain virtual directories
+						AttributeList[idx_Date]   = pathexists(p) and MovieCenterInst.checkDate(p, False)
+						self.cacheAttributeList[p] = AttributeList
 			else:
 				if self.cacheDirectoryList.has_key(path):
 					self.deleteAssociatedListEntries(self.cacheDirectoryList[path])
@@ -91,8 +110,9 @@ class EMCFileCache():
 				if self.cacheFileList.has_key(path):
 					self.deleteAssociatedListEntries(self.cacheFileList[path])
 					del self.cacheFileList[path]
-#		print "EMC DirectoryCache", self.cacheDirectoryList
-#		print "EMC FileCache", self.cacheFileList
+#		self.debugPrintDirCache()
+#		self.debugPrintFileCache()
+#		self.debugPrintFileAttributeCache()
 
 	def addRecToCacheFileList(self, path, rec):
 		if config.EMC.files_cache.value:
@@ -107,21 +127,40 @@ class EMCFileCache():
 		if config.EMC.files_cache.value and self.cacheDirectoryList.has_key(path) and self.cacheFileList.has_key(path):
 			subdirlist = self.cacheDirectoryList[path]
 			filelist = self.cacheFileList[path]
-#			print "EMC DirectoryCache", self.cacheDirectoryList
-#			print "EMC FileCache", self.cacheFileList
+#			self.debugPrintDirCache()
+#			self.debugPrintFileCache()
+#			self.debugPrintFileAttributeCache()
 			return subdirlist, filelist
 		else:
 			return None, None
 
-	def getLinkInfoFromCacheForPath(self, path):
-		if config.EMC.files_cache.value and self.cacheLinkList.has_key(path):
-			return self.cacheLinkList[path]
-		else:
-			return None
+	def isLink(self, path):
+		isLink = None
+		if config.EMC.files_cache.value and (path in self.cacheAttributeList):
+			isLink = self.cacheAttributeList[path][idx_isLink]
+		if isLink is None:
+			isLink = pathislink(path)
+		return isLink
+
+	def isDir(self, path):
+		isDir = None
+		if (config.EMC.check_dead_links.value != "always") and config.EMC.files_cache.value and (path in self.cacheAttributeList):
+			isDir = self.cacheAttributeList[path][idx_isDir]
+		if isDir is None:
+			isDir = pathisdir(path)
+		return isDir
+
+	def isFile(self, path):
+		isFile = None
+		if (config.EMC.check_dead_links.value != "always") and config.EMC.files_cache.value and (path in self.cacheAttributeList):
+			isFile = self.cacheAttributeList[path][idx_isFile]
+		if isFile is None:
+			isFile = pathisfile(path)
+		return isFile
 
 	def getDateInfoFromCacheForPath(self, path):
-		if config.EMC.files_cache.value and self.cacheDateList.has_key(path):
-			return self.cacheDateList[path]
+		if config.EMC.files_cache.value and (path in self.cacheAttributeList):
+			return self.cacheAttributeList[path][idx_Date]
 		else:
 			return None
 
@@ -167,8 +206,9 @@ class EMCFileCache():
 		if self.cacheFileList.has_key(path):
 			self.deleteAssociatedListEntries(self.cacheFileList[path])
 			del self.cacheFileList[path]
-#		print "EMC DirectoryCache", self.cacheDirectoryList
-#		print "EMC FileCache", self.cacheFileList
+#		self.debugPrintDirCache()
+#		self.debugPrintFileCache()
+#		self.debugPrintFileAttributeCache()
 
 	def delPathFromDirCache(self, path):
 		if len(path)>1 and path[-1]=="/":
@@ -184,11 +224,27 @@ class EMCFileCache():
 			self.deleteAssociatedListEntries(self.cacheFileList[path])
 			del self.cacheFileList[path]
 
+	def debugPrintFileCache(self):
+		print "cacheFileList:"
+		for p in self.cacheFileList:
+			print p,self.cacheFileList[p]
+		print ""
+
+	def debugPrintDirCache(self):
+		print "cacheDirectoryList:"
+		for p in self.cacheDirectoryList:
+			print p,self.cacheDirectoryList[p]
+		print ""
+
+	def debugPrintFileAttributeCache(self):
+		print "cacheAttributeList:"
+		for p in self.cacheAttributeList:
+			print p,self.cacheAttributeList[p]
+		print ""
+
 	def deleteAssociatedListEntries(self, list):
 		for p, n, e in list:
-			if self.cacheLinkList.has_key(p):
-				del self.cacheLinkList[p]
-			if self.cacheDateList.has_key(p):
-				del self.cacheDateList[p]
+			if p in self.cacheAttributeList and (config.EMC.check_dead_links.value != "only_initially"):
+				del self.cacheAttributeList[p]
 
 movieFileCache = EMCFileCache()

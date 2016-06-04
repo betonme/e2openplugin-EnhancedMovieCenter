@@ -2966,7 +2966,7 @@ msgstr "Mini-TV ausblenden"
 
 #: EnhancedMovieCenter.py
 msgid "HELP_hide_miniTV"
-msgstr "Mini-TV ausblenden"
+msgstr "Legt fest, in welchen Situationen der Mini-Bildschirm verborgen werden soll."
 
 #: EnhancedMovieCenter/plugin.py
 msgid "never hide"
@@ -3005,6 +3005,26 @@ msgid "HELP_hide_miniTV_method"
 msgstr ""
 "Gegen Filmwiedergabe mit verzerrtem Seitenverhältnis (z.B. Gigablue Quad) kann es helfen,\n"
 "Live-TV nicht zu stoppen, sondern den Mini-TV ersatzweise auf 1 Pixel zu reduzieren."
+
+#: EnhancedMovieCenter.py
+msgid "Check for dead links"
+msgstr "Prüfe auf tote Links"
+
+#: EnhancedMovieCenter.py
+msgid "always"
+msgstr "immer"
+
+#: EnhancedMovieCenter.py
+msgid "after reload list"
+msgstr "beim Neuladen der Liste "
+
+#: EnhancedMovieCenter.py
+msgid "only initially"
+msgstr "nur das erste Mal"
+
+#: EnhancedMovieCenter.py
+msgid "HELP_Check for dead links"
+msgstr "Nur erstmalig auf tote Links zu prüfen, hilft, externe Datenträger im Standby zu belassen, jedoch werden Dateien von entfernten Datenträgern ggf. weiterhin angezeigt."
 
 #~ msgid "Show new Skin Version"
 #~ msgstr "Zeige neue Skin Version(braucht aktuelle skin-änderungen)"

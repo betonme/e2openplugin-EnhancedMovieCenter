@@ -780,16 +780,18 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 		fappend = filelist.append
 		splitext = os.path.splitext
 		pathjoin = os.path.join
-		pathisfile = os.path.isfile
-		pathisdir = os.path.isdir
-		pathislink = os.path.islink
 
 		if os.path.exists(path):
 
 			# Get directory listing
-			#TEST later performance listdir vs walk
-			#for file in os.listdir(path):
-			for root, dirs, files in os.walk(path):
+			walk_dirs = []
+			walk_files = []
+			for walk_name in os.listdir(path):
+				if movieFileCache.isDir(os.path.join(path, walk_name)):
+					walk_dirs.append(walk_name)
+				else:
+					walk_files.append(walk_name)
+			for root, dirs, files in [(path,walk_dirs,walk_files)]:
 
 				for file in files:
 
@@ -802,10 +804,10 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 					pathname = pathjoin(path, file)
 
 					# Filter dead links
-					if pathisfile(pathname):
+					if movieFileCache.isFile(pathname):
 
 						# Symlink media file
-						if pathislink(pathname) and not config.EMC.symlinks_show.value:
+						if movieFileCache.isLink(pathname) and not config.EMC.symlinks_show.value:
 							continue
 
 						# Media file found
@@ -816,7 +818,7 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 					pathname = pathjoin(path, dir)
 
 					# Filter dead links
-					if pathisdir(pathname):
+					if movieFileCache.isDir(pathname):
 						if check_dvdstruct:
 							dvdStruct = detectDVDStructure(pathname)
 							if dvdStruct:
@@ -843,7 +845,7 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 						if config.EMC.directories_show.value:
 							if not movie_trashpath or os.path.realpath(pathname).find( movie_trashpath ) == -1:
 								# Symlink folder found
-								if pathislink(pathname) and not config.EMC.symlinks_show.value:
+								if movieFileCache.isLink(pathname) and not config.EMC.symlinks_show.value:
 									continue
 								# Folder found
 								dappend( (pathname, dir, cmtDir) )
@@ -854,9 +856,6 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 		del fappend
 		del splitext
 		del pathjoin
-		del pathisfile
-		del pathisdir
-		del pathislink
 		return subdirlist, filelist
 
 	def reloadDirList(self, path):
@@ -1037,7 +1036,7 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 			self.recControl.recFilesRead()
 
 		# Create listings
-		if os.path.isdir(currentPath):
+		if movieFileCache.isDir(currentPath):
 			# Found directory
 
 			# Read subdirectories and filenames
@@ -1049,7 +1048,7 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 			if not simulate:
 				customlist = self.createCustomList(currentPath)
 
-		elif os.path.isfile(currentPath):
+		elif movieFileCache.isFile(currentPath):
 			# Found file
 
 			filelist = self.createFileInfo(currentPath)
@@ -1879,11 +1878,7 @@ class MovieCenter(GUIComponent):
 			res = [ None ]
 			append = res.append
 
-			isLink = None
-			if config.EMC.files_cache.value:
-				isLink = movieFileCache.getLinkInfoFromCacheForPath(path)
-			if isLink is None:
-				isLink = os.path.islink(path)
+			isLink = movieFileCache.isLink(path)
 			isExtHDDSleeping = config.EMC.limit_fileops_noscan.value and mountPoints.isExtHDDSleeping(path,self)
 			#usedFont = int(config.EMC.skin_able.value)
 			if int(config.EMC.skin_able.value):
