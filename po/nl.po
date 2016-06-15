@@ -1820,7 +1820,7 @@ msgstr "Onbekend"
 
 #: MovieInfo.py:269 MovieInfo.py:449 MovieInfo.py:461 MovieInfo.py:683
 msgid "Search results for:"
-msgstr "Zoer resultaten voor:"
+msgstr "Zoek resultaten voor:"
 
 #: MovieInfo.py:272
 msgid "Movie Info"
