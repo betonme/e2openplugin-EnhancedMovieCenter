@@ -225,7 +225,7 @@ class EMCImdbScan(Screen):
 
 		self.picload = ePicLoad()
 		#self.picload_conn = self.picload.PictureData.connect(self.showCoverCallback)
-		self.file_format = "(.ts|.avi|.mkv|.divx|.f4v|.flv|.img|.iso|.m2ts|.m4v|.mov|.mp4|.mpeg|.mpg|.mts|.vob|.wmv)"
+		self.file_format = "(\.ts|\.avi|\.mkv|\.divx|\.f4v|\.flv|\.img|\.iso|\.m2ts|\.m4v|\.mov|\.mp4|\.mpeg|\.mpg|\.mts|\.vob|\.wmv)"
 		self.onLayoutFinish.append(self.layoutFinished)
 
 		self.setShowSearchSiteName()
@@ -243,7 +243,7 @@ class EMCImdbScan(Screen):
 		for each in sorted(self.vm_list):
 			(title, path) = each
 			title = getMovieNameWithoutPhrases(getMovieNameWithoutExt(title))
-			path = re.sub(self.file_format + "$", '.jpg', path)
+			path = re.sub(self.file_format + "$", '.jpg', path, flags=re.IGNORECASE)
 			if os.path.exists(path):
 				count_existing += 1
 				self.menulist.append(imdb_show(title, path, _("Exist"), "", title))
@@ -365,7 +365,7 @@ class EMCImdbScan(Screen):
 			urls = []
 			for each in sorted(self.cm_list):
 				(title, path) = each
-				cover_path = re.sub(self.file_format + "$", '.jpg', path)
+				cover_path = re.sub(self.file_format + "$", '.jpg', path, flags=re.IGNORECASE)
 				if os.path.exists(cover_path):
 					self.counter_exist += 1
 					self.counting += 1
