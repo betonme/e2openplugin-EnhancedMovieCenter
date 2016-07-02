@@ -37,7 +37,7 @@ class IsoSupport():
 
 	def __newPath(self, path):
 		if path:
-			if path.endswith(".iso"):
+			if path.lower().endswith(".iso"):
 				if self.iso_file == path:
 					# Same file
 					pass
@@ -64,7 +64,7 @@ class IsoSupport():
 			# Attention: Read can be very slow !!!
 			name = ""
 			path = self.iso_file
-			if path and os.path.exists(path) and path.endswith(".iso"):
+			if path and os.path.exists(path) and path.lower().endswith(".iso"):
 				mtime = os.path.getmtime(path)
 				if self.iso_mtime == mtime:
 					# File has not changed

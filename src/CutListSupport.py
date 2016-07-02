@@ -92,7 +92,7 @@ class CutList():
 		name = None
 		if path:
 			#TODO very slow
-			if path.endswith(".iso"):
+			if path.lower().endswith(".iso"):
 				if not self.iso:
 					self.iso = IsoSupport(path)
 				name = self.iso and self.iso.getIsoName()

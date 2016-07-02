@@ -32,7 +32,7 @@ from DelayedFunction import DelayedFunction
 def getRecording(filename):
 	try:
 		if filename[0] == "/": 			filename = os.path.basename(filename)
-		if filename.endswith(".ts"):	filename = filename[:-3]
+		if filename.lower().endswith(".ts"):	filename = filename[:-3]
 
 		for timer in NavigationInstance.instance.RecordTimer.timer_list:
 			try: timer.Filename
@@ -153,7 +153,7 @@ class RecordingsControl:
 	def isRecording(self, filename):
 		try:
 			if filename[0] == "/": 			filename = os.path.basename(filename)
-			if filename.endswith(".ts"):	filename = filename[:-3]
+			if filename.lower().endswith(".ts"):	filename = filename[:-3]
 			return filename in self.recDict
 		except Exception, e:
 			emcDebugOut("[emcRC] isRecording exception:\n" + str(e))
@@ -162,7 +162,7 @@ class RecordingsControl:
 	def isRemoteRecording(self, filename):
 		try:
 			if filename[0] == "/": 			filename = os.path.basename(filename)
-			if filename.endswith(".ts"):	filename = filename[:-3]
+			if filename.lower().endswith(".ts"):	filename = filename[:-3]
 			return filename in self.recRemoteList
 		except Exception, e:
 			emcDebugOut("[emcRC] isRemoteRecording exception:\n" + str(e))
@@ -171,7 +171,7 @@ class RecordingsControl:
 	def stopRecording(self, filename):
 		try:
 			if filename[0] == "/":			filename = os.path.basename(filename)
-			if filename.endswith(".ts"):	filename = filename[:-3]
+			if filename.lower().endswith(".ts"):	filename = filename[:-3]
 			if filename in self.recDict:
 				for timer in NavigationInstance.instance.RecordTimer.timer_list:
 					if timer.isRunning() and not timer.justplay and timer.Filename.find(filename)>=0:
@@ -188,7 +188,7 @@ class RecordingsControl:
 
 	def isCutting(self, filename):
 		try:
-			if filename.endswith("_.ts"):
+			if filename.lower().endswith("_.ts"):
 				if not os.path.exists(filename[:-2]+"eit"):
 					return True
 			return False
@@ -198,8 +198,8 @@ class RecordingsControl:
 
 	def fixTimerPath(self, old, new):
 		try:
-			if old.endswith(".ts"):	old = old[:-3]
-			if new.endswith(".ts"):	new = new[:-3]
+			if old.lower().endswith(".ts"):	old = old[:-3]
+			if new.lower().endswith(".ts"):	new = new[:-3]
 			for timer in NavigationInstance.instance.RecordTimer.timer_list:
 				if timer.isRunning() and not timer.justplay and timer.Filename == old:
 					timer.dirname = os.path.dirname(new) + "/"
@@ -243,7 +243,7 @@ class RecordingsControl:
 			if config.EMC.folder.value and os.path.exists(config.EMC.folder.value):
 				for x in os.listdir(config.EMC.folder.value):
 					path = os.path.join(config.EMC.folder.value, x)
-					if x.endswith(".rec") and path != self.recFile:
+					if x.lower().endswith(".rec") and path != self.recFile:
 						recf = open( path, "rb" )
 						self.recRemoteList += pickle.load(recf)
 		except Exception, e:
