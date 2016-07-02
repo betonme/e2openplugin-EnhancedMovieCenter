@@ -137,7 +137,7 @@ class MovieRetitle(Screen, ConfigListScreen):
 
 	def setTitleDescr(self, service, title, descr):
 		#TODO Use MetaSupport class
-		if service.getPath().endswith(".ts"):
+		if service.getPath().lower().endswith(".ts"):
 			meta_file = service.getPath() + ".meta"
 		else:
 			meta_file = service.getPath() + ".ts.meta"

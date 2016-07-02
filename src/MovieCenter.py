@@ -189,7 +189,7 @@ def getPlayerService(path, name="", ext=None):
 		#QUESTION Is the special name handling really necessary
 		if service:
 			# Copied from dvd player
-			if path.endswith("/VIDEO_TS") or path.endswith("/"):
+			if path.lower().endswith("/video_ts") or path.endswith("/"):
 				names = service.toString().rsplit("/",3)
 				if names[2].startswith("Disk ") or names[2].startswith("DVD "):
 					#TEST name = str(names[1]) + " - " + str(names[2])
@@ -213,7 +213,7 @@ def getMovieNameWithoutExt(moviename=""):
 	if config.EMC.movie_show_format.value:
 		for rem in extVideo:
 			rem = rem.replace("."," ")
-			if moviename.endswith(rem):
+			if moviename.lower().endswith(rem):
 				moviename = moviename[:-len(rem)]
 				break
 	return moviename
