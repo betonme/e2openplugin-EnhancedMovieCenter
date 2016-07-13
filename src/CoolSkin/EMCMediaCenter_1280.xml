@@ -57,7 +57,7 @@
 		<convert type="ConditionalShowHide"/>
 	</widget>
 
-	<ePixmap position="180,680" size="26,16" pixmap="skin_default/icons/icon_dolby.png" zPosition="3" alphatest="on" />
+	<!-- <ePixmap position="180,680" size="26,16" pixmap="skin_default/icons/icon_dolby.png" zPosition="3" alphatest="on" /> -->
 	<widget name="audioLabel" position="210,677" size="100,22" font="Regular;18" backgroundColor="#00000000" zPosition="3" transparent="1" />
 
 	<widget name="chapterLabel" position="350,677" size="580,30" font="Regular;22" halign="center" foregroundColor="#00e5b243" backgroundColor="#00000000" transparent="1" />
