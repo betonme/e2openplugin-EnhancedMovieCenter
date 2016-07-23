@@ -780,13 +780,18 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 		fappend = filelist.append
 		splitext = os.path.splitext
 		pathjoin = os.path.join
+		OSErrorMessage = _("OSError - please reload list (EMC menu)")
 
 		if os.path.exists(path):
 
 			# Get directory listing
 			walk_dirs = []
 			walk_files = []
-			for walk_name in os.listdir(path):
+			try:
+				walk_listdir = os.listdir(path)
+			except OSError:
+				walk_listdir = [OSErrorMessage]
+			for walk_name in walk_listdir:
 				if movieFileCache.isDir(os.path.join(path, walk_name)):
 					walk_dirs.append(walk_name)
 				else:
@@ -804,7 +809,7 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 					pathname = pathjoin(path, file)
 
 					# Filter dead links
-					if movieFileCache.isFile(pathname):
+					if movieFileCache.isFile(pathname) or (file == OSErrorMessage):
 
 						# Symlink media file
 						if movieFileCache.isLink(pathname) and not config.EMC.symlinks_show.value:
