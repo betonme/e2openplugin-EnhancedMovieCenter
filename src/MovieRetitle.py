@@ -45,6 +45,8 @@ class MovieRetitle(Screen, ConfigListScreen):
 		self["HelpWindow"] = Pixmap()
 		self["VKeyIcon"] = Pixmap()
 		self["VKeyIcon"].hide()
+		self["footnote"] = StaticText()
+		self["description"] = StaticText()
 
 		self.serviceHandler = ServiceCenter.getInstance()
 
