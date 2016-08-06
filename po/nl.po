@@ -1788,7 +1788,7 @@ msgstr "TV Series"
 
 #: MovieInfo.py:147 MovieInfo.py:202
 msgid "Content:"
-msgstr "Inhoud"
+msgstr "Inhoud:"
 
 #: MovieInfo.py:147 MovieInfo.py:202 MovieInfo.py:518 MovieSelection.py:275
 msgid "Runtime:"
