@@ -1,0 +1,3112 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-08-11 23:09+0200\n"
+"PO-Revision-Date: 2016-08-17 01:02+0300\n"
+"Last-Translator: MCelliot_g <mcelliot_g@hotmail.com>\n"
+"Language-Team: \n"
+"Language: el_GR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-Basepath: ..\n"
+"X-Generator: Poedit 1.8.8\n"
+"X-Poedit-SearchPath-0: src\n"
+
+#: EMCCoverSearch.py:47 EMCCoverSearch.py:48
+msgid "imdb.de"
+msgstr "imdb.de"
+
+#: EMCCoverSearch.py:47
+msgid "themoviedb.org"
+msgstr "themoviedb.org"
+
+#: EMCCoverSearch.py:47 EMCCoverSearch.py:48
+msgid "csfd.cz"
+msgstr "csfd.cz"
+
+#: EMCCoverSearch.py:47 EMCCoverSearch.py:48
+msgid "all"
+msgstr "όλα"
+
+#: EMCCoverSearch.py:48
+msgid "thetvdb.com"
+msgstr "thetvdb.com"
+
+#: EMCCoverSearch.py:97 EMCCoverSearch.py:238 EMCCoverSearch.py:248
+#: EMCCoverSearch.py:361
+msgid "Exist"
+msgstr "Υπάρχει"
+
+#: EMCCoverSearch.py:97 EMCCoverSearch.py:241 EMCCoverSearch.py:248
+#: EMCCoverSearch.py:412 EMCCoverSearch.py:442
+msgid "N/A"
+msgstr "Μ/Δ"
+
+#: EMCCoverSearch.py:193
+msgid "Search"
+msgstr "Αναζήτηση"
+
+#: EMCCoverSearch.py:195 MovieSelection.py:2198 MovieSelectionMenu.py:107
+#: MovieSelectionMenu.py:109 plugin.py:170 plugin.py:191
+msgid "Delete"
+msgstr "Διαγραφή"
+
+#: EMCCoverSearch.py:205
+msgid "Press green button to start search"
+msgstr "Πατήστε το πράσινο κουμπί για να ξεκινήσετε την αναζήτηση"
+
+#: EMCCoverSearch.py:207
+msgid "Manage Cover"
+msgstr "Διαχείριση Εξωφύλλου"
+
+#: EMCCoverSearch.py:208 MovieInfo.py:270 MovieInfo.py:439
+msgid "Setup"
+msgstr "Εγκατάσταση"
+
+#: EMCCoverSearch.py:209
+msgid "Single search"
+msgstr "Μονή αναζήτηση"
+
+#: EMCCoverSearch.py:223
+msgid "EMC Cover search"
+msgstr "EMC αναζήτηση Εξωφύλλου"
+
+#: EMCCoverSearch.py:248
+msgid "Total"
+msgstr "Σύνολο"
+
+#: EMCCoverSearch.py:340 EMCCoverSearch.py:364 EMCCoverSearch.py:447
+#, python-format
+msgid "Exist: %s"
+msgstr "Υπάρχει: %s"
+
+#: EMCCoverSearch.py:341 EMCCoverSearch.py:363 EMCCoverSearch.py:446
+#, python-format
+msgid "No Cover: %s"
+msgstr "Χωρίς Εξώφυλλο: %s"
+
+#: EMCCoverSearch.py:342 EMCCoverSearch.py:365 EMCCoverSearch.py:448
+#, python-format
+msgid "Download: %s"
+msgstr "Λήψη: %s"
+
+#: EMCCoverSearch.py:343
+msgid "Searching..."
+msgstr "Αναζήτηση..."
+
+#: EMCCoverSearch.py:351
+msgid "Creating Search List.."
+msgstr "Δημιουργία Λίστας Αναζήτησης..."
+
+#: EMCCoverSearch.py:391
+msgid "No Movies found!"
+msgstr "Δεν βρέθηκαν Ταινίες!"
+
+#: EMCCoverSearch.py:444
+msgid "from"
+msgstr "από"
+
+#: EMCCoverSearch.py:457
+msgid "movies in"
+msgstr "ταινίες σε"
+
+#: EMCCoverSearch.py:457
+msgid "sec found. Avg. Speed:"
+msgstr "δευτ. βρέθηκαν. Μέση Ταχύτητα:"
+
+#: EMCCoverSearch.py:457
+msgid "sec."
+msgstr "δευτ."
+
+#: EMCCoverSearch.py:508
+#, python-format
+msgid "%s removed."
+msgstr "%s αφαιρέθηκαν."
+
+#: EMCCoverSearch.py:560
+#, python-format
+msgid "Search site set to: %s"
+msgstr "Ο ιστότοπος αναζήτησης ορίστηκε σε: %s"
+
+#: EMCCoverSearch.py:569
+msgid "Cover is Saved."
+msgstr "Το Εξώφυλλο αποθηκεύτηκε."
+
+#: EMCCoverSearch.py:698
+msgid "EMC Cover search setup"
+msgstr "EMC Ρυθμίσεις αναζήτησης εξωφύλλου"
+
+#: EMCCoverSearch.py:700 EMCPlayList.py:132 EMCPlayList.py:472
+#: EMCPlayList.py:545 EnhancedMovieCenter.py:257 MovieInfo.py:736
+#: MovieRetitle.py:32
+msgid "Cancel"
+msgstr "Ακύρωση"
+
+#: EMCCoverSearch.py:701 MovieInfo.py:737
+msgid "OK"
+msgstr "ΟΚ"
+
+#: EMCCoverSearch.py:704
+msgid "Search Site:"
+msgstr "Ιστότοπος Αναζήτησης:"
+
+#: EMCCoverSearch.py:705
+msgid "themoviedb cover resolution:"
+msgstr "ανάλυση εξωφύλλου themoviedb:"
+
+#: EMCCoverSearch.py:706
+msgid "Save description to movie.txt file:"
+msgstr "Αποθήκευση περιγραφής στο αρχείο movie.txt:"
+
+#: EMCCoverSearch.py:707
+msgid "Single Search:"
+msgstr "Μονή Αναζήτηση:"
+
+#: EMCCoverSearch.py:749
+msgid "EMC Cover Selecter"
+msgstr "EMC Επιλογή Εξωφύλλου"
+
+#: EMCCoverSearch.py:766
+#, python-format
+msgid "Searching for %s"
+msgstr "Αναζήτηση για %s"
+
+#: EMCCoverSearch.py:778 EMCCoverSearch.py:816 EMCCoverSearch.py:826
+#: EMCCoverSearch.py:851 EMCCoverSearch.py:854 EMCCoverSearch.py:872
+#: EMCCoverSearch.py:895 EMCCoverSearch.py:911
+msgid "found"
+msgstr "βρέθηκαν"
+
+#: EMCCoverSearch.py:778 EMCCoverSearch.py:816 EMCCoverSearch.py:826
+#: EMCCoverSearch.py:851 EMCCoverSearch.py:854 EMCCoverSearch.py:872
+#: EMCCoverSearch.py:895
+msgid "covers"
+msgstr " εξώφυλλα"
+
+#: EMCCoverSearch.py:911
+msgid "covers in"
+msgstr "εξώφυλλα σε"
+
+#: EMCCoverSearch.py:911
+msgid "sec"
+msgstr "δευτερόλεπτα"
+
+#: EMCCoverSearch.py:981
+msgid "Can not save "
+msgstr "Αδυναμία αποθήκευσης"
+
+#: EMCCoverSearch.py:995
+msgid "Can not save Cover in "
+msgstr " Αδυναμία αποθήκευσης Εξωφύλλου στο "
+
+#: EMCCoverSearch.py:1015
+msgid "Move Cover to:"
+msgstr "Μετακίνηση Εξωφύλλου σε:"
+
+#: EMCCoverSearch.py:1016 EMCPlayList.py:485 EnhancedMovieCenter.py:739
+#: MovieSelection.py:2740 MovieSelection.py:2780 MovieSelection.py:2812
+#: MovieSelection.py:2852 MovieSelection.py:2877 MovieSelectionMenu.py:294
+msgid "Choose directory"
+msgstr "Επιλογή φακέλου"
+
+#: EMCMediaCenter.py:151 EMCMediaCenter.py:156
+msgid "Stop playback"
+msgstr "Διακοπή αναπαραγωγής"
+
+#: EMCMediaCenter.py:161
+msgid "show DVD main menu"
+msgstr "εμφάνιση κύριου μενού DVD"
+
+#: EMCMediaCenter.py:163
+msgid "forward to the next chapter"
+msgstr "προώθηση στο επόμενο κεφάλαιο"
+
+#: EMCMediaCenter.py:164
+msgid "rewind to the previous chapter"
+msgstr "μετάβαση στο προηγούμενο κεφάλαιο"
+
+#: EMCMediaCenter.py:165 EMCMediaCenter.py:193
+msgid "jump forward to the next title"
+msgstr "μετάβαση στον επόμενο τίτλο"
+
+#: EMCMediaCenter.py:166 EMCMediaCenter.py:194
+msgid "jump back to the previous title"
+msgstr "μετάβαση στον πρηγούμενο τίτλο"
+
+#: EMCMediaCenter.py:167
+msgid "(show optional DVD audio menu)"
+msgstr "(εμφάνιση προαιρετικού μενού ήχου DVD)"
+
+#: EMCMediaCenter.py:168
+msgid "switch to the next audio track"
+msgstr "μετάβαση στο επόμενο κανάλι ήχου"
+
+#: EMCMediaCenter.py:169
+msgid "switch to the next subtitle language"
+msgstr "μετάβαση στην επόμενη γλώσσα υποτίτλων"
+
+#: EMCMediaCenter.py:170
+msgid "switch to the next angle"
+msgstr "μετάβαση στην επόμενη γωνία"
+
+#: EMCMediaCenter.py:189
+msgid "view extensions..."
+msgstr "εμφάνιση επεκτάσεων..."
+
+#: EMCMediaCenter.py:190
+msgid "Format AVSwitch"
+msgstr "Φορμά AVSwitch"
+
+#: EMCMediaCenter.py:191
+msgid "Seek forward"
+msgstr "Αναζήτηση εμπρός"
+
+#: EMCMediaCenter.py:192
+msgid "Seek backward"
+msgstr "Αναζήτηση προς τα πίσω"
+
+#: EMCMediaCenter.py:195
+msgid "Movie information"
+msgstr "Πληροφορίες ταινίας"
+
+#: EMCMediaCenter.py:382
+msgid "No DVD-Player found!"
+msgstr "Δεν βρέθηκε αναπαραγωγός DVD!"
+
+#: EMCMediaCenter.py:433
+msgid ""
+"Skipping movie, the file does not exist.\n"
+"\n"
+msgstr ""
+"Παράκαμψη ταινίας, το αρχείο δεν υπάρχει.\n"
+"\n"
+
+#: EMCMediaCenter.py:473
+msgid ""
+"EMC\n"
+"Zap to Live TV of record"
+msgstr ""
+"EMC\n"
+"Μετάβαση σε ζωντανή TV από εγγραφή"
+
+#: EMCMediaCenter.py:914
+msgid "Chap."
+msgstr "Κεφ."
+
+#: EMCMediaCenter.py:915
+msgid "Chapter"
+msgstr "Κεφάλαιο"
+
+#: EMCMediaCenter.py:916
+msgid "Title"
+msgstr "Τίτλος"
+
+#: EMCPlayList.py:131 EMCPlayList.py:473 EnhancedMovieCenter.py:258
+#: MovieInfo.py:271 MovieInfo.py:441 MovieRetitle.py:31
+msgid "Save"
+msgstr "Αποθήκευση"
+
+#: EMCPlayList.py:133
+msgid "Delete Entry"
+msgstr "Διαγραφή Στοιχείου"
+
+#: EMCPlayList.py:134
+msgid "Delete All"
+msgstr "Διαγραφή Όλων"
+
+#: EMCPlayList.py:154
+msgid "EMC Playlist"
+msgstr "EMC Λίστα Αναπαραγωγής"
+
+#: EMCPlayList.py:161
+msgid "EMC Playlist Menu"
+msgstr "EMC Μενού Λίστας Αναπαραγωγής"
+
+#: EMCPlayList.py:162
+msgid "Playlist open"
+msgstr "Λίστα αναπαραγωγής ανοιχτή"
+
+#: EMCPlayList.py:163
+msgid "Setup open"
+msgstr "Ρυθμίσεις ανοικτές"
+
+#: EMCPlayList.py:171
+msgid ""
+"Default Playlist is not empty!\n"
+"\n"
+"Save default Playlist?"
+msgstr ""
+"Η Προεπιλεγμένη Λίστα Αναπαραγωγής δεν είναι κενή!\n"
+"\n"
+"Να γίνει αποθήκευση της προεπιλεγμένης λίστας;"
+
+#: EMCPlayList.py:233
+msgid ""
+"Playlist with same name exists!\n"
+"\n"
+"Try to save the Playlist with another name?"
+msgstr ""
+"Μία Λίστα Αναπαραγωγής με το ίδιο όνομα υπάρχει ήδη!\n"
+"\n"
+"Προσπάθεια αποθήκευσης της Λίστας με άλλο όνομα;"
+
+#: EMCPlayList.py:237
+msgid "Change the filename to save current Playlist:"
+msgstr ""
+"Αλλαγή ονόματος αρχείου για αποθήκευση της τρέχουσας Λίστας Αναπαραγωγής:"
+
+#: EMCPlayList.py:237
+msgid "Save current Playlist"
+msgstr "Αποθήκευση τρέχουσας Λίστας Αναπαραγωγής"
+
+#: EMCPlayList.py:255
+msgid "Current Playlist saved successfully!"
+msgstr "Η τρέχουσα Λίστα Αναπαραγωγής αποθηκεύτηκε με επιτυχία!"
+
+#: EMCPlayList.py:258
+msgid "Can not save current Playlist!"
+msgstr "Αδυναμία αποθήκευσης της τρέχουσας Λίστας!"
+
+#: EMCPlayList.py:461
+msgid "Default Playlist path"
+msgstr "Διαδρομή προεπιλεγμένης Λίστας Αναπαραγωγής"
+
+#: EMCPlayList.py:462
+msgid "Default Playlist name"
+msgstr "Προεπιλεγμένο όνομα Λίστας Αναπαραγωγής"
+
+#: EMCPlayList.py:463
+msgid "Always save current Playlist"
+msgstr "Πάντα αποθήκευση της τρέχουσας Λίστας Αναπαραγωγής"
+
+#: EMCPlayList.py:477
+msgid "EMC Playlist Setup"
+msgstr "EMC Ρυθμίσεις Λίστας Αναπαραγωγής"
+
+#: EMCPlayList.py:484
+msgid "Choose Directory:"
+msgstr "Επιλογή Φακέλου:"
+
+#: EMCPlayList.py:501
+msgid "Enter Name for Playlist"
+msgstr "Εισαγωγή Ονόματος για τη Λίστα Αναπαραγωγής"
+
+#: EMCPlayList.py:546
+msgid "Open"
+msgstr "Άνοιγμα"
+
+#: EMCPlayList.py:560
+msgid "EMC Filebrowser"
+msgstr "EMC Πλοηγός Αρχείων"
+
+#: EMCTasker.py:201
+msgid "Next auto-start in "
+msgstr "Επόμενη αυτόματη εκκίνηση σε "
+
+#: EMCTasker.py:203
+msgid "auto-start is currently not active."
+msgstr "η αυτόματη εκκίνηση δεν είναι ενεργή."
+
+#: EMCTasker.py:215
+msgid ""
+"Your Box is about to go into Standby, continue?\n"
+" Select no to delay one hour"
+msgstr ""
+"Ο δέκτης σας θα μεταβεί σε Αναμονή, συνέχεια;\n"
+" Επιλέξτε όχι για καθυστέρηση μίας ώρας"
+
+#: EMCTasker.py:217
+msgid ""
+"Your Box is about to go into DeepStandby, continue?\n"
+" Select no to delay one hour"
+msgstr ""
+"Ο δέκτης σας θα μεταβεί σε Βαθιά Αναμονή, συνέχεια;\n"
+" Επιλέξτε όχι για καθυστέρηση μίας ώρας"
+
+#: EMCTasker.py:219
+msgid ""
+"Your Box is about to go into Reboot, continue?\n"
+" Select no to delay one hour"
+msgstr ""
+"Ο δέκτης σας θα επανεκκινηθεί, συνέχεια;\n"
+" Επιλέξτε όχι για καθυστέρηση μίας ώρας"
+
+#: EMCTasker.py:221
+msgid ""
+"Your Box is about to go into E2 Restart, continue?\n"
+" Select no to delay one hour"
+msgstr ""
+"Θα γίνει επανεκκίνηση του E2 του δέκτη σας, συνέχεια;\n"
+" Επιλέξτε όχι για καθυστέρηση μίας ώρας"
+
+#: EnhancedMovieCenter.py:195 EnhancedMovieCenter.py:216
+msgid "Custom"
+msgstr "Προσαρμογή"
+
+#: EnhancedMovieCenter.py:196
+msgid "Default"
+msgstr "Προεπιλογή"
+
+#: EnhancedMovieCenter.py:197
+msgid "Performance"
+msgstr "Επιδόσεις"
+
+#: EnhancedMovieCenter.py:198
+msgid "Information"
+msgstr "Πληροφορίες"
+
+#: EnhancedMovieCenter.py:318
+msgid "About"
+msgstr "Περί"
+
+#: EnhancedMovieCenter.py:318
+msgid "HELP_About"
+msgstr "ΒΟΗΘΕΙΑ_Περί"
+
+#: EnhancedMovieCenter.py:320
+msgid "Disable EMC"
+msgstr "Απενεργοποίηση του EMC"
+
+#: EnhancedMovieCenter.py:320
+msgid "HELP_Disable EMC"
+msgstr "ΒΟΗΘΕΙΑ_Απενεργοποίηση του EMC"
+
+#: EnhancedMovieCenter.py:322
+msgid "Start EMC with"
+msgstr "Εκκίνηση του EMC με"
+
+#: EnhancedMovieCenter.py:322
+msgid "HELP_Start EMC with"
+msgstr "ΒΟΗΘΕΙΑ_Εκκίνηση του EMC με"
+
+#: EnhancedMovieCenter.py:323
+msgid "Show plugin config in extensions menu"
+msgstr "Εμφάνιση των ρυθμίσεων του πρόσθετου στο μενού επεκτάσεων"
+
+#: EnhancedMovieCenter.py:323
+msgid "HELP_Show plugin config in extensions menu"
+msgstr "ΒΟΗΘΕΙΑ_Εμφάνιση των ρυθμίσεων του πρόσθετου στο μενού επεκτάσεων"
+
+#: EnhancedMovieCenter.py:324
+msgid "Show EMC in extensions menu"
+msgstr "Εμφάνιση του EMC στη λίστα επεκτάσεων"
+
+#: EnhancedMovieCenter.py:324
+msgid "HELP_Show EMC in extensions menu"
+msgstr "ΒΟΗΘΕΙΑ_Εμφάνιση του EMC στη λίστα επεκτάσεων"
+
+#: EnhancedMovieCenter.py:326
+msgid "HELP_Key assignment Separator"
+msgstr "ΒΟΗΘΕΙΑ_Διαχωριστής ανάθεσης πλήκτρου"
+
+#: EnhancedMovieCenter.py:327
+msgid "Bouquet buttons behaviour"
+msgstr "Συμπεριφορά πλήκτρου Μπουκέτων"
+
+#: EnhancedMovieCenter.py:327
+msgid "HELP_Bouquet buttons behaviour"
+msgstr "ΒΟΗΘΕΙΑ_Συμπεριφορά πλήκτρου Μπουκέτων"
+
+#: EnhancedMovieCenter.py:328
+msgid "List entries to skip"
+msgstr "Λίστα στοιχείων προς παράκαμψη"
+
+#: EnhancedMovieCenter.py:328
+msgid "HELP_List entries to skip"
+msgstr "ΒΟΗΘΕΙΑ_Λίστα στοιχείων προς παράκαμψη"
+
+#: EnhancedMovieCenter.py:329
+msgid "Red button function"
+msgstr "Λειτουργία κόκκινου πλήκτρου"
+
+#: EnhancedMovieCenter.py:329
+msgid "HELP_Red button function"
+msgstr "ΒΟΗΘΕΙΑ_Λειτουργία κόκκινου πλήκτρου"
+
+#: EnhancedMovieCenter.py:330
+msgid "Long Red button function"
+msgstr "Λειτουργία παρατεταμένου κόκκινου πλήκτρου"
+
+#: EnhancedMovieCenter.py:330
+msgid "HELP_Long Red button function"
+msgstr "ΒΟΗΘΕΙΑ_Λειτουργία παρατεταμένου κόκκινου πλήκτρου"
+
+#: EnhancedMovieCenter.py:333
+msgid "Yellow button function"
+msgstr "Λειτουργία κίτρινου πλήκτρου"
+
+#: EnhancedMovieCenter.py:333
+msgid "HELP_Yellow button function"
+msgstr "ΒΟΗΘΕΙΑ_Λειτουργία κίτρινου πλήκτρου"
+
+#: EnhancedMovieCenter.py:334
+msgid "Long Yellow button function"
+msgstr "Λειτουργία παρατεταμένου κίτρινου πλήκτρου"
+
+#: EnhancedMovieCenter.py:334
+msgid "HELP_Long Yellow button function"
+msgstr "ΒΟΗΘΕΙΑ_Λειτουργία παρατεταμένου κίτρινου πλήκτρου"
+
+#: EnhancedMovieCenter.py:335
+msgid "Blue button function"
+msgstr "Λειτουργία μπλε πλήκτρου"
+
+#: EnhancedMovieCenter.py:335
+msgid "HELP_Blue button function"
+msgstr "ΒΟΗΘΕΙΑ_Λειτουργία μπλε πλήκτρου"
+
+#: EnhancedMovieCenter.py:336
+msgid "Long Blue button function"
+msgstr "Λειτουργία παρατεταμένου μπλε πλήκτρου"
+
+#: EnhancedMovieCenter.py:336
+msgid "HELP_Long Blue button function"
+msgstr "ΒΟΗΘΕΙΑ_Λειτουργία παρατεταμένου μπλε πλήκτρου"
+
+#: EnhancedMovieCenter.py:338 EnhancedMovieCenter.py:345
+#: EnhancedMovieCenter.py:354 EnhancedMovieCenter.py:389
+#: EnhancedMovieCenter.py:399 EnhancedMovieCenter.py:426
+#: EnhancedMovieCenter.py:453
+msgid " "
+msgstr " "
+
+#: EnhancedMovieCenter.py:339
+msgid "daily auto-start"
+msgstr "καθημερινή αυτόματη εκκίνηση"
+
+#: EnhancedMovieCenter.py:339
+msgid "HELP_Daily auto-start"
+msgstr "ΒΟΗΘΕΙΑ_Καθημερινή αυτόματη εκκίνηση"
+
+#: EnhancedMovieCenter.py:340
+msgid "auto-start window begin"
+msgstr "εκκίνηση παραθύρου αυτόματης έναρξης"
+
+#: EnhancedMovieCenter.py:340
+msgid "HELP_auto-start window begin"
+msgstr "ΒΟΗΘΕΙΑ_εκκίνηση παραθύρου αυτόματης έναρξης"
+
+#: EnhancedMovieCenter.py:341
+msgid "auto-start window end"
+msgstr "τέλος παραθύρου αυτόματης έναρξης"
+
+#: EnhancedMovieCenter.py:341
+msgid "HELP_auto-start window end"
+msgstr "ΒΟΗΘΕΙΑ_τέλος παραθύρου αυτόματης έναρξης"
+
+#: EnhancedMovieCenter.py:342
+msgid "Force standby after auto-restart"
+msgstr "Αναγκαστική αναμονή μετά την αυτόματη έναρξη"
+
+#: EnhancedMovieCenter.py:342
+msgid "HELP_Force standby after auto-start"
+msgstr "ΒΟΗΘΕΙΑ_Αναγκαστική αναμονή μετά την αυτόματη έναρξη"
+
+#: EnhancedMovieCenter.py:343
+msgid "LongInfo Button"
+msgstr "Παρατεταμένο πλήκτρο πληροφοριών"
+
+#: EnhancedMovieCenter.py:343
+msgid "HELP_LongInfo Button"
+msgstr "ΒΟΗΘΕΙΑ_Παρατεταμένο πλήκτρο πληροφοριών"
+
+#: EnhancedMovieCenter.py:346
+msgid "Movie home at start"
+msgstr "Κεντρικός φάκελος ταινιών στην αρχή"
+
+#: EnhancedMovieCenter.py:346
+msgid "HELP_Movie home at start"
+msgstr "ΒΟΗΘΕΙΑ_Κεντρικός φάκελος ταινιών στην αρχή"
+
+#: EnhancedMovieCenter.py:347
+msgid "Default sort mode"
+msgstr "Προεπιλεγμένη λειτουργία ταξινόμησης"
+
+#: EnhancedMovieCenter.py:347
+msgid "HELP_Sort mode at startup"
+msgstr "ΒΟΗΘΕΙΑ_Λειτουργία Ταξινόμησης στην εκκίνηση"
+
+#: EnhancedMovieCenter.py:349
+msgid "Movie home home path"
+msgstr "Διαδρομή κεντρικού φακέλου ταινιών"
+
+#: EnhancedMovieCenter.py:349
+msgid "HELP_Movie home home path"
+msgstr "ΒΟΗΘΕΙΑ_Διαδρομή κεντρικού φακέλου ταινιών"
+
+#: EnhancedMovieCenter.py:350
+msgid "EMC path access limit"
+msgstr "Όριο πρόσβασης διαδρομής EMC"
+
+#: EnhancedMovieCenter.py:350
+msgid "HELP_EMC path access limit"
+msgstr "ΒΟΗΘΕΙΑ_Όριο πρόσβασης διαδρομής EMC"
+
+#: EnhancedMovieCenter.py:352
+msgid "Cursor predictive move after selection"
+msgstr "Προβλεπόμενη κίνηση κέρσορα μετά την επιλογή"
+
+#: EnhancedMovieCenter.py:352
+msgid "HELP_Cursor predictive move after selection"
+msgstr "ΒΟΗΘΕΙΑ_Προβλεπόμενη κίνηση κέρσορα μετά την επιλογή"
+
+#: EnhancedMovieCenter.py:355
+msgid "Show symlinks"
+msgstr "Εμφάνιση συντομεύσεων"
+
+#: EnhancedMovieCenter.py:355
+msgid "HELP_Show symlinks"
+msgstr "ΒΟΗΘΕΙΑ_Εμφάνιση συντομεύσεων"
+
+#: EnhancedMovieCenter.py:357
+msgid "Show directories"
+msgstr "Εμφάνιση φακέλων"
+
+#: EnhancedMovieCenter.py:357
+msgid "HELP_Show directories"
+msgstr "ΒΟΗΘΕΙΑ_Εμφάνιση φακέλων"
+
+#: EnhancedMovieCenter.py:358
+msgid "Show directories within movielist"
+msgstr "Εμφάνιση φακέλων εντός της λίστας ταινιών"
+
+#: EnhancedMovieCenter.py:358
+msgid "HELP_Show directories within movielist"
+msgstr "ΒΟΗΘΕΙΑ_Εμφάνιση φακέλων εντός της λίστας ταινιών"
+
+#: EnhancedMovieCenter.py:359
+msgid "Configured directories at the top of movielist"
+msgstr "Ρυθμισμένοι φάκελοι στην κορυφή της λίστας ταινιών"
+
+#: EnhancedMovieCenter.py:359
+msgid "HELP_Configure in etc\\enigma2\\emc-topdir.cfg"
+msgstr "ΒΟΗΘΕΙΑ_Ρυθμίσεις στο etc\\enigma2\\emc-topdir.cfg"
+
+#: EnhancedMovieCenter.py:360
+msgid "Show directories information"
+msgstr "Εμφάνιση πληροφοριών φακέλων"
+
+#: EnhancedMovieCenter.py:360
+msgid "HELP_Show directories information"
+msgstr "ΒΟΗΘΕΙΑ_Εμφάνιση πληροφοριών φακέλων"
+
+#: EnhancedMovieCenter.py:361
+msgid "Text shown for initially unknown file count"
+msgstr "Εμφάνιση κειμένου για αρχικά άγνωστη αρίθμηση αρχείου"
+
+#: EnhancedMovieCenter.py:361
+msgid "HELP_Text shown for initially unknown file count"
+msgstr "ΒΟΗΘΕΙΑ_Εμφάνιση κειμένου για αρχικά άγνωστη αρίθμηση αρχείου"
+
+#: EnhancedMovieCenter.py:362
+msgid "Text shown for initially unknown count and size"
+msgstr "Εμφανιζόμενο κείμενο για αρχικά άγνωστο αριθμό και μέγεθος"
+
+#: EnhancedMovieCenter.py:362
+msgid "HELP_Text shown for initially unknown count and size"
+msgstr "ΒΟΗΘΕΙΑ_Εμφανιζόμενο κείμενο για αρχικά άγνωστο αριθμό και μέγεθος"
+
+#: EnhancedMovieCenter.py:363
+msgid "Text shown for initially unknown directory size"
+msgstr "Εμφανιζόμενο κείμενο για αρχικά άγνωστο μέγεθος φακέλου"
+
+#: EnhancedMovieCenter.py:363
+msgid "HELP_Text shown for initially unknown directory size"
+msgstr "ΒΟΗΘΕΙΑ_Εμφανιζόμενο κείμενο για αρχικά άγνωστο μέγεθος φακέλου"
+
+#: EnhancedMovieCenter.py:364
+msgid "Icon shown for initially unknown count / size"
+msgstr "Εμφανιζόμενο εικονίδιο για αρχικά άγνωστο αριθμό / μέγεθος"
+
+#: EnhancedMovieCenter.py:364
+msgid "HELP_Icon shown for initially unknown count / size"
+msgstr "ΒΟΗΘΕΙΑ_Εμφανιζόμενο εικονίδιο για αρχικά άγνωστο αριθμό / μέγεθος"
+
+#: EnhancedMovieCenter.py:365
+msgid "Horizontal alignment for count / size"
+msgstr "Οριζόντια στοίχιση για αριθμό / μέγεθος"
+
+#: EnhancedMovieCenter.py:365
+msgid "HELP_Horizontal alignment for count / size"
+msgstr "ΒΟΗΘΕΙΑ_Οριζόντια στοίχιση για αριθμό / μέγεθος"
+
+#: EnhancedMovieCenter.py:366
+msgid "Show directory size in skin"
+msgstr "Εμφάνιση μεγέθους φακέλου στο θέμα"
+
+#: EnhancedMovieCenter.py:366
+msgid "HELP_Show directory size in skin"
+msgstr "ΒΟΗΘΕΙΑ_Εμφάνιση μεγέθους φακέλου στο θέμα"
+
+#: EnhancedMovieCenter.py:368
+msgid "Show Latest Recordings directory"
+msgstr "Εμφάνιση φακέλου Τελευταίων Εγγραφών"
+
+#: EnhancedMovieCenter.py:368
+msgid "HELP_Show Latest Recordings directory"
+msgstr "ΒΟΗΘΕΙΑ_Εμφάνιση φακέλου Τελευταίων Εγγραφών"
+
+#: EnhancedMovieCenter.py:369
+msgid "Latest Recordings directory limit"
+msgstr "Όριο φακέλου Τελευταίων Εγγραφών"
+
+#: EnhancedMovieCenter.py:369
+msgid "HELP_Latest Recordings directory limit"
+msgstr "ΒΟΗΘΕΙΑ_Όριο φακέλου Τελευταίων Εγγραφών"
+
+#: EnhancedMovieCenter.py:370
+msgid "Latest Recordings directory use emc-noscan.cfg"
+msgstr "Χρήση του emc-noscan.cfg για το φάκελο Τελευταίων Εγγραφών"
+
+#: EnhancedMovieCenter.py:370
+msgid "HELP_Latest Recordings directory use emc-noscan.cfg"
+msgstr "ΒΟΗΘΕΙΑ_Χρήση του emc-noscan.cfg για το φάκελο Τελευταίων Εγγραφών"
+
+#: EnhancedMovieCenter.py:371
+msgid "Show VLC directory"
+msgstr "Εμφάνιση φακέλου VLC"
+
+#: EnhancedMovieCenter.py:371
+msgid "HELP_Show VLC directory"
+msgstr "ΒΟΗΘΕΙΑ_Εμφάνιση φακέλου VLC"
+
+#: EnhancedMovieCenter.py:372
+msgid "Show Bookmarks in movielist"
+msgstr "Εμφάνιση Σελιδοδεικτών στη λίστα ταινιών"
+
+#: EnhancedMovieCenter.py:372
+msgid "HELP_Show Bookmarks in movielist"
+msgstr "ΒΟΗΘΕΙΑ_Εμφάνιση Σελιδοδεικτών στη λίστα ταινιών"
+
+#: EnhancedMovieCenter.py:373
+msgid "Use cache for files and directories"
+msgstr "Χρήση προσωρινής μνήμης για αρχεία και φακέλους"
+
+#: EnhancedMovieCenter.py:373
+msgid "HELP_Use cache for files and directories"
+msgstr "ΒΟΗΘΕΙΑ_Χρήση προσωρινής μνήμης για αρχεία και φακέλους"
+
+#: EnhancedMovieCenter.py:374
+msgid "Minimum file cache limit (0=cache everything)"
+msgstr ""
+"Ελάχιστο όριο μεγέθους προσωρινής αποθήκευσης αρχείου (0= αποθήκευση όλων)"
+
+#: EnhancedMovieCenter.py:374
+msgid "HELP_Minimum file cache limit"
+msgstr "ΒΟΗΘΕΙΑ_Ελάχιστο όριο προφόρτωσης αρχείου"
+
+#: EnhancedMovieCenter.py:375
+msgid "Show experimental options"
+msgstr "Εμφάνιση πειραματικών επιλογών"
+
+#: EnhancedMovieCenter.py:375
+msgid "HELP_Show experimental options"
+msgstr "ΒΟΗΘΕΙΑ_Εμφάνιση πειραματικών επιλογών"
+
+#: EnhancedMovieCenter.py:376
+msgid "Don't auto scan size of dirs from emc-noscan.cfg"
+msgstr ""
+"Να μη γίνεται αυτόματη ανίχνευση του μεγέθους των φακέλων από το emc-noscan."
+"cfg"
+
+#: EnhancedMovieCenter.py:376
+msgid "HELP_Don't auto scan size of dirs from emc-noscan.cfg"
+msgstr ""
+"ΒΟΗΘΕΙΑ_Να μη γίνεται αυτόματη ανίχνευση του μεγέθους των φακέλων από το emc-"
+"noscan.cfg"
+
+#: EnhancedMovieCenter.py:377
+msgid "After file OPs only re-scan affected dirs"
+msgstr "Μετά τις ενέργειες των αρχείων, επανασάρωση  μόνο των σχετικών φακέλων"
+
+#: EnhancedMovieCenter.py:377
+msgid "HELP_After file OPs only re-scan affected dirs"
+msgstr ""
+"ΒΟΗΘΕΙΑ_Μετά τις ενέργειες των αρχείων, επανασάρωση  μόνο των σχετικών "
+"φακέλων"
+
+#: EnhancedMovieCenter.py:378
+msgid "Wake device when entering dir from emc-noscan.cfg"
+msgstr "Αφύπνιση συσκευής κατά την εισαγωγή φακέλου από το emc-noscan.cfg"
+
+#: EnhancedMovieCenter.py:378
+msgid "HELP_Wake device when entering dir from emc-noscan.cfg"
+msgstr ""
+"ΒΟΗΘΕΙΑ_Αφύπνιση συσκευής κατά την εισαγωγή φακέλου από το emc-noscan.cfg"
+
+#: EnhancedMovieCenter.py:379
+msgid "Limit file operations in dirs from emc-noscan.cfg"
+msgstr "Περιορισμός ενεργειών αρχείου σε φακέλους του emc-noscan.cfg"
+
+#: EnhancedMovieCenter.py:379
+msgid "HELP_Limit file operations in dirs from emc-noscan.cfg"
+msgstr "ΒΟΗΘΕΙΑ_Περιορισμός ενεργειών αρχείου σε φακέλους του emc-noscan.cfg"
+
+#: EnhancedMovieCenter.py:380
+msgid "HELP_separator_hide&performance"
+msgstr "ΒΟΗΘΕΙΑ_απόκρυψη διαχωριστή και επιδόσεις"
+
+#: EnhancedMovieCenter.py:381
+msgid "Hide configured entries"
+msgstr "Απόκρυψη ρυθμισμένων στοιχείων"
+
+#: EnhancedMovieCenter.py:381
+msgid "HELP_cfghide_enable"
+msgstr "ΒΟΗΘΕΙΑ_ενεργοποίηση_απόκρυψης_cfg"
+
+#: EnhancedMovieCenter.py:382
+msgid "Scan for DVD structures"
+msgstr "Ανίχνευση δομών DVD"
+
+#: EnhancedMovieCenter.py:382
+msgid "HELP_Scan for DVD structures"
+msgstr "ΒΟΗΘΕΙΑ_Ανίχνευση δομών DVD"
+
+#: EnhancedMovieCenter.py:383
+msgid "Scan for movie structures"
+msgstr "Ανίχνευση δομών ταινιών"
+
+#: EnhancedMovieCenter.py:383
+msgid "HELP_Scan for movie structures"
+msgstr "ΒΟΗΘΕΙΑ_Ανίχνευση δομών ταινιών"
+
+#: EnhancedMovieCenter.py:384
+msgid "Scan for bluray structures"
+msgstr "Ανίχνευση δομών bluray"
+
+#: EnhancedMovieCenter.py:384
+msgid "HELP_Scan for bluray structures"
+msgstr "ΒΟΗΘΕΙΑ_Ανίχνευση δομών bluray"
+
+#: EnhancedMovieCenter.py:385
+msgid "Scan for bluray structures in .iso"
+msgstr "Ανίχνευση δομών bluray στο .iso"
+
+#: EnhancedMovieCenter.py:385
+msgid "HELP_Scan for bluray structures in .iso"
+msgstr "ΒΟΗΘΕΙΑ_Ανίχνευση δομών bluray στο .iso"
+
+#: EnhancedMovieCenter.py:386
+msgid "Suppress scan in selected folders"
+msgstr "Παράκαμψη ανίχνευσης σε επιλεγμένους φακέλους"
+
+#: EnhancedMovieCenter.py:386
+msgid "HELP_cfgscan_suppress"
+msgstr "ΒΟΗΘΕΙΑ_καταστολή_ανίχνευσης_cfg"
+
+#: EnhancedMovieCenter.py:387
+msgid "Scan linked folders"
+msgstr "Αναζήτηση σε συνδεδεμένους φακέλους"
+
+#: EnhancedMovieCenter.py:387
+msgid "HELP_scan_linked"
+msgstr "ΒΟΗΘΕΙΑ_ανίχνευση_συνδεδεμένων"
+
+#: EnhancedMovieCenter.py:390
+msgid "Try to load titles from .meta files"
+msgstr "Προσπάθεια φόρτωσης τίτλων από αρχεία .meta"
+
+#: EnhancedMovieCenter.py:390
+msgid "HELP_Try to load titles from .meta files"
+msgstr "ΒΟΗΘΕΙΑ_Προσπάθεια φόρτωσης τίτλων από αρχεία .meta"
+
+#: EnhancedMovieCenter.py:391
+msgid "Load all for non showing titles from .meta files"
+msgstr "Φόρτωση όλων για μη εμφανιζόμενους τίτλους από αρχεία .meta"
+
+#: EnhancedMovieCenter.py:391
+msgid "HELP_Load all for non showing titles from .meta files"
+msgstr "ΒΟΗΘΕΙΑ_Φόρτωση όλων για μη εμφανιζόμενους τίτλους από αρχεία .meta"
+
+#: EnhancedMovieCenter.py:392
+msgid "Try to load titles from .eit files"
+msgstr "Προσπάθεια φόρτωσης τίτλων από αρχεία .eit"
+
+#: EnhancedMovieCenter.py:392
+msgid "HELP_Try to load titles from .eit files"
+msgstr "ΒΟΗΘΕΙΑ_Προσπάθεια φόρτωσης τίτλων από αρχεία .eit"
+
+#: EnhancedMovieCenter.py:393
+msgid "Replace special chars in title"
+msgstr "Αντικατάσταση ειδικών χαρακτήρων στον τίτλο"
+
+#: EnhancedMovieCenter.py:393
+msgid "HELP_Replace special chars in title"
+msgstr "ΒΟΗΘΕΙΑ_Αντικατάσταση ειδικών χαρακτήρων στον τίτλο"
+
+#: EnhancedMovieCenter.py:394
+msgid "Show Movie Format"
+msgstr "Εμφάνιση Φορμά Ταινίας"
+
+#: EnhancedMovieCenter.py:394
+msgid "HELP_Show Movie Format"
+msgstr "ΒΟΗΘΕΙΑ_Εμφάνιση Φορμά Ταινίας"
+
+#: EnhancedMovieCenter.py:395
+msgid "Show Cut-Nr if exist"
+msgstr "Εμφάνιση αριθμού Αποκοπής αν υπάρχει"
+
+#: EnhancedMovieCenter.py:395
+msgid "HELP_Show Cut-Nr if exist"
+msgstr "ΒΟΗΘΕΙΑ_Εμφάνιση αριθμού Αποκοπής αν υπάρχει"
+
+#: EnhancedMovieCenter.py:396
+msgid "Resolve links and show real path"
+msgstr "Ανάλυση συνδέσμων και εμφάνιση πραγματικής διαδρομής"
+
+#: EnhancedMovieCenter.py:396
+msgid "HELP_Resolve links and show real path"
+msgstr "ΒΟΗΘΕΙΑ_Ανάλυση συνδέσμων και εμφάνιση πραγματικής διαδρομής"
+
+#: EnhancedMovieCenter.py:397
+msgid "Show Path if no extended description available"
+msgstr "Εμφάνιση Διαδρομής αν δεν διατίθεται εκτεταμένη περιγραφή"
+
+#: EnhancedMovieCenter.py:397
+msgid "HELP_Show Path if no extended description available"
+msgstr "ΒΟΗΘΕΙΑ_Εμφάνιση Διαδρομής αν δεν διατίθεται εκτεταμένη περιγραφή"
+
+#: EnhancedMovieCenter.py:400
+msgid "Listbox is skin able"
+msgstr "Η λίστα μπορεί να θεματοποιηθεί"
+
+#: EnhancedMovieCenter.py:400
+msgid "HELP_Listbox is skin able"
+msgstr "ΒΟΗΘΕΙΑ_Η λίστα μπορεί να θεματοποιηθεί"
+
+#: EnhancedMovieCenter.py:402
+msgid "Date format"
+msgstr "Μορφή ημερομηνίας"
+
+#: EnhancedMovieCenter.py:402
+msgid "HELP_Date format"
+msgstr "ΒΟΗΘΕΙΑ_Μορφή ημερομηνίας"
+
+#: EnhancedMovieCenter.py:404
+msgid "Show movie icons"
+msgstr "Εμφάνιση εικονιδίων ταινιών"
+
+#: EnhancedMovieCenter.py:404
+msgid "HELP_Show movie icons"
+msgstr "ΒΟΗΘΕΙΑ_Εμφάνιση εικονιδίων ταινιών"
+
+#: EnhancedMovieCenter.py:405
+msgid "Show link arrow"
+msgstr "Εμφάνιση βέλους συντόμευσης"
+
+#: EnhancedMovieCenter.py:405
+msgid "HELP_Show link arrow"
+msgstr "ΒΟΗΘΕΙΑ_Εμφάνιση βέλους συντόμευσης"
+
+#: EnhancedMovieCenter.py:407
+msgid "Show movie picons"
+msgstr "Εμφάνιση λογότυπων ταινιών"
+
+#: EnhancedMovieCenter.py:407
+msgid "HELP_Show movie picons"
+msgstr "ΒΟΗΘΕΙΑ_Εμφάνιση λογότυπων ταινιών"
+
+#: EnhancedMovieCenter.py:409
+msgid "Position movie picons"
+msgstr "Θέση λογοτύπων ταινιών"
+
+#: EnhancedMovieCenter.py:409
+msgid "HELP_Position movie picons"
+msgstr "ΒΟΗΘΕΙΑ_Θέση λογοτύπων ταινιών"
+
+#: EnhancedMovieCenter.py:410
+msgid "Own Path to movie picons"
+msgstr "Διαδρομή Χρήστη λογότυπων ταινιών"
+
+#: EnhancedMovieCenter.py:410
+msgid "HELP_Own Path to movie picons"
+msgstr "ΒΟΗΘΕΙΑ_Διαδρομή Χρήστη λογότυπων ταινιών"
+
+#: EnhancedMovieCenter.py:411
+msgid "Path to movie picons"
+msgstr "Διαδρομή λογότυπων ταινιών"
+
+#: EnhancedMovieCenter.py:411
+msgid "HELP_Path to movie picons"
+msgstr "ΒΟΗΘΕΙΑ_Διαδρομή λογότυπων ταινιών"
+
+#: EnhancedMovieCenter.py:413
+msgid "Show movie progress"
+msgstr "Εμφάνιση προόδου ταινίας"
+
+#: EnhancedMovieCenter.py:413
+msgid "HELP_Show movie progress"
+msgstr "ΒΟΗΘΕΙΑ_Εμφάνιση προόδου ταινίας"
+
+#: EnhancedMovieCenter.py:414
+msgid "Short watching percent"
+msgstr "Σύντομο ποσοστό παρακολούθησης"
+
+#: EnhancedMovieCenter.py:414
+msgid "HELP_Short watching percent"
+msgstr "ΒΟΗΘΕΙΑ_Σύντομο ποσοστό παρακολούθησης"
+
+#: EnhancedMovieCenter.py:415
+msgid "Finished watching percent"
+msgstr "Ποσοστό ολοκλήρωσης παρακολούθησης"
+
+#: EnhancedMovieCenter.py:415
+msgid "HELP_Finished watching percent"
+msgstr "ΒΟΗΘΕΙΑ_Ποσοστό ολοκλήρωσης παρακολούθησης"
+
+#: EnhancedMovieCenter.py:416
+msgid "Mark new recordings with a star"
+msgstr "Μαρκάρισμα νέων εγγραφών με αστέρι"
+
+#: EnhancedMovieCenter.py:416
+msgid "HELP_Mark new recordings with a star"
+msgstr "ΒΟΗΘΕΙΑ_Μαρκάρισμα νέων εγγραφών με αστέρι"
+
+#: EnhancedMovieCenter.py:417 MovieSelection.py:1696 MovieSelection.py:1712
+#: MovieSelection.py:1728
+msgid "Show Cover"
+msgstr "Εμφάνιση Εξωφύλλου"
+
+#: EnhancedMovieCenter.py:417
+msgid "HELP_Show Cover"
+msgstr "ΒΟΗΘΕΙΑ_Εμφάνιση Εξωφύλλου"
+
+#: EnhancedMovieCenter.py:418 MovieInfo.py:724
+msgid "Cover delay in ms"
+msgstr "Καθυστέρηση εξωφύλλου σε ms"
+
+#: EnhancedMovieCenter.py:418
+msgid "HELP_Cover delay in ms"
+msgstr "ΒΟΗΘΕΙΑ_Καθυστέρηση εξωφύλλου σε ms"
+
+#: EnhancedMovieCenter.py:419
+msgid "Cover background"
+msgstr "Φόντο εξωφύλλου"
+
+#: EnhancedMovieCenter.py:419
+msgid "HELP_Cover background"
+msgstr "ΒΟΗΘΕΙΑ_Φόντο εξωφύλλου"
+
+#: EnhancedMovieCenter.py:420
+msgid "Show fallback cover"
+msgstr "Εμφάνιση εναλλακτικού εξωφύλλου"
+
+#: EnhancedMovieCenter.py:420
+msgid "HELP_Fallback Cover"
+msgstr "ΒΟΗΘΕΙΑ_Εναλλακτικό Εξώφυλλο"
+
+#: EnhancedMovieCenter.py:422
+msgid "Show movie preview"
+msgstr "Εμφάνιση προεπισκόπησης ταινίας"
+
+#: EnhancedMovieCenter.py:422
+msgid "HELP_Show movie preview"
+msgstr "ΒΟΗΘΕΙΑ_Εμφάνιση προεπισκόπησης ταινίας"
+
+#: EnhancedMovieCenter.py:423
+msgid "Movie preview delay in ms"
+msgstr "Καθυστέρηση προεπισκόπησης ταινίας σε ms"
+
+#: EnhancedMovieCenter.py:423
+msgid "HELP_Movie preview delay in ms"
+msgstr "ΒΟΗΘΕΙΑ_Καθυστέρηση προεπισκόπησης ταινίας σε ms"
+
+#: EnhancedMovieCenter.py:424
+msgid "Start movie preview before last position"
+msgstr "Εκκίνηση προεπισκόπησης ταινίας πριν την τελευταία θέση"
+
+#: EnhancedMovieCenter.py:424
+msgid "HELP_Movie preview offset in seconds"
+msgstr "ΒΟΗΘΕΙΑ_Καθυστέρηση προεπισκόπησης ταινίας σε δευτερόλεπτα"
+
+#: EnhancedMovieCenter.py:427
+msgid "No resume below 10 seconds"
+msgstr "Χωρίς επανασυνέχιση κάτω των 10 δευτερολέπτων"
+
+#: EnhancedMovieCenter.py:427
+msgid "HELP_No resume below 10 seconds"
+msgstr "ΒΟΗΘΕΙΑ_Χωρίς επανασυνέχιση κάτω των 10 δευτερολέπτων"
+
+#: EnhancedMovieCenter.py:428
+msgid "Jump to first mark when playing movie"
+msgstr "Μετάβαση στον πρώτο σημειωτή κατά την αναπαραγωγή της ταινίας"
+
+#: EnhancedMovieCenter.py:428
+msgid "HELP_Jump to first mark when playing movie"
+msgstr "ΒΟΗΘΕΙΑ_Μετάβαση στον πρώτο σημειωτή κατά την αναπαραγωγή της ταινίας"
+
+#: EnhancedMovieCenter.py:429
+msgid "Rewind finished movies before playing"
+msgstr "Προώθηση προς τα πίσω των ολοκληρωμένων ταινιών πριν την αναπαραγωγή"
+
+#: EnhancedMovieCenter.py:429
+msgid "HELP_Rewind finished movies before playing"
+msgstr ""
+"ΒΟΗΘΕΙΑ_Προώθηση προς τα πίσω των ολοκληρωμένων ταινιών πριν την αναπαραγωγή"
+
+#: EnhancedMovieCenter.py:430
+msgid "Always save last played progress as marker"
+msgstr "Πάντα αποθήκευση της τελευταίας αναπαραγώμενης προόδου ως σημειωτής"
+
+#: EnhancedMovieCenter.py:430
+msgid "HELP_Always save last played progress as marker"
+msgstr ""
+"ΒΟΗΘΕΙΑ_Πάντα αποθήκευση της τελευταίας αναπαραγώμενης προόδου ως σημειωτής"
+
+#: EnhancedMovieCenter.py:431
+msgid "Zap to channel after record EOF"
+msgstr "Μετάβαση στο κανάλι μετά την εγγραφή του EOF"
+
+#: EnhancedMovieCenter.py:431
+msgid "HELP_Zap to channel after record EOF"
+msgstr "ΒΟΗΘΕΙΑ_Μετάβαση στο κανάλι μετά την εγγραφή του EOF"
+
+#: EnhancedMovieCenter.py:432
+msgid "Show real length of running records"
+msgstr "Εμφάνιση πραγματικής διάρκειας των εκτελούμενων εγγραφών"
+
+#: EnhancedMovieCenter.py:432
+msgid "HELP_Show real length of running records"
+msgstr "ΒΟΗΘΕΙΑ_Εμφάνιση πραγματικής διάρκειας των εκτελούμενων εγγραφών"
+
+#: EnhancedMovieCenter.py:436
+msgid "Download cutlist from Cutlist.at"
+msgstr "Λήψη λίστας αποκοπών από το Cutlist.at"
+
+#: EnhancedMovieCenter.py:436
+msgid "HELP_Download cutlist from Cutlist.at"
+msgstr "ΒΟΗΘΕΙΑ_Λήψη λίστας αποκοπών από το Cutlist.at"
+
+#: EnhancedMovieCenter.py:440
+msgid "HELP_separator_Trashcan settings"
+msgstr "ΒΟΗΘΕΙΑ_Διαχωριστής_Ρυθμίσεις κάδου αχρήστων"
+
+#: EnhancedMovieCenter.py:441
+msgid "Trashcan enable"
+msgstr "Ενεργοποίηση κάδου αχρήστων"
+
+#: EnhancedMovieCenter.py:441
+msgid "HELP_Trashcan enable"
+msgstr "ΒΟΗΘΕΙΑ_Ενεργοποίηση κάδου αχρήστων"
+
+#: EnhancedMovieCenter.py:442
+msgid "Trashcan path"
+msgstr "Διαδρομή κάδου αχρήστων"
+
+#: EnhancedMovieCenter.py:442
+msgid "HELP_Trashcan path"
+msgstr "ΒΟΗΘΕΙΑ_Διαδρομή κάδου αχρήστων"
+
+#: EnhancedMovieCenter.py:443
+msgid "Show trashcan directory"
+msgstr "Εμφάνιση φακέλου κάδου αχρήστων"
+
+#: EnhancedMovieCenter.py:443
+msgid "HELP_Show trashcan directory"
+msgstr "ΒΟΗΘΕΙΑ_Εμφάνιση φακέλου κάδου αχρήστων"
+
+#: EnhancedMovieCenter.py:444
+msgid "Show trashcan information"
+msgstr "Εμφάνιση πληροφοριών κάδου αχρήστων"
+
+#: EnhancedMovieCenter.py:444
+msgid "HELP_Dynamic trashcan"
+msgstr "ΒΟΗΘΕΙΑ_Δυναμικός κάδος αχρήστων"
+
+#: EnhancedMovieCenter.py:445
+msgid "Delete validation"
+msgstr "Επιβεβαίωση διαγραφής"
+
+#: EnhancedMovieCenter.py:445
+msgid "HELP_Delete validation"
+msgstr "ΒΟΗΘΕΙΑ_Επιβεβαίωση διαγραφής"
+
+#: EnhancedMovieCenter.py:447
+msgid "Enable daily trashcan cleanup"
+msgstr "Ενεργοποίηση καθημερινής εκκαθάρισης του κάδου αχρήστων"
+
+#: EnhancedMovieCenter.py:447
+msgid "HELP_Enable daily trashcan cleanup"
+msgstr "ΒΟΗΘΕΙΑ_Ενεργοποίηση καθημερινής εκκαθάρισης του κάδου αχρήστων"
+
+#: EnhancedMovieCenter.py:448
+msgid "Daily cleanup time"
+msgstr "Ώρα καθημερινής εκκαθάρισης"
+
+#: EnhancedMovieCenter.py:448
+msgid "HELP_Daily cleanup time"
+msgstr "ΒΟΗΘΕΙΑ_Ώρα καθημερινής εκκαθάρισης"
+
+#: EnhancedMovieCenter.py:449
+msgid "How many days files may remain in trashcan"
+msgstr "Πόσες ημέρες τα αρχεία θα παραμένουν στον κάδο αχρήστων"
+
+#: EnhancedMovieCenter.py:449
+msgid "HELP_How many days files may remain in trashcan"
+msgstr "ΒΟΗΘΕΙΑ_Πόσες ημέρες τα αρχεία θα παραμένουν στον κάδο αχρήστων"
+
+#: EnhancedMovieCenter.py:450
+msgid "Move finished movies in trashcan"
+msgstr "Μετακίνηση των ολοκληρωμένων ταινιών στον κάδο αχρήστων"
+
+#: EnhancedMovieCenter.py:450
+msgid "HELP_Move finished movies in trashcan"
+msgstr "ΒΟΗΘΕΙΑ_Μετακίνηση των ολοκληρωμένων ταινιών στον κάδο αχρήστων"
+
+#: EnhancedMovieCenter.py:451
+msgid "Age of finished movies in movie folder (days)"
+msgstr "Χρονικό διάστημα των ολοκληρωμένων ταινιών στο φάκελο ταινιών (ημέρες)"
+
+#: EnhancedMovieCenter.py:451
+msgid "HELP_Age of finished movies in movie folder (days)"
+msgstr ""
+"ΒΟΗΘΕΙΑ_Χρονικό διάστημα των ολοκληρωμένων ταινιών στο φάκελο ταινιών "
+"(ημέρες)"
+
+#: EnhancedMovieCenter.py:454
+msgid "Display directory reading text"
+msgstr "Εμφάνιση κειμένου ανάγνωσης φακέλου"
+
+#: EnhancedMovieCenter.py:454
+msgid "HELP_Display directory reading text"
+msgstr "ΒΟΗΘΕΙΑ_Εμφάνιση κειμένου ανάγνωσης φακέλου"
+
+#: EnhancedMovieCenter.py:455
+msgid "EMC always reload after open"
+msgstr "Πάντα επαναφόρτωση του EMC μετά το άνοιγμα"
+
+#: EnhancedMovieCenter.py:455
+msgid "HELP_EMC always reload after open"
+msgstr "ΒΟΗΘΕΙΑ_Πάντα επαναφόρτωση του EMC μετά το άνοιγμα"
+
+#: EnhancedMovieCenter.py:456
+msgid "EMC re-open list after STOP-press"
+msgstr "EMC άνοιγμα ξανά της λίστας μετά την πίεση του STOP"
+
+#: EnhancedMovieCenter.py:456
+msgid "HELP_EMC re-open list after STOP-press"
+msgstr "ΒΟΗΘΕΙΑ_EMC άνοιγμα ξανά της λίστας μετά την πίεση του STOP"
+
+#: EnhancedMovieCenter.py:457
+msgid "EMC re-open list after Movie end"
+msgstr "EMC άνοιγμα ξανά της λίστας μετά το τέλος της Ταινίας"
+
+#: EnhancedMovieCenter.py:457
+msgid "HELP_EMC re-open list after Movie end"
+msgstr "ΒΟΗΘΕΙΑ_EMC άνοιγμα ξανά της λίστας μετά το τέλος της Ταινίας"
+
+#: EnhancedMovieCenter.py:459
+msgid "Leave Movie with Exit"
+msgstr "Έξοδος από την Ταινία με το Exit"
+
+#: EnhancedMovieCenter.py:459
+msgid "HELP_Leave Movie with Exit"
+msgstr "ΒΟΗΘΕΙΑ_Έξοδος από την Ταινία με το Exit"
+
+#: EnhancedMovieCenter.py:461
+msgid "Hide movies being moved"
+msgstr "Απόκρυψη ταινιών που μετακινούνται"
+
+#: EnhancedMovieCenter.py:461
+msgid "HELP_Hide movies being moved"
+msgstr "ΒΟΗΘΕΙΑ_Απόκρυψη ταινιών που μετακινούνται"
+
+#: EnhancedMovieCenter.py:462
+msgid "Hide movies being deleted"
+msgstr "Απόκρυψη ταινιών που διαγράφονται"
+
+#: EnhancedMovieCenter.py:462
+msgid "HELP_Hide movies being deleted"
+msgstr "ΒΟΗΘΕΙΑ_Απόκρυψη ταινιών που διαγράφονται"
+
+#: EnhancedMovieCenter.py:464
+msgid "Enable remote recordings"
+msgstr "Ενεργοποίηση απομακρυσμένων εγγραφών"
+
+#: EnhancedMovieCenter.py:464
+msgid "HELP_Enable remote recordings"
+msgstr "ΒΟΗΘΕΙΑ_Ενεργοποίηση απομακρυσμένων εγγραφών"
+
+#: EnhancedMovieCenter.py:465
+msgid "Automatic timers list cleaning"
+msgstr "Εκκαθάριση λίστας αυτόματων χρονοδιακοπτών"
+
+#: EnhancedMovieCenter.py:465
+msgid "HELP_Automatic timers list cleaning"
+msgstr "ΒΟΗΘΕΙΑ_Εκκαθάριση λίστας αυτόματων χρονοδιακοπτών"
+
+#: EnhancedMovieCenter.py:467
+msgid "HELP_Language Separator"
+msgstr "ΒΟΗΘΕΙΑ_Διαχωριστής Γλώσσας"
+
+#: EnhancedMovieCenter.py:468
+msgid "Preferred EPG language"
+msgstr "Προτιμώμενη γλώσσα EPG"
+
+#: EnhancedMovieCenter.py:468
+msgid "HELP_Preferred EPG language"
+msgstr "ΒΟΗΘΕΙΑ_Προτιμώμενη γλώσσα EPG"
+
+#: EnhancedMovieCenter.py:469
+msgid "Extra support for language"
+msgstr "Πρόσθετη υποστήριξη για τη γλώσσα"
+
+#: EnhancedMovieCenter.py:469
+msgid "HELP_Extra support for selected language"
+msgstr "ΒΟΗΘΕΙΑ_Πρόσθετη υποστήριξη για τη γλώσσα"
+
+#: EnhancedMovieCenter.py:470
+msgid "Enable playback auto-subtitling"
+msgstr "Ενεργοποίηση αυτόματων υποτίτλων κατά την αναπαραγωγή"
+
+#: EnhancedMovieCenter.py:470
+msgid "HELP_Enable playback auto-subtitling"
+msgstr "ΒΟΗΘΕΙΑ_Ενεργοποίηση αυτόματων υποτίτλων κατά την αναπαραγωγή"
+
+#: EnhancedMovieCenter.py:471
+msgid "Primary playback subtitle language"
+msgstr "Κύρια γλώσσα υπότιτλου αναπαραγωγής"
+
+#: EnhancedMovieCenter.py:471
+msgid "HELP_Primary playback subtitle language"
+msgstr "ΒΟΗΘΕΙΑ_Κύρια γλώσσα υπότιτλου αναπαραγωγής"
+
+#: EnhancedMovieCenter.py:472
+msgid "Secondary playback subtitle language"
+msgstr "Δεύτερη γλώσσα υπότιτλου αναπαραγωγής"
+
+#: EnhancedMovieCenter.py:472
+msgid "HELP_Secondary playback subtitle language"
+msgstr "ΒΟΗΘΕΙΑ_Δεύτερη γλώσσα υπότιτλου αναπαραγωγής"
+
+#: EnhancedMovieCenter.py:473
+msgid "Tertiary playback subtitle language"
+msgstr "Τρίτη γλώσσα υπότιτλου αναπαραγωγής"
+
+#: EnhancedMovieCenter.py:473
+msgid "HELP_Tertiary playback subtitle language"
+msgstr "ΒΟΗΘΕΙΑ_Τρίτη γλώσσα υπότιτλου αναπαραγωγής"
+
+#: EnhancedMovieCenter.py:474
+msgid "Enable playback auto-language selection"
+msgstr "Ενεργοποίηση αυτόματης επιλογής γλώσσας αναπαραγωγής"
+
+#: EnhancedMovieCenter.py:474
+msgid "HELP_Enable playback auto-language selection"
+msgstr "ΒΟΗΘΕΙΑ_Ενεργοποίηση αυτόματης επιλογής γλώσσας αναπαραγωγής"
+
+#: EnhancedMovieCenter.py:475
+msgid "Enable playback AC3-track first"
+msgstr "Ενεργοποίηση πρώτα της φέρουσας AC3"
+
+#: EnhancedMovieCenter.py:475
+msgid "HELP_Enable playback AC3-track first"
+msgstr "ΒΟΗΘΕΙΑ_Ενεργοποίηση πρώτα της φέρουσας AC3"
+
+#: EnhancedMovieCenter.py:476
+msgid "Primary playback audio language"
+msgstr "Κύρια γλώσσα ήχου αναπαραγωγής"
+
+#: EnhancedMovieCenter.py:476
+msgid "HELP_Primary playback audio language"
+msgstr "ΒΟΗΘΕΙΑ_Κύρια γλώσσα ήχου αναπαραγωγής"
+
+#: EnhancedMovieCenter.py:477
+msgid "Secondary playback audio language"
+msgstr "Δεύτερη γλώσσα ήχου αναπαραγωγής"
+
+#: EnhancedMovieCenter.py:477
+msgid "HELP_Secondary playback audio language"
+msgstr "ΒΟΗΘΕΙΑ_Δεύτερη γλώσσα ήχου αναπαραγωγής"
+
+#: EnhancedMovieCenter.py:478
+msgid "Tertiary playback audio language"
+msgstr "Τρίτη γλώσσα υπότιτλου αναπαραγωγής"
+
+#: EnhancedMovieCenter.py:478
+msgid "HELP_Tertiary playback audio language"
+msgstr "ΒΟΗΘΕΙΑ_Τρίτη γλώσσα υπότιτλου αναπαραγωγής"
+
+#: EnhancedMovieCenter.py:480 EnhancedMovieCenter.py:485
+#: EnhancedMovieCenter.py:511
+msgid "HELP_Advanced options separator"
+msgstr "ΒΟΗΘΕΙΑ_Προχωρημένος διαχωριστής επιλογών"
+
+#: EnhancedMovieCenter.py:481
+msgid "Description field update delay"
+msgstr "Καθυστέρηση ενημέρωσης πλαισίου περιγραφής"
+
+#: EnhancedMovieCenter.py:481
+msgid "HELP_Description field update delay"
+msgstr "ΒΟΗΘΕΙΑ_Καθυστέρηση ενημέρωσης πλαισίου περιγραφής"
+
+#: EnhancedMovieCenter.py:482
+msgid "Key period value (50-900)"
+msgstr "Τιμή περιόδου πλήκτρου (50-900)"
+
+#: EnhancedMovieCenter.py:482
+msgid "HELP_Key period value (50-900)"
+msgstr "ΒΟΗΘΕΙΑ_Τιμή περιόδου πλήκτρου (50-900)"
+
+#: EnhancedMovieCenter.py:483
+msgid "Key repeat value (250-900)"
+msgstr "Τιμή επανάληψης πλήκτρου (250-900)"
+
+#: EnhancedMovieCenter.py:483
+msgid "HELP_Key repeat value (250-900)"
+msgstr "ΒΟΗΘΕΙΑ_Τιμή επανάληψης πλήκτρου (250-900)"
+
+#: EnhancedMovieCenter.py:486
+msgid "Show message if file added to playlist"
+msgstr "Εμφάνιση μηνύματος όταν ένα αρχείο προστίθεται στη λίστα αναπαραγωγής"
+
+#: EnhancedMovieCenter.py:486
+msgid "HELP_Show message if file added to playlist"
+msgstr ""
+"ΒΟΗΘΕΙΑ_Εμφάνιση μηνύματος όταν ένα αρχείο προστίθεται στη λίστα αναπαραγωγής"
+
+#: EnhancedMovieCenter.py:488
+msgid "HELP_Advanced Skin options separator"
+msgstr "ΒΟΗΘΕΙΑ_Προχωρημένος διαχωριστής επιλογών Θέματος"
+
+#: EnhancedMovieCenter.py:489
+msgid "Use original EMC-skin (needs reopen)"
+msgstr "Χρήση του αρχικού θέματος EMC (απαιτείται επανεκκίνηση)"
+
+#: EnhancedMovieCenter.py:489
+msgid "HELP_Use original EMC-skin (needs reopen)"
+msgstr "ΒΟΗΘΕΙΑ_Χρήση του αρχικού θέματος EMC (απαιτείται επανεκκίνηση)"
+
+#: EnhancedMovieCenter.py:492
+msgid "HELP_Advanced audio metadata options separator"
+msgstr "ΒΟΗΘΕΙΑ_Προχωρημένος διαχωριστής μεταδεδομένων ήχου"
+
+#: EnhancedMovieCenter.py:498
+msgid "Download Mutagen-package for audio metadata"
+msgstr "Λήψη πακέτου Mutagen για μεταδεδομένα ήχου"
+
+#: EnhancedMovieCenter.py:498
+msgid "HELP_Download Mutagen-package for audio metadata"
+msgstr "ΒΟΗΘΕΙΑ_Λήψη πακέτου Mutagen για μεταδεδομένα ήχου"
+
+#: EnhancedMovieCenter.py:504
+msgid "Show audio metadata (needs skin-changes)"
+msgstr "Εμφάνιση μεταταδεδομένων ήχου (απαιτούνται αλλαγές στο θέμα)"
+
+#: EnhancedMovieCenter.py:504
+msgid "HELP_Show audio metadata (needs skin-changes)"
+msgstr "ΒΟΗΘΕΙΑ_Εμφάνιση μεταταδεδομένων ήχου (απαιτούνται αλλαγές στο θέμα)"
+
+#: EnhancedMovieCenter.py:509
+msgid "Upgrade/Download Mutagen v1.28(experimental)"
+msgstr "Αναβάθμιση/Λήψη Mutagen v1.28 (πειραματικό)"
+
+#: EnhancedMovieCenter.py:509
+msgid "HELP_Upgrade/Download Mutagen v1.28(experimental)"
+msgstr "ΒΟΗΘΕΙΑ_Αναβάθμιση/Λήψη Mutagen v1.28 (πειραματικό)"
+
+#: EnhancedMovieCenter.py:512
+msgid "Enable EMC debug output"
+msgstr "Ενεργοποίηση εξόδου εκσφαλμάτωσης EMC"
+
+#: EnhancedMovieCenter.py:512
+msgid "HELP_Enable EMC debug output"
+msgstr "ΒΟΗΘΕΙΑ_Ενεργοποίηση εξόδου εκσφαλμάτωσης EMC"
+
+#: EnhancedMovieCenter.py:513
+msgid "EMC output directory"
+msgstr "EMC φάκελος εξόδου"
+
+#: EnhancedMovieCenter.py:513
+msgid "HELP_EMC output directory"
+msgstr "ΒΟΗΘΕΙΑ_EMC φάκελος εξόδου"
+
+#: EnhancedMovieCenter.py:514
+msgid "Debug output file name"
+msgstr "Όνομα αρχείου εξόδου εκσφαλμάτωσης"
+
+#: EnhancedMovieCenter.py:514
+msgid "HELP_Debug output file name"
+msgstr "ΒΟΗΘΕΙΑ_Όνομα αρχείου εξόδου εκσφαλμάτωσης"
+
+#: EnhancedMovieCenter.py:550 EnhancedMovieCenter.py:552
+msgid "Install Mutagen-package"
+msgstr "Εγκατάσταση πακέτου Mutagen"
+
+#: EnhancedMovieCenter.py:612
+msgid "Load default settings will overwrite all settings, really load them?"
+msgstr ""
+"Η φόρτωση των προεπιλεγμένων ρυθμίσεων θα διαγράψει όλες τις ρυθμίσεις, να "
+"γίνει σίγουρα φόρτωση;"
+
+#: EnhancedMovieCenter.py:702
+msgid "Some settings changes require GUI restart to take effect."
+msgstr ""
+"Μερικές αλλαγές στις ρυθμίσεις απαιτούν επανεκκίνηση της επιφάνειας χρήστη "
+"για να εφαρμοστούν."
+
+#: EnhancedMovieCenter.py:720
+msgid "Really close without saving settings?"
+msgstr "Έξοδος χωρίς αποθήκευση ρυθμίσεων;"
+
+#: EnhancedMovieCenter.py:738
+msgid "Select Location"
+msgstr "Επιλογή Τοποθεσίας"
+
+#: EnhancedMovieCenter.py:757
+#, python-format
+msgid "Given path %s does not exist. Please change."
+msgstr "Η διαδρομή %s δεν υπάρχει. Παρακαλώ αλλάξτε την."
+
+#: EnhancedMovieCenter.py:765 MovieSelection.py:2939
+msgid "Trashcan create failed. Check mounts and permissions."
+msgstr ""
+"Αποτυχία δημιουργίας κάδου αχρήστων. Ελέγξτε τις προσαρτήσεις και τα "
+"δικαιώματα."
+
+#: InfoBarSupport.py:112
+msgid "jump to previous marked position"
+msgstr "μετάβαση στην προηγούμενη μαρκαρισμένη θέση"
+
+#: InfoBarSupport.py:113
+msgid "jump to next marked position"
+msgstr "μετάβαση στην επόμενη μαρκαρισμένη θέση"
+
+#: InfoBarSupport.py:114
+msgid "toggle a cut mark at the current position"
+msgstr "εναλλαγή σημειωτή αποκοπής στην τρέχουσα θέση"
+
+#: InfoBarSupport.py:153 InfoBarSupport.py:155
+msgid "Do you want to resume this playback?"
+msgstr "Θέλετε να επανασυνεχίσετε την αναπαραγωγή;"
+
+#: InfoBarSupport.py:153 InfoBarSupport.py:155
+#, python-format
+msgid "Resume position at %s"
+msgstr "Συνέχιση από το %s"
+
+#: InfoBarSupport.py:157
+msgid "Resuming playback"
+msgstr "Επανασυνέχιση αναπαραγωγής"
+
+#: MovieCenter.py:1000
+msgid "trashcan"
+msgstr "κάδος αχρήστων"
+
+#: MovieCenter.py:1005
+msgid "Latest Recordings"
+msgstr "Τελευταίες Εγγραφές"
+
+#: MovieCenter.py:2304
+msgid "VLC"
+msgstr "VLC"
+
+#: MovieCenter.py:2310
+msgid "VLC-Server"
+msgstr "Διακομιστής VLC"
+
+#: MovieCenter.py:2316
+msgid "VLC-Dir"
+msgstr "Φάκελος VLC"
+
+#: MovieCenter.py:2322
+msgid "Latest"
+msgstr "Τελευταία"
+
+#: MovieCenter.py:2328
+msgid "Up"
+msgstr "Επάνω"
+
+#: MovieCenter.py:2334 MovieCenter.py:2340
+msgid "Bookmark"
+msgstr "Σελιδοδείκτης"
+
+#: MovieCenter.py:2360 MovieCenter.py:2371
+msgid "Trashcan"
+msgstr "Κάδος αχρήστων"
+
+#: MovieCenter.py:2460 MovieCenter.py:2468
+msgid "Directory"
+msgstr "Φάκελος"
+
+#: MovieCenter.py:2462
+msgid "Link"
+msgstr "Σύνδεση"
+
+#: MovieCenter.py:2464
+msgid "Collection"
+msgstr "Συλλογή"
+
+#: MovieCenter.py:2480
+msgid "UNKNOWN"
+msgstr "ΑΓΝΩΣΤΟ"
+
+#: MovieInfo.py:30
+msgid "German"
+msgstr "Γερμανικά"
+
+#: MovieInfo.py:30
+msgid "English"
+msgstr "Αγγλικά"
+
+#: MovieInfo.py:31 MovieInfo.py:32 MovieInfo.py:33 MovieInfo.py:34
+#: MovieInfo.py:35
+msgid "Yes"
+msgstr "Ναι"
+
+#: MovieInfo.py:31 MovieInfo.py:32 MovieInfo.py:33 MovieInfo.py:34
+#: MovieInfo.py:35 plugin.py:218 plugin.py:223 plugin.py:233 plugin.py:324
+msgid "No"
+msgstr "Όχι"
+
+#: MovieInfo.py:62
+msgid "Movies"
+msgstr "Ταινίες"
+
+#: MovieInfo.py:62 MovieInfo.py:66
+msgid " - "
+msgstr " - "
+
+#: MovieInfo.py:66
+msgid "TV Shows"
+msgstr "Τηλεοπτικά Σόου"
+
+#: MovieInfo.py:147 MovieInfo.py:202
+msgid "Content:"
+msgstr "Περιεχόμενο:"
+
+#: MovieInfo.py:147 MovieInfo.py:202 MovieInfo.py:518 MovieSelection.py:275
+msgid "Runtime:"
+msgstr "Χρονική διάρκεια:"
+
+#: MovieInfo.py:147 MovieInfo.py:202 MovieInfo.py:544
+msgid "Minutes"
+msgstr "Λεπτά"
+
+#: MovieInfo.py:147 MovieInfo.py:202 MovieInfo.py:519 MovieSelection.py:273
+msgid "Genre:"
+msgstr "Είδος:"
+
+#: MovieInfo.py:147 MovieInfo.py:202 MovieInfo.py:520
+msgid "Production Countries:"
+msgstr "Χώρες Παραγωγής:"
+
+#: MovieInfo.py:147 MovieInfo.py:202 MovieInfo.py:521
+msgid "Release Date:"
+msgstr "Ημερομηνία Κυκλοφορίας:"
+
+#: MovieInfo.py:147 MovieInfo.py:202 MovieInfo.py:522
+msgid "Vote:"
+msgstr "Βαθμολογία:"
+
+#: MovieInfo.py:164
+msgid "unknown"
+msgstr "άγνωστο"
+
+#: MovieInfo.py:269 MovieInfo.py:449 MovieInfo.py:461 MovieInfo.py:683
+msgid "Search results for:"
+msgstr "Αποτελέσματα αναζήτησης για:"
+
+#: MovieInfo.py:272
+msgid "Movie Info"
+msgstr "Πληροφορίες Ταινίας"
+
+#: MovieInfo.py:277
+msgid "movies found!"
+msgstr "ταινίες βρέθηκαν!"
+
+#: MovieInfo.py:280 MovieInfo.py:303 MovieInfo.py:335
+msgid "An error occured! Internet connection broken?"
+msgstr "Προέκυψε ένα σφάλμα! Προβληματική σύνδεση στο διαδίκτυο;"
+
+#: MovieInfo.py:283
+msgid "Movie Information Download (TMDb)"
+msgstr "Λήψη Πληροφοριών Ταινίας (TMDb)"
+
+#: MovieInfo.py:297 MovieInfo.py:574 MovieInfo.py:578
+msgid "Movie Information downloaded successfully!"
+msgstr "Επιτυχής λήψη Πληροφοριών Ταινίας"
+
+#: MovieInfo.py:308 MovieInfo.py:607
+#, python-format
+msgid ""
+"Cover %s exists!\n"
+"\n"
+"Do you want to replace the existing cover?"
+msgstr ""
+"Το εξώφυλλο %s υπάρχει!\n"
+"\n"
+"Θέλετε να αντικατασταθεί το υπάρχον εξώφυλλο;"
+
+#: MovieInfo.py:352 MovieInfo.py:459 MovieInfo.py:642
+msgid "Movie Information Preview for:"
+msgstr "Προεπισκόπηση Πληροφοριών Ταινίας για:"
+
+#: MovieInfo.py:366
+msgid "Movie Information Preview"
+msgstr "Προεπισκόπηση Πληροφοριών Ταινίας"
+
+#: MovieInfo.py:462
+msgid "Nothing was found !"
+msgstr "Δεν βρέθηκε τίποτα !"
+
+#: MovieInfo.py:495
+msgid "Movie Information TMDb"
+msgstr "Πληροφορίες Ταινίας TMDb"
+
+#: MovieInfo.py:570
+msgid "Movie Information and Cover downloaded successfully!"
+msgstr "Επιτυχής λήψη Πληροφοριών και Εξωφύλλου Ταινίας!"
+
+#: MovieInfo.py:576
+#, python-format
+msgid ""
+"Movie Information downloaded successfully!\n"
+"\n"
+"Can not write Movie Cover File\n"
+"\n"
+"%s"
+msgstr ""
+"Επιτυχής λήψη Πληροφοριών Ταινίας!\n"
+"\n"
+"Αδυναμία εγγραφής αρχείου Εξωφύλλου\n"
+"\n"
+"%s"
+
+#: MovieInfo.py:580
+#, python-format
+msgid ""
+"Movie Cover downloaded successfully!\n"
+"\n"
+"Can not write Movie Information File\n"
+"\n"
+"%s"
+msgstr ""
+"Επιτυχής λήψη Εξωφύλλου Ταινίας!\n"
+"\n"
+"Αδυναμία εγγραφής αρχείου Πληροφοριών Ταινίας\n"
+"\n"
+"%s"
+
+#: MovieInfo.py:582
+#, python-format
+msgid ""
+"Can not write Movie Information and Cover File\n"
+"\n"
+"%s\n"
+"%s"
+msgstr ""
+"Αδυναμία εγγραφής αρχείου Πληροφοριών Ταινίας και Εξωφύλλου\n"
+"\n"
+"%s\n"
+"%s"
+
+#: MovieInfo.py:584
+#, python-format
+msgid ""
+"Can not write Movie Information File\n"
+"\n"
+"%s"
+msgstr ""
+"Αδυναμία εγγραφής αρχείου Πληροφοριών Ταινίας\n"
+"\n"
+"%s"
+
+#: MovieInfo.py:715
+msgid "Language:"
+msgstr "Γλώσσα:"
+
+#: MovieInfo.py:716
+msgid "Load Runtime:"
+msgstr "Φόρτωση Χρονικής Διάρκειας:"
+
+#: MovieInfo.py:717
+msgid "Load Genre:"
+msgstr "Φόρτωση Είδους:"
+
+#: MovieInfo.py:718
+msgid "Load Production Countries:"
+msgstr "Φόρτωση Χωρών Παραγωγής:"
+
+#: MovieInfo.py:719
+msgid "Load Release Date:"
+msgstr "Φόρτωση Ημερομηνίας Κυκλοφορίας:"
+
+#: MovieInfo.py:720
+msgid "Load Vote:"
+msgstr "Φόρτωση Βαθμολογίας:"
+
+#: MovieInfo.py:721
+msgid "Save Cover"
+msgstr "Αποθήκευση Εξωφύλλου"
+
+#: MovieInfo.py:722
+msgid "Coversize"
+msgstr "Μέγεθος εξωφύλλου"
+
+#: MovieInfo.py:723
+msgid "Switch complete to new Version"
+msgstr "Αλλαγή ολοκληρωμένου στη νέα Έκδοση"
+
+#: MovieInfo.py:741
+msgid "Movie Information Download Setup"
+msgstr "Ρυθμίσεις Λήψης Πληροφοριών Ταινίας"
+
+#: MovieRetitle.py:27 MovieRetitle.py:63
+msgid "Location:"
+msgstr "Τοποθεσία:"
+
+#: MovieRetitle.py:78
+msgid "Foldername:"
+msgstr "Όνομα φακέλου:"
+
+#: MovieRetitle.py:80
+msgid "Filename:"
+msgstr "Όνομα αρχείου:"
+
+#: MovieRetitle.py:81
+msgid "Movietitle:"
+msgstr "Τίτλος ταινίας:"
+
+#: MovieRetitle.py:82
+msgid "Description:"
+msgstr "Περιγραφή:"
+
+#: MovieRetitle.py:112
+msgid "Change Foldername"
+msgstr "Αλλαγή ονόματος φακέλου"
+
+#: MovieRetitle.py:114
+msgid "Change File/Moviename and/or Description"
+msgstr "Αλλαγή Αρχείου/Ονόματος Ταινίας και/ή Περιγραφής"
+
+#: MovieSelection.py:103
+msgid ""
+"EMC: Skipping Trashcan Cleanup\n"
+"Movie Home Path is equal to or a subfolder of the Trashcan"
+msgstr ""
+"EMC: Παράκαμψη Εκκαθάρισης Κάδου Αχρήστων\n"
+"Η Κεντρική Διαδρομή Ταινιών είναι ίση με ή υποφάκελος του Κάδου Αχρήστων"
+
+#: MovieSelection.py:140
+msgid "EMC Trashcan Cleanup failed!"
+msgstr "Αποτυχία Εκκαθάρισης Κάδου Αχρήστων EMC!"
+
+#: MovieSelection.py:269
+msgid "Artist:"
+msgstr "Καλλιτέχνης:"
+
+#: MovieSelection.py:271
+msgid "Album:"
+msgstr "Άλμπουμ:"
+
+#: MovieSelection.py:502 MovieSelection.py:1636
+msgid "Reading directory..."
+msgstr "Ανάγνωση φακέλου..."
+
+#: MovieSelection.py:520
+msgid "Play selected movie(s)"
+msgstr "Αναπαραγωγή επιλεγμένης(ων) ταινίας(ων)"
+
+#: MovieSelection.py:522 MovieSelectionMenu.py:99
+msgid "Play All"
+msgstr "Αναπαραγωγή Όλων"
+
+#: MovieSelection.py:523 MovieSelectionMenu.py:100
+msgid "Shuffle All"
+msgstr "Τυχαία αναπαραγωγή Όλων"
+
+#: MovieSelection.py:524
+msgid "Close EMC"
+msgstr "Κλείσιμο του EMC"
+
+#: MovieSelection.py:525
+msgid "Open menu"
+msgstr "Άνοιγμα μενού"
+
+#: MovieSelection.py:526
+msgid "Show event info"
+msgstr "Εμφάνιση πληροφοριών προγράμματος"
+
+#: MovieSelection.py:527
+msgid "IMDBSearch / EMC-TMDBInfo / TMDBInfo / TMBDInfo / CSFDInfo"
+msgstr ""
+"Αναζήτηση IMDB / Πληροφορίες EMC-TMDB / Πληροφορίες TMDB / Πληροφορίες "
+"TMBD / Πληροφορίες CSFD"
+
+#: MovieSelection.py:541
+msgid "Move cursor page up"
+msgstr "Μετακίνηση κέρσορα μία σελίδα επάνω"
+
+#: MovieSelection.py:542
+msgid "Move cursor page down"
+msgstr "Μετακίνηση κέρσορα μία σελίδα κάτω"
+
+#: MovieSelection.py:543
+msgid "Move cursor up"
+msgstr "Μετακίνηση κέρσορα επάνω"
+
+#: MovieSelection.py:544
+msgid "Move cursor down"
+msgstr "Μετακίνηση κέρσορα κάτω"
+
+#: MovieSelection.py:545
+msgid ""
+"Move cursor to the top / Move cursor x entries up / Switch Folders in Movie "
+"Home (up)"
+msgstr ""
+"Μετακίνηση κέρσορα στην κορυφή / Μετακίνηση κέρσορα x στοιχεία επάνω / "
+"Αλλαγή Φακέλων στην Κεντρική Σελίδα Ταινιών (επάνω)"
+
+#: MovieSelection.py:546
+msgid ""
+"Move cursor to the end / Move cursor x entries down / Switch Folders in "
+"Movie Home (down)"
+msgstr ""
+"Μετακίνηση κέρσορα στο τέλος / Μετακίνηση κέρσορα x στοιχεία κάτω / Αλλαγή "
+"Φακέλων στην Κεντρική Σελίδα Ταινιών (κάτω)"
+
+#: MovieSelection.py:547
+msgid "Directory forward"
+msgstr "Φάκελος εμπρός"
+
+#: MovieSelection.py:549
+msgid "Directory back"
+msgstr "Φάκελος πίσω"
+
+#: MovieSelection.py:551
+msgid "Toggle service selection"
+msgstr "Εναλλαγή επιλογής υπηρεσίας"
+
+#: MovieSelection.py:552
+msgid "Remove service selection"
+msgstr "Αφαίρεση επιλογής υπηρεσίας"
+
+#: MovieSelection.py:553 MovieSelection.py:555
+msgid "Available plugins menu"
+msgstr "Διαθέσιμο μενού προσθέτων"
+
+#: MovieSelection.py:556
+msgid "Reload movie file list"
+msgstr "Επαναφόρτωση λίστας αρχείων ταινιών"
+
+#: MovieSelection.py:557
+msgid "Open Timer List"
+msgstr "Άνοιγμα Λίστας Χρονοδιακοπτών"
+
+#: MovieSelection.py:558
+msgid "Toggle viewed / not viewed"
+msgstr "Εναλλαγή παρακολούθησης / μη παρακολούθησης"
+
+#: MovieSelection.py:560
+msgid "Start / end multiselection"
+msgstr "Εκκίνηση / τέλος πολλαπλής επιλογής"
+
+#: MovieSelection.py:1021
+msgid "E2 Bookmark"
+msgstr "Σελιδοδείκτης Ε2"
+
+#: MovieSelection.py:1022 MovieSelectionMenu.py:165
+msgid "Open E2 Bookmark path"
+msgstr "Άνοιγμα διαδρομής Σελιδοδείκτη Ε2"
+
+#: MovieSelection.py:1130
+msgid "No script operation for VLC streams."
+msgstr "Χωρίς λειτουργία script για τις ροές VLC."
+
+#: MovieSelection.py:1146
+msgid "Does not contain any scripts."
+msgstr "Δεν περιέχονται scripts."
+
+#: MovieSelection.py:1150
+msgid "Choose script"
+msgstr "Επιλογή script"
+
+#: MovieSelection.py:1169
+msgid ""
+"Cover search with all Files in Subdirectories?\n"
+"\n"
+"This may take a while on huge Disks, or Directories!"
+msgstr ""
+"Αναζήτηση Εξωφύλλου με όλα τα Αρχεία στους Υποφακέλους;\n"
+"\n"
+"Αυτό μπορεί να διαρκέσει αρκετά σε τεράστιους δίσκους ή φακέλους!"
+
+#: MovieSelection.py:1204
+msgid "No functionality set..."
+msgstr "Μη ορισμένη λειτουργικότητα..."
+
+#: MovieSelection.py:1296
+msgid "*** Multiselection active ***"
+msgstr "*** Πολλαπλή επιλογή ενεργή ***"
+
+#: MovieSelection.py:1669
+msgid "Sort Mode"
+msgstr "Λειτουργία Ταξινόμησης"
+
+#: MovieSelection.py:1670
+msgid "Sort Order"
+msgstr "Σειρά Ταξινόμησης"
+
+#: MovieSelection.py:1694 MovieSelection.py:1710 MovieSelection.py:1726
+msgid "Hide Cover"
+msgstr "Απόκρυψη Εξωφύλλου"
+
+#: MovieSelection.py:1698 MovieSelection.py:1714 MovieSelection.py:1730
+#: plugin.py:179 plugin.py:200
+msgid "Button disabled"
+msgstr "Πλήκτρο ανενεργό"
+
+#: MovieSelection.py:1699 MovieSelection.py:1715 MovieSelection.py:1731
+msgid "Cover disabled in EMC-Setup"
+msgstr "Εξώφυλλο ανενεργό στις ρυθμίσεις EMC"
+
+#: MovieSelection.py:1869
+msgid "File not available."
+msgstr "Το αρχείο δεν είναι διαθέσιμο."
+
+#: MovieSelection.py:1925
+msgid "File added to current Playlist."
+msgstr "Το αρχείο προστέθηκε στην τρέχουσα Λίστα Αναπαραγωγής."
+
+#: MovieSelection.py:1927
+msgid "File exists in current Playlist."
+msgstr "Το αρχείο υπάρχει στην τρέχουσα Λίστα Αναπαραγωγής."
+
+#: MovieSelection.py:1930
+msgid "Files added to current Playlist."
+msgstr "Τα αρχεία προστέθηκαν στην τρέχουσα Λίστα Αναπαραγωγής."
+
+#: MovieSelection.py:1932
+#, python-format
+msgid ""
+"Files added to current Playlist:\n"
+"%s\n"
+"\n"
+"Files exists in current Playlist:\n"
+"%s"
+msgstr ""
+"Τα αρχεία προστέθηκαν στην τρέχουσα Λίστα Αναπαραγωγής:\n"
+"%s\n"
+"\n"
+"Τα αρχεία υπάρχουν στην τρέχουσα Λίστα Αναπαραγωγής:\n"
+"%s"
+
+#: MovieSelection.py:1934
+#, python-format
+msgid ""
+"Files exists in current Playlist:\n"
+"%s"
+msgstr ""
+"Τα αρχεία υπάρχουν στην τρέχουσα Λίστα Αναπαραγωγής:\n"
+"%s"
+
+#: MovieSelection.py:1975
+msgid "Last played movie/playlist not available..."
+msgstr ""
+"Η τελευταία αναπαραγώμενη ταινία/λίστα αναπαραγωγής δεν είναι διαθέσιμη..."
+
+#: MovieSelection.py:1979
+msgid "Play last movie starting"
+msgstr "Εκκίνηση αναπαραγωγής τελευταίας ταινίας"
+
+#: MovieSelection.py:1998
+msgid "Play All starting"
+msgstr "Εκκίνηση Αναπαραγωγής Όλων"
+
+#: MovieSelection.py:2017
+msgid "Shuffle All starting"
+msgstr "Εκκίνηση Τυχαίας Αναπαραγωγής Όλων"
+
+#: MovieSelection.py:2049
+msgid "Not stopping any repeating timers. Modify them with the timer editor."
+msgstr ""
+"Μη διακοπή κανενός επαναλαμβανόμενου χρονοδιακόπτη. Τροποποιήστε τους με την "
+"επεξεργασία χρονοδιακοπτών."
+
+#: MovieSelection.py:2056
+msgid "Stop ongoing recording?\n"
+msgstr "Διακοπή συνεχιζόμενης εγγραφής;\n"
+
+#: MovieSelection.py:2109
+#, python-format
+msgid ""
+"Do you really want to remove your link\n"
+"%s?"
+msgstr ""
+"Θέλετε σίγουρα να αφαιρεθεί ο σύνδεσμός σας\n"
+"%s?"
+
+#: MovieSelection.py:2111
+#, python-format
+msgid ""
+"Do you really want to remove your directory\n"
+"%s?"
+msgstr ""
+"Θέλετε σίγουρα να αφαιρεθεί ο φάκελός σας\n"
+"%s?"
+
+#: MovieSelection.py:2151 MovieSelection.py:2173 MovieSelectionMenu.py:449
+#: MovieSelectionMenu.py:481
+#, python-format
+msgid ""
+"Do you really want to remove your bookmark\n"
+"%s?"
+msgstr ""
+"Θέλετε σίγουρα να αφαιρεθεί ο σελιδοδείκτης σας;\n"
+"%s?"
+
+#: MovieSelection.py:2192
+msgid ""
+" Deleting remotely recorded and it will display an rec-error dialog on the "
+"other DB."
+msgstr ""
+" Διαγραφή απομακρυσμένων εγγραφών και θα εμφανιστεί ένας διάλογος σφάλματος "
+"εγγραφής στην άλλη Β/Δ."
+
+#: MovieSelection.py:2198
+msgid " permanently"
+msgstr "μόνιμα"
+
+#: MovieSelection.py:2215
+msgid " currently played?"
+msgstr " τρέχουσα αναπαραγωγή;"
+
+#: MovieSelection.py:2235
+msgid " all selected video files?"
+msgstr " όλα τα επιλεγμένα αρχεία βίντεο;"
+
+#: MovieSelection.py:2240
+msgid ""
+" all selected video files? The currently playing movie is also one of the "
+"selections and its playback will be stopped."
+msgstr ""
+" όλα τα επιλεγμένα αρχεία βίντεο; Η τρέχουσα αναπαραγώμενη ταινία είναι "
+"επίσης επιλεγμένη και η αναπαραγωγή της θα διακοπεί."
+
+#: MovieSelection.py:2242
+msgid "Delete error:\n"
+msgstr "Σφάλμα διαγραφής:\n"
+
+#: MovieSelection.py:2274 MovieSelection.py:2318
+#, python-format
+msgid ""
+"The following files are used for other entrys in List !\n"
+"\n"
+"Also delete these files?\n"
+"\n"
+"%s"
+msgstr ""
+"Τα ακόλουθα αρχεία χρησιμοποιούνται για άλλα στοιχεία στη Λίστα !\n"
+"\n"
+"Να διαγραφούν επίσης αυτά τα αρχεία;\n"
+"\n"
+"%s"
+
+#: MovieSelection.py:2362
+msgid "This element belongs to a locked folder and cannot be deleted!"
+msgstr ""
+"Αυτό το στοιχείο ανήκει σε έναν κλειδωμένο φάκελο και δεν μπορεί να "
+"διαγραφεί!"
+
+#: MovieSelection.py:2373
+msgid ""
+"Delete failed because the trashcan directory does not exist. Attempt to "
+"create it now?"
+msgstr ""
+"Η διαγραφή απέτυχε λόγω απουσίας του κάδου αχρήστων. Προσπάθεια δημιουργίας "
+"του τώρα;"
+
+#: MovieSelection.py:2397
+msgid "This folder is locked or contains a locked subfolder, unlock it first!"
+msgstr ""
+"Αυτός ο φάκελος είναι κλειδωμένος ή περιέχει έναν κλειδωμένο υποφάκελο, "
+"ξεκλειδώστε τον πρώτα!"
+
+#: MovieSelection.py:2417
+msgid "Directory is not empty! Do you really want to delete it?"
+msgstr "Ο φάκελος δεν είναι κενός! Θέλετε σίγουρα να διαγραφεί;"
+
+#: MovieSelection.py:2422
+msgid "Cannot delete the parent directory."
+msgstr "Αδυναμία διαγραφής του γονικού φακέλου."
+
+#: MovieSelection.py:2502 MovieSelection.py:2583
+msgid "Delete failed!"
+msgstr "Η διαγραφή απέτυχε!"
+
+#: MovieSelection.py:2739 MovieSelection.py:2779
+msgid "Move file(s):"
+msgstr "Μετακίνηση αρχείου(ων):"
+
+#: MovieSelection.py:2767 MovieSelection.py:2788
+msgid ""
+"How to move files:\n"
+"Select some movies with the VIDEO-button, move the cursor on top of the "
+"destination directory and press yellow."
+msgstr ""
+"Τρόπος μετακίνησης αρχείων:\n"
+"Επιλέξτε κάποιες ταινίες με το πλήκτρο VIDEO, μετακινήστε τον κέρσορα στην "
+"κορυφή του φακέλου προορισμού και πιέστε το κίτρινο."
+
+#: MovieSelection.py:2811 MovieSelection.py:2851
+msgid "Copy file(s):"
+msgstr "Αντιγραφή αρχείου(ων):"
+
+#: MovieSelection.py:2839 MovieSelection.py:2860
+msgid ""
+"How to copy files:\n"
+"Select some movies with the VIDEO-button, move the cursor on top of the "
+"destination directory and press yellow long."
+msgstr ""
+"Τρόπος αντιγραφής αρχείων:\n"
+"Επιλέξτε κάποιες ταινίες με το πλήκτρο VIDEO, μετακινήστε τον κέρσορα στην "
+"κορυφή του φακέλου προορισμού και πιέστε παρατεταμένα το κίτρινο."
+
+#: MovieSelection.py:2876
+msgid "Move Directory:"
+msgstr "Μετακίνηση Φακέλου:"
+
+#: MovieSelection.py:2969 MovieSelection.py:2975
+msgid "IMDb"
+msgstr "IMDb"
+
+#: MovieSelection.py:2971
+msgid "TMDb"
+msgstr "TMDb"
+
+#: MovieSelection.py:2973
+msgid "CSFD"
+msgstr "CSFD"
+
+#: MovieSelectionMenu.py:81
+msgid "Choose operation"
+msgstr "Επιλογή εργασίας"
+
+#: MovieSelectionMenu.py:84 plugin.py:169 plugin.py:190
+msgid "Movie home"
+msgstr "Κεντρικός φάκελος ταινιών"
+
+#: MovieSelectionMenu.py:87
+msgid "Directory up"
+msgstr "Φάκελος επάνω"
+
+#: MovieSelectionMenu.py:89
+msgid "Reload current directory"
+msgstr "Επαναφόρτωση τρέχοντος φακέλου"
+
+#: MovieSelectionMenu.py:91 MovieSelectionMenu.py:208
+msgid "Playlist Options"
+msgstr "Επιλογές Λίστας Αναπαραγωγής"
+
+#: MovieSelectionMenu.py:95 MovieSelectionMenu.py:213
+msgid "Add to current Playlist"
+msgstr "Προσθήκη στην τρέχουσα Λίστα Αναπαραγωγής"
+
+#: MovieSelectionMenu.py:97 plugin.py:173 plugin.py:194
+msgid "Play last"
+msgstr "Αναπαραγωγή τελευταίου"
+
+#: MovieSelectionMenu.py:102
+msgid "Cover search"
+msgstr "Αναζήτηση εξωφύλλου"
+
+#: MovieSelectionMenu.py:105
+msgid "Directory-Cover search"
+msgstr "Αναζήτηση Εξωφύλλου Φακέλου"
+
+#: MovieSelectionMenu.py:114 MovieSelectionMenu.py:116
+msgid "Delete permanently"
+msgstr "Μόνιμη διαγραφή"
+
+#: MovieSelectionMenu.py:117
+msgid "Empty trashcan"
+msgstr "Άδειασμα του κάδου αχρήστων"
+
+#: MovieSelectionMenu.py:118
+msgid "Go to trashcan"
+msgstr "Μετάβαση στον κάδο αχρήστων"
+
+#: MovieSelectionMenu.py:120
+msgid "Mark all movies"
+msgstr "Μαρκάρισμα όλων των ταινιών"
+
+#: MovieSelectionMenu.py:121
+msgid "Remove rogue files"
+msgstr "Αφαίρεση περιττών αρχείων"
+
+#: MovieSelectionMenu.py:123
+msgid "Delete cut file(s)"
+msgstr "Διαγραφή αρχείου(ων) αποκοπής"
+
+#: MovieSelectionMenu.py:125
+msgid "Create link"
+msgstr "Δημιουργία συντόμευσης"
+
+#: MovieSelectionMenu.py:126 MovieSelectionMenu.py:247
+msgid "Create directory"
+msgstr "Δημιουργία φακέλου"
+
+#: MovieSelectionMenu.py:128
+msgid "(Un-)Lock Directory"
+msgstr "(Ξε)Κλείδωμα Φακέλου"
+
+#: MovieSelectionMenu.py:135
+msgid "Copy Files"
+msgstr "Αντιγραφή Αρχείων"
+
+#: MovieSelectionMenu.py:136
+msgid "Move Files"
+msgstr "Μετακίνηση Αρχείων"
+
+#: MovieSelectionMenu.py:138 plugin.py:176 plugin.py:197
+msgid "Copy File"
+msgstr "Αντιγραφή Αρχείου"
+
+#: MovieSelectionMenu.py:139 plugin.py:171 plugin.py:192
+msgid "Move File"
+msgstr "Μετακίνηση Αρχείου"
+
+#: MovieSelectionMenu.py:143
+msgid "Download Movie Information"
+msgstr "Λήψη Πληροφοριών Ταινίας"
+
+#: MovieSelectionMenu.py:147
+msgid "Rename selected movie(s)"
+msgstr "Μετονομασία επιλεγμένων ταινιών"
+
+#: MovieSelectionMenu.py:148
+msgid "Remove cut list marker"
+msgstr "Αφαίρεση σημειωτή λίστας αποκοπών"
+
+#: MovieSelectionMenu.py:149
+msgid "Reset marker from selected movie(s)"
+msgstr "Μηδενισμός σημειωτή από τις επιλεγμένες ταινίες"
+
+#: MovieSelectionMenu.py:167
+msgid "Add directory to E2 Bookmarks"
+msgstr "Προσθήκη φακέλου στους Σελιδοδείκτες Ε2"
+
+#: MovieSelectionMenu.py:169
+msgid "Remove directory from E2 Bookmarks"
+msgstr "Αφαίρεση φακέλου από τους Σελιδοδείκτες Ε2"
+
+#: MovieSelectionMenu.py:172
+msgid "Remove selected E2 Bookmark"
+msgstr "Αφαίρεση επιλεγμένου Σελιδοδείκτη Ε2"
+
+#: MovieSelectionMenu.py:174
+msgid "Open EMC Bookmark path"
+msgstr "Άνοιγμα διαδρομής Σελιδοδείκτη EMC"
+
+#: MovieSelectionMenu.py:176
+msgid "Add directory to EMC Bookmarks"
+msgstr "Προσθήκη φακέλου στους Σελιδοδείκτες EMC"
+
+#: MovieSelectionMenu.py:178
+msgid "Remove directory from EMC Bookmarks"
+msgstr "Αφαίρεση φακέλου από τους Σελιδοδείκτες EMC"
+
+#: MovieSelectionMenu.py:181
+msgid "Remove selected EMC Bookmark"
+msgstr "Αφαίρεση επιλεγμένου Σελιδοδείκτη EMC"
+
+#: MovieSelectionMenu.py:183
+msgid "Set permanent sort"
+msgstr "Ορισμός μόνιμης ταξινόμησης"
+
+#: MovieSelectionMenu.py:185
+msgid "Remove permanent sort"
+msgstr "Αφαίρεση μόνιμης ταξινόμησης"
+
+#: MovieSelectionMenu.py:189
+msgid "Remove permanent sort from parent"
+msgstr "Αφαίρεση μόνιμης ταξινόμησης από το γονικό"
+
+#: MovieSelectionMenu.py:192
+msgid "EMC Setup"
+msgstr "Ρυθμίσεις EMC"
+
+#: MovieSelectionMenu.py:195
+msgid "Choose plugin"
+msgstr "Επιλογή πρόσθετου"
+
+#: MovieSelectionMenu.py:201
+msgid "Choose bookmark"
+msgstr "Επιλογή σελιδοδείκτη"
+
+#: MovieSelectionMenu.py:209
+msgid "Show current Playlist"
+msgstr "Εμφάνιση τρέχουσας Λίστας Αναπαραγωγής"
+
+#: MovieSelectionMenu.py:215
+msgid "Play current Playlist"
+msgstr "Αναπαραγωγή τρέχουσας Λίστας Αναπαραγωγής"
+
+#: MovieSelectionMenu.py:216
+msgid "Play random current Playlist"
+msgstr "Τυχαία αναπαραγωγή τρέχουσας Λίστας"
+
+#: MovieSelectionMenu.py:217
+msgid "Delete current Playlist"
+msgstr "Διαγραφή τρέχουσας Λίστας Αναπαραγωγής"
+
+#: MovieSelectionMenu.py:218
+msgid "Playlist Setup"
+msgstr "Ρυθμίσεις Λίστας Αναπαραγωγής"
+
+#: MovieSelectionMenu.py:246
+msgid "Enter name for new directory:"
+msgstr "Εισαγωγή ονόματος για το νέο φάκελο:"
+
+#: MovieSelectionMenu.py:253
+#, python-format
+msgid "Directory %s already exists!"
+msgstr "Ο φάκελος %s υπάρχει ήδη!"
+
+#: MovieSelectionMenu.py:267
+#, python-format
+msgid "Do you really want to lock the directory %s and all its subfolders?"
+msgstr ""
+"Θέλετε σίγουρα να κλειδώσετε το φάκελο %s και όλους τους υποφακέλους του;"
+
+#: MovieSelectionMenu.py:269
+#, python-format
+msgid ""
+"The directory %s is already locked. Do you want to unlock it and all its "
+"subfolders?"
+msgstr ""
+"Ο φάκελος %s είναι ήδη κλειδωμένος. Θέλετε να τον ξεκλειδώσετε με όλους τους "
+"υποφακέλους του;"
+
+#: MovieSelectionMenu.py:293
+msgid "Create Link"
+msgstr "Δημιουργία Συνδέσμου"
+
+#: MovieSelectionMenu.py:324
+msgid "Permanently delete all files in trashcan?"
+msgstr "Οριστική διαγραφή όλων των αρχείων του κάδου αχρήστων;"
+
+#: MovieSelectionMenu.py:336
+msgid "Movie Selection Menu"
+msgstr "Μενού Επιλογής Ταινιών"
+
+#: MovieSelectionMenu.py:344
+msgid "exception "
+msgstr "εξαίρεση"
+
+#: MovieSelectionMenu.py:353
+msgid ""
+"Locate rogue files and remove them? (permanently if no trashcan available, "
+"may take a minute or so)"
+msgstr ""
+"Εντοπισμός και αφαίρεση περιττών αρχείων; (μόνιμα σε μη διαθέσιμο κάδο "
+"αχρήστων, μπορεί να χρειαστεί ένα λεπτό περίπου)"
+
+#: MovieSelectionMenu.py:370
+msgid "Remove all cut file marker permanently?"
+msgstr "Οριστική διαγραφή όλων σημειωτών των αρχείων αποκοπής;"
+
+#: MovieSelectionMenu.py:384
+msgid "Remove all marker permanently?"
+msgstr "Οριστική διαγραφή όλων των σημειωτών;"
+
+#: MovieSelectionMenu.py:517
+msgid ""
+"Do you really want to delete the cut file?\n"
+"If you have selected a directory, all cut files within the folder and its "
+"subfolders will be deleted!"
+msgstr ""
+"Θέλετε να διαγραφεί το αρχείο αποκοπής;\n"
+"Αν επιλέξατε έναν φάκελο, όλα τα αρχεία αποκοπής μέσα στο φάκελο και τους "
+"υποφακέλους θα διαγραφεί!"
+
+#: plugin.py:55
+msgid "no"
+msgstr "όχι"
+
+#: plugin.py:55
+msgid "yes"
+msgstr "ναι"
+
+#: plugin.py:133
+msgid "No override"
+msgstr "Χωρίς επικάλυψη"
+
+#: plugin.py:134
+msgid "Video-button"
+msgstr "Πλήκτρο Video"
+
+#: plugin.py:135
+msgid "TV-button"
+msgstr "Πλήκτρο TV"
+
+#: plugin.py:136
+msgid "Radio-button"
+msgstr "Πλήκτρο ραδιοφώνου"
+
+#: plugin.py:137
+msgid "Quick-button"
+msgstr "Γρήγορο πλήκτρο"
+
+#: plugin.py:138
+msgid "Timeshift-button"
+msgstr "Πλήκτρο Χρονομετατόπισης"
+
+#: plugin.py:141 plugin.py:150 plugin.py:159
+msgid "Off"
+msgstr "Κλειστό"
+
+#: plugin.py:142
+msgid "DD.MM.YYYY"
+msgstr "ΗΗ.ΜΜ.ΕΕΕΕ"
+
+#: plugin.py:143
+msgid "DD.MM.YYYY HH:MM"
+msgstr "ΗΗ.ΜΜ.ΕΕΕΕ ΩΩ:ΛΛ"
+
+#: plugin.py:144
+msgid "DD.MM HH:MM"
+msgstr "ΗΗ.ΜΜ ΩΩ:ΛΛ"
+
+#: plugin.py:145
+msgid "DD.MM. HH:MM"
+msgstr "ΗΗ.ΜΜ. ΩΩ:ΛΛ"
+
+#: plugin.py:146
+msgid "YYYY/MM/DD"
+msgstr "ΕΕΕΕ/ΜΜ/ΗΗ"
+
+#: plugin.py:147
+msgid "YYYY/MM/DD HH:MM"
+msgstr "ΕΕΕΕ/ΜΜ/ΗΗ ΩΩ:ΛΛ"
+
+#: plugin.py:148
+msgid "MM/DD HH:MM"
+msgstr "ΜΜ/ΗΗ ΩΩ:ΛΛ"
+
+#: plugin.py:151
+msgid "Description"
+msgstr "Περιγραφή"
+
+#: plugin.py:152
+msgid "( # )"
+msgstr "( # )"
+
+#: plugin.py:153
+msgid "( # / GB )"
+msgstr "( # / GB )"
+
+#: plugin.py:154
+msgid "( GB )"
+msgstr "( GB )"
+
+#: plugin.py:156
+msgid "ProgressBar"
+msgstr "Μπάρα προόδου"
+
+#: plugin.py:157
+msgid "Percent (%)"
+msgstr "Ποσοστό (%)"
+
+#: plugin.py:158
+msgid "Movie Color"
+msgstr "Χρώμα Ταινίας"
+
+#: plugin.py:172 plugin.py:193
+msgid "Add to Playlist"
+msgstr "Προσθήκη στη Λίστα Αναπαραγωγής"
+
+#: plugin.py:174 plugin.py:195
+msgid "Cover Search"
+msgstr "Αναζήτηση Εξωφύλλου"
+
+#: plugin.py:175 plugin.py:196
+msgid "Download Movie Info"
+msgstr "Λήψη Πληροφοριών Ταινίας"
+
+#: plugin.py:177 plugin.py:198
+msgid "Open E2 bookmarks"
+msgstr "Άνοιγμα σελιδοδεικτών Ε2"
+
+#: plugin.py:178
+msgid "Toggle Cover Button"
+msgstr "Εναλλαγή Πλήκτρου Εξωφύλλου"
+
+#: plugin.py:183
+msgid "Sort Options"
+msgstr "Επιλογές Ταξινόμησης"
+
+#: plugin.py:209
+msgid "down"
+msgstr "κάτω"
+
+#: plugin.py:210
+msgid "up/down"
+msgstr "επάνω/κάτω"
+
+#: plugin.py:211
+msgid "off"
+msgstr "κλειστό"
+
+#: plugin.py:213
+msgid "type 1 - OSD + black (#00000000)"
+msgstr "τύπος 1 - OSD + μαύρο (#00000000)"
+
+#: plugin.py:214
+msgid "type 2 - transparent + white (#FFFFFFFF)"
+msgstr "τύπος 2 - διάφανο + λευκό (#FFFFFFFF)"
+
+#: plugin.py:215
+msgid "type 3 - OSD + black (#00FFFFFF)"
+msgstr "τύπος 3 - OSD + μαύρο (#00FFFFFF)"
+
+#: plugin.py:216
+msgid "type 4 - transparent + black (#FF000000)"
+msgstr "τύπος 4 - διάφανο + λευκό (#FF000000)"
+
+#: plugin.py:219
+msgid "E2 Bookmarks"
+msgstr "Σελιδοδείκτες Ε2"
+
+#: plugin.py:220
+msgid "EMC Bookmarks"
+msgstr "EMC Σελιδοδείκτες"
+
+#: plugin.py:221
+msgid "Both"
+msgstr "Και τα δύο"
+
+#: plugin.py:224
+msgid "Standby"
+msgstr "Αναμονή"
+
+#: plugin.py:225
+msgid "DeepStandby"
+msgstr "Βαθιά Αναμονή"
+
+#: plugin.py:226
+msgid "Reboot"
+msgstr "Επανεκκίνηση"
+
+#: plugin.py:227
+msgid "E2 Restart"
+msgstr "Επανεκκίνηση Ε2"
+
+#: plugin.py:229
+msgid "HomeEnd"
+msgstr "Τέλος Κεντρικής"
+
+#: plugin.py:230
+msgid "Skip"
+msgstr "Παράκαμψη"
+
+#: plugin.py:231
+msgid "Change Folder"
+msgstr "Αλλαγή Φακέλου"
+
+#: plugin.py:239
+msgid "Date sort descending (D-)"
+msgstr "Φθίνουσα ταξινόμηση ημερομηνίας (D-)"
+
+#: plugin.py:239 plugin.py:245
+msgid "Date sort"
+msgstr "Ταξινόμηση κατά ημερομηνία"
+
+#: plugin.py:240
+msgid "Alpha sort ascending (AZ)"
+msgstr "Αύξουσα ταξινόμηση αλφαβητικά (AZ)"
+
+#: plugin.py:240 plugin.py:246
+msgid "Alpha sort"
+msgstr "Ταξινόμηση αλφαβητικά"
+
+#: plugin.py:241
+msgid "Alpha sort ascending, Date descending (AZD-)"
+msgstr "Αύξουσα ταξινόμηση αλφαβητικά, φθίνουσα Ημερομηνία (AZD-)"
+
+#: plugin.py:241 plugin.py:247
+msgid "Alpha sort date newest"
+msgstr "Αλφαβητική ταξινόμηση νεότερη ημερομηνία"
+
+#: plugin.py:242
+msgid "Alpha sort ascending with meta (AZM)"
+msgstr "Αλφαβητική ταξινόμηση με μεταδεδομένα (AZM)"
+
+#: plugin.py:242 plugin.py:248
+msgid "Alpha sort meta"
+msgstr "Αλφαβητική ταξινόμηση μεταδεδομένων"
+
+#: plugin.py:243
+msgid "Alpha sort ascending with meta, Date descending (AZMD-)"
+msgstr "Αλφαβητική ταξινόμηση μεταδ., φθίνουσα ημερομηνία (AZMD-)"
+
+#: plugin.py:243 plugin.py:249
+msgid "Alpha sort meta date newest"
+msgstr "Αλφαβητική ταξινόμηση μεταδ. νεότερη ημερομηνία"
+
+#: plugin.py:244
+msgid "Progress sort ascending (P+)"
+msgstr "Αύξουσα ταξινόμηση προόδου (P+)"
+
+#: plugin.py:244 plugin.py:250
+msgid "Progress sort"
+msgstr "Ταξινόμηση προόδου"
+
+#: plugin.py:245
+msgid "Date sort ascending (D+)"
+msgstr "Αύξουσα ταξινόμηση ημερομηνίας (D+)"
+
+#: plugin.py:246
+msgid "Alpha sort descending (ZA)"
+msgstr "Φθίνουσα ταξινόμηση αλφαβητικά (ZA)"
+
+#: plugin.py:247
+msgid "Alpha sort descending, Date ascending (ZAD+)"
+msgstr "Φθίνουσα ταξινόμηση αλφαβητικά, αύξουσα Ημερομηνία (ZAD+)"
+
+#: plugin.py:248
+msgid "Alpha sort descending with meta (ZAM)"
+msgstr "Φθίνουσα ταξινόμηση αλφαβητικά με μεταδ. (ZAM)"
+
+#: plugin.py:249
+msgid "Alpha sort descending with meta, Date ascending (ZAMD+)"
+msgstr "Φθίνουσα αλφαβητικά με μεταδ., αύξουσα ημερομηνία (ZAMD+)"
+
+#: plugin.py:250
+msgid "Progress sort descending (P-)"
+msgstr "Φθίνουσα ταξινόμηση προόδου (P-)"
+
+#: plugin.py:300
+msgid "after standby"
+msgstr "μετά την αναμονή"
+
+#: plugin.py:313
+msgid "left from Name"
+msgstr "αριστερά του Ονόματος"
+
+#: plugin.py:313
+msgid "right from Name"
+msgstr "δεξιά του Ονόματος"
+
+#: plugin.py:324
+msgid "Yes, without Message"
+msgstr "Ναι, χωρίς Μήνυμα"
+
+#: plugin.py:324
+msgid "Yes, with Message"
+msgstr "Ναι, με Μήνυμα"
+
+#: plugin.py:346
+msgid ""
+"ATTENTION\n"
+"\n"
+"This option will move all finished movies in Movie Home automatically to "
+"Your trashcan at the given time.\n"
+"At next trashcan cleanup all movies will be deleted.\n"
+"\n"
+"Confirm this with the blue key followed by the green key."
+msgstr ""
+"ΠΡΟΣΟΧΗ\n"
+"\n"
+"Αυτή η επιλογή θα μετακινήσει όλες τις ολοκληρωμένες ταινίες στην Κεντρική "
+"Σελίδα Ταινιών αυτόματα στον κάδο αχρήστων στον ορισμένο χρόνο.\n"
+"Στη συνέχεια η εκκαθάριση του κάδου θα διαγράψει όλες τις ταινίες.\n"
+"\n"
+"Επιβεβαιώστε με το μπλε πλήκτρο και έπειτα με το πράσινο πλήκτρο."
+
+#: plugin.py:365
+msgid "center"
+msgstr "κέντρο"
+
+#: plugin.py:365
+msgid "right"
+msgstr "δεξιά"
+
+#: plugin.py:370
+#, python-format
+msgid "%d second"
+msgid_plural "%d seconds"
+msgstr[0] "%d δευτερόλεπτο"
+msgstr[1] "%d δευτερόλεπτα"
+
+#: plugin.py:379
+msgid "Day"
+msgstr "Ημέρα"
+
+#: plugin.py:382
+msgid "Days"
+msgstr "Ημέρες"
+
+#: plugin.py:387
+msgid "Week"
+msgstr "Εβδομάδα"
+
+#: plugin.py:390
+msgid "Weeks"
+msgstr "Εβδομάδες"
+
+#: plugin.py:395
+msgid "Month"
+msgstr "Μήνας"
+
+#: plugin.py:398
+msgid "Months"
+msgstr "Μήνες"
+
+#: plugin.py:403
+msgid "No limit"
+msgstr "Χωρίς όριο"
+
+#: plugin.py:434
+msgid "IMDb Search"
+msgstr "Αναζήτηση IMDb"
+
+#: plugin.py:434
+msgid "EMC-TMDB Info"
+msgstr "Πληροφορίες EMC-TMDB"
+
+#: plugin.py:434
+msgid "TMDB Info"
+msgstr "Πληροφορίες TMDB"
+
+#: plugin.py:434
+msgid "TMBD Info"
+msgstr "Πληροφορίες TMBD"
+
+#: plugin.py:434
+msgid "CSFD Info"
+msgstr "Πληροφορίες CSFD"
+
+#: plugin.py:524
+msgid "configuration"
+msgstr "παραμετροποίηση"
+
+#: plugin.py:527
+msgid "movie manipulation list"
+msgstr "λίστα χειρισμού ταινιών"
+
+#: RogueFileCheck.py:42
+msgid " files\n"
+msgstr " αρχεία\n"
+
+#: RogueFileCheck.py:43
+msgid "No rogue files found."
+msgstr "Δεν βρέθηκαν περιττά αρχεία."
+
+#: RogueFileCheck.py:44
+msgid ""
+"Found rogue files:\n"
+"\n"
+msgstr ""
+"Βρέθηκαν περιττά αρχεία:\n"
+"\n"
+
+#: VlcPluginInterface.py:156
+msgid "VLC Server not reachable"
+msgstr "Αδυναμία σύνδεσης με το Διακομιστή VLC"
+
+#: EnhancedMovieCenter.py
+msgid "Hide mini TV"
+msgstr "Απόκρυψη mini TV"
+
+#: EnhancedMovieCenter.py
+msgid "HELP_hide_miniTV"
+msgstr "ΒΟΗΘΕΙΑ_απόκρυψη_miniTV"
+
+#: EnhancedMovieCenter/plugin.py
+msgid "never hide"
+msgstr "ποτέ απόκρυψη"
+
+#: EnhancedMovieCenter/plugin.py
+msgid "hide live TV"
+msgstr "απόκρυψη ζωντανής TV"
+
+#: EnhancedMovieCenter/plugin.py
+msgid "hide live TV and timeshift"
+msgstr "απόκρυψη ζωντανής TV και χρονομετατόπισης"
+
+#: EnhancedMovieCenter/plugin.py
+msgid "hide playback"
+msgstr "απόκρυψη αναπαραγωγής"
+
+#: EnhancedMovieCenter/plugin.py
+msgid "always hide"
+msgstr "πάντα απόκρυψη"
+
+#: EnhancedMovieCenter.py
+msgid "Method of hiding mini TV"
+msgstr "Μέθοδος απόκρυψης της mini TV"
+
+#: EnhancedMovieCenter.py
+msgid "stop service"
+msgstr "διακοπή υπηρεσίας"
+
+#: EnhancedMovieCenter.py
+msgid "single pixel TV, muted"
+msgstr "TV μονού πίξελ, σίγαση"
+
+#: EnhancedMovieCenter.py
+msgid "HELP_hide_miniTV_method"
+msgstr "ΒΟΗΘΕΙΑ_μέθοδος_απόκρυψης_miniTV"
+
+#: EnhancedMovieCenter.py
+msgid "Check for dead links"
+msgstr "Έλεγχος για ανενεργούς συνδέσμους"
+
+#: EnhancedMovieCenter.py
+msgid "always"
+msgstr "πάντα"
+
+#: EnhancedMovieCenter.py
+msgid "after reload list"
+msgstr "μετά τη λίστα επαναφόρτωσης"
+
+#: EnhancedMovieCenter.py
+msgid "only initially"
+msgstr "μόνο αρχικά"
+
+#: EnhancedMovieCenter.py
+msgid "HELP_Check for dead links"
+msgstr "ΒΟΗΘΕΙΑ_Έλεγχος για ανενεργούς συνδέσμους"
+
+msgid "Show new Skin Version"
+msgstr "Εμφάνιση νέας Έκδοσης Θέματος"
+
+msgid "EMC Playlist - current playlist"
+msgstr "EMC Λίστα Αναπαραγωγής - τρέχουσα λίστα"
+
+msgid "Runtime: unknown"
+msgstr "Χρόνος λειτουργίας: άγνωστος"
+
+msgid "ofdb.de"
+msgstr "ofdb.de"
+
+msgid "Searching.."
+msgstr "Αναζήτηση.."
+
+msgid "Delay of 10 sec. due the search flooding.."
+msgstr "Καθυστέρηση 10 δευτ. λόγω υπερχείλισης αναζήτησης..."
+
+msgid "Nothing found for %s"
+msgstr "Δεν βρέθηκε τίποτα για το %s"
+
+msgid ""
+" movies found!\n"
+"Information of the best match\n"
+"\n"
+"\""
+msgstr ""
+" Filme gefunden!\n"
+"Informationen zum am besten passenden."
+
+msgid "Copy selected movie(s)"
+msgstr "Αντιγραφή επιλεγμένης ταινίας(ων)"
+
+msgid "Delete file or empty dir"
+msgstr "Διαγραφή αρχείου ή κενός φάκελος"
+
+msgid "customizable long yellow button"
+msgstr "προσαρμοσμένο παρατεταμένο κίτρινο πλήκτρο"
+
+msgid "customizable long blue button"
+msgstr "προσαρμοσμένο παρατεταμένο μπλε πλήκτρο"
+
+msgid ""
+"Movie home / Play last / Move file / Download Movie Information "
+"(configurable)"
+msgstr ""
+"Κεντρικός φάκελος / Αναπαραγωγή τελευταίου / Μετακίνηση αρχείου / Λήψη "
+"Πληροφοριών Ταινίας (προσαρμογή)"
+
+msgid "Toggle sort order"
+msgstr "Εναλλαγή σειράς ταξινόμησης"
+
+msgid "Total: %s - Exist: %s - N/A: %s"
+msgstr "Σύνολο: %s - Υπάρχουν: %s - Μ/Δ: %s"
+
+msgid "found %s covers in %.1f sec"
+msgstr "βρέθηκαν %s εξώφυλλα σε %.1f δευτ."
+
+msgid " (P)"
+msgstr " (P)"
+
+msgid "Blue"
+msgstr "Μπλε"
+
+msgid "Create Link: Choose directory"
+msgstr "Δημιουργία Συνδέσμου: Επιλογή φακέλου"
+
+msgid "Directory "
+msgstr "Φάκελος "
+
+msgid "Directory is not empty."
+msgstr "Ο φάκελος δεν είναι άδειος."
+
+msgid "Enigma daily auto-restart"
+msgstr "Καθημερινή αυτόματη εκκίνηση Enigma"
+
+msgid "File order reverse"
+msgstr "Αντιστροφή σειράς αρχείων"
+
+msgid "Green button function"
+msgstr "Λειτουργία πράσινου πλήκτρου"
+
+msgid "HELP_Enigma daily auto-restart"
+msgstr "ΒΟΗΘΕΙΑ_Καθημερινή αυτόματη εκκίνηση του Enigma"
+
+msgid "HELP_File order reverse"
+msgstr "ΒΟΗΘΕΙΑ_Αντιστροφή σειράς αρχείων"
+
+msgid "HELP_Green button function"
+msgstr "ΒΟΗΘΕΙΑ_Λειτουργία πράσινου πλήκτρου"
+
+msgid "HELP_Show E2 Bookmarks in movielist"
+msgstr "ΒΟΗΘΕΙΑ_Εμφάνιση Σελιδοδεικτών Ε2 στη λίστα ταινιών"
+
+msgid "HELP_Show movie preview delay"
+msgstr "ΒΟΗΘΕΙΑ_Εμφάνιση καθυστέρησης προεπισκόπησης ταινίας"
+
+msgid "HELP_Use Toggle Cover Button"
+msgstr "ΒΟΗΘΕΙΑ_Χρήση Εναλλαγής Πλήκτρου Εξωφύλλου"
+
+msgid "Move"
+msgstr "Μετακίνηση"
+
+msgid "Move file(s): Choose directory"
+msgstr "Μετακίνηση αρχείου(ων): Επιλογή φακέλου"
+
+msgid "Move selected movie(s)"
+msgstr "Μετακίνηση επιλεγμένης ταινίας (ων)"
+
+msgid "Red"
+msgstr "Κόκκινο"
+
+msgid "Show E2 Bookmarks in movielist"
+msgstr "Εμφάνιση Σελιδοδεικτών Ε2 στη λίστα ταινιών"
+
+msgid "Sort file A to Z at startup"
+msgstr "Ταξινόμηση αρχείου Α ως Ω στην εκκίνηση"
+
+msgid "Toggle Cover Mini-TV"
+msgstr "Εναλλαγή Εξωφύλλου Mini-TV"
+
+msgid "Yellow"
+msgstr "Κίτρινο"
+
+msgid "customizable buttonblue "
+msgstr "προσαρμοσμένο μπλε πλήκτρο "
+
+msgid "customizable green button"
+msgstr "προσαρμοσμένο πράσινο πλήκτρο"
+
+msgid "customizable yellow button"
+msgstr "προσαρμοσμένο κίτρινο πλήκτρο"
