@@ -848,7 +848,7 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 								fappend( (pathname, dir, ext) )
 								continue
 						if config.EMC.directories_show.value:
-							if not movie_trashpath or os.path.realpath(pathname).find( movie_trashpath ) == -1:
+							if not movie_trashpath or movieFileCache.realpath(pathname).find( movie_trashpath ) == -1:
 								# Symlink folder found
 								if movieFileCache.isLink(pathname) and not config.EMC.symlinks_show.value:
 									continue

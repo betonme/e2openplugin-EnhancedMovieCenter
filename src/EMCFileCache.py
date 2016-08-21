@@ -26,12 +26,14 @@ pathisfile = os.path.isfile
 pathisdir  = os.path.isdir
 pathislink = os.path.islink
 pathexists = os.path.exists
+pathreal   = os.path.realpath
 
 idx_isLink=0
 idx_isDir=1
 idx_isFile=2
 idx_Date=3
-idx_num=4
+idx_realpath=4
+idx_num=5
 
 class EMCFileCache():
 	def __init__(self):
@@ -93,6 +95,7 @@ class EMCFileCache():
 						AttributeList[idx_isDir]  = True # we are in subdirlist
 						AttributeList[idx_isFile] = False # we are in subdirlist
 						AttributeList[idx_Date]   = pathexists(p) and MovieCenterInst.checkDate(p, True)
+						AttributeList[idx_realpath] = pathreal(p) #for dirs only
 						self.cacheAttributeList[p] = AttributeList
 				self.cacheFileList[path] = filelist
 				for p, n, e in filelist:
@@ -102,6 +105,7 @@ class EMCFileCache():
 						AttributeList[idx_isDir]  = False # we are in filelist, no entry is a real directrory ...
 						AttributeList[idx_isFile] = pathisfile(p) # ... but filelist might contain virtual directories
 						AttributeList[idx_Date]   = pathexists(p) and MovieCenterInst.checkDate(p, False)
+						#AttributeList[idx_realpath] = pathreal(p) #for dirs only
 						self.cacheAttributeList[p] = AttributeList
 			else:
 				if self.cacheDirectoryList.has_key(path):
@@ -157,6 +161,14 @@ class EMCFileCache():
 		if isFile is None:
 			isFile = pathisfile(path)
 		return isFile
+
+	def realpath(self, path):
+		realpath = None
+		if config.EMC.files_cache.value and (path in self.cacheAttributeList):
+			realpath = self.cacheAttributeList[path][idx_realpath]
+		if realpath is None:
+			realpath = pathreal(path)
+		return realpath
 
 	def getDateInfoFromCacheForPath(self, path):
 		if config.EMC.files_cache.value and (path in self.cacheAttributeList):
