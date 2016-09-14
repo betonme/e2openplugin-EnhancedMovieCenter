@@ -77,7 +77,7 @@ from EMCPlayList import emcplaylist, EMCPlaylistScreen, EMCPlaylistSetup
 from MetaSupport import getInfoFile
 
 from MovieCenter import extList, extVideo, extMedia, extDir, plyAll, plyDVD, cmtBME2, cmtBMEMC, cmtDir, plyDVB, extPlaylist
-from MovieCenter import getMovieNameWithoutExt, getMovieNameWithoutPhrases
+from MovieCenter import getMovieNameWithoutExt, getMovieNameWithoutPhrases, getNoPosterPath
 
 global extList, extVideo, extMedia, extDir, plyAll, plyDVD, cmtBME2, cmtBMEMC, cmtDir, plyDVB, extPlaylist
 
@@ -388,8 +388,9 @@ class SelectionEventInfo:
 				#jpgpath = "/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/cover_tr.png"
 
 			if config.EMC.movie_cover_fallback.value and not os.path.exists(jpgpath):
-				no_poster = "no_poster.png"
-				jpgpath = "/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/" + no_poster
+				#no_poster = "no_poster.png"
+				#jpgpath = "/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/" + no_poster
+				jpgpath = getNoPosterPath()
 
 			#TODO avoid os.path.exists double check
 			if jpgpath and os.path.exists(jpgpath):

@@ -12,7 +12,7 @@ from Screens.MessageBox import MessageBox
 from Components.config import *
 from Components.ConfigList import *
 
-from MovieCenter import getMovieNameWithoutExt, getMovieNameWithoutPhrases
+from MovieCenter import getMovieNameWithoutExt, getMovieNameWithoutPhrases, getNoPosterPath
 from EnhancedMovieCenter import imgVti
 
 import json, os
@@ -671,7 +671,7 @@ class MovieInfoTMDb(Screen):
 		if fileExists("/tmp/previewCover.jpg"):
 			previewpath = "/tmp/previewCover.jpg"
 		else:
-			previewpath = "/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/no_poster.png"
+			previewpath = getNoPosterPath() #"/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/no_poster.png"
 		sc = AVSwitch().getFramebufferScale()
 		self.picload.setPara((self["previewcover"].instance.size().width(), self["previewcover"].instance.size().height(), sc[0], sc[1], False, 1, "#00000000"))
 		self.picload.startDecode(previewpath)

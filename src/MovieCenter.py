@@ -145,6 +145,15 @@ if config.EMC.directories_ontop.value:
 else:
 	virToD = virAll
 
+#-------------------------------------------------
+# func: getNoPosterPath()
+#-------------------------------------------------
+def getNoPosterPath():
+	img = resolveFilename(SCOPE_CURRENT_SKIN, 'emc/no_poster.png')
+	if fileExists(img):
+		return img
+	else:
+		return "/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/no_poster.png"
 
 #-------------------------------------------------
 # func: readBasicCfgFile( file )

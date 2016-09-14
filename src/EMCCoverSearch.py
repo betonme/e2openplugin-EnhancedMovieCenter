@@ -38,7 +38,7 @@ from Tools.BoundFunction import boundFunction
 from DelayedFunction import DelayedFunction
 from time import time
 
-from MovieCenter import getMovieNameWithoutExt, getMovieNameWithoutPhrases
+from MovieCenter import getMovieNameWithoutExt, getMovieNameWithoutPhrases, getNoPosterPath
 from EnhancedMovieCenter import imgVti
 
 import re, urllib, urllib2, os, time, shutil
@@ -218,7 +218,7 @@ class EMCImdbScan(Screen):
 		self["Manage Cover"] = Label(_("Manage Cover"))
 		self["Setup"] = Label(_("Setup"))
 		self["Single search"] = Label(_("Single search"))
-		self.no_image_poster = "/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/no_poster.png"
+		self.no_image_poster = getNoPosterPath() #"/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/no_poster.png"
 		self.check = False
 		self["menulist"].onSelectionChanged.append(self.showInfo)
 		self.running = False
