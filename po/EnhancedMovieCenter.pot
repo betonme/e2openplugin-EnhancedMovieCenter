@@ -719,6 +719,14 @@ msgstr ""
 msgid "HELP_Horizontal alignment for count / size"
 msgstr ""
 
+#: EnhancedMovieCenter.py:427
+msgid "Horizontal alignment for date"
+msgstr ""
+
+#: EnhancedMovieCenter.py:427
+msgid "HELP_Horizontal alignment for date"
+msgstr ""
+
 #: EnhancedMovieCenter.py:366
 msgid "Show directory size in skin"
 msgstr ""
