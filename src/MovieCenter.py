@@ -2196,7 +2196,13 @@ class MovieCenter(GUIComponent):
 								iconsub = 0
 							append(MultiContentEntryText(pos=(CoolProgressPos - iconsub, self.CoolProgressHPos), size=(progressWidth, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text="%d%%" % (progress), color = colortitle, color_sel = colorhighlight))
 					if CoolDatePos != -1:
-						append(MultiContentEntryText(pos=(CoolDatePos, self.CoolDateHPos), size=(self.CoolDateWidth, globalHeight), font=usedDateFont, text=datetext, color = colordate, color_sel = colorhighlight, flags=RT_HALIGN_CENTER))
+						if config.EMC.movie_date_position.value == '1':
+							halign = RT_HALIGN_RIGHT
+						elif config.EMC.movie_date_position.value == '2':
+							halign = RT_HALIGN_LEFT
+						else:
+							halign = RT_HALIGN_CENTER
+						append(MultiContentEntryText(pos=(CoolDatePos, self.CoolDateHPos), size=(self.CoolDateWidth, globalHeight), font=usedDateFont, text=datetext, color = colordate, color_sel = colorhighlight, flags=halign))
 
 					# Media files left side
 					if movie_metaload:
@@ -2445,6 +2451,8 @@ class MovieCenter(GUIComponent):
 								CoolCSWidth = self.CoolCSWidth
 					if config.EMC.count_size_position.value == "1":
 						halign = RT_HALIGN_RIGHT
+					elif config.EMC.count_size_position.value == '2':
+						halign = RT_HALIGN_LEFT
 					else:
 						halign = RT_HALIGN_CENTER
 					if datetext != "":

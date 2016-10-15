@@ -748,7 +748,19 @@ msgid "HELP_Horizontal alignment for count / size"
 msgstr ""
 "Hier kann die horizontale Ausrichtung des Textes für\n"
 "Anzahl und Größe bestimmt werden.\n"
-"Ob die Anzeige zentriert oder rechtsbündig gezeigt wird."
+"Ob die Anzeige links, zentriert oder rechtsbündig gezeigt wird."
+
+#: EnhancedMovieCenter.py:427
+msgid "Horizontal alignment for date"
+msgstr "Horizontale Ausrichtung des Datums"
+
+#: EnhancedMovieCenter.py:427
+msgid "HELP_Horizontal alignment for date"
+msgstr ""
+"Hier kann die horizontale Ausrichtung des Textes für\n"
+"das Datum bestimmt werden.\n"
+"Ob die Anzeige links, zentriert oder rechtsbündig gezeigt wird."
+
 
 #: EnhancedMovieCenter.py:366
 msgid "Show directory size in skin"

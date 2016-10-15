@@ -319,6 +319,7 @@ config.EMC.movie_progress            = ConfigSelection(default = "PB", choices =
 config.EMC.movie_watching_percent    = ConfigSelectionNumber(0, 30, 1, default = 5)
 config.EMC.movie_finished_percent    = ConfigSelectionNumber(50, 100, 1, default = 80)
 config.EMC.movie_date_format         = ConfigSelection(default = "%d.%m %H:%M", choices = date_choices)
+config.EMC.movie_date_position       = ConfigSelection(default = '0', choices = [ ('0', _("center")), ('1', _("right")), ('2', _("left")) ])
 config.EMC.movie_ignore_firstcuts    = ConfigYesNo(default = True)
 config.EMC.movie_jump_first_mark     = ConfigYesNo(default = True)
 config.EMC.movie_rewind_finished     = ConfigYesNo(default = True)
@@ -366,7 +367,7 @@ config.EMC.count_default_text        = ConfigTextWOHelp(default = " ( 0 ) ", fix
 config.EMC.count_size_default_text   = ConfigTextWOHelp(default = " (0 / 0 GB) ", fixed_size  = False, visible_width= 22)
 config.EMC.size_default_text         = ConfigTextWOHelp(default = " ( 0 GB ) ", fixed_size  = False, visible_width= 22)
 config.EMC.count_size_default_icon   = ConfigYesNo(default = False)
-config.EMC.count_size_position       = ConfigSelection(default = '0', choices = [ ('0', _("center")), ('1', _("right")) ])
+config.EMC.count_size_position       = ConfigSelection(default = '0', choices = [ ('0', _("center")), ('1', _("right")), ('2', _("left")) ])
 #config.EMC.symlinkdir_info           = ConfigYesNo(default = False)
 config.EMC.latest_recordings         = ConfigYesNo(default = True)
 nget = False    # this is needed for vti-image at the moment
