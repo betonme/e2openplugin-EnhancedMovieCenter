@@ -1712,6 +1712,7 @@ class MovieCenter(GUIComponent):
 		self.CoolPiconWidth = -1
 		self.CoolPiconHeight = -1
 		self.CoolCSWidth = 110
+		self.CoolCSPos = -1
 		self.CoolDirInfoWidth = -1
 
 		self.DefaultColor = 0xFFFFFF
@@ -1821,6 +1822,8 @@ class MovieCenter(GUIComponent):
 
 				elif attrib == "CoolCSWidth":
 					self.CoolCSWidth = int(value)
+				elif attrib == "CoolCSPos":
+					self.CoolCSPos = int(value)
 				elif attrib == "CoolDirInfoWidth":
 					self.CoolDirInfoWidth = int(value)
 				elif attrib == "CoolSelNumTxtWidth":
@@ -2374,11 +2377,8 @@ class MovieCenter(GUIComponent):
 						else:
 							# Trashcan is empty
 							pixmap = self.pic_trashcan
-						self.CoolCSWidth = 110
 					else:
 						pixmap = self.pic_trashcan
-						if config.EMC.directories_info.value == "D":
-							datetext = _("Trashcan")
 
 				elif ext == cmtDir:
 					if not isExtHDDSleeping:
@@ -2391,13 +2391,15 @@ class MovieCenter(GUIComponent):
 
 					if config.EMC.directories_ontop.value and title not in self.topdirlist:
 						pixmap = self.pic_col_dir
-						
+
 					(count, size, datetext, datepic, pixmap) = self.getValues_startWorker(path,config.EMC.directories_info.value,datetext,datepic,pixmap,isLink,False)
 
 				else:
 					# Should never happen
 					pixmap = self.pic_directory
-					datetext = _("UNKNOWN")
+					datepic = None
+					if config.EMC.directories_info.value == 'D':
+						datetext = _("UNKNOWN")
 
 				# Is there any way to combine it for both files and directories?
 				# it is, but not with this hole code
@@ -2431,37 +2433,43 @@ class MovieCenter(GUIComponent):
 				# TODO: Directory left side - skin able
 				#append(MultiContentEntryText(pos=(self.CoolMoviePos, 0), size=(self.CoolFolderSize, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text=title))
 				# Directory right side
+				if self.fullhd:
+					if not config.EMC.skin_able.value:
+						CoolCSWidth = int(self.CoolCSWidth * 1.5)
+					else:
+						if self.CoolDirInfoWidth != -1:
+							CoolCSWidth = self.CoolDirInfoWidth
+						else:
+							CoolCSWidth = int(self.CoolCSWidth * 1.5)
+				else:
+					if not config.EMC.skin_able.value:
+						CoolCSWidth = self.CoolCSWidth
+					else:
+						if self.CoolDirInfoWidth != -1:
+							CoolCSWidth = self.CoolDirInfoWidth
+						else:
+							CoolCSWidth = self.CoolCSWidth
+				listW = self.l.getItemSize().width()
+				posH = dirTitlePos[0] + dirTitleSize[0] + 5
+				if not config.EMC.skin_able.value or self.CoolCSPos == -1 or posH + CoolCSWidth > listW:
+					posH = listW - CoolCSWidth
+				else:
+					posH = self.CoolCSPos
+				if config.EMC.count_size_position.value == "1":
+					halign = RT_HALIGN_RIGHT
+				elif config.EMC.count_size_position.value == '2':
+					halign = RT_HALIGN_LEFT
+				else:
+					halign = RT_HALIGN_CENTER
 				val = config.EMC.directories_info.value
 				if val == "C" or val == "CS" or val == "S":
-					if self.fullhd:
-						if not config.EMC.skin_able.value:
-							CoolCSWidth = int(self.CoolCSWidth * 1.5)
-						else:
-							if self.CoolDirInfoWidth != -1:
-								CoolCSWidth = self.CoolDirInfoWidth
-							else:
-								CoolCSWidth = int(self.CoolCSWidth * 1.5)
-					else:
-						if not config.EMC.skin_able.value:
-							CoolCSWidth = self.CoolCSWidth
-						else:
-							if self.CoolDirInfoWidth != -1:
-								CoolCSWidth = self.CoolDirInfoWidth
-							else:
-								CoolCSWidth = self.CoolCSWidth
-					if config.EMC.count_size_position.value == "1":
-						halign = RT_HALIGN_RIGHT
-					elif config.EMC.count_size_position.value == '2':
-						halign = RT_HALIGN_LEFT
-					else:
-						halign = RT_HALIGN_CENTER
 					if datetext != "":
-						append(MultiContentEntryText(pos=(self.l.getItemSize().width() - CoolCSWidth - 5, self.CoolDateHPos), size=(CoolCSWidth, globalHeight), font=usedDateFont, flags=halign, text=datetext))
+						append(MultiContentEntryText(pos=(posH, self.CoolDateHPos), size=(CoolCSWidth, globalHeight), font=usedDateFont, flags=halign, text=datetext))
 					else:
 						useIcon = config.EMC.count_size_default_icon.value
 						if useIcon:
 							if datepic is not None:
-								append(MultiContentEntryPixmapAlphaBlend(pos=(self.l.getItemSize().width() - self.CoolDateWidth /2, self.CoolDateHPos), size=(CoolCSWidth, globalHeight), png=self.pic_directory_search, **{}))
+								append(MultiContentEntryPixmapAlphaBlend(pos=(posH + CoolCSWidth/2, self.CoolIconHPos), size=(CoolCSWidth/2, globalHeight), png=self.pic_directory_search, **{}))
 						else:
 							if datepic is not None:
 								count = config.EMC.count_default_text.value
@@ -2473,9 +2481,9 @@ class MovieCenter(GUIComponent):
 									datetext = countsize
 								elif val == "S":
 									datetext = size
-							append(MultiContentEntryText(pos=(self.l.getItemSize().width() - self.CoolDateWidth, self.CoolDateHPos), size=(self.CoolDateWidth, globalHeight), font=usedDateFont, flags=halign, text=datetext))
+							append(MultiContentEntryText(pos=(posH, self.CoolDateHPos), size=(CoolCSWidth, globalHeight), font=usedDateFont, flags=halign, text=datetext))
 				else:
-					append(MultiContentEntryText(pos=(self.l.getItemSize().width() - self.CoolDateWidth, self.CoolDateHPos), size=(self.CoolDateWidth, globalHeight), font=usedDateFont, flags=RT_HALIGN_CENTER, text=datetext))
+					append(MultiContentEntryText(pos=(posH, self.CoolDateHPos), size=(CoolCSWidth, globalHeight), font=usedDateFont, flags=halign, text=datetext))
 			del append
 			return res
 		except Exception, e:
@@ -2483,6 +2491,7 @@ class MovieCenter(GUIComponent):
 
 	def getValues_startWorker(self,path,config_EMC_info_value,datetext,datepic,pixmap,isLink,is_trashcan):
 		count, size = 0, 0
+		self.CoolCSWidth = 110
 		getValues = movieFileCache.getCountSizeFromCache(path)
 		if config_EMC_info_value:
 			if config_EMC_info_value == "C":
@@ -2491,7 +2500,7 @@ class MovieCenter(GUIComponent):
 					count, size = getValues
 					if self.startWorker:
 						self.addCountsizeworker(path)
-					datetext = " ( %d ) " % (count)
+					datetext = "( %d )" % (count)
 				else:
 					self.addCountsizeworker(path)
 					datetext = ""
@@ -2504,34 +2513,21 @@ class MovieCenter(GUIComponent):
 						self.addCountsizeworker(path)
 					if size >= 1000:
 						size /= 1024.0
-						datetext = " (%d / %.0f TB) " % (count, size)
+						datetext = "( %d / %.0f TB )" % (count, size)
 					else:
-						datetext = " (%d / %.0f GB) " % (count, size)
+						datetext = "( %d / %.0f GB )" % (count, size)
 					# TODO: make this easier, but hold it on the right side
-					self.CoolCSWidth = 110
-					if size or count >=99:
-						if size >= 99 and count <=99:
-							self.CoolCSWidth = 125
-						elif size <= 99 and count >= 99:
-							if count >= 999:
-								if size <= 10:
-									self.CoolCSWidth = 135
-								else:
-									self.CoolCSWidth = 145
-							elif count >= 9999:
-								if size <= 10:
-									self.CoolCSWidth = 140
-								else:
-									self.CoolCSWidth = 160
-							else:
-								self.CoolCSWidth = 125
-						elif size >= 99 and count >= 99:
-							if count >= 999:
-								self.CoolCSWidth = 145
-							elif count >= 9999:
-								self.CoolCSWidth = 160
-							else:
-								self.CoolCSWidth = 140
+					space = len(str(int(size))) + len(str(int(count)))
+					if space > 7:
+						self.CoolCSWidth = 160
+					elif space > 6:
+						self.CoolCSWidth = 150
+					elif space > 5:
+						self.CoolCSWidth = 140
+					elif space > 4:
+						self.CoolCSWidth = 130
+					elif space > 3:
+						self.CoolCSWidth = 120
 				else:
 					self.addCountsizeworker(path)
 					datetext = ""
@@ -2543,9 +2539,9 @@ class MovieCenter(GUIComponent):
 					if self.startWorker:
 						self.addCountsizeworker(path)
 					if size >= 100:
-						datetext = " ( %.2f TB ) " % (size/1024.0)
+						datetext = "( %.2f TB )" % (size/1024.0)
 					else:
-						datetext = " ( %.2f GB ) " % (size)
+						datetext = "( %.2f GB )" % (size)
 				else:
 					self.addCountsizeworker(path)
 					datetext = ""
