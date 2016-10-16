@@ -383,7 +383,7 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 			(  _("Text shown for initially unknown count and size"), config.EMC.count_size_default_text , None                  , None                  , 0     , [-5,-2]     , _("HELP_Text shown for initially unknown count and size"), None              , None ),
 			(  _("Text shown for initially unknown directory size"), config.EMC.size_default_text       , None                  , None                  , 0     , [-6,-3]     , _("HELP_Text shown for initially unknown directory size"), None              , None ),
 			(  _("Icon shown for initially unknown count / size") , config.EMC.count_size_default_icon  , None                  , None                  , 0     , [-7,-4]     , _("HELP_Icon shown for initially unknown count / size")  , None              , None ),
-			(  _("Horizontal alignment for count / size")         , config.EMC.count_size_position      , None                  , None                  , 0     , [-8,-5]     , _("HELP_Horizontal alignment for count / size")          , None              , None ),
+# below of date alignment moved (now also for alignment from trashcan information) 			(  _("Horizontal alignment for count / size")         , config.EMC.count_size_position      , None                  , None                  , 0     , [-8,-5]     , _("HELP_Horizontal alignment for count / size")          , None              , None ),
 			(  _("Show directory size in skin")                   , config.EMC.directories_size_skin    , None                  , None                  , 0     , []          , _("HELP_Show directory size in skin")                    , None              , None ),
 
 			(  _("Show Latest Recordings directory")              , config.EMC.latest_recordings        , None                  , None                  , 0     , []          , _("HELP_Show Latest Recordings directory")               , None              , True ),
@@ -425,6 +425,7 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 
 			(  _("Date format")                                   , config.EMC.movie_date_format        , None                  , None                  , 0     , []          , _("HELP_Date format")                                    , None              , None ),
 			(  _("Horizontal alignment for date")                 , config.EMC.movie_date_position      , None                  , None                  , 0     , []          , _("HELP_Horizontal alignment for date")                  , None              , None ),
+			(  _("Horizontal alignment for count / size")         , config.EMC.count_size_position      , None                  , None                  , 0     , []          , _("HELP_Horizontal alignment for count / size")          , None              , None ),
 
 			(  _("Show movie icons")                              , config.EMC.movie_icons              , None                  , None                  , 0     , []          , _("HELP_Show movie icons")                               , False             , True ),
 			(  _("Show link arrow")                               , config.EMC.link_icons               , None                  , None                  , 0     , [-1]        , _("HELP_Show link arrow")                                , False             , True ),

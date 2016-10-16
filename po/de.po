@@ -741,13 +741,14 @@ msgstr ""
 
 #: EnhancedMovieCenter.py:365
 msgid "Horizontal alignment for count / size"
-msgstr "Horizontale Ausrichtung von Anzahl und Größe"
+msgstr "Horizontale Ausrichtung von Anzahl, Größe und Beschreibung"
 
 #: EnhancedMovieCenter.py:365
 msgid "HELP_Horizontal alignment for count / size"
 msgstr ""
-"Hier kann die horizontale Ausrichtung des Textes für\n"
-"Anzahl und Größe bestimmt werden.\n"
+"Hier kann die horizontale Ausrichtung des Textes für"
+" Anzahl, Größe oder Beschreibung der Verzeichnis- und"
+" Papierkorbinformationen bestimmt werden.\n"
 "Ob die Anzeige links, zentriert oder rechtsbündig gezeigt wird."
 
 #: EnhancedMovieCenter.py:427
