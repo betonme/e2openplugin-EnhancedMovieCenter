@@ -2367,10 +2367,8 @@ class MovieCenter(GUIComponent):
 						datetext = _("Bookmark")
 
 				elif ext == cmtTrash:
-					if config.EMC.movie_trashcan_enable.value and config.EMC.movie_trashcan_info.value:
-
+					if config.EMC.movie_trashcan_enable.value:
 						(count, size, datetext, datepic, dummy_pixmap) = self.getValues_startWorker(path,config.EMC.movie_trashcan_info.value,datetext,datepic,pixmap,isLink,True)
-
 						if count:
 							# Trashcan contains garbage
 							pixmap = self.pic_trashcan_full
@@ -2495,7 +2493,6 @@ class MovieCenter(GUIComponent):
 		getValues = movieFileCache.getCountSizeFromCache(path)
 		if config_EMC_info_value:
 			if config_EMC_info_value == "C":
-				count = 0
 				if getValues is not None:
 					count, size = getValues
 					if self.startWorker:
@@ -2506,7 +2503,6 @@ class MovieCenter(GUIComponent):
 					datetext = ""
 					datepic = self.pic_directory_search
 			elif config_EMC_info_value == "CS":
-				count, size = 0, 0
 				if getValues is not None:
 					count, size = getValues
 					if self.startWorker:
@@ -2533,7 +2529,6 @@ class MovieCenter(GUIComponent):
 					datetext = ""
 					datepic = self.pic_directory_search
 			elif config_EMC_info_value == "S":
-				size = 0
 				if getValues is not None:
 					count, size = getValues
 					if self.startWorker:
@@ -2546,18 +2541,27 @@ class MovieCenter(GUIComponent):
 					self.addCountsizeworker(path)
 					datetext = ""
 					datepic = self.pic_directory_search
-			elif config_EMC_info_value == "D" and not is_trashcan:
-				if config.EMC.directories_size_skin.value:
+			elif config_EMC_info_value == "D":
+				if is_trashcan:
+					datetext = _("Trashcan")
 					if getValues is not None:
+						count, size = getValues
 						if self.startWorker:
 							self.addCountsizeworker(path)
 					else:
 						self.addCountsizeworker(path)
-				datetext = _("Directory")
-				if isLink:
-					datetext = _("Link")
-				if config.EMC.directories_ontop.value and title not in self.topdirlist:
-					datetext = _("Collection")
+				else:
+					if config.EMC.directories_size_skin.value:
+						if getValues is not None:
+							if self.startWorker:
+								self.addCountsizeworker(path)
+						else:
+							self.addCountsizeworker(path)
+					datetext = _("Directory")
+					if isLink:
+						datetext = _("Link")
+					if config.EMC.directories_ontop.value and title not in self.topdirlist:
+						datetext = _("Collection")
 			else:
 				# Should never happen
 				pixmap = self.pic_directory
@@ -2565,7 +2569,13 @@ class MovieCenter(GUIComponent):
 					datetext = _("Trashcan")
 				else:
 					datetext = _("Directory")
-
+		elif is_trashcan:
+			if getValues is not None:
+				count, size = getValues
+				if self.startWorker:
+					self.addCountsizeworker(path)
+			else:
+				self.addCountsizeworker(path)
 		else: # config_EMC_info_value == ""
 			if config.EMC.directories_size_skin.value:
 				if getValues is not None:
