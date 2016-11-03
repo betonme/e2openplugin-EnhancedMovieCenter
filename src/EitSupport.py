@@ -1,4 +1,4 @@
-﻿#!/usr/bin/python
+#!/usr/bin/python
 # encoding: utf-8
 #
 # EitSupport
@@ -178,9 +178,15 @@ class EitList():
 	def getEitDescription(self):
 		return self.eit.get('description', "").strip()
 
+	def getEitRealShortDescription(self):
+		return self.eit.get('short_description', "").strip()
+
 	# Wrapper
 	def getEitShortDescription(self):
 		return self.getEitName()
+
+	def getEitRealShortDescription(self):
+		return self.getEitRealShortDescription()
 
 	def getEitExtendedDescription(self):
 		return self.getEitDescription()
@@ -205,7 +211,7 @@ class EitList():
 		path = self.eit_file
 		
 		#lang = language.getLanguage()[:2]
-		lang = language_iso639_2to3( config.EMC.epglang.value.lower()[:2] )
+		lang = (language_iso639_2to3( config.EMC.epglang.value.lower()[:2] )).upper()
 
 		if path and os.path.exists(path):
 			mtime = os.path.getmtime(path)
@@ -256,6 +262,8 @@ class EitList():
 					self.eit['duration'] = duration
 
 					pos = pos + 12
+					name_event_descriptor = []
+					name_event_descriptor_multi = []
 					short_event_descriptor = []
 					short_event_descriptor_multi = []
 					extended_event_descriptor = []
@@ -265,21 +273,43 @@ class EitList():
 					linkage_descriptor = []
 					parental_rating_descriptor = []
 					endpos = len(data) - 1
+					prev1_ISO_639_language_code = "x"
+					prev2_ISO_639_language_code = "x"
 					while pos < endpos:
 						rec = ord(data[pos])
+						if pos+1>=endpos:
+							break
 						length = ord(data[pos+1]) + 2
 						if rec == 0x4D:
 							descriptor_tag = ord(data[pos+1])
 							descriptor_length = ord(data[pos+2])
-							ISO_639_language_code = str(data[pos+3:pos+5])
+							ISO_639_language_code = str(data[pos+2:pos+5]).upper()
 							event_name_length = ord(data[pos+5])
-							short_event_description = data[pos+6:pos+6+event_name_length]
+							name_event_description = data[pos+6:pos+6+event_name_length]
+							short_event_description = ""
+							for i in range (pos+7+event_name_length,pos+length):
+								if str(ord(data[i]))=="138":
+									short_event_description += '\n'
+								else:
+									if data[i]== '\x10' or data[i]== '\x00' or  data[i]== '\x02' or  data[i]== '\x05':
+										pass
+									else:
+										short_event_description += data[i]
 							if ISO_639_language_code == lang:
 								short_event_descriptor.append(short_event_description)
-							short_event_descriptor_multi.append(short_event_description)
-							
+								name_event_descriptor.append(name_event_description)
+							if (ISO_639_language_code == prev1_ISO_639_language_code) or (prev1_ISO_639_language_code == "x"):
+								short_event_descriptor_multi.append(short_event_description)
+								name_event_descriptor_multi.append(name_event_description)
+							else:
+								short_event_descriptor_multi.append("\n\n" + short_event_description)
+								name_event_descriptor_multi.append(" " + name_event_description)
+							prev1_ISO_639_language_code = ISO_639_language_code
 						elif rec == 0x4E:
-							ISO_639_language_code = str(data[pos+3:pos+5])
+							ISO_639_language_code = ""
+							for i in range (pos+3,pos+6):
+								ISO_639_language_code += data[i]
+							ISO_639_language_code = ISO_639_language_code.upper()
 							extended_event_description = ""
 							extended_event_description_multi = ""
 							for i in range (pos+8,pos+length):
@@ -287,14 +317,18 @@ class EitList():
 									extended_event_description += '\n'
 									extended_event_description_multi += '\n'
 								else:
-									if data[i]== '\x10' or data[i]== '\x00' or  data[i]== '\x02':
+									if data[i]== '\x10' or data[i]== '\x00' or  data[i]== '\x02' or  data[i]== '\x05':
 										pass
 									else:
 										extended_event_description += data[i]
 										extended_event_description_multi += data[i]
 							if ISO_639_language_code == lang:
 								extended_event_descriptor.append(extended_event_description)
-							extended_event_descriptor_multi.append(extended_event_description)
+							if (ISO_639_language_code == prev2_ISO_639_language_code) or (prev2_ISO_639_language_code == "x"):
+								extended_event_descriptor_multi.append(extended_event_description)
+							else:
+								extended_event_descriptor_multi.append("\n\n" + extended_event_description)
+							prev2_ISO_639_language_code = ISO_639_language_code
 						elif rec == 0x50:
 							component_descriptor.append(data[pos+8:pos+length])
 						elif rec == 0x54:
@@ -304,10 +338,18 @@ class EitList():
 						elif rec == 0x55:
 							parental_rating_descriptor.append(data[pos+2:pos+length])
 						else:
-							#print "unsopported descriptor: %x %x" %(rec, pos + 12)
-							#print data[pos:pos+length]
+#							print "unsopported descriptor: %x %x" %(rec, pos + 12)
+#							print data[pos:pos+length]
 							pass
 						pos += length
+
+					# Very bad but there can be both encodings
+					# User files can be in cp1252
+					# Is there no other way?
+					if name_event_descriptor:
+						name_event_descriptor = "".join(name_event_descriptor)
+					else:
+						name_event_descriptor = ("".join(name_event_descriptor_multi)).strip()
 
 					# Very bad but there can be both encodings
 					# User files can be in cp1252
@@ -315,7 +357,39 @@ class EitList():
 					if short_event_descriptor:
 						short_event_descriptor = "".join(short_event_descriptor)
 					else:
-						short_event_descriptor = "".join(short_event_descriptor_multi)
+						short_event_descriptor = ("".join(short_event_descriptor_multi)).strip()
+
+					# Very bad but there can be both encodings
+					# User files can be in cp1252
+					# Is there no other way?
+					if extended_event_descriptor:
+						extended_event_descriptor = "".join(extended_event_descriptor)
+					else:
+						extended_event_descriptor = ("".join(extended_event_descriptor_multi)).strip()
+
+					if not(extended_event_descriptor):
+						extended_event_descriptor = short_event_descriptor
+
+					if name_event_descriptor:
+						#try:
+						#	name_event_descriptor = name_event_descriptor.decode("iso-8859-1").encode("utf-8")
+						#except UnicodeDecodeError:
+						#	pass
+						try:
+							name_event_descriptor.decode('utf-8')
+						except UnicodeDecodeError:
+							try:
+								name_event_descriptor = name_event_descriptor.decode("cp1252").encode("utf-8")
+							except UnicodeDecodeError:
+								# do nothing, otherwise cyrillic wont properly displayed
+								#name_event_descriptor = name_event_descriptor.decode("iso-8859-1").encode("utf-8")
+								pass
+							if (lang == "CZE") or (lang == "SLO") or (lang == "SLK") or (config.EMC.langsupp.value == "CZ&SK"):
+								name_event_descriptor = str(convertCharSpecCZSK(name_event_descriptor))
+							if (lang == "HRV") or (lang == "SCR") or (config.EMC.langsupp.value == "HR"):
+								name_event_descriptor = str(convertCharSpecHR(name_event_descriptor))
+					self.eit['name'] = name_event_descriptor
+
 					if short_event_descriptor:
 						#try:
 						#	short_event_descriptor = short_event_descriptor.decode("iso-8859-1").encode("utf-8")
@@ -330,19 +404,12 @@ class EitList():
 								# do nothing, otherwise cyrillic wont properly displayed
 								#short_event_descriptor = short_event_descriptor.decode("iso-8859-1").encode("utf-8")
 								pass
-							if (lang == "cs") or (lang == "sk") or (config.EMC.langsupp.value == "CZ&SK"):
+							if (lang == "CZE") or (lang == "SLO") or (lang == "SLK") or (config.EMC.langsupp.value == "CZ&SK"):
 								short_event_descriptor = str(convertCharSpecCZSK(short_event_descriptor))
-							if (lang == "hr") or (config.EMC.langsupp.value == "HR"):
+							if (lang == "HRV") or (lang == "SCR") or (config.EMC.langsupp.value == "HR"):
 								short_event_descriptor = str(convertCharSpecHR(short_event_descriptor))
-					self.eit['name'] = short_event_descriptor
+					self.eit['short_description'] = short_event_descriptor
 
-					# Very bad but there can be both encodings
-					# User files can be in cp1252
-					# Is there no other way?
-					if extended_event_descriptor:
-						extended_event_descriptor = "".join(extended_event_descriptor)
-					else:
-						extended_event_descriptor = "".join(extended_event_descriptor_multi)
 					if extended_event_descriptor:
 						#try:
 						#	extended_event_descriptor = extended_event_descriptor.decode("iso-8859-1").encode("utf-8")
@@ -357,9 +424,9 @@ class EitList():
 								# do nothing, otherwise cyrillic wont properly displayed
 								#extended_event_descriptor = extended_event_descriptor.decode("iso-8859-1").encode("utf-8")
 								pass
-							if (lang == "cs") or (lang == "sk") or (config.EMC.langsupp.value == "CZ&SK"):
+							if (lang == "CZE") or (lang == "SLO") or (lang == "SLK") or (config.EMC.langsupp.value == "CZ&SK"):
 								extended_event_descriptor = str(convertCharSpecCZSK(extended_event_descriptor))
-							if (lang == "hr") or (config.EMC.langsupp.value == "HR"):
+							if (lang == "HRV") or (lang == "SCR") or (config.EMC.langsupp.value == "HR"):
 								extended_event_descriptor = str(convertCharSpecHR(extended_event_descriptor))
 					self.eit['description'] = extended_event_descriptor
 
