@@ -107,7 +107,7 @@ class ConfirmBox(MessageBox):
 
 	#this function is called on every keypress!
 	def action(self, key=0, flag=0):
-		if flag == 0:
+		if flag != 0:
 			self.firstKey = False
 
 	def cancel(self):
