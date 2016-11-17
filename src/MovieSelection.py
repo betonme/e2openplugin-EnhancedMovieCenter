@@ -1271,7 +1271,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			self.moveToIndex(0)
 		else:
 			self.checkHideMiniTV_beforeFullscreen()
-			self.session.openWithCallback(self.imdbCallback, MessageBox, _("Cover search with all Files in Subdirectories?\n\nThis may take a while on huge Disks, or Directories!"), MessageBox.TYPE_YESNO, 10)
+			self.session.openWithCallback(self.imdbCallback, MessageBox, _("Cover search with all Files in Subdirectories?\n\nThis may take a while on huge Disks, or Directories!"), MessageBox.TYPE_YESNO, timeout=10, default=False)
 
 	def imdbCallback(self, result):
 		filelist = []
