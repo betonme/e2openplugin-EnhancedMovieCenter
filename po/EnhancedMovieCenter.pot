@@ -20,6 +20,70 @@ msgstr ""
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-SearchPath-0: src\n"
 
+#: EMCCoverSearch.py
+msgid "themoviedb.org for movies + thetvdb.com for series (e.g. 'S01E01' in title)"
+msgstr ""
+
+#: EMCCoverSearch.py
+msgid "overall"
+msgstr ""
+
+#: EMCCoverSearch.py
+msgid "every single one"
+msgstr ""
+
+#: EMCCoverSearch.py
+msgid "two contiguous"
+msgstr ""
+
+#: EMCCoverSearch.py
+msgid "three contiguous"
+msgstr ""
+
+#: EMCCoverSearch.py
+msgid "no limit"
+msgstr ""
+
+#: EMCCoverSearch.py
+msgid "standard cover"
+msgstr ""
+
+#: EMCCoverSearch.py
+msgid ".../title/title.jpg"
+msgstr ""
+
+#: EMCCoverSearch.py
+msgid ".../title.jpg"
+msgstr ""
+
+#: EMCCoverSearch.py
+msgid "Search filter for matching existing terms in the title:"
+msgstr ""
+
+#: EMCCoverSearch.py
+msgid "thetvdb cover number (standard cover):"
+msgstr ""
+
+#: EMCCoverSearch.py
+msgid "Set path to save the folder Cover:"
+msgstr ""
+
+#: EMCCoverSearch.py
+msgid "Search filter for matching existing terms in the title:"
+msgstr ""
+
+#: EMCCoverSearch.py
+msgid "Search Results per Search Site (without counting cover range):"
+msgstr ""
+
+#: EMCCoverSearch.py
+msgid "thetvdb cover range per title:"
+msgstr ""
+
+#: EMCCoverSearch.py
+msgid "Settings have been Saved."
+msgstr ""
+
 #: EMCCoverSearch.py:47 EMCCoverSearch.py:48
 msgid "imdb.de"
 msgstr ""

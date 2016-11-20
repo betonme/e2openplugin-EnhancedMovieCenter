@@ -17,6 +17,66 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SearchPath-0: src\n"
 
+#: EMCCoverSearch.py
+msgid "themoviedb.org for movies + thetvdb.com for series (e.g. 'S01E01' in title)"
+msgstr "themoviedb.org für Filme + thetvdb.com für Serien (z.Bsp. 'S01E01' im Titel)"
+
+#: EMCCoverSearch.py
+msgid "overall"
+msgstr "insgesamt"
+
+#: EMCCoverSearch.py
+msgid "every single one"
+msgstr "jeder einzelne"
+
+#: EMCCoverSearch.py
+msgid "two contiguous"
+msgstr "zwei zusammenhängende"
+
+#: EMCCoverSearch.py
+msgid "three contiguous"
+msgstr "drei zusammenhängende"
+
+#: EMCCoverSearch.py
+msgid "no limit"
+msgstr "keine Begrenzung"
+
+#: EMCCoverSearch.py
+msgid "standard cover"
+msgstr "Standard Cover"
+
+#: EMCCoverSearch.py
+msgid ".../title/title.jpg"
+msgstr ".../Titel/Titel.jpg"
+
+#: EMCCoverSearch.py
+msgid ".../title.jpg"
+msgstr ".../Titel.jpg"
+
+#: EMCCoverSearch.py
+msgid "Search filter for matching existing terms in the title:"
+msgstr "Suchfilter für gleiche existierende Ausdrücke im Titel:"
+
+#: EMCCoverSearch.py
+msgid "thetvdb cover number (standard cover):"
+msgstr "thetvdb-Cover-Nummer (Standard Cover):"
+
+#: EMCCoverSearch.py
+msgid "Set path to save the folder Cover:"
+msgstr "Pfad zum speichern des Verzeichnis Covers festlegen:"
+
+#: EMCCoverSearch.py
+msgid "Search Results per Search Site (without counting cover range):"
+msgstr "Resultate pro Such-Seite (ohne Zählung der Coverauswahl):"
+
+#: EMCCoverSearch.py
+msgid "thetvdb cover range per title:"
+msgstr "thetvdb-Cover-Auswahl pro Titel:"
+
+#: EMCCoverSearch.py
+msgid "Settings have been Saved."
+msgstr "Einstellungen wurden gespeichert."
+
 #: EMCCoverSearch.py:47 EMCCoverSearch.py:48
 msgid "imdb.de"
 msgstr "imdb.de"
