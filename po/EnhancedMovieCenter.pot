@@ -69,10 +69,6 @@ msgid "Set path to save the folder Cover:"
 msgstr ""
 
 #: EMCCoverSearch.py
-msgid "Search filter for matching existing terms in the title:"
-msgstr ""
-
-#: EMCCoverSearch.py
 msgid "Search Results per Search Site (without counting cover range):"
 msgstr ""
 
