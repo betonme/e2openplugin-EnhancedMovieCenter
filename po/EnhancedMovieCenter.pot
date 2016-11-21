@@ -69,7 +69,11 @@ msgid "Set path to save the folder Cover:"
 msgstr ""
 
 #: EMCCoverSearch.py
-msgid "Search Results per Search Site (without counting cover range):"
+msgid "Search Results per Search Site%s:"
+msgstr ""
+
+#: EMCCoverSearch.py
+msgid " (without counting cover range)"
 msgstr ""
 
 #: EMCCoverSearch.py
@@ -78,6 +82,10 @@ msgstr ""
 
 #: EMCCoverSearch.py
 msgid "Settings have been Saved."
+msgstr ""
+
+#: EMCCoverSearch.py
+msgid "%s not removed. Write protect?"
 msgstr ""
 
 #: EMCCoverSearch.py:47 EMCCoverSearch.py:48
