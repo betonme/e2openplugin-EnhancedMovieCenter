@@ -66,8 +66,12 @@ msgid "Set path to save the folder Cover:"
 msgstr "Pfad zum speichern des Verzeichnis Covers festlegen:"
 
 #: EMCCoverSearch.py
-msgid "Search Results per Search Site (without counting cover range):"
-msgstr "Resultate pro Such-Seite (ohne Zählung der Coverauswahl):"
+msgid "Search Results per Search Site%s:"
+msgstr "Resultate pro Such-Seite%s:"
+
+#: EMCCoverSearch.py
+msgid " (without counting cover range)"
+msgstr " (ohne Zählung der Cover-Auswahl)"
 
 #: EMCCoverSearch.py
 msgid "thetvdb cover range per title:"
@@ -76,6 +80,10 @@ msgstr "thetvdb-Cover-Auswahl pro Titel:"
 #: EMCCoverSearch.py
 msgid "Settings have been Saved."
 msgstr "Einstellungen wurden gespeichert."
+
+#: EMCCoverSearch.py
+msgid "%s not removed. Write protect?"
+msgstr "%s nicht entfernt. Schreibschutz?"
 
 #: EMCCoverSearch.py:47 EMCCoverSearch.py:48
 msgid "imdb.de"
