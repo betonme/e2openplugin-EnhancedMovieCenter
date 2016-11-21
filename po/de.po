@@ -1914,9 +1914,9 @@ msgid ""
 "\n"
 "Do you want to replace the existing cover?"
 msgstr ""
-"Cover %s exestiert schon!\n"
+"Cover %s existiert schon!\n"
 "\n"
-"Wollen Sie das exestierende Cover ersetzen?"
+"Wollen Sie das existierende Cover ersetzen?"
 
 #: MovieInfo.py:352 MovieInfo.py:459 MovieInfo.py:642
 msgid "Movie Information Preview for:"
