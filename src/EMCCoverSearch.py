@@ -49,13 +49,13 @@ config.EMC.imdb.search = ConfigSelection(default='1', choices=[('1', _("themovie
 config.EMC.imdb.search_filter = ConfigSelection(default='3', choices=[('0', _('overall')), ('2', _('two contiguous')), ('3', _('three contiguous'))])
 config.EMC.imdb.savetotxtfile = ConfigYesNo(default = False)
 #single/manually
-config.EMC.imdb.singlesearch = ConfigSelection(default='5', choices=[('0', _('imdb.de')), ('1', _('thetvdb.com')), ('2', _('csfd.cz')), ('3', _('all')), ('4', _('themoviedb.org')), ('5', _('themoviedb.org + thetvdb.com'))])
+config.EMC.imdb.singlesearch = ConfigSelection(default='6', choices=[('0', _('imdb.com')), ('1', _('thetvdb.com')), ('2', _('csfd.cz')), ('3', _('all')), ('4', _('themoviedb.org')), ('5', _('themoviedb.org + thetvdb.com')), ('6', _('themoviedb.org + thetvdb.com + imdb.com'))])
 config.EMC.imdb.singlesearch_filter = ConfigSelection(default='2', choices=[('0', _('overall')), ('1', _('every single one')), ('2', _('two contiguous')), ('3', _('three contiguous'))])
 config.EMC.imdb.singlesearch_siteresults = ConfigSelection(default='3', choices=[('0', _('no limit')),'3', '5', '10', '25', '50', '100'])
 config.EMC.imdb.singlesearch_tvdbcoverrange = ConfigSelection(default='1', choices = [('0', _('no limit')), ('1', _('standard cover')), '3', '5', '10', '25'])
 config.EMC.imdb.singlesearch_foldercoverpath = ConfigSelection(default='0', choices=[('0', _('.../title/title.jpg')), ('1', _('.../title.jpg'))])
 #common
-config.EMC.imdb.themoviedb_coversize = ConfigSelection(default="w185", choices = ["w92", "w185", "w500", "original"])
+config.EMC.imdb.preferred_coversize = ConfigSelection(default="w185", choices = ["w92", "w154", "w185", "w300", "w320", "w342", "w500", "w780", "original"])
 config.EMC.imdb.thetvdb_standardcover = ConfigSelectionNumber(default = 1, stepwidth = 1, min = 1, max = 30, wraparound = True)
 
 
@@ -379,7 +379,7 @@ class EMCImdbScan(Screen):
 			list = []
 			list = re.findall('"poster_path":"\\\(.*?)".*?"original_title":"(.*?)"', data, re.S)
 			if list:
-				purl = "http://image.tmdb.org/t/p/%s%s" % (config.EMC.imdb.themoviedb_coversize.value, list[0][0])
+				purl = "http://image.tmdb.org/t/p/%s%s" % (config.EMC.imdb.preferred_coversize.value, list[0][0])
 				self.counter_download += 1
 				self.end_time = time.clock()
 				elapsed = (self.end_time - self.start_time) * 1000
@@ -713,13 +713,13 @@ class imdbSetup(Screen, ConfigListScreen):
 		list.append(getConfigListEntry(_("Search Site:"), config.EMC.imdb.search))
 		list.append(getConfigListEntry(_("Search filter for matching existing terms in the title:"), config.EMC.imdb.search_filter))
 		list.append(getConfigListEntry(_("thetvdb cover number (standard cover):"), config.EMC.imdb.thetvdb_standardcover))
-		list.append(getConfigListEntry(_("themoviedb cover resolution:"), config.EMC.imdb.themoviedb_coversize))
+		list.append(getConfigListEntry(_("Preferred cover resolution (if possible):"), config.EMC.imdb.preferred_coversize))
 		list.append(getConfigListEntry(_("Save description to movie.txt file:"), config.EMC.imdb.savetotxtfile))
 		list.append(getConfigListEntry(_("Single Search:"), config.EMC.imdb.singlesearch, 'refresh'))
-		if config.EMC.imdb.singlesearch.value in ('1','4','5'):
-			list.append(getConfigListEntry(_("Search filter for matching existing terms in the title:"), config.EMC.imdb.singlesearch_filter))
+		list.append(getConfigListEntry(_("Search filter for matching existing terms in the title:"), config.EMC.imdb.singlesearch_filter))
+		if config.EMC.imdb.singlesearch.value not in ('2','3'):
 			itext = ""
-			if config.EMC.imdb.singlesearch.value in ('1','5'):
+			if config.EMC.imdb.singlesearch.value not in ('0','4'):
 				itext = _(" (without counting cover range)")
 				list.append(getConfigListEntry(_("thetvdb cover range per title:"), config.EMC.imdb.singlesearch_tvdbcoverrange))
 			list.append(getConfigListEntry(_("Search Results per Search Site%s:") %itext, config.EMC.imdb.singlesearch_siteresults))
@@ -799,13 +799,13 @@ class getCover(Screen):
 		self.setTitle(_("EMC Cover Selecter"))
 
 		if config.EMC.imdb.singlesearch.value == "0":
-			self.searchCover(self.m_title)
+			self.searchimdb(self.m_title)
 		elif config.EMC.imdb.singlesearch.value == "1":
 			self.searchtvdb(self.m_title)
 		elif config.EMC.imdb.singlesearch.value == "2":
 			self.searchcsfd(self.m_title)
 		elif config.EMC.imdb.singlesearch.value == "3":
-			self.searchCover(self.m_title)
+			self.searchimdb(self.m_title)
 			self.searchtmdb(self.m_title)
 			self.searchtvdb(self.m_title)
 			self.searchcsfd(self.m_title)
@@ -814,6 +814,10 @@ class getCover(Screen):
 		elif config.EMC.imdb.singlesearch.value == "5":
 			self.searchtmdb(self.m_title)
 			self.searchtvdb(self.m_title)
+		elif config.EMC.imdb.singlesearch.value == "6":
+			self.searchtmdb(self.m_title)
+			self.searchtvdb(self.m_title)
+			self.searchimdb(self.m_title)
 
 	def showCovers_adddetail_csfd(self, data, title):
 		title_s = re.findall('<title>(.*?)\|', data, re.S)
@@ -852,7 +856,7 @@ class getCover(Screen):
 	@defer.inlineCallbacks
 	def searchcsfd(self, title):
 		print "EMC csfd - searchcsfd: ", title
-		part = getSearchList(title, None)[0]
+		part = getSearchList(title, config.EMC.imdb.singlesearch_filter.value)[0]
 		search_title = urllib.quote(part)
 		url = "http://www.csfd.cz/hledat/?q=%s" % search_title
 		data = yield getPage(url).addErrback(self.errorLoad, title)
@@ -878,8 +882,8 @@ class getCover(Screen):
 		print "EMC TMDB: Cover Select - %s" % title
 		templist = []
 		coverlist = []
-		coversize = config.EMC.imdb.themoviedb_coversize.value
-		if config.EMC.imdb.singlesearch.value in ('4','5'):
+		coversize = config.EMC.imdb.preferred_coversize.value
+		if config.EMC.imdb.singlesearch.value != '3':
 			finish = False
 			siteresults = int(config.EMC.imdb.singlesearch_siteresults.value)
 			part = getSearchList(title, config.EMC.imdb.singlesearch_filter.value)
@@ -907,7 +911,7 @@ class getCover(Screen):
 			self.menulist.extend(templist)
 			#self["info"].setText((_("found") + " %s " + _("covers")) % (self.cover_count))
 		else:
-			part = getSearchList(title, None)[0]
+			part = getSearchList(title, config.EMC.imdb.singlesearch_filter.value)[0]
 			url = 'http://api.themoviedb.org/3/search/movie?api_key=8789cfd3fbab7dccf1269c3d7d867aff&query=%s&language=de' % part.replace(' ','%20')
 			data = yield getPage(url).addErrback(self.errorLoad, title)
 			if data:
@@ -927,16 +931,16 @@ class getCover(Screen):
 			#self["info"].setText((_("found") + " %s " + _("covers")) % (self.cover_count))
 		if not templist:
 			#self["info"].setText(_("Nothing found for %s") % title)
-			print "EMC TMDB tvdb: keine infos gefunden - %s" % title
+			print "EMC TMDB: keine infos gefunden - %s" % title
 		self.search_done()
 
 	@defer.inlineCallbacks
 	def searchtvdb(self, title):
-		print "EMC iMDB: Cover Select - %s" % title
+		print "EMC TVDB: Cover Select - %s" % title
 		templist = []
 		coverlist = []
 		standardcover = config.EMC.imdb.thetvdb_standardcover.value
-		if config.EMC.imdb.singlesearch.value in ('1','5'):
+		if config.EMC.imdb.singlesearch.value != '3':
 			finish = False
 			coverrange = int(config.EMC.imdb.singlesearch_tvdbcoverrange.value)
 			siteresults = int(config.EMC.imdb.singlesearch_siteresults.value)
@@ -980,15 +984,16 @@ class getCover(Screen):
 			self.menulist.extend(templist)
 			#self["info"].setText((_("found") + " %s " + _("covers")) % (self.cover_count))
 		else:
-			part = getSearchList(title, None)[0]
+			part = getSearchList(title, config.EMC.imdb.singlesearch_filter.value)[0]
 			url = "http://www.thetvdb.com/api/GetSeries.php?seriesname=%s&language=de" % part.replace(' ','%20')
 			data = yield getPage(url).addErrback(self.errorLoad, title)
 			if data:
-				id = re.findall('<seriesid>(.*?)</seriesid>', data)
+				id = re.findall('<seriesid>(.*?)</seriesid>.*?<SeriesName>(.*?)</SeriesName>', data, re.S)
 				if id:
 					for each in id:
-						m_cover = each
-						if m_cover in coverlist:
+						m_cover = each[0]
+						m_title = each[1]
+						if not m_cover or m_cover in coverlist or '403:' in m_title:
 							continue
 						coverlist.append(m_cover)
 						x = standardcover
@@ -997,37 +1002,70 @@ class getCover(Screen):
 							x = 1
 							tvdb_url = "http://www.thetvdb.com/banners/_cache/posters/%s-%s.jpg" % (m_cover, x)
 						self.cover_count += 1
-						templist.append(self.showCoverlist(title, tvdb_url, self.o_path, "tvdb: "))
+						templist.append(self.showCoverlist(m_title, tvdb_url, self.o_path, "tvdb: "))
 			templist.sort()
 			self.menulist.extend(templist)
 			#self["info"].setText((_("found") + " %s " + _("covers")) % (self.cover_count))
 		if not templist:
 			#self["info"].setText(_("Nothing found for %s") % title)
-			print "EMC iMDB tvdb: keine infos gefunden - %s" % title
+			print "EMC TVDB: keine infos gefunden - %s" % title
 		self.search_done()
 
 	@defer.inlineCallbacks
-	def searchCover(self, title):
-		part = getSearchList(title, None)[0]
-		url = "http://m.imdb.com/find?q=%s" % part.replace(' ','+')
-		data = yield getPage(url).addErrback(self.errorLoad, title)
-		print "EMC iMDB: Cover Select - %s" % title
-		#print data
-		bild = re.findall('<img src="http://ia.media-imdb.com/images/(.*?)".*?<a href="/title/(.*?)/".*?">(.*?)</a>.*?\((.*?)\)', data, re.S)
-		if bild:
-			for each in bild:
-				#print self.cover_count
-				self.cover_count += 1
-				imdb_title = each[2]
-				imdb_url = each[0]
-				imdb_url = re.findall('(.*?)\.', imdb_url)
-				extra_imdb_convert = "._V1_SX320.jpg"
-				imdb_url = "http://ia.media-imdb.com/images/%s%s" % (imdb_url[0], extra_imdb_convert)
-				self.menulist.append(self.showCoverlist(imdb_title, imdb_url, self.o_path, "imdb: "))
-				#self["info"].setText((_("found") + " %s " + _("covers")) % (self.cover_count))
+	def searchimdb(self, title):
+		print "EMC IMDB: Cover Select - %s" % title
+		templist = []
+		coverlist = []
+		coversize = config.EMC.imdb.preferred_coversize.value.replace('w','SX')
+		if config.EMC.imdb.singlesearch.value != '3':
+			finish = False
+			siteresults = int(config.EMC.imdb.singlesearch_siteresults.value)
+			part = getSearchList(title, config.EMC.imdb.singlesearch_filter.value)
+			for item in part:
+				if finish:
+					break
+				url = 'http://m.imdb.com/find?q=%s' % item.replace(' ','%20')
+				data = yield getPage(url).addErrback(self.errorLoad, title)
+				if data:
+					bild = re.findall('<div class="poster.*?<img src="https://images-na.ssl-images-amazon.com/images(.*?)V1.*?<a href="/title/.*?">(.*?)</a>', data, re.S)
+					if bild:
+						for each in bild:
+							m_cover = each[0]
+							m_title = each[1]
+							if m_cover in coverlist:
+								continue
+							coverlist.append(m_cover)
+							self.cover_count += 1
+							imdb_url = "https://images-na.ssl-images-amazon.com/images%sV1_%s.jpg" % (m_cover, coversize)
+							templist.append(self.showCoverlist(m_title, imdb_url, self.o_path, "imdb: "))
+							if siteresults and len(coverlist) >= siteresults:
+								finish = True
+								break
+			templist.sort()
+			self.menulist.extend(templist)
+			#self["info"].setText((_("found") + " %s " + _("covers")) % (self.cover_count))
 		else:
+			part = getSearchList(title, config.EMC.imdb.singlesearch_filter.value)[0]
+			url = 'http://m.imdb.com/find?q=%s' % part.replace(' ','%20')
+			data = yield getPage(url).addErrback(self.errorLoad, title)
+			if data:
+				bild = re.findall('<div class="poster.*?<img src="https://images-na.ssl-images-amazon.com/images(.*?)V1.*?<a href="/title/.*?">(.*?)</a>', data, re.S)
+				if bild:
+					for each in bild:
+						m_cover = each[0]
+						m_title = each[1]
+						if m_cover in coverlist:
+							continue
+						coverlist.append(m_cover)
+						self.cover_count += 1
+						imdb_url = "https://images-na.ssl-images-amazon.com/images%sV1_%s.jpg" % (m_cover, coversize)
+						templist.append(self.showCoverlist(m_title, imdb_url, self.o_path, "imdb: "))
+			templist.sort()
+			self.menulist.extend(templist)
+			#self["info"].setText((_("found") + " %s " + _("covers")) % (self.cover_count))
+		if not templist:
 			#self["info"].setText(_("Nothing found for %s") % title)
-			print "EMC iMDB: keine infos gefunden - %s" % title
+			print "EMC TMDB: keine infos gefunden - %s" % title
 		self.search_done()
 
 	def errorLoad(self, error, title):
