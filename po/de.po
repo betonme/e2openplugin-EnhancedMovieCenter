@@ -219,8 +219,8 @@ msgid "Search Site:"
 msgstr "Such-Seite:"
 
 #: EMCCoverSearch.py:705
-msgid "themoviedb cover resolution:"
-msgstr "themoviedb-Cover-Auflösung:"
+msgid "Preferred cover resolution (if possible):"
+msgstr "Bevorzugte Cover-Auflösung (wenn möglch):"
 
 #: EMCCoverSearch.py:706
 msgid "Save description to movie.txt file:"
