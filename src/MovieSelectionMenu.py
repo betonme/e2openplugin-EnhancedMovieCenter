@@ -101,7 +101,8 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 
 			self.menu.append((_("Cover search"), boundFunction(self.close, "imdb")))
 			if service is not None:
-				if os.path.isdir(service.getPath()):
+				path = service.getPath()
+				if os.path.isdir(path) and not path == config.EMC.movie_trashcan_path.value and not path.endswith(os.sep + '..'):
 					self.menu.append((_("Directory-Cover search"), boundFunction(self.close, "imdbdirectory")))
 			if self.selections:
 				self.menu.append((_("Delete"), boundFunction(self.close, "del", self.selections)))
