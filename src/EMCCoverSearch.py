@@ -530,6 +530,8 @@ class EMCImdbScan(Screen):
 	def setupFinished(self, result):
 		print "EMC iMDB Config Saved."
 		if result:
+			if self.isFolder:
+				self.verwaltung() #if foldercoverpath settings is changed
 			self["done_msg"].show()
 			self["done_msg"].setText(_("Settings have been Saved."))
 

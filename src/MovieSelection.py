@@ -77,7 +77,7 @@ from EMCPlayList import emcplaylist, EMCPlaylistScreen, EMCPlaylistSetup
 from MetaSupport import getInfoFile
 
 from MovieCenter import extList, extVideo, extMedia, extDir, plyAll, plyDVD, cmtBME2, cmtBMEMC, cmtDir, plyDVB, extPlaylist
-from MovieCenter import getMovieNameWithoutExt, getMovieNameWithoutPhrases, getNoPosterPath
+from MovieCenter import getMovieNameWithoutExt, getMovieNameWithoutPhrases, getNoPosterPath, getPosterPath
 
 global extList, extVideo, extMedia, extDir, plyAll, plyDVD, cmtBME2, cmtBMEMC, cmtDir, plyDVB, extPlaylist
 
@@ -367,9 +367,7 @@ class SelectionEventInfo:
 	def showCover(self, service=None):
 		if service:
 			path = service.getPath()
-			jpgpath = ""
-			exts = [".jpg", ".png", "_md.jpg", "_md.png"]
-			jpgpath = getInfoFile(path, exts)[1]
+			jpgpath = getPosterPath(path)
 			print "EMC jpgpath", jpgpath
 
 			# lets try if audio-file selected and tags contains cover and we using mutagen for embedded covers
@@ -388,8 +386,6 @@ class SelectionEventInfo:
 				#jpgpath = "/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/cover_tr.png"
 
 			if config.EMC.movie_cover_fallback.value and not os.path.exists(jpgpath):
-				#no_poster = "no_poster.png"
-				#jpgpath = "/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/" + no_poster
 				jpgpath = getNoPosterPath()
 
 			#TODO avoid os.path.exists double check
@@ -582,6 +578,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 
 		self.lastservice = None
 		self.cursorDir = 0
+		self.savedIndex = 0
 
 		self["wait"] = Label(_("Reading directory..."))
 		self["wait"].hide()
@@ -1210,6 +1207,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		if not emcplaylist.isCurrentPlaylistEmpty():
 			playlist = True
 		current = self.getCurrent()
+		self.savedIndex = self.getCurrentIndex()
 		#if not self["list"].currentSelIsPlayable(): current = None
 		self.checkHideMiniTV_beforeFullscreen()
 		self.session.openWithCallback(self.menuCallback, MovieMenu, "normal", self, self["list"], current, self["list"].makeSelectionList(), self.currentPath, playlist)
@@ -1292,7 +1290,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 
 	def imdbDirectory(self):
 		filelist = []
-
+		self.moveToIndex(self.savedIndex) # workaround for wrong index when play a movie (index is from the movie, not from the folder)
 		if self["list"].currentSelIsDirectory():
 			current = self.getCurrent()
 			filelist = [ (self["list"].getCurrentSelName() , current.getPath() ) ]

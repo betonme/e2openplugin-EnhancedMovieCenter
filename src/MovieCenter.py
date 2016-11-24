@@ -146,6 +146,40 @@ else:
 	virToD = virAll
 
 #-------------------------------------------------
+# func: getPosterPath( path )
+#-------------------------------------------------
+def getPosterPath(searchPath):
+	ret = ""
+	paths = []
+	exts = [".jpg", ".png", "_md.jpg", "_md.png"]
+	searchname = os.path.splitext(searchPath)[0]
+
+	if os.path.isfile(searchPath):
+		basedircover = os.path.dirname(searchname)
+	else:
+		basedircover = searchname
+	filedircover = basedircover + os.sep + os.path.basename(basedircover)
+
+	if searchname != basedircover:
+		paths.append(searchname)
+	if config.EMC.imdb.singlesearch_foldercoverpath.value == '0':
+		paths.append(filedircover)
+		paths.append(basedircover)
+	else:
+		paths.append(basedircover)
+		paths.append(filedircover)
+
+	for path in paths:
+		for ext in exts:
+			ret = path + ext
+			if os.path.isfile(ret):
+				break
+			ret = ""
+		if ret:
+			break
+	return ret
+
+#-------------------------------------------------
 # func: getNoPosterPath()
 #-------------------------------------------------
 def getNoPosterPath():

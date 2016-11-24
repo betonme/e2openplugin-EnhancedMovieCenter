@@ -55,7 +55,7 @@ from Components.AVSwitch import AVSwitch
 from Components.Pixmap import Pixmap
 from enigma import ePicLoad
 
-from MovieCenter import sidDVD, sidDVB, toggleProgressService
+from MovieCenter import sidDVD, sidDVB, toggleProgressService, getPosterPath
 
 from RecordingsControl import getRecording
 import NavigationInstance
@@ -256,10 +256,12 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 		self.file_format = "(.ts|.avi|.mkv|.divx|.f4v|.flv|.img|.iso|.m2ts|.m4v|.mov|.mp4|.mpeg|.mpg|.mts|.vob|.asf|.wmv|.stream|.webm)"
 
 	### Cover anzeige
-	def showCover(self, jpgpath):
+	def showCover(self):
+		service = self.playlist[self.playcount]
+		path = service.getPath()
+		jpgpath = getPosterPath(path)
 		if not os.path.exists(jpgpath):
 			self["Cover"].hide()
-			#jpgpath = "/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/no_poster.png"
 		else:
 			sc = AVSwitch().getFramebufferScale() # Maybe save during init
 			size = self["Cover"].instance.size()
@@ -596,7 +598,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 				self.makeUpdateCutList()
 
 			self.evEOF()	# start playback of the first movie
-		self.refreshCover()
+		self.showCover()
 
 	##############################################################################
 	## Audio and Subtitles
@@ -919,14 +921,6 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 		#except:
 		#	pass
 
-	def refreshCover(self):
-		### Cover anzeige
-		service = self.playlist[self.playcount]
-		cover_path = re.sub(self.file_format + "$", '.png', service.getPath())
-		if not os.path.exists(cover_path):
-			cover_path = re.sub(self.file_format + "$", '.jpg', service.getPath())
-		self.showCover(cover_path)
-
 	##############################################################################
 	## Implement functions for InfoBarGenerics.py
 	# InfoBarShowMovies
@@ -950,7 +944,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 
 	def doShow(self):
 		### Cover anzeige
-		self.refreshCover()
+		self.showCover()
 		if self.in_menu:
 			pass
 			#self.hide()
@@ -982,14 +976,10 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 	def toggleShow(self):
 		### Cover anzeige
 		self.LongButtonPressed = False
-		service = self.playlist[self.playcount]
-		cover_path = re.sub(self.file_format + "$", '.png', service.getPath())
-		if not os.path.exists(cover_path):
-			cover_path = re.sub(self.file_format + "$", '.jpg', service.getPath())
 
 		if not self.in_menu:
 			### Cover anzeige
-			self.showCover(cover_path)
+			self.showCover()
 			# Call baseclass function
 			InfoBarShowHide.toggleShow(self)
 
