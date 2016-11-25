@@ -63,7 +63,7 @@ msgstr "thetvdb-Cover-Nummer (Standard Cover):"
 
 #: EMCCoverSearch.py
 msgid "Set path to save the folder Cover:"
-msgstr "Pfad zum speichern des Verzeichnis Covers festlegen:"
+msgstr "Pfad zum Speichern des Verzeichnis Covers festlegen:"
 
 #: EMCCoverSearch.py
 msgid "Search Results per Search Site%s:"
@@ -415,7 +415,7 @@ msgstr ""
 
 #: EMCPlayList.py:237
 msgid "Change the filename to save current Playlist:"
-msgstr "Ändern sie den Dateinamen zum speichern der aktuellen Playlist:"
+msgstr "Ändern sie den Dateinamen zum Speichern der aktuellen Playlist:"
 
 #: EMCPlayList.py:237
 msgid "Save current Playlist"
