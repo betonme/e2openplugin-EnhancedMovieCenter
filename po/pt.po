@@ -1,0 +1,2885 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Enhanced Movie Center Portuguese translation\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-11-17 22:54+0000\n"
+"PO-Revision-Date: 2016-11-28 19:08+0000\n"
+"Language-Team: BH Team\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-Basepath: ..\n"
+"X-Generator: Poedit 1.8.11\n"
+"Last-Translator: nunigaia\n"
+"Language: pt_PT\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: src\n"
+
+#: EMCCoverSearch.py:47 EMCCoverSearch.py:48
+msgid "imdb.de"
+msgstr "imdb.de"
+
+#: EMCCoverSearch.py:47
+msgid "themoviedb.org"
+msgstr "themoviedb.org"
+
+#: EMCCoverSearch.py:47 EMCCoverSearch.py:48
+msgid "csfd.cz"
+msgstr "csfd.cz"
+
+#: EMCCoverSearch.py:47 EMCCoverSearch.py:48
+msgid "all"
+msgstr "todos"
+
+#: EMCCoverSearch.py:48
+msgid "thetvdb.com"
+msgstr "thetvdb.com"
+
+#: EMCCoverSearch.py:97 EMCCoverSearch.py:238 EMCCoverSearch.py:248
+#: EMCCoverSearch.py:361
+msgid "Exist"
+msgstr "Existe"
+
+#: EMCCoverSearch.py:97 EMCCoverSearch.py:241 EMCCoverSearch.py:248
+#: EMCCoverSearch.py:412 EMCCoverSearch.py:442
+msgid "N/A"
+msgstr "N/D"
+
+#: EMCCoverSearch.py:193
+msgid "Search"
+msgstr "Procura"
+
+#: EMCCoverSearch.py:195 MovieSelection.py:2198 MovieSelectionMenu.py:107
+#: MovieSelectionMenu.py:109 plugin.py:170 plugin.py:191
+msgid "Delete"
+msgstr "Apagar"
+
+#: EMCCoverSearch.py:205
+msgid "Press green button to start search"
+msgstr "Prima a tecla <VERDE> para iniciar a pesquisa"
+
+#: EMCCoverSearch.py:207
+msgid "Manage Cover"
+msgstr "Gerir Capas"
+
+#: EMCCoverSearch.py:208 MovieInfo.py:270 MovieInfo.py:439
+msgid "Setup"
+msgstr "Definir"
+
+#: EMCCoverSearch.py:209
+msgid "Single search"
+msgstr "Procura única"
+
+#: EMCCoverSearch.py:223
+msgid "EMC Cover search"
+msgstr "EMC Pesquisa de capas"
+
+#: EMCCoverSearch.py:248
+msgid "Total"
+msgstr "Total"
+
+#: EMCCoverSearch.py:340 EMCCoverSearch.py:364 EMCCoverSearch.py:447
+#, python-format
+msgid "Exist: %s"
+msgstr "Existe: %s"
+
+#: EMCCoverSearch.py:341 EMCCoverSearch.py:363 EMCCoverSearch.py:446
+#, python-format
+msgid "No Cover: %s"
+msgstr "Sem Capas: %s"
+
+#: EMCCoverSearch.py:342 EMCCoverSearch.py:365 EMCCoverSearch.py:448
+#, python-format
+msgid "Download: %s"
+msgstr "Descarregar: %s"
+
+#: EMCCoverSearch.py:343
+msgid "Searching..."
+msgstr "A procurar..."
+
+#: EMCCoverSearch.py:351
+msgid "Creating Search List.."
+msgstr "A criar a lista de pesquisa..."
+
+#: EMCCoverSearch.py:391
+msgid "No Movies found!"
+msgstr "Nenhum Filme encontrado!"
+
+#: EMCCoverSearch.py:444
+msgid "from"
+msgstr "de"
+
+#: EMCCoverSearch.py:457
+msgid "movies in"
+msgstr "filmes em"
+
+#: EMCCoverSearch.py:457
+msgid "sec found. Avg. Speed:"
+msgstr "seg encontrado. Vel. média:"
+
+#: EMCCoverSearch.py:457
+msgid "sec."
+msgstr "seg."
+
+#: EMCCoverSearch.py:508
+#, python-format
+msgid "%s removed."
+msgstr "%s removido."
+
+#: EMCCoverSearch.py:560
+#, python-format
+msgid "Search site set to: %s"
+msgstr "Site de procura definido para: %s"
+
+#: EMCCoverSearch.py:569
+msgid "Cover is Saved."
+msgstr "Capa guardada."
+
+#: EMCCoverSearch.py:698
+msgid "EMC Cover search setup"
+msgstr "EMC Definir pesquisa de Capas"
+
+#: EMCCoverSearch.py:700 EMCPlayList.py:132 EMCPlayList.py:472
+#: EMCPlayList.py:545 EnhancedMovieCenter.py:257 MovieInfo.py:736
+#: MovieRetitle.py:32
+msgid "Cancel"
+msgstr "Cancelar"
+
+#: EMCCoverSearch.py:701 MovieInfo.py:737
+msgid "OK"
+msgstr "OK"
+
+#: EMCCoverSearch.py:704
+msgid "Search Site:"
+msgstr "Pesquisar no Site"
+
+#: EMCCoverSearch.py:705
+msgid "themoviedb cover resolution:"
+msgstr "themoviedb resolução da capa:"
+
+#: EMCCoverSearch.py:706
+msgid "Save description to movie.txt file:"
+msgstr "Salve a descrição para o arquivo movie.txt:"
+
+#: EMCCoverSearch.py:707
+msgid "Single Search:"
+msgstr "Procura Única:"
+
+#: EMCCoverSearch.py:749
+msgid "EMC Cover Selecter"
+msgstr "EMC Seletor de Capas"
+
+#: EMCCoverSearch.py:766
+#, python-format
+msgid "Searching for %s"
+msgstr "A procurar por %s"
+
+#: EMCCoverSearch.py:778 EMCCoverSearch.py:816 EMCCoverSearch.py:826
+#: EMCCoverSearch.py:851 EMCCoverSearch.py:854 EMCCoverSearch.py:872
+#: EMCCoverSearch.py:895 EMCCoverSearch.py:911
+msgid "found"
+msgstr "encontrado"
+
+#: EMCCoverSearch.py:778 EMCCoverSearch.py:816 EMCCoverSearch.py:826
+#: EMCCoverSearch.py:851 EMCCoverSearch.py:854 EMCCoverSearch.py:872
+#: EMCCoverSearch.py:895
+msgid "covers"
+msgstr "capas"
+
+#: EMCCoverSearch.py:911
+msgid "covers in"
+msgstr "capas em"
+
+#: EMCCoverSearch.py:911
+msgid "sec"
+msgstr "seg"
+
+#: EMCCoverSearch.py:981
+msgid "Can not save "
+msgstr "Não pode ser salvo "
+
+#: EMCCoverSearch.py:995
+msgid "Can not save Cover in "
+msgstr "Não pode salvar a capa em"
+
+#: EMCCoverSearch.py:1015
+msgid "Move Cover to:"
+msgstr "Mover Capa para:"
+
+#: EMCCoverSearch.py:1016 EMCPlayList.py:485 EnhancedMovieCenter.py:739
+#: MovieSelection.py:2740 MovieSelection.py:2780 MovieSelection.py:2812
+#: MovieSelection.py:2852 MovieSelection.py:2877 MovieSelectionMenu.py:294
+msgid "Choose directory"
+msgstr "Escolher a pasta"
+
+#: EMCMediaCenter.py:151 EMCMediaCenter.py:156
+msgid "Stop playback"
+msgstr "Parar a reprodução"
+
+#: EMCMediaCenter.py:161
+msgid "show DVD main menu"
+msgstr "mostrar menu principal do DVD"
+
+#: EMCMediaCenter.py:163
+msgid "forward to the next chapter"
+msgstr "ir para o próximo capítulo"
+
+#: EMCMediaCenter.py:164
+msgid "rewind to the previous chapter"
+msgstr "rebobinar para o capítulo anterior"
+
+#: EMCMediaCenter.py:165 EMCMediaCenter.py:193
+msgid "jump forward to the next title"
+msgstr "saltar para o título seguinte"
+
+#: EMCMediaCenter.py:166 EMCMediaCenter.py:194
+msgid "jump back to the previous title"
+msgstr "saltar para o título anterior"
+
+#: EMCMediaCenter.py:167
+msgid "(show optional DVD audio menu)"
+msgstr "(mostrar menu audio opcional do DVD)"
+
+#: EMCMediaCenter.py:168
+msgid "switch to the next audio track"
+msgstr "mudar para a próxima faixa de áudio"
+
+#: EMCMediaCenter.py:169
+msgid "switch to the next subtitle language"
+msgstr "mudar para a próximo idioma de legenda"
+
+#: EMCMediaCenter.py:170
+msgid "switch to the next angle"
+msgstr "mudar para o proximo ângulo"
+
+#: EMCMediaCenter.py:189
+msgid "view extensions..."
+msgstr "ver extensões ..."
+
+#: EMCMediaCenter.py:190
+msgid "Format AVSwitch"
+msgstr "Formato A/V Switch"
+
+#: EMCMediaCenter.py:191
+msgid "Seek forward"
+msgstr "Procurar à frente"
+
+#: EMCMediaCenter.py:192
+msgid "Seek backward"
+msgstr "Procurar para trás"
+
+#: EMCMediaCenter.py:195
+msgid "Movie information"
+msgstr "Informações do filme"
+
+#: EMCMediaCenter.py:382
+msgid "No DVD-Player found!"
+msgstr "Nenhum reprodutor de DVD encontrado!"
+
+#: EMCMediaCenter.py:433
+msgid ""
+"Skipping movie, the file does not exist.\n"
+"\n"
+msgstr ""
+"A saltar o fime, o arquivo não existe.\n"
+"\n"
+
+#: EMCMediaCenter.py:473
+msgid ""
+"EMC\n"
+"Zap to Live TV of record"
+msgstr "EMC Zap para TV ao VIVO do registo"
+
+#: EMCMediaCenter.py:914
+msgid "Chap."
+msgstr "Cap."
+
+#: EMCMediaCenter.py:915
+msgid "Chapter"
+msgstr "Capítulo"
+
+#: EMCMediaCenter.py:916
+msgid "Title"
+msgstr "Título"
+
+#: EMCPlayList.py:131 EMCPlayList.py:473 EnhancedMovieCenter.py:258
+#: MovieInfo.py:271 MovieInfo.py:441 MovieRetitle.py:31
+msgid "Save"
+msgstr "Salvar"
+
+#: EMCPlayList.py:133
+msgid "Delete Entry"
+msgstr "Eliminar entrada"
+
+#: EMCPlayList.py:134
+msgid "Delete All"
+msgstr "Apagar todos"
+
+#: EMCPlayList.py:154
+msgid "EMC Playlist"
+msgstr "EMC Lista de Reprodução"
+
+#: EMCPlayList.py:161
+msgid "EMC Playlist Menu"
+msgstr "EMC Menu de lista de reprodução"
+
+#: EMCPlayList.py:162
+msgid "Playlist open"
+msgstr "Lista de reprodução aberta"
+
+#: EMCPlayList.py:163
+msgid "Setup open"
+msgstr "Abrir Definição"
+
+#: EMCPlayList.py:171
+msgid ""
+"Default Playlist is not empty!\n"
+"\n"
+"Save default Playlist?"
+msgstr ""
+"Lista de reprodução padrão não está vazia!\n"
+"\n"
+"Salvar Lista de Reprodução padrão?"
+
+#: EMCPlayList.py:233
+msgid ""
+"Playlist with same name exists!\n"
+"\n"
+"Try to save the Playlist with another name?"
+msgstr ""
+"Existe uma Lista de reprodução com o mesmo nome!\n"
+"\n"
+"Tente salvar a Lista de Reprodução com outro nome?"
+
+#: EMCPlayList.py:237
+msgid "Change the filename to save current Playlist:"
+msgstr "Altere o nome do arquivo para salvar a Lista de Reprodução atual:"
+
+#: EMCPlayList.py:237
+msgid "Save current Playlist"
+msgstr "Salvar lista de reprodução atual"
+
+#: EMCPlayList.py:255
+msgid "Current Playlist saved successfully!"
+msgstr "Lista de reprodução atual salva com sucesso!"
+
+#: EMCPlayList.py:258
+msgid "Can not save current Playlist!"
+msgstr "Não pode salvar Lista de Reprodução atual!"
+
+#: EMCPlayList.py:461
+msgid "Default Playlist path"
+msgstr "Percurso da lista de reprodução padrão"
+
+#: EMCPlayList.py:462
+msgid "Default Playlist name"
+msgstr "Nome da lista de reprodução padrão"
+
+#: EMCPlayList.py:463
+msgid "Always save current Playlist"
+msgstr "Salvar sempre a Lista de Reprodução atual"
+
+#: EMCPlayList.py:477
+msgid "EMC Playlist Setup"
+msgstr "EMC Definição de Lista de Reprodução"
+
+#: EMCPlayList.py:484
+msgid "Choose Directory:"
+msgstr "Escolher a pasta:"
+
+#: EMCPlayList.py:501
+msgid "Enter Name for Playlist"
+msgstr "Digite o Nome para a Lista de Reprodução"
+
+#: EMCPlayList.py:546
+msgid "Open"
+msgstr "Abrir"
+
+#: EMCPlayList.py:560
+msgid "EMC Filebrowser"
+msgstr "EMC Explorador de Ficheiros"
+
+#: EMCTasker.py:201
+msgid "Next auto-start in "
+msgstr "Próximo início automático em "
+
+#: EMCTasker.py:203
+msgid "auto-start is currently not active."
+msgstr "Atualmente, o início automático não está ativo."
+
+#: EMCTasker.py:215
+msgid ""
+"Your Box is about to go into Standby, continue?\n"
+" Select no to delay one hour"
+msgstr ""
+"A sua STB está prestes a entrar em espera, continuar?\n"
+" Selecione não para atrasar uma hora"
+
+#: EMCTasker.py:217
+msgid ""
+"Your Box is about to go into DeepStandby, continue?\n"
+" Select no to delay one hour"
+msgstr ""
+"A sua STB está prestes a entrar em Suspensão, continuar?\n"
+" Selecione não para atrasar uma hora"
+
+#: EMCTasker.py:219
+msgid ""
+"Your Box is about to go into Reboot, continue?\n"
+" Select no to delay one hour"
+msgstr ""
+"A sua STB está prestes a reiniciar, continuar?\n"
+" Selecione não para atrasar uma hora"
+
+#: EMCTasker.py:221
+msgid ""
+"Your Box is about to go into E2 Restart, continue?\n"
+" Select no to delay one hour"
+msgstr ""
+"A sua STB está prestes a Reiniciar Enigma2, continuar?\n"
+" Selecione não para atrasar uma hora"
+
+#: EnhancedMovieCenter.py:195 EnhancedMovieCenter.py:216
+msgid "Custom"
+msgstr "Personalizado"
+
+#: EnhancedMovieCenter.py:196
+msgid "Default"
+msgstr "Padrão"
+
+#: EnhancedMovieCenter.py:197
+msgid "Performance"
+msgstr "Desempenho"
+
+#: EnhancedMovieCenter.py:198
+msgid "Information"
+msgstr "Informação"
+
+#: EnhancedMovieCenter.py:318
+msgid "About"
+msgstr "Sobre"
+
+#: EnhancedMovieCenter.py:318
+msgid "HELP_About"
+msgstr "AJUDA_Sobre"
+
+#: EnhancedMovieCenter.py:320
+msgid "Disable EMC"
+msgstr "Desativar EMC"
+
+#: EnhancedMovieCenter.py:320
+msgid "HELP_Disable EMC"
+msgstr "Ajuda_Desativar EMC"
+
+#: EnhancedMovieCenter.py:322
+msgid "Start EMC with"
+msgstr "Iniciar EMC com"
+
+#: EnhancedMovieCenter.py:322
+msgid "HELP_Start EMC with"
+msgstr "AJUDA_Iniciar EMC com"
+
+#: EnhancedMovieCenter.py:323
+msgid "Show plugin config in extensions menu"
+msgstr "Mostrar a configuração do plugin no menu de extensões"
+
+#: EnhancedMovieCenter.py:323
+msgid "HELP_Show plugin config in extensions menu"
+msgstr "AJUDA_Mostrar plugin config no menu extensões"
+
+#: EnhancedMovieCenter.py:324
+msgid "Show EMC in extensions menu"
+msgstr "Mostrar o EMC no menu de extensões"
+
+#: EnhancedMovieCenter.py:324
+msgid "HELP_Show EMC in extensions menu"
+msgstr "EMC AJUDA_Mostrar no menu de extensões"
+
+#: EnhancedMovieCenter.py:326
+msgid "HELP_Key assignment Separator"
+msgstr "Atribuição de AJUDA_Tecla separador"
+
+#: EnhancedMovieCenter.py:327
+msgid "Bouquet buttons behaviour"
+msgstr "Comportamento de Teclas de bouquet"
+
+#: EnhancedMovieCenter.py:327
+msgid "HELP_Bouquet buttons behaviour"
+msgstr "Comportamento de teclas de AJUDA_Bouquet"
+
+#: EnhancedMovieCenter.py:328
+msgid "List entries to skip"
+msgstr "Lista de entradas a saltar"
+
+#: EnhancedMovieCenter.py:328
+msgid "HELP_List entries to skip"
+msgstr "AJUDA_Lista entradas para ignorar"
+
+#: EnhancedMovieCenter.py:329
+msgid "Red button function"
+msgstr "Função da tecla vermelha"
+
+#: EnhancedMovieCenter.py:329
+msgid "HELP_Red button function"
+msgstr "Função da tecla de AJUDA_Vermelha"
+
+#: EnhancedMovieCenter.py:330
+msgid "Long Red button function"
+msgstr "Função da tecla <VERMELHA LONGO>"
+
+#: EnhancedMovieCenter.py:330
+msgid "HELP_Long Red button function"
+msgstr "Função do botão vermelho AJUDA_Long"
+
+#: EnhancedMovieCenter.py:333
+msgid "Yellow button function"
+msgstr "Função da tecla <AMARELO>"
+
+#: EnhancedMovieCenter.py:333
+msgid "HELP_Yellow button function"
+msgstr "Função do botão de AJUDA_Amarelo"
+
+#: EnhancedMovieCenter.py:334
+msgid "Long Yellow button function"
+msgstr "Função da tecla <AMARELA LONGA>"
+
+#: EnhancedMovieCenter.py:334
+msgid "HELP_Long Yellow button function"
+msgstr "Função de botão amarelo AJUDA_Long"
+
+#: EnhancedMovieCenter.py:335
+msgid "Blue button function"
+msgstr "Função da tecla <AZUL>"
+
+#: EnhancedMovieCenter.py:335
+msgid "HELP_Blue button function"
+msgstr "Função do botão de AJUDA_Blue"
+
+#: EnhancedMovieCenter.py:336
+msgid "Long Blue button function"
+msgstr "Função da tecla <AZUL LONGA>"
+
+#: EnhancedMovieCenter.py:336
+msgid "HELP_Long Blue button function"
+msgstr "Função de botão azul AJUDA_Long"
+
+#: EnhancedMovieCenter.py:338 EnhancedMovieCenter.py:345
+#: EnhancedMovieCenter.py:354 EnhancedMovieCenter.py:389
+#: EnhancedMovieCenter.py:399 EnhancedMovieCenter.py:426
+#: EnhancedMovieCenter.py:453
+msgid " "
+msgstr " "
+
+#: EnhancedMovieCenter.py:339
+msgid "daily auto-start"
+msgstr "início automático diário"
+
+#: EnhancedMovieCenter.py:339
+msgid "HELP_Daily auto-start"
+msgstr "Auto-AJUDA_Daily-início"
+
+#: EnhancedMovieCenter.py:340
+msgid "auto-start window begin"
+msgstr "início da janela de início automático"
+
+#: EnhancedMovieCenter.py:340
+msgid "HELP_auto-start window begin"
+msgstr "Começar a janela AJUDA_auto-início"
+
+#: EnhancedMovieCenter.py:341
+msgid "auto-start window end"
+msgstr "final da janela de início automático"
+
+#: EnhancedMovieCenter.py:341
+msgid "HELP_auto-start window end"
+msgstr "Final da janela AJUDA_auto-início"
+
+#: EnhancedMovieCenter.py:342
+msgid "Force standby after auto-restart"
+msgstr "Forçar modo de espera depois de reinício automático"
+
+#: EnhancedMovieCenter.py:342
+msgid "HELP_Force standby after auto-start"
+msgstr "AJUDA_Force modo de espera após início automático"
+
+#: EnhancedMovieCenter.py:343
+msgid "LongInfo Button"
+msgstr "Tecla <INFO LONGA>"
+
+#: EnhancedMovieCenter.py:343
+msgid "HELP_LongInfo Button"
+msgstr "Botão AJUDA_LongInfo"
+
+#: EnhancedMovieCenter.py:346
+msgid "Movie home at start"
+msgstr "Início do Filme ao iniciar"
+
+#: EnhancedMovieCenter.py:346
+msgid "HELP_Movie home at start"
+msgstr "AJUDA_Movie em casa no início"
+
+#: EnhancedMovieCenter.py:347
+msgid "Default sort mode"
+msgstr "Modo de Ordenação Padrão"
+
+#: EnhancedMovieCenter.py:347
+msgid "HELP_Sort mode at startup"
+msgstr "Modo de AJUDA_Sort na inicialização"
+
+#: EnhancedMovieCenter.py:349
+msgid "Movie home home path"
+msgstr "Pasta inicial na pasta Filmes"
+
+#: EnhancedMovieCenter.py:349
+msgid "HELP_Movie home home path"
+msgstr "AJUDA_Movie caminho de casa em casa"
+
+#: EnhancedMovieCenter.py:350
+msgid "EMC path access limit"
+msgstr "EMC limite de acesso raíz"
+
+#: EnhancedMovieCenter.py:350
+msgid "HELP_EMC path access limit"
+msgstr "Limite de acesso de caminho AJUDA_EMC"
+
+#: EnhancedMovieCenter.py:352
+msgid "Cursor predictive move after selection"
+msgstr "Movimento preditivo de cursor após seleção"
+
+#: EnhancedMovieCenter.py:352
+msgid "HELP_Cursor predictive move after selection"
+msgstr "AJUDA_Cursor preditivo movimento após seleção"
+
+#: EnhancedMovieCenter.py:355
+msgid "Show symlinks"
+msgstr "Mostrar links simbólicos"
+
+#: EnhancedMovieCenter.py:355
+msgid "HELP_Show symlinks"
+msgstr "AJUDA_Mostrar links simbólicos"
+
+#: EnhancedMovieCenter.py:357
+msgid "Show directories"
+msgstr "Mostrar pastas"
+
+#: EnhancedMovieCenter.py:357
+msgid "HELP_Show directories"
+msgstr "AJUDA_Mostrar Pastas"
+
+#: EnhancedMovieCenter.py:358
+msgid "Show directories within movielist"
+msgstr "Mostrar pastas na lista de filmes"
+
+#: EnhancedMovieCenter.py:358
+msgid "HELP_Show directories within movielist"
+msgstr "AJUDA_Mostrar pastas dentro da lista de filmes"
+
+#: EnhancedMovieCenter.py:359
+msgid "Configured directories at the top of movielist"
+msgstr "Pastas configuradas no topo da lista de filmes"
+
+#: EnhancedMovieCenter.py:359
+msgid "HELP_Configure in etc\\enigma2\\emc-topdir.cfg"
+msgstr "AJUDA_Definir em etc\\enigma2\\emc-topdir.cfg"
+
+#: EnhancedMovieCenter.py:360
+msgid "Show directories information"
+msgstr "Mostrar informações das pastas"
+
+#: EnhancedMovieCenter.py:360
+msgid "HELP_Show directories information"
+msgstr "AJUDA_Mostrar informações das pastas"
+
+#: EnhancedMovieCenter.py:361
+msgid "Text shown for initially unknown file count"
+msgstr "Texto indicado para contagem de arquivo inicialmente desconhecido"
+
+#: EnhancedMovieCenter.py:361
+msgid "HELP_Text shown for initially unknown file count"
+msgstr ""
+"AJUDA_Texto mostrado para contagem de arquivo inicialmente desconhecido"
+
+#: EnhancedMovieCenter.py:362
+msgid "Text shown for initially unknown count and size"
+msgstr "Texto mostrado para tamanho e contagem inicialmente desconhecida"
+
+#: EnhancedMovieCenter.py:362
+msgid "HELP_Text shown for initially unknown count and size"
+msgstr "AJUDA_Text mostrado para tamanho e contagem inicialmente desconhecida"
+
+#: EnhancedMovieCenter.py:363
+msgid "Text shown for initially unknown directory size"
+msgstr "Texto mostrado para tamanho de pasta inicialmente desconhecida"
+
+#: EnhancedMovieCenter.py:363
+msgid "HELP_Text shown for initially unknown directory size"
+msgstr "AJUDA_Text mostrado para tamanho de pasta inicialmente desconhecida"
+
+#: EnhancedMovieCenter.py:364
+msgid "Icon shown for initially unknown count / size"
+msgstr "Ícone mostrado para contagem inicialmente desconhecida / tamanho"
+
+#: EnhancedMovieCenter.py:364
+msgid "HELP_Icon shown for initially unknown count / size"
+msgstr "AJUDA_Icon indicado para contagem inicialmente desconhecida / tamanho"
+
+#: EnhancedMovieCenter.py:365
+msgid "Horizontal alignment for count / size"
+msgstr "Alinhamento Horinzontal para contador / tamanho"
+
+#: EnhancedMovieCenter.py:365
+msgid "HELP_Horizontal alignment for count / size"
+msgstr "AJUDA_Horizontal alinhamento para contagem / tamanho"
+
+#: EnhancedMovieCenter.py:427
+msgid "Horizontal alignment for date"
+msgstr "Alinhamento horizontal para a data"
+
+#: EnhancedMovieCenter.py:427
+msgid "HELP_Horizontal alignment for date"
+msgstr "AJUDA_Horizontal alinhamento para data"
+
+#: EnhancedMovieCenter.py:366
+msgid "Show directory size in skin"
+msgstr "Mostrar o tamanho da pasta na skin"
+
+#: EnhancedMovieCenter.py:366
+msgid "HELP_Show directory size in skin"
+msgstr "Tamanho da pasta AJUDA_Mostrar na skin"
+
+#: EnhancedMovieCenter.py:368
+msgid "Show Latest Recordings directory"
+msgstr "Mostrar a última pasta de Gravações"
+
+#: EnhancedMovieCenter.py:368
+msgid "HELP_Show Latest Recordings directory"
+msgstr "Pasta de AJUDA_Mostrar últimas gravações"
+
+#: EnhancedMovieCenter.py:369
+msgid "Latest Recordings directory limit"
+msgstr "Últimas Gravações limite da pasta"
+
+#: EnhancedMovieCenter.py:369
+msgid "HELP_Latest Recordings directory limit"
+msgstr "Limite da pasta AJUDA_Últimas gravações"
+
+#: EnhancedMovieCenter.py:370
+msgid "Latest Recordings directory use emc-noscan.cfg"
+msgstr "Pasta de gravações mais recente usam emc-noscan.cfg"
+
+#: EnhancedMovieCenter.py:370
+msgid "HELP_Latest Recordings directory use emc-noscan.cfg"
+msgstr "AJUDA_Últimas gravações pasta usa emc-noscan.cfg"
+
+#: EnhancedMovieCenter.py:371
+msgid "Show VLC directory"
+msgstr "Mostrar a pasta VLC"
+
+#: EnhancedMovieCenter.py:371
+msgid "HELP_Show VLC directory"
+msgstr "Pasta de AJUDA_Mostrar VLC"
+
+#: EnhancedMovieCenter.py:372
+msgid "Show Bookmarks in movielist"
+msgstr "Mostrar marcadores na Lista de Filmes"
+
+#: EnhancedMovieCenter.py:372
+msgid "HELP_Show Bookmarks in movielist"
+msgstr "AJUDA_Mostrar Marcadores na Lista de filmes"
+
+#: EnhancedMovieCenter.py:373
+msgid "Use cache for files and directories"
+msgstr "Usar o cache para arquivos e pastas"
+
+#: EnhancedMovieCenter.py:373
+msgid "HELP_Use cache for files and directories"
+msgstr "AJUDA_Usar cache para arquivos e pastas"
+
+#: EnhancedMovieCenter.py:374
+msgid "Minimum file cache limit (0=cache everything)"
+msgstr "Limite mínimo da cache de arquivo (0 = cache tudo)"
+
+#: EnhancedMovieCenter.py:374
+msgid "HELP_Minimum file cache limit"
+msgstr "Limite de cache de arquivo de AJUDA_Mínimo"
+
+#: EnhancedMovieCenter.py:375
+msgid "Show experimental options"
+msgstr "Mostrar opções experimentais"
+
+#: EnhancedMovieCenter.py:375
+msgid "HELP_Show experimental options"
+msgstr "Opções de AJUDA_Mostrar experimentais"
+
+#: EnhancedMovieCenter.py:376
+msgid "Don't auto scan size of dirs from emc-noscan.cfg"
+msgstr "Não auto procurar tamanho de pastas de emc-noscan.cfg"
+
+#: EnhancedMovieCenter.py:376
+msgid "HELP_Don't auto scan size of dirs from emc-noscan.cfg"
+msgstr "AJUDA_Não auto procurar tamanho de pastas de emc-noscan.cfg"
+
+#: EnhancedMovieCenter.py:377
+msgid "After file OPs only re-scan affected dirs"
+msgstr "Após um arquivo OPs apenas procurar novamente pastas afetadas"
+
+#: EnhancedMovieCenter.py:377
+msgid "HELP_After file OPs only re-scan affected dirs"
+msgstr "AJUDA_Depois arquivo OPs apenas re-procurar pastas afetadas"
+
+#: EnhancedMovieCenter.py:378
+msgid "Wake device when entering dir from emc-noscan.cfg"
+msgstr "Acordar dispositivo quando entrar na pasta de emc-noscan.cfg"
+
+#: EnhancedMovieCenter.py:378
+msgid "HELP_Wake device when entering dir from emc-noscan.cfg"
+msgstr "Dispositivo de AJUDA_Acordar ao digitar dir de emc-noscan.cfg"
+
+#: EnhancedMovieCenter.py:380
+msgid "HELP_separator_hide&performance"
+msgstr "AJUDA_esconder_separador do desempenho"
+
+#: EnhancedMovieCenter.py:381
+msgid "Hide configured entries"
+msgstr "Esconder entradas configuradas"
+
+#: EnhancedMovieCenter.py:381
+msgid "HELP_cfghide_enable"
+msgstr "AJUDA_cfghide_enable"
+
+#: EnhancedMovieCenter.py:382
+msgid "Scan for DVD structures"
+msgstr "Procurar por estruturas de DVD"
+
+#: EnhancedMovieCenter.py:382
+msgid "HELP_Scan for DVD structures"
+msgstr "AJUDA_Scan para estruturas de DVD"
+
+#: EnhancedMovieCenter.py:383
+msgid "Scan for movie structures"
+msgstr "Procurar por estruturas de filme"
+
+#: EnhancedMovieCenter.py:383
+msgid "HELP_Scan for movie structures"
+msgstr "AJUDA_Scan para estruturas de filme"
+
+#: EnhancedMovieCenter.py:384
+msgid "Scan for bluray structures"
+msgstr "Procurar por estruturas de bluray"
+
+#: EnhancedMovieCenter.py:384
+msgid "HELP_Scan for bluray structures"
+msgstr "AJUDA_Scan para estruturas de bluray"
+
+#: EnhancedMovieCenter.py:385
+msgid "Scan for bluray structures in .iso"
+msgstr "Procurar por estruturas de bluray em. ISO"
+
+#: EnhancedMovieCenter.py:385
+msgid "HELP_Scan for bluray structures in .iso"
+msgstr "AJUDA_Scan para estruturas de bluray em. ISO"
+
+#: EnhancedMovieCenter.py:386
+msgid "Suppress scan in selected folders"
+msgstr "Suprimir a pocura nas pastas selecionadas"
+
+#: EnhancedMovieCenter.py:386
+msgid "HELP_cfgscan_suppress"
+msgstr "AJUDA_cfgscan_suppress"
+
+#: EnhancedMovieCenter.py:387
+msgid "Scan linked folders"
+msgstr "Procurar por pastas ligadas"
+
+#: EnhancedMovieCenter.py:387
+msgid "HELP_scan_linked"
+msgstr "AJUDA_scan_linked"
+
+#: EnhancedMovieCenter.py:390
+msgid "Try to load titles from .meta files"
+msgstr "Tentar carregar títulos de ficheiros .meta"
+
+#: EnhancedMovieCenter.py:390
+msgid "HELP_Try to load titles from .meta files"
+msgstr "AJUDA_Tentar carregar títulos de meta-arquivos"
+
+#: EnhancedMovieCenter.py:391
+msgid "Load all for non showing titles from .meta files"
+msgstr "Carregar todos para títulos não exibíveis de meta-arquivos"
+
+#: EnhancedMovieCenter.py:391
+msgid "HELP_Load all for non showing titles from .meta files"
+msgstr "AJUDA_Load tudo para não mostrar títulos de meta-arquivos"
+
+#: EnhancedMovieCenter.py:392
+msgid "Try to load titles from .eit files"
+msgstr "Tentar carregar títulos de ficheiros .eit"
+
+#: EnhancedMovieCenter.py:392
+msgid "HELP_Try to load titles from .eit files"
+msgstr "AJUDA_Tentar carregar títulos de arquivos de .eit"
+
+#: EnhancedMovieCenter.py:393
+msgid "Replace special chars in title"
+msgstr "Substituir caracteres especiais no título"
+
+#: EnhancedMovieCenter.py:393
+msgid "HELP_Replace special chars in title"
+msgstr "AJUDA_Replace caracteres especiais no título"
+
+#: EnhancedMovieCenter.py:394
+msgid "Show Movie Format"
+msgstr "Mostrar Formato do filme"
+
+#: EnhancedMovieCenter.py:394
+msgid "HELP_Show Movie Format"
+msgstr "Formato de filme de AJUDA_Mostrar"
+
+#: EnhancedMovieCenter.py:395
+msgid "Show Cut-Nr if exist"
+msgstr "Mostrar o corte-Nr se existir"
+
+#: EnhancedMovieCenter.py:395
+msgid "HELP_Show Cut-Nr if exist"
+msgstr "AJUDA_Mostrar corte-Nr se existir"
+
+#: EnhancedMovieCenter.py:396
+msgid "Resolve links and show real path"
+msgstr "Resolver links e mostrar o percurso real"
+
+#: EnhancedMovieCenter.py:396
+msgid "HELP_Resolve links and show real path"
+msgstr "AJUDA_Resolve links e mostrar caminho real"
+
+#: EnhancedMovieCenter.py:397
+msgid "Show Path if no extended description available"
+msgstr "Mostrar percurso se não descrição estendida disponível."
+
+#: EnhancedMovieCenter.py:397
+msgid "HELP_Show Path if no extended description available"
+msgstr "AJUDA_Mostrar caminho se não estendido Descrição disponível"
+
+#: EnhancedMovieCenter.py:400
+msgid "Listbox is skin able"
+msgstr "Skin habilitada para Caixa de Listas"
+
+#: EnhancedMovieCenter.py:400
+msgid "HELP_Listbox is skin able"
+msgstr "AJUDA_Listbox é capaz de pele"
+
+#: EnhancedMovieCenter.py:402
+msgid "Date format"
+msgstr "Formato da data"
+
+#: EnhancedMovieCenter.py:402
+msgid "HELP_Date format"
+msgstr "Formato AJUDA_Date"
+
+#: EnhancedMovieCenter.py:404
+msgid "Show movie icons"
+msgstr "Mostrar ícones dos filmes"
+
+#: EnhancedMovieCenter.py:404
+msgid "HELP_Show movie icons"
+msgstr "Ícones do cinema AJUDA_Mostrar"
+
+#: EnhancedMovieCenter.py:405
+msgid "Show link arrow"
+msgstr "Mostrar seta de ligação"
+
+#: EnhancedMovieCenter.py:405
+msgid "HELP_Show link arrow"
+msgstr "Seta de ligação AJUDA_Mostrar"
+
+#: EnhancedMovieCenter.py:407
+msgid "Show movie picons"
+msgstr "Mostrar picons dos filmes"
+
+#: EnhancedMovieCenter.py:407
+msgid "HELP_Show movie picons"
+msgstr "AJUDA_Mostrar filme picons"
+
+#: EnhancedMovieCenter.py:409
+msgid "Position movie picons"
+msgstr "Posição dos Picons dos Filmes"
+
+#: EnhancedMovieCenter.py:409
+msgid "HELP_Position movie picons"
+msgstr "AJUDA_Position filme picons"
+
+#: EnhancedMovieCenter.py:410
+msgid "Own Path to movie picons"
+msgstr "Percurso próprio para picons dos filmes"
+
+#: EnhancedMovieCenter.py:410
+msgid "HELP_Own Path to movie picons"
+msgstr "Caminho de AJUDA_Own filme Picons"
+
+#: EnhancedMovieCenter.py:411
+msgid "Path to movie picons"
+msgstr "Percurso para picons de Filmes"
+
+#: EnhancedMovieCenter.py:411
+msgid "HELP_Path to movie picons"
+msgstr "AJUDA_Path filme Picons"
+
+#: EnhancedMovieCenter.py:413
+msgid "Show movie progress"
+msgstr "Mostrar o progresso de filme"
+
+#: EnhancedMovieCenter.py:413
+msgid "HELP_Show movie progress"
+msgstr "Progresso do filme AJUDA_Mostrar"
+
+#: EnhancedMovieCenter.py:414
+msgid "Short watching percent"
+msgstr "Percentagem de visualização mínima"
+
+#: EnhancedMovieCenter.py:414
+msgid "HELP_Short watching percent"
+msgstr "AJUDA_Short assistindo por cento"
+
+#: EnhancedMovieCenter.py:415
+msgid "Finished watching percent"
+msgstr "Percentagem já visualizada"
+
+#: EnhancedMovieCenter.py:415
+msgid "HELP_Finished watching percent"
+msgstr "AJUDA_Finished assistindo por cento"
+
+#: EnhancedMovieCenter.py:416
+msgid "Mark new recordings with a star"
+msgstr "Marca novas gravações com uma estrela"
+
+#: EnhancedMovieCenter.py:416
+msgid "HELP_Mark new recordings with a star"
+msgstr "AJUDA_Mark novas gravações com uma estrela"
+
+#: EnhancedMovieCenter.py:417 MovieSelection.py:1696 MovieSelection.py:1712
+#: MovieSelection.py:1728
+msgid "Show Cover"
+msgstr "Mostrar Capa"
+
+#: EnhancedMovieCenter.py:417
+msgid "HELP_Show Cover"
+msgstr "AJUDA_Mostrar Capa"
+
+#: EnhancedMovieCenter.py:418 MovieInfo.py:724
+msgid "Cover delay in ms"
+msgstr "Capa atraso em ms"
+
+#: EnhancedMovieCenter.py:418
+msgid "HELP_Cover delay in ms"
+msgstr "AJUDA_Cover atraso em ms"
+
+#: EnhancedMovieCenter.py:419
+msgid "Cover background"
+msgstr "Capa plano de fundo"
+
+#: EnhancedMovieCenter.py:419
+msgid "HELP_Cover background"
+msgstr "AJUDA_Cover fundo"
+
+#: EnhancedMovieCenter.py:420
+msgid "Show fallback cover"
+msgstr "Mostrar Capa"
+
+#: EnhancedMovieCenter.py:420
+msgid "HELP_Fallback Cover"
+msgstr "Capa AJUDA_Fallback"
+
+#: EnhancedMovieCenter.py:422
+msgid "Show movie preview"
+msgstr "Pré-visualizar Filmes"
+
+#: EnhancedMovieCenter.py:422
+msgid "HELP_Show movie preview"
+msgstr "Visualização de filme AJUDA_Mostrar"
+
+#: EnhancedMovieCenter.py:423
+msgid "Movie preview delay in ms"
+msgstr "Atraso de visualização de filme em ms"
+
+#: EnhancedMovieCenter.py:423
+msgid "HELP_Movie preview delay in ms"
+msgstr "Atraso de visualização AJUDA_Movie em ms"
+
+#: EnhancedMovieCenter.py:424
+msgid "Start movie preview before last position"
+msgstr "Iniciar a visualização do filme antes da última posição"
+
+#: EnhancedMovieCenter.py:424
+msgid "HELP_Movie preview offset in seconds"
+msgstr "Deslocamento de visualização AJUDA_Movie em segundos"
+
+#: EnhancedMovieCenter.py:427
+msgid "No resume below 10 seconds"
+msgstr "Nenhum currículo abaixo de 10 segundos"
+
+#: EnhancedMovieCenter.py:427
+msgid "HELP_No resume below 10 seconds"
+msgstr "AJUDA_No currículo abaixo de 10 segundos"
+
+#: EnhancedMovieCenter.py:428
+msgid "Jump to first mark when playing movie"
+msgstr "Saltar para a primeira marca quando reproduzir o filme"
+
+#: EnhancedMovieCenter.py:428
+msgid "HELP_Jump to first mark when playing movie"
+msgstr "AJUDA_Jump a primeira marca quando jogar o filme"
+
+#: EnhancedMovieCenter.py:429
+msgid "Rewind finished movies before playing"
+msgstr "Rebobinar filmes acabados antes de reproduzir"
+
+#: EnhancedMovieCenter.py:429
+msgid "HELP_Rewind finished movies before playing"
+msgstr "AJUDA_Rewind terminado filmes antes de jogar"
+
+#: EnhancedMovieCenter.py:430
+msgid "Always save last played progress as marker"
+msgstr "Salvar sempre progresso reproduzido como marcador"
+
+#: EnhancedMovieCenter.py:430
+msgid "HELP_Always save last played progress as marker"
+msgstr "AJUDA_Sempre o último progresso reproduzido como marcador"
+
+#: EnhancedMovieCenter.py:431
+msgid "Zap to channel after record EOF"
+msgstr "Zap para o canal após finalizar a gravação"
+
+#: EnhancedMovieCenter.py:431
+msgid "HELP_Zap to channel after record EOF"
+msgstr "AJUDA_Zap para o canal após registo EOF"
+
+#: EnhancedMovieCenter.py:432
+msgid "Show real length of running records"
+msgstr "Mostrar o comprimento real da execução de registos"
+
+#: EnhancedMovieCenter.py:432
+msgid "HELP_Show real length of running records"
+msgstr "AJUDA_Mostrar comprimento real da execução de registros"
+
+#: EnhancedMovieCenter.py:436
+msgid "Download cutlist from Cutlist.at"
+msgstr "Descarregar lista de cortes de Cutlist.at"
+
+#: EnhancedMovieCenter.py:436
+msgid "HELP_Download cutlist from Cutlist.at"
+msgstr "Lista de cortes de AJUDA_Download de Cutlist.at"
+
+#: EnhancedMovieCenter.py:440
+msgid "HELP_separator_Trashcan settings"
+msgstr "Configurações AJUDA_separator_Trashcan"
+
+#: EnhancedMovieCenter.py:441
+msgid "Trashcan enable"
+msgstr "Reciclagem ativa"
+
+#: EnhancedMovieCenter.py:441
+msgid "HELP_Trashcan enable"
+msgstr "Ativar AJUDA_Reciclagem"
+
+#: EnhancedMovieCenter.py:442
+msgid "Trashcan path"
+msgstr "Percurso da Reciclagem"
+
+#: EnhancedMovieCenter.py:442
+msgid "HELP_Trashcan path"
+msgstr "AJUDA_Percurso Reciclagem"
+
+#: EnhancedMovieCenter.py:443
+msgid "Show trashcan directory"
+msgstr "Mostrar a pasta da reciclagem"
+
+#: EnhancedMovieCenter.py:443
+msgid "HELP_Show trashcan directory"
+msgstr "AJUDA_Show pasta da reciclagem"
+
+#: EnhancedMovieCenter.py:444
+msgid "Show trashcan information"
+msgstr "Mostrar informações da reciclagem"
+
+#: EnhancedMovieCenter.py:444
+msgid "HELP_Dynamic trashcan"
+msgstr "Lata de lixo AJUDA_Dynamic"
+
+#: EnhancedMovieCenter.py:445
+msgid "Delete validation"
+msgstr "Excluir a validação"
+
+#: EnhancedMovieCenter.py:445
+msgid "HELP_Delete validation"
+msgstr "Validação de AJUDA_Delete"
+
+#: EnhancedMovieCenter.py:447
+msgid "Enable daily trashcan cleanup"
+msgstr "Permitir a limpeza diária da reciclagem"
+
+#: EnhancedMovieCenter.py:447
+msgid "HELP_Enable daily trashcan cleanup"
+msgstr "Limpeza diária de lixo AJUDA_Enable"
+
+#: EnhancedMovieCenter.py:448
+msgid "Daily cleanup time"
+msgstr "Hora de limpeza diária"
+
+#: EnhancedMovieCenter.py:448
+msgid "HELP_Daily cleanup time"
+msgstr "Tempo de limpeza AJUDA_Daily"
+
+#: EnhancedMovieCenter.py:449
+msgid "How many days files may remain in trashcan"
+msgstr "Quantos dias devem permanecer os ficheiros na reciclagem"
+
+#: EnhancedMovieCenter.py:449
+msgid "HELP_How many days files may remain in trashcan"
+msgstr "AJUDA_How muitos arquivos dias podem permanecer no caixote do lixo"
+
+#: EnhancedMovieCenter.py:450
+msgid "Move finished movies in trashcan"
+msgstr "Mover filmes acabados na recickagem"
+
+#: EnhancedMovieCenter.py:450
+msgid "HELP_Move finished movies in trashcan"
+msgstr "AJUDA_Move terminou o filmes em lata de lixo"
+
+#: EnhancedMovieCenter.py:451
+msgid "Age of finished movies in movie folder (days)"
+msgstr "Idade de filmes acabados na pasta do filme (dias)"
+
+#: EnhancedMovieCenter.py:451
+msgid "HELP_Age of finished movies in movie folder (days)"
+msgstr "AJUDA_Idade de filmes acabados na pasta do filme (dias)"
+
+#: EnhancedMovieCenter.py:454
+msgid "Display directory reading text"
+msgstr "Pasta de exibição do texto de leitura"
+
+#: EnhancedMovieCenter.py:454
+msgid "HELP_Display directory reading text"
+msgstr "Texto de leitura da pasta AJUDA_Visor"
+
+#: EnhancedMovieCenter.py:455
+msgid "EMC always reload after open"
+msgstr "Recarregar sempre EMC após abrir"
+
+#: EnhancedMovieCenter.py:455
+msgid "HELP_EMC always reload after open"
+msgstr "AJUDA_EMC sempre recarregar após aberto"
+
+#: EnhancedMovieCenter.py:456
+msgid "EMC re-open list after STOP-press"
+msgstr "EMC re-abrir lista após premir <PARAR>"
+
+#: EnhancedMovieCenter.py:456
+msgid "HELP_EMC re-open list after STOP-press"
+msgstr "AJUDA_EMC re-abrir lista após PARAGEM-imprensa"
+
+#: EnhancedMovieCenter.py:457
+msgid "EMC re-open list after Movie end"
+msgstr "EMC re-abrir lista após o final do filme"
+
+#: EnhancedMovieCenter.py:457
+msgid "HELP_EMC re-open list after Movie end"
+msgstr "AJUDA_EMC re-abrir lista após o final do filme"
+
+#: EnhancedMovieCenter.py:459
+msgid "Leave Movie with Exit"
+msgstr "Abandonar o filme com a tecla <EXIT>"
+
+#: EnhancedMovieCenter.py:459
+msgid "HELP_Leave Movie with Exit"
+msgstr "AJUDA_Leave filme com saída"
+
+#: EnhancedMovieCenter.py:461
+msgid "Hide movies being moved"
+msgstr "Esconder filmes ao serem movidos"
+
+#: EnhancedMovieCenter.py:461
+msgid "HELP_Hide movies being moved"
+msgstr "Filmes de AJUDA_Hide sendo movidos"
+
+#: EnhancedMovieCenter.py:462
+msgid "Hide movies being deleted"
+msgstr "Esconder filmes ao serem apagados"
+
+#: EnhancedMovieCenter.py:462
+msgid "HELP_Hide movies being deleted"
+msgstr "Filmes de AJUDA_Hide sendo excluídos"
+
+#: EnhancedMovieCenter.py:464
+msgid "Enable remote recordings"
+msgstr "Permitir gravações remotas"
+
+#: EnhancedMovieCenter.py:464
+msgid "HELP_Enable remote recordings"
+msgstr "AJUDA_Enable remotas gravações"
+
+#: EnhancedMovieCenter.py:465
+msgid "Automatic timers list cleaning"
+msgstr "Limpeza da lista de timers automáticos"
+
+#: EnhancedMovieCenter.py:465
+msgid "HELP_Automatic timers list cleaning"
+msgstr "Lista de temporizadores AJUDA_Automatic limpeza"
+
+#: EnhancedMovieCenter.py:467
+msgid "HELP_Language Separator"
+msgstr "AJUDA_Language separador"
+
+#: EnhancedMovieCenter.py:468
+msgid "Preferred EPG language"
+msgstr "Idioma preferencial do EPG"
+
+#: EnhancedMovieCenter.py:468
+msgid "HELP_Preferred EPG language"
+msgstr "Língua AJUDA_Preferred EPG"
+
+#: EnhancedMovieCenter.py:469
+msgid "Extra support for language"
+msgstr "Suporte extra para o idioma"
+
+#: EnhancedMovieCenter.py:469
+msgid "HELP_Extra support for selected language"
+msgstr "AJUDA_Extra suporte para o idioma selecionado"
+
+#: EnhancedMovieCenter.py:470
+msgid "Enable playback auto-subtitling"
+msgstr "Ativar a reprodução automática-Legendagem"
+
+#: EnhancedMovieCenter.py:470
+msgid "HELP_Enable playback auto-subtitling"
+msgstr "AJUDA_Enable reprodução auto-Legendagem"
+
+#: EnhancedMovieCenter.py:471
+msgid "Primary playback subtitle language"
+msgstr "Idioma das legendas de reprodução primário"
+
+#: EnhancedMovieCenter.py:471
+msgid "HELP_Primary playback subtitle language"
+msgstr "Idioma de legendas de reprodução AJUDA_Primary"
+
+#: EnhancedMovieCenter.py:472
+msgid "Secondary playback subtitle language"
+msgstr "Idioma das legendas de reprodução secundário"
+
+#: EnhancedMovieCenter.py:472
+msgid "HELP_Secondary playback subtitle language"
+msgstr "Idioma de legendas de reprodução AJUDA_Secondary"
+
+#: EnhancedMovieCenter.py:473
+msgid "Tertiary playback subtitle language"
+msgstr "Idioma de reprodução de legendas 3"
+
+#: EnhancedMovieCenter.py:473
+msgid "HELP_Tertiary playback subtitle language"
+msgstr "Idioma de legendas de reprodução AJUDA_Tertiary"
+
+#: EnhancedMovieCenter.py:474
+msgid "Enable playback auto-language selection"
+msgstr "Ativar a reprodução automática-seleção de idioma"
+
+#: EnhancedMovieCenter.py:474
+msgid "HELP_Enable playback auto-language selection"
+msgstr "Seleção de autoidioma de reprodução AJUDA_Enable"
+
+#: EnhancedMovieCenter.py:475
+msgid "Enable playback AC3-track first"
+msgstr "Ativar a reprodução AC3-faixa primeiro"
+
+#: EnhancedMovieCenter.py:475
+msgid "HELP_Enable playback AC3-track first"
+msgstr "Reprodução AJUDA_Enable AC3-faixa primeiro"
+
+#: EnhancedMovieCenter.py:476
+msgid "Primary playback audio language"
+msgstr "Idioma de áudio de reprodução primário"
+
+#: EnhancedMovieCenter.py:476
+msgid "HELP_Primary playback audio language"
+msgstr "Idioma de áudio de reprodução de AJUDA_Primary"
+
+#: EnhancedMovieCenter.py:477
+msgid "Secondary playback audio language"
+msgstr "Idioma de áudio secundário de reprodução"
+
+#: EnhancedMovieCenter.py:477
+msgid "HELP_Secondary playback audio language"
+msgstr "Idioma de áudio de reprodução de AJUDA_Secondary"
+
+#: EnhancedMovieCenter.py:478
+msgid "Tertiary playback audio language"
+msgstr "Idioma de reprodução de áudio 3"
+
+#: EnhancedMovieCenter.py:478
+msgid "HELP_Tertiary playback audio language"
+msgstr "Idioma de áudio de reprodução de AJUDA_Tertiary"
+
+#: EnhancedMovieCenter.py:480 EnhancedMovieCenter.py:485
+#: EnhancedMovieCenter.py:511
+msgid "HELP_Advanced options separator"
+msgstr "AJUDA_Avançada separador de opções"
+
+#: EnhancedMovieCenter.py:481
+msgid "Description field update delay"
+msgstr "Atraso de atualização de campo de descrição"
+
+#: EnhancedMovieCenter.py:481
+msgid "HELP_Description field update delay"
+msgstr "Atraso de atualização de campo de AJUDA_Description"
+
+#: EnhancedMovieCenter.py:482
+msgid "Key period value (50-900)"
+msgstr "Valor de chave período (50-900)"
+
+#: EnhancedMovieCenter.py:482
+msgid "HELP_Key period value (50-900)"
+msgstr "AJUDA_Key período valor (50-900)"
+
+#: EnhancedMovieCenter.py:483
+msgid "Key repeat value (250-900)"
+msgstr "Valor de chave de repetição (250-900)"
+
+#: EnhancedMovieCenter.py:483
+msgid "HELP_Key repeat value (250-900)"
+msgstr "AJUDA_Key repetir o valor (250-900)"
+
+#: EnhancedMovieCenter.py:486
+msgid "Show message if file added to playlist"
+msgstr "Mostrar mensagem se  adicionar um ficheiro  à lista de reprodução"
+
+#: EnhancedMovieCenter.py:486
+msgid "HELP_Show message if file added to playlist"
+msgstr ""
+"Mensagem de AJUDA_Mostrar se o arquivo é adicionado à lista de reprodução"
+
+#: EnhancedMovieCenter.py:488
+msgid "HELP_Advanced Skin options separator"
+msgstr "AJUDA_Avançada Separador Opções da skin"
+
+#: EnhancedMovieCenter.py:489
+msgid "Use original EMC-skin (needs reopen)"
+msgstr "Usar a skin original EMC ( reabrir necessário )"
+
+#: EnhancedMovieCenter.py:489
+msgid "HELP_Use original EMC-skin (needs reopen)"
+msgstr "AJUDA_Usar skin_EMC original (precisa reabrir)"
+
+#: EnhancedMovieCenter.py:492
+msgid "HELP_Advanced audio metadata options separator"
+msgstr "Separador de opções de metadados áudio AJUDA_Avançada"
+
+#: EnhancedMovieCenter.py:498
+msgid "Download Mutagen-package for audio metadata"
+msgstr "Descarregar mutagênico-pacote para metadados de áudio"
+
+#: EnhancedMovieCenter.py:498
+msgid "HELP_Download Mutagen-package for audio metadata"
+msgstr "AJUDA_Download mutagênico-pacote para metadados de áudio"
+
+#: EnhancedMovieCenter.py:504
+msgid "Show audio metadata (needs skin-changes)"
+msgstr "Mostrar metadados áudio (necessidades-alterações da skin)"
+
+#: EnhancedMovieCenter.py:504
+msgid "HELP_Show audio metadata (needs skin-changes)"
+msgstr "Metadados de áudio AJUDA_Mostrar (precisa de alterações da pele)"
+
+#: EnhancedMovieCenter.py:509
+msgid "Upgrade/Download Mutagen v1.28(experimental)"
+msgstr "Atualização/Download mutagênico v1.28(experimental)"
+
+#: EnhancedMovieCenter.py:509
+msgid "HELP_Upgrade/Download Mutagen v1.28(experimental)"
+msgstr "V1.28(experimental) AJUDA_Descarregar/Atualizar mutagênico"
+
+#: EnhancedMovieCenter.py:512
+msgid "Enable EMC debug output"
+msgstr "Ativar saída de depuração"
+
+#: EnhancedMovieCenter.py:512
+msgid "HELP_Enable EMC debug output"
+msgstr "Saída de depuração AJUDA_Enable EMC"
+
+#: EnhancedMovieCenter.py:513
+msgid "EMC output directory"
+msgstr "EMC Pasta de saída"
+
+#: EnhancedMovieCenter.py:513
+msgid "HELP_EMC output directory"
+msgstr "AJUDA_EMC Pasta de saída"
+
+#: EnhancedMovieCenter.py:514
+msgid "Debug output file name"
+msgstr "Nome do arquivo de depuração"
+
+#: EnhancedMovieCenter.py:514
+msgid "HELP_Debug output file name"
+msgstr "AJUDA_Debug nome do arquivo de saída"
+
+#: EnhancedMovieCenter.py:550 EnhancedMovieCenter.py:552
+msgid "Install Mutagen-package"
+msgstr "Instalar pacote mutagênico"
+
+#: EnhancedMovieCenter.py:612
+msgid "Load default settings will overwrite all settings, really load them?"
+msgstr ""
+"Carregar a definição padrão irá substituir todas as configurações, deseja "
+"carregá-la?"
+
+#: EnhancedMovieCenter.py:702
+msgid "Some settings changes require GUI restart to take effect."
+msgstr ""
+"Algumas mudanças nas definições requerem o início do Interface Gráfico para "
+"que produzam efeito."
+
+#: EnhancedMovieCenter.py:720
+msgid "Really close without saving settings?"
+msgstr "Deseja Sair mesmo sem Gravar as definições?"
+
+#: EnhancedMovieCenter.py:738
+msgid "Select Location"
+msgstr "Selecione a Localização"
+
+#: EnhancedMovieCenter.py:757
+#, python-format
+msgid "Given path %s does not exist. Please change."
+msgstr "Percurso especificado %s não existe. Por favor, mude-o."
+
+#: EnhancedMovieCenter.py:765 MovieSelection.py:2939
+msgid "Trashcan create failed. Check mounts and permissions."
+msgstr "Criação da Reciclagem falhou. Verificar permissões e montagens."
+
+#: InfoBarSupport.py:112
+msgid "jump to previous marked position"
+msgstr "saltar para a posição anterior marcada"
+
+#: InfoBarSupport.py:113
+msgid "jump to next marked position"
+msgstr "saltar para a próxima marca"
+
+#: InfoBarSupport.py:114
+msgid "toggle a cut mark at the current position"
+msgstr "alternar entre uma marca de corte na posição atual"
+
+#: InfoBarSupport.py:153 InfoBarSupport.py:155
+msgid "Do you want to resume this playback?"
+msgstr "Pretende retomar esta reprodução?"
+
+#: InfoBarSupport.py:153 InfoBarSupport.py:155
+#, python-format
+msgid "Resume position at %s"
+msgstr "Posição de retoma em %s"
+
+#: InfoBarSupport.py:157
+msgid "Resuming playback"
+msgstr "Retomar a Reprodução"
+
+#: MovieCenter.py:1000
+msgid "trashcan"
+msgstr "reciclagem"
+
+#: MovieCenter.py:1005
+msgid "Latest Recordings"
+msgstr "Últimas Gravações"
+
+#: MovieCenter.py:2304
+msgid "VLC"
+msgstr "VLC"
+
+#: MovieCenter.py:2310
+msgid "VLC-Server"
+msgstr "VLC-Servidor"
+
+#: MovieCenter.py:2316
+msgid "VLC-Dir"
+msgstr "VLC-Pasta"
+
+#: MovieCenter.py:2322
+msgid "Latest"
+msgstr "Últimos "
+
+#: MovieCenter.py:2328
+msgid "Up"
+msgstr "Cima"
+
+#: MovieCenter.py:2334 MovieCenter.py:2340
+msgid "Bookmark"
+msgstr "Marcador"
+
+#: MovieCenter.py:2360 MovieCenter.py:2371
+msgid "Trashcan"
+msgstr "Reciclagem"
+
+#: MovieCenter.py:2460 MovieCenter.py:2468
+msgid "Directory"
+msgstr "Pasta"
+
+#: MovieCenter.py:2462
+msgid "Link"
+msgstr "Ligação"
+
+#: MovieCenter.py:2464
+msgid "Collection"
+msgstr "Coleção"
+
+#: MovieCenter.py:2480
+msgid "UNKNOWN"
+msgstr "DESCONHECIDO"
+
+#: MovieInfo.py:30
+msgid "German"
+msgstr "Alemão"
+
+#: MovieInfo.py:30
+msgid "English"
+msgstr "Inglês"
+
+#: MovieInfo.py:31 MovieInfo.py:32 MovieInfo.py:33 MovieInfo.py:34
+#: MovieInfo.py:35
+msgid "Yes"
+msgstr "Sim"
+
+#: MovieInfo.py:31 MovieInfo.py:32 MovieInfo.py:33 MovieInfo.py:34
+#: MovieInfo.py:35 plugin.py:218 plugin.py:223 plugin.py:233 plugin.py:324
+msgid "No"
+msgstr "Não"
+
+#: MovieInfo.py:62
+msgid "Movies"
+msgstr "Filmes"
+
+#: MovieInfo.py:62 MovieInfo.py:66
+msgid " - "
+msgstr " - "
+
+#: MovieInfo.py:66
+msgid "TV Shows"
+msgstr "Programas de TV"
+
+#: MovieInfo.py:147 MovieInfo.py:202
+msgid "Content:"
+msgstr "Conteúdo:"
+
+#: MovieInfo.py:147 MovieInfo.py:202 MovieInfo.py:518 MovieSelection.py:275
+msgid "Runtime:"
+msgstr "Duração:"
+
+#: MovieInfo.py:147 MovieInfo.py:202 MovieInfo.py:544
+msgid "Minutes"
+msgstr "Minutos"
+
+#: MovieInfo.py:147 MovieInfo.py:202 MovieInfo.py:519 MovieSelection.py:273
+msgid "Genre:"
+msgstr "Género:"
+
+#: MovieInfo.py:147 MovieInfo.py:202 MovieInfo.py:520
+msgid "Production Countries:"
+msgstr "Países de Produção:"
+
+#: MovieInfo.py:147 MovieInfo.py:202 MovieInfo.py:521
+msgid "Release Date:"
+msgstr "Data de realização:"
+
+#: MovieInfo.py:147 MovieInfo.py:202 MovieInfo.py:522
+msgid "Vote:"
+msgstr "Votar:"
+
+#: MovieInfo.py:164
+msgid "unknown"
+msgstr "desconhecido"
+
+#: MovieInfo.py:269 MovieInfo.py:449 MovieInfo.py:461 MovieInfo.py:683
+msgid "Search results for:"
+msgstr "Resultados de procura para:"
+
+#: MovieInfo.py:272
+msgid "Movie Info"
+msgstr "Informações do filme"
+
+#: MovieInfo.py:277
+msgid "movies found!"
+msgstr "Nenhum filme encontrado"
+
+#: MovieInfo.py:280 MovieInfo.py:303 MovieInfo.py:335
+msgid "An error occured! Internet connection broken?"
+msgstr "Ocorreu um erro! Erro de ligação à Internet ?"
+
+#: MovieInfo.py:283
+msgid "Movie Information Download (TMDb)"
+msgstr "Descarregar Informações do filme  (TMDb)"
+
+#: MovieInfo.py:297 MovieInfo.py:574 MovieInfo.py:578
+msgid "Movie Information downloaded successfully!"
+msgstr "Informações do filme descarregado com êxito!"
+
+#: MovieInfo.py:308 MovieInfo.py:607
+#, python-format
+msgid ""
+"Cover %s exists!\n"
+"\n"
+"Do you want to replace the existing cover?"
+msgstr ""
+"Existe capa para %s!\n"
+"\n"
+"Pretende substituir a capa existente?"
+
+#: MovieInfo.py:352 MovieInfo.py:459 MovieInfo.py:642
+msgid "Movie Information Preview for:"
+msgstr "Pré-visualizar informações do filme aos:"
+
+#: MovieInfo.py:366
+msgid "Movie Information Preview"
+msgstr "Pré-visualizar informações do filme"
+
+#: MovieInfo.py:462
+msgid "Nothing was found !"
+msgstr "Nada foi encontrado!"
+
+#: MovieInfo.py:495
+msgid "Movie Information TMDb"
+msgstr "Informações do Filme TMDb"
+
+#: MovieInfo.py:570
+msgid "Movie Information and Cover downloaded successfully!"
+msgstr "Informações do filme e capa descarregados com êxito!"
+
+#: MovieInfo.py:576
+#, python-format
+msgid ""
+"Movie Information downloaded successfully!\n"
+"\n"
+"Can not write Movie Cover File\n"
+"\n"
+"%s"
+msgstr ""
+"Informações do filme descarregado com êxito!\n"
+"\n"
+"Não posso escrever a capa do filme no arquivo\n"
+"\n"
+"%s"
+
+#: MovieInfo.py:580
+#, python-format
+msgid ""
+"Movie Cover downloaded successfully!\n"
+"\n"
+"Can not write Movie Information File\n"
+"\n"
+"%s"
+msgstr ""
+"Capa de filme decarregada com êxito!\n"
+"\n"
+"Não posso escrever informações do filme no arquivo\n"
+"\n"
+"%s"
+
+#: MovieInfo.py:582
+#, python-format
+msgid ""
+"Can not write Movie Information and Cover File\n"
+"\n"
+"%s\n"
+"%s"
+msgstr ""
+"Não pode escrever informações do filme e a capa\n"
+"\n"
+"%s\n"
+"%s"
+
+#: MovieInfo.py:584
+#, python-format
+msgid ""
+"Can not write Movie Information File\n"
+"\n"
+"%s"
+msgstr ""
+"Não pode escrever o filme informações arquivo\n"
+"\n"
+"%s"
+
+#: MovieInfo.py:715
+msgid "Language:"
+msgstr "Idioma:"
+
+#: MovieInfo.py:716
+msgid "Load Runtime:"
+msgstr "Carregar Duração:"
+
+#: MovieInfo.py:717
+msgid "Load Genre:"
+msgstr "Carregar Género:"
+
+#: MovieInfo.py:718
+msgid "Load Production Countries:"
+msgstr "Carregar Países de Produção:"
+
+#: MovieInfo.py:719
+msgid "Load Release Date:"
+msgstr "Carregar Data de realização:"
+
+#: MovieInfo.py:720
+msgid "Load Vote:"
+msgstr "Carregar Apreciação:"
+
+#: MovieInfo.py:721
+msgid "Save Cover"
+msgstr "Salvar capa"
+
+#: MovieInfo.py:722
+msgid "Coversize"
+msgstr "Tamanho das Capas"
+
+#: MovieInfo.py:723
+msgid "Switch complete to new Version"
+msgstr "Mudar completamente para a nova Versão"
+
+#: MovieInfo.py:741
+msgid "Movie Information Download Setup"
+msgstr "Informações do filme ( Definição de Descarga )"
+
+#: MovieRetitle.py:27 MovieRetitle.py:63
+msgid "Location:"
+msgstr "Localização:"
+
+#: MovieRetitle.py:78
+msgid "Foldername:"
+msgstr "Nome da pasta:"
+
+#: MovieRetitle.py:80
+msgid "Filename:"
+msgstr "Nome do ficheiro:"
+
+#: MovieRetitle.py:81
+msgid "Movietitle:"
+msgstr "Título do Filme"
+
+#: MovieRetitle.py:82
+msgid "Description:"
+msgstr "Descrição:"
+
+#: MovieRetitle.py:112
+msgid "Change Foldername"
+msgstr "Alterar Nome da Pasta"
+
+#: MovieRetitle.py:114
+msgid "Change File/Moviename and/or Description"
+msgstr "Alterar o arquivo/Nome do Filmes e/ou Descrição"
+
+#: MovieSelection.py:103
+msgid ""
+"EMC: Skipping Trashcan Cleanup\n"
+"Movie Home Path is equal to or a subfolder of the Trashcan"
+msgstr ""
+"EMC: Saltar limpeza da reciclagem\n"
+"Percurso da pasta Filmes é igual ou a uma sub-pasta da reciclagem."
+
+#: MovieSelection.py:140
+msgid "EMC Trashcan Cleanup failed!"
+msgstr "EMC limpeza da reciclagem falhou!"
+
+#: MovieSelection.py:269
+msgid "Artist:"
+msgstr "Artista:"
+
+#: MovieSelection.py:271
+msgid "Album:"
+msgstr "Álbum:"
+
+#: MovieSelection.py:502 MovieSelection.py:1636
+msgid "Reading directory..."
+msgstr "Pasta de Leitura..."
+
+#: MovieSelection.py:520
+msgid "Play selected movie(s)"
+msgstr "Reproduzir o(s) filme selecionado(s)"
+
+#: MovieSelection.py:522 MovieSelectionMenu.py:99
+msgid "Play All"
+msgstr "Reproduzir todas"
+
+#: MovieSelection.py:523 MovieSelectionMenu.py:100
+msgid "Shuffle All"
+msgstr "Baralhar Todos"
+
+#: MovieSelection.py:524
+msgid "Close EMC"
+msgstr "Fechar EMC"
+
+#: MovieSelection.py:525
+msgid "Open menu"
+msgstr "Abrir menu"
+
+#: MovieSelection.py:526
+msgid "Show event info"
+msgstr "Mostrar informações do evento"
+
+#: MovieSelection.py:527
+msgid "IMDBSearch / EMC-TMDBInfo / TMDBInfo / TMBDInfo / CSFDInfo"
+msgstr "IMDBSearch / EMC-TMDBInfo / TMDBInfo / TMBDInfo / CSFDInfo"
+
+#: MovieSelection.py:541
+msgid "Move cursor page up"
+msgstr "Mover o cursor página para cima"
+
+#: MovieSelection.py:542
+msgid "Move cursor page down"
+msgstr "Mover o cursor página para baixo"
+
+#: MovieSelection.py:543
+msgid "Move cursor up"
+msgstr "Mover cursor para cima"
+
+#: MovieSelection.py:544
+msgid "Move cursor down"
+msgstr "Mover o cursor para baixo"
+
+#: MovieSelection.py:545
+msgid ""
+"Move cursor to the top / Move cursor x entries up / Switch Folders in Movie "
+"Home (up)"
+msgstr ""
+"Mover o cursor para cima / mover cursor x entradas acima / Trocar pastas no "
+"filme Inicial (para cima)"
+
+#: MovieSelection.py:546
+msgid ""
+"Move cursor to the end / Move cursor x entries down / Switch Folders in "
+"Movie Home (down)"
+msgstr ""
+"Mover o cursor para o fim / Mover cursor x entradas para baixo / Trocar "
+"pastas no filme Inicial (para baixo)"
+
+#: MovieSelection.py:547
+msgid "Directory forward"
+msgstr "Pasta posterior"
+
+#: MovieSelection.py:549
+msgid "Directory back"
+msgstr "Pasta anterior"
+
+#: MovieSelection.py:551
+msgid "Toggle service selection"
+msgstr "Seleção de serviço de alternância"
+
+#: MovieSelection.py:552
+msgid "Remove service selection"
+msgstr "Remova a seleção de serviço"
+
+#: MovieSelection.py:553 MovieSelection.py:555
+msgid "Available plugins menu"
+msgstr "Menu de Plugins disponíveis"
+
+#: MovieSelection.py:556
+msgid "Reload movie file list"
+msgstr "Recarregar Lista de Filmes "
+
+#: MovieSelection.py:557
+msgid "Open Timer List"
+msgstr "Abrir Lista de Timer"
+
+#: MovieSelection.py:558
+msgid "Toggle viewed / not viewed"
+msgstr "Alternar visualizados / não visualizados"
+
+#: MovieSelection.py:560
+msgid "Start / end multiselection"
+msgstr "Início / fim Seleção múltipla"
+
+#: MovieSelection.py:1021
+msgid "E2 Bookmark"
+msgstr "Marcador E2"
+
+#: MovieSelection.py:1022 MovieSelectionMenu.py:165
+msgid "Open E2 Bookmark path"
+msgstr "Abrir percurso de marcadores E2"
+
+#: MovieSelection.py:1130
+msgid "No script operation for VLC streams."
+msgstr "Nenhuma operação de script para fluxos VLC."
+
+#: MovieSelection.py:1146
+msgid "Does not contain any scripts."
+msgstr "Não contém quaisquer outros scripts."
+
+#: MovieSelection.py:1150
+msgid "Choose script"
+msgstr "Escolher a script"
+
+#: MovieSelection.py:1169
+msgid ""
+"Cover search with all Files in Subdirectories?\n"
+"\n"
+"This may take a while on huge Disks, or Directories!"
+msgstr ""
+"Procura de Capas com todos os arquivos em subpastas?\n"
+"\n"
+"Isto pode levar um tempo enorme em discos, ou pastas!"
+
+#: MovieSelection.py:1204
+msgid "No functionality set..."
+msgstr "Nenhum conjunto de funcionalidade..."
+
+#: MovieSelection.py:1296
+msgid "*** Multiselection active ***"
+msgstr "*** Multi-seleção ativa ***"
+
+#: MovieSelection.py:1669
+msgid "Sort Mode"
+msgstr "Modo de Ordenação"
+
+#: MovieSelection.py:1670
+msgid "Sort Order"
+msgstr "Ordenar por "
+
+#: MovieSelection.py:1694 MovieSelection.py:1710 MovieSelection.py:1726
+msgid "Hide Cover"
+msgstr "Esconder Capa"
+
+#: MovieSelection.py:1698 MovieSelection.py:1714 MovieSelection.py:1730
+#: plugin.py:179 plugin.py:200
+msgid "Button disabled"
+msgstr "Tecla desativada"
+
+#: MovieSelection.py:1699 MovieSelection.py:1715 MovieSelection.py:1731
+msgid "Cover disabled in EMC-Setup"
+msgstr "Capa desativada na configuração do EMC"
+
+#: MovieSelection.py:1869
+msgid "File not available."
+msgstr "Ficheiro não disponível."
+
+#: MovieSelection.py:1925
+msgid "File added to current Playlist."
+msgstr "Arquivo adicionado à lista de reprodução atual."
+
+#: MovieSelection.py:1927
+msgid "File exists in current Playlist."
+msgstr "Arquivo existe na lista de reprodução  atual."
+
+#: MovieSelection.py:1930
+msgid "Files added to current Playlist."
+msgstr "Arquivos adicionados à lista de reprodução atual."
+
+#: MovieSelection.py:1932
+#, python-format
+msgid ""
+"Files added to current Playlist:\n"
+"%s\n"
+"\n"
+"Files exists in current Playlist:\n"
+"%s"
+msgstr ""
+"Os arquivos adicionados à lista de reprodução atual:\n"
+" %s\n"
+"\n"
+"Arquivos existem na Lista de Reprodução atual:\n"
+" %s"
+
+#: MovieSelection.py:1934
+#, python-format
+msgid ""
+"Files exists in current Playlist:\n"
+"%s"
+msgstr ""
+"Arquivos existem na Lista de reprodução atual:\n"
+" %s"
+
+#: MovieSelection.py:1975
+msgid "Last played movie/playlist not available..."
+msgstr "Último reprodução de  filme/lista de reprodução não está disponível..."
+
+#: MovieSelection.py:1979
+msgid "Play last movie starting"
+msgstr "Reproduzir o último filme a partir de"
+
+#: MovieSelection.py:1998
+msgid "Play All starting"
+msgstr "Reproduzir todos a partir de"
+
+#: MovieSelection.py:2017
+msgid "Shuffle All starting"
+msgstr "Baralhar Todos no início"
+
+#: MovieSelection.py:2049
+msgid "Not stopping any repeating timers. Modify them with the timer editor."
+msgstr ""
+"Não parar para quaisquer Timers repetidos. Modificá-los com o editor de "
+"Timers."
+
+#: MovieSelection.py:2056
+msgid "Stop ongoing recording?\n"
+msgstr "Parar a gravação atual?\n"
+
+#: MovieSelection.py:2109
+#, python-format
+msgid ""
+"Do you really want to remove your link\n"
+"%s?"
+msgstr ""
+"Pretende realmente remover a sua ligação\n"
+"%s?"
+
+#: MovieSelection.py:2111
+#, python-format
+msgid ""
+"Do you really want to remove your directory\n"
+"%s?"
+msgstr ""
+"Pretende realmente remover a pasta\n"
+"%s?"
+
+#: MovieSelection.py:2151 MovieSelection.py:2173 MovieSelectionMenu.py:449
+#: MovieSelectionMenu.py:481
+#, python-format
+msgid ""
+"Do you really want to remove your bookmark\n"
+"%s?"
+msgstr ""
+"Deseja mesmo remover o seu marcador\n"
+"%s?"
+
+#: MovieSelection.py:2192
+msgid ""
+" Deleting remotely recorded and it will display an rec-error dialog on the "
+"other DB."
+msgstr ""
+"Apagar o gravado remotamente  e será exibido uma caixa de diálogo \"rec-erro"
+"\" na outra STB."
+
+#: MovieSelection.py:2198
+msgid " permanently"
+msgstr "permanentemente"
+
+#: MovieSelection.py:2215
+msgid " currently played?"
+msgstr "em reprodução?"
+
+#: MovieSelection.py:2235
+msgid " all selected video files?"
+msgstr "todos os arquvos de  vídeo selecionados?"
+
+#: MovieSelection.py:2240
+msgid ""
+" all selected video files? The currently playing movie is also one of the "
+"selections and its playback will be stopped."
+msgstr ""
+"todos selecionados arquivos de vídeo? O filme atualmente sendo também é uma "
+"das seleções e sua reprodução será interrompida."
+
+#: MovieSelection.py:2242
+msgid "Delete error:\n"
+msgstr "Excluir erro:\n"
+
+#: MovieSelection.py:2274 MovieSelection.py:2318
+#, python-format
+msgid ""
+"The following files are used for other entrys in List !\n"
+"\n"
+"Also delete these files?\n"
+"\n"
+"%s"
+msgstr ""
+"Os seguintes arquivos são usados para as outras entradas na lista!\n"
+"\n"
+"Excluir também esses arquivos?\n"
+"\n"
+"%s"
+
+#: MovieSelection.py:2362
+msgid "This element belongs to a locked folder and cannot be deleted!"
+msgstr "Este elemento pertence a uma pasta bloqueada e não pode ser excluído!"
+
+#: MovieSelection.py:2373
+msgid ""
+"Delete failed because the trashcan directory does not exist. Attempt to "
+"create it now?"
+msgstr ""
+"Falha ao apagar porque não existe a pasta de reciclagem. Tentar criá-la "
+"agora?"
+
+#: MovieSelection.py:2397
+msgid "This folder is locked or contains a locked subfolder, unlock it first!"
+msgstr ""
+"Esta pasta está bloqueada ou contém uma subpasta bloqueada, desbloqueá-la "
+"primeiro!"
+
+#: MovieSelection.py:2417
+msgid "Directory is not empty! Do you really want to delete it?"
+msgstr "A Pasta não está vazia! Pretende realmente excluí-la?"
+
+#: MovieSelection.py:2422
+msgid "Cannot delete the parent directory."
+msgstr "Não é possível excluir a pasta raíz."
+
+#: MovieSelection.py:2502 MovieSelection.py:2583
+msgid "Delete failed!"
+msgstr "Excluir falhou!"
+
+#: MovieSelection.py:2739 MovieSelection.py:2779
+msgid "Move file(s):"
+msgstr "Mover arquivo(s):"
+
+#: MovieSelection.py:2767 MovieSelection.py:2788
+msgid ""
+"How to move files:\n"
+"Select some movies with the VIDEO-button, move the cursor on top of the "
+"destination directory and press yellow."
+msgstr ""
+"Como mover arquivos: \n"
+"Selecione alguns filmes com o botão <VÍDEO>, mova o cursor sobre a pasta de "
+"destino e pressione <AMARELO>."
+
+#: MovieSelection.py:2811 MovieSelection.py:2851
+msgid "Copy file(s):"
+msgstr "Copiar ficheiro(s):"
+
+#: MovieSelection.py:2839 MovieSelection.py:2860
+msgid ""
+"How to copy files:\n"
+"Select some movies with the VIDEO-button, move the cursor on top of the "
+"destination directory and press yellow long."
+msgstr ""
+"Como copiar ficheiros:\n"
+"Selecione alguns filmes com o tecla <VÍDEO>, mova o cursor sobre a pasta de "
+"destino e pressione <AMARELO> longamente."
+
+#: MovieSelection.py:2876
+msgid "Move Directory:"
+msgstr "Mover Pasta:"
+
+#: MovieSelection.py:2969 MovieSelection.py:2975
+msgid "IMDb"
+msgstr "IMDb"
+
+#: MovieSelection.py:2971
+msgid "TMDb"
+msgstr "TMDb"
+
+#: MovieSelection.py:2973
+msgid "CSFD"
+msgstr "CSFD"
+
+#: MovieSelectionMenu.py:81
+msgid "Choose operation"
+msgstr "Escolher a Operação"
+
+#: MovieSelectionMenu.py:84 plugin.py:169 plugin.py:190
+msgid "Movie home"
+msgstr "Início do Filme"
+
+#: MovieSelectionMenu.py:87
+msgid "Directory up"
+msgstr "Pasta acima"
+
+#: MovieSelectionMenu.py:89
+msgid "Reload current directory"
+msgstr "Recarregar a pasta atual"
+
+#: MovieSelectionMenu.py:91 MovieSelectionMenu.py:208
+msgid "Playlist Options"
+msgstr "Opções de lista de reprodução"
+
+#: MovieSelectionMenu.py:95 MovieSelectionMenu.py:213
+msgid "Add to current Playlist"
+msgstr "Adicionar à Lista de Reprodução atual"
+
+#: MovieSelectionMenu.py:97 plugin.py:173 plugin.py:194
+msgid "Play last"
+msgstr "Reproduzir o último"
+
+#: MovieSelectionMenu.py:102
+msgid "Cover search"
+msgstr "Pesquisar capas"
+
+#: MovieSelectionMenu.py:105
+msgid "Directory-Cover search"
+msgstr "Pasta-Procura de Capas"
+
+#: MovieSelectionMenu.py:114 MovieSelectionMenu.py:116
+msgid "Delete permanently"
+msgstr "Apagar  permanentemente"
+
+#: MovieSelectionMenu.py:117
+msgid "Empty trashcan"
+msgstr "Reciclagem vazia"
+
+#: MovieSelectionMenu.py:118
+msgid "Go to trashcan"
+msgstr "Vão para a reciclagem"
+
+#: MovieSelectionMenu.py:120
+msgid "Mark all movies"
+msgstr "Marcar todos os Filmes"
+
+#: MovieSelectionMenu.py:121
+msgid "Remove rogue files"
+msgstr "Remover arquivos desonestos"
+
+#: MovieSelectionMenu.py:123
+msgid "Delete cut file(s)"
+msgstr "Apagar arquivo (s) de corte"
+
+#: MovieSelectionMenu.py:125
+msgid "Create link"
+msgstr "Criar ligação"
+
+#: MovieSelectionMenu.py:126 MovieSelectionMenu.py:247
+msgid "Create directory"
+msgstr "Criar pasta"
+
+#: MovieSelectionMenu.py:128
+msgid "(Un-)Lock Directory"
+msgstr "(Des-)Bloquear Pasta"
+
+#: MovieSelectionMenu.py:135
+msgid "Copy Files"
+msgstr "Copiar os Ficheiros"
+
+#: MovieSelectionMenu.py:136
+msgid "Move Files"
+msgstr "Mover os Ficheiros"
+
+#: MovieSelectionMenu.py:138 plugin.py:176 plugin.py:197
+msgid "Copy File"
+msgstr "Copiar ficheiro"
+
+#: MovieSelectionMenu.py:139 plugin.py:171 plugin.py:192
+msgid "Move File"
+msgstr "Mover o Ficheiro"
+
+#: MovieSelectionMenu.py:143
+msgid "Download Movie Information"
+msgstr "Descarregar Informações do Filme"
+
+#: MovieSelectionMenu.py:147
+msgid "Rename selected movie(s)"
+msgstr "Renomear o(s) filme(s) selecionado(s)"
+
+#: MovieSelectionMenu.py:148
+msgid "Remove cut list marker"
+msgstr "Remover a lista de marcadores de corte"
+
+#: MovieSelectionMenu.py:149
+msgid "Reset marker from selected movie(s)"
+msgstr "Redefinir o marcador do(s) filme(s) selecionado(s)"
+
+#: MovieSelectionMenu.py:167
+msgid "Add directory to E2 Bookmarks"
+msgstr "Adicionar pasta aos Marcadores E2"
+
+#: MovieSelectionMenu.py:169
+msgid "Remove directory from E2 Bookmarks"
+msgstr "Remover pasta de Marcadores E2"
+
+#: MovieSelectionMenu.py:172
+msgid "Remove selected E2 Bookmark"
+msgstr "Remover os marcadores E2 selecionados"
+
+#: MovieSelectionMenu.py:174
+msgid "Open EMC Bookmark path"
+msgstr "Abrir percurso de Marcadores EMC"
+
+#: MovieSelectionMenu.py:176
+msgid "Add directory to EMC Bookmarks"
+msgstr "Adicionar pasta aos Marcadores EMC"
+
+#: MovieSelectionMenu.py:178
+msgid "Remove directory from EMC Bookmarks"
+msgstr "Remover pasta de Marcadores EMC"
+
+#: MovieSelectionMenu.py:181
+msgid "Remove selected EMC Bookmark"
+msgstr "Remover os marcadores EMC selecionados"
+
+#: MovieSelectionMenu.py:183
+msgid "Set permanent sort"
+msgstr "Definir ordenação permanente"
+
+#: MovieSelectionMenu.py:185
+msgid "Remove permanent sort"
+msgstr "Remover a ordenação permanente"
+
+#: MovieSelectionMenu.py:189
+msgid "Remove permanent sort from parent"
+msgstr "Remover a ordenação permanente da raíz"
+
+#: MovieSelectionMenu.py:192
+msgid "EMC Setup"
+msgstr "EMC Definição"
+
+#: MovieSelectionMenu.py:195
+msgid "Choose plugin"
+msgstr "Escolher o plugin"
+
+#: MovieSelectionMenu.py:201
+msgid "Choose bookmark"
+msgstr "Escolha o marcador"
+
+#: MovieSelectionMenu.py:209
+msgid "Show current Playlist"
+msgstr "Mostrar lista de reprodução atual"
+
+#: MovieSelectionMenu.py:215
+msgid "Play current Playlist"
+msgstr "Reproduzir a lista de reprodução  atual"
+
+#: MovieSelectionMenu.py:216
+msgid "Play random current Playlist"
+msgstr "Reprodução aleatória da Lista de Reprodução atual"
+
+#: MovieSelectionMenu.py:217
+msgid "Delete current Playlist"
+msgstr "Apagar a lista de reprodução atual"
+
+#: MovieSelectionMenu.py:218
+msgid "Playlist Setup"
+msgstr "Defnição da lista de reprodução"
+
+#: MovieSelectionMenu.py:246
+msgid "Enter name for new directory:"
+msgstr "Digite o nome do nova pasta:"
+
+#: MovieSelectionMenu.py:253
+#, python-format
+msgid "Directory %s already exists!"
+msgstr "Pasta %s já existe!"
+
+#: MovieSelectionMenu.py:267
+#, python-format
+msgid "Do you really want to lock the directory %s and all its subfolders?"
+msgstr "Pretende realmente bloquear a pasta %s e todas as suas subpastas?"
+
+#: MovieSelectionMenu.py:269
+#, python-format
+msgid ""
+"The directory %s is already locked. Do you want to unlock it and all its "
+"subfolders?"
+msgstr ""
+"A pasta %s já está bloqueada. Pretende desbloquear a pasta e todas as suas "
+"subpastas?"
+
+#: MovieSelectionMenu.py:293
+msgid "Create Link"
+msgstr "Criar Ligação"
+
+#: MovieSelectionMenu.py:324
+msgid "Permanently delete all files in trashcan?"
+msgstr "Excluir permanentemente todos os arquivos da reciclagem?"
+
+#: MovieSelectionMenu.py:336
+msgid "Movie Selection Menu"
+msgstr "Menu de seleção de filme"
+
+#: MovieSelectionMenu.py:344
+msgid "exception "
+msgstr "excepção "
+
+#: MovieSelectionMenu.py:353
+msgid ""
+"Locate rogue files and remove them? (permanently if no trashcan available, "
+"may take a minute or so)"
+msgstr ""
+"Localizar arquivos de desonestos e removê-los? (permanentemente se "
+"reciclagem não disponível, pode demorar vários minutos)"
+
+#: MovieSelectionMenu.py:370
+msgid "Remove all cut file marker permanently?"
+msgstr "Remover todos os marcadores de corte permanentemente?"
+
+#: MovieSelectionMenu.py:384
+msgid "Remove all marker permanently?"
+msgstr "Remover todos os marcadores permanentemente?"
+
+#: MovieSelectionMenu.py:517
+msgid ""
+"Do you really want to delete the cut file?\n"
+"If you have selected a directory, all cut files within the folder and its "
+"subfolders will be deleted!"
+msgstr ""
+"Pretende realmente apagar o arquivo de corte?\n"
+"Se selecionou uma pasta, todos os arquivos cortados dentro da pasta e suas "
+"subpastas serão apagados!"
+
+#: plugin.py:55
+msgid "no"
+msgstr "não"
+
+#: plugin.py:55
+msgid "yes"
+msgstr "sim"
+
+#: plugin.py:133
+msgid "No override"
+msgstr "Não substituir"
+
+#: plugin.py:134
+msgid "Video-button"
+msgstr "Tecla-Vídeo"
+
+#: plugin.py:135
+msgid "TV-button"
+msgstr "Tecla TV"
+
+#: plugin.py:136
+msgid "Radio-button"
+msgstr "Tecla-Rádio"
+
+#: plugin.py:137
+msgid "Quick-button"
+msgstr "Tecla-Rápida"
+
+#: plugin.py:138
+msgid "Timeshift-button"
+msgstr "Tecla-Timeshift"
+
+#: plugin.py:141 plugin.py:150 plugin.py:159
+msgid "Off"
+msgstr "Off"
+
+#: plugin.py:142
+msgid "DD.MM.YYYY"
+msgstr "dd.mm.aaaa"
+
+#: plugin.py:143
+msgid "DD.MM.YYYY HH:MM"
+msgstr "DD. MM. AAAA HH: MM"
+
+#: plugin.py:144
+msgid "DD.MM HH:MM"
+msgstr "DD. HH: MM MM"
+
+#: plugin.py:145
+msgid "DD.MM. HH:MM"
+msgstr "DD.MM. HH: MM"
+
+#: plugin.py:146
+msgid "YYYY/MM/DD"
+msgstr "YYYY/MM/DD"
+
+#: plugin.py:147
+msgid "YYYY/MM/DD HH:MM"
+msgstr "YYYY/MM/DD HH:MM"
+
+#: plugin.py:148
+msgid "MM/DD HH:MM"
+msgstr "MM/DD HH:MM"
+
+#: plugin.py:151
+msgid "Description"
+msgstr "Descrição"
+
+#: plugin.py:152
+msgid "( # )"
+msgstr "( # )"
+
+#: plugin.py:153
+msgid "( # / GB )"
+msgstr "( # / GB )"
+
+#: plugin.py:154
+msgid "( GB )"
+msgstr "( GB )"
+
+#: plugin.py:156
+msgid "ProgressBar"
+msgstr "Barra de progresso"
+
+#: plugin.py:157
+msgid "Percent (%)"
+msgstr "Percentagem (%)"
+
+#: plugin.py:158
+msgid "Movie Color"
+msgstr "Cor do Filme"
+
+#: plugin.py:172 plugin.py:193
+msgid "Add to Playlist"
+msgstr "Adicionar à Lista de Reprodução"
+
+#: plugin.py:174 plugin.py:195
+msgid "Cover Search"
+msgstr "Pesquisar Capas"
+
+#: plugin.py:175 plugin.py:196
+msgid "Download Movie Info"
+msgstr "Descarregar Informações do Filme"
+
+#: plugin.py:177 plugin.py:198
+msgid "Open E2 bookmarks"
+msgstr "Abrir Marcadores E2"
+
+#: plugin.py:178
+msgid "Toggle Cover Button"
+msgstr "Tecla de alternância da capa"
+
+#: plugin.py:183
+msgid "Sort Options"
+msgstr "Opções de Ordenação"
+
+#: plugin.py:209
+msgid "down"
+msgstr "baixo"
+
+#: plugin.py:210
+msgid "up/down"
+msgstr "Cima/Baixo"
+
+#: plugin.py:211
+msgid "off"
+msgstr "off"
+
+#: plugin.py:213
+msgid "type 1 - OSD + black (#00000000)"
+msgstr "tipo 1 - OSD + preto (#00000000)"
+
+#: plugin.py:214
+msgid "type 2 - transparent + white (#FFFFFFFF)"
+msgstr "tipo 2 - transparente + branco (#FFFFFFFF)"
+
+#: plugin.py:215
+msgid "type 3 - OSD + black (#00FFFFFF)"
+msgstr "tipo 3 - OSD + preto (#00FFFFFF)"
+
+#: plugin.py:216
+msgid "type 4 - transparent + black (#FF000000)"
+msgstr "tipo 4 - transparente + preto (#FF000000)"
+
+#: plugin.py:219
+msgid "E2 Bookmarks"
+msgstr "Marcadores E2"
+
+#: plugin.py:220
+msgid "EMC Bookmarks"
+msgstr "Marcadores EMC"
+
+#: plugin.py:221
+msgid "Both"
+msgstr "Ambos"
+
+#: plugin.py:224
+msgid "Standby"
+msgstr "Repouso"
+
+#: plugin.py:225
+msgid "DeepStandby"
+msgstr "Suspensão"
+
+#: plugin.py:226
+msgid "Reboot"
+msgstr "Reiniciar"
+
+#: plugin.py:227
+msgid "E2 Restart"
+msgstr "Reiniciar Enigma2"
+
+#: plugin.py:229
+msgid "HomeEnd"
+msgstr "Início/Fim"
+
+#: plugin.py:230
+msgid "Skip"
+msgstr "Saltar"
+
+#: plugin.py:231
+msgid "Change Folder"
+msgstr "Mudar pasta"
+
+#: plugin.py:239
+msgid "Date sort descending (D-)"
+msgstr "Ordenação por data decrescente (D-)"
+
+#: plugin.py:239 plugin.py:245
+msgid "Date sort"
+msgstr "Ordenar por data"
+
+#: plugin.py:240
+msgid "Alpha sort ascending (AZ)"
+msgstr "Ordenação Alfa crescente (AZ)"
+
+#: plugin.py:240 plugin.py:246
+msgid "Alpha sort"
+msgstr "Ordenação Alfa"
+
+#: plugin.py:241
+msgid "Alpha sort ascending, Date descending (AZD-)"
+msgstr "Ordenação Alfa crescente, data decrescente (AZD-)"
+
+#: plugin.py:241 plugin.py:247
+msgid "Alpha sort date newest"
+msgstr "Ordenação Alfa por data mais recente"
+
+#: plugin.py:242
+msgid "Alpha sort ascending with meta (AZM)"
+msgstr "Ordenação Alfa crescente com meta (AZM)"
+
+#: plugin.py:242 plugin.py:248
+msgid "Alpha sort meta"
+msgstr "Ordem Alfa meta"
+
+#: plugin.py:243
+msgid "Alpha sort ascending with meta, Date descending (AZMD-)"
+msgstr "Ordenação Alfa crescente com meta, data decrescente (AZMD-)"
+
+#: plugin.py:243 plugin.py:249
+msgid "Alpha sort meta date newest"
+msgstr "Ordenação Alfa meta data mais recente"
+
+#: plugin.py:244
+msgid "Progress sort ascending (P+)"
+msgstr "Classificação de progresso crescente (P +)"
+
+#: plugin.py:244 plugin.py:250
+msgid "Progress sort"
+msgstr "Ordenação do Progresso"
+
+#: plugin.py:245
+msgid "Date sort ascending (D+)"
+msgstr "Ordenação por data crescente (D +)"
+
+#: plugin.py:246
+msgid "Alpha sort descending (ZA)"
+msgstr "Ordenação Alfa decrescente (ZA)"
+
+#: plugin.py:247
+msgid "Alpha sort descending, Date ascending (ZAD+)"
+msgstr "Ordenação Alfa decrescente, data ascendente (ZAD +)"
+
+#: plugin.py:248
+msgid "Alpha sort descending with meta (ZAM)"
+msgstr "Ordenação Alfa decrescente com meta (ZAM)"
+
+#: plugin.py:249
+msgid "Alpha sort descending with meta, Date ascending (ZAMD+)"
+msgstr "Ordenação Alfa decrescente com meta, data ascendente (ZAMD +)"
+
+#: plugin.py:250
+msgid "Progress sort descending (P-)"
+msgstr "Classificação de progresso decrescente (P-)"
+
+#: plugin.py:313
+msgid "left from Name"
+msgstr "esquerda do nome"
+
+#: plugin.py:313
+msgid "right from Name"
+msgstr "direita do nome"
+
+#: plugin.py:324
+msgid "Yes, without Message"
+msgstr "Sim, sem Mensagem"
+
+#: plugin.py:324
+msgid "Yes, with Message"
+msgstr "Sim, com Mensagem"
+
+#: plugin.py:346
+msgid ""
+"ATTENTION\n"
+"\n"
+"This option will move all finished movies in Movie Home automatically to "
+"Your trashcan at the given time.\n"
+"At next trashcan cleanup all movies will be deleted.\n"
+"\n"
+"Confirm this with the blue key followed by the green key."
+msgstr ""
+"ATENÇÃO\n"
+"\n"
+"Esta opção moverá todos os filmes acabados da pasta filmes automaticamente "
+"para a reciclagem no momento determinado.\n"
+"Na próxima limpeza dema reciclag todos os filmes serão excluídos.\n"
+"\n"
+"Confirme com a tecla <AZUL>, seguida da tecla <VERDE>."
+
+#: plugin.py:365
+msgid "center"
+msgstr "centro"
+
+#: plugin.py:365
+msgid "right"
+msgstr "direita"
+
+#: plugin.py:370
+#, python-format
+msgid "%d second"
+msgid_plural "%d seconds"
+msgstr[0] "%d segundo"
+msgstr[1] "%d segundos"
+
+#: plugin.py:379
+msgid "Day"
+msgstr "Dia"
+
+#: plugin.py:382
+msgid "Days"
+msgstr "Dias"
+
+#: plugin.py:387
+msgid "Week"
+msgstr "Semana"
+
+#: plugin.py:390
+msgid "Weeks"
+msgstr "Semanas"
+
+#: plugin.py:395
+msgid "Month"
+msgstr "Mês"
+
+#: plugin.py:398
+msgid "Months"
+msgstr "Meses"
+
+#: plugin.py:403
+msgid "No limit"
+msgstr "Sem limite"
+
+#: plugin.py:434
+msgid "IMDb Search"
+msgstr "Procura no IMDb"
+
+#: plugin.py:434
+msgid "EMC-TMDB Info"
+msgstr "EMC-TMDB informação"
+
+#: plugin.py:434
+msgid "TMDB Info"
+msgstr "TMDB Info"
+
+#: plugin.py:434
+msgid "TMBD Info"
+msgstr "TMBD Info"
+
+#: plugin.py:434
+msgid "CSFD Info"
+msgstr "CSFD informação"
+
+#: plugin.py:524
+msgid "configuration"
+msgstr "configuração"
+
+#: plugin.py:527
+msgid "movie manipulation list"
+msgstr "lista de manipulação do filme"
+
+#: RogueFileCheck.py:42
+msgid " files\n"
+msgstr "arquivos\n"
+
+#: RogueFileCheck.py:43
+msgid "No rogue files found."
+msgstr "Não há arquivos de desonestos encontrados."
+
+#: RogueFileCheck.py:44
+msgid ""
+"Found rogue files:\n"
+"\n"
+msgstr ""
+"Encontrados arquivos desonestos:\n"
+"\n"
+
+#: VlcPluginInterface.py:156
+msgid "VLC Server not reachable"
+msgstr "Servidor VLC inatingível"
