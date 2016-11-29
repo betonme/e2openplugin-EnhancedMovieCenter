@@ -43,6 +43,16 @@ from MovieCenter import sidDVD, sidDVB
 
 SeekbarPlg = "%s%s"%(resolveFilename(SCOPE_PLUGINS), "Extensions/Seekbar/plugin.py")
 
+try:
+	from boxbranding import getImageDistro
+	distro = getImageDistro()
+	if distro.lower() == "openatv":
+		isopenATV = True
+	else:
+		isopenATV = False
+except:
+	isopenATV = False
+
 # Overwrite Seekbar
 def EMCkeyOK(self):
 	sel = self["config"].getCurrent()[1]
@@ -118,10 +128,17 @@ class InfoBarSupport(	InfoBarBase, \
 		self.is_closing = False
 		self.resume_point = 0
 
-		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
-			{
-				iPlayableService.evStart: self.__serviceStarted,
-			})
+		if isopenATV:
+			self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
+				{
+					iPlayableService.evStart: self.__serviceStarted,
+					iPlayableService.evCuesheetChanged: self.downloadCuesheet,
+				})
+		else:
+			self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
+				{
+					iPlayableService.evStart: self.__serviceStarted,
+				})
 
 	##############################################################################
 	## Override from InfoBarGenerics.py
