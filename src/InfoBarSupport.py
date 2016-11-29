@@ -46,12 +46,12 @@ SeekbarPlg = "%s%s"%(resolveFilename(SCOPE_PLUGINS), "Extensions/Seekbar/plugin.
 try:
 	from boxbranding import getImageDistro
 	distro = getImageDistro()
-	if distro.lower() == "openatv":
-		isopenATV = True
+	if distro.lower() in ('openatv', 'openmips'):
+		hasmkvcuesheetsupport = True
 	else:
-		isopenATV = False
+		hasmkvcuesheetsupport = False
 except:
-	isopenATV = False
+	hasmkvcuesheetsupport = False
 
 # Overwrite Seekbar
 def EMCkeyOK(self):
@@ -128,7 +128,7 @@ class InfoBarSupport(	InfoBarBase, \
 		self.is_closing = False
 		self.resume_point = 0
 
-		if isopenATV:
+		if hasmkvcuesheetsupport:
 			self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
 				{
 					iPlayableService.evStart: self.__serviceStarted,
