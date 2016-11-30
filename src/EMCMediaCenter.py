@@ -431,6 +431,9 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 					#TODO AutoSelect subtitle for DVD Player is not implemented yet
 					DelayedFunction(750, self.setAudioTrack)      # we need that to configure! on some images it comes with 200 too early
 					DelayedFunction(400, self.setSubtitleState, True)
+
+				### Cover anzeige
+				self.showCover()
 			else:
 				self.session.open(MessageBox, _("Skipping movie, the file does not exist.\n\n") + service.getPath(), MessageBox.TYPE_ERROR, 10)
 				self.evEOF(needToClose)
@@ -598,7 +601,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 				self.makeUpdateCutList()
 
 			self.evEOF()	# start playback of the first movie
-		self.showCover()
+		#self.showCover()
 
 	##############################################################################
 	## Audio and Subtitles
@@ -944,7 +947,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 
 	def doShow(self):
 		### Cover anzeige
-		self.showCover()
+		#self.showCover()
 		if self.in_menu:
 			pass
 			#self.hide()
@@ -979,7 +982,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 
 		if not self.in_menu:
 			### Cover anzeige
-			self.showCover()
+			#self.showCover()
 			# Call baseclass function
 			InfoBarShowHide.toggleShow(self)
 
