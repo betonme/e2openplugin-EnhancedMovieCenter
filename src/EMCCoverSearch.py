@@ -257,7 +257,7 @@ class EMCImdbScan(Screen):
 		#for each in sorted(self.vm_list):
 		for each in self.vm_list:
 			(title, path) = each
-			if self.isFolder: 
+			if self.isFolder:
 				if config.EMC.imdb.singlesearch_foldercoverpath.value == '1':
 					path = path + '.jpg'
 				else:
@@ -1090,21 +1090,23 @@ class getCover(Screen):
 				#extra_imdb_convert = "._V1_SX320.jpg"
 				#m_url = "http://ia.media-imdb.com/images/%s%s" % (m_url[0], extra_imdb_convert)
 				print "EMC iMDB: Download Poster - %s" % m_url
-				urllib._urlopener = AppURLopener()
-				urllib.urlretrieve(m_url, self.path)
-				urllib.urlcleanup()
-				if os.path.exists(self.path):
-					self.poster_resize(self.path, m_title)
-
-					#ptr = LoadPixmap(self.path)
-					#if ptr is None:
-					#        ptr = LoadPixmap("/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/no_poster.png")
-					#        print "EMC iMDB: Load default NO Poster."
-					#if ptr is not None:
-					#        self["poster"].instance.setPixmap(ptr)
-					#        print "EMC iMDB: Load Poster - %s" % m_title
-				else:
-					print "EMC iMDB: No url found for - %s" % m_title
+				try:
+					urllib._urlopener = AppURLopener()
+					urllib.urlretrieve(m_url, self.path)
+					urllib.urlcleanup()
+					if os.path.exists(self.path):
+						self.poster_resize(self.path, m_title)
+						#ptr = LoadPixmap(self.path)
+						#if ptr is None:
+						#        ptr = LoadPixmap("/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/no_poster.png")
+						#        print "EMC iMDB: Load default NO Poster."
+						#if ptr is not None:
+						#        self["poster"].instance.setPixmap(ptr)
+						#        print "EMC iMDB: Load Poster - %s" % m_title
+					else:
+						print "EMC iMDB: No url found for - %s" % m_title
+				except:
+					pass
 			else:
 				print "EMC iMDB: No url found for - %s" % m_title
 
