@@ -1,0 +1,2917 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-12-17 21:59+0200\n"
+"PO-Revision-Date: 2016-12-17 22:10+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: fi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-Basepath: ..\n"
+"X-Generator: Poedit 1.8.11\n"
+"X-Poedit-SearchPath-0: src\n"
+
+#: EMCCoverSearch.py
+msgid ""
+"themoviedb.org for movies + thetvdb.com for series (e.g. 'S01E01' in title)"
+msgstr ""
+
+#: EMCCoverSearch.py
+msgid "overall"
+msgstr ""
+
+#: EMCCoverSearch.py
+msgid "every single one"
+msgstr ""
+
+#: EMCCoverSearch.py
+msgid "two contiguous"
+msgstr ""
+
+#: EMCCoverSearch.py
+msgid "three contiguous"
+msgstr ""
+
+#: EMCCoverSearch.py
+msgid "no limit"
+msgstr "Ei rajoitusta"
+
+#: EMCCoverSearch.py
+msgid "standard cover"
+msgstr ""
+
+#: EMCCoverSearch.py
+msgid ".../title/title.jpg"
+msgstr ".../title/title.jpg"
+
+#: EMCCoverSearch.py
+msgid ".../title.jpg"
+msgstr ".../title.jpg"
+
+#: EMCCoverSearch.py
+msgid "Search filter for matching existing terms in the title:"
+msgstr ""
+
+#: EMCCoverSearch.py
+msgid "thetvdb cover number (standard cover):"
+msgstr ""
+
+#: EMCCoverSearch.py
+msgid "Set path to save the folder Cover:"
+msgstr ""
+
+#: EMCCoverSearch.py
+msgid "Search Results per Search Site%s:"
+msgstr ""
+
+#: EMCCoverSearch.py
+msgid " (without counting cover range)"
+msgstr ""
+
+#: EMCCoverSearch.py
+msgid "thetvdb cover range per title:"
+msgstr ""
+
+#: EMCCoverSearch.py
+msgid "Settings have been Saved."
+msgstr ""
+
+#: EMCCoverSearch.py
+msgid "%s not removed. Write protect?"
+msgstr ""
+
+#: EMCCoverSearch.py:47 EMCCoverSearch.py:48
+msgid "imdb.de"
+msgstr "imdb.de"
+
+#: EMCCoverSearch.py:47
+msgid "themoviedb.org"
+msgstr "themoviedb.org"
+
+#: EMCCoverSearch.py:47 EMCCoverSearch.py:48
+msgid "csfd.cz"
+msgstr "csfd.cz"
+
+#: EMCCoverSearch.py:47 EMCCoverSearch.py:48
+msgid "all"
+msgstr "Kaikki"
+
+#: EMCCoverSearch.py:48
+msgid "thetvdb.com"
+msgstr "thetvdb.com"
+
+#: EMCCoverSearch.py:97 EMCCoverSearch.py:238 EMCCoverSearch.py:248
+#: EMCCoverSearch.py:361
+msgid "Exist"
+msgstr "Löytynyt"
+
+#: EMCCoverSearch.py:97 EMCCoverSearch.py:241 EMCCoverSearch.py:248
+#: EMCCoverSearch.py:412 EMCCoverSearch.py:442
+msgid "N/A"
+msgstr "N/A"
+
+#: EMCCoverSearch.py:193
+msgid "Search"
+msgstr "Hae"
+
+#: EMCCoverSearch.py:195 MovieSelection.py:2198 MovieSelectionMenu.py:107
+#: MovieSelectionMenu.py:109 plugin.py:170 plugin.py:191
+msgid "Delete"
+msgstr "Poista"
+
+#: EMCCoverSearch.py:205
+msgid "Press green button to start search"
+msgstr "Paina vihreää näppäintä aloittaaksesi haku"
+
+#: EMCCoverSearch.py:207
+msgid "Manage Cover"
+msgstr "Hallitse kuvia"
+
+#: EMCCoverSearch.py:208 MovieInfo.py:270 MovieInfo.py:439
+msgid "Setup"
+msgstr "Asetukset"
+
+#: EMCCoverSearch.py:209
+msgid "Single search"
+msgstr "Yksittäinen haku"
+
+#: EMCCoverSearch.py:223
+msgid "EMC Cover search"
+msgstr "EMC Kansikuvien haku"
+
+#: EMCCoverSearch.py:248
+msgid "Total"
+msgstr "Yhteensä"
+
+#: EMCCoverSearch.py:340 EMCCoverSearch.py:364 EMCCoverSearch.py:447
+#, python-format
+msgid "Exist: %s"
+msgstr ""
+
+#: EMCCoverSearch.py:341 EMCCoverSearch.py:363 EMCCoverSearch.py:446
+#, python-format
+msgid "No Cover: %s"
+msgstr "Ei löytynyt: %s"
+
+#: EMCCoverSearch.py:342 EMCCoverSearch.py:365 EMCCoverSearch.py:448
+#, python-format
+msgid "Download: %s"
+msgstr "Lataa: %s"
+
+#: EMCCoverSearch.py:343
+msgid "Searching..."
+msgstr "Haetaan..."
+
+#: EMCCoverSearch.py:351
+msgid "Creating Search List.."
+msgstr "Luodaan hakulistaa..."
+
+#: EMCCoverSearch.py:391
+msgid "No Movies found!"
+msgstr "Tallenteita ei löydy!"
+
+#: EMCCoverSearch.py:444
+msgid "from"
+msgstr "/"
+
+#: EMCCoverSearch.py:457
+msgid "movies in"
+msgstr ""
+
+#: EMCCoverSearch.py:457
+msgid "sec found. Avg. Speed:"
+msgstr ""
+
+#: EMCCoverSearch.py:457
+msgid "sec."
+msgstr "sek."
+
+#: EMCCoverSearch.py:508
+#, python-format
+msgid "%s removed."
+msgstr "%s poistettu."
+
+#: EMCCoverSearch.py:560
+#, python-format
+msgid "Search site set to: %s"
+msgstr "Hakusivustoksi asetettu: %s"
+
+#: EMCCoverSearch.py:569
+msgid "Cover is Saved."
+msgstr "Kansikuva tallennettu."
+
+#: EMCCoverSearch.py:698
+msgid "EMC Cover search setup"
+msgstr "EMC Kansikuvahaun asetukset"
+
+#: EMCCoverSearch.py:700 EMCPlayList.py:132 EMCPlayList.py:472
+#: EMCPlayList.py:545 EnhancedMovieCenter.py:257 MovieInfo.py:736
+#: MovieRetitle.py:32
+msgid "Cancel"
+msgstr "Peruuta"
+
+#: EMCCoverSearch.py:701 MovieInfo.py:737
+msgid "OK"
+msgstr "OK"
+
+#: EMCCoverSearch.py:704
+msgid "Search Site:"
+msgstr "Hakusivusto"
+
+#: EMCCoverSearch.py:705
+msgid "Preferred cover resolution (if possible):"
+msgstr ""
+
+#: EMCCoverSearch.py:706
+msgid "Save description to movie.txt file:"
+msgstr "Tallenna ohjelmakuvaus movie.txt tiedostoon"
+
+#: EMCCoverSearch.py:707
+msgid "Single Search:"
+msgstr "Yksittäinen haku"
+
+#: EMCCoverSearch.py:749
+msgid "EMC Cover Selecter"
+msgstr "EMC Kansikuvan valinta"
+
+#: EMCCoverSearch.py:766
+#, python-format
+msgid "Searching for %s"
+msgstr "Haetaan %s"
+
+#: EMCCoverSearch.py:778 EMCCoverSearch.py:816 EMCCoverSearch.py:826
+#: EMCCoverSearch.py:851 EMCCoverSearch.py:854 EMCCoverSearch.py:872
+#: EMCCoverSearch.py:895 EMCCoverSearch.py:911
+msgid "found"
+msgstr "Löytyi"
+
+#: EMCCoverSearch.py:778 EMCCoverSearch.py:816 EMCCoverSearch.py:826
+#: EMCCoverSearch.py:851 EMCCoverSearch.py:854 EMCCoverSearch.py:872
+#: EMCCoverSearch.py:895
+msgid "covers"
+msgstr ""
+
+#: EMCCoverSearch.py:911
+msgid "covers in"
+msgstr "kansikuvaa ajassa"
+
+#: EMCCoverSearch.py:911
+msgid "sec"
+msgstr "sek"
+
+#: EMCCoverSearch.py:981
+msgid "Can not save "
+msgstr ""
+
+#: EMCCoverSearch.py:995
+msgid "Can not save Cover in "
+msgstr ""
+
+#: EMCCoverSearch.py:1015
+msgid "Move Cover to:"
+msgstr "Siirrä kansikuva paikkaan:"
+
+#: EMCCoverSearch.py:1016 EMCPlayList.py:485 EnhancedMovieCenter.py:739
+#: MovieSelection.py:2740 MovieSelection.py:2780 MovieSelection.py:2812
+#: MovieSelection.py:2852 MovieSelection.py:2877 MovieSelectionMenu.py:294
+msgid "Choose directory"
+msgstr "Valitse hakemisto"
+
+#: EMCMediaCenter.py:151 EMCMediaCenter.py:156
+msgid "Stop playback"
+msgstr "Pysäytä toisto"
+
+#: EMCMediaCenter.py:161
+msgid "show DVD main menu"
+msgstr ""
+
+#: EMCMediaCenter.py:163
+msgid "forward to the next chapter"
+msgstr ""
+
+#: EMCMediaCenter.py:164
+msgid "rewind to the previous chapter"
+msgstr ""
+
+#: EMCMediaCenter.py:165 EMCMediaCenter.py:193
+msgid "jump forward to the next title"
+msgstr ""
+
+#: EMCMediaCenter.py:166 EMCMediaCenter.py:194
+msgid "jump back to the previous title"
+msgstr ""
+
+#: EMCMediaCenter.py:167
+msgid "(show optional DVD audio menu)"
+msgstr ""
+
+#: EMCMediaCenter.py:168
+msgid "switch to the next audio track"
+msgstr ""
+
+#: EMCMediaCenter.py:169
+msgid "switch to the next subtitle language"
+msgstr ""
+
+#: EMCMediaCenter.py:170
+msgid "switch to the next angle"
+msgstr ""
+
+#: EMCMediaCenter.py:189
+msgid "view extensions..."
+msgstr ""
+
+#: EMCMediaCenter.py:190
+msgid "Format AVSwitch"
+msgstr ""
+
+#: EMCMediaCenter.py:191
+msgid "Seek forward"
+msgstr "Kelaa eteenpäin"
+
+#: EMCMediaCenter.py:192
+msgid "Seek backward"
+msgstr "Kelaa taaksepäin"
+
+#: EMCMediaCenter.py:195
+msgid "Movie information"
+msgstr ""
+
+#: EMCMediaCenter.py:382
+msgid "No DVD-Player found!"
+msgstr "DVD-soitinta ei löydy!"
+
+#: EMCMediaCenter.py:433
+msgid ""
+"Skipping movie, the file does not exist.\n"
+"\n"
+msgstr ""
+
+#: EMCMediaCenter.py:473
+msgid ""
+"EMC\n"
+"Zap to Live TV of record"
+msgstr ""
+
+#: EMCMediaCenter.py:914
+msgid "Chap."
+msgstr ""
+
+#: EMCMediaCenter.py:915
+msgid "Chapter"
+msgstr "Kappale"
+
+#: EMCMediaCenter.py:916
+msgid "Title"
+msgstr ""
+
+#: EMCPlayList.py:131 EMCPlayList.py:473 EnhancedMovieCenter.py:258
+#: MovieInfo.py:271 MovieInfo.py:441 MovieRetitle.py:31
+msgid "Save"
+msgstr "Tallenna"
+
+#: EMCPlayList.py:133
+msgid "Delete Entry"
+msgstr "Poista"
+
+#: EMCPlayList.py:134
+msgid "Delete All"
+msgstr "Poista kaikki"
+
+#: EMCPlayList.py:154
+msgid "EMC Playlist"
+msgstr "EMC soittolista"
+
+#: EMCPlayList.py:161
+msgid "EMC Playlist Menu"
+msgstr ""
+
+#: EMCPlayList.py:162
+msgid "Playlist open"
+msgstr ""
+
+#: EMCPlayList.py:163
+msgid "Setup open"
+msgstr ""
+
+#: EMCPlayList.py:171
+msgid ""
+"Default Playlist is not empty!\n"
+"\n"
+"Save default Playlist?"
+msgstr ""
+
+#: EMCPlayList.py:233
+msgid ""
+"Playlist with same name exists!\n"
+"\n"
+"Try to save the Playlist with another name?"
+msgstr ""
+
+#: EMCPlayList.py:237
+msgid "Change the filename to save current Playlist:"
+msgstr ""
+
+#: EMCPlayList.py:237
+msgid "Save current Playlist"
+msgstr "Tallenna nykyinen soittolista"
+
+#: EMCPlayList.py:255
+msgid "Current Playlist saved successfully!"
+msgstr "Nykyinen soittolista tallennettu onnistuneesti!"
+
+#: EMCPlayList.py:258
+msgid "Can not save current Playlist!"
+msgstr "Nykyisen soittolistan tallennus epäonnistui!"
+
+#: EMCPlayList.py:461
+msgid "Default Playlist path"
+msgstr "Soittolistan oletushakemisto"
+
+#: EMCPlayList.py:462
+msgid "Default Playlist name"
+msgstr "Soittolistan oletusnimi"
+
+#: EMCPlayList.py:463
+msgid "Always save current Playlist"
+msgstr "Tallenna aina nykyinen soittolista"
+
+#: EMCPlayList.py:477
+msgid "EMC Playlist Setup"
+msgstr ""
+
+#: EMCPlayList.py:484
+msgid "Choose Directory:"
+msgstr "Valitse hakemisto:"
+
+#: EMCPlayList.py:501
+msgid "Enter Name for Playlist"
+msgstr "Määritä soittolistan nimi"
+
+#: EMCPlayList.py:546
+msgid "Open"
+msgstr "Avaa"
+
+#: EMCPlayList.py:560
+msgid "EMC Filebrowser"
+msgstr ""
+
+#: EMCTasker.py:201
+msgid "Next auto-start in "
+msgstr ""
+
+#: EMCTasker.py:203
+msgid "auto-start is currently not active."
+msgstr ""
+
+#: EMCTasker.py:215
+msgid ""
+"Your Box is about to go into Standby, continue?\n"
+" Select no to delay one hour"
+msgstr ""
+
+#: EMCTasker.py:217
+msgid ""
+"Your Box is about to go into DeepStandby, continue?\n"
+" Select no to delay one hour"
+msgstr ""
+
+#: EMCTasker.py:219
+msgid ""
+"Your Box is about to go into Reboot, continue?\n"
+" Select no to delay one hour"
+msgstr ""
+
+#: EMCTasker.py:221
+msgid ""
+"Your Box is about to go into E2 Restart, continue?\n"
+" Select no to delay one hour"
+msgstr ""
+
+#: EnhancedMovieCenter.py:195 EnhancedMovieCenter.py:216
+msgid "Custom"
+msgstr ""
+
+#: EnhancedMovieCenter.py:196
+msgid "Default"
+msgstr ""
+
+#: EnhancedMovieCenter.py:197
+msgid "Performance"
+msgstr ""
+
+#: EnhancedMovieCenter.py:198
+msgid "Information"
+msgstr ""
+
+#: EnhancedMovieCenter.py:318
+msgid "About"
+msgstr "Tietoja"
+
+#: EnhancedMovieCenter.py:318
+msgid "HELP_About"
+msgstr "Näyttää tietoja EMC -lisäosasta."
+
+#: EnhancedMovieCenter.py:320
+msgid "Disable EMC"
+msgstr "Poista EMC käytöstä"
+
+#: EnhancedMovieCenter.py:320
+msgid "HELP_Disable EMC"
+msgstr "Määrittää, onko EMC käytössä vai ei."
+
+#: EnhancedMovieCenter.py:322
+msgid "Start EMC with"
+msgstr "Käynnistä EMC näppäimellä"
+
+#: EnhancedMovieCenter.py:322
+msgid "HELP_Start EMC with"
+msgstr "Määrittää, millä näppäimellä EMC käynnistyy."
+
+#: EnhancedMovieCenter.py:323
+msgid "Show plugin config in extensions menu"
+msgstr "Näytä 'EMC asetukset' laajennusvalikossa"
+
+#: EnhancedMovieCenter.py:323
+msgid "HELP_Show plugin config in extensions menu"
+msgstr ""
+
+#: EnhancedMovieCenter.py:324
+msgid "Show EMC in extensions menu"
+msgstr "Näytä EMC laajennusvalikossa"
+
+#: EnhancedMovieCenter.py:324
+msgid "HELP_Show EMC in extensions menu"
+msgstr "Määrittää, näytetäänkö EMC laajennusvalikossa."
+
+#: EnhancedMovieCenter.py:326
+msgid "HELP_Key assignment Separator"
+msgstr ""
+
+#: EnhancedMovieCenter.py:327
+msgid "Bouquet buttons behaviour"
+msgstr "Kanavanäppäimien (+/-) toiminto"
+
+#: EnhancedMovieCenter.py:327
+msgid "HELP_Bouquet buttons behaviour"
+msgstr "Määrittää, mitä kanavanäppäimien (+/-) painallus tekee."
+
+#: EnhancedMovieCenter.py:328
+msgid "List entries to skip"
+msgstr "Kuinka monta tallennetta hypätään kerralla"
+
+#: EnhancedMovieCenter.py:328
+msgid "HELP_List entries to skip"
+msgstr ""
+"Määrittää, kuinka monta tallennetta hypätään yhdellä kertaa, kun painetaan "
+"kanavanäppäimiä (+/-)."
+
+#: EnhancedMovieCenter.py:329
+msgid "Red button function"
+msgstr "Punainen näppäin"
+
+#: EnhancedMovieCenter.py:329
+msgid "HELP_Red button function"
+msgstr "Määrittää, mitä punaisen näppäimen lyhyt painallus tekee."
+
+#: EnhancedMovieCenter.py:330
+msgid "Long Red button function"
+msgstr "Punainen näppäin (pitkä)"
+
+#: EnhancedMovieCenter.py:330
+msgid "HELP_Long Red button function"
+msgstr "Määrittää, mitä punaisen näppäimen pitkä painallus tekee."
+
+#: EnhancedMovieCenter.py:333
+msgid "Yellow button function"
+msgstr "Keltainen näppäin"
+
+#: EnhancedMovieCenter.py:333
+msgid "HELP_Yellow button function"
+msgstr "Määrittää, mitä keltaisen näppäimen lyhyt painallus tekee."
+
+#: EnhancedMovieCenter.py:334
+msgid "Long Yellow button function"
+msgstr "Keltainen näppäin (pitkä)"
+
+#: EnhancedMovieCenter.py:334
+msgid "HELP_Long Yellow button function"
+msgstr "Määrittää, mitä keltaisen näppäimen pitkä painallus tekee."
+
+#: EnhancedMovieCenter.py:335
+msgid "Blue button function"
+msgstr "Sininen näppäin"
+
+#: EnhancedMovieCenter.py:335
+msgid "HELP_Blue button function"
+msgstr "Määrittää, mitä sinisen näppäimen lyhyt painallus tekee."
+
+#: EnhancedMovieCenter.py:336
+msgid "Long Blue button function"
+msgstr "Sininen näppäin (pitkä)"
+
+#: EnhancedMovieCenter.py:336
+msgid "HELP_Long Blue button function"
+msgstr "Määrittää, mitä sinisen näppäimen pitkä painallus tekee."
+
+#: EnhancedMovieCenter.py:338 EnhancedMovieCenter.py:345
+#: EnhancedMovieCenter.py:354 EnhancedMovieCenter.py:389
+#: EnhancedMovieCenter.py:399 EnhancedMovieCenter.py:426
+#: EnhancedMovieCenter.py:453
+msgid " "
+msgstr " "
+
+#: EnhancedMovieCenter.py:339
+msgid "daily auto-start"
+msgstr ""
+
+#: EnhancedMovieCenter.py:339
+msgid "HELP_Daily auto-start"
+msgstr ""
+
+#: EnhancedMovieCenter.py:340
+msgid "auto-start window begin"
+msgstr ""
+
+#: EnhancedMovieCenter.py:340
+msgid "HELP_auto-start window begin"
+msgstr ""
+
+#: EnhancedMovieCenter.py:341
+msgid "auto-start window end"
+msgstr ""
+
+#: EnhancedMovieCenter.py:341
+msgid "HELP_auto-start window end"
+msgstr ""
+
+#: EnhancedMovieCenter.py:342
+msgid "Force standby after auto-restart"
+msgstr ""
+
+#: EnhancedMovieCenter.py:342
+msgid "HELP_Force standby after auto-start"
+msgstr ""
+
+#: EnhancedMovieCenter.py:343
+msgid "LongInfo Button"
+msgstr "Info-näppäin (pitkä)"
+
+#: EnhancedMovieCenter.py:343
+msgid "HELP_LongInfo Button"
+msgstr "Määrittää, mitä Info-näppäimen pitkä painallus tekee."
+
+#: EnhancedMovieCenter.py:346
+msgid "Movie home at start"
+msgstr ""
+
+#: EnhancedMovieCenter.py:346
+msgid "HELP_Movie home at start"
+msgstr ""
+
+#: EnhancedMovieCenter.py:347
+msgid "Default sort mode"
+msgstr "Oletus lajittelujärjestys"
+
+#: EnhancedMovieCenter.py:347
+msgid "HELP_Sort mode at startup"
+msgstr "Määrittää oletus lajittelujärjestyksen, kun EMC käynnistetään."
+
+#: EnhancedMovieCenter.py:349
+msgid "Movie home home path"
+msgstr "Päälistan hakemisto"
+
+#: EnhancedMovieCenter.py:349
+msgid "HELP_Movie home home path"
+msgstr ""
+
+#: EnhancedMovieCenter.py:350
+msgid "EMC path access limit"
+msgstr ""
+
+#: EnhancedMovieCenter.py:350
+msgid "HELP_EMC path access limit"
+msgstr ""
+
+#: EnhancedMovieCenter.py:352
+msgid "Cursor predictive move after selection"
+msgstr ""
+
+#: EnhancedMovieCenter.py:352
+msgid "HELP_Cursor predictive move after selection"
+msgstr ""
+
+#: EnhancedMovieCenter.py:355
+msgid "Show symlinks"
+msgstr ""
+
+#: EnhancedMovieCenter.py:355
+msgid "HELP_Show symlinks"
+msgstr ""
+
+#: EnhancedMovieCenter.py:357
+msgid "Show directories"
+msgstr "Näytä hakemistot"
+
+#: EnhancedMovieCenter.py:357
+msgid "HELP_Show directories"
+msgstr ""
+
+#: EnhancedMovieCenter.py:358
+msgid "Show directories within movielist"
+msgstr ""
+
+#: EnhancedMovieCenter.py:358
+msgid "HELP_Show directories within movielist"
+msgstr ""
+
+#: EnhancedMovieCenter.py:359
+msgid "Configured directories at the top of movielist"
+msgstr ""
+
+#: EnhancedMovieCenter.py:359
+msgid "HELP_Configure in etc\\enigma2\\emc-topdir.cfg"
+msgstr ""
+
+#: EnhancedMovieCenter.py:360
+msgid "Show directories information"
+msgstr ""
+
+#: EnhancedMovieCenter.py:360
+msgid "HELP_Show directories information"
+msgstr ""
+
+#: EnhancedMovieCenter.py:361
+msgid "Text shown for initially unknown file count"
+msgstr ""
+
+#: EnhancedMovieCenter.py:361
+msgid "HELP_Text shown for initially unknown file count"
+msgstr ""
+
+#: EnhancedMovieCenter.py:362
+msgid "Text shown for initially unknown count and size"
+msgstr ""
+
+#: EnhancedMovieCenter.py:362
+msgid "HELP_Text shown for initially unknown count and size"
+msgstr ""
+
+#: EnhancedMovieCenter.py:363
+msgid "Text shown for initially unknown directory size"
+msgstr ""
+
+#: EnhancedMovieCenter.py:363
+msgid "HELP_Text shown for initially unknown directory size"
+msgstr ""
+
+#: EnhancedMovieCenter.py:364
+msgid "Icon shown for initially unknown count / size"
+msgstr ""
+
+#: EnhancedMovieCenter.py:364
+msgid "HELP_Icon shown for initially unknown count / size"
+msgstr ""
+
+#: EnhancedMovieCenter.py:365
+msgid "Horizontal alignment for count / size"
+msgstr ""
+
+#: EnhancedMovieCenter.py:365
+msgid "HELP_Horizontal alignment for count / size"
+msgstr ""
+
+#: EnhancedMovieCenter.py:427
+msgid "Horizontal alignment for date"
+msgstr ""
+
+#: EnhancedMovieCenter.py:427
+msgid "HELP_Horizontal alignment for date"
+msgstr ""
+
+#: EnhancedMovieCenter.py:366
+msgid "Show directory size in skin"
+msgstr "Näytä hakemiston koko"
+
+#: EnhancedMovieCenter.py:366
+msgid "HELP_Show directory size in skin"
+msgstr "Määrittää, näytetäänkö tallennelistassa hakemiston koko."
+
+#: EnhancedMovieCenter.py:368
+msgid "Show Latest Recordings directory"
+msgstr "Näytä hakemisto 'Viimeisimmät tallennukset' tallennelistassa"
+
+#: EnhancedMovieCenter.py:368
+msgid "HELP_Show Latest Recordings directory"
+msgstr ""
+"Määrittää, näytetäänkö hakemistoa 'Viimeisimmät tallennukset' "
+"tallennelistassa."
+
+#: EnhancedMovieCenter.py:369
+msgid "Latest Recordings directory limit"
+msgstr "Hakemiston 'Viimeisimmät tallennukset' aikaraja"
+
+#: EnhancedMovieCenter.py:369
+msgid "HELP_Latest Recordings directory limit"
+msgstr ""
+"Määrittää, kuinka kauan uusia tallenteita säilytetään hakemistossa "
+"'Viimeisimmät tallennukset'."
+
+#: EnhancedMovieCenter.py:370
+msgid "Latest Recordings directory use emc-noscan.cfg"
+msgstr ""
+
+#: EnhancedMovieCenter.py:370
+msgid "HELP_Latest Recordings directory use emc-noscan.cfg"
+msgstr ""
+
+#: EnhancedMovieCenter.py:371
+msgid "Show VLC directory"
+msgstr "Näytä VLC-hakemisto"
+
+#: EnhancedMovieCenter.py:371
+msgid "HELP_Show VLC directory"
+msgstr "Määrittää, näytetäänkö VLC-hakemistoa."
+
+#: EnhancedMovieCenter.py:372
+msgid "Show Bookmarks in movielist"
+msgstr "Näytä kirjanmerkit tallennelistassa"
+
+#: EnhancedMovieCenter.py:372
+msgid "HELP_Show Bookmarks in movielist"
+msgstr ""
+"Määrittää, näytetäänkö kirjanmerkkejä tallennelistassa. Ja jos kyllä, niin "
+"mitkä kirjanmerkit."
+
+#: EnhancedMovieCenter.py:373
+msgid "Use cache for files and directories"
+msgstr "Käytä välimuistia tiedostoille ja hakemistoille"
+
+#: EnhancedMovieCenter.py:373
+msgid "HELP_Use cache for files and directories"
+msgstr ""
+"Määrittää, käytetäänkö tiedostoille ja hakemistoille välimuistia. "
+"Välimuistin käyttö nopeuttaa toimintaa."
+
+#: EnhancedMovieCenter.py:374
+msgid "Minimum file cache limit (0=cache everything)"
+msgstr ""
+
+#: EnhancedMovieCenter.py:374
+msgid "HELP_Minimum file cache limit"
+msgstr ""
+
+#: EnhancedMovieCenter.py:375
+msgid "Show experimental options"
+msgstr "Näytä testikäytössä olevat ominaisuudet"
+
+#: EnhancedMovieCenter.py:375
+msgid "HELP_Show experimental options"
+msgstr ""
+"Määrittää, näytetäänkö valikoissa ominaisuuksia, jotka ovat vasta "
+"testikäytössä."
+
+#: EnhancedMovieCenter.py:376
+msgid "Don't auto scan size of dirs from emc-noscan.cfg"
+msgstr ""
+
+#: EnhancedMovieCenter.py:376
+msgid "HELP_Don't auto scan size of dirs from emc-noscan.cfg"
+msgstr ""
+
+#: EnhancedMovieCenter.py:377
+msgid "After file OPs only re-scan affected dirs"
+msgstr ""
+
+#: EnhancedMovieCenter.py:377
+msgid "HELP_After file OPs only re-scan affected dirs"
+msgstr ""
+
+#: EnhancedMovieCenter.py:378
+msgid "Wake device when entering dir from emc-noscan.cfg"
+msgstr ""
+
+#: EnhancedMovieCenter.py:378
+msgid "HELP_Wake device when entering dir from emc-noscan.cfg"
+msgstr ""
+
+#: EnhancedMovieCenter.py:380
+msgid "HELP_separator_hide&performance"
+msgstr ""
+
+#: EnhancedMovieCenter.py:381
+msgid "Hide configured entries"
+msgstr ""
+
+#: EnhancedMovieCenter.py:381
+msgid "HELP_cfghide_enable"
+msgstr ""
+
+#: EnhancedMovieCenter.py:382
+msgid "Scan for DVD structures"
+msgstr ""
+
+#: EnhancedMovieCenter.py:382
+msgid "HELP_Scan for DVD structures"
+msgstr ""
+
+#: EnhancedMovieCenter.py:383
+msgid "Scan for movie structures"
+msgstr ""
+
+#: EnhancedMovieCenter.py:383
+msgid "HELP_Scan for movie structures"
+msgstr ""
+
+#: EnhancedMovieCenter.py:384
+msgid "Scan for bluray structures"
+msgstr ""
+
+#: EnhancedMovieCenter.py:384
+msgid "HELP_Scan for bluray structures"
+msgstr ""
+
+#: EnhancedMovieCenter.py:385
+msgid "Scan for bluray structures in .iso"
+msgstr ""
+
+#: EnhancedMovieCenter.py:385
+msgid "HELP_Scan for bluray structures in .iso"
+msgstr ""
+
+#: EnhancedMovieCenter.py:386
+msgid "Suppress scan in selected folders"
+msgstr ""
+
+#: EnhancedMovieCenter.py:386
+msgid "HELP_cfgscan_suppress"
+msgstr ""
+
+#: EnhancedMovieCenter.py:387
+msgid "Scan linked folders"
+msgstr "Skannaa linkitetyt hakemistot"
+
+#: EnhancedMovieCenter.py:387
+msgid "HELP_scan_linked"
+msgstr ""
+
+#: EnhancedMovieCenter.py:390
+msgid "Try to load titles from .meta files"
+msgstr "Yritä ladata tallenteiden otsikot .meta tiedostoista"
+
+#: EnhancedMovieCenter.py:390
+msgid "HELP_Try to load titles from .meta files"
+msgstr ""
+
+#: EnhancedMovieCenter.py:391
+msgid "Load all for non showing titles from .meta files"
+msgstr ""
+
+#: EnhancedMovieCenter.py:391
+msgid "HELP_Load all for non showing titles from .meta files"
+msgstr ""
+
+#: EnhancedMovieCenter.py:392
+msgid "Try to load titles from .eit files"
+msgstr "Yritä ladata tallenteiden otsikot .eit tiedostoista"
+
+#: EnhancedMovieCenter.py:392
+msgid "HELP_Try to load titles from .eit files"
+msgstr ""
+
+#: EnhancedMovieCenter.py:393
+msgid "Replace special chars in title"
+msgstr "Korvaa erikoismerkit tallenteiden otsikoissa"
+
+#: EnhancedMovieCenter.py:393
+msgid "HELP_Replace special chars in title"
+msgstr ""
+
+#: EnhancedMovieCenter.py:394
+msgid "Show Movie Format"
+msgstr "Näytä tallenteen formaatti"
+
+#: EnhancedMovieCenter.py:394
+msgid "HELP_Show Movie Format"
+msgstr ""
+"Määrittää, näytetäänkö tallennelistassa tallenteen nimen perässä sen "
+"formaatti (ts, mpg jne..)."
+
+#: EnhancedMovieCenter.py:395
+msgid "Show Cut-Nr if exist"
+msgstr ""
+
+#: EnhancedMovieCenter.py:395
+msgid "HELP_Show Cut-Nr if exist"
+msgstr ""
+
+#: EnhancedMovieCenter.py:396
+msgid "Resolve links and show real path"
+msgstr ""
+
+#: EnhancedMovieCenter.py:396
+msgid "HELP_Resolve links and show real path"
+msgstr ""
+
+#: EnhancedMovieCenter.py:397
+msgid "Show Path if no extended description available"
+msgstr "Näytä hakemistopolku laajennetun ohjelmakuvauksen puuttuessa"
+
+#: EnhancedMovieCenter.py:397
+msgid "HELP_Show Path if no extended description available"
+msgstr ""
+"Määrittää, näytetäänkö tallenteen hakemistopolku silloin, kun laajennettua "
+"ohjelmakuvausta ei ole saatavilla."
+
+#: EnhancedMovieCenter.py:400
+msgid "Listbox is skin able"
+msgstr ""
+
+#: EnhancedMovieCenter.py:400
+msgid "HELP_Listbox is skin able"
+msgstr ""
+
+#: EnhancedMovieCenter.py:402
+msgid "Date format"
+msgstr "Päivämäärän muoto"
+
+#: EnhancedMovieCenter.py:402
+msgid "HELP_Date format"
+msgstr ""
+
+#: EnhancedMovieCenter.py:404
+msgid "Show movie icons"
+msgstr "Näytä tallennekuvakkeet tallennelistassa"
+
+#: EnhancedMovieCenter.py:404
+msgid "HELP_Show movie icons"
+msgstr "Määrittää, näytetäänkö tallenteen nimen edessä kuvaketta vai ei."
+
+#: EnhancedMovieCenter.py:405
+msgid "Show link arrow"
+msgstr ""
+
+#: EnhancedMovieCenter.py:405
+msgid "HELP_Show link arrow"
+msgstr ""
+
+#: EnhancedMovieCenter.py:407
+msgid "Show movie picons"
+msgstr "Näytä kanavalogot tallennelistassa"
+
+#: EnhancedMovieCenter.py:407
+msgid "HELP_Show movie picons"
+msgstr ""
+"Määrittää, näytetäänkö tallenteen nimen yhteydessä sen kanavan logo, jolta "
+"tallennus on tehty."
+
+#: EnhancedMovieCenter.py:409
+msgid "Position movie picons"
+msgstr "Kanavalogojen sijainti"
+
+#: EnhancedMovieCenter.py:409
+msgid "HELP_Position movie picons"
+msgstr ""
+
+#: EnhancedMovieCenter.py:410
+msgid "Own Path to movie picons"
+msgstr ""
+
+#: EnhancedMovieCenter.py:410
+msgid "HELP_Own Path to movie picons"
+msgstr ""
+
+#: EnhancedMovieCenter.py:411
+msgid "Path to movie picons"
+msgstr "Kanavalogojen sijainti"
+
+#: EnhancedMovieCenter.py:411
+msgid "HELP_Path to movie picons"
+msgstr "Määrittää hakemiston, jossa kanavalogot sijaitsevat."
+
+#: EnhancedMovieCenter.py:413
+msgid "Show movie progress"
+msgstr "Tallenneluettelon tilakuvakkeet"
+
+#: EnhancedMovieCenter.py:413
+msgid "HELP_Show movie progress"
+msgstr ""
+"Määrittää, näytetäänkö tallenneluettelossa tilakuvaketta, joka kertoo, "
+"kuinka pitkälle tallennetta on katsottu."
+
+#: EnhancedMovieCenter.py:414
+msgid "Short watching percent"
+msgstr "Luokittele tallenne katsomattomaksi, kun katsottu enintään (%)"
+
+#: EnhancedMovieCenter.py:414
+msgid "HELP_Short watching percent"
+msgstr ""
+"Määrittää, kuinka monta prosenttia tallenteesta saa olla korkeintaa "
+"katsottu, jotta se luokitellaan katsomattomaksi."
+
+#: EnhancedMovieCenter.py:415
+msgid "Finished watching percent"
+msgstr "Luokittele tallenne katsotuksi, kun katsottu vähintään (%)"
+
+#: EnhancedMovieCenter.py:415
+msgid "HELP_Finished watching percent"
+msgstr ""
+"Määrittää, kuinka monta prosenttia tallenteesta pitää olla vähintään "
+"katsottu, jotta se luokitellaan katsotuksi."
+
+#: EnhancedMovieCenter.py:416
+msgid "Mark new recordings with a star"
+msgstr "Merkitse uudet tallenteet tähdellä"
+
+#: EnhancedMovieCenter.py:416
+msgid "HELP_Mark new recordings with a star"
+msgstr "Määrittää, merkitäänkö uudet tallenteet tähdellä tallennelistassa."
+
+#: EnhancedMovieCenter.py:417 MovieSelection.py:1696 MovieSelection.py:1712
+#: MovieSelection.py:1728
+msgid "Show Cover"
+msgstr "Näytä kansikuva"
+
+#: EnhancedMovieCenter.py:417
+msgid "HELP_Show Cover"
+msgstr "Määrittää, näytetäänkö tallenteen kansikuva, mikäli sellainen löytyy."
+
+#: EnhancedMovieCenter.py:418 MovieInfo.py:724
+msgid "Cover delay in ms"
+msgstr ""
+
+#: EnhancedMovieCenter.py:418
+msgid "HELP_Cover delay in ms"
+msgstr ""
+
+#: EnhancedMovieCenter.py:419
+msgid "Cover background"
+msgstr ""
+
+#: EnhancedMovieCenter.py:419
+msgid "HELP_Cover background"
+msgstr ""
+
+#: EnhancedMovieCenter.py:420
+msgid "Show fallback cover"
+msgstr "Näytä takakannen kuva"
+
+#: EnhancedMovieCenter.py:420
+msgid "HELP_Fallback Cover"
+msgstr ""
+"Määrittää, näytetäänkö tallenteen takakannen kuva, mikäli sellainen löytyy."
+
+#: EnhancedMovieCenter.py:422
+msgid "Show movie preview"
+msgstr "Käytä tallenteen esikatselua"
+
+#: EnhancedMovieCenter.py:422
+msgid "HELP_Show movie preview"
+msgstr ""
+"Määrittää, käytetäänkö tallenteen esikatselua vai ei. Mikäli esikatselu on "
+"käytössä, se käynnistyy, kun valintapalkin pysäyttää ko. tallenteen kohdalle "
+"ja odottaa erikseen määritellyn viiveen verran."
+
+#: EnhancedMovieCenter.py:423
+msgid "Movie preview delay in ms"
+msgstr "Tallenteen esikatselun viive (ms)"
+
+#: EnhancedMovieCenter.py:423
+msgid "HELP_Movie preview delay in ms"
+msgstr ""
+"Määrittää, kauanko odotetaan (millisekunteina) ennenkuin tallenteen "
+"esikatselu käynnistetään."
+
+#: EnhancedMovieCenter.py:424
+msgid "Start movie preview before last position"
+msgstr "Esikatselun käynnistys (sek) ennen viimeksi katsottua kohtaa"
+
+#: EnhancedMovieCenter.py:424
+msgid "HELP_Movie preview offset in seconds"
+msgstr ""
+"Määrittää, kuinka monta sekuntia aiemmin esikatselu käynnistetään kuin mihin "
+"tallennetta on viimeksi katsottu."
+
+#: EnhancedMovieCenter.py:427
+msgid "No resume below 10 seconds"
+msgstr ""
+
+#: EnhancedMovieCenter.py:427
+msgid "HELP_No resume below 10 seconds"
+msgstr ""
+
+#: EnhancedMovieCenter.py:428
+msgid "Jump to first mark when playing movie"
+msgstr "Hyppää ensimmäiseen kirjanmerkkiin tallennetta toistettaessa"
+
+#: EnhancedMovieCenter.py:428
+msgid "HELP_Jump to first mark when playing movie"
+msgstr ""
+"Määrittää, hypätäänkö tallennetta toistettaessa suoraan ensimmäiseen "
+"kirjanmerkkiin vai aloitetaanko aivan alusta. "
+
+#: EnhancedMovieCenter.py:429
+msgid "Rewind finished movies before playing"
+msgstr "Kelaa katsotut tallenteet alkuun ennen toistoa"
+
+#: EnhancedMovieCenter.py:429
+msgid "HELP_Rewind finished movies before playing"
+msgstr ""
+"Määrittää, kelataanko katsotuiksi luokitellut tallenteet alkuun ennen niiden "
+"toistoa vai jatketaanko siitä, mihin viimeksi jäätiin."
+
+#: EnhancedMovieCenter.py:430
+msgid "Always save last played progress as marker"
+msgstr "Tallenna viimeksi katsottu kohta automaattisesti kirjanmerkiksi"
+
+#: EnhancedMovieCenter.py:430
+msgid "HELP_Always save last played progress as marker"
+msgstr ""
+"Määrittää, tallennetaanko viimeksi katsottu kohta automaattisesti "
+"kirjanmerkiksi. Jos päällä, mm. stop-näppäimen painallus luo automaattisesti "
+"kirjanmerkin, josta voi jatkaa seuraavalla kerralla."
+
+#: EnhancedMovieCenter.py:431
+msgid "Zap to channel after record EOF"
+msgstr ""
+
+#: EnhancedMovieCenter.py:431
+msgid "HELP_Zap to channel after record EOF"
+msgstr ""
+
+#: EnhancedMovieCenter.py:432
+msgid "Show real length of running records"
+msgstr ""
+
+#: EnhancedMovieCenter.py:432
+msgid "HELP_Show real length of running records"
+msgstr ""
+
+#: EnhancedMovieCenter.py:436
+msgid "Download cutlist from Cutlist.at"
+msgstr ""
+
+#: EnhancedMovieCenter.py:436
+msgid "HELP_Download cutlist from Cutlist.at"
+msgstr ""
+
+#: EnhancedMovieCenter.py:440
+msgid "HELP_separator_Trashcan settings"
+msgstr ""
+
+#: EnhancedMovieCenter.py:441
+msgid "Trashcan enable"
+msgstr "Ota roskakori käyttöön"
+
+#: EnhancedMovieCenter.py:441
+msgid "HELP_Trashcan enable"
+msgstr ""
+
+#: EnhancedMovieCenter.py:442
+msgid "Trashcan path"
+msgstr "Roskakorin hakemisto"
+
+#: EnhancedMovieCenter.py:442
+msgid "HELP_Trashcan path"
+msgstr "Määrittää roskakorin käyttämän hakemiston."
+
+#: EnhancedMovieCenter.py:443
+msgid "Show trashcan directory"
+msgstr "Näytä roskakorin hakemisto"
+
+#: EnhancedMovieCenter.py:443
+msgid "HELP_Show trashcan directory"
+msgstr ""
+
+#: EnhancedMovieCenter.py:444
+msgid "Show trashcan information"
+msgstr "Näytä roskakorin tiedot"
+
+#: EnhancedMovieCenter.py:444
+msgid "HELP_Dynamic trashcan"
+msgstr "Määrittää, näytetäänkö roskakorin tiedot ja jos, niin missä muodossa."
+
+#: EnhancedMovieCenter.py:445
+msgid "Delete validation"
+msgstr "Pyydä vahvistus tallennetta poistettaessa"
+
+#: EnhancedMovieCenter.py:445
+msgid "HELP_Delete validation"
+msgstr "Määrittää, pyydetäänkö vahvistusta tallennetta poistettaessa."
+
+#: EnhancedMovieCenter.py:447
+msgid "Enable daily trashcan cleanup"
+msgstr "Roskakorin päivittäinen siivoaminen"
+
+#: EnhancedMovieCenter.py:447
+msgid "HELP_Enable daily trashcan cleanup"
+msgstr ""
+"Määrittää, siivotaanko roskakorista päivittäin automaattisesti vanhat "
+"tallenteet."
+
+#: EnhancedMovieCenter.py:448
+msgid "Daily cleanup time"
+msgstr "Päivittäisen siivoamisen ajankohta"
+
+#: EnhancedMovieCenter.py:448
+msgid "HELP_Daily cleanup time"
+msgstr ""
+"Määrittää, mihin aikaan vuorokaudesta roskakorin päivittäinen siivoaminen "
+"suoritetaan."
+
+#: EnhancedMovieCenter.py:449
+msgid "How many days files may remain in trashcan"
+msgstr "Poistettuja tallenteita säilytetään roskakorissa (päivää)"
+
+#: EnhancedMovieCenter.py:449
+msgid "HELP_How many days files may remain in trashcan"
+msgstr ""
+"Määrittää, kuinka monta päivää poistettuja tallenteita säilytetään "
+"roskakorissa ennen kuin ne poistetaan lopullisesti."
+
+#: EnhancedMovieCenter.py:450
+msgid "Move finished movies in trashcan"
+msgstr "Siirrä katsotut tallenteet roskakoriin"
+
+#: EnhancedMovieCenter.py:450
+msgid "HELP_Move finished movies in trashcan"
+msgstr ""
+"Määrittää, siirretäänkö loppuun asti katsotut tallenteet automaattisesti "
+"roskakoriin. Huomioi erillinen asetus, jolla määritetään, missä vaiheessa "
+"tallenne luokitellaan loppuun asti katsotuksi!"
+
+#: EnhancedMovieCenter.py:451
+msgid "Age of finished movies in movie folder (days)"
+msgstr ""
+
+#: EnhancedMovieCenter.py:451
+msgid "HELP_Age of finished movies in movie folder (days)"
+msgstr ""
+
+#: EnhancedMovieCenter.py:454
+msgid "Display directory reading text"
+msgstr ""
+
+#: EnhancedMovieCenter.py:454
+msgid "HELP_Display directory reading text"
+msgstr ""
+
+#: EnhancedMovieCenter.py:455
+msgid "EMC always reload after open"
+msgstr ""
+
+#: EnhancedMovieCenter.py:455
+msgid "HELP_EMC always reload after open"
+msgstr ""
+
+#: EnhancedMovieCenter.py:456
+msgid "EMC re-open list after STOP-press"
+msgstr "Avaa tallenneluettelo STOP-näppäimen painalluksen jälkeen"
+
+#: EnhancedMovieCenter.py:456
+msgid "HELP_EMC re-open list after STOP-press"
+msgstr ""
+"Määrittää, avataanko tallenneluettelo, kun STOP-näppäintä painetaan kesken "
+"tallenteen katselun. Vaihtoehdolla 'ei' siirrytään TV-kuvaan."
+
+#: EnhancedMovieCenter.py:457
+msgid "EMC re-open list after Movie end"
+msgstr "Avaa tallenneluettelo tallenteen loppuessa"
+
+#: EnhancedMovieCenter.py:457
+msgid "HELP_EMC re-open list after Movie end"
+msgstr ""
+"Määrittää, avataanko tallenneluettelo, kun tallenne loppuu. Vaihtoehdolla "
+"'ei' siirrytään TV-kuvaan."
+
+#: EnhancedMovieCenter.py:459
+msgid "Leave Movie with Exit"
+msgstr ""
+
+#: EnhancedMovieCenter.py:459
+msgid "HELP_Leave Movie with Exit"
+msgstr ""
+
+#: EnhancedMovieCenter.py:461
+msgid "Hide movies being moved"
+msgstr ""
+
+#: EnhancedMovieCenter.py:461
+msgid "HELP_Hide movies being moved"
+msgstr ""
+
+#: EnhancedMovieCenter.py:462
+msgid "Hide movies being deleted"
+msgstr ""
+
+#: EnhancedMovieCenter.py:462
+msgid "HELP_Hide movies being deleted"
+msgstr ""
+
+#: EnhancedMovieCenter.py:464
+msgid "Enable remote recordings"
+msgstr "Salli etätallennukset"
+
+#: EnhancedMovieCenter.py:464
+msgid "HELP_Enable remote recordings"
+msgstr ""
+
+#: EnhancedMovieCenter.py:465
+msgid "Automatic timers list cleaning"
+msgstr "Automaattinen ajastusluettelon siivous"
+
+#: EnhancedMovieCenter.py:465
+msgid "HELP_Automatic timers list cleaning"
+msgstr ""
+
+#: EnhancedMovieCenter.py:467
+msgid "HELP_Language Separator"
+msgstr ""
+
+#: EnhancedMovieCenter.py:468
+msgid "Preferred EPG language"
+msgstr "Ensisijainen ohjelmaoppaan kieli"
+
+#: EnhancedMovieCenter.py:468
+msgid "HELP_Preferred EPG language"
+msgstr "Määrittää ohjelmaoppaan ensisijaisen kielen"
+
+#: EnhancedMovieCenter.py:469
+msgid "Extra support for language"
+msgstr ""
+
+#: EnhancedMovieCenter.py:469
+msgid "HELP_Extra support for selected language"
+msgstr ""
+
+#: EnhancedMovieCenter.py:470
+msgid "Enable playback auto-subtitling"
+msgstr ""
+
+#: EnhancedMovieCenter.py:470
+msgid "HELP_Enable playback auto-subtitling"
+msgstr ""
+
+#: EnhancedMovieCenter.py:471
+msgid "Primary playback subtitle language"
+msgstr ""
+
+#: EnhancedMovieCenter.py:471
+msgid "HELP_Primary playback subtitle language"
+msgstr ""
+
+#: EnhancedMovieCenter.py:472
+msgid "Secondary playback subtitle language"
+msgstr ""
+
+#: EnhancedMovieCenter.py:472
+msgid "HELP_Secondary playback subtitle language"
+msgstr ""
+
+#: EnhancedMovieCenter.py:473
+msgid "Tertiary playback subtitle language"
+msgstr ""
+
+#: EnhancedMovieCenter.py:473
+msgid "HELP_Tertiary playback subtitle language"
+msgstr ""
+
+#: EnhancedMovieCenter.py:474
+msgid "Enable playback auto-language selection"
+msgstr ""
+
+#: EnhancedMovieCenter.py:474
+msgid "HELP_Enable playback auto-language selection"
+msgstr ""
+
+#: EnhancedMovieCenter.py:475
+msgid "Enable playback AC3-track first"
+msgstr ""
+
+#: EnhancedMovieCenter.py:475
+msgid "HELP_Enable playback AC3-track first"
+msgstr ""
+
+#: EnhancedMovieCenter.py:476
+msgid "Primary playback audio language"
+msgstr ""
+
+#: EnhancedMovieCenter.py:476
+msgid "HELP_Primary playback audio language"
+msgstr ""
+
+#: EnhancedMovieCenter.py:477
+msgid "Secondary playback audio language"
+msgstr ""
+
+#: EnhancedMovieCenter.py:477
+msgid "HELP_Secondary playback audio language"
+msgstr ""
+
+#: EnhancedMovieCenter.py:478
+msgid "Tertiary playback audio language"
+msgstr ""
+
+#: EnhancedMovieCenter.py:478
+msgid "HELP_Tertiary playback audio language"
+msgstr ""
+
+#: EnhancedMovieCenter.py:480 EnhancedMovieCenter.py:485
+#: EnhancedMovieCenter.py:511
+msgid "HELP_Advanced options separator"
+msgstr ""
+
+#: EnhancedMovieCenter.py:481
+msgid "Description field update delay"
+msgstr ""
+
+#: EnhancedMovieCenter.py:481
+msgid "HELP_Description field update delay"
+msgstr ""
+
+#: EnhancedMovieCenter.py:482
+msgid "Key period value (50-900)"
+msgstr ""
+
+#: EnhancedMovieCenter.py:482
+msgid "HELP_Key period value (50-900)"
+msgstr ""
+
+#: EnhancedMovieCenter.py:483
+msgid "Key repeat value (250-900)"
+msgstr ""
+
+#: EnhancedMovieCenter.py:483
+msgid "HELP_Key repeat value (250-900)"
+msgstr ""
+
+#: EnhancedMovieCenter.py:486
+msgid "Show message if file added to playlist"
+msgstr "Näytä viesti kun tiedosto lisätty soittolistalle"
+
+#: EnhancedMovieCenter.py:486
+msgid "HELP_Show message if file added to playlist"
+msgstr "Määrittää, näytetäänkö viesti, kun tiedosto lisätään soittolistalle."
+
+#: EnhancedMovieCenter.py:488
+msgid "HELP_Advanced Skin options separator"
+msgstr ""
+
+#: EnhancedMovieCenter.py:489
+msgid "Use original EMC-skin (needs reopen)"
+msgstr ""
+
+#: EnhancedMovieCenter.py:489
+msgid "HELP_Use original EMC-skin (needs reopen)"
+msgstr ""
+
+#: EnhancedMovieCenter.py:492
+msgid "HELP_Advanced audio metadata options separator"
+msgstr ""
+
+#: EnhancedMovieCenter.py:498
+msgid "Download Mutagen-package for audio metadata"
+msgstr ""
+
+#: EnhancedMovieCenter.py:498
+msgid "HELP_Download Mutagen-package for audio metadata"
+msgstr ""
+
+#: EnhancedMovieCenter.py:504
+msgid "Show audio metadata (needs skin-changes)"
+msgstr ""
+
+#: EnhancedMovieCenter.py:504
+msgid "HELP_Show audio metadata (needs skin-changes)"
+msgstr ""
+
+#: EnhancedMovieCenter.py:509
+msgid "Upgrade/Download Mutagen v1.28(experimental)"
+msgstr ""
+
+#: EnhancedMovieCenter.py:509
+msgid "HELP_Upgrade/Download Mutagen v1.28(experimental)"
+msgstr ""
+
+#: EnhancedMovieCenter.py:512
+msgid "Enable EMC debug output"
+msgstr ""
+
+#: EnhancedMovieCenter.py:512
+msgid "HELP_Enable EMC debug output"
+msgstr ""
+
+#: EnhancedMovieCenter.py:513
+msgid "EMC output directory"
+msgstr ""
+
+#: EnhancedMovieCenter.py:513
+msgid "HELP_EMC output directory"
+msgstr ""
+
+#: EnhancedMovieCenter.py:514
+msgid "Debug output file name"
+msgstr ""
+
+#: EnhancedMovieCenter.py:514
+msgid "HELP_Debug output file name"
+msgstr ""
+
+#: EnhancedMovieCenter.py:550 EnhancedMovieCenter.py:552
+msgid "Install Mutagen-package"
+msgstr "Asenna Mutagen-paketti"
+
+#: EnhancedMovieCenter.py:612
+msgid "Load default settings will overwrite all settings, really load them?"
+msgstr ""
+
+#: EnhancedMovieCenter.py:702
+msgid "Some settings changes require GUI restart to take effect."
+msgstr "Osa muutoksista vaatii, että GUI käynnistetään uudelleen."
+
+#: EnhancedMovieCenter.py:720
+msgid "Really close without saving settings?"
+msgstr "Haluatko varmasti poistua tallentamatta asetuksia?"
+
+#: EnhancedMovieCenter.py:738
+msgid "Select Location"
+msgstr "Valitse sijainti"
+
+#: EnhancedMovieCenter.py:757
+#, python-format
+msgid "Given path %s does not exist. Please change."
+msgstr ""
+
+#: EnhancedMovieCenter.py:765 MovieSelection.py:2939
+msgid "Trashcan create failed. Check mounts and permissions."
+msgstr ""
+
+#: InfoBarSupport.py:112
+msgid "jump to previous marked position"
+msgstr ""
+
+#: InfoBarSupport.py:113
+msgid "jump to next marked position"
+msgstr ""
+
+#: InfoBarSupport.py:114
+msgid "toggle a cut mark at the current position"
+msgstr ""
+
+#: InfoBarSupport.py:153 InfoBarSupport.py:155
+msgid "Do you want to resume this playback?"
+msgstr ""
+
+#: InfoBarSupport.py:153 InfoBarSupport.py:155
+#, python-format
+msgid "Resume position at %s"
+msgstr ""
+
+#: InfoBarSupport.py:157
+msgid "Resuming playback"
+msgstr ""
+
+#: MovieCenter.py:1000
+msgid "trashcan"
+msgstr "Roskakori"
+
+#: MovieCenter.py:1005
+msgid "Latest Recordings"
+msgstr "Viimeisimmät tallennukset"
+
+#: MovieCenter.py:2304
+msgid "VLC"
+msgstr "VLC"
+
+#: MovieCenter.py:2310
+msgid "VLC-Server"
+msgstr ""
+
+#: MovieCenter.py:2316
+msgid "VLC-Dir"
+msgstr ""
+
+#: MovieCenter.py:2322
+msgid "Latest"
+msgstr "Viimeisin"
+
+#: MovieCenter.py:2328
+msgid "Up"
+msgstr "Ylös"
+
+#: MovieCenter.py:2334 MovieCenter.py:2340
+msgid "Bookmark"
+msgstr "Kirjanmerkki"
+
+#: MovieCenter.py:2360 MovieCenter.py:2371
+msgid "Trashcan"
+msgstr "Roskakori"
+
+#: MovieCenter.py:2460 MovieCenter.py:2468
+msgid "Directory"
+msgstr "Hakemisto"
+
+#: MovieCenter.py:2462
+msgid "Link"
+msgstr "Linkki"
+
+#: MovieCenter.py:2464
+msgid "Collection"
+msgstr "Kokoelma"
+
+#: MovieCenter.py:2480
+msgid "UNKNOWN"
+msgstr ""
+
+#: MovieInfo.py:30
+msgid "German"
+msgstr "Saksa"
+
+#: MovieInfo.py:30
+msgid "English"
+msgstr "Englanti"
+
+#: MovieInfo.py:31 MovieInfo.py:32 MovieInfo.py:33 MovieInfo.py:34
+#: MovieInfo.py:35
+msgid "Yes"
+msgstr "Kyllä"
+
+#: MovieInfo.py:31 MovieInfo.py:32 MovieInfo.py:33 MovieInfo.py:34
+#: MovieInfo.py:35 plugin.py:218 plugin.py:223 plugin.py:233 plugin.py:324
+msgid "No"
+msgstr "Ei"
+
+#: MovieInfo.py:62
+msgid "Movies"
+msgstr ""
+
+#: MovieInfo.py:62 MovieInfo.py:66
+msgid " - "
+msgstr " - "
+
+#: MovieInfo.py:66
+msgid "TV Shows"
+msgstr ""
+
+#: MovieInfo.py:147 MovieInfo.py:202
+msgid "Content:"
+msgstr "Sisältö:"
+
+#: MovieInfo.py:147 MovieInfo.py:202 MovieInfo.py:518 MovieSelection.py:275
+msgid "Runtime:"
+msgstr "Kesto:"
+
+#: MovieInfo.py:147 MovieInfo.py:202 MovieInfo.py:544
+msgid "Minutes"
+msgstr "minuuttia"
+
+#: MovieInfo.py:147 MovieInfo.py:202 MovieInfo.py:519 MovieSelection.py:273
+msgid "Genre:"
+msgstr "Laji:"
+
+#: MovieInfo.py:147 MovieInfo.py:202 MovieInfo.py:520
+msgid "Production Countries:"
+msgstr "Tuotantomaat:"
+
+#: MovieInfo.py:147 MovieInfo.py:202 MovieInfo.py:521
+msgid "Release Date:"
+msgstr "Julkaisupäivä:"
+
+#: MovieInfo.py:147 MovieInfo.py:202 MovieInfo.py:522
+msgid "Vote:"
+msgstr "Pisteet:"
+
+#: MovieInfo.py:164
+msgid "unknown"
+msgstr "tuntematon"
+
+#: MovieInfo.py:269 MovieInfo.py:449 MovieInfo.py:461 MovieInfo.py:683
+msgid "Search results for:"
+msgstr "Hakutulokset tallenteelle:"
+
+#: MovieInfo.py:272
+msgid "Movie Info"
+msgstr ""
+
+#: MovieInfo.py:277
+msgid "movies found!"
+msgstr "elokuvaa löytynyt!"
+
+#: MovieInfo.py:280 MovieInfo.py:303 MovieInfo.py:335
+msgid "An error occured! Internet connection broken?"
+msgstr ""
+
+#: MovieInfo.py:283
+msgid "Movie Information Download (TMDb)"
+msgstr "Elokuvatietojen lataus (TMDb)"
+
+#: MovieInfo.py:297 MovieInfo.py:574 MovieInfo.py:578
+msgid "Movie Information downloaded successfully!"
+msgstr ""
+
+#: MovieInfo.py:308 MovieInfo.py:607
+#, python-format
+msgid ""
+"Cover %s exists!\n"
+"\n"
+"Do you want to replace the existing cover?"
+msgstr ""
+
+#: MovieInfo.py:352 MovieInfo.py:459 MovieInfo.py:642
+msgid "Movie Information Preview for:"
+msgstr ""
+
+#: MovieInfo.py:366
+msgid "Movie Information Preview"
+msgstr ""
+
+#: MovieInfo.py:462
+msgid "Nothing was found !"
+msgstr "Mitään ei löytynyt!"
+
+#: MovieInfo.py:495
+msgid "Movie Information TMDb"
+msgstr ""
+
+#: MovieInfo.py:570
+msgid "Movie Information and Cover downloaded successfully!"
+msgstr ""
+
+#: MovieInfo.py:576
+#, python-format
+msgid ""
+"Movie Information downloaded successfully!\n"
+"\n"
+"Can not write Movie Cover File\n"
+"\n"
+"%s"
+msgstr ""
+
+#: MovieInfo.py:580
+#, python-format
+msgid ""
+"Movie Cover downloaded successfully!\n"
+"\n"
+"Can not write Movie Information File\n"
+"\n"
+"%s"
+msgstr ""
+
+#: MovieInfo.py:582
+#, python-format
+msgid ""
+"Can not write Movie Information and Cover File\n"
+"\n"
+"%s\n"
+"%s"
+msgstr ""
+
+#: MovieInfo.py:584
+#, python-format
+msgid ""
+"Can not write Movie Information File\n"
+"\n"
+"%s"
+msgstr ""
+
+#: MovieInfo.py:715
+msgid "Language:"
+msgstr "Kieli:"
+
+#: MovieInfo.py:716
+msgid "Load Runtime:"
+msgstr ""
+
+#: MovieInfo.py:717
+msgid "Load Genre:"
+msgstr ""
+
+#: MovieInfo.py:718
+msgid "Load Production Countries:"
+msgstr ""
+
+#: MovieInfo.py:719
+msgid "Load Release Date:"
+msgstr ""
+
+#: MovieInfo.py:720
+msgid "Load Vote:"
+msgstr ""
+
+#: MovieInfo.py:721
+msgid "Save Cover"
+msgstr "Tallenna kansikuva"
+
+#: MovieInfo.py:722
+msgid "Coversize"
+msgstr ""
+
+#: MovieInfo.py:723
+msgid "Switch complete to new Version"
+msgstr ""
+
+#: MovieInfo.py:741
+msgid "Movie Information Download Setup"
+msgstr ""
+
+#: MovieRetitle.py:27 MovieRetitle.py:63
+msgid "Location:"
+msgstr "Sijainti:"
+
+#: MovieRetitle.py:78
+msgid "Foldername:"
+msgstr "Hakemiston nimi:"
+
+#: MovieRetitle.py:80
+msgid "Filename:"
+msgstr "Tiedostonimi:"
+
+#: MovieRetitle.py:81
+msgid "Movietitle:"
+msgstr ""
+
+#: MovieRetitle.py:82
+msgid "Description:"
+msgstr "Kuvaus:"
+
+#: MovieRetitle.py:112
+msgid "Change Foldername"
+msgstr "Muuta hakemiston nimi"
+
+#: MovieRetitle.py:114
+msgid "Change File/Moviename and/or Description"
+msgstr ""
+
+#: MovieSelection.py:103
+msgid ""
+"EMC: Skipping Trashcan Cleanup\n"
+"Movie Home Path is equal to or a subfolder of the Trashcan"
+msgstr ""
+
+#: MovieSelection.py:140
+msgid "EMC Trashcan Cleanup failed!"
+msgstr ""
+
+#: MovieSelection.py:269
+msgid "Artist:"
+msgstr "Artisti:"
+
+#: MovieSelection.py:271
+msgid "Album:"
+msgstr "Albumi:"
+
+#: MovieSelection.py:502 MovieSelection.py:1636
+msgid "Reading directory..."
+msgstr "Luetaan hakemistoa..."
+
+#: MovieSelection.py:520
+msgid "Play selected movie(s)"
+msgstr "Toista valitut tallenteet"
+
+#: MovieSelection.py:522 MovieSelectionMenu.py:99
+msgid "Play All"
+msgstr "Toista kaikki"
+
+#: MovieSelection.py:523 MovieSelectionMenu.py:100
+msgid "Shuffle All"
+msgstr "Toista kaikki satunnaisessa järjestyksessä"
+
+#: MovieSelection.py:524
+msgid "Close EMC"
+msgstr "Sulje EMC"
+
+#: MovieSelection.py:525
+msgid "Open menu"
+msgstr "Avaa valikko"
+
+#: MovieSelection.py:526
+msgid "Show event info"
+msgstr ""
+
+#: MovieSelection.py:527
+msgid "IMDBSearch / EMC-TMDBInfo / TMDBInfo / TMBDInfo / CSFDInfo"
+msgstr "IMDBSearch / EMC-TMDBInfo / TMDBInfo / TMBDInfo / CSFDInfo"
+
+#: MovieSelection.py:541
+msgid "Move cursor page up"
+msgstr ""
+
+#: MovieSelection.py:542
+msgid "Move cursor page down"
+msgstr ""
+
+#: MovieSelection.py:543
+msgid "Move cursor up"
+msgstr "Siirrä kursoria ylöspäin"
+
+#: MovieSelection.py:544
+msgid "Move cursor down"
+msgstr "Siirrä kursoria alaspäin"
+
+#: MovieSelection.py:545
+msgid ""
+"Move cursor to the top / Move cursor x entries up / Switch Folders in Movie "
+"Home (up)"
+msgstr ""
+
+#: MovieSelection.py:546
+msgid ""
+"Move cursor to the end / Move cursor x entries down / Switch Folders in "
+"Movie Home (down)"
+msgstr ""
+
+#: MovieSelection.py:547
+msgid "Directory forward"
+msgstr "Siirry hakemisto eteenpäin"
+
+#: MovieSelection.py:549
+msgid "Directory back"
+msgstr "Siirry hakemisto taaksepäin"
+
+#: MovieSelection.py:551
+msgid "Toggle service selection"
+msgstr ""
+
+#: MovieSelection.py:552
+msgid "Remove service selection"
+msgstr ""
+
+#: MovieSelection.py:553 MovieSelection.py:555
+msgid "Available plugins menu"
+msgstr ""
+
+#: MovieSelection.py:556
+msgid "Reload movie file list"
+msgstr "Päivitä tallennelista"
+
+#: MovieSelection.py:557
+msgid "Open Timer List"
+msgstr "Avaa ajastusluettelo"
+
+#: MovieSelection.py:558
+msgid "Toggle viewed / not viewed"
+msgstr ""
+
+#: MovieSelection.py:560
+msgid "Start / end multiselection"
+msgstr "Aloita / lopeta monivalinta"
+
+#: MovieSelection.py:1021
+msgid "E2 Bookmark"
+msgstr "E2 kirjanmerkki"
+
+#: MovieSelection.py:1022 MovieSelectionMenu.py:165
+msgid "Open E2 Bookmark path"
+msgstr "Avaa E2 kirjanmerkkihakemisto"
+
+#: MovieSelection.py:1130
+msgid "No script operation for VLC streams."
+msgstr ""
+
+#: MovieSelection.py:1146
+msgid "Does not contain any scripts."
+msgstr ""
+
+#: MovieSelection.py:1150
+msgid "Choose script"
+msgstr ""
+
+#: MovieSelection.py:1169
+msgid ""
+"Cover search with all Files in Subdirectories?\n"
+"\n"
+"This may take a while on huge Disks, or Directories!"
+msgstr ""
+"Hae kansikuvia kaikille tiedostoille nykyisessä hakemistossa?\n"
+"\n"
+"Toimenpide saattaa kestää hyvän aikaa isoilla kovalevyillä / hakemistoilla!"
+
+#: MovieSelection.py:1204
+msgid "No functionality set..."
+msgstr ""
+
+#: MovieSelection.py:1296
+msgid "*** Multiselection active ***"
+msgstr "*** Monivalinta aktivoitu ***"
+
+#: MovieSelection.py:1669
+msgid "Sort Mode"
+msgstr "Lajittelujärjestys"
+
+#: MovieSelection.py:1670
+msgid "Sort Order"
+msgstr "Lajittelujärjestys"
+
+#: MovieSelection.py:1694 MovieSelection.py:1710 MovieSelection.py:1726
+msgid "Hide Cover"
+msgstr "Piilota kansikuva"
+
+#: MovieSelection.py:1698 MovieSelection.py:1714 MovieSelection.py:1730
+#: plugin.py:179 plugin.py:200
+msgid "Button disabled"
+msgstr "Ei käytössä"
+
+#: MovieSelection.py:1699 MovieSelection.py:1715 MovieSelection.py:1731
+msgid "Cover disabled in EMC-Setup"
+msgstr ""
+
+#: MovieSelection.py:1869
+msgid "File not available."
+msgstr ""
+
+#: MovieSelection.py:1925
+msgid "File added to current Playlist."
+msgstr "Tiedosto lisätty nykyiseen soittolistaan."
+
+#: MovieSelection.py:1927
+msgid "File exists in current Playlist."
+msgstr "Tiedosto löytyy jo nykyiseltä soittolistalta!"
+
+#: MovieSelection.py:1930
+msgid "Files added to current Playlist."
+msgstr ""
+
+#: MovieSelection.py:1932
+#, python-format
+msgid ""
+"Files added to current Playlist:\n"
+"%s\n"
+"\n"
+"Files exists in current Playlist:\n"
+"%s"
+msgstr ""
+
+#: MovieSelection.py:1934
+#, python-format
+msgid ""
+"Files exists in current Playlist:\n"
+"%s"
+msgstr ""
+
+#: MovieSelection.py:1975
+msgid "Last played movie/playlist not available..."
+msgstr ""
+
+#: MovieSelection.py:1979
+msgid "Play last movie starting"
+msgstr ""
+
+#: MovieSelection.py:1998
+msgid "Play All starting"
+msgstr ""
+
+#: MovieSelection.py:2017
+msgid "Shuffle All starting"
+msgstr ""
+
+#: MovieSelection.py:2049
+msgid "Not stopping any repeating timers. Modify them with the timer editor."
+msgstr ""
+
+#: MovieSelection.py:2056
+msgid "Stop ongoing recording?\n"
+msgstr "Keskeytä käynnissä oleva tallennus?\n"
+
+#: MovieSelection.py:2109
+#, python-format
+msgid ""
+"Do you really want to remove your link\n"
+"%s?"
+msgstr ""
+
+#: MovieSelection.py:2111
+#, python-format
+msgid ""
+"Do you really want to remove your directory\n"
+"%s?"
+msgstr ""
+
+#: MovieSelection.py:2151 MovieSelection.py:2173 MovieSelectionMenu.py:449
+#: MovieSelectionMenu.py:481
+#, python-format
+msgid ""
+"Do you really want to remove your bookmark\n"
+"%s?"
+msgstr ""
+
+#: MovieSelection.py:2192
+msgid ""
+" Deleting remotely recorded and it will display an rec-error dialog on the "
+"other DB."
+msgstr ""
+
+#: MovieSelection.py:2198
+msgid " permanently"
+msgstr "pysyvästi"
+
+#: MovieSelection.py:2215
+msgid " currently played?"
+msgstr " parhaillaan toistettava?"
+
+#: MovieSelection.py:2235
+msgid " all selected video files?"
+msgstr "kaikki valitut tallenteet?"
+
+#: MovieSelection.py:2240
+msgid ""
+" all selected video files? The currently playing movie is also one of the "
+"selections and its playback will be stopped."
+msgstr ""
+
+#: MovieSelection.py:2242
+msgid "Delete error:\n"
+msgstr "Poistovirhe:\n"
+
+#: MovieSelection.py:2274 MovieSelection.py:2318
+#, python-format
+msgid ""
+"The following files are used for other entrys in List !\n"
+"\n"
+"Also delete these files?\n"
+"\n"
+"%s"
+msgstr ""
+
+#: MovieSelection.py:2362
+msgid "This element belongs to a locked folder and cannot be deleted!"
+msgstr ""
+
+#: MovieSelection.py:2373
+msgid ""
+"Delete failed because the trashcan directory does not exist. Attempt to "
+"create it now?"
+msgstr ""
+
+#: MovieSelection.py:2397
+msgid "This folder is locked or contains a locked subfolder, unlock it first!"
+msgstr ""
+
+#: MovieSelection.py:2417
+msgid "Directory is not empty! Do you really want to delete it?"
+msgstr "Hakemisto ei ole tyhjä. Haluatko varmasti poistaa sen?"
+
+#: MovieSelection.py:2422
+msgid "Cannot delete the parent directory."
+msgstr ""
+
+#: MovieSelection.py:2502 MovieSelection.py:2583
+msgid "Delete failed!"
+msgstr "Poisto epäonnistui!"
+
+#: MovieSelection.py:2739 MovieSelection.py:2779
+msgid "Move file(s):"
+msgstr "Siirrä tiedosto(t):"
+
+#: MovieSelection.py:2767 MovieSelection.py:2788
+msgid ""
+"How to move files:\n"
+"Select some movies with the VIDEO-button, move the cursor on top of the "
+"destination directory and press yellow."
+msgstr ""
+
+#: MovieSelection.py:2811 MovieSelection.py:2851
+msgid "Copy file(s):"
+msgstr "Kopioi tiedosto(t):"
+
+#: MovieSelection.py:2839 MovieSelection.py:2860
+msgid ""
+"How to copy files:\n"
+"Select some movies with the VIDEO-button, move the cursor on top of the "
+"destination directory and press yellow long."
+msgstr ""
+
+#: MovieSelection.py:2876
+msgid "Move Directory:"
+msgstr "Siirrä hakemisto:"
+
+#: MovieSelection.py:2969 MovieSelection.py:2975
+msgid "IMDb"
+msgstr "IMDb"
+
+#: MovieSelection.py:2971
+msgid "TMDb"
+msgstr "TMDb"
+
+#: MovieSelection.py:2973
+msgid "CSFD"
+msgstr "CSFD"
+
+#: MovieSelectionMenu.py:81
+msgid "Choose operation"
+msgstr "Valitse toiminto"
+
+#: MovieSelectionMenu.py:84 plugin.py:169 plugin.py:190
+msgid "Movie home"
+msgstr "Päälistan alkuun"
+
+#: MovieSelectionMenu.py:87
+msgid "Directory up"
+msgstr "Siirry hakemisto ylöspäin"
+
+#: MovieSelectionMenu.py:89
+msgid "Reload current directory"
+msgstr "Päivitä nykyinen hakemisto"
+
+#: MovieSelectionMenu.py:91 MovieSelectionMenu.py:208
+msgid "Playlist Options"
+msgstr "Soittolistan valinnat"
+
+#: MovieSelectionMenu.py:95 MovieSelectionMenu.py:213
+msgid "Add to current Playlist"
+msgstr "Lisää nykyiselle soittolistalle"
+
+#: MovieSelectionMenu.py:97 plugin.py:173 plugin.py:194
+msgid "Play last"
+msgstr "Toista viimeksi valittu"
+
+#: MovieSelectionMenu.py:102
+msgid "Cover search"
+msgstr "Kansikuvahaku"
+
+#: MovieSelectionMenu.py:105
+msgid "Directory-Cover search"
+msgstr ""
+
+#: MovieSelectionMenu.py:114 MovieSelectionMenu.py:116
+msgid "Delete permanently"
+msgstr "Poista pysyvästi (ohita roskakori)"
+
+#: MovieSelectionMenu.py:117
+msgid "Empty trashcan"
+msgstr "Tyhjennä roskakori"
+
+#: MovieSelectionMenu.py:118
+msgid "Go to trashcan"
+msgstr "Siirry roskakoriin"
+
+#: MovieSelectionMenu.py:120
+msgid "Mark all movies"
+msgstr "Valitse kaikki tallenteet"
+
+#: MovieSelectionMenu.py:121
+msgid "Remove rogue files"
+msgstr ""
+
+#: MovieSelectionMenu.py:123
+msgid "Delete cut file(s)"
+msgstr ""
+
+#: MovieSelectionMenu.py:125
+msgid "Create link"
+msgstr "Luo linkki"
+
+#: MovieSelectionMenu.py:126 MovieSelectionMenu.py:247
+msgid "Create directory"
+msgstr "Luo hakemisto"
+
+#: MovieSelectionMenu.py:128
+msgid "(Un-)Lock Directory"
+msgstr "Avaa/lukitse hakemisto"
+
+#: MovieSelectionMenu.py:135
+msgid "Copy Files"
+msgstr "Kopioi tiedostoja"
+
+#: MovieSelectionMenu.py:136
+msgid "Move Files"
+msgstr "Siirrä tiedostoja"
+
+#: MovieSelectionMenu.py:138 plugin.py:176 plugin.py:197
+msgid "Copy File"
+msgstr "Kopioi"
+
+#: MovieSelectionMenu.py:139 plugin.py:171 plugin.py:192
+msgid "Move File"
+msgstr "Siirrä"
+
+#: MovieSelectionMenu.py:143
+msgid "Download Movie Information"
+msgstr "Lataa tallenteen tiedot"
+
+#: MovieSelectionMenu.py:147
+msgid "Rename selected movie(s)"
+msgstr "Uudelleennimeä valitut tallenteet"
+
+#: MovieSelectionMenu.py:148
+msgid "Remove cut list marker"
+msgstr ""
+
+#: MovieSelectionMenu.py:149
+msgid "Reset marker from selected movie(s)"
+msgstr ""
+
+#: MovieSelectionMenu.py:167
+msgid "Add directory to E2 Bookmarks"
+msgstr "Lisää hakemisto E2 kirjanmerkkeihin"
+
+#: MovieSelectionMenu.py:169
+msgid "Remove directory from E2 Bookmarks"
+msgstr "Poista hakemisto E2 kirjanmerkeistä"
+
+#: MovieSelectionMenu.py:172
+msgid "Remove selected E2 Bookmark"
+msgstr "Poista valittu E2 kirjanmerkki"
+
+#: MovieSelectionMenu.py:174
+msgid "Open EMC Bookmark path"
+msgstr "Avaa EMC kirjanmerkkihakemisto"
+
+#: MovieSelectionMenu.py:176
+msgid "Add directory to EMC Bookmarks"
+msgstr "Lisää hakemisto EMC kirjanmerkkeihin"
+
+#: MovieSelectionMenu.py:178
+msgid "Remove directory from EMC Bookmarks"
+msgstr "Poista hakemisto EMC kirjanmerkeistä"
+
+#: MovieSelectionMenu.py:181
+msgid "Remove selected EMC Bookmark"
+msgstr "Poista valitut EMC kirjanmerkit"
+
+#: MovieSelectionMenu.py:183
+msgid "Set permanent sort"
+msgstr "Määritä pysyvä lajittelujärjestys"
+
+#: MovieSelectionMenu.py:185
+msgid "Remove permanent sort"
+msgstr "Poista pysyvän lajittelujärjestyksen määritys"
+
+#: MovieSelectionMenu.py:189
+msgid "Remove permanent sort from parent"
+msgstr ""
+
+#: MovieSelectionMenu.py:192
+msgid "EMC Setup"
+msgstr "EMC asetukset"
+
+#: MovieSelectionMenu.py:195
+msgid "Choose plugin"
+msgstr "Valitse lisäosa"
+
+#: MovieSelectionMenu.py:201
+msgid "Choose bookmark"
+msgstr "Valitse kirjanmerkki"
+
+#: MovieSelectionMenu.py:209
+msgid "Show current Playlist"
+msgstr "Näytä nykyinen soittolista"
+
+#: MovieSelectionMenu.py:215
+msgid "Play current Playlist"
+msgstr "Toista nykyinen soittolista"
+
+#: MovieSelectionMenu.py:216
+msgid "Play random current Playlist"
+msgstr "Toista nykyinen soittolista satunnaisjärj."
+
+#: MovieSelectionMenu.py:217
+msgid "Delete current Playlist"
+msgstr "Poista nykyinen soittolista"
+
+#: MovieSelectionMenu.py:218
+msgid "Playlist Setup"
+msgstr "Soittolistan asetukset"
+
+#: MovieSelectionMenu.py:246
+msgid "Enter name for new directory:"
+msgstr "Anna uuden hakemiston nimi:"
+
+#: MovieSelectionMenu.py:253
+#, python-format
+msgid "Directory %s already exists!"
+msgstr "Hakemisto %s on jo olemassa!"
+
+#: MovieSelectionMenu.py:267
+#, python-format
+msgid "Do you really want to lock the directory %s and all its subfolders?"
+msgstr "Haluatko varmasti lukita hakemiston %s ja kaikki sen alihakemistot?"
+
+#: MovieSelectionMenu.py:269
+#, python-format
+msgid ""
+"The directory %s is already locked. Do you want to unlock it and all its "
+"subfolders?"
+msgstr ""
+"Hakemisto %s on jo lukittu. Haluatko poistaa lukituksen (mukaanlukien kaikki "
+"sen alihakemistot)?"
+
+#: MovieSelectionMenu.py:293
+msgid "Create Link"
+msgstr "Luo linkki"
+
+#: MovieSelectionMenu.py:324
+msgid "Permanently delete all files in trashcan?"
+msgstr "Poista pysyvästi kaikki roskakorissa olevat tiedostot?"
+
+#: MovieSelectionMenu.py:336
+msgid "Movie Selection Menu"
+msgstr ""
+
+#: MovieSelectionMenu.py:344
+msgid "exception "
+msgstr "poikkeus"
+
+#: MovieSelectionMenu.py:353
+msgid ""
+"Locate rogue files and remove them? (permanently if no trashcan available, "
+"may take a minute or so)"
+msgstr ""
+
+#: MovieSelectionMenu.py:370
+msgid "Remove all cut file marker permanently?"
+msgstr ""
+
+#: MovieSelectionMenu.py:384
+msgid "Remove all marker permanently?"
+msgstr "Poista viimeisen katselun merkit pysyvästi?"
+
+#: MovieSelectionMenu.py:517
+msgid ""
+"Do you really want to delete the cut file?\n"
+"If you have selected a directory, all cut files within the folder and its "
+"subfolders will be deleted!"
+msgstr ""
+
+#: plugin.py:55
+msgid "no"
+msgstr "Ei"
+
+#: plugin.py:55
+msgid "yes"
+msgstr "Kyllä"
+
+#: plugin.py:133
+msgid "No override"
+msgstr ""
+
+#: plugin.py:134
+msgid "Video-button"
+msgstr ""
+
+#: plugin.py:135
+msgid "TV-button"
+msgstr "TV-näppäin"
+
+#: plugin.py:136
+msgid "Radio-button"
+msgstr "Radionäppäin"
+
+#: plugin.py:137
+msgid "Quick-button"
+msgstr ""
+
+#: plugin.py:138
+msgid "Timeshift-button"
+msgstr ""
+
+#: plugin.py:141 plugin.py:150 plugin.py:159
+msgid "Off"
+msgstr ""
+
+#: plugin.py:142
+msgid "DD.MM.YYYY"
+msgstr "pp.kk.vvvv"
+
+#: plugin.py:143
+msgid "DD.MM.YYYY HH:MM"
+msgstr ""
+
+#: plugin.py:144
+msgid "DD.MM HH:MM"
+msgstr ""
+
+#: plugin.py:145
+msgid "DD.MM. HH:MM"
+msgstr ""
+
+#: plugin.py:146
+msgid "YYYY/MM/DD"
+msgstr "vvvv/kk/pp"
+
+#: plugin.py:147
+msgid "YYYY/MM/DD HH:MM"
+msgstr ""
+
+#: plugin.py:148
+msgid "MM/DD HH:MM"
+msgstr ""
+
+#: plugin.py:151
+msgid "Description"
+msgstr ""
+
+#: plugin.py:152
+msgid "( # )"
+msgstr "( # )"
+
+#: plugin.py:153
+msgid "( # / GB )"
+msgstr "( # / GB )"
+
+#: plugin.py:154
+msgid "( GB )"
+msgstr "( GB )"
+
+#: plugin.py:156
+msgid "ProgressBar"
+msgstr "Etenemispalkki"
+
+#: plugin.py:157
+msgid "Percent (%)"
+msgstr "Prosenttia (%)"
+
+#: plugin.py:158
+msgid "Movie Color"
+msgstr "Tallenteen väri"
+
+#: plugin.py:172 plugin.py:193
+msgid "Add to Playlist"
+msgstr "Lisää soittolistaan"
+
+#: plugin.py:174 plugin.py:195
+msgid "Cover Search"
+msgstr "Kansikuvahaku"
+
+#: plugin.py:175 plugin.py:196
+msgid "Download Movie Info"
+msgstr "Lataa elokuvan tiedot"
+
+#: plugin.py:177 plugin.py:198
+msgid "Open E2 bookmarks"
+msgstr "E2 kirjanmerkit"
+
+#: plugin.py:178
+msgid "Toggle Cover Button"
+msgstr "Näytä/piilota kansikuva"
+
+#: plugin.py:183
+msgid "Sort Options"
+msgstr "Lajitteluasetukset"
+
+#: plugin.py:209
+msgid "down"
+msgstr "Alas"
+
+#: plugin.py:210
+msgid "up/down"
+msgstr "Ylös/alas"
+
+#: plugin.py:211
+msgid "off"
+msgstr ""
+
+#: plugin.py:213
+msgid "type 1 - OSD + black (#00000000)"
+msgstr ""
+
+#: plugin.py:214
+msgid "type 2 - transparent + white (#FFFFFFFF)"
+msgstr ""
+
+#: plugin.py:215
+msgid "type 3 - OSD + black (#00FFFFFF)"
+msgstr ""
+
+#: plugin.py:216
+msgid "type 4 - transparent + black (#FF000000)"
+msgstr ""
+
+#: plugin.py:219
+msgid "E2 Bookmarks"
+msgstr "E2 kirjanmerkit"
+
+#: plugin.py:220
+msgid "EMC Bookmarks"
+msgstr "EMC kirjanmerkit"
+
+#: plugin.py:221
+msgid "Both"
+msgstr "Kummatkin"
+
+#: plugin.py:224
+msgid "Standby"
+msgstr "Valmiustila"
+
+#: plugin.py:225
+msgid "DeepStandby"
+msgstr "Virransäästötila"
+
+#: plugin.py:226
+msgid "Reboot"
+msgstr ""
+
+#: plugin.py:227
+msgid "E2 Restart"
+msgstr ""
+
+#: plugin.py:229
+msgid "HomeEnd"
+msgstr "Tallennelistan alkuun/loppuun"
+
+#: plugin.py:230
+msgid "Skip"
+msgstr "Hyppää tallennelistassa"
+
+#: plugin.py:231
+msgid "Change Folder"
+msgstr "Vaihda hakemistoa"
+
+#: plugin.py:239
+msgid "Date sort descending (D-)"
+msgstr ""
+
+#: plugin.py:239 plugin.py:245
+msgid "Date sort"
+msgstr ""
+
+#: plugin.py:240
+msgid "Alpha sort ascending (AZ)"
+msgstr ""
+
+#: plugin.py:240 plugin.py:246
+msgid "Alpha sort"
+msgstr "Aakkosjärjestys"
+
+#: plugin.py:241
+msgid "Alpha sort ascending, Date descending (AZD-)"
+msgstr ""
+
+#: plugin.py:241 plugin.py:247
+msgid "Alpha sort date newest"
+msgstr ""
+
+#: plugin.py:242
+msgid "Alpha sort ascending with meta (AZM)"
+msgstr ""
+
+#: plugin.py:242 plugin.py:248
+msgid "Alpha sort meta"
+msgstr ""
+
+#: plugin.py:243
+msgid "Alpha sort ascending with meta, Date descending (AZMD-)"
+msgstr ""
+
+#: plugin.py:243 plugin.py:249
+msgid "Alpha sort meta date newest"
+msgstr ""
+
+#: plugin.py:244
+msgid "Progress sort ascending (P+)"
+msgstr ""
+
+#: plugin.py:244 plugin.py:250
+msgid "Progress sort"
+msgstr ""
+
+#: plugin.py:245
+msgid "Date sort ascending (D+)"
+msgstr ""
+
+#: plugin.py:246
+msgid "Alpha sort descending (ZA)"
+msgstr ""
+
+#: plugin.py:247
+msgid "Alpha sort descending, Date ascending (ZAD+)"
+msgstr ""
+
+#: plugin.py:248
+msgid "Alpha sort descending with meta (ZAM)"
+msgstr ""
+
+#: plugin.py:249
+msgid "Alpha sort descending with meta, Date ascending (ZAMD+)"
+msgstr ""
+
+#: plugin.py:250
+msgid "Progress sort descending (P-)"
+msgstr ""
+
+#: plugin.py:313
+msgid "left from Name"
+msgstr "Nimestä vasemmalle"
+
+#: plugin.py:313
+msgid "right from Name"
+msgstr "Nimestä oikealle"
+
+#: plugin.py:324
+msgid "Yes, without Message"
+msgstr "Kyllä, älä näytä viestiä"
+
+#: plugin.py:324
+msgid "Yes, with Message"
+msgstr "Kyllä, näytä viesti"
+
+#: plugin.py:346
+msgid ""
+"ATTENTION\n"
+"\n"
+"This option will move all finished movies in Movie Home automatically to "
+"Your trashcan at the given time.\n"
+"At next trashcan cleanup all movies will be deleted.\n"
+"\n"
+"Confirm this with the blue key followed by the green key."
+msgstr ""
+
+#: plugin.py:365
+msgid "center"
+msgstr ""
+
+#: plugin.py:365
+msgid "right"
+msgstr "Oikealla"
+
+#: plugin.py:370
+#, python-format
+msgid "%d second"
+msgid_plural "%d seconds"
+msgstr[0] "%d sekunti"
+msgstr[1] "%d sekuntia"
+
+#: plugin.py:379
+msgid "Day"
+msgstr "päivä"
+
+#: plugin.py:382
+msgid "Days"
+msgstr "päivää"
+
+#: plugin.py:387
+msgid "Week"
+msgstr "viikko"
+
+#: plugin.py:390
+msgid "Weeks"
+msgstr "viikkoa"
+
+#: plugin.py:395
+msgid "Month"
+msgstr "kuukausi"
+
+#: plugin.py:398
+msgid "Months"
+msgstr "kuukautta"
+
+#: plugin.py:403
+msgid "No limit"
+msgstr ""
+
+#: plugin.py:434
+msgid "IMDb Search"
+msgstr "IMDb-haku"
+
+#: plugin.py:434
+msgid "EMC-TMDB Info"
+msgstr "EMC-TMDB Info"
+
+#: plugin.py:434
+msgid "TMDB Info"
+msgstr "TMDB Info"
+
+#: plugin.py:434
+msgid "TMBD Info"
+msgstr "TMBD Info"
+
+#: plugin.py:434
+msgid "CSFD Info"
+msgstr "CSFD Info"
+
+#: plugin.py:524
+msgid "configuration"
+msgstr ""
+
+#: plugin.py:527
+msgid "movie manipulation list"
+msgstr ""
+
+#: RogueFileCheck.py:42
+msgid " files\n"
+msgstr ""
+
+#: RogueFileCheck.py:43
+msgid "No rogue files found."
+msgstr ""
+
+#: RogueFileCheck.py:44
+msgid ""
+"Found rogue files:\n"
+"\n"
+msgstr ""
+
+#: VlcPluginInterface.py:156
+msgid "VLC Server not reachable"
+msgstr "VLC-palvelimeen ei saada yhteyttä"
+
+#~ msgid "themoviedb cover resolution:"
+#~ msgstr "themoviedb kansikuvien resoluutio"
