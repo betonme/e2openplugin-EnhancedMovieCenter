@@ -166,16 +166,16 @@ def getPosterPath(searchPath):
 		paths.append(searchname)
 	if foldercoverconfig == '1':
 		paths.append(basedircover)
-		paths.append(filedircover)
 		paths.append(foldercover)
+		paths.append(filedircover)
 	elif foldercoverconfig == '2':
 		paths.append(foldercover)
 		paths.append(basedircover)
 		paths.append(filedircover)
 	else:
 		paths.append(filedircover)
-		paths.append(basedircover)
 		paths.append(foldercover)
+		paths.append(basedircover)
 
 	for path in paths:
 		for ext in exts:
