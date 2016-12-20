@@ -153,21 +153,29 @@ def getPosterPath(searchPath):
 	paths = []
 	exts = [".jpg", ".png", "_md.jpg", "_md.png"]
 	searchname = os.path.splitext(searchPath)[0]
+	foldercoverconfig = config.EMC.imdb.singlesearch_foldercoverpath.value
 
 	if os.path.isfile(searchPath):
 		basedircover = os.path.dirname(searchname)
 	else:
 		basedircover = searchname
 	filedircover = basedircover + os.sep + os.path.basename(basedircover)
+	foldercover = basedircover + os.sep + 'folder'
 
 	if searchname != basedircover:
 		paths.append(searchname)
-	if config.EMC.imdb.singlesearch_foldercoverpath.value == '0':
-		paths.append(filedircover)
+	if foldercoverconfig == '1':
 		paths.append(basedircover)
+		paths.append(filedircover)
+		paths.append(foldercover)
+	elif foldercoverconfig == '2':
+		paths.append(foldercover)
+		paths.append(basedircover)
+		paths.append(filedircover)
 	else:
-		paths.append(basedircover)
 		paths.append(filedircover)
+		paths.append(basedircover)
+		paths.append(foldercover)
 
 	for path in paths:
 		for ext in exts:
