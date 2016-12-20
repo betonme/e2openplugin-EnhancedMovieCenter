@@ -53,7 +53,7 @@ config.EMC.imdb.singlesearch = ConfigSelection(default='6', choices=[('0', _('im
 config.EMC.imdb.singlesearch_filter = ConfigSelection(default='2', choices=[('0', _('overall')), ('1', _('every single one')), ('2', _('two contiguous')), ('3', _('three contiguous'))])
 config.EMC.imdb.singlesearch_siteresults = ConfigSelection(default='3', choices=[('0', _('no limit')),'3', '5', '10', '25', '50', '100'])
 config.EMC.imdb.singlesearch_tvdbcoverrange = ConfigSelection(default='1', choices = [('0', _('no limit')), ('1', _('standard cover')), '3', '5', '10', '25'])
-config.EMC.imdb.singlesearch_foldercoverpath = ConfigSelection(default='0', choices=[('0', _('.../title/title.jpg')), ('1', _('.../title.jpg'))])
+config.EMC.imdb.singlesearch_foldercoverpath = ConfigSelection(default='0', choices=[('0', _('.../foldername/foldername.jpg')), ('1', _('.../foldername.jpg')), ('2', _('.../foldername/folder.jpg'))])
 #common
 config.EMC.imdb.preferred_coversize = ConfigSelection(default="w185", choices = ["w92", "w154", "w185", "w300", "w320", "w342", "w500", "w780", "original"])
 config.EMC.imdb.thetvdb_standardcover = ConfigSelectionNumber(default = 1, stepwidth = 1, min = 1, max = 30, wraparound = True)
@@ -260,8 +260,10 @@ class EMCImdbScan(Screen):
 			if self.isFolder:
 				if config.EMC.imdb.singlesearch_foldercoverpath.value == '1':
 					path = path + '.jpg'
+				elif config.EMC.imdb.singlesearch_foldercoverpath.value == '2':
+					path = path + os.sep + 'folder.jpg'
 				else:
-					path = path + '/' + title + '.jpg'
+					path = path + os.sep + title + '.jpg'
 			#title = getMovieNameWithoutPhrases(getMovieNameWithoutExt(title))
 			path = re.sub(self.file_format + "$", '.jpg', path, flags=re.IGNORECASE)
 			if os.path.exists(path):
