@@ -2952,11 +2952,15 @@ msgstr ""
 
 #: plugin.py:365
 msgid "center"
-msgstr ""
+msgstr "Zentriert"
 
 #: plugin.py:365
 msgid "right"
-msgstr ""
+msgstr "Rechts"
+
+#: plugin.py
+msgid "left"
+msgstr "Links"
 
 #: plugin.py:370
 #, python-format
