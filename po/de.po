@@ -220,7 +220,7 @@ msgstr "Such-Seite:"
 
 #: EMCCoverSearch.py:705
 msgid "Preferred cover resolution (if possible):"
-msgstr "Bevorzugte Cover-Auflösung (wenn möglch):"
+msgstr "Bevorzugte Cover-Auflösung (wenn möglich):"
 
 #: EMCCoverSearch.py:706
 msgid "Save description to movie.txt file:"
