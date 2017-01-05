@@ -2,21 +2,91 @@ msgid ""
 msgstr ""
 "Project-Id-Version: EMC\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-08-11 23:09+0200\n"
-"PO-Revision-Date: 2016-07-07 10:17+0300\n"
+"POT-Creation-Date: 2016-12-08 13:32+0200\n"
+"PO-Revision-Date: 2017-01-05 12:41+0200\n"
 "Last-Translator: Vytenis P. <vyteniui@gmail.com>\n"
 "Language-Team: Vytenis P. <vyteniui@gmail.com>\n"
 "Language: lt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.8\n"
+"X-Generator: Poedit 1.8.11\n"
 "X-Poedit-KeywordsList: _;gettext;gettext_noop;_\n"
 "X-Poedit-Basepath: ..\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n"
 "%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: src\n"
+
+#: EMCCoverSearch.py
+msgid ""
+"themoviedb.org for movies + thetvdb.com for series (e.g. 'S01E01' in title)"
+msgstr ""
+"themoviedb.org - filmams, thetvdb.com serialams (pvz. 'S01E01' pavadinime)"
+
+#: EMCCoverSearch.py
+msgid "overall"
+msgstr "visuotinis"
+
+#: EMCCoverSearch.py
+msgid "every single one"
+msgstr "kiekvienas atskiras"
+
+#: EMCCoverSearch.py
+msgid "two contiguous"
+msgstr "du gretutiniai"
+
+#: EMCCoverSearch.py
+msgid "three contiguous"
+msgstr "trys gretutiniai"
+
+#: EMCCoverSearch.py
+msgid "no limit"
+msgstr "neribojant"
+
+#: EMCCoverSearch.py
+msgid "standard cover"
+msgstr "paprastas viršelis"
+
+#: EMCCoverSearch.py
+msgid ".../title/title.jpg"
+msgstr ".../title/title.jpg"
+
+#: EMCCoverSearch.py
+msgid ".../title.jpg"
+msgstr ".../title.jpg"
+
+#: EMCCoverSearch.py
+msgid "Search filter for matching existing terms in the title:"
+msgstr "Terminų pavadinime atitikimo paieškos filtras:"
+
+#: EMCCoverSearch.py
+msgid "thetvdb cover number (standard cover):"
+msgstr "thetvdb viršelių skaičius (įprastiniai viršeliai):"
+
+#: EMCCoverSearch.py
+msgid "Set path to save the folder Cover:"
+msgstr "Nurodykite kelią į katalogą viršeliams:"
+
+#: EMCCoverSearch.py
+msgid "Search Results per Search Site%s:"
+msgstr "Paieškos rezultatai svetainėje %s:"
+
+#: EMCCoverSearch.py
+msgid " (without counting cover range)"
+msgstr " (neskaitant viršelių grupės)"
+
+#: EMCCoverSearch.py
+msgid "thetvdb cover range per title:"
+msgstr "thetvdb viršelių apimtis kūriniui:"
+
+#: EMCCoverSearch.py
+msgid "Settings have been Saved."
+msgstr "Nustatymai išsaugoti."
+
+#: EMCCoverSearch.py
+msgid "%s not removed. Write protect?"
+msgstr "%s nepašalinta. Rašymo apsauga?"
 
 #: EMCCoverSearch.py:47 EMCCoverSearch.py:48
 msgid "imdb.de"
@@ -157,8 +227,8 @@ msgid "Search Site:"
 msgstr "Ieškoti svetainėje:"
 
 #: EMCCoverSearch.py:705
-msgid "themoviedb cover resolution:"
-msgstr "themoviedb viršelių rezoliucija:"
+msgid "Preferred cover resolution (if possible):"
+msgstr "Pageidautina viršelių rezoliucija (jei galima):"
 
 #: EMCCoverSearch.py:706
 msgid "Save description to movie.txt file:"
@@ -756,6 +826,14 @@ msgstr "Horizontalus lygiavimas pagal skaičių / dydį"
 msgid "HELP_Horizontal alignment for count / size"
 msgstr "Horizontalus teksto išdėstymas pagal žinomus skaičių / dydį"
 
+#: EnhancedMovieCenter.py:427
+msgid "Horizontal alignment for date"
+msgstr "Horizontalus lygiavimas pagal datą"
+
+#: EnhancedMovieCenter.py:427
+msgid "HELP_Horizontal alignment for date"
+msgstr "Horizontalus teksto išdėstymas pagal žinomas datas"
+
 #: EnhancedMovieCenter.py:366
 msgid "Show directory size in skin"
 msgstr "Temoje rodyti katalogo dydį"
@@ -856,16 +934,6 @@ msgstr "Prižadinti, atveriant katalogą iš emc-noscan.cfg"
 #: EnhancedMovieCenter.py:378
 msgid "HELP_Wake device when entering dir from emc-noscan.cfg"
 msgstr "Prižadinti prietaisą, kai atveriamas katalogas, esantis emc-noscan.cfg"
-
-#: EnhancedMovieCenter.py:379
-msgid "Limit file operations in dirs from emc-noscan.cfg"
-msgstr "Apriboti operacijas su failais kataloguose iš emc-noscan.cfg"
-
-#: EnhancedMovieCenter.py:379
-msgid "HELP_Limit file operations in dirs from emc-noscan.cfg"
-msgstr ""
-"Atvertas EMC, vengs operacijų su failais kataloguose, esančiuose\n"
-"'/etc/enigma2/emc-noscan.cfg'"
 
 #: EnhancedMovieCenter.py:380
 msgid "HELP_separator_hide&performance"
@@ -2917,10 +2985,6 @@ msgstr "Pagal pavadinimą nuo Ž su metaduom.,didėjančia data (ŽAMD+)"
 msgid "Progress sort descending (P-)"
 msgstr "Pagal progresą mažėjančiai (P-)"
 
-#: plugin.py:300
-msgid "after standby"
-msgstr "po budėjimo"
-
 #: plugin.py:313
 msgid "left from Name"
 msgstr "pavadinimo kairėje"
@@ -3044,199 +3108,3 @@ msgstr "Rasti neteisingi failai:\n"
 #: VlcPluginInterface.py:156
 msgid "VLC Server not reachable"
 msgstr "VLC serveris nepasiekiamas"
-
-#: EnhancedMovieCenter.py
-msgid "Hide mini TV"
-msgstr "Slėpti mažąjį ekraną"
-
-#: EnhancedMovieCenter.py
-msgid "HELP_hide_miniTV"
-msgstr "Rodyti, ar slėpti mažąjį TV ekraną"
-
-#: EnhancedMovieCenter/plugin.py
-msgid "never hide"
-msgstr "neslėpti niekada"
-
-#: EnhancedMovieCenter/plugin.py
-msgid "hide live TV"
-msgstr "slėpti tiesioginę TV"
-
-#: EnhancedMovieCenter/plugin.py
-msgid "hide live TV and timeshift"
-msgstr "slėpti tiesioginę TV ir laiko poslinkį"
-
-#: EnhancedMovieCenter/plugin.py
-msgid "hide playback"
-msgstr "slėpti atkūrimą"
-
-#: EnhancedMovieCenter/plugin.py
-msgid "always hide"
-msgstr "slėpti visada"
-
-#: EnhancedMovieCenter.py
-msgid "Method of hiding mini TV"
-msgstr "Mažojo ekrano slėpimo būdas"
-
-#: EnhancedMovieCenter.py
-msgid "stop service"
-msgstr "išjungti kanalą"
-
-#: EnhancedMovieCenter.py
-msgid "single pixel TV, muted"
-msgstr "vieno pikselio TV, be garso"
-
-#: EnhancedMovieCenter.py
-msgid "HELP_hide_miniTV_method"
-msgstr "Pasirenkamas mažojo ekrano slėpimo būdas."
-
-msgid "Show new Skin Version"
-msgstr "Rodyti naują temos versiją"
-
-msgid "EMC Playlist - current playlist"
-msgstr "EMC grojaraštis - dabartinis grojaraštis"
-
-msgid "Runtime: unknown"
-msgstr "Trukmė: nežinoma"
-
-msgid "ofdb.de"
-msgstr "ofdb.de"
-
-msgid "Delay of 10 sec. due the search flooding.."
-msgstr "Dėl didelio paieškos apkrovimo 10 sek. delsa..."
-
-msgid "Nothing found for %s"
-msgstr "Pagal %s nieko nerasta"
-
-msgid ""
-" movies found!\n"
-"Information of the best match\n"
-"\n"
-"\""
-msgstr ""
-" rasti filmai!\n"
-"Labiausiai atitikusi informacija\n"
-"\n"
-"\""
-
-msgid "Copy selected movie(s)"
-msgstr "Kopijuoti pasirinktą(-us) filmą(-us)"
-
-msgid "Delete file or empty dir"
-msgstr "Ištrinkite failą, arba ištuštinkite katalogą"
-
-msgid "customizable long yellow button"
-msgstr "pasirenkamas 'GELTONAS' mygtukas (ilgai)"
-
-msgid "customizable long blue button"
-msgstr "pasirenkamas 'MĖLYNAS' mygtukas (ilgai)"
-
-msgid ""
-"Movie home / Play last / Move file / Download Movie Information "
-"(configurable)"
-msgstr ""
-"Filmų katalogas / Atkurti paskutinį / Parsiųsti informaciją apie filmą "
-"(konfigūr.)"
-
-msgid "Toggle sort order"
-msgstr "Sukeisti rūšiavimo tvarką"
-
-msgid "Total: %s - Exist: %s - N/A: %s"
-msgstr "Iš viso: %s - Rasta: %s - N/D: %s"
-
-msgid "found %s covers in %.1f sec"
-msgstr "rasta %s viršelių per %.1f sek."
-
-msgid "Blue"
-msgstr "Mėlyna"
-
-msgid "Create Link: Choose directory"
-msgstr "Kurti nuorodą: pasirinkite katalogą"
-
-msgid "Directory "
-msgstr "Katalogas"
-
-msgid "Directory is not empty."
-msgstr "Katalogas netuščias."
-
-msgid "Enhanced Movie Center configuration"
-msgstr "'Enhanced Movie Center' konfigūravimas"
-
-#~ msgid "Searching.."
-#~ msgstr "Ieškoma..."
-
-#~ msgid " (P)"
-#~ msgstr " (P)"
-
-#~ msgid "Enigma daily auto-restart"
-#~ msgstr "Täglicher Enigma2-Auto-Neustart"
-
-#~ msgid "File order reverse"
-#~ msgstr "Dateisortierung umkehren"
-
-#~ msgid "Green button function"
-#~ msgstr "Funktion der grünen Taste"
-
-#~ msgid "HELP_Enigma daily auto-restart"
-#~ msgstr ""
-#~ "Enigma2 wird täglich im eingestellten Zeitfenster einmal neu gestartet."
-
-#~ msgid "HELP_File order reverse"
-#~ msgstr ""
-#~ "Die Filmliste wird immer in Umgekehrter Reihenfolge sortiert,\n"
-#~ "egal ob nach Datum oder Alphabet sortiert wird. "
-
-#~ msgid "HELP_Green button function"
-#~ msgstr ""
-#~ "Der grünen Taste kann eine zur Auswahl stehenden Funktion zugeordnet "
-#~ "werden."
-
-#~ msgid "HELP_Show E2 Bookmarks in movielist"
-#~ msgstr ""
-#~ "Zeigt virtuelle Verzeichnisse in \"Movie Home\" mit allen Enigma2 "
-#~ "Lesezeichen."
-
-#~ msgid "HELP_Show movie preview delay"
-#~ msgstr ""
-#~ "Verweilt der Cursor die eingestellte Zeit auf der Aufnahme, wird im PiG "
-#~ "die Aufnahme abgespielt."
-
-#~ msgid "HELP_Use Toggle Cover Button"
-#~ msgstr ""
-#~ "Hiermit kann in der Filmauswahl die Anzeige von Covers ein- oder "
-#~ "ausgeschaltet werden."
-
-#~ msgid "Move"
-#~ msgstr "Verschieben"
-
-#~ msgid "Move file(s): Choose directory"
-#~ msgstr "Verschiebe Datei(en): Wähle Verzeichnis"
-
-#~ msgid "Move selected movie(s)"
-#~ msgstr "Ausgewählte Film(e) verschieben"
-
-#~ msgid "Red"
-#~ msgstr "Rot"
-
-#~ msgid "Show E2 Bookmarks in movielist"
-#~ msgstr "E2-Lesezeichen in Filmliste anzeigen"
-
-#~ msgid "Sort file A to Z at startup"
-#~ msgstr "Sortiere Filmliste A bis Z beim Start"
-
-#~ msgid "Toggle Cover Mini-TV"
-#~ msgstr "Coveranzeige ein/aus"
-
-#~ msgid "Yellow"
-#~ msgstr "Gelb"
-
-#~ msgid "customizable buttonblue "
-#~ msgstr "Einstellung blaue Taste"
-
-#~ msgid "customizable green button"
-#~ msgstr "Einstellung grüne Taste"
-
-#~ msgid "customizable yellow button"
-#~ msgstr "Einstellung gelbe Taste"
-
-#~ msgid "Bluray"
-#~ msgstr "Blu-ray"
