@@ -152,30 +152,37 @@ def getPosterPath(searchPath):
 	ret = ""
 	paths = []
 	exts = [".jpg", ".png", "_md.jpg", "_md.png"]
-	searchname = os.path.splitext(searchPath)[0]
+	searchname = os.path.splitext(searchPath.rstrip('/.'))[0]
 	foldercoverconfig = config.EMC.imdb.singlesearch_foldercoverpath.value
 
 	if os.path.isfile(searchPath):
 		basedircover = os.path.dirname(searchname)
 	else:
-		basedircover = searchname
-	filedircover = basedircover + os.sep + os.path.basename(basedircover)
-	foldercover = basedircover + os.sep + 'folder'
+		if searchname.lower().endswith("/bdmv"):								# bluray structures
+			searchname = searchname[:-5]
+			if searchname.lower().endswith("/brd"):
+				searchname = searchname[:-4]
+			foldercoverconfig = '99'
+		elif searchname.lower().endswith("/video_ts"):							# dvd structures
+			searchname = searchname[:-9]
+			if searchname.lower().endswith("/dvd"):
+				searchname = searchname[:-4]
+			foldercoverconfig = '99'
+		basedircover = searchname												# /dir/mediafolder.ext
+
+	filedircover = basedircover + os.sep + os.path.basename(basedircover)		# /dir/mediafolder/mediafolder.ext
+	foldercover = basedircover + os.sep + 'folder'								# /dir/mediafolder/folder.ext
 
 	if searchname != basedircover:
-		paths.append(searchname)
+		paths.extend([searchname])												# /dir/mediafolder/mediafile.ext
 	if foldercoverconfig == '1':
-		paths.append(basedircover)
-		paths.append(foldercover)
-		paths.append(filedircover)
+		paths.extend([basedircover, foldercover, filedircover])
 	elif foldercoverconfig == '2':
-		paths.append(foldercover)
-		paths.append(basedircover)
-		paths.append(filedircover)
+		paths.extend([foldercover, basedircover, filedircover])
+	elif foldercoverconfig == '99':
+		paths.extend([basedircover, filedircover, foldercover])
 	else:
-		paths.append(filedircover)
-		paths.append(foldercover)
-		paths.append(basedircover)
+		paths.extend([filedircover, foldercover, basedircover])
 
 	for path in paths:
 		for ext in exts:
