@@ -156,31 +156,33 @@ def getPosterPath(searchPath):
 	foldercoverconfig = config.EMC.imdb.singlesearch_foldercoverpath.value
 
 	if os.path.isfile(searchPath):
-		basedircover = os.path.dirname(searchname)
+		paths.extend([searchname])											# /dir/mediafolder/mediafile.ext
+		basedircover = os.path.dirname(searchname)							# /dir/mediafolder.ext
 	else:
-		if searchname.lower().endswith("/bdmv"):								# bluray structures
-			searchname = searchname[:-5]
-			if searchname.lower().endswith("/brd"):
-				searchname = searchname[:-4]
-			foldercoverconfig = '99'
-		elif searchname.lower().endswith("/video_ts"):							# dvd structures
-			searchname = searchname[:-9]
-			if searchname.lower().endswith("/dvd"):
-				searchname = searchname[:-4]
-			foldercoverconfig = '99'
-		basedircover = searchname												# /dir/mediafolder.ext
+		basedircover = searchname											# /dir/mediafolder.ext
 
-	filedircover = basedircover + os.sep + os.path.basename(basedircover)		# /dir/mediafolder/mediafolder.ext
-	foldercover = basedircover + os.sep + 'folder'								# /dir/mediafolder/folder.ext
+	# bluray structures
+	if basedircover.lower().endswith("/bdmv"):
+		basedircover = basedircover[:-5]
+		if basedircover.lower().endswith("/brd"):
+			basedircover = basedircover[:-4]
+	elif basedircover.lower().endswith("/brd"):
+		basedircover = basedircover[:-4]
+	# dvd structures
+	elif basedircover.lower().endswith("/video_ts"):
+		basedircover = basedircover[:-9]
+		if basedircover.lower().endswith("/dvd"):
+			basedircover = basedircover[:-4]
+	elif basedircover.lower().endswith("/dvd"):
+		basedircover = basedircover[:-4]
 
-	if searchname != basedircover:
-		paths.extend([searchname])												# /dir/mediafolder/mediafile.ext
+	filedircover = basedircover + os.sep + os.path.basename(basedircover) 	# /dir/mediafolder/mediafolder.ext
+	foldercover = basedircover + os.sep + 'folder'							# /dir/mediafolder/folder.ext
+
 	if foldercoverconfig == '1':
 		paths.extend([basedircover, foldercover, filedircover])
 	elif foldercoverconfig == '2':
 		paths.extend([foldercover, basedircover, filedircover])
-	elif foldercoverconfig == '99':
-		paths.extend([basedircover, filedircover, foldercover])
 	else:
 		paths.extend([filedircover, foldercover, basedircover])
 
