@@ -153,7 +153,6 @@ class RecordingsControl:
 	def isRecording(self, filename):
 		try:
 			if filename[0] == "/": 			filename = os.path.basename(filename)
-			if filename.lower().endswith(".ts"):	filename = filename[:-3]
 			return filename in self.recDict
 		except Exception, e:
 			emcDebugOut("[emcRC] isRecording exception:\n" + str(e))
