@@ -170,7 +170,6 @@ class RecordingsControl:
 	def stopRecording(self, filename):
 		try:
 			if filename[0] == "/":			filename = os.path.basename(filename)
-			if filename.lower().endswith(".ts"):	filename = filename[:-3]
 			if filename in self.recDict:
 				for timer in NavigationInstance.instance.RecordTimer.timer_list:
 					if timer.isRunning() and not timer.justplay and timer.Filename.find(filename)>=0:
