@@ -29,6 +29,12 @@ import NavigationInstance
 from EMCTasker import emcTasker, emcDebugOut
 from DelayedFunction import DelayedFunction
 
+try:
+	from enigma import eMediaDatabase
+	isDreamOS = True
+except:
+	isDreamOS = False
+
 def getRecording(filename):
 	try:
 		if filename[0] == "/": 			filename = os.path.basename(filename)
@@ -153,6 +159,8 @@ class RecordingsControl:
 	def isRecording(self, filename):
 		try:
 			if filename[0] == "/": 			filename = os.path.basename(filename)
+			if not isDreamOS:
+				if filename.lower().endswith(".ts"):	filename = filename[:-3]
 			return filename in self.recDict
 		except Exception, e:
 			emcDebugOut("[emcRC] isRecording exception:\n" + str(e))
@@ -170,6 +178,8 @@ class RecordingsControl:
 	def stopRecording(self, filename):
 		try:
 			if filename[0] == "/":			filename = os.path.basename(filename)
+			if not isDreamOS:
+				if filename.lower().endswith(".ts"):	filename = filename[:-3]
 			if filename in self.recDict:
 				for timer in NavigationInstance.instance.RecordTimer.timer_list:
 					if timer.isRunning() and not timer.justplay and timer.Filename.find(filename)>=0:
