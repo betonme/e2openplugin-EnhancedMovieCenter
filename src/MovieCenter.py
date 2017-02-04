@@ -2563,18 +2563,7 @@ class MovieCenter(GUIComponent):
 						datetext = "( %d / %.0f TB )" % (count, size)
 					else:
 						datetext = "( %d / %.0f GB )" % (count, size)
-					# TODO: make this easier, but hold it on the right side
-					space = len(str(int(size))) + len(str(int(count)))
-					if space > 7:
-						self.CoolCSWidth = 160
-					elif space > 6:
-						self.CoolCSWidth = 150
-					elif space > 5:
-						self.CoolCSWidth = 140
-					elif space > 4:
-						self.CoolCSWidth = 130
-					elif space > 3:
-						self.CoolCSWidth = 120
+					self.CoolCSWidth = 180
 				else:
 					self.addCountsizeworker(path)
 					datetext = ""
