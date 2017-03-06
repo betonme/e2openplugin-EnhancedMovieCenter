@@ -38,13 +38,15 @@ except:
 def getRecording(filename):
 	try:
 		if filename[0] == "/": 			filename = os.path.basename(filename)
-		if filename.lower().endswith(".ts"):	filename = filename[:-3]
+		if not isDreamOS:
+			if filename.lower().endswith(".ts"):	filename = filename[:-3]
 
 		for timer in NavigationInstance.instance.RecordTimer.timer_list:
 			try: timer.Filename
 			except: timer.calculateFilename()
 			if filename == os.path.basename(timer.Filename):
 				return timer.begin, timer.end, timer.service_ref.ref
+				
 	except Exception, e:
 		emcDebugOut("[emcRC] getRecording exception:\n" + str(e))
 	return None
@@ -169,7 +171,8 @@ class RecordingsControl:
 	def isRemoteRecording(self, filename):
 		try:
 			if filename[0] == "/": 			filename = os.path.basename(filename)
-			if filename.lower().endswith(".ts"):	filename = filename[:-3]
+			if not isDreamOS:
+				if filename.lower().endswith(".ts"):	filename = filename[:-3]
 			return filename in self.recRemoteList
 		except Exception, e:
 			emcDebugOut("[emcRC] isRemoteRecording exception:\n" + str(e))
