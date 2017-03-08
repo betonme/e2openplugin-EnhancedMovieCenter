@@ -53,6 +53,12 @@ try:
 except:
 	hasmkvcuesheetsupport = False
 
+try:
+	from enigma import eMediaDatabase
+	isDreamOS = True
+except:
+	isDreamOS = False
+	
 # Overwrite Seekbar
 def EMCkeyOK(self):
 	sel = self["config"].getCurrent()[1]
@@ -214,7 +220,11 @@ class InfoBarSupport(	InfoBarBase, \
 						firstMark = pts
 		if firstMark is not None:
 			self.start_point = firstMark
-			self.doSeek(self.start_point)
+			#== wait to seek - in OE2.5 not seek without wait
+			if isDreamOS:
+				DelayedFunction(500, self.doSeek, self.start_point)
+			else:
+				self.doSeek(self.start_point)
 
 	def jumpNextMark(self):
 		if not self.jumpPreviousNextMark(lambda x: x-90000):
