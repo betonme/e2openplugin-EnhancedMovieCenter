@@ -525,6 +525,8 @@ last_currentPath = ""
 
 class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfaceSel, DirectoryStack, E2Bookmarks, EMCBookmarks, ProtectedScreen):
 
+	ALLOW_SUSPEND = True
+
 	# Define static member variables
 	def attrgetter(attr, default=None):
 		def get_any(self):
