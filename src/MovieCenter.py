@@ -834,7 +834,7 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 
 		hideitemlist = config.EMC.cfghide_enable.value and self.hideitemlist
 
-		localExtList = extList - extBlu
+		localExtList = extList - extBlu - extDir
 
 		dappend = subdirlist.append
 		fappend = filelist.append
