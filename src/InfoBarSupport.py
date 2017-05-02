@@ -101,7 +101,6 @@ class InfoBarSupport(	InfoBarBase, \
 											InfoBarPlugins, \
 											InfoBarNumberZap, \
 											InfoBarPiP, \
-		     									InfoBarHdmi, \
 											InfoBarEPG ):
 											#InfoBarMoviePlayerSummarySupport
 
@@ -116,7 +115,7 @@ class InfoBarSupport(	InfoBarBase, \
 				InfoBarSubtitleSupport, \
 				InfoBarTeletextPlugin, InfoBarServiceErrorPopupSupport, InfoBarExtensions, InfoBarNotifications, \
 				InfoBarPlugins, InfoBarNumberZap, \
-				InfoBarPiP, InfoBarEPG, InfoBarHdmi:
+				InfoBarPiP, InfoBarEPG:
 				#InfoBarCueSheetSupport
 				#InfoBarMoviePlayerSummarySupport
 			x.__init__(self)
