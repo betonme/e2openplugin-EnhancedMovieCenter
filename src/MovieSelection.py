@@ -605,6 +605,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 				"EMCPLAY":		(self.playAll,			_("Play All")),
 				"EMCSHUFFLE":		(self.shuffleAll,		_("Shuffle All")),
 				"EMCEXIT":		(self.abort,			_("Close EMC")),
+				"EMCEXITpowerdown":	(self.abortAndPowerDown,	_("Close EMC and do power button action")),
 				"EMCMENU":		(self.openMenu,			_("Open menu")),
 				"EMCINFO":		(self.showEventInformation,	_("Show event info")),
 				"EMCINFOL":		(self.CoolInfoLong,		_("IMDBSearch / EMC-TMDBInfo / TMDBInfo / TMBDInfo / CSFDInfo")),
@@ -784,6 +785,12 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		from EnhancedMovieCenter import EMCAbout
 		self.checkHideMiniTV_beforeFullscreen()
 		self.session.open(MessageBox, EMCAbout, MessageBox.TYPE_INFO)
+
+	def abortAndPowerDown(self):
+		self.abort()
+		from GlobalActions import globalActionMap
+		global globalActionMap
+		globalActionMap.action("GlobalActions", "power_down")
 
 	def abort(self):
 		if config.EMC.CoolStartHome.value == "true":
