@@ -1281,9 +1281,6 @@ msgstr "Mini-TV verbergen"
 #: src/EnhancedMovieCenter.py:451
 msgid "HELP_hide_miniTV"
 msgstr ""
-"Verberg bestanden en mappen die opgenomen zijn in '/etc/enigma2/emc-hide."
-"cfg'.\n"
-"Het aanpassen van deze instelling vereist een herstart van Enigma2!"
 
 #: src/EnhancedMovieCenter.py:455
 msgid "Method of hiding mini TV"
