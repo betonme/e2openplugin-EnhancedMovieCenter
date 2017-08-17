@@ -1487,7 +1487,7 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 					DelayedFunction(3000, self.mergeCutListAfterRecording, filename)
 
 	def changedCfgHideEnable(self, addNotifierDummy=None):
-		self.globalReload(self.currentPath)
+		config.EMC.needsreload.value = True
 
 	def mergeCutListAfterRecording(self, path):
 		emcDebugOut("[Cutlist.Workaround] MovieCenter.mergeCutListAfterRecording: " + str(path))
