@@ -2886,11 +2886,11 @@ msgstr "VLC-Server ist nicht erreichbar"
 
 #: plugin.py:55
 msgid "no"
-msgstr "nein"
+msgstr "Nein"
 
 #: plugin.py:55
 msgid "yes"
-msgstr "ja"
+msgstr "Ja"
 
 #: plugin.py:133
 msgid "No override"
