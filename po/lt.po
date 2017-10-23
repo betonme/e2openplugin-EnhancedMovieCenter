@@ -3,14 +3,14 @@ msgstr ""
 "Project-Id-Version: EMC - betonme git\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-07-22 09:12+0300\n"
-"PO-Revision-Date: 2017-07-22 13:21+0300\n"
+"PO-Revision-Date: 2017-10-23 12:14+0300\n"
 "Last-Translator: Vytenis P. <vyteniui@gmail.com>\n"
 "Language-Team: Vytenis P. <vyteniui@gmail.com>\n"
 "Language: lt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.0.2\n"
+"X-Generator: Poedit 2.0.4\n"
 "X-Poedit-KeywordsList: _;gettext;gettext_noop;_\n"
 "X-Poedit-Basepath: ..\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n"
@@ -182,7 +182,7 @@ msgstr "%s pašalinta."
 #: EMCCoverSearch.py:496
 #, python-format
 msgid "%s not removed. Write protect?"
-msgstr "%s nepašalinta. Rašymo apsauga?"
+msgstr "%s nepašalinta. Uždrausta redaguoti?"
 
 #: EMCCoverSearch.py:538
 msgid "Settings have been Saved."
@@ -212,7 +212,7 @@ msgstr "Ieškoti svetainėje:"
 
 #: EMCCoverSearch.py:718 EMCCoverSearch.py:723
 msgid "Search filter for matching existing terms in the title:"
-msgstr "Terminų pavadinime atitikimo paieškos filtras:"
+msgstr "Terminų pavadinime atitikimo filtras:"
 
 #: EMCCoverSearch.py:719
 msgid "thetvdb cover number (standard cover):"
@@ -245,7 +245,7 @@ msgstr "Paieškos rezultatai svetainėje %s:"
 
 #: EMCCoverSearch.py:730
 msgid "Set path to save the folder Cover:"
-msgstr "Nurodykite kelią į katalogą viršeliams:"
+msgstr "Nurodykite kelią į viršelių katalogą:"
 
 #: EMCCoverSearch.py:787
 #, python-format
@@ -296,7 +296,7 @@ msgstr "rodyti pagrindinį DVD meniu"
 
 #: EMCMediaCenter.py:163
 msgid "forward to the next chapter"
-msgstr "pereiti į kitą skyrių"
+msgstr "pirmyn, į kitą skyrių"
 
 #: EMCMediaCenter.py:164
 msgid "rewind to the previous chapter"
@@ -385,11 +385,11 @@ msgstr "Išsaugoti"
 
 #: EMCPlayList.py:133
 msgid "Delete Entry"
-msgstr "Pašalinti įrašą"
+msgstr "Šalinti įrašą"
 
 #: EMCPlayList.py:134
 msgid "Delete All"
-msgstr "Pašalinti viską"
+msgstr "šalinti viską"
 
 #: EMCPlayList.py:154
 msgid "EMC Playlist - current playlist"
@@ -546,8 +546,9 @@ msgstr "Išjungti EMC"
 #: EnhancedMovieCenter.py:341
 msgid "HELP_Disable EMC"
 msgstr ""
-"Visiškai išjungs EMC, išskyrus kelias specialias funkcijas, kaip laikmačių "
-"išvalymas ir auto matinis paleidimas iš naujo, kurios išliks aktyvios fone."
+"Visiškai išjungs EMC, išskyrus kelias specialias funkcijas. Tokias, kaip "
+"laikmačių išvalymas ir automatinis paleidimas iš naujo, kurios išliks "
+"galimos."
 
 #: EnhancedMovieCenter.py:343
 msgid "Start EMC with"
@@ -564,7 +565,7 @@ msgstr "Rodyti įskiepio konfigūravimą plėtinių meniu"
 #: EnhancedMovieCenter.py:344
 msgid "HELP_Show plugin config in extensions menu"
 msgstr ""
-"Pasirinkite, rodyti, ar ne įskiepio konfigūravimą plėtinių meniu lange.\n"
+"Pasirinkite, rodyti EMC konfigūravimą plėtinių meniu lange, ar ne.\n"
 "Šis meniu paprastai atsidaro 'MĖLYNO' mygtuko paspaudimu."
 
 #: EnhancedMovieCenter.py:345
@@ -574,7 +575,7 @@ msgstr "Rodyti EMC plėtinių meniu lange"
 #: EnhancedMovieCenter.py:345
 msgid "HELP_Show EMC in extensions menu"
 msgstr ""
-"Pasirinkite, rodyti, ar ne EMC paleidimą plėtinių meniu lange.\n"
+"Pasirinkite, rodyti EMC paleidimą plėtinių meniu lange, ar ne.\n"
 "Šis meniu paprastai atsidaro 'MĖLYNO' mygtuko paspaudimu."
 
 #: EnhancedMovieCenter.py:347
@@ -678,11 +679,11 @@ msgstr "Langų autopaleidimo pabaigos laikas."
 
 #: EnhancedMovieCenter.py:363
 msgid "Force standby after auto-restart"
-msgstr "Po autopaleidimo iš naujo į budėjimo būseną"
+msgstr "Po autopaleidimo iš naujo, į budėjimo būseną"
 
 #: EnhancedMovieCenter.py:363
 msgid "HELP_Force standby after auto-start"
-msgstr "Po autopaleidimo iš naujo imtuvas bus perjungtas į budėjimo būseną."
+msgstr "Po autopaleidimo iš naujo, imtuvas bus perjungtas į budėjimo būseną."
 
 #: EnhancedMovieCenter.py:364
 msgid "LongInfo Button"
@@ -694,22 +695,21 @@ msgstr "Nustatykite, kas vyks, ilgai spaudžiant 'INFO' mygtuką."
 
 #: EnhancedMovieCenter.py:367
 msgid "Movie home at start"
-msgstr "Filmų namų katalogas paleidžiant"
+msgstr "Filmų katalogas, paleidžiant"
 
 #: EnhancedMovieCenter.py:367
 msgid "HELP_Movie home at start"
 msgstr ""
-"EMC visada pirmiausiai atveria \"Filmų katalogą\".\n"
-"(Žemiau galite pasirinkti pageidaujamą \"Filmų katalogą\")."
+"EMC visada pirmiausiai atveria \"Filmų namų\" katalogą.\n"
+"Žemiau galite pasirinkti pageidaujamą \"Filmų namų\" katalogą."
 
 #: EnhancedMovieCenter.py:368
 msgid "Default sort mode"
-msgstr "Numatytasis rūšiavimo būdas"
+msgstr "Numatytasis rūšiavimas"
 
 #: EnhancedMovieCenter.py:368
 msgid "HELP_Sort mode at startup"
-msgstr ""
-"Nustatykite, kokia tvarka bus surūšiuotas filmų sąrašas, paleidžiant EMC."
+msgstr "Nustatykite, kokia tvarka bus surūšiuotas filmų sąrašas, atvėrus EMC."
 
 #: EnhancedMovieCenter.py:370
 msgid "Movie home home path"
@@ -746,7 +746,7 @@ msgstr "Rodyti nuorodas"
 
 #: EnhancedMovieCenter.py:376
 msgid "HELP_Show symlinks"
-msgstr "Rodyti/nerodyti simbolines nuorodas."
+msgstr "Nustatykite, rodyti simbolines nuorodas, ar ne."
 
 #: EnhancedMovieCenter.py:378
 msgid "Show directories"
@@ -754,7 +754,7 @@ msgstr "Rodyti katalogus filmų sąraše"
 
 #: EnhancedMovieCenter.py:378
 msgid "HELP_Show directories"
-msgstr "Filmų sąraše rodyti/nerodyti katalogus."
+msgstr "Nustatykite, rodyti filmų sąraše katalogus, ar ne."
 
 #: EnhancedMovieCenter.py:379
 msgid "Show directories within movielist"
@@ -762,7 +762,7 @@ msgstr "Rodyti katalogus sąrašo viduje"
 
 #: EnhancedMovieCenter.py:379
 msgid "HELP_Show directories within movielist"
-msgstr "Filmų sąrašo viduje rodyti/nerodyti katalogus."
+msgstr "Nustatykite, rodyti filmų sąrašo viduje katalogus, ar ne."
 
 #: EnhancedMovieCenter.py:380
 msgid "Configured directories at the top of movielist"
@@ -778,7 +778,9 @@ msgstr "Rodyti katalogų informaciją"
 
 #: EnhancedMovieCenter.py:381
 msgid "HELP_Show directories information"
-msgstr "Rodyti informaciją apie įrašus, jų trukmę ir užimamą vietą diske."
+msgstr ""
+"Nustatykite, ar rodyti informaciją apie įrašus, jų trukmę ir užimamą vietą "
+"diske."
 
 #: EnhancedMovieCenter.py:382
 msgid "Text shown for initially unknown file count"
@@ -817,7 +819,8 @@ msgstr "Piktograma, rodoma iš pradžių nežinomam skaičiui / dydžiui"
 #: EnhancedMovieCenter.py:385
 msgid "HELP_Icon shown for initially unknown count / size"
 msgstr ""
-"Ar bus rodoma piktograma, esant iš anksto nežinomam skaičiui / dydžiui."
+"Nustatykite, ar bus rodoma piktograma, esant iš anksto nežinomam skaičiui / "
+"dydžiui."
 
 #: EnhancedMovieCenter.py:387
 msgid "Show directory size in skin"
@@ -861,7 +864,7 @@ msgstr "Rodyti VLC katalogą"
 
 #: EnhancedMovieCenter.py:392
 msgid "HELP_Show VLC directory"
-msgstr "Rodyti/nerodyti VLC katalogą (kai įdiegtas VLC išplėstinis įskiepis)."
+msgstr "Rodyti, VLC katalogą, ar ne (kai įdiegtas VLC išplėstinis įskiepis)."
 
 #: EnhancedMovieCenter.py:393
 msgid "Show Bookmarks in movielist"
@@ -869,7 +872,7 @@ msgstr "Filmų sąraše rodyti žymeles"
 
 #: EnhancedMovieCenter.py:393
 msgid "HELP_Show Bookmarks in movielist"
-msgstr "Filmų sąraše rodyti/nerodyti žymeles."
+msgstr "Nustatykite, ar filmų sąraše bus rodomos žymelės."
 
 #: EnhancedMovieCenter.py:394
 msgid "Use cache for files and directories"
@@ -877,7 +880,7 @@ msgstr "Failams ir katalogams naudoti podėlį"
 
 #: EnhancedMovieCenter.py:394
 msgid "HELP_Use cache for files and directories"
-msgstr "Failams ir katalogams naudoti atminties podėlį."
+msgstr "Nustatykite, ar failams ir katalogams naudoti atminties podėlį."
 
 #: EnhancedMovieCenter.py:395
 msgid "Minimum file cache limit (0=cache everything)"
@@ -893,7 +896,7 @@ msgstr "Rodyti eksperimentines parinktis"
 
 #: EnhancedMovieCenter.py:396
 msgid "HELP_Show experimental options"
-msgstr "Rodyti ir eksperimentines EMC parinktis."
+msgstr "Rodyti ir eksperimentines, EMC parinktis."
 
 #: EnhancedMovieCenter.py:397
 msgid "Don't auto scan size of dirs from emc-noscan.cfg"
@@ -920,7 +923,7 @@ msgstr "Po operacijų su failais, perskenuoti tik susijusius katalogus"
 #: EnhancedMovieCenter.py:399
 msgid "HELP_After file OPs only re-scan affected dirs"
 msgstr ""
-"Po operacijų su failais, perskenuoti tik su jomis susijusius katalogus."
+"Po operacijų su failais, bus perskenuoti tik su jomis susiję katalogai."
 
 #: EnhancedMovieCenter.py:400
 msgid "Wake device when entering dir from emc-noscan.cfg"
@@ -941,7 +944,7 @@ msgid "HELP_Check for dead links"
 msgstr ""
 "Kadangi daugelis nuorodų būna į nešiojamas/atjungiamas/tinklines laikmenas, "
 "kurios bet kada gali būti atjungtos, tokios nuorodos dažnai keičiasi.\n"
-"Ši funkcija ir skirta patikrinti, ar jos dar galioja."
+"Ši funkcija ir skirta patikrinti, ar jos vis dar galioja."
 
 #: EnhancedMovieCenter.py:404
 msgid "HELP_separator_hide&performance"
@@ -999,7 +1002,7 @@ msgstr ""
 
 #: EnhancedMovieCenter.py:410
 msgid "Suppress scan in selected folders"
-msgstr "Kataloguose iš emc-noscan.cfg išjungti paiešką"
+msgstr "Kataloguose, esančiuose emc-noscan.cfg, išjungti paiešką"
 
 #: EnhancedMovieCenter.py:410
 msgid "HELP_cfgscan_suppress"
@@ -1065,7 +1068,7 @@ msgstr "Rodyti filmo formatą"
 
 #: EnhancedMovieCenter.py:418
 msgid "HELP_Show Movie Format"
-msgstr "Prie failo pavadinimo bus rodomas ir jo plėtinys."
+msgstr "Prie filmo failo pavadinimo bus rodomas ir jo plėtinys."
 
 #: EnhancedMovieCenter.py:419
 msgid "Show Cut-Nr if exist"
@@ -1126,7 +1129,7 @@ msgstr "Horizontalus teksto išdėstymas pagal žinomas datas."
 
 #: EnhancedMovieCenter.py:428
 msgid "Horizontal alignment for count / size"
-msgstr "Horizontalus lygiavimas pagal skaičių / dydį"
+msgstr "Horizontalus lygiavimas pagal skaičių/dydį"
 
 #: EnhancedMovieCenter.py:428
 msgid "HELP_Horizontal alignment for count / size"
@@ -1178,7 +1181,7 @@ msgstr "Kelias į filmų piktogramas"
 
 #: EnhancedMovieCenter.py:437
 msgid "HELP_Path to movie picons"
-msgstr "Standartinis kelias į filmų piktogramas."
+msgstr "Numatytasis kelias į filmų piktogramas."
 
 #: EnhancedMovieCenter.py:439
 msgid "Show movie progress"
@@ -1325,18 +1328,18 @@ msgstr "Atkuriant filmą, pereiti į pirmą žymę"
 #: EnhancedMovieCenter.py:461
 msgid "HELP_Jump to first mark when playing movie"
 msgstr ""
-"Automatiškai pereis prie pirmos įrašo žymės, jei tai įmanoma.\n"
-"(gali padėti automatiškai praleisti pradinio laiko intarpus)."
+"Kai įmanoma, automatiškai pereis prie pirmos įrašo žymės.\n"
+"(padeda automatiškai praleisti pradinio laiko intarpus)."
 
 #: EnhancedMovieCenter.py:462
 msgid "Rewind finished movies before playing"
-msgstr "Atsukti baigtus filmus prieš juos rodant"
+msgstr "Peržiūrėtus filmus rodyti iš pradžios"
 
 #: EnhancedMovieCenter.py:462
 msgid "HELP_Rewind finished movies before playing"
 msgstr ""
-"Jeu įrašas su žyme \"peržiūrėtas\" paleidžiamas iš naujo, jis bus rodomas iš "
-"pradžios."
+"Jeu įrašas, ar filmas su žyme \"peržiūrėtas\" paleidžiamas iš naujo, jis bus "
+"rodomas iš pradžios."
 
 #: EnhancedMovieCenter.py:463
 msgid "Always save last played progress as marker"
@@ -1346,8 +1349,8 @@ msgstr "Visada išsaugoti paskutinį atkūrimo stovį, kaip žymę"
 msgid "HELP_Always save last played progress as marker"
 msgstr ""
 "Pasirinkus 'Taip', žymė nustatoma kiekvienąkart, sustabdžius atkūrimą.\n"
-"Tęsiant atkūrimą, mygtukais '<' ir '>' galima šokinėti per šias žymes "
-"(nepriklausomai nuo pratęsimo vietos)."
+"Tęsiant atkūrimą, mygtukais '<' ir '>' galima šokinėti per šias žymes, "
+"nepriklausomai nuo pratęsimo vietos."
 
 #: EnhancedMovieCenter.py:464
 msgid "Zap to channel after record EOF"
@@ -1357,7 +1360,8 @@ msgstr "Priėjus įrašo pabaigą, įjungti TV kanalą"
 msgid "HELP_Zap to channel after record EOF"
 msgstr ""
 "Kai grotuvas pasiekia vykdomo įrašo pabaigą (greit persukant, ar peršokant), "
-"uždaryti EMC ir atverti įrašomą kanalą tiesioginės TV transliacijos lange."
+"įrašas bus nutrauktas, EMC užsidarys ir bus atverta įrašomo kanalo "
+"tiesioginė TV transliacija."
 
 #: EnhancedMovieCenter.py:465
 msgid "Show real length of running records"
@@ -1377,21 +1381,21 @@ msgstr "Parsisiųsti iškarpų sąrašą iš Cutlist.at, jei toks ten yra."
 
 #: EnhancedMovieCenter.py:474
 msgid "HELP_separator_Trashcan settings"
-msgstr "Šiukšliadėžės ir automatinio išvalymo funkcijų nuostatos."
+msgstr "Šiukšliadėžės ir jos automatinio išvalymo funkcijų nuostatos."
 
 #: EnhancedMovieCenter.py:475
 msgid "Trashcan enable"
-msgstr "Įjungti šiukšliadėžę"
+msgstr "Naudoti šiukšliadėžę"
 
 #: EnhancedMovieCenter.py:475
 msgid "HELP_Trashcan enable"
 msgstr ""
-"Čia galite įjungti-išjungti šiukšliadėžę.\n"
+"Čia galite įjungti-išjungti šiukšliadėžės naudojimą.\n"
 "Išjungus, šalinamas turinys bus ištrintas iškart po užklausimo."
 
 #: EnhancedMovieCenter.py:476
 msgid "Trashcan path"
-msgstr "Kelias į  šiukšliadėžę"
+msgstr "Kelias į šiukšliadėžę"
 
 #: EnhancedMovieCenter.py:476
 msgid "HELP_Trashcan path"
@@ -1443,7 +1447,7 @@ msgstr "Kasdienio ištuštinimo laikas"
 
 #: EnhancedMovieCenter.py:482
 msgid "HELP_Daily cleanup time"
-msgstr "Laikas, kuriam praėjus EMC ištrins visus failus iš šiukšlinės."
+msgstr "Laikas, kuriam praėjus EMC ištrins failus iš šiukšliadėžės."
 
 #: EnhancedMovieCenter.py:483
 msgid "How many days files may remain in trashcan"
@@ -1458,13 +1462,13 @@ msgstr ""
 
 #: EnhancedMovieCenter.py:484
 msgid "Move finished movies in trashcan"
-msgstr "Pabaigtus filmus perkelti į šiukšliadėžę"
+msgstr "Peržiūrėtus filmus perkelti į šiukšliadėžę"
 
 #: EnhancedMovieCenter.py:484
 msgid "HELP_Move finished movies in trashcan"
 msgstr ""
-"Visus pabaigtus (peržiūrėtus) filmus iš \"Filmų namų\" perkelti į "
-"šiukšliadėžę, kai jie pasieks žemiau nurodytą laiko limitą."
+"Visus peržiūrėtus filmus iš \"Filmų namų\" perkelti į šiukšliadėžę, kai jie "
+"pasieks žemiau nurodytą laiko limitą."
 
 #: EnhancedMovieCenter.py:485
 msgid "Age of finished movies in movie folder (days)"
@@ -1802,7 +1806,7 @@ msgstr ""
 
 #: EnhancedMovieCenter.py:754
 msgid "Really close without saving settings?"
-msgstr "Ar tikrai uždaryti langą neišsaugant nuostatų?"
+msgstr "Ar tikrai uždaryti langą neišsaugant nustatymų?"
 
 #: EnhancedMovieCenter.py:772
 msgid "Select Location"
@@ -1979,7 +1983,7 @@ msgstr "Įvyko klaida! Neveikia interneto ryšys?"
 
 #: MovieInfo.py:283
 msgid "Movie Information Download (TMDb)"
-msgstr "Filmo informacijos parsiuntimas (TMDb)"
+msgstr "Filmo informacijos parsiuntimas iš TMDb"
 
 #: MovieInfo.py:297 MovieInfo.py:574 MovieInfo.py:578
 msgid "Movie Information downloaded successfully!"
@@ -2194,11 +2198,11 @@ msgstr "IMDB paieška / EMC-TMDB info / TMDB info / TMBD info / CSFD info"
 
 #: MovieSelection.py:624
 msgid "Move cursor page up"
-msgstr "Perkelti žymeklį per puslapį aukštyn"
+msgstr "Perkelti žymeklį puslapį aukštyn"
 
 #: MovieSelection.py:625
 msgid "Move cursor page down"
-msgstr "Perkelti žymeklį per puslapį žemyn"
+msgstr "Perkelti žymeklį puslapį žemyn"
 
 #: MovieSelection.py:626
 msgid "Move cursor up"
@@ -2422,7 +2426,7 @@ msgstr ""
 
 #: MovieSelection.py:2358
 msgid " permanently"
-msgstr " nuolat"
+msgstr " galutinai"
 
 #: MovieSelection.py:2377
 msgid " currently played?"
@@ -2468,8 +2472,8 @@ msgid ""
 "Delete failed because the trashcan directory does not exist. Attempt to "
 "create it now?"
 msgstr ""
-"Pašalinti nepavyko, nes nėra šiukšliadėžės katalogas neegzistuoja. Bandymas "
-"jį sukurti dabar?"
+"Pašalinti nepavyko, nes nėra šiukšliadėžės katalogo. Pabandyti jį sukurti "
+"dabar?"
 
 #: MovieSelection.py:2567
 msgid "This folder is locked or contains a locked subfolder, unlock it first!"
@@ -2605,7 +2609,7 @@ msgstr "Sukurti katalogą"
 
 #: MovieSelectionMenu.py:129
 msgid "(Un-)Lock Directory"
-msgstr "(At-)Užblokuoti katalogą"
+msgstr "(At-)Blokuoti katalogą"
 
 #: MovieSelectionMenu.py:136
 msgid "Copy Files"
@@ -2748,7 +2752,7 @@ msgstr "Filmo pasirinkimo meniu"
 
 #: MovieSelectionMenu.py:345
 msgid "exception "
-msgstr "išimtis"
+msgstr "išimtis "
 
 #: MovieSelectionMenu.py:354
 msgid ""
@@ -2957,7 +2961,7 @@ msgstr "Budintis režimas"
 
 #: plugin.py:225
 msgid "DeepStandby"
-msgstr "Išjungti"
+msgstr "Gilus budėjimas"
 
 #: plugin.py:226
 msgid "Reboot"
