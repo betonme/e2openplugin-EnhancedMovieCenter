@@ -13,7 +13,6 @@ from Components.config import *
 from Components.ConfigList import *
 
 from MovieCenter import getMovieNameWithoutExt, getMovieNameWithoutPhrases, getNoPosterPath
-from EnhancedMovieCenter import imgVti
 
 import json, os
 from urllib2 import Request, urlopen
@@ -23,7 +22,7 @@ from twisted.web.client import downloadPage
 from Tools.Directories import fileExists
 from Components.AVSwitch import AVSwitch
 from Components.Pixmap import Pixmap
-from enigma import ePicLoad, eTimer
+from enigma import ePicLoad, eTimer, getDesktop
 import shutil
 
 config.EMC.movieinfo = ConfigSubsection()
@@ -38,17 +37,7 @@ config.EMC.movieinfo.coversize = ConfigSelection(default="w185", choices = ["w92
 config.EMC.movieinfo.switch_newold = ConfigYesNo(default = False)
 config.EMC.movieinfo.cover_delay = ConfigSelectionNumber(50, 60000, 50, default= 500)
 
-def image(newTmdb=False, menu=False):
-	if newTmdb:
-		if imgVti:
-			return 37
-		else:
-			return 28
-	if menu:
-		if imgVti:
-			return 30
-		else:
-			return 28
+sz_w = getDesktop(0).size().width()
 
 def getMovieList(moviename):
 	response = fetchdata("http://api.themoviedb.org/3/search/movie?api_key=8789cfd3fbab7dccf1269c3d7d867aff&query=" + moviename.replace(" ","+").replace("&","%26"))
@@ -233,17 +222,35 @@ def dataError(error):
 
 
 class DownloadMovieInfo(Screen):
-	skin = """
-		<screen name="DownloadMovieInfo" position="center,center" size="700,500" title="Movie Information Download (TMDb)">
-		<widget name="movie_name" position="5,5" size="695,44" zPosition="0" font="Regular;21" valign="center" transparent="1" foregroundColor="#00bab329" backgroundColor="#000000"/>
-		<widget name="movielist" position="10,54" size="670,379" scrollbarMode="showOnDemand"/>
-		<widget name="resulttext" position="5,433" size="700,22" zPosition="0" font="Regular;21" valign="center" transparent="1" foregroundColor="#00bab329" backgroundColor="#000000"/>
-		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key_menu.png" position="5,460" size="35,25" alphatest="on" />
-		<widget name="setup" position="45,460" size="300,25" font="Regular;18" halign="left" valign="center" transparent="1" />
-		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key_ok.png" position="280,460" size="35,25" alphatest="on" />
-		<widget name="save" position="320,460" size="300,25" font="Regular;18" halign="left" valign="center" transparent="1" />
-		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key_info.png" position="505,460" size="35,25" alphatest="on" />
-		<widget name="movieinfo" position="545,460" size="300,25" font="Regular;18" halign="left" valign="center" transparent="1" />
+	if sz_w == 1920:
+		skin = """
+		<screen name="DownloadMovieInfo" position="center,170" size="1200,820" title="Movie Information Download (TMDb)">
+		<widget name="movie_name" position="10,5" size="1180,80" font="Regular;35" halign="center" valign="center" foregroundColor="yellow"/>
+        <eLabel backgroundColor="grey" position="10,90" size="1180,1" />
+		<widget enableWrapAround="1" name="movielist" position="10,100" size="1180,585" itemHeight="45" scrollbarMode="showOnDemand"/>
+        <eLabel backgroundColor="grey" position="10,695" size="1180,1" />
+		<widget name="resulttext" position="10,715" size="1180,35" font="Regular;32" foregroundColor="yellow"/>
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/menu.png" position="10,770" size="80,40" />
+		<widget name="setup" position="110,772" size="380,40" font="Regular;30" valign="center" />
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/ok.png" position="510,770" size="80,40" />
+		<widget name="save" position="620,772" size="290,40" font="Regular;30" valign="center" />
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/info.png" position="930,770" size="80,40" />
+		<widget name="movieinfo" position="1030,772" size="160,40" font="Regular;30" valign="center" />
+	</screen>"""
+	else:
+		skin = """
+		<screen name="DownloadMovieInfo" position="center,120" size="820,520" title="Movie Information Download (TMDb)">
+		<widget name="movie_name" position="10,5" size="800,55" font="Regular;24" halign="center" valign="center" foregroundColor="yellow"/>
+        <eLabel backgroundColor="grey" position="10,70" size="800,1" />
+		<widget enableWrapAround="1" name="movielist" position="10,80" size="800,330" itemHeight="30" scrollbarMode="showOnDemand"/>
+        <eLabel backgroundColor="grey" position="10,420" size="800,1" />
+		<widget name="resulttext" position="10,430" size="800,25" font="Regular;20" foregroundColor="yellow"/>
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/menu.png" position="10,480" size="60,30" />
+		<widget name="setup" position="100,481" size="180,30" font="Regular;22" valign="center" />
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/ok.png" position="300,480" size="60,30" />
+		<widget name="save" position="380,481" size="180,30" font="Regular;22" valign="center" />
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/info.png" position="580,480" size="60,30" />
+		<widget name="movieinfo" position="660,481" size="100,30" font="Regular;22" valign="center" />
 	</screen>"""
 
 #	def __init__(self, session, service, moviename):
@@ -339,10 +346,19 @@ class DownloadMovieInfo(Screen):
 
 
 class MovieInfoPreview(Screen):
-	skin = """
-		<screen name="MovieInfoPreview" position="center,center" size="800,450" title="Movie Information Preview">
-		<widget name="movie_name" position="5,5" size="795,44" zPosition="0" font="Regular;21" valign="center" transparent="1" foregroundColor="#00bab329" backgroundColor="#000000"/>
-		<widget name="previewtext" position="10,53" size="760,380" font="Regular;20" />
+	if sz_w == 1920:
+		skin = """
+		<screen name="MovieInfoPreview" position="center,170" size="1200,820" title="Movie Information Preview">
+		<widget name="movie_name" position="10,5" size="1180,80" font="Regular;35" halign="center" valign="center" foregroundColor="yellow"/>
+        <eLabel backgroundColor="grey" position="10,90" size="1180,1" />
+		<widget name="previewtext" position="10,100" size="1180,710" font="Regular;32" />
+	</screen>"""
+	else:
+		skin = """
+		<screen name="MovieInfoPreview" position="center,120" size="820,520" title="Movie Information Preview">
+		<widget name="movie_name" position="10,5" size="800,55" font="Regular;24" halign="center" valign="center" foregroundColor="yellow"/>
+        <eLabel backgroundColor="grey" position="10,70" size="800,1" />
+		<widget name="previewtext" position="10,80" size="800,435" font="Regular;21"/>
 	</screen>"""
 
 	def __init__(self, session, preview, moviename):
@@ -367,30 +383,59 @@ class MovieInfoPreview(Screen):
 
 
 class MovieInfoTMDb(Screen):
-	skin = """
-		<screen name="MovieInfoTMDb" position="center,center" size="1000,515" title="Movie Information TMDb">
-		<widget name="movie_name" position="20,5" size="960,42" zPosition="0" font="Regular;21" valign="center" halign="center" transparent="1" foregroundColor="#00bab329" backgroundColor="#000000" />
-		<widget name="previewlist" position="240,62" size="740,392" itemHeight="%s" scrollbarMode="showOnDemand" />
-		<widget name="previewcover" position="20,62" size="204,285" alphatest="blend" zPosition="2" />
-		<widget name="contenttxt" position="240,62" size="740,285" font="Regular;20" />
-		<widget name="runtime" position="20,362" size="200,25" font="Regular;20" foregroundColor="#000066FF" />
-		<widget name="runtimetxt" position="240,362" size="230,25" font="Regular;20" />
-		<widget name="genre" position="20,397" size="200,25" font="Regular;20" foregroundColor="#000066FF" />
-		<widget name="genretxt" position="240,397" size="230,25" font="Regular;20" />
-		<widget name="country" position="530,362" size="200,25" font="Regular;20" foregroundColor="#000066FF" />
-		<widget name="countrytxt" position="750,362" size="230,25" font="Regular;20" />
-		<widget name="release" position="530,397" size="200,25" font="Regular;20" foregroundColor="#000066FF" />
-		<widget name="releasetxt" position="750,397" size="230,25" font="Regular;20" />
-		<widget name="rating" position="20,432" size="200,25" font="Regular;20" foregroundColor="#000066FF" />
-		<widget name="ratingtxt" position="240,432" size="230,25" font="Regular;20" />
-		<widget name="starsbg" position="530,435" size="210,21" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/starsbar_empty_10.png" zPosition="3" alphatest="blend" />
-		<widget name="stars" position="530,435" size="210,21" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/starsbar_filled_10.png" zPosition="4" transparent="1" />
-		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/line_blue.png" position="50,470" size="900,2" alphatest="on" />
-		<widget name="setup" position="45,475" size="150,25" font="Regular;18" halign="center" valign="center" transparent="1" />
-		<widget name="key_menu" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key_menu_line.png" position="45,500" size="150,2" alphatest="on" />
-		<widget name="save" position="320,475" size="150,25" font="Regular;18" halign="center" valign="center" transparent="1" />
-		<widget name="key_green" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key-green_line.png" position="320,500" size="150,2" alphatest="on" />
-	</screen>""" % image(True)
+	if sz_w == 1920:
+		skin = """
+		<screen name="MovieInfoTMDb" position="center,170" size="1200,820" title="Movie Information TMDb">
+		<widget name="movie_name" position="10,5" size="1180,80" font="Regular;35" halign="center" valign="center" foregroundColor="yellow"/>
+        <eLabel backgroundColor="grey" position="10,90" size="1180,1" />
+		<widget name="previewlist" enableWrapAround="1" position="340,100" size="850,630" itemHeight="45" scrollbarMode="showOnDemand" />
+		<widget name="previewcover" position="20,100" size="300,451" />
+		<widget name="contenttxt" position="340,100" size="850,460" font="Regular;30" />
+		<widget name="runtime" position="20,590" size="160,35" font="Regular;28" foregroundColor="#000066FF" />
+		<widget name="runtimetxt" position="190,590" size="330,35" font="Regular;28" />
+		<widget name="genre" position="20,640" size="160,35" font="Regular;28" foregroundColor="#000066FF" />
+		<widget name="genretxt" position="190,640" size="330,35" font="Regular;28" />
+		<widget name="country" position="550,590" size="290,35" font="Regular;28" foregroundColor="#000066FF" />
+		<widget name="countrytxt" position="850,590" size="340,35" font="Regular;28" />
+		<widget name="release" position="550,640" size="290,35" font="Regular;28" foregroundColor="#000066FF" />
+		<widget name="releasetxt" position="850,640" size="340,35" font="Regular;28" />
+		<widget name="rating" position="20,690" size="160,35" font="Regular;28" foregroundColor="#000066FF" />
+		<widget name="ratingtxt" position="190,690" size="330,35" font="Regular;28" />
+        <widget name="starsbg" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/starsbar_empty.png" position="550,690" size="300,30" />
+        <widget name="stars" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/starsbar_filled.png" position="550,690" size="300,30" transparent="1" zPosition="1" />
+        <eLabel backgroundColor="grey" position="10,740" size="1180,1" />
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/menu.png" position="10,770" size="80,40" />
+		<widget name="setup" position="110,772" size="380,40" font="Regular;30" valign="center" />
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/ok.png" position="510,770" size="80,40" zPosition="1"/>
+		<widget name="key_green" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/key_green.png" position="510,770" size="80,40" zPosition="2"/>
+		<widget name="save" position="620,772" size="290,40" font="Regular;30" valign="center" />
+	</screen>"""
+	else:
+		skin = """
+		<screen name="MovieInfoTMDb" position="center,80" size="1200,610" title="Movie Information TMDb">
+		<widget name="movie_name" position="10,5" size="1180,55" font="Regular;24" valign="center" halign="center" foregroundColor="yellow"/>
+        <eLabel backgroundColor="grey" position="10,70" size="1180,1" />
+		<widget name="previewcover" position="20,80" size="220,330"/>
+		<widget enableWrapAround="1" name="previewlist" position="270,80" size="920,330" itemHeight="30" scrollbarMode="showOnDemand" />
+		<widget name="contenttxt" position="270,80" size="920,330" font="Regular;21" />
+		<widget name="runtime" position="20,450" size="120,25" font="Regular;20" foregroundColor="#000066FF" />
+		<widget name="runtimetxt" position="160,450" size="360,25" font="Regular;20" />
+		<widget name="genre" position="20,480" size="120,25" font="Regular;20" foregroundColor="#000066FF" />
+		<widget name="genretxt" position="160,480" size="360,25" font="Regular;20" />
+		<widget name="country" position="600,450" size="200,25" font="Regular;20" foregroundColor="#000066FF" />
+		<widget name="countrytxt" position="820,450" size="360,25" font="Regular;20" />
+		<widget name="release" position="600,480" size="200,25" font="Regular;20" foregroundColor="#000066FF" />
+		<widget name="releasetxt" position="820,480" size="360,25" font="Regular;20" />
+		<widget name="rating" position="20,510" size="120,25" font="Regular;20" foregroundColor="#000066FF" />
+		<widget name="ratingtxt" position="160,510" size="360,25" font="Regular;20" />
+		<widget name="starsbg" position="595,510" size="250,25" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/starsbar_empty.png" />
+		<widget name="stars" position="595,510" size="250,25" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/starsbar_filled.png" transparent="1" zPosition="1" />
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/menu.png" position="20,570" size="60,30" />
+		<widget name="setup" position="100,571" size="200,30" font="Regular;22" valign="center" />
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/ok.png" position="320,570" size="60,30" zPosition="1" />
+		<widget name="key_green" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key_green.png" position="320,570" size="60,30" zPosition="2"/>
+		<widget name="save" position="400,571" size="200,30" font="Regular;22" valign="center" />
+	</screen>"""
 
 # page 0 = details
 # page 1 = list
@@ -699,14 +744,35 @@ class MovieInfoTMDb(Screen):
 		self.session.open(MovieInfoSetup)
 
 class MovieInfoSetup(Screen, ConfigListScreen):
-	skin = """
-		<screen name="EMCMovieInfoSetup" position="center,center" size="600,450" title="Movie Information Download Setup">
-		<widget name="config" position="5,10" size="570,350" itemHeight="%s" scrollbarMode="showOnDemand" />
-		<widget name="key_red" position="0,390" size="140,40" valign="center" halign="center" zPosition="5" transparent="1" foregroundColor="#ffffff" font="Regular;18"/>
-		<widget name="key_green" position="140,390" size="140,40" valign="center" halign="center" zPosition="5" transparent="1" foregroundColor="#ffffff" font="Regular;18"/>
-		<ePixmap name="red" pixmap="skin_default/buttons/red.png" position="0,390" size="140,40" zPosition="4" transparent="1" alphatest="on"/>
-		<ePixmap name="green" pixmap="skin_default/buttons/green.png" position="140,390" size="140,40" zPosition="4" transparent="1" alphatest="on"/>
-	</screen>""" % image(False, True)
+	if sz_w == 1920:
+		skin = """
+		<screen name="EMCMovieInfoSetup" position="center,170" size="1200,820" title="Movie Information Download Setup">
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/red.png" position="10,5" size="300,70" />
+        <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/green.png" position="310,5" size="300,70" />
+        <widget backgroundColor="#9f1313" font="Regular;30" halign="center" name="key_red" position="10,5" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" size="300,70" transparent="1" valign="center" zPosition="1" />
+        <widget backgroundColor="#1f771f" font="Regular;30" halign="center" name="key_green" position="310,5" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" size="300,70" transparent="1" valign="center" zPosition="1" />
+        <widget font="Regular;34" halign="right" position="1050,25" render="Label" size="120,40" source="global.CurrentTime">
+            <convert type="ClockToText">Default</convert>
+        </widget>
+        <widget font="Regular;34" halign="right" position="800,25" render="Label" size="240,40" source="global.CurrentTime">
+            <convert type="ClockToText">Date</convert>
+        </widget>
+        <eLabel backgroundColor="grey" position="10,80" size="1180,1" />
+        <widget enableWrapAround="1" name="config" position="10,90" itemHeight="45" scrollbarMode="showOnDemand" size="1180,720" />
+	</screen>"""
+	else:
+		skin = """
+		<screen name="EMCMovieInfoSetup" position="center,120" size="820,520" title="Movie Information Download Setup">
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/red.png" position="10,5" size="200,40"  />
+    	<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/green.png" position="210,5" size="200,40"  />
+    	<widget name="key_red" position="10,5" size="200,40" zPosition="1" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" />
+    	<widget name="key_green" position="210,5" size="200,40" zPosition="1" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" />
+    	<widget source="global.CurrentTime" render="Label" position="740,14" size="70,24" font="Regular;22" halign="right">
+    		<convert type="ClockToText">Default</convert>
+    	</widget>
+        <eLabel position="10,50" size="800,1" backgroundColor="grey" />
+     	<widget name="config" itemHeight="30" position="10,60" size="800,450" enableWrapAround="1" scrollbarMode="showOnDemand" />
+	</screen>"""
 
 	def __init__(self, session):
 		Screen.__init__(self, session)

@@ -56,6 +56,8 @@ from ServiceSupport import ServiceCenter
 from ThreadQueue import ThreadQueue
 from EnhancedMovieCenter import imgVti, newPiconRenderer
 
+sz_w = getDesktop(0).size().width()
+
 global imgVti
 global newPiconRenderer
 if imgVti:
@@ -1681,6 +1683,14 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 
 
 def loadPix(name):
+ if sz_w == 1920:
+	plugindir = '/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/'
+	if fileExists(resolveFilename(SCOPE_CURRENT_SKIN, 'emc/'+name)):
+		pic = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'emc/'+name))
+	else:
+		pic = LoadPixmap(cached=True, path=plugindir+name)
+	return pic
+ else:
 	plugindir = '/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/'
 	if fileExists(resolveFilename(SCOPE_CURRENT_SKIN, 'emc/'+name)):
 		pic = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'emc/'+name))
@@ -1770,7 +1780,7 @@ class MovieCenter(GUIComponent):
 		self.TitleColor = 0xFFFFFF
 		self.DateColor = 0xFFFFFF
 		self.BackColor = None
-		self.BackColorSel = 0x000000
+		self.BackColorSel = None
 		self.FrontColorSel = 0xFFFFFF
 		self.UnwatchedColor = 0xFFFFFF
 		self.WatchingColor = 0x3486F4
@@ -1935,7 +1945,7 @@ class MovieCenter(GUIComponent):
 		#TODO remove before release
 		try:
 			offset = 0
-			progressWidth = 55
+			progressWidth = 65
 			globalHeight = 80
 			progress = 0
 			pixmap = None
@@ -2103,10 +2113,10 @@ class MovieCenter(GUIComponent):
 						offset = 5
 				else:
 					if not config.EMC.skin_able.value:
-						append(MultiContentEntryText(pos=(5, 2), size=(self.CoolSelNumTxtWidth, globalHeight), font=3, flags=RT_HALIGN_LEFT, text=selnumtxt))
+						append(MultiContentEntryText(pos=(0, self.CoolMovieHPos), size=(self.CoolSelNumTxtWidth, globalHeight), font=3, flags=RT_HALIGN_CENTER, text=selnumtxt))
 						offset += 5 + self.CoolSelNumTxtWidth + 4
 					else:
-						append(MultiContentEntryText(pos=(self.CoolIconPos, self.CoolIconHPos), size=(self.CoolSelNumTxtWidth, globalHeight), font=3, flags=RT_HALIGN_LEFT, text=selnumtxt))
+						append(MultiContentEntryText(pos=(self.CoolIconPos, self.CoolMovieHPos), size=(self.CoolSelNumTxtWidth, globalHeight), font=3, flags=RT_HALIGN_CENTER, text=selnumtxt))
 						offset += 5 + self.CoolSelNumTxtWidth + 4
 
 				movie_metaload = config.EMC.movie_metaload.value
@@ -2129,7 +2139,7 @@ class MovieCenter(GUIComponent):
 							self.CoolDateWidth = 162
 						else:
 							self.CoolDateWidth = 110
-						append(MultiContentEntryText(pos=(self.l.getItemSize().width() - self.CoolDateWidth, 0), size=(self.CoolDateWidth, globalHeight), font=usedDateFont, color = colordate, color_sel = colorhighlight, backcolor = self.BackColor, backcolor_sel = self.BackColorSel, flags=RT_HALIGN_CENTER, text=datetext))
+						append(MultiContentEntryText(pos=(self.l.getItemSize().width() - self.CoolDateWidth, self.CoolDateHPos), size=(self.CoolDateWidth, globalHeight), font=usedDateFont, color = colordate, color_sel = colorhighlight, backcolor = self.BackColor, backcolor_sel = self.BackColorSel, flags=RT_HALIGN_CENTER, text=datetext))
 
 					# Media files left side not skin_able
 					if movie_metaload:
@@ -2138,7 +2148,7 @@ class MovieCenter(GUIComponent):
 
 					# Picons only for .ts-files
 					textX = offset
-					textY = 0
+					textY = 2
 					textSizeY = globalHeight
 					if ext in extTS:
 						if config.EMC.movie_picons.value:
@@ -2242,13 +2252,13 @@ class MovieCenter(GUIComponent):
 							append(MultiContentEntryProgress(pos=(CoolBarPos - iconsub, self.CoolBarHPos -2), size = (self.CoolBarSizeSa.width(), self.CoolBarSizeSa.height()), percent = progress, borderWidth = 1, foreColor = color, foreColorSelected=color, backColor = self.BackColor, backColorSelected = None))
 					if CoolProgressPos != -1:
 						if config.EMC.movie_icons.value:
-							append(MultiContentEntryText(pos=(CoolProgressPos, self.CoolProgressHPos), size=(progressWidth, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text="%d%%" % (progress), color = colortitle, color_sel = colorhighlight))
+							append(MultiContentEntryText(pos=(CoolProgressPos, self.CoolMovieHPos), size=(progressWidth, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text="%d%%" % (progress), color = colortitle, color_sel = colorhighlight))
 						else:
 							if self.CoolProgressPos < self.CoolMoviePos:
 								iconsub = self.CoolIconSize.width()
 							else:
 								iconsub = 0
-							append(MultiContentEntryText(pos=(CoolProgressPos - iconsub, self.CoolProgressHPos), size=(progressWidth, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text="%d%%" % (progress), color = colortitle, color_sel = colorhighlight))
+							append(MultiContentEntryText(pos=(CoolProgressPos - iconsub, self.CoolMovieHPos), size=(progressWidth, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text="%d%%" % (progress), color = colortitle, color_sel = colorhighlight))
 					if CoolDatePos != -1:
 						if config.EMC.movie_date_position.value == '1':
 							halign = RT_HALIGN_RIGHT

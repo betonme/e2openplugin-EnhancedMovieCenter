@@ -34,6 +34,7 @@ from Screens.InputBox import InputBox
 from Screens.LocationBox import LocationBox
 from Tools.BoundFunction import boundFunction
 from Tools.Notifications import AddPopup
+from enigma import getDesktop
 
 from EMCFileCache import movieFileCache
 from EMCTasker import emcTasker, emcDebugOut
@@ -44,26 +45,29 @@ from E2Bookmarks import E2Bookmarks
 from EMCBookmarks import EMCBookmarks
 from RogueFileCheck import RogueFileCheck
 from MovieCenter import extTS, extMedia
-from EnhancedMovieCenter import imgVti
 global extTS
 
 cutsParser = struct.Struct('>QI') # big-endian, 64-bit PTS and 32-bit type
 
-def image():
-	if imgVti:
-		return 30
-	else:
-		return 28
-
+sz_w = getDesktop(0).size().width()
 
 class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
-	skin = """
-	<screen name="EMCMenu" position="center,center" size="600,480" title="EMC menu">
-	<widget source="title" render="Label" position="10,10" size="580,35" font="Regular;27" halign="center" />
-	<widget source="menu" render="Listbox" position="10,55" size="580,430" itemHeight="%s" scrollbarMode="showOnDemand" enableWrapAround="1">
-		<convert type="StringList" />
-	</widget>
-	</screen>""" % image()
+	if sz_w == 1920:
+		skin = """
+		<screen name="EMCMenu" position="center,center" size="840,730" title="EMC menu">
+    	<widget source="title" render="Label" position="10,10" size="820,40" font="Regular;35" />
+		<widget enableWrapAround="1" position="10,80" render="Listbox" itemHeight="45" scrollbarMode="showOnDemand" size="820,630" source="menu">
+            <convert type="StringList" />
+        </widget>
+	</screen>"""
+	else:
+		skin = """
+		<screen name="EMCMenu" position="center,120" size="620,520" title="EMC menu">
+    	<widget source="title" render="Label" position="10,10" size="600,30" font="Regular;24" />
+		<widget source="menu" render="Listbox" position="10,60" size="600,450" itemHeight="30" enableWrapAround="1" scrollbarMode="showOnDemand">
+			<convert type="StringList" />
+		</widget>
+	</screen>"""
 
 	def __init__(self, session, menumode, mselection, mlist, service, selections, currentPath, playlist=False):
 		Screen.__init__(self, session)

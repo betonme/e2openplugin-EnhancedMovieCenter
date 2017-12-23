@@ -30,9 +30,7 @@ from twisted.internet import defer
 from Components.config import *
 from Components.ConfigList import *
 
-from enigma import eListboxPythonMultiContent, eListbox, gFont, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_HALIGN_CENTER, RT_VALIGN_CENTER, loadPNG, RT_WRAP, eServiceReference
-from enigma import getDesktop
-from enigma import loadJPG
+from enigma import eListboxPythonMultiContent, eListbox, gFont, getDesktop, loadJPG, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_HALIGN_CENTER, RT_VALIGN_CENTER, loadPNG, RT_WRAP, eServiceReference
 
 from Tools.BoundFunction import boundFunction
 from DelayedFunction import DelayedFunction
@@ -40,6 +38,8 @@ from time import time
 
 from MovieCenter import getMovieNameWithoutExt, getMovieNameWithoutPhrases, getNoPosterPath
 from EnhancedMovieCenter import imgVti
+
+sz_w = getDesktop(0).size().width()
 
 import re, urllib, urllib2, os, time, shutil
 
@@ -103,11 +103,6 @@ def image(item=True, itemfont=False, pixmap=False):
 			return 37
 		else:
 			return 28
-	if pixmap:
-		if imgVti:
-			return "/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/cursor_vti.png"
-		else:
-			return "/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/cursor.png"
 
 try:
 	from enigma import eMediaDatabase
@@ -131,63 +126,63 @@ class imdblist(MenuList):
 		self.l.setFont(7, gFont("Regular", 54))
 
 class EMCImdbScan(Screen):
-	if getDesktop(0).size().width() == 1280:
+	if sz_w == 1920:
 		skin = """
-			<screen position="center,center" size="1000,560" title="EMC Cover search">
-				<!-- Info: Amount of searched Covers -->
-				<widget name="info" position="10,10" size="900,24" zPosition="0" font="Regular;21" halign="left" valign="center" transparent="1" foregroundColor="#ffffff" backgroundColor="#000000"/>
-				<!-- aktual movie name -->
-				<widget name="m_info" position="200,40" size="800,24" zPosition="0" font="Regular;24" halign="center" valign="center" transparent="1" foregroundColor="#00bab329" backgroundColor="#000000"/>
-				<!-- Movie Listbox -->
-				<widget name="menulist" position="220,80" size="772,420" selectionPixmap="%s" scrollbarMode="showOnDemand" transparent="1" enableWrapAround="on" />
-				<!-- Cover picture -->
-				<widget name="poster" position="10,40" size="185,230" zPosition="4" alphatest="on" />
-				<!-- Amount of "downloaded", "exist", and "not found" covers -->
-				<widget name="download" position="10,371" size="200,24" zPosition="0" font="Regular;21" halign="left" valign="center" transparent="1" foregroundColor="#ffffff" backgroundColor="#000000"/>
-				<widget name="exist" position="10,323" size="200,24" zPosition="0" font="Regular;21" halign="left" valign="center" transparent="1" foregroundColor="#ffffff" backgroundColor="#000000"/>
-				<widget name="no_poster" position="10,347" size="200,24" zPosition="0" font="Regular;21" halign="left" valign="center" transparent="1" foregroundColor="#ffffff" backgroundColor="#000000"/>
-				<!-- Infoline of coversearch -->
-				<widget name="done_msg" position="220,512" size="772,48" zPosition="0" font="Regular;21" halign="left" valign="center" transparent="1" foregroundColor="#ffffff" backgroundColor="#000000"/>
-				<!-- Buttons  -->
-				<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key-green.png" position="10,278" size="30,30" alphatest="on" />
-				<widget name="ButtonGreenText" position="50,285" size="300,22" valign="center" halign="left" zPosition="1" font="Regular;20" transparent="1" />
-				<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key-yellow.png" position="10,418" size="30,30" alphatest="on" />
-				<widget name="Manage Cover" position="50,425" size="300,22" font="Regular;21" halign="left" valign="center" transparent="1" />
-				<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key-red.png" position="10,453" size="30,30" alphatest="on" />
-				<widget name="ButtonRedText" position="50,460" size="300,22" valign="center" halign="left" zPosition="1" font="Regular;20" transparent="1" />
-				<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key_menu.png" position="10,495" size="35,25" alphatest="on" />
-				<widget name="Setup" position="50,498" size="300,22" font="Regular;21" halign="left" valign="center" transparent="1" />
-				<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key_ok.png" position="10,530" size="35,25" alphatest="on" />
-				<widget name="Single search" position="50,533" size="300,22" font="Regular;21" halign="left" valign="center" transparent="1" />
-			</screen>""" % image(False, False, True)
+			<screen position="center,110" size="1800,930" title="EMC Cover search">
+				<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/red.png" position="10,5" size="300,70" />
+				<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/green.png" position="310,5" size="300,70" />
+				<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/yellow.png" position="610,5" size="300,70" />
+				<widget backgroundColor="#9f1313" font="Regular;30" halign="center" name="ButtonRedText" position="10,5" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" size="300,70" transparent="1" valign="center" zPosition="1" />
+				<widget backgroundColor="#1f771f" font="Regular;30" halign="center" name="ButtonGreenText" position="310,5" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" size="300,70" transparent="1" valign="center" zPosition="1" />
+				<widget backgroundColor="#a08500" font="Regular;30" halign="center" name="Manage Cover" position="610,5" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" size="300,70" transparent="1" valign="center" zPosition="1" />				
+				<widget font="Regular;34" halign="right" position="1650,25" render="Label" size="120,40" source="global.CurrentTime">
+				    <convert type="ClockToText">Default</convert>
+				</widget>
+				<widget font="Regular;34" halign="right" position="1240,25" render="Label" size="400,40" source="global.CurrentTime" >
+				    <convert type="ClockToText">Date</convert>
+				</widget>
+				<eLabel backgroundColor="grey" position="10,80" size="1780,1" />
+				<widget name="info" position="10,90" size="400,32" halign="center" font="Regular;28"/>
+				<widget name="poster" position="10,130" size="400,600" />
+				<widget name="m_info" position="440,90" size="1350,40" font="Regular;34" halign="center" valign="center" foregroundColor="yellow"/>
+				<widget name="menulist" position="440,140" size="1350,675" itemHeight="45" scrollbarMode="showOnDemand" enableWrapAround="1"/>
+				<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/menu.png" position="10,880" size="80,40" />
+				<widget name="Setup" position="110,882" size="380,40" font="Regular;30" valign="center" />
+				<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/ok.png" position="510,880" size="80,40" />
+				<widget name="Single search" position="610,882" size="280,40" font="Regular;30" valign="center" />
+				<widget name="exist" position="10,740" size="400,35" font="Regular;30"/>
+				<widget name="no_poster" position="10,780" size="400,35" font="Regular;30"/>
+				<widget name="download" position="10,820" size="400,35" font="Regular;30"/>
+				<widget name="done_msg" position="930,850" size="860,70" font="Regular;30" halign="right" foregroundColor="yellow" valign="bottom"/>
+			</screen>"""
 	else:
 		skin = """
-			<screen position="center,center" size="620,500" title="EMC Cover search">
-				<!-- actual movie name -->
-				<widget name="m_info" position="5,5" size="610,22" zPosition="0" font="Regular;21" halign="center" valign="center" transparent="1" foregroundColor="#00bab329" backgroundColor="#000000"/>
-				<!-- Movie Listbox -->
-				<widget name="menulist" position="5,28" size="610,310" selectionPixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/cursor.png" scrollbarMode="showOnDemand" transparent="1" enableWrapAround="on" />
-				<!-- Cover picture -->
-				<widget name="poster" position="160,345" size="115,150" zPosition="4" alphatest="on" />
-				<!-- Info: Amount of searched Covers -->
-				<widget name="info" position="290,345" size="325,20" zPosition="0" font="Regular;18" halign="left" valign="center" transparent="1" foregroundColor="#ffffff" backgroundColor="#000000"/>
-				<!-- Amount of "downloaded", "exist", and "not found" covers -->
-				<widget name="exist" position="290,375" size="325,20" zPosition="0" font="Regular;18" halign="left" valign="center" transparent="1" foregroundColor="#ffffff" backgroundColor="#000000"/>
-				<widget name="no_poster" position="290,395" size="325,20" zPosition="0" font="Regular;18" halign="left" valign="center" transparent="1" foregroundColor="#ffffff" backgroundColor="#000000"/>
-				<widget name="download" position="290,415" size="325,20" zPosition="0" font="Regular;18" halign="left" valign="center" transparent="1" foregroundColor="#ffffff" backgroundColor="#000000"/>
-				<!-- Infoline of coversearch -->
-				<widget name="done_msg" position="290,450" size="325,40" zPosition="0" font="Regular;18" halign="left" valign="center" transparent="1" foregroundColor="#ffffff" backgroundColor="#000000"/>
-				<!-- Buttons  -->
-				<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key-green.png" position="5,352" size="30,25" alphatest="on" />
-				<widget name="ButtonGreenText" position="45,352" size="300,25" valign="center" halign="left" zPosition="1" font="Regular;18" transparent="1" />
-				<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key-yellow.png" position="5,382" size="30,25" alphatest="on" />
-				<widget name="Manage Cover" position="45,382" size="300,25" font="Regular;18" halign="left" valign="center" transparent="1" />
-				<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key-red.png" position="5,412" size="30,25" alphatest="on" />
-				<widget name="ButtonRedText" position="45,412" size="300,25" valign="center" halign="left" zPosition="1" font="Regular;18" transparent="1" />
-				<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key_menu.png" position="5,442" size="35,25" alphatest="on" />
-				<widget name="Setup" position="45,442" size="300,25" font="Regular;18" halign="left" valign="center" transparent="1" />
-				<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key_ok.png" position="5,472" size="35,25" alphatest="on" />
-				<widget name="Single search" position="45,472" size="300,25" font="Regular;18" halign="left" valign="center" transparent="1" />
+	    		<screen position="center,80" size="1200,610" title="EMC Cover search">
+         		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/red.png" position="10,5" size="200,40"/>
+	        	<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/green.png" position="210,5" size="200,40"/>
+    	    	<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/yellow.png" position="410,5" size="200,40"/>
+    	    	<widget name="ButtonRedText" position="10,5" size="200,40" zPosition="1" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" />
+    	     	<widget name="ButtonGreenText" position="210,5" size="200,40" zPosition="1" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" />
+	        	<widget name="Manage Cover" position="410,5" size="200,40" zPosition="1" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" />
+		    	<widget source="global.CurrentTime" render="Label" position="1130,12" size="60,25" font="Regular;22" halign="right">
+    	    		<convert type="ClockToText">Default</convert>
+        		</widget>
+        		<widget source="global.CurrentTime" render="Label" position="820,12" size="300,25" font="Regular;22" halign="right">
+	        		<convert type="ClockToText">Format:%A %d. %B</convert>
+	        	</widget>
+         		<eLabel position="10,50" size="1180,1" backgroundColor="grey" />
+				<widget name="info" position="20,55" size="220,55" halign="center" valign="center" font="Regular;22"/>
+	         	<widget name="poster" position="20,120" size="220,330"/>
+				<widget name="m_info" position="270,55" size="920,55" font="Regular;24" halign="center" valign="center" foregroundColor="yellow"/>
+				<widget name="menulist" position="270,120" size="920,420" itemHeight="30" scrollbarMode="showOnDemand" enableWrapAround="1"/>
+				<widget name="exist" position="10,470" size="220,25" font="Regular;20"/>
+				<widget name="no_poster" position="10,500" size="220,25" font="Regular;20"/>
+				<widget name="download" position="10,530" size="220,25" font="Regular;20"/>
+	        	<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/menu.png" position="20,570" size="60,30" />
+	        	<widget name="Setup" position="100,571" size="200,30" font="Regular;22" valign="center" />
+	        	<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/ok.png" position="320,570" size="60,30" />
+	         	<widget name="Single search" position="400,571" size="190,30" font="Regular;22" valign="center" />
+				<widget name="done_msg" position="590,548" size="600,50" font="Regular;20" halign="right" foregroundColor="yellow" valign="bottom"/>
 			</screen>"""
 
 	def __init__(self, session, data, folder=False):
@@ -610,8 +605,8 @@ class EMCImdbScan(Screen):
 		text = text.replace('&#8220;',"'")
 		text = text.replace('&#8221;','"')
 		text = text.replace('&#8222;',',')
-		text = text.replace('\u014d','ō')
-		text = text.replace('\u016b','ū')
+		text = text.replace('\u014d','o')
+		text = text.replace('\u016b','u')
 		text = text.replace('\u201a','\"')
 		text = text.replace('\u2018','\"')
 		text = text.replace('\u201e','\"')
@@ -681,19 +676,43 @@ class EMCImdbScan(Screen):
 		else:
 			w = self.listWidth
 
-		res.append(MultiContentEntryText(pos=(0, 0), size=(w, h), font=gF, text=search_title, flags=RT_HALIGN_LEFT|RT_VALIGN_CENTER))
-		res.append(MultiContentEntryText(pos=(w-100*f, 0), size=(100*f, h), font=gF, text=elapsed, flags=RT_HALIGN_RIGHT|RT_VALIGN_CENTER))
+		res.append(MultiContentEntryText(pos=(5, 0), size=(w, h), font=gF, text=search_title, flags=RT_HALIGN_LEFT|RT_VALIGN_CENTER))
+		res.append(MultiContentEntryText(pos=(w-150*f, 0), size=(140*f, h), font=gF, text=elapsed, flags=RT_HALIGN_RIGHT|RT_VALIGN_CENTER))
 		return res
 
 class imdbSetup(Screen, ConfigListScreen):
-	skin = """
-		<screen position="center,center" size="550,400" title="EMC Cover search setup" >
-			<widget name="config" position="20,10" size="510,330" itemHeight="%s" scrollbarMode="showOnDemand" />
-			<widget name="key_red" position="0,350" size="140,40" valign="center" halign="center" zPosition="5" transparent="1" foregroundColor="#ffffff" font="Regular;18"/>
-			<widget name="key_green" position="140,350" size="140,40" valign="center" halign="center" zPosition="5" transparent="1" foregroundColor="#ffffff" font="Regular;18"/>
-			<ePixmap name="red" pixmap="skin_default/buttons/red.png" position="0,350" size="140,40" zPosition="4" transparent="1" alphatest="on"/>
-			<ePixmap name="green" pixmap="skin_default/buttons/green.png" position="140,350" size="140,40" zPosition="4" transparent="1" alphatest="on"/>
-		</screen>""" % image(False, True)
+	if sz_w == 1920:
+		skin = """
+		<screen position="center,110" size="1800,930" title="EMC Cover search setup">
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/red.png" position="10,5" size="300,70" />
+        <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/green.png" position="310,5" size="300,70" />
+        <widget backgroundColor="#9f1313" font="Regular;30" halign="center" name="key_red" position="10,5" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" size="300,70" transparent="1" valign="center" zPosition="1" />
+        <widget backgroundColor="#1f771f" font="Regular;30" halign="center" name="key_green" position="310,5" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" size="300,70" transparent="1" valign="center" zPosition="1" />
+        <widget font="Regular;34" halign="right" position="1650,25" render="Label" size="120,40" source="global.CurrentTime">
+            <convert type="ClockToText">Default</convert>
+        </widget>
+        <widget font="Regular;34" halign="right" position="1240,25" render="Label" size="400,40" source="global.CurrentTime" >
+            <convert type="ClockToText">Date</convert>
+        </widget>
+        <eLabel backgroundColor="grey" position="10,80" size="1780,1" />
+        <widget enableWrapAround="1" name="config" position="10,90" itemHeight="45" scrollbarMode="showOnDemand" size="1780,810" />
+	</screen>"""
+	else:
+		skin = """
+		<screen position="center,80" size="1200,610" title="EMC Cover search setup">
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/red.png" position="10,5" size="200,40"/>
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/green.png" position="210,5" size="200,40"/>
+		<widget name="key_red" position="10,5" size="200,40" zPosition="1" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" />
+		<widget name="key_green" position="210,5" size="200,40" zPosition="1" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" />
+		<widget source="global.CurrentTime" render="Label" position="1130,12" size="60,25" font="Regular;22" halign="right">
+			<convert type="ClockToText">Default</convert>
+		</widget>
+		<widget source="global.CurrentTime" render="Label" position="820,12" size="300,25" font="Regular;22" halign="right">
+			<convert type="ClockToText">Format:%A %d. %B</convert>
+		</widget>
+		<eLabel position="10,50" size="1180,1" backgroundColor="grey" />
+		<widget name="config" position="10,60" size="1180,540" itemHeight="30" enableWrapAround="1" scrollbarMode="showOnDemand" />
+	</screen>"""
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -749,22 +768,24 @@ class imdbSetup(Screen, ConfigListScreen):
 		self.close(False)
 
 class getCover(Screen):
-	if getDesktop(0).size().width() == 1280:
+	if sz_w == 1920:
 		skin = """
-			<screen position="center,center" size="1000,560" title="EMC Cover Selecter" >
-				<widget name="m_info" position="200,10" size="760,24" zPosition="0" font="Regular;24" halign="center" valign="center" transparent="1" foregroundColor="#00bab329" backgroundColor="#000000"/>
-				<widget name="poster" zPosition="2" position="10,10" size="185,230" alphatest="on" />
-				<widget name="menulist" position="220,40" size="760,477" selectionPixmap="%s" scrollbarMode="showOnDemand" transparent="1" enableWrapAround="on" />
-				<widget name="info" position="10,535" size="990,24" zPosition="0" font="Regular;21" halign="left" valign="center" transparent="1" foregroundColor="#ffffff" backgroundColor="#000000"/>
-			</screen>""" % image(False, False, True)
+		<screen position="center,110" size="1800,930" title="EMC Cover Selecter">
+		<widget name="m_info" position="10,10" size="1780,40" font="Regular;35" halign="center" foregroundColor="yellow"/>
+		<eLabel backgroundColor="grey" position="10,60" size="1780,1" />
+		<widget name="poster" position="10,80" size="400,600" />
+		<widget name="menulist" position="440,80" size="1350,810" itemHeight="45" scrollbarMode="showOnDemand" enableWrapAround="1"/>
+		<widget name="info" position="10,700" size="400,140" font="Regular;30" halign="center" valign="center" foregroundColor="yellow"/>
+	</screen>"""
 	else:
 		skin = """
-			<screen position="center,center" size="620,500" title="EMC Cover Selecter" >
-				<widget name="m_info" position="125,10" size="490,22" zPosition="0" font="Regular;21" halign="center" valign="center" transparent="1" foregroundColor="#00bab329" backgroundColor="#000000"/>
-				<widget name="poster" zPosition="2" position="5,10" size="115,150" alphatest="on" />
-				<widget name="menulist" position="125,40" size="490,392" selectionPixmap="%s" scrollbarMode="showOnDemand" transparent="1" enableWrapAround="on" />
-				<widget name="info" position="10,460" size="605,21" zPosition="0" font="Regular;20" halign="left" valign="center" transparent="1" foregroundColor="#ffffff" backgroundColor="#000000"/>
-			</screen>""" % image(False, False, True)
+   		<screen position="center,80" size="1200,610" title="EMC Cover Selecter">
+	    <widget name="m_info" position="10,5" size="1180,30" font="Regular;24" halign="center" valign="center" foregroundColor="yellow"/>
+		<eLabel backgroundColor="grey" position="10,40" size="1180,1" />
+	    <widget name="poster" position="20,50" size="220,330"/>
+		<widget name="menulist" position="270,50" size="920,540" itemHeight="30" scrollbarMode="showOnDemand" enableWrapAround="1"/>
+		<widget name="info" position="10,400" size="220,80" font="Regular;20" halign="center" valign="center" foregroundColor="yellow"/>
+	</screen>"""
 
 	def __init__(self, session, data):
 		Screen.__init__(self, session, data)
