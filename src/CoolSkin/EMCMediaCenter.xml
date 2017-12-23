@@ -1,15 +1,15 @@
     <screen backgroundColor="#ffffffff" flags="wfNoBorder" name="EMCMediaCenter" position="0,290" size="1280,410">
         <eLabel position="10,250" size="1260,160" zPosition="-1"/>
         <eLabel backgroundColor="foreground" position="20,290" size="1240,1" />
-        <widget name="Cover" position="1090,0" size="160,240" zPosition="1"/>
+        <widget name="Cover" position="1090,0" size="160,240" zPosition="1" alphatest="blend"/>
         <widget font="Regular;25" noWrap="1" position="20,255" render="Label" size="1100,30" source="session.CurrentService">
             <convert type="ServiceName">Name</convert>
         </widget>
         <widget font="Regular;24" halign="right" position="1160,255" render="Label" size="100,30" source="global.CurrentTime">
             <convert type="EMCClockToText">Format:%H:%M:%S</convert>
         </widget>
-		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/emc.png" position="40,310" size="90,90" />
-        <widget pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/rec.png" position="78,347" render="Pixmap" size="15,15" source="session.RecordState" zPosition="1">
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/emc.png" position="40,310" size="90,90" alphatest="blend"/>
+        <widget pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/rec.png" position="78,347" render="Pixmap" size="15,15" source="session.RecordState" zPosition="1" alphatest="blend">
             <convert type="ConditionalShowHide">Blink</convert>
         </widget>
 		<widget source="Service" render="Label" position="180,316" size="90,26" font="Regular;22" halign="right">
@@ -33,27 +33,27 @@
 		</widget>
         <widget font="Regular;20" foregroundColor="grey" name="chapterLabel" halign="center" position="350,295" size="600,25" />
         <eLabel backgroundColor="grey" position="160,370" size="1100,2" />
-        <widget pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/dolby.png" position="170,380" render="Pixmap" size="57,25" source="session.CurrentService" >
+        <widget pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/dolby.png" position="170,380" render="Pixmap" size="57,25" source="session.CurrentService" alphatest="blend">
             <convert type="ServiceInfo">IsMultichannel</convert>
             <convert type="ConditionalShowHide" />
         </widget>
-        <widget pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/format.png" position="240,380" render="Pixmap" size="57,25" source="session.CurrentService">
+        <widget pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/format.png" position="240,380" render="Pixmap" size="57,25" source="session.CurrentService" alphatest="blend">
             <convert type="ServiceInfo">IsWidescreen</convert>
             <convert type="ConditionalShowHide" />
         </widget>
-        <widget pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/hd.png" position="310,380" render="Pixmap" size="57,25" source="session.CurrentService" >
+        <widget pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/hd.png" position="310,380" render="Pixmap" size="57,25" source="session.CurrentService" alphatest="blend">
             <convert type="ServiceInfo">VideoWidth</convert>
             <convert type="ValueRange">720,1980</convert>
             <convert type="ConditionalShowHide" />
         </widget>
-        <widget pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/uhd.png" position="310,380" render="Pixmap" size="57,25" source="session.CurrentService" >
+        <widget pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/uhd.png" position="310,380" render="Pixmap" size="57,25" source="session.CurrentService" alphatest="blend">
             <convert type="ServiceInfo">VideoWidth</convert>
             <convert type="ValueRange">2160,3840</convert>
             <convert type="ConditionalShowHide" />
         </widget>
         <widget font="Regular;20" name="audioLabel" position="380,380" size="120,25" />
         <widget font="Regular;20" name="subtitleLabel" position="510,380" size="120,25" />
-        <widget name="anglePix" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/view.png" position="650,380" size="25,25"/>
+        <widget name="anglePix" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/view.png" position="650,380" size="25,25" alphatest="blend"/>
         <widget font="Regular;20" name="angleLabel" position="680,380" size="120,25"/>
         <widget font="Regular;22" halign="right" position="1110,380" render="Label" size="70,25" source="session.CurrentService">
             <convert type="ServiceInfo">VideoWidth</convert>

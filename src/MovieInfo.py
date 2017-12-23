@@ -230,11 +230,11 @@ class DownloadMovieInfo(Screen):
 		<widget enableWrapAround="1" name="movielist" position="10,100" size="1180,585" itemHeight="45" scrollbarMode="showOnDemand"/>
         <eLabel backgroundColor="grey" position="10,695" size="1180,1" />
 		<widget name="resulttext" position="10,715" size="1180,35" font="Regular;32" foregroundColor="yellow"/>
-		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/menu.png" position="10,770" size="80,40" />
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/menu.png" position="10,770" size="80,40" alphatest="blend"/>
 		<widget name="setup" position="110,772" size="380,40" font="Regular;30" valign="center" />
-		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/ok.png" position="510,770" size="80,40" />
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/ok.png" position="510,770" size="80,40" alphatest="blend"/>
 		<widget name="save" position="620,772" size="290,40" font="Regular;30" valign="center" />
-		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/info.png" position="930,770" size="80,40" />
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/info.png" position="930,770" size="80,40" alphatest="blend"/>
 		<widget name="movieinfo" position="1030,772" size="160,40" font="Regular;30" valign="center" />
 	</screen>"""
 	else:
@@ -245,11 +245,11 @@ class DownloadMovieInfo(Screen):
 		<widget enableWrapAround="1" name="movielist" position="10,80" size="800,330" itemHeight="30" scrollbarMode="showOnDemand"/>
         <eLabel backgroundColor="grey" position="10,420" size="800,1" />
 		<widget name="resulttext" position="10,430" size="800,25" font="Regular;20" foregroundColor="yellow"/>
-		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/menu.png" position="10,480" size="60,30" />
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/menu.png" position="10,480" size="60,30" alphatest="blend"/>
 		<widget name="setup" position="100,481" size="180,30" font="Regular;22" valign="center" />
-		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/ok.png" position="300,480" size="60,30" />
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/ok.png" position="300,480" size="60,30" alphatest="blend"/>
 		<widget name="save" position="380,481" size="180,30" font="Regular;22" valign="center" />
-		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/info.png" position="580,480" size="60,30" />
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/info.png" position="580,480" size="60,30" alphatest="blend"/>
 		<widget name="movieinfo" position="660,481" size="100,30" font="Regular;22" valign="center" />
 	</screen>"""
 
@@ -389,7 +389,7 @@ class MovieInfoTMDb(Screen):
 		<widget name="movie_name" position="10,5" size="1180,80" font="Regular;35" halign="center" valign="center" foregroundColor="yellow"/>
         <eLabel backgroundColor="grey" position="10,90" size="1180,1" />
 		<widget name="previewlist" enableWrapAround="1" position="340,100" size="850,630" itemHeight="45" scrollbarMode="showOnDemand" />
-		<widget name="previewcover" position="20,100" size="300,451" />
+		<widget name="previewcover" position="20,100" size="300,451" alphatest="blend"/>
 		<widget name="contenttxt" position="340,100" size="850,460" font="Regular;30" />
 		<widget name="runtime" position="20,590" size="160,35" font="Regular;28" foregroundColor="#000066FF" />
 		<widget name="runtimetxt" position="190,590" size="330,35" font="Regular;28" />
@@ -401,13 +401,13 @@ class MovieInfoTMDb(Screen):
 		<widget name="releasetxt" position="850,640" size="340,35" font="Regular;28" />
 		<widget name="rating" position="20,690" size="160,35" font="Regular;28" foregroundColor="#000066FF" />
 		<widget name="ratingtxt" position="190,690" size="330,35" font="Regular;28" />
-        <widget name="starsbg" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/starsbar_empty.png" position="550,690" size="300,30" />
-        <widget name="stars" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/starsbar_filled.png" position="550,690" size="300,30" transparent="1" zPosition="1" />
+        <widget name="starsbg" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/starsbar_empty.png" position="550,690" size="300,30" alphatest="blend"/>
+        <widget name="stars" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/starsbar_filled.png" position="550,690" size="300,30" transparent="1" zPosition="1"/>
         <eLabel backgroundColor="grey" position="10,740" size="1180,1" />
-		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/menu.png" position="10,770" size="80,40" />
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/menu.png" position="10,770" size="80,40" alphatest="blend"/>
 		<widget name="setup" position="110,772" size="380,40" font="Regular;30" valign="center" />
-		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/ok.png" position="510,770" size="80,40" zPosition="1"/>
-		<widget name="key_green" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/key_green.png" position="510,770" size="80,40" zPosition="2"/>
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/ok.png" position="510,770" size="80,40" zPosition="1" alphatest="blend"/>
+		<widget name="key_green" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/key_green.png" position="510,770" size="80,40" zPosition="2" alphatest="blend"/>
 		<widget name="save" position="620,772" size="290,40" font="Regular;30" valign="center" />
 	</screen>"""
 	else:
@@ -415,7 +415,7 @@ class MovieInfoTMDb(Screen):
 		<screen name="MovieInfoTMDb" position="center,80" size="1200,610" title="Movie Information TMDb">
 		<widget name="movie_name" position="10,5" size="1180,55" font="Regular;24" valign="center" halign="center" foregroundColor="yellow"/>
         <eLabel backgroundColor="grey" position="10,70" size="1180,1" />
-		<widget name="previewcover" position="20,80" size="220,330"/>
+		<widget name="previewcover" position="20,80" size="220,330" alphatest="blend"/>
 		<widget enableWrapAround="1" name="previewlist" position="270,80" size="920,330" itemHeight="30" scrollbarMode="showOnDemand" />
 		<widget name="contenttxt" position="270,80" size="920,330" font="Regular;21" />
 		<widget name="runtime" position="20,450" size="120,25" font="Regular;20" foregroundColor="#000066FF" />
@@ -428,12 +428,12 @@ class MovieInfoTMDb(Screen):
 		<widget name="releasetxt" position="820,480" size="360,25" font="Regular;20" />
 		<widget name="rating" position="20,510" size="120,25" font="Regular;20" foregroundColor="#000066FF" />
 		<widget name="ratingtxt" position="160,510" size="360,25" font="Regular;20" />
-		<widget name="starsbg" position="595,510" size="250,25" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/starsbar_empty.png" />
-		<widget name="stars" position="595,510" size="250,25" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/starsbar_filled.png" transparent="1" zPosition="1" />
-		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/menu.png" position="20,570" size="60,30" />
+		<widget name="starsbg" position="595,510" size="250,25" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/starsbar_empty.png" alphatest="blend"/>
+		<widget name="stars" position="595,510" size="250,25" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/starsbar_filled.png" transparent="1" zPosition="1"/>
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/menu.png" position="20,570" size="60,30" alphatest="blend"/>
 		<widget name="setup" position="100,571" size="200,30" font="Regular;22" valign="center" />
-		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/ok.png" position="320,570" size="60,30" zPosition="1" />
-		<widget name="key_green" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key_green.png" position="320,570" size="60,30" zPosition="2"/>
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/ok.png" position="320,570" size="60,30" zPosition="1" alphatest="blend"/>
+		<widget name="key_green" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key_green.png" position="320,570" size="60,30" zPosition="2" alphatest="blend"/>
 		<widget name="save" position="400,571" size="200,30" font="Regular;22" valign="center" />
 	</screen>"""
 
@@ -747,8 +747,8 @@ class MovieInfoSetup(Screen, ConfigListScreen):
 	if sz_w == 1920:
 		skin = """
 		<screen name="EMCMovieInfoSetup" position="center,170" size="1200,820" title="Movie Information Download Setup">
-		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/red.png" position="10,5" size="300,70" />
-        <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/green.png" position="310,5" size="300,70" />
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/red.png" position="10,5" size="300,70" alphatest="blend"/>
+        <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/green.png" position="310,5" size="300,70" alphatest="blend"/>
         <widget backgroundColor="#9f1313" font="Regular;30" halign="center" name="key_red" position="10,5" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" size="300,70" transparent="1" valign="center" zPosition="1" />
         <widget backgroundColor="#1f771f" font="Regular;30" halign="center" name="key_green" position="310,5" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" size="300,70" transparent="1" valign="center" zPosition="1" />
         <widget font="Regular;34" halign="right" position="1050,25" render="Label" size="120,40" source="global.CurrentTime">
@@ -763,8 +763,8 @@ class MovieInfoSetup(Screen, ConfigListScreen):
 	else:
 		skin = """
 		<screen name="EMCMovieInfoSetup" position="center,120" size="820,520" title="Movie Information Download Setup">
-		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/red.png" position="10,5" size="200,40"  />
-    	<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/green.png" position="210,5" size="200,40"  />
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/red.png" position="10,5" size="200,40" alphatest="blend"/>
+    	<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/green.png" position="210,5" size="200,40" alphatest="blend"/>
     	<widget name="key_red" position="10,5" size="200,40" zPosition="1" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" />
     	<widget name="key_green" position="210,5" size="200,40" zPosition="1" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" />
     	<widget source="global.CurrentTime" render="Label" position="740,14" size="70,24" font="Regular;22" halign="right">

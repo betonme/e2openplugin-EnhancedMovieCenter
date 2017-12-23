@@ -202,6 +202,13 @@ def getPosterPath(searchPath):
 # func: getNoPosterPath()
 #-------------------------------------------------
 def getNoPosterPath():
+ if sz_w == 1920:
+	img = resolveFilename(SCOPE_CURRENT_SKIN, 'emc/no_poster.png')
+	if fileExists(img):
+		return img
+	else:
+		return "/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/no_poster.png"
+ else:
 	img = resolveFilename(SCOPE_CURRENT_SKIN, 'emc/no_poster.png')
 	if fileExists(img):
 		return img

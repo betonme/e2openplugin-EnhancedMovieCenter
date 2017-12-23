@@ -1,9 +1,9 @@
     <screen name="EMCSelection" position="center,110" size="1800,930" title=" ">
         <eLabel backgroundColor="grey" position="10,80" size="1780,1" />
-        <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/red.png" position="10,5" size="300,70" />
-        <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/green.png" position="310,5" size="300,70" />
-        <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/yellow.png" position="610,5" size="300,70" />
-        <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/blue.png" position="910,5" size="300,70" />
+        <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/red.png" position="10,5" size="300,70" alphatest="blend"/>
+        <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/green.png" position="310,5" size="300,70" alphatest="blend"/>
+        <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/yellow.png" position="610,5" size="300,70" alphatest="blend"/>
+        <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/blue.png" position="910,5" size="300,70" alphatest="blend"/>
         <widget backgroundColor="#9f1313" font="Regular;30" halign="center" name="key_red" position="10,5" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" size="300,70" transparent="1" valign="center" zPosition="1" />
         <widget backgroundColor="#1f771f" font="Regular;30" halign="center" name="key_green" position="310,5" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" size="300,70" transparent="1" valign="center" zPosition="1" />
         <widget backgroundColor="#a08500" font="Regular;30" halign="center" name="key_yellow" position="610,5" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" size="300,70" transparent="1" valign="center" zPosition="1" />
@@ -15,9 +15,9 @@
             <convert type="ClockToText">Date</convert>
         </widget>
         <widget font="Regular;34" halign="center" name="wait" position="10,90" size="1780,540" valign="center" />
-        <widget CoolCSPos="1460" CoolBarHPos="14" CoolBarPos="1370" CoolBarSizeSa="120,21" CoolDateColor="1" CoolDateFont="Regular;28" CoolDateHPos="7" CoolDatePos="1520" CoolDateWidth="240" CoolDirInfoWidth="300" CoolFolderSize="1400" CoolFont="Regular;30" CoolHighlightColor="1" CoolIconPos="5" CoolIconSize="50,40" CoolMovieHPos="6" CoolMoviePiconPos="140" CoolMoviePiconSize="1200" CoolMoviePos="65" CoolMovieSize="1300" CoolPiconHPos="5" CoolPiconHeight="35" CoolPiconPos="40" CoolProgressPos="1440" CoolSelNumTxtWidth="50" CoolSelectFont="Regular;30" CoolTitleColor="1" DefaultColor="foreground" FinishedColor="green" RecordingColor="red" UnwatchedColor="foreground" FrontColorSel="#bababa" WatchingColor="yellow" itemHeight="45" enableWrapAround="1" name="list" position="10,90" scrollbarMode="showOnDemand" size="1780,540" />
+        <widget CoolCSPos="1460" CoolBarHPos="14" CoolBarPos="1370" CoolBarSizeSa="120,21" CoolDateColor="1" CoolDateFont="Regular;28" CoolDateHPos="7" CoolDatePos="1520" CoolDateWidth="240" CoolDirInfoWidth="300" CoolFolderSize="1400" CoolFont="Regular;30" CoolHighlightColor="1" CoolIconPos="5" CoolIconSize="50,40" CoolMovieHPos="6" CoolMoviePiconPos="140" CoolMoviePiconSize="1200" CoolMoviePos="65" CoolMovieSize="1300" CoolPiconHPos="5" CoolPiconHeight="35" CoolPiconPos="40" CoolProgressPos="1440" CoolSelNumTxtWidth="50" CoolSelectFont="Regular;30" CoolTitleColor="1" DefaultColor="foreground" FinishedColor="#38FF48" RecordingColor="red" UnwatchedColor="foreground" FrontColorSel="#bababa" WatchingColor="yellow" itemHeight="45" enableWrapAround="1" name="list" position="10,90" scrollbarMode="showOnDemand" size="1780,540" />
         <eLabel backgroundColor="grey" position="10,640" size="1780,1" />
-        <widget name="Cover" position="10,645" size="185,278"/>
+        <widget name="Cover" position="10,645" size="185,278" alphatest="blend"/>
         <widget font="Regular;32" position="220,650" render="Label" size="690,40" source="Service">
             <convert type="EMCEventName">Name</convert>
         </widget>
@@ -33,8 +33,8 @@
 	    	<convert type="EMCClockToText">Format:- %H:%M </convert>
         </widget>
         <widget font="Regular;30" halign="right" position="1450,650" render="Label" size="340,35" source="Service">
-            <convert type="ServiceTime">StartTime</convert>
-            <convert type="ClockToText">Format:%a. %d %B, %Y</convert>
+            <convert type="EMCServiceTime">StartTime</convert>
+            <convert type="EMCClockToText">Format:%a. %d %B, %Y</convert>
         </widget>
         <widget font="Regular;30" foregroundColor="yellow" position="220,700" render="Label" size="900,35" source="Service">
             <convert type="EMCMovieInfo">ShortDescription</convert>
