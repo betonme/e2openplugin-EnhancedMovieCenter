@@ -70,42 +70,6 @@ sz_w = getDesktop(0).size().width()
 EMCVersion = "git20171224"
 EMCAbout = "\n  Enhanced Movie Center " +EMCVersion+ "\n\n  (C) 2012 by\n  Coolman, Betonme, einfall, Jojojoxx, mr.scotty & Swiss-MAD \n\n  If you like this plugin and you want to support it,\n  or if just want to say ''thanks'',\n  please donate via PayPal. \n\n  Thanks a lot ! \n\n  PayPal: enhancedmoviecenter@gmail.com"
 
-# Check if image is vti or dream, is needed for build entrys in MovieCenter with picons
-global imgVti
-global newPiconRenderer
-imgVti = False
-newPiconRenderer = False
-
-def checkImg():
-	global imgVti
-	global newPiconRenderer
-	check = False
-	try:
-		from boxbranding import getImageDistro
-		distro = getImageDistro()
-		imgVti = 'vti' in distro.lower()
-		check = True
-	except:
-		try:
-			from enigma import BT_FIXRATIO
-			imgVti = True
-			check = True
-		except Exception, e:
-			print "[EMC] checkImg is not Vti", e
-	if check:
-		if imgVti:
-			print "[EMC] checkImg is Vti"
-		else:
-			print "[EMC] checkImg is not Vti"
-	try:
-		from Components.Renderer.Picon import getPiconName
-		newPiconRenderer = True
-	except Exception, e:
-		print "[EMC] checkImg is not newPiconRenderer", e
-	else:
-		print "[EMC] checkImg is newPiconRenderer"
-
-
 def setEPGLanguage(dummyself=None, dummy=None):
 	if config.EMC.epglang.value:
 		emcDebugOut("Setting EPG language: " + str(config.EMC.epglang.value))
@@ -171,9 +135,6 @@ def EMCStartup(session):
 
 	setupKeyResponseValues()
 	DelayedFunction(5000, cleanupSetup)
-
-	# Check the image to use global for various images
-	checkImg()
 
 	# Go into standby if the reason for restart was EMC auto-restart
 	if config.EMC.restart.value != "":

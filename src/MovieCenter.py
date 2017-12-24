@@ -54,17 +54,30 @@ from E2Bookmarks import E2Bookmarks
 from EMCBookmarks import EMCBookmarks
 from ServiceSupport import ServiceCenter
 from ThreadQueue import ThreadQueue
-from EnhancedMovieCenter import imgVti, newPiconRenderer
 
 sz_w = getDesktop(0).size().width()
 
-global imgVti
-global newPiconRenderer
+# Check if image is vti or dream, is needed for build entrys in MovieCenter with picons
+try:
+	from boxbranding import getImageDistro
+	distro = getImageDistro()
+	imgVti = 'vti' in distro.lower()
+except:
+	try:
+		from enigma import BT_FIXRATIO
+		imgVti = True
+	except:
+		imgVti = False
+try:
+	from Components.Renderer.Picon import getPiconName
+	newPiconRenderer = True
+except:
+	newPiconRenderer = False
+
 if imgVti:
 	from enigma import BT_SCALE, BT_FIXRATIO as BT_KEEP_ASPECT_RATIO
 
 if newPiconRenderer:
-	from Components.Renderer.Picon import getPiconName
 	try:
 		from enigma import BT_SCALE, BT_KEEP_ASPECT_RATIO
 	except ImportError as ie:
@@ -611,7 +624,7 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 		self.hideitemlist = readBasicCfgFile("/etc/enigma2/emc-hide.cfg") or []
 		self.nostructscan = readBasicCfgFile("/etc/enigma2/emc-noscan.cfg") or []
 		self.topdirlist = readBasicCfgFile("/etc/enigma2/emc-topdir.cfg") or []
-		
+
 		config.EMC.cfghide_enable.addNotifier(self.changedCfgHideEnable, initial_call = False, immediate_feedback = True)
 
 	def getList(self):
@@ -2640,7 +2653,7 @@ class MovieCenter(GUIComponent):
 						self.addCountsizeworker(path)
 				else:
 					self.addCountsizeworker(path)
-					
+
 		return (count, size, datetext, datepic, pixmap)
 
 	def addCountsizeworker(self,path):
