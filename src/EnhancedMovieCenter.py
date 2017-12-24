@@ -254,9 +254,9 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
         <widget font="Regular;34" halign="right" position="1050,25" render="Label" size="120,40" source="global.CurrentTime">
             <convert type="ClockToText">Default</convert>
         </widget>
-        <eLabel backgroundColor="grey" position="10,80" size="1180,1" />
+        <eLabel backgroundColor="#818181" position="10,80" size="1180,1" />
         <widget enableWrapAround="1" name="config" itemHeight="45" position="10,90" scrollbarMode="showOnDemand" size="1180,540" />
-        <eLabel backgroundColor="grey" position="10,650" size="1180,1" />
+        <eLabel backgroundColor="#818181" position="10,650" size="1180,1" />
         <widget font="Regular;32" halign="center" position="10,655" render="Label" size="1180,145" source="help" valign="center" />
 	</screen>"""
 	else:
@@ -271,9 +271,9 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 		<widget source="global.CurrentTime" render="Label" position="740,14" size="70,24" font="Regular;22" halign="right">
 			<convert type="ClockToText">Default</convert>
 		</widget>
-        <eLabel position="10,50" size="800,1" backgroundColor="grey" />
+        <eLabel position="10,50" size="800,1" backgroundColor="#818181" />
 		<widget name="config" itemHeight="30" position="10,55" size="800,360" enableWrapAround="1" scrollbarMode="showOnDemand" />
-		<eLabel position="10,420" size="800,1" backgroundColor="grey" />
+		<eLabel position="10,420" size="800,1" backgroundColor="#818181" />
 		<widget source="help" valign="center" render="Label" position="10,423" size="800,95" font="Regular;20" halign="center" />
 	</screen>"""
 

@@ -15,8 +15,8 @@
 		</widget>
 		<widget name="wait" position="310,55" size="880,550" zPosition="4" font="Regular;22" halign="center" valign="center" />
         <widget CoolDirInfoWidth="110" CoolCSPos="760" CoolBarHPos="9" CoolBarPos="610" CoolBarSizeSa="85,16" CoolDateColor="1" CoolDateFont="Regular;19" CoolDateHPos="5" CoolDatePos="710" CoolDateWidth="160" CoolFolderSize="700" CoolFont="Regular;20" CoolHighlightColor="1" CoolIconPos="5" CoolIconSize="35,26" CoolMovieHPos="4" CoolMoviePiconPos="100" CoolMoviePiconSize="500" CoolMoviePos="40" CoolMovieSize="550" CoolPiconHPos="2" CoolPiconHeight="26" CoolPiconPos="13" CoolProgressPos="660" CoolSelNumTxtWidth="35" CoolSelectFont="Regular;20" CoolTitleColor="1" DefaultColor="foreground" FinishedColor="#38FF48" RecordingColor="red" UnwatchedColor="foreground" FrontColorSel="#bababa" WatchingColor="yellow" position="310,55" size="880,420" itemHeight="30" enableWrapAround="1" name="list" scrollbarMode="showOnDemand" />
-		<eLabel position="10,50" size="1180,1" backgroundColor="grey" />
-		<eLabel position="300,50" size="1,430" backgroundColor="grey" />
+		<eLabel position="10,50" size="1180,1" backgroundColor="#818181" />
+		<eLabel position="300,50" size="1,430" backgroundColor="#818181" />
         <widget name="Cover" position="75,70" size="160,240" alphatest="blend"/>
         <widget font="Regular;22" halign="center" foregroundColor="yellow" position="10,350" render="Label" size="280,25" source="Service">
             <convert type="EMCMovieInfo">RecordServiceName</convert>
@@ -40,7 +40,7 @@
             <convert type="EMCServiceTime">Duration</convert>
 	     	<convert type="EMCClockToText">Format:%Hh:%Mmin</convert>
         </widget>
-		<eLabel position="10,480" size="1180,1" backgroundColor="grey" />
+		<eLabel position="10,480" size="1180,1" backgroundColor="#818181" />
         <widget font="Regular;21" position="10,485" foregroundColor="yellow" render="Label" size="500,25" source="Service">
             <convert type="EMCEventName">Name</convert>
         </widget>

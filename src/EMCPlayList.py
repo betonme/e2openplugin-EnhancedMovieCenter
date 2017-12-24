@@ -25,7 +25,6 @@ from skin import parseColor, parseFont
 
 from MetaSupport import MetaList
 from MovieCenter import plyDVB
-from EnhancedMovieCenter import imgVti
 
 sz_w = getDesktop(0).size().width()
 
@@ -106,7 +105,7 @@ class EMCPlaylistScreen(Screen):
             <widget backgroundColor="#1f771f" font="Regular;30" halign="center" name="save" position="305,5" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" size="295,70" transparent="1" valign="center" zPosition="1" />
             <widget backgroundColor="#a08500" font="Regular;30" halign="center" name="delete" position="600,5" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" size="295,70" transparent="1" valign="center" zPosition="1" />
             <widget backgroundColor="#18188b" font="Regular;30" halign="center" name="deleteall" position="895,5" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" size="295,70" transparent="1" valign="center" zPosition="1" />
-            <eLabel backgroundColor="grey" position="10,80" size="1180,1" />
+            <eLabel backgroundColor="#818181" position="10,80" size="1180,1" />
             <widget enableWrapAround="1" name="playlist" position="10,90" scrollbarMode="showOnDemand" posWidth="70" nameWidth="1100" posColor="foreground" posColorSel="#bababa" nameColor="foreground" nameColorSel="#bababa" size="1180,720" />       
 		</screen>"""
 	else:
@@ -120,7 +119,7 @@ class EMCPlaylistScreen(Screen):
     		<widget name="save" position="210,5" size="200,40" zPosition="1" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" />
     		<widget name="delete" position="410,5" size="200,40" zPosition="1" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" />
 	    	<widget name="deleteall" position="610,5" size="200,40" zPosition="1" font="Regular;20" halign="center" valign="center" backgroundColor="#18188b" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" />
-    		<eLabel position="10,50" size="800,1" backgroundColor="grey" />
+    		<eLabel position="10,50" size="800,1" backgroundColor="#818181" />
     		<widget name="playlist" position="10,60" size="800,450" posWidth="40" nameWidth="770" posColor="foreground" posColorSel="#bababa" nameColor="foreground" nameColorSel="#bababa" enableWrapAround="1" scrollbarMode="showOnDemand" />
 		</screen>"""
 
@@ -279,28 +278,12 @@ class PlayList(GUIComponent):
 
 		self.screenwidth = getDesktop(0).size().width()
 		if self.screenwidth and self.screenwidth == 1920:
-			if imgVti:
-				self.posFont = parseFont("Regular;26", ((1,1),(1,1)))
-				self.nameFont = parseFont("Regular;26", ((1,1),(1,1)))
-			else:
-				self.posFont = parseFont("Regular;30", ((1,1),(1,1)))
-				self.nameFont = parseFont("Regular;30", ((1,1),(1,1)))
+			self.posFont = parseFont("Regular;30", ((1,1),(1,1)))
+			self.nameFont = parseFont("Regular;30", ((1,1),(1,1)))
 			self.itemHeight = 40
-		elif self.screenwidth and self.screenwidth == 3840:
-			if imgVti:
-				self.posFont = parseFont("Regular;56", ((1,1),(1,1)))
-				self.nameFont = parseFont("Regular;56", ((1,1),(1,1)))
-			else:
-				self.posFont = parseFont("Regular;56", ((1,1),(1,1)))
-				self.nameFont = parseFont("Regular;56", ((1,1),(1,1)))
-			self.itemHeight = 70
 		else:
-			if imgVti:
-				self.posFont = parseFont("Regular;18", ((1,1),(1,1)))
-				self.nameFont = parseFont("Regular;18", ((1,1),(1,1)))
-			else:
-				self.posFont = parseFont("Regular;20", ((1,1),(1,1)))
-				self.nameFont = parseFont("Regular;20", ((1,1),(1,1)))
+			self.posFont = parseFont("Regular;20", ((1,1),(1,1)))
+			self.nameFont = parseFont("Regular;20", ((1,1),(1,1)))
 			self.itemHeight = 30
 
 		self.posColor = 0xFFFFFF
@@ -406,9 +389,6 @@ class PlayList(GUIComponent):
 		if self.screenwidth and self.screenwidth == 1920:
 			entrys.append((eListboxPythonMultiContent.TYPE_TEXT, 5, 1, self.posWidth, 34, 0, RT_VALIGN_CENTER|RT_HALIGN_RIGHT, pos, self.posColor, self.posColorSel))
 			entrys.append((eListboxPythonMultiContent.TYPE_TEXT,5 + self.posWidth + 30, 1, self.nameWidth, 34, 1, RT_VALIGN_CENTER, name, self.nameColor, self.nameColorSel))
-		elif self.screenwidth and self.screenwidth == 3840:
-			entrys.append((eListboxPythonMultiContent.TYPE_TEXT, 5, 1, self.posWidth, 60, 0, RT_VALIGN_CENTER|RT_HALIGN_RIGHT, pos, self.posColor, self.posColorSel))
-			entrys.append((eListboxPythonMultiContent.TYPE_TEXT,5 + self.posWidth + 58, 1, self.nameWidth, 60, 1, RT_VALIGN_CENTER, name, self.nameColor, self.nameColorSel))
 		else:
 			entrys.append((eListboxPythonMultiContent.TYPE_TEXT, 5, 2, self.posWidth, 26, 0, RT_VALIGN_CENTER|RT_HALIGN_RIGHT, pos, self.posColor, self.posColorSel))
 			entrys.append((eListboxPythonMultiContent.TYPE_TEXT,5 + self.posWidth + 20, 2, self.nameWidth, 26, 1, RT_VALIGN_CENTER, name, self.nameColor, self.nameColorSel))
@@ -443,7 +423,7 @@ class EMCPlaylistSetup(Screen, ConfigListScreen):
             <widget font="Regular;34" halign="right" position="800,25" render="Label" size="240,40" source="global.CurrentTime">
                <convert type="ClockToText">Date</convert>
             </widget>
-            <eLabel backgroundColor="grey" position="10,80" size="1180,1" />
+            <eLabel backgroundColor="#818181" position="10,80" size="1180,1" />
             <widget enableWrapAround="1" name="config" itemHeight="45" position="10,90" scrollbarMode="showOnDemand" size="1180,720" />
 		</screen>"""
 	else:
@@ -456,7 +436,7 @@ class EMCPlaylistSetup(Screen, ConfigListScreen):
     		<widget source="global.CurrentTime" render="Label" position="740,14" size="70,24" font="Regular;22" halign="right">
     			<convert type="ClockToText">Default</convert>
     		</widget>
-            <eLabel position="10,50" size="800,1" backgroundColor="grey" />
+            <eLabel position="10,50" size="800,1" backgroundColor="#818181" />
      		<widget name="config" itemHeight="30" position="10,60" size="800,450" enableWrapAround="1" scrollbarMode="showOnDemand" />
 		</screen>"""
 
@@ -546,7 +526,7 @@ class EMCFileBrowser(Screen, HelpableScreen):
             <widget font="Regular;34" halign="right" position="800,25" render="Label" size="240,40" source="global.CurrentTime">
                <convert type="ClockToText">Date</convert>
             </widget>
-            <eLabel backgroundColor="grey" position="10,80" size="1180,1" />
+            <eLabel backgroundColor="#818181" position="10,80" size="1180,1" />
             <widget enableWrapAround="1" name="filelist" itemHeight="45" position="10,90" scrollbarMode="showOnDemand" size="1180,720" />
 		</screen>"""
 	else:
@@ -559,7 +539,7 @@ class EMCFileBrowser(Screen, HelpableScreen):
     	<widget source="global.CurrentTime" render="Label" position="740,14" size="70,24" font="Regular;22" halign="right">
     		<convert type="ClockToText">Default</convert>
     	</widget>
-        <eLabel position="10,50" size="800,1" backgroundColor="grey" />
+        <eLabel position="10,50" size="800,1" backgroundColor="#818181" />
      	<widget name="filelist" itemHeight="30" position="10,60" size="800,450" enableWrapAround="1" scrollbarMode="showOnDemand" />
 	</screen>"""
 

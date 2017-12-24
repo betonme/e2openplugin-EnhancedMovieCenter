@@ -15,8 +15,8 @@
         <widget font="Regular;34" halign="right" position="200,393" render="Label" size="140,40" source="session.CurrentService">
             <convert type="EMCServicePosition">Position,ShowHours</convert>
         </widget>
-        <widget font="Regular;30" foregroundColor="grey" name="chapterLabel" halign="center" position="500,370" size="1100,35" />
-        <eLabel backgroundColor="grey" position="370,413" size="1330,2" />
+        <widget font="Regular;30" foregroundColor="#818181" name="chapterLabel" halign="center" position="500,370" size="1100,35" />
+        <eLabel backgroundColor="#818181" position="370,413" size="1330,2" />
         <widget pointer="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/progress_rec.png:1330,0" position="370,408" render="EMCPositionGauge" size="1330,10" source="Service" transparent="1" zPosition="1">
             <convert type="EMCRecordPosition">Gauge</convert>
         </widget>

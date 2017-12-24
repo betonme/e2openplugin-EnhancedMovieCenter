@@ -226,9 +226,9 @@ class DownloadMovieInfo(Screen):
 		skin = """
 		<screen name="DownloadMovieInfo" position="center,170" size="1200,820" title="Movie Information Download (TMDb)">
 		<widget name="movie_name" position="10,5" size="1180,80" font="Regular;35" halign="center" valign="center" foregroundColor="yellow"/>
-        <eLabel backgroundColor="grey" position="10,90" size="1180,1" />
+        <eLabel backgroundColor="#818181" position="10,90" size="1180,1" />
 		<widget enableWrapAround="1" name="movielist" position="10,100" size="1180,585" itemHeight="45" scrollbarMode="showOnDemand"/>
-        <eLabel backgroundColor="grey" position="10,695" size="1180,1" />
+        <eLabel backgroundColor="#818181" position="10,695" size="1180,1" />
 		<widget name="resulttext" position="10,715" size="1180,35" font="Regular;32" foregroundColor="yellow"/>
 		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/menu.png" position="10,770" size="80,40" alphatest="blend"/>
 		<widget name="setup" position="110,772" size="380,40" font="Regular;30" valign="center" />
@@ -241,9 +241,9 @@ class DownloadMovieInfo(Screen):
 		skin = """
 		<screen name="DownloadMovieInfo" position="center,120" size="820,520" title="Movie Information Download (TMDb)">
 		<widget name="movie_name" position="10,5" size="800,55" font="Regular;24" halign="center" valign="center" foregroundColor="yellow"/>
-        <eLabel backgroundColor="grey" position="10,70" size="800,1" />
+        <eLabel backgroundColor="#818181" position="10,70" size="800,1" />
 		<widget enableWrapAround="1" name="movielist" position="10,80" size="800,330" itemHeight="30" scrollbarMode="showOnDemand"/>
-        <eLabel backgroundColor="grey" position="10,420" size="800,1" />
+        <eLabel backgroundColor="#818181" position="10,420" size="800,1" />
 		<widget name="resulttext" position="10,430" size="800,25" font="Regular;20" foregroundColor="yellow"/>
 		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/menu.png" position="10,480" size="60,30" alphatest="blend"/>
 		<widget name="setup" position="100,481" size="180,30" font="Regular;22" valign="center" />
@@ -350,14 +350,14 @@ class MovieInfoPreview(Screen):
 		skin = """
 		<screen name="MovieInfoPreview" position="center,170" size="1200,820" title="Movie Information Preview">
 		<widget name="movie_name" position="10,5" size="1180,80" font="Regular;35" halign="center" valign="center" foregroundColor="yellow"/>
-        <eLabel backgroundColor="grey" position="10,90" size="1180,1" />
+        <eLabel backgroundColor="#818181" position="10,90" size="1180,1" />
 		<widget name="previewtext" position="10,100" size="1180,710" font="Regular;32" />
 	</screen>"""
 	else:
 		skin = """
 		<screen name="MovieInfoPreview" position="center,120" size="820,520" title="Movie Information Preview">
 		<widget name="movie_name" position="10,5" size="800,55" font="Regular;24" halign="center" valign="center" foregroundColor="yellow"/>
-        <eLabel backgroundColor="grey" position="10,70" size="800,1" />
+        <eLabel backgroundColor="#818181" position="10,70" size="800,1" />
 		<widget name="previewtext" position="10,80" size="800,435" font="Regular;21"/>
 	</screen>"""
 
@@ -387,7 +387,7 @@ class MovieInfoTMDb(Screen):
 		skin = """
 		<screen name="MovieInfoTMDb" position="center,170" size="1200,820" title="Movie Information TMDb">
 		<widget name="movie_name" position="10,5" size="1180,80" font="Regular;35" halign="center" valign="center" foregroundColor="yellow"/>
-        <eLabel backgroundColor="grey" position="10,90" size="1180,1" />
+        <eLabel backgroundColor="#818181" position="10,90" size="1180,1" />
 		<widget name="previewlist" enableWrapAround="1" position="340,100" size="850,630" itemHeight="45" scrollbarMode="showOnDemand" />
 		<widget name="previewcover" position="20,100" size="300,451" alphatest="blend"/>
 		<widget name="contenttxt" position="340,100" size="850,460" font="Regular;30" />
@@ -403,7 +403,7 @@ class MovieInfoTMDb(Screen):
 		<widget name="ratingtxt" position="190,690" size="330,35" font="Regular;28" />
         <widget name="starsbg" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/starsbar_empty.png" position="550,690" size="300,30" alphatest="blend"/>
         <widget name="stars" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/starsbar_filled.png" position="550,690" size="300,30" transparent="1" zPosition="1"/>
-        <eLabel backgroundColor="grey" position="10,740" size="1180,1" />
+        <eLabel backgroundColor="#818181" position="10,740" size="1180,1" />
 		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/menu.png" position="10,770" size="80,40" alphatest="blend"/>
 		<widget name="setup" position="110,772" size="380,40" font="Regular;30" valign="center" />
 		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/ok.png" position="510,770" size="80,40" zPosition="1" alphatest="blend"/>
@@ -414,7 +414,7 @@ class MovieInfoTMDb(Screen):
 		skin = """
 		<screen name="MovieInfoTMDb" position="center,80" size="1200,610" title="Movie Information TMDb">
 		<widget name="movie_name" position="10,5" size="1180,55" font="Regular;24" valign="center" halign="center" foregroundColor="yellow"/>
-        <eLabel backgroundColor="grey" position="10,70" size="1180,1" />
+        <eLabel backgroundColor="#818181" position="10,70" size="1180,1" />
 		<widget name="previewcover" position="20,80" size="220,330" alphatest="blend"/>
 		<widget enableWrapAround="1" name="previewlist" position="270,80" size="920,330" itemHeight="30" scrollbarMode="showOnDemand" />
 		<widget name="contenttxt" position="270,80" size="920,330" font="Regular;21" />
@@ -757,7 +757,7 @@ class MovieInfoSetup(Screen, ConfigListScreen):
         <widget font="Regular;34" halign="right" position="800,25" render="Label" size="240,40" source="global.CurrentTime">
             <convert type="ClockToText">Date</convert>
         </widget>
-        <eLabel backgroundColor="grey" position="10,80" size="1180,1" />
+        <eLabel backgroundColor="#818181" position="10,80" size="1180,1" />
         <widget enableWrapAround="1" name="config" position="10,90" itemHeight="45" scrollbarMode="showOnDemand" size="1180,720" />
 	</screen>"""
 	else:
@@ -770,7 +770,7 @@ class MovieInfoSetup(Screen, ConfigListScreen):
     	<widget source="global.CurrentTime" render="Label" position="740,14" size="70,24" font="Regular;22" halign="right">
     		<convert type="ClockToText">Default</convert>
     	</widget>
-        <eLabel position="10,50" size="800,1" backgroundColor="grey" />
+        <eLabel position="10,50" size="800,1" backgroundColor="#818181" />
      	<widget name="config" itemHeight="30" position="10,60" size="800,450" enableWrapAround="1" scrollbarMode="showOnDemand" />
 	</screen>"""
 

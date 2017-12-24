@@ -37,7 +37,6 @@ from DelayedFunction import DelayedFunction
 from time import time
 
 from MovieCenter import getMovieNameWithoutExt, getMovieNameWithoutPhrases, getNoPosterPath
-from EnhancedMovieCenter import imgVti
 
 sz_w = getDesktop(0).size().width()
 
@@ -84,25 +83,11 @@ def getSearchList(title, option):
 def image(item=True, itemfont=False, pixmap=False):
 	if item:
 		if getDesktop(0).size().width() == 1920:
-			if imgVti:
-				return 42
-			else:
-				return 40
-		elif getDesktop(0).size().width() == 3840:
-			if imgVti:
-				return 70
-			else:
-				return 70
-		else:
-			if imgVti:
-				return 37
-			else:
-				return 28
-	if itemfont:
-		if imgVti:
-			return 37
+			return 40
 		else:
 			return 28
+	if itemfont:
+		return 28
 
 try:
 	from enigma import eMediaDatabase
@@ -141,7 +126,7 @@ class EMCImdbScan(Screen):
 				<widget font="Regular;34" halign="right" position="1240,25" render="Label" size="400,40" source="global.CurrentTime" >
 				    <convert type="ClockToText">Date</convert>
 				</widget>
-				<eLabel backgroundColor="grey" position="10,80" size="1780,1" />
+				<eLabel backgroundColor="#818181" position="10,80" size="1780,1" />
 				<widget name="info" position="10,90" size="400,32" halign="center" font="Regular;28"/>
 				<widget name="poster" position="10,130" size="400,600" alphatest="blend"/>
 				<widget name="m_info" position="440,90" size="1350,40" font="Regular;34" halign="center" valign="center" foregroundColor="yellow"/>
@@ -170,7 +155,7 @@ class EMCImdbScan(Screen):
         		<widget source="global.CurrentTime" render="Label" position="820,12" size="300,25" font="Regular;22" halign="right">
 	        		<convert type="ClockToText">Format:%A %d. %B</convert>
 	        	</widget>
-         		<eLabel position="10,50" size="1180,1" backgroundColor="grey" />
+         		<eLabel position="10,50" size="1180,1" backgroundColor="#818181" />
 				<widget name="info" position="20,55" size="220,55" halign="center" valign="center" font="Regular;22"/>
 	         	<widget name="poster" position="20,120" size="220,330" alphatest="blend"/>
 				<widget name="m_info" position="270,55" size="920,55" font="Regular;24" halign="center" valign="center" foregroundColor="yellow"/>
@@ -663,9 +648,6 @@ class EMCImdbScan(Screen):
 		if getDesktop(0).size().width() == 1920:
 			f=1.5
 			gF=6
-		elif getDesktop(0).size().width() == 3840:
-			f=3
-			gF=7
 		else:
 			f=1
 			gF=4
@@ -694,7 +676,7 @@ class imdbSetup(Screen, ConfigListScreen):
         <widget font="Regular;34" halign="right" position="1240,25" render="Label" size="400,40" source="global.CurrentTime" >
             <convert type="ClockToText">Date</convert>
         </widget>
-        <eLabel backgroundColor="grey" position="10,80" size="1780,1" />
+        <eLabel backgroundColor="#818181" position="10,80" size="1780,1" />
         <widget enableWrapAround="1" name="config" position="10,90" itemHeight="45" scrollbarMode="showOnDemand" size="1780,810" />
 	</screen>"""
 	else:
@@ -710,7 +692,7 @@ class imdbSetup(Screen, ConfigListScreen):
 		<widget source="global.CurrentTime" render="Label" position="820,12" size="300,25" font="Regular;22" halign="right">
 			<convert type="ClockToText">Format:%A %d. %B</convert>
 		</widget>
-		<eLabel position="10,50" size="1180,1" backgroundColor="grey" />
+		<eLabel position="10,50" size="1180,1" backgroundColor="#818181" />
 		<widget name="config" position="10,60" size="1180,540" itemHeight="30" enableWrapAround="1" scrollbarMode="showOnDemand" />
 	</screen>"""
 
@@ -772,7 +754,7 @@ class getCover(Screen):
 		skin = """
 		<screen position="center,110" size="1800,930" title="EMC Cover Selecter">
 		<widget name="m_info" position="10,10" size="1780,40" font="Regular;35" halign="center" foregroundColor="yellow"/>
-		<eLabel backgroundColor="grey" position="10,60" size="1780,1" />
+		<eLabel backgroundColor="#818181" position="10,60" size="1780,1" />
 		<widget name="poster" position="10,80" size="400,600" alphatest="blend"/>
 		<widget name="menulist" position="440,80" size="1350,810" itemHeight="45" scrollbarMode="showOnDemand" enableWrapAround="1"/>
 		<widget name="info" position="10,700" size="400,140" font="Regular;30" halign="center" valign="center" foregroundColor="yellow"/>
@@ -781,7 +763,7 @@ class getCover(Screen):
 		skin = """
    		<screen position="center,80" size="1200,610" title="EMC Cover Selecter">
 	    <widget name="m_info" position="10,5" size="1180,30" font="Regular;24" halign="center" valign="center" foregroundColor="yellow"/>
-		<eLabel backgroundColor="grey" position="10,40" size="1180,1" />
+		<eLabel backgroundColor="#818181" position="10,40" size="1180,1" />
 	    <widget name="poster" position="20,50" size="220,330" alphatest="blend"/>
 		<widget name="menulist" position="270,50" size="920,540" itemHeight="30" scrollbarMode="showOnDemand" enableWrapAround="1"/>
 		<widget name="info" position="10,400" size="220,80" font="Regular;20" halign="center" valign="center" foregroundColor="yellow"/>
@@ -1237,9 +1219,6 @@ class getCover(Screen):
 		if getDesktop(0).size().width() == 1920:
 			f=1.5
 			gF=6
-		elif getDesktop(0).size().width() == 3840:
-			f=3
-			gF=7
 		else:
 			f=1
 			gF=4

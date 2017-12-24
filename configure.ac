@@ -9,7 +9,7 @@ Makefile
 src/Makefile
 src/script/Makefile
 src/img/Makefile
-src/img/EMCMoviePlayer/Makefile
+src/img_fhd/Makefile
 src/CoolSkin/Makefile
 src/Components/Makefile
 src/Components/Converter/Makefile

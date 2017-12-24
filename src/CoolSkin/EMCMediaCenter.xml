@@ -21,7 +21,7 @@
         <widget source="Service" render="Label" position="550,340" size="200,26" font="Regular;22" foregroundColor="yellow" halign="center" >
             <convert type="EMCServicePosition">Length,ShowHours</convert>
 		</widget>
-		<eLabel position="290,328" size="840,2" backgroundColor="grey" />
+		<eLabel position="290,328" size="840,2" backgroundColor="#818181" />
 		<widget source="Service" render="EMCPositionGauge" position="290,325" size="840,8" zPosition="1" pointer="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/progress_rec.png:840,0" transparent="1">
             <convert type="EMCRecordPosition">Gauge</convert>
 		</widget>
@@ -31,8 +31,8 @@
 		<widget source="Service" render="EMCPositionGauge" position="290,321" size="840,15" zPosition="3" transparent="1">
             <convert type="EMCServicePosition">Gauge</convert>
 		</widget>
-        <widget font="Regular;20" foregroundColor="grey" name="chapterLabel" halign="center" position="350,295" size="600,25" />
-        <eLabel backgroundColor="grey" position="160,370" size="1100,2" />
+        <widget font="Regular;20" foregroundColor="#818181" name="chapterLabel" halign="center" position="350,295" size="600,25" />
+        <eLabel backgroundColor="#818181" position="160,370" size="1100,2" />
         <widget pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/dolby.png" position="170,380" render="Pixmap" size="57,25" source="session.CurrentService" alphatest="blend">
             <convert type="ServiceInfo">IsMultichannel</convert>
             <convert type="ConditionalShowHide" />
