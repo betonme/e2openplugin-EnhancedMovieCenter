@@ -328,27 +328,14 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 			if self.service and self.service.type != sidDVB:
 				self.realSeekLength = self.getSeekLength()
 
-	def evEOF(self, needToClose=False, prevTitle=False):
+	def evEOF(self, needToClose=False):
 		# see if there are more to play
 		print "EMC PLAYER evEOF", self.playall, self.playcount, self.playlist
 		if self.playall:
 			# Play All
 			try:
-				# for being able to jump back in 'playall' mode, new titles are added to the playlist acting like a cache
-				# (the generator 'getNextService' cannot easily be made bidirectional, using os.walk)
-				if prevTitle:
-					if self.playcount > 0:
-						self.playcount -= 2
-					else:
-						self.playcount -= 1
-				else:
-					if self.playcount == -1:
-						self.playall.next()
-					elif (self.playcount + 1) == len(self.playlist):
-						self.playlist.append(self.playall.next())
-						if len(self.playlist) > 25:
-							del self.playlist[0]
-							self.playcount -= 1
+				self.playcount = -1
+				self.playlist = [ self.playall.next() ]
 			except StopIteration:
 				self.playall = None
 				self.playlist = []
@@ -774,7 +761,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 					# InfoBarSeek
 					self.showAfterSeek()
 		else:
-			if (len(self.playlist) > 1) or self.playall:
+			if len(self.playlist) > 1:
 				self.evEOF(False)
 
 	def prevTitle(self):
@@ -784,9 +771,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 					# InfoBarSeek
 					self.showAfterSeek()
 		else:
-			if self.playall:
-				self.evEOF(False,True) # True=previous
-			elif len(self.playlist) > 1:
+			if len(self.playlist) > 1:
 				if self.playcount >= 1:
 					self.playcount -= 2
 					self.evEOF(False)
