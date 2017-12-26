@@ -308,7 +308,7 @@ config.EMC.movie_preview_delay       = ConfigSelectionNumber(50, 60000, 50, defa
 config.EMC.movie_preview_offset      = ConfigSelectionNumber(0, 60000, 1, default= 5)
 config.EMC.hide_miniTV               = ConfigSelection(default = 'never', choices = [ ('never', _("never hide")), ('liveTV', _("hide live TV")), ('liveTVorTS', _("hide live TV and timeshift")), ('playback', _("hide playback")), ('all', _("always hide")) ])
 config.EMC.hide_miniTV_method        = ConfigSelection(default = 'stopService', choices = [ ('stopService', _("stop service")), ('singlePixelMuted', _("single pixel TV, muted")) ])
-config.EMC.skin_able                 = ConfigYesNo(default = False)
+config.EMC.skin_able                 = ConfigYesNo(default = True)
 config.EMC.skinstyle                 = ConfigSelection(default = 'left', choices = [ ('left', _("Left")), ('bottom', _("Bottom")) ])
 config.EMC.movie_icons               = ConfigYesNo(default = True)
 config.EMC.link_icons                = ConfigYesNo(default = True)
@@ -435,7 +435,7 @@ config.EMC.mutagen_download          = ConfigYesNo(default = False)
 config.EMC.mutagen_show              = ConfigYesNo(default = False)
 config.EMC.mutagen_download_128      = ConfigYesNo(default = False)
 
-config.EMC.use_orig_skin             = ConfigYesNo(default = False)
+config.EMC.use_orig_skin             = ConfigYesNo(default = True)
 
 config.EMC.InfoLong                  = ConfigSelection(choices = [("IMDbSearch", _("IMDb Search")), ("EMC-TMDBInfo", _("EMC-TMDB Info")), ("TMDBInfo", _("TMDB Info")), ("TMBDInfo", _("TMBD Info")), ('CSFDInfo', _('CSFD Info'))], default = "IMDbSearch")
 
