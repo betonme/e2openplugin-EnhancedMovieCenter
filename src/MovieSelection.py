@@ -1404,7 +1404,8 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		self.showPreview( self.getCurrent() )
 
 	def updateTitle(self):
-		title = ""
+		from EnhancedMovieCenter import EMCVersion
+		title = "EMC "+EMCVersion+" "
 		if self.multiSelectIdx:
 			self.setTitle(_("*** Multiselection active ***"))
 			return
@@ -1415,11 +1416,11 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 				stat = os.statvfs(self.currentPath)
 				free = (stat.f_bavail if stat.f_bavail!=0 else stat.f_bfree) * stat.f_bsize / 1024 / 1024
 				if free >= 10240:	#unit in Giga bytes if more than 10 GB free
-					title = "(%d GB) " %(free/1024)
+					title += "(%d GB) " %(free/1024)
 				else:
-					title = "(%d MB) " %(free)
+					title += "(%d MB) " %(free)
 			except OSError:
-				title = "(? GB) "
+				title += "(? GB) "
 
 		# Display the current path
 		path = self.currentPath
