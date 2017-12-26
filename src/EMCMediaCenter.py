@@ -957,9 +957,12 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 	# InfoBarShowHide
 	if isDreamOS:
 		def serviceStarted(self): #override InfoBarShowHide function
-			subTracks = self.getCurrentServiceSubtitle()
-			subTracks.enableSubtitles(self.dvdScreen.instance, 0) # give parent widget reference to service for drawing menu highlights in a repurposed subtitle widget
-			self.dvdScreen.show()
+			try:
+				subTracks = self.getCurrentServiceSubtitle()
+				subTracks.enableSubtitles(self.dvdScreen.instance, 0) # give parent widget reference to service for drawing menu highlights in a repurposed subtitle widget
+				self.dvdScreen.show()
+			except:
+				pass
 	#def serviceStarted(self):
 	#	if not self.in_menu:
 	#		if self.dvdScreen:
