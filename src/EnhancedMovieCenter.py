@@ -502,7 +502,7 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 
 			(  separator                                          , config.EMC.about                    , None                  , None                  , 0     , []          , _("HELP_Advanced Skin options separator")                , None              , None ),
 			(  _("Use original EMC-skin (needs reopen)")          , config.EMC.use_orig_skin            , None                  , None                  , 0     , []          , _("HELP_Use original EMC-skin (needs reopen)")           , None              , None ),
-
+			(  _("Use alternative style (needs reopen)")          , config.EMC.skinstyle                , None                  , None                  , 0     , [-1]        , _("HELP_Alternative style (needs reopen)")               , "left"            , "left" ),
 
 			(  separator                                          , config.EMC.about                    , None                  , None                  , 0     , []          , _("HELP_Advanced audio metadata options separator")      , None              , None ),
 		]

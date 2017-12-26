@@ -514,9 +514,15 @@ def getSkin():
 	skin = None
 	CoolWide = getDesktop(0).size().width()
 	if CoolWide == 1280:
-		skin = "/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/CoolSkin/EMCSelection.xml"
+		if config.EMC.skinstyle.value == "left":
+			skin = "/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/CoolSkin/EMCSelection_left.xml"
+		else:
+			skin = "/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/CoolSkin/EMCSelection_bottom.xml"
 	elif CoolWide == 1920:
-		skin = "/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/CoolSkin/EMCSelection_1080.xml"
+		if config.EMC.skinstyle.value == "left":
+			skin = "/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/CoolSkin/EMCSelection_left_1080.xml"
+		else:
+			skin = "/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/CoolSkin/EMCSelection_bottom_1080.xml"
 	return skin
 
 last_currentPath = ""

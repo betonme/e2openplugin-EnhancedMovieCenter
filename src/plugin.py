@@ -309,6 +309,7 @@ config.EMC.movie_preview_offset      = ConfigSelectionNumber(0, 60000, 1, defaul
 config.EMC.hide_miniTV               = ConfigSelection(default = 'never', choices = [ ('never', _("never hide")), ('liveTV', _("hide live TV")), ('liveTVorTS', _("hide live TV and timeshift")), ('playback', _("hide playback")), ('all', _("always hide")) ])
 config.EMC.hide_miniTV_method        = ConfigSelection(default = 'stopService', choices = [ ('stopService', _("stop service")), ('singlePixelMuted', _("single pixel TV, muted")) ])
 config.EMC.skin_able                 = ConfigYesNo(default = False)
+config.EMC.skinstyle                 = ConfigSelection(default = 'left', choices = [ ('left', _("Left")), ('bottom', _("Bottom")) ])
 config.EMC.movie_icons               = ConfigYesNo(default = True)
 config.EMC.link_icons                = ConfigYesNo(default = True)
 config.EMC.movie_picons              = ConfigYesNo(default = False)
