@@ -37,6 +37,12 @@ from Screens.HelpMenu import HelpableScreen
 from Tools.BoundFunction import boundFunction
 from Tools.Directories import fileExists, resolveFilename, SCOPE_LANGUAGE, SCOPE_PLUGINS
 
+try:
+	from enigma import eMediaDatabase
+	isDreamOS = True
+except:
+	isDreamOS = False
+
 # Zap to Live TV of record
 from Screens.MessageBox import MessageBox
 from Tools.Notifications import AddPopup
@@ -107,28 +113,44 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 		self["Service"] = EMCCurrentService(session.nav, self)
 
 		# Events
-		self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
-			{
-		# Disabled for tests
-		# If we enable them, the sound will be delayed for about 2 seconds ?
-				iPlayableService.evStart: self.__serviceStarted,
-				iPlayableService.evStopped: self.__serviceStopped,
-				#iPlayableService.evEnd: self.__evEnd,
-				#iPlayableService.evEOF: self.__evEOF,
-				#iPlayableService.evUser: self.__timeUpdated,
-				#iPlayableService.evUser+1: self.__statePlay,
-				#iPlayableService.evUser+2: self.__statePause,
-				iPlayableService.evUser+3: self.__osdFFwdInfoAvail,
-				iPlayableService.evUser+4: self.__osdFBwdInfoAvail,
-				#iPlayableService.evUser+5: self.__osdStringAvail,
-				iPlayableService.evUser+6: self.__osdAudioInfoAvail,
-				iPlayableService.evUser+7: self.__osdSubtitleInfoAvail,
-				iPlayableService.evUser+8: self.__chapterUpdated,
-				iPlayableService.evUser+9: self.__titleUpdated,
-				iPlayableService.evUser+11: self.__menuOpened,
-				iPlayableService.evUser+12: self.__menuClosed,
-				iPlayableService.evUser+13: self.__osdAngleInfoAvail
-			})
+		if isDreamOS:
+			self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
+				{
+					iPlayableService.evEnd: self.__serviceStopped,
+					iPlayableService.evStopped: self.__serviceStopped,
+					iPlayableService.evAudioListChanged: self.__osdAudioInfoAvail,
+					iPlayableService.evSubtitleListChanged: self.__osdSubtitleInfoAvail,
+					iPlayableService.evUser+3: self.__osdFFwdInfoAvail,
+					iPlayableService.evUser+4: self.__osdFBwdInfoAvail,
+					iPlayableService.evUser+6: self.__osdAngleInfoAvail,
+					iPlayableService.evUser+7: self.__chapterUpdated,
+					iPlayableService.evUser+8: self.__titleUpdated,
+					iPlayableService.evUser+9: self.__menuOpened,
+					iPlayableService.evUser+10: self.__menuClosed
+				})
+		else:
+			self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
+				{
+					# Disabled for tests
+					# If we enable them, the sound will be delayed for about 2 seconds ?
+					iPlayableService.evStart: self.__serviceStarted,
+					iPlayableService.evStopped: self.__serviceStopped,
+					#iPlayableService.evEnd: self.__evEnd,
+					#iPlayableService.evEOF: self.__evEOF,
+					#iPlayableService.evUser: self.__timeUpdated,
+					#iPlayableService.evUser+1: self.__statePlay,
+					#iPlayableService.evUser+2: self.__statePause,
+					iPlayableService.evUser+3: self.__osdFFwdInfoAvail,
+					iPlayableService.evUser+4: self.__osdFBwdInfoAvail,
+					#iPlayableService.evUser+5: self.__osdStringAvail,
+					iPlayableService.evUser+6: self.__osdAudioInfoAvail,
+					iPlayableService.evUser+7: self.__osdSubtitleInfoAvail,
+					iPlayableService.evUser+8: self.__chapterUpdated,
+					iPlayableService.evUser+9: self.__titleUpdated,
+					iPlayableService.evUser+11: self.__menuOpened,
+					iPlayableService.evUser+12: self.__menuClosed,
+					iPlayableService.evUser+13: self.__osdAngleInfoAvail
+				})
 
 			# Keymap
 	#		self["SeekActions"] = HelpableActionMap(self, "InfobarSeekActions", 							-1 higher priority
@@ -933,6 +955,11 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 	##############################################################################
 	## Override functions from InfoBarGenerics.py
 	# InfoBarShowHide
+	if isDreamOS:
+		def serviceStarted(self): #override InfoBarShowHide function
+			subTracks = self.getCurrentServiceSubtitle()
+			subTracks.enableSubtitles(self.dvdScreen.instance, 0) # give parent widget reference to service for drawing menu highlights in a repurposed subtitle widget
+			self.dvdScreen.show()
 	#def serviceStarted(self):
 	#	if not self.in_menu:
 	#		if self.dvdScreen:
