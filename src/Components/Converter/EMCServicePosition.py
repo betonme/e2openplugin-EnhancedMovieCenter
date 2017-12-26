@@ -39,10 +39,13 @@ class EMCServicePosition(ServicePosition):
 	cutlist = property(getCutlist)
 
 	def getLength(self):
-		player = self.source.player
-		length = player and player.getLength()
-		if length:
-			return length
+		try:
+			player = self.source.player
+			length = player and player.getLength()
+			if length:
+				return length
+		except:
+			return ServicePosition.getLength(self)
 		# Fallback
 		return ServicePosition.getLength(self)
 
