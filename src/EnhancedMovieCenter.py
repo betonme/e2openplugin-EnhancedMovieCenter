@@ -299,7 +299,7 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 
 	def defineConfig(self):
 
-		separator = "".ljust(250,"-")
+		separator = 400*"¯"
 
 		#          _config list entry
 		#          _                                                  , config element
@@ -337,15 +337,15 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 			(  _("Blue button function")                          , config.EMC.movie_bluefunc           , None                  , None                  , 0     , []          , _("HELP_Blue button function")                           , None              , None ),
 			(  _("Long Blue button function")                     , config.EMC.movie_longbluefunc       , None                  , None                  , 0     , []          , _("HELP_Long Blue button function")                      , None              , None ),
 
-			(  separator                                          , config.EMC.about                    , None                  , None                  , 0     , []          , _(" ")                                                    , None              , None ),
+			(  separator                                          , config.EMC.about                    , None                  , None                  , 0     , []          , _(" ")                                                   , None              , None ),
 			(  _("daily auto-start")                              , config.EMC.restart                  , self.autoRestartInfo  , self.autoRestartInfo  , 1     , []          , _("HELP_Daily auto-start")                               , None              , None ),
 			(  _("auto-start window begin")                       , config.EMC.restart_begin            , None                  , None                  , 1     , [-1]        , _("HELP_auto-start window begin")                        , None              , None ),
 			(  _("auto-start window end")                         , config.EMC.restart_end              , None                  , None                  , 1     , [-2]        , _("HELP_auto-start window end")                          , None              , None ),
 			(  _("Force standby after auto-restart")              , config.EMC.restart_stby             , None                  , None                  , 1     , [-3]        , _("HELP_Force standby after auto-start")                 , None              , None ),
 			(  _("LongInfo Button")                               , config.EMC.InfoLong                 , None                  , None                  , 0     , []          , _("HELP_LongInfo Button")                                , None              , None ),
 
-			(  separator                                          , config.EMC.about                    , None                  , None                  , 0     , []          , _(" ")                                                    , None              , None ),
-			(  _("Movie home at start")                           , config.EMC.CoolStartHome            , None                  , None                  , 0     , []          , _("HELP_Movie home at start")                            , "false"            , None ),
+			(  separator                                          , config.EMC.about                    , None                  , None                  , 0     , []          , _(" ")                                                   , None              , None ),
+			(  _("Movie home at start")                           , config.EMC.CoolStartHome            , None                  , None                  , 0     , []          , _("HELP_Movie home at start")                            , "false"           , None ),
 			(  _("Default sort mode")                             , config.EMC.moviecenter_sort         , None                  , None                  , 0     , []          , _("HELP_Sort mode at startup")                           , None              , None ),
 
 			(  _("Movie home home path")                          , config.EMC.movie_homepath           , self.validatePath     , self.openLocationBox  , 0     , []          , _("HELP_Movie home home path")                           , None              , None ),
@@ -384,14 +384,14 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 
 			(  separator                                          , config.EMC.about                    , None                  , None                  , 1     , []          , _("HELP_separator_hide&performance")                     , None              , None ),
 			(  _("Hide configured entries")                       , config.EMC.cfghide_enable           , None                  , None                  , 1     , []          , _("HELP_cfghide_enable")                                 , True              , True ),
-			(  _("Scan for DVD structures")                       , config.EMC.check_dvdstruct          , None                  , None                  , 1     , []          , _("HELP_Scan for DVD structures")                       , False             , True ),
-			(  _("Scan for movie structures")                     , config.EMC.check_moviestruct        , None                  , None                  , 1     , []          , _("HELP_Scan for movie structures")                     , False             , True ),
-			(  _("Scan for bluray structures")                    , config.EMC.check_blustruct          , None                  , None                  , 1     , []          , _("HELP_Scan for bluray structures")                    , False             , True ),
+			(  _("Scan for DVD structures")                       , config.EMC.check_dvdstruct          , None                  , None                  , 1     , []          , _("HELP_Scan for DVD structures")                        , False             , True ),
+			(  _("Scan for movie structures")                     , config.EMC.check_moviestruct        , None                  , None                  , 1     , []          , _("HELP_Scan for movie structures")                      , False             , True ),
+			(  _("Scan for bluray structures")                    , config.EMC.check_blustruct          , None                  , None                  , 1     , []          , _("HELP_Scan for bluray structures")                     , False             , True ),
 			(  _("Scan for bluray structures in .iso")            , config.EMC.check_blustruct_iso      , None                  , None                  , 0     , []          , _("HELP_Scan for bluray structures in .iso")             , False             , True ),
 			(  _("Suppress scan in selected folders")             , config.EMC.cfgscan_suppress         , None                  , None                  , 1     , []          , _("HELP_cfgscan_suppress")                               , True              , True ),
 			(  _("Scan linked folders")                           , config.EMC.scan_linked              , None                  , None                  , 1     , []          , _("HELP_scan_linked")                                    , False             , True ),
 
-			(  separator                                          , config.EMC.about                    , None                  , None                  , 0     , []          , _(" ")                                                    , None              , None ),
+			(  separator                                          , config.EMC.about                    , None                  , None                  , 0     , []          , _(" ")                                                   , None              , None ),
 			(  _("Try to load titles from .meta files")           , config.EMC.movie_metaload           , None                  , None                  , 0     , []          , _("HELP_Try to load titles from .meta files")            , False             , True ),
 			(  _("Load all for non showing titles from .meta files"), config.EMC.movie_metaload_all     , None                  , None                  , 0     , [-1]        , _("HELP_Load all for non showing titles from .meta files"), None             , True ),
 			(  _("Try to load titles from .eit files")            , config.EMC.movie_eitload            , None                  , None                  , 0     , []          , _("HELP_Try to load titles from .eit files")             , False             , True ),
@@ -401,7 +401,7 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 			(  _("Resolve links and show real path")              , config.EMC.movie_real_path          , None                  , None                  , 0     , []          , _("HELP_Resolve links and show real path")               , False             , True ),
 			(  _("Show Path if no extended description available"), config.EMC.show_path_extdescr       , None                  , None                  , 0     , []          , _("HELP_Show Path if no extended description available") , False             , True ),
 
-			(  separator                                          , config.EMC.about                    , None                  , None                  , 0     , []          , _(" ")                                                    , None              , None ),
+			(  separator                                          , config.EMC.about                    , None                  , None                  , 0     , []          , _(" ")                                                   , None              , None ),
 			(  _("Listbox is skin able")                          , config.EMC.skin_able                , None                  , None                  , 0     , []          , _("HELP_Listbox is skin able")                           , None              , None ),
 
 			(  _("Date format")                                   , config.EMC.movie_date_format        , None                  , None                  , 0     , []          , _("HELP_Date format")                                    , None              , None ),
@@ -437,7 +437,7 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 		)
 		self.EMCConfig.extend(
 		[
-			(  separator                                          , config.EMC.about                    , None                  , None                  , 0     , []          , _(" ")                                                    , None              , None ),
+			(  separator                                          , config.EMC.about                    , None                  , None                  , 0     , []          , _(" ")                                                   , None              , None ),
 			(  _("No resume below 10 seconds")                    , config.EMC.movie_ignore_firstcuts   , None                  , None                  , 1     , []          , _("HELP_No resume below 10 seconds")                     , None              , None ),
 			(  _("Jump to first mark when playing movie")         , config.EMC.movie_jump_first_mark    , None                  , None                  , 1     , []          , _("HELP_Jump to first mark when playing movie")          , None              , None ),
 			(  _("Rewind finished movies before playing")         , config.EMC.movie_rewind_finished    , None                  , None                  , 1     , []          , _("HELP_Rewind finished movies before playing")          , None              , None ),
@@ -465,7 +465,7 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 			(  _("Move finished movies in trashcan")              , config.EMC.movie_finished_clean     , None                  , None                  , 2     , [-8,-3]     , _("HELP_Move finished movies in trashcan")               , None              , None ),
 			(  _("Age of finished movies in movie folder (days)") , config.EMC.movie_finished_limit     , None                  , None                  , 2     , [-9,-4,-1]  , _("HELP_Age of finished movies in movie folder (days)")  , None              , None ),
 
-			(  separator                                          , config.EMC.about                    , None                  , None                  , 0     , []          , _(" ")                                                    , None              , None ),
+			(  separator                                          , config.EMC.about                    , None                  , None                  , 0     , []          , _(" ")                                                   , None              , None ),
 			(  _("Display directory reading text")                , config.EMC.moviecenter_loadtext     , None                  , None                  , 1     , []          , _("HELP_Display directory reading text")                 , None              , None ),
 			(  _("EMC always reload after open")                  , config.EMC.movie_reload             , None                  , None                  , 1     , []          , _("HELP_EMC always reload after open")                   , False             , None ),
 			(  _("EMC re-open list after STOP-press")             , config.EMC.movie_reopen             , None                  , None                  , 1     , []          , _("HELP_EMC re-open list after STOP-press")              , None              , None ),
@@ -586,7 +586,10 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 						break
 				else:
 					# Loop fell through without a break
-					list.append( getConfigListEntry( conf[0], conf[1], conf[2], conf[3], conf[4], conf[5], conf[6] ) ) # not needed conf[7], conf[8]
+					if conf[0] == 400*"¯":
+						list.append( getConfigListEntry( " ", ) ) # not needed conf[7], conf[8]
+					else:
+						list.append( getConfigListEntry( conf[0], conf[1], conf[2], conf[3], conf[4], conf[5], conf[6] ) ) # not needed conf[7], conf[8]
 					# Check for predefined config match
 					for i,pd in enumerate(pds[:]):
 						if conf[pd] is not None:
@@ -660,10 +663,16 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 		emcTasker.ShowAutoRestartInfo()
 
 	def bouquetPlus(self):
-		self["config"].instance.moveSelection(self["config"].instance.pageUp)
+		if isDreamOS:
+			self["config"].jumpToPreviousSection()
+		else:
+			self["config"].instance.moveSelection(self["config"].instance.pageUp)
 
 	def bouquetMinus(self):
-		self["config"].instance.moveSelection(self["config"].instance.pageDown)
+		if isDreamOS:
+			self["config"].jumpToNextSection()
+		else:
+			self["config"].instance.moveSelection(self["config"].instance.pageDown)
 
 	def dbgChange(self, element):
 		if element.value == True:
@@ -697,22 +706,23 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 				config.EMC.movie_finished_clean.notifiers = [ ]
 
 		for i, entry in enumerate( self.list ):
-			if entry[1].isChanged():
-				if entry[2] is not None:
-					# execute value changed -function
-					if entry[2](entry[1]) is not None:
-						# Stop exiting, user has to correct the config
-						config.EMC.movie_finished_clean.addNotifier(self.changedEntry, initial_call = False, immediate_feedback = True)
-						return
-				# Check parent entries
-				for parent in entry[5]:
-					if self.list[i+parent][2] is not None:
-						# execute parent value changed -function
-						if self.list[i+parent][2](self.EMCConfig[i+parent][1]) is not None:
+			if len(entry) > 1:
+				if entry[1].isChanged():
+					if entry[2] is not None:
+						# execute value changed -function
+						if entry[2](entry[1]) is not None:
 							# Stop exiting, user has to correct the config
 							config.EMC.movie_finished_clean.addNotifier(self.changedEntry, initial_call = False, immediate_feedback = True)
 							return
-				entry[1].save()
+					# Check parent entries
+					for parent in entry[5]:
+						if self.list[i+parent][2] is not None:
+							# execute parent value changed -function
+							if self.list[i+parent][2](self.EMCConfig[i+parent][1]) is not None:
+								# Stop exiting, user has to correct the config
+								config.EMC.movie_finished_clean.addNotifier(self.changedEntry, initial_call = False, immediate_feedback = True)
+								return
+					entry[1].save()
 		if self.needsRestartFlag:
 			self.session.open(MessageBox, _("Some settings changes require GUI restart to take effect."), MessageBox.TYPE_INFO, 10)
 		self.close()
