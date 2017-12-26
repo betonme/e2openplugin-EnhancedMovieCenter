@@ -67,8 +67,8 @@ from EMCTasker import emcTasker, emcDebugOut
 
 sz_w = getDesktop(0).size().width()
 
-EMCVersion = "git20171224"
-EMCAbout = "\n  Enhanced Movie Center " +EMCVersion+ "\n\n  (C) 2012 by\n  Coolman, Betonme, einfall, Jojojoxx, mr.scotty & Swiss-MAD \n\n  If you like this plugin and you want to support it,\n  or if just want to say ''thanks'',\n  please donate via PayPal. \n\n  Thanks a lot ! \n\n  PayPal: enhancedmoviecenter@gmail.com"
+EMCVersion = "git20171226"
+EMCAbout = "Enhanced Movie Center " +EMCVersion+ "\n\n(c) 2012-2018 by\nCoolman, betonme, Swiss-MAD & the many other volunteers.\n\nIf you like this plugin and you want to support it,\nor if just want to say \"thanks\", please donate via PayPal.\n\nThanks a lot!\n\nPayPal: enhancedmoviecenter@gmail.com"
 
 def setEPGLanguage(dummyself=None, dummy=None):
 	if config.EMC.epglang.value:
@@ -301,21 +301,21 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 
 		separator = "".ljust(250,"-")
 
-#         _config list entry
-#         _                                                 , config element
-#         _                                                 ,                                     , function called on save
-#         _                                                 ,                                     ,                       , function called if user has pressed OK
-#         _                                                 ,                                     ,                       ,                       , usage setup level from E2
-#         _                                                 ,                                     ,                       ,                       ,   0: simple+
-#         _                                                 ,                                     ,                       ,                       ,   1: intermediate+
-#         _                                                 ,                                     ,                       ,                       ,   2: expert+
-#         _                                                 ,                                     ,                       ,                       ,       , depends on relative parent entries
-#         _                                                 ,                                     ,                       ,                       ,       ,   parent config value must be true
-#         _                                                 ,                                     ,                       ,                       ,       ,   a selection value "" is False
-#         _                                                 ,                                     ,                       ,                       ,       ,             , _context sensitive help text
-#         _                                                 ,                                     ,                       ,                       ,       ,             ,                                                          , performance value
-#         _                                                 ,                                     ,                       ,                       ,       ,             ,                                                          ,                   , information value
-#         _ 0                                               , 1                                   , 2                     , 3                     , 4     , 5           , 6                                                        , 7                 , 8
+		#          _config list entry
+		#          _                                                  , config element
+		#          _                                                  ,                                     , function called on save
+		#          _                                                  ,                                     ,                       , function called if user has pressed OK
+		#          _                                                  ,                                     ,                       ,                       , usage setup level from E2
+		#          _                                                  ,                                     ,                       ,                       ,   0: simple+
+		#          _                                                  ,                                     ,                       ,                       ,   1: intermediate+
+		#          _                                                  ,                                     ,                       ,                       ,   2: expert+
+		#          _                                                  ,                                     ,                       ,                       ,       , depends on relative parent entries
+		#          _                                                  ,                                     ,                       ,                       ,       ,   parent config value must be true
+		#          _                                                  ,                                     ,                       ,                       ,       ,   a selection value "" is False
+		#          _                                                  ,                                     ,                       ,                       ,       ,             , _context sensitive help text
+		#          _                                                  ,                                     ,                       ,                       ,       ,             ,                                                          , performance value
+		#          _                                                  ,                                     ,                       ,                       ,       ,             ,                                                          ,                   , information value
+		#          _ 0                                                , 1                                   , 2                     , 3                     , 4     , 5           , 6                                                        , 7                 , 8
 		self.EMCConfig = [
 			(  _("About")                                         , config.EMC.about                    , None                  , self.showInfo         , 0     , []          , _("HELP_About")                                          , None              , None ),
 

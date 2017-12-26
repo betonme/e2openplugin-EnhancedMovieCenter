@@ -96,29 +96,4 @@
             <convert type="ConditionalShowHide">Blink</convert>
         </widget>
     </screen>
-<!-- Alternative screen -->
-	<screen name="EMCMoviePlayerSummaryGBHDQ" position="0,0" size="220,176">
-		<widget name="statusicon_summary" position="0,138" size="40,38" pixmaps="/usr/share/enigma2/lcd/play.png,/usr/share/enigma2/lcd/pause.png,/usr/share/enigma2/lcd/stop.png,/usr/share/enigma2/lcd/forward.png,/usr/share/enigma2/lcd/backward.png,/usr/share/enigma2/lcd/slow.png" />
-		<widget source="speed_summary" render="Label" position="44,140" size="160,32" font="FdLcD;28" halign="left" noWrap="1" />
-		<widget source="session.CurrentService" render="Label" position="0,38" size="220,52" font="FdLcD;26" halign="left" >
-			<convert type="ServiceName">Name</convert>
-		</widget>
-		<!-- Progress border -->
-		<eLabel position="0,95" size="220,1" backgroundColor="#3D3DFF" />
-		<eLabel position="0,95" size="1,8" backgroundColor="#3D3DFF" />
-		<eLabel position="220,95" size="1,8" backgroundColor="#3D3DFF" />
-		<eLabel position="0,104" size="220,1" backgroundColor="#3D3DFF" />
-		<widget source="Service" render="EMCPositionGauge" position="0,96" size="220,8" zPosition="2" pointer="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/EMCMoviePlayer/LCD_220px_Pointer.png:220,0" transparent="1" >
-			<convert type="EMCServicePosition">Position</convert>
-		</widget>
-		<widget source="Service" render="EMCPositionGauge" position="0,96" size="220,8" zPosition="1" pointer="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/EMCMoviePlayer/LCD_220px_RecPointer.png:220,0" transparent="1" >
-			<convert type="EMCRecordPosition">Position</convert>
-		</widget>
-		<widget source="session.CurrentService" render="Label" position="0,106" size="220,36" font="FdLcD;35" halign="left" valign="bottom" noWrap="1">
-			<convert type="ServicePosition">VFDPosition</convert>
-		</widget>
-		<panel name="SummaryIconsPanel" />
-		<panel name="SummaryTunerStatusPanel" />
-		<panel name="SummaryClockPanel" />
-	</screen>
 </skin>
