@@ -913,19 +913,21 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 
 	def bqtNextFolder(self):
 		dirlist = self.bqtListFolders()
-		try:
-			pos = (dirlist.index(self.currentPath) + 1) % len(dirlist)
-		except:
-			pos = 0
-		self.setNextPath(dirlist[pos])
+		if len(dirlist) > 0:
+			try:
+				pos = (dirlist.index(self.currentPath) + 1) % len(dirlist)
+			except:
+				pos = 0
+			self.setNextPath(dirlist[pos])
 
 	def bqtPrevFolder(self):
 		dirlist = self.bqtListFolders()
-		try:
-			pos = (dirlist.index(self.currentPath) - 1) % len(dirlist)
-		except:
-			pos = len(dirlist)-1
-		self.setNextPath(dirlist[pos])
+		if len(dirlist) > 0:
+			try:
+				pos = (dirlist.index(self.currentPath) - 1) % len(dirlist)
+			except:
+				pos = len(dirlist)-1
+			self.setNextPath(dirlist[pos])
 
 	def bqtListFolders(self):
 		movie_homepath = os.path.realpath(config.EMC.movie_homepath.value)
