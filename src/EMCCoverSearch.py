@@ -40,7 +40,7 @@ from MovieCenter import getMovieNameWithoutExt, getMovieNameWithoutPhrases, getN
 
 sz_w = getDesktop(0).size().width()
 
-import re, urllib, urllib2, os, time, shutil
+import re, urllib, urllib2, os, time, shutil, requests
 
 config.EMC.imdb = ConfigSubsection()
 #search/automatic
@@ -80,23 +80,11 @@ def getSearchList(title, option):
 		slist = [' '.join(s)]
 	return slist
 
-def image(item=True, itemfont=False, pixmap=False):
-	if item:
-		if getDesktop(0).size().width() == 1920:
-			return 40
-		else:
-			return 28
-	if itemfont:
-		return 28
-
 try:
 	from enigma import eMediaDatabase
 	isDreamOS = True
 except:
 	isDreamOS = False
-
-class AppURLopener(urllib.FancyURLopener):
-	version = "Mozilla/5.0 (X11; U; Linux x86_64; de; rv:1.9.0.15) Gecko/2009102815 Ubuntu/9.04 (jaunty) Firefox/3."
 
 class imdblist(MenuList):
 	def __init__(self, list):
@@ -119,7 +107,7 @@ class EMCImdbScan(Screen):
 				<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/yellow.png" position="610,5" size="300,70" alphatest="blend"/>
 				<widget backgroundColor="#9f1313" font="Regular;30" halign="center" name="ButtonRedText" position="10,5" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" size="300,70" transparent="1" valign="center" zPosition="1" />
 				<widget backgroundColor="#1f771f" font="Regular;30" halign="center" name="ButtonGreenText" position="310,5" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" size="300,70" transparent="1" valign="center" zPosition="1" />
-				<widget backgroundColor="#a08500" font="Regular;30" halign="center" name="Manage Cover" position="610,5" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" size="300,70" transparent="1" valign="center" zPosition="1" />				
+				<widget backgroundColor="#a08500" font="Regular;30" halign="center" name="Manage Cover" position="610,5" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" size="300,70" transparent="1" valign="center" zPosition="1" />
 				<widget font="Regular;34" halign="right" position="1650,25" render="Label" size="120,40" source="global.CurrentTime">
 				    <convert type="ClockToText">Default</convert>
 				</widget>
@@ -143,30 +131,30 @@ class EMCImdbScan(Screen):
 	else:
 		skin = """
 	    		<screen position="center,80" size="1200,610" title="EMC Cover search">
-         		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/red.png" position="10,5" size="200,40" alphatest="blend"/>
-	        	<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/green.png" position="210,5" size="200,40" alphatest="blend"/>
-    	    	<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/yellow.png" position="410,5" size="200,40" alphatest="blend"/>
-    	    	<widget name="ButtonRedText" position="10,5" size="200,40" zPosition="1" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" />
-    	     	<widget name="ButtonGreenText" position="210,5" size="200,40" zPosition="1" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" />
-	        	<widget name="Manage Cover" position="410,5" size="200,40" zPosition="1" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" />
-		    	<widget source="global.CurrentTime" render="Label" position="1130,12" size="60,25" font="Regular;22" halign="right">
-    	    		<convert type="ClockToText">Default</convert>
-        		</widget>
-        		<widget source="global.CurrentTime" render="Label" position="820,12" size="300,25" font="Regular;22" halign="right">
-	        		<convert type="ClockToText">Format:%A %d. %B</convert>
-	        	</widget>
-         		<eLabel position="10,50" size="1180,1" backgroundColor="#818181" />
+				<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/red.png" position="10,5" size="200,40" alphatest="blend"/>
+				<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/green.png" position="210,5" size="200,40" alphatest="blend"/>
+				<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/yellow.png" position="410,5" size="200,40" alphatest="blend"/>
+				<widget name="ButtonRedText" position="10,5" size="200,40" zPosition="1" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" />
+				<widget name="ButtonGreenText" position="210,5" size="200,40" zPosition="1" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" />
+				<widget name="Manage Cover" position="410,5" size="200,40" zPosition="1" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" />
+				<widget source="global.CurrentTime" render="Label" position="1130,12" size="60,25" font="Regular;22" halign="right">
+					<convert type="ClockToText">Default</convert>
+				</widget>
+				<widget source="global.CurrentTime" render="Label" position="820,12" size="300,25" font="Regular;22" halign="right">
+					<convert type="ClockToText">Format:%A %d. %B</convert>
+				</widget>
+				<eLabel position="10,50" size="1180,1" backgroundColor="#818181" />
 				<widget name="info" position="20,55" size="220,55" halign="center" valign="center" font="Regular;22"/>
-	         	<widget name="poster" position="20,120" size="220,330" alphatest="blend"/>
+				<widget name="poster" position="20,120" size="220,330" alphatest="blend"/>
 				<widget name="m_info" position="270,55" size="920,55" font="Regular;24" halign="center" valign="center" foregroundColor="yellow"/>
 				<widget name="menulist" position="270,120" size="920,420" itemHeight="30" scrollbarMode="showOnDemand" enableWrapAround="1"/>
 				<widget name="exist" position="10,470" size="220,25" font="Regular;20"/>
 				<widget name="no_poster" position="10,500" size="220,25" font="Regular;20"/>
 				<widget name="download" position="10,530" size="220,25" font="Regular;20"/>
-	        	<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/menu.png" position="20,570" size="60,30" alphatest="blend"/>
-	        	<widget name="Setup" position="100,571" size="200,30" font="Regular;22" valign="center" />
-	        	<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/ok.png" position="320,570" size="60,30" alphatest="blend"/>
-	         	<widget name="Single search" position="400,571" size="190,30" font="Regular;22" valign="center" />
+				<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/menu.png" position="20,570" size="60,30" alphatest="blend"/>
+				<widget name="Setup" position="100,571" size="200,30" font="Regular;22" valign="center" />
+				<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/ok.png" position="320,570" size="60,30" alphatest="blend"/>
+				<widget name="Single search" position="400,571" size="190,30" font="Regular;22" valign="center" />
 				<widget name="done_msg" position="590,548" size="600,50" font="Regular;20" halign="right" foregroundColor="yellow" valign="bottom"/>
 			</screen>"""
 
@@ -218,6 +206,7 @@ class EMCImdbScan(Screen):
 	def layoutFinished(self):
 		self.listWidth = self["menulist"].instance.size().width()
 		self.listHeight = self["menulist"].instance.size().height()
+		self.itemHeight = self["menulist"].l.getItemSize().height()
 		self.setTitle(_("EMC Cover search"))
 		if self.isFolder:
 			del self["actions"].actions['EMCGreen']
@@ -255,7 +244,7 @@ class EMCImdbScan(Screen):
 
 		if self.menulist:
 			self["menulist"].l.setList(self.menulist)
-			self["menulist"].l.setItemHeight(image())
+			self["menulist"].l.setItemHeight(self.itemHeight)
 			self.check = True
 			self.showInfo()
 			self["done_msg"].setText((_("Total") + ": %s - " + _("Exist") + ": %s - " + _("N/A") + ": %s") % (self.count_movies, count_existing, count_na))
@@ -322,7 +311,7 @@ class EMCImdbScan(Screen):
 					self["exist"].setText(_("Exist: %s") % str(self.counter_exist))
 					self["download"].setText(_("Download: %s") % str(self.counter_download))
 					self["menulist"].l.setList(self.menulist)
-					self["menulist"].l.setItemHeight(image())
+					self["menulist"].l.setItemHeight(self.itemHeight)
 					self.check = True
 					print "EMC iMDB: Cover vorhanden - %s" % title
 				else:
@@ -336,7 +325,7 @@ class EMCImdbScan(Screen):
 						if seasonEpisode:
 							(season, episode) = seasonEpisode[0]
 						name2 = re.sub('[Ss][0-9]+[Ee][0-9]+.*[a-zA-Z0-9_]+','', s_title, flags=re.S|re.I)
-						url = 'http://thetvdb.com/api/GetSeries.php?seriesname=%s&language=de' % name2.replace(' ','%20')
+						url = 'https://thetvdb.com/api/GetSeries.php?seriesname=%s&language=de' % name2.replace(' ','%20')
 						urls.append(("serie", title, url, cover_path, season, episode))
 					else:
 						url = 'http://api.themoviedb.org/3/search/movie?api_key=8789cfd3fbab7dccf1269c3d7d867aff&query=%s&language=de' % m_title.replace(' ','%20')
@@ -385,10 +374,10 @@ class EMCImdbScan(Screen):
 			list = re.findall('<seriesid>(.*?)</seriesid>', data, re.S)
 			if list:
 				x = config.EMC.imdb.thetvdb_standardcover.value
-				purl = "http://www.thetvdb.com/banners/_cache/posters/%s-%s.jpg" % (list[0], x)
+				purl = "https://www.thetvdb.com/banners/_cache/posters/%s-%s.jpg" % (list[0], x)
 				if x > 1 and not urlExist(purl):
 					x = 1
-					purl = "http://www.thetvdb.com/banners/_cache/posters/%s-%s.jpg" % (list[0], x)
+					purl = "https://www.thetvdb.com/banners/_cache/posters/%s-%s.jpg" % (list[0], x)
 				self.counter_download += 1
 				self.end_time = time.clock()
 				elapsed = (self.end_time - self.start_time) * 1000
@@ -399,7 +388,7 @@ class EMCImdbScan(Screen):
 				# get description
 				if config.EMC.imdb.savetotxtfile.value:
 					if season and episode:
-						iurl = "http://www.thetvdb.com/api/2AAF0562E31BCEEC/series/%s/default/%s/%s/de.xml" % (list[0], str(int(season)), str(int(episode)))
+						iurl = "https://www.thetvdb.com/api/2AAF0562E31BCEEC/series/%s/default/%s/%s/de.xml" % (list[0], str(int(season)), str(int(episode)))
 						getPage(iurl, headers={'Content-Type':'application/x-www-form-urlencoded'}).addCallback(self.getInfos, id, type, cover_path).addErrback(self.dataError)
 			else:
 				self.counter_no_poster += 1
@@ -411,7 +400,7 @@ class EMCImdbScan(Screen):
 		self["exist"].setText(_("Exist: %s") % str(self.counter_exist))
 		self["download"].setText(_("Download: %s") % str(self.counter_download))
 		self["menulist"].l.setList(self.menulist)
-		self["menulist"].l.setItemHeight(image())
+		self["menulist"].l.setItemHeight(self.itemHeight)
 		self.check = True
 
 		if self.counting == self.count_total:
@@ -652,7 +641,7 @@ class EMCImdbScan(Screen):
 			f=1
 			gF=4
 
-		h = image()
+		h = self.itemHeight
 		if self.count_movies * h > self.listHeight:
 			w = self.listWidth - 15 # place for scrollbar
 		else:
@@ -667,18 +656,18 @@ class imdbSetup(Screen, ConfigListScreenExt):
 		skin = """
 		<screen position="center,110" size="1800,930" title="EMC Cover search setup">
 		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/red.png" position="10,5" size="300,70" alphatest="blend"/>
-        <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/green.png" position="310,5" size="300,70" alphatest="blend"/>
-        <widget backgroundColor="#9f1313" font="Regular;30" halign="center" name="key_red" position="10,5" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" size="300,70" transparent="1" valign="center" zPosition="1" />
-        <widget backgroundColor="#1f771f" font="Regular;30" halign="center" name="key_green" position="310,5" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" size="300,70" transparent="1" valign="center" zPosition="1" />
-        <widget font="Regular;34" halign="right" position="1650,25" render="Label" size="120,40" source="global.CurrentTime">
-            <convert type="ClockToText">Default</convert>
-        </widget>
-        <widget font="Regular;34" halign="right" position="1240,25" render="Label" size="400,40" source="global.CurrentTime" >
-            <convert type="ClockToText">Date</convert>
-        </widget>
-        <eLabel backgroundColor="#818181" position="10,80" size="1780,1" />
-        <widget enableWrapAround="1" name="config" position="10,90" itemHeight="45" scrollbarMode="showOnDemand" size="1780,810" />
-	</screen>"""
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/green.png" position="310,5" size="300,70" alphatest="blend"/>
+		<widget backgroundColor="#9f1313" font="Regular;30" halign="center" name="key_red" position="10,5" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" size="300,70" transparent="1" valign="center" zPosition="1" />
+		<widget backgroundColor="#1f771f" font="Regular;30" halign="center" name="key_green" position="310,5" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" size="300,70" transparent="1" valign="center" zPosition="1" />
+		<widget font="Regular;34" halign="right" position="1650,25" render="Label" size="120,40" source="global.CurrentTime">
+			<convert type="ClockToText">Default</convert>
+		</widget>
+		<widget font="Regular;34" halign="right" position="1240,25" render="Label" size="400,40" source="global.CurrentTime" >
+			<convert type="ClockToText">Date</convert>
+		</widget>
+		<eLabel backgroundColor="#818181" position="10,80" size="1780,1" />
+		<widget enableWrapAround="1" name="config" position="10,90" itemHeight="45" scrollbarMode="showOnDemand" size="1780,810" />
+		</screen>"""
 	else:
 		skin = """
 		<screen position="center,80" size="1200,610" title="EMC Cover search setup">
@@ -694,7 +683,7 @@ class imdbSetup(Screen, ConfigListScreenExt):
 		</widget>
 		<eLabel position="10,50" size="1180,1" backgroundColor="#818181" />
 		<widget name="config" position="10,60" size="1180,540" itemHeight="30" enableWrapAround="1" scrollbarMode="showOnDemand" />
-	</screen>"""
+		</screen>"""
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -758,16 +747,16 @@ class getCover(Screen):
 		<widget name="poster" position="10,80" size="400,600" alphatest="blend"/>
 		<widget name="menulist" position="440,80" size="1350,810" itemHeight="45" scrollbarMode="showOnDemand" enableWrapAround="1"/>
 		<widget name="info" position="10,700" size="400,140" font="Regular;30" halign="center" valign="center" foregroundColor="yellow"/>
-	</screen>"""
+		</screen>"""
 	else:
 		skin = """
    		<screen position="center,80" size="1200,610" title="EMC Cover Selecter">
-	    <widget name="m_info" position="10,5" size="1180,30" font="Regular;24" halign="center" valign="center" foregroundColor="yellow"/>
+		<widget name="m_info" position="10,5" size="1180,30" font="Regular;24" halign="center" valign="center" foregroundColor="yellow"/>
 		<eLabel backgroundColor="#818181" position="10,40" size="1180,1" />
-	    <widget name="poster" position="20,50" size="220,330" alphatest="blend"/>
+		<widget name="poster" position="20,50" size="220,330" alphatest="blend"/>
 		<widget name="menulist" position="270,50" size="920,540" itemHeight="30" scrollbarMode="showOnDemand" enableWrapAround="1"/>
 		<widget name="info" position="10,400" size="220,80" font="Regular;20" halign="center" valign="center" foregroundColor="yellow"/>
-	</screen>"""
+		</screen>"""
 
 	def __init__(self, session, data):
 		Screen.__init__(self, session, data)
@@ -803,6 +792,7 @@ class getCover(Screen):
 	def layoutFinished(self):
 		self.listWidth = self["menulist"].instance.size().width()
 		self.listHeight = self["menulist"].instance.size().height()
+		self.itemHeight = self["menulist"].l.getItemSize().height()
 		self.setTitle(_("EMC Cover Selecter"))
 
 		if config.EMC.imdb.singlesearch.value == "0":
@@ -955,7 +945,7 @@ class getCover(Screen):
 			for item in part:
 				if finish:
 					break
-				url = "http://www.thetvdb.com/api/GetSeries.php?seriesname=%s&language=de" % item.replace(' ','%20')
+				url = "https://www.thetvdb.com/api/GetSeries.php?seriesname=%s&language=de" % item.replace(' ','%20')
 				data = yield getPage(url).addErrback(self.errorLoad, title)
 				if data:
 					id = re.findall('<seriesid>(.*?)</seriesid>.*?<SeriesName>(.*?)</SeriesName>', data, re.S)
@@ -970,17 +960,17 @@ class getCover(Screen):
 							coverlist.append(m_cover)
 							if coverrange == 1:
 								x = standardcover
-								tvdb_url = "http://www.thetvdb.com/banners/_cache/posters/%s-%s.jpg" % (m_cover, x)
+								tvdb_url = "https://www.thetvdb.com/banners/_cache/posters/%s-%s.jpg" % (m_cover, x)
 								if x > 1 and not urlExist(tvdb_url):
 									x = 1
-									tvdb_url = "http://www.thetvdb.com/banners/_cache/posters/%s-%s.jpg" % (m_cover, x)
+									tvdb_url = "https://www.thetvdb.com/banners/_cache/posters/%s-%s.jpg" % (m_cover, x)
 								self.cover_count += 1
 								templist.append(self.showCoverlist(m_title, tvdb_url, self.o_path, "tvdb: cover-%s : " %x))
 							else:
 								x = 0
 								while True:
 									x += 1
-									tvdb_url = "http://www.thetvdb.com/banners/_cache/posters/%s-%s.jpg" % (m_cover, x)
+									tvdb_url = "https://www.thetvdb.com/banners/_cache/posters/%s-%s.jpg" % (m_cover, x)
 									if x > 1 and (coverrange and x > coverrange or not urlExist(tvdb_url)):
 										break
 									self.cover_count += 1
@@ -992,7 +982,7 @@ class getCover(Screen):
 			#self["info"].setText((_("found") + " %s " + _("covers")) % (self.cover_count))
 		else:
 			part = getSearchList(title, config.EMC.imdb.singlesearch_filter.value)[0]
-			url = "http://www.thetvdb.com/api/GetSeries.php?seriesname=%s&language=de" % part.replace(' ','%20')
+			url = "https://www.thetvdb.com/api/GetSeries.php?seriesname=%s&language=de" % part.replace(' ','%20')
 			data = yield getPage(url).addErrback(self.errorLoad, title)
 			if data:
 				id = re.findall('<seriesid>(.*?)</seriesid>.*?<SeriesName>(.*?)</SeriesName>', data, re.S)
@@ -1004,10 +994,10 @@ class getCover(Screen):
 							continue
 						coverlist.append(m_cover)
 						x = standardcover
-						tvdb_url = "http://www.thetvdb.com/banners/_cache/posters/%s-%s.jpg" % (m_cover, x)
+						tvdb_url = "https://www.thetvdb.com/banners/_cache/posters/%s-%s.jpg" % (m_cover, x)
 						if x > 1 and not urlExist(tvdb_url):
 							x = 1
-							tvdb_url = "http://www.thetvdb.com/banners/_cache/posters/%s-%s.jpg" % (m_cover, x)
+							tvdb_url = "https://www.thetvdb.com/banners/_cache/posters/%s-%s.jpg" % (m_cover, x)
 						self.cover_count += 1
 						templist.append(self.showCoverlist(m_title, tvdb_url, self.o_path, "tvdb: "))
 			templist.sort()
@@ -1081,7 +1071,7 @@ class getCover(Screen):
 
 	def search_done(self):
 		self["menulist"].l.setList(self.menulist)
-		self["menulist"].l.setItemHeight(image())
+		self["menulist"].l.setItemHeight(self.itemHeight)
 		self.check = True
 		self.showInfo()
 		self["info"].setText((_("found") + " %s " + _("covers in") + " %.1f " + _("sec")) % (self.cover_count, (time.time() - self.einzel_start_time)))
@@ -1096,9 +1086,13 @@ class getCover(Screen):
 				#m_url = "http://ia.media-imdb.com/images/%s%s" % (m_url[0], extra_imdb_convert)
 				print "EMC iMDB: Download Poster - %s" % m_url
 				try:
-					urllib._urlopener = AppURLopener()
-					urllib.urlretrieve(m_url, self.path)
-					urllib.urlcleanup()
+					req = requests.session()
+					r = req.get(m_url, headers={'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.108 Safari/537.36'})
+					f = open(self.path, 'wb')
+					for chunk in r.iter_content(chunk_size=512 * 1024):
+						if chunk:
+							f.write(chunk)
+					f.close()
 					if os.path.exists(self.path):
 						self.poster_resize(self.path, m_title)
 						#ptr = LoadPixmap(self.path)
@@ -1223,7 +1217,7 @@ class getCover(Screen):
 			f=1
 			gF=4
 
-		h = image()
+		h = self.itemHeight
 		if self.cover_count * h > self.listHeight:
 			w = self.listWidth - 15 # place for scrollbar
 		else:
