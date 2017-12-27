@@ -5,8 +5,10 @@
 		<key id="KEY_YELLOW" mapto="yellow" flags="m" />
 		<key id="KEY_BLUE" mapto="blueshort" flags="b" />
 		<key id="KEY_BLUE" mapto="bluelong" flags="l" />
-		<key id="KEY_CHANNELUP" mapto="nextBouquet" flags="m" />
-		<key id="KEY_CHANNELDOWN" mapto="prevBouquet" flags="m" />
+		<key id="KEY_UP" mapto="up" flags="mr" />
+		<key id="KEY_DOWN" mapto="down" flags="mr" />
+		<key id="KEY_CHANNELUP" mapto="nextBouquet" flags="mr" />
+		<key id="KEY_CHANNELDOWN" mapto="prevBouquet" flags="mr" />
 	</map>
 	<map context="CoolPlayerActions">
 		<key id="KEY_POWER" mapto="leavePlayer" flags="m" />
