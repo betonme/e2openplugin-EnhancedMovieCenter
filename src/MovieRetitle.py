@@ -6,7 +6,7 @@ from __init__ import _
 from Screens.Screen import Screen
 from Components.config import ConfigText, getConfigListEntry
 from Components.ActionMap import ActionMap
-from Components.ConfigList import ConfigListScreen
+from configlistext import ConfigListScreenExt
 from Components.Sources.StaticText import StaticText
 from Components.Label import Label
 from Components.Pixmap import Pixmap
@@ -16,13 +16,13 @@ from enigma import eServiceReference, iServiceInformation, getDesktop, ePoint
 # Plugin internal
 from ServiceSupport import ServiceCenter
 
-class MovieRetitle(Screen, ConfigListScreen):
+class MovieRetitle(Screen, ConfigListScreenExt):
 	def __init__(self, session, services):
 		Screen.__init__(self, session)
 
 		self.skinName = ["MovieRetitle", "Setup"]
 		self.list = [ ]
-		ConfigListScreen.__init__(self, self.list, session)
+		ConfigListScreenExt.__init__(self, self.list, session)
 
 		self["Path"] = Label(_("Location:"))# + ' ' + os.path.dirname(os.path.splitext(path)[0]))
 		self["HelpWindow"] = Pixmap()

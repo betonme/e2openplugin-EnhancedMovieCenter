@@ -262,8 +262,8 @@ sort_modes =	{		("D-")	  :	( _("Date sort descending (D-)"),				("D",False),		_(
 sort_choices = [ (k, v[0]) for k, v in sort_modes.items() ]
 
 config.EMC                           = ConfigSubsection()
+config.EMC.fake_entry                = NoSave(ConfigNothing())
 config.EMC.needsreload               = ConfigYesNo(default = False)
-config.EMC.about                     = ConfigSelection(default = "1", choices = [("1", " ")])
 config.EMC.extmenu_plugin            = ConfigYesNo(default = False)
 config.EMC.extmenu_list              = ConfigYesNo(default = False)
 config.EMC.epglang                   = ConfigSelection(default = language.getActiveLanguage(), choices                    = langList())

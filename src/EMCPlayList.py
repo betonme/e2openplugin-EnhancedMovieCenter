@@ -16,7 +16,7 @@ from Screens.VirtualKeyBoard import VirtualKeyBoard
 from Components.ActionMap import *
 from Components.Button import Button
 from Components.config import *
-from Components.ConfigList import *
+from configlistext import ConfigListScreenExt
 from Components.FileList import FileList
 from Components.GUIComponent import GUIComponent
 from Tools.Directories import fileExists
@@ -409,7 +409,7 @@ class PlayList(GUIComponent):
 	def setItemHeight(self):
 		self.l.setItemHeight(self.itemHeight)
 
-class EMCPlaylistSetup(Screen, ConfigListScreen):
+class EMCPlaylistSetup(Screen, ConfigListScreenExt):
 	if sz_w == 1920:
 		skin = """
 			<screen position="center,170" size="1200,820" title="EMC Playlist Setup">
@@ -448,7 +448,7 @@ class EMCPlaylistSetup(Screen, ConfigListScreen):
 		self.list.append(getConfigListEntry(_("Default Playlist name"), config.EMC.playlist.default_playlist_name))
 		self.list.append(getConfigListEntry(_("Always save current Playlist"), config.EMC.playlist.save_default_list))
 
-		ConfigListScreen.__init__(self, self.list, session)
+		ConfigListScreenExt.__init__(self, self.list, session)
 		self["actions"] = ActionMap(["SetupActions", "ColorActions"],
 		{
 			"ok": self.ok,

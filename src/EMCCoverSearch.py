@@ -28,7 +28,7 @@ from twisted.web.client import downloadPage, getPage
 from twisted.internet import defer
 
 from Components.config import *
-from Components.ConfigList import *
+from configlistext import ConfigListScreenExt
 
 from enigma import eListboxPythonMultiContent, eListbox, gFont, getDesktop, loadJPG, RT_HALIGN_LEFT, RT_HALIGN_RIGHT, RT_HALIGN_CENTER, RT_VALIGN_CENTER, loadPNG, RT_WRAP, eServiceReference
 
@@ -662,7 +662,7 @@ class EMCImdbScan(Screen):
 		res.append(MultiContentEntryText(pos=(w-150*f, 0), size=(140*f, h), font=gF, text=elapsed, flags=RT_HALIGN_RIGHT|RT_VALIGN_CENTER))
 		return res
 
-class imdbSetup(Screen, ConfigListScreen):
+class imdbSetup(Screen, ConfigListScreenExt):
 	if sz_w == 1920:
 		skin = """
 		<screen position="center,110" size="1800,930" title="EMC Cover search setup">
@@ -704,7 +704,7 @@ class imdbSetup(Screen, ConfigListScreen):
 		self["key_red"] = Button(_("Cancel"))
 		self["key_green"] = Button(_("OK"))
 
-		ConfigListScreen.__init__(self, self.makeList(), session, on_change = self.isChanged)
+		ConfigListScreenExt.__init__(self, self.makeList(), session, on_change = self.isChanged)
 
 		self["setupActions"] = ActionMap(["SetupActions", "ColorActions"],
 		{

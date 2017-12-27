@@ -10,7 +10,7 @@ from Components.ScrollLabel import ScrollLabel
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Components.config import *
-from Components.ConfigList import *
+from configlistext import ConfigListScreenExt
 
 from MovieCenter import getMovieNameWithoutExt, getMovieNameWithoutPhrases, getNoPosterPath
 
@@ -743,7 +743,7 @@ class MovieInfoTMDb(Screen):
 	def setup(self):
 		self.session.open(MovieInfoSetup)
 
-class MovieInfoSetup(Screen, ConfigListScreen):
+class MovieInfoSetup(Screen, ConfigListScreenExt):
 	if sz_w == 1920:
 		skin = """
 		<screen name="EMCMovieInfoSetup" position="center,170" size="1200,820" title="Movie Information Download Setup">
@@ -789,7 +789,7 @@ class MovieInfoSetup(Screen, ConfigListScreen):
 		self.list.append(getConfigListEntry(_("Switch complete to new Version"), config.EMC.movieinfo.switch_newold))
 		self.list.append(getConfigListEntry(_("Cover delay in ms"), config.EMC.movieinfo.cover_delay))
 
-		ConfigListScreen.__init__(self, self.list, session)
+		ConfigListScreenExt.__init__(self, self.list, session)
 		self["actions"] = HelpableActionMap(self, "EMCMovieInfo",
 		{
 			"EMCEXIT":		self.exit,
