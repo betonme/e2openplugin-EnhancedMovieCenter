@@ -295,8 +295,6 @@ class EnhancedMovieCenterMenu(ConfigListScreenExt, Screen):
 		#Todo Remove if there is another solution, maybe thinkabout xml
 		config.EMC.movie_finished_clean.addNotifier(self.changedEntry, initial_call = False, immediate_feedback = True)
 
-		self.onShow.append(self.onDialogShow)
-
 	def defineConfig(self):
 
 		separator = 400*"¯"
@@ -635,20 +633,6 @@ class EnhancedMovieCenterMenu(ConfigListScreenExt, Screen):
 			for conf in self.EMCConfig:
 				conf[1].value = conf[1].default
 			self.createConfig()
-
-	def onDialogShow(self):
-		#self.setTitle( self.screenTitle )
-		#self.createConfig()
-		pass
-
-	# Overwrite Screen close function
-	def close(self):
-#		self.session.openWithCallback(self.closed, MessageBox, EMCAbout, MessageBox.TYPE_INFO)
-		Screen.close(self)
-
-	def closed(self, dummy=None):
-		# Call baseclass function
-		Screen.close(self)
 
 	def changedEntry(self, addNotifierDummy=None):
 		if self.reloadTimer.isActive():
