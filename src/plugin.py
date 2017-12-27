@@ -40,7 +40,6 @@ from __init__ import _, language
 from EMCTasker import emcTasker, emcDebugOut
 import copy
 
-
 class ConfigTextWOHelp(ConfigText):
 	def __init__(self, default = "", fixed_size = True, visible_width = False):
 		ConfigText.__init__(self, default, fixed_size, visible_width)
@@ -51,8 +50,8 @@ class ConfigTextWOHelp(ConfigText):
 	def onDeselect(self, session):
 		ConfigText.onDeselect(self, None)
 
-
 yes_no_descriptions = {False: _("no"), True: _("yes")}
+
 class ConfigYesNoConfirm(ConfigBoolean):
 	def __init__(self, text, key1, key2, default = False):
 		self.text = text
@@ -82,7 +81,6 @@ class ConfigYesNoConfirm(ConfigBoolean):
 	def confirmed(self, answer):
 		if self.value != answer:
 			self.value = answer
-
 
 class ConfirmBox(MessageBox):
 	def __init__(self, session, text, key1, key2, type):
@@ -117,7 +115,6 @@ class ConfirmBox(MessageBox):
 		eActionMap.getInstance().unbindAction('', self.action)
 		self.close(answer)
 
-
 def langList():
 	newlist = []
 	for e in language.getLanguageList():
@@ -130,53 +127,53 @@ def langListSel():
 		newlist.append( _(e[1][0]) )
 	return newlist
 
-launch_choices = [	("None",			_("No override")),
-					("showMovies",		_("Video-button")),
-					("showTv",		_("TV-button")),
-					("showRadio",		_("Radio-button")),
-					("openQuickbutton",	_("Quick-button")),
-					("timeshiftStart",	_("Timeshift-button")) ]
+launch_choices = [	("None",		_("No override")),
+			("showMovies",		_("Video-button")),
+			("showTv",		_("TV-button")),
+			("showRadio",		_("Radio-button")),
+			("openQuickbutton",	_("Quick-button")),
+			("timeshiftStart",	_("Timeshift-button")) ]
 
 # Date format is implemented using datetime.strftime
-date_choices = [	("",					_("Off")),
-					("%d.%m.%Y",			_("DD.MM.YYYY")),
-					("%d.%m.%Y %H:%M",		_("DD.MM.YYYY HH:MM")),
-					("%d.%m %H:%M",			_("DD.MM HH:MM")),
-					("%d.%m. %H:%M",		_("DD.MM. HH:MM")),
-					("%Y/%m/%d",			_("YYYY/MM/DD")),
-					("%Y/%m/%d %H:%M",		_("YYYY/MM/DD HH:MM")),
-					("%m/%d %H:%M",			_("MM/DD HH:MM")) ]
+date_choices = [("",			_("Off")),
+		("%d.%m.%Y",		_("DD.MM.YYYY")),
+		("%d.%m.%Y %H:%M",	_("DD.MM.YYYY HH:MM")),
+		("%d.%m %H:%M",		_("DD.MM HH:MM")),
+		("%d.%m. %H:%M",	_("DD.MM. HH:MM")),
+		("%Y/%m/%d",		_("YYYY/MM/DD")),
+		("%Y/%m/%d %H:%M",	_("YYYY/MM/DD HH:MM")),
+		("%m/%d %H:%M",		_("MM/DD HH:MM")) ]
 
 dirinfo_choices = [	("",	_("Off")),
-					("D",	_("Description")),		# Description
-					("C",	_("( # )")),			# Count
-					("CS",	_("( # / GB )")),		# Count / Size
-					("S",	_("( GB )")) ]			# Size
+			("D",	_("Description")),	# Description
+			("C",	_("( # )")),		# Count
+			("CS",	_("( # / GB )")),	# Count / Size
+			("S",	_("( GB )")) ]		# Size
 
-progress_choices = [("PB",	_("ProgressBar")),
-					("P",	_("Percent (%)")),
-					("MC",	_("Movie Color")),
-					("",	_("Off")) ]
+progress_choices = [	("PB",	_("ProgressBar")),
+			("P",	_("Percent (%)")),
+			("MC",	_("Movie Color")),
+			("",	_("Off")) ]
 
-#blueyellowgreen_choices = 	[("MH",	_("Movie home")),
-#							 ("MV", _("Move File")),
-#							 ("PL",	_("Play last")),
-#							 ("CS",	_("Cover Search")),
-#							 ("MI",	_("Download Movie Info")),
-#							 ("CP", _("Copy File")),
-#							 ("E2", _("Open E2 bookmarks"))]
+#blueyellowgreen_choices = [	("MH",	_("Movie home")),
+#		 		("MV", _("Move File")),
+#				("PL",	_("Play last")),
+#				("CS",	_("Cover Search")),
+#				("MI",	_("Download Movie Info")),
+#				("CP", _("Copy File")),
+#				("E2", _("Open E2 bookmarks"))]
 
-colorbutton_choices = 	[("MH",	_("Movie home")),
-							 ("DL",	_("Delete")),
-							 ("MV",	_("Move File")),
-							 ("AP",	_("Add to Playlist")),
-							 ("PL",	_("Play last")),
-							 ("CS",	_("Cover Search")),
-							 ("MI",	_("Download Movie Info")),
-							 ("CP",	_("Copy File")),
-							 ("E2",	_("Open E2 bookmarks")),
-							 ("TC",	_("Toggle Cover Button")),
-							 ("",	_("Button disabled"))]
+colorbutton_choices = [	("MH",	_("Movie home")),
+			("DL",	_("Delete")),
+			("MV",	_("Move File")),
+			("AP",	_("Add to Playlist")),
+			("PL",	_("Play last")),
+			("CS",	_("Cover Search")),
+			("MI",	_("Download Movie Info")),
+			("CP",	_("Copy File")),
+			("E2",	_("Open E2 bookmarks")),
+			("TC",	_("Toggle Cover Button")),
+			("",	_("Button disabled"))]
 
 red_choices = colorbutton_choices
 green_choices = copy.copy(colorbutton_choices)
@@ -187,17 +184,17 @@ blue_choices = colorbutton_choices
 #green_choices = copy.copy(blueyellowgreen_choices)
 #longblueyellowgreen_choices = copy.copy(blueyellowgreen_choices)
 
-longcolorbutton_choices = 	[("MH",	_("Movie home")),
-							 ("DL",	_("Delete")),
-							 ("MV",	_("Move File")),
-							 ("AP",	_("Add to Playlist")),
-							 ("PL",	_("Play last")),
-							 ("CS",	_("Cover Search")),
-							 ("MI",	_("Download Movie Info")),
-							 ("CP",	_("Copy File")),
-							 ("E2",	_("Open E2 bookmarks")),
-#							 ("TC",	_("Toggle Cover Button")),
-							 ("",	_("Button disabled"))]
+longcolorbutton_choices = [	("MH",	_("Movie home")),
+				("DL",	_("Delete")),
+				("MV",	_("Move File")),
+				("AP",	_("Add to Playlist")),
+				("PL",	_("Play last")),
+				("CS",	_("Cover Search")),
+				("MI",	_("Download Movie Info")),
+				("CP",	_("Copy File")),
+				("E2",	_("Open E2 bookmarks")),
+#				("TC",	_("Toggle Cover Button")),
+				("",	_("Button disabled"))]
 
 #longblueyellowgreen_choices.extend()
 
@@ -207,57 +204,57 @@ longyellow_choices = longcolorbutton_choices
 longblue_choices = longcolorbutton_choices
 
 move_choices = [("d",	_("down")),
-				("b",	_("up/down")),
-				("o",	_("off")) ]
+		("b",	_("up/down")),
+		("o",	_("off")) ]
 
-cover_background_choices = [("#00000000",	_("type 1 - OSD + black (#00000000)")),
+cover_background_choices = [	("#00000000",	_("type 1 - OSD + black (#00000000)")),
 				("#FFFFFFFF",	_("type 2 - transparent + white (#FFFFFFFF)")),
 				("#00FFFFFF",	_("type 3 - OSD + black (#00FFFFFF)")),
 				("#FF000000",	_("type 4 - transparent + black (#FF000000)")) ]
 
-bookmark_choices = [("No",		_("No")),
-					("E2",		_("E2 Bookmarks")),
-					("EMC",		_("EMC Bookmarks")),
-					("Both",	_("Both")) ]
+bookmark_choices = [	("No",		_("No")),
+			("E2",		_("E2 Bookmarks")),
+			("EMC",		_("EMC Bookmarks")),
+			("Both",	_("Both")) ]
 
-restart_choices = [	("",	_("No")),
-					("0",	_("Standby")),
-					("1",	_("DeepStandby")),
-					("2",	_("Reboot")),
-					("3",	_("E2 Restart"))]
+restart_choices = [	("", 	_("No")),
+			("0",	_("Standby")),
+			("1",	_("DeepStandby")),
+			("2",	_("Reboot")),
+			("3",	_("E2 Restart"))]
 
 bqt_choices = [	("",		_("HomeEnd")),
-				("Skip",	_("Skip")),
-				("Folder",	_("Change Folder"))]
+		("Skip",	_("Skip")),
+		("Folder",	_("Change Folder"))]
 
-extra_support_lang_choices = [("No",	_("No")),
-					("CZ&SK",	"CZ&SK"),
-					("HR",		"HR")]
+extra_support_lang_choices = [	("No",		_("No")),
+				("CZ&SK",	"CZ&SK"),
+				("HR",		"HR")]
 
 #Think about using AZ or ("A",False) as dict key / permanent sort store value
 #TODO use an OrderedDict
-sort_modes =	{		("D-")	  :	( _("Date sort descending (D-)"),				("D",False),		_("Date sort"),				),
-				("AZ")	  :	( _("Alpha sort ascending (AZ)"),				("A",False),	 	_("Alpha sort"),			),
-				("AZD-")  :	( _("Alpha sort ascending, Date descending (AZD-)"),		("ADN",False),		_("Alpha sort date newest"),		),
-				("AZM")   :	( _("Alpha sort ascending with meta (AZM)"),			("AM",False), 	 	_("Alpha sort meta"),			),
-				("AZMD-") :	( _("Alpha sort ascending with meta, Date descending (AZMD-)"),	("AMDN",False),		_("Alpha sort meta date newest"),	),
-				("P+")	  :	( _("Progress sort ascending (P+)"),				("P",False),		_("Progress sort"),			),
-				("D+")	  :	( _("Date sort ascending (D+)"),				("D",True),		_("Date sort"),				),
-				("ZA")	  :	( _("Alpha sort descending (ZA)"),				("A",True),		_("Alpha sort"),			),
-				("ZAD+")  :	( _("Alpha sort descending, Date ascending (ZAD+)"),		("ADN",True),		_("Alpha sort date newest"),		),
-				("ZAM")	  :	( _("Alpha sort descending with meta (ZAM)"),			("AM",True),		_("Alpha sort meta"),			),
-				("ZAMD+") :	( _("Alpha sort descending with meta, Date ascending (ZAMD+)"),	("AMDN",True),		_("Alpha sort meta date newest"),	),
-				("P-")	  :	( _("Progress sort descending (P-)"),				("P",True),		_("Progress sort"),			),
-				}
-				# If you add a new sort order, you have to think about
-				#  Order false has to be the preferred state
-				#  Both order possibilities should be in the list
-				# Following functions are invoved, but they are all implemented dynamically
-				#  MovieCenter.reload -> Add new parameter if necessary
-				#   Don't worry about buildMovieCenterEntry(*args):
-				#  MovieSelection.initButtons -> Set next button text
-				#  Green short will go through all types: D A
-				#  Green long will only toggle the sort order: normal reverse
+sort_modes = {	("D-")	  :	( _("Date sort descending (D-)"),				("D",False),		_("Date sort"),				),
+		("AZ")	  :	( _("Alpha sort ascending (AZ)"),				("A",False),	 	_("Alpha sort"),			),
+		("AZD-")  :	( _("Alpha sort ascending, Date descending (AZD-)"),		("ADN",False),		_("Alpha sort date newest"),		),
+		("AZM")   :	( _("Alpha sort ascending with meta (AZM)"),			("AM",False), 	 	_("Alpha sort meta"),			),
+		("AZMD-") :	( _("Alpha sort ascending with meta, Date descending (AZMD-)"),	("AMDN",False),		_("Alpha sort meta date newest"),	),
+		("P+")	  :	( _("Progress sort ascending (P+)"),				("P",False),		_("Progress sort"),			),
+		("D+")	  :	( _("Date sort ascending (D+)"),				("D",True),		_("Date sort"),				),
+		("ZA")	  :	( _("Alpha sort descending (ZA)"),				("A",True),		_("Alpha sort"),			),
+		("ZAD+")  :	( _("Alpha sort descending, Date ascending (ZAD+)"),		("ADN",True),		_("Alpha sort date newest"),		),
+		("ZAM")	  :	( _("Alpha sort descending with meta (ZAM)"),			("AM",True),		_("Alpha sort meta"),			),
+		("ZAMD+") :	( _("Alpha sort descending with meta, Date ascending (ZAMD+)"),	("AMDN",True),		_("Alpha sort meta date newest"),	),
+		("P-")	  :	( _("Progress sort descending (P-)"),				("P",True),		_("Progress sort"),			),
+		}
+		# If you add a new sort order, you have to think about
+		# Order false has to be the preferred state
+		# Both order possibilities should be in the list
+		# Following functions are invoved, but they are all implemented dynamically
+		# MovieCenter.reload -> Add new parameter if necessary
+		# Don't worry about buildMovieCenterEntry(*args):
+		# MovieSelection.initButtons -> Set next button text
+		# Green short will go through all types: D A
+		# Green long will only toggle the sort order: normal reverse
 
 sort_choices = [ (k, v[0]) for k, v in sort_modes.items() ]
 
@@ -371,7 +368,8 @@ config.EMC.count_size_default_icon   = ConfigYesNo(default = False)
 config.EMC.count_size_position       = ConfigSelection(default = '1', choices = [ ('0', _("center")), ('1', _("right")), ('2', _("left")) ])
 #config.EMC.symlinkdir_info           = ConfigYesNo(default = False)
 config.EMC.latest_recordings         = ConfigYesNo(default = True)
-nget = False    # this is needed for vti-image at the moment
+
+nget = False # this is needed for vti-image at the moment
 try:
 	ngettext("%d second", "%d seconds", 30)
 	nget = True
@@ -406,6 +404,7 @@ if nget:
 else:
 	for i in range(1,365):
 		limitreclist.append(("%d" % i))
+
 config.EMC.latest_recordings_limit   = ConfigSelection(default = "-1", choices = [("-1", _("No limit"))] + limitreclist)
 config.EMC.latest_recordings_noscan  = ConfigYesNo(default = False)
 config.EMC.mark_latest_files         = ConfigYesNo(default = True)
@@ -493,9 +492,9 @@ def autostart(reason, **kwargs):
 				try:
 					from Screens.InfoBar import InfoBar
 					value = config.EMC.movie_launch.value
-					if value == "showMovies":			InfoBar.showMovies = showMoviesNew
-					elif value == "showTv":				InfoBar.showTv = showMoviesNew
-					elif value == "showRadio":			InfoBar.showRadio = showMoviesNew
+					if value == "showMovies":		InfoBar.showMovies = showMoviesNew
+					elif value == "showTv":			InfoBar.showTv = showMoviesNew
+					elif value == "showRadio":		InfoBar.showRadio = showMoviesNew
 					elif value == "openQuickbutton":	InfoBar.openQuickbutton = showMoviesNew
 					elif value == "timeshiftStart":		InfoBar.startTimeshift = showMoviesNew
 				except Exception, e:
