@@ -586,7 +586,7 @@ class EnhancedMovieCenterMenu(ConfigListScreen, Screen):
 						break
 				else:
 					# Loop fell through without a break
-					if conf[0] == 400*"¯":
+					if isDreamOS and conf[0] == 400*"¯":
 						list.append( getConfigListEntry( " ", ) ) # not needed conf[7], conf[8]
 					else:
 						list.append( getConfigListEntry( conf[0], conf[1], conf[2], conf[3], conf[4], conf[5], conf[6] ) ) # not needed conf[7], conf[8]
