@@ -83,7 +83,15 @@ def getSkin():
 		skin = "/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/CoolSkin/EMCMediaCenter_1080.xml"
 	return skin
 
-class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
+# Just a dummy to prevent crash
+class InfoBarTimeshift:
+	def __init__(self):
+		pass
+
+	def startTimeshift(self):
+		pass
+
+class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarTimeshift, InfoBarSupport ):
 
 	ENABLE_RESUME_SUPPORT = True
 	ALLOW_SUSPEND = True
@@ -94,6 +102,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarSupport ):
 		CutList.__init__(self)
 		Screen.__init__(self, session)
 		HelpableScreen.__init__(self)
+		InfoBarTimeshift.__init__(self)
 		InfoBarSupport.__init__(self)
 
 		# Skin
