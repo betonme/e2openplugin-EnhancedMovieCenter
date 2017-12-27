@@ -725,7 +725,8 @@ class EnhancedMovieCenterMenu(ConfigListScreenExt, Screen):
 			config.EMC.movie_finished_clean.notifiers = [ ]
 
 		for x in self["config"].list:
-			x[1].cancel()
+			if len(x) > 1:
+				x[1].cancel()
 		self.close()
 
 	def keyCancel(self):
