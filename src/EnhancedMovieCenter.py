@@ -713,12 +713,6 @@ class EnhancedMovieCenterMenu(ConfigListScreenExt, Screen):
 				x[1].cancel()
 		self.close()
 
-	def keyCancel(self):
-		if self["config"].isChanged():
-			self.session.openWithCallback(self.cancelConfirm, MessageBox, _("Really close without saving settings?"))
-		else:
-			self.close()
-
 	def launchListSet(self, element):
 		if element is not None:
 			self.needsRestart()
