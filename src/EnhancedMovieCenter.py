@@ -67,8 +67,8 @@ from EMCTasker import emcTasker, emcDebugOut
 
 sz_w = getDesktop(0).size().width()
 
-EMCVersion = "git20171228"
-EMCAbout = "Enhanced Movie Center " +EMCVersion+ "\n\n(c) 2012-2018 by\nCoolman, betonme, Swiss-MAD & the many other volunteers."
+EMCVersion = "git20171227"
+EMCAbout = "Enhanced Movie Center " +EMCVersion+ "\n\n(c) 2012-2018 by\nCoolman, betonme, Swiss-MAD & the many other volunteers.\n\nIf you like this plugin and you want to support it,\nor if just want to say \"thanks\", please donate via PayPal.\n\nThanks a lot!\n\nPayPal: enhancedmoviecenter@gmail.com"
 
 def setEPGLanguage(dummyself=None, dummy=None):
 	if config.EMC.epglang.value:
@@ -591,7 +591,7 @@ class EnhancedMovieCenterMenu(ConfigListScreenExt, Screen):
 					# Loop fell through without a break
 					if conf[0] == self.section:
 						if len(list) > 1:
-							list.append(getConfigListEntry("", config.EMC.fake_entry, None, None, 0, [], ""))
+							list.append(getConfigListEntry("", config.mediaportal.fake_entry, None, None, 0, [], ""))
 						if conf[1] == "":
 							list.append(getConfigListEntry("<DUMMY CONFIGSECTION>", ))
 						else:
