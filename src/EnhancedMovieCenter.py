@@ -704,6 +704,7 @@ class EnhancedMovieCenterMenu(ConfigListScreenExt, Screen):
 								config.EMC.movie_finished_clean.addNotifier(self.changedEntry, initial_call = False, immediate_feedback = True)
 								return
 					entry[1].save()
+		configfile.save()
 		if self.needsRestartFlag:
 			self.session.open(MessageBox, _("Some settings changes require GUI restart to take effect."), MessageBox.TYPE_INFO, 10)
 		self.close()

@@ -450,8 +450,9 @@ class EMCPlaylistSetup(Screen, ConfigListScreenExt):
 		self["actions"] = ActionMap(["SetupActions", "ColorActions"],
 		{
 			"ok": self.ok,
-			"cancel": self.exit,
-			"green": self.save,
+			"cancel": self.keyCancel,
+			"red": self.keyCancel,
+			"green": self.keySave,
 		}, -2)
 		self["cancel"] = Button(_("Cancel"))
 		self["save"] = Button(_("Save"))
@@ -497,16 +498,11 @@ class EMCPlaylistSetup(Screen, ConfigListScreenExt):
 		else:
 			pass
 
-	def exit(self):
-		for x in self["config"].list:
-			x[1].cancel()
-		self.close(False)
-
-	def save(self):
+	def keySave(self):
 		for x in self["config"].list:
 			x[1].save()
 		configfile.save()
-		self.close(True)
+		self.close()
 
 class EMCFileBrowser(Screen, HelpableScreen):
 	if sz_w == 1920:

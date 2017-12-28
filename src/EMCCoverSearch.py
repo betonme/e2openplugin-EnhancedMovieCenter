@@ -498,7 +498,7 @@ class EMCImdbScan(Screen):
 	def config(self):
 		self.session.openWithCallback(self.setupFinished, imdbSetup)
 
-	def setupFinished(self, result):
+	def setupFinished(self, result=False):
 		print "EMC iMDB Config Saved."
 		if result:
 			if self.isFolder:
@@ -687,44 +687,51 @@ class imdbSetup(Screen, ConfigListScreenExt):
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
-
 		self.setTitle(_("EMC Cover search setup"))
 
 		self["key_red"] = Button(_("Cancel"))
-		self["key_green"] = Button(_("OK"))
+		self["key_green"] = Button(_("Save"))
 
-		ConfigListScreenExt.__init__(self, self.makeList(), session, on_change = self.isChanged)
+		self.configlist = []
 
-		self["setupActions"] = ActionMap(["SetupActions", "ColorActions"],
+		ConfigListScreenExt.__init__(self, self.configlist, on_change = self._onKeyChange)
+
+		self._getConfig()
+
+		self["actions"] = ActionMap(["SetupActions", "OkCancelActions", "EMCConfigActions"],
 		{
-			"green":	self.keySave,
-			"cancel":	self.keyClose,
-			"ok":		self.keySave,
+			"cancel":	self.keyCancel,
+			"red":		self.keyCancel,
+			"green":	self.keySave
 		}, -2)
 
-	def makeList(self):
-		list = []
-		list.append(getConfigListEntry(_("Search Site:"), config.EMC.imdb.search))
-		list.append(getConfigListEntry(_("Search filter for matching existing terms in the title:"), config.EMC.imdb.search_filter))
-		list.append(getConfigListEntry(_("thetvdb cover number (standard cover):"), config.EMC.imdb.thetvdb_standardcover))
-		list.append(getConfigListEntry(_("Preferred cover resolution (if possible):"), config.EMC.imdb.preferred_coversize))
-		list.append(getConfigListEntry(_("Save description to movie.txt file:"), config.EMC.imdb.savetotxtfile))
-		list.append(getConfigListEntry(_("Single Search:"), config.EMC.imdb.singlesearch, 'refresh'))
-		list.append(getConfigListEntry(_("Search filter for matching existing terms in the title:"), config.EMC.imdb.singlesearch_filter))
+	def _getConfig(self):
+		self.configlist = []
+		self.configlist.append(getConfigListEntry(_("Search Site:"), config.EMC.imdb.search, False))
+		self.configlist.append(getConfigListEntry(_("Search filter for matching existing terms in the title:"), config.EMC.imdb.search_filter, False))
+		self.configlist.append(getConfigListEntry(_("thetvdb cover number (standard cover):"), config.EMC.imdb.thetvdb_standardcover, False))
+		self.configlist.append(getConfigListEntry(_("Preferred cover resolution (if possible):"), config.EMC.imdb.preferred_coversize, False))
+		self.configlist.append(getConfigListEntry(_("Save description to movie.txt file:"), config.EMC.imdb.savetotxtfile, False))
+		self.configlist.append(getConfigListEntry(_("Single Search:"), config.EMC.imdb.singlesearch, True))
+		self.configlist.append(getConfigListEntry(_("Search filter for matching existing terms in the title:"), config.EMC.imdb.singlesearch_filter, False))
 		if config.EMC.imdb.singlesearch.value not in ('2','3'):
 			itext = ""
 			if config.EMC.imdb.singlesearch.value not in ('0','4'):
 				itext = _(" (without counting cover range)")
-				list.append(getConfigListEntry(_("thetvdb cover range per title:"), config.EMC.imdb.singlesearch_tvdbcoverrange))
-			list.append(getConfigListEntry(_("Search Results per Search Site%s:") %itext, config.EMC.imdb.singlesearch_siteresults))
-		list.append(getConfigListEntry(_("Set path to save the folder Cover:"), config.EMC.imdb.singlesearch_foldercoverpath))
+				self.configlist.append(getConfigListEntry(_("thetvdb cover range per title:"), config.EMC.imdb.singlesearch_tvdbcoverrange, False))
+			self.configlist.append(getConfigListEntry(_("Search Results per Search Site%s:") %itext, config.EMC.imdb.singlesearch_siteresults, False))
+		self.configlist.append(getConfigListEntry(_("Set path to save the folder Cover:"), config.EMC.imdb.singlesearch_foldercoverpath, False))
 
-		return list
+		self["config"].list = self.configlist
+		self["config"].setList(self.configlist)
 
-	def isChanged(self):
-		x = self["config"].getCurrent()
-		if x and len(x) > 2 and x[2] == 'refresh':
-			self["config"].setList(self.makeList())
+	def _onKeyChange(self):
+		try:
+			cur = self["config"].getCurrent()
+			if cur and cur[2]:
+				self._getConfig()
+		except:
+			pass
 
 	def keySave(self):
 		for x in self["config"].list:
@@ -733,10 +740,7 @@ class imdbSetup(Screen, ConfigListScreenExt):
 		self.close(True)
 
 	def keyClose(self):
-		for x in self["config"].list:
-			x[1].cancel()
-		configfile.save()
-		self.close(False)
+		self.close()
 
 class getCover(Screen):
 	if sz_w == 1920:
