@@ -96,31 +96,31 @@ emcplaylist = EMCPlaylist()
 class EMCPlaylistScreen(Screen):
 	if sz_w == 1920:
 		skin = """
-			<screen position="center,170" size="1200,820" title="EMC Playlist" >
-			<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/red.png" position="10,5" size="295,70" alphatest="blend"/>
-            <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/green.png" position="305,5" size="295,70" alphatest="blend"/>
-            <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/yellow.png" position="600,5" size="295,70" alphatest="blend"/>
-            <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/blue.png" position="895,5" size="295,70" alphatest="blend"/>
-            <widget backgroundColor="#9f1313" font="Regular;30" halign="center" name="cancel" position="10,5" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" size="295,70" transparent="1" valign="center" zPosition="1" />
-            <widget backgroundColor="#1f771f" font="Regular;30" halign="center" name="save" position="305,5" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" size="295,70" transparent="1" valign="center" zPosition="1" />
-            <widget backgroundColor="#a08500" font="Regular;30" halign="center" name="delete" position="600,5" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" size="295,70" transparent="1" valign="center" zPosition="1" />
-            <widget backgroundColor="#18188b" font="Regular;30" halign="center" name="deleteall" position="895,5" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" size="295,70" transparent="1" valign="center" zPosition="1" />
-            <eLabel backgroundColor="#818181" position="10,80" size="1180,1" />
-            <widget enableWrapAround="1" name="playlist" position="10,90" scrollbarMode="showOnDemand" posWidth="70" nameWidth="1100" posColor="foreground" posColorSel="#bababa" nameColor="foreground" nameColorSel="#bababa" size="1180,720" />       
+		<screen position="center,170" size="1200,820" title="EMC Playlist" >
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/red.png" position="10,5" size="295,70" alphatest="blend"/>
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/green.png" position="305,5" size="295,70" alphatest="blend"/>
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/yellow.png" position="600,5" size="295,70" alphatest="blend"/>
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/blue.png" position="895,5" size="295,70" alphatest="blend"/>
+		<widget backgroundColor="#9f1313" font="Regular;30" halign="center" name="cancel" position="10,5" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" size="295,70" transparent="1" valign="center" zPosition="1" />
+		<widget backgroundColor="#1f771f" font="Regular;30" halign="center" name="save" position="305,5" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" size="295,70" transparent="1" valign="center" zPosition="1" />
+		<widget backgroundColor="#a08500" font="Regular;30" halign="center" name="delete" position="600,5" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" size="295,70" transparent="1" valign="center" zPosition="1" />
+		<widget backgroundColor="#18188b" font="Regular;30" halign="center" name="deleteall" position="895,5" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" size="295,70" transparent="1" valign="center" zPosition="1" />
+		<eLabel backgroundColor="#818181" position="10,80" size="1180,1" />
+		<widget enableWrapAround="1" name="playlist" position="10,90" scrollbarMode="showOnDemand" posWidth="70" nameWidth="1100" posColor="foreground" posColorSel="#bababa" nameColor="foreground" nameColorSel="#bababa" size="1180,720" />
 		</screen>"""
 	else:
 		skin = """
-			<screen position="center,120" size="820,520" title="EMC Playlist" >
-			<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/red.png" position="10,5" size="200,40" alphatest="blend"/>
-    		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/green.png" position="210,5" size="200,40" alphatest="blend"/>
-	    	<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/yellow.png" position="410,5" size="200,40" alphatest="blend"/>
-	    	<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/blue.png" position="610,5" size="200,40" alphatest="blend"/>
-    		<widget name="cancel" position="10,5" size="200,40" zPosition="1" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" />
-    		<widget name="save" position="210,5" size="200,40" zPosition="1" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" />
-    		<widget name="delete" position="410,5" size="200,40" zPosition="1" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" />
-	    	<widget name="deleteall" position="610,5" size="200,40" zPosition="1" font="Regular;20" halign="center" valign="center" backgroundColor="#18188b" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" />
-    		<eLabel position="10,50" size="800,1" backgroundColor="#818181" />
-    		<widget name="playlist" position="10,60" size="800,450" posWidth="40" nameWidth="770" posColor="foreground" posColorSel="#bababa" nameColor="foreground" nameColorSel="#bababa" enableWrapAround="1" scrollbarMode="showOnDemand" />
+		<screen position="center,120" size="820,520" title="EMC Playlist" >
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/red.png" position="10,5" size="200,40" alphatest="blend"/>
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/green.png" position="210,5" size="200,40" alphatest="blend"/>
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/yellow.png" position="410,5" size="200,40" alphatest="blend"/>
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/blue.png" position="610,5" size="200,40" alphatest="blend"/>
+		<widget name="cancel" position="10,5" size="200,40" zPosition="1" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" />
+		<widget name="save" position="210,5" size="200,40" zPosition="1" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" />
+		<widget name="delete" position="410,5" size="200,40" zPosition="1" font="Regular;20" halign="center" valign="center" backgroundColor="#a08500" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" />
+		<widget name="deleteall" position="610,5" size="200,40" zPosition="1" font="Regular;20" halign="center" valign="center" backgroundColor="#18188b" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" />
+		<eLabel position="10,50" size="800,1" backgroundColor="#818181" />
+		<widget name="playlist" position="10,60" size="800,450" posWidth="40" nameWidth="770" posColor="foreground" posColorSel="#bababa" nameColor="foreground" nameColorSel="#bababa" enableWrapAround="1" scrollbarMode="showOnDemand" />
 		</screen>"""
 
 	def __init__(self, session):
@@ -271,7 +271,6 @@ class EMCPlaylistScreen(Screen):
 		self["playlist"].readPlaylist()
 		self["playlist"].refreshList()
 
-
 class PlayList(GUIComponent):
 	def __init__(self, enableWrapAround = True):
 		GUIComponent.__init__(self)
@@ -412,37 +411,36 @@ class PlayList(GUIComponent):
 class EMCPlaylistSetup(Screen, ConfigListScreenExt):
 	if sz_w == 1920:
 		skin = """
-			<screen position="center,170" size="1200,820" title="EMC Playlist Setup">
-    		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/red.png" position="10,5" size="300,70" alphatest="blend"/>
-            <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/green.png" position="310,5" size="300,70" alphatest="blend"/>
-            <widget backgroundColor="#9f1313" font="Regular;30" halign="center" name="cancel" position="10,5" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" size="300,70" transparent="1" valign="center" zPosition="1" />
-            <widget backgroundColor="#1f771f" font="Regular;30" halign="center" name="save" position="310,5" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" size="300,70" transparent="1" valign="center" zPosition="1" />
-            <widget font="Regular;34" halign="right" position="1050,25" render="Label" size="120,40" source="global.CurrentTime">
-                <convert type="ClockToText">Default</convert>
-            </widget>
-            <widget font="Regular;34" halign="right" position="800,25" render="Label" size="240,40" source="global.CurrentTime">
-               <convert type="ClockToText">Date</convert>
-            </widget>
-            <eLabel backgroundColor="#818181" position="10,80" size="1180,1" />
-            <widget enableWrapAround="1" name="config" itemHeight="45" position="10,90" scrollbarMode="showOnDemand" size="1180,720" />
+		<screen position="center,170" size="1200,820" title="EMC Playlist Setup">
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/red.png" position="10,5" size="300,70" alphatest="blend"/>
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/green.png" position="310,5" size="300,70" alphatest="blend"/>
+		<widget backgroundColor="#9f1313" font="Regular;30" halign="center" name="cancel" position="10,5" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" size="300,70" transparent="1" valign="center" zPosition="1" />
+		<widget backgroundColor="#1f771f" font="Regular;30" halign="center" name="save" position="310,5" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" size="300,70" transparent="1" valign="center" zPosition="1" />
+		<widget font="Regular;34" halign="right" position="1050,25" render="Label" size="120,40" source="global.CurrentTime">
+			<convert type="ClockToText">Default</convert>
+		</widget>
+		<widget font="Regular;34" halign="right" position="800,25" render="Label" size="240,40" source="global.CurrentTime">
+			<convert type="ClockToText">Date</convert>
+		</widget>
+		<eLabel backgroundColor="#818181" position="10,80" size="1180,1" />
+		<widget enableWrapAround="1" name="config" itemHeight="45" position="10,90" scrollbarMode="showOnDemand" size="1180,720" />
 		</screen>"""
 	else:
 		skin = """
-			<screen position="center,120" size="820,520" title="EMC Playlist Setup">
-			<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/red.png" position="10,5" size="200,40" alphatest="blend"/>
+		<screen position="center,120" size="820,520" title="EMC Playlist Setup">
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/red.png" position="10,5" size="200,40" alphatest="blend"/>
     		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/green.png" position="210,5" size="200,40" alphatest="blend"/>
     		<widget name="cancel" position="10,5" size="200,40" zPosition="1" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" />
     		<widget name="save" position="210,5" size="200,40" zPosition="1" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" />
     		<widget source="global.CurrentTime" render="Label" position="740,14" size="70,24" font="Regular;22" halign="right">
-    			<convert type="ClockToText">Default</convert>
+			<convert type="ClockToText">Default</convert>
     		</widget>
-            <eLabel position="10,50" size="800,1" backgroundColor="#818181" />
+		<eLabel position="10,50" size="800,1" backgroundColor="#818181" />
      		<widget name="config" itemHeight="30" position="10,60" size="800,450" enableWrapAround="1" scrollbarMode="showOnDemand" />
 		</screen>"""
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		#self.session = session
 		self.list = []
 		self.list.append(getConfigListEntry(_("Default Playlist path"), config.EMC.playlist.default_playlist_path))
 		self.list.append(getConfigListEntry(_("Default Playlist name"), config.EMC.playlist.default_playlist_name))
@@ -496,10 +494,8 @@ class EMCPlaylistSetup(Screen, ConfigListScreenExt):
 	def ok(self):
 		if self["config"].getCurrent()[1] == config.EMC.playlist.default_playlist_path:
 			self.openDirectoryBrowser(config.EMC.playlist.default_playlist_path.value)
-		elif self["config"].getCurrent()[1] == config.EMC.playlist.default_playlist_name:
-			self.openVirtualKeyboard(config.EMC.playlist.default_playlist_name.value)
 		else:
-			self.exit()       # should we use save on this way too?
+			pass
 
 	def exit(self):
 		for x in self["config"].list:
@@ -515,33 +511,33 @@ class EMCPlaylistSetup(Screen, ConfigListScreenExt):
 class EMCFileBrowser(Screen, HelpableScreen):
 	if sz_w == 1920:
 		skin = """
-			<screen name="EMCFilebrowser" position="center,170" size="1200,820" title="EMC Filebrowser">
+		<screen name="EMCFilebrowser" position="center,170" size="1200,820" title="EMC Filebrowser">
     		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/red.png" position="10,5" size="300,70" alphatest="blend"/>
-            <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/green.png" position="310,5" size="300,70" alphatest="blend"/>
-            <widget backgroundColor="#9f1313" font="Regular;30" halign="center" name="cancel" position="10,5" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" size="300,70" transparent="1" valign="center" zPosition="1" />
-            <widget backgroundColor="#1f771f" font="Regular;30" halign="center" name="open" position="310,5" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" size="300,70" transparent="1" valign="center" zPosition="1" />
-            <widget font="Regular;34" halign="right" position="1050,25" render="Label" size="120,40" source="global.CurrentTime">
-                <convert type="ClockToText">Default</convert>
-            </widget>
-            <widget font="Regular;34" halign="right" position="800,25" render="Label" size="240,40" source="global.CurrentTime">
-               <convert type="ClockToText">Date</convert>
-            </widget>
-            <eLabel backgroundColor="#818181" position="10,80" size="1180,1" />
-            <widget enableWrapAround="1" name="filelist" itemHeight="45" position="10,90" scrollbarMode="showOnDemand" size="1180,720" />
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/green.png" position="310,5" size="300,70" alphatest="blend"/>
+		<widget backgroundColor="#9f1313" font="Regular;30" halign="center" name="cancel" position="10,5" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" size="300,70" transparent="1" valign="center" zPosition="1" />
+		<widget backgroundColor="#1f771f" font="Regular;30" halign="center" name="open" position="310,5" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" size="300,70" transparent="1" valign="center" zPosition="1" />
+		<widget font="Regular;34" halign="right" position="1050,25" render="Label" size="120,40" source="global.CurrentTime">
+			<convert type="ClockToText">Default</convert>
+		</widget>
+		<widget font="Regular;34" halign="right" position="800,25" render="Label" size="240,40" source="global.CurrentTime">
+			<convert type="ClockToText">Date</convert>
+		</widget>
+		<eLabel backgroundColor="#818181" position="10,80" size="1180,1" />
+		<widget enableWrapAround="1" name="filelist" itemHeight="45" position="10,90" scrollbarMode="showOnDemand" size="1180,720" />
 		</screen>"""
 	else:
 		skin = """
 		<screen name="EMCFilebrowser" position="center,120" size="820,520" title="EMC Filebrowser">
 		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/red.png" position="10,5" size="200,40" alphatest="blend"/>
-    	<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/green.png" position="210,5" size="200,40" alphatest="blend"/>
-    	<widget name="cancel" position="10,5" size="200,40" zPosition="1" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" />
-    	<widget name="open" position="210,5" size="200,40" zPosition="1" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" />
-    	<widget source="global.CurrentTime" render="Label" position="740,14" size="70,24" font="Regular;22" halign="right">
-    		<convert type="ClockToText">Default</convert>
-    	</widget>
-        <eLabel position="10,50" size="800,1" backgroundColor="#818181" />
-     	<widget name="filelist" itemHeight="30" position="10,60" size="800,450" enableWrapAround="1" scrollbarMode="showOnDemand" />
-	</screen>"""
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/green.png" position="210,5" size="200,40" alphatest="blend"/>
+		<widget name="cancel" position="10,5" size="200,40" zPosition="1" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" />
+		<widget name="open" position="210,5" size="200,40" zPosition="1" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" />
+		<widget source="global.CurrentTime" render="Label" position="740,14" size="70,24" font="Regular;22" halign="right">
+			<convert type="ClockToText">Default</convert>
+		</widget>
+		<eLabel position="10,50" size="800,1" backgroundColor="#818181" />
+		<widget name="filelist" itemHeight="30" position="10,60" size="800,450" enableWrapAround="1" scrollbarMode="showOnDemand" />
+		</screen>"""
 
 	def __init__(self, session, currDir):
 		Screen.__init__(self, session)

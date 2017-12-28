@@ -58,7 +58,7 @@ try:
 	isDreamOS = True
 except:
 	isDreamOS = False
-	
+
 # Overwrite Seekbar
 def EMCkeyOK(self):
 	sel = self["config"].getCurrent()[1]
@@ -82,27 +82,25 @@ def EMCkeyOK(self):
 		EMCMediaCenter.doSeekRelative(self.infobarInstance, pts)
 		self.exit()
 
-
 class InfoBarSupport(	InfoBarBase, \
-											InfoBarNotifications, \
-											InfoBarSeek, \
-											InfoBarShowHide, \
-											InfoBarMenu, \
-											InfoBarShowMovies, \
-											InfoBarAudioSelection, \
-											InfoBarSimpleEventView, \
-											InfoBarServiceNotifications, \
-											InfoBarPVRState, \
-											InfoBarCueSheetSupport, \
-											InfoBarSubtitleSupport, \
-											InfoBarTeletextPlugin, \
-											InfoBarServiceErrorPopupSupport, \
-											InfoBarExtensions, \
-											InfoBarPlugins, \
-											InfoBarNumberZap, \
-											InfoBarPiP, \
-											InfoBarEPG ):
-											#InfoBarMoviePlayerSummarySupport
+			InfoBarNotifications, \
+			InfoBarSeek, \
+			InfoBarShowHide, \
+			InfoBarMenu, \
+			InfoBarShowMovies, \
+			InfoBarAudioSelection, \
+			InfoBarSimpleEventView, \
+			InfoBarServiceNotifications, \
+			InfoBarPVRState, \
+			InfoBarCueSheetSupport, \
+			InfoBarSubtitleSupport, \
+			InfoBarTeletextPlugin, \
+			InfoBarServiceErrorPopupSupport, \
+			InfoBarExtensions, \
+			InfoBarPlugins, \
+			InfoBarNumberZap, \
+			InfoBarPiP, \
+			InfoBarEPG ):
 
 	def __init__(self):
 		self.allowPiP = True         # both are needed here !

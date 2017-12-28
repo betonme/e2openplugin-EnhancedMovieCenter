@@ -230,7 +230,7 @@ class SelectionEventInfo:
 		self["runtimeATtxt"] = Label("")	# runtime-text
 		self["date"] = Label("")		# date-text
 		self["size"] = Label("")		# size-text
-			
+
 		try:
 			self.volctrl = eDVBVolumecontrol.getInstance() # volume control # dirty
 		except:
@@ -277,7 +277,7 @@ class SelectionEventInfo:
 			if not (config.EMC.movie_cover.value or config.EMC.movie_preview.value):
 				self.session.nav.stopService() #even if EMC.hide_miniTV_method is singlePixelMuted
 				self["Video"].hide()
-		
+
 	def miniTV_off(self):
 		if (config.EMC.hide_miniTV_method.value == "singlePixelMuted") and not isDreamOS:
 			if not (config.EMC.movie_cover.value or config.EMC.movie_preview.value):
@@ -293,7 +293,7 @@ class SelectionEventInfo:
 					self.preMute_muteState = self.isMuted()
 					self.volumeMute()
 		else:
-			self.session.nav.stopService()			
+			self.session.nav.stopService()
 
 	def miniTV_unmute(self):
 		if self.preMute_muteState is not None:
