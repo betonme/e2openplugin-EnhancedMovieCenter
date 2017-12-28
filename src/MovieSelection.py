@@ -1444,7 +1444,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			except OSError:
 				title += "(? GB) "
 
-		StaticText.setText(self["spaceused"], title)
+		StaticText.setText(self["spaceused"], title.strip())
 
 		# Display the current path
 		path = self.currentPath
