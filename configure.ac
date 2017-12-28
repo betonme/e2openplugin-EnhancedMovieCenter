@@ -11,10 +11,10 @@ src/script/Makefile
 src/img/Makefile
 src/img_fhd/Makefile
 src/CoolSkin/Makefile
-src/Components/Makefile
-src/Components/Converter/Makefile
-src/Components/Renderer/Makefile
-src/Components/Sources/Makefile
+Components/Makefile
+Components/Converter/Makefile
+Components/Renderer/Makefile
+Components/Sources/Makefile
 po/Makefile
 etc/Makefile
 ])
