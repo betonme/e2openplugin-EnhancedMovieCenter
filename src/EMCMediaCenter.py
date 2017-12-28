@@ -358,7 +358,11 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarTimeshift, InfoBar
 
 	def evEOF(self, needToClose=False):
 		# see if there are more to play
-		print "EMC PLAYER evEOF", self.playall, self.playcount, self.playlist
+		playlist_string = "[ "
+		for p in self.playlist:
+			playlist_string += (os.path.basename(p.getPath()) + " ")
+		playlist_string += "]"
+		print "EMC PLAYER evEOF", self.playall, self.playcount, playlist_string
 		if self.playall:
 			# Play All
 			try:
