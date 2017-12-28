@@ -58,42 +58,37 @@
 		</widget>
 		<!-- Remaining movie time -->
 		<widget source="session.CurrentService" render="Label" position="48,48" size="48,16" font="Regular;16" foregroundColor="#FFFF00" halign="right">
-			  <convert type="ServicePosition">Remaining,Negate,ShowHours,ShowNoSeconds</convert>
+			<convert type="ServicePosition">Remaining,Negate,ShowHours,ShowNoSeconds</convert>
 		</widget>
 	</screen>
 <!-- EMC Selection screen DM9... and Buck Color display -->
 	<screen id="3" name="EMCSelection_summary" position="0,0" size="400,240">
-        <widget font="Display;45" foregroundColor="#faff00" halign="center" position="10,10" render="Label" size="380,94" source="parent.Service" valign="center" >
-            <convert type="ServiceName">Name</convert>
-        </widget>
-        <widget font="Display;40" halign="center" position="10,117" render="Label" size="380,42" source="Title"/>
-        <eLabel backgroundColor="white" position="10,168" size="380,2" />
-        <widget font="Display;47" position="10,184" render="Label" size="210,50" source="parent.Service">
-            <convert type="MovieInfo">FileSize</convert>
-        </widget>
-        <widget font="Display;50" halign="right" position="225,182" render="Label" size="170,55" source="parent.Service">
-            <convert type="EMCServiceTime">Duration</convert>
-            <convert type="EMCClockToText">InMinutes</convert>
-        </widget>
-    </screen>
-<!-- EMC MoviePlayer screen DM9... and Buck Color display -->
-    <screen id="3" name="EMCMoviePlayerSummary" position="0,0" size="400,240">
-        <widget font="Display;50" halign="center" position="10,1" render="Label" size="380,156" source="session.CurrentService" valign="center">
-            <convert type="ServiceName">Name</convert>
-        </widget>
-        <eLabel backgroundColor="white" position="10,166" size="380,2" />
-        <widget pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/progress.png" position="10,162" render="Progress" size="380,10" source="Service" transparent="1" zPosition="1">
-            <convert type="EMCServicePosition">Position</convert>
-        </widget>
-        <widget font="Display;60" position="10,180" render="Label" size="160,60" source="global.CurrentTime">
-            <convert type="ClockToText">Default</convert>
-        </widget>
-        <widget font="Display;60" halign="right" position="180,180" render="Label" size="215,60" source="session.CurrentService">
-            <convert type="ServicePosition">Remaining,Negate</convert>
-        </widget>
-        <widget font="Display;60" halign="center" position="180,180" render="FixedLabel" size="215,60" source="session.RecordState" text="REC">
-            <convert type="ConfigEntryTest">config.usage.blinking_display_clock_during_recording,True,CheckSourceBoolean</convert>
-            <convert type="ConditionalShowHide">Blink</convert>
-        </widget>
-    </screen>
+		<widget source="parent.Service" render="Label" font="Display;45" foregroundColor="#faff00" transparent="1" halign="center" position="10,10" size="380,94" valign="center">
+			<convert type="ServiceName">Name</convert>
+		</widget>
+		<widget source="Title" render="Label" position="10,112" size="380,47" font="Display;45" halign="center" />
+		<eLabel backgroundColor="#ffffff" position="10,168" size="380,2" />
+		<widget source="parent.Service" render="Label" font="Display;47" position="10,184" size="210,50" >
+			<convert type="MovieInfo">FileSize</convert>
+		</widget>
+		<widget source="parent.Service" render="Label" position="225,182" size="170,55" halign="right" font="Display;50" foregroundColor="#38FF38">
+			<convert type="EMCServiceTime">Duration</convert>
+			<convert type="EMCClockToText"></convert>
+		</widget>
+	</screen>		
+<!-- EMC MoviePlayer screen DM9... and Buck Color display -->	
+	<screen id="3" name="EMCMoviePlayerSummary" position="0,0" size="400,240">
+		<widget source="session.CurrentService" render="Label" position="10,1" size="380,156" font="Display;50" halign="center" valign="center" foregroundColor="#faff00">
+			<convert type="extMovieInfo">Name</convert>
+		</widget>
+		<widget source="Service" render="Progress" position="center,162" size="380,15" borderWidth="1" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/LCDprogress.png" backgroundColor="#08303030">
+			<convert type="EMCServicePosition">Position</convert>
+		</widget>
+		<widget source="global.CurrentTime" render="Label" position="10,180" size="160,60" font="Display;60">
+			<convert type="ClockToText">Default</convert>
+		</widget>
+		<widget source="session.CurrentService" render="Label" position="165,180" size="230,55" font="Display;60" foregroundColor="#38FF38" halign="right">
+			<convert type="ServicePosition">Remaining,Negate,ShowHours</convert>
+		</widget>
+	</screen>
 </skin>
