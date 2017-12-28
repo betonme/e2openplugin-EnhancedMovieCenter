@@ -71,7 +71,7 @@ dvdPlayerPlg = "%s%s"%(resolveFilename(SCOPE_PLUGINS), "Extensions/DVDPlayer/plu
 class EMCMoviePlayerSummary(Screen):
 	def __init__(self, session, parent):
 		Screen.__init__(self, session, parent)
-		self.skinName = ["EMCMoviePlayerSummary"]
+		self.skinName = ["EMCSelectionSummary", "EMCSelection_summary"]
 		self["Service"] = EMCCurrentService(session.nav, parent)
 
 def getSkin():

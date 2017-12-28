@@ -62,7 +62,7 @@
 		</widget>
 	</screen>
 <!-- EMC Selection screen DM9... and Buck Color display -->
-	<screen id="3" name="EMCSelection_summary" position="0,0" size="400,240">
+	<screen id="3" name="EMCSelectionSummary" position="0,0" size="400,240">
         <widget font="Display;45" foregroundColor="#faff00" halign="center" position="10,10" render="Label" size="380,94" source="parent.Service" valign="center" >
             <convert type="ServiceName">Name</convert>
         </widget>

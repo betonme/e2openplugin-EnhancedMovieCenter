@@ -510,6 +510,11 @@ class SelectionEventInfo:
 			infobar.pauseService()
 			infobar.unPauseService()
 
+class EMCSelectionSummary(Screen):
+	def __init__(self, session, parent):
+		Screen.__init__(self, session, parent)
+		self.skinName = "EMCSelection_summary"
+
 def getSkin():
 	skin = None
 	CoolWide = getDesktop(0).size().width()
@@ -738,6 +743,9 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			return config.ParentalControl.setuppinactive.value and config.ParentalControl.config_sections.movie_list.value
 		except:
 			pass
+
+	def createSummary(self):
+		return EMCSelectionSummary
 
 	def CoolAVSwitch(self):
 		if config.av.policy_43.value == "pillarbox":
