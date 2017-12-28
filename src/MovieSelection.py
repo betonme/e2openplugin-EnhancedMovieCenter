@@ -70,7 +70,7 @@ from ServiceSupport import ServiceCenter
 from EMCCoverSearch import EMCImdbScan
 from MovieRetitle import MovieRetitle
 from Components.Sources.EMCServiceEvent import EMCServiceEvent
-from MovieInfo import DownloadMovieInfo, MovieInfoTMDb
+from MovieInfo import MovieInfoTMDb
 from EMCPlayList import emcplaylist, EMCPlaylistScreen, EMCPlaylistSetup
 
 #from MetaSupport import MetaList
@@ -888,7 +888,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		elif value == "CS":
 			self.imdb()
 		elif value == "MI":
-			self.dlMovieInfo()
+			self.EMCTMDBInfo()
 		elif value == "CP":
 			self.copyMovie()
 		elif value == "E2":
@@ -1183,7 +1183,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 					self.moveMovie(selection)
 				else:
 					self.moveMovie()
-			elif parameter == "Movie Information": self.dlMovieInfo()
+			elif parameter == "Movie Information": self.EMCTMDBInfo()
 			elif parameter == "reload": self.initList()
 			elif parameter == "plugin": self.onDialogShow()
 			elif parameter == "setup": self.onDialogShow()
@@ -3151,28 +3151,6 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			self.checkHideMiniTV_beforeFullscreen()
 			self.session.open(MessageBox, _("Trashcan create failed. Check mounts and permissions."), MessageBox.TYPE_ERROR)
 			emcDebugOut("[EMCMS] trashcanCreate exception:\n" + str(e))
-
-#	def dlMovieInfo(self):
-#		selectedlist = self["list"].makeSelectionList()[:]
-#		service = selectedlist[0]
-#		if os.path.isfile(service.getPath()):
-#			moviename = str(self["list"].getNameOfService(service))
-#			self.checkHideMiniTV_beforeFullscreen()
-#			self.session.open(DownloadMovieInfo, service, moviename)
-
-	def dlMovieInfo(self):
-		if config.EMC.movieinfo.switch_newold.value:
-			self.EMCTMDBInfo()
-		else:
-			service = self["list"].getCurrent()
-			if service:
-				path = service.getPath()
-				if path and path != config.EMC.movie_trashcan_path.value:
-					if not path.endswith("/..") and not path.endswith("/Latest Recordings"):
-						moviename = service.getName()
-						spath = getInfoFile(path)[0]
-						self.checkHideMiniTV_beforeFullscreen()
-						self.session.open(DownloadMovieInfo, spath, moviename)
 
 #****************************************************************************************
 # add possibility to call IMDb/TMDB/CSFD from movie detail via blue key

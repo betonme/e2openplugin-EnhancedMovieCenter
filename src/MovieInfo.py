@@ -34,7 +34,6 @@ config.EMC.movieinfo.ldvote = ConfigSelection(default='1', choices=[('1', _('Yes
 config.EMC.movieinfo.ldgenre = ConfigSelection(default='1', choices=[('1', _('Yes')), ('0', _('No'))])
 config.EMC.movieinfo.coversave = ConfigYesNo(default = False)
 config.EMC.movieinfo.coversize = ConfigSelection(default="w185", choices = ["w92", "w185", "w500", "original"])
-config.EMC.movieinfo.switch_newold = ConfigYesNo(default = False)
 config.EMC.movieinfo.cover_delay = ConfigSelectionNumber(50, 60000, 50, default= 500)
 
 sz_w = getDesktop(0).size().width()
@@ -220,174 +219,12 @@ def getTempCover(posterUrl):
 def dataError(error):
 	print "[EMC] MovieInfo ERROR:", error
 
-
-class DownloadMovieInfo(Screen):
-	if sz_w == 1920:
-		skin = """
-		<screen name="DownloadMovieInfo" position="center,170" size="1200,820" title="Movie Information Download (TMDb)">
-		<widget name="movie_name" position="10,5" size="1180,80" font="Regular;35" halign="center" valign="center" foregroundColor="yellow"/>
-        <eLabel backgroundColor="#818181" position="10,90" size="1180,1" />
-		<widget enableWrapAround="1" name="movielist" position="10,100" size="1180,585" itemHeight="45" scrollbarMode="showOnDemand"/>
-        <eLabel backgroundColor="#818181" position="10,695" size="1180,1" />
-		<widget name="resulttext" position="10,715" size="1180,35" font="Regular;32" foregroundColor="yellow"/>
-		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/menu.png" position="10,770" size="80,40" alphatest="blend"/>
-		<widget name="setup" position="110,772" size="380,40" font="Regular;30" valign="center" />
-		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/ok.png" position="510,770" size="80,40" alphatest="blend"/>
-		<widget name="save" position="620,772" size="290,40" font="Regular;30" valign="center" />
-		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/info.png" position="930,770" size="80,40" alphatest="blend"/>
-		<widget name="movieinfo" position="1030,772" size="160,40" font="Regular;30" valign="center" />
-	</screen>"""
-	else:
-		skin = """
-		<screen name="DownloadMovieInfo" position="center,120" size="820,520" title="Movie Information Download (TMDb)">
-		<widget name="movie_name" position="10,5" size="800,55" font="Regular;24" halign="center" valign="center" foregroundColor="yellow"/>
-        <eLabel backgroundColor="#818181" position="10,70" size="800,1" />
-		<widget enableWrapAround="1" name="movielist" position="10,80" size="800,330" itemHeight="30" scrollbarMode="showOnDemand"/>
-        <eLabel backgroundColor="#818181" position="10,420" size="800,1" />
-		<widget name="resulttext" position="10,430" size="800,25" font="Regular;20" foregroundColor="yellow"/>
-		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/menu.png" position="10,480" size="60,30" alphatest="blend"/>
-		<widget name="setup" position="100,481" size="180,30" font="Regular;22" valign="center" />
-		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/ok.png" position="300,480" size="60,30" alphatest="blend"/>
-		<widget name="save" position="380,481" size="180,30" font="Regular;22" valign="center" />
-		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/info.png" position="580,480" size="60,30" alphatest="blend"/>
-		<widget name="movieinfo" position="660,481" size="100,30" font="Regular;22" valign="center" />
-	</screen>"""
-
-#	def __init__(self, session, service, moviename):
-	def __init__(self, session, spath, moviename):
-		Screen.__init__(self, session)
-		self.session = session
-#		self.service = service
-		self.spath = spath
-		self["actions"] = HelpableActionMap(self, "EMCMovieInfo",
-		{
-			"EMCEXIT":		self.exit,
-			"EMCOK":		self.ok,
-			"EMCMenu":		self.setup,
-			"EMCINFO":		self.info,
-		}, -1)
-
-		self.onLayoutFinish.append(self.layoutFinished)
-#		(moviepath,ext) = os.path.splitext(service.getPath())  #do we need this line ?
-
-		self.moviename = getMovieNameWithoutExt(moviename)
-		moviename = getMovieNameWithoutPhrases(self.moviename)
-
-		self["movie_name"] = Label(_("Search results for:") + "   " + moviename)
-		self["setup"] = Label(_("Setup"))
-		self["save"] = Label(_("Save"))
-		self["movieinfo"] = Label(_("Movie Info"))
-
-		movielist = getMovieList(moviename)
-		if movielist is not None:
-			self["movielist"] = MenuList(movielist[0])
-			self["resulttext"] = Label(str(movielist[1]) + " " + _("movies found!"))
-		else:
-			self["movielist"] = MenuList([])
-			self["resulttext"] = Label(_("An error occured! Internet connection broken?"))
-
-	def layoutFinished(self):
-		self.setTitle(_("Movie Information Download (TMDb)"))
-
-	def exit(self):
-		self.close()
-
-	def ok(self):
-		sel = self["movielist"].l.getCurrentSelection()
-		if sel is not None:
-			id = sel[1]
-			cat = sel[2]
-			info = getMovieInfo(id, cat)
-			if info is not None:
-				moviepath = os.path.splitext(self.spath)[0]
-				file(moviepath + ".txt",'w').write(info)
-				self.session.open(MessageBox, (_('Movie Information downloaded successfully!')), MessageBox.TYPE_INFO, 5)
-
-				if config.EMC.movieinfo.coversave.value:
-					self.getPoster()
-				self.exit()
-			else:
-				self.session.open(MessageBox, _("An error occured! Internet connection broken?"), MessageBox.TYPE_ERROR, 10)
-
-	def getPoster(self):
-		moviepath = os.path.splitext(self.spath)[0]
-		if fileExists(moviepath + ".jpg"):
-			self.session.openWithCallback(self.posterCallback, MessageBox, _("Cover %s exists!\n\nDo you want to replace the existing cover?") % (moviepath + ".jpg"), MessageBox.TYPE_YESNO)
-		else:
-			self.savePoster()
-
-	def posterCallback(self, result):
-		if result:
-			moviepath = os.path.splitext(self.spath)[0]
-			if fileExists(moviepath + ".jpg"):
-				os.remove(moviepath + ".jpg")
-			self.savePoster()
-
-	def savePoster(self):
-		try:
-			moviepath = os.path.splitext(self.spath)[0]
-			coverpath = moviepath + ".jpg"
-			if fileExists("/tmp/previewCover.jpg"):
-				shutil.copy2("/tmp/previewCover.jpg", coverpath)
-		except Exception, e:
-			print('[EMC] MovieInfo savePoster exception failure: ', str(e))
-
-	def info(self):
-		sel = self["movielist"].l.getCurrentSelection()
-		if sel is not None:
-			preview = getMovieInfo(sel[1], sel[2])
-			if preview is not None:
-				self.session.open(MovieInfoPreview, preview, self.moviename)
-			else:
-				self.session.open(MessageBox, _("An error occured! Internet connection broken?"), MessageBox.TYPE_ERROR, 10)
-
-	def setup(self):
-		self.session.open(MovieInfoSetup)
-
-
-class MovieInfoPreview(Screen):
-	if sz_w == 1920:
-		skin = """
-		<screen name="MovieInfoPreview" position="center,170" size="1200,820" title="Movie Information Preview">
-		<widget name="movie_name" position="10,5" size="1180,80" font="Regular;35" halign="center" valign="center" foregroundColor="yellow"/>
-        <eLabel backgroundColor="#818181" position="10,90" size="1180,1" />
-		<widget name="previewtext" position="10,100" size="1180,710" font="Regular;32" />
-	</screen>"""
-	else:
-		skin = """
-		<screen name="MovieInfoPreview" position="center,120" size="820,520" title="Movie Information Preview">
-		<widget name="movie_name" position="10,5" size="800,55" font="Regular;24" halign="center" valign="center" foregroundColor="yellow"/>
-        <eLabel backgroundColor="#818181" position="10,70" size="800,1" />
-		<widget name="previewtext" position="10,80" size="800,435" font="Regular;21"/>
-	</screen>"""
-
-	def __init__(self, session, preview, moviename):
-		Screen.__init__(self, session)
-		#self.session = session
-		self.preview = preview
-		self["movie_name"] = Label(_("Movie Information Preview for:") + "   " + moviename)
-		self["previewtext"]=Label(_(str(preview)))
-		self.onLayoutFinish.append(self.layoutFinished)
-		self["actions"] = HelpableActionMap(self, "EMCMovieInfo",
-		{
-			"EMCEXIT":	self.close,
-			#"EMCOK":	self.red,
-			#"EMCMenu":	self.setup,
-			#"EMCINFO":	self.info,
-			#"EMCGreen":	self.green,
-			#"EMCRed":	self.red,
-		}, -1)
-
-	def layoutFinished(self):
-		self.setTitle(_("Movie Information Preview"))
-
-
 class MovieInfoTMDb(Screen):
 	if sz_w == 1920:
 		skin = """
 		<screen name="MovieInfoTMDb" position="center,170" size="1200,820" title="Movie Information TMDb">
 		<widget name="movie_name" position="10,5" size="1180,80" font="Regular;35" halign="center" valign="center" foregroundColor="yellow"/>
-        <eLabel backgroundColor="#818181" position="10,90" size="1180,1" />
+		<eLabel backgroundColor="#818181" position="10,90" size="1180,1" />
 		<widget name="previewlist" enableWrapAround="1" position="340,100" size="850,630" itemHeight="45" scrollbarMode="showOnDemand" />
 		<widget name="previewcover" position="20,100" size="300,451" alphatest="blend"/>
 		<widget name="contenttxt" position="340,100" size="850,460" font="Regular;30" />
@@ -401,20 +238,20 @@ class MovieInfoTMDb(Screen):
 		<widget name="releasetxt" position="850,640" size="340,35" font="Regular;28" />
 		<widget name="rating" position="20,690" size="160,35" font="Regular;28" foregroundColor="#000066FF" />
 		<widget name="ratingtxt" position="190,690" size="330,35" font="Regular;28" />
-        <widget name="starsbg" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/starsbar_empty.png" position="550,690" size="300,30" alphatest="blend"/>
-        <widget name="stars" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/starsbar_filled.png" position="550,690" size="300,30" transparent="1" zPosition="1"/>
-        <eLabel backgroundColor="#818181" position="10,740" size="1180,1" />
+		<widget name="starsbg" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/starsbar_empty.png" position="550,690" size="300,30" alphatest="blend"/>
+		<widget name="stars" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/starsbar_filled.png" position="550,690" size="300,30" transparent="1" zPosition="1"/>
+		<eLabel backgroundColor="#818181" position="10,740" size="1180,1" />
 		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/menu.png" position="10,770" size="80,40" alphatest="blend"/>
 		<widget name="setup" position="110,772" size="380,40" font="Regular;30" valign="center" />
 		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/ok.png" position="510,770" size="80,40" zPosition="1" alphatest="blend"/>
 		<widget name="key_green" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/key_green.png" position="510,770" size="80,40" zPosition="2" alphatest="blend"/>
 		<widget name="save" position="620,772" size="290,40" font="Regular;30" valign="center" />
-	</screen>"""
+		</screen>"""
 	else:
 		skin = """
 		<screen name="MovieInfoTMDb" position="center,80" size="1200,610" title="Movie Information TMDb">
 		<widget name="movie_name" position="10,5" size="1180,55" font="Regular;24" valign="center" halign="center" foregroundColor="yellow"/>
-        <eLabel backgroundColor="#818181" position="10,70" size="1180,1" />
+		<eLabel backgroundColor="#818181" position="10,70" size="1180,1" />
 		<widget name="previewcover" position="20,80" size="220,330" alphatest="blend"/>
 		<widget enableWrapAround="1" name="previewlist" position="270,80" size="920,330" itemHeight="30" scrollbarMode="showOnDemand" />
 		<widget name="contenttxt" position="270,80" size="920,330" font="Regular;21" />
@@ -435,7 +272,7 @@ class MovieInfoTMDb(Screen):
 		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/ok.png" position="320,570" size="60,30" zPosition="1" alphatest="blend"/>
 		<widget name="key_green" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/key_green.png" position="320,570" size="60,30" zPosition="2" alphatest="blend"/>
 		<widget name="save" position="400,571" size="200,30" font="Regular;22" valign="center" />
-	</screen>"""
+		</screen>"""
 
 # page 0 = details
 # page 1 = list
@@ -748,35 +585,34 @@ class MovieInfoSetup(Screen, ConfigListScreenExt):
 		skin = """
 		<screen name="EMCMovieInfoSetup" position="center,170" size="1200,820" title="Movie Information Download Setup">
 		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/red.png" position="10,5" size="300,70" alphatest="blend"/>
-        <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/green.png" position="310,5" size="300,70" alphatest="blend"/>
-        <widget backgroundColor="#9f1313" font="Regular;30" halign="center" name="key_red" position="10,5" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" size="300,70" transparent="1" valign="center" zPosition="1" />
-        <widget backgroundColor="#1f771f" font="Regular;30" halign="center" name="key_green" position="310,5" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" size="300,70" transparent="1" valign="center" zPosition="1" />
-        <widget font="Regular;34" halign="right" position="1050,25" render="Label" size="120,40" source="global.CurrentTime">
-            <convert type="ClockToText">Default</convert>
-        </widget>
-        <widget font="Regular;34" halign="right" position="800,25" render="Label" size="240,40" source="global.CurrentTime">
-            <convert type="ClockToText">Date</convert>
-        </widget>
-        <eLabel backgroundColor="#818181" position="10,80" size="1180,1" />
-        <widget enableWrapAround="1" name="config" position="10,90" itemHeight="45" scrollbarMode="showOnDemand" size="1180,720" />
-	</screen>"""
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/green.png" position="310,5" size="300,70" alphatest="blend"/>
+		<widget backgroundColor="#9f1313" font="Regular;30" halign="center" name="key_red" position="10,5" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" size="300,70" transparent="1" valign="center" zPosition="1" />
+		<widget backgroundColor="#1f771f" font="Regular;30" halign="center" name="key_green" position="310,5" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" size="300,70" transparent="1" valign="center" zPosition="1" />
+		<widget font="Regular;34" halign="right" position="1050,25" render="Label" size="120,40" source="global.CurrentTime">
+			<convert type="ClockToText">Default</convert>
+		</widget>
+		<widget font="Regular;34" halign="right" position="800,25" render="Label" size="240,40" source="global.CurrentTime">
+			<convert type="ClockToText">Date</convert>
+		</widget>
+		<eLabel backgroundColor="#818181" position="10,80" size="1180,1" />
+		<widget enableWrapAround="1" name="config" position="10,90" itemHeight="45" scrollbarMode="showOnDemand" size="1180,720" />
+		</screen>"""
 	else:
 		skin = """
 		<screen name="EMCMovieInfoSetup" position="center,120" size="820,520" title="Movie Information Download Setup">
 		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/red.png" position="10,5" size="200,40" alphatest="blend"/>
-    	<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/green.png" position="210,5" size="200,40" alphatest="blend"/>
-    	<widget name="key_red" position="10,5" size="200,40" zPosition="1" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" />
-    	<widget name="key_green" position="210,5" size="200,40" zPosition="1" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" />
-    	<widget source="global.CurrentTime" render="Label" position="740,14" size="70,24" font="Regular;22" halign="right">
-    		<convert type="ClockToText">Default</convert>
-    	</widget>
-        <eLabel position="10,50" size="800,1" backgroundColor="#818181" />
-     	<widget name="config" itemHeight="30" position="10,60" size="800,450" enableWrapAround="1" scrollbarMode="showOnDemand" />
-	</screen>"""
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/green.png" position="210,5" size="200,40" alphatest="blend"/>
+		<widget name="key_red" position="10,5" size="200,40" zPosition="1" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" />
+		<widget name="key_green" position="210,5" size="200,40" zPosition="1" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" />
+		<widget source="global.CurrentTime" render="Label" position="740,14" size="70,24" font="Regular;22" halign="right">
+			<convert type="ClockToText">Default</convert>
+		</widget>
+		<eLabel position="10,50" size="800,1" backgroundColor="#818181" />
+		<widget name="config" itemHeight="30" position="10,60" size="800,450" enableWrapAround="1" scrollbarMode="showOnDemand" />
+		</screen>"""
 
 	def __init__(self, session):
 		Screen.__init__(self, session)
-		#self.session = session
 		self.list = []
 		self.list.append(getConfigListEntry(_("Language:"), config.EMC.movieinfo.language))
 		self.list.append(getConfigListEntry(_("Load Runtime:"), config.EMC.movieinfo.ldruntime))
@@ -786,18 +622,14 @@ class MovieInfoSetup(Screen, ConfigListScreenExt):
 		self.list.append(getConfigListEntry(_("Load Vote:"), config.EMC.movieinfo.ldvote))
 		self.list.append(getConfigListEntry(_("Save Cover"), config.EMC.movieinfo.coversave))
 		self.list.append(getConfigListEntry(_("Coversize"), config.EMC.movieinfo.coversize))
-		self.list.append(getConfigListEntry(_("Switch complete to new Version"), config.EMC.movieinfo.switch_newold))
 		self.list.append(getConfigListEntry(_("Cover delay in ms"), config.EMC.movieinfo.cover_delay))
 
 		ConfigListScreenExt.__init__(self, self.list, session)
 		self["actions"] = HelpableActionMap(self, "EMCMovieInfo",
 		{
-			"EMCEXIT":		self.exit,
-			"EMCOK":		self.red,
-			#"EMCMenu":		self.setup,
-			#"EMCINFO":		self.info,
-			"EMCGreen":		self.green,
-			"EMCRed":		self.red,
+			"EMCEXIT":		self.keyCancel,
+			"EMCGreen":		self.keySave,
+			"EMCRed":		self.keyCancel,
 		}, -1)
 		self["key_red"] = Button(_("Cancel"))
 		self["key_green"] = Button(_("OK"))
@@ -806,16 +638,8 @@ class MovieInfoSetup(Screen, ConfigListScreenExt):
 	def layoutFinished(self):
 		self.setTitle(_("Movie Information Download Setup"))
 
-	def exit(self):
-		self.close()
-
-	def green(self):
+	def keySave(self):
 		for x in self["config"].list:
 			x[1].save()
 		configfile.save()
-		self.close(True)
-
-	def red(self):
-		for x in self["config"].list:
-			x[1].cancel()
-		self.close(False)
+		self.close()
