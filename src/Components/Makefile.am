@@ -1,3 +1,0 @@
-SUBDIRS = Converter Renderer Sources
-
-
