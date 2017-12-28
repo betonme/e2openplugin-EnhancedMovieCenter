@@ -35,11 +35,11 @@
 			<convert type="ServiceName">Name</convert>
 		</widget>
 		<!-- Movie progress -->
-		<widget source="Service" render="EMCPositionGauge" position="1,40" size="94,8" zPosition="2" pointer="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/EMCMoviePlayer/OLED_Pointer.png:94,0" transparent="1" >
+		<widget source="Service" render="EMCPositionGauge" position="1,40" size="94,8" zPosition="2" pointer="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/progress.png:94,0" transparent="1" >
 			<convert type="EMCServicePosition">Position</convert>
 		</widget>
 		<!-- Movie recording progress -->
-		<widget source="Service" render="EMCPositionGauge" position="1,40" size="94,8" zPosition="1" pointer="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/EMCMoviePlayer/OLED_RecPointer.png:94,0" transparent="1" >
+		<widget source="Service" render="EMCPositionGauge" position="1,40" size="94,8" zPosition="1" pointer="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/progress_rec.png:94,0" transparent="1" >
 			<convert type="EMCRecordPosition">Position</convert>
 		</widget>
 		<!-- Progress border -->
@@ -66,7 +66,7 @@
         <widget font="Display;45" foregroundColor="#faff00" halign="center" position="10,10" render="Label" size="380,94" source="parent.Service" valign="center" >
             <convert type="ServiceName">Name</convert>
         </widget>
-        <widget font="Display;40" halign="center" position="10,117" render="Label" size="380,42" source="Title"/>
+        <widget font="Display;40" halign="center" valign="bottom" position="10,117" render="Label" size="380,42" source="parent.spaceused"/>
         <eLabel backgroundColor="white" position="10,168" size="380,2" />
         <widget font="Display;47" position="10,184" render="Label" size="210,50" source="parent.Service">
             <convert type="MovieInfo">FileSize</convert>

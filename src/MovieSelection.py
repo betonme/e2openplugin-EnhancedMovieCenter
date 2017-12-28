@@ -29,6 +29,7 @@ from Components.ActionMap import ActionMap, HelpableActionMap
 from Components.Button import Button
 from Components.config import *
 from Components.Label import Label
+from Components.Sources.StaticText import StaticText
 from Components.ServiceEventTracker import ServiceEventTracker
 from Screens.Screen import Screen
 from Screens.ParentalControlSetup import ProtectedScreen
@@ -513,7 +514,7 @@ class SelectionEventInfo:
 class EMCSelectionSummary(Screen):
 	def __init__(self, session, parent):
 		Screen.__init__(self, session, parent)
-		self.skinName = ["EMCSelectionSummary", "EMCSelection_summary"]
+		self.skinName = ["EMCSelection_summary", "EMCSelectionSummary"]
 
 def getSkin():
 	skin = None
@@ -521,11 +522,15 @@ def getSkin():
 	if CoolWide == 1280:
 		if config.EMC.skinstyle.value == "left":
 			skin = "/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/CoolSkin/EMCSelection_left.xml"
+		elif config.EMC.skinstyle.value == "leftpig":
+			skin = "/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/CoolSkin/EMCSelection_left_pig.xml"
 		else:
 			skin = "/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/CoolSkin/EMCSelection_bottom.xml"
 	elif CoolWide == 1920:
 		if config.EMC.skinstyle.value == "left":
 			skin = "/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/CoolSkin/EMCSelection_left_1080.xml"
+		elif config.EMC.skinstyle.value == "leftpig":
+			skin = "/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/CoolSkin/EMCSelection_left_pig_1080.xml"
 		else:
 			skin = "/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/CoolSkin/EMCSelection_bottom_1080.xml"
 	return skin
@@ -599,6 +604,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		self["key_green"] = Button()
 		self["key_yellow"] = Button()
 		self["key_blue"] = Button()
+		self["spaceused"] = StaticText("")
 
 		if config.EMC.movie_cover.value:
 			self.cover = True
@@ -1421,12 +1427,12 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 
 	def updateTitle(self):
 		from EnhancedMovieCenter import EMCVersion
-		title = "EMC "+EMCVersion+" "
 		if self.multiSelectIdx:
 			self.setTitle(_("*** Multiselection active ***"))
 			return
 
 		# Display the free space
+		title = ""
 		if os.path.exists(self.currentPath):
 			try:
 				stat = os.statvfs(self.currentPath)
@@ -1437,6 +1443,8 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 					title += "(%d MB) " %(free)
 			except OSError:
 				title += "(? GB) "
+
+		StaticText.setText(self["spaceused"], title)
 
 		# Display the current path
 		path = self.currentPath
@@ -1467,6 +1475,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		if perm == True:
 			title += " <P>"
 
+		title = "EMC "+EMCVersion+" " + title
 		self.setTitle(title)
 
 	def toggleCover(self):
