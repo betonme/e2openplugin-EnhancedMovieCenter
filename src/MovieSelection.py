@@ -800,9 +800,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 
 	def callHelpAction(self, *args):
 		HelpableScreen.callHelpAction(self, *args)
-		from EnhancedMovieCenter import EMCAbout
 		self.checkHideMiniTV_beforeFullscreen()
-		self.session.open(MessageBox, EMCAbout, MessageBox.TYPE_INFO)
 
 	def abortAndPowerDown(self):
 		self.abort()
