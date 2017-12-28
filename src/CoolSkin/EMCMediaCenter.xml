@@ -51,6 +51,9 @@
             <convert type="ValueRange">2160,3840</convert>
             <convert type="ConditionalShowHide" />
         </widget>
+        <widget font="Regular;22" halign="right" position="1090,380" render="Label" size="70,25" source="session.CurrentService">
+            <convert type="ServiceInfo">VideoWidth</convert>
+        </widget>
         <widget font="Regular;20" name="audioLabel" position="380,380" size="120,25" />
         <widget font="Regular;20" name="subtitleLabel" position="510,380" size="120,25" />
         <widget name="anglePix" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/view.png" position="650,380" size="25,25" alphatest="blend"/>
