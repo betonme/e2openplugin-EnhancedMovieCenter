@@ -47,11 +47,11 @@ def getMovieList(moviename):
 		movies = response["results"]
 		movielist = []
 		for mov in movies:
-			movielist.append((_(str(mov["title"]) + " - " + _("Movies")), mov["id"], "movie"))
+			movielist.append((str(mov["title"]) + " - " + _("Movies"), mov["id"], "movie"))
 
 		tvshows = response1["results"]
 		for shows in tvshows:
-			movielist.append((_(str(shows["name"]) + " - " + _("TV Shows")), shows["id"], "tvshows"))
+			movielist.append((str(shows["name"]) + " - " + _("TV Shows"), shows["id"], "tvshows"))
 
 		idx = len(movies) + len(tvshows)
 
@@ -461,7 +461,7 @@ class MovieInfoTMDb(Screen):
 		elif self.jpgsaved and not self.txtsaved:
 			msg = (_('Movie Cover downloaded successfully!\n\nCan not write Movie Information File\n\n%s') % (self.mpath + ".txt"))
 		elif not self.jpgsaved and not self.txtsaved:
-			msg = (_('Can not write Movie Information and Cover File\n\n%s\n%s') % (self.mpath + ".txt", self.mpath + ".jpg"))
+			msg = (_('Can not write Movie Information and Cover File\n\n%(info)\n%(file)') % {'info':self.mpath + ".txt", 'file':self.mpath + ".jpg"})
 		elif not self.txtsaved and not config.EMC.movieinfo.coversave.value:
 			msg = (_('Can not write Movie Information File\n\n%s') % (self.mpath + ".txt"))
 
