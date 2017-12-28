@@ -513,7 +513,7 @@ class SelectionEventInfo:
 class EMCSelectionSummary(Screen):
 	def __init__(self, session, parent):
 		Screen.__init__(self, session, parent)
-		self.skinName = "EMCSelection_summary"
+		self.skinName = ["EMCSelectionSummary", "EMCSelection_summary"]
 
 def getSkin():
 	skin = None
