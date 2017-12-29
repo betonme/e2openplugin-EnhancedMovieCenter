@@ -16,8 +16,11 @@
 		<widget name="wait" position="10,55" size="1180,390" zPosition="1" font="Regular;22" halign="center" valign="center" />
         <widget CoolDirInfoWidth="110" CoolCSPos="1060" CoolBarHPos="9" CoolBarPos="910" CoolBarSizeSa="85,16" CoolDateColor="1" CoolDateFont="Regular;19" CoolDateHPos="5" CoolDatePos="1010" CoolDateWidth="160" CoolFolderSize="1000" CoolFont="Regular;20" CoolHighlightColor="1" CoolIconPos="5" CoolIconSize="35,26" CoolMovieHPos="4" CoolMoviePiconPos="100" CoolMoviePiconSize="800" CoolMoviePos="40" CoolMovieSize="850" CoolPiconHPos="2" CoolPiconHeight="26" CoolPiconPos="13" CoolProgressPos="960" CoolSelNumTxtWidth="35" CoolSelectFont="Regular;20" CoolTitleColor="1" DefaultColor="foreground" FinishedColor="#38FF48" RecordingColor="red" UnwatchedColor="foreground" FrontColorSel="#bababa" WatchingColor="yellow" position="10,55" size="1180,390" itemHeight="30" enableWrapAround="1" name="list" scrollbarMode="showOnDemand" />
 		<eLabel position="10,50" size="1180,1" backgroundColor="#818181" />
-        <widget name="Cover" position="10,455" size="150,150" alphatest="blend"/>
-        <widget font="Regular;22" position="160,460" render="Label" size="200,27" source="Service">
+        <eLabel backgroundColor="#ff000000" position="10,455" size="278,150" zPosition="1"/>
+        <widget backgroundColor="#ff000000" position="19,462" render="Pig" size="260,140" source="session.VideoPicture"/>
+        <widget name="CoverBgLbl" backgroundColor="background" position="10,455" size="278,150" zPosition="2"/>
+        <widget name="Cover" position="75,455" size="150,150" alphatest="blend" zPosition="3"/>
+        <widget font="Regular;22" position="300,460" render="Label" size="200,27" source="Service">
             <convert type="EMCServiceTime">StartTime</convert>
             <convert type="EMCClockToText">Format:%a. %d %b, %y</convert>
         </widget>
@@ -37,24 +40,24 @@
             <convert type="EMCMovieInfo">FileSize</convert>
         </widget>
 		<eLabel position="10,450" size="1180,1" backgroundColor="#818181" />
-        <widget font="Regular;21" position="160,485" foregroundColor="yellow" render="Label" size="570,25" source="Service">
+        <widget font="Regular;21" position="300,485" foregroundColor="yellow" render="Label" size="470,25" source="Service">
             <convert type="EMCMovieInfo">ShortDescription</convert>
         </widget>
-        <widget font="Regular;21" position="750,485" foregroundColor="yellow" halign="right" render="Label" size="440,25" source="Service">
+        <widget font="Regular;21" position="790,485" foregroundColor="yellow" halign="right" render="Label" size="400,25" source="Service">
             <convert type="EMCMovieInfo">RecordServiceName</convert>
         </widget>
-        <widget font="Regular;19" position="160,515" render="Label" size="980,88" source="Service">
+        <widget font="Regular;19" position="300,515" render="Label" size="880,88" source="Service">
             <convert type="EMCEventName">ExtendedDescription</convert>
         </widget>
-    	<widget name="name" font="Regular;22" foregroundColor="yellow" position="180,455" size="1000,27" backgroundColor="background" transparent="1"/>
-    	<widget name="artistAT" position="180,490" size="120,27" font="Regular;22" backgroundColor="background" transparent="1"/>
-    	<widget name="artistATtxt" position="300,490" size="265,27" font="Regular;22" backgroundColor="background" transparent="1"/>
-    	<widget name="albumAT" position="180,520" size="120,27" font="Regular;22" backgroundColor="background" transparent="1"/>
-    	<widget name="albumATtxt" position="300,520" size="700,27" font="Regular;22" backgroundColor="background" transparent="1"/>
-    	<widget name="genreAT" position="180,550" size="120,27" font="Regular;22" backgroundColor="background" transparent="1"/>
-    	<widget name="genreATtxt" position="300,550" size="700,27" font="Regular;22" backgroundColor="background" transparent="1"/>
-    	<widget name="runtimeAT" position="180,580" size="120,27" font="Regular;22" backgroundColor="background" transparent="1"/>
-    	<widget name="runtimeATtxt" position="300,580" size="100,27" font="Regular;22" backgroundColor="background" transparent="1"/>
-    	<widget name="size" position="420,580" size="400,27" font="Regular;22" backgroundColor="background" transparent="1"/>
+    	<widget name="name" font="Regular;22" foregroundColor="yellow" position="300,455" size="880,27" backgroundColor="background" transparent="1"/>
+    	<widget name="artistAT" position="300,490" size="120,27" font="Regular;22" backgroundColor="background" transparent="1"/>
+    	<widget name="artistATtxt" position="420,490" size="265,27" font="Regular;22" backgroundColor="background" transparent="1"/>
+    	<widget name="albumAT" position="300,520" size="120,27" font="Regular;22" backgroundColor="background" transparent="1"/>
+    	<widget name="albumATtxt" position="420,520" size="700,27" font="Regular;22" backgroundColor="background" transparent="1"/>
+    	<widget name="genreAT" position="300,550" size="120,27" font="Regular;22" backgroundColor="background" transparent="1"/>
+    	<widget name="genreATtxt" position="420,550" size="700,27" font="Regular;22" backgroundColor="background" transparent="1"/>
+    	<widget name="runtimeAT" position="300,580" size="120,27" font="Regular;22" backgroundColor="background" transparent="1"/>
+    	<widget name="runtimeATtxt" position="420,580" size="100,27" font="Regular;22" backgroundColor="background" transparent="1"/>
+    	<widget name="size" position="540,580" size="400,27" font="Regular;22" backgroundColor="background" transparent="1"/>
     	<widget name="date" position="700,585" size="495,25" halign="right" font="Regular;18" backgroundColor="background" transparent="1"/>
 </screen>

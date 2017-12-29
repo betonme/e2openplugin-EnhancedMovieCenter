@@ -307,7 +307,7 @@ config.EMC.hide_miniTV               = ConfigSelection(default = 'never', choice
 config.EMC.hide_miniTV_cover         = ConfigYesNo(default = False)
 config.EMC.hide_miniTV_method        = ConfigSelection(default = 'stopService', choices = [ ('stopService', _("stop service")), ('singlePixelMuted', _("single pixel TV, muted")) ])
 config.EMC.skin_able                 = ConfigYesNo(default = True)
-config.EMC.skinstyle                 = ConfigSelection(default = 'leftpig', choices = [ ('left', _("Left")), ('leftpig', _("Left with PiG")), ('bottom', _("Bottom")) ])
+config.EMC.skinstyle                 = ConfigSelection(default = 'leftpig', choices = [ ('left', _("Show info on the left")), ('leftpig', _("Show info on the left (with MiniTV)")), ('bottom', _("Show info at the bottom")), ('bottompig', _("Show info at the bottom (with MiniTV)")) ])
 config.EMC.movie_icons               = ConfigYesNo(default = True)
 config.EMC.link_icons                = ConfigYesNo(default = True)
 config.EMC.movie_picons              = ConfigYesNo(default = False)

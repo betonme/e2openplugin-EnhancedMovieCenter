@@ -207,37 +207,43 @@ def next_predefined_settings(key=""):
 class EnhancedMovieCenterMenu(ConfigListScreenExt, Screen):
 	if sz_w == 1920:
 		skin = """
-		<screen name="EnhancedMovieCenterMenu" position="center,170" size="1200,820" title="EnhancedMovieCenterMenu">
+		<screen name="EnhancedMovieCenterMenu" position="center,110" size="1800,930" title="EnhancedMovieCenterMenu">
 		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/red.png" position="10,5" size="300,70" alphatest="blend"/>
 		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/green.png" position="310,5" size="300,70" alphatest="blend"/>
 		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/blue.png" position="610,5" size="300,70" alphatest="blend"/>
 		<widget backgroundColor="#9f1313" font="Regular;30" halign="center" name="key_red" position="10,5" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" size="300,70" transparent="1" valign="center" zPosition="1" />
 		<widget backgroundColor="#1f771f" font="Regular;30" halign="center" name="key_green" position="310,5" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" size="300,70" transparent="1" valign="center" zPosition="1" />
 		<widget backgroundColor="#18188b" font="Regular;30" halign="center" name="key_blue" position="610,5" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" size="300,70" transparent="1" valign="center" zPosition="1" />
-		<widget font="Regular;34" halign="right" position="1050,25" render="Label" size="120,40" source="global.CurrentTime">
+		<widget font="Regular;34" halign="right" position="1650,25" render="Label" size="120,40" source="global.CurrentTime">
 			<convert type="ClockToText">Default</convert>
 		</widget>
-		<eLabel backgroundColor="#818181" position="10,80" size="1180,1" />
-		<widget enableWrapAround="1" name="config" itemHeight="45" position="10,90" scrollbarMode="showOnDemand" size="1180,540" />
-		<eLabel backgroundColor="#818181" position="10,650" size="1180,1" />
-		<widget font="Regular;32" halign="center" position="10,655" render="Label" size="1180,145" source="help" valign="center" />
+		<widget font="Regular;34" halign="right" position="1240,25" render="Label" size="400,40" source="global.CurrentTime" >
+			<convert type="ClockToText">Date</convert>
+		</widget>
+		<eLabel backgroundColor="#818181" position="10,80" size="1780,1" />
+		<widget enableWrapAround="1" name="config" itemHeight="45" position="10,90" scrollbarMode="showOnDemand" size="1780,630" />
+		<eLabel backgroundColor="#818181" position="10,730" size="1780,1" />
+		<widget font="Regular;32" halign="center" position="10,740" render="Label" size="1780,180" source="help" valign="center" />
 		</screen>"""
 	else:
 		skin = """
-		<screen name="EnhancedMovieCenterMenu" position="center,120" size="820,520" title="EnhancedMovieCenterMenu">
+		<screen name="EnhancedMovieCenterMenu" position="center,80" size="1200,610" title="EnhancedMovieCenterMenu">
 		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/red.png" position="10,5" size="200,40" alphatest="blend"/>
 		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/green.png" position="210,5" size="200,40" alphatest="blend"/>
 		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/blue.png" position="410,5" size="200,40" alphatest="blend"/>
 		<widget name="key_red" position="10,5" size="200,40" zPosition="1" font="Regular;20" halign="center" valign="center" backgroundColor="#9f1313" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" />
 		<widget name="key_green" position="210,5" size="200,40" zPosition="1" font="Regular;20" halign="center" valign="center" backgroundColor="#1f771f" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" />
 		<widget name="key_blue" position="410,5" size="200,40" zPosition="1" font="Regular;20" halign="center" valign="center" backgroundColor="#18188b" transparent="1" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" />
-		<widget source="global.CurrentTime" render="Label" position="740,14" size="70,24" font="Regular;22" halign="right">
+		<widget source="global.CurrentTime" render="Label" position="1130,12" size="60,25" font="Regular;22" halign="right">
 			<convert type="ClockToText">Default</convert>
 		</widget>
-		<eLabel position="10,50" size="800,1" backgroundColor="#818181" />
-		<widget name="config" itemHeight="30" position="10,55" size="800,360" enableWrapAround="1" scrollbarMode="showOnDemand" />
-		<eLabel position="10,420" size="800,1" backgroundColor="#818181" />
-		<widget source="help" valign="center" render="Label" position="10,423" size="800,95" font="Regular;20" halign="center" />
+		<widget source="global.CurrentTime" render="Label" position="820,12" size="300,25" font="Regular;22" halign="right">
+			<convert type="ClockToText">Format:%A %d. %B</convert>
+		</widget>
+		<eLabel position="10,50" size="1180,1" backgroundColor="#818181" />
+		<widget name="config" itemHeight="30" position="10,55" size="1180,450" enableWrapAround="1" scrollbarMode="showOnDemand" />
+		<eLabel position="10,510" size="1180,1" backgroundColor="#818181" />
+		<widget source="help" valign="center" render="Label" position="10,513" size="1180,95" font="Regular;20" halign="center" />
 		</screen>"""
 
 	def __init__(self, session):
@@ -626,7 +632,6 @@ class EnhancedMovieCenterMenu(ConfigListScreenExt, Screen):
 			# Refresh is done implizit on change
 			for conf in self.EMCConfig:
 				if len(conf) > 1 and conf[0] != self.section:
-					print conf
 					conf[1].value = conf[1].default
 			self.createConfig()
 

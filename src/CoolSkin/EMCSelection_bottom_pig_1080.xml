@@ -1,0 +1,58 @@
+    <screen name="EMCSelection" position="center,110" size="1800,930" title=" ">
+        <eLabel backgroundColor="#818181" position="10,80" size="1780,1" />
+        <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/red.png" position="10,5" size="300,70" alphatest="blend"/>
+        <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/green.png" position="310,5" size="300,70" alphatest="blend"/>
+        <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/yellow.png" position="610,5" size="300,70" alphatest="blend"/>
+        <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/blue.png" position="910,5" size="300,70" alphatest="blend"/>
+        <widget backgroundColor="#9f1313" font="Regular;30" halign="center" name="key_red" position="10,5" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" size="300,70" transparent="1" valign="center" zPosition="1" />
+        <widget backgroundColor="#1f771f" font="Regular;30" halign="center" name="key_green" position="310,5" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" size="300,70" transparent="1" valign="center" zPosition="1" />
+        <widget backgroundColor="#a08500" font="Regular;30" halign="center" name="key_yellow" position="610,5" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" size="300,70" transparent="1" valign="center" zPosition="1" />
+        <widget backgroundColor="#18188b" font="Regular;30" halign="center" name="key_blue" position="910,5" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" size="300,70" transparent="1" valign="center" zPosition="1" />
+        <widget font="Regular;34" halign="right" position="1650,25" render="Label" size="120,40" source="global.CurrentTime">
+            <convert type="ClockToText">Default</convert>
+        </widget>
+        <widget font="Regular;34" halign="right" position="1240,25" render="Label" size="400,40" source="global.CurrentTime" >
+            <convert type="ClockToText">Date</convert>
+        </widget>
+        <widget font="Regular;34" halign="center" name="wait" position="10,90" zPosition="1" size="1780,540" valign="center" />
+        <widget CoolCSPos="1460" CoolBarHPos="14" CoolBarPos="1370" CoolBarSizeSa="120,21" CoolDateColor="1" CoolDateFont="Regular;28" CoolDateHPos="7" CoolDatePos="1520" CoolDateWidth="240" CoolDirInfoWidth="300" CoolFolderSize="1400" CoolFont="Regular;30" CoolHighlightColor="1" CoolIconPos="5" CoolIconSize="50,40" CoolMovieHPos="6" CoolMoviePiconPos="140" CoolMoviePiconSize="1200" CoolMoviePos="65" CoolMovieSize="1300" CoolPiconHPos="5" CoolPiconHeight="35" CoolPiconPos="40" CoolProgressPos="1440" CoolSelNumTxtWidth="50" CoolSelectFont="Regular;30" CoolTitleColor="1" DefaultColor="foreground" FinishedColor="#38FF48" RecordingColor="red" UnwatchedColor="foreground" FrontColorSel="#bababa" WatchingColor="yellow" itemHeight="45" enableWrapAround="1" name="list" position="10,90" scrollbarMode="showOnDemand" size="1780,540" />
+        <eLabel backgroundColor="#818181" position="10,640" size="1780,1" />
+        <eLabel backgroundColor="#ff000000" position="15,655" size="468,260" zPosition="1" />
+        <widget backgroundColor="#ff000000" position="30,665" render="Pig" size="438,240" source="session.VideoPicture"/>
+        <widget name="Cover" position="115,650" size="270,270" alphatest="blend" zPosition="3"/>
+        <widget name="CoverBgLbl" backgroundColor="background" position="15,655" size="468,260" zPosition="2"/>
+        <widget font="Regular;32" position="500,650" render="Label" size="580,40" source="Service">
+            <convert type="EMCEventName">Name</convert>
+        </widget>
+        <widget font="Regular;30" halign="center" position="1100,650" render="Label" size="340,35" source="Service">
+            <convert type="EMCServiceTime">Duration</convert>
+	     	<convert type="EMCClockToText">Format:%Hh:%Mmin</convert>
+        </widget>
+        <widget font="Regular;30" halign="right" position="1450,650" render="Label" size="340,35" source="Service">
+            <convert type="EMCServiceTime">StartTime</convert>
+            <convert type="EMCClockToText">Format:%a. %d %B, %Y</convert>
+        </widget>
+        <widget font="Regular;30" foregroundColor="yellow" position="500,700" render="Label" size="580,35" source="Service">
+            <convert type="EMCMovieInfo">ShortDescription</convert>
+        </widget>
+        <widget font="Regular;30" foregroundColor="yellow" halign="right" position="1100,700" render="Label" size="400,35" source="Service">
+            <convert type="EMCMovieInfo">RecordServiceName</convert>
+        </widget>
+        <widget font="Regular;30" foregroundColor="yellow" halign="right" position="1620,700" render="Label" size="170,35" source="Service">
+            <convert type="EMCMovieInfo">FileSize</convert>
+        </widget>
+        <widget font="Regular;30" position="500,745" render="Label" size="1290,175" source="Service">
+            <convert type="EMCEventName">ExtendedDescription</convert>
+        </widget>
+    	<widget name="name" position="500,650" size="600,40" font="Regular;32" foregroundColor="yellow" backgroundColor="background" transparent="1"/>
+    	<widget name="date" position="1120,650" halign="right" size="450,40" font="Regular;32" foregroundColor="yellow" backgroundColor="background" transparent="1"/>
+    	<widget name="size" position="1590,650" halign="right" size="200,40" font="Regular;32" foregroundColor="yellow" backgroundColor="background" transparent="1"/>
+    	<widget name="artistAT" position="500,710" size="160,40" font="Regular;30" backgroundColor="background" transparent="1"/>
+    	<widget name="artistATtxt" position="680,710" size="1340,40" font="Regular;30" backgroundColor="background" transparent="1"/>
+    	<widget name="albumAT" position="500,760" size="160,40" font="Regular;30" backgroundColor="background" transparent="1"/>
+    	<widget name="albumATtxt" position="680,760" size="1340,40" font="Regular;30" backgroundColor="background" transparent="1"/>
+    	<widget name="genreAT" position="500,810" size="160,40" font="Regular;30" backgroundColor="background" transparent="1"/>
+     	<widget name="genreATtxt" position="680,810" size="1340,40" font="Regular;30" backgroundColor="background" transparent="1"/>
+    	<widget name="runtimeAT" position="500,860" size="160,40" font="Regular;30" backgroundColor="background" transparent="1"/>
+    	<widget name="runtimeATtxt" position="680,860" size="1340,40" font="Regular;30" backgroundColor="background" transparent="1"/>
+    </screen>
