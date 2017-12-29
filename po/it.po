@@ -1283,20 +1283,20 @@ msgid "HELP_Movie preview offset in seconds"
 msgstr "Offset dell'anteprima dei film in secondi"
 
 #: EnhancedMovieCenter.py:451
-msgid "Hide mini TV"
-msgstr "Nascondi mini TV"
+msgid "Hide MiniTV"
+msgstr "Nascondi MiniTV"
 
 #: EnhancedMovieCenter.py:451
-msgid "HELP_hide_miniTV"
-msgstr "Nascondi miniTV"
+msgid "HELP_hide_MiniTV"
+msgstr "Nascondi MiniTV"
 
 #: EnhancedMovieCenter.py:455
-msgid "Method of hiding mini TV"
-msgstr "metodo per nascondere mini TV"
+msgid "Method of hiding MiniTV"
+msgstr "metodo per nascondere MiniTV"
 
 #: EnhancedMovieCenter.py:455
-msgid "HELP_hide_miniTV_method"
-msgstr "metodo per nascondere mini TV"
+msgid "HELP_hide_MiniTV_method"
+msgstr "metodo per nascondere MiniTV"
 
 #: EnhancedMovieCenter.py:460
 msgid "No resume below 10 seconds"

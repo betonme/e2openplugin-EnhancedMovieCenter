@@ -1234,19 +1234,19 @@ msgid "HELP_Movie preview offset in seconds"
 msgstr ""
 
 #: EnhancedMovieCenter.py:451
-msgid "Hide mini TV"
+msgid "Hide MiniTV"
 msgstr ""
 
 #: EnhancedMovieCenter.py:451
-msgid "HELP_hide_miniTV"
+msgid "HELP_hide_MiniTV"
 msgstr ""
 
 #: EnhancedMovieCenter.py:455
-msgid "Method of hiding mini TV"
+msgid "Method of hiding MiniTV"
 msgstr ""
 
 #: EnhancedMovieCenter.py:455
-msgid "HELP_hide_miniTV_method"
+msgid "HELP_hide_MiniTV_method"
 msgstr ""
 
 #: EnhancedMovieCenter.py:460

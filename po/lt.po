@@ -1266,7 +1266,7 @@ msgstr "Rodyti filmo peržiūrą"
 #: EnhancedMovieCenter.py:448
 msgid "HELP_Show movie preview"
 msgstr ""
-"Užlaikius kursorių ties filmu, po nurodyto laiko rodomas PiG filmo "
+"Užlaikius kursorių ties filmu, po nurodyto laiko rodomas MiniTV filmo "
 "fragmentas."
 
 #: EnhancedMovieCenter.py:449
@@ -1291,23 +1291,23 @@ msgstr ""
 "atkūrimo pozicija."
 
 #: EnhancedMovieCenter.py:451
-msgid "Hide mini TV"
+msgid "Hide MiniTV"
 msgstr "Slėpti mažąjį TV"
 
 #: EnhancedMovieCenter.py:451
-msgid "HELP_hide_miniTV"
+msgid "HELP_hide_MiniTV"
 msgstr "Nurodo situacijas, kada turi būti paslėptas mažasis TV ekranas."
 
 #: EnhancedMovieCenter.py:455
-msgid "Method of hiding mini TV"
+msgid "Method of hiding MiniTV"
 msgstr "Mažojo TV slėpimo būdas"
 
 #: EnhancedMovieCenter.py:455
-msgid "HELP_hide_miniTV_method"
+msgid "HELP_hide_MiniTV_method"
 msgstr ""
 "Pasirenkamas mažojo ekrano slėpimo būdas.\n"
 "Panaudotinas, pvz., kai Gigablue Quad iškraipo teisingą kraštinių santykį. "
-"Tiesioginė transliacija nebus nutraukta, bet miniTV alternatyviai sumažins "
+"Tiesioginė transliacija nebus nutraukta, bet MiniTV alternatyviai sumažins "
 "pikselių skaičių."
 
 #: EnhancedMovieCenter.py:460

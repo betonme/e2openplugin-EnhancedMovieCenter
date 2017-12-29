@@ -507,15 +507,15 @@ class EnhancedMovieCenterMenu(ConfigListScreenExt, Screen):
 			(  _("Show movie preview")                            , config.EMC.movie_preview            , None                  , None                  , 0     , []          , _("HELP_Show movie preview")                             , False             , None ),
 			(  _("Movie preview delay in ms")                     , config.EMC.movie_preview_delay      , None                  , None                  , 0     , [-1]        , _("HELP_Movie preview delay in ms")                      , 3000              , None ),
 			(  _("Start movie preview before last position")      , config.EMC.movie_preview_offset     , None                  , None                  , 0     , [-2]        , _("HELP_Movie preview offset in seconds")                , None              , None ),
-			(  _("Hide mini TV")                                  , config.EMC.hide_miniTV              , None                  , None                  , 0     , []          , _("HELP_hide_miniTV")                                    , "never"           , "never" ),
-			(  _("Hide mini TV if Cover is shown")                , config.EMC.hide_miniTV_cover        , None                  , None                  , 0     , []          , _("HELP_hide_miniTV cover")                              , None              , None ),
+			(  _("Hide MiniTV")                                   , config.EMC.hide_miniTV              , None                  , None                  , 0     , []          , _("HELP_hide_MiniTV")                                    , "never"           , "never" ),
+			(  _("Hide MiniTV if Cover is shown")                 , config.EMC.hide_miniTV_cover        , None                  , None                  , 0     , []          , _("HELP_hide_MiniTV cover")                              , None              , None ),
 		]
 		)
 
 		if not isDreamOS:
 			self.EMCConfig.extend(
 		[
-			(  _("Method of hiding mini TV")                      , config.EMC.hide_miniTV_method       , None                  , None                  , 0     , []          , _("HELP_hide_miniTV_method")                             , "stopService"     , "stopService" ),
+			(  _("Method of hiding MiniTV")                       , config.EMC.hide_miniTV_method       , None                  , None                  , 0     , []          , _("HELP_hide_MiniTV_method")                             , "stopService"     , "stopService" ),
 		]
 		)
 

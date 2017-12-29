@@ -2915,12 +2915,12 @@ msgid "VLC Server not reachable"
 msgstr "Αδυναμία σύνδεσης με το Διακομιστή VLC"
 
 #: EnhancedMovieCenter.py
-msgid "Hide mini TV"
-msgstr "Απόκρυψη mini TV"
+msgid "Hide MiniTV"
+msgstr "Απόκρυψη MiniTV"
 
 #: EnhancedMovieCenter.py
-msgid "HELP_hide_miniTV"
-msgstr "ΒΟΗΘΕΙΑ_απόκρυψη_miniTV"
+msgid "HELP_hide_MiniTV"
+msgstr "ΒΟΗΘΕΙΑ_απόκρυψη_MiniTV"
 
 #: EnhancedMovieCenter/plugin.py
 msgid "never hide"
@@ -2943,8 +2943,8 @@ msgid "always hide"
 msgstr "πάντα απόκρυψη"
 
 #: EnhancedMovieCenter.py
-msgid "Method of hiding mini TV"
-msgstr "Μέθοδος απόκρυψης της mini TV"
+msgid "Method of hiding MiniTV"
+msgstr "Μέθοδος απόκρυψης της MiniTV"
 
 #: EnhancedMovieCenter.py
 msgid "stop service"
@@ -2955,8 +2955,8 @@ msgid "single pixel TV, muted"
 msgstr "TV μονού πίξελ, σίγαση"
 
 #: EnhancedMovieCenter.py
-msgid "HELP_hide_miniTV_method"
-msgstr "ΒΟΗΘΕΙΑ_μέθοδος_απόκρυψης_miniTV"
+msgid "HELP_hide_MiniTV_method"
+msgstr "ΒΟΗΘΕΙΑ_μέθοδος_απόκρυψης_MiniTV"
 
 #: EnhancedMovieCenter.py
 msgid "Check for dead links"

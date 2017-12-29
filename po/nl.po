@@ -1275,19 +1275,19 @@ msgid "HELP_Movie preview offset in seconds"
 msgstr "Film voorbeeld offset vertraging in ms"
 
 #: src/EnhancedMovieCenter.py:451
-msgid "Hide mini TV"
+msgid "Hide MiniTV"
 msgstr "Mini-TV verbergen"
 
 #: src/EnhancedMovieCenter.py:451
-msgid "HELP_hide_miniTV"
+msgid "HELP_hide_MiniTV"
 msgstr ""
 
 #: src/EnhancedMovieCenter.py:455
-msgid "Method of hiding mini TV"
+msgid "Method of hiding MiniTV"
 msgstr "Mini-TV verbergen methode"
 
 #: src/EnhancedMovieCenter.py:455
-msgid "HELP_hide_miniTV_method"
+msgid "HELP_hide_MiniTV_method"
 msgstr "Mini-TV verberg methode"
 
 #: src/EnhancedMovieCenter.py:460
