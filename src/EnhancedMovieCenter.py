@@ -331,7 +331,7 @@ class EnhancedMovieCenterMenu(ConfigListScreenExt, Screen):
 			(  _("Show plugin config in extensions menu")         , config.EMC.extmenu_plugin           , self.needsRestart     , None                  , 0     , []          , _("HELP_Show plugin config in extensions menu")          , None              , None ),
 			(  _("Show EMC in extensions menu")                   , config.EMC.extmenu_list             , self.needsRestart     , None                  , 0     , []          , _("HELP_Show EMC in extensions menu")                    , None              , None ),
 
-			(  self.section                                       , ""                                  , None                  , None                  , 0     , []          , ""                                                       , None              , None ),
+			(  self.section                                       , _("KEYMAPPING")                     , None                  , None                  , 0     , []          , ""                                                       , None              , None ),
 			(  _("Bouquet buttons behaviour")                     , config.EMC.bqt_keys                 , None                  , None                  , 0     , []          , _("HELP_Bouquet buttons behaviour")                      , None              , None ),
 			(  _("List entries to skip")                          , config.EMC.list_skip_size           , None                  , None                  , 0     , []          , _("HELP_List entries to skip")                           , None              , None ),
 			(  _("Red button function")                           , config.EMC.movie_redfunc            , None                  , None                  , 0     , []          , _("HELP_Red button function")                            , None              , None ),
@@ -344,7 +344,7 @@ class EnhancedMovieCenterMenu(ConfigListScreenExt, Screen):
 			(  _("Long Blue button function")                     , config.EMC.movie_longbluefunc       , None                  , None                  , 0     , []          , _("HELP_Long Blue button function")                      , None              , None ),
 			(  _("LongInfo Button")                               , config.EMC.InfoLong                 , None                  , None                  , 0     , []          , _("HELP_LongInfo Button")                                , None              , None ),
 
-			(  self.section                                       , ""                                  , None                  , None                  , 0     , []          , ""                                                       , None              , None ),
+			(  self.section                                       , _("AUTOSTART")                      , None                  , None                  , 0     , []          , ""                                                       , None              , None ),
 			(  _("daily auto-start")                              , config.EMC.restart                  , self.autoRestartInfo  , self.autoRestartInfo  , 1     , []          , _("HELP_Daily auto-start")                               , None              , None ),
 			(  _("auto-start window begin")                       , config.EMC.restart_begin            , None                  , None                  , 1     , [-1]        , _("HELP_auto-start window begin")                        , None              , None ),
 			(  _("auto-start window end")                         , config.EMC.restart_end              , None                  , None                  , 1     , [-2]        , _("HELP_auto-start window end")                          , None              , None ),
@@ -359,7 +359,7 @@ class EnhancedMovieCenterMenu(ConfigListScreenExt, Screen):
 
 			(  _("Cursor predictive move after selection")        , config.EMC.moviecenter_selmove      , None                  , None                  , 0     , []          , _("HELP_Cursor predictive move after selection")         , None              , None ),
 
-			(  self.section                                       , ""                                  , None                  , None                  , 0     , []          , ""                                                       , None              , None ),
+			(  self.section                                       , _("DISPLAY-SETTINGS")               , None                  , None                  , 0     , []          , ""                                                       , None              , None ),
 			(  _("Show symlinks")                                 , config.EMC.symlinks_show            , None                  , None                  , 0     , []          , _("HELP_Show symlinks")                                  , None              , True ),
 #			(  _("Show symlinkdirectories_information")           , config.EMC.symlinkdir_info          , None                  , None                  , 0     , [-1]        , _("HELP_Show symlink_directories_information")           , False             , True ),
 			(  _("Show directories")                              , config.EMC.directories_show         , None                  , None                  , 0     , []          , _("HELP_Show directories")                               , None              , True ),
@@ -387,7 +387,7 @@ class EnhancedMovieCenterMenu(ConfigListScreenExt, Screen):
 			(  _("Wake device when entering dir from emc-noscan.cfg"), config.EMC.noscan_wake_on_entry  , None                  , None                  , 0     , [-4]        , _("HELP_Wake device when entering dir from emc-noscan.cfg"), None            , False ),
 			(  _("Check for dead links"),                           config.EMC.check_dead_links         , None                  , None                  , 0     , [-5]        , _("HELP_Check for dead links")                           , None              , None ),
 
-			(  self.section                                       , ""                                  , None                  , None                  , 1     , []          , ""                                                       , None              , None ),
+			(  self.section                                       , _("DVD / BLU-RAY / FOLDERS")        , None                  , None                  , 1     , []          , ""                                                       , None              , None ),
 			(  _("Hide configured entries")                       , config.EMC.cfghide_enable           , None                  , None                  , 1     , []          , _("HELP_cfghide_enable")                                 , True              , True ),
 			(  _("Scan for DVD structures")                       , config.EMC.check_dvdstruct          , None                  , None                  , 1     , []          , _("HELP_Scan for DVD structures")                        , False             , True ),
 			(  _("Scan for movie structures")                     , config.EMC.check_moviestruct        , None                  , None                  , 1     , []          , _("HELP_Scan for movie structures")                      , False             , True ),
@@ -396,7 +396,7 @@ class EnhancedMovieCenterMenu(ConfigListScreenExt, Screen):
 			(  _("Suppress scan in selected folders")             , config.EMC.cfgscan_suppress         , None                  , None                  , 1     , []          , _("HELP_cfgscan_suppress")                               , True              , True ),
 			(  _("Scan linked folders")                           , config.EMC.scan_linked              , None                  , None                  , 1     , []          , _("HELP_scan_linked")                                    , False             , True ),
 
-			(  self.section                                       , ""                                  , None                  , None                  , 0     , []          , ""                                                       , None              , None ),
+			(  self.section                                       , _("OTHER")                          , None                  , None                  , 0     , []          , ""                                                       , None              , None ),
 			(  _("Try to load titles from .meta files")           , config.EMC.movie_metaload           , None                  , None                  , 0     , []          , _("HELP_Try to load titles from .meta files")            , False             , True ),
 			(  _("Load all for non showing titles from .meta files"), config.EMC.movie_metaload_all     , None                  , None                  , 0     , [-1]        , _("HELP_Load all for non showing titles from .meta files"), None             , True ),
 			(  _("Try to load titles from .eit files")            , config.EMC.movie_eitload            , None                  , None                  , 0     , []          , _("HELP_Try to load titles from .eit files")             , False             , True ),
@@ -405,36 +405,6 @@ class EnhancedMovieCenterMenu(ConfigListScreenExt, Screen):
 			(  _("Show Cut-Nr if exist")                          , config.EMC.movie_show_cutnr         , None                  , None                  , 0     , []          , _("HELP_Show Cut-Nr if exist")                           , False             , True ),
 			(  _("Resolve links and show real path")              , config.EMC.movie_real_path          , None                  , None                  , 0     , []          , _("HELP_Resolve links and show real path")               , False             , True ),
 			(  _("Show Path if no extended description available"), config.EMC.show_path_extdescr       , None                  , None                  , 0     , []          , _("HELP_Show Path if no extended description available") , False             , True ),
-
-			(  self.section                                       , ""                                  , None                  , None                  , 0     , []          , ""                                                       , None              , None ),
-			(  _("Listbox is skin able")                          , config.EMC.skin_able                , None                  , None                  , 0     , []          , _("HELP_Listbox is skin able")                           , None              , None ),
-
-			(  _("Date format")                                   , config.EMC.movie_date_format        , None                  , None                  , 0     , []          , _("HELP_Date format")                                    , None              , None ),
-			(  _("Horizontal alignment for date")                 , config.EMC.movie_date_position      , None                  , None                  , 0     , []          , _("HELP_Horizontal alignment for date")                  , None              , None ),
-			(  _("Horizontal alignment for count / size")         , config.EMC.count_size_position      , None                  , None                  , 0     , []          , _("HELP_Horizontal alignment for count / size")          , None              , None ),
-
-			(  _("Show movie icons")                              , config.EMC.movie_icons              , None                  , None                  , 0     , []          , _("HELP_Show movie icons")                               , False             , True ),
-			(  _("Show link arrow")                               , config.EMC.link_icons               , None                  , None                  , 0     , [-1]        , _("HELP_Show link arrow")                                , False             , True ),
-
-			(  _("Show movie picons")                             , config.EMC.movie_picons             , None                  , None                  , 0     , []          , _("HELP_Show movie picons")                              , None              , None ),
-			# TODO: this entry only for "List is not skin able"
-			(  _("Position movie picons")                         , config.EMC.movie_picons_pos         , None                  , None                  , 0     , [-1]        , _("HELP_Position movie picons")                          , None              , None ),
-			(  _("Own Path to movie picons")                      , config.EMC.movie_picons_path_own    , None                  , None                  , 0     , [-2]        , _("HELP_Own Path to movie picons")                       , None              , None ),
-			(  _("Path to movie picons")                          , config.EMC.movie_picons_path        , None                  , self.openLocationBox  , 0     , [-3,-1]     , _("HELP_Path to movie picons")                           , None              , None ),
-
-			(  _("Show movie progress")                           , config.EMC.movie_progress           , None                  , None                  , 0     , []          , _("HELP_Show movie progress")                            , ""                , "PB" ),
-			(  _("Short watching percent")                        , config.EMC.movie_watching_percent   , None                  , None                  , 0     , [-1]        , _("HELP_Short watching percent")                         , None              , None ),
-			(  _("Finished watching percent")                     , config.EMC.movie_finished_percent   , None                  , None                  , 0     , [-2]        , _("HELP_Finished watching percent")                      , None              , None ),
-			(  _("Mark new recordings with a star")               , config.EMC.mark_latest_files        , None                  , None                  , 0     , []          , _("HELP_Mark new recordings with a star")                , False             , True ),
-			(  _("Show Cover")                                    , config.EMC.movie_cover              , None                  , None                  , 0     , []          , _("HELP_Show Cover")                                     , False             , None ),
-			(  _("Cover delay in ms")                             , config.EMC.movie_cover_delay        , None                  , None                  , 0     , [-1]        , _("HELP_Cover delay in ms")                              , 1000              , None ),
-			(  _("Cover background")                              , config.EMC.movie_cover_background   , None                  , None                  , 0     , [-2]        , _("HELP_Cover background")                               , None              , None ),
-			(  _("Show fallback cover")                           , config.EMC.movie_cover_fallback     , None                  , None                  , 0     , []          , _("HELP_Fallback Cover")                                 , None              , None ),
-			#(  _("Toggle Cover Button")                           , config.EMC.toggle_cover_button      , None                  , None                  , 0     , [-3]        , _("HELP_Use Toggle Cover Button")                        , False             , None ),
-			(  _("Show movie preview")                            , config.EMC.movie_preview            , None                  , None                  , 0     , []          , _("HELP_Show movie preview")                             , False             , None ),
-			(  _("Movie preview delay in ms")                     , config.EMC.movie_preview_delay      , None                  , None                  , 0     , [-1]        , _("HELP_Movie preview delay in ms")                      , 3000              , None ),
-			(  _("Start movie preview before last position")      , config.EMC.movie_preview_offset     , None                  , None                  , 0     , [-2]        , _("HELP_Movie preview offset in seconds")                , None              , None ),
-			(  _("Hide mini TV")                                  , config.EMC.hide_miniTV              , None                  , None                  , 0     , []          , _("HELP_hide_miniTV")                                    , "never"           , "never" ),
 		]
 		if not isDreamOS:
 			self.EMCConfig.append(
@@ -443,6 +413,7 @@ class EnhancedMovieCenterMenu(ConfigListScreenExt, Screen):
 		self.EMCConfig.extend(
 		[
 			(  self.section                                       , ""                                  , None                  , None                  , 0     , []          , ""                                                       , None              , None ),
+			(  _("Show message if file added to playlist")        , config.EMC.playlist_message         , None                  , None                  , 0     , []          , _("HELP_Show message if file added to playlist")         , None              , None ),
 			(  _("No resume below 10 seconds")                    , config.EMC.movie_ignore_firstcuts   , None                  , None                  , 1     , []          , _("HELP_No resume below 10 seconds")                     , None              , None ),
 			(  _("Jump to first mark when playing movie")         , config.EMC.movie_jump_first_mark    , None                  , None                  , 1     , []          , _("HELP_Jump to first mark when playing movie")          , None              , None ),
 			(  _("Rewind finished movies before playing")         , config.EMC.movie_rewind_finished    , None                  , None                  , 1     , []          , _("HELP_Rewind finished movies before playing")          , None              , None ),
@@ -497,19 +468,45 @@ class EnhancedMovieCenterMenu(ConfigListScreenExt, Screen):
 			(  _("Secondary playback audio language")             , config.EMC.audlang2                 , None                  , None                  , 1     , [-3]        , _("HELP_Secondary playback audio language")              , None              , None ),
 			(  _("Tertiary playback audio language")              , config.EMC.audlang3                 , None                  , None                  , 1     , [-4]        , _("HELP_Tertiary playback audio language")               , None              , None ),
 
-			(  self.section                                       , ""                                  , None                  , None                  , 2     , []          , ""                                                       , None              , None ),
+			(  self.section                                       , _("DELAYS")                         , None                  , None                  , 2     , []          , ""                                                       , None              , None ),
 			(  _("Description field update delay")                , config.EMC.movie_descdelay          , None                  , None                  , 2     , []          , _("HELP_Description field update delay")                 , None              , None ),
 			(  _("Key period value (50-900)")                     , config.EMC.key_period               , setupKeyResponseValues, None                  , 2     , []          , _("HELP_Key period value (50-900)")                      , None              , None ),
 			(  _("Key repeat value (250-900)")                    , config.EMC.key_repeat               , setupKeyResponseValues, None                  , 2     , []          , _("HELP_Key repeat value (250-900)")                     , None              , None ),
 
-			(  self.section                                       , ""                                  , None                  , None                  , 0     , []          , ""                                                       , None              , None ),
-			(  _("Show message if file added to playlist")        , config.EMC.playlist_message         , None                  , None                  , 0     , []          , _("HELP_Show message if file added to playlist")         , None              , None ),
-
-			(  self.section                                       , ""                                  , None                  , None                  , 0     , []          , ""                                                       , None              , None ),
+			(  self.section                                       , _("SKIN-SETTINGS")                  , None                  , None                  , 0     , []          , ""                                                       , None              , None ),
 			(  _("Use original EMC-skin (needs reopen)")          , config.EMC.use_orig_skin            , None                  , None                  , 0     , []          , _("HELP_Use original EMC-skin (needs reopen)")           , None              , None ),
-			(  _("Use alternative style (needs reopen)")          , config.EMC.skinstyle                , None                  , None                  , 0     , [-1]        , _("HELP_Alternative style (needs reopen)")               , "left"            , "left" ),
+			(  _("Style for original EMC-skin (needs reopen)")    , config.EMC.skinstyle                , None                  , None                  , 0     , [-1]        , _("HELP_Style for original EMC-skin (needs reopen)")     , "leftpig"         , "leftpig" ),
 
-			(  self.section                                       , ""                                  , None                  , None                  , 0     , []          , ""                                                       , None              , None ),
+			(  _("Listbox is skin able")                          , config.EMC.skin_able                , None                  , None                  , 0     , []          , _("HELP_Listbox is skin able")                           , None              , None ),
+
+			(  _("Date format")                                   , config.EMC.movie_date_format        , None                  , None                  , 0     , []          , _("HELP_Date format")                                    , None              , None ),
+			(  _("Horizontal alignment for date")                 , config.EMC.movie_date_position      , None                  , None                  , 0     , []          , _("HELP_Horizontal alignment for date")                  , None              , None ),
+			(  _("Horizontal alignment for count / size")         , config.EMC.count_size_position      , None                  , None                  , 0     , []          , _("HELP_Horizontal alignment for count / size")          , None              , None ),
+
+			(  _("Show movie icons")                              , config.EMC.movie_icons              , None                  , None                  , 0     , []          , _("HELP_Show movie icons")                               , False             , True ),
+			(  _("Show link arrow")                               , config.EMC.link_icons               , None                  , None                  , 0     , [-1]        , _("HELP_Show link arrow")                                , False             , True ),
+
+			(  _("Show movie picons")                             , config.EMC.movie_picons             , None                  , None                  , 0     , []          , _("HELP_Show movie picons")                              , None              , None ),
+			# TODO: this entry only for "List is not skin able"
+			(  _("Position movie picons")                         , config.EMC.movie_picons_pos         , None                  , None                  , 0     , [-1]        , _("HELP_Position movie picons")                          , None              , None ),
+			(  _("Own Path to movie picons")                      , config.EMC.movie_picons_path_own    , None                  , None                  , 0     , [-2]        , _("HELP_Own Path to movie picons")                       , None              , None ),
+			(  _("Path to movie picons")                          , config.EMC.movie_picons_path        , None                  , self.openLocationBox  , 0     , [-3,-1]     , _("HELP_Path to movie picons")                           , None              , None ),
+
+			(  _("Show movie progress")                           , config.EMC.movie_progress           , None                  , None                  , 0     , []          , _("HELP_Show movie progress")                            , ""                , "PB" ),
+			(  _("Short watching percent")                        , config.EMC.movie_watching_percent   , None                  , None                  , 0     , [-1]        , _("HELP_Short watching percent")                         , None              , None ),
+			(  _("Finished watching percent")                     , config.EMC.movie_finished_percent   , None                  , None                  , 0     , [-2]        , _("HELP_Finished watching percent")                      , None              , None ),
+			(  _("Mark new recordings with a star")               , config.EMC.mark_latest_files        , None                  , None                  , 0     , []          , _("HELP_Mark new recordings with a star")                , False             , True ),
+			(  _("Show Cover")                                    , config.EMC.movie_cover              , None                  , None                  , 0     , []          , _("HELP_Show Cover")                                     , False             , None ),
+			(  _("Cover delay in ms")                             , config.EMC.movie_cover_delay        , None                  , None                  , 0     , [-1]        , _("HELP_Cover delay in ms")                              , 1000              , None ),
+			(  _("Cover background")                              , config.EMC.movie_cover_background   , None                  , None                  , 0     , [-2]        , _("HELP_Cover background")                               , None              , None ),
+			(  _("Show fallback cover")                           , config.EMC.movie_cover_fallback     , None                  , None                  , 0     , []          , _("HELP_Fallback Cover")                                 , None              , None ),
+			#(  _("Toggle Cover Button")                           , config.EMC.toggle_cover_button      , None                  , None                  , 0     , [-3]        , _("HELP_Use Toggle Cover Button")                        , False             , None ),
+			(  _("Show movie preview")                            , config.EMC.movie_preview            , None                  , None                  , 0     , []          , _("HELP_Show movie preview")                             , False             , None ),
+			(  _("Movie preview delay in ms")                     , config.EMC.movie_preview_delay      , None                  , None                  , 0     , [-1]        , _("HELP_Movie preview delay in ms")                      , 3000              , None ),
+			(  _("Start movie preview before last position")      , config.EMC.movie_preview_offset     , None                  , None                  , 0     , [-2]        , _("HELP_Movie preview offset in seconds")                , None              , None ),
+			(  _("Hide mini TV")                                  , config.EMC.hide_miniTV              , None                  , None                  , 0     , []          , _("HELP_hide_miniTV")                                    , "never"           , "never" ),
+
+			(  self.section                                       , _("AUDIO METADATA")                 , None                  , None                  , 0     , []          , ""                                                       , None              , None ),
 		]
 		)
 		if not hasMutagen():
@@ -539,9 +536,9 @@ class EnhancedMovieCenterMenu(ConfigListScreenExt, Screen):
 			cmd2 = "apt-get update && apt-get install python-mutagen"
 			from Screens.Console import Console
 			if not isDreamOS:
-				self.session.open(Console, _("Install Mutagen-package"), [cmd])
+				self.session.open(Console, _("Installing Mutagen-package"), [cmd])
 			else:
-				self.session.open(Console, _("Install Mutagen-package"), [cmd2])
+				self.session.open(Console, _("Installing Mutagen-package"), [cmd2])
 		else:
 			self.session.open(MessageBox, _("The python-mutagen package is not available on the feed."), MessageBox.TYPE_ERROR, 5)
 

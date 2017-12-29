@@ -658,11 +658,11 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 #				"EMCRADIOL":		(self.unUsed,			"-"),
 				"EMCTEXT":		(self.multiSelect,		_("Start / end multiselection")),
 #				"EMCTEXTL":		(self.unUsed,			"-"),
-				"0":			(self.CoolKey0,			"-"),
-				"4":			(self.CoolAVSwitch,		"-"),
-				"7":			(self.CoolTVGuide,		"-"),
-				"8":			(self.CoolSingleGuide,		"-"),
-				"9":			(self.CoolEasyGuide,		"-"),
+				"0":			(self.CoolKey0,			_("Movie home")),
+#				"4":			(self.CoolAVSwitch,		"-"),
+#				"7":			(self.CoolTVGuide,		"-"),
+#				"8":			(self.CoolSingleGuide,		"-"),
+#				"9":			(self.CoolEasyGuide,		"-"),
 			}, prio=-3)
 			# give them a little more priority to win over baseclass buttons
 		self["actions"].csel = self

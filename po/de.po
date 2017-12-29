@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: EMC\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-12-28 22:26+0100\n"
+"POT-Creation-Date: 2017-12-29 14:49+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: dhwz <dhwz@gmx.net>\n"
 "Language-Team: Swiss-MAD\n"
@@ -91,7 +91,7 @@ msgstr ".../foldername/folder.jpg"
 msgid "Search"
 msgstr "Suchen"
 
-#: EMCCoverSearch.py:179 MovieSelection.py:2389 MovieSelectionMenu.py:112
+#: EMCCoverSearch.py:179 MovieSelection.py:2387 MovieSelectionMenu.py:112
 #: MovieSelectionMenu.py:114 plugin.py:167 plugin.py:188
 msgid "Delete"
 msgstr "Löschen"
@@ -104,8 +104,8 @@ msgstr "Drücken Sie die grüne Taste um die Suche zu starten"
 msgid "Manage Cover"
 msgstr "Verwalte Cover"
 
-#: EMCCoverSearch.py:192 EnhancedMovieCenter.py:245 MovieInfo.py:321
-#: plugin.py:529
+#: EMCCoverSearch.py:192 EnhancedMovieCenter.py:247 MovieInfo.py:321
+#: plugin.py:528
 msgid "Setup"
 msgstr "Einstellungen"
 
@@ -197,13 +197,13 @@ msgid "EMC Cover search setup"
 msgstr "EMC-Coversuche - Einstellungen"
 
 #: EMCCoverSearch.py:692 EMCPlayList.py:132 EMCPlayList.py:457
-#: EMCPlayList.py:542 EnhancedMovieCenter.py:261 MovieInfo.py:634
+#: EMCPlayList.py:542 EnhancedMovieCenter.py:263 MovieInfo.py:634
 #: MovieRetitle.py:32
 msgid "Cancel"
 msgstr "Abbruch"
 
 #: EMCCoverSearch.py:693 EMCPlayList.py:131 EMCPlayList.py:458
-#: EnhancedMovieCenter.py:262 MovieInfo.py:323 MovieRetitle.py:31
+#: EnhancedMovieCenter.py:264 MovieInfo.py:323 MovieRetitle.py:31
 msgid "Save"
 msgstr "Speichern"
 
@@ -281,9 +281,9 @@ msgstr "Kann Cover nicht speichern in"
 msgid "Move Cover to:"
 msgstr "Verschiebe Cover zu:"
 
-#: EMCCoverSearch.py:1192 EMCPlayList.py:470 EnhancedMovieCenter.py:741
-#: MovieSelection.py:2953 MovieSelection.py:2995 MovieSelection.py:3029
-#: MovieSelection.py:3071 MovieSelection.py:3098 MovieSelectionMenu.py:299
+#: EMCCoverSearch.py:1192 EMCPlayList.py:470 EnhancedMovieCenter.py:714
+#: MovieSelection.py:2951 MovieSelection.py:2993 MovieSelection.py:3027
+#: MovieSelection.py:3069 MovieSelection.py:3096 MovieSelectionMenu.py:299
 msgid "Choose directory"
 msgstr "Verzeichnis wählen"
 
@@ -511,230 +511,238 @@ msgstr ""
 "EMC Enigma2-Auto-Neustart beginnt. Fortsetzen? NEIN wählen um den Neustart "
 "eine Stunde zu verzögern."
 
-#: EnhancedMovieCenter.py:173 EnhancedMovieCenter.py:195
+#: EnhancedMovieCenter.py:175 EnhancedMovieCenter.py:197
 msgid "Custom"
 msgstr "Benutzerdefiniert"
 
-#: EnhancedMovieCenter.py:174
+#: EnhancedMovieCenter.py:176
 msgid "Default"
 msgstr "Standard"
 
-#: EnhancedMovieCenter.py:175
+#: EnhancedMovieCenter.py:177
 msgid "Performance"
 msgstr "Leistung"
 
-#: EnhancedMovieCenter.py:176
+#: EnhancedMovieCenter.py:178
 msgid "Information"
 msgstr "Information"
 
-#: EnhancedMovieCenter.py:325
+#: EnhancedMovieCenter.py:327
 msgid "GENERAL"
 msgstr "ALLGEMEIN"
 
-#: EnhancedMovieCenter.py:326
+#: EnhancedMovieCenter.py:328
 msgid "About"
 msgstr "Über"
 
 # EMC Setup Helptext
-#: EnhancedMovieCenter.py:326
+#: EnhancedMovieCenter.py:328
 msgid "HELP_About"
 msgstr "Öffnet das \"Über\" Fenster."
 
-#: EnhancedMovieCenter.py:327
+#: EnhancedMovieCenter.py:329
 msgid "Disable EMC"
 msgstr "EMC deaktivieren"
 
-#: EnhancedMovieCenter.py:327
+#: EnhancedMovieCenter.py:329
 msgid "HELP_Disable EMC"
 msgstr ""
 "Deaktiviert die Filmliste von EMC komplett.\n"
 "Spezielle Funktionen wie Timerlistenbereinigung, Papierkorbleerung oder "
 "autom. E2-Neustart arbeiten jedoch im Hintergrund weiter."
 
-#: EnhancedMovieCenter.py:328
+#: EnhancedMovieCenter.py:330
 msgid "Start EMC with"
 msgstr "Starte EMC mit"
 
-#: EnhancedMovieCenter.py:328
+#: EnhancedMovieCenter.py:330
 msgid "HELP_Start EMC with"
 msgstr ""
 "Hier können Sie eine Taste auswählen,\n"
 "mit der EMC gestartet wird."
 
-#: EnhancedMovieCenter.py:329
+#: EnhancedMovieCenter.py:331
 msgid "Show plugin config in extensions menu"
 msgstr "EMC-Setup im Erweiterungsmenü anzeigen"
 
-#: EnhancedMovieCenter.py:329
+#: EnhancedMovieCenter.py:331
 msgid "HELP_Show plugin config in extensions menu"
 msgstr ""
 "Einblenden des EMC-Setup im Erweiterungsmenü.\n"
 "Das Erweiterungsmenü ist im Normalfall mit der blauen Taste zu erreichen."
 
-#: EnhancedMovieCenter.py:330
+#: EnhancedMovieCenter.py:332
 msgid "Show EMC in extensions menu"
 msgstr "EMC im Erweiterungsmenü anzeigen"
 
-#: EnhancedMovieCenter.py:330
+#: EnhancedMovieCenter.py:332
 msgid "HELP_Show EMC in extensions menu"
 msgstr ""
 "Einblenden des EMC-Plugins im Erweiterungsmenü.\n"
 "Das Erweiterungsmenü ist im Normalfall mit der blauen Taste zu erreichen."
 
-#: EnhancedMovieCenter.py:333
+#: EnhancedMovieCenter.py:334
+msgid "KEYMAPPING"
+msgstr "TASTENZUORDNUNG"
+
+#: EnhancedMovieCenter.py:335
 msgid "Bouquet buttons behaviour"
 msgstr "Verhalten der Bouquet-Tasten"
 
-#: EnhancedMovieCenter.py:333
+#: EnhancedMovieCenter.py:335
 msgid "HELP_Bouquet buttons behaviour"
 msgstr ""
 "Springen an den Anfang oder das Ende der Liste oder überspringe nur eine "
 "gewisse Anzahl Einträge"
 
-#: EnhancedMovieCenter.py:334
+#: EnhancedMovieCenter.py:336
 msgid "List entries to skip"
 msgstr "Listeneinträge überspringen"
 
-#: EnhancedMovieCenter.py:334
+#: EnhancedMovieCenter.py:336
 msgid "HELP_List entries to skip"
 msgstr ""
 "Anzahl der Listeneinträge, die beim Drücken der Bouquet-Taste übersprungen "
 "werden"
 
-#: EnhancedMovieCenter.py:335
+#: EnhancedMovieCenter.py:337
 msgid "Red button function"
 msgstr "Funktion der roten Taste"
 
-#: EnhancedMovieCenter.py:335
+#: EnhancedMovieCenter.py:337
 msgid "HELP_Red button function"
 msgstr ""
 "Der roten Taste kann eine zur Auswahl stehenden Funktion zugeordnet werden."
 
-#: EnhancedMovieCenter.py:336
+#: EnhancedMovieCenter.py:338
 msgid "Long Red button function"
 msgstr "Funktion der roten Taste (lang)"
 
-#: EnhancedMovieCenter.py:336
+#: EnhancedMovieCenter.py:338
 msgid "HELP_Long Red button function"
 msgstr ""
 "Der roten Taste (lang gedrückt) kann eine zur Auswahl stehenden Funktion "
 "zugeordnet werden."
 
-#: EnhancedMovieCenter.py:339
+#: EnhancedMovieCenter.py:341
 msgid "Yellow button function"
 msgstr "Funktion der gelben Taste"
 
-#: EnhancedMovieCenter.py:339
+#: EnhancedMovieCenter.py:341
 msgid "HELP_Yellow button function"
 msgstr ""
 "Der gelben Taste kann eine zur Auswahl stehenden Funktion zugeordnet werden."
 
-#: EnhancedMovieCenter.py:340
+#: EnhancedMovieCenter.py:342
 msgid "Long Yellow button function"
 msgstr "Funktion der gelben Taste (lang)"
 
-#: EnhancedMovieCenter.py:340
+#: EnhancedMovieCenter.py:342
 msgid "HELP_Long Yellow button function"
 msgstr ""
 "Der gelben Taste (lang gedrückt) kann eine zur Auswahl stehenden Funktion "
 "zugeordnet werden."
 
-#: EnhancedMovieCenter.py:341
+#: EnhancedMovieCenter.py:343
 msgid "Blue button function"
 msgstr "Funktion der blauen Taste"
 
-#: EnhancedMovieCenter.py:341
+#: EnhancedMovieCenter.py:343
 msgid "HELP_Blue button function"
 msgstr ""
 "Der blauen Taste kann eine zur Auswahl stehenden Funktion zugeordnet werden."
 
-#: EnhancedMovieCenter.py:342
+#: EnhancedMovieCenter.py:344
 msgid "Long Blue button function"
 msgstr "Funktion der blauen Taste (lang)"
 
-#: EnhancedMovieCenter.py:342
+#: EnhancedMovieCenter.py:344
 msgid "HELP_Long Blue button function"
 msgstr ""
 "Der blauen Taste (lang gedrückt) kann eine zur Auswahl stehenden Funktion "
 "zugeordnet werden."
 
-#: EnhancedMovieCenter.py:343
+#: EnhancedMovieCenter.py:345
 msgid "LongInfo Button"
 msgstr "Funktion der Info-Taste (lang)"
 
-#: EnhancedMovieCenter.py:343
+#: EnhancedMovieCenter.py:345
 msgid "HELP_LongInfo Button"
 msgstr ""
 "Der Info-Taste (lang gedrückt) kann eine zur Auswahl stehenden Funktion "
 "zugeordnet werden."
 
-#: EnhancedMovieCenter.py:346
+#: EnhancedMovieCenter.py:347
+msgid "AUTOSTART"
+msgstr "AUTOSTART"
+
+#: EnhancedMovieCenter.py:348
 msgid "daily auto-start"
 msgstr "Täglicher Autostart"
 
-#: EnhancedMovieCenter.py:346
+#: EnhancedMovieCenter.py:348
 msgid "HELP_Daily auto-start"
 msgstr "Täglicher Autostart"
 
-#: EnhancedMovieCenter.py:347
+#: EnhancedMovieCenter.py:349
 msgid "auto-start window begin"
 msgstr "Beginn des Auto-Neustart-Fensters"
 
-#: EnhancedMovieCenter.py:347
+#: EnhancedMovieCenter.py:349
 msgid "HELP_auto-start window begin"
 msgstr "Beginn des Zeitfenster für den automatischen Enigma2-Neustart."
 
-#: EnhancedMovieCenter.py:348
+#: EnhancedMovieCenter.py:350
 msgid "auto-start window end"
 msgstr "Ende des Auto-Neustart-Fensters"
 
-#: EnhancedMovieCenter.py:348
+#: EnhancedMovieCenter.py:350
 msgid "HELP_auto-start window end"
 msgstr "Ende des Zeitfenster für den automatischen Enigma2-Neustart."
 
-#: EnhancedMovieCenter.py:349
+#: EnhancedMovieCenter.py:351
 msgid "Force standby after auto-restart"
 msgstr "Standby erzwingen nach Auto-Neustart"
 
-#: EnhancedMovieCenter.py:349
+#: EnhancedMovieCenter.py:351
 msgid "HELP_Force standby after auto-start"
 msgstr ""
 "Nach einem automatischen Enigma2-Neustart wird der Receiver in den Standby "
 "versetzt."
 
-#: EnhancedMovieCenter.py:352
+#: EnhancedMovieCenter.py:354
 msgid "Movie home at start"
 msgstr "\"Movie Home\" beim Start"
 
-#: EnhancedMovieCenter.py:352
+#: EnhancedMovieCenter.py:354
 msgid "HELP_Movie home at start"
 msgstr ""
 "EMC startet immer im \"Movie Home\" Verzeichnis.\n"
 "(Ansonsten öffnet EMC jeweils wieder das vorherige Verzeichnis.)"
 
-#: EnhancedMovieCenter.py:353
+#: EnhancedMovieCenter.py:355
 msgid "Default sort mode"
 msgstr "Standardsortierung"
 
-#: EnhancedMovieCenter.py:353
+#: EnhancedMovieCenter.py:355
 msgid "HELP_Sort mode at startup"
 msgstr ""
 "Hier kann eingestellt werden, in welcher Sortierreihenfolge die Filmliste "
 "beim Start von EMC angezeigt wird."
 
-#: EnhancedMovieCenter.py:355
+#: EnhancedMovieCenter.py:357
 msgid "Movie home home path"
 msgstr "Movie Home: Stammverzeichnis"
 
-#: EnhancedMovieCenter.py:355
+#: EnhancedMovieCenter.py:357
 msgid "HELP_Movie home home path"
 msgstr "Hier wird der Pfad für \"Movie Home\" gesetzt."
 
-#: EnhancedMovieCenter.py:356
+#: EnhancedMovieCenter.py:358
 msgid "EMC path access limit"
 msgstr "Verzeichnis-Zugriffsbeschränkung"
 
-#: EnhancedMovieCenter.py:356
+#: EnhancedMovieCenter.py:358
 msgid "HELP_EMC path access limit"
 msgstr ""
 "Hiermit kann begrenzt werden wie weit in der Verzeichnisstruktur weiter "
@@ -742,132 +750,136 @@ msgstr ""
 "Über [MENU] \"Verzeichnis hoch\" kann dennoch weiter über diese Begrenzung "
 "zurück navigiert werden."
 
-#: EnhancedMovieCenter.py:358
+#: EnhancedMovieCenter.py:360
 msgid "Cursor predictive move after selection"
 msgstr "Cursor nach Auswahl weiterbewegen"
 
-#: EnhancedMovieCenter.py:358
+#: EnhancedMovieCenter.py:360
 msgid "HELP_Cursor predictive move after selection"
 msgstr ""
 "Der Cursor wird beim selektieren mit der [VIDEO/PVR] Taste in die "
 "eingestellte Richtung weiterbewegt.\n"
 "Bei \"rauf/runter\" wird in die zuletzt bewegte Richtung gesprungen."
 
-#: EnhancedMovieCenter.py:361
+#: EnhancedMovieCenter.py:362
+msgid "DISPLAY-SETTINGS"
+msgstr ""
+
+#: EnhancedMovieCenter.py:363
 msgid "Show symlinks"
 msgstr "Symlinks anzeigen"
 
-#: EnhancedMovieCenter.py:361
+#: EnhancedMovieCenter.py:363
 msgid "HELP_Show symlinks"
 msgstr "Symlinks anzeigen."
 
-#: EnhancedMovieCenter.py:363
+#: EnhancedMovieCenter.py:365
 msgid "Show directories"
 msgstr "Verzeichnisse anzeigen"
 
-#: EnhancedMovieCenter.py:363
+#: EnhancedMovieCenter.py:365
 msgid "HELP_Show directories"
 msgstr "Verzeichnisse werden in der Filmliste eingeblendet."
 
-#: EnhancedMovieCenter.py:364
+#: EnhancedMovieCenter.py:366
 msgid "Show directories within movielist"
 msgstr "Verzeichnisse innerhalb der Filmliste anzeigen"
 
-#: EnhancedMovieCenter.py:364
+#: EnhancedMovieCenter.py:366
 msgid "HELP_Show directories within movielist"
 msgstr ""
 "Wenn aktiviert, werden die Verzeichnisse nicht zu Beginn der Filmliste "
 "sondern sortiert innerhalb der Filmliste angezeigt."
 
-#: EnhancedMovieCenter.py:365
+#: EnhancedMovieCenter.py:367
 msgid "Configured directories at the top of movielist"
 msgstr "Konfigurierte Verzeichnisse ganz oben in der Filmliste"
 
-#: EnhancedMovieCenter.py:365
+#: EnhancedMovieCenter.py:367
 msgid "HELP_Configure in etc\\enigma2\\emc-topdir.cfg"
 msgstr ""
 "Wenn aktiviert, werden die in '/etc/enigma2/emc-topdir.cfg' aufgelisteten "
 "Verzeichnisse am Beginn der Filmliste angezeigt."
 
-#: EnhancedMovieCenter.py:366
+#: EnhancedMovieCenter.py:368
 msgid "Show directories information"
 msgstr "Verzeichnis-Informationen anzeigen"
 
-#: EnhancedMovieCenter.py:366
+#: EnhancedMovieCenter.py:368
 msgid "HELP_Show directories information"
 msgstr ""
 "Bei Verzeichnissen kann die Anzahl Aufnahmen, der belegte Speicherplatz oder "
 "beides zusammen eingeblendet werden."
 
-#: EnhancedMovieCenter.py:367
+#: EnhancedMovieCenter.py:369
 msgid "Text shown for initially unknown file count"
 msgstr "Text für anfangs unbekannte Dateianzahl"
 
-#: EnhancedMovieCenter.py:367
+#: EnhancedMovieCenter.py:369
 msgid "HELP_Text shown for initially unknown file count"
 msgstr ""
 "Hier kann bestimmt werden wie der Text bei Verzeichnissen\n"
 "aussehen soll der gezeigt wird wenn anfangs die Anzahl der\n"
 "Dateien unbekannt ist."
 
-#: EnhancedMovieCenter.py:368
+#: EnhancedMovieCenter.py:370
 msgid "Text shown for initially unknown count and size"
 msgstr "Text für anfangs unbekannte Anzahl und Größe"
 
-#: EnhancedMovieCenter.py:368
+#: EnhancedMovieCenter.py:370
 msgid "HELP_Text shown for initially unknown count and size"
 msgstr ""
 "Hier kann bestimmt werden wie der Text bei Verzeichnissen\n"
 "aussehen soll der gezeigt wird wenn anfangs die Anzahl der\n"
 "Dateien und der belegte Speicherplatz unbekannt ist."
 
-#: EnhancedMovieCenter.py:369
+#: EnhancedMovieCenter.py:371
 msgid "Text shown for initially unknown directory size"
 msgstr "Text bei anfangs unbekannter Verzeichnisgröße"
 
-#: EnhancedMovieCenter.py:369
+#: EnhancedMovieCenter.py:371
 msgid "HELP_Text shown for initially unknown directory size"
 msgstr ""
 "Hier kann bestimmt werden wie der Text bei Verzeichnissen\n"
 "aussehen soll der gezeigt wird wenn anfangs der\n"
 "belegte Speicherplatz unbekannt ist."
 
-#: EnhancedMovieCenter.py:370
+#: EnhancedMovieCenter.py:372
 msgid "Icon shown for initially unknown count / size"
 msgstr "Zeige Symbol bei anfangs unbekannter Anzahl und Größe"
 
-#: EnhancedMovieCenter.py:370
+#: EnhancedMovieCenter.py:372
 msgid "HELP_Icon shown for initially unknown count / size"
 msgstr ""
 "Hier kann bestimmt werden ob ein Symbol bei Verzeichnissen\n"
 "gezeigt wird wenn anfangs die Anzahl der Dateien, und / oder\n"
 "der belegte Speicherplatz unbekannt ist."
 
-#: EnhancedMovieCenter.py:372
+#: EnhancedMovieCenter.py:374
 msgid "Show directory size in skin"
 msgstr "Verzeichnissgröße im Info-Bereich anzeigen"
 
-#: EnhancedMovieCenter.py:372
+#: EnhancedMovieCenter.py:374
 msgid "HELP_Show directory size in skin"
 msgstr ""
 "Wenn man über ein Verzeichniss scrollt, dann wird im Info-Bereich dessen "
 "Größe in MB dargestellt."
 
-#: EnhancedMovieCenter.py:374
+#: EnhancedMovieCenter.py:376
 msgid "Show Latest Recordings directory"
 msgstr "Verzeichnis \"Neueste Aufnahmen\" anzeigen"
 
-#: EnhancedMovieCenter.py:374
+#: EnhancedMovieCenter.py:376
 msgid "HELP_Show Latest Recordings directory"
 msgstr ""
 "Zeigt im \"Movie Home\" ein virtuelles Verzeichnis mit allen letzten "
 "Aufnahmen. Auch von Unterverzeichnissen in \"Movie Home\"."
 
-#: EnhancedMovieCenter.py:375
+#: EnhancedMovieCenter.py:377
 msgid "Latest Recordings directory limit"
 msgstr "Verzeichnis \"Neueste Aufnahmen\" Zeitlimit"
 
-#: EnhancedMovieCenter.py:375
+#: EnhancedMovieCenter.py:377
 msgid "HELP_Latest Recordings directory limit"
 msgstr ""
 "Hier kann ein Zeitlimit für die Aufnahmen angegeben werden,\n"
@@ -875,75 +887,75 @@ msgstr ""
 "werden sollen.\n"
 "Im VTI-Image sind die Werte in Tagen zum Einstellen."
 
-#: EnhancedMovieCenter.py:376
+#: EnhancedMovieCenter.py:378
 msgid "Latest Recordings directory use emc-noscan.cfg"
 msgstr "Im Verzeichnis \"Letzte Aufnahmen\" die emc-noscan.cfg benutzen"
 
-#: EnhancedMovieCenter.py:376
+#: EnhancedMovieCenter.py:378
 msgid "HELP_Latest Recordings directory use emc-noscan.cfg"
 msgstr ""
 "Im Verzeichnis \"Letzte Aufnahmen\"\n"
 " die emc-noscan.cfg benutzen."
 
-#: EnhancedMovieCenter.py:377
+#: EnhancedMovieCenter.py:379
 msgid "Show VLC directory"
 msgstr "VLC-Verzeichnis anzeigen"
 
-#: EnhancedMovieCenter.py:377
+#: EnhancedMovieCenter.py:379
 msgid "HELP_Show VLC directory"
 msgstr ""
 "Zeigt ein VLC-Verzeichnis, wenn das VlcPlayerExtended Plugin installiert ist."
 
-#: EnhancedMovieCenter.py:378
+#: EnhancedMovieCenter.py:380
 msgid "Show Bookmarks in movielist"
 msgstr "Lesezeichen in der Filmliste anzeigen"
 
-#: EnhancedMovieCenter.py:378
+#: EnhancedMovieCenter.py:380
 msgid "HELP_Show Bookmarks in movielist"
 msgstr "Lesezeichen in der Filmliste anzeigen"
 
-#: EnhancedMovieCenter.py:379
+#: EnhancedMovieCenter.py:381
 msgid "Use cache for files and directories"
 msgstr "Verwende Cache für Dateien und Verzeichnisse"
 
-#: EnhancedMovieCenter.py:379
+#: EnhancedMovieCenter.py:381
 msgid "HELP_Use cache for files and directories"
 msgstr "Verwende Cache für Dateien und Verzeichnisse"
 
-#: EnhancedMovieCenter.py:380
+#: EnhancedMovieCenter.py:382
 msgid "Minimum file cache limit (0=cache everything)"
 msgstr "Datei Cache Begrenzung (0=alles wird zwischengespeichert)"
 
-#: EnhancedMovieCenter.py:380
+#: EnhancedMovieCenter.py:382
 msgid "HELP_Minimum file cache limit"
 msgstr ""
 
-#: EnhancedMovieCenter.py:381
+#: EnhancedMovieCenter.py:383
 msgid "Show experimental options"
 msgstr "Experimentelle Optionen anzeigen"
 
-#: EnhancedMovieCenter.py:381
+#: EnhancedMovieCenter.py:383
 msgid "HELP_Show experimental options"
 msgstr ""
 "Experimentelle Optionen anzeigen, um ein Aufwecken von Geräten (Festplatten,"
 "NAS) zu verhindern."
 
-#: EnhancedMovieCenter.py:382
+#: EnhancedMovieCenter.py:384
 msgid "Don't auto scan size of dirs from emc-noscan.cfg"
 msgstr "Keine Größe der Verzeichnisse aus der emc-noscan.cfg ermitteln"
 
-#: EnhancedMovieCenter.py:382
+#: EnhancedMovieCenter.py:384
 msgid "HELP_Don't auto scan size of dirs from emc-noscan.cfg"
 msgstr ""
 "Wenn aktiviert, dann werden die Verzeichnisse, die in der\n"
 "'/etc/enigma2/emc-noscan.cfg'\n"
 "enthalten sind, aus dem Scan für die Verzeichnisgröße ausgeschlossen."
 
-#: EnhancedMovieCenter.py:383
+#: EnhancedMovieCenter.py:385
 msgid "Limit file operations in dirs from emc-noscan.cfg"
 msgstr "Vermeide Dateioperationen in Verzeichnissen aus der emc-noscan.cfg"
 
-#: EnhancedMovieCenter.py:383
+#: EnhancedMovieCenter.py:385
 msgid "HELP_Limit file operations in dirs from emc-noscan.cfg"
 msgstr ""
 "Wenn aktiviert, wird versucht, Dateioperationen in den Verzeichnissen aus "
@@ -951,54 +963,58 @@ msgstr ""
 "'/etc/enigma2/emc-noscan.cfg'\n"
 "zu vermeiden."
 
-#: EnhancedMovieCenter.py:384
+#: EnhancedMovieCenter.py:386
 msgid "After file OPs only re-scan affected dirs"
 msgstr "Nach Dateioperationen nur betroffene Verzeichnisse scannen"
 
-#: EnhancedMovieCenter.py:384
+#: EnhancedMovieCenter.py:386
 msgid "HELP_After file OPs only re-scan affected dirs"
 msgstr ""
 "Nach Dateioperationen werden nur die Verzeichnisse neu gecsannt, die auch "
 "betroffen waren."
 
-#: EnhancedMovieCenter.py:385
+#: EnhancedMovieCenter.py:387
 msgid "Wake device when entering dir from emc-noscan.cfg"
 msgstr "Wecke Geräte beim Eintritt in Verzeichnisse aus der emc-noscan.cfg"
 
-#: EnhancedMovieCenter.py:385
+#: EnhancedMovieCenter.py:387
 msgid "HELP_Wake device when entering dir from emc-noscan.cfg"
 msgstr ""
 "Wenn aktiviert, werden Geräte aus dem StandBy geholt, wenn ein in der \n"
 "'/etc/enigma2/emc-noscan.cfg'\n"
 "enthaltenes Verzeichnis betreten wird."
 
-#: EnhancedMovieCenter.py:386
+#: EnhancedMovieCenter.py:388
 msgid "Check for dead links"
 msgstr "Prüfe auf tote Links"
 
-#: EnhancedMovieCenter.py:386
+#: EnhancedMovieCenter.py:388
 msgid "HELP_Check for dead links"
 msgstr ""
 "Nur erstmalig auf tote Links zu prüfen, hilft, externe Datenträger im "
 "Standby zu belassen, jedoch werden Dateien von entfernten Datenträgern ggf. "
 "weiterhin angezeigt."
 
-#: EnhancedMovieCenter.py:389
+#: EnhancedMovieCenter.py:390
+msgid "DVD / BLU-RAY / FOLDERS"
+msgstr ""
+
+#: EnhancedMovieCenter.py:391
 msgid "Hide configured entries"
 msgstr "Konfigurierte Dateien und Verzeichnisse ausblenden"
 
-#: EnhancedMovieCenter.py:389
+#: EnhancedMovieCenter.py:391
 msgid "HELP_cfghide_enable"
 msgstr ""
 "Wenn aktiviert, werden die in '/etc/enigma2/emc-hide.cfg' aufgelisteten "
 "Dateien und Verzeichnisse nicht angezeigt.\n"
 "Das Ändern dieser Einstellung erfordert einen Enigma2-Neustart!"
 
-#: EnhancedMovieCenter.py:390
+#: EnhancedMovieCenter.py:392
 msgid "Scan for DVD structures"
 msgstr "Suche nach DVD-Strukturen"
 
-#: EnhancedMovieCenter.py:390
+#: EnhancedMovieCenter.py:392
 msgid "HELP_Scan for DVD structures"
 msgstr ""
 "Hiermit kann die Suche nach DVD-Strukturen in Verzeichnissen generell "
@@ -1006,11 +1022,11 @@ msgstr ""
 "Dies kann unbeabsichtiges Aufwecken von Festplatten oder Netzlaufwerken "
 "verhindern."
 
-#: EnhancedMovieCenter.py:391
+#: EnhancedMovieCenter.py:393
 msgid "Scan for movie structures"
 msgstr "Suche nach Filmstrukturen"
 
-#: EnhancedMovieCenter.py:391
+#: EnhancedMovieCenter.py:393
 msgid "HELP_Scan for movie structures"
 msgstr ""
 "Hiermit kann die Suche nach Filmstrukturen in Verzeichnissen generell "
@@ -1018,11 +1034,11 @@ msgstr ""
 "Dies kann unbeabsichtiges Aufwecken von Festplatten oder Netzlaufwerken "
 "verhindern."
 
-#: EnhancedMovieCenter.py:392
+#: EnhancedMovieCenter.py:394
 msgid "Scan for bluray structures"
 msgstr "Suche nach Blu-ray Strukturen"
 
-#: EnhancedMovieCenter.py:392
+#: EnhancedMovieCenter.py:394
 msgid "HELP_Scan for bluray structures"
 msgstr ""
 "Hiermit kann die Suche nach Blu-ray Strukturen in Verzeichnissen generell "
@@ -1030,11 +1046,11 @@ msgstr ""
 "Dies kann unbeabsichtiges Aufwecken von Festplatten oder Netzlaufwerken "
 "verhindern."
 
-#: EnhancedMovieCenter.py:393
+#: EnhancedMovieCenter.py:395
 msgid "Scan for bluray structures in .iso"
 msgstr "Suche nach Blu-ray Strukturen in .iso"
 
-#: EnhancedMovieCenter.py:393
+#: EnhancedMovieCenter.py:395
 msgid "HELP_Scan for bluray structures in .iso"
 msgstr ""
 "Hiermit kann die Suche nach Blu-ray Strukturen in .iso in Verzeichnissen "
@@ -1042,11 +1058,11 @@ msgstr ""
 "Dies kann unbeabsichtiges Aufwecken von Festplatten oder Netzlaufwerken "
 "verhindern."
 
-#: EnhancedMovieCenter.py:394
+#: EnhancedMovieCenter.py:396
 msgid "Suppress scan in selected folders"
 msgstr "Keine Struktursuche in ausgewählten Verzeichnissen"
 
-#: EnhancedMovieCenter.py:394
+#: EnhancedMovieCenter.py:396
 msgid "HELP_cfgscan_suppress"
 msgstr ""
 "Wenn aktiviert, werden die in '/etc/enigma2/emc-noscan.cfg' aufgelisteten "
@@ -1054,11 +1070,11 @@ msgstr ""
 "unbeabsichtiges Aufwecken von Festplatten oder Netzlaufwerken verhindern. "
 "Ändern dieser Einstellung erfordert E2-Neustart!"
 
-#: EnhancedMovieCenter.py:395
+#: EnhancedMovieCenter.py:397
 msgid "Scan linked folders"
 msgstr "Suche nach Medienstrukturen in Symlink-Verzeichnissen"
 
-#: EnhancedMovieCenter.py:395
+#: EnhancedMovieCenter.py:397
 msgid "HELP_scan_linked"
 msgstr ""
 "Auch Untererzeichnisse von Symlinks werden auf Medienstrukturen (z.B. DVD) "
@@ -1066,62 +1082,66 @@ msgstr ""
 "Das Unterdrücken kann unbeabsichtiges Aufwecken von Festplatten oder "
 "Netzlaufwerken verhindern."
 
-#: EnhancedMovieCenter.py:398
+#: EnhancedMovieCenter.py:399
+msgid "OTHER"
+msgstr "SONSTIGES"
+
+#: EnhancedMovieCenter.py:400
 msgid "Try to load titles from .meta files"
 msgstr "Versuche Titel aus .meta Dateien zu lesen"
 
-#: EnhancedMovieCenter.py:398
+#: EnhancedMovieCenter.py:400
 msgid "HELP_Try to load titles from .meta files"
 msgstr ""
 "Titel wird wenn vorhanden aus der .meta geladen.\n"
 "Ansonsten wird der Titel aus dem Dateinamen extrahiert.\n"
 "(Ist .meta und .eit aktiviert, wird erst die .meta gelesen.)"
 
-#: EnhancedMovieCenter.py:399
+#: EnhancedMovieCenter.py:401
 msgid "Load all for non showing titles from .meta files"
 msgstr "Lade alles für nicht anzeigbare Titel aus .meta Dateien"
 
-#: EnhancedMovieCenter.py:399
+#: EnhancedMovieCenter.py:401
 msgid "HELP_Load all for non showing titles from .meta files"
 msgstr ""
 "Wenn kein Titel aus den .meta Dateien ausgelesen werden\n"
 "kann, lade alles verfügbare, um den Titel doch noch erfolgreich anzeigen zu "
 "können."
 
-#: EnhancedMovieCenter.py:400
+#: EnhancedMovieCenter.py:402
 msgid "Try to load titles from .eit files"
 msgstr "Versuche Titel aus .eit Dateien zu lesen"
 
-#: EnhancedMovieCenter.py:400
+#: EnhancedMovieCenter.py:402
 msgid "HELP_Try to load titles from .eit files"
 msgstr ""
 "Titel wird wenn vorhanden aus der .eit geladen.\n"
 "Ansonsten wird der Titel aus dem Dateinamen extrahiert.\n"
 "(Ist .meta und .eit aktiviert wird zuerst die .meta gelesen.)"
 
-#: EnhancedMovieCenter.py:401
+#: EnhancedMovieCenter.py:403
 msgid "Replace special chars in title"
 msgstr "Ersetze spezielle Zeichen im Titel"
 
-#: EnhancedMovieCenter.py:401
+#: EnhancedMovieCenter.py:403
 msgid "HELP_Replace special chars in title"
 msgstr ""
 "Ersetzt in der Filmliste Unterstriche und Punkte im Dateinamen durch "
 "Leerzeichen."
 
-#: EnhancedMovieCenter.py:402
+#: EnhancedMovieCenter.py:404
 msgid "Show Movie Format"
 msgstr "Filmformat anzeigen"
 
-#: EnhancedMovieCenter.py:402
+#: EnhancedMovieCenter.py:404
 msgid "HELP_Show Movie Format"
 msgstr "Dateiendung (Dateityp) wird dem Titel angehängt."
 
-#: EnhancedMovieCenter.py:403
+#: EnhancedMovieCenter.py:405
 msgid "Show Cut-Nr if exist"
 msgstr "Schnitt-Nr. falls vorhanden anzeigen"
 
-#: EnhancedMovieCenter.py:403
+#: EnhancedMovieCenter.py:405
 msgid "HELP_Show Cut-Nr if exist"
 msgstr ""
 "Wenn Enigma2 während einer Aufnahme rebootet, wird die Aufnahme von E2 "
@@ -1129,241 +1149,30 @@ msgstr ""
 "hinten angestellt.\n"
 "Hiermit wird diese Nummer an den Titel angehängt."
 
-#: EnhancedMovieCenter.py:404
+#: EnhancedMovieCenter.py:406
 msgid "Resolve links and show real path"
 msgstr "Löse Links auf, und zeige echten Pfad"
 
-#: EnhancedMovieCenter.py:404
+#: EnhancedMovieCenter.py:406
 msgid "HELP_Resolve links and show real path"
 msgstr ""
 "Ziel von Links und Symlinks werden aufgelöst.\n"
 "Bei Problemen mit Spinnern oder NAS wake up, diese Option ausschalten. (Pfad "
 "wird bei \"Extended Description\" angezeigt.)"
 
-#: EnhancedMovieCenter.py:405
+#: EnhancedMovieCenter.py:407
 msgid "Show Path if no extended description available"
 msgstr "Pfad anzeigen, wenn keine ausführliche Beschreibung"
 
-#: EnhancedMovieCenter.py:405
+#: EnhancedMovieCenter.py:407
 msgid "HELP_Show Path if no extended description available"
 msgstr "Pfad anzeigen, wenn keine ausführliche Beschreibung verfügbar ist."
 
-#: EnhancedMovieCenter.py:408
-msgid "Listbox is skin able"
-msgstr "Filmliste ist skinbar"
-
-#: EnhancedMovieCenter.py:408
-msgid "HELP_Listbox is skin able"
-msgstr ""
-"Das Aussehen der Filmliste wird - wenn vorhanden - aus dem verwendeten Skin "
-"genommen (nur <widget name=\"list\").\n"
-"Ansonsten wie im EMC-Setup eingestellt."
-
-#: EnhancedMovieCenter.py:410
-msgid "Date format"
-msgstr "Datumsformat"
-
-#: EnhancedMovieCenter.py:410
-msgid "HELP_Date format"
-msgstr ""
-"Datum ausblenden, oder Format des Datums wählen, das in der Filmliste bei "
-"jeder Aufnahme angezeigt wird."
-
 #: EnhancedMovieCenter.py:411
-msgid "Horizontal alignment for date"
-msgstr "Horizontale Ausrichtung des Datums"
-
-#: EnhancedMovieCenter.py:411
-msgid "HELP_Horizontal alignment for date"
-msgstr ""
-"Hier kann die horizontale Ausrichtung des Textes für\n"
-"das Datum bestimmt werden.\n"
-"Ob die Anzeige links, zentriert oder rechtsbündig gezeigt wird."
-
-#: EnhancedMovieCenter.py:412
-msgid "Horizontal alignment for count / size"
-msgstr "Horizontale Ausrichtung von Anzahl, Größe und Beschreibung"
-
-#: EnhancedMovieCenter.py:412
-msgid "HELP_Horizontal alignment for count / size"
-msgstr ""
-"Hier kann die horizontale Ausrichtung des Textes für Anzahl, Größe oder "
-"Beschreibung der Verzeichnis- und Papierkorbinformationen bestimmt werden.\n"
-"Ob die Anzeige links, zentriert oder rechtsbündig gezeigt wird."
-
-#: EnhancedMovieCenter.py:414
-msgid "Show movie icons"
-msgstr "Icons anzeigen"
-
-#: EnhancedMovieCenter.py:414
-msgid "HELP_Show movie icons"
-msgstr "In der Filmliste wird jeder Aufnahme ein passendes Icon vorangestellt."
-
-#: EnhancedMovieCenter.py:415
-msgid "Show link arrow"
-msgstr "Pfeil bei Symlinks anzeigen"
-
-#: EnhancedMovieCenter.py:415
-msgid "HELP_Show link arrow"
-msgstr "Pfeil bei Symlinks anzeigen."
-
-#: EnhancedMovieCenter.py:417
-msgid "Show movie picons"
-msgstr "Zeige Film-Picons"
-
-#: EnhancedMovieCenter.py:417
-msgid "HELP_Show movie picons"
-msgstr "Bei Ja werden Picons neben dem Filmtitel angezeigt."
-
-#: EnhancedMovieCenter.py:419
-msgid "Position movie picons"
-msgstr "Position der Film-Picons"
-
-#: EnhancedMovieCenter.py:419
-msgid "HELP_Position movie picons"
-msgstr "Position bestimmen wo die Film-Picons angezeigt werden sollen."
-
-#: EnhancedMovieCenter.py:420
-msgid "Own Path to movie picons"
-msgstr "Eigener Pfad zu den Film-Picons"
-
-#: EnhancedMovieCenter.py:420
-msgid "HELP_Own Path to movie picons"
-msgstr ""
-"Bei Ja kann ein eigener Pfad angegeben werden wo die Film-Picons liegen."
-
-#: EnhancedMovieCenter.py:421
-msgid "Path to movie picons"
-msgstr "Pfad zu den Film-Picons"
-
-#: EnhancedMovieCenter.py:421
-msgid "HELP_Path to movie picons"
-msgstr "Hier den Pfad festlegen wo die Film-Picons liegen."
-
-#: EnhancedMovieCenter.py:423
-msgid "Show movie progress"
-msgstr "Filmfortschritt anzeigen"
-
-#: EnhancedMovieCenter.py:423
-msgid "HELP_Show movie progress"
-msgstr ""
-"In der Filmliste wird jeder Aufnahme eine Fortschrittsanzeige (ProgressBar, "
-"oder Prozent) vorne angestellt. Bei \"Farbe der Aufnahme\" kann der Status "
-"nur durch die Farbe des Icons und Schriftfarbe erkannt werden. (Schriftfarbe "
-"kann über den Skin deaktiviert werden.)"
-
-#: EnhancedMovieCenter.py:424
-msgid "Short watching percent"
-msgstr "Farbe für \"Film angespielt\" (blau) ab %"
-
-#: EnhancedMovieCenter.py:424
-msgid "HELP_Short watching percent"
-msgstr ""
-"Gibt an ab wieviel Prozent der Filmfortschritt als angespielt gilt.\n"
-"Die Fortschrittsanzeige wechselt dann die Farbe auf blau."
-
-#: EnhancedMovieCenter.py:425
-msgid "Finished watching percent"
-msgstr "Farbe für \"Film gesehen\" (grün) ab %"
-
-#: EnhancedMovieCenter.py:425
-msgid "HELP_Finished watching percent"
-msgstr ""
-"Gibt an ab wieviel Prozent der Filmfortschritt als fertig gespielt gilt.\n"
-"Die Fortschrittsanzeige wechselt dann die Farbe auf grün."
-
-#: EnhancedMovieCenter.py:426
-msgid "Mark new recordings with a star"
-msgstr "Markieren neuer Aufnahmen mit einem Stern"
-
-#: EnhancedMovieCenter.py:426
-msgid "HELP_Mark new recordings with a star"
-msgstr "Markieren neuer Aufnahmen mit einem Stern"
-
-#: EnhancedMovieCenter.py:427 MovieSelection.py:1870 MovieSelection.py:1886
-#: MovieSelection.py:1902
-msgid "Show Cover"
-msgstr "Cover anzeigen"
-
-#: EnhancedMovieCenter.py:427
-msgid "HELP_Show Cover"
-msgstr "Cover anzeigen, wenn diese vorhanden sind."
-
-#: EnhancedMovieCenter.py:428 MovieInfo.py:625
-msgid "Cover delay in ms"
-msgstr "Cover-Anzeige verzögern um ms"
-
-#: EnhancedMovieCenter.py:428
-msgid "HELP_Cover delay in ms"
-msgstr ""
-"Wenn Cover anzeigen eingestellt ist, kann hiermit die Verzögerung zum "
-"Anzeigen der Covers eingestellt werden. Dies verhindert, dass die Cover beim "
-"Zappen duch die Filmliste eingelesen werden müssen."
-
-#: EnhancedMovieCenter.py:429
-msgid "Cover background"
-msgstr "Cover-Hintergrund"
-
-#: EnhancedMovieCenter.py:429
-msgid "HELP_Cover background"
-msgstr "Hier kann der Cover-Hintergrund angepasst werden."
-
-#: EnhancedMovieCenter.py:430
-msgid "Show fallback cover"
-msgstr "Cover-Hintergrund anzeigen, wenn kein Cover vorhanden"
-
-#: EnhancedMovieCenter.py:430
-msgid "HELP_Fallback Cover"
-msgstr ""
-"Bei \"NEIN\" wird der Cover Hintergrund nur angezeigt, wenn auch ein Cover "
-"vorhanden ist."
-
-#: EnhancedMovieCenter.py:432
-msgid "Show movie preview"
-msgstr "Filmvorschau anzeigen"
-
-#: EnhancedMovieCenter.py:432
-msgid "HELP_Show movie preview"
-msgstr ""
-"Spielt die Aufnahme nach der eingestellten Verweildauer des Cursors im PiG "
-"an."
-
-#: EnhancedMovieCenter.py:433
-msgid "Movie preview delay in ms"
-msgstr "Verzögerung für Filmvorschau in Millisekunden"
-
-#: EnhancedMovieCenter.py:433
-msgid "HELP_Movie preview delay in ms"
-msgstr ""
-"Wenn Filmvorschau anzeigen eingestellt ist, kann hiermit die Verzögerung zum "
-"Anzeigen der Filmvorschau eingestellt werden. Dies verhindert, dass die "
-"Filmvorschau beim Zappen durch die Filmliste schon startet und/oder das "
-"vorher noch ein Cover eingeblendet werden kann."
-
-#: EnhancedMovieCenter.py:434
-msgid "Start movie preview before last position"
-msgstr "Starte Filmvorschau vor der letzten Abspielposition (Sekunden)"
-
-#: EnhancedMovieCenter.py:434
-msgid "HELP_Movie preview offset in seconds"
-msgstr ""
-"Startet die Filmvorschau um die Anzahl angegebenen Sekunden vor der letzten "
-"Abspielposition"
-
-#: EnhancedMovieCenter.py:435
-msgid "Hide mini TV"
-msgstr "Mini-TV ausblenden"
-
-#: EnhancedMovieCenter.py:435
-msgid "HELP_hide_miniTV"
-msgstr ""
-"Legt fest, in welchen Situationen der Mini-Bildschirm verborgen werden soll."
-
-#: EnhancedMovieCenter.py:439
 msgid "Method of hiding mini TV"
 msgstr "Methode zum Ausblenden des Mini-TV"
 
-#: EnhancedMovieCenter.py:439
+#: EnhancedMovieCenter.py:411
 msgid "HELP_hide_miniTV_method"
 msgstr ""
 "Gegen Filmwiedergabe mit verzerrtem Seitenverhältnis (z.B. Gigablue Quad) "
@@ -1371,44 +1180,54 @@ msgstr ""
 "Live-TV nicht zu stoppen, sondern den Mini-TV ersatzweise auf 1 Pixel zu "
 "reduzieren."
 
-#: EnhancedMovieCenter.py:444
+#: EnhancedMovieCenter.py:416
+msgid "Show message if file added to playlist"
+msgstr "Zeige Benachrichtigung bei \"zur Wiedergabeliste hinzufügen\""
+
+#: EnhancedMovieCenter.py:416
+msgid "HELP_Show message if file added to playlist"
+msgstr ""
+"Zeigt eine Nachricht, ob die Datei zur Wiedergabeliste hinzugefügt\n"
+"werden konnte, oder nicht."
+
+#: EnhancedMovieCenter.py:417
 msgid "No resume below 10 seconds"
 msgstr "Ignoriere Start Marker unter 10 sek"
 
-#: EnhancedMovieCenter.py:444
+#: EnhancedMovieCenter.py:417
 msgid "HELP_No resume below 10 seconds"
 msgstr ""
 "Ignoriert den Start-Marker unterhalb von 10 Sekunden.\n"
 "Wird innerhalb der ersten 10 Sekunden gestoppt, wird kein Resume beim "
 "nächsten Abspielen angeboten."
 
-#: EnhancedMovieCenter.py:445
+#: EnhancedMovieCenter.py:418
 msgid "Jump to first mark when playing movie"
 msgstr "Automatisches Springen zur ersten Marke"
 
-#: EnhancedMovieCenter.py:445
+#: EnhancedMovieCenter.py:418
 msgid "HELP_Jump to first mark when playing movie"
 msgstr ""
 "Springt beim Filmstart automatisch zum ersten Marker, wenn dieser am Anfang "
 "der Aufnahme liegt.\n"
 "(Hilft manchmal um die Vorlaufzeit automatisch zu überspringen.)"
 
-#: EnhancedMovieCenter.py:446
+#: EnhancedMovieCenter.py:419
 msgid "Rewind finished movies before playing"
 msgstr "Start am Anfang von fertig gespielten Aufnahmen"
 
-#: EnhancedMovieCenter.py:446
+#: EnhancedMovieCenter.py:419
 msgid "HELP_Rewind finished movies before playing"
 msgstr ""
 "Wurde eine Aufnahme fertig gespielt (Abspielstatus \"fertig gesehen\", "
 "Einstellung bei \"Farbe für Film gesehen\"), wird die Aufnahme beim nächsten "
 "Start wieder von Anfang abgespielt."
 
-#: EnhancedMovieCenter.py:447
+#: EnhancedMovieCenter.py:420
 msgid "Always save last played progress as marker"
 msgstr "Letzte Abspielposition immer als Marker speichern"
 
-#: EnhancedMovieCenter.py:447
+#: EnhancedMovieCenter.py:420
 msgid "HELP_Always save last played progress as marker"
 msgstr ""
 "Hiermit wird bei jedem Stoppen des Abspielvorganges die aktuelle "
@@ -1416,470 +1235,675 @@ msgstr ""
 "Diese Marker können später dann direkt mit den < > Tasten angesprungen "
 "werden. (Unabhängig von der Resume-Funktion)"
 
-#: EnhancedMovieCenter.py:448
+#: EnhancedMovieCenter.py:421
 msgid "Zap to channel after record EOF"
 msgstr "Springe am Ende der Aufnahme zum Sender zurück"
 
-#: EnhancedMovieCenter.py:448
+#: EnhancedMovieCenter.py:421
 msgid "HELP_Zap to channel after record EOF"
 msgstr ""
 "Beim Abspielen einer noch laufenden Aufnahme wird beim Erreichen des Endes "
 "durch z.B. schnellen Vorlauf oder \"Vorspringen\" direkt auf das Live-Bild "
 "dieser noch laufenden Aufnahme geschaltet."
 
-#: EnhancedMovieCenter.py:449
+#: EnhancedMovieCenter.py:422
 msgid "Show real length of running records"
 msgstr "Tatsächliche Länge der Aufnahme anzeigen"
 
-#: EnhancedMovieCenter.py:449
+#: EnhancedMovieCenter.py:422
 msgid "HELP_Show real length of running records"
 msgstr "Zeigt die tatsächliche Länge von Aufnahmen an."
 
-#: EnhancedMovieCenter.py:454
+#: EnhancedMovieCenter.py:427
 msgid "Download cutlist from Cutlist.at"
 msgstr "Downloade Schnittliste von Cutlist.at"
 
-#: EnhancedMovieCenter.py:454
+#: EnhancedMovieCenter.py:427
 msgid "HELP_Download cutlist from Cutlist.at"
 msgstr ""
 "Titel wird wenn vorhanden aus der .eit geladen.\n"
 "Ansonsten wird der Titel aus dem Dateinamen extrahiert.\n"
 "(Ist .meta und .eit aktiviert, wird erst die .meta gelesen.)"
 
-#: EnhancedMovieCenter.py:458
+#: EnhancedMovieCenter.py:431
 msgid "TRASHCAN"
 msgstr "PAPIERKORB"
 
-#: EnhancedMovieCenter.py:459
+#: EnhancedMovieCenter.py:432
 msgid "Trashcan enable"
 msgstr "Papierkorb aktivieren"
 
-#: EnhancedMovieCenter.py:459
+#: EnhancedMovieCenter.py:432
 msgid "HELP_Trashcan enable"
 msgstr ""
 "Die Papierkorbfunktion kann hier aktiviert/deaktiviert werden.\n"
 "Ist der Papierkorb deaktiviert, wird nach der Sicherheitsabfrage direkt "
 "gelöscht."
 
-#: EnhancedMovieCenter.py:460
+#: EnhancedMovieCenter.py:433
 msgid "Trashcan path"
 msgstr "Papierkorbverzeichnis"
 
-#: EnhancedMovieCenter.py:460
+#: EnhancedMovieCenter.py:433
 msgid "HELP_Trashcan path"
 msgstr ""
 "Pfad für den Papierkorb einstellen.\n"
 "(Wenn der Papierkorb aktiviert ist, werden beim Löschen alle Dateien erst "
 "hier hin verschoben.)"
 
-#: EnhancedMovieCenter.py:461
+#: EnhancedMovieCenter.py:434
 msgid "Show trashcan directory"
 msgstr "Papierkorbverzeichnis anzeigen"
 
-#: EnhancedMovieCenter.py:461
+#: EnhancedMovieCenter.py:434
 msgid "HELP_Show trashcan directory"
 msgstr ""
 "Zeigt das Papierkorbverzeichnis in der Filmliste an.\n"
 "(Der Papierkorb kann in jedem Fall über das Menü aufgerufen werden, auch "
 "wenn er ausgeblendet ist.)"
 
-#: EnhancedMovieCenter.py:462
+#: EnhancedMovieCenter.py:435
 msgid "Show trashcan information"
 msgstr "Papierkorbinformationen anzeigen"
 
-#: EnhancedMovieCenter.py:462
+#: EnhancedMovieCenter.py:435
 msgid "HELP_Dynamic trashcan"
 msgstr ""
 "Beim Papierkorb kann die Anzahl Aufnahmen, die eingenommene Datenmenge, oder "
 "beides zusammen eingeblendet werden."
 
-#: EnhancedMovieCenter.py:463
+#: EnhancedMovieCenter.py:436
 msgid "Delete validation"
 msgstr "Löschbestätigung bei aktivem Papierkorb"
 
-#: EnhancedMovieCenter.py:463
+#: EnhancedMovieCenter.py:436
 msgid "HELP_Delete validation"
 msgstr ""
 "Wenn der Papierkorb aktiviert ist, wird beim Löschen keine "
 "Sicherheitsabfrage mehr gestellt.\n"
 "(Kann im Notfall vor der Papierkorbleerung wieder zurückgeschoben werden.)"
 
-#: EnhancedMovieCenter.py:465
+#: EnhancedMovieCenter.py:438
 msgid "Enable daily trashcan cleanup"
 msgstr "Erlaube tägliche Papierkorbleerung"
 
-#: EnhancedMovieCenter.py:465
+#: EnhancedMovieCenter.py:438
 msgid "HELP_Enable daily trashcan cleanup"
 msgstr ""
 "EMC löscht alte Dateien, die die eingestellte Verweildauer im Papierkorb "
 "erreicht haben."
 
-#: EnhancedMovieCenter.py:466
+#: EnhancedMovieCenter.py:439
 msgid "Daily cleanup time"
 msgstr "Tägliche Reinigungszeit Papierkorb/Aufnahmeliste"
 
-#: EnhancedMovieCenter.py:466
+#: EnhancedMovieCenter.py:439
 msgid "HELP_Daily cleanup time"
 msgstr ""
 "Uhrzeit, bei der alte Dateien im Papierkorb gelöscht werden, die die "
 "eingestellte Verweildauer erreicht haben."
 
-#: EnhancedMovieCenter.py:467
+#: EnhancedMovieCenter.py:440
 msgid "How many days files may remain in trashcan"
 msgstr "Verbleib der Dateien im Papierkorb (Tage)"
 
-#: EnhancedMovieCenter.py:467
+#: EnhancedMovieCenter.py:440
 msgid "HELP_How many days files may remain in trashcan"
 msgstr ""
 "Anzahl der Tage, die die Dateien im Papierkorb verweilen, bis sie "
 "automatisch gelöscht werden."
 
-#: EnhancedMovieCenter.py:468
+#: EnhancedMovieCenter.py:441
 msgid "Move finished movies in trashcan"
 msgstr "Verschiebe gesehene Filme in den Papierkorb"
 
-#: EnhancedMovieCenter.py:468
+#: EnhancedMovieCenter.py:441
 msgid "HELP_Move finished movies in trashcan"
 msgstr ""
 "Verschiebt alle Aufnahmen in \"Movie Home\" und deren Unterverzeichnisse "
 "(keine Links) mit dem Status \"fertig gesehen\" in den Papierkorb, die die "
 "im nächsten Punkt eingestellte Verweildauer erreicht haben."
 
-#: EnhancedMovieCenter.py:469
+#: EnhancedMovieCenter.py:442
 msgid "Age of finished movies in movie folder (days)"
 msgstr "Alter der gesehenen Filme im Filmverzeichnis (Tage)"
 
-#: EnhancedMovieCenter.py:469
+#: EnhancedMovieCenter.py:442
 msgid "HELP_Age of finished movies in movie folder (days)"
 msgstr ""
 "Verweildauer der Aufnahmen mit dem Status \"fertig gesehen\", bis sie in den "
 "Papierkorb verschoben werden."
 
-#: EnhancedMovieCenter.py:472
+#: EnhancedMovieCenter.py:445
 msgid "Display directory reading text"
 msgstr "Text beim Verzeichnis einlesen anzeigen"
 
-#: EnhancedMovieCenter.py:472
+#: EnhancedMovieCenter.py:445
 msgid "HELP_Display directory reading text"
 msgstr ""
 "Blendet während dem Verzeichnis einlesen den Text \"Lese Verzeichnis...\" "
 "ein."
 
-#: EnhancedMovieCenter.py:473
+#: EnhancedMovieCenter.py:446
 msgid "EMC always reload after open"
 msgstr "Beim Öffnen von EMC immer neu einlesen"
 
-#: EnhancedMovieCenter.py:473
+#: EnhancedMovieCenter.py:446
 msgid "HELP_EMC always reload after open"
 msgstr ""
 "Verzeichnis wird bei jedem Öffnen von EMC neu eingelesen\n"
 "(Ansonsten wird das Verzeichniss nach dem 2. Öffnen aus dem Buffer gelesen.)"
 
-#: EnhancedMovieCenter.py:474
+#: EnhancedMovieCenter.py:447
 msgid "EMC re-open list after STOP-press"
 msgstr "EMC nach Filmstopp wieder öffnen"
 
-#: EnhancedMovieCenter.py:474
+#: EnhancedMovieCenter.py:447
 msgid "HELP_EMC re-open list after STOP-press"
 msgstr ""
 "Wird das Abspielen gestoppt, erscheint wieder die EMC-Filmliste.\n"
 "(Ansonsten ist man wieder im TV-Modus.)"
 
-#: EnhancedMovieCenter.py:475
+#: EnhancedMovieCenter.py:448
 msgid "EMC re-open list after Movie end"
 msgstr "EMC nach Filmende wieder öffnen"
 
-#: EnhancedMovieCenter.py:475
+#: EnhancedMovieCenter.py:448
 msgid "HELP_EMC re-open list after Movie end"
 msgstr ""
 "Wird eine Aufnahme bis zum Ende gespielt, erscheint wieder die EMC-"
 "Filmliste.\n"
 "(Ansonsten ist man wieder im TV-Modus.)"
 
-#: EnhancedMovieCenter.py:477
+#: EnhancedMovieCenter.py:450
 msgid "Leave Movie with Exit"
 msgstr "Verlasse Wiedergabe mit Exit"
 
-#: EnhancedMovieCenter.py:477
+#: EnhancedMovieCenter.py:450
 msgid "HELP_Leave Movie with Exit"
 msgstr ""
 "Das Abspielen einer Aufnahme kann zusätzlich zur Stopp- auch mit der Exit-"
 "Taste beendet werden."
 
-#: EnhancedMovieCenter.py:479
+#: EnhancedMovieCenter.py:452
 msgid "Hide movies being moved"
 msgstr "Film während dem Verschieben ausblenden"
 
-#: EnhancedMovieCenter.py:479
+#: EnhancedMovieCenter.py:452
 msgid "HELP_Hide movies being moved"
 msgstr ""
 "Die Aufnahme wird schon während des Verschiebens in der Filmliste "
 "ausgeblendet.\n"
 "(Es wird aber in jedem Fall im Hintergrund verschoben.)"
 
-#: EnhancedMovieCenter.py:480
+#: EnhancedMovieCenter.py:453
 msgid "Hide movies being deleted"
 msgstr "Film während dem Löschen ausblenden"
 
-#: EnhancedMovieCenter.py:480
+#: EnhancedMovieCenter.py:453
 msgid "HELP_Hide movies being deleted"
 msgstr ""
 "Die Aufnahme wird schon während des Löschens in der Filmliste ausgeblendet.\n"
 "(Es wird aber in jedem Fall im Hintergrund gelöscht.)"
 
-#: EnhancedMovieCenter.py:482
+#: EnhancedMovieCenter.py:455
 msgid "Enable remote recordings"
 msgstr "Aktiviere Erkennung für Remote-Aufnahmen"
 
-#: EnhancedMovieCenter.py:482
+#: EnhancedMovieCenter.py:455
 msgid "HELP_Enable remote recordings"
 msgstr ""
 "Erkennt beim Nutzen eines gemeinsamen Datenträgers, wenn eine andere Sat Box "
 "aufnimmt.\n"
 "Die Aufnahme hat während dem ein eigenes Icon"
 
-#: EnhancedMovieCenter.py:483
+#: EnhancedMovieCenter.py:456
 msgid "Automatic timers list cleaning"
 msgstr "Automatische Timerlisten-Bereinigung"
 
-#: EnhancedMovieCenter.py:483
+#: EnhancedMovieCenter.py:456
 msgid "HELP_Automatic timers list cleaning"
 msgstr "Beendete Timer werden automatisch aus der Timerliste entfernt."
 
-#: EnhancedMovieCenter.py:485
+#: EnhancedMovieCenter.py:458
 msgid "LANGUAGE"
 msgstr "SPRACHE"
 
-#: EnhancedMovieCenter.py:486
+#: EnhancedMovieCenter.py:459
 msgid "Preferred EPG language"
 msgstr "Bevorzugte EPG-Sprache"
 
-#: EnhancedMovieCenter.py:486
+#: EnhancedMovieCenter.py:459
 msgid "HELP_Preferred EPG language"
 msgstr "Hier kann die bevorzugte Sprache des EPGs eingestellt werden."
 
-#: EnhancedMovieCenter.py:487
+#: EnhancedMovieCenter.py:460
 msgid "Extra support for language"
 msgstr "Zusätzliche Sprachunterstützung"
 
-#: EnhancedMovieCenter.py:487
+#: EnhancedMovieCenter.py:460
 msgid "HELP_Extra support for selected language"
 msgstr "Hier kann die zusätzliche Sprachunterstützung aktiviert werden."
 
-#: EnhancedMovieCenter.py:488
+#: EnhancedMovieCenter.py:461
 msgid "Enable playback auto-subtitling"
 msgstr "Untertitel automatisch anzeigen"
 
-#: EnhancedMovieCenter.py:488
+#: EnhancedMovieCenter.py:461
 msgid "HELP_Enable playback auto-subtitling"
 msgstr ""
 "Die automatische Auswahl der eingestellen Untertitel-Sprachen wird hier "
 "aktiviert."
 
-#: EnhancedMovieCenter.py:489
+#: EnhancedMovieCenter.py:462
 msgid "Primary playback subtitle language"
 msgstr "Erste Untertitel-Sprache"
 
-#: EnhancedMovieCenter.py:489
+#: EnhancedMovieCenter.py:462
 msgid "HELP_Primary playback subtitle language"
 msgstr "Erste Untertitel-Sprache die gewählt werden soll, sofern vorhanden."
 
-#: EnhancedMovieCenter.py:490
+#: EnhancedMovieCenter.py:463
 msgid "Secondary playback subtitle language"
 msgstr "Zweite Untertitel-Sprache"
 
-#: EnhancedMovieCenter.py:490
+#: EnhancedMovieCenter.py:463
 msgid "HELP_Secondary playback subtitle language"
 msgstr "Zweite Untertitel-Sprache die gewählt werden soll, sofern vorhanden."
 
-#: EnhancedMovieCenter.py:491
+#: EnhancedMovieCenter.py:464
 msgid "Tertiary playback subtitle language"
 msgstr "Dritte Untertitel-Sprache"
 
-#: EnhancedMovieCenter.py:491
+#: EnhancedMovieCenter.py:464
 msgid "HELP_Tertiary playback subtitle language"
 msgstr "Dritte Untertitel-Sprache die gewählt werden soll, sofern vorhanden."
 
-#: EnhancedMovieCenter.py:492
+#: EnhancedMovieCenter.py:465
 msgid "Enable playback auto-language selection"
 msgstr "Tonspur automatisch auswählen"
 
-#: EnhancedMovieCenter.py:492
+#: EnhancedMovieCenter.py:465
 msgid "HELP_Enable playback auto-language selection"
 msgstr "Die automatische Auswahl der eingestellen Tonspur wird hier aktiviert."
 
-#: EnhancedMovieCenter.py:493
+#: EnhancedMovieCenter.py:466
 msgid "Enable playback AC3-track first"
 msgstr "AC3-Track bevorzugen"
 
-#: EnhancedMovieCenter.py:493
+#: EnhancedMovieCenter.py:466
 msgid "HELP_Enable playback AC3-track first"
 msgstr "Es werden bei der Auswahl-Tonspuren, die AC3-Track bevorzugt"
 
-#: EnhancedMovieCenter.py:494
+#: EnhancedMovieCenter.py:467
 msgid "Primary playback audio language"
 msgstr "Erste Tonspur"
 
-#: EnhancedMovieCenter.py:494
+#: EnhancedMovieCenter.py:467
 msgid "HELP_Primary playback audio language"
 msgstr "Erste Tonspur die gewählt werden soll, sofern vorhanden."
 
-#: EnhancedMovieCenter.py:495
+#: EnhancedMovieCenter.py:468
 msgid "Secondary playback audio language"
 msgstr "Zweite Tonspur"
 
-#: EnhancedMovieCenter.py:495
+#: EnhancedMovieCenter.py:468
 msgid "HELP_Secondary playback audio language"
 msgstr "Zweite Tonspur die gewählt werden soll, sofern vorhanden."
 
-#: EnhancedMovieCenter.py:496
+#: EnhancedMovieCenter.py:469
 msgid "Tertiary playback audio language"
 msgstr "Dritte Tonspur"
 
-#: EnhancedMovieCenter.py:496
+#: EnhancedMovieCenter.py:469
 msgid "HELP_Tertiary playback audio language"
 msgstr "Dritte Tonspur die gewählt werden soll, sofern vorhanden."
 
-#: EnhancedMovieCenter.py:499
+#: EnhancedMovieCenter.py:471
+msgid "DELAYS"
+msgstr "VERZÖGERUNGEN"
+
+#: EnhancedMovieCenter.py:472
 msgid "Description field update delay"
 msgstr "Updateverzögerung Beschreibungsfeld"
 
-#: EnhancedMovieCenter.py:499
+#: EnhancedMovieCenter.py:472
 msgid "HELP_Description field update delay"
 msgstr ""
 "Anzeigeverzögerung des Beschreibungsfelds in der Filmliste.\n"
 "(Beschleunigt das mehrfache drücken der auf/ab Pfeiltasten weil die "
 "Filmbeschreibung erst nach der eingestellten Verzögerung gelesen wird.)"
 
-#: EnhancedMovieCenter.py:500
+#: EnhancedMovieCenter.py:473
 msgid "Key period value (50-900)"
 msgstr "Tastendauer (50-900)"
 
-#: EnhancedMovieCenter.py:500
+#: EnhancedMovieCenter.py:473
 msgid "HELP_Key period value (50-900)"
 msgstr "Dauer bis zum wiederholten Senden der Taste wenn sie gehalten wird. "
 
-#: EnhancedMovieCenter.py:501
+#: EnhancedMovieCenter.py:474
 msgid "Key repeat value (250-900)"
 msgstr "Tastenwiederholung (250-900)"
 
-#: EnhancedMovieCenter.py:501
+#: EnhancedMovieCenter.py:474
 msgid "HELP_Key repeat value (250-900)"
 msgstr "Geschwindigkeit der Tastenwiederholung beim Halten der Taste."
 
-#: EnhancedMovieCenter.py:504
-msgid "Show message if file added to playlist"
-msgstr "Zeige Benachrichtigung bei \"zur Wiedergabeliste hinzufügen\""
+#: EnhancedMovieCenter.py:476
+msgid "SKIN-SETTINGS"
+msgstr "SKIN-EINSTELLUNGEN"
 
-#: EnhancedMovieCenter.py:504
-msgid "HELP_Show message if file added to playlist"
-msgstr ""
-"Zeigt eine Nachricht, ob die Datei zur Wiedergabeliste hinzugefügt\n"
-"werden konnte, oder nicht."
-
-#: EnhancedMovieCenter.py:507
+#: EnhancedMovieCenter.py:477
 msgid "Use original EMC-skin (needs reopen)"
 msgstr "Original EMC-Skin benutzen (EMC muss neu gestartet werden)"
 
-#: EnhancedMovieCenter.py:507
+#: EnhancedMovieCenter.py:477
 msgid "HELP_Use original EMC-skin (needs reopen)"
 msgstr ""
 "Den originalen Skin vom EMC benutzen. Dies erfordert einen Neustart vom EMC"
 
-#: EnhancedMovieCenter.py:508
-#, fuzzy
-#| msgid "Use original EMC-skin (needs reopen)"
-msgid "Use alternative style (needs reopen)"
-msgstr "Original EMC-Skin benutzen (EMC muss neu gestartet werden)"
+#: EnhancedMovieCenter.py:478
+msgid "Style for original EMC-skin (needs reopen)"
+msgstr "Anzeigestil für das original EMC-Skin (EMC muss neu gestartet werden)"
 
-#: EnhancedMovieCenter.py:508
-#, fuzzy
-#| msgid "HELP_Use original EMC-skin (needs reopen)"
-msgid "HELP_Alternative style (needs reopen)"
+#: EnhancedMovieCenter.py:478
+msgid "HELP_Style for original EMC-skin (needs reopen)"
 msgstr ""
 "Den originalen Skin vom EMC benutzen. Dies erfordert einen Neustart vom EMC"
 
-#: EnhancedMovieCenter.py:516
-msgid "Download Mutagen-package for audio metadata"
+#: EnhancedMovieCenter.py:480
+msgid "Listbox is skin able"
+msgstr "Filmliste ist skinbar"
+
+#: EnhancedMovieCenter.py:480
+msgid "HELP_Listbox is skin able"
+msgstr ""
+"Das Aussehen der Filmliste wird - wenn vorhanden - aus dem verwendeten Skin "
+"genommen (nur <widget name=\"list\").\n"
+"Ansonsten wie im EMC-Setup eingestellt."
+
+#: EnhancedMovieCenter.py:482
+msgid "Date format"
+msgstr "Datumsformat"
+
+#: EnhancedMovieCenter.py:482
+msgid "HELP_Date format"
+msgstr ""
+"Datum ausblenden, oder Format des Datums wählen, das in der Filmliste bei "
+"jeder Aufnahme angezeigt wird."
+
+#: EnhancedMovieCenter.py:483
+msgid "Horizontal alignment for date"
+msgstr "Horizontale Ausrichtung des Datums"
+
+#: EnhancedMovieCenter.py:483
+msgid "HELP_Horizontal alignment for date"
+msgstr ""
+"Hier kann die horizontale Ausrichtung des Textes für\n"
+"das Datum bestimmt werden.\n"
+"Ob die Anzeige links, zentriert oder rechtsbündig gezeigt wird."
+
+#: EnhancedMovieCenter.py:484
+msgid "Horizontal alignment for count / size"
+msgstr "Horizontale Ausrichtung von Anzahl, Größe und Beschreibung"
+
+#: EnhancedMovieCenter.py:484
+msgid "HELP_Horizontal alignment for count / size"
+msgstr ""
+"Hier kann die horizontale Ausrichtung des Textes für Anzahl, Größe oder "
+"Beschreibung der Verzeichnis- und Papierkorbinformationen bestimmt werden.\n"
+"Ob die Anzeige links, zentriert oder rechtsbündig gezeigt wird."
+
+#: EnhancedMovieCenter.py:486
+msgid "Show movie icons"
+msgstr "Icons anzeigen"
+
+#: EnhancedMovieCenter.py:486
+msgid "HELP_Show movie icons"
+msgstr "In der Filmliste wird jeder Aufnahme ein passendes Icon vorangestellt."
+
+#: EnhancedMovieCenter.py:487
+msgid "Show link arrow"
+msgstr "Pfeil bei Symlinks anzeigen"
+
+#: EnhancedMovieCenter.py:487
+msgid "HELP_Show link arrow"
+msgstr "Pfeil bei Symlinks anzeigen."
+
+#: EnhancedMovieCenter.py:489
+msgid "Show movie picons"
+msgstr "Zeige Film-Picons"
+
+#: EnhancedMovieCenter.py:489
+msgid "HELP_Show movie picons"
+msgstr "Bei Ja werden Picons neben dem Filmtitel angezeigt."
+
+#: EnhancedMovieCenter.py:491
+msgid "Position movie picons"
+msgstr "Position der Film-Picons"
+
+#: EnhancedMovieCenter.py:491
+msgid "HELP_Position movie picons"
+msgstr "Position bestimmen wo die Film-Picons angezeigt werden sollen."
+
+#: EnhancedMovieCenter.py:492
+msgid "Own Path to movie picons"
+msgstr "Eigener Pfad zu den Film-Picons"
+
+#: EnhancedMovieCenter.py:492
+msgid "HELP_Own Path to movie picons"
+msgstr ""
+"Bei Ja kann ein eigener Pfad angegeben werden wo die Film-Picons liegen."
+
+#: EnhancedMovieCenter.py:493
+msgid "Path to movie picons"
+msgstr "Pfad zu den Film-Picons"
+
+#: EnhancedMovieCenter.py:493
+msgid "HELP_Path to movie picons"
+msgstr "Hier den Pfad festlegen wo die Film-Picons liegen."
+
+#: EnhancedMovieCenter.py:495
+msgid "Show movie progress"
+msgstr "Filmfortschritt anzeigen"
+
+#: EnhancedMovieCenter.py:495
+msgid "HELP_Show movie progress"
+msgstr ""
+"In der Filmliste wird jeder Aufnahme eine Fortschrittsanzeige (ProgressBar, "
+"oder Prozent) vorne angestellt. Bei \"Farbe der Aufnahme\" kann der Status "
+"nur durch die Farbe des Icons und Schriftfarbe erkannt werden. (Schriftfarbe "
+"kann über den Skin deaktiviert werden.)"
+
+#: EnhancedMovieCenter.py:496
+msgid "Short watching percent"
+msgstr "Farbe für \"Film angespielt\" (blau) ab %"
+
+#: EnhancedMovieCenter.py:496
+msgid "HELP_Short watching percent"
+msgstr ""
+"Gibt an ab wieviel Prozent der Filmfortschritt als angespielt gilt.\n"
+"Die Fortschrittsanzeige wechselt dann die Farbe auf blau."
+
+#: EnhancedMovieCenter.py:497
+msgid "Finished watching percent"
+msgstr "Farbe für \"Film gesehen\" (grün) ab %"
+
+#: EnhancedMovieCenter.py:497
+msgid "HELP_Finished watching percent"
+msgstr ""
+"Gibt an ab wieviel Prozent der Filmfortschritt als fertig gespielt gilt.\n"
+"Die Fortschrittsanzeige wechselt dann die Farbe auf grün."
+
+#: EnhancedMovieCenter.py:498
+msgid "Mark new recordings with a star"
+msgstr "Markieren neuer Aufnahmen mit einem Stern"
+
+#: EnhancedMovieCenter.py:498
+msgid "HELP_Mark new recordings with a star"
+msgstr "Markieren neuer Aufnahmen mit einem Stern"
+
+#: EnhancedMovieCenter.py:499 MovieSelection.py:1868 MovieSelection.py:1884
+#: MovieSelection.py:1900
+msgid "Show Cover"
+msgstr "Cover anzeigen"
+
+#: EnhancedMovieCenter.py:499
+msgid "HELP_Show Cover"
+msgstr "Cover anzeigen, wenn diese vorhanden sind."
+
+#: EnhancedMovieCenter.py:500 MovieInfo.py:625
+msgid "Cover delay in ms"
+msgstr "Cover-Anzeige verzögern um ms"
+
+#: EnhancedMovieCenter.py:500
+msgid "HELP_Cover delay in ms"
+msgstr ""
+"Wenn Cover anzeigen eingestellt ist, kann hiermit die Verzögerung zum "
+"Anzeigen der Covers eingestellt werden. Dies verhindert, dass die Cover beim "
+"Zappen duch die Filmliste eingelesen werden müssen."
+
+#: EnhancedMovieCenter.py:501
+msgid "Cover background"
+msgstr "Cover-Hintergrund"
+
+#: EnhancedMovieCenter.py:501
+msgid "HELP_Cover background"
+msgstr "Hier kann der Cover-Hintergrund angepasst werden."
+
+#: EnhancedMovieCenter.py:502
+msgid "Show fallback cover"
+msgstr "Cover-Hintergrund anzeigen, wenn kein Cover vorhanden"
+
+#: EnhancedMovieCenter.py:502
+msgid "HELP_Fallback Cover"
+msgstr ""
+"Bei \"NEIN\" wird der Cover Hintergrund nur angezeigt, wenn auch ein Cover "
+"vorhanden ist."
+
+#: EnhancedMovieCenter.py:504
+msgid "Show movie preview"
+msgstr "Filmvorschau anzeigen"
+
+#: EnhancedMovieCenter.py:504
+msgid "HELP_Show movie preview"
+msgstr ""
+"Spielt die Aufnahme nach der eingestellten Verweildauer des Cursors im PiG "
+"an."
+
+#: EnhancedMovieCenter.py:505
+msgid "Movie preview delay in ms"
+msgstr "Verzögerung für Filmvorschau in Millisekunden"
+
+#: EnhancedMovieCenter.py:505
+msgid "HELP_Movie preview delay in ms"
+msgstr ""
+"Wenn Filmvorschau anzeigen eingestellt ist, kann hiermit die Verzögerung zum "
+"Anzeigen der Filmvorschau eingestellt werden. Dies verhindert, dass die "
+"Filmvorschau beim Zappen durch die Filmliste schon startet und/oder das "
+"vorher noch ein Cover eingeblendet werden kann."
+
+#: EnhancedMovieCenter.py:506
+msgid "Start movie preview before last position"
+msgstr "Starte Filmvorschau vor der letzten Abspielposition (Sekunden)"
+
+#: EnhancedMovieCenter.py:506
+msgid "HELP_Movie preview offset in seconds"
+msgstr ""
+"Startet die Filmvorschau um die Anzahl angegebenen Sekunden vor der letzten "
+"Abspielposition"
+
+#: EnhancedMovieCenter.py:507
+msgid "Hide mini TV"
+msgstr "Mini-TV ausblenden"
+
+#: EnhancedMovieCenter.py:507
+msgid "HELP_hide_miniTV"
+msgstr ""
+"Legt fest, in welchen Situationen der Mini-Bildschirm verborgen werden soll."
+
+#: EnhancedMovieCenter.py:509
+msgid "AUDIO METADATA"
+msgstr "AUDIO-METADATEN"
+
+#: EnhancedMovieCenter.py:515
+msgid "Install Mutagen-package for audio metadata"
 msgstr "Mutagen Paket für Audio Metadaten herunterladen"
 
-#: EnhancedMovieCenter.py:516
-msgid "HELP_Download Mutagen-package for audio metadata"
+#: EnhancedMovieCenter.py:515
+msgid "HELP_Install Mutagen-package for audio metadata"
 msgstr ""
 "Mutagen-Paket für Audio Metadaten ist verfügbar.\n"
 "Nach dem Speichern wird versucht es zu installieren."
 
-#: EnhancedMovieCenter.py:522
-msgid "Show audio metadata (needs skin-changes)"
-msgstr "Zeige Audio Metadaten (braucht neue Skinänderungen)"
+#: EnhancedMovieCenter.py:521
+msgid "Show audio metadata"
+msgstr "Zeige Audio Metadaten"
 
-#: EnhancedMovieCenter.py:522
-msgid "HELP_Show audio metadata (needs skin-changes)"
-msgstr ""
-"Zeige Audio Metadaten in der Filmliste.\n"
-"Benötigt neue Skinänderungen, damit die Details\n"
-"angezeigt werden können"
+#: EnhancedMovieCenter.py:521
+msgid "HELP_Show audio metadata"
+msgstr "Zeige Audio Metadaten in der Filmliste."
 
-#: EnhancedMovieCenter.py:527
-#, fuzzy
-msgid "Upgrade/Download Mutagen v1.28(experimental)"
-msgstr "Upgrade/Download Mutagen v1.28(experimental)"
+#: EnhancedMovieCenter.py:526
+msgid "DEBUG"
+msgstr "DEBUG"
 
 #: EnhancedMovieCenter.py:527
-msgid "HELP_Upgrade/Download Mutagen v1.28(experimental)"
-msgstr "Upgrade/Download Mutagen v1.28(experimental)"
-
-#: EnhancedMovieCenter.py:530
 msgid "Enable EMC debug output"
 msgstr "Debug-Ausgabe aktivieren"
 
-#: EnhancedMovieCenter.py:530
+#: EnhancedMovieCenter.py:527
 msgid "HELP_Enable EMC debug output"
 msgstr ""
 "Debug-Ausgabe von EMC aktivieren. Die Log-Datei wird in den unter \"EMC-"
 "Ausgabeverzeichnis\" eingestellten Pfad geschrieben.\n"
 "NUR ZUR FEHLERSUCHE AKTIVIEREN !!!"
 
-#: EnhancedMovieCenter.py:531
+#: EnhancedMovieCenter.py:528
 msgid "EMC output directory"
 msgstr "EMC-Ausgabeverzeichnis"
 
-#: EnhancedMovieCenter.py:531
+#: EnhancedMovieCenter.py:528
 msgid "HELP_EMC output directory"
 msgstr "Debug-Ausgabe-Verzieichnis von EMC bestimmen."
 
-#: EnhancedMovieCenter.py:532
+#: EnhancedMovieCenter.py:529
 msgid "Debug output file name"
 msgstr "Dateiname der Debug-Ausgabe"
 
-#: EnhancedMovieCenter.py:532
+#: EnhancedMovieCenter.py:529
 msgid "HELP_Debug output file name"
 msgstr "Dateiname der Debug-Log-Datei."
 
-#: EnhancedMovieCenter.py:568 EnhancedMovieCenter.py:570
-msgid "Install Mutagen-package"
-msgstr ""
+#: EnhancedMovieCenter.py:539 EnhancedMovieCenter.py:541
+msgid "Installing Mutagen-package"
+msgstr "Installiere Mutagen Paket"
 
-#: EnhancedMovieCenter.py:637
+#: EnhancedMovieCenter.py:543
+msgid "The python-mutagen package is not available on the feed."
+msgstr "Das python-mutagen Paket ist nicht auf dem Feed verfügbar."
+
+#: EnhancedMovieCenter.py:610
 msgid "Load default settings will overwrite all settings, really load them?"
 msgstr ""
 "Laden der Standardeinstellungen überschreibt alle aktuellen Einstellungen.\n"
 "Sollen die Standardeinstellungen wirklich geladen werden?"
 
-#: EnhancedMovieCenter.py:709
+#: EnhancedMovieCenter.py:682
 msgid "Some settings changes require GUI restart to take effect."
 msgstr "Damit die Einstellungen wirksam werden, bitte Enigma2 neustarten !"
 
-#: EnhancedMovieCenter.py:740
+#: EnhancedMovieCenter.py:713
 msgid "Select Location"
 msgstr "Wähle Ort"
 
-#: EnhancedMovieCenter.py:759
+#: EnhancedMovieCenter.py:732
 #, python-format
 msgid "Given path %s does not exist. Please change."
 msgstr "Gewähltes Verzeichnis %s existiert nicht. Bitte ändern."
 
-#: EnhancedMovieCenter.py:767 MovieSelection.py:3161
+#: EnhancedMovieCenter.py:740 MovieSelection.py:3159
 msgid "Trashcan create failed. Check mounts and permissions."
 msgstr "Papierkorb erstellen fehlgeschlagen. Mounts und Rechte prüfen."
 
@@ -2094,12 +2118,6 @@ msgstr ""
 "%s"
 
 #: MovieInfo.py:464
-#, fuzzy
-#| msgid ""
-#| "Can not write Movie Information and Cover File\n"
-#| "\n"
-#| "%s\n"
-#| "%s"
 msgid ""
 "Can not write Movie Information and Cover File\n"
 "\n"
@@ -2108,8 +2126,8 @@ msgid ""
 msgstr ""
 "Filminformationen und Cover konnten nicht gespeichert werden\n"
 "\n"
-"%s\n"
-"%s"
+"%(info)\n"
+"%(file)"
 
 #: MovieInfo.py:466
 #, python-format
@@ -2221,7 +2239,7 @@ msgstr "Artist:"
 msgid "Album:"
 msgstr "Album:"
 
-#: MovieSelection.py:599 MovieSelection.py:1810
+#: MovieSelection.py:599 MovieSelection.py:1808
 msgid "Reading directory..."
 msgstr "Lese Verzeichnis..."
 
@@ -2325,28 +2343,32 @@ msgstr "Umschalten gesehen / nicht gesehen"
 msgid "Start / end multiselection"
 msgstr "Mehrfachauswahl ein/aus"
 
-#: MovieSelection.py:1143
+#: MovieSelection.py:661 MovieSelectionMenu.py:88 plugin.py:166 plugin.py:187
+msgid "Movie home"
+msgstr "Movie Home"
+
+#: MovieSelection.py:1141
 msgid "E2 Bookmark"
 msgstr "E2-Lesezeichen"
 
-#: MovieSelection.py:1144 MovieSelectionMenu.py:170
+#: MovieSelection.py:1142 MovieSelectionMenu.py:170
 msgid "Open E2 Bookmark path"
 msgstr "E2-Lesezeichen öffnen"
 
-#: MovieSelection.py:1258
+#: MovieSelection.py:1256
 #, fuzzy
 msgid "No script operation for VLC streams."
 msgstr "No script operation for VLC streams."
 
-#: MovieSelection.py:1275
+#: MovieSelection.py:1273
 msgid "Does not contain any scripts."
 msgstr "Enthält keine scripte."
 
-#: MovieSelection.py:1280
+#: MovieSelection.py:1278
 msgid "Choose script"
 msgstr "Wähle Script"
 
-#: MovieSelection.py:1301
+#: MovieSelection.py:1299
 msgid ""
 "Cover search with all Files in Subdirectories?\n"
 "\n"
@@ -2356,59 +2378,52 @@ msgstr ""
 "\n"
 "Das kann eine Weile dauern auf grossen Laufwerken, oder Verzeichnissen!"
 
-#: MovieSelection.py:1339
+#: MovieSelection.py:1337
 msgid "No functionality set..."
 msgstr "Keine Funktion eingestellt..."
 
-#: MovieSelection.py:1431
+#: MovieSelection.py:1429
 msgid "*** Multiselection active ***"
 msgstr "*** Mehrfachauswahl aktiv ***"
 
-#: MovieSelection.py:1843
+#: MovieSelection.py:1841
 msgid "Sort Mode"
 msgstr "Sortiermodus"
 
-#: MovieSelection.py:1844
+#: MovieSelection.py:1842
 msgid "Sort Order"
 msgstr "Sortierreihenfolge"
 
-#: MovieSelection.py:1868 MovieSelection.py:1884 MovieSelection.py:1900
+#: MovieSelection.py:1866 MovieSelection.py:1882 MovieSelection.py:1898
 msgid "Hide Cover"
 msgstr "Cover aus"
 
-#: MovieSelection.py:1872 MovieSelection.py:1888 MovieSelection.py:1904
+#: MovieSelection.py:1870 MovieSelection.py:1886 MovieSelection.py:1902
 #: plugin.py:176 plugin.py:197
 msgid "Button disabled"
 msgstr "Taste deaktiviert"
 
-#: MovieSelection.py:1873 MovieSelection.py:1889 MovieSelection.py:1905
+#: MovieSelection.py:1871 MovieSelection.py:1887 MovieSelection.py:1903
 msgid "Cover disabled in EMC-Setup"
 msgstr "Cover in EMC-Setup deaktiviert"
 
-#: MovieSelection.py:2051
+#: MovieSelection.py:2049
 msgid "File not available."
 msgstr "Datei nicht vorhanden."
 
-#: MovieSelection.py:2108
+#: MovieSelection.py:2106
 msgid "File added to current Playlist."
 msgstr "Datei zur aktuellen Wiedergabeliste hinzugefügt."
 
-#: MovieSelection.py:2110
+#: MovieSelection.py:2108
 msgid "File exists in current Playlist."
 msgstr "Datei ist schon in der aktuellen Wiedergabeliste."
 
-#: MovieSelection.py:2113
+#: MovieSelection.py:2111
 msgid "Files added to current Playlist."
 msgstr "Dateien zur aktuellen Wiedergabeliste hinzugefügt."
 
-#: MovieSelection.py:2115
-#, fuzzy
-#| msgid ""
-#| "Files added to current Playlist:\n"
-#| "%s\n"
-#| "\n"
-#| "Files exists in current Playlist:\n"
-#| "%s"
+#: MovieSelection.py:2113
 msgid ""
 "Files added to current Playlist:\n"
 "%(add)\n"
@@ -2417,12 +2432,12 @@ msgid ""
 "%(exist)"
 msgstr ""
 "Dateien zur aktuellen Wiedergabeliste hinzugefügt:\n"
-"%s\n"
+"%(add)\n"
 "\n"
 "Dateien sind schon in der aktuellen Wiedergabeliste:\n"
-"%s"
+"%(exist)"
 
-#: MovieSelection.py:2117
+#: MovieSelection.py:2115
 #, python-format
 msgid ""
 "Files exists in current Playlist:\n"
@@ -2431,33 +2446,33 @@ msgstr ""
 "Dateien sind schon in der aktuellen Wiedergabeliste:\n"
 "%s"
 
-#: MovieSelection.py:2161
+#: MovieSelection.py:2159
 msgid "Last played movie/playlist not available..."
 msgstr "Letzte Wiedergabe/Playlist nicht verfügbar..."
 
-#: MovieSelection.py:2165
+#: MovieSelection.py:2163
 msgid "Play last movie starting"
 msgstr "Starte letzte Wiedergabe"
 
-#: MovieSelection.py:2184
+#: MovieSelection.py:2182
 msgid "Play All starting"
 msgstr "Starte \"Alles abspielen\""
 
-#: MovieSelection.py:2203
+#: MovieSelection.py:2201
 msgid "Shuffle All starting"
 msgstr "Starte Alles mit Zufallswiedergabe abspielen"
 
-#: MovieSelection.py:2236
+#: MovieSelection.py:2234
 msgid "Not stopping any repeating timers. Modify them with the timer editor."
 msgstr ""
 "Wiederholungstimer werden nicht gestoppt. Bitte mit dem Timer-Editor "
 "bearbeiten."
 
-#: MovieSelection.py:2244
+#: MovieSelection.py:2242
 msgid "Stop ongoing recording?\n"
 msgstr "Laufende Aufnahme beenden?\n"
 
-#: MovieSelection.py:2297
+#: MovieSelection.py:2295
 #, python-format
 msgid ""
 "Do you really want to remove your link\n"
@@ -2467,7 +2482,7 @@ msgstr ""
 "\n"
 "%s"
 
-#: MovieSelection.py:2299
+#: MovieSelection.py:2297
 #, python-format
 msgid ""
 "Do you really want to remove your directory\n"
@@ -2477,7 +2492,7 @@ msgstr ""
 "\n"
 "%s"
 
-#: MovieSelection.py:2341 MovieSelection.py:2364 MovieSelectionMenu.py:454
+#: MovieSelection.py:2339 MovieSelection.py:2362 MovieSelectionMenu.py:454
 #: MovieSelectionMenu.py:486
 #, python-format
 msgid ""
@@ -2488,26 +2503,26 @@ msgstr ""
 "\n"
 "%s"
 
-#: MovieSelection.py:2383
+#: MovieSelection.py:2381
 msgid ""
 " Deleting remotely recorded and it will display an rec-error dialog on the "
 "other DB."
 msgstr ""
 " Löschen einer entfernten Aufnahmen zeigt einen Fehler auf der anderen DB."
 
-#: MovieSelection.py:2389
+#: MovieSelection.py:2387
 msgid " permanently"
 msgstr " endgültig"
 
-#: MovieSelection.py:2408
+#: MovieSelection.py:2406
 msgid " currently played?"
 msgstr " laufende Wiedergabe?"
 
-#: MovieSelection.py:2429
+#: MovieSelection.py:2427
 msgid " all selected video files?"
 msgstr " alle ausgewählte Videodateien?"
 
-#: MovieSelection.py:2435
+#: MovieSelection.py:2433
 msgid ""
 " all selected video files? The currently playing movie is also one of the "
 "selections and its playback will be stopped."
@@ -2515,11 +2530,11 @@ msgstr ""
 " alle ausgewählte Videodateien? Der aktuelle Film ist ebenfalls in der "
 "Auswahl enthalten. Wiedergabe wird beendet."
 
-#: MovieSelection.py:2438
+#: MovieSelection.py:2436
 msgid "Delete error:\n"
 msgstr "Fehler beim Löschen:\n"
 
-#: MovieSelection.py:2470 MovieSelection.py:2514
+#: MovieSelection.py:2468 MovieSelection.py:2512
 #, python-format
 msgid ""
 "The following files are used for other entrys in List !\n"
@@ -2534,13 +2549,13 @@ msgstr ""
 "\n"
 "%s"
 
-#: MovieSelection.py:2561
+#: MovieSelection.py:2559
 msgid "This element belongs to a locked folder and cannot be deleted!"
 msgstr ""
 "Dieses Element gehört zu einem gesperrten Ordner und kann nicht gelöscht "
 "werden!"
 
-#: MovieSelection.py:2573
+#: MovieSelection.py:2571
 msgid ""
 "Delete failed because the trashcan directory does not exist. Attempt to "
 "create it now?"
@@ -2548,29 +2563,29 @@ msgstr ""
 "Löschen fehlgeschlagen da das Papierkorb-Verzeichnis nicht existert. Jetzt "
 "erstellen?"
 
-#: MovieSelection.py:2598
+#: MovieSelection.py:2596
 msgid "This folder is locked or contains a locked subfolder, unlock it first!"
 msgstr ""
 "Dieser Ordner ist gesperrt oder enthält einen gesperrten Unterordner, der "
 "zuerst entsperrt werden muss!"
 
-#: MovieSelection.py:2619
+#: MovieSelection.py:2617
 msgid "Directory is not empty! Do you really want to delete it?"
 msgstr "Verzeichnis ist nicht leer! Soll es wirklich gelöscht werden?"
 
-#: MovieSelection.py:2625
+#: MovieSelection.py:2623
 msgid "Cannot delete the parent directory."
 msgstr "Kann übergeord. Verzeichnis nicht löschen."
 
-#: MovieSelection.py:2706 MovieSelection.py:2789
+#: MovieSelection.py:2704 MovieSelection.py:2787
 msgid "Delete failed!"
 msgstr "Löschen fehlgeschlagen!"
 
-#: MovieSelection.py:2952 MovieSelection.py:2994
+#: MovieSelection.py:2950 MovieSelection.py:2992
 msgid "Move file(s):"
 msgstr "Verschiebe File(s):"
 
-#: MovieSelection.py:2981 MovieSelection.py:3004
+#: MovieSelection.py:2979 MovieSelection.py:3002
 msgid ""
 "How to move files:\n"
 "Select some movies with the VIDEO-button, move the cursor on top of the "
@@ -2580,11 +2595,11 @@ msgstr ""
 "Filme mit VIDEO-Taste markieren, mit Cursor das Zielverzeichnis wählen und "
 "gelbe Taste drücken."
 
-#: MovieSelection.py:3028 MovieSelection.py:3070
+#: MovieSelection.py:3026 MovieSelection.py:3068
 msgid "Copy file(s):"
 msgstr "Kopiere Datei(en):"
 
-#: MovieSelection.py:3057 MovieSelection.py:3080
+#: MovieSelection.py:3055 MovieSelection.py:3078
 msgid ""
 "How to copy files:\n"
 "Select some movies with the VIDEO-button, move the cursor on top of the "
@@ -2594,29 +2609,25 @@ msgstr ""
 "Filme mit VIDEO-Taste markieren, mit Cursor das Zielverzeichnis wählen und "
 "gelbe Taste drücken."
 
-#: MovieSelection.py:3097
+#: MovieSelection.py:3095
 msgid "Move Directory:"
 msgstr "Verschiebe Verzeichnis:"
 
-#: MovieSelection.py:3171 MovieSelection.py:3177
+#: MovieSelection.py:3169 MovieSelection.py:3175
 msgid "IMDb"
 msgstr "IMDb"
 
-#: MovieSelection.py:3173
+#: MovieSelection.py:3171
 msgid "TMDb"
 msgstr "TMDb"
 
-#: MovieSelection.py:3175
+#: MovieSelection.py:3173
 msgid "CSFD"
 msgstr "CSFD"
 
 #: MovieSelectionMenu.py:85
 msgid "Choose operation"
 msgstr "Funktion auswählen"
-
-#: MovieSelectionMenu.py:88 plugin.py:166 plugin.py:187
-msgid "Movie home"
-msgstr "Movie Home"
 
 #: MovieSelectionMenu.py:91
 msgid "Directory up"
@@ -3267,33 +3278,52 @@ msgstr "Monate"
 msgid "No limit"
 msgstr "Kein Limit"
 
-#: plugin.py:439
+#: plugin.py:438
 msgid "IMDb Search"
 msgstr "IMDb-Suche"
 
-#: plugin.py:439
+#: plugin.py:438
 msgid "EMC-TMDB Info"
 msgstr "EMC-TMDB Info"
 
-#: plugin.py:439
+#: plugin.py:438
 msgid "TMDB Info"
 msgstr "TMDB-Info"
 
-#: plugin.py:439
+#: plugin.py:438
 msgid "TMBD Info"
 msgstr "TMBD Info"
 
-#: plugin.py:439
+#: plugin.py:438
 msgid "CSFD Info"
 msgstr "CSFD-Info"
 
-#: plugin.py:529
+#: plugin.py:528
 msgid "configuration"
 msgstr "Konfiguration"
 
-#: plugin.py:532
+#: plugin.py:531
 msgid "movie manipulation list"
 msgstr "Film-Änderungsliste"
+
+#, fuzzy
+#~| msgid "Use original EMC-skin (needs reopen)"
+#~ msgid "Use alternative style (needs reopen)"
+#~ msgstr "Original EMC-Skin benutzen (EMC muss neu gestartet werden)"
+
+#, fuzzy
+#~| msgid "HELP_Use original EMC-skin (needs reopen)"
+#~ msgid "HELP_Alternative style (needs reopen)"
+#~ msgstr ""
+#~ "Den originalen Skin vom EMC benutzen. Dies erfordert einen Neustart vom "
+#~ "EMC"
+
+#, fuzzy
+#~ msgid "Upgrade/Download Mutagen v1.28(experimental)"
+#~ msgstr "Upgrade/Download Mutagen v1.28(experimental)"
+
+#~ msgid "HELP_Upgrade/Download Mutagen v1.28(experimental)"
+#~ msgstr "Upgrade/Download Mutagen v1.28(experimental)"
 
 #, fuzzy
 #~| msgid "Setup"
