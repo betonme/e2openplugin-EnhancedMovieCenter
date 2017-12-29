@@ -472,7 +472,7 @@ class EnhancedMovieCenterMenu(ConfigListScreenExt, Screen):
 
 			(  self.section                                       , _("SKIN-SETTINGS")                  , None                  , None                  , 0     , []          , ""                                                       , None              , None ),
 			(  _("Use original EMC-skin (needs reopen)")          , config.EMC.use_orig_skin            , None                  , None                  , 0     , []          , _("HELP_Use original EMC-skin (needs reopen)")           , None              , None ),
-			(  _("Style for original EMC-skin (needs reopen)")    , config.EMC.skinstyle                , None                  , None                  , 0     , [-1]        , _("HELP_Style for original EMC-skin (needs reopen)")     , "leftpig"         , "leftpig" ),
+			(  _("Style for original EMC-skin (needs reopen)")    , config.EMC.skinstyle                , None                  , None                  , 0     , [-1]        , _("HELP_Style for original EMC-skin (needs reopen)")     , None              , None ),
 
 			(  _("Listbox is skin able")                          , config.EMC.skin_able                , None                  , None                  , 0     , []          , _("HELP_Listbox is skin able")                           , None              , None ),
 
@@ -625,7 +625,9 @@ class EnhancedMovieCenterMenu(ConfigListScreenExt, Screen):
 		if result:
 			# Refresh is done implizit on change
 			for conf in self.EMCConfig:
-				conf[1].value = conf[1].default
+				if len(conf) > 1 and conf[0] != self.section:
+					print conf
+					conf[1].value = conf[1].default
 			self.createConfig()
 
 	def changedEntry(self, addNotifierDummy=None):
