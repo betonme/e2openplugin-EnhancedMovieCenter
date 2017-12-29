@@ -48,14 +48,6 @@ except ImportError as ie:
 else:
 	hasCutlistDownloader = True
 
-# lets see if mutagen is installed
-try:
-	from mutagen.mp3 import MP3
-except ImportError as ie:
-	hasMutagen = False
-else:
-	hasMutagen = True
-
 try:
 	from enigma import eMediaDatabase
 	isDreamOS = True
@@ -77,6 +69,33 @@ def setEPGLanguage(dummyself=None, dummy=None):
 language.addCallback(setEPGLanguage)
 DelayedFunction(5000, setEPGLanguage)
 
+# lets see if mutagen is installed
+def hasMutagen():
+	try:
+		from mutagen.mp3 import MP3
+		hasMutagen = True
+	except:
+		hasMutagen = False
+	return hasMutagen
+
+# lets see if mutagen is available
+def checkMutagen():
+	if hasMutagen():
+		return False
+	try:
+		import commands
+		if not isDreamOS:
+			result = commands.getoutput('opkg update && opkg list|grep mutagen')
+			print result
+		else:
+			result = commands.getoutput('apt-get update && apt-cache search mutagen')
+			print result
+		if "python-mutagen -" in result:
+			return True
+		else:
+			return False
+	except:
+		print "[EMC] checkMutagen Exception:", e
 
 def setupKeyResponseValues(dummyself=None, dummy=None):
 	# currently not working on DM500/DM600, wrong input dev files?
@@ -91,7 +110,6 @@ def setupKeyResponseValues(dummyself=None, dummy=None):
 	os.write(e2, s2)
 	os.close(e1)
 	os.close(e2)
-
 
 # Only one trashclean instance is allowed
 trashCleanCall = None
@@ -145,23 +163,6 @@ def EMCStartup(session):
 			emcDebugOut("+++ Going into Standby mode after auto-restart")
 			Notifications.AddNotification(Screens.Standby.Standby)
 			emcTasker.shellExecute("rm -f " + flag)
-
-# lets see if mutagen is available
-def checkMutagen():
-	if hasMutagen:
-		return False
-	try:
-		import commands
-		try:
-			result = commands.getoutput('opkg list|grep mutagen')
-		except:
-			result = commands.getoutput('apt-cache search mutagen')
-		if result.startswith('python-mutagen'):
-			return True
-		else:
-			return False
-	except Exception, e:
-		print "[EMC] checkMutagen Exception:", e
 
 # Predefined settings:
 #  Index 0: Custom should always be the first one:           User edited vlues in the config
@@ -511,64 +512,38 @@ class EnhancedMovieCenterMenu(ConfigListScreenExt, Screen):
 			(  self.section                                       , ""                                  , None                  , None                  , 0     , []          , ""                                                       , None              , None ),
 		]
 		)
-		if checkMutagen() and not hasMutagen:
+		if not hasMutagen():
 			self.EMCConfig.extend(
 		[
-			(  _("Download Mutagen-package for audio metadata")   , config.EMC.mutagen_download         , self.downloadMutagen  , None                  , 0     , []          , _("HELP_Download Mutagen-package for audio metadata")    , None              , None ),
+			(  _("Install Mutagen-package for audio metadata")    , config.EMC.mutagen_install          , self.installMutagen   , None                  , 0     , []          , _("HELP_Install Mutagen-package for audio metadata")     , None              , None ),
 		]
 		)
-		if hasMutagen:
+		if hasMutagen():
 			self.EMCConfig.extend(
 		[
-			(  _("Show audio metadata (needs skin-changes)")      , config.EMC.mutagen_show             , None                  , None                  , 0     , []          , _("HELP_Show audio metadata (needs skin-changes)")       , None              , None ),
+			(  _("Show audio metadata")                           , config.EMC.mutagen_show             , None                  , None                  , 0     , []          , _("HELP_Show audio metadata")                            , None              , None ),
 		]
 		)
 		self.EMCConfig.extend(
 		[
-			(  _("Upgrade/Download Mutagen v1.28(experimental)")  , config.EMC.mutagen_download_128     , self.getNewMutagen    , None                  , 0     , []          , _("HELP_Upgrade/Download Mutagen v1.28(experimental)")   , None              , None ),
-
-			(  self.section                                       , ""                                  , None                  , None                  , 2     , []          , ""                                                       , None              , None ),
+			(  self.section                                       , _("DEBUG")                          , None                  , None                  , 2     , []          , ""                                                       , None              , None ),
 			(  _("Enable EMC debug output")                       , config.EMC.debug                    , self.dbgChange        , None                  , 2     , []          , _("HELP_Enable EMC debug output")                        , False             , None ),
 			(  _("EMC output directory")                          , config.EMC.folder                   , self.validatePath     , self.openLocationBox  , 2     , [-1]        , _("HELP_EMC output directory")                           , None              , None ),
 			(  _("Debug output file name")                        , config.EMC.debugfile                , self.validatePath     , None                  , 2     , [-2]        , _("HELP_Debug output file name")                         , None              , None ),
 		]
 		)
 
-	def getNewMutagen(self, element):
-		if element.value == True:
-			try:
-				from twisted.web.client import downloadPage
-				tmppath = "/tmp/mutagen-1.28.tar.gz"
-				url = "https://bitbucket.org/lazka/mutagen/downloads/mutagen-1.28.tar.gz"
-				downloadPage(url, tmppath).addCallback(self.mutagenDlDone).addErrback(self.mutagenDlError)
-			except Exception, e:
-				print('[EMC] getNewMutagen exception failure: ', str(e))
-
-	def mutagenDlDone(self, data):
-		from Tools.Directories import fileExists
-		if fileExists("/tmp/mutagen-1.28.tar.gz"):
-			cmd = []
-			cmd.append( 'tar -xzf /tmp/mutagen-1.28.tar.gz mutagen-1.28/mutagen -C /tmp' )
-			cmd.append( 'rm /tmp/mutagen-1.28.tar.gz' )
-			if not os.path.exists("/usr/lib/python2.7/site-packages/mutagen"):
-				cmd.append( 'mkdir /usr/lib/python2.7/site-packages/mutagen' )
-			cmd.append( 'cp -r /tmp/mutagen-1.28/mutagen /usr/lib/python2.7/site-packages' )
-			cmd.append( 'rm -r /tmp/mutagen-1.28' )
-			emcTasker.shellExecute(cmd, None, False)
-			print "[EMC] mutagenDlDone data:", data
-
-	def mutagenDlError(self, error):
-		print "[EMC] mutagenDlError ERROR:", error
-
-	def downloadMutagen(self, element):
-		if element.value == True:
-			cmd = "opkg install python-mutagen"
-			cmd2 = "apt-get install python-mutagen"
+	def installMutagen(self, element):
+		if element.value == True and checkMutagen():
+			cmd = "opkg update && opkg install python-mutagen"
+			cmd2 = "apt-get update && apt-get install python-mutagen"
 			from Screens.Console import Console
-			try:
+			if not isDreamOS:
 				self.session.open(Console, _("Install Mutagen-package"), [cmd])
-			except:
+			else:
 				self.session.open(Console, _("Install Mutagen-package"), [cmd2])
+		else:
+			self.session.open(MessageBox, _("The python-mutagen package is not available on the feed."), MessageBox.TYPE_ERROR, 5)
 
 	def createConfig(self):
 		list = []

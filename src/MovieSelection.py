@@ -369,7 +369,6 @@ class SelectionEventInfo:
 		if service:
 			path = service.getPath()
 			jpgpath = getPosterPath(path)
-			print "EMC jpgpath", jpgpath
 
 			# lets try if audio-file selected and tags contains cover and we using mutagen for embedded covers
 			ext = os.path.splitext(service.getPath())[1].lower()
@@ -378,16 +377,17 @@ class SelectionEventInfo:
 				if isMutagen and config.EMC.mutagen_show.value and not os.path.exists(jpgpath):
 					if fileExists("/tmp/.emcAudioTag.jpg"):
 						jpgpath = "/tmp/.emcAudioTag.jpg"
+					elif fileExists("/tmp/.emcAudioTag.jpeg"):
+						jpgpath = "/tmp/.emcAudioTag.jpeg"
 					elif fileExists("/tmp/.emcAudioTag.png"):
 						jpgpath = "/tmp/.emcAudioTag.png"
 					elif fileExists("/tmp/.emcAudioTag.gif"):
 						jpgpath = "/tmp/.emcAudioTag.gif"
 
-			#if path.endswith("/.."):
-				#jpgpath = "/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/cover_tr.png"
-
 			if config.EMC.movie_cover_fallback.value and not os.path.exists(jpgpath):
 				jpgpath = getNoPosterPath()
+
+			print "EMC jpgpath", jpgpath
 
 			#TODO avoid os.path.exists double check
 			if jpgpath and os.path.exists(jpgpath):

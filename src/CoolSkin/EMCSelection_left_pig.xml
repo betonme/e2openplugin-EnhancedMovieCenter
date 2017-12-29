@@ -41,15 +41,15 @@
     <widget font="Regular;18" position="10,330" render="Label" size="360,275" source="Service">
         <convert type="EMCEventName">ExtendedDescription</convert>
     </widget>
-    <widget name="name" font="Regular;20" halign="center" valign="center" foregroundColor="yellow" position="140,70" size="230,160" backgroundColor="background" transparent="1"/>
-    <widget name="date" position="10,300" size="360,25" font="Regular;20" backgroundColor="background" transparent="1"/>
-    <widget name="size" position="10,330" size="360,25" font="Regular;20" backgroundColor="background" transparent="1"/>
-    <widget name="artistAT" foregroundColor="yellow" position="10,450" size="100,25" font="Regular;20" backgroundColor="background" transparent="1"/>
+    <widget name="date" position="10,270" size="360,25" font="Regular;20" backgroundColor="background" transparent="1"/>
+    <widget name="size" position="10,300" size="360,25" font="Regular;20" backgroundColor="background" transparent="1"/>
+    <widget name="name" position="10,390" size="360,50" font="Regular;20" foregroundColor="yellow" backgroundColor="background" transparent="1"/>
+    <widget name="artistAT" position="10,450" size="100,25" font="Regular;20" backgroundColor="background" transparent="1"/>
     <widget name="artistATtxt" position="110,450" size="260,25" font="Regular;20" backgroundColor="background" transparent="1"/>
-    <widget name="albumAT" foregroundColor="yellow" position="10,480" size="100,25" font="Regular;20" backgroundColor="background" transparent="1"/>
+    <widget name="albumAT" position="10,480" size="100,25" font="Regular;20" backgroundColor="background" transparent="1"/>
     <widget name="albumATtxt" position="110,480" size="260,50" font="Regular;20" backgroundColor="background" transparent="1"/>
-    <widget name="genreAT" foregroundColor="yellow" position="10,530" size="100,25" font="Regular;20" backgroundColor="background" transparent="1"/>
+    <widget name="genreAT" position="10,530" size="100,25" font="Regular;20" backgroundColor="background" transparent="1"/>
     <widget name="genreATtxt" position="110,530" size="260,25" font="Regular;20" backgroundColor="background" transparent="1"/>
-    <widget name="runtimeAT" foregroundColor="yellow" position="10,560" size="100,25" font="Regular;20" backgroundColor="background" transparent="1"/>
+    <widget name="runtimeAT" position="10,560" size="100,25" font="Regular;20" backgroundColor="background" transparent="1"/>
     <widget name="runtimeATtxt" position="110,560" size="260,25" font="Regular;20" backgroundColor="background" transparent="1"/>
 </screen>

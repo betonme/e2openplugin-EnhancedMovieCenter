@@ -40,6 +40,8 @@ def getAudioMetaData(service, ext):
 	audio = None
 	if fileExists("/tmp/.emcAudioTag.jpg"):
 		os.remove("/tmp/.emcAudioTag.jpg")
+	elif fileExists("/tmp/.emcAudioTag.jpeg"):
+		os.remove("/tmp/.emcAudioTag.jpeg")
 	elif fileExists("/tmp/.emcAudioTag.png"):
 		os.remove("/tmp/.emcAudioTag.png")
 	elif fileExists("/tmp/.emcAudioTag.gif"):
