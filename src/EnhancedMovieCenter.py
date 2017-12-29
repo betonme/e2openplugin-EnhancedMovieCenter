@@ -406,10 +406,7 @@ class EnhancedMovieCenterMenu(ConfigListScreenExt, Screen):
 			(  _("Resolve links and show real path")              , config.EMC.movie_real_path          , None                  , None                  , 0     , []          , _("HELP_Resolve links and show real path")               , False             , True ),
 			(  _("Show Path if no extended description available"), config.EMC.show_path_extdescr       , None                  , None                  , 0     , []          , _("HELP_Show Path if no extended description available") , False             , True ),
 		]
-		if not isDreamOS:
-			self.EMCConfig.append(
-			(  _("Method of hiding mini TV")                      , config.EMC.hide_miniTV_method       , None                  , None                  , 0     , []          , _("HELP_hide_miniTV_method")                             , "stopService"     , "stopService" ),
-		)
+
 		self.EMCConfig.extend(
 		[
 			(  self.section                                       , ""                                  , None                  , None                  , 0     , []          , ""                                                       , None              , None ),
@@ -505,6 +502,7 @@ class EnhancedMovieCenterMenu(ConfigListScreenExt, Screen):
 			(  _("Movie preview delay in ms")                     , config.EMC.movie_preview_delay      , None                  , None                  , 0     , [-1]        , _("HELP_Movie preview delay in ms")                      , 3000              , None ),
 			(  _("Start movie preview before last position")      , config.EMC.movie_preview_offset     , None                  , None                  , 0     , [-2]        , _("HELP_Movie preview offset in seconds")                , None              , None ),
 			(  _("Hide mini TV")                                  , config.EMC.hide_miniTV              , None                  , None                  , 0     , []          , _("HELP_hide_miniTV")                                    , "never"           , "never" ),
+			(  _("Method of hiding mini TV")                      , config.EMC.hide_miniTV_method       , None                  , None                  , 0     , []          , _("HELP_hide_miniTV_method")                             , "stopService"     , "stopService" ),
 
 			(  self.section                                       , _("AUDIO METADATA")                 , None                  , None                  , 0     , []          , ""                                                       , None              , None ),
 		]

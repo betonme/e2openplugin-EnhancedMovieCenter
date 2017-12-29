@@ -17,10 +17,10 @@
         </widget>
         <widget font="Regular;34" halign="center" name="wait" position="600,90" size="1200,810" valign="center" />
         <widget CoolCSPos="860" CoolBarHPos="14" CoolBarPos="770" CoolBarSizeSa="120,21" CoolDateColor="1" CoolDateFont="Regular;28" CoolDateHPos="7" CoolDatePos="920" CoolDateWidth="240" CoolDirInfoWidth="300" CoolFolderSize="800" CoolFont="Regular;30" CoolHighlightColor="1" CoolIconPos="5" CoolIconSize="50,40" CoolMovieHPos="6" CoolMoviePiconPos="140" CoolMoviePiconSize="600" CoolMoviePos="65" CoolMovieSize="700" CoolPiconHPos="5" CoolPiconHeight="35" CoolPiconPos="40" CoolProgressPos="840" CoolSelNumTxtWidth="50" CoolSelectFont="Regular;30" CoolTitleColor="1" DefaultColor="foreground" FinishedColor="#38FF48" RecordingColor="red" UnwatchedColor="foreground" FrontColorSel="#bababa" WatchingColor="yellow" itemHeight="45" enableWrapAround="1" name="list" position="600,100" scrollbarMode="showOnDemand" size="1190,810" />
-        <widget name="Cover" position="210,100" size="152,220" alphatest="blend" zPosition="4"/>
+        <widget name="Cover" position="210,100" size="220,220" alphatest="blend" zPosition="5"/>
         <eLabel backgroundColor="#ff000000" position="55,90" size="468,240" zPosition="2" />
         <widget backgroundColor="#ff000000" position="70,100" render="Pig" size="438,220" source="session.VideoPicture" zPosition="1" />
-        <widget name="CoverBg" position="50,90" size="490,240" zPosition="3" alphatest="off" transparent="0" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/cover_bg.png" />
+        <widget name="CoverBgLbl" backgroundColor="background" position="50,90" size="490,240" zPosition="4"/>
         <widget font="Regular;30" position="10,345" render="Label" size="180,35" source="Service">
             <convert type="EMCServiceTime">StartTime</convert>
             <convert type="EMCClockToText">Format:%a. %d %b</convert>

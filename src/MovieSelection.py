@@ -219,6 +219,8 @@ class SelectionEventInfo:
 		self["Cover"] = Pixmap()
 		self["CoverBg"] = Pixmap()
 		self["CoverBg"].hide()
+		self["CoverBgLbl"] = Label()
+		self["CoverBgLbl"].hide()
 		# audio-tags (python-mutagen is needed)
 		self["name"] = Label("")		# title
 		self["artistAT"] = Label("")		# artist-label
@@ -244,6 +246,7 @@ class SelectionEventInfo:
 			#print "EMC: InitPig"
 			self["Cover"].hide()
 			self["CoverBg"].hide()
+			self["CoverBgLbl"].hide()
 			self["Video"].show()
 			self.miniTV_resume(True)
 		else:
@@ -253,11 +256,13 @@ class SelectionEventInfo:
 				self["Cover"].instance.setPixmap(gPixmapPtr())
 				self["Cover"].hide()
 				self["CoverBg"].hide()
+				self["CoverBgLbl"].hide()
 			if config.EMC.movie_preview.value:
 				#print "EMC: InitPig P"
+				self["Video"].hide()
 				self["Cover"].hide()
 				self["CoverBg"].hide()
-				self["Video"].hide()
+				self["CoverBgLbl"].hide()
 
 	def isMuted(self):
 		if self.volctrl is not None:
@@ -294,6 +299,8 @@ class SelectionEventInfo:
 					self.preMute_muteState = self.isMuted()
 					self.volumeMute()
 		else:
+			self.session.nav.stopService()
+			self.session.nav.playService(self.lastservice) #we repeat this to make framebuffer black
 			self.session.nav.stopService()
 
 	def miniTV_unmute(self):
@@ -391,43 +398,40 @@ class SelectionEventInfo:
 
 			#TODO avoid os.path.exists double check
 			if jpgpath and os.path.exists(jpgpath):
+				self["Cover"].instance.setPixmap(gPixmapPtr())
 				sc = AVSwitch().getFramebufferScale()
 				size = self["Cover"].instance.size()
 				self.picload = ePicLoad()
-				try:
-					self.picload_conn = self.picload.PictureData.connect(self.showCoverCallback)
-				except:
-					self.picload.PictureData.get().append(self.showCoverCallback)
-				if self.picload:
-					self.picload.setPara((size.width(), size.height(), sc[0], sc[1], False, 1, config.EMC.movie_cover_background.value))
-					if self.picload.startDecode(jpgpath) != 0:
-						del self.picload
+				self.picload.setPara((size.width(), size.height(), sc[0], sc[1], False, 1, config.EMC.movie_cover_background.value))
+				if isDreamOS:
+					if self.picload.startDecode(jpgpath, False) == 0:
+						ptr = self.picload.getData()
+						if ptr != None:
+							self['Cover'].instance.setPixmap(ptr)
+							if config.EMC.movie_cover.value:
+								if self.cover:
+									self["Cover"].show()
+									self["CoverBg"].show()
+									self["CoverBgLbl"].show()
+									self.miniTV_off()
+				else:
+					if self.picload.startDecode(jpgpath, 0, 0, False) == 0:
+						ptr = self.picload.getData()
+						if ptr != None:
+							self['Cover'].instance.setPixmap(ptr)
+							if config.EMC.movie_cover.value:
+								if self.cover:
+									self["Cover"].show()
+									self["CoverBg"].show()
+									self["CoverBgLbl"].show()
+									self.miniTV_off()
 			else:
 				self["Cover"].hide()
 				self["CoverBg"].hide()
+				self["CoverBgLbl"].hide()
+				self.miniTV_resume(False)
 		else:
 			self["Cover"].hide()
-#			self["CoverBg"].hide()				#Hide VideoPicture when scrolling movielist
-
-	def showCoverCallback_org(self, picInfo=None):
-		if self.picload and picInfo:
-			ptr = self.picload.getData()
-			if ptr != None:
-				self["Cover"].instance.setPixmap(ptr)
-				self["Cover"].show()
-				self["CoverBg"].show()
-			del self.picload
-
-	def showCoverCallback(self, picInfo=None):
-		if self.picload and picInfo:
-			ptr = self.picload.getData()
-			if ptr != None:
-				self["Cover"].instance.setPixmap(ptr)
-				if config.EMC.movie_cover.value:
-					if self.cover:
-						self["Cover"].show()
-						self["CoverBg"].show()
-			del self.picload
 
 	# Movie preview
 	def showPreview(self, service=None):
@@ -489,6 +493,7 @@ class SelectionEventInfo:
 				if self.cover:
 					self["Cover"].hide()
 					self["CoverBg"].hide()
+					self["CoverBgLbl"].hide()
 					self.toggleCover()
 				self.hide_miniTV = self.hide_miniTV_next
 			else:
@@ -1482,10 +1487,13 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 				self.cover = False
 				self["Cover"].hide()
 				self["CoverBg"].hide()
+				self["CoverBgLbl"].hide()
 			else:
 				self.cover = True
 				self["Cover"].show()
 				self["CoverBg"].show()
+				self["CoverBgLbl"].show()
+				self.miniTV_off()
 		self.initButtons()
 
 	def toggleSortMode(self):
