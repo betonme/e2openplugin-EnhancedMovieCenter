@@ -328,14 +328,13 @@ class SelectionEventInfo:
 		isExtHDDSleeping = config.EMC.limit_fileops_noscan.value and service and mountPoints.isExtHDDSleeping(service.getPath(),self["list"])
 		if not isExtHDDSleeping:
 			self["Service"].newService(service)
-			if service:
-				ext = os.path.splitext(service.getPath())[1].lower()
-				exts = [".mp3", ".flac", ".m4a", ".aac", ".ogg"]
-				if ext.lower() in exts:
-					if isMutagen and config.EMC.mutagen_show.value:
+			if isMutagen and config.EMC.mutagen_show.value:
+				if service:
+					ext = os.path.splitext(service.getPath())[1].lower()
+					exts = [".mp3", ".flac", ".m4a", ".mp4", ".aac", ".ogg"]
+					if ext.lower() in exts:
 						self.updateEventInfoAudio(service, ext)
-				else:
-					if isMutagen and config.EMC.mutagen_show.value:
+					else:
 						self.hideAudioLabels()
 
 	def updateEventInfoAudio(self, service, ext):
