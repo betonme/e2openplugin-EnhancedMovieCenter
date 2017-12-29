@@ -502,23 +502,37 @@ class EnhancedMovieCenterMenu(ConfigListScreenExt, Screen):
 			(  _("Movie preview delay in ms")                     , config.EMC.movie_preview_delay      , None                  , None                  , 0     , [-1]        , _("HELP_Movie preview delay in ms")                      , 3000              , None ),
 			(  _("Start movie preview before last position")      , config.EMC.movie_preview_offset     , None                  , None                  , 0     , [-2]        , _("HELP_Movie preview offset in seconds")                , None              , None ),
 			(  _("Hide mini TV")                                  , config.EMC.hide_miniTV              , None                  , None                  , 0     , []          , _("HELP_hide_miniTV")                                    , "never"           , "never" ),
-			(  _("Method of hiding mini TV")                      , config.EMC.hide_miniTV_method       , None                  , None                  , 0     , []          , _("HELP_hide_miniTV_method")                             , "stopService"     , "stopService" ),
+			(  _("Hide mini TV if Cover is shown")                , config.EMC.hide_miniTV_cover        , None                  , None                  , 0     , []          , _("HELP_hide_miniTV cover")                              , None              , None ),
+		]
+		)
 
+		if not isDreamOS:
+			self.EMCConfig.extend(
+		[
+			(  _("Method of hiding mini TV")                      , config.EMC.hide_miniTV_method       , None                  , None                  , 0     , []          , _("HELP_hide_miniTV_method")                             , "stopService"     , "stopService" ),
+		]
+		)
+
+		self.EMCConfig.extend(
+		[
 			(  self.section                                       , _("AUDIO METADATA")                 , None                  , None                  , 0     , []          , ""                                                       , None              , None ),
 		]
 		)
+
 		if not hasMutagen():
 			self.EMCConfig.extend(
 		[
 			(  _("Install Mutagen-package for audio metadata")    , config.EMC.mutagen_install          , self.installMutagen   , None                  , 0     , []          , _("HELP_Install Mutagen-package for audio metadata")     , None              , None ),
 		]
 		)
+
 		if hasMutagen():
 			self.EMCConfig.extend(
 		[
 			(  _("Show audio metadata")                           , config.EMC.mutagen_show             , None                  , None                  , 0     , []          , _("HELP_Show audio metadata")                            , None              , None ),
 		]
 		)
+
 		self.EMCConfig.extend(
 		[
 			(  self.section                                       , _("DEBUG")                          , None                  , None                  , 2     , []          , ""                                                       , None              , None ),

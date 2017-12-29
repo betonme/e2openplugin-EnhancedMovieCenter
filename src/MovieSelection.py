@@ -77,10 +77,10 @@ from EMCPlayList import emcplaylist, EMCPlaylistScreen, EMCPlaylistSetup
 #from MetaSupport import MetaList
 from MetaSupport import getInfoFile
 
-from MovieCenter import extList, extVideo, extMedia, extDir, plyAll, plyDVD, cmtBME2, cmtBMEMC, cmtDir, plyDVB, extPlaylist
+from MovieCenter import extList, extVideo, extMedia, extDir, plyAll, plyDVD, cmtBME2, cmtBMEMC, cmtDir, plyDVB, extPlaylist, extAudio
 from MovieCenter import getMovieNameWithoutExt, getMovieNameWithoutPhrases, getNoPosterPath, getPosterPath
 
-global extList, extVideo, extMedia, extDir, plyAll, plyDVD, cmtBME2, cmtBMEMC, cmtDir, plyDVB, extPlaylist
+global extList, extVideo, extMedia, extDir, plyAll, plyDVD, cmtBME2, cmtBMEMC, cmtDir, plyDVB, extPlaylist, extAudio
 
 # we try to get mutagen if is installed
 isMutagen = False
@@ -300,8 +300,9 @@ class SelectionEventInfo:
 					self.volumeMute()
 		else:
 			self.session.nav.stopService()
-			self.session.nav.playService(self.lastservice) #we repeat this to make framebuffer black
-			self.session.nav.stopService()
+			if config.EMC.hide_miniTV_cover.value and not config.EMC.movie_preview.value:
+				self.session.nav.playService(self.lastservice) #we repeat this to make framebuffer black
+				self.session.nav.stopService()
 
 	def miniTV_unmute(self):
 		if self.preMute_muteState is not None:
@@ -327,13 +328,14 @@ class SelectionEventInfo:
 		isExtHDDSleeping = config.EMC.limit_fileops_noscan.value and service and mountPoints.isExtHDDSleeping(service.getPath(),self["list"])
 		if not isExtHDDSleeping:
 			self["Service"].newService(service)
-			if isMutagen and config.EMC.mutagen_show.value:
-				if service:
-					ext = os.path.splitext(service.getPath())[1].lower()
-					exts = [".mp3", ".flac", ".m4a", ".mp4", ".aac", ".ogg"]
-					if ext.lower() in exts:
+			if service:
+				ext = os.path.splitext(service.getPath())[1].lower()
+				exts = [".mp3", ".flac", ".m4a", ".aac", ".ogg"]
+				if ext.lower() in exts:
+					if isMutagen and config.EMC.mutagen_show.value:
 						self.updateEventInfoAudio(service, ext)
-					else:
+				else:
+					if isMutagen and config.EMC.mutagen_show.value:
 						self.hideAudioLabels()
 
 	def updateEventInfoAudio(self, service, ext):
@@ -413,7 +415,8 @@ class SelectionEventInfo:
 									self["Cover"].show()
 									self["CoverBg"].show()
 									self["CoverBgLbl"].show()
-									self.miniTV_off()
+									if config.EMC.hide_miniTV_cover.value and not config.EMC.movie_preview.value:
+										self.miniTV_off()
 				else:
 					if self.picload.startDecode(jpgpath, 0, 0, False) == 0:
 						ptr = self.picload.getData()
@@ -424,12 +427,14 @@ class SelectionEventInfo:
 									self["Cover"].show()
 									self["CoverBg"].show()
 									self["CoverBgLbl"].show()
-									self.miniTV_off()
+									if config.EMC.hide_miniTV_cover.value and not config.EMC.movie_preview.value:
+										self.miniTV_off()
 			else:
 				self["Cover"].hide()
 				self["CoverBg"].hide()
 				self["CoverBgLbl"].hide()
-				self.miniTV_resume(False)
+				if config.EMC.hide_miniTV_cover.value and not config.EMC.movie_preview.value:
+					self.miniTV_resume(False)
 		else:
 			self["Cover"].hide()
 
@@ -440,7 +445,7 @@ class SelectionEventInfo:
 		if service:
 			# TODO can we reuse the EMCMediaCenter for the video preview
 			ext = os.path.splitext(service.getPath())[1].lower()
-			if ext in plyAll:
+			if (ext in plyAll) and (ext not in extAudio):
 				#self.session.nav.stopService()
 				#cue.setCutListEnable(2) #not tested
 
@@ -1488,12 +1493,12 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 				self["Cover"].hide()
 				self["CoverBg"].hide()
 				self["CoverBgLbl"].hide()
+				if config.EMC.hide_miniTV_cover.value and not config.EMC.movie_preview.value:
+					self.miniTV_resume(False)
 			else:
 				self.cover = True
 				self["Cover"].show()
 				self["CoverBg"].show()
-				self["CoverBgLbl"].show()
-				self.miniTV_off()
 		self.initButtons()
 
 	def toggleSortMode(self):
@@ -1738,7 +1743,6 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 							if config.EMC.hide_miniTV.value in ("liveTVorTS", "liveTV"):
 								self.hide_miniTV = True
 								self.hide_miniTV_next = True
-
 
 		if self.hide_miniTV:
 			self.miniTV_off()

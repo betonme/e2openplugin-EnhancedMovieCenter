@@ -15,21 +15,21 @@
         <widget font="Regular;34" halign="right" position="1240,25" render="Label" size="400,40" source="global.CurrentTime" >
             <convert type="ClockToText">Date</convert>
         </widget>
-        <widget font="Regular;34" halign="center" name="wait" position="600,90" size="1200,810" valign="center" />
+        <widget font="Regular;34" halign="center" name="wait" position="600,100" zPosition="1" size="1190,810" valign="center" />
         <widget CoolCSPos="860" CoolBarHPos="14" CoolBarPos="770" CoolBarSizeSa="120,21" CoolDateColor="1" CoolDateFont="Regular;28" CoolDateHPos="7" CoolDatePos="920" CoolDateWidth="240" CoolDirInfoWidth="300" CoolFolderSize="800" CoolFont="Regular;30" CoolHighlightColor="1" CoolIconPos="5" CoolIconSize="50,40" CoolMovieHPos="6" CoolMoviePiconPos="140" CoolMoviePiconSize="600" CoolMoviePos="65" CoolMovieSize="700" CoolPiconHPos="5" CoolPiconHeight="35" CoolPiconPos="40" CoolProgressPos="840" CoolSelNumTxtWidth="50" CoolSelectFont="Regular;30" CoolTitleColor="1" DefaultColor="foreground" FinishedColor="#38FF48" RecordingColor="red" UnwatchedColor="foreground" FrontColorSel="#bababa" WatchingColor="yellow" itemHeight="45" enableWrapAround="1" name="list" position="600,100" scrollbarMode="showOnDemand" size="1190,810" />
-        <widget name="Cover" position="10,90" size="185,278" alphatest="blend"/>
-        <widget font="Regular;30" halign="center" position="220,120" render="Label" size="340,35" source="Service">
+        <widget name="Cover" position="10,90" size="278,278" alphatest="blend"/>
+        <widget font="Regular;30" halign="center" position="270,110" render="Label" size="290,35" source="Service">
             <convert type="EMCServiceTime">StartTime</convert>
-            <convert type="EMCClockToText">Format:%a. %d %B, %Y</convert>
+            <convert type="EMCClockToText">Format:%a. %d %b, %y</convert>
         </widget>
-        <widget font="Regular;30" halign="center" position="220,160" render="Label" size="340,35" source="Service">
+        <widget font="Regular;30" halign="center" position="270,160" render="Label" size="290,35" source="Service">
             <convert type="EMCMovieInfo">FileSize</convert>
         </widget>
-        <widget font="Regular;30" halign="center" position="220,200" render="Label" size="340,35" source="Service">
+        <widget font="Regular;30" halign="center" position="270,210" render="Label" size="290,35" source="Service">
             <convert type="EMCServiceTime">Duration</convert>
 	     	<convert type="EMCClockToText">Format:%Hh:%Mmin</convert>
         </widget>
-        <widget font="Regular;32" position="220,250" halign="center" valign="center" render="Label" size="340,80" source="Service">
+        <widget font="Regular;32" position="270,260" halign="center" valign="center" render="Label" size="290,115" source="Service">
             <convert type="EMCMovieInfo">RecordServiceName</convert>
         </widget>
         <widget font="Regular;32" foregroundColor="yellow" position="10,385" render="Label" size="560,40" source="Service">
@@ -38,15 +38,15 @@
         <widget font="Regular;30" position="10,430" render="Label" size="560,490" source="Service">
             <convert type="EMCEventName">ExtendedDescription</convert>
         </widget>
-    	<widget name="name" position="220,100" size="340,260" font="Regular;32" halign="center" valign="center" backgroundColor="background" transparent="1"/>
-    	<widget name="date" position="10,390" size="560,40" font="Regular;32" foregroundColor="yellow" backgroundColor="background" transparent="1"/>
-    	<widget name="size" position="10,430" size="560,40" font="Regular;32" foregroundColor="yellow" backgroundColor="background" transparent="1"/>
-    	<widget name="artistAT" position="10,700" size="160,40" font="Regular;30" backgroundColor="background" transparent="1"/>
-    	<widget name="artistATtxt" position="180,700" size="400,40" font="Regular;30" backgroundColor="background" transparent="1"/>
-    	<widget name="albumAT" position="10,750" size="160,40" font="Regular;30" backgroundColor="background" transparent="1"/>
-    	<widget name="albumATtxt" position="180,750" size="400,40" font="Regular;30" backgroundColor="background" transparent="1"/>
-    	<widget name="genreAT" position="10,800" size="160,40" font="Regular;30" backgroundColor="background" transparent="1"/>
-     	<widget name="genreATtxt" position="180,800" size="400,40" font="Regular;30" backgroundColor="background" transparent="1"/>
-    	<widget name="runtimeAT" position="10,850" size="160,40" font="Regular;30" backgroundColor="background" transparent="1"/>
-    	<widget name="runtimeATtxt" position="180,850" size="400,40" font="Regular;30" backgroundColor="background" transparent="1"/>
+    	<widget name="name" position="10,390" size="560,260" font="Regular;32" foregroundColor="yellow" backgroundColor="background" transparent="1"/>
+    	<widget name="artistAT" position="10,650" size="160,40" font="Regular;30" backgroundColor="background" transparent="1"/>
+    	<widget name="artistATtxt" position="170,650" size="400,40" font="Regular;30" backgroundColor="background" transparent="1"/>
+    	<widget name="albumAT" position="10,700" size="160,40" font="Regular;30" backgroundColor="background" transparent="1"/>
+    	<widget name="albumATtxt" position="170,700" size="400,40" font="Regular;30" backgroundColor="background" transparent="1"/>
+    	<widget name="genreAT" position="10,750" size="160,40" font="Regular;30" backgroundColor="background" transparent="1"/>
+     	<widget name="genreATtxt" position="170,750" size="400,40" font="Regular;30" backgroundColor="background" transparent="1"/>
+    	<widget name="runtimeAT" position="10,800" size="160,40" font="Regular;30" backgroundColor="background" transparent="1"/>
+    	<widget name="runtimeATtxt" position="170,800" size="400,40" font="Regular;30" backgroundColor="background" transparent="1"/>
+    	<widget name="date" position="10,890" size="380,35" font="Regular;30" backgroundColor="background" transparent="1"/>
+    	<widget name="size" position="410,890" halign="right" size="160,35" font="Regular;30" backgroundColor="background" transparent="1"/>
     </screen>
