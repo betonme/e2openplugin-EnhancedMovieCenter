@@ -617,7 +617,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		self["key_green"] = Button()
 		self["key_yellow"] = Button()
 		self["key_blue"] = Button()
-		self["spaceused"] = StaticText("")
+		self["spacefree"] = StaticText("")
 
 		if config.EMC.movie_cover.value:
 			self.cover = True
@@ -1455,7 +1455,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			except OSError:
 				title += "(? GB) "
 
-		StaticText.setText(self["spaceused"], title.strip())
+		StaticText.setText(self["spacefree"], title.strip())
 
 		# Display the current path
 		path = self.currentPath
@@ -1486,7 +1486,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		if perm == True:
 			title += " <P>"
 
-		title = "EMC "+EMCVersion+" " + title
+		title = "EMC "+EMCVersion+" - " + title
 		self.setTitle(title)
 
 	def toggleCover(self):

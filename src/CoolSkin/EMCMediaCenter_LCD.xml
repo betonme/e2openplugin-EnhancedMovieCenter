@@ -5,7 +5,7 @@
 			<convert type="ServiceName">Name</convert>
 		</widget>
 		<eLabel backgroundColor="white" position="0,34" size="132,1" />
-		<widget font="Display;13" halign="center" position="1,35" render="Label" size="130,13" source="parent.spaceused"/>
+		<widget font="Display;13" halign="center" position="1,35" render="Label" size="130,13" source="parent.spacefree"/>
 		<eLabel backgroundColor="white" position="0,48" size="132,1" />
 		<widget font="Display;14" position="1,49" render="Label" size="65,16" source="parent.Service">
 			<convert type="MovieInfo">FileSize</convert>
@@ -38,7 +38,7 @@
 		<widget font="Display;15" halign="center" valign="center" position="1,0" render="Label" size="94,34" source="parent.Service">
 			<convert type="ServiceName">Name</convert>
 		</widget>
-		<widget font="Display;14" halign="center" valign="center" position="1,35" render="Label" size="94,28" source="parent.spaceused"/>
+		<widget font="Display;14" halign="center" valign="center" position="1,35" render="Label" size="94,28" source="parent.spacefree"/>
 	</screen>
 	<screen name="EMCMoviePlayerSummary" position="0,0" size="96,64" id="2">
 		<!-- Movie name -->
@@ -77,7 +77,7 @@
 		<widget font="Display;45" foregroundColor="#faff00" halign="center" position="10,10" render="Label" size="380,94" source="parent.Service" valign="center" >
 			<convert type="ServiceName">Name</convert>
 		</widget>
-		<widget font="Display;40" halign="center" position="10,117" render="Label" size="380,42" source="parent.spaceused"/>
+		<widget font="Display;40" halign="center" position="10,117" render="Label" size="380,42" source="parent.spacefree"/>
 		<eLabel backgroundColor="white" position="10,168" size="380,2" />
 		<widget font="Display;47" position="10,184" render="Label" size="210,50" source="parent.Service">
 			<convert type="MovieInfo">FileSize</convert>
