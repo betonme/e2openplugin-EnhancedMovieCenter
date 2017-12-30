@@ -323,8 +323,8 @@ class EnhancedMovieCenterMenu(ConfigListScreenExt, Screen):
 		#          _                                                  ,                                     ,                       ,                       ,   1: intermediate+
 		#          _                                                  ,                                     ,                       ,                       ,   2: expert+
 		#          _                                                  ,                                     ,                       ,                       ,       , depends on relative parent entries
-		#          _                                                  ,                                     ,                       ,                       ,       ,   parent config value must be true
-		#          _                                                  ,                                     ,                       ,                       ,       ,   a selection value "" is False
+		#          _                                                  ,                                     ,                       ,                       ,       ,   parent config value < 0 = true
+		#          _                                                  ,                                     ,                       ,                       ,       ,   parent config value > 0 = false
 		#          _                                                  ,                                     ,                       ,                       ,       ,             , _context sensitive help text
 		#          _                                                  ,                                     ,                       ,                       ,       ,             ,                                                          , performance value
 		#          _                                                  ,                                     ,                       ,                       ,       ,             ,                                                          ,                   , information value
@@ -490,8 +490,7 @@ class EnhancedMovieCenterMenu(ConfigListScreenExt, Screen):
 			(  _("Show link arrow")                               , config.EMC.link_icons               , None                  , None                  , 0     , [-1]        , _("HELP_Show link arrow")                                , False             , True ),
 
 			(  _("Show movie picons")                             , config.EMC.movie_picons             , None                  , None                  , 0     , []          , _("HELP_Show movie picons")                              , None              , None ),
-			# TODO: this entry only for "List is not skin able"
-			(  _("Position movie picons")                         , config.EMC.movie_picons_pos         , None                  , None                  , 0     , [-1]        , _("HELP_Position movie picons")                          , None              , None ),
+			(  _("Position movie picons")                         , config.EMC.movie_picons_pos         , None                  , None                  , 0     , [7,-1]        , _("HELP_Position movie picons")                          , None              , None ),
 			(  _("Own Path to movie picons")                      , config.EMC.movie_picons_path_own    , None                  , None                  , 0     , [-2]        , _("HELP_Own Path to movie picons")                       , None              , None ),
 			(  _("Path to movie picons")                          , config.EMC.movie_picons_path        , None                  , self.openLocationBox  , 0     , [-3,-1]     , _("HELP_Path to movie picons")                           , None              , None ),
 
@@ -576,8 +575,12 @@ class EnhancedMovieCenterMenu(ConfigListScreenExt, Screen):
 			if config.usage.setup_level.index >= conf[4]:
 				# Parent entries must be true
 				for parent in conf[5]:
-					if not self.EMCConfig[i+parent][1].value:
-						break
+					if parent < 0:
+						if not self.EMCConfig[i+parent][1].value:
+							break
+					elif parent > 0:
+						if self.EMCConfig[i-parent][1].value:
+							break
 				else:
 					# Loop fell through without a break
 					if conf[0] == self.section:
