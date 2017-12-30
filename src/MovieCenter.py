@@ -2461,7 +2461,7 @@ class MovieCenter(GUIComponent):
 
 				elif ext == cmtTrash:
 					if config.EMC.movie_trashcan_enable.value:
-						(count, size, datetext, datepic, dummy_pixmap) = self.getValues_startWorker(path,config.EMC.movie_trashcan_info.value,datetext,datepic,pixmap,isLink,True)
+						(count, size, datetext, datepic, dummy_pixmap) = self.getValues_startWorker(path,config.EMC.movie_trashcan_info.value,datetext,datepic,pixmap,isLink,True,title)
 						if count:
 							# Trashcan contains garbage
 							pixmap = self.pic_trashcan_full
@@ -2483,7 +2483,7 @@ class MovieCenter(GUIComponent):
 					if config.EMC.directories_ontop.value and title not in self.topdirlist:
 						pixmap = self.pic_col_dir
 
-					(count, size, datetext, datepic, pixmap) = self.getValues_startWorker(path,config.EMC.directories_info.value,datetext,datepic,pixmap,isLink,False)
+					(count, size, datetext, datepic, pixmap) = self.getValues_startWorker(path,config.EMC.directories_info.value,datetext,datepic,pixmap,isLink,False,title)
 
 				else:
 					# Should never happen
@@ -2583,7 +2583,7 @@ class MovieCenter(GUIComponent):
 		except Exception, e:
 			emcDebugOut("[EMCMS] build exception:\n" + str(e))
 
-	def getValues_startWorker(self,path,config_EMC_info_value,datetext,datepic,pixmap,isLink,is_trashcan):
+	def getValues_startWorker(self,path,config_EMC_info_value,datetext,datepic,pixmap,isLink,is_trashcan,title):
 		count, size = 0, 0
 		self.CoolCSWidth = 110
 		getValues = movieFileCache.getCountSizeFromCache(path)
