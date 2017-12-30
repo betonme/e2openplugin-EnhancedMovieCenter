@@ -209,7 +209,7 @@ class EitList():
 	def __readEitFile(self):
 		data = ""
 		path = self.eit_file
-		
+
 		#lang = language.getLanguage()[:2]
 		lang = (language_iso639_2to3( config.EMC.epglang.value.lower()[:2] )).upper()
 
@@ -378,12 +378,13 @@ class EitList():
 						try:
 							name_event_descriptor.decode('utf-8')
 						except UnicodeDecodeError:
-							try:
-								name_event_descriptor = name_event_descriptor.decode("cp1252").encode("utf-8")
-							except UnicodeDecodeError:
-								# do nothing, otherwise cyrillic wont properly displayed
-								#name_event_descriptor = name_event_descriptor.decode("iso-8859-1").encode("utf-8")
-								pass
+							# We can't do this, this breaks encoding of e.g. "Das Erste"
+							#try:
+							#	name_event_descriptor = name_event_descriptor.decode("cp1252").encode("utf-8")
+							#except UnicodeDecodeError:
+							#	# do nothing, otherwise cyrillic wont properly displayed
+							#	#name_event_descriptor = name_event_descriptor.decode("iso-8859-1").encode("utf-8")
+							#	pass
 							if (lang == "CZE") or (lang == "SLO") or (lang == "SLK") or (config.EMC.langsupp.value == "CZ&SK"):
 								name_event_descriptor = str(convertCharSpecCZSK(name_event_descriptor))
 							if (lang == "HRV") or (lang == "SCR") or (config.EMC.langsupp.value == "HR"):
@@ -398,12 +399,13 @@ class EitList():
 						try:
 							short_event_descriptor.decode('utf-8')
 						except UnicodeDecodeError:
-							try:
-								short_event_descriptor = short_event_descriptor.decode("cp1252").encode("utf-8")
-							except UnicodeDecodeError:
-								# do nothing, otherwise cyrillic wont properly displayed
-								#short_event_descriptor = short_event_descriptor.decode("iso-8859-1").encode("utf-8")
-								pass
+							# We can't do this, this breaks encoding of e.g. "Das Erste"
+							#try:
+							#	short_event_descriptor = short_event_descriptor.decode("cp1252").encode("utf-8")
+							#except UnicodeDecodeError:
+							#	# do nothing, otherwise cyrillic wont properly displayed
+							#	#short_event_descriptor = short_event_descriptor.decode("iso-8859-1").encode("utf-8")
+							#	pass
 							if (lang == "CZE") or (lang == "SLO") or (lang == "SLK") or (config.EMC.langsupp.value == "CZ&SK"):
 								short_event_descriptor = str(convertCharSpecCZSK(short_event_descriptor))
 							if (lang == "HRV") or (lang == "SCR") or (config.EMC.langsupp.value == "HR"):
@@ -418,12 +420,13 @@ class EitList():
 						try:
 							extended_event_descriptor.decode('utf-8')
 						except UnicodeDecodeError:
-							try:
-								extended_event_descriptor = extended_event_descriptor.decode("cp1252").encode("utf-8")
-							except UnicodeDecodeError:
-								# do nothing, otherwise cyrillic wont properly displayed
-								#extended_event_descriptor = extended_event_descriptor.decode("iso-8859-1").encode("utf-8")
-								pass
+							# We can't do this, this breaks encoding of e.g. "Das Erste"
+							#try:
+							#	extended_event_descriptor = extended_event_descriptor.decode("cp1252").encode("utf-8")
+							#except UnicodeDecodeError:
+							#	# do nothing, otherwise cyrillic wont properly displayed
+							#	#extended_event_descriptor = extended_event_descriptor.decode("iso-8859-1").encode("utf-8")
+							#	pass
 							if (lang == "CZE") or (lang == "SLO") or (lang == "SLK") or (config.EMC.langsupp.value == "CZ&SK"):
 								extended_event_descriptor = str(convertCharSpecCZSK(extended_event_descriptor))
 							if (lang == "HRV") or (lang == "SCR") or (config.EMC.langsupp.value == "HR"):
