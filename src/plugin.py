@@ -291,7 +291,6 @@ config.EMC.movie_greenfunc           = ConfigSelection(default = "ST", choices =
 config.EMC.movie_yellowfunc          = ConfigSelection(default = "MV", choices = yellow_choices)
 config.EMC.movie_bluefunc            = ConfigSelection(default = "MH", choices = blue_choices)
 config.EMC.movie_longredfunc         = ConfigSelection(default = "DL", choices = longred_choices)
-#config.EMC.movie_longgreenfunc       = ConfigSelection(default = "CS", choices = longgreen_choices)
 config.EMC.movie_longyellowfunc      = ConfigSelection(default = "MV", choices = longyellow_choices)
 config.EMC.movie_longbluefunc        = ConfigSelection(default = "MH", choices = longblue_choices)
 config.EMC.CoolStartHome             = ConfigSelection(default = "false", choices = [("true", _("Yes")), ("false", _("No")), ("after_standby", _("after standby"))])
@@ -367,7 +366,6 @@ config.EMC.count_size_default_text   = ConfigTextWOHelp(default = "( 0 / 0 GB )"
 config.EMC.size_default_text         = ConfigTextWOHelp(default = "( 0 GB )", fixed_size  = False, visible_width= 22)
 config.EMC.count_size_default_icon   = ConfigYesNo(default = False)
 config.EMC.count_size_position       = ConfigSelection(default = '1', choices = [ ('0', _("center")), ('1', _("right")), ('2', _("left")) ])
-#config.EMC.symlinkdir_info           = ConfigYesNo(default = False)
 config.EMC.latest_recordings         = ConfigYesNo(default = True)
 
 nget = False # this is needed for vti-image at the moment
@@ -526,7 +524,7 @@ def Plugins(**kwargs):
 	show_p = [ PluginDescriptor.WHERE_PLUGINMENU ]
 	if config.EMC.extmenu_plugin.value:
 		show_p.append( PluginDescriptor.WHERE_EXTENSIONSMENU )
-	descriptors.append( PluginDescriptor(name = "EMC "+EMCVersion+" ("+_("Setup")+")", description = "Enhanced Movie Center " +_("configuration"), icon = "EnhancedMovieCenter.png", where = show_p, fnc = pluginOpen) )
+	descriptors.append( PluginDescriptor(name = "Enhanced Movie Center ("+_("Setup")+")", description = "Enhanced Movie Center " +_("configuration"), icon = "EnhancedMovieCenter.png", where = show_p, fnc = pluginOpen) )
 
 	if config.EMC.extmenu_list.value and not config.EMC.ml_disable.value:
 		descriptors.append( PluginDescriptor(name = "Enhanced Movie Center", description = "Enhanced Movie Center " + _("movie manipulation list"), where = PluginDescriptor.WHERE_EXTENSIONSMENU, fnc = recordingsOpen) )
