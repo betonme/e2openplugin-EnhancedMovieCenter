@@ -20,7 +20,7 @@
 #	<http://www.gnu.org/licenses/>.
 #
 
-import os
+import os, re
 
 from datetime import datetime
 
@@ -138,10 +138,20 @@ class MetaList():
 			x1 = len(desc.split(',', -1)) -1
 			x2 = x1 -1
 			title = desc.replace(desc.split(',', -1)[x1], '').replace(desc.split(',', -1)[x2], '').replace(',,', '')
-			if title.startswith(','):
-				title = title.replace(',', '')
-			if len(title) >= 50:
-				title = ''
+			if title == ",":
+				if re.match('(\w{1,3}\s\d{4})', desc.rsplit(',', 1)[1].strip(), re.S):
+					title = ''
+				else:
+					if len(desc) > 50:
+						title = desc[:47] + "..."
+					else:
+						title = desc
+			elif (len(title) >= 50) or (len(title) < 3):
+				if len(desc) > 50:
+					title = desc[:47] + "..."
+				else:
+					title = desc
+
 		except Exception, e:
 			emcDebugOut("[EMC] getMetaTitle failed !!!\n" + str(e))
 		return title
