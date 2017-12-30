@@ -139,7 +139,7 @@ class MetaList():
 			x2 = x1 -1
 			title = desc.replace(desc.split(',', -1)[x1], '').replace(desc.split(',', -1)[x2], '').replace(',,', '')
 			if title == ",":
-				if re.match('(\w{1,3}\s\d{4})', desc.rsplit(',', 1)[1].strip(), re.S):
+				if re.match('(.*\w{1,3}\s\d{4})', desc.rsplit(',', 1)[1].strip(), re.S):
 					title = ''
 				else:
 					if len(desc) > 50:
