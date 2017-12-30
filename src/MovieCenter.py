@@ -1701,7 +1701,6 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 				if service in self.highlightsCpy:
 					self.highlightsCpy.remove(service)
 
-
 def loadPix(name):
  if sz_w == 1920:
 	plugindir = '/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/'
@@ -1717,7 +1716,6 @@ def loadPix(name):
 	else:
 		pic = LoadPixmap(cached=True, path=plugindir+name)
 	return pic
-
 
 moviecenter = None
 
@@ -2039,9 +2037,9 @@ class MovieCenter(GUIComponent):
 						progress, updlen = getProgress(service, length) or 0
 						if updlen:
 							self.updateLength(service, updlen)
-						movieUnwatched = config.EMC.movie_progress.value and	progress < int(config.EMC.movie_watching_percent.value)
-						movieWatching  = config.EMC.movie_progress.value and	progress >= int(config.EMC.movie_watching_percent.value) and progress < int(config.EMC.movie_finished_percent.value)
-						movieFinished  = config.EMC.movie_progress.value and	progress >= int(config.EMC.movie_finished_percent.value)
+						movieUnwatched = config.EMC.movie_progress.value and progress < int(config.EMC.movie_watching_percent.value)
+						movieWatching  = config.EMC.movie_progress.value and progress >= int(config.EMC.movie_watching_percent.value) and progress < int(config.EMC.movie_finished_percent.value)
+						movieFinished  = config.EMC.movie_progress.value and progress >= int(config.EMC.movie_finished_percent.value)
 					else:
 						progress = 0
 						movieUnwatched = False
@@ -2176,8 +2174,8 @@ class MovieCenter(GUIComponent):
 							if piconpath:
 								picon = loadPNG(piconpath)
 								piconH = self.l.getItemSize().height() - 6
-								piconW = piconH * 2 - 5
-								piconY = 2
+								piconW = round(piconH * 1.666)
+								piconY = 3
 								if piconPos == "nr":
 									if config.EMC.movie_date_format.value != "":
 										piconX = self.l.getItemSize().width() - self.CoolDateWidth - piconW - 5
