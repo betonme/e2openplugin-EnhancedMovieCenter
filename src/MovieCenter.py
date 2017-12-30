@@ -2561,8 +2561,9 @@ class MovieCenter(GUIComponent):
 						if useIcon:
 							if datepic is not None:
 								datepicH = self.l.getItemSize().height() - 6
+								datepicW = self.pic_directory_search.size().width()
 								datepicY = 3
-								append(MultiContentEntryPixmapAlphaBlend(pos=(posH, datepicY), size=(CoolCSWidth, datepicH), png=self.pic_directory_search, **{}))
+								append(MultiContentEntryPixmapAlphaBlend(pos=(listW - datepicW, datepicY), size=(datepicW, datepicH), png=self.pic_directory_search, **{}))
 						else:
 							if datepic is not None:
 								count = config.EMC.count_default_text.value
