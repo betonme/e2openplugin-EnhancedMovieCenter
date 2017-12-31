@@ -78,10 +78,21 @@ class MetaList():
 	def __ptsToSeconds(self, pts):
 		# Meta files are using the presentation time stamp time format
 		# pts has a resolution of 90kHz
-		return pts / 90 / 1000
+		if pts:
+			try: 
+				pts / 90 / 1000
+			except:
+				return 0
+		else:
+			return 0
 
 	def __mk_int(self, s):
-		return int(s) if s else 0
+		if s:
+			try:
+				int(s)
+			except:
+				return 0
+		else: return 0
 
 	def __secondsToDate(self, s):
 		return s and datetime.fromtimestamp(s) or None
