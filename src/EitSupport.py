@@ -291,10 +291,10 @@ class EitList():
 								if str(ord(data[i]))=="138":
 									short_event_description += '\n'
 								else:
-									if data[i]== '\x10' or data[i]== '\x00' or  data[i]== '\x02' or  data[i]== '\x05':
-										pass
-									else:
-										short_event_description += data[i]
+									#if data[i]== '\x10' or data[i]== '\x00' or data[i]== '\x02' or data[i]== '\x05':
+									#	pass
+									#else:
+									short_event_description += data[i]
 							if ISO_639_language_code == lang:
 								short_event_descriptor.append(short_event_description)
 								name_event_descriptor.append(name_event_description)
@@ -317,11 +317,11 @@ class EitList():
 									extended_event_description += '\n'
 									extended_event_description_multi += '\n'
 								else:
-									if data[i]== '\x10' or data[i]== '\x00' or  data[i]== '\x02' or  data[i]== '\x05':
-										pass
-									else:
-										extended_event_description += data[i]
-										extended_event_description_multi += data[i]
+									#if data[i]== '\x10' or data[i]== '\x00' or data[i]== '\x02' or data[i]== '\x05':
+									#	pass
+									#else:
+									extended_event_description += data[i]
+									extended_event_description_multi += data[i]
 							if ISO_639_language_code == lang:
 								extended_event_descriptor.append(extended_event_description)
 							if (ISO_639_language_code == prev2_ISO_639_language_code) or (prev2_ISO_639_language_code == "x"):
@@ -371,66 +371,45 @@ class EitList():
 						extended_event_descriptor = short_event_descriptor
 
 					if name_event_descriptor:
-						#try:
-						#	name_event_descriptor = name_event_descriptor.decode("iso-8859-1").encode("utf-8")
-						#except UnicodeDecodeError:
-						#	pass
 						try:
-							name_event_descriptor.decode('utf-8')
-						except UnicodeDecodeError:
-							# We can't do this, this breaks encoding of e.g. "Das Erste"
-							#try:
-							#	name_event_descriptor = name_event_descriptor.decode("cp1252").encode("utf-8")
-							#except UnicodeDecodeError:
-							#	# do nothing, otherwise cyrillic wont properly displayed
-							#	#name_event_descriptor = name_event_descriptor.decode("iso-8859-1").encode("utf-8")
-							#	pass
-							if (lang == "CZE") or (lang == "SLO") or (lang == "SLK") or (config.EMC.langsupp.value == "CZ&SK"):
-								name_event_descriptor = str(convertCharSpecCZSK(name_event_descriptor))
-							if (lang == "HRV") or (lang == "SCR") or (config.EMC.langsupp.value == "HR"):
-								name_event_descriptor = str(convertCharSpecHR(name_event_descriptor))
+							import chardet
+							enc = chardet.detect(name_event_descriptor)['encoding'].lower()
+							emcDebugOut("[META] Detected encoding-type: " + enc)
+							name_event_descriptor.decode(enc)
+							if ((lang == "CZE") or (lang == "SLO") or (lang == "SLK") or (config.EMC.langsupp.value == "CZ&SK")) and enc == "iso-8859-9":
+								name_event_descriptor = str(convertCharSpecCZSK(name_event_descriptor.decode("cp1252").encode("utf-8")))
+							if (lang == "HRV") or (lang == "SCR") or (config.EMC.langsupp.value == "HR") and enc == "iso-8859-9":
+								name_event_descriptor = str(convertCharSpecHR(name_event_descriptor.decode("cp1252").encode("utf-8")))
+						except UnicodeDecodeError, e:
+							emcDebugOut("[META] Exception in readEitFile: " + str(e))
 					self.eit['name'] = name_event_descriptor
 
 					if short_event_descriptor:
-						#try:
-						#	short_event_descriptor = short_event_descriptor.decode("iso-8859-1").encode("utf-8")
-						#except UnicodeDecodeError:
-						#	pass
 						try:
-							short_event_descriptor.decode('utf-8')
-						except UnicodeDecodeError:
-							# We can't do this, this breaks encoding of e.g. "Das Erste"
-							#try:
-							#	short_event_descriptor = short_event_descriptor.decode("cp1252").encode("utf-8")
-							#except UnicodeDecodeError:
-							#	# do nothing, otherwise cyrillic wont properly displayed
-							#	#short_event_descriptor = short_event_descriptor.decode("iso-8859-1").encode("utf-8")
-							#	pass
-							if (lang == "CZE") or (lang == "SLO") or (lang == "SLK") or (config.EMC.langsupp.value == "CZ&SK"):
-								short_event_descriptor = str(convertCharSpecCZSK(short_event_descriptor))
-							if (lang == "HRV") or (lang == "SCR") or (config.EMC.langsupp.value == "HR"):
-								short_event_descriptor = str(convertCharSpecHR(short_event_descriptor))
+							import chardet
+							enc = chardet.detect(short_event_descriptor)['encoding'].lower()
+							emcDebugOut("[META] Detected encoding-type: " + enc)
+							short_event_descriptor.decode(enc)
+							if ((lang == "CZE") or (lang == "SLO") or (lang == "SLK") or (config.EMC.langsupp.value == "CZ&SK")) and enc == "iso-8859-9":
+								short_event_descriptor = str(convertCharSpecCZSK(short_event_descriptor.decode("cp1252").encode("utf-8")))
+							if (lang == "HRV") or (lang == "SCR") or (config.EMC.langsupp.value == "HR") and enc == "iso-8859-9":
+								short_event_descriptor = str(convertCharSpecHR(short_event_descriptor.decode("cp1252").encode("utf-8")))
+						except UnicodeDecodeError, e:
+							emcDebugOut("[META] Exception in readEitFile: " + str(e))
 					self.eit['short_description'] = short_event_descriptor
 
 					if extended_event_descriptor:
-						#try:
-						#	extended_event_descriptor = extended_event_descriptor.decode("iso-8859-1").encode("utf-8")
-						#except UnicodeDecodeError:
-						#	pass
 						try:
-							extended_event_descriptor.decode('utf-8')
-						except UnicodeDecodeError:
-							# We can't do this, this breaks encoding of e.g. "Das Erste"
-							#try:
-							#	extended_event_descriptor = extended_event_descriptor.decode("cp1252").encode("utf-8")
-							#except UnicodeDecodeError:
-							#	# do nothing, otherwise cyrillic wont properly displayed
-							#	#extended_event_descriptor = extended_event_descriptor.decode("iso-8859-1").encode("utf-8")
-							#	pass
-							if (lang == "CZE") or (lang == "SLO") or (lang == "SLK") or (config.EMC.langsupp.value == "CZ&SK"):
-								extended_event_descriptor = str(convertCharSpecCZSK(extended_event_descriptor))
-							if (lang == "HRV") or (lang == "SCR") or (config.EMC.langsupp.value == "HR"):
-								extended_event_descriptor = str(convertCharSpecHR(extended_event_descriptor))
+							import chardet
+							enc = chardet.detect(extended_event_descriptor)['encoding'].lower()
+							emcDebugOut("[META] Detected encoding-type: " + enc)
+							extended_event_descriptor.decode(enc)
+							if ((lang == "CZE") or (lang == "SLO") or (lang == "SLK") or (config.EMC.langsupp.value == "CZ&SK")) and enc == "iso-8859-9":
+								extended_event_descriptor = str(convertCharSpecCZSK(extended_event_descriptor.decode("cp1252").encode("utf-8")))
+							if (lang == "HRV") or (lang == "SCR") or (config.EMC.langsupp.value == "HR") and enc == "iso-8859-9":
+								extended_event_descriptor = str(convertCharSpecHR(extended_event_descriptor.decode("cp1252").encode("utf-8")))
+						except UnicodeDecodeError, e:
+							emcDebugOut("[META] Exception in readEitFile: " + str(e))
 					self.eit['description'] = extended_event_descriptor
 
 				else:
