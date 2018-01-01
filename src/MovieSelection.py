@@ -223,7 +223,8 @@ class SelectionEventInfo:
 		self["CoverBgLbl"] = Label()
 		self["CoverBgLbl"].hide()
 		# audio-tags (python-mutagen is needed)
-		self["name"] = StaticText("")		# title
+		self["name"] = Label("")		# title
+		self["name_disp"] = StaticText("")
 		self["artistAT"] = Label("")		# artist-label
 		self["artistATtxt"] = Label("")		# artist-text
 		self["albumAT"] = Label("")		# album-label
@@ -231,9 +232,11 @@ class SelectionEventInfo:
 		self["genreAT"] = Label("")		# genre-label
 		self["genreATtxt"] = Label("")		# genre-text
 		self["runtimeAT"] = Label("")		# runtime-label
-		self["runtimeATtxt"] = StaticText("")	# runtime-text
+		self["runtimeATtxt"] = Label("")	# runtime-text
+		self["runtime_disp"] = StaticText("")
 		self["date"] = Label("")		# date-text
-		self["size"] = StaticText("")		# size-text
+		self["size"] = Label("")		# size-text
+		self["size_disp"] = StaticText("")
 
 		try:
 			self.volctrl = eDVBVolumecontrol.getInstance() # volume control # dirty
@@ -346,7 +349,8 @@ class SelectionEventInfo:
 		if (title or genre or artist or album or length) != "":
 			if title == service.getPath():
 				title = service.getName()
-			StaticText.setText(self["name"], title)		 # title
+			self["name"].setText(title)			 # title
+			StaticText.setText(self["name_disp"], title)
 			self["artistAT"].setText(_("Artist:"))		 # artist-label
 			self["artistATtxt"].setText(artist)		 # artist-text
 			self["albumAT"].setText(_("Album:"))		 # album-label
@@ -354,15 +358,18 @@ class SelectionEventInfo:
 			self["genreAT"].setText(_("Genre:"))		 # genre-label
 			self["genreATtxt"].setText(genre)		 # genre-text
 			self["runtimeAT"].setText(_("Runtime:"))	 # runtime-label
-			StaticText.setText(self["runtimeATtxt"], length) # runtime-text
+			self["runtimeATtxt"].setText(length)	  	 # runtime-text
+			StaticText.setText(self["runtime_disp"], length)
 			self["date"].setText(date)
-			StaticText.setText(self["size"], "%.0f MB" % size)
+			self["size"].setText("%.0f MB" % size)
+			StaticText.setText(self["size_disp"], "%.0f MB" % size)
 			self["Service"].newService(None)		 # kill normal view
 		else:
 			self.hideAudioLabels()
 
 	def hideAudioLabels(self):
-		StaticText.setText(self["name"], "")
+		self["name"].setText("")
+		StaticText.setText(self["name_disp"], "")
 		self["artistAT"].setText("")
 		self["artistATtxt"].setText("")
 		self["albumAT"].setText("")
@@ -370,9 +377,11 @@ class SelectionEventInfo:
 		self["genreAT"].setText("")
 		self["genreATtxt"].setText("")
 		self["runtimeAT"].setText("")
-		StaticText.setText(self["runtimeATtxt"], "")
+		self["runtimeATtxt"].setText("")
+		StaticText.setText(self["runtime_disp"], "")
 		self["date"].setText("")
-		StaticText.setText(self["size"], "")
+		self["size"].setText("")
+		StaticText.setText(self["size_disp"], "")
 
 	def showCover(self, service=None):
 		if service:

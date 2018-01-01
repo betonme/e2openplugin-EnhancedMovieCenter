@@ -4,19 +4,19 @@
 		<widget font="Display;15" halign="center" position="1,0" render="Label" size="130,34" source="parent.Service">
 			<convert type="ServiceName">Name</convert>
 		</widget>
-		<widget font="Display;15" halign="center" position="1,0" render="Label" transparent="1" zPosition="2" size="130,34" source="parent.name" />
+		<widget font="Display;15" halign="center" position="1,0" render="Label" transparent="1" zPosition="2" size="130,34" source="parent.name_disp" />
 		<eLabel backgroundColor="white" position="0,34" size="132,1" />
 		<widget font="Display;13" halign="center" position="1,35" render="Label" size="130,13" source="parent.spacefree"/>
 		<eLabel backgroundColor="white" position="0,48" size="132,1" />
 		<widget font="Display;14" position="1,49" render="Label" size="65,16" source="parent.Service">
 			<convert type="MovieInfo">FileSize</convert>
 		</widget>
-		<widget font="Display;14" position="1,49" render="Label" transparent="1" zPosition="2" size="65,16" source="parent.size" />
+		<widget font="Display;14" position="1,49" render="Label" transparent="1" zPosition="2" size="65,16" source="parent.size_disp" />
 		<widget font="Display;15" halign="right" position="66,48" render="Label" size="65,16" source="parent.Service">
 			<convert type="EMCServiceTime">Duration</convert>
 			<convert type="EMCClockToText">InMinutes</convert>
 		</widget>
-		<widget font="Display;15" halign="right" position="66,48" render="Label" transparent="1" zPosition="2" size="65,16" source="parent.runtimeATtxt" />
+		<widget font="Display;15" halign="right" position="66,48" render="Label" transparent="1" zPosition="2" size="65,16" source="parent.runtime_disp" />
 	</screen>
 	<screen id="1" name="EMCMoviePlayerSummary" position="0,0" size="132,64">
 		<widget source="session.CurrentService" render="Label" position="1,1" size="130,37" font="Display;16" halign="center">
@@ -41,7 +41,7 @@
 		<widget font="Display;15" halign="center" valign="center" position="1,0" render="Label" size="94,34" source="parent.Service">
 			<convert type="ServiceName">Name</convert>
 		</widget>
-		<widget font="Display;15" halign="center" valign="center" position="1,0" render="Label" transparent="1" zPosition="2" size="94,34" source="parent.name" />
+		<widget font="Display;15" halign="center" valign="center" position="1,0" render="Label" transparent="1" zPosition="2" size="94,34" source="parent.name_disp" />
 		<widget font="Display;14" halign="center" valign="center" position="1,35" render="Label" size="94,28" source="parent.spacefree"/>
 	</screen>
 	<screen name="EMCMoviePlayerSummary" position="0,0" size="96,64" id="2">
@@ -81,18 +81,18 @@
 		<widget font="Display;45" foregroundColor="#faff00" halign="center" position="10,10" render="Label" size="380,94" source="parent.Service" valign="center" >
 			<convert type="ServiceName">Name</convert>
 		</widget>
-		<widget font="Display;45" foregroundColor="#faff00" halign="center" position="10,10" render="Label" transparent="1" zPosition="2" size="380,94" source="parent.name" valign="center" />
+		<widget font="Display;45" foregroundColor="#faff00" halign="center" position="10,10" render="Label" transparent="1" zPosition="2" size="380,94" source="parent.name_disp" valign="center" />
 		<widget font="Display;40" halign="center" position="10,117" render="Label" size="380,42" source="parent.spacefree"/>
 		<eLabel backgroundColor="white" position="10,168" size="380,2" />
 		<widget font="Display;47" position="10,184" render="Label" size="210,50" source="parent.Service">
 			<convert type="MovieInfo">FileSize</convert>
 		</widget>
-		<widget font="Display;47" position="10,184" render="Label" transparent="1" zPosition="2" size="210,50" source="parent.size" />
+		<widget font="Display;47" position="10,184" render="Label" transparent="1" zPosition="2" size="210,50" source="parent.size_disp" />
 		<widget font="Display;50" halign="right" position="225,182" render="Label" size="170,55" source="parent.Service">
 			<convert type="EMCServiceTime">Duration</convert>
 			<convert type="EMCClockToText">InMinutes</convert>
 		</widget>
-		<widget font="Display;50" halign="right" position="225,182" render="Label" transparent="1" zPosition="2" size="170,55" source="parent.runtimeATtxt" />
+		<widget font="Display;50" halign="right" position="225,182" render="Label" transparent="1" zPosition="2" size="170,55" source="parent.runtime_disp" />
 	</screen>
 	<!-- EMC MoviePlayer screen DM9... and Buck Color display -->
 	<screen id="3" name="EMCMoviePlayerSummary" position="0,0" size="400,240">
