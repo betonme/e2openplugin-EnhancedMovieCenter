@@ -1461,6 +1461,8 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		title += path or "/"
 
 		# Display the free space
+		spacefree = ""
+
 		if os.path.exists(self.currentPath):
 			try:
 				stat = os.statvfs(self.currentPath)
