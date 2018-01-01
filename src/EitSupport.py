@@ -23,6 +23,7 @@
 import os
 import struct
 import time
+import chardet
 
 from datetime import datetime
 
@@ -372,7 +373,6 @@ class EitList():
 
 					if name_event_descriptor:
 						try:
-							import chardet
 							enc = chardet.detect(name_event_descriptor)['encoding'].lower()
 							emcDebugOut("[META] Detected encoding-type: " + enc)
 							name_event_descriptor.decode(enc)
@@ -386,7 +386,6 @@ class EitList():
 
 					if short_event_descriptor:
 						try:
-							import chardet
 							enc = chardet.detect(short_event_descriptor)['encoding'].lower()
 							emcDebugOut("[META] Detected encoding-type: " + enc)
 							short_event_descriptor.decode(enc)
@@ -400,7 +399,6 @@ class EitList():
 
 					if extended_event_descriptor:
 						try:
-							import chardet
 							enc = chardet.detect(extended_event_descriptor)['encoding'].lower()
 							emcDebugOut("[META] Detected encoding-type: " + enc)
 							extended_event_descriptor.decode(enc)

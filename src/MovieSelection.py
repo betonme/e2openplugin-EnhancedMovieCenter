@@ -20,6 +20,7 @@
 #
 
 import os
+import chardet
 from time import time
 #from thread import start_new_thread
 from threading import Thread
@@ -1442,24 +1443,10 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			self.setTitle(_("*** Multiselection active ***"))
 			return
 
-		# Display the free space
 		title = ""
-		if os.path.exists(self.currentPath):
-			try:
-				stat = os.statvfs(self.currentPath)
-				free = (stat.f_bavail if stat.f_bavail!=0 else stat.f_bfree) * stat.f_bsize / 1024 / 1024
-				if free >= 10240:	#unit in Giga bytes if more than 10 GB free
-					title += "(%d GB) " %(free/1024)
-				else:
-					title += "(%d MB) " %(free)
-			except OSError:
-				title += "(? GB) "
-
-		StaticText.setText(self["spacefree"], title.strip())
 
 		# Display the current path
 		path = self.currentPath
-		path = path.replace(config.EMC.movie_homepath.value, "...")
 		# Very bad but there can be both encodings
 		# E2 recordings are always in utf8
 		# User files can be in cp1252
@@ -1472,6 +1459,21 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			except UnicodeDecodeError:
 				path = path.decode("iso-8859-1").encode("utf-8")
 		title += path or "/"
+
+		# Display the free space
+		if os.path.exists(self.currentPath):
+			try:
+				stat = os.statvfs(self.currentPath)
+				free = (stat.f_bavail if stat.f_bavail!=0 else stat.f_bfree) * stat.f_bsize / 1024 / 1024
+				if free >= 10240: #unit in Giga bytes if more than 10 GB free
+					spacefree = " [%s%d GB]" % (_("Free: "), free/1024)
+				else:
+					spacefree = " [%s%d MB]" % (_("Free: "),free)
+			except OSError:
+				spacefree = " [%s? GB]" % _("Free: ")
+
+		title += spacefree
+		StaticText.setText(self["spacefree"], spacefree.strip())
 
 		# Display the actual sorting mode
 		from Plugins.Extensions.EnhancedMovieCenter.plugin import sort_modes
