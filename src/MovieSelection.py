@@ -1456,6 +1456,9 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 
 		# Display the current path
 		path = self.currentPath
+		path = path.replace(config.EMC.movie_homepath.value+"/Latest Recordings", _("Latest Recordings"))
+		path = path.replace(config.EMC.movie_homepath.value+"/trashcan", _("trashcan"))
+		path = path.replace(config.EMC.movie_homepath.value, _("Movie home"))
 		# Very bad but there can be both encodings
 		# E2 recordings are always in utf8
 		# User files can be in cp1252
