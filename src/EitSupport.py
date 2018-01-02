@@ -265,7 +265,16 @@ class EitList():
 							descriptor_length = ord(data[pos+2])
 							ISO_639_language_code = str(data[pos+2:pos+5]).upper()
 							event_name_length = ord(data[pos+5])
-							name_event_description = data[pos+6:pos+6+event_name_length]
+							name_event_description = ""
+							#name_event_description = data[pos+6:pos+6+event_name_length]
+							for i in range (pos+6,pos+6+event_name_length):
+								if str(ord(data[i]))=="138":
+									name_event_description += '\n'
+								else:
+									if data[i]== '\x10' or data[i]== '\x00' or data[i]== '\x02' or data[i]== '\x05' or data[i]== '\xc2':
+										pass
+									else:
+										name_event_description += data[i]
 							short_event_description = ""
 							for i in range (pos+7+event_name_length,pos+length):
 								if str(ord(data[i]))=="138":
@@ -352,9 +361,10 @@ class EitList():
 
 					if name_event_descriptor:
 						try:
-							enc = chardet.detect(name_event_descriptor)['encoding'].lower()
-							emcDebugOut("[META] Detected encoding-type: " + enc)
-							name_event_descriptor.decode(enc)
+							encdata = chardet.detect(name_event_descriptor)
+							enc = encdata['encoding'].lower()
+							confidence = str(encdata['confidence'])
+							emcDebugOut("[META] Detected encoding-type: " + enc + " (" + confidence + ")")
 							if enc == "utf-8":
 								name_event_descriptor.decode(enc)
 							else:
@@ -365,9 +375,10 @@ class EitList():
 
 					if short_event_descriptor:
 						try:
-							enc = chardet.detect(short_event_descriptor)['encoding'].lower()
-							emcDebugOut("[META] Detected encoding-type: " + enc)
-							short_event_descriptor.decode(enc)
+							encdata = chardet.detect(short_event_descriptor)
+							enc = encdata['encoding'].lower()
+							confidence = str(encdata['confidence'])
+							emcDebugOut("[META] Detected encoding-type: " + enc + " (" + confidence + ")")
 							if enc == "utf-8":
 								short_event_descriptor.decode(enc)
 							else:
@@ -378,8 +389,10 @@ class EitList():
 
 					if extended_event_descriptor:
 						try:
-							enc = chardet.detect(extended_event_descriptor)['encoding'].lower()
-							emcDebugOut("[META] Detected encoding-type: " + enc)
+							encdata = chardet.detect(extended_event_descriptor)
+							enc = encdata['encoding'].lower()
+							confidence = str(encdata['confidence'])
+							emcDebugOut("[META] Detected encoding-type: " + enc + " (" + confidence + ")")
 							if enc == "utf-8":
 								extended_event_descriptor.decode(enc)
 							else:
