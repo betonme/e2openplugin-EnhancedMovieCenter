@@ -2157,7 +2157,7 @@ class MovieCenter(GUIComponent):
 					# TODO: Progress.value for blue structure
 					if not ext in extBlu and not bluiso:
 						if config.EMC.movie_progress.value == "PB":
-							append(MultiContentEntryProgress(pos=(offset, self.CoolBarHPos), size = (self.CoolBarSize.width(), self.CoolBarSize.height()), percent = progress, borderWidth = 1, foreColor = color, foreColorSelected=color, backColor = self.BackColor, backColorSelected = None))
+							append(MultiContentEntryProgress(pos=(offset, self.CoolBarHPos), size = (self.CoolBarSize.width(), self.CoolBarSize.height()), percent = progress, borderWidth = 1, foreColor = color, foreColorSelected=colorhighlight, backColor = self.BackColor, backColorSelected = None))
 							offset += self.CoolBarSize.width() + 10
 
 						elif config.EMC.movie_progress.value == "P":
@@ -2275,13 +2275,13 @@ class MovieCenter(GUIComponent):
 
 					if CoolBarPos != -1:
 						if config.EMC.movie_icons.value:
-							append(MultiContentEntryProgress(pos=(CoolBarPos, self.CoolBarHPos -2), size = (self.CoolBarSizeSa.width(), self.CoolBarSizeSa.height()), percent = progress, borderWidth = 1, foreColor = color, foreColorSelected=color, backColor = self.BackColor, backColorSelected = None))
+							append(MultiContentEntryProgress(pos=(CoolBarPos, self.CoolBarHPos -2), size = (self.CoolBarSizeSa.width(), self.CoolBarSizeSa.height()), percent = progress, borderWidth = 1, foreColor = color, foreColorSelected=colorhighlight, backColor = self.BackColor, backColorSelected = None))
 						else:
 							if self.CoolBarPos < self.CoolMoviePos:
 								iconsub = self.CoolIconSize.width()
 							else:
 								iconsub = 0
-							append(MultiContentEntryProgress(pos=(CoolBarPos - iconsub, self.CoolBarHPos -2), size = (self.CoolBarSizeSa.width(), self.CoolBarSizeSa.height()), percent = progress, borderWidth = 1, foreColor = color, foreColorSelected=color, backColor = self.BackColor, backColorSelected = None))
+							append(MultiContentEntryProgress(pos=(CoolBarPos - iconsub, self.CoolBarHPos -2), size = (self.CoolBarSizeSa.width(), self.CoolBarSizeSa.height()), percent = progress, borderWidth = 1, foreColor = color, foreColorSelected=colorhighlight, backColor = self.BackColor, backColorSelected = None))
 					if CoolProgressPos != -1:
 						if config.EMC.movie_icons.value:
 							append(MultiContentEntryText(pos=(CoolProgressPos, self.CoolMovieHPos), size=(progressWidth, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text="%d%%" % (progress), color = colortitle, color_sel = colorhighlight))
