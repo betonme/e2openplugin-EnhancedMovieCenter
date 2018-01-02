@@ -366,6 +366,11 @@ config.EMC.size_default_text         = ConfigTextWOHelp(default = "( 0 GB )", fi
 config.EMC.count_size_default_icon   = ConfigYesNo(default = False)
 config.EMC.count_size_position       = ConfigSelection(default = '1', choices = [ ('0', _("center")), ('1', _("right")), ('2', _("left")) ])
 config.EMC.latest_recordings         = ConfigYesNo(default = True)
+config.EMC.color_unwatched           = ConfigSelection(default="#ffffff" , choices=[("#ffffff", _("White")), ("#cccccc", _("Light grey")), ("#bababa", _("Grey")), ("#666666", _("Dark grey")), ("#000000", _("Black"))])
+config.EMC.color_watching            = ConfigSelection(default="#ffad33" , choices=[("#ffad33", _("Orange")), ("#ffd699", _("Light orange")), ("#cc7a00", _("Dark orange"))])
+config.EMC.color_finished            = ConfigSelection(default="#38ff48" , choices=[("#38ff48", _("Green")), ("#b3ffb9", _("Light green")), ("#00990d", _("Dark green"))])
+config.EMC.color_recording           = ConfigSelection(default="#ff0000" , choices=[("#ff0000", _("Red")), ("#ff9999", _("Light red")), ("#990000", _("Dark red"))])
+config.EMC.color_highlight           = ConfigSelection(default="#cccccc" , choices=[("#ffffff", _("White")), ("#cccccc", _("Light grey")), ("#bababa", _("Grey")), ("#666666", _("Dark grey")), ("#000000", _("Black"))])
 
 nget = False # this is needed for vti-image at the moment
 try:

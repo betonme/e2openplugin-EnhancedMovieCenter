@@ -27,6 +27,7 @@ from collections import defaultdict
 from time import time
 from datetime import datetime
 from threading import Thread
+from skin import parseColor
 
 from Components.config import *
 from Components.GUIComponent import GUIComponent
@@ -1813,11 +1814,11 @@ class MovieCenter(GUIComponent):
 		self.DateColor = 0xFFFFFF
 		self.BackColor = None
 		self.BackColorSel = None
-		self.FrontColorSel = 0xFFFFFF
-		self.UnwatchedColor = 0xFFFFFF
-		self.WatchingColor = 0x3486F4
-		self.FinishedColor = 0x46D93A
-		self.RecordingColor = 0x9F1313
+		self.FrontColorSel = parseColor(config.EMC.color_highlight.value).argb()
+		self.UnwatchedColor = parseColor(config.EMC.color_unwatched.value).argb()
+		self.WatchingColor = parseColor(config.EMC.color_watching.value).argb()
+		self.FinishedColor = parseColor(config.EMC.color_finished.value).argb()
+		self.RecordingColor = parseColor(config.EMC.color_recording.value).argb()
 		#IDEA self.CutColor
 
 		self.l = eListboxPythonMultiContent()
