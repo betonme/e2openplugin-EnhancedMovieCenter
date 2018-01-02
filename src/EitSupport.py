@@ -271,7 +271,7 @@ class EitList():
 								if str(ord(data[i]))=="138":
 									short_event_description += '\n'
 								else:
-									if data[i]== '\x10' or data[i]== '\x00' or data[i]== '\x02' or data[i]== '\x05':
+									if data[i]== '\x10' or data[i]== '\x00' or data[i]== '\x02' or data[i]== '\x05' or data[i]== '\xc2':
 										pass
 									else:
 										short_event_description += data[i]
@@ -297,7 +297,7 @@ class EitList():
 									extended_event_description += '\n'
 									extended_event_description_multi += '\n'
 								else:
-									if data[i]== '\x10' or data[i]== '\x00' or data[i]== '\x02' or data[i]== '\x05':
+									if data[i]== '\x10' or data[i]== '\x00' or data[i]== '\x02' or data[i]== '\x05' or data[i]== '\xc2':
 										pass
 									else:
 										extended_event_description += data[i]
@@ -355,6 +355,10 @@ class EitList():
 							enc = chardet.detect(name_event_descriptor)['encoding'].lower()
 							emcDebugOut("[META] Detected encoding-type: " + enc)
 							name_event_descriptor.decode(enc)
+							if enc == "utf-8":
+								name_event_descriptor.decode(enc)
+							else:
+								name_event_descriptor = name_event_descriptor.decode(enc).encode('utf-8')
 						except UnicodeDecodeError, e:
 							emcDebugOut("[META] Exception in readEitFile: " + str(e))
 					self.eit['name'] = name_event_descriptor
@@ -364,6 +368,10 @@ class EitList():
 							enc = chardet.detect(short_event_descriptor)['encoding'].lower()
 							emcDebugOut("[META] Detected encoding-type: " + enc)
 							short_event_descriptor.decode(enc)
+							if enc == "utf-8":
+								short_event_descriptor.decode(enc)
+							else:
+								short_event_descriptor = short_event_descriptor.decode(enc).encode('utf-8')
 						except UnicodeDecodeError, e:
 							emcDebugOut("[META] Exception in readEitFile: " + str(e))
 					self.eit['short_description'] = short_event_descriptor
@@ -372,7 +380,10 @@ class EitList():
 						try:
 							enc = chardet.detect(extended_event_descriptor)['encoding'].lower()
 							emcDebugOut("[META] Detected encoding-type: " + enc)
-							extended_event_descriptor.decode(enc)
+							if enc == "utf-8":
+								extended_event_descriptor.decode(enc)
+							else:
+								extended_event_descriptor = extended_event_descriptor.decode(enc).encode('utf-8')
 						except UnicodeDecodeError, e:
 							emcDebugOut("[META] Exception in readEitFile: " + str(e))
 					self.eit['description'] = extended_event_descriptor
