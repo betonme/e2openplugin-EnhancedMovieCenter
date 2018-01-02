@@ -265,22 +265,13 @@ class EitList():
 							descriptor_length = ord(data[pos+2])
 							ISO_639_language_code = str(data[pos+2:pos+5]).upper()
 							event_name_length = ord(data[pos+5])
-							name_event_description = ""
-							#name_event_description = data[pos+6:pos+6+event_name_length]
-							for i in range (pos+6,pos+6+event_name_length):
-								if str(ord(data[i]))=="138":
-									name_event_description += '\n'
-								else:
-									if data[i]== '\x10' or data[i]== '\x00' or data[i]== '\x02' or data[i]== '\x05' or data[i]== '\xc2':
-										pass
-									else:
-										name_event_description += data[i]
+							name_event_description = data[pos+6:pos+6+event_name_length]
 							short_event_description = ""
 							for i in range (pos+7+event_name_length,pos+length):
 								if str(ord(data[i]))=="138":
 									short_event_description += '\n'
 								else:
-									if data[i]== '\x10' or data[i]== '\x00' or data[i]== '\x02' or data[i]== '\x05' or data[i]== '\xc2':
+									if data[i]== '\x10' or data[i]== '\x00' or data[i]== '\x02' or data[i]== '\x05':
 										pass
 									else:
 										short_event_description += data[i]
@@ -361,30 +352,22 @@ class EitList():
 
 					if name_event_descriptor:
 						try:
-							encdata = chardet.detect(name_event_descriptor)
-							enc = encdata['encoding'].lower()
-							confidence = str(encdata['confidence'])
-							emcDebugOut("[META] Detected encoding-type: " + enc + " (" + confidence + ")")
-							if enc == "utf-8":
-								name_event_descriptor.decode(enc)
-							else:
-								name_event_descriptor = name_event_descriptor.decode(enc).encode('utf-8')
-						except UnicodeDecodeError, e:
-							emcDebugOut("[META] Exception in readEitFile: " + str(e))
+							name_event_descriptor.decode('utf-8')
+						except UnicodeDecodeError:
+							try:
+								name_event_descriptor = name_event_descriptor.decode("cp1252").encode("utf-8")
+							except UnicodeDecodeError:
+								name_event_descriptor = name_event_descriptor.decode("iso-8859-1").encode("utf-8")
 					self.eit['name'] = name_event_descriptor
 
 					if short_event_descriptor:
 						try:
-							encdata = chardet.detect(short_event_descriptor)
-							enc = encdata['encoding'].lower()
-							confidence = str(encdata['confidence'])
-							emcDebugOut("[META] Detected encoding-type: " + enc + " (" + confidence + ")")
-							if enc == "utf-8":
-								short_event_descriptor.decode(enc)
-							else:
-								short_event_descriptor = short_event_descriptor.decode(enc).encode('utf-8')
-						except UnicodeDecodeError, e:
-							emcDebugOut("[META] Exception in readEitFile: " + str(e))
+							short_event_descriptor.decode('utf-8')
+						except UnicodeDecodeError:
+							try:
+								short_event_descriptor = short_event_descriptor.decode("cp1252").encode("utf-8")
+							except UnicodeDecodeError:
+								short_event_descriptor = short_event_descriptor.decode("iso-8859-1").encode("utf-8")
 					self.eit['short_description'] = short_event_descriptor
 
 					if extended_event_descriptor:
