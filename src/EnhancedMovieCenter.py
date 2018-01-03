@@ -59,7 +59,7 @@ from EMCTasker import emcTasker, emcDebugOut
 
 sz_w = getDesktop(0).size().width()
 
-EMCVersion = "git20180101"
+EMCVersion = "git20180103"
 EMCAbout = "Enhanced Movie Center " +EMCVersion+ "\n\n(c) 2012-2018 by\nCoolman, betonme, Swiss-MAD & the many other volunteers."
 
 def setEPGLanguage(dummyself=None, dummy=None):
@@ -493,11 +493,11 @@ class EnhancedMovieCenterMenu(ConfigListScreenExt, Screen):
 			(  _("Show movie progress")                           , config.EMC.movie_progress           , None                  , None                  , 0     , []          , _("HELP_Show movie progress")                            , ""                , "PB" ),
 			(  _("Short watching percent")                        , config.EMC.movie_watching_percent   , None                  , None                  , 0     , [-1]        , _("HELP_Short watching percent")                         , None              , None ),
 			(  _("Finished watching percent")                     , config.EMC.movie_finished_percent   , None                  , None                  , 0     , [-2]        , _("HELP_Finished watching percent")                      , None              , None ),
-			(  _("Default color for unwatched movie")             , config.EMC.color_unwatched          , None                  , None                  , 0     , []          , _("HELP_Default color unwatched")                        , None              , None ),
-			(  _("Default color for partially watched movie")     , config.EMC.color_watching           , None                  , None                  , 0     , []          , _("HELP_Default color partially watched")                , None              , None ),
-			(  _("Default color for watched movie")               , config.EMC.color_finished           , None                  , None                  , 0     , []          , _("HELP_Default color watched")                          , None              , None ),
-			(  _("Default color for recording movie")             , config.EMC.color_recording          , None                  , None                  , 0     , []          , _("HELP_Default color recording")                        , None              , None ),
-			(  _("Default color for highlighted movie")           , config.EMC.color_highlight          , None                  , None                  , 0     , []          , _("HELP_Default color highlighted")                      , None              , None ),
+			(  _("Default color for unwatched movie")             , config.EMC.color_unwatched          , None                  , None                  , 0     , [-3]        , _("HELP_Default color unwatched")                        , None              , None ),
+			(  _("Default color for partially watched movie")     , config.EMC.color_watching           , None                  , None                  , 0     , [-4]        , _("HELP_Default color partially watched")                , None              , None ),
+			(  _("Default color for watched movie")               , config.EMC.color_finished           , None                  , None                  , 0     , [-5]        , _("HELP_Default color watched")                          , None              , None ),
+			(  _("Default color for recording movie")             , config.EMC.color_recording          , None                  , None                  , 0     , [-6]        , _("HELP_Default color recording")                        , None              , None ),
+			(  _("Default color for highlighted movie")           , config.EMC.color_highlight          , None                  , None                  , 0     , [-7]        , _("HELP_Default color highlighted")                      , None              , None ),
 			(  _("Mark new recordings with a star")               , config.EMC.mark_latest_files        , None                  , None                  , 0     , []          , _("HELP_Mark new recordings with a star")                , False             , True ),
 			(  _("Show Cover")                                    , config.EMC.movie_cover              , None                  , None                  , 0     , []          , _("HELP_Show Cover")                                     , False             , None ),
 			(  _("Cover delay in ms")                             , config.EMC.movie_cover_delay        , None                  , None                  , 0     , [-1]        , _("HELP_Cover delay in ms")                              , 1000              , None ),

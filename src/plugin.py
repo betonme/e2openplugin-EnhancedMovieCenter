@@ -370,7 +370,7 @@ config.EMC.color_unwatched           = ConfigSelection(default="#ffffff" , choic
 config.EMC.color_watching            = ConfigSelection(default="#ffad33" , choices=[("#ffad33", _("Orange")), ("#ffd699", _("Light orange")), ("#cc7a00", _("Dark orange"))])
 config.EMC.color_finished            = ConfigSelection(default="#38ff48" , choices=[("#38ff48", _("Green")), ("#b3ffb9", _("Light green")), ("#00990d", _("Dark green"))])
 config.EMC.color_recording           = ConfigSelection(default="#ff0000" , choices=[("#ff0000", _("Red")), ("#ff9999", _("Light red")), ("#990000", _("Dark red"))])
-config.EMC.color_highlight           = ConfigSelection(default="#cccccc" , choices=[("#ffffff", _("White")), ("#cccccc", _("Light grey")), ("#bababa", _("Grey")), ("#666666", _("Dark grey")), ("#000000", _("Black"))])
+config.EMC.color_highlight           = ConfigSelection(default="#bababa" , choices=[("#ffffff", _("White")), ("#cccccc", _("Light grey")), ("#bababa", _("Grey")), ("#666666", _("Dark grey")), ("#000000", _("Black"))])
 
 nget = False # this is needed for vti-image at the moment
 try:
