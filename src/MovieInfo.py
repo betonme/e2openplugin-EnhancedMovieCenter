@@ -14,7 +14,7 @@ from configlistext import ConfigListScreenExt
 
 from MovieCenter import getMovieNameWithoutExt, getMovieNameWithoutPhrases, getNoPosterPath
 
-import json, os
+import json, os, re
 from urllib2 import Request, urlopen
 from twisted.web.client import downloadPage
 
@@ -343,6 +343,8 @@ class MovieInfoTMDb(Screen):
 			self["movie_name"] = Label(_("Search results for:") + "   " + moviename)
 			self["contenttxt"].setText(_("Nothing was found !"))
 
+		self.file_format = "(\.ts|\.avi|\.mkv|\.divx|\.f4v|\.flv|\.img|\.iso|\.m2ts|\.m4v|\.mov|\.mp4|\.mpeg|\.mpg|\.mts|\.vob|\.asf|\.wmv|.\stream|.\webm)"
+
 		# for file-operations
 		self.txtsaved = False
 		self.jpgsaved = False
@@ -470,7 +472,7 @@ class MovieInfoTMDb(Screen):
 	def save(self):
 		if self.page == 0 and self.spath is not None:
 			self.txtsaved = False
-			self.mpath = os.path.splitext(self.spath)[0]
+			self.mpath = re.sub(self.file_format + "$", '.jpg', self.spath, flags=re.IGNORECASE)
 			try:
 				txtpath = self.mpath + ".txt"
 				if fileExists("/tmp/previewTxt.txt"):
