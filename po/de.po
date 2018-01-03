@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: EMC\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-01 17:26+0100\n"
+"POT-Creation-Date: 2018-01-03 18:05+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: dhwz <dhwz@gmx.net>\n"
 "Language-Team: Swiss-MAD\n"
@@ -91,7 +91,7 @@ msgstr ".../foldername/folder.jpg"
 msgid "Search"
 msgstr "Suchen"
 
-#: EMCCoverSearch.py:179 MovieSelection.py:2414 MovieSelectionMenu.py:112
+#: EMCCoverSearch.py:179 MovieSelection.py:2417 MovieSelectionMenu.py:112
 #: MovieSelectionMenu.py:114 plugin.py:167 plugin.py:188
 msgid "Delete"
 msgstr "Löschen"
@@ -105,7 +105,7 @@ msgid "Manage Cover"
 msgstr "Verwalte Cover"
 
 #: EMCCoverSearch.py:192 EnhancedMovieCenter.py:253 MovieInfo.py:321
-#: plugin.py:526
+#: plugin.py:531
 msgid "Setup"
 msgstr "Einstellungen"
 
@@ -197,7 +197,7 @@ msgid "EMC Cover search setup"
 msgstr "EMC-Coversuche - Einstellungen"
 
 #: EMCCoverSearch.py:692 EMCPlayList.py:132 EMCPlayList.py:457
-#: EMCPlayList.py:542 EnhancedMovieCenter.py:269 MovieInfo.py:634
+#: EMCPlayList.py:542 EnhancedMovieCenter.py:269 MovieInfo.py:636
 #: MovieRetitle.py:32
 msgid "Cancel"
 msgstr "Abbruch"
@@ -281,9 +281,9 @@ msgstr "Kann Cover nicht speichern in"
 msgid "Move Cover to:"
 msgstr "Verschiebe Cover zu:"
 
-#: EMCCoverSearch.py:1192 EMCPlayList.py:470 EnhancedMovieCenter.py:731
-#: MovieSelection.py:2978 MovieSelection.py:3020 MovieSelection.py:3054
-#: MovieSelection.py:3096 MovieSelection.py:3123 MovieSelectionMenu.py:299
+#: EMCCoverSearch.py:1192 EMCPlayList.py:470 EnhancedMovieCenter.py:736
+#: MovieSelection.py:2981 MovieSelection.py:3023 MovieSelection.py:3057
+#: MovieSelection.py:3099 MovieSelection.py:3126 MovieSelectionMenu.py:299
 msgid "Choose directory"
 msgstr "Verzeichnis wählen"
 
@@ -1696,85 +1696,125 @@ msgstr ""
 
 #: EnhancedMovieCenter.py:494
 msgid "Short watching percent"
-msgstr "Farbe für \"Film angespielt\" (blau) ab %"
+msgstr "Film gilt als angespielt ab %"
 
 #: EnhancedMovieCenter.py:494
 msgid "HELP_Short watching percent"
 msgstr ""
 "Gibt an ab wieviel Prozent der Filmfortschritt als angespielt gilt.\n"
-"Die Fortschrittsanzeige wechselt dann die Farbe auf blau."
+"Die Fortschrittsanzeige wechselt dann die Farbe."
 
 #: EnhancedMovieCenter.py:495
 msgid "Finished watching percent"
-msgstr "Farbe für \"Film gesehen\" (grün) ab %"
+msgstr "Film gilt als gesehen ab %"
 
 #: EnhancedMovieCenter.py:495
 msgid "HELP_Finished watching percent"
 msgstr ""
 "Gibt an ab wieviel Prozent der Filmfortschritt als fertig gespielt gilt.\n"
-"Die Fortschrittsanzeige wechselt dann die Farbe auf grün."
+"Die Fortschrittsanzeige wechselt dann die Farbe."
 
 #: EnhancedMovieCenter.py:496
+msgid "Default color for unwatched movie"
+msgstr "Standardfarbe für ungesehene Filme"
+
+#: EnhancedMovieCenter.py:496
+msgid "HELP_Default color unwatched"
+msgstr "Legt die Standardfarbe für ungesehene Filme fest."
+
+#: EnhancedMovieCenter.py:497
+msgid "Default color for partially watched movie"
+msgstr "Standardfarbe für angespielte Filme"
+
+#: EnhancedMovieCenter.py:497
+msgid "HELP_Default color partially watched"
+msgstr "Legt die Standardfarbe für angespielte Filme fest."
+
+#: EnhancedMovieCenter.py:498
+msgid "Default color for watched movie"
+msgstr "Standardfarbe für gesehene Filme"
+
+#: EnhancedMovieCenter.py:498
+msgid "HELP_Default color watched"
+msgstr "Legt die Standardfarbe für gesehene Filme fest."
+
+#: EnhancedMovieCenter.py:499
+msgid "Default color for recording movie"
+msgstr "Standardfarbe für laufende Aufnahmen"
+
+#: EnhancedMovieCenter.py:499
+msgid "HELP_Default color recording"
+msgstr "Legt die Standardfarbe für den laufende Aufnahmen fest."
+
+#: EnhancedMovieCenter.py:500
+msgid "Default color for highlighted movie"
+msgstr "Standardfarbe für markierten Film"
+
+#: EnhancedMovieCenter.py:500
+msgid "HELP_Default color highlighted"
+msgstr "Legt die Standardfarbe für markierten Film fest."
+
+#: EnhancedMovieCenter.py:501
 msgid "Mark new recordings with a star"
 msgstr "Markieren neuer Aufnahmen mit einem Stern"
 
-#: EnhancedMovieCenter.py:496
+#: EnhancedMovieCenter.py:501
 msgid "HELP_Mark new recordings with a star"
 msgstr "Markieren neuer Aufnahmen mit einem Stern"
 
-#: EnhancedMovieCenter.py:497 MovieSelection.py:1895 MovieSelection.py:1911
-#: MovieSelection.py:1927
+#: EnhancedMovieCenter.py:502 MovieSelection.py:1898 MovieSelection.py:1914
+#: MovieSelection.py:1930
 msgid "Show Cover"
 msgstr "Cover anzeigen"
 
-#: EnhancedMovieCenter.py:497
+#: EnhancedMovieCenter.py:502
 msgid "HELP_Show Cover"
 msgstr "Cover anzeigen, wenn diese vorhanden sind."
 
-#: EnhancedMovieCenter.py:498 MovieInfo.py:625
+#: EnhancedMovieCenter.py:503 MovieInfo.py:627
 msgid "Cover delay in ms"
 msgstr "Cover-Anzeige verzögern um ms"
 
-#: EnhancedMovieCenter.py:498
+#: EnhancedMovieCenter.py:503
 msgid "HELP_Cover delay in ms"
 msgstr ""
 "Wenn Cover anzeigen eingestellt ist, kann hiermit die Verzögerung zum "
 "Anzeigen der Covers eingestellt werden. Dies verhindert, dass die Cover beim "
 "Zappen duch die Filmliste eingelesen werden müssen."
 
-#: EnhancedMovieCenter.py:499
+#: EnhancedMovieCenter.py:504
 msgid "Cover background"
 msgstr "Cover-Hintergrund"
 
-#: EnhancedMovieCenter.py:499
+#: EnhancedMovieCenter.py:504
 msgid "HELP_Cover background"
 msgstr "Hier kann der Cover-Hintergrund angepasst werden."
 
-#: EnhancedMovieCenter.py:500
+#: EnhancedMovieCenter.py:505
 msgid "Show fallback cover"
 msgstr "Cover-Hintergrund anzeigen, wenn kein Cover vorhanden"
 
-#: EnhancedMovieCenter.py:500
+#: EnhancedMovieCenter.py:505
 msgid "HELP_Fallback Cover"
 msgstr ""
 "Bei \"NEIN\" wird der Cover Hintergrund nur angezeigt, wenn auch ein Cover "
 "vorhanden ist."
 
-#: EnhancedMovieCenter.py:501
+#: EnhancedMovieCenter.py:506
 msgid "Show movie preview"
 msgstr "Filmvorschau anzeigen"
 
-#: EnhancedMovieCenter.py:501
+#: EnhancedMovieCenter.py:506
 msgid "HELP_Show movie preview"
 msgstr ""
 "Spielt die Aufnahme nach der eingestellten Verweildauer des Cursors im "
 "MiniTV an."
 
-#: EnhancedMovieCenter.py:502
+#: EnhancedMovieCenter.py:507
 msgid "Movie preview delay in ms"
 msgstr "Verzögerung für Filmvorschau in Millisekunden"
 
-#: EnhancedMovieCenter.py:502
+#: EnhancedMovieCenter.py:507
 msgid "HELP_Movie preview delay in ms"
 msgstr ""
 "Wenn Filmvorschau anzeigen eingestellt ist, kann hiermit die Verzögerung zum "
@@ -1782,39 +1822,39 @@ msgstr ""
 "Filmvorschau beim Zappen durch die Filmliste schon startet und/oder das "
 "vorher noch ein Cover eingeblendet werden kann."
 
-#: EnhancedMovieCenter.py:503
+#: EnhancedMovieCenter.py:508
 msgid "Start movie preview before last position"
 msgstr "Starte Filmvorschau vor der letzten Abspielposition (Sekunden)"
 
-#: EnhancedMovieCenter.py:503
+#: EnhancedMovieCenter.py:508
 msgid "HELP_Movie preview offset in seconds"
 msgstr ""
 "Startet die Filmvorschau um die Anzahl angegebenen Sekunden vor der letzten "
 "Abspielposition"
 
-#: EnhancedMovieCenter.py:504
+#: EnhancedMovieCenter.py:509
 msgid "Hide MiniTV"
 msgstr "MiniTV ausblenden"
 
-#: EnhancedMovieCenter.py:504
+#: EnhancedMovieCenter.py:509
 msgid "HELP_hide_MiniTV"
 msgstr "Legt fest, in welchen Situationen der MiniTV verborgen werden soll."
 
-#: EnhancedMovieCenter.py:505
+#: EnhancedMovieCenter.py:510
 msgid "Hide MiniTV if Cover is shown"
 msgstr "MiniTV ausblenden, wenn Cover sichtbar"
 
-#: EnhancedMovieCenter.py:505
+#: EnhancedMovieCenter.py:510
 msgid "HELP_hide_MiniTV cover"
 msgstr ""
 "Legt fest, ob der MiniTV im Hintergrund ausgeblendet werden soll wenn ein "
 "Cover angezeigt wird."
 
-#: EnhancedMovieCenter.py:512
+#: EnhancedMovieCenter.py:517
 msgid "Method of hiding MiniTV"
 msgstr "Methode zum Ausblenden des Mini-TV"
 
-#: EnhancedMovieCenter.py:512
+#: EnhancedMovieCenter.py:517
 msgid "HELP_hide_MiniTV_method"
 msgstr ""
 "Gegen Filmwiedergabe mit verzerrtem Seitenverhältnis (z.B. Gigablue Quad) "
@@ -1822,87 +1862,87 @@ msgstr ""
 "Live-TV nicht zu stoppen, sondern den Mini-TV ersatzweise auf 1 Pixel zu "
 "reduzieren."
 
-#: EnhancedMovieCenter.py:518
+#: EnhancedMovieCenter.py:523
 msgid "AUDIO METADATA"
 msgstr "AUDIO-METADATEN"
 
-#: EnhancedMovieCenter.py:525
+#: EnhancedMovieCenter.py:530
 msgid "Install Mutagen-package for audio metadata"
 msgstr "Mutagen Paket für Audio Metadaten herunterladen"
 
-#: EnhancedMovieCenter.py:525
+#: EnhancedMovieCenter.py:530
 msgid "HELP_Install Mutagen-package for audio metadata"
 msgstr ""
 "Mutagen-Paket für Audio Metadaten ist verfügbar.\n"
 "Nach dem Speichern wird versucht es zu installieren."
 
-#: EnhancedMovieCenter.py:532
+#: EnhancedMovieCenter.py:537
 msgid "Show audio metadata"
 msgstr "Audio Metadaten anzeigen"
 
-#: EnhancedMovieCenter.py:532
+#: EnhancedMovieCenter.py:537
 msgid "HELP_Show audio metadata"
 msgstr "Zeige Audio Metadaten in der Filmliste."
 
-#: EnhancedMovieCenter.py:538
+#: EnhancedMovieCenter.py:543
 msgid "DEBUG"
 msgstr "DEBUG"
 
-#: EnhancedMovieCenter.py:539
+#: EnhancedMovieCenter.py:544
 msgid "Enable EMC debug output"
 msgstr "Debug-Ausgabe aktivieren"
 
-#: EnhancedMovieCenter.py:539
+#: EnhancedMovieCenter.py:544
 msgid "HELP_Enable EMC debug output"
 msgstr ""
 "Debug-Ausgabe von EMC aktivieren. Die Log-Datei wird in den unter \"EMC-"
 "Ausgabeverzeichnis\" eingestellten Pfad geschrieben.\n"
 "NUR ZUR FEHLERSUCHE AKTIVIEREN !!!"
 
-#: EnhancedMovieCenter.py:540
+#: EnhancedMovieCenter.py:545
 msgid "EMC output directory"
 msgstr "EMC-Ausgabeverzeichnis"
 
-#: EnhancedMovieCenter.py:540
+#: EnhancedMovieCenter.py:545
 msgid "HELP_EMC output directory"
 msgstr "Debug-Ausgabe-Verzieichnis von EMC bestimmen."
 
-#: EnhancedMovieCenter.py:541
+#: EnhancedMovieCenter.py:546
 msgid "Debug output file name"
 msgstr "Dateiname der Debug-Ausgabe"
 
-#: EnhancedMovieCenter.py:541
+#: EnhancedMovieCenter.py:546
 msgid "HELP_Debug output file name"
 msgstr "Dateiname der Debug-Log-Datei."
 
-#: EnhancedMovieCenter.py:551 EnhancedMovieCenter.py:553
+#: EnhancedMovieCenter.py:556 EnhancedMovieCenter.py:558
 msgid "Installing Mutagen-package"
 msgstr "Installiere Mutagen Paket"
 
-#: EnhancedMovieCenter.py:555
+#: EnhancedMovieCenter.py:560
 msgid "The python-mutagen package is not available on the feed."
 msgstr "Das python-mutagen Paket ist nicht auf dem Feed verfügbar."
 
-#: EnhancedMovieCenter.py:626
+#: EnhancedMovieCenter.py:631
 msgid "Load default settings will overwrite all settings, really load them?"
 msgstr ""
 "Laden der Standardeinstellungen überschreibt alle aktuellen Einstellungen.\n"
 "Sollen die Standardeinstellungen wirklich geladen werden?"
 
-#: EnhancedMovieCenter.py:699
+#: EnhancedMovieCenter.py:704
 msgid "Some settings changes require GUI restart to take effect."
 msgstr "Damit die Einstellungen wirksam werden, bitte Enigma2 neustarten !"
 
-#: EnhancedMovieCenter.py:730
+#: EnhancedMovieCenter.py:735
 msgid "Select Location"
 msgstr "Wähle Ort"
 
-#: EnhancedMovieCenter.py:749
+#: EnhancedMovieCenter.py:754
 #, python-format
 msgid "Given path %s does not exist. Please change."
 msgstr "Gewähltes Verzeichnis %s existiert nicht. Bitte ändern."
 
-#: EnhancedMovieCenter.py:757 MovieSelection.py:3186
+#: EnhancedMovieCenter.py:762 MovieSelection.py:3189
 msgid "Trashcan create failed. Check mounts and permissions."
 msgstr "Papierkorb erstellen fehlgeschlagen. Mounts und Rechte prüfen."
 
@@ -1931,59 +1971,59 @@ msgstr "%s fortsetzen ?"
 msgid "Resuming playback"
 msgstr "Wiedergabe fortsetzen"
 
-#: MovieCenter.py:871
+#: MovieCenter.py:872
 msgid "OSError - please reload list (EMC menu)"
 msgstr "OS-Fehler - bitte Filmliste neu laden (EMC Menü oder lange TV-Taste)"
 
-#: MovieCenter.py:1087
+#: MovieCenter.py:1088 MovieSelection.py:1460
 msgid "trashcan"
 msgstr "Papierkorb"
 
-#: MovieCenter.py:1092
+#: MovieCenter.py:1093 MovieSelection.py:1459
 msgid "Latest Recordings"
 msgstr "Neueste Aufnahmen"
 
-#: MovieCenter.py:2424
+#: MovieCenter.py:2425
 msgid "VLC"
 msgstr "VLC"
 
-#: MovieCenter.py:2430
+#: MovieCenter.py:2431
 msgid "VLC-Server"
 msgstr "VLC-Server"
 
-#: MovieCenter.py:2436
+#: MovieCenter.py:2437
 msgid "VLC-Dir"
 msgstr "VLC-Verzeichnis"
 
-#: MovieCenter.py:2442
+#: MovieCenter.py:2443
 msgid "Latest"
 msgstr "Neueste"
 
-#: MovieCenter.py:2448
+#: MovieCenter.py:2449
 msgid "Up"
 msgstr "höher"
 
-#: MovieCenter.py:2454 MovieCenter.py:2460
+#: MovieCenter.py:2455 MovieCenter.py:2461
 msgid "Bookmark"
 msgstr "Lesezeichen"
 
-#: MovieCenter.py:2493
+#: MovieCenter.py:2494
 msgid "UNKNOWN"
 msgstr "UNBEKANNT"
 
-#: MovieCenter.py:2631 MovieCenter.py:2654
+#: MovieCenter.py:2632 MovieCenter.py:2655
 msgid "Trashcan"
 msgstr "Papierkorb"
 
-#: MovieCenter.py:2645 MovieCenter.py:2656
+#: MovieCenter.py:2646 MovieCenter.py:2657
 msgid "Directory"
 msgstr "Verzeichnis"
 
-#: MovieCenter.py:2647
+#: MovieCenter.py:2648
 msgid "Link"
 msgstr "Link"
 
-#: MovieCenter.py:2649
+#: MovieCenter.py:2650
 msgid "Collection"
 msgstr "Sammlung"
 
@@ -2034,27 +2074,27 @@ msgstr "Serien"
 msgid "Content:"
 msgstr "Inhalt:"
 
-#: MovieInfo.py:135 MovieInfo.py:190 MovieInfo.py:400 MovieSelection.py:360
+#: MovieInfo.py:135 MovieInfo.py:190 MovieInfo.py:402 MovieSelection.py:360
 msgid "Runtime:"
 msgstr "Laufzeit:"
 
-#: MovieInfo.py:135 MovieInfo.py:190 MovieInfo.py:426
+#: MovieInfo.py:135 MovieInfo.py:190 MovieInfo.py:428
 msgid "Minutes"
 msgstr "Minuten"
 
-#: MovieInfo.py:135 MovieInfo.py:190 MovieInfo.py:401 MovieSelection.py:358
+#: MovieInfo.py:135 MovieInfo.py:190 MovieInfo.py:403 MovieSelection.py:358
 msgid "Genre:"
 msgstr "Genre:"
 
-#: MovieInfo.py:135 MovieInfo.py:190 MovieInfo.py:402
+#: MovieInfo.py:135 MovieInfo.py:190 MovieInfo.py:404
 msgid "Production Countries:"
 msgstr "Produktionsländer:"
 
-#: MovieInfo.py:135 MovieInfo.py:190 MovieInfo.py:403
+#: MovieInfo.py:135 MovieInfo.py:190 MovieInfo.py:405
 msgid "Release Date:"
 msgstr "Erscheinungsdatum:"
 
-#: MovieInfo.py:135 MovieInfo.py:190 MovieInfo.py:404
+#: MovieInfo.py:135 MovieInfo.py:190 MovieInfo.py:406
 msgid "Vote:"
 msgstr "Bewertung:"
 
@@ -2062,11 +2102,11 @@ msgstr "Bewertung:"
 msgid "unknown"
 msgstr "unbekannt"
 
-#: MovieInfo.py:331 MovieInfo.py:343 MovieInfo.py:565
+#: MovieInfo.py:331 MovieInfo.py:343 MovieInfo.py:567
 msgid "Search results for:"
 msgstr "Suchresultat für:"
 
-#: MovieInfo.py:341 MovieInfo.py:524
+#: MovieInfo.py:341 MovieInfo.py:526
 msgid "Movie Information Preview for:"
 msgstr "Vorschau der Filminformationen für:"
 
@@ -2074,19 +2114,19 @@ msgstr "Vorschau der Filminformationen für:"
 msgid "Nothing was found !"
 msgstr "Es wurde nichts gefunden !"
 
-#: MovieInfo.py:377
+#: MovieInfo.py:379
 msgid "Movie Information TMDb"
 msgstr "Filminformationen TMDb"
 
-#: MovieInfo.py:452
+#: MovieInfo.py:454
 msgid "Movie Information and Cover downloaded successfully!"
 msgstr "Filminformationen und Cover erfolgreich geladen!"
 
-#: MovieInfo.py:456 MovieInfo.py:460
+#: MovieInfo.py:458 MovieInfo.py:462
 msgid "Movie Information downloaded successfully!"
 msgstr "Filminformationen erfolgreich geladen!"
 
-#: MovieInfo.py:458
+#: MovieInfo.py:460
 #, python-format
 msgid ""
 "Movie Information downloaded successfully!\n"
@@ -2101,7 +2141,7 @@ msgstr ""
 "\n"
 "%s"
 
-#: MovieInfo.py:462
+#: MovieInfo.py:464
 #, python-format
 msgid ""
 "Movie Cover downloaded successfully!\n"
@@ -2116,19 +2156,20 @@ msgstr ""
 "\n"
 "%s"
 
-#: MovieInfo.py:464
+#: MovieInfo.py:466
+#, python-format
 msgid ""
 "Can not write Movie Information and Cover File\n"
 "\n"
-"%(info)\n"
-"%(file)"
+"%(info)s\n"
+"%(file)s"
 msgstr ""
 "Filminformationen und Cover konnten nicht gespeichert werden\n"
 "\n"
-"%(info)\n"
-"%(file)"
+"%(info)s\n"
+"%(file)s"
 
-#: MovieInfo.py:466
+#: MovieInfo.py:468
 #, python-format
 msgid ""
 "Can not write Movie Information File\n"
@@ -2139,7 +2180,7 @@ msgstr ""
 "\n"
 "%s"
 
-#: MovieInfo.py:489
+#: MovieInfo.py:491
 #, python-format
 msgid ""
 "Cover %s exists!\n"
@@ -2150,43 +2191,43 @@ msgstr ""
 "\n"
 "Wollen Sie das existierende Cover ersetzen?"
 
-#: MovieInfo.py:617
+#: MovieInfo.py:619
 msgid "Language:"
 msgstr "Sprache:"
 
-#: MovieInfo.py:618
+#: MovieInfo.py:620
 msgid "Load Runtime:"
 msgstr "Lade Laufzeit:"
 
-#: MovieInfo.py:619
+#: MovieInfo.py:621
 msgid "Load Genre:"
 msgstr "Lade Genre:"
 
-#: MovieInfo.py:620
+#: MovieInfo.py:622
 msgid "Load Production Countries:"
 msgstr "Lade Produktionsländer:"
 
-#: MovieInfo.py:621
+#: MovieInfo.py:623
 msgid "Load Release Date:"
 msgstr "Lade Erscheinungsdatum:"
 
-#: MovieInfo.py:622
+#: MovieInfo.py:624
 msgid "Load Vote:"
 msgstr "Lade Bewertung:"
 
-#: MovieInfo.py:623
+#: MovieInfo.py:625
 msgid "Save Cover"
 msgstr "Cover speichern"
 
-#: MovieInfo.py:624
+#: MovieInfo.py:626
 msgid "Coversize"
 msgstr "Covergröße"
 
-#: MovieInfo.py:635
+#: MovieInfo.py:637
 msgid "OK"
 msgstr "OK"
 
-#: MovieInfo.py:639
+#: MovieInfo.py:641
 msgid "Movie Information Download Setup"
 msgstr "Einstellungen Film-Information Download"
 
@@ -2238,7 +2279,7 @@ msgstr "Artist:"
 msgid "Album:"
 msgstr "Album:"
 
-#: MovieSelection.py:622 MovieSelection.py:1835
+#: MovieSelection.py:622 MovieSelection.py:1838
 msgid "Reading directory..."
 msgstr "Lese Verzeichnis..."
 
@@ -2342,7 +2383,8 @@ msgstr "Umschalten gesehen / nicht gesehen"
 msgid "Start / end multiselection"
 msgstr "Mehrfachauswahl ein/aus"
 
-#: MovieSelection.py:684 MovieSelectionMenu.py:88 plugin.py:166 plugin.py:187
+#: MovieSelection.py:684 MovieSelection.py:1461 MovieSelectionMenu.py:88
+#: plugin.py:166 plugin.py:187
 msgid "Movie home"
 msgstr "Movie Home"
 
@@ -2385,62 +2427,63 @@ msgstr "Keine Funktion eingestellt..."
 msgid "*** Multiselection active ***"
 msgstr "*** Mehrfachauswahl aktiv ***"
 
-#: MovieSelection.py:1479 MovieSelection.py:1481 MovieSelection.py:1483
+#: MovieSelection.py:1482 MovieSelection.py:1484 MovieSelection.py:1486
 msgid "Free: "
 msgstr "Frei: "
 
-#: MovieSelection.py:1868
+#: MovieSelection.py:1871
 msgid "Sort Mode"
 msgstr "Sortiermodus"
 
-#: MovieSelection.py:1869
+#: MovieSelection.py:1872
 msgid "Sort Order"
 msgstr "Sortierreihenfolge"
 
-#: MovieSelection.py:1893 MovieSelection.py:1909 MovieSelection.py:1925
+#: MovieSelection.py:1896 MovieSelection.py:1912 MovieSelection.py:1928
 msgid "Hide Cover"
 msgstr "Cover aus"
 
-#: MovieSelection.py:1897 MovieSelection.py:1913 MovieSelection.py:1929
+#: MovieSelection.py:1900 MovieSelection.py:1916 MovieSelection.py:1932
 #: plugin.py:176 plugin.py:197
 msgid "Button disabled"
 msgstr "Taste deaktiviert"
 
-#: MovieSelection.py:1898 MovieSelection.py:1914 MovieSelection.py:1930
+#: MovieSelection.py:1901 MovieSelection.py:1917 MovieSelection.py:1933
 msgid "Cover disabled in EMC-Setup"
 msgstr "Cover in EMC-Setup deaktiviert"
 
-#: MovieSelection.py:2076
+#: MovieSelection.py:2079
 msgid "File not available."
 msgstr "Datei nicht vorhanden."
 
-#: MovieSelection.py:2133
+#: MovieSelection.py:2136
 msgid "File added to current Playlist."
 msgstr "Datei zur aktuellen Wiedergabeliste hinzugefügt."
 
-#: MovieSelection.py:2135
+#: MovieSelection.py:2138
 msgid "File exists in current Playlist."
 msgstr "Datei ist schon in der aktuellen Wiedergabeliste."
 
-#: MovieSelection.py:2138
+#: MovieSelection.py:2141
 msgid "Files added to current Playlist."
 msgstr "Dateien zur aktuellen Wiedergabeliste hinzugefügt."
 
-#: MovieSelection.py:2140
+#: MovieSelection.py:2143
+#, python-format
 msgid ""
 "Files added to current Playlist:\n"
-"%(add)\n"
+"%(add)s\n"
 "\n"
 "Files exists in current Playlist:\n"
-"%(exist)"
+"%(exist)s"
 msgstr ""
 "Dateien zur aktuellen Wiedergabeliste hinzugefügt:\n"
-"%(add)\n"
+"%(add)s\n"
 "\n"
 "Dateien sind schon in der aktuellen Wiedergabeliste:\n"
-"%(exist)"
+"%(exist)s"
 
-#: MovieSelection.py:2142
+#: MovieSelection.py:2145
 #, python-format
 msgid ""
 "Files exists in current Playlist:\n"
@@ -2449,33 +2492,33 @@ msgstr ""
 "Dateien sind schon in der aktuellen Wiedergabeliste:\n"
 "%s"
 
-#: MovieSelection.py:2186
+#: MovieSelection.py:2189
 msgid "Last played movie/playlist not available..."
 msgstr "Letzte Wiedergabe/Playlist nicht verfügbar..."
 
-#: MovieSelection.py:2190
+#: MovieSelection.py:2193
 msgid "Play last movie starting"
 msgstr "Starte letzte Wiedergabe"
 
-#: MovieSelection.py:2209
+#: MovieSelection.py:2212
 msgid "Play All starting"
 msgstr "Starte \"Alles abspielen\""
 
-#: MovieSelection.py:2228
+#: MovieSelection.py:2231
 msgid "Shuffle All starting"
 msgstr "Starte Alles mit Zufallswiedergabe abspielen"
 
-#: MovieSelection.py:2261
+#: MovieSelection.py:2264
 msgid "Not stopping any repeating timers. Modify them with the timer editor."
 msgstr ""
 "Wiederholungstimer werden nicht gestoppt. Bitte mit dem Timer-Editor "
 "bearbeiten."
 
-#: MovieSelection.py:2269
+#: MovieSelection.py:2272
 msgid "Stop ongoing recording?\n"
 msgstr "Laufende Aufnahme beenden?\n"
 
-#: MovieSelection.py:2322
+#: MovieSelection.py:2325
 #, python-format
 msgid ""
 "Do you really want to remove your link\n"
@@ -2485,7 +2528,7 @@ msgstr ""
 "\n"
 "%s"
 
-#: MovieSelection.py:2324
+#: MovieSelection.py:2327
 #, python-format
 msgid ""
 "Do you really want to remove your directory\n"
@@ -2495,7 +2538,7 @@ msgstr ""
 "\n"
 "%s"
 
-#: MovieSelection.py:2366 MovieSelection.py:2389 MovieSelectionMenu.py:454
+#: MovieSelection.py:2369 MovieSelection.py:2392 MovieSelectionMenu.py:454
 #: MovieSelectionMenu.py:486
 #, python-format
 msgid ""
@@ -2506,26 +2549,26 @@ msgstr ""
 "\n"
 "%s"
 
-#: MovieSelection.py:2408
+#: MovieSelection.py:2411
 msgid ""
 " Deleting remotely recorded and it will display an rec-error dialog on the "
 "other DB."
 msgstr ""
 " Löschen einer entfernten Aufnahmen zeigt einen Fehler auf der anderen DB."
 
-#: MovieSelection.py:2414
+#: MovieSelection.py:2417
 msgid " permanently"
 msgstr " endgültig"
 
-#: MovieSelection.py:2433
+#: MovieSelection.py:2436
 msgid " currently played?"
 msgstr " laufende Wiedergabe?"
 
-#: MovieSelection.py:2454
+#: MovieSelection.py:2457
 msgid " all selected video files?"
 msgstr " alle ausgewählte Videodateien?"
 
-#: MovieSelection.py:2460
+#: MovieSelection.py:2463
 msgid ""
 " all selected video files? The currently playing movie is also one of the "
 "selections and its playback will be stopped."
@@ -2533,11 +2576,11 @@ msgstr ""
 " alle ausgewählte Videodateien? Der aktuelle Film ist ebenfalls in der "
 "Auswahl enthalten. Wiedergabe wird beendet."
 
-#: MovieSelection.py:2463
+#: MovieSelection.py:2466
 msgid "Delete error:\n"
 msgstr "Fehler beim Löschen:\n"
 
-#: MovieSelection.py:2495 MovieSelection.py:2539
+#: MovieSelection.py:2498 MovieSelection.py:2542
 #, python-format
 msgid ""
 "The following files are used for other entrys in List !\n"
@@ -2552,13 +2595,13 @@ msgstr ""
 "\n"
 "%s"
 
-#: MovieSelection.py:2586
+#: MovieSelection.py:2589
 msgid "This element belongs to a locked folder and cannot be deleted!"
 msgstr ""
 "Dieses Element gehört zu einem gesperrten Ordner und kann nicht gelöscht "
 "werden!"
 
-#: MovieSelection.py:2598
+#: MovieSelection.py:2601
 msgid ""
 "Delete failed because the trashcan directory does not exist. Attempt to "
 "create it now?"
@@ -2566,29 +2609,29 @@ msgstr ""
 "Löschen fehlgeschlagen da das Papierkorb-Verzeichnis nicht existert. Jetzt "
 "erstellen?"
 
-#: MovieSelection.py:2623
+#: MovieSelection.py:2626
 msgid "This folder is locked or contains a locked subfolder, unlock it first!"
 msgstr ""
 "Dieser Ordner ist gesperrt oder enthält einen gesperrten Unterordner, der "
 "zuerst entsperrt werden muss!"
 
-#: MovieSelection.py:2644
+#: MovieSelection.py:2647
 msgid "Directory is not empty! Do you really want to delete it?"
 msgstr "Verzeichnis ist nicht leer! Soll es wirklich gelöscht werden?"
 
-#: MovieSelection.py:2650
+#: MovieSelection.py:2653
 msgid "Cannot delete the parent directory."
 msgstr "Kann übergeord. Verzeichnis nicht löschen."
 
-#: MovieSelection.py:2731 MovieSelection.py:2814
+#: MovieSelection.py:2734 MovieSelection.py:2817
 msgid "Delete failed!"
 msgstr "Löschen fehlgeschlagen!"
 
-#: MovieSelection.py:2977 MovieSelection.py:3019
+#: MovieSelection.py:2980 MovieSelection.py:3022
 msgid "Move file(s):"
 msgstr "Verschiebe File(s):"
 
-#: MovieSelection.py:3006 MovieSelection.py:3029
+#: MovieSelection.py:3009 MovieSelection.py:3032
 msgid ""
 "How to move files:\n"
 "Select some movies with the VIDEO-button, move the cursor on top of the "
@@ -2598,11 +2641,11 @@ msgstr ""
 "Filme mit VIDEO-Taste markieren, mit Cursor das Zielverzeichnis wählen und "
 "gelbe Taste drücken."
 
-#: MovieSelection.py:3053 MovieSelection.py:3095
+#: MovieSelection.py:3056 MovieSelection.py:3098
 msgid "Copy file(s):"
 msgstr "Kopiere Datei(en):"
 
-#: MovieSelection.py:3082 MovieSelection.py:3105
+#: MovieSelection.py:3085 MovieSelection.py:3108
 msgid ""
 "How to copy files:\n"
 "Select some movies with the VIDEO-button, move the cursor on top of the "
@@ -2612,19 +2655,19 @@ msgstr ""
 "Filme mit VIDEO-Taste markieren, mit Cursor das Zielverzeichnis wählen und "
 "gelbe Taste drücken."
 
-#: MovieSelection.py:3122
+#: MovieSelection.py:3125
 msgid "Move Directory:"
 msgstr "Verschiebe Verzeichnis:"
 
-#: MovieSelection.py:3196 MovieSelection.py:3202
+#: MovieSelection.py:3199 MovieSelection.py:3205
 msgid "IMDb"
 msgstr "IMDb"
 
-#: MovieSelection.py:3198
+#: MovieSelection.py:3201
 msgid "TMDb"
 msgstr "TMDb"
 
-#: MovieSelection.py:3200
+#: MovieSelection.py:3203
 msgid "CSFD"
 msgstr "CSFD"
 
@@ -3250,80 +3293,121 @@ msgstr "beim Neuladen der Liste "
 msgid "only initially"
 msgstr "nur das erste Mal"
 
+#: plugin.py:369 plugin.py:373
+msgid "White"
+msgstr "Weiß"
+
+#: plugin.py:369 plugin.py:373
+msgid "Light grey"
+msgstr "Hellgrau"
+
+#: plugin.py:369 plugin.py:373
+msgid "Grey"
+msgstr "Grau"
+
+#: plugin.py:369 plugin.py:373
+msgid "Dark grey"
+msgstr "Dunkelgrau"
+
+#: plugin.py:369 plugin.py:373
+msgid "Black"
+msgstr "Schwarz"
+
+#: plugin.py:370
+msgid "Orange"
+msgstr "Orange"
+
+#: plugin.py:370
+msgid "Light orange"
+msgstr "Hellorange"
+
+#: plugin.py:370
+msgid "Dark orange"
+msgstr "Dunkelorange"
+
+#: plugin.py:371
+msgid "Green"
+msgstr "Grün"
+
+#: plugin.py:371
+msgid "Light green"
+msgstr "Hellgrün"
+
+#: plugin.py:371
+msgid "Dark green"
+msgstr "Dunkelgrün"
+
 #: plugin.py:372
+msgid "Red"
+msgstr "Rot"
+
+#: plugin.py:372
+msgid "Light red"
+msgstr "Hellrot"
+
+#: plugin.py:372
+msgid "Dark red"
+msgstr "Dunkelrot"
+
+#: plugin.py:377
 #, python-format
 msgid "%d second"
 msgid_plural "%d seconds"
 msgstr[0] "%d sekunde"
 msgstr[1] "%d sekunden"
 
-#: plugin.py:381
+#: plugin.py:386
 msgid "Day"
 msgstr "Tag"
 
-#: plugin.py:384
+#: plugin.py:389
 msgid "Days"
 msgstr "Tage"
 
-#: plugin.py:389
+#: plugin.py:394
 msgid "Week"
 msgstr "Woche"
 
-#: plugin.py:392
+#: plugin.py:397
 msgid "Weeks"
 msgstr "Wochen"
 
-#: plugin.py:397
+#: plugin.py:402
 msgid "Month"
 msgstr "Monat"
 
-#: plugin.py:400
+#: plugin.py:405
 msgid "Months"
 msgstr "Monate"
 
-#: plugin.py:406
+#: plugin.py:411
 msgid "No limit"
 msgstr "Kein Limit"
 
-#: plugin.py:436
+#: plugin.py:441
 msgid "IMDb Search"
 msgstr "IMDb-Suche"
 
-#: plugin.py:436
+#: plugin.py:441
 msgid "EMC-TMDB Info"
 msgstr "EMC-TMDB Info"
 
-#: plugin.py:436
+#: plugin.py:441
 msgid "TMDB Info"
 msgstr "TMDB-Info"
 
-#: plugin.py:436
+#: plugin.py:441
 msgid "TMBD Info"
 msgstr "TMBD Info"
 
-#: plugin.py:436
+#: plugin.py:441
 msgid "CSFD Info"
 msgstr "CSFD-Info"
 
-#: plugin.py:526
+#: plugin.py:531
 msgid "configuration"
 msgstr "Konfiguration"
 
-#: plugin.py:529
+#: plugin.py:534
 msgid "movie manipulation list"
 msgstr "Film-Änderungsliste"
-
-#~ msgid "Extra support for language"
-#~ msgstr "Zusätzliche Sprachunterstützung"
-
-#~ msgid "HELP_Extra support for selected language"
-#~ msgstr "Hier kann die zusätzliche Sprachunterstützung aktiviert werden."
-
-#~ msgid "Left"
-#~ msgstr "Links"
-
-#~ msgid "Left with MiniTV"
-#~ msgstr "Links mit MiniTV"
-
-#~ msgid "Bottom"
-#~ msgstr "Unten"
