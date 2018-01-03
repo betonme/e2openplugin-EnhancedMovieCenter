@@ -2140,7 +2140,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 					if exist == "":
 						mes = _("Files added to current Playlist.")
 					elif exist != "" and add != "":
-						mes =  _("Files added to current Playlist:\n%(add)\n\nFiles exists in current Playlist:\n%(exist)" % {'add':add, 'exist':exist})
+						mes =  _("Files added to current Playlist:\n%(add)s\n\nFiles exists in current Playlist:\n%(exist)s" % {'add':add, 'exist':exist})
 					elif exist != "" and add == "":
 						mes = _("Files exists in current Playlist:\n%s") % exist
 				self.checkHideMiniTV_beforeFullscreen()

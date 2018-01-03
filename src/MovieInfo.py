@@ -463,7 +463,7 @@ class MovieInfoTMDb(Screen):
 		elif self.jpgsaved and not self.txtsaved:
 			msg = (_('Movie Cover downloaded successfully!\n\nCan not write Movie Information File\n\n%s') % (self.mpath + ".txt"))
 		elif not self.jpgsaved and not self.txtsaved:
-			msg = (_('Can not write Movie Information and Cover File\n\n%(info)\n%(file)') % {'info':self.mpath + ".txt", 'file':self.mpath + ".jpg"})
+			msg = (_('Can not write Movie Information and Cover File\n\n%(info)s\n%(file)s') % {'info':self.mpath + ".txt", 'file':self.mpath + ".jpg"})
 		elif not self.txtsaved and not config.EMC.movieinfo.coversave.value:
 			msg = (_('Can not write Movie Information File\n\n%s') % (self.mpath + ".txt"))
 
