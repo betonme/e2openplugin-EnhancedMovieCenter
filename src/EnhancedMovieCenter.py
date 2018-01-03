@@ -501,8 +501,20 @@ class EnhancedMovieCenterMenu(ConfigListScreenExt, Screen):
 			(  _("Mark new recordings with a star")               , config.EMC.mark_latest_files        , None                  , None                  , 0     , []          , _("HELP_Mark new recordings with a star")                , False             , True ),
 			(  _("Show Cover")                                    , config.EMC.movie_cover              , None                  , None                  , 0     , []          , _("HELP_Show Cover")                                     , False             , None ),
 			(  _("Cover delay in ms")                             , config.EMC.movie_cover_delay        , None                  , None                  , 0     , [-1]        , _("HELP_Cover delay in ms")                              , 1000              , None ),
-			(  _("Cover background")                              , config.EMC.movie_cover_background   , None                  , None                  , 0     , [-2]        , _("HELP_Cover background")                               , None              , None ),
-			(  _("Show fallback cover")                           , config.EMC.movie_cover_fallback     , None                  , None                  , 0     , [-3]        , _("HELP_Fallback Cover")                                 , None              , None ),
+
+			(  _("Show fallback cover")                           , config.EMC.movie_cover_fallback     , None                  , None                  , 0     , [-2]        , _("HELP_Fallback Cover")                                 , None              , None ),
+		]
+		)
+
+		if not isDreamOS:
+			self.EMCConfig.extend(
+		[
+			(  _("Cover background")                              , config.EMC.movie_cover_background   , None                  , None                  , 0     , [-3]        , _("HELP_Cover background")                               , None              , None ),
+		]
+		)
+
+		self.EMCConfig.extend(
+		[
 			(  _("Show movie preview")                            , config.EMC.movie_preview            , None                  , None                  , 0     , []          , _("HELP_Show movie preview")                             , False             , None ),
 			(  _("Movie preview delay in ms")                     , config.EMC.movie_preview_delay      , None                  , None                  , 0     , [-1]        , _("HELP_Movie preview delay in ms")                      , 3000              , None ),
 			(  _("Start movie preview before last position")      , config.EMC.movie_preview_offset     , None                  , None                  , 0     , [-2]        , _("HELP_Movie preview offset in seconds")                , None              , None ),
