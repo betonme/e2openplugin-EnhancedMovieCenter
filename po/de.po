@@ -1744,7 +1744,7 @@ msgstr "Standardfarbe für laufende Aufnahmen"
 
 #: EnhancedMovieCenter.py:499
 msgid "HELP_Default color recording"
-msgstr "Legt die Standardfarbe für den laufende Aufnahmen fest."
+msgstr "Legt die Standardfarbe für laufende Aufnahmen fest."
 
 #: EnhancedMovieCenter.py:500
 msgid "Default color for highlighted movie"
