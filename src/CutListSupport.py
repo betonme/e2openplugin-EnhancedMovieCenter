@@ -33,11 +33,17 @@ from IsoFileSupport import IsoSupport
 from RecordingsControl import getRecording
 
 try:
-	from Plugins.Extensions.CutlistDownloader.plugin import bestCutlist#
+	from Plugins.Extensions.CutlistDownloader.plugin import bestCutlist
 except ImportError as ie:
 	hasCutlistDownloader = False
 else:
 	hasCutlistDownloader = True
+
+try:
+	from enigma import eMediaDatabase
+	isDreamOS = True
+except:
+	isDreamOS = False
 
 # [Cutlist.Workaround] Enable Cutlist-Workaround:
 # Creates an Backup of the Cutlist during recording and merge it with the cutlist-File from enigma after recording
@@ -180,7 +186,15 @@ class CutList():
 					self.__writeCutFile()
 			else:
 				# Native cuesheet support
-				cue.setCutList(self.cut_list)
+				if isDreamOS and self.service:
+					if self.service.getPath().rsplit('.')[-1] == "mkv":
+						path = self.service.getPath()
+						self.__newPath(path)
+						self.__writeCutFile()
+					else:
+						cue.setCutList(self.cut_list)
+				else:
+					cue.setCutList(self.cut_list)
 		except Exception, e:
 			emcDebugOut("[CUTS] uploadCuesheet exception:" + str(e))
 
