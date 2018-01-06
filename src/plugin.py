@@ -165,12 +165,23 @@ launch_choices = [	("None",		_("No override")),
 # Date format is implemented using datetime.strftime
 date_choices = [("",			_("Off")),
 		("%d.%m.%Y",		_("DD.MM.YYYY")),
+		("%a %d.%m.%Y",		_("WD DD.MM.YYYY")),
+
 		("%d.%m.%Y %H:%M",	_("DD.MM.YYYY HH:MM")),
-		("%d.%m %H:%M",		_("DD.MM HH:MM")),
+		("%a %d.%m.%Y %H:%M",	_("WD DD.MM.YYYY HH:MM")),
+
 		("%d.%m. %H:%M",	_("DD.MM. HH:MM")),
+		("%a %d.%m. %H:%M",	_("WD DD.MM. HH:MM")),
+
 		("%Y/%m/%d",		_("YYYY/MM/DD")),
+		("%a %Y/%m/%d",		_("WD YYYY/MM/DD")),
+
 		("%Y/%m/%d %H:%M",	_("YYYY/MM/DD HH:MM")),
-		("%m/%d %H:%M",		_("MM/DD HH:MM")) ]
+		("%a %Y/%m/%d %H:%M",	_("WD YYYY/MM/DD HH:MM")),
+
+		("%m/%d %H:%M",		_("MM/DD HH:MM")),
+		("%a %m/%d %H:%M",	_("WD MM/DD HH:MM"))
+		]
 
 dirinfo_choices = [	("",	_("Off")),
 			("D",	_("Description")),	# Description
@@ -339,7 +350,7 @@ config.EMC.movie_picons_path         = ConfigTextWOHelp(default = "/usr/share/en
 config.EMC.movie_progress            = ConfigSelection(default = "PB", choices = progress_choices)
 config.EMC.movie_watching_percent    = ConfigSelectionNumber(0, 30, 1, default = 5)
 config.EMC.movie_finished_percent    = ConfigSelectionNumber(50, 100, 1, default = 80)
-config.EMC.movie_date_format         = ConfigSelection(default = "%d.%m %H:%M", choices = date_choices)
+config.EMC.movie_date_format         = ConfigSelection(default = "%d.%m.%Y %H:%M", choices = date_choices)
 config.EMC.movie_date_position       = ConfigSelection(default = '0', choices = [ ('0', _("center")), ('1', _("right")), ('2', _("left")) ])
 config.EMC.movie_ignore_firstcuts    = ConfigYesNo(default = True)
 config.EMC.movie_jump_first_mark     = ConfigYesNo(default = True)
