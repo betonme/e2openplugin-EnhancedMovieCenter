@@ -42,12 +42,6 @@ from ISO639 import ISO639Language
 from EMCTasker import emcTasker, emcDebugOut
 import copy
 
-try:
-	from enigma import eMediaDatabase
-	isDreamOS = True
-except:
-	isDreamOS = False
-
 class ConfigTextWOHelp(ConfigText):
 	def __init__(self, default = "", fixed_size = True, visible_width = False):
 		ConfigText.__init__(self, default, fixed_size, visible_width)
@@ -561,15 +555,6 @@ def recordingsOpen(session, *args, **kwargs):
 	session.openWithCallback(showMoviesCallback, EMCSelection)
 
 def Plugins(**kwargs):
-	if not isDreamOS:
-		try:
-			import locale
-			syslang = language.getLanguage()
-			locale.setlocale(locale.LC_TIME, syslang)
-			locale.setlocale(locale.LC_ALL, syslang)
-		except:
-			pass
-
 	from EnhancedMovieCenter import EMCVersion
 	descriptors = []
 
