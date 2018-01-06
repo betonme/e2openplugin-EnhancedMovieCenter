@@ -190,8 +190,7 @@ class EitList():
 		data = ""
 		path = self.eit_file
 
-		#lang = language.getLanguage()[:2]
-		lang = (language_iso639_2to3( config.EMC.epglang.value.lower()[:2] )).upper()
+		lang = (language_iso639_2to3(config.EMC.epglang.value.lower()[:2])).upper()
 
 		if path and os.path.exists(path):
 			mtime = os.path.getmtime(path)

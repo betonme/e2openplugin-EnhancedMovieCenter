@@ -36,7 +36,9 @@ from Components.Converter import EMCServicePosition
 from Components.Converter import EMCRecordPosition
 from Components.Converter import EMCServiceTime
 
-from __init__ import _, language
+from __init__ import _
+from Components.Language import language
+from ISO639 import ISO639Language
 from EMCTasker import emcTasker, emcDebugOut
 import copy
 
@@ -115,16 +117,42 @@ class ConfirmBox(MessageBox):
 		eActionMap.getInstance().unbindAction('', self.action)
 		self.close(answer)
 
+class Autoselect639Language(ISO639Language):
+
+	def __init__(self):
+		ISO639Language.__init__(self, self.TERTIARY)
+
+	def getTranslatedChoicesDictAndSortedListAndDefaults(self):
+		syslang = language.getLanguage()[:2]
+		choices_dict = {}
+		choices_list = []
+		defaults = []
+		for lang, id_list in self.idlist_by_name.iteritems():
+			if syslang not in id_list and 'en' not in id_list:
+				name = _(lang)
+				short_id = sorted(id_list, key=len)[0]
+				choices_dict[short_id] = name
+				choices_list.append((short_id, name))
+		choices_list.sort(key=lambda x: x[1])
+		syslangname = _(self.name_by_shortid[syslang])
+		choices_list.insert(0, (syslang, syslangname))
+		choices_dict[syslang] = syslangname
+		defaults.append(syslang)
+		if syslang != "en":
+			enlangname = _(self.name_by_shortid["en"])
+			choices_list.insert(1, ("en", enlangname))
+			choices_dict["en"] = enlangname
+			defaults.append("en")
+		return (choices_dict, choices_list, defaults)
+
 def langList():
-	newlist = []
-	for e in language.getLanguageList():
-		newlist.append( (e[0], _(e[1][0])) )
+	iso639 = Autoselect639Language()
+	newlist = iso639.getTranslatedChoicesDictAndSortedListAndDefaults()[1]
 	return newlist
 
 def langListSel():
-	newlist = []
-	for e in language.getLanguageList():
-		newlist.append( _(e[1][0]) )
+	iso639 = Autoselect639Language()
+	newlist = iso639.getTranslatedChoicesDictAndSortedListAndDefaults()[0]
 	return newlist
 
 launch_choices = [	("None",		_("No override")),
@@ -226,10 +254,6 @@ restart_choices = [	("", 	_("No")),
 bqt_choices = [	("",		_("HomeEnd")),
 		("Skip",	_("Skip")),
 		("Folder",	_("Change Folder"))]
-
-extra_support_lang_choices = [	("No",		_("No")),
-				("CZ&SK",	"CZ&SK"),
-				("HR",		"HR")]
 
 #Think about using AZ or ("A",False) as dict key / permanent sort store value
 #TODO use an OrderedDict

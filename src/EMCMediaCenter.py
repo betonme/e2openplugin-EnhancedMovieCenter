@@ -36,6 +36,8 @@ from Screens.MessageBox import MessageBox
 from Screens.HelpMenu import HelpableScreen
 from Tools.BoundFunction import boundFunction
 from Tools.Directories import fileExists, resolveFilename, SCOPE_LANGUAGE, SCOPE_PLUGINS
+from ISO639 import LanguageCodes as langC
+from Components.Language import language
 
 try:
 	from enigma import eMediaDatabase
@@ -473,7 +475,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarTimeshift, InfoBar
 					#self.doSeek(0)
 					#TODO AutoSelect subtitle for DVD Player is not implemented yet
 					DelayedFunction(750, self.setAudioTrack)      # we need that to configure! on some images it comes with 200 too early
-					DelayedFunction(400, self.setSubtitleState, True)
+					DelayedFunction(750, self.setSubtitleState, True)
 
 				### Cover anzeige
 				self.showCover()
@@ -650,10 +652,9 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarTimeshift, InfoBar
 	## Audio and Subtitles
 	def setAudioTrack(self):
 		try:
+			print "###############################################audio"
 			if not config.EMC.autoaudio.value: return
-		#	from Tools.ISO639 import LanguageCodes as langC
 			service = self.session.nav.getCurrentService()
-			#tracks = service and service.audioTracks()
 			tracks = service and self.getServiceInterface("audioTracks")
 			nTracks = tracks and tracks.getNumberOfTracks() or 0
 			if not nTracks: return
@@ -662,61 +663,76 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarTimeshift, InfoBar
 			for i in xrange(nTracks):
 				audioInfo = tracks.getTrackInfo(i)
 				lang = audioInfo.getLanguage()
-		#		if langC.has_key(lang):
-		#			lang = langC[lang][0]
+				print "lang",lang
 				desc = audioInfo.getDescription()
-				track = idx, lang,  desc
+				print "desc",desc
+				if isDreamOS:
+					type = audioInfo.getType()
+				else:
+					type = None
+				track = idx, lang, desc, type
 				idx += 1
 				trackList += [track]
 			seltrack = tracks.getCurrentTrack()
 			# we need default selected language from image
 			# to set the audiotrack if "config.EMC.autoaudio.value" are not set
-			from Components.Language import language
 			syslang = language.getLanguage()[:2]
-		#	syslang = langC[syslang][0]
 			if config.EMC.autoaudio.value:
 				audiolang = [config.EMC.audlang1.value, config.EMC.audlang2.value, config.EMC.audlang3.value]
-				caudiolang = True
 			else:
 				audiolang = syslang
-				caudiolang = False
-			useAc3 = config.EMC.autoaudio_ac3.value       # emc has new value, in some images it gives different values for that
+			useAc3 = config.EMC.autoaudio_ac3.value	# emc has new value, in some images it gives different values for that
 			if useAc3:
-				matchedAc3 = self.tryAudioTrack(tracks, audiolang, caudiolang, trackList, seltrack, useAc3)
+				matchedAc3 = self.tryAudioTrack(tracks, audiolang, trackList, seltrack, useAc3)
 				if matchedAc3: return
-				matchedMpeg = self.tryAudioTrack(tracks, audiolang, caudiolang, trackList, seltrack, False)
+				matchedMpeg = self.tryAudioTrack(tracks, audiolang, trackList, seltrack, False)
 				if matchedMpeg: return
-				tracks.selectTrack(0)    # fallback to track 1(0)
+				tracks.selectTrack(0)		# fallback to track 1(0)
 				return
 			else:
-				matchedMpeg = self.tryAudioTrack(tracks, audiolang, caudiolang, trackList, seltrack, False)
+				matchedMpeg = self.tryAudioTrack(tracks, audiolang, trackList, seltrack, False)
 				if matchedMpeg:	return
-				matchedAc3 = self.tryAudioTrack(tracks, audiolang, caudiolang, trackList, seltrack, useAc3)
+				matchedAc3 = self.tryAudioTrack(tracks, audiolang, trackList, seltrack, useAc3)
 				if matchedAc3: return
-				tracks.selectTrack(0)    # fallback to track 1(0)
+				tracks.selectTrack(0)		# fallback to track 1(0)
+			print "###############################################audio1"
 		except Exception, e:
 			emcDebugOut("[EMCPlayer] audioTrack exception:\n" + str(e))
 
-	def tryAudioTrack(self, tracks, audiolang, caudiolang, trackList, seltrack, useAc3):
+	def tryAudioTrack(self, tracks, audiolang, trackList, seltrack, useAc3):
 		for entry in audiolang:
-			if caudiolang:
-				entry = entry.split("_")[0]
+			entry = langC[entry][0]
+			print "###############################################audio2"
 			for x in trackList:
-				if entry == x[1] and seltrack == x[0]:
+				try:
+					x1val = langC[x[1]][0]
+				except:
+					x1val = x[1]
+				print x1val
+				print "entry",entry
+				print x[0]
+				print "seltrack",seltrack
+				print x[2]
+				print x[3]
+				if entry == x1val and seltrack == x[0]:
 					if useAc3:
-						if x[2].startswith('AC'):
+						print "###############################################audio3"
+						if x[3] == 1 or x[2].startswith('AC'):
 							emcDebugOut("[EMCPlayer] audio track is current selected track: " + str(x))
 							return True
 					else:
+						print "###############################################audio4"
 						emcDebugOut("[EMCPlayer] audio track is current selected track: " + str(x))
 						return True
-				elif entry == x[1] and seltrack != x[0]:
+				elif entry == x1val and seltrack != x[0]:
 					if useAc3:
-					        if x[2].startswith('AC'):
+						print "###############################################audio5"
+					        if x[3] == 1 or x[2].startswith('AC'):
 							emcDebugOut("[EMCPlayer] audio track match: " + str(x))
 							tracks.selectTrack(x[0])
 							return True
 					else:
+						print "###############################################audio6"
 						emcDebugOut("[EMCPlayer] audio track match: " + str(x))
 						tracks.selectTrack(x[0])
 						return True
@@ -724,27 +740,74 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarTimeshift, InfoBar
 
 	def trySubEnable(self, slist, match):
 		for e in slist:
-			if match == e[2]:
+			print "e",e
+			print "match",langC[match][0]
+			if langC[match][0] == e[2]:
 				emcDebugOut("[EMCPlayer] subtitle match: " + str(e))
 				if self.selected_subtitle != e[0]:
 					self.subtitles_enabled = False
 					self.selected_subtitle = e[0]
 					self.subtitles_enabled = True
 					return True
+			else:
+				print "nomatch"
 		return False
 
 	def setSubtitleState(self, enabled):
 		try:
 			if not config.EMC.autosubs.value or not enabled: return
-			from Tools.ISO639 import LanguageCodes as langC
-			subs = self.getCurrentServiceSubtitle() or self.getServiceInterface("subtitle")
-			if subs:
-				lt = [ (e, (e[0] == 0 and "DVB" or e[0] == 1 and "TXT" or "???")) for e in (subs and subs.getSubtitleList() or []) ]
+
+			if isDreamOS:
+				subs = isinstance(self, InfoBarSubtitleSupport) and self.getCurrentServiceSubtitle() or None
+				n = subs and subs.getNumberOfSubtitleTracks() or 0
+				if n == 0:
+					return
+				from enigma import iSubtitleType_ENUMS
+				from Screens.AudioSelection import SUB_FORMATS, GST_SUB_FORMATS
+				self.sub_format_dict = {}
+				self.gstsub_format_dict= {}
+				for idx, (short, text, rank) in sorted(SUB_FORMATS.items(), key=lambda x: x[1][2]):
+					if rank > 0:
+						self.sub_format_dict[idx] = short
+				for idx, (short, text, rank) in sorted(GST_SUB_FORMATS.items(), key=lambda x: x[1][2]):
+					if rank > 0:
+						self.gstsub_format_dict[idx] = short
+				lt = []
+				l = []
+				for idx in range(n):
+					info = subs.getSubtitleTrackInfo(idx)
+					languages = info.getLanguage().split('/')
+					print "lang",languages
+					iType = info.getType()
+					print "type",iType
+					if iType == iSubtitleType_ENUMS.GST:
+						iType = info.getGstSubtype()
+						codec = iType in self.gstsub_format_dict and self.gstsub_format_dict[iType] or "?"
+					else:
+						codec = iType in self.sub_format_dict and self.sub_format_dict[iType] or "?"
+					print "codec",codec
+
+					lt.append((idx, (iType == 1 and "DVB" or iType == 2 and "TTX" or "???"), languages))
 				if lt:
-					l = [ [e[0], e[1], langC.has_key(e[0][4]) and langC[e[0][4]][0] or e[0][4] ] for e in lt ]
-					if l:
-						for sublang in [config.EMC.sublang1.value, config.EMC.sublang2.value, config.EMC.sublang3.value]:
-							if self.trySubEnable(l, sublang): break
+					print lt
+					for e in lt:
+						l.append((e[0], e[1], langC.has_key(e[2][0]) and langC[e[2][0]][0] or e[2][0]))
+						if l:
+							print l
+							for sublang in [config.EMC.sublang1.value, config.EMC.sublang2.value, config.EMC.sublang3.value]:
+								if self.trySubEnable(l, sublang): break
+			else:
+				subs = self.getCurrentServiceSubtitle() or self.getServiceInterface("subtitle")
+				if subs:
+					print "############################subs"
+					print subs.getSubtitleList()
+					lt = [ (e, (e[0] == 0 and "DVB" or e[0] == 1 and "TXT" or "???")) for e in (subs and subs.getSubtitleList() or []) ]
+					if lt:
+						l = [ [e[0], e[1], langC.has_key(e[0][4]) and langC[e[0][4]][0] or e[0][4] ] for e in lt ]
+						if l:
+							print l
+							for sublang in [config.EMC.sublang1.value, config.EMC.sublang2.value, config.EMC.sublang3.value]:
+								if self.trySubEnable(l, sublang): break
 		except Exception, e:
 			emcDebugOut("[EMCPlayer] setSubtitleState exception:\n" + str(e))
 
