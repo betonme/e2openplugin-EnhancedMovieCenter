@@ -2,10 +2,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: EMC\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-06 16:51+0100\n"
+"POT-Creation-Date: 2018-01-06 17:16+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: dhwz <dhwz@gmx.net>\n"
-"Language-Team: Swiss-MAD\n"
+"Language-Team: \n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -563,7 +563,7 @@ msgstr ""
 
 #: EnhancedMovieCenter.py:337
 msgid "Show plugin config in extensions menu"
-msgstr "EMC-Setup im Erweiterungsmenü anzeigen"
+msgstr "EMC-Einstellungen im Erweiterungsmenü anzeigen"
 
 #: EnhancedMovieCenter.py:337
 msgid "HELP_Show plugin config in extensions menu"
@@ -1180,7 +1180,7 @@ msgstr ""
 
 #: EnhancedMovieCenter.py:417
 msgid "No resume below 10 seconds"
-msgstr "Ignoriere Start Marker unter 10 sek"
+msgstr "Ignoriere Start Marker unter 10 Sekunden"
 
 #: EnhancedMovieCenter.py:417
 msgid "HELP_No resume below 10 seconds"
@@ -1380,7 +1380,7 @@ msgstr "Beim Öffnen von EMC immer neu einlesen"
 msgid "HELP_EMC always reload after open"
 msgstr ""
 "Verzeichnis wird bei jedem Öffnen von EMC neu eingelesen\n"
-"(Ansonsten wird das Verzeichniss nach dem 2. Öffnen aus dem Buffer gelesen.)"
+"(Ansonsten wird das Verzeichnis nach dem 2. Öffnen aus dem Buffer gelesen.)"
 
 #: EnhancedMovieCenter.py:447
 msgid "EMC re-open list after STOP-press"
@@ -1576,12 +1576,13 @@ msgstr "SKIN-EINSTELLUNGEN"
 
 #: EnhancedMovieCenter.py:476
 msgid "Use original EMC-skin (needs reopen)"
-msgstr "Original EMC-Skin benutzen (EMC muss neu gestartet werden)"
+msgstr "Original EMC-Skin verwenden (muss neu gestartet werden)"
 
 #: EnhancedMovieCenter.py:476
 msgid "HELP_Use original EMC-skin (needs reopen)"
 msgstr ""
-"Den originalen Skin vom EMC benutzen. Dies erfordert einen Neustart vom EMC"
+"Hier kann gewählt werden ob der Original EMC-Skin verwendet werden sollen. "
+"Dies erfordert einen Neustart von EMC."
 
 #: EnhancedMovieCenter.py:477
 msgid "Style for original EMC-skin (needs reopen)"
@@ -1589,7 +1590,9 @@ msgstr "Stil für das Original EMC-Skin (muss neu gestartet werden)"
 
 #: EnhancedMovieCenter.py:477
 msgid "HELP_Style for original EMC-skin (needs reopen)"
-msgstr "Den Original EMC-SKin verwenden. Dies erfordert einen Neustart vom EMC"
+msgstr ""
+"Hier kann der Stil des EMC auswählt werden. Dies erfordert einen Neustart "
+"von EMC."
 
 #: EnhancedMovieCenter.py:479
 msgid "Listbox is skin able"
@@ -1905,7 +1908,7 @@ msgstr "EMC-Ausgabeverzeichnis"
 
 #: EnhancedMovieCenter.py:557
 msgid "HELP_EMC output directory"
-msgstr "Debug-Ausgabe-Verzieichnis von EMC bestimmen."
+msgstr "Debug-Ausgabe-Verzeichnis von EMC bestimmen."
 
 #: EnhancedMovieCenter.py:558
 msgid "Debug output file name"
@@ -2344,7 +2347,7 @@ msgid ""
 "Movie Home (down)"
 msgstr ""
 "Cursor ganz nach unten / Cursor x Zeilen nach unten / Wechsle Ordner in "
-"Movie Home (nach runter)"
+"Movie Home (nach unten)"
 
 #: MovieSelection.py:669
 msgid "Directory forward"
@@ -2628,7 +2631,7 @@ msgstr "Löschen fehlgeschlagen!"
 
 #: MovieSelection.py:2980 MovieSelection.py:3022
 msgid "Move file(s):"
-msgstr "Verschiebe File(s):"
+msgstr "Verschiebe Datei(en):"
 
 #: MovieSelection.py:3009 MovieSelection.py:3032
 msgid ""
@@ -2650,9 +2653,9 @@ msgid ""
 "Select some movies with the VIDEO-button, move the cursor on top of the "
 "destination directory and press yellow long."
 msgstr ""
-"Wie verschiebe ich eine Datei:\n"
+"Wie kopiere ich eine Datei:\n"
 "Filme mit VIDEO-Taste markieren, mit Cursor das Zielverzeichnis wählen und "
-"gelbe Taste drücken."
+"gelbe Taste lange drücken."
 
 #: MovieSelection.py:3125
 msgid "Move Directory:"
@@ -2882,7 +2885,7 @@ msgid ""
 "Locate rogue files and remove them? (permanently if no trashcan available, "
 "may take a minute or so)"
 msgstr ""
-"Verwaiste Dateien ermitteln und löschen ? (Wenn kein Papierkorb vorhanden "
+"Verwaiste Dateien ermitteln und löschen? (Wenn kein Papierkorb vorhanden "
 "wird sofort gelöscht, das kann etwas dauern)"
 
 #: MovieSelectionMenu.py:375
@@ -3302,7 +3305,7 @@ msgstr "immer"
 
 #: plugin.py:396
 msgid "after reload list"
-msgstr "beim Neuladen der Liste "
+msgstr "nach dem Neuladen der Liste"
 
 #: plugin.py:396
 msgid "only initially"
