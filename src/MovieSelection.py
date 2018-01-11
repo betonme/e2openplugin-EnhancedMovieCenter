@@ -2506,7 +2506,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 						self.deleteOtherConfimation(True)
 					else:
 						# we search for other files for this file, like covers, etc.
-						extsOther = [".eit", ".jpg", ".txt", ".poster.jpg", ".imdbquery2.html"]
+						extsOther = [".eit", ".jpg", ".txt", ".poster.jpg"]
 						for x in extsOther:
 							f = path + str(x)
 							if fileExists(f):
@@ -2545,7 +2545,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 					if self.tmpSelListOther is not None:
 						for x in self.tmpSelListOther:
 							path = os.path.splitext( x.getPath() )[0]
-							extsOther = [".eit", ".jpg", ".txt", ".poster.jpg", ".imdbquery2.html"]
+							extsOther = [".eit", ".jpg", ".txt", ".poster.jpg"]
 							for x in extsOther:
 								f = path + str(x)
 								if fileExists(f):
@@ -2771,7 +2771,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 							path = path.replace("'","\'")
 							if ext in plyDVB:
 								if self.deleteAllOtherList:
-									extsOther = [".eit", ".jpg", ".txt", ".poster.jpg", ".imdbquery2.html"]
+									extsOther = [".eit", ".jpg", ".txt", ".poster.jpg"]
 									for x in extsOther:
 										f = path + str(x)
 										if fileExists(f):
@@ -2785,7 +2785,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 								c.append( 'mv "'+ path + str(ext) +'."* "'+ targetPath +'/"' )
 							else:
 								if self.deleteAllOtherList:
-									extsOther = [".eit", ".jpg", ".txt", ".poster.jpg", ".imdbquery2.html"]
+									extsOther = [".eit", ".jpg", ".txt", ".poster.jpg"]
 									for x in extsOther:
 										f = path + str(x)
 										if fileExists(f):
@@ -2854,7 +2854,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 						path = path.replace("'","\'")
 						if ext in plyDVB:
 							if self.deleteAllOther:
-								extsOther = [".eit", ".jpg", ".txt", ".poster.jpg", ".imdbquery2.html"]
+								extsOther = [".eit", ".jpg", ".txt", ".poster.jpg"]
 								for x in extsOther:
 									f = path + str(x)
 									if fileExists(f):
@@ -2868,7 +2868,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 							c.append( 'mv "'+ path + str(ext) +'."* "'+ targetPath +'/"' )
 						else:
 							if self.deleteAllOther:
-								extsOther = [".eit", ".jpg", ".txt", ".poster.jpg", ".imdbquery2.html"]
+								extsOther = [".eit", ".jpg", ".txt", ".poster.jpg"]
 								for x in extsOther:
 									f = path + str(x)
 									if fileExists(f):
