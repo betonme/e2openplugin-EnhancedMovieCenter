@@ -2257,17 +2257,32 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		if not confirmed: return
 		# send as a list?
 		stoppedAll=True
+		filenames = "\n"
+		i=0
 		for e in self.recsToStop:
-			stoppedAll = stoppedAll and self["list"].recControl.stopRecording(e)
+			stoppedResult = self["list"].recControl.stopRecording(e[0])
+			stoppedAll = stoppedAll and stoppedResult
+			if stoppedResult == False:
+				filenames += "\n" + e[0].split("/")[-1][:-3]
+				del self.deleteList[e[1]-i]
+				i+=1
 		if not stoppedAll:
 			self.checkHideMiniTV_beforeFullscreen()
-			self.session.open(MessageBox, _("Not stopping any repeating timers. Modify them with the timer editor."), MessageBox.TYPE_INFO, 10)
+			self.session.openWithCallback(self.deleteMovieQfirst, MessageBox, _("Not all timers have been stopped. Modify them with the timer editor.") + filenames, MessageBox.TYPE_INFO, 10)
+		else:
+			self.deleteMovieQ(self.deleteList, self.remRecsToStop)
+
+	def deleteMovieQfirst(self, confirmed):
+		if len(self.deleteList)>0:
+			self.deleteMovieQ(self.deleteList, self.remRecsToStop)
+		else:
+			pass
 
 	def stopRecordQ(self):
 		try:
 			filenames = ""
 			for e in self.recsToStop:
-				filenames += "\n" + e.split("/")[-1][:-3]
+				filenames += "\n" + e[0].split("/")[-1][:-3]
 			self.checkHideMiniTV_beforeFullscreen()
 			self.session.openWithCallback(self.stopRecordConfirmation, MessageBox, _("Stop ongoing recording?\n") + filenames, MessageBox.TYPE_YESNO)
 		except Exception, e:
@@ -2345,14 +2360,17 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 				if selectedlist and len(selectedlist)>0:
 					self.recsToStop = []
 					self.remRecsToStop = False
+					i=0
 					for service in selectedlist:
 						path = service.getPath()
 						movieFileCache.delPathFromCache(os.path.dirname(path))
 						if self["list"].recControl.isRecording(path):
-							self.recsToStop.append(path)
+							self.recsToStop.append((path,i))
+						i+=1
 						if config.EMC.remote_recordings.value and self["list"].recControl.isRemoteRecording(path):
 							self.remRecsToStop = True
 					if len(self.recsToStop)>0:
+						self.deleteList = selectedlist
 						self.stopRecordQ()
 					else:
 						self.deleteMovieQ(selectedlist, self.remRecsToStop)

@@ -46,7 +46,7 @@ def getRecording(filename):
 			except: timer.calculateFilename()
 			if filename == os.path.basename(timer.Filename):
 				return timer.begin, timer.end, timer.service_ref.ref
-				
+
 	except Exception, e:
 		emcDebugOut("[emcRC] getRecording exception:\n" + str(e))
 	return None
@@ -186,9 +186,17 @@ class RecordingsControl:
 			if filename in self.recDict:
 				for timer in NavigationInstance.instance.RecordTimer.timer_list:
 					if timer.isRunning() and not timer.justplay and timer.Filename.find(filename)>=0:
-						if timer.repeated: return False
-						timer.afterEvent = AFTEREVENT.NONE
-						NavigationInstance.instance.RecordTimer.removeEntry(timer)
+						if timer.repeated:
+							timer.enable()
+							timer_afterEvent = timer.afterEvent
+							timer.afterEvent = AFTEREVENT.NONE
+							timer.processRepeated(findRunningEvent = False)
+							NavigationInstance.instance.RecordTimer.doActivate(timer)
+							timer.afterEvent = timer_afterEvent
+							NavigationInstance.instance.RecordTimer.timeChanged(timer)
+						else:
+							timer.afterEvent = AFTEREVENT.NONE
+							NavigationInstance.instance.RecordTimer.removeEntry(timer)
 						emcDebugOut("[emcRC] REC STOP for: " + filename)
 						return True
 			else:
