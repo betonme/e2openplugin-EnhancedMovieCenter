@@ -56,6 +56,12 @@ from EMCBookmarks import EMCBookmarks
 from ServiceSupport import ServiceCenter
 from ThreadQueue import ThreadQueue
 
+try:
+	from enigma import eMediaDatabase
+	isDreamOS = True
+except:
+	isDreamOS = False
+
 sz_w = getDesktop(0).size().width()
 
 # Check if image is vti or dream, is needed for build entrys in MovieCenter with picons
@@ -1495,7 +1501,10 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 			path = os.path.dirname(timer.Filename)
 			if os.path.realpath(path) == os.path.realpath(self.currentPath):
 				# EMC shows the directory which contains the recording
-				filename = timer.Filename + ".ts"
+				if not isDreamOS:
+					filename = timer.Filename + ".ts"
+				else:
+					filename = timer.Filename
 				if timer.state == TimerEntry.StateRunning:
 					if not self.list:
 						# Empty list it will be better to reload it complete

@@ -37,9 +37,11 @@ except:
 
 def getRecording(filename):
 	try:
-		if filename[0] == "/": 			filename = os.path.basename(filename)
+		if filename[0] == "/":
+			filename = os.path.basename(filename)
 		if not isDreamOS:
-			if filename.lower().endswith(".ts"):	filename = filename[:-3]
+			if filename.lower().endswith(".ts"):
+				filename = filename[:-3]
 
 		for timer in NavigationInstance.instance.RecordTimer.timer_list:
 			try: timer.Filename
@@ -162,7 +164,8 @@ class RecordingsControl:
 		try:
 			if filename[0] == "/": 			filename = os.path.basename(filename)
 			if not isDreamOS:
-				if filename.lower().endswith(".ts"):	filename = filename[:-3]
+				if filename.lower().endswith(".ts"):
+					filename = filename[:-3]
 			return filename in self.recDict
 		except Exception, e:
 			emcDebugOut("[emcRC] isRecording exception:\n" + str(e))
@@ -172,7 +175,8 @@ class RecordingsControl:
 		try:
 			if filename[0] == "/": 			filename = os.path.basename(filename)
 			if not isDreamOS:
-				if filename.lower().endswith(".ts"):	filename = filename[:-3]
+				if filename.lower().endswith(".ts"):
+					filename = filename[:-3]
 			return filename in self.recRemoteList
 		except Exception, e:
 			emcDebugOut("[emcRC] isRemoteRecording exception:\n" + str(e))
@@ -182,7 +186,8 @@ class RecordingsControl:
 		try:
 			if filename[0] == "/":			filename = os.path.basename(filename)
 			if not isDreamOS:
-				if filename.lower().endswith(".ts"):	filename = filename[:-3]
+				if filename.lower().endswith(".ts"):
+					filename = filename[:-3]
 			if filename in self.recDict:
 				for timer in NavigationInstance.instance.RecordTimer.timer_list:
 					if timer.isRunning() and not timer.justplay and timer.Filename.find(filename)>=0:
@@ -217,8 +222,9 @@ class RecordingsControl:
 
 	def fixTimerPath(self, old, new):
 		try:
-			if old.lower().endswith(".ts"):	old = old[:-3]
-			if new.lower().endswith(".ts"):	new = new[:-3]
+			if not isDreamOS:
+				if old.lower().endswith(".ts"):	old = old[:-3]
+				if new.lower().endswith(".ts"):	new = new[:-3]
 			for timer in NavigationInstance.instance.RecordTimer.timer_list:
 				if timer.isRunning() and not timer.justplay and timer.Filename == old:
 					timer.dirname = os.path.dirname(new) + "/"
@@ -226,7 +232,6 @@ class RecordingsControl:
 					timer.Filename = new
 					emcDebugOut("[emcRC] fixed path: " + new)
 					break
-
 		except Exception, e:
 			emcDebugOut("[emcRC] fixTimerPath exception:\n" + str(e))
 
