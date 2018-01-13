@@ -84,8 +84,8 @@ class EMCFileCache():
 			return False
 
 	def addPathToCache(self, path, subdirlist, filelist, MovieCenterInst):
-		print "EMC addPathToCache", path
 		if config.EMC.files_cache.value:
+			print "EMC addPathToCache", path
 			if (len(subdirlist)>MinCacheLimit) or (len(filelist)>MinCacheLimit):
 				self.cacheDirectoryList[path] = subdirlist
 				for p, n, e in subdirlist:

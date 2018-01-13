@@ -1120,7 +1120,7 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 
 	def reloadInternal(self, currentPath, simulate=False, recursive=False):
 		#TODO add parameter reset list sort
-		emcDebugOut("[EMC] LOAD PATH:\n" + str(currentPath))
+		emcDebugOut("[EMC] LOAD PATH: " + str(currentPath))
 		customlist, subdirlist, filelist, tmplist = [], [], [], []
 		resetlist = True
 		nextSort = None
