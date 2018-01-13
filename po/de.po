@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: EMC\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-06 17:16+0100\n"
+"POT-Creation-Date: 2018-01-13 20:17+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: dhwz <dhwz@gmx.net>\n"
 "Language-Team: \n"
@@ -91,7 +91,7 @@ msgstr ".../foldername/folder.jpg"
 msgid "Search"
 msgstr "Suchen"
 
-#: EMCCoverSearch.py:179 MovieSelection.py:2417 MovieSelectionMenu.py:112
+#: EMCCoverSearch.py:179 MovieSelection.py:2435 MovieSelectionMenu.py:112
 #: MovieSelectionMenu.py:114 plugin.py:206 plugin.py:227
 msgid "Delete"
 msgstr "Löschen"
@@ -282,8 +282,8 @@ msgid "Move Cover to:"
 msgstr "Verschiebe Cover zu:"
 
 #: EMCCoverSearch.py:1192 EMCPlayList.py:470 EnhancedMovieCenter.py:748
-#: MovieSelection.py:2981 MovieSelection.py:3023 MovieSelection.py:3057
-#: MovieSelection.py:3099 MovieSelection.py:3126 MovieSelectionMenu.py:299
+#: MovieSelection.py:3006 MovieSelection.py:3048 MovieSelection.py:3082
+#: MovieSelection.py:3124 MovieSelection.py:3151 MovieSelectionMenu.py:299
 msgid "Choose directory"
 msgstr "Verzeichnis wählen"
 
@@ -1581,7 +1581,7 @@ msgstr "Original EMC-Skin verwenden (muss neu gestartet werden)"
 #: EnhancedMovieCenter.py:476
 msgid "HELP_Use original EMC-skin (needs reopen)"
 msgstr ""
-"Hier kann gewählt werden ob der Original EMC-Skin verwendet werden sollen. "
+"Hier kann gewählt werden ob der Original EMC-Skin verwendet werden soll. "
 "Dies erfordert einen Neustart von EMC."
 
 #: EnhancedMovieCenter.py:477
@@ -1945,7 +1945,7 @@ msgstr "Wähle Ort"
 msgid "Given path %s does not exist. Please change."
 msgstr "Gewähltes Verzeichnis %s existiert nicht. Bitte ändern."
 
-#: EnhancedMovieCenter.py:774 MovieSelection.py:3189
+#: EnhancedMovieCenter.py:774 MovieSelection.py:3214
 msgid "Trashcan create failed. Check mounts and permissions."
 msgstr "Papierkorb erstellen fehlgeschlagen. Mounts und Rechte prüfen."
 
@@ -1974,59 +1974,59 @@ msgstr "%s fortsetzen ?"
 msgid "Resuming playback"
 msgstr "Wiedergabe fortsetzen"
 
-#: MovieCenter.py:872
+#: MovieCenter.py:878
 msgid "OSError - please reload list (EMC menu)"
 msgstr "OS-Fehler - bitte Filmliste neu laden (EMC Menü oder lange TV-Taste)"
 
-#: MovieCenter.py:1088 MovieSelection.py:1460
+#: MovieCenter.py:1094 MovieSelection.py:1460
 msgid "trashcan"
 msgstr "Papierkorb"
 
-#: MovieCenter.py:1093 MovieSelection.py:1459
+#: MovieCenter.py:1099 MovieSelection.py:1459
 msgid "Latest Recordings"
 msgstr "Neueste Aufnahmen"
 
-#: MovieCenter.py:2425
+#: MovieCenter.py:2434
 msgid "VLC"
 msgstr "VLC"
 
-#: MovieCenter.py:2431
+#: MovieCenter.py:2440
 msgid "VLC-Server"
 msgstr "VLC-Server"
 
-#: MovieCenter.py:2437
+#: MovieCenter.py:2446
 msgid "VLC-Dir"
 msgstr "VLC-Verzeichnis"
 
-#: MovieCenter.py:2443
+#: MovieCenter.py:2452
 msgid "Latest"
 msgstr "Neueste"
 
-#: MovieCenter.py:2449
+#: MovieCenter.py:2458
 msgid "Up"
 msgstr "höher"
 
-#: MovieCenter.py:2455 MovieCenter.py:2461
+#: MovieCenter.py:2464 MovieCenter.py:2470
 msgid "Bookmark"
 msgstr "Lesezeichen"
 
-#: MovieCenter.py:2494
+#: MovieCenter.py:2503
 msgid "UNKNOWN"
 msgstr "UNBEKANNT"
 
-#: MovieCenter.py:2632 MovieCenter.py:2655
+#: MovieCenter.py:2641 MovieCenter.py:2664
 msgid "Trashcan"
 msgstr "Papierkorb"
 
-#: MovieCenter.py:2646 MovieCenter.py:2657
+#: MovieCenter.py:2655 MovieCenter.py:2666
 msgid "Directory"
 msgstr "Verzeichnis"
 
-#: MovieCenter.py:2648
+#: MovieCenter.py:2657
 msgid "Link"
 msgstr "Link"
 
-#: MovieCenter.py:2650
+#: MovieCenter.py:2659
 msgid "Collection"
 msgstr "Sammlung"
 
@@ -2510,17 +2510,17 @@ msgstr "Starte \"Alles abspielen\""
 msgid "Shuffle All starting"
 msgstr "Starte Alles mit Zufallswiedergabe abspielen"
 
-#: MovieSelection.py:2264
-msgid "Not stopping any repeating timers. Modify them with the timer editor."
+#: MovieSelection.py:2271
+msgid "Not all timers have been stopped. Modify them with the timer editor."
 msgstr ""
-"Wiederholungstimer werden nicht gestoppt. Bitte mit dem Timer-Editor "
+"Nicht alle Timer konnten angehalten werden. Bitte diese mit dem Timer-Editor "
 "bearbeiten."
 
-#: MovieSelection.py:2272
+#: MovieSelection.py:2287
 msgid "Stop ongoing recording?\n"
 msgstr "Laufende Aufnahme beenden?\n"
 
-#: MovieSelection.py:2325
+#: MovieSelection.py:2340
 #, python-format
 msgid ""
 "Do you really want to remove your link\n"
@@ -2530,7 +2530,7 @@ msgstr ""
 "\n"
 "%s"
 
-#: MovieSelection.py:2327
+#: MovieSelection.py:2342
 #, python-format
 msgid ""
 "Do you really want to remove your directory\n"
@@ -2540,7 +2540,7 @@ msgstr ""
 "\n"
 "%s"
 
-#: MovieSelection.py:2369 MovieSelection.py:2392 MovieSelectionMenu.py:454
+#: MovieSelection.py:2387 MovieSelection.py:2410 MovieSelectionMenu.py:454
 #: MovieSelectionMenu.py:486
 #, python-format
 msgid ""
@@ -2551,26 +2551,26 @@ msgstr ""
 "\n"
 "%s"
 
-#: MovieSelection.py:2411
+#: MovieSelection.py:2429
 msgid ""
 " Deleting remotely recorded and it will display an rec-error dialog on the "
 "other DB."
 msgstr ""
 " Löschen einer entfernten Aufnahmen zeigt einen Fehler auf der anderen DB."
 
-#: MovieSelection.py:2417
+#: MovieSelection.py:2435
 msgid " permanently"
 msgstr " endgültig"
 
-#: MovieSelection.py:2436
+#: MovieSelection.py:2454
 msgid " currently played?"
 msgstr " laufende Wiedergabe?"
 
-#: MovieSelection.py:2457
+#: MovieSelection.py:2475
 msgid " all selected video files?"
 msgstr " alle ausgewählte Videodateien?"
 
-#: MovieSelection.py:2463
+#: MovieSelection.py:2484
 msgid ""
 " all selected video files? The currently playing movie is also one of the "
 "selections and its playback will be stopped."
@@ -2578,11 +2578,11 @@ msgstr ""
 " alle ausgewählte Videodateien? Der aktuelle Film ist ebenfalls in der "
 "Auswahl enthalten. Wiedergabe wird beendet."
 
-#: MovieSelection.py:2466
+#: MovieSelection.py:2488
 msgid "Delete error:\n"
 msgstr "Fehler beim Löschen:\n"
 
-#: MovieSelection.py:2498 MovieSelection.py:2542
+#: MovieSelection.py:2523 MovieSelection.py:2567
 #, python-format
 msgid ""
 "The following files are used for other entrys in List !\n"
@@ -2597,13 +2597,13 @@ msgstr ""
 "\n"
 "%s"
 
-#: MovieSelection.py:2589
+#: MovieSelection.py:2614
 msgid "This element belongs to a locked folder and cannot be deleted!"
 msgstr ""
 "Dieses Element gehört zu einem gesperrten Ordner und kann nicht gelöscht "
 "werden!"
 
-#: MovieSelection.py:2601
+#: MovieSelection.py:2626
 msgid ""
 "Delete failed because the trashcan directory does not exist. Attempt to "
 "create it now?"
@@ -2611,29 +2611,29 @@ msgstr ""
 "Löschen fehlgeschlagen da das Papierkorb-Verzeichnis nicht existert. Jetzt "
 "erstellen?"
 
-#: MovieSelection.py:2626
+#: MovieSelection.py:2651
 msgid "This folder is locked or contains a locked subfolder, unlock it first!"
 msgstr ""
 "Dieser Ordner ist gesperrt oder enthält einen gesperrten Unterordner, der "
 "zuerst entsperrt werden muss!"
 
-#: MovieSelection.py:2647
+#: MovieSelection.py:2672
 msgid "Directory is not empty! Do you really want to delete it?"
 msgstr "Verzeichnis ist nicht leer! Soll es wirklich gelöscht werden?"
 
-#: MovieSelection.py:2653
+#: MovieSelection.py:2678
 msgid "Cannot delete the parent directory."
 msgstr "Kann übergeord. Verzeichnis nicht löschen."
 
-#: MovieSelection.py:2734 MovieSelection.py:2817
+#: MovieSelection.py:2759 MovieSelection.py:2842
 msgid "Delete failed!"
 msgstr "Löschen fehlgeschlagen!"
 
-#: MovieSelection.py:2980 MovieSelection.py:3022
+#: MovieSelection.py:3005 MovieSelection.py:3047
 msgid "Move file(s):"
 msgstr "Verschiebe Datei(en):"
 
-#: MovieSelection.py:3009 MovieSelection.py:3032
+#: MovieSelection.py:3034 MovieSelection.py:3057
 msgid ""
 "How to move files:\n"
 "Select some movies with the VIDEO-button, move the cursor on top of the "
@@ -2643,11 +2643,11 @@ msgstr ""
 "Filme mit VIDEO-Taste markieren, mit Cursor das Zielverzeichnis wählen und "
 "gelbe Taste drücken."
 
-#: MovieSelection.py:3056 MovieSelection.py:3098
+#: MovieSelection.py:3081 MovieSelection.py:3123
 msgid "Copy file(s):"
 msgstr "Kopiere Datei(en):"
 
-#: MovieSelection.py:3085 MovieSelection.py:3108
+#: MovieSelection.py:3110 MovieSelection.py:3133
 msgid ""
 "How to copy files:\n"
 "Select some movies with the VIDEO-button, move the cursor on top of the "
@@ -2657,19 +2657,19 @@ msgstr ""
 "Filme mit VIDEO-Taste markieren, mit Cursor das Zielverzeichnis wählen und "
 "gelbe Taste lange drücken."
 
-#: MovieSelection.py:3125
+#: MovieSelection.py:3150
 msgid "Move Directory:"
 msgstr "Verschiebe Verzeichnis:"
 
-#: MovieSelection.py:3199 MovieSelection.py:3205
+#: MovieSelection.py:3224 MovieSelection.py:3230
 msgid "IMDb"
 msgstr "IMDb"
 
-#: MovieSelection.py:3201
+#: MovieSelection.py:3226
 msgid "TMDb"
 msgstr "TMDb"
 
-#: MovieSelection.py:3203
+#: MovieSelection.py:3228
 msgid "CSFD"
 msgstr "CSFD"
 
