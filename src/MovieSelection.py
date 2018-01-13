@@ -2478,13 +2478,20 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 							self.checkExt(True)
 					else:
 						self.checkHideMiniTV_beforeFullscreen()
-						self.session.openWithCallback(self.checkExt, MessageBox, delStr + _(" all selected video files? The currently playing movie is also one of the selections and its playback will be stopped.") + "\n" + rm_add + movienames, MessageBox.TYPE_YESNO)
+						self.session.openWithCallback(
+								self.checkExt,
+								MessageBox,
+								delStr + _(" all selected video files? The currently playing movie is also one of the selections and its playback will be stopped.") + "\n" + rm_add + movienames,
+								MessageBox.TYPE_YESNO)
 		except Exception, e:
 			self.checkHideMiniTV_beforeFullscreen()
 			self.session.open(MessageBox, _("Delete error:\n") + str(e), MessageBox.TYPE_ERROR)
 			emcDebugOut("[EMCMS] deleteMovieQ exception:\n" + str(e))
 
 	def checkExt(self, confirmed):
+		DelayedFunction(500, boundFunction(self.checkExtDelayed, confirmed))
+
+	def checkExtDelayed(self, confirmed):
 		# we make it for more than one file, so we use this for all delete-ways in the future
 		other = ""
 		otherCount = 0

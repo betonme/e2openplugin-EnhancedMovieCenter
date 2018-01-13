@@ -555,7 +555,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarTimeshift, InfoBar
 			if path == self.service.getPath():
 				# WORKAROUND Player is running during a record ends
 				# We should find a more flexible universal solution
-				DelayedFunction(3000, self.updatePlayer)
+				DelayedFunction(500, self.updatePlayer)
 				# ATTENTION thist won't fix the other situation
 				# If a running record will be played and the player is stopped before the record ends
 				# -> Then E2 will overwrite the existing cuts.

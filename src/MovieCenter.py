@@ -1510,19 +1510,19 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 						# Empty list it will be better to reload it complete
 						# Maybe EMC was never started before
 						emcDebugOut("[MC] Timer started - full reload")
-						DelayedFunction(3000, self.globalReload, self.currentPath)
+						DelayedFunction(500, self.globalReload, self.currentPath)
 					else:
 						# We have to add the new recording
 						emcDebugOut("[MC] Timer started - add recording")
 						# Timer filname is without extension
-						DelayedFunction(3000, self.globalReload, filename)
+						DelayedFunction(500, self.globalReload, filename)
 				elif timer.state == TimerEntry.StateEnded:
 					#MAYBE Just refresh the ended record
 					# But it is fast enough
 					emcDebugOut("[MC] Timer ended")
-					DelayedFunction(3000, self.globalRefresh)
+					DelayedFunction(500, self.globalRefresh)
 					# [Cutlist.Workaround] Initiate the Merge
-					DelayedFunction(3000, self.mergeCutListAfterRecording, filename)
+					DelayedFunction(500, self.mergeCutListAfterRecording, filename)
 
 	def changedCfgHideEnable(self, addNotifierDummy=None):
 		config.EMC.needsreload.value = True

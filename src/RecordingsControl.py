@@ -53,7 +53,6 @@ def getRecording(filename):
 		emcDebugOut("[emcRC] getRecording exception:\n" + str(e))
 	return None
 
-
 class NetworkAwareness:
 	def __init__(self):
 		self.retries = 0
@@ -78,7 +77,6 @@ class NetworkAwareness:
 
 spNET = NetworkAwareness()
 
-
 class RecordEventObserver:
 	def __init__(self, callback):
 		self.callback = callback
@@ -93,7 +91,6 @@ class RecordEventObserver:
 			self.callback(timer)
 		except Exception, e:
 			emcDebugOut("[spRO] recEvent exception:\n" + str(e))
-
 
 #TODO RecControl should be a separate global instance
 class RecordingsControl:
