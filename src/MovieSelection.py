@@ -628,6 +628,8 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		self["key_yellow"] = Button()
 		self["key_blue"] = Button()
 		self["spacefree"] = StaticText("")
+		self["pathinfo"] = StaticText("")
+		self["emc_version"] = StaticText("")
 
 		if config.EMC.movie_cover.value:
 			self.cover = True
@@ -1500,6 +1502,9 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		perm = self["list"].isEqualPermanentSort()
 		if perm == True:
 			title += " <P>"
+
+		StaticText.setText(self["pathinfo"], title)
+		StaticText.setText(self["emc_version"], EMCVersion)
 
 		title = "EMC "+EMCVersion+" - " + title
 		self.setTitle(title)
