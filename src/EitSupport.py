@@ -379,7 +379,7 @@ class EitList():
 								extended_event_descriptor.decode(enc)
 							else:
 								extended_event_descriptor = extended_event_descriptor.decode(enc).encode('utf-8')
-						except UnicodeDecodeError, e:
+						except (UnicodeDecodeError, AttributeError), e:
 							emcDebugOut("[META] Exception in readEitFile: " + str(e))
 					self.eit['description'] = extended_event_descriptor
 
