@@ -2270,11 +2270,11 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			self.checkHideMiniTV_beforeFullscreen()
 			self.session.openWithCallback(self.deleteMovieQfirst, MessageBox, _("Not all timers have been stopped. Modify them with the timer editor.") + filenames, MessageBox.TYPE_INFO, 10)
 		else:
-			self.deleteMovieQ(self.deleteList, self.remRecsToStop)
+			self.deleteMovieQ(self.deleteList, self.remRecsToStop, True)
 
 	def deleteMovieQfirst(self, confirmed):
 		if len(self.deleteList)>0:
-			self.deleteMovieQ(self.deleteList, self.remRecsToStop)
+			self.deleteMovieQ(self.deleteList, self.remRecsToStop, True)
 		else:
 			pass
 
@@ -2373,7 +2373,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 						self.deleteList = selectedlist
 						self.stopRecordQ()
 					else:
-						self.deleteMovieQ(selectedlist, self.remRecsToStop)
+						self.deleteMovieQ(selectedlist, self.remRecsToStop, False)
 
 	def deleteE2Bookmark(self, service):
 		if service:
@@ -2420,8 +2420,9 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 				self.removeServiceOfType(service, cmtBMEMC)
 				self.setReturnCursor()
 
-	def deleteMovieQ(self, selectedlist, remoteRec):
+	def deleteMovieQ(self, selectedlist, remoteRec, stoppedRec):
 		try:
+			self.stoppedRec = stoppedRec
 			self.tmpSelList = selectedlist[:]
 			self.delCurrentlyPlaying = False
 			rm_add = ""
@@ -2489,7 +2490,11 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			emcDebugOut("[EMCMS] deleteMovieQ exception:\n" + str(e))
 
 	def checkExt(self, confirmed):
-		DelayedFunction(500, boundFunction(self.checkExtDelayed, confirmed))
+		if self.stoppedRec:
+			delay = 500
+		else:
+			delay = 0
+		DelayedFunction(delay, boundFunction(self.checkExtDelayed, confirmed))
 
 	def checkExtDelayed(self, confirmed):
 		# we make it for more than one file, so we use this for all delete-ways in the future
