@@ -96,7 +96,6 @@ class ConfirmBox(MessageBox):
 				key2: self.secondAction,
 			}, -1)
 		self.firstKey = False
-		eActionMap.getInstance().bindAction('', 0x7FFFFFFF, self.action)
 
 	def firstAction(self):
 		self.firstKey = True
@@ -105,16 +104,10 @@ class ConfirmBox(MessageBox):
 		if self.firstKey:
 			self.closeConfirmBox(True)
 
-	#this function is called on every keypress!
-	def action(self, key=0, flag=0):
-		if flag != 0:
-			self.firstKey = False
-
 	def cancel(self):
 		self.closeConfirmBox(False)
 
 	def closeConfirmBox(self, answer):
-		eActionMap.getInstance().unbindAction('', self.action)
 		self.close(answer)
 
 class Autoselect639Language(ISO639Language):
