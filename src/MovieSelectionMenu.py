@@ -253,7 +253,7 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 
 	def createDirCB(self, currentPath, name):
 		if name is not None:
-			name = os.path.join(currentPath, name)
+			name = os.path.join(currentPath, name.strip())
 			if os.path.exists(name):
 				self.session.open(MessageBox, _("Directory %s already exists!") % (name), MessageBox.TYPE_ERROR)
 			else:
