@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: EMC\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-01-13 20:17+0100\n"
+"POT-Creation-Date: 2018-01-21 16:09+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: dhwz <dhwz@gmx.net>\n"
 "Language-Team: \n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Generator: Poedit 2.0.5\n"
+"X-Generator: Poedit 2.0.6\n"
 "X-Poedit-KeywordsList: -;gettext;gettext_noop;_\n"
 "X-Poedit-Basepath: ../src\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
@@ -91,8 +91,8 @@ msgstr ".../foldername/folder.jpg"
 msgid "Search"
 msgstr "Suchen"
 
-#: EMCCoverSearch.py:179 MovieSelection.py:2435 MovieSelectionMenu.py:112
-#: MovieSelectionMenu.py:114 plugin.py:206 plugin.py:227
+#: EMCCoverSearch.py:179 MovieSelection.py:2436 MovieSelectionMenu.py:112
+#: MovieSelectionMenu.py:114 plugin.py:199 plugin.py:220
 msgid "Delete"
 msgstr "Löschen"
 
@@ -105,7 +105,7 @@ msgid "Manage Cover"
 msgstr "Verwalte Cover"
 
 #: EMCCoverSearch.py:192 EnhancedMovieCenter.py:253 MovieInfo.py:321
-#: plugin.py:566
+#: plugin.py:559
 msgid "Setup"
 msgstr "Einstellungen"
 
@@ -282,8 +282,8 @@ msgid "Move Cover to:"
 msgstr "Verschiebe Cover zu:"
 
 #: EMCCoverSearch.py:1192 EMCPlayList.py:470 EnhancedMovieCenter.py:748
-#: MovieSelection.py:3006 MovieSelection.py:3048 MovieSelection.py:3082
-#: MovieSelection.py:3124 MovieSelection.py:3151 MovieSelectionMenu.py:299
+#: MovieSelection.py:3011 MovieSelection.py:3053 MovieSelection.py:3087
+#: MovieSelection.py:3129 MovieSelection.py:3156 MovieSelectionMenu.py:299
 msgid "Choose directory"
 msgstr "Verzeichnis wählen"
 
@@ -1098,15 +1098,14 @@ msgstr ""
 "(Ist .meta und .eit aktiviert, wird erst die .meta gelesen.)"
 
 #: EnhancedMovieCenter.py:404
-msgid "Load all for non showing titles from .meta files"
-msgstr "Lade alles für nicht anzeigbare Titel aus .meta Dateien"
+msgid "Try to load extra title and more from .meta files"
+msgstr "Versuche Zusatztitel und mehr aus .meta Dateien zu lesen"
 
 #: EnhancedMovieCenter.py:404
-msgid "HELP_Load all for non showing titles from .meta files"
+msgid "HELP_Try to load extra title and more from .meta files"
 msgstr ""
-"Wenn kein Titel aus den .meta Dateien ausgelesen werden\n"
-"kann, lade alles verfügbare, um den Titel doch noch erfolgreich anzeigen zu "
-"können."
+"Versucht weitere Zusatzinfos, z.B. Episodentitel, zum Titel aus den .meta "
+"Dateien auszulesen."
 
 #: EnhancedMovieCenter.py:405
 msgid "Try to load titles from .eit files"
@@ -1945,7 +1944,7 @@ msgstr "Wähle Ort"
 msgid "Given path %s does not exist. Please change."
 msgstr "Gewähltes Verzeichnis %s existiert nicht. Bitte ändern."
 
-#: EnhancedMovieCenter.py:774 MovieSelection.py:3214
+#: EnhancedMovieCenter.py:774 MovieSelection.py:3219
 msgid "Trashcan create failed. Check mounts and permissions."
 msgstr "Papierkorb erstellen fehlgeschlagen. Mounts und Rechte prüfen."
 
@@ -1986,47 +1985,47 @@ msgstr "Papierkorb"
 msgid "Latest Recordings"
 msgstr "Neueste Aufnahmen"
 
-#: MovieCenter.py:2434
+#: MovieCenter.py:2435
 msgid "VLC"
 msgstr "VLC"
 
-#: MovieCenter.py:2440
+#: MovieCenter.py:2441
 msgid "VLC-Server"
 msgstr "VLC-Server"
 
-#: MovieCenter.py:2446
+#: MovieCenter.py:2447
 msgid "VLC-Dir"
 msgstr "VLC-Verzeichnis"
 
-#: MovieCenter.py:2452
+#: MovieCenter.py:2453
 msgid "Latest"
 msgstr "Neueste"
 
-#: MovieCenter.py:2458
+#: MovieCenter.py:2459
 msgid "Up"
 msgstr "höher"
 
-#: MovieCenter.py:2464 MovieCenter.py:2470
+#: MovieCenter.py:2465 MovieCenter.py:2471
 msgid "Bookmark"
 msgstr "Lesezeichen"
 
-#: MovieCenter.py:2503
+#: MovieCenter.py:2504
 msgid "UNKNOWN"
 msgstr "UNBEKANNT"
 
-#: MovieCenter.py:2641 MovieCenter.py:2664
+#: MovieCenter.py:2642 MovieCenter.py:2665
 msgid "Trashcan"
 msgstr "Papierkorb"
 
-#: MovieCenter.py:2655 MovieCenter.py:2666
+#: MovieCenter.py:2656 MovieCenter.py:2667
 msgid "Directory"
 msgstr "Verzeichnis"
 
-#: MovieCenter.py:2657
+#: MovieCenter.py:2658
 msgid "Link"
 msgstr "Link"
 
-#: MovieCenter.py:2659
+#: MovieCenter.py:2660
 msgid "Collection"
 msgstr "Sammlung"
 
@@ -2055,12 +2054,13 @@ msgid "Portuguese"
 msgstr "Portugiesisch"
 
 #: MovieInfo.py:30 MovieInfo.py:31 MovieInfo.py:32 MovieInfo.py:33
-#: MovieInfo.py:34 plugin.py:330
+#: MovieInfo.py:34 plugin.py:323
 msgid "Yes"
 msgstr "Ja"
 
 #: MovieInfo.py:30 MovieInfo.py:31 MovieInfo.py:32 MovieInfo.py:33
-#: MovieInfo.py:34 plugin.py:254 plugin.py:259 plugin.py:330 plugin.py:359
+#: MovieInfo.py:34 plugin.py:247 plugin.py:252 plugin.py:323 plugin.py:352
+#: plugin.py:356
 msgid "No"
 msgstr "Nein"
 
@@ -2237,27 +2237,27 @@ msgstr "Einstellungen Film-Information Download"
 msgid "Location:"
 msgstr "Ort:"
 
-#: MovieRetitle.py:80
+#: MovieRetitle.py:84
 msgid "Foldername:"
 msgstr "Ordnername:"
 
-#: MovieRetitle.py:82
+#: MovieRetitle.py:86
 msgid "Filename:"
 msgstr "Dateiname:"
 
-#: MovieRetitle.py:83
+#: MovieRetitle.py:87
 msgid "Movietitle:"
 msgstr "Filmtitel:"
 
-#: MovieRetitle.py:84
+#: MovieRetitle.py:88
 msgid "Description:"
 msgstr "Beschreibung:"
 
-#: MovieRetitle.py:114
+#: MovieRetitle.py:118
 msgid "Change Foldername"
 msgstr "Ändere Verzeichnisname"
 
-#: MovieRetitle.py:116
+#: MovieRetitle.py:120
 msgid "Change File/Moviename and/or Description"
 msgstr "Ändern Sie den Dateiname, Filmtitel und die Beschreibung"
 
@@ -2386,7 +2386,7 @@ msgid "Start / end multiselection"
 msgstr "Mehrfachauswahl ein/aus"
 
 #: MovieSelection.py:684 MovieSelection.py:1461 MovieSelectionMenu.py:88
-#: plugin.py:205 plugin.py:226
+#: plugin.py:198 plugin.py:219
 msgid "Movie home"
 msgstr "Movie Home"
 
@@ -2446,7 +2446,7 @@ msgid "Hide Cover"
 msgstr "Cover aus"
 
 #: MovieSelection.py:1900 MovieSelection.py:1916 MovieSelection.py:1932
-#: plugin.py:215 plugin.py:236
+#: plugin.py:208 plugin.py:229
 msgid "Button disabled"
 msgstr "Taste deaktiviert"
 
@@ -2551,26 +2551,26 @@ msgstr ""
 "\n"
 "%s"
 
-#: MovieSelection.py:2429
+#: MovieSelection.py:2430
 msgid ""
 " Deleting remotely recorded and it will display an rec-error dialog on the "
 "other DB."
 msgstr ""
 " Löschen einer entfernten Aufnahmen zeigt einen Fehler auf der anderen DB."
 
-#: MovieSelection.py:2435
+#: MovieSelection.py:2436
 msgid " permanently"
 msgstr " endgültig"
 
-#: MovieSelection.py:2454
+#: MovieSelection.py:2455
 msgid " currently played?"
 msgstr " laufende Wiedergabe?"
 
-#: MovieSelection.py:2475
+#: MovieSelection.py:2476
 msgid " all selected video files?"
 msgstr " alle ausgewählte Videodateien?"
 
-#: MovieSelection.py:2484
+#: MovieSelection.py:2485
 msgid ""
 " all selected video files? The currently playing movie is also one of the "
 "selections and its playback will be stopped."
@@ -2578,11 +2578,11 @@ msgstr ""
 " alle ausgewählte Videodateien? Der aktuelle Film ist ebenfalls in der "
 "Auswahl enthalten. Wiedergabe wird beendet."
 
-#: MovieSelection.py:2488
+#: MovieSelection.py:2489
 msgid "Delete error:\n"
 msgstr "Fehler beim Löschen:\n"
 
-#: MovieSelection.py:2523 MovieSelection.py:2567
+#: MovieSelection.py:2528 MovieSelection.py:2572
 #, python-format
 msgid ""
 "The following files are used for other entrys in List !\n"
@@ -2597,13 +2597,13 @@ msgstr ""
 "\n"
 "%s"
 
-#: MovieSelection.py:2614
+#: MovieSelection.py:2619
 msgid "This element belongs to a locked folder and cannot be deleted!"
 msgstr ""
 "Dieses Element gehört zu einem gesperrten Ordner und kann nicht gelöscht "
 "werden!"
 
-#: MovieSelection.py:2626
+#: MovieSelection.py:2631
 msgid ""
 "Delete failed because the trashcan directory does not exist. Attempt to "
 "create it now?"
@@ -2611,29 +2611,29 @@ msgstr ""
 "Löschen fehlgeschlagen da das Papierkorb-Verzeichnis nicht existert. Jetzt "
 "erstellen?"
 
-#: MovieSelection.py:2651
+#: MovieSelection.py:2656
 msgid "This folder is locked or contains a locked subfolder, unlock it first!"
 msgstr ""
 "Dieser Ordner ist gesperrt oder enthält einen gesperrten Unterordner, der "
 "zuerst entsperrt werden muss!"
 
-#: MovieSelection.py:2672
+#: MovieSelection.py:2677
 msgid "Directory is not empty! Do you really want to delete it?"
 msgstr "Verzeichnis ist nicht leer! Soll es wirklich gelöscht werden?"
 
-#: MovieSelection.py:2678
+#: MovieSelection.py:2683
 msgid "Cannot delete the parent directory."
 msgstr "Kann übergeord. Verzeichnis nicht löschen."
 
-#: MovieSelection.py:2759 MovieSelection.py:2842
+#: MovieSelection.py:2764 MovieSelection.py:2847
 msgid "Delete failed!"
 msgstr "Löschen fehlgeschlagen!"
 
-#: MovieSelection.py:3005 MovieSelection.py:3047
+#: MovieSelection.py:3010 MovieSelection.py:3052
 msgid "Move file(s):"
 msgstr "Verschiebe Datei(en):"
 
-#: MovieSelection.py:3034 MovieSelection.py:3057
+#: MovieSelection.py:3039 MovieSelection.py:3062
 msgid ""
 "How to move files:\n"
 "Select some movies with the VIDEO-button, move the cursor on top of the "
@@ -2643,11 +2643,11 @@ msgstr ""
 "Filme mit VIDEO-Taste markieren, mit Cursor das Zielverzeichnis wählen und "
 "gelbe Taste drücken."
 
-#: MovieSelection.py:3081 MovieSelection.py:3123
+#: MovieSelection.py:3086 MovieSelection.py:3128
 msgid "Copy file(s):"
 msgstr "Kopiere Datei(en):"
 
-#: MovieSelection.py:3110 MovieSelection.py:3133
+#: MovieSelection.py:3115 MovieSelection.py:3138
 msgid ""
 "How to copy files:\n"
 "Select some movies with the VIDEO-button, move the cursor on top of the "
@@ -2657,19 +2657,19 @@ msgstr ""
 "Filme mit VIDEO-Taste markieren, mit Cursor das Zielverzeichnis wählen und "
 "gelbe Taste lange drücken."
 
-#: MovieSelection.py:3150
+#: MovieSelection.py:3155
 msgid "Move Directory:"
 msgstr "Verschiebe Verzeichnis:"
 
-#: MovieSelection.py:3224 MovieSelection.py:3230
+#: MovieSelection.py:3229 MovieSelection.py:3235
 msgid "IMDb"
 msgstr "IMDb"
 
-#: MovieSelection.py:3226
+#: MovieSelection.py:3231
 msgid "TMDb"
 msgstr "TMDb"
 
-#: MovieSelection.py:3228
+#: MovieSelection.py:3233
 msgid "CSFD"
 msgstr "CSFD"
 
@@ -2693,7 +2693,7 @@ msgstr "Wiedergabeliste Optionen"
 msgid "Add to current Playlist"
 msgstr "Zur aktuellen Wiedergabeliste hinzufügen"
 
-#: MovieSelectionMenu.py:101 plugin.py:209 plugin.py:230
+#: MovieSelectionMenu.py:101 plugin.py:202 plugin.py:223
 msgid "Play last"
 msgstr "Letzter Film"
 
@@ -2749,11 +2749,11 @@ msgstr "Kopiere Dateien"
 msgid "Move Files"
 msgstr "Verschiebe Dateien"
 
-#: MovieSelectionMenu.py:143 plugin.py:212 plugin.py:233
+#: MovieSelectionMenu.py:143 plugin.py:205 plugin.py:226
 msgid "Copy File"
 msgstr "Kopiere Datei"
 
-#: MovieSelectionMenu.py:144 plugin.py:207 plugin.py:228
+#: MovieSelectionMenu.py:144 plugin.py:200 plugin.py:221
 msgid "Move File"
 msgstr "Verschiebe Datei"
 
@@ -2931,357 +2931,365 @@ msgstr "Ohne Speichern der Einstellungen fortfahren?"
 
 #: plugin.py:55
 msgid "no"
-msgstr "Nein"
+msgstr "nein"
 
 #: plugin.py:55
 msgid "yes"
-msgstr "Ja"
+msgstr "ja"
 
-#: plugin.py:158
+#: plugin.py:151
 msgid "No override"
 msgstr "Nicht überschreiben"
 
-#: plugin.py:159
+#: plugin.py:152
 msgid "Video-button"
 msgstr "Video-Taste"
 
-#: plugin.py:160
+#: plugin.py:153
 msgid "TV-button"
 msgstr "TV-Taste"
 
-#: plugin.py:161
+#: plugin.py:154
 msgid "Radio-button"
 msgstr "Radio-Taste"
 
-#: plugin.py:162
+#: plugin.py:155
 msgid "Quick-button"
 msgstr "Quick-Button"
 
-#: plugin.py:163
+#: plugin.py:156
 msgid "Timeshift-button"
 msgstr "Timeshift-Taste"
 
-#: plugin.py:166 plugin.py:186 plugin.py:195
+#: plugin.py:159 plugin.py:179 plugin.py:188
 msgid "Off"
 msgstr "aus"
 
-#: plugin.py:167
+#: plugin.py:160
 msgid "DD.MM.YYYY"
 msgstr "TT.MM.JJJJ"
 
-#: plugin.py:168
+#: plugin.py:161
 msgid "WD DD.MM.YYYY"
 msgstr "WT TT.MM.JJJJ"
 
-#: plugin.py:170
+#: plugin.py:163
 msgid "DD.MM.YYYY HH:MM"
 msgstr "TT.MM.JJJJ HH:MM"
 
-#: plugin.py:171
+#: plugin.py:164
 msgid "WD DD.MM.YYYY HH:MM"
 msgstr "WT TT.MM.JJJJ HH:MM"
 
-#: plugin.py:173
+#: plugin.py:166
 msgid "DD.MM. HH:MM"
 msgstr "TT.MM. HH:MM"
 
-#: plugin.py:174
+#: plugin.py:167
 msgid "WD DD.MM. HH:MM"
 msgstr "WT TT.MM. HH:MM"
 
-#: plugin.py:176
+#: plugin.py:169
 msgid "YYYY/MM/DD"
 msgstr "JJJJ/MM/TT"
 
-#: plugin.py:177
+#: plugin.py:170
 msgid "WD YYYY/MM/DD"
 msgstr "WT JJJJ/MM/TT"
 
-#: plugin.py:179
+#: plugin.py:172
 msgid "YYYY/MM/DD HH:MM"
 msgstr "JJJJ/MM/TT HH:MM"
 
-#: plugin.py:180
+#: plugin.py:173
 msgid "WD YYYY/MM/DD HH:MM"
 msgstr "WT JJJJ/MM/TT HH:MM"
 
-#: plugin.py:182
+#: plugin.py:175
 msgid "MM/DD HH:MM"
 msgstr "MM/TT HH:MM"
 
-#: plugin.py:183
+#: plugin.py:176
 msgid "WD MM/DD HH:MM"
 msgstr "WT MM/TT HH:MM"
 
-#: plugin.py:187
+#: plugin.py:180
 msgid "Description"
 msgstr "Beschreibung"
 
-#: plugin.py:188
+#: plugin.py:181
 msgid "( # )"
 msgstr "( # )"
 
-#: plugin.py:189
+#: plugin.py:182
 msgid "( # / GB )"
 msgstr "( # / GB )"
 
-#: plugin.py:190
+#: plugin.py:183
 msgid "( GB )"
 msgstr "( GB )"
 
-#: plugin.py:192
+#: plugin.py:185
 msgid "ProgressBar"
 msgstr "Fortschrittsbalken"
 
-#: plugin.py:193
+#: plugin.py:186
 msgid "Percent (%)"
 msgstr "Prozent %"
 
-#: plugin.py:194
+#: plugin.py:187
 msgid "Movie Color"
 msgstr "Farbe der Aufnahme"
 
-#: plugin.py:208 plugin.py:229
+#: plugin.py:201 plugin.py:222
 msgid "Add to Playlist"
 msgstr "Playlist hinzufügen"
 
-#: plugin.py:210 plugin.py:231
+#: plugin.py:203 plugin.py:224
 msgid "Cover Search"
 msgstr "Cover suchen"
 
-#: plugin.py:211 plugin.py:232
+#: plugin.py:204 plugin.py:225
 msgid "Download Movie Info"
 msgstr "Download Film-Infos"
 
-#: plugin.py:213 plugin.py:234
+#: plugin.py:206 plugin.py:227
 msgid "Open E2 bookmarks"
 msgstr "E2-Lesezeichen öffnen"
 
-#: plugin.py:214
+#: plugin.py:207
 msgid "Toggle Cover Button"
 msgstr "Cover-Umschalttaste"
 
-#: plugin.py:219
+#: plugin.py:212
 msgid "Sort Options"
 msgstr "Sortieroptionen"
 
-#: plugin.py:245
+#: plugin.py:238
 msgid "down"
 msgstr "runter"
 
-#: plugin.py:246
+#: plugin.py:239
 msgid "up/down"
 msgstr "rauf/runter"
 
-#: plugin.py:247
+#: plugin.py:240
 msgid "off"
 msgstr "aus"
 
-#: plugin.py:249
+#: plugin.py:242
 msgid "type 1 - OSD + black (#00000000)"
 msgstr "type 1 - OSD + black (#00000000)"
 
-#: plugin.py:250
+#: plugin.py:243
 msgid "type 2 - transparent + white (#FFFFFFFF)"
 msgstr "type 2 - transparent + white (#FFFFFFFF)"
 
-#: plugin.py:251
+#: plugin.py:244
 msgid "type 3 - OSD + black (#00FFFFFF)"
 msgstr "type 3 - OSD + black (#00FFFFFF)"
 
-#: plugin.py:252
+#: plugin.py:245
 msgid "type 4 - transparent + black (#FF000000)"
 msgstr "type 4 - transparent + black (#FF000000)"
 
-#: plugin.py:255
+#: plugin.py:248
 msgid "E2 Bookmarks"
 msgstr "E2-Lesezeichen"
 
-#: plugin.py:256
+#: plugin.py:249
 msgid "EMC Bookmarks"
 msgstr "EMC-Lesezeichen"
 
-#: plugin.py:257
+#: plugin.py:250
 msgid "Both"
 msgstr "EMC- & E2-Lesezeichen"
 
-#: plugin.py:260
+#: plugin.py:253
 msgid "Standby"
 msgstr "Standby"
 
-#: plugin.py:261
+#: plugin.py:254
 msgid "DeepStandby"
 msgstr "DeepStandby"
 
-#: plugin.py:262
+#: plugin.py:255
 msgid "Reboot"
 msgstr "Neustart"
 
-#: plugin.py:263
+#: plugin.py:256
 msgid "E2 Restart"
 msgstr "E2-Neustart"
 
-#: plugin.py:265
+#: plugin.py:258
 msgid "HomeEnd"
 msgstr "Listen-Anfang/-Ende"
 
-#: plugin.py:266
+#: plugin.py:259
 msgid "Skip"
 msgstr "Zeilen überspringen"
 
-#: plugin.py:267
+#: plugin.py:260
 msgid "Change Folder"
 msgstr "Wechsle Verzeichnis"
 
-#: plugin.py:271
+#: plugin.py:264
 msgid "Date sort descending (D-)"
 msgstr "Sortierung nach Datum absteigend (D-)"
 
-#: plugin.py:271 plugin.py:277
+#: plugin.py:264 plugin.py:270
 msgid "Date sort"
 msgstr "↓ Datum"
 
-#: plugin.py:272
+#: plugin.py:265
 msgid "Alpha sort ascending (AZ)"
 msgstr "Alpha. Sortierung aufsteigend (AZ)"
 
-#: plugin.py:272 plugin.py:278
+#: plugin.py:265 plugin.py:271
 msgid "Alpha sort"
 msgstr "↓ A-Z"
 
-#: plugin.py:273
+#: plugin.py:266
 msgid "Alpha sort ascending, Date descending (AZD-)"
 msgstr "Alpha. Sortierung aufsteigend, Datum absteigend (AZD-)"
 
-#: plugin.py:273 plugin.py:279
+#: plugin.py:266 plugin.py:272
 msgid "Alpha sort date newest"
 msgstr "↓ A-Z, ↓ Datum"
 
-#: plugin.py:274
+#: plugin.py:267
 msgid "Alpha sort ascending with meta (AZM)"
 msgstr "Alpha. Sortierung aufsteigend mit meta-infos (AZM)"
 
-#: plugin.py:274 plugin.py:280
+#: plugin.py:267 plugin.py:273
 msgid "Alpha sort meta"
 msgstr "↓ A-Z+M"
 
-#: plugin.py:275
+#: plugin.py:268
 msgid "Alpha sort ascending with meta, Date descending (AZMD-)"
 msgstr "Alpha. Sortierung aufsteigend mit meta, Datum absteigend (AZMD-)"
 
-#: plugin.py:275 plugin.py:281
+#: plugin.py:268 plugin.py:274
 msgid "Alpha sort meta date newest"
 msgstr "↓ A-Z+M, ↓ Datum"
 
-#: plugin.py:276
+#: plugin.py:269
 msgid "Progress sort ascending (P+)"
 msgstr "Sortierung nach Fortschritt aufsteigend (P+)"
 
-#: plugin.py:276 plugin.py:282
+#: plugin.py:269 plugin.py:275
 msgid "Progress sort"
 msgstr "↓ Fortschritt"
 
-#: plugin.py:277
+#: plugin.py:270
 msgid "Date sort ascending (D+)"
 msgstr "Sortierung nach Datum aufsteigend (D+)"
 
-#: plugin.py:278
+#: plugin.py:271
 msgid "Alpha sort descending (ZA)"
 msgstr "Alpha. Sortierung absteigend (ZA)"
 
-#: plugin.py:279
+#: plugin.py:272
 msgid "Alpha sort descending, Date ascending (ZAD+)"
 msgstr "Alpha. Sortierung absteigend, Datum aufsteigend (ZAD+)"
 
-#: plugin.py:280
+#: plugin.py:273
 msgid "Alpha sort descending with meta (ZAM)"
 msgstr "Alpha. Sortierung absteigend mit meta-infos (ZAM)"
 
-#: plugin.py:281
+#: plugin.py:274
 msgid "Alpha sort descending with meta, Date ascending (ZAMD+)"
 msgstr "Alpha. Sortierung absteigend mit meta, Datum aufsteigend (ZAMD+)"
 
-#: plugin.py:282
+#: plugin.py:275
 msgid "Progress sort descending (P-)"
 msgstr "Sortierung nach Fortschritt absteigend (P-)"
 
-#: plugin.py:330
+#: plugin.py:323
 msgid "after standby"
 msgstr "Nach Standby"
 
-#: plugin.py:339
+#: plugin.py:332
 msgid "never hide"
 msgstr "Niemals ausblenden"
 
-#: plugin.py:339
+#: plugin.py:332
 msgid "hide live TV"
 msgstr "Live-TV ausblenden"
 
-#: plugin.py:339
+#: plugin.py:332
 msgid "hide live TV and timeshift"
 msgstr "Live-TV und Timeshift ausblenden"
 
-#: plugin.py:339
+#: plugin.py:332
 msgid "hide playback"
 msgstr "Wiedergabe ausblenden"
 
-#: plugin.py:339
+#: plugin.py:332
 msgid "always hide"
 msgstr "Immer ausblenden"
 
-#: plugin.py:341
+#: plugin.py:334
 msgid "stop service"
 msgstr "Empfang stoppen"
 
-#: plugin.py:341
+#: plugin.py:334
 msgid "single pixel TV, muted"
 msgstr "1-Pixel-Bild, stumm"
 
-#: plugin.py:343
+#: plugin.py:336
 msgid "Show info on the left"
 msgstr "Infos links anzeigen"
 
-#: plugin.py:343
+#: plugin.py:336
 msgid "Show info on the left (with MiniTV)"
 msgstr "Infos links anzeigen (mit MiniTV)"
 
-#: plugin.py:343
+#: plugin.py:336
 msgid "Show info at the bottom"
 msgstr "Infos unten anzeigen"
 
-#: plugin.py:343
+#: plugin.py:336
 msgid "Show info at the bottom (with MiniTV)"
 msgstr "Infos unten anzeigen (mit MiniTV)"
 
-#: plugin.py:347
+#: plugin.py:340
 msgid "left from Name"
 msgstr "Links vom Filmtitel"
 
-#: plugin.py:347
+#: plugin.py:340
 msgid "right from Name"
 msgstr "Rechts vom Filmtitel"
 
-#: plugin.py:354 plugin.py:402
+#: plugin.py:347 plugin.py:395
 msgid "center"
 msgstr "Zentriert"
 
-#: plugin.py:354 plugin.py:402
+#: plugin.py:347 plugin.py:395
 msgid "right"
 msgstr "Rechts"
 
-#: plugin.py:354 plugin.py:402
+#: plugin.py:347 plugin.py:395
 msgid "left"
 msgstr "Links"
 
-#: plugin.py:359
+#: plugin.py:352
 msgid "Yes, without Message"
 msgstr "Ja, ohne Benachrichtigung"
 
-#: plugin.py:359
+#: plugin.py:352
 msgid "Yes, with Message"
 msgstr "Ja, mit Benachrichtigung"
 
-#: plugin.py:381
+#: plugin.py:356
+msgid "Yes, only extra title"
+msgstr "Ja, nur Zusatztitel"
+
+#: plugin.py:356
+msgid "Yes, everything"
+msgstr "Ja, alles"
+
+#: plugin.py:374
 msgid ""
 "ATTENTION\n"
 "\n"
@@ -3299,136 +3307,145 @@ msgstr ""
 "\n"
 "Bestätige dies mit der blauen Taste, gefolgt von der grünen Taste."
 
-#: plugin.py:396
+#: plugin.py:389
 msgid "always"
 msgstr "immer"
 
-#: plugin.py:396
+#: plugin.py:389
 msgid "after reload list"
 msgstr "nach dem Neuladen der Liste"
 
-#: plugin.py:396
+#: plugin.py:389
 msgid "only initially"
 msgstr "nur das erste Mal"
 
-#: plugin.py:404 plugin.py:408
+#: plugin.py:397 plugin.py:401
 msgid "White"
 msgstr "Weiß"
 
-#: plugin.py:404 plugin.py:408
+#: plugin.py:397 plugin.py:401
 msgid "Light grey"
 msgstr "Hellgrau"
 
-#: plugin.py:404 plugin.py:408
+#: plugin.py:397 plugin.py:401
 msgid "Grey"
 msgstr "Grau"
 
-#: plugin.py:404 plugin.py:408
+#: plugin.py:397 plugin.py:401
 msgid "Dark grey"
 msgstr "Dunkelgrau"
 
-#: plugin.py:404 plugin.py:408
+#: plugin.py:397 plugin.py:401
 msgid "Black"
 msgstr "Schwarz"
 
-#: plugin.py:405
+#: plugin.py:398
 msgid "Orange"
 msgstr "Orange"
 
-#: plugin.py:405
+#: plugin.py:398
 msgid "Light orange"
 msgstr "Hellorange"
 
-#: plugin.py:405
+#: plugin.py:398
 msgid "Dark orange"
 msgstr "Dunkelorange"
 
-#: plugin.py:406
+#: plugin.py:399
 msgid "Green"
 msgstr "Grün"
 
-#: plugin.py:406
+#: plugin.py:399
 msgid "Light green"
 msgstr "Hellgrün"
 
-#: plugin.py:406
+#: plugin.py:399
 msgid "Dark green"
 msgstr "Dunkelgrün"
 
-#: plugin.py:407
+#: plugin.py:400
 msgid "Red"
 msgstr "Rot"
 
-#: plugin.py:407
+#: plugin.py:400
 msgid "Light red"
 msgstr "Hellrot"
 
-#: plugin.py:407
+#: plugin.py:400
 msgid "Dark red"
 msgstr "Dunkelrot"
 
-#: plugin.py:412
+#: plugin.py:405
 #, python-format
 msgid "%d second"
 msgid_plural "%d seconds"
 msgstr[0] "%d sekunde"
 msgstr[1] "%d sekunden"
 
-#: plugin.py:421
+#: plugin.py:414
 msgid "Day"
 msgstr "Tag"
 
-#: plugin.py:424
+#: plugin.py:417
 msgid "Days"
 msgstr "Tage"
 
-#: plugin.py:429
+#: plugin.py:422
 msgid "Week"
 msgstr "Woche"
 
-#: plugin.py:432
+#: plugin.py:425
 msgid "Weeks"
 msgstr "Wochen"
 
-#: plugin.py:437
+#: plugin.py:430
 msgid "Month"
 msgstr "Monat"
 
-#: plugin.py:440
+#: plugin.py:433
 msgid "Months"
 msgstr "Monate"
 
-#: plugin.py:446
+#: plugin.py:439
 msgid "No limit"
 msgstr "Kein Limit"
 
-#: plugin.py:476
+#: plugin.py:469
 msgid "IMDb Search"
 msgstr "IMDb-Suche"
 
-#: plugin.py:476
+#: plugin.py:469
 msgid "EMC-TMDB Info"
 msgstr "EMC-TMDB Info"
 
-#: plugin.py:476
+#: plugin.py:469
 msgid "TMDB Info"
 msgstr "TMDB-Info"
 
-#: plugin.py:476
+#: plugin.py:469
 msgid "TMBD Info"
 msgstr "TMBD Info"
 
-#: plugin.py:476
+#: plugin.py:469
 msgid "CSFD Info"
 msgstr "CSFD-Info"
 
-#: plugin.py:566
+#: plugin.py:559
 msgid "configuration"
 msgstr "Konfiguration"
 
-#: plugin.py:569
+#: plugin.py:562
 msgid "movie manipulation list"
 msgstr "Film-Änderungsliste"
+
+#~ msgid "HELP_Load all for non showing titles from .meta files"
+#~ msgstr ""
+#~ "Wenn kein Titel aus den .meta Dateien ausgelesen werden\n"
+#~ "kann, lade alles verfügbare, um den Titel doch noch erfolgreich anzeigen "
+#~ "zu können."
+
+#~ msgid "Load all for non showing titles from .meta files"
+#~ msgstr "Lade alles für nicht anzeigbare Titel aus .meta Dateien"
 
 #~ msgid "DD.MM HH:MM"
 #~ msgstr "TT.MM hh:MM"

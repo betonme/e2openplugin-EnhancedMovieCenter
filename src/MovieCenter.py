@@ -1331,8 +1331,9 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 					meta = MetaList(path)
 					if meta:
 						metastring = meta.getMetaName()
-						eventtitle = meta.getMetaTitle()
-						if not eventtitle and config.EMC.movie_metaload_all.value:
+						if config.EMC.movie_metaload_all.value == "title":
+							eventtitle = meta.getMetaTitle()
+						if not eventtitle and config.EMC.movie_metaload_all.value == "everything":
 							eventtitle = meta.getMetaDescription()
 						if not date:
 							date = meta.getMetaDate()

@@ -353,7 +353,7 @@ config.EMC.record_eof_zap            = ConfigSelection(default = '0', choices = 
 config.EMC.record_show_real_length   = ConfigYesNo(default = True)
 config.EMC.cutlist_at_download       = ConfigYesNo(default = False)
 config.EMC.movie_metaload            = ConfigYesNo(default = True)
-config.EMC.movie_metaload_all        = ConfigYesNo(default = False)
+config.EMC.movie_metaload_all        = ConfigSelection(default = 'title', choices = [ ('no', _("No")), ('title', _("Yes, only extra title")), ('everything', _("Yes, everything")) ])
 config.EMC.movie_eitload             = ConfigYesNo(default = False)
 config.EMC.movie_exit                = ConfigYesNo(default = False)
 config.EMC.movie_reopen              = ConfigYesNo(default = True)
