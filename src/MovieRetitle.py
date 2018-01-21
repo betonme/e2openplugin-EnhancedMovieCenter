@@ -4,7 +4,7 @@
 from __init__ import _
 
 from Screens.Screen import Screen
-from Components.config import ConfigText, getConfigListEntry
+from Components.config import config, ConfigText, getConfigListEntry
 from Components.ActionMap import ActionMap
 from configlistext import ConfigListScreenExt
 from Components.Sources.StaticText import StaticText
@@ -67,7 +67,11 @@ class MovieRetitle(Screen, ConfigListScreenExt):
 			self.original_file = service.getName()
 		else:
 			self.original_file = os.path.basename(os.path.splitext(path)[0])
-		self.original_name = info.getName(service)
+		if config.EMC.movie_show_format.value:
+			ext = os.path.splitext(service.getPath())[1]
+			self.original_name = info.getName(service)[:-(len(ext)+1)]
+		else:
+			self.original_name = info.getName(service)[:-1]
 		self.original_desc = info.getInfoString(service, iServiceInformation.sDescription)
 		self.input_file = ConfigText(default=self.original_file, fixed_size=False, visible_width=82)
 		self.input_title = ConfigText(default=self.original_name, fixed_size=False, visible_width=82)
@@ -186,7 +190,7 @@ class MovieRetitle(Screen, ConfigListScreenExt):
 			path = os.path.dirname(service.getPath())
 			file_name = os.path.basename(os.path.splitext(service.getPath())[0])
 			src = os.path.join(path, file_name)
-			dst = os.path.join(path, new_name)
+			dst = os.path.join(path, new_name.encode('utf-8'))
 			import glob
 			for f in glob.glob(os.path.join(path, src + "*")):
 				os.rename(f, f.replace(src, dst))
