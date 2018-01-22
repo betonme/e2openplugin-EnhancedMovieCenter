@@ -1406,10 +1406,11 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 
 				# combine information regarding the emc config
 				if movie_show_cutnr:
-					title += " "+cutnr
+					if not cutnr == "":
+						title += " "+cutnr
 
 				if movie_show_format:
-					title += " "+ext[1:]
+					title += " ["+ext[1:] + "]"
 
 				# Get player service and set formatted title
 				service = getPlayerService(path, title, ext)
@@ -2187,7 +2188,7 @@ class MovieCenter(GUIComponent):
 					# Media files left side not skin_able
 					if movie_metaload:
 						if eventtitle != "":
-							title = title + " - " + eventtitle
+							title = title + " | " + eventtitle
 
 					# Picons only for .ts-files
 					textX = offset
@@ -2314,7 +2315,7 @@ class MovieCenter(GUIComponent):
 					# Media files left side
 					if movie_metaload:
 						if eventtitle != "":
-							title = title + " - " + eventtitle
+							title = title + " | " + eventtitle
 
 					# show picons only, if we have piconpath
 					if config.EMC.movie_picons.value:
