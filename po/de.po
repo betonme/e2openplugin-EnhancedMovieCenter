@@ -757,7 +757,7 @@ msgstr "Cursor nach Auswahl weiterbewegen"
 #: EnhancedMovieCenter.py:365
 msgid "HELP_Cursor predictive move after selection"
 msgstr ""
-"Der Cursor wird beim selektieren mit der [VIDEO/PVR] Taste in die "
+"Der Cursor wird beim Selektieren mit der [VIDEO/PVR] Taste in die "
 "eingestellte Richtung weiterbewegt.\n"
 "Bei \"rauf/runter\" wird in die zuletzt bewegte Richtung gesprungen."
 
