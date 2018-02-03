@@ -117,4 +117,45 @@
 			<convert type="ConditionalShowHide">Blink</convert>
 		</widget>
 	</screen>
+	<!-- VFD/LED screen Ultimo4k 800 Color display -->
+	<screen id="4" name="EMCMoviePlayerSummary" position="0,0" size="800,480">
+		<widget source="global.CurrentTime" render="Label" position="550,30" size="230,100" font="Display;90" halign="center" valign="center">
+			<convert type="ClockToText">Format:%H:%M</convert>
+		</widget>
+		<widget source="session.CurrentService" render="Label" position="20,200" size="720,80" font="Display;80" halign="center">
+			<convert type="ServicePosition">Remaining,Negate,ShowHours</convert>
+		</widget>
+		<widget source="session.CurrentService" render="RollerCharLCDLong" position="20,340" size="720,60" font="Display;60" foregroundColor="#e5b243" halign="left" valign="top" >
+			<convert type="ServiceName">Name</convert>
+		</widget>
+		<widget position="30,400" render="Progress" size="740,60" source="Service" foregroundColor="#FFD700" transparent="1" zPosition="2">
+			<convert type="EMCServicePosition">Position</convert>
+		</widget>
+		<widget position="30,400" render="Progress" size="740,60" source="Service" foregroundColor="#FF0000" transparent="1" zPosition="1">
+			<convert type="EMCRecordPosition">Position</convert>
+		</widget>
+		<widget render="FixedLabel" font="Display;60" halign="center" position="30,30" size="215,60" source="session.RecordState" text="REC">
+			<convert type="ConfigEntryTest">config.usage.blinking_display_clock_during_recording,True,CheckSourceBoolean</convert>
+			<convert type="ConditionalShowHide">Blink</convert>
+		</widget>
+	</screen>
+	<screen id="4" name="EMCSelectionSummary" position="0,0" size="800,480"> 
+		<widget source="parent.Title" render="Label" position="40,40" size="500,50" font="Display;50" halign="left" valign="center" zPosition="2" />
+		<widget source="parent.Service" render="Label" position="40,120" size="720,240" font="Display;60" foregroundColor="#e5b243" halign="center" valign="top" zPosition="2" >
+			<convert type="ServiceName">Name</convert>
+		</widget>
+        <eLabel position="0,100" size="800,4" backgroundColor="#FF0000" />
+		<widget source="parent.Service" render="Label" position="20,380" size="240,70" font="Display;60" halign="left" valign="center">
+			<convert type="MovieInfo">FileSize</convert>
+		</widget>
+		<widget source="parent.Service" render="Label" position="540,380" size="240,70" font="Display;60" halign="right" valign="center">
+			<convert type="EMCServiceTime">Duration</convert>
+			<convert type="EMCClockToText">InMinutes</convert>
+		</widget>
+        <eLabel text="Size | Runtime" position="250,390" size="350,50" font="Display;50" halign="center" valign="center" foregroundColor="#e5b243" transparent="1" />
+		<widget source="global.CurrentTime" render="Label" position="540,40" size="240,60" halign="right" font="Display;60">
+			<convert type="ClockToText">Default</convert>
+		</widget>
+        <eLabel position="0,375" size="800,4" backgroundColor="#FF0000" />
+	</screen>
 </skin>
