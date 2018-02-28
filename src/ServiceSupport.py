@@ -154,17 +154,10 @@ class Info:
 
 		#TODO dynamic or not
 		#
-		#self.__extendeddescription = meta and meta.getMetaDescription() \
-		#															or eit and eit.getEitDescription() \
-		#															or ""
-		## meta file has no extendeddescrition
-#		self.__extendeddescription = eit and eit.getEitDescription() \
-#																	or meta and meta.getMetaDescription() \
-#																	or ""
+		self.__extendeddescription = meta and meta.getMetaExtendedDescription() or ""
+		if not self.__extendeddescription:
+			self.__extendeddescription = eit and eit.getEitDescription() or ""
 
-		#Show txt-Information in ExtendedDescription if meta but no eit
-		self.__extendeddescription = eit and eit.getEitDescription() \
-																	or ""
 		#No Description in *.eit file or no *.eit file exists
 		#Try reading description from *.txt file
 		if not self.__extendeddescription:
