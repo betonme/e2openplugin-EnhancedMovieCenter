@@ -26,6 +26,7 @@ from datetime import datetime
 
 from EMCTasker import emcDebugOut
 from IsoFileSupport import IsoSupport
+from mkvparse import mkvtags
 
 # Meta File support class
 # Description
@@ -39,15 +40,19 @@ class MetaList():
 	TAGS = 4
 	LENGTH = 5
 	FILESIZE = 6
+	TITLE = 7
+	EDESC = 8
 
 	def __init__(self, path=None):
 		self.meta_file = None
 		self.meta_mtime = 0
-		self.meta = ["","","","","","",""]
+		self.meta = ["","","","","","","","",""]
 		self.iso = None
 
 		self.__newPath(path)
-		self.__readMetaFile()
+		if not self.__readMetaFile():
+			if path.endswith('.mkv'):
+				self.__readMkvFile(path)
 
 	def __newPath(self, path):
 		name = None
@@ -112,15 +117,10 @@ class MetaList():
 		return self.meta[self.NAME]
 
 	def getMetaDescription(self):
-		#TODO transform during read on init
-		try:
-			self.meta[self.DESC].decode('utf-8')
-		except UnicodeDecodeError:
-			try:
-				self.meta[self.DESC] = self.meta[self.DESC].decode("cp1252").encode("utf-8")
-			except UnicodeDecodeError:
-				self.meta[self.DESC] = self.meta[self.DESC].decode("iso-8859-1").encode("utf-8")
 		return self.meta[self.DESC]
+
+	def getMetaExtendedDescription(self):
+		return self.meta[self.EDESC]
 
 	def getMetaRecordingTime(self):
 		# Time in seconds since 1970
@@ -143,6 +143,8 @@ class MetaList():
 
 	def getMetaTitle(self):
 		#TODO make it better and --> for example get the right title from other meta like "title only"
+		if self.meta[self.TITLE]:
+			return self.meta[self.TITLE]
 		title = ""
 		desc = self.getMetaDescription()
 		try:
@@ -169,14 +171,22 @@ class MetaList():
 
 	##############################################################################
 	## File IO Functions
+	def __validateStringEncoding(self, type):
+		try:
+			self.meta[type].decode('utf-8')
+		except UnicodeDecodeError:
+			try:
+				self.meta[type] = self.meta[type].decode("cp1252").encode("utf-8")
+			except UnicodeDecodeError:
+				self.meta[type] = self.meta[type].decode("iso-8859-1").encode("utf-8")
+
 	def __readMetaFile(self):
 		lines = []
 		path = self.meta_file
 		if path and os.path.exists(path):
-			mtime = os.path.getmtime(path)
 			if self.meta_mtime == mtime:
 				# File has not changed
-				pass
+				return 1
 
 			else:
 				#print "EMC TEST count Meta " + str(path)
@@ -202,15 +212,35 @@ class MetaList():
 					# Strip lines and extract information
 					lines = [l.strip() for l in lines]
 					le = len(lines)
-					self.meta = ["","","","","","",""]
+					self.meta = ["","","","","","","","",""]
 					self.meta[0:le] = lines[0:le]
+					self.validateStringEncoding(self.DESC)
+					return 1
 				else:
 					# No date clear all
-					self.meta = ["","","","","","",""]
+					self.meta = ["","","","","","","","",""]
 
 		else:
 			# No path or no file clear all
-			self.meta = ["","","","","","",""]
+			self.meta = ["","","","","","","","",""]
+
+	##############################################################################
+	## MKV Tag Support
+	def __readMkvFile(self, path):
+		self.meta = ["","","","","","","","",""]
+		if not os.path.exists(path):
+			return
+		mtime = os.path.getmtime(path)
+		if self.meta_mtime == mtime:
+			return
+		tags = mkvtags(path)
+		if not tags:
+			return
+		self.meta_mtime = mtime
+		if 'title' in tags:
+			self.meta[self.DESC] = tags['title'].encode('utf-8')
+		if 'summary' in tags:
+			self.meta[self.EDESC] = tags['summary'].encode('utf-8')
 
 def getInfoFile(path, exts=""):
 	from MovieCenter import extMedia
