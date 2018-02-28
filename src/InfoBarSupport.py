@@ -46,7 +46,7 @@ SeekbarPlg = "%s%s"%(resolveFilename(SCOPE_PLUGINS), "Extensions/Seekbar/plugin.
 try:
 	from boxbranding import getImageDistro
 	distro = getImageDistro()
-	if distro.lower() in ('openatv', 'openmips'):
+	if distro.lower() in ('openatv', 'openvix', 'openmips'):
 		hasmkvcuesheetsupport = True
 	else:
 		hasmkvcuesheetsupport = False
