@@ -295,7 +295,7 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 		self.session.openWithCallback(
 				boundFunction( self.createLinkCB, path ),
 				LocationBox,
-					windowTitle = _("Create Link"),
+					windowTitle = _("Create link"),
 					text = _("Choose directory"),
 					currDir = str(path)+"/",
 					bookmarks = config.movielist.videodirs,
@@ -311,7 +311,7 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 			try:
 				movieFileCache.delPathFromCache(currentPath)
 				movieFileCache.delPathFromCache(linkPath)
-				name = os.path.basename(linkPath)
+				name = os.path.basename(linkPath.rstrip('/'))
 				cmd = 'ln -s "'+ linkPath +'" "'+ os.path.join(currentPath, name) +'"'
 				if cmd != "":
 					association = []
