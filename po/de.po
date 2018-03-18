@@ -857,7 +857,7 @@ msgstr ""
 
 #: EnhancedMovieCenter.py:377
 msgid "Show directory size in skin"
-msgstr "Verzeichnissgröße im Info-Bereich anzeigen"
+msgstr "Verzeichnisgröße im Info-Bereich anzeigen"
 
 #: EnhancedMovieCenter.py:377
 msgid "HELP_Show directory size in skin"
@@ -1414,7 +1414,7 @@ msgstr ""
 
 #: EnhancedMovieCenter.py:452
 msgid "Hide movies being moved"
-msgstr "Film während dem Verschieben ausblenden"
+msgstr "Film während des Verschiebens ausblenden"
 
 #: EnhancedMovieCenter.py:452
 msgid "HELP_Hide movies being moved"
@@ -1425,7 +1425,7 @@ msgstr ""
 
 #: EnhancedMovieCenter.py:453
 msgid "Hide movies being deleted"
-msgstr "Film während dem Löschen ausblenden"
+msgstr "Film während des Löschens ausblenden"
 
 #: EnhancedMovieCenter.py:453
 msgid "HELP_Hide movies being deleted"
