@@ -69,9 +69,9 @@ class MovieRetitle(Screen, ConfigListScreenExt):
 			self.original_file = os.path.basename(os.path.splitext(path)[0])
 		if config.EMC.movie_show_format.value:
 			ext = os.path.splitext(service.getPath())[1]
-			self.original_name = info.getName(service)[:-(len(ext)+1)]
+			self.original_name = info.getName(service)[:-(len(ext)+2)]
 		else:
-			self.original_name = info.getName(service)[:-1]
+			self.original_name = info.getName(service)
 		self.original_desc = info.getInfoString(service, iServiceInformation.sDescription)
 		self.input_file = ConfigText(default=self.original_file, fixed_size=False, visible_width=82)
 		self.input_title = ConfigText(default=self.original_name, fixed_size=False, visible_width=82)
