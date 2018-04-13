@@ -290,17 +290,15 @@ class EitList():
 								ISO_639_language_code += data[i]
 							ISO_639_language_code = ISO_639_language_code.upper()
 							extended_event_description = ""
-							extended_event_description_multi = ""
 							for i in range (pos+8,pos+length):
-								if str(ord(data[i]))=="138":
-									extended_event_description += '\n'
-									extended_event_description_multi += '\n'
-								else:
-									if data[i]== '\x10' or data[i]== '\x00' or data[i]== '\x02' or data[i]== '\x05' or data[i]== '\xc2':
-										pass
+								if str(ord(data[i]))=="10" or int(str(ord(data[i])))>31:
+									if str(ord(data[i]))=="138":
+										extended_event_description += '\n'
 									else:
-										extended_event_description += data[i]
-										extended_event_description_multi += data[i]
+										if data[i]== '\x10' or data[i]== '\x00' or data[i]== '\x02' or data[i]== '\x05' or data[i]== '\xc2':
+											pass
+										else:
+											extended_event_description += data[i]
 							if ISO_639_language_code == lang:
 								extended_event_descriptor.append(extended_event_description)
 							if (ISO_639_language_code == prev2_ISO_639_language_code) or (prev2_ISO_639_language_code == "x"):
@@ -317,7 +315,7 @@ class EitList():
 						elif rec == 0x55:
 							parental_rating_descriptor.append(data[pos+2:pos+length])
 						else:
-#							print "unsopported descriptor: %x %x" %(rec, pos + 12)
+#							print "unsupported descriptor: %x %x" %(rec, pos + 12)
 #							print data[pos:pos+length]
 							pass
 						pos += length
