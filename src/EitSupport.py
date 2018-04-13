@@ -290,6 +290,20 @@ class EitList():
 								ISO_639_language_code += data[i]
 							ISO_639_language_code = ISO_639_language_code.upper()
 							extended_event_description = ""
+							extended_event_codepage = None
+							byte1 = str(ord(data[pos+8]))
+							if byte1=="1": extended_event_codepage = 'iso8859-5'
+							elif byte1=="2": extended_event_codepage = 'iso8859-6'
+							elif byte1=="3": extended_event_codepage = 'iso8859-7'
+							elif byte1=="4": extended_event_codepage = 'iso8859-8'
+							elif byte1=="5": extended_event_codepage = 'iso8859-9'
+							elif byte1=="6": extended_event_codepage = 'iso8859-10'
+							elif byte1=="7": extended_event_codepage = 'iso8859-11'
+							elif byte1=="9": extended_event_codepage = 'iso8859-13'
+							elif byte1=="10": extended_event_codepage = 'iso8859-14'
+							elif byte1=="11": extended_event_codepage = 'iso8859-15'
+							elif byte1=="21": extended_event_codepage = 'utf-8'
+							print extended_event_codepage
 							for i in range (pos+8,pos+length):
 								if str(ord(data[i]))=="10" or int(str(ord(data[i])))>31:
 									if str(ord(data[i]))=="138":
@@ -368,17 +382,23 @@ class EitList():
 					self.eit['short_description'] = short_event_descriptor
 
 					if extended_event_descriptor:
-						try:
-							encdata = chardet.detect(extended_event_descriptor)
-							enc = encdata['encoding'].lower()
-							confidence = str(encdata['confidence'])
-							emcDebugOut("[META] Detected encoding-type: " + enc + " (" + confidence + ")")
-							if enc == "utf-8":
-								extended_event_descriptor.decode(enc)
+						if extended_event_codepage:
+							if extended_event_codepage != 'utf-8':
+								extended_event_descriptor = extended_event_descriptor.decode(extended_event_codepage).encode("utf-8")
 							else:
-								extended_event_descriptor = extended_event_descriptor.decode(enc).encode('utf-8')
-						except (UnicodeDecodeError, AttributeError), e:
-							emcDebugOut("[META] Exception in readEitFile: " + str(e))
+								extended_event_descriptor.decode('utf-8')
+						else:
+							try:
+								encdata = chardet.detect(extended_event_descriptor)
+								enc = encdata['encoding'].lower()
+								confidence = str(encdata['confidence'])
+								emcDebugOut("[META] Detected encoding-type: " + enc + " (" + confidence + ")")
+								if enc == "utf-8":
+									extended_event_descriptor.decode(enc)
+								else:
+									extended_event_descriptor = extended_event_descriptor.decode(enc).encode('utf-8')
+							except (UnicodeDecodeError, AttributeError), e:
+								emcDebugOut("[META] Exception in readEitFile: " + str(e))
 					self.eit['description'] = extended_event_descriptor
 
 				else:
