@@ -352,7 +352,7 @@ class EitList():
 									if str(ord(data[i]))=="138":
 										extended_event_description += '\n'
 									else:
-										if data[i]== '\x10' or data[i]== '\x00' or data[i]== '\x02' or data[i]== '\x05' or data[i]== '\xc2':
+										if data[i]== '\x10' or data[i]== '\x00' or data[i]== '\x02' or data[i]== '\x05' or data[i]== '\xc2' or data[i]== '\xb3':
 											pass
 										else:
 											extended_event_description += data[i]
