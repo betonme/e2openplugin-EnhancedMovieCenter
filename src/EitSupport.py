@@ -454,6 +454,10 @@ class EitList():
 									extended_event_descriptor = extended_event_descriptor.decode(enc).encode('utf-8')
 						except (UnicodeDecodeError, AttributeError), e:
 							emcDebugOut("[META] Exception in readEitFile: " + str(e))
+
+						# This will fix EIT data of all RTL channels with missing line breaks in extended event description
+						import re
+						extended_event_descriptor = re.sub('(Moderation:.*?[a-z]+)(\'{0,1}[0-9A-Z])', r'\1\n\n\2', extended_event_descriptor)
 					self.eit['description'] = extended_event_descriptor
 
 				else:
