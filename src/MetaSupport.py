@@ -79,7 +79,7 @@ class MetaList():
 		# Meta files are using the presentation time stamp time format
 		# pts has a resolution of 90kHz
 		if pts:
-			try: 
+			try:
 				pts / 90 / 1000
 			except:
 				return 0
@@ -218,25 +218,25 @@ def getInfoFile(path, exts=""):
 	name, ext = os.path.splitext(path)
 	ext = ext.lower()
 
-	if os.path.isfile(path) and ext in extMedia:										#files & movie structures
+	if os.path.isfile(path) and ext in extMedia:			#files & movie structures
 		dir = os.path.dirname(path)
-		p1 = name																											# filename.ext
-		p2 = os.path.join(dir, os.path.basename(dir))									# folder.ext if no filename.ext
+		p1 = name						# filename.ext
+		p2 = os.path.join(dir, os.path.basename(dir))		# folder.ext if no filename.ext
 
 	elif os.path.isdir(path):
-		if path.lower().endswith("/bdmv"):														# bluray structures
+		if path.lower().endswith("/bdmv"):			# bluray structures
 			dir = path[:-5]
 			if dir.lower().endswith("/brd"): dir = dir[:-4]
-		elif path.lower().endswith("video_ts"):												# DVD structures
+		elif path.lower().endswith("video_ts"):			# DVD structures
 			dir = path[:-9]
 			if dir.lower().endswith("/dvd"): dir = dir[:-4]
-		else:																													# folders
+		else:							# folders
 			dir = path
-			p2 = os.path.join(dir, "folder")														# "folder.ext"
+			p2 = os.path.join(dir, "folder")		# "folder.ext"
 
 		prtdir, dirname = os.path.split(dir)
-		p1 = os.path.join(dir, dirname)																# /dir/dirname.ext
-		p3 = os.path.join(prtdir, dirname)														# /prtdir/dirname.ext, show AMS-files
+		p1 = os.path.join(dir, dirname)				# /dir/dirname.ext
+		p3 = os.path.join(prtdir, dirname)			# /prtdir/dirname.ext, show AMS-files
 
 	pathes = [p1, p2, p3]
 	for p in pathes:

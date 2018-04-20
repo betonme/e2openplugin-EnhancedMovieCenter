@@ -49,7 +49,6 @@ class ServiceCenter:
 			ServiceCenter()
 		return instance
 
-	#TODO avoid recreation of ServiceInfo if service is equal
 	def info(self, service):
 		return ServiceInfo(service)
 
@@ -62,17 +61,13 @@ class ServiceInfo:
 			self.service = None
 			self.info = None
 
-	#TODO def newService(self):
-
 	def cueSheet(self):
 		return self.info and self.info.cueSheet() or []
 
 	def getLength(self, service):
-		#self.newService(service)
 		return self.info and self.info.getLength(service) or 0
 
 	def getInfoString(self, service, type):
-		#self.newService(service)
 		if type == iServiceInformation.sServiceref:
 			return self.info and self.info.getServiceReference() or ""
 		if type == iServiceInformation.sDescription:
@@ -82,24 +77,20 @@ class ServiceInfo:
 		return "None"
 
 	def getInfo(self, service, type):
-		#self.newService(service)
 		if type == iServiceInformation.sTimeCreate:
 			# Return time in seconds
 			return self.info and self.info.getMTime() or 0
 		return None
 
 	def getInfoObject(self, service, type):
-		#self.newService(service)
 		if type == iServiceInformation.sFileSize:
 			return self.info and self.info.getSize() or None
 		return None
 
 	def getName(self, service):
-		#self.newService(service)
 		return self.info and self.info.getName() or ""
 
 	def getEvent(self, service):
-		#self.newService(service)
 		return self.info
 
 
@@ -110,61 +101,31 @@ class Info:
 
 		self.path = path = service and service.getPath()
 
-		#self.isLink = os.path.islink(path)
 		self.isfile = os.path.isfile(path)
 		self.isdir = os.path.isdir(path)
 		ext = path and os.path.splitext(path)[1].lower()
 
-		#TODO dynamic or not
-		#if config.EMC.movie_metaload.value:
 		meta = path and MetaList(path)
-		#else:
-		#	meta = None
-
-		#TODO dynamic or not
-		#if config.EMC.movie_eitload.value:
 		eit = path and EitList(path)
-		#else:
-		#	eit = None
 
 		# Information which we need later
-		self.__cutlist = path and CutList(path) or []		#TODO dynamic or not
+		self.__cutlist = path and CutList(path) or []
 
-		self.__size = self.isfile and os.stat(path).st_size \
-								or self.isdir and (config.EMC.directories_info.value or config.EMC.directories_size_skin.value) and self.getFolderSize(path) \
-								or None
-								#TODO or isdvd
+		self.__size = self.isfile and os.stat(path).st_size or self.isdir and (config.EMC.directories_info.value or config.EMC.directories_size_skin.value) and self.getFolderSize(path) or None
 
-		self.__mtime = self.isfile and hasattr(service, "date") and mktime(service.date.timetuple()) or None #long(os.stat(path).st_mtime) or 0
-									#TODO show same time as list
-									#TODO or isdir but show only start date
+		self.__mtime = self.isfile and hasattr(service, "date") and mktime(service.date.timetuple()) or None
 
 		self.__reference = service or ""
 		self.__rec_ref_str = meta and meta.getMetaServiceReference() or ""
 
-		#TODO dynamic or not
-		self.__shortdescription = meta and meta.getMetaDescription() \
-													or eit and eit.getEitShortDescription() \
-													or self.__name
+		self.__shortdescription = meta and meta.getMetaDescription() or eit and eit.getEitShortDescription() or ""
+
 		self.__tags = meta and meta.getMetaTags() or ""
 
-		self.__eventname = meta and meta.getMetaName() \
-											or eit and eit.getEitName() \
-											or self.__name
+		self.__eventname = meta and meta.getMetaName() or eit and eit.getEitName() or self.__name
 
-		#TODO dynamic or not
-		#
-		#self.__extendeddescription = meta and meta.getMetaDescription() \
-		#															or eit and eit.getEitDescription() \
-		#															or ""
-		## meta file has no extendeddescrition
-#		self.__extendeddescription = eit and eit.getEitDescription() \
-#																	or meta and meta.getMetaDescription() \
-#																	or ""
+		self.__extendeddescription = eit and eit.getEitDescription() or ""
 
-		#Show txt-Information in ExtendedDescription if meta but no eit
-		self.__extendeddescription = eit and eit.getEitDescription() \
-																	or ""
 		#No Description in *.eit file or no *.eit file exists
 		#Try reading description from *.txt file
 		if not self.__extendeddescription:
@@ -208,12 +169,10 @@ class Info:
 							desc = path.decode("iso-8859-1").encode("utf-8")
 					self.__extendeddescription = desc
 				else:
-#					self.__extendeddescription = "No eit or txt file found"
 					self.__extendeddescription = ""
 
 		self.__id = 0
 
-		#TODO move upto ServiceInfo
 		service.cueSheet = self.cueSheet
 
 	def cueSheet(self):
@@ -225,10 +184,6 @@ class Info:
 
 	def getServiceReference(self):
 		return self.__rec_ref_str
-
-	#def getServiceName(self):
-	#	#MovieInfo MOVIE_REC_SERVICE_NAME
-	#	return ServiceReference(self.__reference).getServiceName() or ""
 
 	def getTags(self):
 		return self.__tags
@@ -270,7 +225,6 @@ class Info:
 		#TODO read from meta eit
 		#E2 will read / calculate it directly from ts file
 		# Should stay dynamic if it is a copy or move
-		#self.newService(service)
 
 		# If it is a record we will force to use the timer duration
 		length = 0
@@ -283,7 +237,6 @@ class Info:
 				return length
 		service = service or self.__reference
 		if self.isfile:
-			#TODO isfile and isdvd
 			esc = eServiceCenter.getInstance()
 			info = esc and esc.info(service)
 			length = info and info.getLength(service) or 0

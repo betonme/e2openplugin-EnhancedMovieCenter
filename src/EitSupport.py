@@ -34,19 +34,6 @@ from IsoFileSupport import IsoSupport
 
 from MetaSupport import getInfoFile
 
-#def crc32(data):
-#	poly = 0x4c11db7
-#	crc = 0xffffffffL
-#	for byte in data:
-#		byte = ord(byte)
-#		for bit in range(7,-1,-1):  # MSB to LSB
-#			z32 = crc>>31    # top bit
-#			crc = crc << 1
-#			if ((byte>>bit)&1) ^ z32:
-#				crc = crc ^ poly
-#			crc = crc & 0xffffffffL
-#	return crc
-
 def parseMJD(MJD):
 	# Parse 16 bit unsigned int containing Modified Julian Date,
 	# as per DVB-SI spec
@@ -61,7 +48,6 @@ def parseMJD(MJD):
 
 def unBCD(byte):
 	return (byte>>4)*10 + (byte & 0xf)
-
 
 from Tools.ISO639 import LanguageCodes
 def language_iso639_2to3(alpha2):
@@ -79,8 +65,8 @@ def language_iso639_2to3(alpha2):
 # http://de.wikipedia.org/wiki/Event_Information_Table
 class EitList():
 
-	EIT_SHORT_EVENT_DESCRIPTOR 		= 0x4d
-	EIT_EXTENDED_EVENT_DESCRIPOR 	=	0x4e
+	EIT_SHORT_EVENT_DESCRIPTOR = 0x4d
+	EIT_EXTENDED_EVENT_DESCRIPOR = 0x4e
 
 	def __init__(self, path=None):
 		self.eit_file = None
@@ -158,15 +144,8 @@ class EitList():
 	def getEitDescription(self):
 		return self.eit.get('description', "").strip()
 
-	def getEitRealShortDescription(self):
-		return self.eit.get('short_description', "").strip()
-
-	# Wrapper
 	def getEitShortDescription(self):
-		return self.getEitName()
-
-	def getEitRealShortDescription(self):
-		return self.getEitRealShortDescription()
+		return self.eit.get('short_description', "").strip()
 
 	def getEitExtendedDescription(self):
 		return self.getEitDescription()
@@ -267,7 +246,13 @@ class EitList():
 							descriptor_length = ord(data[pos+2])
 							ISO_639_language_code = str(data[pos+2:pos+5]).upper()
 							event_name_length = ord(data[pos+5])
-							name_event_description = data[pos+6:pos+6+event_name_length]
+							name_event_description = ""
+							for i in range (pos+6,pos+6+event_name_length):
+								if str(ord(data[i]))=="10" or int(str(ord(data[i])))>31:
+									if data[i]== '\x10' or data[i]== '\x00' or data[i]== '\x02' or data[i]== '\x05':
+										pass
+									else:
+										name_event_description += data[i]
 							if not name_event_codepage:
 								try:
 									byte1 = str(ord(data[pos+6]))
@@ -306,13 +291,14 @@ class EitList():
 								if short_event_codepage:
 									emcDebugOut("[META] Found short_event encoding-type: " + short_event_codepage)
 							for i in range (pos+7+event_name_length,pos+length):
-								if str(ord(data[i]))=="138":
-									short_event_description += '\n'
-								else:
-									if data[i]== '\x10' or data[i]== '\x00' or data[i]== '\x02' or data[i]== '\x05':
-										pass
+								if str(ord(data[i]))=="10" or int(str(ord(data[i])))>31:
+									if str(ord(data[i]))=="138":
+										short_event_description += '\n'
 									else:
-										short_event_description += data[i]
+										if data[i]== '\x10' or data[i]== '\x00' or data[i]== '\x02' or data[i]== '\x05':
+											pass
+										else:
+											short_event_description += data[i]
 							if ISO_639_language_code == lang:
 								short_event_descriptor.append(short_event_description)
 								name_event_descriptor.append(name_event_description)
