@@ -249,10 +249,7 @@ class EitList():
 							name_event_description = ""
 							for i in range (pos+6,pos+6+event_name_length):
 								if str(ord(data[i]))=="10" or int(str(ord(data[i])))>31:
-									if data[i]== '\x10' or data[i]== '\x00' or data[i]== '\x02' or data[i]== '\x05':
-										pass
-									else:
-										name_event_description += data[i]
+									name_event_description += data[i]
 							if not name_event_codepage:
 								try:
 									byte1 = str(ord(data[pos+6]))
@@ -292,13 +289,7 @@ class EitList():
 									emcDebugOut("[META] Found short_event encoding-type: " + short_event_codepage)
 							for i in range (pos+7+event_name_length,pos+length):
 								if str(ord(data[i]))=="10" or int(str(ord(data[i])))>31:
-									if str(ord(data[i]))=="138":
-										short_event_description += '\n'
-									else:
-										if data[i]== '\x10' or data[i]== '\x00' or data[i]== '\x02' or data[i]== '\x05':
-											pass
-										else:
-											short_event_description += data[i]
+									short_event_description += data[i]
 							if ISO_639_language_code == lang:
 								short_event_descriptor.append(short_event_description)
 								name_event_descriptor.append(name_event_description)
@@ -335,13 +326,7 @@ class EitList():
 									emcDebugOut("[META] Found extended_event encoding-type: " + extended_event_codepage)
 							for i in range (pos+8,pos+length):
 								if str(ord(data[i]))=="10" or int(str(ord(data[i])))>31:
-									if str(ord(data[i]))=="138":
-										extended_event_description += '\n'
-									else:
-										if data[i]== '\x10' or data[i]== '\x00' or data[i]== '\x02' or data[i]== '\x05':
-											pass
-										else:
-											extended_event_description += data[i]
+									extended_event_description += data[i]
 							if ISO_639_language_code == lang:
 								extended_event_descriptor.append(extended_event_description)
 							if (ISO_639_language_code == prev2_ISO_639_language_code) or (prev2_ISO_639_language_code == "x"):
