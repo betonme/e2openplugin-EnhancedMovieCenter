@@ -54,6 +54,10 @@ class ConfigTextWOHelp(ConfigText):
 
 yes_no_descriptions = {False: _("no"), True: _("yes")}
 
+class ConfigYesNo(ConfigBoolean):
+        def __init__(self, default = False):
+                ConfigBoolean.__init__(self, default = default, descriptions = yes_no_descriptions)
+
 class ConfigYesNoConfirm(ConfigBoolean):
 	def __init__(self, text, key1, key2, default = False):
 		self.text = text
