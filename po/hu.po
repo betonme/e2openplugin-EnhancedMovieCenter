@@ -1,40 +1,37 @@
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: EMC - betonme git\n"
+"Project-Id-Version: EMC v1.1\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-04-02 23:08+0200\n"
-"PO-Revision-Date: 2018-03-13 08:28+0200\n"
-"Last-Translator: Vytenis P. <vyteniui@gmail.com>\n"
-"Language-Team: Vytenis P. <vyteniui@gmail.com>\n"
-"Language: lt\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Alec <alex1vagyok@gmail.com>\n"
+"Language-Team: alec <alex1vagyok@gmail.com>\n"
+"Language: hu_HU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.0.6\n"
-"X-Poedit-KeywordsList: _;gettext;gettext_noop;_\n"
-"X-Poedit-Basepath: ..\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n"
-"%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-SearchPath-0: src\n"
+"X-Generator: Poedit 2.0.7\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: EMCCoverSearch.py:48
 msgid ""
 "themoviedb.org for movies + thetvdb.com for series (e.g. 'S01E01' in title)"
 msgstr ""
-"themoviedb.org - filmams, thetvdb.com - serialams (pvz. 'S01E01' pavadinime)"
+"themoviedb.org filmekhez + thetvdb.com a sorozatokhoz (például \"S01E01\" a "
+"címben)"
 
 #: EMCCoverSearch.py:49 EMCCoverSearch.py:53
 msgid "overall"
-msgstr "visuotinis"
+msgstr "összefoglaló"
 
 #: EMCCoverSearch.py:49 EMCCoverSearch.py:53
 msgid "two contiguous"
-msgstr "du gretutiniai"
+msgstr "2 határos"
 
 #: EMCCoverSearch.py:49 EMCCoverSearch.py:53
 msgid "three contiguous"
-msgstr "trys gretutiniai"
+msgstr "3 határos"
 
 #: EMCCoverSearch.py:52
 msgid "imdb.com"
@@ -50,7 +47,7 @@ msgstr "csfd.cz"
 
 #: EMCCoverSearch.py:52
 msgid "all"
-msgstr "visi"
+msgstr "mind"
 
 #: EMCCoverSearch.py:52
 msgid "themoviedb.org"
@@ -66,296 +63,295 @@ msgstr "themoviedb.org + thetvdb.com + imdb.com"
 
 #: EMCCoverSearch.py:53
 msgid "every single one"
-msgstr "kiekvienas atskiras"
+msgstr "minden egyes"
 
 #: EMCCoverSearch.py:54 EMCCoverSearch.py:55
 msgid "no limit"
-msgstr "neribojant"
+msgstr "nincs határ"
 
 #: EMCCoverSearch.py:55
 msgid "standard cover"
-msgstr "paprastas viršelis"
+msgstr "szabványos borító"
 
 #: EMCCoverSearch.py:56
 msgid ".../foldername/foldername.jpg"
-msgstr ".../katalogo_pavad/katalogo_pavad.jpg"
+msgstr ".../foldername/foldername.jpg"
 
 #: EMCCoverSearch.py:56
 msgid ".../foldername.jpg"
-msgstr ".../katalogo_pavad.jpg"
+msgstr ".../foldername.jpg"
 
 #: EMCCoverSearch.py:56
 msgid ".../foldername/folder.jpg"
-msgstr ".../katalogo_pavad/katlogas.jpg"
+msgstr ".../foldername/folder.jpg"
 
 #: EMCCoverSearch.py:209
 msgid "Search"
-msgstr "Paieška"
+msgstr "Keresés"
 
 #: EMCCoverSearch.py:211 MovieSelection.py:2358 MovieSelectionMenu.py:108
 #: MovieSelectionMenu.py:110 plugin.py:170 plugin.py:191
 msgid "Delete"
-msgstr "Pašalinti"
+msgstr "Törlés"
 
 #: EMCCoverSearch.py:221
 msgid "Press green button to start search"
-msgstr "Paieškai pradėti, spauskite 'ŽALIĄ' mygtuką"
+msgstr "A keresés elindításához nyomja meg a zöld gombot"
 
 #: EMCCoverSearch.py:223
 msgid "Manage Cover"
-msgstr "Tvarkyti viršelius"
+msgstr "A borító kezelése"
 
 #: EMCCoverSearch.py:224 MovieInfo.py:270 MovieInfo.py:439
 msgid "Setup"
-msgstr "Sąranka"
+msgstr "Beállítások"
 
 #: EMCCoverSearch.py:225
 msgid "Single search"
-msgstr "Atskira paieška"
+msgstr "Egyetlen keresés"
 
 #: EMCCoverSearch.py:241
 msgid "EMC Cover search"
-msgstr "EMC viršelių paieška"
+msgstr "EMC borító keresés"
 
 #: EMCCoverSearch.py:271 EMCCoverSearch.py:281 EMCCoverSearch.py:339
 #: EMCCoverSearch.py:664
 msgid "Exist"
-msgstr "Yra"
+msgstr "Létezik"
 
 #: EMCCoverSearch.py:274 EMCCoverSearch.py:281 EMCCoverSearch.py:401
 #: EMCCoverSearch.py:426 EMCCoverSearch.py:664
 msgid "N/A"
-msgstr "N/D"
+msgstr "N/A"
 
 #: EMCCoverSearch.py:281
 msgid "Total"
-msgstr "Iš viso"
+msgstr "Összesen"
 
 #: EMCCoverSearch.py:319 EMCCoverSearch.py:342 EMCCoverSearch.py:431
 #, python-format
 msgid "Exist: %s"
-msgstr "Yra: %s"
+msgstr "Létezik: %s"
 
 #: EMCCoverSearch.py:320 EMCCoverSearch.py:341 EMCCoverSearch.py:430
 #, python-format
 msgid "No Cover: %s"
-msgstr "Nėra viršelio: %s"
+msgstr "Nincs borító: %s"
 
 #: EMCCoverSearch.py:321 EMCCoverSearch.py:343 EMCCoverSearch.py:432
 #, python-format
 msgid "Download: %s"
-msgstr "Parsisiųsti: %s"
+msgstr "Letöltés: %s"
 
 #: EMCCoverSearch.py:322
 msgid "Searching..."
-msgstr "Ieškoma..."
+msgstr "Keresés..."
 
 #: EMCCoverSearch.py:328
 msgid "Creating Search List.."
-msgstr "Kuriamas paieškos sąrašas..."
+msgstr "Keresési lista létrehozása..."
 
 #: EMCCoverSearch.py:370
 msgid "No Movies found!"
-msgstr "Filmų nerasta!"
+msgstr "Nincsenek felvételek!"
 
 #: EMCCoverSearch.py:428
 msgid "from"
-msgstr "iš"
+msgstr "ból"
 
 #: EMCCoverSearch.py:441
 msgid "movies in"
-msgstr "filmai"
+msgstr "felvételek"
 
 #: EMCCoverSearch.py:441
 msgid "sec found. Avg. Speed:"
-msgstr "sek. rasta. Vid. greitis:"
+msgstr "másodperc található. Átlag sebesség:"
 
 #: EMCCoverSearch.py:441
 msgid "sec."
-msgstr "sek."
+msgstr "mp."
 
 #: EMCCoverSearch.py:494
 #, python-format
 msgid "%s removed."
-msgstr "%s pašalinta."
+msgstr "%s törölve."
 
 #: EMCCoverSearch.py:496
 #, python-format
 msgid "%s not removed. Write protect?"
-msgstr "%s nepašalinta. Uždrausta redaguoti?"
+msgstr "%s nincs törölve. Írásvédelem?"
 
 #: EMCCoverSearch.py:538
 msgid "Settings have been Saved."
-msgstr "Nustatymai išsaugoti."
+msgstr "A beállítások elmentve."
 
 #: EMCCoverSearch.py:546
 msgid "Cover is Saved."
-msgstr "Viršelis išsaugotas."
+msgstr "A borító elmentve."
 
 #: EMCCoverSearch.py:701
 msgid "EMC Cover search setup"
-msgstr "EMC viršelių paieškos sąranka"
+msgstr "EMC borító keresés beállítás"
 
-#: EMCCoverSearch.py:703 EMCPlayList.py:132 EMCPlayList.py:483
-#: EMCPlayList.py:556 EnhancedMovieCenter.py:278 MovieInfo.py:736
-#: MovieRetitle.py:32
+#: EMCCoverSearch.py:703 EMCPlayList.py:132 EMCPlayList.py:483 EMCPlayList.py:556
+#: EnhancedMovieCenter.py:278 MovieInfo.py:736 MovieRetitle.py:32
 msgid "Cancel"
-msgstr "Atšaukti"
+msgstr "Mégse"
 
 #: EMCCoverSearch.py:704 MovieInfo.py:737
 msgid "OK"
-msgstr "Gerai"
+msgstr "OK"
 
 #: EMCCoverSearch.py:717
 msgid "Search Site:"
-msgstr "Ieškoti svetainėje:"
+msgstr "Keresés a webhelyen:"
 
 #: EMCCoverSearch.py:718 EMCCoverSearch.py:723
 msgid "Search filter for matching existing terms in the title:"
-msgstr "Terminų pavadinime atitikimo filtras:"
+msgstr "Keresési szűrő a meglévő kifejezésekhez a címben:"
 
 #: EMCCoverSearch.py:719
 msgid "thetvdb cover number (standard cover):"
-msgstr "thetvdb viršelių skaičius (įprastiniai viršeliai):"
+msgstr "thetvdb borító száma (szabványos borító):"
 
 #: EMCCoverSearch.py:720
 msgid "Preferred cover resolution (if possible):"
-msgstr "Pageidautina viršelių rezoliucija (jei galima):"
+msgstr "Preferált borító felbontás (ha lehetséges):"
 
 #: EMCCoverSearch.py:721
 msgid "Save description to movie.txt file:"
-msgstr "Išsaugoti aprašymą movie.txt faile:"
+msgstr "A movie.txt fájl leírásának mentése:"
 
 #: EMCCoverSearch.py:722
 msgid "Single Search:"
-msgstr "Atskira paieška:"
+msgstr "Egyetlen keresés:"
 
 #: EMCCoverSearch.py:727
 msgid " (without counting cover range)"
-msgstr " (neskaitant viršelių grupės)"
+msgstr " (a borító számlálása nélkül)"
 
 #: EMCCoverSearch.py:728
 msgid "thetvdb cover range per title:"
-msgstr "thetvdb viršelių apimtis kūriniui:"
+msgstr "thetvdb borítótartomány címenként:"
 
 #: EMCCoverSearch.py:729
 #, python-format
 msgid "Search Results per Search Site%s:"
-msgstr "Paieškos rezultatai svetainėje %s:"
+msgstr "Keresési találatok a(z) %s Keresés helyén:"
 
 #: EMCCoverSearch.py:730
 msgid "Set path to save the folder Cover:"
-msgstr "Nurodykite kelią į viršelių katalogą:"
+msgstr "A borító mappa elmentési útvonalának beállítása:"
 
 #: EMCCoverSearch.py:787
 #, python-format
 msgid "Searching for %s"
-msgstr "Ieškoma  %s"
+msgstr "%s keresése"
 
 #: EMCCoverSearch.py:803
 msgid "EMC Cover Selecter"
-msgstr "EMC viršelių parinkimas"
+msgstr "EMC Cover Selecter"
 
 #: EMCCoverSearch.py:1084
 msgid "found"
-msgstr "rasta"
+msgstr "talált"
 
 #: EMCCoverSearch.py:1084
 msgid "covers in"
-msgstr "viršeliai"
+msgstr "kiterjed"
 
 #: EMCCoverSearch.py:1084
 msgid "sec"
-msgstr "sek."
+msgstr "másodperc"
 
 #: EMCCoverSearch.py:1156
 msgid "Can not save "
-msgstr "Nepavyksta išsaugoti "
+msgstr "Nem lehet menteni "
 
 #: EMCCoverSearch.py:1170
 msgid "Can not save Cover in "
-msgstr "Nepavyksta išsaugoti viršelio į "
+msgstr "A belső borító nem menthető "
 
 #: EMCCoverSearch.py:1190
 msgid "Move Cover to:"
-msgstr "Perkelti viršelį į:"
+msgstr "A borító ide mentve:"
 
 #: EMCCoverSearch.py:1191 EMCPlayList.py:496 EnhancedMovieCenter.py:773
 #: MovieSelection.py:2922 MovieSelection.py:2964 MovieSelection.py:2998
 #: MovieSelection.py:3040 MovieSelection.py:3067 MovieSelectionMenu.py:295
 msgid "Choose directory"
-msgstr "Pasirinkite katalogą"
+msgstr "Válasszon könyvtárat"
 
 #: EMCMediaCenter.py:151 EMCMediaCenter.py:156
 msgid "Stop playback"
-msgstr "Stabdyti atkūrimą"
+msgstr "Lejátszás leállítása"
 
 #: EMCMediaCenter.py:161
 msgid "show DVD main menu"
-msgstr "rodyti pagrindinį DVD meniu"
+msgstr "a DVD Főmenü megjelenítése"
 
 #: EMCMediaCenter.py:163
 msgid "forward to the next chapter"
-msgstr "pirmyn, į kitą skyrių"
+msgstr "ugrás a következő fejezethez"
 
 #: EMCMediaCenter.py:164
 msgid "rewind to the previous chapter"
-msgstr "atsukti į ankstesnį skyrių"
+msgstr "visszatekerés az előző chapterhez"
 
 #: EMCMediaCenter.py:165 EMCMediaCenter.py:193
 msgid "jump forward to the next title"
-msgstr "peršokti į sekantį pavadinimą"
+msgstr "előreugrás a következő címhez"
 
 #: EMCMediaCenter.py:166 EMCMediaCenter.py:194
 msgid "jump back to the previous title"
-msgstr "peršokti į ankstesnį pavadinimą"
+msgstr "visszaugrás az előző címhez"
 
 #: EMCMediaCenter.py:167
 msgid "(show optional DVD audio menu)"
-msgstr "(rodyti pasirinktinį DVD garso meniu)"
+msgstr "(DVD audió menü megjelenítése, ha van)"
 
 #: EMCMediaCenter.py:168
 msgid "switch to the next audio track"
-msgstr "perjungti į kitą garso takelį"
+msgstr "átkapcsolás a következő hangsávra"
 
 #: EMCMediaCenter.py:169
 msgid "switch to the next subtitle language"
-msgstr "perjungti į kitą subtitrų kalbą"
+msgstr "átkapcsolás a következő felirat nyelvre"
 
 #: EMCMediaCenter.py:170
 msgid "switch to the next angle"
-msgstr "perjungti į kitą kampą"
+msgstr "váltás a következő nézőszögre"
 
 #: EMCMediaCenter.py:189
 msgid "view extensions..."
-msgstr "rodyti plėtinius..."
+msgstr "bővítmények megtekintése..."
 
 #: EMCMediaCenter.py:190
 msgid "Format AVSwitch"
-msgstr "Vaizdo/garso formatų perjungimas"
+msgstr "AVSwitch formátum"
 
 #: EMCMediaCenter.py:191
 msgid "Seek forward"
-msgstr "Ieškoti pirmyn"
+msgstr "Előre kihagyása"
 
 #: EMCMediaCenter.py:192
 msgid "Seek backward"
-msgstr "Ieškoti atgal"
+msgstr "Vissza kihagyása"
 
 #: EMCMediaCenter.py:195
 msgid "Movie information"
-msgstr "Filmo informacija"
+msgstr "Felvétel információk"
 
 #: EMCMediaCenter.py:384
 msgid "No DVD-Player found!"
-msgstr "DVD grotuvo nerasta!"
+msgstr "DVD lejátszó nem található!"
 
 #: EMCMediaCenter.py:438
 msgid ""
 "Skipping movie, the file does not exist.\n"
 "\n"
 msgstr ""
-"Filmas praleidžiamas, tokio failo nėra.\n"
+"A felvétel elhagyása, a fájl nem létezik.\n"
 "\n"
 
 #: EMCMediaCenter.py:478
@@ -364,48 +360,48 @@ msgid ""
 "Zap to Live TV of record"
 msgstr ""
 "EMC\n"
-"Įrašymui perjungti į tiesioginę TV"
+"Ugrás az élőműsor felvételéhez"
 
 #: EMCMediaCenter.py:918
 msgid "Chap."
-msgstr "Skyr."
+msgstr "Fej."
 
 #: EMCMediaCenter.py:919
 msgid "Chapter"
-msgstr "Skyrius"
+msgstr "Fejezet"
 
 #: EMCMediaCenter.py:920
 msgid "Title"
-msgstr "Pavadinimas"
+msgstr "Cím"
 
 #: EMCPlayList.py:131 EMCPlayList.py:484 EnhancedMovieCenter.py:279
 #: MovieInfo.py:271 MovieInfo.py:441 MovieRetitle.py:31
 msgid "Save"
-msgstr "Išsaugoti"
+msgstr "Mentés"
 
 #: EMCPlayList.py:133
 msgid "Delete Entry"
-msgstr "Šalinti įrašą"
+msgstr "Bejegyzés törlése"
 
 #: EMCPlayList.py:134
 msgid "Delete All"
-msgstr "šalinti viską"
+msgstr "Összes törlése"
 
 #: EMCPlayList.py:154
 msgid "EMC Playlist - current playlist"
-msgstr "EMC grojaraštis - dabartinis grojaraštis"
+msgstr "EMC műsorlista - aktuális lejátszási lista"
 
 #: EMCPlayList.py:161
 msgid "EMC Playlist Menu"
-msgstr "EMC grojaraščio meniu"
+msgstr "EMC műsorlista menü"
 
 #: EMCPlayList.py:162
 msgid "Playlist open"
-msgstr "Atverti grojaraštį"
+msgstr "Lejátszási lista"
 
 #: EMCPlayList.py:163
 msgid "Setup open"
-msgstr "Atverti sąranką"
+msgstr "A beállítás megnyílik"
 
 #: EMCPlayList.py:171
 msgid ""
@@ -413,9 +409,9 @@ msgid ""
 "\n"
 "Save default Playlist?"
 msgstr ""
-"Numatytasis grojaraštis netuščias!\n"
+"Az alapértelmezett lejátszási lista nem üres!\n"
 "\n"
-"Išsaugoti numatytąjį grojaraštį?"
+"Mentse az alapértelmezett lejátszási listát?"
 
 #: EMCPlayList.py:233
 msgid ""
@@ -423,228 +419,228 @@ msgid ""
 "\n"
 "Try to save the Playlist with another name?"
 msgstr ""
-"Grojaraštis tokiu pavadinimu jau yra!\n"
+"Már létezik ilyen nevű lejátszási lista!\n"
 "\n"
-"Išsaugoti grojaraštį kitu pavadinimu?"
+"Próbálja menteni a lejátszási listát egy másik névvel?"
 
 #: EMCPlayList.py:237
 msgid "Change the filename to save current Playlist:"
-msgstr "Išsaugant šį grojaraštį, pervadinti failą:"
+msgstr "Módosítsa a fájlnevet az aktuális lejátszási lista mentéséhez:"
 
 #: EMCPlayList.py:237
 msgid "Save current Playlist"
-msgstr "Išsaugoti šį grojaraštį"
+msgstr "Az aktuális lejátszási lista mentése"
 
 #: EMCPlayList.py:255
 msgid "Current Playlist saved successfully!"
-msgstr "Šis grojaraštis sėkmingai išsaugotas!"
+msgstr "Az aktuális lejátszási lista sikeresen mentve!"
 
 #: EMCPlayList.py:258
 msgid "Can not save current Playlist!"
-msgstr "Išsaugoti šio grojaraščio nepavyksta!"
+msgstr "Nem menthető az aktuális lejátszási lista!"
 
 #: EMCPlayList.py:472
 msgid "Default Playlist path"
-msgstr "Kelias į numatytąjį grojaraštį"
+msgstr "Alapértelmezett lejátszási lista útvonala"
 
 #: EMCPlayList.py:473
 msgid "Default Playlist name"
-msgstr "Numatytojo grojaraščio pavadinimas"
+msgstr "Alapértelmezett lejátszási lista neve"
 
 #: EMCPlayList.py:474
 msgid "Always save current Playlist"
-msgstr "Visada išsaugoti dabartinį grojaraštį"
+msgstr "Mindig mentse az aktuális lejátszási listát"
 
 #: EMCPlayList.py:488
 msgid "EMC Playlist Setup"
-msgstr "EMC grojaraščio sąranka"
+msgstr "EMC Lejátszási lista beállítás"
 
 #: EMCPlayList.py:495
 msgid "Choose Directory:"
-msgstr "Pasirinkite katalogą:"
+msgstr "Válasszon könyvtárat:"
 
 #: EMCPlayList.py:512
 msgid "Enter Name for Playlist"
-msgstr "Įrašykite grojaraščio pavadinimą"
+msgstr "Adja meg a lejátszási lista nevét"
 
 #: EMCPlayList.py:557
 msgid "Open"
-msgstr "Atverti"
+msgstr "Nyitás"
 
 #: EMCPlayList.py:571
 msgid "EMC Filebrowser"
-msgstr "EMC failų naršyklė"
+msgstr "EMC Filebrowser"
 
 #: EMCTasker.py:201
 msgid "Next auto-start in "
-msgstr "Kitas autopaleidimas už "
+msgstr "Következő automatikus indítás "
 
 #: EMCTasker.py:203
 msgid "auto-start is currently not active."
-msgstr "autopaleidimas šiuo metu neįjungtas."
+msgstr "az automatikus indítás jelenleg nem aktív."
 
 #: EMCTasker.py:215
 msgid ""
 "Your Box is about to go into Standby, continue?\n"
 " Select no to delay one hour"
 msgstr ""
-"Aparatas ruošiasi pereiti į budėjimo būseną, tęsti?\n"
-"Pasirinkite, kad valandą nelauktų"
+"A készülék már készen áll a készenléti állapotra, folytassa?\n"
+"  Válasszon ki egy órát"
 
 #: EMCTasker.py:217
 msgid ""
 "Your Box is about to go into DeepStandby, continue?\n"
 " Select no to delay one hour"
 msgstr ""
-"Aparatas ruošiasi išsijungti, tęsti?\n"
-"Pasirinkite, kad valandą nelauktų"
+"A készülék ki fog kapcsolni, folytatja?\n"
+"  Válasszon ki egy órát"
 
 #: EMCTasker.py:219
 msgid ""
 "Your Box is about to go into Reboot, continue?\n"
 " Select no to delay one hour"
 msgstr ""
-"Aparatas ruošiasi pasileisti iš naujo, tęsti?\n"
-"Pasirinkite, kad valandą nelauktų"
+"A készülék már elkezdte az újra indítást, folytassa?\n"
+"  Válasszon ki egy órát"
 
 #: EMCTasker.py:221
 msgid ""
 "Your Box is about to go into E2 Restart, continue?\n"
 " Select no to delay one hour"
 msgstr ""
-"Aparatas ruošiasi grafinę aplinką paleisti iš naujo, tęsti?\n"
-"Pasirinkite, kad valandą nelauktų"
+"A készüléken az E2 rendszer már elkezdte az újra indítástát, folytassa?\n"
+"  Válasszon ki egy órát"
 
 #: EnhancedMovieCenter.py:215 EnhancedMovieCenter.py:237
 msgid "Custom"
-msgstr "Pasirinktinis"
+msgstr "Egyedi"
 
 #: EnhancedMovieCenter.py:216
 msgid "Default"
-msgstr "Numatytasis"
+msgstr "Alapértelmezett"
 
 #: EnhancedMovieCenter.py:217
 msgid "Performance"
-msgstr "Našumas"
+msgstr "Teljesítmény"
 
 #: EnhancedMovieCenter.py:218
 msgid "Information"
-msgstr "Informacija"
+msgstr "Információk"
 
 #: EnhancedMovieCenter.py:339
 msgid "About"
-msgstr "Apie"
+msgstr "Névjegy"
 
 #: EnhancedMovieCenter.py:339
 msgid "HELP_About"
-msgstr "Atidaro įskiepį aprašantį langą."
+msgstr "Megnyitja a Névjegy párbeszédpanelt"
 
 #: EnhancedMovieCenter.py:341
 msgid "Disable EMC"
-msgstr "Išjungti EMC"
+msgstr "EMC letiltása"
 
 #: EnhancedMovieCenter.py:341
 msgid "HELP_Disable EMC"
 msgstr ""
-"Visiškai išjungs EMC, išskyrus kelias specialias funkcijas. Tokias, kaip "
-"laikmačių išvalymas ir automatinis paleidimas iš naujo, kurios išliks "
-"galimos."
+"Az EMC (felvétel lista) letiltását lehet beállítani. Néhány speciális funkció, "
+"mint például az [Időzített lista törlése], [Kuka tisztítás] és [Automatikus "
+"újraindítás] továbbra is aktív marad a háttérben"
 
 #: EnhancedMovieCenter.py:343
 msgid "Start EMC with"
-msgstr "EMC atverti su"
+msgstr "EMC elindítása ezzel"
 
 #: EnhancedMovieCenter.py:343
 msgid "HELP_Start EMC with"
-msgstr "Nustatykite EMC tiesioginio paleidimo mygtuką."
+msgstr "Állítsa be, hogy az EMC milyen gombbal induljon el"
 
 #: EnhancedMovieCenter.py:344
 msgid "Show plugin config in extensions menu"
-msgstr "Rodyti įskiepio konfigūravimą plėtinių meniu"
+msgstr "Az EMC beállításainak megjelenítése a Bővítmények menüben"
 
 #: EnhancedMovieCenter.py:344
 msgid "HELP_Show plugin config in extensions menu"
 msgstr ""
-"Pasirinkite, rodyti EMC konfigūravimą plėtinių meniu lange, ar ne.\n"
-"Šis meniu paprastai atsidaro 'MĖLYNO' mygtuko paspaudimu."
+"Az EMC konfiguráció megjelenítése vagy elrejtése a bővítmények menüben.\n"
+"A bővítmények menüje normális esetben a [KÉK] gomb megnyomásával érhető el"
 
 #: EnhancedMovieCenter.py:345
 msgid "Show EMC in extensions menu"
-msgstr "Rodyti EMC plėtinių meniu lange"
+msgstr "Az EMC megjelenítése a Bővítmények menüben"
 
 #: EnhancedMovieCenter.py:345
 msgid "HELP_Show EMC in extensions menu"
 msgstr ""
-"Pasirinkite, rodyti EMC paleidimą plėtinių meniu lange, ar ne.\n"
-"Šis meniu paprastai atsidaro 'MĖLYNO' mygtuko paspaudimu."
+"Az EMC megjelenítése vagy elrejtése a bővítmények menüben.\n"
+"A bővítmények menüje normális esetben a [KÉK] gomb megnyomásával érhető el"
 
 #: EnhancedMovieCenter.py:347
 msgid "HELP_Key assignment Separator"
-msgstr "Funkcinių mygtukų priskyrimas."
+msgstr "Billentyűzet gombok kiosztásának elválasztója"
 
 #: EnhancedMovieCenter.py:348
 msgid "Bouquet buttons behaviour"
-msgstr "'Bukietų' mygtuko elgesys"
+msgstr "Csatornacsomag gombok viselkedése"
 
 #: EnhancedMovieCenter.py:348
 msgid "HELP_Bouquet buttons behaviour"
-msgstr "Nustatykite, kas vyks, paspaudus 'Bouquet' mygtuką."
+msgstr "A csatornacsomag gombok viselkedésének beállítása"
 
 #: EnhancedMovieCenter.py:349
 msgid "List entries to skip"
-msgstr "Įrašai, kuriuos praleisti"
+msgstr "Listaelemek átugrása"
 
 #: EnhancedMovieCenter.py:349
 msgid "HELP_List entries to skip"
-msgstr "Praleidžiamų , ignoruojamų sąrašas."
+msgstr "Mennyi listaelemet ugorjon át"
 
 #: EnhancedMovieCenter.py:350
 msgid "Red button function"
-msgstr "'RAUDONO' mygtuko funkcija"
+msgstr "Piros gomb funkciója"
 
 #: EnhancedMovieCenter.py:350
 msgid "HELP_Red button function"
-msgstr "Nustatykite, kas vyks, paspaudus 'RAUDONĄ' mygtuką."
+msgstr "A Piros gomb funkcióját lehet beállítani"
 
 #: EnhancedMovieCenter.py:351
 msgid "Long Red button function"
-msgstr "'RAUDONO' mygtuko ilgas paspaudimas"
+msgstr "Piros gomb hosszan funkciója"
 
 #: EnhancedMovieCenter.py:351
 msgid "HELP_Long Red button function"
-msgstr "Nustatykite, kas vyks, ilgai spaudžiant 'RAUDONĄ' mygtuką."
+msgstr "A Piros gomb hosszan funkcióját lehet beállítani"
 
 #: EnhancedMovieCenter.py:354
 msgid "Yellow button function"
-msgstr "'GELTONO' mygtuko funkcija"
+msgstr "Sárga gomb funkciója"
 
 #: EnhancedMovieCenter.py:354
 msgid "HELP_Yellow button function"
-msgstr "Nustatykite, kas vyks, paspaudus 'GELTONĄ' mygtuką."
+msgstr "A Sárga gomb funkcióját lehet beállítani"
 
 #: EnhancedMovieCenter.py:355
 msgid "Long Yellow button function"
-msgstr "'GELTONO' mygtuko ilgas paspaudimas"
+msgstr "Sárga gomb hosszan funkciója"
 
 #: EnhancedMovieCenter.py:355
 msgid "HELP_Long Yellow button function"
-msgstr "Nustatykite, kas vyks, ilgai spaudžiant 'GELTONĄ' mygtuką."
+msgstr "A Sárga gomb hosszan funkcióját lehet beállítani"
 
 #: EnhancedMovieCenter.py:356
 msgid "Blue button function"
-msgstr "'MĖLYNO' mygtuko funkcija"
+msgstr "Kék gomb funkciója"
 
 #: EnhancedMovieCenter.py:356
 msgid "HELP_Blue button function"
-msgstr "Nustatykite, kas vyks, paspaudus 'MĖLYNĄ' mygtuką."
+msgstr "A Kék gomb funkcióját lehet beállítani"
 
 #: EnhancedMovieCenter.py:357
 msgid "Long Blue button function"
-msgstr "'MĖLYNO' mygtuko ilgas paspaudimas"
+msgstr "Kék gomb hosszan funkciója"
 
 #: EnhancedMovieCenter.py:357
 msgid "HELP_Long Blue button function"
-msgstr "Nustatykite, kas vyks, ilgai spaudžiant 'MĖLYNĄ' mygtuką."
+msgstr "A Kék gomb hosszan funkcióját lehet beállítani"
 
 #: EnhancedMovieCenter.py:359 EnhancedMovieCenter.py:366
 #: EnhancedMovieCenter.py:375 EnhancedMovieCenter.py:413
@@ -655,1208 +651,1160 @@ msgstr " "
 
 #: EnhancedMovieCenter.py:360
 msgid "daily auto-start"
-msgstr "Kasdienis autopaleidimas"
+msgstr "napi automatikus indítás"
 
 #: EnhancedMovieCenter.py:360
 msgid "HELP_Daily auto-start"
-msgstr "Leidžia kasdieną atlikti operacijas joms numatytu metu."
+msgstr "A napi automatikus indítás beállításai"
 
 #: EnhancedMovieCenter.py:361
 msgid "auto-start window begin"
-msgstr "autopaleidimo pradžios langas"
+msgstr "az automatikus indítás ablak kezdése"
 
 #: EnhancedMovieCenter.py:361
 msgid "HELP_auto-start window begin"
-msgstr "Langų autopaleidimo pradžios laikas."
+msgstr "Mikor kezdődjön az automatikus indítási ablak"
 
 #: EnhancedMovieCenter.py:362
 msgid "auto-start window end"
-msgstr "autopaleidimo pabaigos langas"
+msgstr "az automatikus indítás ablak befejezése"
 
 #: EnhancedMovieCenter.py:362
 msgid "HELP_auto-start window end"
-msgstr "Langų autopaleidimo pabaigos laikas."
+msgstr "Mikor fejeződjön be az automatikus indítási ablak"
 
 #: EnhancedMovieCenter.py:363
 msgid "Force standby after auto-restart"
-msgstr "Po autopaleidimo iš naujo, į budėjimo būseną"
+msgstr "A készenléti állapot kényszerítése az újra indítást követően"
 
 #: EnhancedMovieCenter.py:363
 msgid "HELP_Force standby after auto-start"
-msgstr "Po autopaleidimo iš naujo, imtuvas bus perjungtas į budėjimo būseną."
+msgstr "A készenléti állapot kényszerítése az újraindítást követőn legyen-e"
 
 #: EnhancedMovieCenter.py:364
 msgid "LongInfo Button"
-msgstr "'INFO' mygtuko ilgas paspaudimas"
+msgstr "INFO gomb"
 
 #: EnhancedMovieCenter.py:364
 msgid "HELP_LongInfo Button"
-msgstr "Nustatykite, kas vyks, ilgai spaudžiant 'INFO' mygtuką."
+msgstr "Az INFO gomb funkcióját lehet beállítani"
 
 #: EnhancedMovieCenter.py:367
 msgid "Movie home at start"
-msgstr "Filmų katalogas, paleidžiant"
+msgstr "A Felvétel helye legyen induláskor"
 
 #: EnhancedMovieCenter.py:367
 msgid "HELP_Movie home at start"
 msgstr ""
-"EMC visada pirmiausiai atveria \"Filmų namų\" katalogą.\n"
-"Žemiau galite pasirinkti pageidaujamą \"Filmų namų\" katalogą."
+"Az EMC mindig a 'Felvétel helye' könyvtárból induljon.\n"
+"A 'Felvétel helye' könyvtárat alább be tudja állítani"
 
 #: EnhancedMovieCenter.py:368
 msgid "Default sort mode"
-msgstr "Numatytasis rūšiavimas"
+msgstr "Alapértelmezett rendezési mód"
 
 #: EnhancedMovieCenter.py:368
 msgid "HELP_Sort mode at startup"
-msgstr "Nustatykite, kokia tvarka bus surūšiuotas filmų sąrašas, atvėrus EMC."
+msgstr "Az EMC indulásakor a következő rendezési móddal induljon"
 
 #: EnhancedMovieCenter.py:370
 msgid "Movie home home path"
-msgstr "Kelias į filmų namų katalogą"
+msgstr "Felvételek könyvtára"
 
 #: EnhancedMovieCenter.py:370
 msgid "HELP_Movie home home path"
-msgstr "Kelio į \"Filmų namų\" katalogą nustatymas."
+msgstr "Állítsa be a 'Felvételek helyének' elérési útját"
 
 #: EnhancedMovieCenter.py:371
 msgid "EMC path access limit"
-msgstr "EMC kelio prieigos apribojimas"
+msgstr "EMC melyik könyvtártól nézze a fájlokat"
 
 #: EnhancedMovieCenter.py:371
 msgid "HELP_EMC path access limit"
 msgstr ""
-"Čia galite apriboti, kiek giliai galima nueiti \"Filmų namų\" "
-"pakatalogiais.\n"
-"'<' ir '>' mygtukais (šalia '0' mygtuko) šį limitą galima peržengti."
+"Határozza meg, hogy az EMC melyik könyvtárig érheti el a fájlokat.\n"
+"A [<] és a [>] gombokkal (a 0 gomb mellettiek) felülbírálhatja ezt a határt"
 
 #: EnhancedMovieCenter.py:373
 msgid "Cursor predictive move after selection"
-msgstr "Žymeklio nuspėjamas judėjimas po pasirinkimo"
+msgstr "A kurzor előrejelző mozgása a kiválasztás után"
 
 #: EnhancedMovieCenter.py:373
 msgid "HELP_Cursor predictive move after selection"
 msgstr ""
-"Pasirinkus 'VIDEO/PVR' mygtuku, žymeklis judės nurodyta kryptimi.\n"
-"Su 'Aukštyn/Žemyn' mygtuku, žymeklis judės paskutine nustatyta kryptimi."
+"A [VIDEO/PVR] gombbal történt kiválasztás után a kurzor a megadott irányba "
+"mozog.\n"
+"A 'fel/le' gombbal a kurzor követi az utoljára alkalmazott irányt"
 
 #: EnhancedMovieCenter.py:376
 msgid "Show symlinks"
-msgstr "Rodyti nuorodas"
+msgstr "Szimbolikus linkek megjelenítése"
 
 #: EnhancedMovieCenter.py:376
 msgid "HELP_Show symlinks"
-msgstr "Nustatykite, rodyti simbolines nuorodas, ar ne."
+msgstr "Szimbolikus linkek megjelenítése"
 
 #: EnhancedMovieCenter.py:378
 msgid "Show directories"
-msgstr "Rodyti katalogus filmų sąraše"
+msgstr "Könyvtárak megjelenítése"
 
 #: EnhancedMovieCenter.py:378
 msgid "HELP_Show directories"
-msgstr "Nustatykite, rodyti filmų sąraše katalogus, ar ne."
+msgstr "Könyvtárak megjelenítése vagy elrejtése a felvételi listában"
 
 #: EnhancedMovieCenter.py:379
 msgid "Show directories within movielist"
-msgstr "Rodyti katalogus sąrašo viduje"
+msgstr "Mutasson könyvtárakat a felvételi listában"
 
 #: EnhancedMovieCenter.py:379
 msgid "HELP_Show directories within movielist"
-msgstr "Nustatykite, rodyti filmų sąrašo viduje katalogus, ar ne."
+msgstr "Mutasson könyvtárakat a felvételi listában"
 
 #: EnhancedMovieCenter.py:380
 msgid "Configured directories at the top of movielist"
-msgstr "Sukonfigūruoti katalogai filmų sąrašo viršuje"
+msgstr "Konfigurált könyvtárak a felvételi lista tetején"
 
 #: EnhancedMovieCenter.py:380
 msgid "HELP_Configure in etc\\enigma2\\emc-topdir.cfg"
-msgstr "Kelias į /etc/enigma2/emc-topdir.cfg konfigūravimo failą."
+msgstr "Konfigurált könyvtárak a felvételi lista tetején"
 
 #: EnhancedMovieCenter.py:381
 msgid "Show directories information"
-msgstr "Rodyti katalogų informaciją"
+msgstr "Könyvtárak információinak megjelenítése"
 
 #: EnhancedMovieCenter.py:381
 msgid "HELP_Show directories information"
 msgstr ""
-"Nustatykite, ar rodyti informaciją apie įrašus, jų trukmę ir užimamą vietą "
-"diske."
+"Megjeleníti a felvételek mennyiségét és/vagy azt, hogy mennyi lemezterületet "
+"használnak"
 
 #: EnhancedMovieCenter.py:382
 msgid "Text shown for initially unknown file count"
-msgstr "Tekstas, rodomas iš pradžių nežinomam failų skaičiui"
+msgstr "A szöveg mutatja az eredetileg ismeretlen fájlszámot"
 
 #: EnhancedMovieCenter.py:382
 msgid "HELP_Text shown for initially unknown file count"
-msgstr ""
-"Ši funkcija nustato, koks tekstas bus prie katalogų su iš anksto nežinomu "
-"failų skaičiumi."
+msgstr "A szöveg mutatja az eredetileg ismeretlen fájlszámot"
 
 #: EnhancedMovieCenter.py:383
 msgid "Text shown for initially unknown count and size"
-msgstr "Tekstas, rodomas iš pradžių nežinomam skaičiui ir dydžiui"
+msgstr "A szöveg mutatja az eredetileg ismeretlen számlálót és méretet"
 
 #: EnhancedMovieCenter.py:383
 msgid "HELP_Text shown for initially unknown count and size"
-msgstr ""
-"Ši funkcija nustato, koks tekstas bus prie katalogų su iš anksto nežinomais "
-"failų skaičiumi ir jų dydžiu."
+msgstr "A szöveg mutatja az eredetileg ismeretlen számlálót és méretet"
 
 #: EnhancedMovieCenter.py:384
 msgid "Text shown for initially unknown directory size"
-msgstr "Tekstas, rodomas iš pradžių nežinomam katalogo dydžiui"
+msgstr "A szöveg mutatja az eredetileg ismeretlen könyvtár méretét"
 
 #: EnhancedMovieCenter.py:384
 msgid "HELP_Text shown for initially unknown directory size"
-msgstr ""
-"Ši funkcija nustato, koks tekstas bus prie katalogų su iš anksto nežinomu jų "
-"dydžiu."
+msgstr "A szöveg mutatja az eredetileg ismeretlen könyvtár méretét"
 
 #: EnhancedMovieCenter.py:385
 msgid "Icon shown for initially unknown count / size"
-msgstr "Piktograma, rodoma iš pradžių nežinomam skaičiui / dydžiui"
+msgstr "Az ikon mutatja az eredetileg ismeretlen számot / méretet"
 
 #: EnhancedMovieCenter.py:385
 msgid "HELP_Icon shown for initially unknown count / size"
-msgstr ""
-"Nustatykite, ar bus rodoma piktograma, esant iš anksto nežinomam skaičiui / "
-"dydžiui."
+msgstr "Az ikon mutatja az eredetileg ismeretlen számot / méretet"
 
 #: EnhancedMovieCenter.py:387
 msgid "Show directory size in skin"
-msgstr "Temoje rodyti katalogo dydį"
+msgstr "A könyvtár méretének megjelenítése a kinézetben (Skin)"
 
 #: EnhancedMovieCenter.py:387
 msgid "HELP_Show directory size in skin"
-msgstr "Rodyti vartotojo aplinkos temoje numatytą dydį."
+msgstr "A könyvtár méretének megjelenítése a kinézetben (Skin)"
 
 #: EnhancedMovieCenter.py:389
 msgid "Show Latest Recordings directory"
-msgstr "Rodyti naujausių įrašų katalogą"
+msgstr "A legfrissebb felvételek listájának megjelenítése"
 
 #: EnhancedMovieCenter.py:389
 msgid "HELP_Show Latest Recordings directory"
 msgstr ""
-"\"Filmų namų\" kataloge (ir pakatalogiuose) rodyti virtualų \"Naujausių įrašų"
-"\" katalogą."
+"Megjelenítsen egy virtuális mappát a 'Felvételek helye' könyvtárában a "
+"legfrissebb felvételek listájával. A 'Felvételek helye' alkönyvtárából is.\n"
+"(Csak egy oldal)"
 
 #: EnhancedMovieCenter.py:390
 msgid "Latest Recordings directory limit"
-msgstr "Naujausių įrašų katalogo apribojimas"
+msgstr "Legfrissebb felvételek könyvtárjának korlátja"
 
 #: EnhancedMovieCenter.py:390
 msgid "HELP_Latest Recordings directory limit"
-msgstr ""
-"Nustatykite virtualaus \"Naujausių įrašų\" katalogo apribojimus.\n"
-"VTI galimi apribojimai dienomis."
+msgstr "Legfrissebb felvételek könyvtárjának korlátja"
 
 #: EnhancedMovieCenter.py:391
 msgid "Latest Recordings directory use emc-noscan.cfg"
-msgstr "Naujausių įrašų katalogui naudoti emc-noscan.cfg"
+msgstr "A legfrissebb felvételek mappában használja az emc-noscan.cfg fájlt"
 
 #: EnhancedMovieCenter.py:391
 msgid "HELP_Latest Recordings directory use emc-noscan.cfg"
-msgstr "\"Naujausių įrašų\" katalogo nustatymams naudoti emc-noscan.cfg."
+msgstr "A legfrissebb felvételek mappában használja az emc-noscan.cfg fájlt"
 
 #: EnhancedMovieCenter.py:392
 msgid "Show VLC directory"
-msgstr "Rodyti VLC katalogą"
+msgstr "A VLC könyvtár megjelenítése"
 
 #: EnhancedMovieCenter.py:392
 msgid "HELP_Show VLC directory"
-msgstr "Rodyti, VLC katalogą, ar ne (kai įdiegtas VLC išplėstinis įskiepis)."
+msgstr ""
+"A VLC könyvtár megjelenítése vagy elrejtése, ha a VlcPlayerExtended Plugin "
+"telepítve van"
 
 #: EnhancedMovieCenter.py:393
 msgid "Show Bookmarks in movielist"
-msgstr "Filmų sąraše rodyti žymeles"
+msgstr "Könyvjelzők megjelenítése a felvételek listájában"
 
 #: EnhancedMovieCenter.py:393
 msgid "HELP_Show Bookmarks in movielist"
-msgstr "Nustatykite, ar filmų sąraše bus rodomos žymelės."
+msgstr "Könyvjelzők megjelenítése a felvételek listájában"
 
 #: EnhancedMovieCenter.py:394
 msgid "Use cache for files and directories"
-msgstr "Failams ir katalogams naudoti podėlį"
+msgstr "Gyorsítótár (cache) fájlok és könyvtárak használata"
 
 #: EnhancedMovieCenter.py:394
 msgid "HELP_Use cache for files and directories"
-msgstr "Nustatykite, ar failams ir katalogams naudoti atminties podėlį."
+msgstr "Gyorsítótár (cache) fájlok és könyvtárak használata"
 
 #: EnhancedMovieCenter.py:395
 msgid "Minimum file cache limit (0=cache everything)"
-msgstr "Minimalus failų podėlio limitas (0 = viską į podėlį)"
+msgstr "Minimális fájl gyorsítótár (cache) korlát (0 = minden gyorsítótárazása)"
 
 #: EnhancedMovieCenter.py:395
 msgid "HELP_Minimum file cache limit"
-msgstr "Nustatykite minimalų failams naudojamos atminties podėlio dydį."
+msgstr "Minimális fájl gyorsítótár (cache) korlát (0 = minden gyorsítótárazása)"
 
 #: EnhancedMovieCenter.py:396
 msgid "Show experimental options"
-msgstr "Rodyti eksperimentines parinktis"
+msgstr "A kísérleti beállítások megjelenítése"
 
 #: EnhancedMovieCenter.py:396
 msgid "HELP_Show experimental options"
-msgstr "Rodyti ir eksperimentines, EMC parinktis."
+msgstr "A kísérleti beállítások megjelenítése"
 
 #: EnhancedMovieCenter.py:397
 msgid "Don't auto scan size of dirs from emc-noscan.cfg"
-msgstr "Nenuskaityti automatiškai emc-noscan.cfg katalogų dydžio"
+msgstr "Ne vegye figyelembe a könyvtárak méretét az emc-noscan.cfg fájlból"
 
 #: EnhancedMovieCenter.py:397
 msgid "HELP_Don't auto scan size of dirs from emc-noscan.cfg"
-msgstr "Nenuskaityti automatiškai dydžio katalogų, įtrauktų į emc-noscan.cfg."
+msgstr "Ne vegye figyelembe a könyvtárak méretét az emc-noscan.cfg fájlból"
 
 #: EnhancedMovieCenter.py:398
 msgid "Limit file operations in dirs from emc-noscan.cfg"
-msgstr "Apriboti operacijas su failais emc-noscan.cfg kataloguose"
+msgstr ""
+"Határozza meg a fájlok műveleteit a könyvtárakban az emc-noscan.cfg fájlból"
 
 #: EnhancedMovieCenter.py:398
 msgid "HELP_Limit file operations in dirs from emc-noscan.cfg"
 msgstr ""
-"Įjungus čia, atvertas EMC vengs operacijų su failais kataloguose, "
-"esančiuose /etc/enigma2/emc-noscan.cfg."
+"Határozza meg a fájlok műveleteit a könyvtárakban az emc-noscan.cfg fájlból"
 
 #: EnhancedMovieCenter.py:399
 msgid "After file OPs only re-scan affected dirs"
-msgstr "Po operacijų su failais, perskenuoti tik susijusius katalogus"
+msgstr "Az operációs rendszerfájlok az érintett könyvtárak újra olvasása után"
 
 #: EnhancedMovieCenter.py:399
 msgid "HELP_After file OPs only re-scan affected dirs"
-msgstr ""
-"Po operacijų su failais, bus perskenuoti tik su jomis susiję katalogai."
+msgstr "Az operációs rendszerfájlok az érintett könyvtárak újra olvasása után"
 
 #: EnhancedMovieCenter.py:400
 msgid "Wake device when entering dir from emc-noscan.cfg"
-msgstr "Prižadinti, atveriant katalogą iš emc-noscan.cfg"
+msgstr "A készülék felébresztése az emc-noscan.cfg fájl olvasásakor"
 
 #: EnhancedMovieCenter.py:400
 msgid "HELP_Wake device when entering dir from emc-noscan.cfg"
-msgstr ""
-"Prižadinti prietaisą, kai atveriamas katalogas, esantis /etc/enigma2/emc-"
-"noscan.cfg."
+msgstr "A készülék felébresztése az emc-noscan.cfg fájl olvasásakor"
 
 #: EnhancedMovieCenter.py:401
 msgid "Check for dead links"
-msgstr "Tikrinti, ar yra neveikiančių nuorodų"
+msgstr "Halott linkek ellenőrzése"
 
 #: EnhancedMovieCenter.py:401
 msgid "HELP_Check for dead links"
-msgstr ""
-"Kadangi daugelis nuorodų būna į nešiojamas/atjungiamas/tinklines laikmenas, "
-"kurios bet kada gali būti atjungtos, tokios nuorodos dažnai keičiasi.\n"
-"Ši funkcija ir skirta patikrinti, ar jos vis dar galioja."
+msgstr "Halott linkek ellenőrzése"
 
 #: EnhancedMovieCenter.py:404
 msgid "HELP_separator_hide&performance"
-msgstr "Nustatymas nerodyti failų/katalogų ir našumo."
+msgstr "A fájlok/mappák elrejtésére és a teljesítményre vonatkozó beállítások"
 
 #: EnhancedMovieCenter.py:405
 msgid "Hide configured entries"
-msgstr "Slėpti nustatymų įrašus"
+msgstr "A konfigurált bejegyzések elrejtése"
 
 #: EnhancedMovieCenter.py:405
 msgid "HELP_cfghide_enable"
 msgstr ""
-"Slėpti failus ir katalogus, įtrauktus į /etc/enigma2/emc-hide.cfg.\n"
-"Pakeitus šį nustatymą, būtina grafinę aplinką paleisti iš naujo!"
+"Az '/etc/enigma2/emc-hide.cfg' listájában szereplő fájlok és könyvtárak "
+"elrejtése.\n"
+"E beállítás megváltoztatásához az Enigma2 újra indítása szükséges"
 
 #: EnhancedMovieCenter.py:406
 msgid "Scan for DVD structures"
-msgstr "Nuskaityti DVD struktūrą"
+msgstr "A DVD felépítésének beolvasása"
 
 #: EnhancedMovieCenter.py:406
 msgid "HELP_Scan for DVD structures"
 msgstr ""
-"Leidžia išjungti DVD struktūros nuskaitymą visuose kataloguose.\n"
-"Išjungus, išvengiama nepageidaujamų (tinklo) diskų pabudimų."
+"Tiltsa le a DVD struktúrák elemzését minden könyvtárban.\n"
+"Ezzel elkerülhető a (hálózati) diszkek nemkívánatos ébresztése"
 
 #: EnhancedMovieCenter.py:407
 msgid "Scan for movie structures"
-msgstr "Nuskaityti filmo struktūrą"
+msgstr "A felvétel felépítésének beolvasása"
 
 #: EnhancedMovieCenter.py:407
 msgid "HELP_Scan for movie structures"
-msgstr ""
-"Leidžia išjungti filmų struktūros nuskaitymą kataloguose.\n"
-"Išjungus, išvengiama nepageidaujamų (tinklo) diskų pabudimų."
+msgstr "A felvétel felépítésének beolvasása"
 
 #: EnhancedMovieCenter.py:408
 msgid "Scan for bluray structures"
-msgstr "Nuskaityti Blu-ray struktūrą"
+msgstr "Vizsgálja meg a bluray struktúrákat"
 
 #: EnhancedMovieCenter.py:408
 msgid "HELP_Scan for bluray structures"
-msgstr ""
-"Leidžia išjungti Blu-ray diskų struktūros nuskaitymą.\n"
-"Išjungus, išvengiama nepageidaujamų (tinklo) diskų pabudimų."
+msgstr "Vizsgálja meg a bluray struktúrákat"
 
 #: EnhancedMovieCenter.py:409
 msgid "Scan for bluray structures in .iso"
-msgstr "Nuskaityti Blu-ray struktūrą ISO faile"
+msgstr "Vizsgálja meg a bluray struktúrákat a .iso fájlban"
 
 #: EnhancedMovieCenter.py:409
 msgid "HELP_Scan for bluray structures in .iso"
-msgstr ""
-"Leidžia išjungti Blu-ray diskų struktūros nuskaitymą ISO faile.\n"
-"Išjungus, išvengiama nepageidaujamų (tinklo) diskų pabudimų."
+msgstr "Vizsgálja meg a bluray struktúrákat a .iso fájlban"
 
 #: EnhancedMovieCenter.py:410
 msgid "Suppress scan in selected folders"
-msgstr "Kataloguose, esančiuose emc-noscan.cfg, išjungti paiešką"
+msgstr "Szüntesse meg a szkennelést a kiválasztott mappákban"
 
 #: EnhancedMovieCenter.py:410
 msgid "HELP_cfgscan_suppress"
 msgstr ""
-"Kataloguose, išvardintuose /etc/enigma2/emc-noscan.cfg, stabdyti DVD "
-"struktūros nuskaitymą. Taip išvengiama nepageidaujamų (tinklo) diskų "
-"pabudimų.\n"
-"Pakeitus šį nustatymą, būtina grafinę aplinką paleisti iš naujo!"
+"Ha 'igen', akkor az '/etc/enigma2/emc-noscan.cfg' listában felsorolt ​​elérési "
+"utakból a DVD-struktúrákat nem ellenőrzi. Ezzel elkerülhető a (hálózati) "
+"diszkek nemkívánatos ébresztése.\n"
+"E beállítás megváltoztatásához az Enigma2 újraindítása szükséges"
 
 #: EnhancedMovieCenter.py:411
 msgid "Scan linked folders"
-msgstr "Nuskaityti pakatalogių nuorodas"
+msgstr "A linkelt mappák beolvasása"
 
 #: EnhancedMovieCenter.py:411
 msgid "HELP_scan_linked"
 msgstr ""
-"Išjungti DVD struktūros nuskaitymą pagal pakatalogių simbolines nuorodas. "
-"Taip išvengiama nepageidaujamų (tinklo) diskų pabudimų."
+"Tiltsa le a DVD struktúrák elemzését az Alkönyvtárakban.\n"
+"Ezzel elkerülhető a (hálózati) diszkek nemkívánatos ébresztése"
 
 #: EnhancedMovieCenter.py:414
 msgid "Try to load titles from .meta files"
-msgstr "Bandyti įkelti pavadinimus iš .meta failų"
+msgstr "Megpróbálja betölteni a címeket a .meta fájlokból"
 
 #: EnhancedMovieCenter.py:414
 msgid "HELP_Try to load titles from .meta files"
 msgstr ""
-"Pavadinimus bus bandoma įkelti iš .meta failų. Nepavykus, pavadinimas bus "
-"imamas iš failo pavadinimo (jei aktyvūs ir .meta, ir .eit, pirmiausiai bus "
-"skaitoma iš .meta)."
+"Titles will be loaded from the .meta if availiable.\n"
+"Otherwise the title will be extracted from the filename.\n"
+"(Is .meta and .eit activatetd, the .meta will be read first.)"
 
 #: EnhancedMovieCenter.py:415
 msgid "Load all for non showing titles from .meta files"
-msgstr "Įkelti visus nerodomus .meta failuose pavadinimus"
+msgstr "Töltse be az összes nem megjelenített címet a .meta fájlokból"
 
 #: EnhancedMovieCenter.py:415
 msgid "HELP_Load all for non showing titles from .meta files"
-msgstr ""
-"Kai pavadinimas negali būti paimtas iš .meta failo, bus bandoma paimti "
-"kitais būdais, kad atvaizduoti pavadinimą."
+msgstr "Töltse be az összes nem megjelenített címet a .meta fájlokból"
 
 #: EnhancedMovieCenter.py:416
 msgid "Try to load titles from .eit files"
-msgstr "Bandyti įkelti pavadinimus iš .eit failų"
+msgstr "Megpróbálja betölteni a címeket a .eit fájlokból"
 
 #: EnhancedMovieCenter.py:416
 msgid "HELP_Try to load titles from .eit files"
 msgstr ""
-"Pavadinimus bus bandoma įkelti iš .eit failų. Jei nepavyks, pavadinimas bus "
-"imamas iš failo pavadinimo.\n"
-"(Jei aktyvūs ir .meta, ir .eit, pirmiausiai bus skaitoma iš .meta)"
+"A címek betöltésre kerülnek a .eit-ből, ha rendelkezésre állnak.\n"
+"Ellenkező esetben a cím a fájlnévből lesz kinyerve.\n"
+"(Ha a .meta és .eit aktiválva, a .meta lesz először olvasva)"
 
 #: EnhancedMovieCenter.py:417
 msgid "Replace special chars in title"
-msgstr "Pakeisti specialius simbolius pavadinime"
+msgstr "Cserélje ki a speciális karaktereket a címben"
 
 #: EnhancedMovieCenter.py:417
 msgid "HELP_Replace special chars in title"
-msgstr "Pabraukimai ir taškai pavadinimuose bus pakeičiami tarpais."
+msgstr "Cserélje ki az aláhúzásokat és a pontokat a címekben szóközökkel"
 
 #: EnhancedMovieCenter.py:418
 msgid "Show Movie Format"
-msgstr "Rodyti filmo formatą"
+msgstr "A felvétel formátumának megjelenítése"
 
 #: EnhancedMovieCenter.py:418
 msgid "HELP_Show Movie Format"
-msgstr "Prie filmo failo pavadinimo bus rodomas ir jo plėtinys."
+msgstr "A fájl kiterjesztése (fájlformátum) hozzá lesz adva a címhez"
 
 #: EnhancedMovieCenter.py:419
 msgid "Show Cut-Nr if exist"
-msgstr "Jei yra, rodyti kirpimo Nr."
+msgstr "Ha létezik, a vágási számot mutassa meg"
 
 #: EnhancedMovieCenter.py:419
 msgid "HELP_Show Cut-Nr if exist"
 msgstr ""
-"Jei įrašymo metu Enigma2 pasileis iš naujo, įrašymas bus tęsiamas "
-"automatiškai, failo pavadinimo gale pridedant skaitmenį.\n"
-"Kitaip sakant, čia įjungus, prie pavadinimo, nutraukus ir vėliau pratęsus "
-"įrašą, bus pridedamas skaičius."
+"Ha az Enigma2 újraindul egy felvétel közben, a felvétel automatikusan "
+"folytatódik a fájlnév végén található sorszámmal.\n"
+"Ezzel az opcióval a sorszám hozzáadódik a címhez"
 
 #: EnhancedMovieCenter.py:420
 msgid "Resolve links and show real path"
-msgstr "Atsekti nuorodas ir rodyti tikrąjį kelią"
+msgstr "A linkek feloldása és valós útvonalak megjelenítése"
 
 #: EnhancedMovieCenter.py:420
 msgid "HELP_Resolve links and show real path"
 msgstr ""
-"Bus tikrinami nuorodų keliai.\n"
-"Ilgai rodant suktuką, ar esant NAS prisijungimo problemų, išjunkite šią "
-"parinktį. Kelias bus rodomas, kaip \"Išplėstinis aprašymas\"."
+"Path of links will be resolved.\n"
+"On problems with spinner or NAS wakeup, disable this option. (Path will be "
+"displayed as \"Extended Description\".)"
 
 #: EnhancedMovieCenter.py:421
 msgid "Show Path if no extended description available"
-msgstr "Jei nėra išplėstinio aprašymo, rodyti kelią"
+msgstr "Mutassa az útvonalat, ha a kiterjesztett leírás elérhető"
 
 #: EnhancedMovieCenter.py:421
 msgid "HELP_Show Path if no extended description available"
-msgstr "Jei nėra išplėstinio aprašymo, vietoje jo bus rodomas kelias į failą."
+msgstr "Mutassa az útvonalat, ha a kiterjesztett leírás elérhető"
 
 #: EnhancedMovieCenter.py:424
 msgid "Listbox is skin able"
-msgstr "Sąrašo langas pritaikytinas temai"
+msgstr "A megjelenítés kinézete változtatható"
 
 #: EnhancedMovieCenter.py:424
 msgid "HELP_Listbox is skin able"
 msgstr ""
-"Jei įmanoma, naudojama filmų sąrašo vizualizacija iš vartotojo temos (tiktai "
-"<widget name=\"list\"). Jei ne, tada, kaip nurodyta EMC sąrankoje."
+"A Felvétel listázó vizuális megjelenítése kinézete változtatható (csak <widget "
+"name = \"list\">).\n"
+"Ellenkező esetben az EMC beállítása kerül alkalmazásra"
 
 #: EnhancedMovieCenter.py:426
 msgid "Date format"
-msgstr "Datos formatas"
+msgstr "A dátum formátuma"
 
 #: EnhancedMovieCenter.py:426
 msgid "HELP_Date format"
-msgstr "Pasirinkite datos ir laiko, kurie bus rodomi prie failo, formatą."
+msgstr ""
+"Válassza ki a dátum és az idő formátumát, amely a fájloknál fog megjelenni"
 
 #: EnhancedMovieCenter.py:427
 msgid "Horizontal alignment for date"
-msgstr "Horizontalus lygiavimas pagal datą"
+msgstr "A dátum vízszintes igazítása"
 
 #: EnhancedMovieCenter.py:427
 msgid "HELP_Horizontal alignment for date"
-msgstr "Horizontalus teksto išdėstymas pagal žinomas datas."
+msgstr "A dátum vízszintes igazítása"
 
 #: EnhancedMovieCenter.py:428
 msgid "Horizontal alignment for count / size"
-msgstr "Horizontalus lygiavimas pagal skaičių/dydį"
+msgstr "Vízszintes igazítás a számlálóhoz/mérethez"
 
 #: EnhancedMovieCenter.py:428
 msgid "HELP_Horizontal alignment for count / size"
-msgstr "Horizontalus teksto išdėstymas pagal žinomus skaičių/dydį."
+msgstr "Vízszintes igazítás a számlálóhoz/mérethez"
 
 #: EnhancedMovieCenter.py:430
 msgid "Show movie icons"
-msgstr "Rodyti filmų turinio piktogramas"
+msgstr "A felvétel ikonjainak megjelenítése"
 
 #: EnhancedMovieCenter.py:430
 msgid "HELP_Show movie icons"
-msgstr "Filmų sąraše bus rodomos filmo turinį atitinkančios piktogramos."
+msgstr "A megfelelő ikon megjelenik a felvételi listában"
 
 #: EnhancedMovieCenter.py:431
 msgid "Show link arrow"
-msgstr "Rodyti krypties rodyklę"
+msgstr "Mutassa a Link jelölőt"
 
 #: EnhancedMovieCenter.py:431
 msgid "HELP_Show link arrow"
-msgstr "Prie simbolinių nuorodų rodyti krypties rodyklę."
+msgstr "Mutassa a Link jelölőt"
 
 #: EnhancedMovieCenter.py:433
 msgid "Show movie picons"
-msgstr "Rodyti filmų piktogramas"
+msgstr "A felvételi piconok megjelenítése"
 
 #: EnhancedMovieCenter.py:433
 msgid "HELP_Show movie picons"
-msgstr "Prie filmų pavadinimų bus rodomos filmų piktogramos."
+msgstr "A felvételi piconok megjelenítése"
 
 #: EnhancedMovieCenter.py:435
 msgid "Position movie picons"
-msgstr "Filmų piktogramos vieta"
+msgstr "A felvételi piconok pozíciója"
 
 #: EnhancedMovieCenter.py:435
 msgid "HELP_Position movie picons"
-msgstr "Pasirinkite, kur bus filmų piktogramų vieta."
+msgstr "A felvételi piconok pozíciója"
 
 #: EnhancedMovieCenter.py:436
 msgid "Own Path to movie picons"
-msgstr "Pasirinktinis kelias į filmų piktogramas"
+msgstr "Saját elérési út a felvételi piconokhoz"
 
 #: EnhancedMovieCenter.py:436
 msgid "HELP_Own Path to movie picons"
-msgstr "Čia galite nurodyti savo kelią į filmų piktogramas."
+msgstr "Saját elérési út a felvételi piconokhoz"
 
 #: EnhancedMovieCenter.py:437
 msgid "Path to movie picons"
-msgstr "Kelias į filmų piktogramas"
+msgstr "A felvételi piconok elérhetőségi útja"
 
 #: EnhancedMovieCenter.py:437
 msgid "HELP_Path to movie picons"
-msgstr "Numatytasis kelias į filmų piktogramas."
+msgstr "A felvételi piconok elérhetőségi útja"
 
 #: EnhancedMovieCenter.py:439
 msgid "Show movie progress"
-msgstr "Rodyti filmo eigą"
+msgstr "A felvétel lejátszási folyamatjelzőjének mutatása"
 
 #: EnhancedMovieCenter.py:439
 msgid "HELP_Show movie progress"
 msgstr ""
-"Filmų sąraše prieš filmą bus rodoma eigos juosta, arba procentai. Įrašymo "
-"režimas identifikuojamas pagal piktogramos, arba šrifto spalvą (spalvos "
-"rodymą galima atjungti aplinkos temos nustatymuose)."
+"A felvételi listában a felvétel lejátszási folyamatjelzését lehet beállítani, "
+"kiválasztani"
 
 #: EnhancedMovieCenter.py:440
 msgid "Short watching percent"
-msgstr "Trumpai žiūrėtas, kai peržiūrėta %"
+msgstr "Meg volt tekintve (%)"
 
 #: EnhancedMovieCenter.py:440
 msgid "HELP_Short watching percent"
 msgstr ""
-"Galite nurodyti, kiek procentų peržiūrėjus, įrašas bus skaitomas, kaip "
-"\"trumpai žiūrėtas\".\n"
-"Eigos juosta pasikeis į mėlyną."
+"Megadja, hogy a hány %-ék után jelezze, hogy a felvétel meg volt tekintve.\n"
+"A folyamatjelző sáv kékre változik"
 
 #: EnhancedMovieCenter.py:441
 msgid "Finished watching percent"
-msgstr "Peržiūrėtas, kai peržiūrėta %"
+msgstr "Megnézettként tekinthető (%)"
 
 #: EnhancedMovieCenter.py:441
 msgid "HELP_Finished watching percent"
 msgstr ""
-"Galite nurodyti, kiek procentų peržiūrėjus, įrašas bus skaitomas, kaip "
-"\"peržiūrėtas\".\n"
-"Eigos juosta pasikeis į žalią."
+"Megadja, hogy a felvétel hány % után tekinthető megnézettnek.\n"
+"A folyamatjelző sáv zöldre változik"
 
 #: EnhancedMovieCenter.py:442
 msgid "Mark new recordings with a star"
-msgstr "Naujus įrašus pažymėti žvaigždute"
+msgstr "Csillaggal jelöli az új felvételeket"
 
 #: EnhancedMovieCenter.py:442
 msgid "HELP_Mark new recordings with a star"
-msgstr "Visi nauji įrašai bus pažymėti žvaigždute."
+msgstr "Az új felvételeket csillaggal jelölheti meg"
 
 #: EnhancedMovieCenter.py:443 MovieSelection.py:1839 MovieSelection.py:1855
 #: MovieSelection.py:1871
 msgid "Show Cover"
-msgstr "Rodyti viršelį"
+msgstr "Borító megjelenítése"
 
 #: EnhancedMovieCenter.py:443
 msgid "HELP_Show Cover"
-msgstr "Jei viršelis prieinamas, tada jis bus parodytas."
+msgstr "Szeretné megjeleníteni a Borítót"
 
 #: EnhancedMovieCenter.py:444 MovieInfo.py:724
 msgid "Cover delay in ms"
-msgstr "Viršelio rodymo trukmė (ms)"
+msgstr "Borító késleltetésé (ump)"
 
 #: EnhancedMovieCenter.py:444
 msgid "HELP_Cover delay in ms"
-msgstr "Kai pasirinkta rodyti viršelį, čia galite nustatyti jo rodymo trukmę."
+msgstr "A borító késleltetése mikro másodpercben"
 
 #: EnhancedMovieCenter.py:445
 msgid "Cover background"
-msgstr "Viršelio fonas"
+msgstr "Borító háttere"
 
 #: EnhancedMovieCenter.py:445
 msgid "HELP_Cover background"
-msgstr "Čia galite pasirinkti viršelio fono spalvą."
+msgstr "A borító hátterét lehet itt beállítani"
 
 #: EnhancedMovieCenter.py:446
 msgid "Show fallback cover"
-msgstr "Rodyti fono viršelį"
+msgstr "A hátsó borító megjelenítése"
 
 #: EnhancedMovieCenter.py:446
 msgid "HELP_Fallback Cover"
-msgstr ""
-"Pasirinkus 'Ne\", fono paveikslėlis rodomas tik tada, kai yra pagrindinis "
-"viršelis."
+msgstr "A hátsó borító megjelenítése"
 
 #: EnhancedMovieCenter.py:448
 msgid "Show movie preview"
-msgstr "Rodyti filmo peržiūrą"
+msgstr "A film előnézetének megjelenítése"
 
 #: EnhancedMovieCenter.py:448
 msgid "HELP_Show movie preview"
-msgstr ""
-"Užlaikius kursorių ties filmu, po nurodyto laiko rodomas MiniTV filmo "
-"fragmentas."
+msgstr "A film előnézetének megjelenítését lehet itt beállítani"
 
 #: EnhancedMovieCenter.py:449
 msgid "Movie preview delay in ms"
-msgstr "Filmo peržiūros atvėrimo delsa (ms)"
+msgstr "A felvétel előnézetének késleltetése (mikromp)"
 
 #: EnhancedMovieCenter.py:449
 msgid "HELP_Movie preview delay in ms"
-msgstr ""
-"Jeigu aukščiau pasirinkta rodyti filmo peržiūrą, čia galite nustatyti "
-"uždelsimą (ms), reikalingą pradėti peržiūrai. Tai apsaugo nuo atsitiktinių "
-"peržiūrų įsijungimo, slenkant sąrašu."
+msgstr "A felvétel előnézetének késleltetése mikro másodpercekben"
 
 #: EnhancedMovieCenter.py:450
 msgid "Start movie preview before last position"
-msgstr "Pradėti filmo peržiūrą prieš paskutinę poziciją (sek.)"
+msgstr "A felvétel előnézete az utolsó pozíció előtt"
 
 #: EnhancedMovieCenter.py:450
 msgid "HELP_Movie preview offset in seconds"
 msgstr ""
-"Paleidžia peržiūrą nurodytą sekundžių skaičių anksčiau, nei paskutinė "
-"atkūrimo pozicija."
+"A felvétel előnézetének elcsúsztatása másodpercekben. Az utolsó nézési pozíció "
+"előtt ennyivel mutassa az előnézetet"
 
 #: EnhancedMovieCenter.py:451
 msgid "Hide MiniTV"
-msgstr "Slėpti mažąjį TV"
+msgstr "A MiniTV elrejtése"
 
 #: EnhancedMovieCenter.py:451
 msgid "HELP_hide_MiniTV"
-msgstr "Nurodo situacijas, kada turi būti paslėptas mažasis TV ekranas."
+msgstr ""
+"A /etc/enigma2/emc-hide.cfg \"listában szereplő fájlok és könyvtárak "
+"elrejtése.\n"
+"E beállítás megváltoztatásához az Enigma2 újraindítása szükséges"
 
 #: EnhancedMovieCenter.py:455
 msgid "Method of hiding MiniTV"
-msgstr "Mažojo TV slėpimo būdas"
+msgstr "A MiniTV elrejtésének módja"
 
 #: EnhancedMovieCenter.py:455
 msgid "HELP_hide_MiniTV_method"
-msgstr ""
-"Pasirenkamas mažojo ekrano slėpimo būdas.\n"
-"Panaudotinas, pvz., kai Gigablue Quad iškraipo teisingą kraštinių santykį. "
-"Tiesioginė transliacija nebus nutraukta, bet MiniTV alternatyviai sumažins "
-"pikselių skaičių."
+msgstr "A MiniTV elrejtésének módját tudja itt beállítani"
 
 #: EnhancedMovieCenter.py:460
 msgid "No resume below 10 seconds"
-msgstr "Mažiau 10 sek. nepratęsti"
+msgstr "Nincs folytatás 10 másodperc alatt"
 
 #: EnhancedMovieCenter.py:460
 msgid "HELP_No resume below 10 seconds"
 msgstr ""
-"Trumpesnės, kaip 10 sek. paleidimo žymės bus ignoruojamos.\n"
-"Jeigu atkūrimas sustabdytas per pirmąsias 10 sekundžių, paleidus iš naujo, "
-"pratęsti siūloma nebus."
+"10 másodperc alatt figyelmen kívül hagyja az indulási jelzőt.\n"
+"Ha a lejátszás az első 10 másodperc alatt le van állítva, akkor a következő "
+"lejátszásnál nem lesz javasolva az, hogy honnan induljon a lejátszás"
 
 #: EnhancedMovieCenter.py:461
 msgid "Jump to first mark when playing movie"
-msgstr "Atkuriant filmą, pereiti į pirmą žymę"
+msgstr "A felvétel lejátszásakor ugorjon az első jelzőre"
 
 #: EnhancedMovieCenter.py:461
 msgid "HELP_Jump to first mark when playing movie"
 msgstr ""
-"Kai įmanoma, automatiškai pereis prie pirmos įrašo žymės.\n"
-"(padeda automatiškai praleisti pradinio laiko intarpus)."
+"Automatikusan ugrik az első jelölőhöz, ha elérhető mikor egy felvétel "
+"elkezdődik"
 
 #: EnhancedMovieCenter.py:462
 msgid "Rewind finished movies before playing"
-msgstr "Peržiūrėtus filmus rodyti iš pradžios"
+msgstr "Felvétel készítés után tekerjen az elejére a lejátszás előtt"
 
 #: EnhancedMovieCenter.py:462
 msgid "HELP_Rewind finished movies before playing"
 msgstr ""
-"Jeu įrašas, ar filmas su žyme \"peržiūrėtas\" paleidžiamas iš naujo, jis bus "
-"rodomas iš pradžios."
+"Ha egy 'látott' állapotú felvétel újra van indítva, akkor a felvétel a "
+"kezdetétől fog újra indulni"
 
 #: EnhancedMovieCenter.py:463
 msgid "Always save last played progress as marker"
-msgstr "Visada išsaugoti paskutinį atkūrimo stovį, kaip žymę"
+msgstr "A legutóbb lejátszott folyamat állapotát mindig mentse jelölőként"
 
 #: EnhancedMovieCenter.py:463
 msgid "HELP_Always save last played progress as marker"
 msgstr ""
-"Pasirinkus 'Taip', žymė nustatoma kiekvienąkart, sustabdžius atkūrimą.\n"
-"Tęsiant atkūrimą, mygtukais '<' ir '>' galima šokinėti per šias žymes, "
-"nepriklausomai nuo pratęsimo vietos."
+"Ezzel az opcióval a lejátszás leállításakor minden egyes pozícióban egy jelölő "
+"kerül rögzítésre.\n"
+"A lejátszás újraindításakor a <> gombok segítségével oda ugorhat erre a "
+"pozícióra (a folytatás funkciótól függetlenül)"
 
 #: EnhancedMovieCenter.py:464
 msgid "Zap to channel after record EOF"
-msgstr "Priėjus įrašo pabaigą, įjungti TV kanalą"
+msgstr "Felvételt követően a TV csatornára váltás"
 
 #: EnhancedMovieCenter.py:464
 msgid "HELP_Zap to channel after record EOF"
 msgstr ""
-"Kai grotuvas pasiekia vykdomo įrašo pabaigą (greit persukant, ar peršokant), "
-"įrašas bus nutrauktas, EMC užsidarys ir bus atverta įrašomo kanalo "
-"tiesioginė TV transliacija."
+"Ha a lejátszás eléri a felvétel végét, vagy a gyors előre tekerést, vagy az "
+"előre ugrást, akkor azután zárja be az EMC-t és ugorjon közvetlenül az "
+"aktuális TV csatorna élő adásához"
 
 #: EnhancedMovieCenter.py:465
 msgid "Show real length of running records"
-msgstr "Rodyti vykdomų įrašų tikrąjį dydį"
+msgstr "Mutassa a felvétel valós hosszát"
 
 #: EnhancedMovieCenter.py:465
 msgid "HELP_Show real length of running records"
-msgstr "Bus rodomas faktiškas vykdomų įrašų dydis."
+msgstr "Mutassa a felvétel valós hosszát a felvétel közben"
 
 #: EnhancedMovieCenter.py:470
 msgid "Download cutlist from Cutlist.at"
-msgstr "Parsisiųsti iškarpų sąrašą iš Cutlist.at"
+msgstr "Cutlist letöltése a cutlist.at weboldalról"
 
 #: EnhancedMovieCenter.py:470
 msgid "HELP_Download cutlist from Cutlist.at"
-msgstr "Parsisiųsti iškarpų sąrašą iš Cutlist.at, jei toks ten yra."
+msgstr "Cutlist letöltése a cutlist.at weboldalról"
 
 #: EnhancedMovieCenter.py:474
 msgid "HELP_separator_Trashcan settings"
-msgstr "Šiukšliadėžės ir jos automatinio išvalymo funkcijų nuostatos."
+msgstr "A Kuka beállításai"
 
 #: EnhancedMovieCenter.py:475
 msgid "Trashcan enable"
-msgstr "Naudoti šiukšliadėžę"
+msgstr "Kuka engedélyezése"
 
 #: EnhancedMovieCenter.py:475
 msgid "HELP_Trashcan enable"
 msgstr ""
-"Čia galite įjungti-išjungti šiukšliadėžės naudojimą.\n"
-"Išjungus, šalinamas turinys bus ištrintas iškart po užklausimo."
+"Engedélyezze a kuka funkciót. Ha engedélyezve van, akkor a törléskor az összes "
+"fájl először a kuka könyvtárába kerül"
 
 #: EnhancedMovieCenter.py:476
 msgid "Trashcan path"
-msgstr "Kelias į šiukšliadėžę"
+msgstr "Kuka útvonala"
 
 #: EnhancedMovieCenter.py:476
 msgid "HELP_Trashcan path"
 msgstr ""
-"Nurodykite kelią į šiukšliadėžę. Šalinami failai bus perkelti į šį katalogą, "
-"o ne trinami iš karto."
+"Állítsa be a kuka elérési útvonalát.\n"
+"A [törlés] gomb megnyomásával a felvételeket az aktivált kukába helyezi "
+"ahelyett, hogy azonnal törölné a fájlokat"
 
 #: EnhancedMovieCenter.py:477
 msgid "Show trashcan directory"
-msgstr "Rodyti šiukšliadėžės katalogą"
+msgstr "A Kuka könyvtárának a megjelenítése"
 
 #: EnhancedMovieCenter.py:477
 msgid "HELP_Show trashcan directory"
 msgstr ""
-"Šiukšliadėžės katalogą rodyti EMC\n"
-"(kai šiukšliadėžė nerodoma, ją galite atsidaryti EMC paspaudę 'MENU')."
+"A Kuka könyvtárának a megjelenítése.\n"
+"Mikor rejtve van, akkor a Kukához az EMC-n kívül tudsz hozzáférni (Menü "
+"beállítások között)"
 
 #: EnhancedMovieCenter.py:478
 msgid "Show trashcan information"
-msgstr "Rodyti šiukšliadėžės informaciją"
+msgstr "Kuka információinak a megjelenítése"
 
 #: EnhancedMovieCenter.py:478
 msgid "HELP_Dynamic trashcan"
 msgstr ""
-"Rodyti šiukšliadėžėje esančių įrašų kiekį ir/arba jų užimamos vietos dydį."
+"Megjeleníti a mennyiséget és/vagy hogy mennyi tárhelyet használ a kukában. "
+"Darabszám, GB"
 
 #: EnhancedMovieCenter.py:479
 msgid "Delete validation"
-msgstr "Pašalinimo patvirtinimas"
+msgstr "A törlés végrehajtásának a megkérdezése legyen"
 
 #: EnhancedMovieCenter.py:479
 msgid "HELP_Delete validation"
-msgstr ""
-"Kai naudojama šiukšliadėžė, EMC klaus, arba neklaus pašalinimo patvirtinimo."
+msgstr "Ha az 'igen' van választva, akkor a törlés elött mindig rákérdez"
 
 #: EnhancedMovieCenter.py:481
 msgid "Enable daily trashcan cleanup"
-msgstr "Šiukšliadėžės kasdienis ištuštinimas"
+msgstr "Engedélyezze a Kuka napi ürítését"
 
 #: EnhancedMovieCenter.py:481
 msgid "HELP_Enable daily trashcan cleanup"
-msgstr ""
-"EMC ištrins senus failus iš šiukšliadėžės, kai jie pasieks žemiau nurodytą "
-"laiko limitą."
+msgstr "Az EMC a beállított időpontban törli a régi fájlokat a kukából"
 
 #: EnhancedMovieCenter.py:482
 msgid "Daily cleanup time"
-msgstr "Kasdienio ištuštinimo laikas"
+msgstr "Napi takarítási idő"
 
 #: EnhancedMovieCenter.py:482
 msgid "HELP_Daily cleanup time"
-msgstr "Laikas, kuriam praėjus EMC ištrins failus iš šiukšliadėžės."
+msgstr "A beállított időben  törlésre kerülnek a Kukában elhelyezett fájlok"
 
 #: EnhancedMovieCenter.py:483
 msgid "How many days files may remain in trashcan"
-msgstr "Kiek dienų failai išbus šiukšliadėžėje"
+msgstr "Hány napos fájl maradhat a Kukában"
 
 #: EnhancedMovieCenter.py:483
 msgid "HELP_How many days files may remain in trashcan"
 msgstr ""
-"Nustatykite, kiek dienų failai turi išbūti šiukšliadėžėje, kol EMC juos "
-"ištrins galutinai.\n"
-"Kai pasirinkta [0], failai visada bus trinami iškart."
+"Állítsa be, hogy hány napos fájl maradhat a Kukában, mielőtt az EMC véglegesen "
+"törölné azokat.\n"
+"(Ha [0]-ra van állítva, a fájlok azonnal törlődnek)"
 
 #: EnhancedMovieCenter.py:484
 msgid "Move finished movies in trashcan"
-msgstr "Peržiūrėtus filmus perkelti į šiukšliadėžę"
+msgstr "Mozgassa a megnézett felvételeket a Kukába"
 
 #: EnhancedMovieCenter.py:484
 msgid "HELP_Move finished movies in trashcan"
-msgstr ""
-"Visus peržiūrėtus filmus iš \"Filmų namų\" perkelti į šiukšliadėžę, kai jie "
-"pasieks žemiau nurodytą laiko limitą."
+msgstr "Mozgassa az összes megnézett felvételt a Kukába"
 
 #: EnhancedMovieCenter.py:485
 msgid "Age of finished movies in movie folder (days)"
-msgstr "Pabaigtų filmų, esančių filmų kataloge, amžius (dienų)"
+msgstr "A megnézett felvételek kora a felvételek mappában (napok)"
 
 #: EnhancedMovieCenter.py:485
 msgid "HELP_Age of finished movies in movie folder (days)"
 msgstr ""
-"Nustatykite, kiek dienų pabaigti (peržiūrėti) įrašai turi būti saugomi "
-"\"Filmų namų\" kataloge, prieš perkeliant į šiukšliadėžę."
+"Set how many days finished (watched) recordings may remain in your \"Movie home"
+"\"."
 
 #: EnhancedMovieCenter.py:488
 msgid "Display directory reading text"
-msgstr "Rodyti 'Katalogas skaitomas...' pranešimą"
+msgstr "A felvételi lista olvasási szövegének megjelenítése"
 
 #: EnhancedMovieCenter.py:488
 msgid "HELP_Display directory reading text"
 msgstr ""
-"Bus rodomas \"Katalogas skaitomas...\" pranešimas, kol skaitomas to katalogo "
-"turinys."
+"A \"Könyvtár olvasása...\" üzenet megjelenítése a felvételi lista olvasása "
+"közben"
 
 #: EnhancedMovieCenter.py:489
 msgid "EMC always reload after open"
-msgstr "Atvėrus EMC, visada katalogą įkelti iš naujo"
+msgstr "Felvételi lista mindig frissül a megnyitása után"
 
 #: EnhancedMovieCenter.py:489
 msgid "HELP_EMC always reload after open"
 msgstr ""
-"Atidarant EMC, katalogo turinys kiekvienąkart bus perskaitomas iš naujo.\n"
-"Jei ne, paleidžiant EMC antrąkart, katalogo turinys bus skaitomas iš "
-"atminties podėlio."
+"A felvételi lista az EMC minden indításával újra töltődik, frissül.\n"
+"(Ellenkező esetben a felvételi lista az átmeneti tárból (cache) a második "
+"indításra frissül)"
 
 #: EnhancedMovieCenter.py:490
 msgid "EMC re-open list after STOP-press"
-msgstr "Paspaudus 'STOP', EMC atverti filmų sąrašą"
+msgstr "Felvételi lista frissítése a felvétel nézés megállítása után"
 
 #: EnhancedMovieCenter.py:490
 msgid "HELP_EMC re-open list after STOP-press"
 msgstr ""
-"Kai atkūrimas sustabdytas, bus atvertas EMC įrašų sąrašas.\n"
-"Jei ne, vėl įjungiamas ankstesnės TV transliacijos režimas."
+"Ha a lejátszás leáll, frissül és ismét megjelenik a felvételi lista .\n"
+"(Ellenkező esetben a TV adás ismét aktív lesz)"
 
 #: EnhancedMovieCenter.py:491
 msgid "EMC re-open list after Movie end"
-msgstr "Pasibaigus filmui, EMC atverti filmų sąrašą"
+msgstr "Felvételi lista frissítése a felvétel megnézése után"
 
 #: EnhancedMovieCenter.py:491
 msgid "HELP_EMC re-open list after Movie end"
 msgstr ""
-"Kai filmas pasibaigia, bus atveriamas EMC įrašų sąrašas.\n"
-"Jei ne, vėl įjungiamas ankstesnės TV transliacijos režimas."
+"Ha a lejátszás véget ér, a felvételi lista frissül és ismét megjelenik.\n"
+"(Ellenkező esetben a TV adás ismét aktív lesz)"
 
 #: EnhancedMovieCenter.py:493
 msgid "Leave Movie with Exit"
-msgstr "Užverti filmą 'EXIT' mygtuku"
+msgstr "A felvétel nézése leállítható az EXIT gombbal"
 
 #: EnhancedMovieCenter.py:493
 msgid "HELP_Leave Movie with Exit"
-msgstr "Atkūrimas gali būti sustabdytas ne tik 'STOP', bet ir 'EXIT' mygtuku."
+msgstr "A felvétel lejátszása az EXIT gombbal leállítható, a STOP gomb mellett"
 
 #: EnhancedMovieCenter.py:495
 msgid "Hide movies being moved"
-msgstr "Slėpti perkeliamus filmus"
+msgstr "Felvételek elrejtése mialatt át lesz helyezve"
 
 #: EnhancedMovieCenter.py:495
 msgid "HELP_Hide movies being moved"
 msgstr ""
-"Įrašas bus paslėptas, t.y. perkėlimo metu filmų sąraše nebus rodomas\n"
-"(bet kokiu atveju, perkėlimas vis tiek vyks fono režime)."
+"A felvétel áthelyezése közben a felvételi lista el lesz rejtve.\n"
+"(A törlési művelet végrehajtása a háttérben történik)"
 
 #: EnhancedMovieCenter.py:496
 msgid "Hide movies being deleted"
-msgstr "Slėpti šalinamus filmus"
+msgstr "Felvételek elrejtése mialatt törölve lesz"
 
 #: EnhancedMovieCenter.py:496
 msgid "HELP_Hide movies being deleted"
 msgstr ""
-"Įrašas bus paslėptas, t.y. šalinimo metu filmų sąraše nebus rodomas\n"
-"(bet kokiu atveju, šalinimas vis tiek vyks fono režime)."
+"A felvétel törlése közben a felvételi lista el lesz rejtve.\n"
+"(A törlési művelet végrehajtása a háttérben történik)"
 
 #: EnhancedMovieCenter.py:498
 msgid "Enable remote recordings"
-msgstr "Atpažinti nutolusį įrašymą"
+msgstr "Távoli felvételek engedélyezése"
 
 #: EnhancedMovieCenter.py:498
 msgid "HELP_Enable remote recordings"
 msgstr ""
-"Atpažinti įrašus, darytus kitų aparatų į bendrą laikmeną.\n"
-"Šie įrašai pažymimi specialia piktograma."
+"Egy másik készülékről lehet felvételeket indítani.\n"
+"Ez a felvétel egy speciális ikont kap"
 
 #: EnhancedMovieCenter.py:499
 msgid "Automatic timers list cleaning"
-msgstr "Automatinis laikmačių sąrašo valymas"
+msgstr "Automatikus időzítő lista tisztítása"
 
 #: EnhancedMovieCenter.py:499
 msgid "HELP_Automatic timers list cleaning"
 msgstr ""
-"Baigti vykdyti laikmačiai iš laikmačių sąrašo bus šalinami automatiškai."
+"A befejezett időzítők automatikusan eltávolításra kerülnek az időzítő listáról"
 
 #: EnhancedMovieCenter.py:501
 msgid "HELP_Language Separator"
-msgstr "Kalbos nustatymai."
+msgstr "Language settings"
 
 #: EnhancedMovieCenter.py:502
 msgid "Preferred EPG language"
-msgstr "Pageidaujama EPG kalba"
+msgstr "Az EPG műsorújság preferált nyelve"
 
 #: EnhancedMovieCenter.py:502
 msgid "HELP_Preferred EPG language"
-msgstr "Čia galite nurodyti pageidaujamą EPG kalbą."
+msgstr "Itt adhatja meg az EPG műsorújság preferált nyelvét"
 
 #: EnhancedMovieCenter.py:503
 msgid "Extra support for language"
-msgstr "Išplėstinis kalbos palaikymas"
+msgstr "Kiegészítő támogatás a nyelvhez"
 
 #: EnhancedMovieCenter.py:503
 msgid "HELP_Extra support for selected language"
-msgstr "Čia galite įjungti pasirinktos papildomos kalbos palaikymą."
+msgstr "Kiegészítő támogatás a nyelvhez"
 
 #: EnhancedMovieCenter.py:504
 msgid "Enable playback auto-subtitling"
-msgstr "Įjungti automatinius subtitrus"
+msgstr "Engedélyezze a lejátszás automatikus feliratozását"
 
 #: EnhancedMovieCenter.py:504
 msgid "HELP_Enable playback auto-subtitling"
-msgstr "Čia galite įjungti automatinį subtitrų kalbos parinkimą."
+msgstr "Aktiválhatja a feliratnyelvek automatikus kiválasztását"
 
 #: EnhancedMovieCenter.py:505
 msgid "Primary playback subtitle language"
-msgstr "Pagrindinė subtitrų kalba"
+msgstr "Elsődleges feliratnyelv a lejátszáshoz"
 
 #: EnhancedMovieCenter.py:505
 msgid "HELP_Primary playback subtitle language"
 msgstr ""
-"Pagrindinė subtitrų kalba, kuri turėtų būti parenkama, jei yra tokios kalbos "
-"subtitrai."
+"Az első nyelv, amelyet ki lehet választani, ha rendelkezésre áll a feliratokhoz"
 
 #: EnhancedMovieCenter.py:506
 msgid "Secondary playback subtitle language"
-msgstr "Antroji subtitrų kalba"
+msgstr "Másodlagos feliratnyelv a lejátszáshoz"
 
 #: EnhancedMovieCenter.py:506
 msgid "HELP_Secondary playback subtitle language"
 msgstr ""
-"Antroji subtitrų kalba, kuri turėtų būti parenkama, jei yra tokios kalbos "
-"subtitrai."
+"A második nyelv, amelyet ki lehet választani, ha rendelkezésre áll a "
+"feliratokhoz"
 
 #: EnhancedMovieCenter.py:507
 msgid "Tertiary playback subtitle language"
-msgstr "Trečioji subtitrų kalba"
+msgstr "Harmadlagos feliratnyelv a lejátszáshoz"
 
 #: EnhancedMovieCenter.py:507
 msgid "HELP_Tertiary playback subtitle language"
 msgstr ""
-"Trečioji subtitrų kalba, kuri turėtų būti parenkama, jei yra tokios kalbos "
-"subtitrai."
+"A harmadik nyelv, amelyet ki lehet választani, ha rendelkezésre áll a "
+"feliratokhoz"
 
 #: EnhancedMovieCenter.py:508
 msgid "Enable playback auto-language selection"
-msgstr "Įjungti automatinį kalbos parinkimą"
+msgstr "Engedélyezze a lejátszás automatikus nyelvválasztását"
 
 #: EnhancedMovieCenter.py:508
 msgid "HELP_Enable playback auto-language selection"
-msgstr "Įjungti automatinį atkuriamos kalbos parinkimą."
+msgstr "Aktiválja az audió csatorna automatikus kiválasztását"
 
 #: EnhancedMovieCenter.py:509
 msgid "Enable playback AC3-track first"
-msgstr "Pirmenybė AC3 takeliui"
+msgstr "Először engedélyezze a lejátszás AC3 sávját"
 
 #: EnhancedMovieCenter.py:509
 msgid "HELP_Enable playback AC3-track first"
-msgstr "Jei yra galimybė, pirmenybę teikti AC3 garso takeliui."
+msgstr "Először engedélyezze a lejátszás AC3 sávját"
 
 #: EnhancedMovieCenter.py:510
 msgid "Primary playback audio language"
-msgstr "Pagrindinė garso takelio kalba"
+msgstr "Elsődleges audió lejátszási nyelv"
 
 #: EnhancedMovieCenter.py:510
 msgid "HELP_Primary playback audio language"
-msgstr ""
-"Pagrindinė garso takelio kalba, kuri turėtų būti parenkama, jei yra tokia "
-"galimybė."
+msgstr "Az első audió csatorna, amelyet ki kell választani, ha elérhető"
 
 #: EnhancedMovieCenter.py:511
 msgid "Secondary playback audio language"
-msgstr "Antroji garso takelio kalba"
+msgstr "Másodlagos audió lejátszási nyelv"
 
 #: EnhancedMovieCenter.py:511
 msgid "HELP_Secondary playback audio language"
-msgstr ""
-"Antroji garso takelio kalba, kuri turėtų būti parenkama, jei yra tokia "
-"galimybė."
+msgstr "A második audió csatorna, amelyet ki kell választani, ha elérhető"
 
 #: EnhancedMovieCenter.py:512
 msgid "Tertiary playback audio language"
-msgstr "Trečioji garso takelio kalba"
+msgstr "Harmadlagos audió lejátszási nyelv"
 
 #: EnhancedMovieCenter.py:512
 msgid "HELP_Tertiary playback audio language"
-msgstr ""
-"Trečioji garso takelio kalba, kuri turėtų būti parenkama, jei yra tokia "
-"galimybė."
+msgstr "A harmadik audió csatorna, amelyet ki kell választani, ha elérhető"
 
 #: EnhancedMovieCenter.py:514 EnhancedMovieCenter.py:519
 #: EnhancedMovieCenter.py:545
 msgid "HELP_Advanced options separator"
-msgstr "Išplėstinės EMC parinktys."
+msgstr "Advanced settings"
 
 #: EnhancedMovieCenter.py:515
 msgid "Description field update delay"
-msgstr "Aprašymo lango atvaizdavimo delsa"
+msgstr "A leírás mező frissítési késleltetése"
 
 #: EnhancedMovieCenter.py:515
 msgid "HELP_Description field update delay"
 msgstr ""
-"Aprašymo lango filmų sąraše atvaizdavimo delsa.\n"
-"(pagreitina navigaciją filmų sąrašu aukštyn/žemyn mygtukais, nes aprašymas "
-"parodomas tik po pasirinkto uždelsimo)."
+"A felvételi listában a leírás megjelenítésének a késleltetése a léptetésekor.\n"
+"(A fel/le gomb többszörös megnyomásával javítja a navigációs sebességet, mivel "
+"a leírás csak a kiválasztott késleltetés után töltődik be.)"
 
 #: EnhancedMovieCenter.py:516
 msgid "Key period value (50-900)"
-msgstr "Mygtuko nuspaudimo trukmė (50-900)"
+msgstr "Billentyű gomb újra lenyomási értéke"
 
 #: EnhancedMovieCenter.py:516
 msgid "HELP_Key period value (50-900)"
-msgstr ""
-"Laikotarpis, iki komanda pakartojama, jei mygtukas laikomas nuspaustas."
+msgstr "A gomb megnyomásakor a gomb újbóli megnyomásáig eltelt idő."
 
 #: EnhancedMovieCenter.py:517
 msgid "Key repeat value (250-900)"
-msgstr "Mygtuko kartojimo trukmė (250-900)"
+msgstr "Billentyű gomb ismétlési értéke (250-900)"
 
 #: EnhancedMovieCenter.py:517
 msgid "HELP_Key repeat value (250-900)"
-msgstr "Komandos kartojimo greitis, jei mygtukas laikomas nuspaustas."
+msgstr "A gomb újra lenyomási sebessége a gomb megnyomásakor."
 
 #: EnhancedMovieCenter.py:520
 msgid "Show message if file added to playlist"
-msgstr "Rodyti žinutę, jei failas pridėtas į grojaraštį"
+msgstr "Üzenet megjelenítése, ha a fájl hozzáadódik a lejátszási listához"
 
 #: EnhancedMovieCenter.py:520
 msgid "HELP_Show message if file added to playlist"
-msgstr "Rodyti ar nerodyti pranešimą, kai failas pridėtas į grojaraštį."
+msgstr "Üzenet megjelenítése, ha a fájl hozzáadódik a lejátszási listához"
 
 #: EnhancedMovieCenter.py:522
 msgid "HELP_Advanced Skin options separator"
-msgstr "EMC vartotojo aplinkos temos parametrai."
+msgstr "Fejlett kinézet (Skin) opció elválasztó"
 
 #: EnhancedMovieCenter.py:523
 msgid "Use original EMC-skin (needs reopen)"
-msgstr "Naudoti originalią EMC aplinkos temą (reikės paleisti iš naujo)"
+msgstr "Az eredeti EMC kinézet van használva (újraindítás szükséges)"
 
 #: EnhancedMovieCenter.py:523
 msgid "HELP_Use original EMC-skin (needs reopen)"
-msgstr ""
-"Įjungti originalią EMC vartotojo aplinkos temą (reikės EMC paleisti iš "
-"naujo)."
+msgstr "Az eredeti EMC kinézet van használva (újraindítás szükséges)"
 
 #: EnhancedMovieCenter.py:526
 msgid "HELP_Advanced audio metadata options separator"
-msgstr "Išplėstinės garso metaduomenų parinktys."
+msgstr "Fejlett audió metaadat beállítás elválasztó"
 
 #: EnhancedMovieCenter.py:532
 msgid "Download Mutagen-package for audio metadata"
-msgstr "Parsisiųsti garso metaduomenų paketą Mutagen"
+msgstr "Töltse le a Mutagen csomagot audió metaadatokhoz"
 
 #: EnhancedMovieCenter.py:532
 msgid "HELP_Download Mutagen-package for audio metadata"
-msgstr ""
-"Galima parsisiųsti garso metaduomenų paketą Mutagen.\n"
-"Parsisiuntę, turėsite jį įsidiegti."
+msgstr "Töltse le a Mutagen csomagot audió metaadatokhoz"
 
 #: EnhancedMovieCenter.py:538
 msgid "Show audio metadata (needs skin-changes)"
-msgstr "Rodyti garso metaduomenis (reikės pakeitimų temoje)"
+msgstr "Audió metaadatok megjelenítése"
 
 #: EnhancedMovieCenter.py:538
 msgid "HELP_Show audio metadata (needs skin-changes)"
-msgstr ""
-"Rodyti garso metaduomenis filmų sąraše.\n"
-"Kad jie būtų korektiškai atvaizduojami, reikės atlikti pakeitimus EMC "
-"aplinkos temoje."
+msgstr "Mutassa az audió metaadatait (kinézet változás szükséges)"
 
 #: EnhancedMovieCenter.py:543
 msgid "Upgrade/Download Mutagen v1.28(experimental)"
-msgstr "Parsisiųsti/atnaujinti Mutagen v1.28 (eksperimentinis)"
+msgstr "Frissítés/Letöltés Mutagen v1.28 (kísérleti)"
 
 #: EnhancedMovieCenter.py:543
 msgid "HELP_Upgrade/Download Mutagen v1.28(experimental)"
-msgstr ""
-"Parsisiųsti, arba atnaujinti esamą Mutagen į v1.28 (eksperimentinė versija)."
+msgstr "Frissítés/Letöltés Mutagen v1.28 (kísérleti)"
 
 #: EnhancedMovieCenter.py:546
 msgid "Enable EMC debug output"
-msgstr "Įjungti EMC klaidų derinimo išvestį"
+msgstr "Engedélyezi az EMC hibakeresést"
 
 #: EnhancedMovieCenter.py:546
 msgid "HELP_Enable EMC debug output"
 msgstr ""
-"Įjungti EMC klaidų derinimo žurnalą. Klaidų žurnalo failas bus išsaugotas "
-"EMC išvesties kataloge.\n"
-"!!! ĮJUNKITE ČIA TIK TADA, KAI TURITE PROBLEMŲ SU EMC !!!"
+"Aktiválja az EMC-hibakeresést. A naplófájl az \"EMC hibakeresési könyvtár\" "
+"könyvtárba kerül.\n"
+"CSAK PROBLÉMÁK ESETÉN ENGEDÉLYEZZE !!!"
 
 #: EnhancedMovieCenter.py:547
 msgid "EMC output directory"
-msgstr "EMC išvesties katalogas"
+msgstr "EMC hibakeresési könyvtár"
 
 #: EnhancedMovieCenter.py:547
 msgid "HELP_EMC output directory"
-msgstr ""
-"EMC išvesties katalogas, kuriame bus saugomas klaidų derinimo žurnalo failas."
+msgstr "Válassza ki a hibakeresési könyvtárat a naplófájlhoz"
 
 #: EnhancedMovieCenter.py:548
 msgid "Debug output file name"
-msgstr "Klaidų derinimo išvesties failo pavadinimas"
+msgstr "Hibakeresési fájl neve"
 
 #: EnhancedMovieCenter.py:548
 msgid "HELP_Debug output file name"
-msgstr "Klaidų derinimo žurnalo išvesties failo pavadinimas."
+msgstr "A hibakeresési naplófájl neve"
 
 #: EnhancedMovieCenter.py:584 EnhancedMovieCenter.py:586
 msgid "Install Mutagen-package"
-msgstr "Įdiegti Mutagen paketą"
+msgstr "Telepítse a Mutagen csomagot"
 
 #: EnhancedMovieCenter.py:646
 msgid "Load default settings will overwrite all settings, really load them?"
 msgstr ""
-"Numatytieji nustatymai perrašys dabartinius, tikrai įkelti numatytuosius?"
+"Az alapértelmezett beállítások betöltése felülírja az összes beállítást, "
+"tényleg betölti őket?"
 
 #: EnhancedMovieCenter.py:736
 msgid "Some settings changes require GUI restart to take effect."
-msgstr ""
-"Kad įsigaliotų parametrų pakeitimai, reikia grafinę aplinką paleisti iš "
-"naujo."
+msgstr "Bizonyos beállítások módosításához szükség van a GUI újra indítására."
 
 #: EnhancedMovieCenter.py:754
 msgid "Really close without saving settings?"
-msgstr "Ar tikrai uždaryti langą neišsaugant nustatymų?"
+msgstr "Bezárjam mentés nélkül?"
 
 #: EnhancedMovieCenter.py:772
 msgid "Select Location"
-msgstr "Pasirinkite vietą"
+msgstr "Válasszon helyet"
 
 #: EnhancedMovieCenter.py:791
 #, python-format
 msgid "Given path %s does not exist. Please change."
-msgstr "Nurodytas kelias %s neegzistuoja. Pakeiskite jį."
+msgstr "A(z) %s elérési út nem létezik. Kérem változtasson."
 
 #: EnhancedMovieCenter.py:799 MovieSelection.py:3130
 msgid "Trashcan create failed. Check mounts and permissions."
-msgstr "Šiukšliadėžės sukurti nepavyko. Tikrinkite pajungimus ir leidimų lygį."
+msgstr ""
+"A Kuka létrehozása sikertelen. Ellenőrizze a csatolásokat és engedélyeket."
 
 #: InfoBarSupport.py:128
 msgid "jump to previous marked position"
-msgstr "peršokti į ankstesnę pažymėtą poziciją"
+msgstr "ugrás az előző megjelölt ponthoz"
 
 #: InfoBarSupport.py:129
 msgid "jump to next marked position"
-msgstr "peršokti į sekančią pažymėtą poziciją"
+msgstr "ugrás a következő megjelölt ponthoz"
 
 #: InfoBarSupport.py:130
 msgid "toggle a cut mark at the current position"
-msgstr "perkelti iškirpimo žymeklį į šią poziciją"
+msgstr "egy vágási jelet állítson be az aktuális pozícióban"
 
 #: InfoBarSupport.py:176 InfoBarSupport.py:178
 msgid "Do you want to resume this playback?"
-msgstr "Ar norite pratęsti šį atkūrimą?"
+msgstr "Szeretné folytatni ezt a lejátszást ahonnan abbahagyta?"
 
 #: InfoBarSupport.py:176 InfoBarSupport.py:178
 #, python-format
 msgid "Resume position at %s"
-msgstr "Tęsti nuo %s pozicijos"
+msgstr "Lejátszás folytatása innen: %s"
 
 #: InfoBarSupport.py:180
 msgid "Resuming playback"
-msgstr "Atkūrimas tęsiamas"
+msgstr "Lejátszás folytatása"
 
 #: MovieCenter.py:843
 msgid "OSError - please reload list (EMC menu)"
-msgstr "OS klaida - įkelkite sąrašą iš naujo (per EMC meniu)"
+msgstr "OSError - kérjük, töltse újra a listát (EMC menü)"
 
 #: MovieCenter.py:1059
 msgid "trashcan"
-msgstr "šiukšliadėžė"
+msgstr "kuka"
 
 #: MovieCenter.py:1064
 msgid "Latest Recordings"
-msgstr "Naujausi įrašai"
+msgstr "Legújabb felvételek"
 
 #: MovieCenter.py:2382
 msgid "VLC"
@@ -1864,66 +1812,66 @@ msgstr "VLC"
 
 #: MovieCenter.py:2388
 msgid "VLC-Server"
-msgstr "VLC serveris"
+msgstr "VLC-Server"
 
 #: MovieCenter.py:2394
 msgid "VLC-Dir"
-msgstr "VLC katalogas"
+msgstr "VLC-Dir"
 
 #: MovieCenter.py:2400
 msgid "Latest"
-msgstr "Naujausi"
+msgstr "Legújabb"
 
 #: MovieCenter.py:2406
 msgid "Up"
-msgstr "Aukštyn"
+msgstr "Fel"
 
 #: MovieCenter.py:2412 MovieCenter.py:2418
 msgid "Bookmark"
-msgstr "Žymelė"
+msgstr "Könyvjelző"
 
 #: MovieCenter.py:2451
 msgid "UNKNOWN"
-msgstr "NEŽINOMA"
+msgstr "ISMERETLEN"
 
 #: MovieCenter.py:2586 MovieCenter.py:2609
 msgid "Trashcan"
-msgstr "Šiukšliadėžė"
+msgstr "Kuka"
 
 #: MovieCenter.py:2600 MovieCenter.py:2611
 msgid "Directory"
-msgstr "Katalogas"
+msgstr "Mappa"
 
 #: MovieCenter.py:2602
 msgid "Link"
-msgstr "Nuoroda"
+msgstr "Hivatkozás"
 
 #: MovieCenter.py:2604
 msgid "Collection"
-msgstr "Rinkinys"
+msgstr "Gyűjtemény"
 
 #: MovieInfo.py:30
 msgid "German"
-msgstr "Vokiečių"
+msgstr "Német"
 
 #: MovieInfo.py:30
 msgid "English"
-msgstr "Anglų"
+msgstr "Angol"
 
 #: MovieInfo.py:31 MovieInfo.py:32 MovieInfo.py:33 MovieInfo.py:34
 #: MovieInfo.py:35 plugin.py:300
 msgid "Yes"
-msgstr "taip"
+msgstr "Igen"
 
 #: MovieInfo.py:31 MovieInfo.py:32 MovieInfo.py:33 MovieInfo.py:34
 #: MovieInfo.py:35 plugin.py:218 plugin.py:223 plugin.py:233 plugin.py:300
 #: plugin.py:327
 msgid "No"
-msgstr "ne"
+msgstr "Nem"
 
 #: MovieInfo.py:62
 msgid "Movies"
-msgstr "Filmai"
+msgstr "Felvételek"
 
 #: MovieInfo.py:62 MovieInfo.py:66
 msgid " - "
@@ -1931,63 +1879,63 @@ msgstr " - "
 
 #: MovieInfo.py:66
 msgid "TV Shows"
-msgstr "Pramoginės TV laidos"
+msgstr "TV műsorok"
 
 #: MovieInfo.py:147 MovieInfo.py:202
 msgid "Content:"
-msgstr "Turinys:"
+msgstr "Tartalom:"
 
 #: MovieInfo.py:147 MovieInfo.py:202 MovieInfo.py:518 MovieSelection.py:346
 msgid "Runtime:"
-msgstr "Darbo trukmė:"
+msgstr "Futásidő:"
 
 #: MovieInfo.py:147 MovieInfo.py:202 MovieInfo.py:544
 msgid "Minutes"
-msgstr "min."
+msgstr "Perc"
 
 #: MovieInfo.py:147 MovieInfo.py:202 MovieInfo.py:519 MovieSelection.py:344
 msgid "Genre:"
-msgstr "Žanras:"
+msgstr "Mûfaj:"
 
 #: MovieInfo.py:147 MovieInfo.py:202 MovieInfo.py:520
 msgid "Production Countries:"
-msgstr "Šalys gamintojos:"
+msgstr "Production Countries:"
 
 #: MovieInfo.py:147 MovieInfo.py:202 MovieInfo.py:521
 msgid "Release Date:"
-msgstr "Išleidimo data:"
+msgstr "Kiadás Dátuma:"
 
 #: MovieInfo.py:147 MovieInfo.py:202 MovieInfo.py:522
 msgid "Vote:"
-msgstr "Balsuoti:"
+msgstr "Szavazás:"
 
 #: MovieInfo.py:164
 msgid "unknown"
-msgstr "nežinoma"
+msgstr "ismeretlen"
 
 #: MovieInfo.py:269 MovieInfo.py:449 MovieInfo.py:461 MovieInfo.py:683
 msgid "Search results for:"
-msgstr "Ieškoti rezultatų:"
+msgstr "Keresés eredménye:"
 
 #: MovieInfo.py:272
 msgid "Movie Info"
-msgstr "Filmo informacija"
+msgstr "Felvétel Információ"
 
 #: MovieInfo.py:277
 msgid "movies found!"
-msgstr "rasti filmai!"
+msgstr "talált felvételeket!"
 
 #: MovieInfo.py:280 MovieInfo.py:303 MovieInfo.py:335
 msgid "An error occured! Internet connection broken?"
-msgstr "Įvyko klaida! Neveikia interneto ryšys?"
+msgstr "Hiba lépett fel! Az internetkapcsolat megszakadt?"
 
 #: MovieInfo.py:283
 msgid "Movie Information Download (TMDb)"
-msgstr "Filmo informacijos parsiuntimas iš TMDb"
+msgstr "Felvétel Információ Letöltés (TMDb)"
 
 #: MovieInfo.py:297 MovieInfo.py:574 MovieInfo.py:578
 msgid "Movie Information downloaded successfully!"
-msgstr "Filmo informacija parsiųsta sėkmingai!"
+msgstr "Felvétel Információjának letöltése sikeresen letöltve!"
 
 #: MovieInfo.py:308 MovieInfo.py:607
 #, python-format
@@ -1996,29 +1944,29 @@ msgid ""
 "\n"
 "Do you want to replace the existing cover?"
 msgstr ""
-"Viršelis %s jau yra!\n"
+"Borító %s létezik!\n"
 "\n"
-"Ar norite pakeisti turimą viršelį?"
+"Ki szeretné cserélni a meglévő borítót?"
 
 #: MovieInfo.py:352 MovieInfo.py:459 MovieInfo.py:642
 msgid "Movie Information Preview for:"
-msgstr "Filmo informacijos peržiūra:"
+msgstr "Felvételi Információk előnézete ennek:"
 
 #: MovieInfo.py:366
 msgid "Movie Information Preview"
-msgstr "Filmo informacijos peržiūra"
+msgstr "Felvételi Információk előnézete"
 
 #: MovieInfo.py:462
 msgid "Nothing was found !"
-msgstr "Nieko nerasta!"
+msgstr "Nincs találat!"
 
 #: MovieInfo.py:495
 msgid "Movie Information TMDb"
-msgstr "Filmo informacija TMDb"
+msgstr "Felvétel információ TMDb"
 
 #: MovieInfo.py:570
 msgid "Movie Information and Cover downloaded successfully!"
-msgstr "Filmo informacija ir viršelis parsiųsti sėkmingai!"
+msgstr "A felvételi információk és a borító letöltése sikeres!"
 
 #: MovieInfo.py:576
 #, python-format
@@ -2029,9 +1977,9 @@ msgid ""
 "\n"
 "%s"
 msgstr ""
-"Filmo informacija parsiųsta sėkmingai!\n"
+"A felvételi információ sikeresen letöltődött!\n"
 "\n"
-"Nepavyksta įrašyti filmo viršelio failo\n"
+"Nem lehet írni a felvétel borító fájlját\n"
 "\n"
 "%s"
 
@@ -2044,9 +1992,9 @@ msgid ""
 "\n"
 "%s"
 msgstr ""
-"Filmo viršelis parsiųstas sėkmingai!\n"
+"A felvétel borítója sikeresen letöltődött!\n"
 "\n"
-"Nepavyksta įrašyti filmo informacijos failo\n"
+"Nem lehet a felvételi információs fájlt írni\n"
 "\n"
 "%s"
 
@@ -2058,7 +2006,7 @@ msgid ""
 "%s\n"
 "%s"
 msgstr ""
-"Nepavyksta įrašyti filmo informacijos ir viršelio failo\n"
+"Nem lehet a felvételi információ és a borító fájlokat írni\n"
 "\n"
 "%s\n"
 "%s"
@@ -2070,219 +2018,217 @@ msgid ""
 "\n"
 "%s"
 msgstr ""
-"Nepavyksta įrašyti filmo informacijos failo\n"
+"Nem lehet a felvétel információs fájlját írni\n"
 "\n"
 "%s"
 
 #: MovieInfo.py:715
 msgid "Language:"
-msgstr "Kalba:"
+msgstr "Nyelv:"
 
 #: MovieInfo.py:716
 msgid "Load Runtime:"
-msgstr "Trukmė:"
+msgstr "Futásidő:"
 
 #: MovieInfo.py:717
 msgid "Load Genre:"
-msgstr "Žanras:"
+msgstr "Műfaj:"
 
 #: MovieInfo.py:718
 msgid "Load Production Countries:"
-msgstr "Šalys gamintojos:"
+msgstr "Gyártási hely:"
 
 #: MovieInfo.py:719
 msgid "Load Release Date:"
-msgstr "Išleidimo data:"
+msgstr "Kiadás Dátuma:"
 
 #: MovieInfo.py:720
 msgid "Load Vote:"
-msgstr "Atsiliepimai:"
+msgstr "Szavazás:"
 
 #: MovieInfo.py:721
 msgid "Save Cover"
-msgstr "Išsaugoti viršelį"
+msgstr "Borító mentés"
 
 #: MovieInfo.py:722
 msgid "Coversize"
-msgstr "Viršelio dydis"
+msgstr "Borító mérete"
 
-# MovieInfo.py
 #: MovieInfo.py:723
 msgid "Switch complete to new Version"
-msgstr "Pilnai pereiti į naują versiją"
+msgstr "Kapcsolja be az új verziót"
 
 #: MovieInfo.py:741
 msgid "Movie Information Download Setup"
-msgstr "Filmo informacijos parsiuntimo sąranka"
+msgstr "A felvételi információk letöltésének beállítása"
 
 #: MovieRetitle.py:27 MovieRetitle.py:65
 msgid "Location:"
-msgstr "Vieta:"
+msgstr "Hely:"
 
 #: MovieRetitle.py:80
 msgid "Foldername:"
-msgstr "Katalogo pavadinimas:"
+msgstr "Mappa neve:"
 
 #: MovieRetitle.py:82
 msgid "Filename:"
-msgstr "Failas:"
+msgstr "Fájl neve:"
 
 #: MovieRetitle.py:83
 msgid "Movietitle:"
-msgstr "Filmo pavadinimas:"
+msgstr "Felvétel címe:"
 
 #: MovieRetitle.py:84
 msgid "Description:"
-msgstr "Aprašymas:"
+msgstr "Leírás:"
 
 #: MovieRetitle.py:114
 msgid "Change Foldername"
-msgstr "Pervadinti katalogą"
+msgstr "A mappa nevének módosítása"
 
 #: MovieRetitle.py:116
 msgid "Change File/Moviename and/or Description"
-msgstr "Pakeisti failo/filmo pavadinimą ir/arba aprašymą"
+msgstr "Fájl/Felvétel neve és/vagy Leírás módosítása"
 
 #: MovieSelection.py:108
 msgid ""
 "EMC: Skipping Trashcan Cleanup\n"
 "Movie Home Path is equal to or a subfolder of the Trashcan"
 msgstr ""
-"EMC: Šiukšliadėžė valoma nebus-\n"
-"Filmų namų katalogo kelias toks pat, kaip šiukšliadėžės, arba yra jos "
-"pakatalogis"
+"EMC: a Kuka tisztításának kihagyása\n"
+"A Felvételek helye egyenlő a Kukával vagy a Kuka almappájával"
 
 #: MovieSelection.py:146
 msgid "EMC Trashcan Cleanup failed!"
-msgstr "EMC šiukšliadėžės ištuštinti nepavyko!"
+msgstr "EMC Kuka tisztítása sikertelen!"
 
 #: MovieSelection.py:340
 msgid "Artist:"
-msgstr "Atlikėjas:"
+msgstr "Elõadó:"
 
 #: MovieSelection.py:342
 msgid "Album:"
-msgstr "Albumas:"
+msgstr "Album:"
 
 #: MovieSelection.py:585 MovieSelection.py:1779
 msgid "Reading directory..."
-msgstr "Katalogas skaitomas..."
+msgstr "Könyvtár olvasása..."
 
 #: MovieSelection.py:603
 msgid "Play selected movie(s)"
-msgstr "Atkurti pasirinktus filmus"
+msgstr "A kiválasztott felvétel(ek) lejátszása"
 
 #: MovieSelection.py:605 MovieSelectionMenu.py:99
 msgid "Play All"
-msgstr "Atkurti viską"
+msgstr "Az összes lejátszása"
 
 #: MovieSelection.py:606 MovieSelectionMenu.py:100
 msgid "Shuffle All"
-msgstr "Sumaišyti"
+msgstr "Összes keverése"
 
 #: MovieSelection.py:607
 msgid "Close EMC"
-msgstr "Uždaryti EMC"
+msgstr "EMC bezárása"
 
 #: MovieSelection.py:608
 msgid "Open menu"
-msgstr "Atverti meniu"
+msgstr "Menü megnyitása"
 
 #: MovieSelection.py:609
 msgid "Show event info"
-msgstr "Rodyti informaciją apie įvykį"
+msgstr "Esemény információ megjelenítése"
 
 #: MovieSelection.py:610
 msgid "IMDBSearch / EMC-TMDBInfo / TMDBInfo / TMBDInfo / CSFDInfo"
-msgstr "IMDB paieška / EMC-TMDB info / TMDB info / TMBD info / CSFD info"
+msgstr "IMDBSearch / EMC-TMDBInfo / TMDBInfo / TMBDInfo / CSFDInfo"
 
 #: MovieSelection.py:624
 msgid "Move cursor page up"
-msgstr "Perkelti žymeklį puslapį aukštyn"
+msgstr "Kurzor mozgatása egy oldallal feljebb"
 
 #: MovieSelection.py:625
 msgid "Move cursor page down"
-msgstr "Perkelti žymeklį puslapį žemyn"
+msgstr "Kurzor mozgatása egy oldallal lejjebb"
 
 #: MovieSelection.py:626
 msgid "Move cursor up"
-msgstr "Traukti žymeklį aukštyn"
+msgstr "Kurzor mozgatása felfelé"
 
 #: MovieSelection.py:627
 msgid "Move cursor down"
-msgstr "Traukti žymeklį žemyn"
+msgstr "Kurzor mozgatása lefelé"
 
 #: MovieSelection.py:628
 msgid ""
 "Move cursor to the top / Move cursor x entries up / Switch Folders in Movie "
 "Home (up)"
 msgstr ""
-"Perkelti žymeklį į pradžią / perkelti žymeklį X įrašų aukštyn / Perkelti "
-"filmų namų katalogus (aukštyn)"
+"Mozgassa a kurzort a tetejére / Mozgassa a kurzort x sorral felfelé / Mozgassa "
+"a mappákat a Felvételek Kezdőmappájára (fel)"
 
 #: MovieSelection.py:629
 msgid ""
-"Move cursor to the end / Move cursor x entries down / Switch Folders in "
-"Movie Home (down)"
+"Move cursor to the end / Move cursor x entries down / Switch Folders in Movie "
+"Home (down)"
 msgstr ""
-"Perkelti žymeklį į pabaigą / perkelti žymeklį X įrašų žemyn / Perkelti filmų "
-"namų katalogus (žemyn)"
+"Mozgassa a kurzort a végére / Mozgassa a kurzort x sorral lefelé / Mozgassa a "
+"mappákat a Felvételek Kezdőmappájára (lefelé)"
 
 #: MovieSelection.py:630
 msgid "Directory forward"
-msgstr "Pakatalogis"
+msgstr "Könyvtár előre"
 
 #: MovieSelection.py:632
 msgid "Directory back"
-msgstr "Virškatalogis"
+msgstr "Könyvtár vissza"
 
 #: MovieSelection.py:634
 msgid "Toggle service selection"
-msgstr "Sukeisti kanalų pasirinkimą"
+msgstr "Csatorna kiválasztás váltása"
 
 #: MovieSelection.py:635
 msgid "Remove service selection"
-msgstr "Pašalinti kanalų pasirinkimą"
+msgstr "Csatorna kiválasztás törlése"
 
 #: MovieSelection.py:636 MovieSelection.py:638
 msgid "Available plugins menu"
-msgstr "Prieinamas įskiepių meniu"
+msgstr "Rendelkezésre álló bővítmények menü"
 
 #: MovieSelection.py:639
 msgid "Reload movie file list"
-msgstr "Filmų failų sąrašą įkelti iš naujo"
+msgstr "Újra tölti a Felvet filmek listáját"
 
 #: MovieSelection.py:640
 msgid "Open Timer List"
-msgstr "Atidaryti laikmačių sąrašą"
+msgstr "Időzítő lista megnyitása"
 
 #: MovieSelection.py:641
 msgid "Toggle viewed / not viewed"
-msgstr "Sukeisti  žiūrėtus / nežiūrėtus"
+msgstr "A megtekintett/nem látott nézet váltása"
 
 #: MovieSelection.py:643
 msgid "Start / end multiselection"
-msgstr "Pradėti / baigti multipasirinkimą"
+msgstr "Indulás/Vége többszörös kiválasztás"
 
 #: MovieSelection.py:1116
 msgid "E2 Bookmark"
-msgstr "E2 žymelė"
+msgstr "E2 könyvjelző"
 
 #: MovieSelection.py:1117 MovieSelectionMenu.py:166
 msgid "Open E2 Bookmark path"
-msgstr "Atidaryti E2 žymelės kelią"
+msgstr "Nyissa meg az E2 könyvjelző útvonalát"
 
 #: MovieSelection.py:1231
 msgid "No script operation for VLC streams."
-msgstr "Jokių scenarijų veiksmų VLC srautams."
+msgstr "Nincs szkript művelet a VLC adatfolyamokhoz."
 
 #: MovieSelection.py:1248
 msgid "Does not contain any scripts."
-msgstr "Čia nėra jokių scenarijų."
+msgstr "Nem tartalmaz szkripteket."
 
 #: MovieSelection.py:1253
 msgid "Choose script"
-msgstr "Pasirinkite scenarijų"
+msgstr "Válasszon szkriptet"
 
 #: MovieSelection.py:1274
 msgid ""
@@ -2290,54 +2236,54 @@ msgid ""
 "\n"
 "This may take a while on huge Disks, or Directories!"
 msgstr ""
-"Viršelių ieškoti tarp visų failų pakatalogiuose?\n"
+"Borító keresése az összes alkönyvtárban lévő fájlokra?\n"
 "\n"
-"Dideliuose diskuose, ar kataloguose tai gali užtrukti!"
+"Ez eltarthat egy ideig a hatalmas adatmennyiség esetén!"
 
 #: MovieSelection.py:1312
 msgid "No functionality set..."
-msgstr "Funkcionalumas nenustatytas..."
+msgstr "Nincs funkció beállítva..."
 
 #: MovieSelection.py:1404
 msgid "*** Multiselection active ***"
-msgstr "*** Įjungtas daugiapasirinkiminis režimas ***"
+msgstr "*** Többszörös kiválasztás aktív ***"
 
 #: MovieSelection.py:1812
 msgid "Sort Mode"
-msgstr "Rūšiavimo būdas"
+msgstr "Rendezési mód"
 
 #: MovieSelection.py:1813
 msgid "Sort Order"
-msgstr "Rūšiavimo tvarka"
+msgstr "Sorrend"
 
 #: MovieSelection.py:1837 MovieSelection.py:1853 MovieSelection.py:1869
 msgid "Hide Cover"
-msgstr "Slėpti viršelį"
+msgstr "Borítókép elrejtése"
 
 #: MovieSelection.py:1841 MovieSelection.py:1857 MovieSelection.py:1873
 #: plugin.py:179 plugin.py:200
 msgid "Button disabled"
-msgstr "Mygtukas išjungtas"
+msgstr "A gomb letiltva"
 
 #: MovieSelection.py:1842 MovieSelection.py:1858 MovieSelection.py:1874
 msgid "Cover disabled in EMC-Setup"
-msgstr "Viršeliai išjungti EMC sąrankoje"
+msgstr "A borítókép letiltva az EMC beállításban"
 
 #: MovieSelection.py:2020
 msgid "File not available."
-msgstr "Šis failas neprieinamas."
+msgstr "A fájl nem elérhető."
 
 #: MovieSelection.py:2077
 msgid "File added to current Playlist."
-msgstr "Failas, įtrauktas į šį grojaraštį."
+msgstr "Fájl hozzáadása az aktuális Lejátszási listához."
 
 #: MovieSelection.py:2079
 msgid "File exists in current Playlist."
-msgstr "Failas jau yra šiame grojaraštyje."
+msgstr "A fájl létezik az aktuális lejátszási listában."
 
 #: MovieSelection.py:2082
 msgid "Files added to current Playlist."
-msgstr "Failai, įtraukti į šį grojaraštį."
+msgstr "Fájlok hozzáadása az aktuális Lejátszási listához."
 
 #: MovieSelection.py:2084
 #, python-format
@@ -2348,10 +2294,10 @@ msgid ""
 "Files exists in current Playlist:\n"
 "%s"
 msgstr ""
-"Failai, įtraukti į šį grojaraštį:\n"
+"Az aktuális lejátszási listához hozzáadott fájlok:\n"
 "%s\n"
 "\n"
-"Failai jau yra šiame grojaraštyje:\n"
+"Fájlok léteznek az aktuális lejátszási listában:\n"
 "%s"
 
 #: MovieSelection.py:2086
@@ -2360,34 +2306,34 @@ msgid ""
 "Files exists in current Playlist:\n"
 "%s"
 msgstr ""
-"Failai jau yra šiame grojaraštyje:\n"
+"Fájlok léteznek az aktuális lejátszási listában:\n"
 "%s"
 
 #: MovieSelection.py:2130
 msgid "Last played movie/playlist not available..."
-msgstr "Paskutinis žiūrėtas filmas/grojaraštis neprieinamas..."
+msgstr "Utoljára lejátszott felvétel/lejátszási lista nem érhető el..."
 
 #: MovieSelection.py:2134
 msgid "Play last movie starting"
-msgstr "Pradedamas rodyti paskutinis filmas"
+msgstr "Az utolsó film indítása"
 
 #: MovieSelection.py:2153
 msgid "Play All starting"
-msgstr "Pradedami rodyti visi filmai"
+msgstr "Az összes lejátszása kezdődik"
 
 #: MovieSelection.py:2172
 msgid "Shuffle All starting"
-msgstr "Sumaišomi visi"
+msgstr "Véletlenszerű lejátszás kezdődik"
 
 #: MovieSelection.py:2205
 msgid "Not stopping any repeating timers. Modify them with the timer editor."
 msgstr ""
-"Pasikartojantys laikmačiai nestabdomi. Redaguokite juos laikmačių "
-"redaktoriuje."
+"Nem állít meg semmilyen ismétlődő időzítőt. Módosítsa őket az időzítő "
+"szerkesztővel."
 
 #: MovieSelection.py:2213
 msgid "Stop ongoing recording?\n"
-msgstr "Sustabdyti įrašymą?\n"
+msgstr "A folyamatos felvétel leállítása?\n"
 
 #: MovieSelection.py:2266
 #, python-format
@@ -2395,7 +2341,7 @@ msgid ""
 "Do you really want to remove your link\n"
 "%s?"
 msgstr ""
-"Ar tikrai norite pašalinti nuorodą\n"
+"Tényleg szeretné eltávolítani a linket\n"
 "%s?"
 
 #: MovieSelection.py:2268
@@ -2404,7 +2350,7 @@ msgid ""
 "Do you really want to remove your directory\n"
 "%s?"
 msgstr ""
-"Ar tikrai norite pašalinti katalogą\n"
+"Tényleg el szeretné távolítani a könyvtárat?\n"
 "%s?"
 
 #: MovieSelection.py:2310 MovieSelection.py:2333 MovieSelectionMenu.py:450
@@ -2414,7 +2360,7 @@ msgid ""
 "Do you really want to remove your bookmark\n"
 "%s?"
 msgstr ""
-"Ar tikrai norite pašalinti žymelę\n"
+"Tényleg szeretné eltávolítani a könyvjelzőjét?\n"
 "%s?"
 
 #: MovieSelection.py:2352
@@ -2422,31 +2368,31 @@ msgid ""
 " Deleting remotely recorded and it will display an rec-error dialog on the "
 "other DB."
 msgstr ""
-" Nuotolinių įrašų pašalinimas ir kitoje DB parodys REC klaidos pranešimą."
+" Távoli rögzítés törlése és egy másik hibaüzenet jelenik meg a másik DB-ben."
 
 #: MovieSelection.py:2358
 msgid " permanently"
-msgstr " galutinai"
+msgstr " véglegesen"
 
 #: MovieSelection.py:2377
 msgid " currently played?"
-msgstr " dabar žiūrėtą?"
+msgstr " jelenleg játszott?"
 
 #: MovieSelection.py:2398
 msgid " all selected video files?"
-msgstr " visus pasirinktus vaizdo failus?"
+msgstr " az összes kijelölt videofájlt?"
 
 #: MovieSelection.py:2404
 msgid ""
 " all selected video files? The currently playing movie is also one of the "
 "selections and its playback will be stopped."
 msgstr ""
-" visus pasirinktus vaizdo failus? Šiuo metu demonstruojamas įrašas taip pat "
-"tarp pasirinktų ir jo atkūrimas bus nutrauktas."
+" az összes kijelölt videofájlt? The currently playing movie is also one of the "
+"selections and its playback will be stopped."
 
 #: MovieSelection.py:2407
 msgid "Delete error:\n"
-msgstr "Šalinimo klaida:\n"
+msgstr "Törlés hiba:\n"
 
 #: MovieSelection.py:2439 MovieSelection.py:2483
 #, python-format
@@ -2457,47 +2403,45 @@ msgid ""
 "\n"
 "%s"
 msgstr ""
-"Šie failai naudojami kitiems sąrašo įrašams!\n"
+"A következő fájlok a listán szereplő egyéb bejegyzésekhez használatosak!\n"
 "\n"
-"Vis tiek ištrinti šiuos failus?\n"
+"Törölje ezeket a fájlokat is?\n"
 "\n"
 "%s"
 
 #: MovieSelection.py:2530
 msgid "This element belongs to a locked folder and cannot be deleted!"
-msgstr "Šis elementas yra užrakintame kataloge ir negali būti pašalintas!"
+msgstr "Ez az elem zárolt mappához tartozik, és nem törölhető!"
 
 #: MovieSelection.py:2542
 msgid ""
-"Delete failed because the trashcan directory does not exist. Attempt to "
-"create it now?"
+"Delete failed because the trashcan directory does not exist. Attempt to create "
+"it now?"
 msgstr ""
-"Pašalinti nepavyko, nes nėra šiukšliadėžės katalogo. Pabandyti jį sukurti "
-"dabar?"
+"A törlés sikertelen volt, mert a kuka könyvtár nem létezik. Megpróbálja "
+"létrehozni most?"
 
 #: MovieSelection.py:2567
 msgid "This folder is locked or contains a locked subfolder, unlock it first!"
 msgstr ""
-"Šis katalogas yra užrakintas, arba jame yra užrakintas pakatalogis. "
-"Pirmiausiai atrakinkite!"
+"Ez a mappa zárolva van, vagy zárolt almappát tartalmaz, először szüntesse meg "
+"a zárolást!"
 
 #: MovieSelection.py:2588
 msgid "Directory is not empty! Do you really want to delete it?"
-msgstr ""
-"Katalogas netuščias!\n"
-"Ar tikrai norite jį pašalinti?"
+msgstr "A könyvtár nem üres! Tényleg törölni szeretné?"
 
 #: MovieSelection.py:2594
 msgid "Cannot delete the parent directory."
-msgstr "Negalite pašalinti aukštesniojo katalogo."
+msgstr "A szülőkönyvtár nem törölhető."
 
 #: MovieSelection.py:2675 MovieSelection.py:2758
 msgid "Delete failed!"
-msgstr "Pašalinti nepavyko!"
+msgstr "A törlés sikertelen!"
 
 #: MovieSelection.py:2921 MovieSelection.py:2963
 msgid "Move file(s):"
-msgstr "Perkelti failą(us):"
+msgstr "Fájl(ok) áthelyezése:"
 
 #: MovieSelection.py:2950 MovieSelection.py:2973
 msgid ""
@@ -2505,13 +2449,13 @@ msgid ""
 "Select some movies with the VIDEO-button, move the cursor on top of the "
 "destination directory and press yellow."
 msgstr ""
-"Kaip perkelti failus:\n"
-"pasirinkite reikiamus filmus 'VIDEO' mygtuku, perkelkite žymeklį ant "
-"paskirties katalogo ir paspauskite 'GELTONĄ' mygtuką."
+"Fájlok áthelyezése:\n"
+"Válasszon ki néhány felvételt a VIDEO gombbal, mozgassa a kurzort a "
+"célkönyvtár tetejére, és nyomja meg a sárga gombot."
 
 #: MovieSelection.py:2997 MovieSelection.py:3039
 msgid "Copy file(s):"
-msgstr "Kopijuoti failą(us):"
+msgstr "Fájl(ok) másolása:"
 
 #: MovieSelection.py:3026 MovieSelection.py:3049
 msgid ""
@@ -2519,13 +2463,13 @@ msgid ""
 "Select some movies with the VIDEO-button, move the cursor on top of the "
 "destination directory and press yellow long."
 msgstr ""
-"Kaip kopijuoti failus:\n"
-"pasirinkite reikiamus filmus 'VIDEO' mygtuku, perkelkite žymeklį ant "
-"paskirties katalogo ir ilgai spauskite 'GELTONĄ' mygtuką."
+"A fájlok másolása:\n"
+"Válasszon ki néhány felvételt a VIDEO gombbal, mozgassa a kurzort a "
+"célkönyvtár tetejére, és nyomja meg a sárga gombot."
 
 #: MovieSelection.py:3066
 msgid "Move Directory:"
-msgstr "Perkelti katalogą:"
+msgstr "Áthelyezett könyvtár:"
 
 #: MovieSelection.py:3162 MovieSelection.py:3168
 msgid "IMDb"
@@ -2541,193 +2485,193 @@ msgstr "CSFD"
 
 #: MovieSelectionMenu.py:81
 msgid "Choose operation"
-msgstr "Pasirinkite veiksmą"
+msgstr "Válasszon műveletet"
 
 #: MovieSelectionMenu.py:84 plugin.py:169 plugin.py:190
 msgid "Movie home"
-msgstr "Filmų katalogas"
+msgstr "Felvételek helye"
 
 #: MovieSelectionMenu.py:87
 msgid "Directory up"
-msgstr "Aukštesnis katalogas"
+msgstr "Egy mappát fel"
 
 #: MovieSelectionMenu.py:89
 msgid "Reload current directory"
-msgstr "Įkelti šį katalogą iš naujo"
+msgstr "Aktuális könyvtár újra töltése"
 
 #: MovieSelectionMenu.py:91 MovieSelectionMenu.py:209
 msgid "Playlist Options"
-msgstr "Grojaraščio parinktys"
+msgstr "Lejátszási lista beállításai"
 
 #: MovieSelectionMenu.py:95 MovieSelectionMenu.py:214
 msgid "Add to current Playlist"
-msgstr "Įtraukti į šį grojaraštį"
+msgstr "Hozzáadás az aktuális lejátszási listához"
 
 #: MovieSelectionMenu.py:97 plugin.py:173 plugin.py:194
 msgid "Play last"
-msgstr "Rodyti paskutinį žiūrėtą"
+msgstr "Utoljára játszott"
 
 #: MovieSelectionMenu.py:102
 msgid "Cover search"
-msgstr "Viršelių paieška"
+msgstr "Borító keresés"
 
 #: MovieSelectionMenu.py:106
 msgid "Directory-Cover search"
-msgstr "Katalogas - viršelių paieška"
+msgstr "Könyvtár borító keresés"
 
 #: MovieSelectionMenu.py:115 MovieSelectionMenu.py:117
 msgid "Delete permanently"
-msgstr "Ištrinti negrąžinamai"
+msgstr "Véglegesen törlődjön"
 
 #: MovieSelectionMenu.py:118
 msgid "Empty trashcan"
-msgstr "Ištuštinti šiukšliadėžę"
+msgstr "Kuka ürítése"
 
 #: MovieSelectionMenu.py:119
 msgid "Go to trashcan"
-msgstr "Į šiukšliadėžę"
+msgstr "Ugrás a Kukához"
 
 #: MovieSelectionMenu.py:121
 msgid "Mark all movies"
-msgstr "Pažymėti visus filmus"
+msgstr "Az összes felvétel megjelölése"
 
 #: MovieSelectionMenu.py:122
 msgid "Remove rogue files"
-msgstr "Pašalinti neteisingus failus"
+msgstr "A becsapós fájlok törlése"
 
 #: MovieSelectionMenu.py:124
 msgid "Delete cut file(s)"
-msgstr "Šalinti iškirptą(us) failą(us)"
+msgstr "Törli a vágott fájlt, fájlokat"
 
 #: MovieSelectionMenu.py:126
 msgid "Create link"
-msgstr "Sukurti nuorodą"
+msgstr "Link létrehozása"
 
 #: MovieSelectionMenu.py:127 MovieSelectionMenu.py:248
 msgid "Create directory"
-msgstr "Sukurti katalogą"
+msgstr "Mappa létrehozása"
 
 #: MovieSelectionMenu.py:129
 msgid "(Un-)Lock Directory"
-msgstr "(At-)Blokuoti katalogą"
+msgstr "Könyvtár zárolás/zárolás megszüntetés"
 
 #: MovieSelectionMenu.py:136
 msgid "Copy Files"
-msgstr "Kopijuoti failus"
+msgstr "Fájlok másolása"
 
 #: MovieSelectionMenu.py:137
 msgid "Move Files"
-msgstr "Perkelti failus"
+msgstr "Fájlok áthelyezése"
 
 #: MovieSelectionMenu.py:139 plugin.py:176 plugin.py:197
 msgid "Copy File"
-msgstr "Kopijuoti failą"
+msgstr "Fájl másolása"
 
 #: MovieSelectionMenu.py:140 plugin.py:171 plugin.py:192
 msgid "Move File"
-msgstr "Perkelti failą"
+msgstr "Fájl áthelyezése"
 
 #: MovieSelectionMenu.py:144
 msgid "Download Movie Information"
-msgstr "Parsisiųsti informaciją apie filmą"
+msgstr "Felvételi információk letöltése"
 
 #: MovieSelectionMenu.py:148
 msgid "Rename selected movie(s)"
-msgstr "Pervadinti pasirinktus filmus"
+msgstr "A kiválasztott felvétel(ek) átnevezése"
 
 #: MovieSelectionMenu.py:149
 msgid "Remove cut list marker"
-msgstr "Pašalinti iškirpimo žymeklį"
+msgstr "Vágó lista jelölő eltávolítása"
 
 #: MovieSelectionMenu.py:150
 msgid "Reset marker from selected movie(s)"
-msgstr "Išvalyti žymeklius pasirinktuose filmuose"
+msgstr "A kiválasztott felvételen a jelölők alaphelyzetbe állítása"
 
 #: MovieSelectionMenu.py:168
 msgid "Add directory to E2 Bookmarks"
-msgstr "Įtraukti katalogą į E2 žymeles"
+msgstr "Könyvtár hozzáadása az E2 Könyvjelzőkhöz"
 
 #: MovieSelectionMenu.py:170
 msgid "Remove directory from E2 Bookmarks"
-msgstr "Pašalinti katalogą iš E2 žymelių"
+msgstr "Az E2 könyvjelzőkből a könyvtár eltávolítása"
 
 #: MovieSelectionMenu.py:173
 msgid "Remove selected E2 Bookmark"
-msgstr "Pašalinti pasirinktą iš E2 žymelių"
+msgstr "Kiválasztott E2 könyvjelző eltávolítása"
 
 #: MovieSelectionMenu.py:175
 msgid "Open EMC Bookmark path"
-msgstr "Atidaryti EMC žymelių kelią"
+msgstr "Az EMC könyvjelző útvonalának megnyitása"
 
 #: MovieSelectionMenu.py:177
 msgid "Add directory to EMC Bookmarks"
-msgstr "Įtraukti katalogą į EMC žymeles"
+msgstr "Könyvtár hozzáadása EMC könyvjelzőkhöz"
 
 #: MovieSelectionMenu.py:179
 msgid "Remove directory from EMC Bookmarks"
-msgstr "Pašalinti katalogą iš EMC žymelių"
+msgstr "Könyvtárak eltávolítása az EMC könyvjelzőkből"
 
 #: MovieSelectionMenu.py:182
 msgid "Remove selected EMC Bookmark"
-msgstr "Pašalinti pasirinktą iš EMC žymelių"
+msgstr "Kiválasztott EMC könyvjelző eltávolítása"
 
 #: MovieSelectionMenu.py:184
 msgid "Set permanent sort"
-msgstr "Nustatyti pastovų rūšiavimą"
+msgstr "Állítsa be az állandó rendezést"
 
 #: MovieSelectionMenu.py:186
 msgid "Remove permanent sort"
-msgstr "Pašalinti pastovų rūšiavimą"
+msgstr "Távolítsa el az állandó rendezést"
 
 #: MovieSelectionMenu.py:190
 msgid "Remove permanent sort from parent"
-msgstr "Pašalinti pastovų rūšiavimą nuo pirminio katalogo"
+msgstr "Távolítsa el az állandó rendezést a szülő sorrendből"
 
 #: MovieSelectionMenu.py:193
 msgid "EMC Setup"
-msgstr "EMC sąranka"
+msgstr "EMC beállítása"
 
 #: MovieSelectionMenu.py:196
 msgid "Choose plugin"
-msgstr "Pasirinkite įskiepį"
+msgstr "Válasszon bővítményt"
 
 #: MovieSelectionMenu.py:202
 msgid "Choose bookmark"
-msgstr "Pasirinkite žymelę"
+msgstr "Válasszon könyvjelzőt"
 
 #: MovieSelectionMenu.py:210
 msgid "Show current Playlist"
-msgstr "Rodyti dabartinį grojaraštį"
+msgstr "Az aktuális lejátszási lista megjelenítése"
 
 #: MovieSelectionMenu.py:216
 msgid "Play current Playlist"
-msgstr "Paleisti dabartinį grojaraštį"
+msgstr "Az aktuális lejátszási lista lejátszása"
 
 #: MovieSelectionMenu.py:217
 msgid "Play random current Playlist"
-msgstr "Paleisti atsitiktinį dabartinį grojaraštį"
+msgstr "Véletlenszerű lejátszás az aktuális Lejátszási listáról"
 
 #: MovieSelectionMenu.py:218
 msgid "Delete current Playlist"
-msgstr "Pašalinti šį grojaraštį"
+msgstr "Az aktuális Lejátszási lista törlése"
 
 #: MovieSelectionMenu.py:219
 msgid "Playlist Setup"
-msgstr "Grojaraščio sąranka"
+msgstr "Lejátszási lista beállítás"
 
 #: MovieSelectionMenu.py:247
 msgid "Enter name for new directory:"
-msgstr "Įrašykite naujojo katalogo pavadinimą:"
+msgstr "Kérem, adja meg az új könyvtár nevét:"
 
 #: MovieSelectionMenu.py:254
 #, python-format
 msgid "Directory %s already exists!"
-msgstr "Katalogas %s jau yra!"
+msgstr "A(z) %s könyvtár már létezik!"
 
 #: MovieSelectionMenu.py:268
 #, python-format
 msgid "Do you really want to lock the directory %s and all its subfolders?"
-msgstr "Ar tikrai norite užrakinti katalogą %s kartu su visais pakatalogiais?"
+msgstr "Biztosan lezárja a(z) %s könyvtárat és az összes almappáját?"
 
 #: MovieSelectionMenu.py:270
 #, python-format
@@ -2735,40 +2679,40 @@ msgid ""
 "The directory %s is already locked. Do you want to unlock it and all its "
 "subfolders?"
 msgstr ""
-"Katalogas %s jau užrakintas. Ar norite atrakinti jį kartu su visais "
-"pakatalogiais?"
+"A(z) %s könyvtár már lezárva van. Szeretné kinyitni azt és az összes "
+"almappáját?"
 
 #: MovieSelectionMenu.py:294
 msgid "Create Link"
-msgstr "Sukurti nuorodą"
+msgstr "Link létrehozása"
 
 #: MovieSelectionMenu.py:325
 msgid "Permanently delete all files in trashcan?"
-msgstr "Negrįžtamai pašalinti visus įrašus iš šiukšliadėžės?"
+msgstr "Véglegesen törli az összes fájlt a kukákban?"
 
 #: MovieSelectionMenu.py:337
 msgid "Movie Selection Menu"
-msgstr "Filmo pasirinkimo meniu"
+msgstr "Felvétel kiválasztási menü"
 
 #: MovieSelectionMenu.py:345
 msgid "exception "
-msgstr "išimtis "
+msgstr "kivétel "
 
 #: MovieSelectionMenu.py:354
 msgid ""
-"Locate rogue files and remove them? (permanently if no trashcan available, "
-"may take a minute or so)"
+"Locate rogue files and remove them? (permanently if no trashcan available, may "
+"take a minute or so)"
 msgstr ""
-"Nustatyti neteisingus failus ir pašalinti? (visiškai, jei negalima į "
-"šiukšliadėžę. Tai užtruks apie minutę)"
+"Keresse meg a becsapós fájlokat, és távolítsa el őket? (tartósan, ha nincs "
+"kuka, akkor több percig is eltarthat)"
 
 #: MovieSelectionMenu.py:371
 msgid "Remove all cut file marker permanently?"
-msgstr "Galutinai pašalinti visus kirpimo žymeklius?"
+msgstr "Véglegesen eltávolítja az összes vágott fájljelölőt?"
 
 #: MovieSelectionMenu.py:385
 msgid "Remove all marker permanently?"
-msgstr "Galutinai pašalinti visus žymeklius?"
+msgstr "Véglegesen eltávolít minden jelölőt?"
 
 #: MovieSelectionMenu.py:518
 msgid ""
@@ -2776,64 +2720,64 @@ msgid ""
 "If you have selected a directory, all cut files within the folder and its "
 "subfolders will be deleted!"
 msgstr ""
-"Ar tikrai norite ištrinti iškirptą failą?\n"
-"Jeigu pasirinkote katalogą, visi iškirpti failai, esantys šiame kataloge ir "
-"jo pakatalogiuose bus ištrinti!"
+"Tényleg törölni szeretné a vágott fájlt? Ha kijelölt egy könyvtárat, a "
+"mappában lévő összes vágott fájl és annak almappái törlődnek!"
 
 #: RogueFileCheck.py:42
 msgid " files\n"
-msgstr " failai\n"
+msgstr " fájlok\n"
 
 #: RogueFileCheck.py:43
 msgid "No rogue files found."
-msgstr "Neteisingų failų nėra."
+msgstr "Nincs becsapós fájl."
 
 #: RogueFileCheck.py:44
 msgid ""
 "Found rogue files:\n"
 "\n"
-msgstr "Rasti neteisingi failai:\n"
+msgstr ""
+"Becsapós fájlok:\n"
+"\n"
 
 #: VlcPluginInterface.py:156
 msgid "VLC Server not reachable"
-msgstr "VLC serveris nepasiekiamas"
+msgstr "A VLC szerver nem érhető el"
 
 #: plugin.py:55
 msgid "no"
-msgstr "ne"
+msgstr "nem"
 
 #: plugin.py:55
 msgid "yes"
-msgstr "taip"
+msgstr "igen"
 
-# No overwrite?
 #: plugin.py:133
 msgid "No override"
-msgstr "Neperrašyti"
+msgstr "Nincs felülírás"
 
 #: plugin.py:134
 msgid "Video-button"
-msgstr "'VIDEO' mygtukas"
+msgstr "Videó gomb"
 
 #: plugin.py:135
 msgid "TV-button"
-msgstr "'TV' mygtukas"
+msgstr "TV gomb"
 
 #: plugin.py:136
 msgid "Radio-button"
-msgstr "'RADIO' mygtukas"
+msgstr "Rádió gomb"
 
 #: plugin.py:137
 msgid "Quick-button"
-msgstr "Greitasis mygtukas"
+msgstr "Gyors gomb"
 
 #: plugin.py:138
 msgid "Timeshift-button"
-msgstr "Laiko poslinkio mygtukas"
+msgstr "Timeshift gomb"
 
 #: plugin.py:141 plugin.py:150 plugin.py:159
 msgid "Off"
-msgstr "išjungta"
+msgstr "Ki"
 
 #: plugin.py:142
 msgid "DD.MM.YYYY"
@@ -2841,7 +2785,7 @@ msgstr "YYYY.MM.DD"
 
 #: plugin.py:143
 msgid "DD.MM.YYYY HH:MM"
-msgstr "YYYY.MM.DD HH:MM"
+msgstr "YYYY.MM.DD. HH:MM"
 
 #: plugin.py:144
 msgid "DD.MM HH:MM"
@@ -2849,7 +2793,7 @@ msgstr "MM.DD HH:MM"
 
 #: plugin.py:145
 msgid "DD.MM. HH:MM"
-msgstr "MM.DD HH:MM"
+msgstr "MM.DD. HH:MM"
 
 #: plugin.py:146
 msgid "YYYY/MM/DD"
@@ -2865,7 +2809,7 @@ msgstr "MM/DD HH:MM"
 
 #: plugin.py:151
 msgid "Description"
-msgstr "aprašymas"
+msgstr "Leírás"
 
 #: plugin.py:152
 msgid "( # )"
@@ -2881,361 +2825,329 @@ msgstr "( GB )"
 
 #: plugin.py:156
 msgid "ProgressBar"
-msgstr "eigos juosta"
+msgstr "Folyamatjelző"
 
 #: plugin.py:157
 msgid "Percent (%)"
-msgstr "procentai (%)"
+msgstr "Százalék (%)"
 
 #: plugin.py:158
 msgid "Movie Color"
-msgstr "filmo spalva"
+msgstr "Felvétel színe"
 
 #: plugin.py:172 plugin.py:193
 msgid "Add to Playlist"
-msgstr "Įtraukti į grojaraštį"
+msgstr "Hozzáadás lejátszási listához"
 
 #: plugin.py:174 plugin.py:195
 msgid "Cover Search"
-msgstr "Viršelių paieška"
+msgstr "Borító keresés"
 
 #: plugin.py:175 plugin.py:196
 msgid "Download Movie Info"
-msgstr "Parsisiųsti informaciją apie filmą"
+msgstr "Felvételi információk letöltése"
 
 #: plugin.py:177 plugin.py:198
 msgid "Open E2 bookmarks"
-msgstr "Atverti E2 žymeles"
+msgstr "E2 könyvjelző megnyitása"
 
 #: plugin.py:178
 msgid "Toggle Cover Button"
-msgstr "Viršelių perjungimo mygtukas"
+msgstr "Váltás fedőgombra"
 
 #: plugin.py:183
 msgid "Sort Options"
-msgstr "Rūšiavimo parinktys"
+msgstr "Rendezés beállítása"
 
 #: plugin.py:209
 msgid "down"
-msgstr "žemyn"
+msgstr "le"
 
 #: plugin.py:210
 msgid "up/down"
-msgstr "aukštyn/žemyn"
+msgstr "fel/le"
 
 #: plugin.py:211
 msgid "off"
-msgstr "išjungti"
+msgstr "ki"
 
 #: plugin.py:213
 msgid "type 1 - OSD + black (#00000000)"
-msgstr "tipas 1 - OSD + juoda (#00000000)"
+msgstr "1. típus - OSD + fekete (# 00000000)"
 
 #: plugin.py:214
 msgid "type 2 - transparent + white (#FFFFFFFF)"
-msgstr "tipas 2 - skaidri + balta (#FFFFFFFF)"
+msgstr "2. típus - átlátszó + fehér (#FFFFFFFF)"
 
 #: plugin.py:215
 msgid "type 3 - OSD + black (#00FFFFFF)"
-msgstr "tipas 3 - OSD + juoda (#00FFFFFF)"
+msgstr "3. típus - OSD + fekete (# 00FFFFFF)"
 
 #: plugin.py:216
 msgid "type 4 - transparent + black (#FF000000)"
-msgstr "tipas 4 - skaidri + juoda (#FF000000)"
+msgstr "4-es típusú - átlátszó + fekete (# FF000000)"
 
 #: plugin.py:219
 msgid "E2 Bookmarks"
-msgstr "E2 žymelės"
+msgstr "E2 könyvjelzők"
 
 #: plugin.py:220
 msgid "EMC Bookmarks"
-msgstr "EMC žymelės"
+msgstr "EMC könyvjelzők"
 
 #: plugin.py:221
 msgid "Both"
-msgstr "Abu"
+msgstr "Mindkettő"
 
 #: plugin.py:224
 msgid "Standby"
-msgstr "Budintis režimas"
+msgstr "Készenlét"
 
 #: plugin.py:225
 msgid "DeepStandby"
-msgstr "Gilus budėjimas"
+msgstr "Kikapcsolás"
 
 #: plugin.py:226
 msgid "Reboot"
-msgstr "Paleisti iš naujo"
+msgstr "Újraindítás"
 
 #: plugin.py:227
 msgid "E2 Restart"
-msgstr "Paleisti grafinę aplinką iš naujo"
+msgstr "E2 Újraindítás"
 
 #: plugin.py:229
 msgid "HomeEnd"
-msgstr "Sąrašo pabaiga"
+msgstr "HomeEnd"
 
 #: plugin.py:230
 msgid "Skip"
-msgstr "Praleisti"
+msgstr "Kihagy"
 
 #: plugin.py:231
 msgid "Change Folder"
-msgstr "Pakeisti katalogą"
+msgstr "Változtassa meg a mappát"
 
 #: plugin.py:239
 msgid "Date sort descending (D-)"
-msgstr "pagal datą mažėjančiai (D-)"
+msgstr "Dátum csökkenő (D-)"
 
 #: plugin.py:239 plugin.py:245
 msgid "Date sort"
-msgstr "pagal datą"
+msgstr "Dátum"
 
 #: plugin.py:240
 msgid "Alpha sort ascending (AZ)"
-msgstr "pagal pavadinimą A>Ž"
+msgstr "ABC növekvő (AZ)"
 
 #: plugin.py:240 plugin.py:246
 msgid "Alpha sort"
-msgstr "pagal pavadinimą"
+msgstr "ABC"
 
 #: plugin.py:241
 msgid "Alpha sort ascending, Date descending (AZD-)"
-msgstr "pagal pavad. A>Ž, mažėj. data (AŽD-)"
+msgstr "ABC növekvő, Dátum csökkenő (AZD-)"
 
 #: plugin.py:241 plugin.py:247
 msgid "Alpha sort date newest"
-msgstr "pagal naujumą"
+msgstr "ABC, Dátum újabb"
 
 #: plugin.py:242
 msgid "Alpha sort ascending with meta (AZM)"
-msgstr "pagal pavad. A>Ž, su metaduom. (AŽM)"
+msgstr "ABC növekvő + meta (AZM)"
 
 #: plugin.py:242 plugin.py:248
 msgid "Alpha sort meta"
-msgstr "pagal metaduomenis"
+msgstr "ABC + meta"
 
 #: plugin.py:243
 msgid "Alpha sort ascending with meta, Date descending (AZMD-)"
-msgstr "pagal pavad. A>Ž, su metaduom., mažėj. data (AŽMD-)"
+msgstr "ABC növekvő + meta, Dátum csökkenő (AZMD-)"
 
 #: plugin.py:243 plugin.py:249
 msgid "Alpha sort meta date newest"
-msgstr "pagal metaduomenis, naujumą"
+msgstr "ABC + meta, Dátum legújabb"
 
 #: plugin.py:244
 msgid "Progress sort ascending (P+)"
-msgstr "pagal progresą didėjančiai (P+)"
+msgstr "Nézési idő növekvő (P+)"
 
 #: plugin.py:244 plugin.py:250
 msgid "Progress sort"
-msgstr "pagal progresą"
+msgstr "Nézési idő"
 
 #: plugin.py:245
 msgid "Date sort ascending (D+)"
-msgstr "pagal datą didėjančiai (D+)"
+msgstr "Dátum növekvő (D+)"
 
 #: plugin.py:246
 msgid "Alpha sort descending (ZA)"
-msgstr "pagal pavadinimą Ž>A"
+msgstr "ABC csökkenő (ZA)"
 
 #: plugin.py:247
 msgid "Alpha sort descending, Date ascending (ZAD+)"
-msgstr "pagal pavad. Ž>A, didėj. data (ŽAD+)"
+msgstr "ABC csökkenő, Dátum növekvő (ZAD+)"
 
 #: plugin.py:248
 msgid "Alpha sort descending with meta (ZAM)"
-msgstr "pagal pavad. Ž>A, su metaduom. (ŽAM)"
+msgstr "ABC csökkenő + meta (ZAM)"
 
 #: plugin.py:249
 msgid "Alpha sort descending with meta, Date ascending (ZAMD+)"
-msgstr "pagal pavad. Ž>A, su metaduom.,didėj. data (ŽAMD+)"
+msgstr "ABC csökkenő + meta, Dátum növekvő (ZAMD+)"
 
 #: plugin.py:250
 msgid "Progress sort descending (P-)"
-msgstr "pagal progresą mažėjančiai (P-)"
+msgstr "Nézési idő csökkenő (P-)"
 
 #: plugin.py:300
 msgid "after standby"
-msgstr "po budėjimo režimo"
+msgstr "készenléti állapot után"
 
 #: plugin.py:309
 msgid "never hide"
-msgstr "visada rodyti"
+msgstr "soha ne rejtse el"
 
 #: plugin.py:309
 msgid "hide live TV"
-msgstr "nerodyti tiesioginės TV"
+msgstr "az élő TV adás elrejtése"
 
 #: plugin.py:309
 msgid "hide live TV and timeshift"
-msgstr "nerodyti tiesioginės TV ir laiko poslinkio"
+msgstr "az élő TV adás elrejtése és Timeshift"
 
 #: plugin.py:309
 msgid "hide playback"
-msgstr "nerodyti įrašų atkūrimo"
+msgstr "a lejátszás elrejtése"
 
 #: plugin.py:309
 msgid "always hide"
-msgstr "nerodyti niekada"
+msgstr "mindig rejtse el"
 
 #: plugin.py:310
 msgid "stop service"
-msgstr "išjungti kanalą"
+msgstr "szolgáltatás megállítása"
 
 #: plugin.py:310
 msgid "single pixel TV, muted"
-msgstr "vieno pikselio TV, be garso"
+msgstr "egy képpontos TV, elnémítva"
 
 #: plugin.py:315
 msgid "left from Name"
-msgstr "pavadinimo kairėje"
+msgstr "a Névtől balra"
 
 #: plugin.py:315
 msgid "right from Name"
-msgstr "pavadinimo dešinėje"
+msgstr "a Névtől jobbra"
 
 #: plugin.py:322 plugin.py:370
 msgid "center"
-msgstr "centre"
+msgstr "középre"
 
 #: plugin.py:322 plugin.py:370
 msgid "right"
-msgstr "dešinėje"
+msgstr "jobb"
 
 #: plugin.py:322 plugin.py:370
 msgid "left"
-msgstr "kairėje"
+msgstr "bal"
 
 #: plugin.py:327
 msgid "Yes, without Message"
-msgstr "taip, be pranešimo"
+msgstr "Igen, üzenet nélkül"
 
 #: plugin.py:327
 msgid "Yes, with Message"
-msgstr "taip, su pranešimu"
+msgstr "Igen, üzenettel"
 
 #: plugin.py:349
 msgid ""
 "ATTENTION\n"
 "\n"
-"This option will move all finished movies in Movie Home automatically to "
-"Your trashcan at the given time.\n"
+"This option will move all finished movies in Movie Home automatically to Your "
+"trashcan at the given time.\n"
 "At next trashcan cleanup all movies will be deleted.\n"
 "\n"
 "Confirm this with the blue key followed by the green key."
 msgstr ""
-"DĖMESIO\n"
+"FIGYELEM\n"
 "\n"
-"Ši parinktis nustatytu laiku automatiškai perkels visus užbaigtus įrašus į "
-"šiukšliadėžę.\n"
-"Valant šiukšliadėžę, įrašai bus galutinai panaikinti.\n"
+"Ezzel az opcióval az összes megnézett felvételt a Felvételek könyvtárából "
+"automatikusan áthelyezi a Kukába egy megadott időpontban.\n"
+"A következő Kuka ürítésekor minden felvétel törlődik a Kukából.\n"
 "\n"
-"Patvirtinkite tai 'MĖLYNU' mygtuku, po 'ŽALIOJO' paspaudimo."
+"Erősítse meg ezt először a kék gomb, majd a zöld gomb megnyomásával."
 
 #: plugin.py:364
 msgid "always"
-msgstr "visada"
+msgstr "mindig"
 
 #: plugin.py:364
 msgid "after reload list"
-msgstr "įkėlus sąrašą iš naujo"
+msgstr "a lista újra töltésé után"
 
 #: plugin.py:364
 msgid "only initially"
-msgstr "tik iš pradžių"
+msgstr "csak eredetileg"
 
 #: plugin.py:375
 #, python-format
 msgid "%d second"
 msgid_plural "%d seconds"
-msgstr[0] "%d sekundė"
-msgstr[1] "%d sekundės"
-msgstr[2] "%d sekundžių"
+msgstr[0] "%d másodperc"
+msgstr[1] "%d másodperc"
 
 #: plugin.py:384
 msgid "Day"
-msgstr "diena"
+msgstr "Nap"
 
 #: plugin.py:387
 msgid "Days"
-msgstr "dienos"
+msgstr "Napok"
 
 #: plugin.py:392
 msgid "Week"
-msgstr "savaitė"
+msgstr "Hét"
 
 #: plugin.py:395
 msgid "Weeks"
-msgstr "savaitės"
+msgstr "Hetek"
 
 #: plugin.py:400
 msgid "Month"
-msgstr "mėnuo"
+msgstr "Hónap"
 
 #: plugin.py:403
 msgid "Months"
-msgstr "mėnesiai"
+msgstr "Hónapok"
 
 #: plugin.py:408
 msgid "No limit"
-msgstr "neribojant"
+msgstr "Nincs határ"
 
 #: plugin.py:439
 msgid "IMDb Search"
-msgstr "IMDb paieška"
+msgstr "IMDb keresés"
 
 #: plugin.py:439
 msgid "EMC-TMDB Info"
-msgstr "EMC TMDb informacija"
+msgstr "EMC-TMDB Info"
 
 #: plugin.py:439
 msgid "TMDB Info"
-msgstr "TMDb informacija"
+msgstr "TMDB Info"
 
 #: plugin.py:439
 msgid "TMBD Info"
-msgstr "TMBD informacija"
+msgstr "TMBD Info"
 
 #: plugin.py:439
 msgid "CSFD Info"
-msgstr "CSFD informacija"
+msgstr "CSFD Info"
 
 #: plugin.py:529
 msgid "configuration"
-msgstr "konfigūracija"
+msgstr "konfiguráció"
 
 #: plugin.py:532
 msgid "movie manipulation list"
-msgstr "filmų manipuliavimo sąrašas"
-
-msgid "HELP_Sort file A to Z at startup"
-msgstr "Atveriant, filmų sąrašas bus surūšiuotas pagal abėcėlę."
-
-msgid "HELP_File order reverse"
-msgstr ""
-"Filmų sąrašas bus surūšiuotas atvirkštine tvarka.\n"
-"Nesvarbu, ar pasirinkta rodyti pagal chronologiją, ar pagal abėcėlę."
-
-msgid "HELP_Show E2 Bookmarks in movielist"
-msgstr ""
-"'Filmų namuose' rodyti virtualius katalogus, atitinkančius Enigma2 žymes."
-
-msgid "HELP_Enigma daily auto-restart"
-msgstr "Enigma2 kas nurodytą laiko tarpą bus paleidžiama iš naujo."
-
-msgid "HELP_Enigma auto-restart window begin"
-msgstr "Enigma2 automatinio paleidimo iš naujo laikotarpio pradžia."
-
-msgid "HELP_Enigma auto-restart window end"
-msgstr "Enigma2 automatinio paleidimo iš naujo laikotarpio pabaiga."
-
-msgid "HELP_Force standby after auto-restart"
-msgstr ""
-"Po Enigma2 automatinio paleidimo iš naujo Vu+ bus perjungtas į budėjimo "
-"būseną."
-
-msgid "HELP_Scan for Movie Structures"
-msgstr ""
-"Leidžia išjungti filmų struktūros nuskaitymą visuose kataloguose.\n"
-"Išjungus, išvengiama nepageidaujamų (tinklo) diskų prižadinimų."
+msgstr "felvételek manipulációs listája"
