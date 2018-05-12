@@ -1,7 +1,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: EMC v1.1\n"
+"Project-Id-Version: EMC v1.2\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-04-02 23:08+0200\n"
 "PO-Revision-Date: \n"
@@ -2333,7 +2333,7 @@ msgstr ""
 
 #: MovieSelection.py:2213
 msgid "Stop ongoing recording?\n"
-msgstr "A folyamatos felvétel leállítása?\n"
+msgstr "A folyamatban lévő felvétel leállítása?\n"
 
 #: MovieSelection.py:2266
 #, python-format
