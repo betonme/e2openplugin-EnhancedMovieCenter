@@ -2935,7 +2935,7 @@ msgstr "Nein"
 
 #: plugin.py:55
 msgid "yes"
-msgstr "Yes"
+msgstr "Ja"
 
 #: plugin.py:151
 msgid "No override"
