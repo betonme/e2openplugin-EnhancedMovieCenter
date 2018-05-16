@@ -101,9 +101,9 @@ def setupKeyResponseValues(dummyself=None, dummy=None):
 	# currently not working on DM500/DM600, wrong input dev files?
 	e1 = os.open("/dev/input/event0", os.O_RDWR)
 	e2 = os.open("/dev/input/event0", os.O_RDWR)
-	s1 = struct.pack("LLHHl", 0, 0, 0x14, 0x00, int(config.EMC.key_repeat.value))
-	s2 = struct.pack("LLHHl", 0, 0, 0x14, 0x01, int(config.EMC.key_period.value))
-	size = struct.calcsize("LLHHl")
+	s1 = struct.pack("LLHHi", 0, 0, 0x14, 0x00, int(config.EMC.key_repeat.value))
+	s2 = struct.pack("LLHHi", 0, 0, 0x14, 0x01, int(config.EMC.key_period.value))
+	size = struct.calcsize("LLHHi")
 	os.write(e1, s1)
 	os.write(e2, s1)
 	os.write(e1, s2)
