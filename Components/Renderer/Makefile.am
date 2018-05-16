@@ -1,2 +1,2 @@
-installdir = /usr/lib/enigma2/python/Components/Renderer
+installdir = $(libdir)/enigma2/python/Components/Renderer
 install_PYTHON = *.py
