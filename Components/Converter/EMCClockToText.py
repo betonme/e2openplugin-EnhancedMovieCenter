@@ -16,6 +16,7 @@ class EMCClockToText(Converter, object):
 	FORMAT = 4
 	AS_LENGTH = 5
 	TIMESTAMP = 6
+	HOUR_MIN = 7
 
 	def __init__(self, type):
 		Converter.__init__(self, type)
@@ -32,6 +33,8 @@ class EMCClockToText(Converter, object):
 		elif str(type).find("Format") != -1:
 			self.type = self.FORMAT
 			self.fmt_string = type[7:]
+		elif type == "HourMin":
+			self.type = self.HOUR_MIN
 		else:
 			self.type = self.DEFAULT
 
@@ -47,6 +50,19 @@ class EMCClockToText(Converter, object):
 			return "%d:%02d" % (time / 60, time % 60)
 		elif self.type == self.TIMESTAMP:
 			return str(time)
+		elif self.type == self.HOUR_MIN:
+			mins = time / 60
+			if not isinstance(mins, int):
+				return '{0}{1}'.format(0, _("time_min_ct"))
+			if mins <= 0:
+				return '{0}{1}'.format(0, _("time_min_ct"))
+			vhour, vmins = mins // 60, mins % 60
+			if vhour and vmins:
+				return '{0}{1}{2}{3}'.format(vhour, _("time_hour_ct"), vmins, _("time_min_ct"))
+			elif vhour and not vmins:
+				return '{0}{1}'.format(vhour, _("time_hour_ct"))
+			else:
+				return '{0}{1}'.format(vmins, _("time_min_ct"))
 
 		if time > (31 * 24 * 60 * 60):
 		# No Recording should be longer than 1 month :-)
@@ -59,7 +75,7 @@ class EMCClockToText(Converter, object):
 		elif self.type == self.DEFAULT:
 			return "%02d:%02d" % (t.tm_hour, t.tm_min)
 		elif self.type == self.DATE:
-			CoolString = "%A %B %d, %Y"
+			CoolString = _("%A %B %d, %Y")
 			if config.osd.language.value == "de_DE":
 				CoolString = "%A, %d. %B %Y"
 				t2 = ["Montag","Dienstag","Mittwoch","Donnerstag","Freitag","Samstag","Sonntag"][t.tm_wday]
