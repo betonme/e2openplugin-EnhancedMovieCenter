@@ -20,7 +20,7 @@
         <widget name="Cover" position="10,90" size="278,278" alphatest="blend"/>
         <widget font="Regular;30" halign="center" position="270,110" render="Label" size="290,35" source="Service">
             <convert type="EMCServiceTime">StartTime</convert>
-            <convert type="EMCClockToText">Format:%a. %d %b, %y</convert>
+            <convert type="EMCClockToText">Format:%a. %d. %b %y</convert>
         </widget>
         <widget font="Regular;30" halign="center" position="270,160" render="Label" size="290,35" source="Service">
             <convert type="EMCMovieInfo">FileSize</convert>

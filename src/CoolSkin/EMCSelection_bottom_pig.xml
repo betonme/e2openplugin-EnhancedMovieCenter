@@ -22,7 +22,7 @@
         <widget name="Cover" position="75,455" size="150,150" alphatest="blend" zPosition="3"/>
         <widget font="Regular;22" position="300,460" render="Label" size="200,27" source="Service">
             <convert type="EMCServiceTime">StartTime</convert>
-            <convert type="EMCClockToText">Format:%a. %d %b, %y</convert>
+            <convert type="EMCClockToText">Format:%a. %d. %b %y</convert>
         </widget>
         <widget font="Regular;22" position="500,460" render="Label" size="65,27" source="Service">
             <convert type="EMCServiceTime">StartTime</convert>

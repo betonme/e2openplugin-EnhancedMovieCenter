@@ -23,7 +23,7 @@
     </widget>
     <widget font="Regular;19" halign="center" position="170,130" render="Label" size="200,25" source="Service">
         <convert type="EMCServiceTime">StartTime</convert>
-        <convert type="EMCClockToText">Format:%a. %d %b, %y</convert>
+        <convert type="EMCClockToText">Format:%a. %d. %b %y</convert>
     </widget>
     <widget font="Regular;20" halign="center" position="170,160" render="Label" size="200,25" source="Service">
         <convert type="EMCMovieInfo">FileSize</convert>

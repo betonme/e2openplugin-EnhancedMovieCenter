@@ -30,7 +30,7 @@
         </widget>
         <widget font="Regular;30" halign="right" position="1450,650" render="Label" size="340,35" source="Service">
             <convert type="EMCServiceTime">StartTime</convert>
-            <convert type="EMCClockToText">Format:%a. %d %B, %Y</convert>
+            <convert type="EMCClockToText">Format:%a. %d. %B %Y</convert>
         </widget>
         <widget font="Regular;30" foregroundColor="yellow" position="500,700" render="Label" size="580,35" source="Service">
             <convert type="EMCMovieInfo">ShortDescription</convert>

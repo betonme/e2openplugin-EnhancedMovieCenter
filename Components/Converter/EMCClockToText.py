@@ -54,7 +54,10 @@ class EMCClockToText(Converter, object):
 		elif self.type == self.DEFAULT:
 			return "%02d:%02d" % (t.tm_hour, t.tm_min)
 		elif self.type == self.DATE:
-			return strftime("%A %B %d, %Y", t)
+			if config.osd.language.value == "de_DE":
+				return strftime("%A, %d. %B %Y", t)
+			else:
+				return strftime("%A %B %d, %Y", t)
 		elif self.type == self.FORMAT:
 			spos = self.fmt_string.find('%')
 			if spos >-1:
