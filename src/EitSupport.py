@@ -428,7 +428,7 @@ class EitList():
 
 						# This will fix EIT data of RTL group with missing line breaks in extended event description
 						import re
-						extended_event_descriptor = re.sub('((?:Moderation|Moderator|Vorsitz|Juristen|Staatsanwalt|Richter|Julia Leisch|Schadenregulier):{0,1}.*?[a-z]+)(\'{0,1}[0-9A-Z])', r'\1\n\n\2', extended_event_descriptor)
+						extended_event_descriptor = re.sub('((?:Moderat(?:ion:|or(?:in){0,1})|Vorsitz: |Jur(?:isten|y): |G(?:\xC3\xA4|a)st(?:e){0,1}: |Mit (?:Staatsanwalt|Richter(?:in){0,1}|den Schadenregulierern) |Julia Leisch).*?[a-z]+)(\'{0,1}[0-9A-Z\'])', r'\1\n\n\2', extended_event_descriptor)
 					self.eit['description'] = extended_event_descriptor
 
 				else:
