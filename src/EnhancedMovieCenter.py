@@ -59,7 +59,7 @@ from EMCTasker import emcTasker, emcDebugOut
 
 sz_w = getDesktop(0).size().width()
 
-EMCVersion = "git20180505"
+EMCVersion = "git20180627"
 EMCAbout = "Enhanced Movie Center " +EMCVersion+ "\n\n(c) 2012-2018 by\nCoolman, betonme, Swiss-MAD & the many other volunteers."
 
 def setEPGLanguage(dummyself=None, dummy=None):
@@ -704,12 +704,15 @@ class EnhancedMovieCenterMenu(ConfigListScreenExt, Screen):
 							return
 					# Check parent entries
 					for parent in entry[5]:
-						if self.list[i+parent][2] is not None:
-							# execute parent value changed -function
-							if self.list[i+parent][2](self.EMCConfig[i+parent][1]) is not None:
-								# Stop exiting, user has to correct the config
-								config.EMC.movie_finished_clean.addNotifier(self.changedEntry, initial_call = False, immediate_feedback = True)
-								return
+						try:
+							if self.list[i+parent][2] is not None:
+								# execute parent value changed -function
+								if self.list[i+parent][2](self.EMCConfig[i+parent][1]) is not None:
+									# Stop exiting, user has to correct the config
+									config.EMC.movie_finished_clean.addNotifier(self.changedEntry, initial_call = False, immediate_feedback = True)
+									return
+						except:
+							continue
 					entry[1].save()
 		configfile.save()
 		if self.needsRestartFlag:
