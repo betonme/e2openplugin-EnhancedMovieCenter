@@ -29,6 +29,7 @@
 		<key id="KEY_RADIO" mapto="showExtensions" flags="b" />
 		<key id="KEY_GREEN" mapto="EMCGreen" flags="m" />
 		<key id="KEY_INFO" mapto="movieInfo" flags="b" />
+		<key id="KEY_EPG" mapto="movieInfo" flags="b" />
 		<key id="KEY_CHANNELUP" mapto="nextTitle" flags="l" />
 		<key id="KEY_CHANNELDOWN" mapto="prevTitle" flags="l" />
 <!--  With "KEY_LEFT" & "KEY_RIGHT" at map "EMCDVDPlayerActions" works also in the regular player.
@@ -65,8 +66,10 @@
 
 		<key id="KEY_MENU" mapto="EMCMENU" flags="b" />
 		<key id="KEY_INFO" mapto="EMCINFO" flags="b" />
+		<key id="KEY_EPG" mapto="EMCINFO" flags="b" />
 		<key id="KEY_MENU" mapto="EMCMENUL" flags="l" />
 		<key id="KEY_INFO" mapto="EMCINFOL" flags="l" />
+		<key id="KEY_EPG" mapto="EMCINFOL" flags="l" />
 
 		<key id="KEY_RED" mapto="EMCRed" flags="b" />
 		<key id="KEY_RED" mapto="EMCREDL" flags="l" />
@@ -121,6 +124,7 @@
 		<key id="KEY_EXIT" mapto="EMCEXIT" flags="m" />
 		<key id="KEY_OK" mapto="EMCOK" flags="m" />
 		<key id="KEY_INFO" mapto="EMCINFO" flags="b" />
+		<key id="KEY_EPG" mapto="EMCINFO" flags="b" />
 		<key id="KEY_MENU" mapto="EMCMenu" flags="m" />
 		<key id="KEY_GREEN" mapto="EMCGreen" flags="m" />
 		<key id="KEY_RED" mapto="EMCRed" flags="b" />
