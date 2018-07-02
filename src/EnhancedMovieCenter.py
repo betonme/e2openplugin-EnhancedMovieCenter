@@ -59,7 +59,7 @@ from EMCTasker import emcTasker, emcDebugOut
 
 sz_w = getDesktop(0).size().width()
 
-EMCVersion = "git20180627"
+EMCVersion = "git20180702"
 EMCAbout = "Enhanced Movie Center " +EMCVersion+ "\n\n(c) 2012-2018 by\nCoolman, betonme, Swiss-MAD & the many other volunteers."
 
 def setEPGLanguage(dummyself=None, dummy=None):
@@ -335,6 +335,7 @@ class EnhancedMovieCenterMenu(ConfigListScreenExt, Screen):
 			(  _("Disable EMC")                                   , config.EMC.ml_disable               , self.needsRestart     , None                  , 1     , []          , _("HELP_Disable EMC")                                    , None              , None ),
 			(  _("Start EMC with")                                , config.EMC.movie_launch             , self.launchListSet    , None                  , 0     , []          , _("HELP_Start EMC with")                                 , None              , None ),
 			(  _("Show plugin config in extensions menu")         , config.EMC.extmenu_plugin           , self.needsRestart     , None                  , 0     , []          , _("HELP_Show plugin config in extensions menu")          , None              , None ),
+			(  _("Show EMC in main menu")                         , config.EMC.mainmenu_list            , self.needsRestart     , None                  , 0     , []          , _("HELP_Show EMC in main menu")                   	     , None              , None ),
 			(  _("Show EMC in extensions menu")                   , config.EMC.extmenu_list             , self.needsRestart     , None                  , 0     , []          , _("HELP_Show EMC in extensions menu")                    , None              , None ),
 
 			(  self.section                                       , _("KEYMAPPING")                     , None                  , None                  , 0     , []          , ""                                                       , None              , None ),

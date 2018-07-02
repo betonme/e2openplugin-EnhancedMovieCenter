@@ -294,6 +294,7 @@ config.EMC                           = ConfigSubsection()
 config.EMC.fake_entry                = NoSave(ConfigNothing())
 config.EMC.needsreload               = ConfigYesNo(default = False)
 config.EMC.extmenu_plugin            = ConfigYesNo(default = False)
+config.EMC.mainmenu_list             = ConfigYesNo(default = False)
 config.EMC.extmenu_list              = ConfigYesNo(default = False)
 config.EMC.epglang                   = ConfigSelection(default = language.getActiveLanguage(), choices                    = langList())
 config.EMC.sublang1                  = ConfigSelection(default = language.lang[language.getActiveLanguage()][0], choices  = langList())
@@ -551,6 +552,11 @@ def recordingsOpen(session, *args, **kwargs):
 	from MovieSelection import EMCSelection
 	session.openWithCallback(showMoviesCallback, EMCSelection)
 
+def menu_recordingsOpen(menuid, **kwargs):
+    if menuid == "mainmenu":
+	return [("Enhanced Movie Center", recordingsOpen, "emc", 20)]
+    return []
+
 def Plugins(**kwargs):
 	from EnhancedMovieCenter import EMCVersion
 	descriptors = []
@@ -564,4 +570,8 @@ def Plugins(**kwargs):
 
 	if config.EMC.extmenu_list.value and not config.EMC.ml_disable.value:
 		descriptors.append( PluginDescriptor(name = "Enhanced Movie Center", description = "Enhanced Movie Center " + _("movie manipulation list"), where = PluginDescriptor.WHERE_EXTENSIONSMENU, fnc = recordingsOpen) )
+
+	if config.EMC.mainmenu_list.value and not config.EMC.ml_disable.value:
+		descriptors.append( PluginDescriptor(name = "Enhanced Movie Center", description = "Enhanced Movie Center " + _("movie manipulation list"), where = [PluginDescriptor.WHERE_MENU], fnc = menu_recordingsOpen))
+
 	return descriptors
