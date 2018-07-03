@@ -177,12 +177,12 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarTimeshift, InfoBar
 			self["actions"] = HelpableActionMap(self, "CoolPlayerActions",
 				{
 					"leavePlayer":	(self.leavePlayer, 		_("Stop playback")),
-				}) # default priority
+				},-1)
 		else:
 			self["actions"] = HelpableActionMap(self, "CoolPlayerActions2",
 				{
 					"leavePlayer":	(self.leavePlayer, 		_("Stop playback")),
-				}) # default priority
+				},-1)
 
 		self["DVDPlayerPlaybackActions"] = HelpableActionMap(self, "EMCDVDPlayerActions",
 			{
