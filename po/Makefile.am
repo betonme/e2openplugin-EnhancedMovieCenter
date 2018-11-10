@@ -13,7 +13,7 @@ GETTEXT=xgettext
 #MSGFMT = ./msgfmt.py
 MSGFMT = msgfmt
 
-LANGS := cs de en it nl pl sk es fr tr ro lt el pt fi hu
+LANGS := ar cs de el en es fi fr hu it lt nl pl pt ro sk tr
 LANGPO := $(foreach LANG, $(LANGS),$(LANG).po)
 LANGMO := $(foreach LANG, $(LANGS),$(LANG).mo)
 
