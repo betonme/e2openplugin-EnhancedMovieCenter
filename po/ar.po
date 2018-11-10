@@ -1,0 +1,2407 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Translation to Arabic language for EMC Enigma2 plugin\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-07-02 21:09+0200\n"
+"PO-Revision-Date: \n"
+"Last-Translator: mosad <abo-mishal@hotmail.com>\n"
+"Language-Team: mosad\n"
+"Language: ar_SA\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Generator: Poedit 2.2\n"
+"X-Poedit-KeywordsList: -;gettext;gettext_noop;_\n"
+"X-Poedit-Basepath: ../src\n"
+"Plural-Forms: nplurals=6; plural=(n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
+"&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5);\n"
+"X-Poedit-SearchPath-0: .\n"
+
+msgid " (without counting cover range)"
+msgstr " (دون احتساب مساحة غلاف الفلم("
+
+msgid ""
+" Deleting remotely recorded and it will display an rec-error dialog on the "
+"other DB."
+msgstr " حذف المسجلة عن بعد سيتم عرض الحوار rec-خطا علي DB الأخرى."
+
+msgid " all selected video files?"
+msgstr " جميع ملفات الفيديو المحددة ؟"
+
+msgid ""
+" all selected video files? The currently playing movie is also one of the "
+"selections and its playback will be stopped."
+msgstr ""
+" جميع ملفات الفيديو المحددة ؟ الفيلم الذي يلعب حاليا هو أيضا أحد التحديدات "
+"سيتم إيقاف تشغيله."
+
+msgid " currently played?"
+msgstr " تشغيل حاليا ؟"
+
+msgid " files\n"
+msgstr ""
+" الملفات\n"
+" \n"
+
+msgid " permanently"
+msgstr " شكل دائم"
+
+msgid "%d second"
+msgid_plural "%d seconds"
+msgstr[0] "% d ثانيه"
+msgstr[1] "% d ثانيه"
+msgstr[2] "% d ثانيتين"
+msgstr[3] "% d ثواني"
+msgstr[4] "% d ثواني"
+msgstr[5] "% d ثواني"
+
+msgid "%s not removed. Write protect?"
+msgstr "لم تتم أزاله %s. حماية المؤلف ؟"
+
+msgid "%s removed."
+msgstr "%s تم حذفه."
+
+msgid "( # )"
+msgstr "( # )"
+
+msgid "( # / GB )"
+msgstr "(#/جيجابايت)"
+
+msgid "( GB )"
+msgstr "( جيجابايت )"
+
+msgid "(Un-)Lock Directory"
+msgstr "(Un-) إقفال المسار"
+
+msgid "(show optional DVD audio menu)"
+msgstr "(عرض قائمة صوت ديفيدي إختياريه)"
+
+msgid "*** Multiselection active ***"
+msgstr "*** تنشيط الخيارات المحددة ***"
+
+msgid ".../foldername.jpg"
+msgstr ".../أسم الملف.jpg"
+
+msgid ".../foldername/folder.jpg"
+msgstr ".../أسم المجلد/المجلد.jpg"
+
+msgid ".../foldername/foldername.jpg"
+msgstr ".../أسم المجلد/أسم المجلد.jpg"
+
+msgid ""
+"ATTENTION\n"
+"\n"
+"This option will move all finished movies in Movie Home automatically to "
+"Your trashcan at the given time.\n"
+"At next trashcan cleanup all movies will be deleted.\n"
+"\n"
+"Confirm this with the blue key followed by the green key."
+msgstr ""
+"اهتمام هذا الخيار سوف تتحرك جميع الأفلام المنتهية في الصفحة الرئيسية الفيلم "
+"تلقائيا إلى مهملات الخاص في وقت معين.\n"
+"في تنظيف مهملات المقبل سيتم حذف جميع الأفلام.\n"
+"\n"
+"تاكيد هذا مع المفتاح الأزرق متبوعا المفتاح الأخضر."
+
+msgid "AUDIO METADATA"
+msgstr "بيانات الصوت"
+
+msgid "AUTOSTART"
+msgstr "تشغيل تلقائي"
+
+msgid "About"
+msgstr "حول"
+
+msgid "Add directory to E2 Bookmarks"
+msgstr "أضافه المسار إلى E2 الإشارات المرجعية"
+
+msgid "Add directory to EMC Bookmarks"
+msgstr "إضافة المسار إلى مرجعية متصفح الأفلام"
+
+msgid "Add to Playlist"
+msgstr "أضافه إلى قائمه التشغيل"
+
+msgid "Add to current Playlist"
+msgstr "أضافه إلى قائمه التشغيل الحالية"
+
+msgid "After file OPs only re-scan affected dirs"
+msgstr "بعد ملف OPs أعاده المسح الضوئي المتضررة فقط dirs"
+
+msgid "Age of finished movies in movie folder (days)"
+msgstr "عمر الأفلام النهائية في مجلد الفيلم (أيام)"
+
+msgid "Album:"
+msgstr "الالبوم:"
+
+msgid "Alpha sort"
+msgstr "الترتيب الأبجدي"
+
+msgid "Alpha sort ascending (AZ)"
+msgstr "الترتيب الأبجدي تصاعديا (أي)"
+
+msgid "Alpha sort ascending with meta (AZM)"
+msgstr "الترتيب الأبجدي تصاعديا من أعلى (أي م)"
+
+msgid "Alpha sort ascending with meta, Date descending (AZMD-)"
+msgstr "الترتيب الأبجدي تصاعديا من أعلى, حسب التاريخ (أ ي م د)"
+
+msgid "Alpha sort ascending, Date descending (AZD-)"
+msgstr "الترتيب الأبجدي تصاعديا من أعلى, حسب التاريخ (أ ي د)"
+
+msgid "Alpha sort date newest"
+msgstr "الترتيب حسب الأحدث"
+
+msgid "Alpha sort descending (ZA)"
+msgstr "الترتيب الأبجدي تنازليآ (أ ي)"
+
+msgid "Alpha sort descending with meta (ZAM)"
+msgstr "الترتيب الأبجدي من الأعلى (ي أ م)"
+
+msgid "Alpha sort descending with meta, Date ascending (ZAMD+)"
+msgstr "الترتيب الأبجدي تصاعديا من أعلى, حسب التاريخ (أ ي م د+)"
+
+msgid "Alpha sort descending, Date ascending (ZAD+)"
+msgstr "الترتيب الأبجدي تصاعديا, حسب التاريخ (ي أ د+)"
+
+msgid "Alpha sort meta"
+msgstr "الترتيب الأبجدي من الأعلى"
+
+msgid "Alpha sort meta date newest"
+msgstr "الترتيب الأبجدي حسب الأحدث"
+
+msgid "Always save current Playlist"
+msgstr "دائما أحفظ قائمه التشغيل الحالية"
+
+msgid "Always save last played progress as marker"
+msgstr "دائما حفظ آخر تشغيل للمادة المسجلة كعلامة"
+
+msgid "Artist:"
+msgstr "الفنان:"
+
+msgid "Automatic timers list cleaning"
+msgstr "الحذف التلقائي للمؤقتات الألية"
+
+msgid "Available plugins menu"
+msgstr "قائمه الإضافات المتاحة"
+
+msgid "Black"
+msgstr "أسود"
+
+msgid "Blue button function"
+msgstr "وظيفة الزر الأزرق"
+
+msgid "Bookmark"
+msgstr "علامة مرجعية"
+
+msgid "Both"
+msgstr "كلاهما"
+
+msgid "Bouquet buttons behaviour"
+msgstr "أزرار وظائف الباقة"
+
+msgid "Button disabled"
+msgstr "تم تعطيل الزر"
+
+msgid "CSFD"
+msgstr "CSFD"
+
+msgid "CSFD Info"
+msgstr "معلومات csfd"
+
+msgid "Can not save "
+msgstr "لا يمكن الحفظ "
+
+msgid "Can not save Cover in "
+msgstr "لا يمكن حفظ الغلاف في "
+
+msgid "Can not save current Playlist!"
+msgstr "لا يمكن حفظ قائمه التشغيل الحالية!"
+
+msgid ""
+"Can not write Movie Information File\n"
+"\n"
+"%s"
+msgstr ""
+"لا يمكن كتابه ملف معلومات الفيلم\n"
+" %s"
+
+msgid ""
+"Can not write Movie Information and Cover File\n"
+"\n"
+"%(info)s\n"
+"%(file)s"
+msgstr ""
+"لا يمكن كتابه معلومات الفيلم وملف الغلاف\n"
+"%(معلومات)s\n"
+"%(ملف)s"
+
+msgid "Cancel"
+msgstr "إلغاء"
+
+msgid "Cannot delete the parent directory."
+msgstr "لا يمكن حذف المسار الأصل."
+
+msgid "Change File/Moviename and/or Description"
+msgstr "تغيير ملف/أسم الفلم و/أو الوصف"
+
+msgid "Change Folder"
+msgstr "تغيير المجلد"
+
+msgid "Change Foldername"
+msgstr "تغيير اسم المجلد"
+
+msgid "Change the filename to save current Playlist:"
+msgstr "تغيير اسم الملف لحفظ قائمه التشغيل الحالية:"
+
+msgid "Chap."
+msgstr "فصل."
+
+msgid "Chapter"
+msgstr "فصل"
+
+msgid "Check for dead links"
+msgstr "التحقق من من الروابط المعطوبة"
+
+msgid "Choose Directory:"
+msgstr "أختار المسار:"
+
+msgid "Choose bookmark"
+msgstr "أختار العلامة المرجعية"
+
+msgid "Choose directory"
+msgstr "أختار المسار"
+
+msgid "Choose operation"
+msgstr "أختار العملية"
+
+msgid "Choose plugin"
+msgstr "أختار الإضافة"
+
+msgid "Choose script"
+msgstr "أختار السكريبت"
+
+msgid "Close EMC"
+msgstr "أغلق مركز تشغيل الأفلام"
+
+msgid "Collection"
+msgstr "اسم المجموعة"
+
+msgid "Configured directories at the top of movielist"
+msgstr "إعدادات المسارات في أعلى قائمة الأفلام"
+
+msgid "Content:"
+msgstr "يحتوى:"
+
+msgid "Copy File"
+msgstr "نسخ ملف"
+
+msgid "Copy Files"
+msgstr "نسخ الملفات"
+
+msgid "Copy file(s):"
+msgstr "نسخ الملفات:"
+
+msgid ""
+"Cover %s exists!\n"
+"\n"
+"Do you want to replace the existing cover?"
+msgstr ""
+"الغلاف %s موجود!\n"
+"\n"
+"هل تريد استبدال الغلاف الموجود ؟"
+
+msgid "Cover Search"
+msgstr "بحث عن الغلاف"
+
+msgid "Cover background"
+msgstr "خلفية الغلاف"
+
+msgid "Cover delay in ms"
+msgstr "مدة ظهور الغلاف في الثانية"
+
+msgid "Cover disabled in EMC-Setup"
+msgstr "الغلاف معطل من إعدادات مركز تشغيل الأفلام"
+
+msgid "Cover is Saved."
+msgstr "تم حفظ الغلاف."
+
+msgid "Cover search"
+msgstr "بحث عن الغلاف"
+
+msgid ""
+"Cover search with all Files in Subdirectories?\n"
+"\n"
+"This may take a while on huge Disks, or Directories!"
+msgstr ""
+"البحث عن الغلاف في كافة الملفات في المجلدات الفرعية ؟\n"
+"\n"
+"هذا قد يستغرق بعض الوقت علي أقراص ضخمه ، أو المسارات!"
+
+msgid "Coversize"
+msgstr "حجم الغلاف"
+
+msgid "Create directory"
+msgstr "إنشاء دليل"
+
+msgid "Create link"
+msgstr "إنشاء رابط"
+
+msgid "Creating Search List.."
+msgstr "يتم الآن إنشاء قائمه بحث.."
+
+msgid "Current Playlist saved successfully!"
+msgstr "تم حفظ قائمه التشغيل الحالية بنجاح!"
+
+msgid "Cursor predictive move after selection"
+msgstr "المؤشر الانتقال التنبؤيه بعد التحديد"
+
+msgid "Custom"
+msgstr "خيار طول شاشة الرسيفر"
+
+msgid "DD.MM. HH:MM"
+msgstr "DD.MM: MM"
+
+msgid "DD.MM.YYYY"
+msgstr "DD.MM.YYYY"
+
+msgid "DD.MM.YYYY HH:MM"
+msgstr "DD.MM.YYYY HH:MM"
+
+msgid "DEBUG"
+msgstr "DEBUG"
+
+msgid "DELAYS"
+msgstr "التاخير"
+
+msgid "DISPLAY-SETTINGS"
+msgstr "إعدادات -شاشة العرض"
+
+msgid "DVD / BLU-RAY / FOLDERS"
+msgstr "دفيفدي / بلوراي / مجلدات"
+
+msgid "Daily cleanup time"
+msgstr "حذف التوقيت اليومي"
+
+msgid "Dark green"
+msgstr "اخضر غامق"
+
+msgid "Dark grey"
+msgstr "رمادي غامق"
+
+msgid "Dark orange"
+msgstr "برتقالي غامق"
+
+msgid "Dark red"
+msgstr "احمر غامق"
+
+msgid "Date format"
+msgstr "صيغة التاريخ"
+
+msgid "Date sort"
+msgstr "الترتيب حسب التاريخ"
+
+msgid "Date sort ascending (D+)"
+msgstr "الترتيب حسب التاريخ تصاعديا (د+)"
+
+msgid "Date sort descending (D-)"
+msgstr "الترتيب حسب التاريخ تصاعديا (د-)"
+
+msgid "Day"
+msgstr "يوم"
+
+msgid "Days"
+msgstr "أيام"
+
+msgid "Debug output file name"
+msgstr "تصحيح اسم ملف الإخراج"
+
+msgid "DeepStandby"
+msgstr "الإستعداد العميق"
+
+msgid "Default"
+msgstr "الإفتراضي"
+
+msgid ""
+"Default Playlist is not empty!\n"
+"\n"
+"Save default Playlist?"
+msgstr ""
+"قائمه التشغيل الافتراضية ليست فارغه!\n"
+"\n"
+"حفظ قائمه التشغيل الافتراضية ؟"
+
+msgid "Default Playlist name"
+msgstr "اسم قائمه التشغيل الافتراضية"
+
+msgid "Default Playlist path"
+msgstr "مسار قائمه التشغيل الافتراضية"
+
+msgid "Default color for highlighted movie"
+msgstr "اللون الافتراضي للفيلم المميز"
+
+msgid "Default color for partially watched movie"
+msgstr "اللون الافتراضي للفيلم الذي شاهدت منه جزئيا"
+
+msgid "Default color for recording movie"
+msgstr "اللون الافتراضي للأفلام المسجلة"
+
+msgid "Default color for unwatched movie"
+msgstr "اللون الافتراضي للفيلم الغير مشاهد"
+
+msgid "Default color for watched movie"
+msgstr "اللون الافتراضي للأفلام المشاهدة"
+
+msgid "Default sort mode"
+msgstr "وضع الترتيب الافتراضي"
+
+msgid "Delete"
+msgstr "حذف"
+
+msgid "Delete All"
+msgstr "حذف الكل"
+
+msgid "Delete Entry"
+msgstr "مسح المدخل"
+
+msgid "Delete current Playlist"
+msgstr "حذف قائمه التشغيل الحالية"
+
+msgid "Delete cut file(s)"
+msgstr "حذف الملفات المقطوعة"
+
+msgid "Delete error:\n"
+msgstr "خطا في الحذف:\n"
+
+msgid ""
+"Delete failed because the trashcan directory does not exist. Attempt to "
+"create it now?"
+msgstr "فشل الحذف لان مسار سلة المهملات غير موجود. محاولة إنشاءه الآن ؟"
+
+msgid "Delete failed!"
+msgstr "فشل المسح!"
+
+msgid "Delete permanently"
+msgstr "حذف بشكل دائم"
+
+msgid "Delete validation"
+msgstr "حذف التحقق"
+
+msgid "Description"
+msgstr "الوصـف"
+
+msgid "Description field update delay"
+msgstr "تأخير تحديث معلومات الفلم"
+
+msgid "Description:"
+msgstr "الوصف.:"
+
+msgid "Directory"
+msgstr "الدليل"
+
+msgid "Directory %s already exists!"
+msgstr "المسار %s موجود بالفعل!"
+
+msgid "Directory back"
+msgstr "الرجوع للمسار"
+
+msgid "Directory forward"
+msgstr "تقدم للمسار"
+
+msgid "Directory is not empty! Do you really want to delete it?"
+msgstr "المسار ليس فارغا! هل تريد حقا حذفه ؟"
+
+msgid "Directory up"
+msgstr "المسار للأعلى"
+
+msgid "Directory-Cover search"
+msgstr "المسار - بحث عن الغلاف"
+
+msgid "Disable EMC"
+msgstr "تعطيل مركز تشغيل الأفلام"
+
+msgid "Display directory reading text"
+msgstr "عرض مسار النصوص المقروءه"
+
+msgid ""
+"Do you really want to delete the cut file?\n"
+"If you have selected a directory, all cut files within the folder and its "
+"subfolders will be deleted!"
+msgstr ""
+"هل تريد حقا حذف الملفات المقطعة ؟\n"
+"إذا قمت بتحديد مسار ، سيتم حذف كافة الملفات التي تم قصها داخل المجلد "
+"والفرعية الخاصة به!"
+
+msgid "Do you really want to lock the directory %s and all its subfolders?"
+msgstr "هل تريد حقا إقفال المسار %s وكافة مجلداته الفرعية ؟"
+
+msgid ""
+"Do you really want to remove your bookmark\n"
+"%s?"
+msgstr ""
+"هل تريد حقا أزاله الاشارات المرجعية \n"
+"%s ؟"
+
+msgid ""
+"Do you really want to remove your directory\n"
+"%s?"
+msgstr ""
+"هل تريد حقا أزاله المسار\n"
+" %s ؟"
+
+msgid ""
+"Do you really want to remove your link\n"
+"%s?"
+msgstr ""
+"هل تريد حقا أزاله الروابط المحذوفة\n"
+" %s ؟"
+
+msgid "Do you want to resume this playback?"
+msgstr "هل تريد إستئناف هذا العرض؟"
+
+msgid "Does not contain any scripts."
+msgstr "لا يحتوي علي إيه برامج نصيه."
+
+msgid "Don't auto scan size of dirs from emc-noscan.cfg"
+msgstr "لا للبحث التلقائي عن حجم المسارات من مركز تشغيل الأفلام - noscan.cfg"
+
+msgid "Download Movie Info"
+msgstr "تحميل معلومات الفيلم"
+
+msgid "Download Movie Information"
+msgstr "تحميل معلومات الفيلم"
+
+msgid "Download cutlist from Cutlist.at"
+msgstr "تحميل القوائم المقطعة من قائمة الأجزاء المقطعة"
+
+msgid "Download: %s"
+msgstr "تحميل: %s"
+
+msgid "E2 Bookmark"
+msgstr "العلامة المرجعية للانجما2"
+
+msgid "E2 Bookmarks"
+msgstr "العلامات المرجعية للانجما2"
+
+msgid "E2 Restart"
+msgstr "إعادة تشغيل الانجما2"
+
+msgid ""
+"EMC\n"
+"Zap to Live TV of record"
+msgstr ""
+"مركز تشغيل الأفلام\n"
+"إنتقل إلى القنوات البث المباشر من التسجيلات"
+
+msgid "EMC Bookmarks"
+msgstr "العلامات المرجعية لمركز مشغل الافلام"
+
+msgid "EMC Cover Selecter"
+msgstr "الغلاف المحدد لمركز مشغل الافلام"
+
+msgid "EMC Cover search"
+msgstr "البحث عن الغلاف لمركز مشغل الافلام"
+
+msgid "EMC Cover search setup"
+msgstr "ضبط بحث عن الغلاف لمركز مشغل الافلام"
+
+msgid "EMC Filebrowser"
+msgstr "تصفح ملفات لمركز مشغل الافلام"
+
+msgid "EMC Playlist - current playlist"
+msgstr "قائمة التشغيل الحالية مركز مشغل الأفلام - قائمة التشغيل الحالية"
+
+msgid "EMC Playlist Menu"
+msgstr "قائمة التشغيل الحالية في مركز مشغل الافلام"
+
+msgid "EMC Playlist Setup"
+msgstr "ضبط التشغيل الحالية في مركز مشغل الافلام"
+
+msgid "EMC Setup"
+msgstr "ضبط مركز مشغل الافلام"
+
+msgid "EMC Trashcan Cleanup failed!"
+msgstr "فشل تنظيف الملفات المهملة في مركز مشغل الافلام!"
+
+msgid "EMC always reload after open"
+msgstr "دائما أعد تشغيل الأفلام بعد الفتح في مركز مشغل الافلام"
+
+msgid "EMC output directory"
+msgstr "معلومات مسارات مركز مشغل الافلام"
+
+msgid "EMC path access limit"
+msgstr "حد الوصول إلى مسار مركز مشغل الافلام"
+
+msgid "EMC re-open list after Movie end"
+msgstr "إعادة فتح قائمة مركز مشغل الأفلام بعد إنتهاء الفلم"
+
+msgid "EMC re-open list after STOP-press"
+msgstr "إعادة فتح قائمة مركز مشغل الأفلام بعد ضغط زر التوقف"
+
+msgid "EMC-TMDB Info"
+msgstr "معلومات الأفلام - مركز مشغل الافلام"
+
+msgid ""
+"EMC: Skipping Trashcan Cleanup\n"
+"Movie Home Path is equal to or a subfolder of the Trashcan"
+msgstr ""
+"مركز مشغل الافلام: تخطي تنظيف الملفات المحذوفة\n"
+"مسار الصفحة الرئيسية للأفلام أو مجلد فرعي من سلة المهملات"
+
+msgid "Empty trashcan"
+msgstr "سلة مهملات فارغة"
+
+msgid "Enable EMC debug output"
+msgstr "تمكين معلومات مسارات مركز مشغل الافلام"
+
+msgid "Enable daily trashcan cleanup"
+msgstr "تمكين تنظيف سلة المهملات بشكل يومي"
+
+msgid "Enable playback AC3-track first"
+msgstr "تمكين تشغيل الصوت الثلاثي-الصوت الأول"
+
+msgid "Enable playback auto-language selection"
+msgstr "تمكين اختيار اللغة التلقائية للتشغيل"
+
+msgid "Enable playback auto-subtitling"
+msgstr "تمكين تشغيل الترجمة التلقائية"
+
+msgid "Enable remote recordings"
+msgstr "تمكين التسجيلات بالريموت"
+
+msgid "English"
+msgstr "الإنجليزية"
+
+msgid "Enter Name for Playlist"
+msgstr "ادخل أسم لقائمة التشغيل"
+
+msgid "Enter name for new directory:"
+msgstr "أدخل أسم للمسار الجديد:"
+
+msgid "Exist"
+msgstr "موجود"
+
+msgid "Exist: %s"
+msgstr "موجود: %s"
+
+msgid "File added to current Playlist."
+msgstr "تمت أضافه الملف إلى قائمه التشغيل الحالية."
+
+msgid "File exists in current Playlist."
+msgstr "الملف موجود في قائمه التشغيل الحالية."
+
+msgid "File not available."
+msgstr "الملف غير متوفر."
+
+msgid "Filename:"
+msgstr "اسم الملف:"
+
+msgid "Files added to current Playlist."
+msgstr "الملفات المضافة إلى قائمه التشغيل الحالية."
+
+msgid ""
+"Files added to current Playlist:\n"
+"%(add)s\n"
+"\n"
+"Files exists in current Playlist:\n"
+"%(exist)s"
+msgstr ""
+"الملفات التي تمت اضافتها إلى قائمه التشغيل الحالية:\n"
+"%(إضافات)s\n"
+"\n"
+" الملفات موجودة في قائمه التشغيل الحالية:\n"
+"%(موجود)s"
+
+msgid ""
+"Files exists in current Playlist:\n"
+"%s"
+msgstr ""
+"توجد الملفات في قائمه التشغيل الحالية:\n"
+"%s"
+
+msgid "Finished watching percent"
+msgstr "الانتهاء من مشاهده النسبة المئوية"
+
+msgid "Foldername:"
+msgstr "أسم المجلد:"
+
+msgid "Force standby after auto-restart"
+msgstr "فرض الاستعداد بعد أعاده التشغيل التلقائي"
+
+msgid "Format AVSwitch"
+msgstr "التحكم بتهيئة الصوت والصورة"
+
+msgid ""
+"Found rogue files:\n"
+"\n"
+msgstr ""
+"العثور على الملفات الفاسدة:\n"
+"\n"
+
+msgid "Free: "
+msgstr "متوفر: "
+
+msgid "French"
+msgstr "الفرنسية"
+
+msgid "GENERAL"
+msgstr "عام"
+
+msgid "Genre:"
+msgstr "النوع:"
+
+msgid "German"
+msgstr "الألمانية"
+
+msgid "Given path %s does not exist. Please change."
+msgstr "المسار المعطي %s غير موجود. الرجاء التغيير."
+
+msgid "Go to trashcan"
+msgstr "أذهب إلى سلة المهملات"
+
+msgid "Green"
+msgstr "أخضر"
+
+msgid "Grey"
+msgstr "رمادي"
+
+msgid "HELP_About"
+msgstr "المساعدة_ حول"
+
+msgid "HELP_After file OPs only re-scan affected dirs"
+msgstr "المساعدة_حول الملفات التي تبحث عنها وتفحص المسارات"
+
+msgid "HELP_Age of finished movies in movie folder (days)"
+msgstr "المساعدة_ عمر الأفلام النهائية في مجلد الفيلم (الأيام)"
+
+msgid "HELP_Always save last played progress as marker"
+msgstr "المساعدة _ احفظ دائمًا آخر تقدم تم تشغيله كعلامة"
+
+msgid "HELP_Automatic timers list cleaning"
+msgstr "المساعدة _ التنظيف التلقائي لقائمة المؤقتات التلقائية"
+
+msgid "HELP_Blue button function"
+msgstr "المساعدة _ وظائف الزر الازرق"
+
+msgid "HELP_Bouquet buttons behaviour"
+msgstr "المساعدة _ وظائف سلوك الباقات"
+
+msgid "HELP_Check for dead links"
+msgstr "المساعدة _ في التحقق من الروابط المعطوبة"
+
+msgid "HELP_Configure in etc\\enigma2\\emc-topdir.cfg"
+msgstr "المساعدة _ تهئية مسار etc\\enigma2\\emc-topdir.cfg"
+
+msgid "HELP_Cover background"
+msgstr "المساعدة _ خلفية الغلاف"
+
+msgid "HELP_Cover delay in ms"
+msgstr "المساعدة _ مدة ظهور الغلاف في الثانية"
+
+msgid "HELP_Cursor predictive move after selection"
+msgstr "المساعدة _ الانتقال التنبؤي بعد التحديد"
+
+msgid "HELP_Daily auto-start"
+msgstr "المساعدة _ تأخير بدء التشغيل"
+
+msgid "HELP_Daily cleanup time"
+msgstr "المساعدة _ حذف التوقيت اليومي"
+
+msgid "HELP_Date format"
+msgstr "المساعدة _ تهيئة التاريخ"
+
+msgid "HELP_Debug output file name"
+msgstr "المساعدة _ اسم ملف الإخراج"
+
+msgid "HELP_Default color highlighted"
+msgstr "المساعدة _ اللون الافتراضي للأفلام المشاهدة"
+
+msgid "HELP_Default color partially watched"
+msgstr "المساعدة _ اللون الافتراضي للفيلم الذي شاهدت منه جزئيا"
+
+msgid "HELP_Default color recording"
+msgstr "المساعدة _ اللون الافتراضي للأفلام المسجلة"
+
+msgid "HELP_Default color unwatched"
+msgstr "المساعدة _ اللون الافتراضي للأفلام الغير مشاهدة"
+
+msgid "HELP_Default color watched"
+msgstr "المساعدة _ اللون الافتراضي للفيلم الذي شاهدته"
+
+msgid "HELP_Delete validation"
+msgstr "المساعدة _ التحقق من المحذوف"
+
+msgid "HELP_Description field update delay"
+msgstr "المساعدة _ تأخير تحديث معلومات الفلم"
+
+msgid "HELP_Disable EMC"
+msgstr "المساعدة _ تعطيل مركز تشغيل الأفلام"
+
+msgid "HELP_Display directory reading text"
+msgstr "المساعدة _ عرض مسار النصوص المقروءه"
+
+msgid "HELP_Don't auto scan size of dirs from emc-noscan.cfg"
+msgstr ""
+"المساعدة _ لا للبحث التلقائي عن حجم المسارات من مركز تشغيل الأفلام - noscan."
+"cfg"
+
+msgid "HELP_Download cutlist from Cutlist.at"
+msgstr "المساعدة _ تحميل القوائم المقطعة من قائمة الأجزاء المقطعة"
+
+msgid "HELP_Dynamic trashcan"
+msgstr "المساعدة _ دينامكية سلة المهملات"
+
+msgid "HELP_EMC always reload after open"
+msgstr "المساعدة _ دائما أعد تشغيل الأفلام بعد الفتح في مركز مشغل الافلام"
+
+msgid "HELP_EMC output directory"
+msgstr "المساعدة _ معلومات مسارات مركز مشغل الافلام"
+
+msgid "HELP_EMC path access limit"
+msgstr "المساعدة _ حد الوصول إلى مسار مركز مشغل الافلام"
+
+msgid "HELP_EMC re-open list after Movie end"
+msgstr "المساعدة _ إعادة فتح قائمة مركز مشغل الأفلام بعد إنتهاء الفلم"
+
+msgid "HELP_EMC re-open list after STOP-press"
+msgstr "المساعدة _ إعادة فتح قائمة مركز مشغل الأفلام بعد ضغط زر التوقف"
+
+msgid "HELP_Enable EMC debug output"
+msgstr "المساعدة _ تمكين معلومات مسارات مركز مشغل الافلام"
+
+msgid "HELP_Enable daily trashcan cleanup"
+msgstr "المساعدة _ تمكين تنظيف سلة المهملات بشكل يومي"
+
+msgid "HELP_Enable playback AC3-track first"
+msgstr "المساعدة _تمكين تشغيل الصوت الثلاثي-الصوت الأول"
+
+msgid "HELP_Enable playback auto-language selection"
+msgstr "المساعدة _ تمكين اللغة المختارة تلقائي في التسغيل"
+
+msgid "HELP_Enable playback auto-subtitling"
+msgstr "المساعدة _تمكين تشغيل الترجمة التلقائية"
+
+msgid "HELP_Enable remote recordings"
+msgstr "المساعدة _تمكين التسجيلات بالريموت"
+
+msgid "HELP_Fallback Cover"
+msgstr "المساعدة _ تراجع عن الغلاف"
+
+msgid "HELP_Finished watching percent"
+msgstr "المساعدة _ المشاهدة تظهر بالنسبة المئوية"
+
+msgid "HELP_Force standby after auto-start"
+msgstr "المساعدة _ الاستعداد بعد التشغيل التلقائي"
+
+msgid "HELP_Hide movies being deleted"
+msgstr "المساعدة _ إخفاء ملفات الأفلام المحذوفة"
+
+msgid "HELP_Hide movies being moved"
+msgstr "المساعدة _ نقل إخفاء الملفات المحذوفة"
+
+msgid "HELP_Horizontal alignment for count / size"
+msgstr "المساعدة _محاذاة أفقية للعد/ الحجم"
+
+msgid "HELP_Horizontal alignment for date"
+msgstr "المساعدة _المحاذاة الافقية حسب التاريخ"
+
+msgid "HELP_How many days files may remain in trashcan"
+msgstr ""
+"المساعدة _كم عدد الأيام التي تريد أن تبقى الملفات المحذوفة في سلة المهملات"
+
+msgid "HELP_Icon shown for initially unknown count / size"
+msgstr "المساعدة_الايقونة معروض للعد مجهول مبدئيًا / الحجم"
+
+msgid "HELP_Install Mutagen-package for audio metadata"
+msgstr "المساعدة_ ثبت الحزمة-بيانات التعريف الصوتية"
+
+msgid "HELP_Jump to first mark when playing movie"
+msgstr "المساعدة_القفز إلى أول علامة عند تشغيل الفيلم"
+
+msgid "HELP_Key period value (50-900)"
+msgstr "المساعدة_ قيمة المفتاح الرئيسي (50-900)"
+
+msgid "HELP_Key repeat value (250-900)"
+msgstr "المساعدة_ قيمة المفتاح الرئيسي (250-900)"
+
+msgid "HELP_Latest Recordings directory limit"
+msgstr "المساعدة_حدد مسار التسجيلات الاخيرة"
+
+msgid "HELP_Latest Recordings directory use emc-noscan.cfg"
+msgstr ""
+"المساعدة_ مسار التسجيلات الأخيرة المستخدمة في مركز مشغل الافلام-noscan.cfg"
+
+msgid "HELP_Leave Movie with Exit"
+msgstr "المساعدة_غادر الفلم مع الخروج"
+
+msgid "HELP_Limit file operations in dirs from emc-noscan.cfg"
+msgstr ""
+"المساعدة_الحد من عمليات الملف في المسارات من مركز مشغل الافلام-noscan.cfg"
+
+msgid "HELP_List entries to skip"
+msgstr "المساعدة_تخطي قائمة المدخلات"
+
+msgid "HELP_Listbox is skin able"
+msgstr "المساعدة_قائمة المربع حسب السكن المتوفر"
+
+msgid "HELP_Long Blue button function"
+msgstr "المساعدة _ الضغط على الزر الارزق مطولا لعرض وظائفه"
+
+msgid "HELP_Long Red button function"
+msgstr "المساعدة _ الضغط على الزر الاحمر مطولا لعرض وظائفه"
+
+msgid "HELP_Long Yellow button function"
+msgstr "المساعدة _ الضغط على الزر الاصفر مطولا لعرض وظائفه"
+
+msgid "HELP_LongInfo Button"
+msgstr "المساعدة_الضغط مطولا على زر المعلومات"
+
+msgid "HELP_Mark new recordings with a star"
+msgstr "المساعدة_ضع علامة نجمة على التسجيلات الجديدة"
+
+msgid "HELP_Move finished movies in trashcan"
+msgstr "المساعدة_أنقل الأفلام التي شاهدتها في سلة المهملات"
+
+msgid "HELP_Movie home at start"
+msgstr "المساعدة_تشغيل الصفحة الرئيسية للافلام"
+
+msgid "HELP_Movie home home path"
+msgstr "المساعدة_مسار الصفحة الرئيسية للافلام"
+
+msgid "HELP_Movie preview delay in ms"
+msgstr "المساعدة _ مدة تأخير عرض الفلم في الثانية"
+
+msgid "HELP_Movie preview offset in seconds"
+msgstr "المساعدة _ مدة تأخير إيقاف الفلم في الثانية"
+
+msgid "HELP_No resume below 10 seconds"
+msgstr "المساعدة_لا استئناف أقل من عشر ثواني"
+
+msgid "HELP_Own Path to movie picons"
+msgstr "المساعدة_ المسار الخاص بايقونات الافلام"
+
+msgid "HELP_Path to movie picons"
+msgstr "المساعدة_مسار ايقونات الافلام"
+
+msgid "HELP_Position movie picons"
+msgstr "المساعدة_مكان ايقونات الافلام"
+
+msgid "HELP_Preferred EPG language"
+msgstr "المساعدة_اللغة المفضلة لدليل البرامج الإلكترونية"
+
+msgid "HELP_Primary playback audio language"
+msgstr "المساعدة_لغة القناة الصوتية الرئيسية"
+
+msgid "HELP_Primary playback subtitle language"
+msgstr "المساعدة_لغة ترجمة القناة الرئيسية"
+
+msgid "HELP_Red button function"
+msgstr "المساعدة _ الضغط على الزر الاحمر لعرض وظائفه"
+
+msgid "HELP_Replace special chars in title"
+msgstr "المساعدة_ إستبدال الأحرف الخاصة في العنوان"
+
+msgid "HELP_Resolve links and show real path"
+msgstr "المساعدة_ حل الروابط وإظهار المسار الحقيقي لها"
+
+msgid "HELP_Rewind finished movies before playing"
+msgstr "المساعدة_ترجيع الفلم لاخر توقف شاهدتها قبل التشغيل"
+
+msgid "HELP_Scan for DVD structures"
+msgstr "المساعدة_ بحث في قواعد الدفيفدي"
+
+msgid "HELP_Scan for bluray structures"
+msgstr "المساعدة_ بحث في قواعد البلوراي"
+
+msgid "HELP_Scan for bluray structures in .iso"
+msgstr "المساعدة_ بحث في قواعد البلوراي في الايزو"
+
+msgid "HELP_Scan for movie structures"
+msgstr "المساعدة_ بحث في قواعد الافلام"
+
+msgid "HELP_Secondary playback audio language"
+msgstr "المساعدة_لغة القناة الصوتية الثانوية"
+
+msgid "HELP_Secondary playback subtitle language"
+msgstr "المساعدة_لغة ترجمة القناة الثانوية"
+
+msgid "HELP_Short watching percent"
+msgstr "المساعدة _ المشاهدة القصيرة بالنسبة المئوية"
+
+msgid "HELP_Show Bookmarks in movielist"
+msgstr "المساعدة_عرض العلامات المرجعية في قائمة الافلام"
+
+msgid "HELP_Show Cover"
+msgstr "المساعدة_ عرض الغلاف"
+
+msgid "HELP_Show Cut-Nr if exist"
+msgstr "المساعدة_عرض الملفات المتقطعة إن وجدت"
+
+msgid "HELP_Show EMC in extensions menu"
+msgstr "المساعدة_عرض قائمة الملحقات في مركز مشغل الافلام"
+
+msgid "HELP_Show EMC in main menu"
+msgstr "المساعدة_عرض مركز مشغل الأفلام في القائمة الرئيسية"
+
+msgid "HELP_Show Latest Recordings directory"
+msgstr "المساعدة_عرض مسار التسجيلات الاخيرة"
+
+msgid "HELP_Show Movie Format"
+msgstr "المساعدة _ عرض ضيغة الفلم"
+
+msgid "HELP_Show Path if no extended description available"
+msgstr "المساعدة_ عرض مسار إذا لم يكن هناك وصف مطول متوفر"
+
+msgid "HELP_Show VLC directory"
+msgstr "المساعدة_عرض مسار مشغل الافلام"
+
+msgid "HELP_Show audio metadata"
+msgstr "المساعدة_عرض البيانات الصوتية"
+
+msgid "HELP_Show directories"
+msgstr "المساعدة_عرض المسارات"
+
+msgid "HELP_Show directories information"
+msgstr "المساعدة_عرض معلومات المسارات"
+
+msgid "HELP_Show directories within movielist"
+msgstr "المساعدة_عرض المسارات داخل قائمة الافلام"
+
+msgid "HELP_Show directory size in skin"
+msgstr "المساعدة_عرض حجم المسارات في السكن"
+
+msgid "HELP_Show experimental options"
+msgstr "المساعدة_عرض الخيارات التجريبية"
+
+msgid "HELP_Show link arrow"
+msgstr "المساعدة_عرض سهم على الروابط"
+
+msgid "HELP_Show message if file added to playlist"
+msgstr "المساعدة_عرض رسالة إذا أضفت الملف في قائمة التشغيل"
+
+msgid "HELP_Show movie icons"
+msgstr "المساعدة_عرض ايقونة الفلم"
+
+msgid "HELP_Show movie picons"
+msgstr "المساعدة_عرض بايقونة الفلم"
+
+msgid "HELP_Show movie preview"
+msgstr "المساعدة_عرض مشاهدة الفلم"
+
+msgid "HELP_Show movie progress"
+msgstr "المساعدة_عرض علامة تقدم  الفلم"
+
+msgid "HELP_Show plugin config in extensions menu"
+msgstr "المساعدة_عرض إضافة الاعدادات في قائمة الملحقات"
+
+msgid "HELP_Show real length of running records"
+msgstr "المساعدة_ عرض الطول الحقيقي للسجلات قيد التشغيل"
+
+msgid "HELP_Show symlinks"
+msgstr "المساعدة_عرض الروابط الرمزية"
+
+msgid "HELP_Show trashcan directory"
+msgstr "المساعدة _ عرض مسار سلة المهملات"
+
+msgid "HELP_Sort mode at startup"
+msgstr "المساعدة_وضع الفرز عند بدء التشغيل"
+
+msgid "HELP_Start EMC with"
+msgstr "المساعدة_تشغيل مركز مشغل الأفلام مع"
+
+msgid "HELP_Style for original EMC-skin (needs reopen)"
+msgstr "المساعدة_الشكل الأصلي لمركز مشغل الأفلام - السكن (تحتاج إعادة فتحه)"
+
+msgid "HELP_Tertiary playback audio language"
+msgstr "المساعدة_لغة القناة الصوتية الثالثة"
+
+msgid "HELP_Tertiary playback subtitle language"
+msgstr "المساعدة_لغة ترجمة القناة الثالثة"
+
+msgid "HELP_Text shown for initially unknown count and size"
+msgstr "المساعدة_الايقونة معروض للعد مجهول مبدئيًا / الحجم"
+
+msgid "HELP_Text shown for initially unknown directory size"
+msgstr "المساعدة_الايقونة معروض للعد مجهول مبدئيًا / الحجم"
+
+msgid "HELP_Text shown for initially unknown file count"
+msgstr "المساعدة_الايقونة معروض للعد مجهول مبدئيًا / الحجم"
+
+msgid "HELP_Trashcan enable"
+msgstr "المساعدة _ تفعيل سلة المهملات"
+
+msgid "HELP_Trashcan path"
+msgstr "المساعدة _ مسار سلة المهملات"
+
+msgid "HELP_Try to load extra title and more from .meta files"
+msgstr "المساعدة_إعادة تحميل عنوان اضافيه وأكثر من الملفات. الفوقية"
+
+msgid "HELP_Try to load titles from .eit files"
+msgstr "المساعدة_إعادة تحميل عنوان اضافيه وأكثر من الملفات"
+
+msgid "HELP_Try to load titles from .meta files"
+msgstr "المساعدة_إعادة تحميل عنوان اضافيه الملفات من الاعلى"
+
+msgid "HELP_Use cache for files and directories"
+msgstr "المساعدة_أستخدم الذاكرة المؤقتة للملفات والمسارات"
+
+msgid "HELP_Use original EMC-skin (needs reopen)"
+msgstr "المساعدة_الأصلي لمركز مشغل الأفلام - السكن (تحتاج إعادة فتحه)"
+
+msgid "HELP_Wake device when entering dir from emc-noscan.cfg"
+msgstr "المساعدة_جهاز تنبيه عند دخول المسار من مركز مشغل الافلام"
+
+msgid "HELP_Yellow button function"
+msgstr "المساعدة_وظائف الزر الافر"
+
+msgid "HELP_Zap to channel after record EOF"
+msgstr "المساعدة_أنتقل إلى القناة بعد التسجيل"
+
+msgid "HELP_auto-start window begin"
+msgstr "المساعدة_بدء تشغيل النافذة تلقائيا"
+
+msgid "HELP_auto-start window end"
+msgstr "المساعدة_إنهاء تشغيل النافذة تلقائيا"
+
+msgid "HELP_cfghide_enable"
+msgstr "المساعدة_تفعيل إخفاء ملف السي في جي"
+
+msgid "HELP_cfgscan_suppress"
+msgstr "المساعدة_البحث عن ملفات سي في جي المخفية"
+
+msgid "HELP_hide_MiniTV"
+msgstr "المساعدة_ إخفاء التلفزيون المصغر"
+
+msgid "HELP_hide_MiniTV cover"
+msgstr "المساعدة_ إخفاء غلاف التلفزيون المصغر"
+
+msgid "HELP_hide_MiniTV_method"
+msgstr "المساعدة_طريقة إخفاء التلفزيون المصغر"
+
+msgid "HELP_scan_linked"
+msgstr "المساعدة_ البحث عن الروابط"
+
+msgid "Hide Cover"
+msgstr "إخفاء الغلاف"
+
+msgid "Hide MiniTV"
+msgstr "إخفاء التلفزيون المصغر"
+
+msgid "Hide MiniTV if Cover is shown"
+msgstr "إخفاء التلفزيون المصغر إذا تم عرض الغلاف"
+
+msgid "Hide configured entries"
+msgstr "إخفاء الإدخالات المكونة"
+
+msgid "Hide movies being deleted"
+msgstr "إخفاء الأفلام التي يتم حذفها"
+
+msgid "Hide movies being moved"
+msgstr "إخفاء الأفلام التي يتم نقلها"
+
+msgid "HomeEnd"
+msgstr "نهاية الصفحة الرئيسية"
+
+msgid "Horizontal alignment for count / size"
+msgstr "المساعدة _محاذاة أفقية للعد/ الحجم"
+
+msgid "Horizontal alignment for date"
+msgstr "محاذاة أفقيه للتاريخ"
+
+msgid "How many days files may remain in trashcan"
+msgstr "كم عدد الأيام التي تريد أن تبقى الملفات المحذوفة في سلة المهملات"
+
+msgid ""
+"How to copy files:\n"
+"Select some movies with the VIDEO-button, move the cursor on top of the "
+"destination directory and press yellow long."
+msgstr ""
+"كيفيه نسخ الملفات: \n"
+"حدد بعض الأفلام مع زر الفيديو ، وتحريك المؤشر علي راس الدليل الوجهة والصحافة "
+"الصفراء طويلة."
+
+msgid ""
+"How to move files:\n"
+"Select some movies with the VIDEO-button, move the cursor on top of the "
+"destination directory and press yellow."
+msgstr ""
+"كيفيه نقل الملفات: \n"
+"حدد بعض الأفلام مع زر الفيديو ، وتحريك المؤشر علي راس الدليل الوجهة والصحافة "
+"الصفراء."
+
+msgid "IMDBSearch / EMC-TMDBInfo / TMDBInfo / TMBDInfo / CSFDInfo"
+msgstr "IMDBSearch / EMC-TMDBInfo / TMDBInfo / TMBDInfo / CSFDInfo"
+
+msgid "IMDb"
+msgstr "قاعدة بيانات الأفلام على الإنترنت"
+
+msgid "IMDb Search"
+msgstr "البحث في قاعدة بيانات معلومات الأفلام على الإنترنت"
+
+msgid "Icon shown for initially unknown count / size"
+msgstr "الايقونة معروض للعد مجهول مبدئيًا / الحجم"
+
+msgid "Information"
+msgstr "معلومات"
+
+msgid "Install Mutagen-package for audio metadata"
+msgstr "ثبت الحزمة-بيانات التعريف الصوتية"
+
+msgid "Installing Mutagen-package"
+msgstr "تثبيت حزمة موتجان"
+
+msgid "Italian"
+msgstr "الايطالية"
+
+msgid "Jump to first mark when playing movie"
+msgstr "القفز إلى أول علامة عند تشغيل الفيلم"
+
+msgid "KEYMAPPING"
+msgstr "خريطة المفاتيح"
+
+msgid "Key period value (50-900)"
+msgstr "قيمه الفترة الاساسيه (50-900)"
+
+msgid "Key repeat value (250-900)"
+msgstr "القيمة الرئيسية للتكرار (250-900)"
+
+msgid "LANGUAGE"
+msgstr "اللغـة"
+
+msgid "Language:"
+msgstr "اللغة:"
+
+msgid "Last played movie/playlist not available..."
+msgstr "آخر تشغيل الفيلم/قائمه التشغيل غير متوفرة..."
+
+msgid "Latest"
+msgstr "الحصول على أحدث صورة تجريبية"
+
+msgid "Latest Recordings"
+msgstr "أحدث التسجيلات"
+
+msgid "Latest Recordings directory limit"
+msgstr "مسار أخر التسجيلات"
+
+msgid "Latest Recordings directory use emc-noscan.cfg"
+msgstr "مسار التسجيلات الأخيرة المستخدمة في مركز مشغل الافلام-noscan.cfg"
+
+msgid "Leave Movie with Exit"
+msgstr "غادر الفلم مع الخروج"
+
+msgid "Light green"
+msgstr "اخضر فاتح"
+
+msgid "Light grey"
+msgstr "رمادي فاتح"
+
+msgid "Light orange"
+msgstr "برتقالي فاتح"
+
+msgid "Light red"
+msgstr "احمر فاتح"
+
+msgid "Limit file operations in dirs from emc-noscan.cfg"
+msgstr "الحد من عمليات الملف في المسارات من مركز مشغل الافلام-noscan.cfg"
+
+msgid "Link"
+msgstr "رابط"
+
+msgid "List entries to skip"
+msgstr "تخطي قائمة المدخلات"
+
+msgid "Listbox is skin able"
+msgstr "قائمة المربع حسب السكن المتوفر"
+
+msgid "Load Genre:"
+msgstr "تحميل النوع:"
+
+msgid "Load Production Countries:"
+msgstr "تحميل الإنتاج حسب الدول:"
+
+msgid "Load Release Date:"
+msgstr "تحميل تاريخ الإصدار:"
+
+msgid "Load Runtime:"
+msgstr "تحميل وقت التشغيل:"
+
+msgid "Load Vote:"
+msgstr "تحميل التصويت:"
+
+msgid "Load default settings will overwrite all settings, really load them?"
+msgstr ""
+"تحميل الإعدادات الافتراضية سوف الكتابة فوق كافة الإعدادات ، حقا تحميلها ؟"
+
+msgid ""
+"Locate rogue files and remove them? (permanently if no trashcan available, "
+"may take a minute or so)"
+msgstr ""
+"تحديد موقع الملفات المارقة وأزالها ؟ (بشكل دائم إذا لم يكن هناك مهملات "
+"المتاحة ، قد يستغرق دقيقه أو نحو ذلك)"
+
+msgid "Location:"
+msgstr "موقعك:"
+
+msgid "Long Blue button function"
+msgstr "وظيفة الزر الأزرق المطول"
+
+msgid "Long Red button function"
+msgstr "وظيفة الزر الأحمر المطول"
+
+msgid "Long Yellow button function"
+msgstr "وظيفة الزر الأصفر المطول"
+
+msgid "LongInfo Button"
+msgstr "زر المعلومات المطول"
+
+msgid "MM/DD HH:MM"
+msgstr "MM/DD HH:MM"
+
+msgid "Manage Cover"
+msgstr "إدارة الغلاف"
+
+msgid "Mark all movies"
+msgstr "وضع علامة علي جميع الأفلام"
+
+msgid "Mark new recordings with a star"
+msgstr "وضع علامة علي التسجيلات الجديدة بنجمه"
+
+msgid "Method of hiding MiniTV"
+msgstr "طريقة إخفاء التلفزيون المصغر"
+
+msgid "Minimum file cache limit (0=cache everything)"
+msgstr "حد الحد الأدنى لذاكره التخزين المؤقت للملف (0 = كل شيء)"
+
+msgid "Minutes"
+msgstr "دقائق"
+
+msgid "Month"
+msgstr "شهر"
+
+msgid "Months"
+msgstr "أشهر"
+
+msgid "Move Cover to:"
+msgstr "نقل الغلاف إلى:"
+
+msgid "Move Directory:"
+msgstr "نقل المسار:"
+
+msgid "Move File"
+msgstr "نقل ملف"
+
+msgid "Move Files"
+msgstr "نقل الملفات"
+
+msgid "Move cursor down"
+msgstr "تحريك المؤشر لأسفل"
+
+msgid "Move cursor page down"
+msgstr "تحريك صفحه المؤشر لأسفل"
+
+msgid "Move cursor page up"
+msgstr "تحريك صفحه المؤشر لاعلي"
+
+msgid ""
+"Move cursor to the end / Move cursor x entries down / Switch Folders in "
+"Movie Home (down)"
+msgstr ""
+"نقل المؤشر إلى نهاية/نقل المؤشر الإدخالات العاشر أسفل/تبديل المجلدات في "
+"الصفحة الرئيسية الفيلم (لأسفل)"
+
+msgid ""
+"Move cursor to the top / Move cursor x entries up / Switch Folders in Movie "
+"Home (up)"
+msgstr ""
+"تحريك المؤشر إلى اعلي/تحريك المؤشر x إدخالات لاعلي/تبديل المجلدات في الصفحة "
+"الرئيسية الفيلم (حتى)"
+
+msgid "Move cursor up"
+msgstr "تحريك المؤشر لاعلي"
+
+msgid "Move file(s):"
+msgstr "نقل الملفات:"
+
+msgid "Move finished movies in trashcan"
+msgstr "أنقل الأفلام التي شاهدتها في سلة المهملات"
+
+msgid "Movie Color"
+msgstr "لون الفيلم"
+
+msgid ""
+"Movie Cover downloaded successfully!\n"
+"\n"
+"Can not write Movie Information File\n"
+"\n"
+"%s"
+msgstr ""
+"تحميل غلاف الفلم بنجاح!\n"
+"\n"
+"لا يمكن كتابه ملعومات ملف الفيلم \n"
+"\n"
+"%s"
+
+msgid "Movie Information Download Setup"
+msgstr "اعداد تحميل معلومات الفيلم"
+
+msgid "Movie Information Preview for:"
+msgstr "معاينه الفيلم للحصول علي معلومات:"
+
+msgid "Movie Information TMDb"
+msgstr "عرض معلومات الفلم من قاعدة بيانات الأفلام على الانترنت"
+
+msgid "Movie Information and Cover downloaded successfully!"
+msgstr "تحميل معلومات الفلم والغلاف بنجاح!"
+
+msgid "Movie Information downloaded successfully!"
+msgstr "تحميل معلومات الفيلم بنجاح!"
+
+msgid ""
+"Movie Information downloaded successfully!\n"
+"\n"
+"Can not write Movie Cover File\n"
+"\n"
+"%s"
+msgstr ""
+"تحميل معلومات الفلم بنجاح!\n"
+"\n"
+"لا يمكن كتابه ملعومات ملف الفيلم\n"
+"%s"
+
+msgid "Movie Selection Menu"
+msgstr "قائمة الأفلام المختارة"
+
+msgid "Movie home"
+msgstr "صفحة الأفلام الرئيسية"
+
+msgid "Movie home at start"
+msgstr "تشغيل صفحة الأفلام الرئيسية"
+
+msgid "Movie home home path"
+msgstr "مسار الصفحة الرئيسية للافلام"
+
+msgid "Movie information"
+msgstr "معلومات الفيلم"
+
+msgid "Movie preview delay in ms"
+msgstr "مدة تأخير عرض الفلم في الثانية"
+
+msgid "Movies"
+msgstr "الأفلام"
+
+msgid "Movietitle:"
+msgstr "عنوان الفلم:"
+
+msgid "N/A"
+msgstr "غير موجود"
+
+msgid "Next auto-start in "
+msgstr "التالي تشغيل تلقائي في "
+
+msgid "No"
+msgstr "لا"
+
+msgid "No Cover: %s"
+msgstr "لايوجد غلاف: %s"
+
+msgid "No DVD-Player found!"
+msgstr "لم يتم العثور علي مشغل دفيفدي!"
+
+msgid "No Movies found!"
+msgstr "لم يتم العثور علي أفلام!"
+
+msgid "No functionality set..."
+msgstr "لا توجد مجموعه وظائف..."
+
+msgid "No limit"
+msgstr "لا يوجد حد"
+
+msgid "No override"
+msgstr "لا تجاوز"
+
+msgid "No resume below 10 seconds"
+msgstr "لا يوجد استئناف اقل من عشر ثوان"
+
+msgid "No rogue files found."
+msgstr "لم يتم العثور على الملفات الفاسدة."
+
+msgid "Not all timers have been stopped. Modify them with the timer editor."
+msgstr "لم يتم إيقاف كافة أجهزه ضبط التوقيت. تعديلها مع محرر جهاز ضبط الوقت."
+
+msgid "Nothing was found !"
+msgstr "لم يتم العثور علي شيء!"
+
+msgid "OK"
+msgstr "موافق"
+
+msgid "OSError - please reload list (EMC menu)"
+msgstr "Oserror--يرجى تحديث قائمه (ضبط مركز مشغل الافلام)"
+
+msgid "OTHER"
+msgstr "أخرى"
+
+msgid "Off"
+msgstr "لا يعمل"
+
+msgid "Open"
+msgstr "لا يمكن فتح صوره داخل صوره"
+
+msgid "Open E2 Bookmark path"
+msgstr "فتح مسار الاشاره المرجعية الانجما2"
+
+msgid "Open E2 bookmarks"
+msgstr "فتح الإشارات المرجعية الانجما2"
+
+msgid "Open EMC Bookmark path"
+msgstr "فتح مسار الاشاره المرجعية لمركز مشغل الافلام"
+
+msgid "Open Timer List"
+msgstr "فتح قائمة المؤقت"
+
+msgid "Open menu"
+msgstr "فتح الضبط"
+
+msgid "Orange"
+msgstr "برتقالي"
+
+msgid "Own Path to movie picons"
+msgstr "المسار الخاص بايقونات الافلام"
+
+msgid "Path to movie picons"
+msgstr "مسار ايقونات الافلام"
+
+msgid "Percent (%)"
+msgstr "نسبه مئوية (%)"
+
+msgid "Performance"
+msgstr "الاداء"
+
+msgid "Permanently delete all files in trashcan?"
+msgstr "بشكل دائم حذف جميع التسجيلات في سلة المهملات؟"
+
+msgid "Play All"
+msgstr "تشغيل الكل"
+
+msgid "Play All starting"
+msgstr "بداية تشغيل الكل"
+
+msgid "Play current Playlist"
+msgstr "تشغيل القائمة الحالية"
+
+msgid "Play last"
+msgstr "أخر تشغيل"
+
+msgid "Play last movie starting"
+msgstr "تشغيل أخر فلم تم مشاهدته"
+
+msgid "Play random current Playlist"
+msgstr "تشغيل عشوائي لقائمة التشغيل الحالية"
+
+msgid "Play selected movie(s)"
+msgstr "تشغيل الفلم المحدد"
+
+msgid "Playlist Options"
+msgstr "خيارات قائمه التشغيل"
+
+msgid "Playlist Setup"
+msgstr "اعداد قائمه التشغيل"
+
+msgid "Playlist open"
+msgstr "فتح قائمه التشغيل"
+
+msgid ""
+"Playlist with same name exists!\n"
+"\n"
+"Try to save the Playlist with another name?"
+msgstr ""
+"قائمه التشغيل بنفس الاسم موجودة!\n"
+"\n"
+"محاولة حفظ قائمه التشغيل باسم آخر ؟"
+
+msgid "Portuguese"
+msgstr "البرتقالية"
+
+msgid "Position movie picons"
+msgstr "مكان ايقونات الافلام"
+
+msgid "Preferred EPG language"
+msgstr "اللغة المفضلة لدليل البرامج الإلكترونية"
+
+msgid "Preferred cover resolution (if possible):"
+msgstr "الدقة المفضلة للغلاف (إن وجدت)"
+
+msgid "Press green button to start search"
+msgstr "اضغط علي الزر الأخضر لبدء البحث"
+
+msgid "Primary playback audio language"
+msgstr "لغة القناة الصوتية الرئيسية"
+
+msgid "Primary playback subtitle language"
+msgstr "لغة ترجمة الرئيسية لفلم"
+
+msgid "Production Countries:"
+msgstr "المنتجين حسب الدولة:"
+
+msgid "Progress sort"
+msgstr "ترتيب حسب التشغيل"
+
+msgid "Progress sort ascending (P+)"
+msgstr "ترتيب أبجدي التقدم تصاعديآ (ب+)"
+
+msgid "Progress sort descending (P-)"
+msgstr "ترتيب أبجدي التقدم تنازليا (ب+)"
+
+msgid "ProgressBar"
+msgstr "شريط التقدم"
+
+msgid "Quick-button"
+msgstr "زر سريع"
+
+msgid "Radio-button"
+msgstr "زر الراديو"
+
+msgid "Reading directory..."
+msgstr "قراءة المسار..."
+
+msgid "Really close without saving settings?"
+msgstr "هل تريد الإغلاق بدون حفظ الإعدادات؟"
+
+msgid "Reboot"
+msgstr "إعادة التشغيل"
+
+msgid "Red"
+msgstr "أحمر"
+
+msgid "Red button function"
+msgstr "وظيفة الزر الأحمر"
+
+msgid "Release Date:"
+msgstr "تاريخ الإصدار:"
+
+msgid "Reload current directory"
+msgstr "أعاده تحميل المسار الحالي"
+
+msgid "Reload movie file list"
+msgstr "أعاده تحميل قائمة ملف الافلام"
+
+msgid "Remove all cut file marker permanently?"
+msgstr "حذف كافة علامات ملف القطع بشكل دائم ؟"
+
+msgid "Remove all marker permanently?"
+msgstr "حذف كافة علامات المملف بشكل دائم ؟"
+
+msgid "Remove cut list marker"
+msgstr "حذف قائمة القطع المصنوعة"
+
+msgid "Remove directory from E2 Bookmarks"
+msgstr "حذف المسار إلى E2 الإشارات المرجعية"
+
+msgid "Remove directory from EMC Bookmarks"
+msgstr "حذف المسار إلى مرجعية متصفح الأفلام"
+
+msgid "Remove permanent sort"
+msgstr "حذف الفرز الدائم"
+
+msgid "Remove permanent sort from parent"
+msgstr "حذف الفرز الدائم من الأصل"
+
+msgid "Remove rogue files"
+msgstr "حذف الملفات الفاسدة"
+
+msgid "Remove selected E2 Bookmark"
+msgstr "حذف الإشارة المرجعية المحددة للانجما2"
+
+msgid "Remove selected EMC Bookmark"
+msgstr "حذف الإشارة المرجعية المحددة لمركز مشغل الافلام"
+
+msgid "Remove service selection"
+msgstr "حذف الخدمة المحددة"
+
+msgid "Rename selected movie(s)"
+msgstr "أعاده تسميه الأفلام المحددة"
+
+msgid "Replace special chars in title"
+msgstr "إستبدال الأحرف الخاصة في العنوان"
+
+msgid "Reset marker from selected movie(s)"
+msgstr "أعاده تعيين العلامة من الفيلم (الأفلام) المحددة"
+
+msgid "Resume position at %s"
+msgstr "إستعادة الوضع إلى %s"
+
+msgid "Resuming playback"
+msgstr "إستئناف العرض"
+
+msgid "Rewind finished movies before playing"
+msgstr "ترجيع الفلم لاخر توقف شاهدتها قبل التشغيل"
+
+msgid "Runtime:"
+msgstr "وقت التشغيل:"
+
+msgid "SKIN-SETTINGS"
+msgstr "إعدادات السكن"
+
+msgid "Save"
+msgstr "حفظ"
+
+msgid "Save Cover"
+msgstr "حفظ الغلاف"
+
+msgid "Save current Playlist"
+msgstr "حفظ قائمه التشغيل الحالية"
+
+msgid "Save description to movie.txt file:"
+msgstr "حفظ وصف الفلم في ملف نصوص:"
+
+msgid "Scan for DVD structures"
+msgstr "بحث في قواعد الدفيفدي"
+
+msgid "Scan for bluray structures"
+msgstr "بحث في قواعد البلوراي"
+
+msgid "Scan for bluray structures in .iso"
+msgstr "بحث في قواعد البلوراي في الايزو"
+
+msgid "Scan for movie structures"
+msgstr "بحث في قواعد الافلام"
+
+msgid "Scan linked folders"
+msgstr "بحث روابط المجلدات"
+
+msgid "Search"
+msgstr "بحث"
+
+msgid "Search Results per Search Site%s:"
+msgstr "نتائج البحث لكل موقع بحث %s:"
+
+msgid "Search Site:"
+msgstr "البحث في الموقع:"
+
+msgid "Search filter for matching existing terms in the title:"
+msgstr "فلتر البحث لمطابقه المصطلحات الموجودة في العنوان:"
+
+msgid "Search results for:"
+msgstr "نتائج البحث لـ:"
+
+msgid "Searching for %s"
+msgstr "البحث عن %s"
+
+msgid "Searching..."
+msgstr "البحث..."
+
+msgid "Secondary playback audio language"
+msgstr "لغة القناة الصوتية الثانوية"
+
+msgid "Secondary playback subtitle language"
+msgstr "لغة ترجمة القناة الثانوية"
+
+msgid "Seek backward"
+msgstr "الرجوع للخلف"
+
+msgid "Seek forward"
+msgstr "التقديم إلى الأمام"
+
+msgid "Select Location"
+msgstr "أختار الموقع"
+
+msgid "Set path to save the folder Cover:"
+msgstr "تعيين مسار لحفظ مجلد للاغلفة:"
+
+msgid "Set permanent sort"
+msgstr "تعيين نوع دائم"
+
+msgid "Settings have been Saved."
+msgstr "تم حفظ الإعدادات."
+
+msgid "Setup"
+msgstr "الضبـط"
+
+msgid "Setup open"
+msgstr "فتح الاعداد"
+
+msgid "Short watching percent"
+msgstr "المشاهدة القصيرة بالنسبة المئوية"
+
+msgid "Show Bookmarks in movielist"
+msgstr "عرض العلامات المرجعية في قائمة الافلام"
+
+msgid "Show Cover"
+msgstr "عرض الغلاف"
+
+msgid "Show Cut-Nr if exist"
+msgstr "عرض الملفات المتقطعة إن وجدت"
+
+msgid "Show EMC in extensions menu"
+msgstr "عرض قائمة الملحقات في مركز مشغل الافلام"
+
+msgid "Show EMC in main menu"
+msgstr "عرض مركز مشغل الأفلام في القائمة الرئيسية"
+
+msgid "Show Latest Recordings directory"
+msgstr "عرض مسار التسجيلات الاخيرة"
+
+msgid "Show Movie Format"
+msgstr "عرض صيغة الفلم"
+
+msgid "Show Path if no extended description available"
+msgstr "عرض مسار إذا لم يكن هناك وصف مطول متوفر"
+
+msgid "Show VLC directory"
+msgstr "عرض مسار مشغل الافلام"
+
+msgid "Show audio metadata"
+msgstr "عرض البيانات الصوتية"
+
+msgid "Show current Playlist"
+msgstr "عرض قائمة التشغيل الحالية"
+
+msgid "Show directories"
+msgstr "عرض المسارات"
+
+msgid "Show directories information"
+msgstr "عرض معلومات المسارات"
+
+msgid "Show directories within movielist"
+msgstr "عرض المسارات داخل قائمة الافلام"
+
+msgid "Show directory size in skin"
+msgstr "عرض حجم المسارات في السكن"
+
+msgid "Show event info"
+msgstr "عرض معلومات الحدث"
+
+msgid "Show experimental options"
+msgstr "عرض الخيارات التجريبية"
+
+msgid "Show fallback cover"
+msgstr "تراجع عن الغلاف"
+
+msgid "Show info at the bottom"
+msgstr "عرض المعلومات في الجزء السفلي"
+
+msgid "Show info at the bottom (with MiniTV)"
+msgstr "عرض المعلومات في الجزء السفلي (مع الشاشة المصغرة)"
+
+msgid "Show info on the left"
+msgstr "عرض المعلومات علي اليسار"
+
+msgid "Show info on the left (with MiniTV)"
+msgstr "عرض المعلومات علي اليسار (مع الشاشة الصغيرة)"
+
+msgid "Show link arrow"
+msgstr "عرض سهم على الروابط"
+
+msgid "Show message if file added to playlist"
+msgstr "عرض رسالة إذا أضفت الملف في قائمة التشغيل"
+
+msgid "Show movie icons"
+msgstr "عرض ايقونة الفلم"
+
+msgid "Show movie picons"
+msgstr "عرض ايقونات الافلام"
+
+msgid "Show movie preview"
+msgstr "عرض مشاهدة الفلم"
+
+msgid "Show movie progress"
+msgstr "عرض علامة تقدم  الفلم"
+
+msgid "Show plugin config in extensions menu"
+msgstr "عرض إضافة الاعدادات في قائمة الملحقات"
+
+msgid "Show real length of running records"
+msgstr "عرض الطول الحقيقي للسجلات قيد التشغيل"
+
+msgid "Show symlinks"
+msgstr "عرض الروابط الرمزية"
+
+msgid "Show trashcan directory"
+msgstr "عرض مسار سلة المهملات"
+
+msgid "Show trashcan information"
+msgstr "عرض معلومات سلة المهملات"
+
+msgid "Shuffle All"
+msgstr "تشغيل القائمة عشوائيآ"
+
+msgid "Shuffle All starting"
+msgstr "بدء تشغيل القائمة عشوائيآ"
+
+msgid "Single Search:"
+msgstr "بحث منفرد:"
+
+msgid "Single search"
+msgstr "بحث منفرد"
+
+msgid "Skip"
+msgstr "تخطي"
+
+msgid ""
+"Skipping movie, the file does not exist.\n"
+"\n"
+msgstr ""
+"تخطي الفيلم ، الملف غير موجود.\n"
+"\n"
+
+msgid "Some settings changes require GUI restart to take effect."
+msgstr "تتطلب بعض تغييرات الإعدادات أعاده تشغيل واجهة الانجما نافذه المفعول."
+
+msgid "Sort Mode"
+msgstr "وضع الفرز"
+
+msgid "Sort Options"
+msgstr "خيارات الفرز"
+
+msgid "Sort Order"
+msgstr "ترتيب حسب الطلب"
+
+msgid "Spanish"
+msgstr "الإسبانية"
+
+msgid "Standby"
+msgstr "وضع الإستعداد"
+
+msgid "Start / end multiselection"
+msgstr "بداية / نهاية الاختيار المتعدد"
+
+msgid "Start EMC with"
+msgstr "تشغيل مركز مشغل الأفلام مع"
+
+msgid "Start movie preview before last position"
+msgstr "تشغيل معاينة الفلم قبل اخر مكان توقف عنده"
+
+msgid "Stop ongoing recording?\n"
+msgstr "إيقاف التسجيل المستمر ؟\n"
+
+msgid "Stop playback"
+msgstr "إيقاف تشغيل"
+
+msgid "Style for original EMC-skin (needs reopen)"
+msgstr "الشكل الأصلي لمركز مشغل الأفلام - السكن (تحتاج إعادة فتحه)"
+
+msgid "Suppress scan in selected folders"
+msgstr "بحث مخفي للمجلدات المحددة"
+
+msgid "TMBD Info"
+msgstr "معلومات قاعدة بيانات الافلام"
+
+msgid "TMDB Info"
+msgstr "معلومات قاعدة بيانات الافلام"
+
+msgid "TMDb"
+msgstr "معلومات قاعدة بيانات الافلام"
+
+msgid "TRASHCAN"
+msgstr "سلة المحذوفات"
+
+msgid "TV Shows"
+msgstr "لقطات شاشة المعاينة لتشغيل العروض التلفزيونية"
+
+msgid "TV-button"
+msgstr "زر التلفزيون"
+
+msgid "Tertiary playback audio language"
+msgstr "لغة الفلم الصوتية الثالثة"
+
+msgid "Tertiary playback subtitle language"
+msgstr "لغة ترجمة الفلم الثالثة"
+
+msgid "Text shown for initially unknown count and size"
+msgstr "الايقونة معروض للعد مجهول مبدئيًا / الحجم"
+
+msgid "Text shown for initially unknown directory size"
+msgstr "النص المعروض لحجم الدليل غير معروف في البداية"
+
+msgid "Text shown for initially unknown file count"
+msgstr "النص المعروض لعدد الملفات غير المعروف في البداية"
+
+msgid ""
+"The directory %s is already locked. Do you want to unlock it and all its "
+"subfolders?"
+msgstr "المسارات %s مؤمن بالفعل. هل تريد إلغاء اغلاقه وكافة مجلداته الفرعية ؟"
+
+msgid ""
+"The following files are used for other entrys in List !\n"
+"\n"
+"Also delete these files?\n"
+"\n"
+"%s"
+msgstr ""
+"يتم استخدام الملفات التالية لاخري entrys في قائمه!\n"
+"\n"
+"أيضا حذف هذه الملفات ؟\n"
+"\n"
+" %s"
+
+msgid "The python-mutagen package is not available on the feed."
+msgstr "حزمة البايثون غير متوفرة علي الفييد."
+
+msgid "This element belongs to a locked folder and cannot be deleted!"
+msgstr "ينتمي هذا العنصر إلى مجلد مغلق ولا يمكن حذفه!"
+
+msgid "This folder is locked or contains a locked subfolder, unlock it first!"
+msgstr "هذا المجلد مغلق أو يحتوي علي مجلد فرعي مغلق ، افتحه أولا!"
+
+msgid "Timeshift-button"
+msgstr "زر التحكم الزمني في البث المباشر"
+
+msgid "Title"
+msgstr "عنوان"
+
+msgid "Toggle Cover Button"
+msgstr "زر تبديل الغلاف"
+
+msgid "Toggle service selection"
+msgstr "تبديل اختيار الخدمة"
+
+msgid "Toggle viewed / not viewed"
+msgstr "التبديل المعروض/غير المعروض"
+
+msgid "Total"
+msgstr "الإجمــالي"
+
+msgid "Trashcan"
+msgstr "سلة المحذوفات"
+
+msgid "Trashcan create failed. Check mounts and permissions."
+msgstr "فشل إنشاء سلة المهملات,تحقق من الارتباطات والاذونات."
+
+msgid "Trashcan enable"
+msgstr "تفعيل سلة المهملات"
+
+msgid "Trashcan path"
+msgstr "مسار سلة المهملات"
+
+msgid "Try to load extra title and more from .meta files"
+msgstr "محاولة تحميل عنوان اضافيه وأكثر من الملفات"
+
+msgid "Try to load titles from .eit files"
+msgstr "محاولة تحميل العناوين من ملفات. eit"
+
+msgid "Try to load titles from .meta files"
+msgstr "إعادة تحميل عنوان اضافيه الملفات من الاعلى"
+
+msgid "UNKNOWN"
+msgstr "غير معروف"
+
+msgid "Up"
+msgstr "أعلى"
+
+msgid "Use cache for files and directories"
+msgstr "أستخدم الذاكرة المؤقتة للملفات والمسارات"
+
+msgid "Use original EMC-skin (needs reopen)"
+msgstr "الأصلي لمركز مشغل الأفلام - السكن (تحتاج إعادة فتحه)"
+
+msgid "VLC"
+msgstr "مشغل الوسائط"
+
+msgid "VLC Server not reachable"
+msgstr "سيرفر مشغل الوسائط غير قابل للوصول"
+
+msgid "VLC-Dir"
+msgstr "مسار مشغل الوسائط"
+
+msgid "VLC-Server"
+msgstr "سيرفر مشغل الوسائط"
+
+msgid "Video-button"
+msgstr "زر الفيديو"
+
+msgid "Vote:"
+msgstr "التصويت:"
+
+msgid "WD DD.MM. HH:MM"
+msgstr "WD DD.MM: MM"
+
+msgid "WD DD.MM.YYYY"
+msgstr "DD.MM.YYYY"
+
+msgid "WD DD.MM.YYYY HH:MM"
+msgstr "DD.MM.YYYY HH:MM"
+
+msgid "WD MM/DD HH:MM"
+msgstr "WD MM/DD HH:MM"
+
+msgid "WD YYYY/MM/DD"
+msgstr "WD YYYY/MM/DD"
+
+msgid "WD YYYY/MM/DD HH:MM"
+msgstr "WD YYYY/MM/DD HH:MM"
+
+msgid "Wake device when entering dir from emc-noscan.cfg"
+msgstr "جهاز تنبيه عند دخول المسار من مركز مشغل الافلام"
+
+msgid "Week"
+msgstr "الأسبوع"
+
+msgid "Weeks"
+msgstr "أسبوع"
+
+msgid "White"
+msgstr "أبيض"
+
+msgid "YYYY/MM/DD"
+msgstr "YYYY/MM/DD"
+
+msgid "YYYY/MM/DD HH:MM"
+msgstr "YYYY/MM/DD HH:MM"
+
+msgid "Yellow button function"
+msgstr "وظائف الزر الاصفر"
+
+msgid "Yes"
+msgstr "نعم"
+
+msgid "Yes, everything"
+msgstr "نعم ، كل شيء"
+
+msgid "Yes, only extra title"
+msgstr "نعم ، العنوان الإضافي فقط"
+
+msgid "Yes, with Message"
+msgstr "نعم ، مع رسالة"
+
+msgid "Yes, without Message"
+msgstr "نعم ، بدون رسالة"
+
+msgid ""
+"Your Box is about to go into DeepStandby, continue?\n"
+" Select no to delay one hour"
+msgstr ""
+"الرسيفر الخاص بك علي وشك الذهاب إلى الإستعداد العميق يرجى الانتظار ، "
+"والاستمرار ؟\n"
+" حدد أن لا يتاخير ساعة واحده"
+
+msgid ""
+"Your Box is about to go into E2 Restart, continue?\n"
+" Select no to delay one hour"
+msgstr ""
+"الرسيفر الخاص بك علي وشك الذهاب إلى إعادة تشغيل كاملة يرجى الانتظار ، "
+"والاستمرار ؟\n"
+" حدد أن لا يتاخير ساعة واحده"
+
+msgid ""
+"Your Box is about to go into Reboot, continue?\n"
+" Select no to delay one hour"
+msgstr ""
+"الرسيفر الخاص بك علي وشك الذهاب إلى إعادة تشغيل يرجى الانتظار ، "
+"والاستمرار ؟\n"
+" حدد أن لا يتاخير ساعة واحده"
+
+msgid ""
+"Your Box is about to go into Standby, continue?\n"
+" Select no to delay one hour"
+msgstr ""
+"الرسيفر الخاص بك علي وشك الذهاب إلى الاغلاق يرجى الانتظار ، والاستمرار ؟\n"
+" حدد أن لا يتاخير ساعة واحده"
+
+msgid "Zap to channel after record EOF"
+msgstr "أنتقل إلى القناة بعد التسجيل"
+
+msgid "after reload list"
+msgstr "بعد إعادة تحميل القائمة"
+
+msgid "after standby"
+msgstr "بعد الاستعداد"
+
+msgid "all"
+msgstr "الكل"
+
+msgid "always"
+msgstr "دائما"
+
+msgid "always hide"
+msgstr "إخفاء دائما"
+
+msgid "auto-start is currently not active."
+msgstr "التشغيل التلقائي غير نشط حاليا."
+
+msgid "auto-start window begin"
+msgstr "بدء تشغيل النافذة تلقائيا"
+
+msgid "auto-start window end"
+msgstr "إنهاء تشغيل النافذة تلقائيا"
+
+msgid "center"
+msgstr "وسط"
+
+msgid "configuration"
+msgstr "تكوين"
+
+msgid "covers in"
+msgstr "الاغلقة في"
+
+msgid "csfd.cz"
+msgstr "csfd.cz"
+
+msgid "daily auto-start"
+msgstr "تأخير بدء التشغيل التلقائي"
+
+msgid "down"
+msgstr "اسفل"
+
+msgid "every single one"
+msgstr "كل واحد"
+
+msgid "forward to the next chapter"
+msgstr "الانتقال إلى الأمام إلى الفصل التالي"
+
+msgid "found"
+msgstr "وجدت"
+
+msgid "from"
+msgstr "من"
+
+msgid "hide live TV"
+msgstr "إخفاء البث التلفزيوني المباشر"
+
+msgid "hide live TV and timeshift"
+msgstr "إخفاء البث التلفزيوني المباشر والتايم شفت"
+
+msgid "hide playback"
+msgstr "إخفاء التشغيل"
+
+msgid "imdb.com"
+msgstr "imdb.com"
+
+msgid "jump back to the previous title"
+msgstr "الانتقال خلفا للعنوان السابق"
+
+msgid "jump forward to the next title"
+msgstr "الانتقال أماما للعنوان التالى"
+
+msgid "jump to next marked position"
+msgstr "الرجوع إلى الوضع القادم  المحدد"
+
+msgid "jump to previous marked position"
+msgstr "القفز إلى وضع ملحوظ السابقة"
+
+msgid "left"
+msgstr "يسار"
+
+msgid "left from Name"
+msgstr "الاسم من اليسار"
+
+msgid "movie manipulation list"
+msgstr "قائمة معالجة الافلام"
+
+msgid "movies in"
+msgstr "أفلام في"
+
+msgid "never hide"
+msgstr "أبدا إخفاء"
+
+msgid "no"
+msgstr "لا"
+
+msgid "no limit"
+msgstr "لا يوجد حد"
+
+msgid "off"
+msgstr "لا يعمـل"
+
+msgid "only initially"
+msgstr "في البداية فقط"
+
+msgid "overall"
+msgstr "العام"
+
+msgid "rewind to the previous chapter"
+msgstr "عوده للفصل السابق"
+
+msgid "right"
+msgstr "اليمين"
+
+msgid "right from Name"
+msgstr "الاسم من اليمين"
+
+msgid "sec"
+msgstr "ثانيه"
+
+msgid "sec found. Avg. Speed:"
+msgstr "العثور علي ثانيه. متوسط السرعة:"
+
+msgid "sec."
+msgstr "ثانيه."
+
+msgid "show DVD main menu"
+msgstr "أعرض قائمة دى فى دى الرئيسيه"
+
+msgid "single pixel TV, muted"
+msgstr "واحد بكسل التلفزيون ، صامت"
+
+msgid "standard cover"
+msgstr "غلاف عادي"
+
+msgid "stop service"
+msgstr "إيقاف الخدمة"
+
+msgid "switch to the next angle"
+msgstr "الانتقال الى الزاويه التاليه"
+
+msgid "switch to the next audio track"
+msgstr "الانتقال الى مسار الصوت التالى"
+
+msgid "switch to the next subtitle language"
+msgstr "الانتقال الى لغة العناوين الفرعيه التاليه"
+
+msgid "themoviedb.org"
+msgstr "themoviedb.org"
+
+msgid "themoviedb.org + thetvdb.com"
+msgstr "themoviedb.org + thetvdb.com"
+
+msgid "themoviedb.org + thetvdb.com + imdb.com"
+msgstr "themoviedb.org + thetvdb.com + imdb.com"
+
+msgid ""
+"themoviedb.org for movies + thetvdb.com for series (e.g. 'S01E01' in title)"
+msgstr ""
+"themoviedb.org للأفلام + thetvdb.com للسلسلة (علي سبيل المثال ' ق 01e01 ' في "
+"العنوان)"
+
+msgid "thetvdb cover number (standard cover):"
+msgstr "رقم تغطيه thetvdb (الغطاء القياسي):"
+
+msgid "thetvdb cover range per title:"
+msgstr "نطاق تغطيه thetvdb لكل عنوان:"
+
+msgid "thetvdb.com"
+msgstr "thetvdb.com"
+
+msgid "three contiguous"
+msgstr "ثلاثه متجاورة"
+
+msgid "toggle a cut mark at the current position"
+msgstr "تبديل علامة قطع في الموضع الحالي"
+
+msgid "trashcan"
+msgstr "سلة المحذوفات"
+
+msgid "two contiguous"
+msgstr "اثنين متجاورة"
+
+msgid "type 1 - OSD + black (#00000000)"
+msgstr "type 1 - OSD + black (#00000000)"
+
+msgid "type 2 - transparent + white (#FFFFFFFF)"
+msgstr "type 2 - transparent + white (#FFFFFFFF)"
+
+msgid "type 3 - OSD + black (#00FFFFFF)"
+msgstr "type 3 - OSD + black (#00FFFFFF)"
+
+msgid "type 4 - transparent + black (#FF000000)"
+msgstr "type 4 - transparent + black (#FF000000)"
+
+msgid "unknown"
+msgstr "غير معروف"
+
+msgid "up/down"
+msgstr "اعلي/أسفل"
+
+msgid "view extensions..."
+msgstr "مشاهدة الملحقات..."
+
+msgid "yes"
+msgstr "نعم"
