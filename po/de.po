@@ -2359,7 +2359,7 @@ msgstr ""
 
 #: MovieSelection.py:669
 msgid "Directory forward"
-msgstr "vorheriges Verzeichnis"
+msgstr "Vorheriges Verzeichnis"
 
 #: MovieSelection.py:671
 msgid "Directory back"
