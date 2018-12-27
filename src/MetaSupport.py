@@ -80,7 +80,7 @@ class MetaList():
 		# pts has a resolution of 90kHz
 		if pts:
 			try:
-				pts / 90 / 1000
+				return pts / 90 / 1000
 			except:
 				return 0
 		else:
@@ -89,10 +89,11 @@ class MetaList():
 	def __mk_int(self, s):
 		if s:
 			try:
-				int(s)
+				return int(s)
 			except:
 				return 0
-		else: return 0
+		else:
+			return 0
 
 	def __secondsToDate(self, s):
 		return s and datetime.fromtimestamp(s) or None
