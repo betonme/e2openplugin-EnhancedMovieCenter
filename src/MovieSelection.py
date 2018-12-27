@@ -97,6 +97,12 @@ try:
 except:
 	isDreamOS = False
 
+try:
+	f = open("/proc/stb/info/model", "r")
+	boxmodel = ''.join(f.readlines()).strip()
+except:
+	boxmodel = ''
+
 # Move all trashcan operations to a separate file / class
 def purgeExpired(currentPath=None,postFileOp=None,emptyTrash=False):
 	try:
@@ -2073,6 +2079,15 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 						return
 					self.busy = True
 					#self.miniTV_unmute() #moved to 'openPlayer', mute as long as possible
+
+					#fix start video sometimes as mini-tv-window on dm9x0
+					if isDreamOS and boxmodel in ["dm900","dm920"]:
+						desktopSize = getDesktop(0).size()
+						self.instance.resize(eSize(*(desktopSize.width(), desktopSize.height())))
+						self.session.nav.stopService()
+						self["Video"].instance.resize(eSize(*(desktopSize.width(), desktopSize.height())))
+						self["Video"].hide()
+
 					self.openPlayer(playlist, playall)
 				else:
 					self.checkHideMiniTV_beforeFullscreen()
