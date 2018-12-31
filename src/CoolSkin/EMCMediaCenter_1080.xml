@@ -8,7 +8,7 @@
         <widget font="Regular;34" halign="right" position="1680,68" render="Label" size="200,40" source="global.CurrentTime">
             <convert type="EMCClockToText">Format:%H:%M:%S</convert>
         </widget>
-        <widget pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/rec.png" position="90,160" render="Pixmap" size="25,25" source="session.RecordState" zPosition="1" alphatest="blend">
+        <widget pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/rec.png" position="101,156" render="Pixmap" size="25,25" source="session.RecordState" zPosition="1" alphatest="blend">
             <convert type="ConditionalShowHide">Blink</convert>
         </widget>
         <ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/emc.png" position="25,80" size="175,175" alphatest="blend"/>

@@ -9,7 +9,7 @@
             <convert type="EMCClockToText">Format:%H:%M:%S</convert>
         </widget>
 		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/emc.png" position="25,90" size="140,140" alphatest="blend"/>
-        <widget pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/rec.png" position="83,152" render="Pixmap" size="15,15" source="session.RecordState" zPosition="1" alphatest="blend">
+        <widget pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/rec.png" position="87,151" render="Pixmap" size="18,18" source="session.RecordState" zPosition="1" alphatest="blend">
             <convert type="ConditionalShowHide">Blink</convert>
         </widget>
 		<widget source="Service" render="Label" position="180,146" size="90,26" font="Regular;22" halign="right">
