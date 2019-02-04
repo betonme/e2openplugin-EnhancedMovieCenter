@@ -425,7 +425,7 @@ msgstr ""
 
 #: EMCPlayList.py:237
 msgid "Change the filename to save current Playlist:"
-msgstr "Ändern sie den Dateinamen zum Speichern der aktuellen Playlist:"
+msgstr "Ändern Sie den Dateinamen zum Speichern der aktuellen Playlist:"
 
 #: EMCPlayList.py:237
 msgid "Save current Playlist"
