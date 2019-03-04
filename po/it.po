@@ -1,16 +1,17 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Enhanced Movie Center enigma2 plugin\n"
+"Project-Id-Version: EMC V.4.0.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-04-02 23:08+0200\n"
-"PO-Revision-Date: 2019-02-02 18:02+0000\n"
+"PO-Revision-Date: 2019-03-04 10:51+0000\n"
 "Last-Translator: William <ghenessior@gmail.com>\n"
+"Language-Team: www.linsat.net <spaeleus@croci.org>\n"
 "Language: it_IT\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SourceCharset: iso-8859-1\n"
 "X-Poedit-Basepath: ..\n"
 "X-Generator: Poedit 2.2.1\n"
 "Language-Team: \n"
@@ -103,6 +104,12 @@ msgstr ""
 "\n"
 "Conferma premendo il tasto BLU seguito dal tasto verde."
 
+msgid "AUDIO METADATA"
+msgstr "METADATI AUDIO"
+
+msgid "AUTOSTART"
+msgstr "AVVIO AUTOMATICO"
+
 msgid "About"
 msgstr "Informazioni"
 
@@ -137,7 +144,7 @@ msgid "Alpha sort ascending with meta (AZM)"
 msgstr "Alfabet.CRESC+meta(AZM)"
 
 msgid "Alpha sort ascending with meta, Date descending (AZMD-)"
-msgstr "Alfabet.CRESC+meta,data DECRESC.(AZMD-)"
+msgstr "Alfab.CRESC+meta,data decresc.(AZMD-)"
 
 msgid "Alpha sort ascending, Date descending (AZD-)"
 msgstr "Alfabet.CRESC,data DECRESC.(AZD-)"
@@ -167,7 +174,7 @@ msgid "Always save current Playlist"
 msgstr "Salva sempre la playlist corrente"
 
 msgid "Always save last played progress as marker"
-msgstr "Salva come contrassegno la posiz. dell'ultimo film visto"
+msgstr "Salva come contrass. la posiz. dell'ultimo file visto"
 
 msgid "An error occured! Internet connection broken?"
 msgstr "Errore: connessione Internet assente?"
@@ -180,6 +187,9 @@ msgstr "Pulizia automatica dell'elenco timer"
 
 msgid "Available plugins menu"
 msgstr "Menu plugin disponibili"
+
+msgid "Black"
+msgstr "Nero"
 
 msgid "Blue button function"
 msgstr "Funzione del tasto BLU"
@@ -223,13 +233,13 @@ msgstr ""
 msgid ""
 "Can not write Movie Information and Cover File\n"
 "\n"
-"%s\n"
-"%s"
+"%(info)s\n"
+"%(file)s"
 msgstr ""
 "Impossibile scrivere file informazioni e copertina del film\n"
 "\n"
-"%s\n"
-"%s"
+"%(info)s\n"
+"%(file)s"
 
 msgid "Cancel"
 msgstr "Annulla"
@@ -238,7 +248,7 @@ msgid "Cannot delete the parent directory."
 msgstr "Non è possibile eliminare la cartella superiore."
 
 msgid "Change File/Moviename and/or Description"
-msgstr "Cambia il nome file/film o la descrizione"
+msgstr "Cambia il nome del file (o del film) o la sua descrizione"
 
 msgid "Change Folder"
 msgstr "Cambia cartella"
@@ -278,6 +288,9 @@ msgstr "Seleziona script"
 
 msgid "Close EMC"
 msgstr "Chiudere EMC"
+
+msgid "Close EMC and do power button action"
+msgstr "Chiudi EMC ed usa il pulsante ON/OFF"
 
 msgid "Collection"
 msgstr "Raccolta"
@@ -357,9 +370,6 @@ msgstr "Movimento cursore predittivo dopo la selezione"
 msgid "Custom"
 msgstr "Personalizzato"
 
-msgid "DD.MM HH:MM"
-msgstr "GG.MM OO:MM"
-
 msgid "DD.MM. HH:MM"
 msgstr "GG.MM. OO:MM"
 
@@ -369,8 +379,32 @@ msgstr "GG.MM.AAAA"
 msgid "DD.MM.YYYY HH:MM"
 msgstr "GG.MM.AAAA OO:MM"
 
+msgid "DEBUG"
+msgstr "DEBUG"
+
+msgid "DELAYS"
+msgstr "RITARDI"
+
+msgid "DISPLAY-SETTINGS"
+msgstr "IMPOST. DISPLAY"
+
+msgid "DVD / BLU-RAY / FOLDERS"
+msgstr "CARTELLE DVD/BLURAY"
+
 msgid "Daily cleanup time"
 msgstr "Ora di svuotamento giornaliero"
+
+msgid "Dark green"
+msgstr "Verde scuro"
+
+msgid "Dark grey"
+msgstr "Grigio scuro"
+
+msgid "Dark orange"
+msgstr "Aracione scuro"
+
+msgid "Dark red"
+msgstr "Rosso scuro"
 
 msgid "Date format"
 msgstr "Formato data"
@@ -598,10 +632,10 @@ msgid "EMC path access limit"
 msgstr "EMC: limiti accesso percorso"
 
 msgid "EMC re-open list after Movie end"
-msgstr "EMC: riapertura elenco registrazioni su fine riproduzione"
+msgstr "EMC: riapri elenco registrazioni a fine riproduzione"
 
 msgid "EMC re-open list after STOP-press"
-msgstr "EMC: riapertura elenco registrazioni su pressione STOP"
+msgstr "EMC: riapri elenco registrazioni dopo STOP"
 
 msgid "EMC-TMDB Info"
 msgstr "Informazioni EMC-TMDB"
@@ -669,22 +703,22 @@ msgstr "Files aggiunti nella playlist corrente."
 
 msgid ""
 "Files added to current Playlist:\n"
-"%s\n"
+"%(add)s\n"
 "\n"
 "Files exists in current Playlist:\n"
-"%s"
+"%(exist)s"
 msgstr ""
-"Files aggiunti nella playlist corrente:\n"
+"File aggiunti alla playlist corrente:\n"
 "%s\n"
 "\n"
-"Files esistenti nella playlist corrente:\n"
+"File già esistenti nella playlist corrente:\n"
 "%s"
 
 msgid ""
 "Files exists in current Playlist:\n"
 "%s"
 msgstr ""
-"Files esistenti nella playlist corrente:\n"
+"File esistenti nella playlist corrente:\n"
 "%s"
 
 msgid "Finished watching percent"
@@ -706,6 +740,15 @@ msgstr ""
 "Trovati file rogue:\n"
 "\n"
 
+msgid "Free: "
+msgstr "Libero"
+
+msgid "French"
+msgstr "Francese"
+
+msgid "GENERAL"
+msgstr "GENERALE"
+
 msgid "Genre:"
 msgstr "Genere:"
 
@@ -717,6 +760,12 @@ msgstr "Il percorso %s non esiste. Cambiarlo."
 
 msgid "Go to trashcan"
 msgstr "Vai al cestino"
+
+msgid "Green"
+msgstr "Verde"
+
+msgid "Grey"
+msgstr "Grigio"
 
 msgid "HELP_About"
 msgstr "Apre la finestra di dialogo Informazioni."
@@ -925,6 +974,9 @@ msgstr ""
 "Indicare se visualizzare inizialmente le icone conteggio/dimensione se questi "
 "sono sconosciuti"
 
+msgid "HELP_Install Mutagen-package for audio metadata"
+msgstr "Installa il pacchetto Mutagen per i metadati audio"
+
 msgid "HELP_Jump to first mark when playing movie"
 msgstr ""
 "Salta automaticamente al primo contrassegno disponibile all'inizio della "
@@ -1099,6 +1151,9 @@ msgstr ""
 "Mostra o nasconde EMC nel menu estensioni.\n"
 "Il menu estensioni è normalmente accessibile tramite il tasto [blu]."
 
+msgid "HELP_Show EMC in main menu"
+msgstr "Mostra o nasconde EMC nel Menu principale"
+
 msgid "HELP_Show Latest Recordings directory"
 msgstr ""
 "Mostra una cartella virtuale nella \"Home\" delle registrazioni (e nelle sue "
@@ -1115,8 +1170,11 @@ msgid "HELP_Show VLC directory"
 msgstr ""
 "Mostra o nasconde la cartella VLC se è installato il plugin VlcPlayerExtended."
 
+msgid "HELP_Show audio metadata"
+msgstr "Mostra i metadati audio"
+
 msgid "HELP_Show audio metadata (needs skin-changes)"
-msgstr "Mostra i metadata audio (la skin richiede modifiche)"
+msgstr "Mostra i metadati audio (la skin richiede modifiche)"
 
 msgid "HELP_Show directories"
 msgstr "Mostra o nasconde le cartelle"
@@ -1173,6 +1231,10 @@ msgstr "Tipo ordinamento all'avvio"
 msgid "HELP_Start EMC with"
 msgstr "Imposta il tasto diretto per aprire EMC."
 
+msgid "HELP_Style for original EMC-skin (needs reopen)"
+msgstr ""
+"Stile per la skin EMC originale*** ATTENZIONE: serve un riavvio della GUI"
+
 msgid "HELP_Tertiary playback audio language"
 msgstr ""
 "La traccia audio che dovrà essere selezionata come terza opzione, se "
@@ -1209,6 +1271,9 @@ msgstr ""
 "Selezionando [elimina] dal menu, le registrazioni verranno spostate nel "
 "cestino (se attivo) invece di essere eliminate immediatamente."
 
+msgid "HELP_Try to load extra title and more from .meta files"
+msgstr "Prova a ottenere informazioni aggiuntive dai file .meta"
+
 msgid "HELP_Try to load titles from .eit files"
 msgstr ""
 "I titoli saranno caricati dai file .eit se disponibili.\n"
@@ -1233,7 +1298,7 @@ msgstr ""
 
 msgid "HELP_Wake device when entering dir from emc-noscan.cfg"
 msgstr ""
-"Riattiva il dispositivo se sfogli una cartella indicata nel file emc-noscan.cfg"
+"Riattiva il dispositivo se sfogli una cartella indicata nel fileemc-noscan.cfg"
 
 msgid "HELP_Yellow button function"
 msgstr "Selezionare una funzione da assegnare al tasto Giallo"
@@ -1265,6 +1330,9 @@ msgstr ""
 msgid "HELP_hide_MiniTV"
 msgstr "Nascondi MiniTV"
 
+msgid "HELP_hide_MiniTV cover"
+msgstr "Nasconde la MiniTV se è disponibile la copertina del film"
+
 msgid "HELP_hide_MiniTV_method"
 msgstr "Metodo per nascondere la MiniTV"
 
@@ -1286,6 +1354,9 @@ msgstr "Nascondi copertina"
 msgid "Hide MiniTV"
 msgstr "Nascondi MiniTV"
 
+msgid "Hide MiniTV if Cover is shown"
+msgstr "Nascondi MiniTV se c'è la copertina"
+
 msgid "Hide configured entries"
 msgstr "Nascondi elementi configurati"
 
@@ -1299,7 +1370,7 @@ msgid "HomeEnd"
 msgstr "InizioFine"
 
 msgid "Horizontal alignment for count / size"
-msgstr "Allineamento orizzontale per conteggio / dimensione"
+msgstr "Allineamento orizzont. per num./dimensione"
 
 msgid "Horizontal alignment for date"
 msgstr "Allineamento orizzontale per data"
@@ -1335,22 +1406,34 @@ msgid "IMDb Search"
 msgstr "Ricerca in IMDb"
 
 msgid "Icon shown for initially unknown count / size"
-msgstr "Icona per conteggio/dimensioni inizialm. ignoti"
+msgstr "Icona per num./dimensioni inizialm. ignoti"
 
 msgid "Information"
 msgstr "Informazioni"
 
-msgid "Install Mutagen-package"
-msgstr "Installa il pacchetto Mutagen"
+msgid "Install Mutagen-package for audio metadata"
+msgstr "Installa il pacchetto Mutagen per i metadati audio"
+
+msgid "Installing Mutagen-package"
+msgstr "Installo il pacchetto Mutagen"
+
+msgid "Italian"
+msgstr "Italiano"
 
 msgid "Jump to first mark when playing movie"
 msgstr "Vai al primo contrassegno quando riproduci film"
+
+msgid "KEYMAPPING"
+msgstr "MAPPATURA DEI TASTI"
 
 msgid "Key period value (50-900)"
 msgstr "Ritardo ripetizione tasti (50-900)"
 
 msgid "Key repeat value (250-900)"
 msgstr "Velocità  ripetizione tasti (250-900)"
+
+msgid "LANGUAGE"
+msgstr "LINGUAGGIO"
 
 msgid "Language:"
 msgstr "Lingua:"
@@ -1372,6 +1455,18 @@ msgstr "Usa emc-noscan.cfg per la cartella “Ultime registrazioni”"
 
 msgid "Leave Movie with Exit"
 msgstr "Abbandonare la riproduzione con EXIT"
+
+msgid "Light green"
+msgstr "Verde chiaro"
+
+msgid "Light grey"
+msgstr "Grigio chiaro"
+
+msgid "Light orange"
+msgstr "Arancione chiaro"
+
+msgid "Light red"
+msgstr "Rosa"
 
 msgid "Limit file operations in dirs from emc-noscan.cfg"
 msgstr "Limita operaz. su file in cartelle di emc-noscan.cfg"
@@ -1496,7 +1591,7 @@ msgid "Move cursor up"
 msgstr "Cursore su"
 
 msgid "Move file(s):"
-msgstr "Sposta il/i file:"
+msgstr "Sposta il/i file in:"
 
 msgid "Move finished movies in trashcan"
 msgstr "Sposta i film terminati nel cestino"
@@ -1614,6 +1709,9 @@ msgstr "Nessun file rogue individuato."
 msgid "No script operation for VLC streams."
 msgstr "Nessuna operazione script per gli stream VLC."
 
+msgid "Not all timers have been stopped. Modify them with the timer editor."
+msgstr "Non sono stati arrestati tutti i timer. Modificali con la gestione Timer"
+
 msgid "Not stopping any repeating timers. Modify them with the timer editor."
 msgstr "Non arrestare i timer ripetuti. Modificarli attraverso l'editor timer."
 
@@ -1625,6 +1723,9 @@ msgstr "OK"
 
 msgid "OSError - please reload list (EMC menu)"
 msgstr "Errore OS - per favore ricarica la lista (Menu EMC)"
+
+msgid "OTHER"
+msgstr "ALTRO"
 
 msgid "Off"
 msgstr "Off"
@@ -1646,6 +1747,9 @@ msgstr "Apri la Lista Timer"
 
 msgid "Open menu"
 msgstr "Aprire menu"
+
+msgid "Orange"
+msgstr "Arancione"
 
 msgid "Own Path to movie picons"
 msgstr "Percorso pesonalizzato per le picon dei film"
@@ -1701,6 +1805,9 @@ msgstr ""
 "\n"
 "Provo a salvare la playlist con un altro nome?"
 
+msgid "Portuguese"
+msgstr "Portoghese"
+
 msgid "Position movie picons"
 msgstr "Posizione picon dei film"
 
@@ -1748,6 +1855,9 @@ msgstr "Chiudo senza salvare le impostazioni: confermi?"
 
 msgid "Reboot"
 msgstr "Riavvia decoder"
+
+msgid "Red"
+msgstr "Rosso"
 
 msgid "Red button function"
 msgstr "Funzione del tasto Rosso"
@@ -1817,6 +1927,9 @@ msgstr "Riavvia i film finiti prima di riprodurre"
 
 msgid "Runtime:"
 msgstr "Durata:"
+
+msgid "SKIN-SETTINGS"
+msgstr "IMPOSTAZIONI SKIN"
 
 msgid "Save"
 msgstr "Salva"
@@ -1911,6 +2024,9 @@ msgstr "Mostra num. tagli, se esiste"
 msgid "Show EMC in extensions menu"
 msgstr "Mostra EMC nel Menu estensioni"
 
+msgid "Show EMC in main menu"
+msgstr "Mostra EMC nel Menu principale"
+
 msgid "Show Latest Recordings directory"
 msgstr "Mostra la cartella “Ultime registrazioni”"
 
@@ -1918,10 +2034,13 @@ msgid "Show Movie Format"
 msgstr "Mostra formato registrazione"
 
 msgid "Show Path if no extended description available"
-msgstr "Mostra il percorso se non è disponib. una descriz.estesa"
+msgstr "Mostra percorso se non è disponib. descriz. estesa"
 
 msgid "Show VLC directory"
 msgstr "Mostra la cartella VLC"
+
+msgid "Show audio metadata"
+msgstr "Mostra i metadati audio"
 
 msgid "Show audio metadata (needs skin-changes)"
 msgstr "Mostra i metadata audio (la skin richiede modifiche)"
@@ -1949,6 +2068,18 @@ msgstr "Mostra opzioni sperimentali"
 
 msgid "Show fallback cover"
 msgstr "Mostra copertina di riserva"
+
+msgid "Show info at the bottom"
+msgstr "Mostra info in fondo"
+
+msgid "Show info at the bottom (with MiniTV)"
+msgstr "Info in fondo + MiniTV"
+
+msgid "Show info on the left"
+msgstr "Info a sinistra"
+
+msgid "Show info on the left (with MiniTV)"
+msgstr "Info a sinistra + MiniTV"
 
 msgid "Show link arrow"
 msgstr "Mostra link con freccia"
@@ -2017,6 +2148,9 @@ msgstr "Opzioni ordinamento"
 msgid "Sort Order"
 msgstr "Ordinamento"
 
+msgid "Spanish"
+msgstr "Spagnolo"
+
 msgid "Standby"
 msgstr "Standby"
 
@@ -2035,6 +2169,9 @@ msgstr "Arrestare la registrazione in corso?\n"
 msgid "Stop playback"
 msgstr "Arrestare la riproduzione"
 
+msgid "Style for original EMC-skin (needs reopen)"
+msgstr "Stile skin EMC originale (***)"
+
 msgid "Suppress scan in selected folders"
 msgstr "Non scansionare nelle cartelle selezionate"
 
@@ -2050,6 +2187,9 @@ msgstr "Informazioni TMDB"
 msgid "TMDb"
 msgstr "TMDb"
 
+msgid "TRASHCAN"
+msgstr "CESTINO"
+
 msgid "TV Shows"
 msgstr "Trasmissioni"
 
@@ -2063,13 +2203,13 @@ msgid "Tertiary playback subtitle language"
 msgstr "Lingua sottotitoli: terza opzione"
 
 msgid "Text shown for initially unknown count and size"
-msgstr "Testo mostrato per conteggio e dimens. inizialm. ignoti"
+msgstr "Indicatore per numero e dimens. ignoti"
 
 msgid "Text shown for initially unknown directory size"
-msgstr "Testo mostrato per dimens. cartelle inizialm. ignota"
+msgstr "Indicatore per dimens. cartelle ignota"
 
 msgid "Text shown for initially unknown file count"
-msgstr "Testo mostrato per conteggio file inizialm. ignoto"
+msgstr "Indicatore per conteggio file ignoto"
 
 msgid ""
 "The directory %s is already locked. Do you want to unlock it and all its "
@@ -2090,6 +2230,9 @@ msgstr ""
 "Elimino anche questi file?\n"
 "\n"
 "%s"
+
+msgid "The python-mutagen package is not available on the feed."
+msgstr "Il pacchetto python-mutagen non è disponibile fra le fonti"
 
 msgid "This element belongs to a locked folder and cannot be deleted!"
 msgstr ""
@@ -2129,6 +2272,9 @@ msgstr "Abilita cestino"
 msgid "Trashcan path"
 msgstr "Percorso cestino"
 
+msgid "Try to load extra title and more from .meta files"
+msgstr "Prova a ottenere info extra dai file .meta"
+
 msgid "Try to load titles from .eit files"
 msgstr "Prova a ottenere i titoli dai file .eit"
 
@@ -2148,7 +2294,7 @@ msgid "Use cache for files and directories"
 msgstr "Usa la cache per file e cartelle"
 
 msgid "Use original EMC-skin (needs reopen)"
-msgstr "Usa la skin integrata di EMC (è necessario riaprire EMC)"
+msgstr "Usa skin integrata EMC (serve riavvio di EMC)"
 
 msgid "VLC"
 msgstr "VLC"
@@ -2168,14 +2314,35 @@ msgstr "Tasto VIDEO"
 msgid "Vote:"
 msgstr "Voto:"
 
+msgid "WD DD.MM. HH:MM"
+msgstr "giorno GG.MM. OO:MM"
+
+msgid "WD DD.MM.YYYY"
+msgstr "giorno GG.MM.AAAA"
+
+msgid "WD DD.MM.YYYY HH:MM"
+msgstr "giorno GG.MM.AAAA OO:MM"
+
+msgid "WD MM/DD HH:MM"
+msgstr "giorno GG/MM OO:MM"
+
+msgid "WD YYYY/MM/DD"
+msgstr "giorno AAAA/MM/GG"
+
+msgid "WD YYYY/MM/DD HH:MM"
+msgstr "giorno AAAA/MM/GG OO:MM"
+
 msgid "Wake device when entering dir from emc-noscan.cfg"
-msgstr "Sveglia dispositivo se sfoglia una cartella di emc-noscan.cfg"
+msgstr "Sveglia dispositivo se usi cartelle di emc-noscan.cfg"
 
 msgid "Week"
 msgstr "Settimana"
 
 msgid "Weeks"
 msgstr "Settimane"
+
+msgid "White"
+msgstr "Bianco"
 
 msgid "YYYY/MM/DD"
 msgstr "AAAA/MM/GG"
@@ -2188,6 +2355,12 @@ msgstr "Funzione del tasto Giallo"
 
 msgid "Yes"
 msgstr "Si"
+
+msgid "Yes, everything"
+msgstr "Tutto"
+
+msgid "Yes, only extra title"
+msgstr "Solo titoli extra"
 
 msgid "Yes, with Message"
 msgstr "Si, con conferma"
@@ -2437,86 +2610,3 @@ msgstr "Visualizza estensioni..."
 
 msgid "yes"
 msgstr "sì"
-
-msgid "Show EMC in main menu"
-msgstr "Mostra EMC nel Menu principale"
-
-msgid "HELP_Show EMC in main menu"
-msgstr "Mostra o nasconde EMC nel Menu principale"
-
-msgid "Try to load extra title and more from .meta files"
-msgstr "Prova a ottenere info extra dai file .meta"
-
-msgid "HELP_Try to load extra title and more from .meta files"
-msgstr "Prova a ottenere informazioni aggiuntive dai file .meta"
-
-msgid "Yes, only extra title"
-msgstr "Solo titoli extra"
-
-msgid "Yes, everything"
-msgstr "Tutto"
-
-msgid "Style for original EMC-skin (needs reopen)"
-msgstr "Stile skin EMC originale (***)"
-
-msgid "HELP_Style for original EMC-skin (needs reopen)"
-msgstr ""
-"Stile per la skin EMC originale”\n"
-"*** ATTENZIONE: serve un riavvio della GUI"
-
-msgid "Show info at the bottom"
-msgstr "Mostra info in fondo"
-
-msgid "Show info at the bottom (with MiniTV)"
-msgstr "Info in fondo + MiniTV"
-
-msgid "Show info on the left"
-msgstr "Info a sinistra"
-
-msgid "Show info on the left (with MiniTV)"
-msgstr "Info a sinistra + MiniTV"
-
-msgid "Default color for unwatched movie"
-msgstr "Colore predef. dei video non visti"
-
-msgid "HELP_Default color unwatched"
-msgstr ""
-"Imposta il colore predefinito per i video che ancora non sono stati visti"
-
-msgid "Default color for partially watched movie"
-msgstr "Colore predef. video iniziati"
-
-msgid "HELP_Default color partially watched"
-msgstr ""
-"Imposta il colore predefinito per i video visti solo in parte ma non ancora "
-"completati"
-
-msgid "Default color for watched movie"
-msgstr "Colore predef. video completati"
-
-msgid "HELP_Default color watched"
-msgstr "Imposta il colore predefinito per i video completati"
-
-msgid "Default color for recording movie"
-msgstr "Colore predef. registraz. in corso"
-
-msgid "HELP_Default color recording"
-msgstr "Imposta il colore predefinito per le registrazioni ancora in corso"
-
-msgid "Default color for highlighted movie"
-msgstr "Colore predef. video selezionati"
-
-msgid "HELP_Default color highlighted"
-msgstr "Imposta il colore predefinito per i video selezionati"
-
-msgid "Hide MiniTV if Cover is shown"
-msgstr "Nascondi MiniTV se c'è la copertina"
-
-msgid "HELP_hide_MiniTV cover"
-msgstr "Nasconde la MiniTV se è disponibile la copertina del film"
-
-msgid "Show audio metadata"
-msgstr "Mostra i metadati audio"
-
-msgid "HELP_Show audio metadata"
-msgstr "Mostra i metadati audio"
