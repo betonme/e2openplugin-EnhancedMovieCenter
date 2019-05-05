@@ -3252,7 +3252,7 @@ class IMDbEventViewSimple(EventViewSimple):
 		self["epgactions"] = ActionMap(["EventViewEPGActions"],
 			{
 				"openMultiServiceEPG": self.InfoDetail,
-			})
+			},-2)
 
 	def InfoDetail(self):
 		nameM = getMovieNameWithoutPhrases(getMovieNameWithoutExt(self.event.getEventName()))
