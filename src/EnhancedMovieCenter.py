@@ -600,7 +600,7 @@ class EnhancedMovieCenterMenu(ConfigListScreenExt, Screen):
 						if len(list) > 1:
 							list.append(getConfigListEntry("", config.EMC.fake_entry, None, None, 0, [], ""))
 						if conf[1] == "":
-							list.append(getConfigListEntry("<DUMMY CONFIGSECTION>", ))
+							list.append(getConfigListEntry(_("<DUMMY CONFIGSECTION>"), ))
 						else:
 							list.append(getConfigListEntry(conf[1], ))
 						if not isDreamOS:
