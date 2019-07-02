@@ -83,6 +83,9 @@ msgstr "*** Мультивибір активний ***"
 msgid "--- additional files start ---\n"
 msgstr "--- додаткові файли запуску ---\n"
 
+msgid "<DUMMY CONFIGSECTION>"
+msgstr "<ЗАМІНА СЕКЦІЙ КОНФІГУРАЦІЇ>"
+
 msgid ""
 "ATTENTION\n"
 "\n"
@@ -1145,8 +1148,8 @@ msgstr "Показати шлях до файлу, якщо немає розш�
 msgid "HELP_Show VLC directory"
 msgstr "Показати каталог VLC"
 
-msgid "HELP_Show audio metadata (needs skin-changes)"
-msgstr "Показати аудіо метадані (потрібна підтримка в скіні)"
+msgid "HELP_Show audio metadata"
+msgstr "Показати аудіо метадані"
 
 msgid "HELP_Show directories"
 msgstr "Показати каталоги"
@@ -1202,6 +1205,9 @@ msgstr "Режим сортування при запуску"
 msgid "HELP_Start EMC with"
 msgstr "Запустіть EMC"
 
+msgid "HELP_Style for original EMC-skin (needs reopen)"
+msgstr "Стиль для оригінального EMC-скіну (необхідне перезавантаження)"
+
 msgid "HELP_Tertiary playback audio language"
 msgstr "Третя мова аудіо"
 
@@ -1222,6 +1228,9 @@ msgstr "Увімкнення кошика"
 
 msgid "HELP_Trashcan path"
 msgstr "Шлях до кошика"
+
+msgid "HELP_Try to load extra title and more from .meta files"
+msgstr "Спробуйте завантажити додаткову назву та іншу інформацію з файлів .meta"
 
 msgid "HELP_Try to load titles from .eit files"
 msgstr "Спробуйте завантажити назви з .eit файлів"
@@ -1876,6 +1885,9 @@ msgstr "Час відтворення:"
 msgid "Runtime: unknown"
 msgstr "Час відтворення: невідомо"
 
+msgid "SKIN-SETTINGS"
+msgstr "НАЛАШТУВАННЯ СКІНУ"
+
 msgid "Save"
 msgstr "Зберегти"
 
@@ -1981,8 +1993,8 @@ msgstr "Показати шлях, якщо немає розширеного о
 msgid "Show VLC directory"
 msgstr "Показати VLC директорію"
 
-msgid "Show audio metadata (needs skin-changes)"
-msgstr "Показувати метадані аудіо (потрібно змінити скін)"
+msgid "Show audio metadata"
+msgstr "Показувати метадані аудіо"
 
 msgid "Show current Playlist"
 msgstr "Показати поточний Список відтворення"
@@ -2117,6 +2129,9 @@ msgstr "Зупинити поточний запис?\n"
 msgid "Stop playback"
 msgstr "Зупинити відтворення"
 
+msgid "Style for original EMC-skin (needs reopen)"
+msgstr "Стиль для оригінального EMC-скіну (необхідне перезавантаження)"
+
 msgid "Suppress scan in selected folders"
 msgstr "Вимкнути сканування у вибраних папках"
 
@@ -2131,6 +2146,9 @@ msgstr "Інформація TMDB"
 
 msgid "TMDb"
 msgstr "TMDb"
+
+msgid "TRASHCAN"
+msgstr "КОРЗИНА"
 
 msgid "TV Shows"
 msgstr "ТБ передачі"
@@ -2170,6 +2188,9 @@ msgstr ""
 "Також видалити ці файли?\n"
 "\n"
 "%s"
+
+msgid "The python-mutagen package is not available on the feed."
+msgstr "Пакет python-mutagen недоступний на фіді."
 
 msgid "This element belongs to a locked folder and cannot be deleted!"
 msgstr "Цей елемент належить до заблокованої папки і не може бути видалений!"
@@ -2217,6 +2238,9 @@ msgstr "Створити кошик"
 
 msgid "Trashcan path"
 msgstr "Шлях до кошика"
+
+msgid "Try to load extra title and more from .meta files"
+msgstr "Спробуйте завантажити додаткову назву та іншу інформацію з файлів .meta"
 
 msgid "Try to load titles from .eit files"
 msgstr "Спробуйте завантажити назви з файлів .eit"
