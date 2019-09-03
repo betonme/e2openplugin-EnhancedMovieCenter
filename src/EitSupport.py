@@ -241,6 +241,8 @@ class EitList():
 						if pos+1>=endpos:
 							break
 						length = ord(data[pos+1]) + 2
+						#if pos+length>=endpos:
+						#	break
 						if rec == 0x4D:
 							descriptor_tag = ord(data[pos+1])
 							descriptor_length = ord(data[pos+2])
@@ -248,8 +250,11 @@ class EitList():
 							event_name_length = ord(data[pos+5])
 							name_event_description = ""
 							for i in range (pos+6,pos+6+event_name_length):
-								if str(ord(data[i]))=="10" or int(str(ord(data[i])))>31:
-									name_event_description += data[i]
+								try:
+									if str(ord(data[i]))=="10" or int(str(ord(data[i])))>31:
+										name_event_description += data[i]
+								except IndexError, e:
+									emcDebugOut("[META] Exception in readEitFile: " + str(e))
 							if not name_event_codepage:
 								try:
 									byte1 = str(ord(data[pos+6]))
@@ -288,8 +293,11 @@ class EitList():
 								if short_event_codepage:
 									emcDebugOut("[META] Found short_event encoding-type: " + short_event_codepage)
 							for i in range (pos+7+event_name_length,pos+length):
-								if str(ord(data[i]))=="10" or int(str(ord(data[i])))>31:
-									short_event_description += data[i]
+								try:
+									if str(ord(data[i]))=="10" or int(str(ord(data[i])))>31:
+										short_event_description += data[i]
+								except IndexError, e:
+									emcDebugOut("[META] Exception in readEitFile: " + str(e))
 							if ISO_639_language_code == lang:
 								short_event_descriptor.append(short_event_description)
 								name_event_descriptor.append(name_event_description)
@@ -325,8 +333,11 @@ class EitList():
 								if extended_event_codepage:
 									emcDebugOut("[META] Found extended_event encoding-type: " + extended_event_codepage)
 							for i in range (pos+8,pos+length):
-								if str(ord(data[i]))=="10" or int(str(ord(data[i])))>31:
-									extended_event_description += data[i]
+								try:
+									if str(ord(data[i]))=="10" or int(str(ord(data[i])))>31:
+										extended_event_description += data[i]
+								except IndexError, e:
+									emcDebugOut("[META] Exception in readEitFile: " + str(e))
 							if ISO_639_language_code == lang:
 								extended_event_descriptor.append(extended_event_description)
 							if (ISO_639_language_code == prev2_ISO_639_language_code) or (prev2_ISO_639_language_code == "x"):

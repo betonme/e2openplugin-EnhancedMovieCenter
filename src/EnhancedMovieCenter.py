@@ -59,8 +59,8 @@ from EMCTasker import emcTasker, emcDebugOut
 
 sz_w = getDesktop(0).size().width()
 
-EMCVersion = "git20181227"
-EMCAbout = "Enhanced Movie Center " +EMCVersion+ "\n\n(c) 2012-2018 by\nCoolman, betonme, Swiss-MAD & the many other volunteers."
+EMCVersion = "git20190903"
+EMCAbout = "Enhanced Movie Center " +EMCVersion+ "\n\n(c) 2012-2019 by\nCoolman, betonme, Swiss-MAD & the many other volunteers."
 
 def setEPGLanguage(dummyself=None, dummy=None):
 	if config.EMC.epglang.value:
