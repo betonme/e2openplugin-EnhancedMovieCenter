@@ -215,6 +215,20 @@ def purgeExpired(currentPath=None,postFileOp=None,emptyTrash=False):
 	except Exception, e:
 		emcDebugOut("[EMCMS] purgeExpired exception:\n" + str(e))
 
+if isDreamOS:
+	from enigma import eWindowAnimationSet, eWindowAnimationManager, eLinearInterpolator, eFloatAnimation
+	from Components.GUIComponent import GUIComponent
+
+	class PixmapExt(Pixmap):
+		def execBegin(self):
+			GUIComponent.execBegin(self)
+			animation = eWindowAnimationSet.create()
+			animation.setKey("emc_crossfade_pixmap")
+			animation.setName("EMC crossfade pixmap")
+			animation.setInternal(True)
+			animation.setAlpha(eFloatAnimation.create(200, 0.0, 1.0, False, eLinearInterpolator.create()))
+			eWindowAnimationManager.setAnimationSet(animation)
+			self.instance.setShowHideAnimation("emc_crossfade_pixmap")
 
 class SelectionEventInfo:
 	def __init__(self):
@@ -228,6 +242,9 @@ class SelectionEventInfo:
 		self["CoverBg"].hide()
 		self["CoverBgLbl"] = Label()
 		self["CoverBgLbl"].hide()
+		# Movie BackDrop
+		if isDreamOS:
+			self["BackDrop"] = PixmapExt()
 		# audio-tags (python-mutagen is needed)
 		self["name"] = Label("")		# title
 		self["name_disp"] = StaticText("")
@@ -348,6 +365,18 @@ class SelectionEventInfo:
 						self.updateEventInfoAudio(service, ext)
 					else:
 						self.hideAudioLabels()
+			#=== begin BackDrop ===============
+			if isDreamOS and service:
+				filename = None
+				if os.path.exists(service.getPath() + ".backdrop.jpg"):
+					filename = service.getPath() + ".backdrop.jpg" # inkl. file-ext
+				elif os.path.exists(os.path.splitext(service.getPath())[0] + ".backdrop.jpg"):
+					filename = os.path.splitext(service.getPath())[0] + ".backdrop.jpg" # without file-ext
+				if filename:
+					self["BackDrop"].instance.setPixmapFromFile(filename)
+				else:
+					self["BackDrop"].instance.setPixmapFromFile("/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/none.png")
+			#=== end BackDrop ===============
 
 	def updateEventInfoAudio(self, service, ext):
 		from MutagenSupport import getAudioMetaData, getAudioFileSize, getAudioFileDate
@@ -2535,7 +2564,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 						self.deleteOtherConfimation(True)
 					else:
 						# we search for other files for this file, like covers, etc.
-						extsOther = [".eit", ".jpg", ".txt", ".poster.jpg"]
+						extsOther = [".eit", ".jpg", ".txt", ".poster.jpg", ".backdrop.jpg"]
 						for x in extsOther:
 							f = path + str(x)
 							if fileExists(f):
@@ -2574,7 +2603,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 					if self.tmpSelListOther is not None:
 						for x in self.tmpSelListOther:
 							path = os.path.splitext( x.getPath() )[0]
-							extsOther = [".eit", ".jpg", ".txt", ".poster.jpg"]
+							extsOther = [".eit", ".jpg", ".txt", ".poster.jpg", ".backdrop.jpg"]
 							for x in extsOther:
 								f = path + str(x)
 								if fileExists(f):
@@ -2800,7 +2829,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 							path = path.replace("'","\'")
 							if ext in plyDVB:
 								if self.deleteAllOtherList:
-									extsOther = [".eit", ".jpg", ".txt", ".poster.jpg"]
+									extsOther = [".eit", ".jpg", ".txt", ".poster.jpg", ".backdrop.jpg"]
 									for x in extsOther:
 										f = path + str(x)
 										if fileExists(f):
@@ -2814,7 +2843,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 								c.append( 'mv "'+ path + str(ext) +'."* "'+ targetPath +'/"' )
 							else:
 								if self.deleteAllOtherList:
-									extsOther = [".eit", ".jpg", ".txt", ".poster.jpg"]
+									extsOther = [".eit", ".jpg", ".txt", ".poster.jpg", ".backdrop.jpg"]
 									for x in extsOther:
 										f = path + str(x)
 										if fileExists(f):
@@ -2883,7 +2912,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 						path = path.replace("'","\'")
 						if ext in plyDVB:
 							if self.deleteAllOther:
-								extsOther = [".eit", ".jpg", ".txt", ".poster.jpg"]
+								extsOther = [".eit", ".jpg", ".txt", ".poster.jpg", ".backdrop.jpg"]
 								for x in extsOther:
 									f = path + str(x)
 									if fileExists(f):
@@ -2897,7 +2926,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 							c.append( 'mv "'+ path + str(ext) +'."* "'+ targetPath +'/"' )
 						else:
 							if self.deleteAllOther:
-								extsOther = [".eit", ".jpg", ".txt", ".poster.jpg"]
+								extsOther = [".eit", ".jpg", ".txt", ".poster.jpg", ".backdrop.jpg"]
 								for x in extsOther:
 									f = path + str(x)
 									if fileExists(f):
