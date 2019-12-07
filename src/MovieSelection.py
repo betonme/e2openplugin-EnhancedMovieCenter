@@ -324,7 +324,9 @@ class SelectionEventInfo:
 		if self.lastservice and not self.hide_miniTV:
 			self.session.nav.playService(self.lastservice)
 			if calledFromInitPig:
-				self.lastservice = None
+				#fix for stopping tv after setup on show cover - not set to None
+				#self.lastservice = None
+				pass
 			else:
 				self["Video"].show()
 			self.miniTV_unmute()
