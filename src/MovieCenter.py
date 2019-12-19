@@ -579,7 +579,7 @@ class CountSizeWorker(Thread):
 
 	def add(self, item):
 		self.__list.push(item)
-		if not self.__running:
+		if not self.__running and not self._Thread__started.is_set():
 			self.__running = True
 #			print'[EMC] CountSizeWorker Start'
 			self.start()
