@@ -15,6 +15,7 @@ from configlistext import ConfigListScreenExt
 from MovieCenter import getMovieNameWithoutExt, getMovieNameWithoutPhrases, getNoPosterPath
 
 import json, os, re
+from urllib import quote
 from urllib2 import Request, urlopen
 from twisted.web.client import downloadPage
 
@@ -39,8 +40,8 @@ config.EMC.movieinfo.cover_delay = ConfigSelectionNumber(50, 60000, 50, default=
 sz_w = getDesktop(0).size().width()
 
 def getMovieList(moviename):
-	response = fetchdata("http://api.themoviedb.org/3/search/movie?api_key=8789cfd3fbab7dccf1269c3d7d867aff&query=" + moviename.replace(" ","+").replace("&","%26"))
-	response1 = fetchdata("http://api.themoviedb.org/3/search/tv?api_key=8789cfd3fbab7dccf1269c3d7d867aff&query=" + moviename.replace(" ","+").replace("&","%26"))
+	response = fetchdata("http://api.themoviedb.org/3/search/movie?api_key=8789cfd3fbab7dccf1269c3d7d867aff&query=" + quote(moviename))
+	response1 = fetchdata("http://api.themoviedb.org/3/search/tv?api_key=8789cfd3fbab7dccf1269c3d7d867aff&query=" + quote(moviename))
 	movielist = []
 	idx = 0
 	if response or response1 is not None:
