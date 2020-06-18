@@ -1,0 +1,2413 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: EMC\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-07-02 21:09+0200\n"
+"PO-Revision-Date: 2020-06-07 16:07+0200\n"
+"Last-Translator: JC 2020 <dk-translation@protonmail.com>\n"
+"Language-Team: Danskholdet <dk-translation@pm.me>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Generator: Poedit 2.0.6\n"
+"X-Poedit-KeywordsList: -;gettext;gettext_noop;_\n"
+"X-Poedit-Basepath: ../src\n"
+"Last-Translator: \n"
+"Language: da\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#, fuzzy
+msgid " (without counting cover range)"
+msgstr " (uden at medregne dækningsområde)"
+
+msgid ""
+" Deleting remotely recorded and it will display an rec-error dialog on the "
+"other DB."
+msgstr ""
+" Sletning af perifer optagelse vil presenter et optagelses-fejlvindue på den "
+"anden Dreambox."
+
+msgid " all selected video files?"
+msgstr " alle valgte videofiler?"
+
+msgid ""
+" all selected video files? The currently playing movie is also one of the "
+"selections and its playback will be stopped."
+msgstr ""
+" alle valgte videofiler? Filmen der før øjeblikket vises er også en af de "
+"valgte og afspilning af den vil blive stoppet."
+
+msgid " currently played?"
+msgstr " for øjeblikket viste?"
+
+msgid " files\n"
+msgstr " filer\n"
+
+msgid " permanently"
+msgstr " permanent"
+
+msgid "%d second"
+msgid_plural "%d seconds"
+msgstr[0] "%d sekund"
+msgstr[1] "%d sekunder"
+
+msgid "%s not removed. Write protect?"
+msgstr "%s ikke fjernet. Skrivebeskyt?"
+
+msgid "%s removed."
+msgstr "%s fjernet."
+
+msgid "( # )"
+msgstr "( # )"
+
+msgid "( # / GB )"
+msgstr "( # / GB )"
+
+msgid "( GB )"
+msgstr "( GB )"
+
+msgid "(Un-)Lock Directory"
+msgstr "(Op-)Lås mappe"
+
+msgid "(show optional DVD audio menu)"
+msgstr "(Vis valgfri DVD lydmenu)"
+
+msgid "*** Multiselection active ***"
+msgstr "*** Multivalgsmulighed aktiv ***"
+
+msgid ".../foldername.jpg"
+msgstr ".../foldername.jpg"
+
+msgid ".../foldername/folder.jpg"
+msgstr ".../foldername/folder.jpg"
+
+msgid ".../foldername/foldername.jpg"
+msgstr ".../foldername/foldername.jpg"
+
+msgid ""
+"ATTENTION\n"
+"\n"
+"This option will move all finished movies in Movie Home automatically to Your "
+"trashcan at the given time.\n"
+"At next trashcan cleanup all movies will be deleted.\n"
+"\n"
+"Confirm this with the blue key followed by the green key."
+msgstr ""
+"BEMÆRK\n"
+"\n"
+"Denne mulighed vil automatisk flytte afsluttede film i Filmhjem til din "
+"skraldespand på et angivet tidspunkt.\n"
+"Alle film vil blive slettet ved næste oprydning.\n"
+"\n"
+"bekræft dette med end blå taste efterfulgt af den grønne taste."
+
+msgid "AUDIO METADATA"
+msgstr "LYD METADATA"
+
+msgid "AUTOSTART"
+msgstr "AUTOSTART"
+
+msgid "About"
+msgstr "Om"
+
+msgid "Add directory to E2 Bookmarks"
+msgstr "Føj mappe til E2 Bogmærker"
+
+msgid "Add directory to EMC Bookmarks"
+msgstr "Føj mappe til EMC Bogmærker"
+
+msgid "Add to Playlist"
+msgstr "Føj til afspilningsliste"
+
+msgid "Add to current Playlist"
+msgstr "Føj til nuværende afspilningsliste"
+
+#, fuzzy
+msgid "After file OPs only re-scan affected dirs"
+msgstr "Gennemsøg kun berørte mapper efter fil-OPs"
+
+msgid "Age of finished movies in movie folder (days)"
+msgstr "Alder på afsluttede film i filmmappe (dage)"
+
+msgid "Album:"
+msgstr "Album:"
+
+msgid "Alpha sort"
+msgstr "Alfabetisk sortering"
+
+msgid "Alpha sort ascending (AZ)"
+msgstr "Alfabetisk sortering stigende (AZ)"
+
+msgid "Alpha sort ascending with meta (AZM)"
+msgstr "Alfabetisk sortering stigende med meta (AZM)"
+
+msgid "Alpha sort ascending with meta, Date descending (AZMD-)"
+msgstr "Alfabetisk sort. stigende meta, Dato aftagende (AZMD-)"
+
+msgid "Alpha sort ascending, Date descending (AZD-)"
+msgstr "Alfabetisk sortering, aftagende data (AZD-)"
+
+msgid "Alpha sort date newest"
+msgstr "Alfabetisk sortering nyeste data"
+
+msgid "Alpha sort descending (ZA)"
+msgstr "Alfabetisk sortering faldende (za)"
+
+msgid "Alpha sort descending with meta (ZAM)"
+msgstr "Alfabetisk sortering faldende med meta (ZAM)"
+
+msgid "Alpha sort descending with meta, Date ascending (ZAMD+)"
+msgstr "Alfabetisk sortering med meat, Dato stigende (ZAMD+)"
+
+msgid "Alpha sort descending, Date ascending (ZAD+)"
+msgstr "Alfabetisk sortering aftagende, Dato stigende (ZAD+)"
+
+msgid "Alpha sort meta"
+msgstr "Alfabetisk sortering meta"
+
+msgid "Alpha sort meta date newest"
+msgstr "Alfabetisk sortering meta nyeste dato"
+
+msgid "Always save current Playlist"
+msgstr "Gem altid aktuel afspilningsliste"
+
+msgid "Always save last played progress as marker"
+msgstr "Gem altid sidst afspillet fremgang som mærke"
+
+msgid "Artist:"
+msgstr "Kunstner:"
+
+msgid "Automatic timers list cleaning"
+msgstr "Automatisk oprydning i Timerliste"
+
+msgid "Available plugins menu"
+msgstr "Tilgængelige Plugins menu"
+
+msgid "Black"
+msgstr "Sort"
+
+msgid "Blue button function"
+msgstr "Blå knapfunktion"
+
+msgid "Bookmark"
+msgstr "Bogmærke"
+
+msgid "Both"
+msgstr "Begge"
+
+msgid "Bouquet buttons behaviour"
+msgstr "Opførsel af Buket knapper"
+
+msgid "Button disabled"
+msgstr "Knap deaktiveret"
+
+msgid "CSFD"
+msgstr "CSFD"
+
+msgid "CSFD Info"
+msgstr "CSFD Info"
+
+msgid "Can not save "
+msgstr "Kan ikke gemme "
+
+msgid "Can not save Cover in "
+msgstr "Kan ikke gemme omslag i "
+
+msgid "Can not save current Playlist!"
+msgstr "Kan ikke gemme aktuel afspilningsliste!"
+
+msgid ""
+"Can not write Movie Information File\n"
+"\n"
+"%s"
+msgstr ""
+"Kan ikke skrive Filminformationsfil\n"
+"\n"
+"%s"
+
+msgid ""
+"Can not write Movie Information and Cover File\n"
+"\n"
+"%(info)s\n"
+"%(file)s"
+msgstr ""
+"Kan ikke skrive Filminformations- og omslagsfil\n"
+"\n"
+"%(info)s\n"
+"%(file)s"
+
+msgid "Cancel"
+msgstr "Afbryd"
+
+msgid "Cannot delete the parent directory."
+msgstr "Kan ikke slette overordnet mappe."
+
+msgid "Change File/Moviename and/or Description"
+msgstr "Ænder fil/filmnavn og/eller beskrivelse"
+
+msgid "Change Folder"
+msgstr "Skift mappe"
+
+msgid "Change Foldername"
+msgstr "Ænder mappenavn"
+
+msgid "Change the filename to save current Playlist:"
+msgstr "Ændre filnavnet for at gemme nuværende afspilningsliste:"
+
+msgid "Chap."
+msgstr "Kap."
+
+msgid "Chapter"
+msgstr "Kapitel"
+
+msgid "Check for dead links"
+msgstr "Se efter døde lænker"
+
+msgid "Choose Directory:"
+msgstr "Vælg mappe:"
+
+msgid "Choose bookmark"
+msgstr "Vælg bogmærke"
+
+msgid "Choose directory"
+msgstr "Vælg mappe"
+
+msgid "Choose operation"
+msgstr "Vælg handling"
+
+msgid "Choose plugin"
+msgstr "Vælg Plugin"
+
+msgid "Choose script"
+msgstr "Vælg skript"
+
+msgid "Close EMC"
+msgstr "Luk EMC"
+
+msgid "Collection"
+msgstr "Samling"
+
+msgid "Configured directories at the top of movielist"
+msgstr "Konfigurer mapper i toppen af filmliste"
+
+msgid "Content:"
+msgstr "Indhold:"
+
+msgid "Copy File"
+msgstr "Kopier fil"
+
+msgid "Copy Files"
+msgstr "Kopier filer"
+
+msgid "Copy file(s):"
+msgstr "Kopier fil(er)"
+
+msgid ""
+"Cover %s exists!\n"
+"\n"
+"Do you want to replace the existing cover?"
+msgstr ""
+"Omslag %s eksistere!\n"
+"\n"
+"Vil du erstatte eksisterende omslag?"
+
+msgid "Cover Search"
+msgstr "Omslagssøgning"
+
+msgid "Cover background"
+msgstr "Omslagsbaggrund"
+
+msgid "Cover delay in ms"
+msgstr "Omslag forsinkelse i ms"
+
+msgid "Cover disabled in EMC-Setup"
+msgstr "Omslag er deaktiveret i EMC-opsætning"
+
+msgid "Cover is Saved."
+msgstr "Omslag er gemt."
+
+msgid "Cover search"
+msgstr "Omslagssøgning"
+
+msgid ""
+"Cover search with all Files in Subdirectories?\n"
+"\n"
+"This may take a while on huge Disks, or Directories!"
+msgstr ""
+"Søg efter omslag i alle filer og undermapper?\n"
+"\n"
+"Dette kan tage noget tid for kæmpestore diske eller mapper!"
+
+msgid "Coversize"
+msgstr "Omslagsstøreklse"
+
+msgid "Create directory"
+msgstr "Opret mappe"
+
+msgid "Create link"
+msgstr "Opret lænke"
+
+msgid "Creating Search List.."
+msgstr "Opretter søgeliste..."
+
+msgid "Current Playlist saved successfully!"
+msgstr "Nuværende afspilningsliste gemt med held!"
+
+msgid "Cursor predictive move after selection"
+msgstr "Forudsigelig markørflytning efter valg"
+
+msgid "Custom"
+msgstr "Brugerdefineret"
+
+msgid "DD.MM. HH:MM"
+msgstr "DD.MM. TT:MM"
+
+msgid "DD.MM.YYYY"
+msgstr "DD.MM.ÅÅÅÅ"
+
+msgid "DD.MM.YYYY HH:MM"
+msgstr "DD.MM.YYYY HH:MM"
+
+msgid "DEBUG"
+msgstr "FEJLSØGNING"
+
+msgid "DELAYS"
+msgstr "FORSINKELSER"
+
+msgid "DISPLAY-SETTINGS"
+msgstr "VISNINGSINDSTILLINGER"
+
+msgid "DVD / BLU-RAY / FOLDERS"
+msgstr "DVD / BLU-RAY / MAPPER"
+
+msgid "Daily cleanup time"
+msgstr "Daglig oprydningstid"
+
+msgid "Dark green"
+msgstr "Mørkegrøn"
+
+msgid "Dark grey"
+msgstr "Mørkegrå"
+
+msgid "Dark orange"
+msgstr "Mørk orange"
+
+msgid "Dark red"
+msgstr "Mørkerød"
+
+msgid "Date format"
+msgstr "Datoformat"
+
+msgid "Date sort"
+msgstr "Dato sortering"
+
+msgid "Date sort ascending (D+)"
+msgstr "Dato sortering stigende (D+)"
+
+msgid "Date sort descending (D-)"
+msgstr "Dato sortering faldende (D-)"
+
+msgid "Day"
+msgstr "Dag"
+
+msgid "Days"
+msgstr "Dage"
+
+msgid "Debug output file name"
+msgstr "Fejlsøgningsuddata filnavn"
+
+msgid "DeepStandby"
+msgstr "Sluk"
+
+msgid "Default"
+msgstr "Standard"
+
+msgid ""
+"Default Playlist is not empty!\n"
+"\n"
+"Save default Playlist?"
+msgstr ""
+"Standard afspilningsliste er ikke tom!\n"
+"\n"
+"Gem standard afspilningsliste?"
+
+msgid "Default Playlist name"
+msgstr "Standard afspilningsliste navn"
+
+msgid "Default Playlist path"
+msgstr "Standard afspilningsliste sti"
+
+msgid "Default color for highlighted movie"
+msgstr "Standardfarve for markeret film"
+
+msgid "Default color for partially watched movie"
+msgstr "Standardfarve for delvis set film"
+
+msgid "Default color for recording movie"
+msgstr "Standardfarve for optaget film"
+
+msgid "Default color for unwatched movie"
+msgstr "Standardfrave for usete film"
+
+msgid "Default color for watched movie"
+msgstr "Standardfarve for sete film"
+
+msgid "Default sort mode"
+msgstr "Standard sorteringstilstand"
+
+msgid "Delete"
+msgstr "Slet"
+
+msgid "Delete All"
+msgstr "Slet alt"
+
+msgid "Delete Entry"
+msgstr "Slet post"
+
+msgid "Delete current Playlist"
+msgstr "Slet aktuel afspilningsliste"
+
+msgid "Delete cut file(s)"
+msgstr "Slet klippet fil(er)"
+
+msgid "Delete error:\n"
+msgstr "Slet fejl:\n"
+
+msgid ""
+"Delete failed because the trashcan directory does not exist. Attempt to create "
+"it now?"
+msgstr ""
+"Sletning mislykkedes fordi skraldespandsmappe ikke findes. Forsøg at oprette "
+"den nu?"
+
+msgid "Delete failed!"
+msgstr "Slet mislykkedes!"
+
+msgid "Delete permanently"
+msgstr "Slet permanent"
+
+msgid "Delete validation"
+msgstr "Bekræft sletning"
+
+msgid "Description"
+msgstr "Beskrivelse"
+
+msgid "Description field update delay"
+msgstr "Beskrivelsesfelt opdateringsforsinkelse"
+
+msgid "Description:"
+msgstr "Beskrivelse:"
+
+msgid "Directory"
+msgstr "Mappe"
+
+msgid "Directory %s already exists!"
+msgstr "Mappe %s findes allerede!"
+
+msgid "Directory back"
+msgstr "Mappe tilbage"
+
+msgid "Directory forward"
+msgstr "Mappe fremad"
+
+msgid "Directory is not empty! Do you really want to delete it?"
+msgstr "Mappen er ikke tom! Vil du virkelig slette den?"
+
+msgid "Directory up"
+msgstr "Mappe op"
+
+msgid "Directory-Cover search"
+msgstr "Mappe-omslag søgning"
+
+msgid "Disable EMC"
+msgstr "Deaktiver EMC"
+
+#, fuzzy
+msgid "Display directory reading text"
+msgstr "Presenter mappe visningstekst"
+
+msgid ""
+"Do you really want to delete the cut file?\n"
+"If you have selected a directory, all cut files within the folder and its "
+"subfolders will be deleted!"
+msgstr ""
+"Vil du virkelig slette dit klip-filen?\n"
+"Hvis du har valgt en mappe, vil alle klip-filer i denne og dens undermapper "
+"blive slettet!"
+
+msgid "Do you really want to lock the directory %s and all its subfolders?"
+msgstr "Vil du virkelig låse mappen %s og alle dens undermapper?"
+
+msgid ""
+"Do you really want to remove your bookmark\n"
+"%s?"
+msgstr ""
+"Vil du virkelig slette dit bogmærke\n"
+"%s?"
+
+msgid ""
+"Do you really want to remove your directory\n"
+"%s?"
+msgstr ""
+"Vil du virkelig slette din mappe\n"
+"%s?"
+
+msgid ""
+"Do you really want to remove your link\n"
+"%s?"
+msgstr ""
+"Vil du virkelig slette din lænke\n"
+"%s?"
+
+msgid "Do you want to resume this playback?"
+msgstr "Vil du genoptage denne afspilning?"
+
+msgid "Does not contain any scripts."
+msgstr "Indeholder ikke noget skript."
+
+msgid "Don't auto scan size of dirs from emc-noscan.cfg"
+msgstr "Autosøg ikke størrelse på mapper fra emx-noscan.cfg"
+
+msgid "Download Movie Info"
+msgstr "Download filminfo"
+
+msgid "Download Movie Information"
+msgstr "Download filminformation"
+
+msgid "Download cutlist from Cutlist.at"
+msgstr "Download klipliste fra cutlist.at"
+
+msgid "Download: %s"
+msgstr "Download: %s"
+
+msgid "E2 Bookmark"
+msgstr "E2 Bogmærke"
+
+msgid "E2 Bookmarks"
+msgstr "E2 Bogmærker"
+
+msgid "E2 Restart"
+msgstr "E2 Genstart"
+
+msgid ""
+"EMC\n"
+"Zap to Live TV of record"
+msgstr ""
+"EMC\n"
+"Zap til Live TV af optagelse"
+
+msgid "EMC Bookmarks"
+msgstr "EMC Bogmærker"
+
+msgid "EMC Cover Selecter"
+msgstr "EMC Omslagsvælger"
+
+msgid "EMC Cover search"
+msgstr "EMC Omslagssøgning"
+
+msgid "EMC Cover search setup"
+msgstr "EMC Oplagssøgning opsætning"
+
+msgid "EMC Filebrowser"
+msgstr "EMC Filbrowser"
+
+msgid "EMC Playlist - current playlist"
+msgstr "EMC Afspilningsliste - aktuel afspinlingsliste"
+
+msgid "EMC Playlist Menu"
+msgstr "EMC Afspilningsliste menu"
+
+msgid "EMC Playlist Setup"
+msgstr "EMC Afspilningsliste opsætning"
+
+msgid "EMC Setup"
+msgstr "EMC Opsætning"
+
+msgid "EMC Trashcan Cleanup failed!"
+msgstr "EMC Oprydning i skraldespand mislykkedes!"
+
+msgid "EMC always reload after open"
+msgstr "EMC genindlæs altid efter åben"
+
+msgid "EMC output directory"
+msgstr "EMC uddatamappe"
+
+msgid "EMC path access limit"
+msgstr "EMC sti adgangsgrænse"
+
+msgid "EMC re-open list after Movie end"
+msgstr "EMC genåben liste når film slutter"
+
+msgid "EMC re-open list after STOP-press"
+msgstr "EMC genåben liste efter STOP-tryk"
+
+msgid "EMC-TMDB Info"
+msgstr "EMC-TMDB Info"
+
+msgid ""
+"EMC: Skipping Trashcan Cleanup\n"
+"Movie Home Path is equal to or a subfolder of the Trashcan"
+msgstr ""
+"EMC: Hop oprydning i skraldespand over\n"
+"Filmhjem sti er den samme som eller en undermappe til skraldespanden"
+
+msgid "Empty trashcan"
+msgstr "Tøm skraldespand"
+
+msgid "Enable EMC debug output"
+msgstr "Aktiver EMC fejlsøgningsuddata"
+
+msgid "Enable daily trashcan cleanup"
+msgstr "Aktiver daglig oprydning i skraldespand"
+
+msgid "Enable playback AC3-track first"
+msgstr "Aktiver afspil AC3-spor først"
+
+msgid "Enable playback auto-language selection"
+msgstr "Aktiver automatisk sprogvalg ved afspilning"
+
+msgid "Enable playback auto-subtitling"
+msgstr "Aktiver automatisk undertekst ved afspilning"
+
+msgid "Enable remote recordings"
+msgstr "Aktiver fjernoptagelser"
+
+msgid "English"
+msgstr "Engelsk"
+
+msgid "Enter Name for Playlist"
+msgstr "Indtast navn på Afspilningsliste"
+
+msgid "Enter name for new directory:"
+msgstr "Indtast navn på ny mappe:"
+
+msgid "Exist"
+msgstr "Findes"
+
+msgid "Exist: %s"
+msgstr "Findes: %s"
+
+msgid "File added to current Playlist."
+msgstr "Fil tilføjet til nuværende Afspilningsliste."
+
+msgid "File exists in current Playlist."
+msgstr "Fil eksistere i nuværende Afspilningsliste."
+
+msgid "File not available."
+msgstr "Fil ikke tilgængelig."
+
+msgid "Filename:"
+msgstr "Filnavn:"
+
+msgid "Files added to current Playlist."
+msgstr "Fil tilføjet til nuværende Afspilningsliste."
+
+msgid ""
+"Files added to current Playlist:\n"
+"%(add)s\n"
+"\n"
+"Files exists in current Playlist:\n"
+"%(exist)s"
+msgstr ""
+"Fil tilføjet til nuværende Afspilningsliste:\n"
+"%(add)s\n"
+"\n"
+"Fil eksistere i nuværende Afspilningsliste:\n"
+"%(exit)s"
+
+msgid ""
+"Files exists in current Playlist:\n"
+"%s"
+msgstr ""
+"Fil eksistere i nuværende Afspilningsliste:\n"
+"%s"
+
+msgid "Finished watching percent"
+msgstr "Procent for færdigvist"
+
+msgid "Foldername:"
+msgstr "Mappenavn:"
+
+msgid "Force standby after auto-restart"
+msgstr "Tving Standby efterauto-genstart"
+
+#, fuzzy
+msgid "Format AVSwitch"
+msgstr "Formater AVSwitch"
+
+msgid ""
+"Found rogue files:\n"
+"\n"
+msgstr ""
+"Slyngelfiler fundet:\n"
+"\n"
+
+msgid "Free: "
+msgstr "Fri: "
+
+msgid "French"
+msgstr "Fransk"
+
+msgid "GENERAL"
+msgstr "GENERELT"
+
+msgid "Genre:"
+msgstr "Genre:"
+
+msgid "German"
+msgstr "Tysk"
+
+msgid "Given path %s does not exist. Please change."
+msgstr "Oplyste sti %s finde ikke. Ændre venligst."
+
+msgid "Go to trashcan"
+msgstr "Gå til skraldespand"
+
+msgid "Green"
+msgstr "Grøn"
+
+msgid "Grey"
+msgstr "Grå"
+
+msgid "HELP_About"
+msgstr "Information om EMC"
+
+#, fuzzy
+msgid "HELP_After file OPs only re-scan affected dirs"
+msgstr "Gennemsøg kun berørte mapper efter fil-OPs"
+
+msgid "HELP_Age of finished movies in movie folder (days)"
+msgstr "Alder på afsluttede film i filmmappe (dage)"
+
+msgid "HELP_Always save last played progress as marker"
+msgstr "Gem altid sidst afspillet framgang som mærke"
+
+msgid "HELP_Automatic timers list cleaning"
+msgstr "Automatisk oprydning i Timerliste"
+
+msgid "HELP_Blue button function"
+msgstr "Blå knapfuntion"
+
+msgid "HELP_Bouquet buttons behaviour"
+msgstr "Buket knapopførsel"
+
+msgid "HELP_Check for dead links"
+msgstr "Se efter døde lænker"
+
+msgid "HELP_Configure in etc\\enigma2\\emc-topdir.cfg"
+msgstr "Konfigurer i etc\\enigma2\\emc-topdir.cfg"
+
+msgid "HELP_Cover background"
+msgstr "Omslagsbaggrund"
+
+msgid "HELP_Cover delay in ms"
+msgstr "Omslagsforsinkelse i ms"
+
+msgid "HELP_Cursor predictive move after selection"
+msgstr "Forudsigelig markørflytning efter valg"
+
+msgid "HELP_Daily auto-start"
+msgstr "Daglig auto-start"
+
+msgid "HELP_Daily cleanup time"
+msgstr "Daglig oprydningstid"
+
+msgid "HELP_Date format"
+msgstr "Datoformat"
+
+msgid "HELP_Debug output file name"
+msgstr "Fejlsøgningsuddata filnavn"
+
+msgid "HELP_Default color highlighted"
+msgstr "Standardfarve for markering"
+
+msgid "HELP_Default color partially watched"
+msgstr "Standardfarve for delvis sete"
+
+msgid "HELP_Default color recording"
+msgstr "Standardfarve for optagelse"
+
+msgid "HELP_Default color unwatched"
+msgstr "Standardfarve for usete"
+
+msgid "HELP_Default color watched"
+msgstr "Standardfarve for sete"
+
+msgid "HELP_Delete validation"
+msgstr "Godkendelse af sletning"
+
+msgid "HELP_Description field update delay"
+msgstr "Beskrivelsesfelt opateringsforsinkelse"
+
+msgid "HELP_Disable EMC"
+msgstr "Deaktiver EMC"
+
+#, fuzzy
+msgid "HELP_Display directory reading text"
+msgstr "Presenter mappe visningstekst"
+
+msgid "HELP_Don't auto scan size of dirs from emc-noscan.cfg"
+msgstr "Autosøg ikke størrelse på mapper fra emx-noscan.cfg"
+
+msgid "HELP_Download cutlist from Cutlist.at"
+msgstr "Download klipliste fra Cutlist.at"
+
+msgid "HELP_Dynamic trashcan"
+msgstr "Vis Skraldespandsinformation"
+
+msgid "HELP_EMC always reload after open"
+msgstr "EMC genindlæs altid efter åben"
+
+msgid "HELP_EMC output directory"
+msgstr "EMC uddatamappe"
+
+msgid "HELP_EMC path access limit"
+msgstr "EMC sti adgangsgrænse"
+
+msgid "HELP_EMC re-open list after Movie end"
+msgstr "EMC genåben liste når film slutter"
+
+msgid "HELP_EMC re-open list after STOP-press"
+msgstr "EMC genåben liste efter STOP-tryk"
+
+msgid "HELP_Enable EMC debug output"
+msgstr "Aktiver EMC fejlsøgningsuddata"
+
+msgid "HELP_Enable daily trashcan cleanup"
+msgstr "Aktiver daglig oprydning i skraldespand"
+
+msgid "HELP_Enable playback AC3-track first"
+msgstr "Aktiver afspil AC3-spor først"
+
+msgid "HELP_Enable playback auto-language selection"
+msgstr "Aktiver automatisk sprogvalg ved afspilning"
+
+msgid "HELP_Enable playback auto-subtitling"
+msgstr "Aktiver automatisk undertekst ved afspilning"
+
+msgid "HELP_Enable remote recordings"
+msgstr "Aktiver fjernoptagelser"
+
+msgid "HELP_Fallback Cover"
+msgstr "Vis reserveomslag"
+
+msgid "HELP_Finished watching percent"
+msgstr "Procent for færdigvist"
+
+msgid "HELP_Force standby after auto-start"
+msgstr "Gennemtving Standby efter auto-start"
+
+msgid "HELP_Hide movies being deleted"
+msgstr "Skjul film der slettes"
+
+msgid "HELP_Hide movies being moved"
+msgstr "Skjul film der flyttes"
+
+msgid "HELP_Horizontal alignment for count / size"
+msgstr "Vandret justering for antal / størrelse"
+
+msgid "HELP_Horizontal alignment for date"
+msgstr "Vandret justering af dato"
+
+msgid "HELP_How many days files may remain in trashcan"
+msgstr "Hvor mange dage kan filer forblive i skraldespand"
+
+msgid "HELP_Icon shown for initially unknown count / size"
+msgstr "Ikon vist for indledende ukendt ukendt antal / størrelse"
+
+msgid "HELP_Install Mutagen-package for audio metadata"
+msgstr "Installer Mutagen-pakke for lyd metadata"
+
+msgid "HELP_Jump to first mark when playing movie"
+msgstr "Spring til første mærke ved afspinling af film"
+
+msgid "HELP_Key period value (50-900)"
+msgstr "Nøgleperiode værdi (50-900)"
+
+msgid "HELP_Key repeat value (250-900)"
+msgstr "Nøglegentagelse værdi (250-900)"
+
+msgid "HELP_Latest Recordings directory limit"
+msgstr "Seneste optagelser mappegrænse"
+
+msgid "HELP_Latest Recordings directory use emc-noscan.cfg"
+msgstr "Brug emc-noscan.cfg som mappe for seneste optagelser"
+
+msgid "HELP_Leave Movie with Exit"
+msgstr "Forlad film med EXIT"
+
+msgid "HELP_Limit file operations in dirs from emc-noscan.cfg"
+msgstr "Begræns filhandlinger i mapper fra emx-noscan.cfg"
+
+msgid "HELP_List entries to skip"
+msgstr "Listeposter der springes over"
+
+msgid "HELP_Listbox is skin able"
+msgstr "Listedialogboks er Tematiserbar"
+
+msgid "HELP_Long Blue button function"
+msgstr "Lang Blå knapfunktion"
+
+msgid "HELP_Long Red button function"
+msgstr "Lang Rød knapfunktion"
+
+msgid "HELP_Long Yellow button function"
+msgstr "Lang Gul knapfunktion"
+
+msgid "HELP_LongInfo Button"
+msgstr "Lang Info knap"
+
+msgid "HELP_Mark new recordings with a star"
+msgstr "Marker nye optagelser med stjerne"
+
+msgid "HELP_Move finished movies in trashcan"
+msgstr "Flyt afsluttede film til skrældespand"
+
+msgid "HELP_Movie home at start"
+msgstr "Filmhjem ved opstart"
+
+msgid "HELP_Movie home home path"
+msgstr "Filmhjem hjemmesti"
+
+msgid "HELP_Movie preview delay in ms"
+msgstr "Filmforhåndsvisning forsinkelse i ms"
+
+msgid "HELP_Movie preview offset in seconds"
+msgstr "Forskydning af Filmforhåndsvisning i sekunder"
+
+msgid "HELP_No resume below 10 seconds"
+msgstr "Genoptag ikke afspilning hvis der er afspillet mindre end 10 sekunder"
+
+msgid "HELP_Own Path to movie picons"
+msgstr "Egen sti til Pikoner"
+
+msgid "HELP_Path to movie picons"
+msgstr "Sti til film Pikoner"
+
+msgid "HELP_Position movie picons"
+msgstr "Film Pikoner placering"
+
+msgid "HELP_Preferred EPG language"
+msgstr "Foretrukket EPG sprog"
+
+msgid "HELP_Primary playback audio language"
+msgstr "Primær lydsprog for afspilning"
+
+msgid "HELP_Primary playback subtitle language"
+msgstr "Primær undertekstsprog for afspilning"
+
+msgid "HELP_Red button function"
+msgstr "Rød knapfunktion"
+
+msgid "HELP_Replace special chars in title"
+msgstr "Erstat specielle tegn i titel"
+
+msgid "HELP_Resolve links and show real path"
+msgstr "Opløs lænker og vis virkelig sti"
+
+msgid "HELP_Rewind finished movies before playing"
+msgstr "Spol afsluttede film tilbage før afspilning"
+
+msgid "HELP_Scan for DVD structures"
+msgstr "Søg efter DVD-struktur"
+
+msgid "HELP_Scan for bluray structures"
+msgstr "Søg efter Bluray-struktur"
+
+msgid "HELP_Scan for bluray structures in .iso"
+msgstr "Søg efter Bluray-struktur i iso"
+
+msgid "HELP_Scan for movie structures"
+msgstr "Søg efter filmstruktur"
+
+msgid "HELP_Secondary playback audio language"
+msgstr "Sekundær lydsprog for afspilning"
+
+msgid "HELP_Secondary playback subtitle language"
+msgstr "Sekundær undertekstsprog for afspilning"
+
+msgid "HELP_Short watching percent"
+msgstr "Kort visningsprocent"
+
+msgid "HELP_Show Bookmarks in movielist"
+msgstr "Vis bogmærker i filmliste"
+
+msgid "HELP_Show Cover"
+msgstr "Vis omslag"
+
+msgid "HELP_Show Cut-Nr if exist"
+msgstr "Vis klip-nr. hvis det findes"
+
+msgid "HELP_Show EMC in extensions menu"
+msgstr "Vis EMC i udvidelsesmenu"
+
+msgid "HELP_Show EMC in main menu"
+msgstr "Vis EMC i hovedmenu"
+
+msgid "HELP_Show Latest Recordings directory"
+msgstr "Vis mappe for seneste optagelser"
+
+msgid "HELP_Show Movie Format"
+msgstr "Vis Filmformat"
+
+msgid "HELP_Show Path if no extended description available"
+msgstr "Vis sti hvis udvidet beskrivelse ikke er tilgængelig"
+
+msgid "HELP_Show VLC directory"
+msgstr "Vis VLC mappe"
+
+msgid "HELP_Show audio metadata"
+msgstr "Vis lyd metadata"
+
+msgid "HELP_Show directories"
+msgstr "Vis mapper"
+
+msgid "HELP_Show directories information"
+msgstr "Vis mapperinformation"
+
+msgid "HELP_Show directories within movielist"
+msgstr "Vis mapper indeni Filmliste"
+
+msgid "HELP_Show directory size in skin"
+msgstr "Vis mappestørelse i Tema"
+
+msgid "HELP_Show experimental options"
+msgstr "Vis eksperimentale muligheder"
+
+msgid "HELP_Show link arrow"
+msgstr "Vis pil på lænke"
+
+msgid "HELP_Show message if file added to playlist"
+msgstr "Vis besked hvis fil tilføjes til afspilningsliste"
+
+msgid "HELP_Show movie icons"
+msgstr "Vis Film ikoner"
+
+msgid "HELP_Show movie picons"
+msgstr "Vis film Pikoner"
+
+msgid "HELP_Show movie preview"
+msgstr "Vis filmforhåndsvisning"
+
+msgid "HELP_Show movie progress"
+msgstr "Vis filmfremgang"
+
+msgid "HELP_Show plugin config in extensions menu"
+msgstr "Vis Plugin konfiguration i udvidelsesmenu"
+
+msgid "HELP_Show real length of running records"
+msgstr "Vis ægte længde af kørende optagelse"
+
+msgid "HELP_Show symlinks"
+msgstr "Vis symlænker"
+
+msgid "HELP_Show trashcan directory"
+msgstr "Vis skraldespandsmappe"
+
+msgid "HELP_Sort mode at startup"
+msgstr "Sorteringstilstand ved opstart"
+
+msgid "HELP_Start EMC with"
+msgstr "Start EMC med"
+
+msgid "HELP_Style for original EMC-skin (needs reopen)"
+msgstr "Stil for original EMC-Tema (kræver genåbning)"
+
+msgid "HELP_Tertiary playback audio language"
+msgstr "Tertiær lydsprog for afspilning"
+
+msgid "HELP_Tertiary playback subtitle language"
+msgstr "Tertiær undertekstsprog for afspilning"
+
+msgid "HELP_Text shown for initially unknown count and size"
+msgstr "Tekst vist for indledende ukendt antal og størrelse"
+
+msgid "HELP_Text shown for initially unknown directory size"
+msgstr "Tekst vist for indledende ukendt størrelse af mappe"
+
+msgid "HELP_Text shown for initially unknown file count"
+msgstr "Tekst vist for indledende ukendt antal filer"
+
+msgid "HELP_Trashcan enable"
+msgstr "Aktiver skraldespand"
+
+msgid "HELP_Trashcan path"
+msgstr "Skraldespand sti"
+
+msgid "HELP_Try to load extra title and more from .meta files"
+msgstr "Forsøg at hente ekstra titel og andet fra .meta filer"
+
+msgid "HELP_Try to load titles from .eit files"
+msgstr "Fosøg at hente titler fra .eit filer"
+
+msgid "HELP_Try to load titles from .meta files"
+msgstr "Forsøg at hente titler fra .meta filer"
+
+msgid "HELP_Use cache for files and directories"
+msgstr "Brug mellemlager til filer og mapper"
+
+msgid "HELP_Use original EMC-skin (needs reopen)"
+msgstr "Brug original EMC-Tema (kræver genåbning)"
+
+msgid "HELP_Wake device when entering dir from emc-noscan.cfg"
+msgstr "Væk enhed når mappe tilgås fra emc-noscan.cfg"
+
+msgid "HELP_Yellow button function"
+msgstr "Lang Gul knapfunktion"
+
+msgid "HELP_Zap to channel after record EOF"
+msgstr "Zap til kanal efter optagelse slut på fil (EOF)"
+
+msgid "HELP_auto-start window begin"
+msgstr "auto-start vindue start"
+
+msgid "HELP_auto-start window end"
+msgstr "auto-start vindue slut"
+
+msgid "HELP_cfghide_enable"
+msgstr "Skjul konfigurerede poster"
+
+msgid "HELP_cfgscan_suppress"
+msgstr "Undertryk søgning i valgte mapper"
+
+msgid "HELP_hide_MiniTV"
+msgstr "Skjul MiniTV"
+
+msgid "HELP_hide_MiniTV cover"
+msgstr "Skjul MiniTV hvis omslag vises"
+
+msgid "HELP_hide_MiniTV_method"
+msgstr "Måde til at skjule MiniTV med"
+
+msgid "HELP_scan_linked"
+msgstr "Gennemsøg lænkede mapper"
+
+msgid "Hide Cover"
+msgstr "Skjul omslag"
+
+msgid "Hide MiniTV"
+msgstr "Skjul MiniTV"
+
+msgid "Hide MiniTV if Cover is shown"
+msgstr "Skjul MiniTV hvis omslag vises"
+
+msgid "Hide configured entries"
+msgstr "Skjul konfigurerede poster"
+
+msgid "Hide movies being deleted"
+msgstr "Skjul film der slettes"
+
+msgid "Hide movies being moved"
+msgstr "Skjul film der flyttes"
+
+#, fuzzy
+msgid "HomeEnd"
+msgstr "TopBund"
+
+msgid "Horizontal alignment for count / size"
+msgstr "Vandret justering for antal / størrelse"
+
+msgid "Horizontal alignment for date"
+msgstr "Vandret justering af dato"
+
+msgid "How many days files may remain in trashcan"
+msgstr "Hvor mange dage kan filer forblive i skraldespand"
+
+msgid ""
+"How to copy files:\n"
+"Select some movies with the VIDEO-button, move the cursor on top of the "
+"destination directory and press yellow long."
+msgstr ""
+"Hvordan kopieres filer:\n"
+"Vælg nogle film med VIDEO-knappen, flyt markøren til toppen af "
+"destinationsmappen og tryk længe på den gul knap."
+
+msgid ""
+"How to move files:\n"
+"Select some movies with the VIDEO-button, move the cursor on top of the "
+"destination directory and press yellow."
+msgstr ""
+"Hvordan kopieres filer:\n"
+"Vælg nogle film med VIDEO-knappen, flyt markøren til toppen af "
+"destinationsmappen og tryk på den gul knap."
+
+msgid "IMDBSearch / EMC-TMDBInfo / TMDBInfo / TMBDInfo / CSFDInfo"
+msgstr "IMDBSearch / EMC-TMDBInfo / TMDBInfo / TMBDInfo / CSFDInfo"
+
+msgid "IMDb"
+msgstr "IMDb"
+
+msgid "IMDb Search"
+msgstr "IMDb søgning"
+
+msgid "Icon shown for initially unknown count / size"
+msgstr "Ikon vist for indledende ukendt antal / størrelse"
+
+msgid "Information"
+msgstr "Information"
+
+msgid "Install Mutagen-package for audio metadata"
+msgstr "Installer Mutagen-pakke for lyd metadata"
+
+msgid "Installing Mutagen-package"
+msgstr "Installere Mutagen-pakke"
+
+msgid "Italian"
+msgstr "Italiensk"
+
+msgid "Jump to first mark when playing movie"
+msgstr "Spring til første mærke ved afspinling af film"
+
+msgid "KEYMAPPING"
+msgstr "KNAPFUNKTION"
+
+msgid "Key period value (50-900)"
+msgstr "Nøgleperiode værdi (50-900)"
+
+msgid "Key repeat value (250-900)"
+msgstr "Nøglegentagelse værdi (250-900)"
+
+msgid "LANGUAGE"
+msgstr "SPROG"
+
+msgid "Language:"
+msgstr "Sprog:"
+
+msgid "Last played movie/playlist not available..."
+msgstr "Sidst afspillet film/afspilningsliste ikke tilgængelig..."
+
+msgid "Latest"
+msgstr "Seneste"
+
+msgid "Latest Recordings"
+msgstr "Seneste optagelser"
+
+msgid "Latest Recordings directory limit"
+msgstr "Seneste optagelser mappegrænse"
+
+msgid "Latest Recordings directory use emc-noscan.cfg"
+msgstr "Brug emc-noscan.cfg som mappe for seneste optagelser"
+
+msgid "Leave Movie with Exit"
+msgstr "Forlad film med EXIT"
+
+msgid "Light green"
+msgstr "Lysegrøn"
+
+msgid "Light grey"
+msgstr "Lysegrå"
+
+msgid "Light orange"
+msgstr "Lys orange"
+
+msgid "Light red"
+msgstr "Lyserød"
+
+msgid "Limit file operations in dirs from emc-noscan.cfg"
+msgstr "Begræns filhandlinger i mapper fra emx-noscan.cfg"
+
+msgid "Link"
+msgstr "Lænke"
+
+msgid "List entries to skip"
+msgstr "Listeposter der springes over"
+
+msgid "Listbox is skin able"
+msgstr "Listedialogboks er Tematiserbar"
+
+msgid "Load Genre:"
+msgstr "Hent genre:"
+
+msgid "Load Production Countries:"
+msgstr "Hent produktionsland:"
+
+msgid "Load Release Date:"
+msgstr "Hent frigivelsesdato:"
+
+msgid "Load Runtime:"
+msgstr "Hent varighed:"
+
+msgid "Load Vote:"
+msgstr "Hent stemmer:"
+
+msgid "Load default settings will overwrite all settings, really load them?"
+msgstr ""
+"Hentes standardindstillinger vil alle indstillinger blive overskrevet, skal de "
+"virkelig hentes ?"
+
+msgid ""
+"Locate rogue files and remove them? (permanently if no trashcan available, may "
+"take a minute or so)"
+msgstr ""
+"Find slyngelfiler og fjern dem? (permanent hvis skraldespand ikke tilgængelig, "
+"kan tage et minut eller to)"
+
+msgid "Location:"
+msgstr "Placering:"
+
+msgid "Long Blue button function"
+msgstr "Lang Blå knapfunktion"
+
+msgid "Long Red button function"
+msgstr "Lang Rød knapfunktion"
+
+msgid "Long Yellow button function"
+msgstr "Lang Gul knapfunktion"
+
+msgid "LongInfo Button"
+msgstr "Lang INFO kanp"
+
+msgid "MM/DD HH:MM"
+msgstr "MM/DD TT:MM"
+
+msgid "Manage Cover"
+msgstr "Håndter omslag"
+
+msgid "Mark all movies"
+msgstr "Marker alle film"
+
+msgid "Mark new recordings with a star"
+msgstr "Marker nye optagelser med stjerne"
+
+msgid "Method of hiding MiniTV"
+msgstr "Måde til at skjule MiniTV med"
+
+msgid "Minimum file cache limit (0=cache everything)"
+msgstr "Minimum filmellemlager grænse (0=lager alt)"
+
+msgid "Minutes"
+msgstr "Minutter"
+
+msgid "Month"
+msgstr "Måned"
+
+msgid "Months"
+msgstr "Måneder"
+
+msgid "Move Cover to:"
+msgstr "Flyt omslag til:"
+
+msgid "Move Directory:"
+msgstr "Flyt mappe:"
+
+msgid "Move File"
+msgstr "Flyt fil"
+
+msgid "Move Files"
+msgstr "Flyt filer"
+
+msgid "Move cursor down"
+msgstr "Flyt markør ned"
+
+msgid "Move cursor page down"
+msgstr "Flyt markør en side ned"
+
+msgid "Move cursor page up"
+msgstr "Flyt markør en side op"
+
+msgid ""
+"Move cursor to the end / Move cursor x entries down / Switch Folders in Movie "
+"Home (down)"
+msgstr ""
+"Flyt markør til slutningen / Flyt markør X elementer ned / Skift mappe i "
+"Filmhjem (nedad)"
+
+msgid ""
+"Move cursor to the top / Move cursor x entries up / Switch Folders in Movie "
+"Home (up)"
+msgstr ""
+"Flyt markør til starten / Flyt markør X elementer op / Skift mappe i Filmhjem "
+"(opad)"
+
+msgid "Move cursor up"
+msgstr "Flyt markør op"
+
+msgid "Move file(s):"
+msgstr "Flyt fil(er):"
+
+msgid "Move finished movies in trashcan"
+msgstr "Flyt afsluttede film til skrældespand"
+
+msgid "Movie Color"
+msgstr "Filmfarve"
+
+msgid ""
+"Movie Cover downloaded successfully!\n"
+"\n"
+"Can not write Movie Information File\n"
+"\n"
+"%s"
+msgstr ""
+"Filmomslag downloadet med held!\n"
+"\n"
+"Kan ikke skrive filminformationsfil\n"
+"%s"
+
+msgid "Movie Information Download Setup"
+msgstr "Film information download opsætning"
+
+msgid "Movie Information Preview for:"
+msgstr "Forhåndsvisning af filminformation for:"
+
+msgid "Movie Information TMDb"
+msgstr "Filminformation TMDB"
+
+msgid "Movie Information and Cover downloaded successfully!"
+msgstr "Filminformation og omslag hentet med held!"
+
+msgid "Movie Information downloaded successfully!"
+msgstr "Filminformation hentet med held!"
+
+msgid ""
+"Movie Information downloaded successfully!\n"
+"\n"
+"Can not write Movie Cover File\n"
+"\n"
+"%s"
+msgstr ""
+"Filminformation hentet med held!\n"
+"\n"
+"Kan ikke skrive filmomslagsfil\n"
+"\n"
+"%s"
+
+msgid "Movie Selection Menu"
+msgstr "Filmvalg menu"
+
+msgid "Movie home"
+msgstr "Filmhjem"
+
+msgid "Movie home at start"
+msgstr "Filmhjem ved opstart"
+
+msgid "Movie home home path"
+msgstr "Filmhjem hjemmesti"
+
+msgid "Movie information"
+msgstr "Film information"
+
+msgid "Movie preview delay in ms"
+msgstr "Filmforhåndsvisning forsinkelse i ms"
+
+msgid "Movies"
+msgstr "Filmliste"
+
+msgid "Movietitle:"
+msgstr "Filmtitel:"
+
+msgid "N/A"
+msgstr "Ikke tilgængelig"
+
+msgid "Next auto-start in "
+msgstr "Næste auto-start om "
+
+msgid "No"
+msgstr "Nej"
+
+msgid "No Cover: %s"
+msgstr "Ingen omslag: %s"
+
+msgid "No DVD-Player found!"
+msgstr "Ingen DVD-Afspiller fundet!"
+
+msgid "No Movies found!"
+msgstr "Film ikke fundet!"
+
+msgid "No functionality set..."
+msgstr "Funktionalitet ikke sat..."
+
+msgid "No limit"
+msgstr "Ingen grænse"
+
+msgid "No override"
+msgstr "Ingen omgåelse"
+
+msgid "No resume below 10 seconds"
+msgstr "Genoptag ikke under 10 sekunder"
+
+msgid "No rogue files found."
+msgstr "Ingen slyngelfiler fundet."
+
+msgid "Not all timers have been stopped. Modify them with the timer editor."
+msgstr "Ikke alle Timers er blevet stoppet. Ændre dem med Timerredigering."
+
+msgid "Nothing was found !"
+msgstr "Intet blev fundet !"
+
+msgid "OK"
+msgstr "OK"
+
+msgid "OSError - please reload list (EMC menu)"
+msgstr "OSFejl - genindlæs venligst liste (EMC menu)"
+
+msgid "OTHER"
+msgstr "ANDET"
+
+msgid "Off"
+msgstr "Slukket"
+
+msgid "Open"
+msgstr "Åben"
+
+msgid "Open E2 Bookmark path"
+msgstr "Åben E2 Bogmærkesti"
+
+msgid "Open E2 bookmarks"
+msgstr "Åben E2 Bogmærker"
+
+msgid "Open EMC Bookmark path"
+msgstr "Åben EMC Bogmærkesti"
+
+msgid "Open Timer List"
+msgstr "Åben Timerliste"
+
+msgid "Open menu"
+msgstr "Åben menu"
+
+msgid "Orange"
+msgstr "Orange"
+
+msgid "Own Path to movie picons"
+msgstr "Egen sti til Pikoner"
+
+msgid "Path to movie picons"
+msgstr "Sti til film Pikoner"
+
+msgid "Percent (%)"
+msgstr "Procent (%)"
+
+msgid "Performance"
+msgstr "Ydelse"
+
+msgid "Permanently delete all files in trashcan?"
+msgstr "Slet alle filer i skraldespand permanent?"
+
+msgid "Play All"
+msgstr "Afspil alt"
+
+msgid "Play All starting"
+msgstr "Afspil alt starter"
+
+msgid "Play current Playlist"
+msgstr "Afspil aktuel afspilningsliste"
+
+msgid "Play last"
+msgstr "Afspil seneste"
+
+msgid "Play last movie starting"
+msgstr "Afspil sidste film starter"
+
+msgid "Play random current Playlist"
+msgstr "Afspil aktuel afspilningsliste tilfældig"
+
+msgid "Play selected movie(s)"
+msgstr "Afspil valgte film"
+
+msgid "Playlist Options"
+msgstr "Afslpiningsliste muligheder"
+
+msgid "Playlist Setup"
+msgstr "Sæt Afspilningsliste op"
+
+msgid "Playlist open"
+msgstr "Åben afspilningsliste"
+
+msgid ""
+"Playlist with same name exists!\n"
+"\n"
+"Try to save the Playlist with another name?"
+msgstr ""
+"Afspilningsliste med samme navn findes!\n"
+"\n"
+"Prøv at gemme Afspilningsliste med andet navn?"
+
+msgid "Portuguese"
+msgstr "Portugisisk"
+
+msgid "Position movie picons"
+msgstr "Film Pikoner placering"
+
+msgid "Preferred EPG language"
+msgstr "Foretrukket EPG sprog"
+
+msgid "Preferred cover resolution (if possible):"
+msgstr "Foretrukket omslagsopløsning (hvis mulig):"
+
+msgid "Press green button to start search"
+msgstr "Tryk grøn knap for at starte søgning"
+
+msgid "Primary playback audio language"
+msgstr "Primær lydsprog for afspilning"
+
+msgid "Primary playback subtitle language"
+msgstr "Primær undertekstsprog for afspilning"
+
+msgid "Production Countries:"
+msgstr "Produktionslande:"
+
+msgid "Progress sort"
+msgstr "Fremgangssortering"
+
+msgid "Progress sort ascending (P+)"
+msgstr "Fremgangssortering stigende (P+)"
+
+msgid "Progress sort descending (P-)"
+msgstr "Fremgangssortering faldende (P-)"
+
+msgid "ProgressBar"
+msgstr "Fremgangsbjælke"
+
+msgid "Quick-button"
+msgstr "Kvik-knap"
+
+msgid "Radio-button"
+msgstr "Radio-knap"
+
+msgid "Reading directory..."
+msgstr "Læser mappe..."
+
+msgid "Really close without saving settings?"
+msgstr "Vil du lukke uden at gemme indstillinger?"
+
+msgid "Reboot"
+msgstr "Genstart"
+
+msgid "Red"
+msgstr "Rød"
+
+msgid "Red button function"
+msgstr "Rød knapfunktion"
+
+msgid "Release Date:"
+msgstr "Frigivelsesdato:"
+
+msgid "Reload current directory"
+msgstr "Genindlæs aktuel mappe"
+
+msgid "Reload movie file list"
+msgstr "Genindlæs film filliste"
+
+msgid "Remove all cut file marker permanently?"
+msgstr "Fjern alle klipfil mærker permanent?"
+
+msgid "Remove all marker permanently?"
+msgstr "Fjern alle mærker permanent?"
+
+msgid "Remove cut list marker"
+msgstr "Fjern klipliste markering"
+
+msgid "Remove directory from E2 Bookmarks"
+msgstr "Fjern mappe fra E2 Bogmærker"
+
+msgid "Remove directory from EMC Bookmarks"
+msgstr "Fjern mappe fra EMC Bogmærker"
+
+msgid "Remove permanent sort"
+msgstr "Fjern permanent sortering"
+
+msgid "Remove permanent sort from parent"
+msgstr "Fjern permanent sortering fra forælder"
+
+msgid "Remove rogue files"
+msgstr "Fjern slyngelfiler"
+
+msgid "Remove selected E2 Bookmark"
+msgstr "Fjern valgte E2 Bogmærke"
+
+msgid "Remove selected EMC Bookmark"
+msgstr "Fjern valgte EMC Bogmærke"
+
+msgid "Remove service selection"
+msgstr "Fjern kanalvalg"
+
+msgid "Rename selected movie(s)"
+msgstr "Omdøb valgte film"
+
+msgid "Replace special chars in title"
+msgstr "Erstat specielle tegn i titel"
+
+msgid "Reset marker from selected movie(s)"
+msgstr "Nulstil markering på valgte film"
+
+msgid "Resolve links and show real path"
+msgstr "Opløs lænker og vis virkelig sti"
+
+msgid "Resume position at %s"
+msgstr "Genoptag fra sidste position ved %s"
+
+msgid "Resuming playback"
+msgstr "Genoptag afspilning"
+
+msgid "Rewind finished movies before playing"
+msgstr "Spol afsluttede film tilbage før afspilning"
+
+msgid "Runtime:"
+msgstr "Kørselstid:"
+
+msgid "SKIN-SETTINGS"
+msgstr "TEMA-INDSTILLINGER"
+
+msgid "Save"
+msgstr "Gem"
+
+msgid "Save Cover"
+msgstr "Gem omslag"
+
+msgid "Save current Playlist"
+msgstr "Gem aktuel afspilningsliste"
+
+msgid "Save description to movie.txt file:"
+msgstr "Gem beskrivelse til movie.txt fil:"
+
+msgid "Scan for DVD structures"
+msgstr "Søg efter DVD-struktur"
+
+msgid "Scan for bluray structures"
+msgstr "Søg efter Bluray-struktur"
+
+msgid "Scan for bluray structures in .iso"
+msgstr "Søg efter Bluray-struktur i .iso"
+
+msgid "Scan for movie structures"
+msgstr "Søg efter filmstruktur"
+
+msgid "Scan linked folders"
+msgstr "Gennemsøg lænkede mapper"
+
+msgid "Search"
+msgstr "Søg"
+
+msgid "Search Results per Search Site%s:"
+msgstr "Søgeresultater pr. søgeside %s:"
+
+#, fuzzy
+msgid "Search Site:"
+msgstr "Søg side:"
+
+msgid "Search filter for matching existing terms in the title:"
+msgstr "Søgefilter til sammenligning af eksisterende udtryk i titlen:"
+
+msgid "Search results for:"
+msgstr "Søgeresultater for:"
+
+msgid "Searching for %s"
+msgstr "Søger efter %s"
+
+msgid "Searching..."
+msgstr "Søger..."
+
+msgid "Secondary playback audio language"
+msgstr "Sekundær lydsprog for afspilning"
+
+msgid "Secondary playback subtitle language"
+msgstr "Sekundær undertekstsprog for afspilning"
+
+msgid "Seek backward"
+msgstr "Søg baglæns"
+
+msgid "Seek forward"
+msgstr "Søg fremad"
+
+msgid "Select Location"
+msgstr "Vælg placering"
+
+msgid "Set path to save the folder Cover:"
+msgstr "Sæt sti for at gemme mappe Omslag:"
+
+msgid "Set permanent sort"
+msgstr "Sæt permanent sortering"
+
+msgid "Settings have been Saved."
+msgstr "Indstillinger er blevet gemt."
+
+msgid "Setup"
+msgstr "Opsætning"
+
+msgid "Setup open"
+msgstr "Opsætning åben"
+
+msgid "Short watching percent"
+msgstr "Kort visningsprocent"
+
+msgid "Show Bookmarks in movielist"
+msgstr "Vis bogmærker i filmliste"
+
+msgid "Show Cover"
+msgstr "Vis omslag"
+
+msgid "Show Cut-Nr if exist"
+msgstr "Vis klip-nr. hvis det findes"
+
+msgid "Show EMC in extensions menu"
+msgstr "Vis EMC i udvidelsesmenu"
+
+msgid "Show EMC in main menu"
+msgstr "Vis EMC i hovedmenu"
+
+msgid "Show Latest Recordings directory"
+msgstr "Vis mappe for seneste optagelser"
+
+msgid "Show Movie Format"
+msgstr "Vis Filmformat"
+
+msgid "Show Path if no extended description available"
+msgstr "Vis sti hvis udvidet beskrivelse ikke er tilgængelig"
+
+msgid "Show VLC directory"
+msgstr "Vis VLC mappe"
+
+msgid "Show audio metadata"
+msgstr "Vis lyd metadata"
+
+msgid "Show current Playlist"
+msgstr "Vis nuværende afspilningsliste"
+
+msgid "Show directories"
+msgstr "Vis mapper"
+
+msgid "Show directories information"
+msgstr "Vis mappeinformation"
+
+msgid "Show directories within movielist"
+msgstr "Vis mapper i Filmliste"
+
+msgid "Show directory size in skin"
+msgstr "Vis mappestørelse i Tema"
+
+msgid "Show event info"
+msgstr "Vis begivenhedsinformation"
+
+msgid "Show experimental options"
+msgstr "Vis eksperimentale muligheder"
+
+msgid "Show fallback cover"
+msgstr "Vis reserveomslag"
+
+msgid "Show info at the bottom"
+msgstr "Vis information i bunden"
+
+msgid "Show info at the bottom (with MiniTV)"
+msgstr "Vis information i bunden (med MiniTV)"
+
+msgid "Show info on the left"
+msgstr "Vis information til venstre"
+
+msgid "Show info on the left (with MiniTV)"
+msgstr "Vis information til venstre (med MiniTV)"
+
+msgid "Show link arrow"
+msgstr "Vis pil på lænke"
+
+msgid "Show message if file added to playlist"
+msgstr "Vis besked hvis fil tilføjes til afspilningsliste"
+
+msgid "Show movie icons"
+msgstr "Vis Film ikoner"
+
+msgid "Show movie picons"
+msgstr "Vis Film Pikoner"
+
+msgid "Show movie preview"
+msgstr "Vis filmforhåndsvisning"
+
+msgid "Show movie progress"
+msgstr "Vis Filmfremgang"
+
+msgid "Show plugin config in extensions menu"
+msgstr "Vis Plugin konfiguration i udvidelsesmenu"
+
+msgid "Show real length of running records"
+msgstr "Vis virkelig længde af igangværende optagelse"
+
+msgid "Show symlinks"
+msgstr "Vis symlænker"
+
+msgid "Show trashcan directory"
+msgstr "Vis skraldespandsmappe"
+
+msgid "Show trashcan information"
+msgstr "Vis Skraldespandsinformation"
+
+msgid "Shuffle All"
+msgstr "Bland alt"
+
+msgid "Shuffle All starting"
+msgstr "Bland alt starter"
+
+msgid "Single Search:"
+msgstr "Enkel søgning:"
+
+msgid "Single search"
+msgstr "Enkel søgning"
+
+msgid "Skip"
+msgstr "Hop over"
+
+msgid ""
+"Skipping movie, the file does not exist.\n"
+"\n"
+msgstr ""
+"Hopper over film, filen finde ikke.\n"
+"\n"
+
+msgid "Some settings changes require GUI restart to take effect."
+msgstr "Nogle indstillingsændringer kræver en GUI genstart for aktivering."
+
+msgid "Sort Mode"
+msgstr "Sorteringstilstand"
+
+msgid "Sort Options"
+msgstr "Sorteringsmuligheder"
+
+msgid "Sort Order"
+msgstr "Sorteringsrækkefølge"
+
+msgid "Spanish"
+msgstr "Spansk"
+
+msgid "Standby"
+msgstr "Standby"
+
+msgid "Start / end multiselection"
+msgstr "Start / afslut multivalg"
+
+msgid "Start EMC with"
+msgstr "Start EMC med"
+
+msgid "Start movie preview before last position"
+msgstr "Start filmforhåndsvisning før sidste placering"
+
+msgid "Stop ongoing recording?\n"
+msgstr "Stop igangværende optagelse?\n"
+
+msgid "Stop playback"
+msgstr "Stop afspilning"
+
+msgid "Style for original EMC-skin (needs reopen)"
+msgstr "Stil for original EMC-Tema (kræver genåbning)"
+
+msgid "Suppress scan in selected folders"
+msgstr "Undertryk søgning i valgte mapper"
+
+msgid "TMBD Info"
+msgstr "TMBD Info"
+
+msgid "TMDB Info"
+msgstr "TMDB Info"
+
+msgid "TMDb"
+msgstr "TMDb"
+
+msgid "TRASHCAN"
+msgstr "SKRALDESPAND"
+
+msgid "TV Shows"
+msgstr "TV Shows"
+
+msgid "TV-button"
+msgstr "TV-kanp"
+
+msgid "Tertiary playback audio language"
+msgstr "Tertiær lydsprog for afspilning"
+
+msgid "Tertiary playback subtitle language"
+msgstr "Tertiær undertekstsprog for afspilning"
+
+msgid "Text shown for initially unknown count and size"
+msgstr "Tekst vist for indledende ukendt antal og størrelse"
+
+msgid "Text shown for initially unknown directory size"
+msgstr "Tekst vist for indledende ukendt mappestørrelse"
+
+msgid "Text shown for initially unknown file count"
+msgstr "Tekst vist for indledende ukendt filantal"
+
+msgid ""
+"The directory %s is already locked. Do you want to unlock it and all its "
+"subfolders?"
+msgstr ""
+"Mappen er %s er allerede låst. Vil du låse den og alle dens undermapper op?"
+
+msgid ""
+"The following files are used for other entrys in List !\n"
+"\n"
+"Also delete these files?\n"
+"\n"
+"%s"
+msgstr ""
+"Følgende filer bliver brugt til andre poster i listen !\n"
+"\n"
+"Slet også disse filer?\n"
+"\n"
+"%s"
+
+msgid "The python-mutagen package is not available on the feed."
+msgstr "Python-mutagen pakken er ikke tilgængelig på Feedet."
+
+msgid "This element belongs to a locked folder and cannot be deleted!"
+msgstr "Dette element tilhøre en låst mappe og kan ikke slettes!"
+
+msgid "This folder is locked or contains a locked subfolder, unlock it first!"
+msgstr "Denne mappe er låst elle indeholder låste undermapper, lås først op!"
+
+msgid "Timeshift-button"
+msgstr "Timeshift-knap"
+
+msgid "Title"
+msgstr "Titel"
+
+msgid "Toggle Cover Button"
+msgstr "Ombyt omslagsknap"
+
+msgid "Toggle service selection"
+msgstr "Ombyt kanalvalg"
+
+msgid "Toggle viewed / not viewed"
+msgstr "Ombyt sete / usete"
+
+msgid "Total"
+msgstr "Total"
+
+msgid "Trashcan"
+msgstr "Skraldespand"
+
+msgid "Trashcan create failed. Check mounts and permissions."
+msgstr "Fejl ved oprettelse af skraldespand. Kontroller mounts og rettigheder."
+
+msgid "Trashcan enable"
+msgstr "Aktiver skraldespand"
+
+msgid "Trashcan path"
+msgstr "Skraldespand sti"
+
+msgid "Try to load extra title and more from .meta files"
+msgstr "Forsøg at hente ekstra titel og andet fra .meta filer"
+
+msgid "Try to load titles from .eit files"
+msgstr "Fosøg at hente titler fra .eit filer"
+
+msgid "Try to load titles from .meta files"
+msgstr "Forsøg at hente titler fra .meta filer"
+
+msgid "UNKNOWN"
+msgstr "UKENDT"
+
+msgid "Up"
+msgstr "Op"
+
+msgid "Use cache for files and directories"
+msgstr "Brug mellemlager til filer og mapper"
+
+msgid "Use original EMC-skin (needs reopen)"
+msgstr "Brug original EMC-Tema (kræver genåbning)"
+
+msgid "VLC"
+msgstr "VLC"
+
+msgid "VLC Server not reachable"
+msgstr "VLC-Server er ikke tilgængelig"
+
+msgid "VLC-Dir"
+msgstr "VLC-Mappe"
+
+msgid "VLC-Server"
+msgstr "VLC-Server"
+
+msgid "Video-button"
+msgstr "Video-knap"
+
+msgid "Vote:"
+msgstr "Stem:"
+
+msgid "WD DD.MM. HH:MM"
+msgstr "UD DD.MM. TT:MM"
+
+msgid "WD DD.MM.YYYY"
+msgstr "UD DD.MM.ÅÅÅÅ"
+
+msgid "WD DD.MM.YYYY HH:MM"
+msgstr "UD DD.MM.ÅÅÅÅ TT:MM"
+
+msgid "WD MM/DD HH:MM"
+msgstr "UD MM/DD TT:MM"
+
+msgid "WD YYYY/MM/DD"
+msgstr "UD ÅÅÅÅ/MM/DD"
+
+msgid "WD YYYY/MM/DD HH:MM"
+msgstr "UD ÅÅÅÅ/MM/DD TT:MM"
+
+msgid "Wake device when entering dir from emc-noscan.cfg"
+msgstr "Væk enhed når mappe tilgås fra emc-noscan.cfg"
+
+msgid "Week"
+msgstr "Uge"
+
+msgid "Weeks"
+msgstr "Uger"
+
+msgid "White"
+msgstr "Hvid"
+
+msgid "YYYY/MM/DD"
+msgstr "ÅÅÅ/MM/DD"
+
+msgid "YYYY/MM/DD HH:MM"
+msgstr "ÅÅÅÅ/MM/DD TT:MM"
+
+msgid "Yellow button function"
+msgstr "Gul knapfunktion"
+
+msgid "Yes"
+msgstr "Ja"
+
+msgid "Yes, everything"
+msgstr "Ja, alt"
+
+msgid "Yes, only extra title"
+msgstr "Ja, kun ekstra titel"
+
+msgid "Yes, with Message"
+msgstr "Ja, med besked"
+
+msgid "Yes, without Message"
+msgstr "Ja, uden besked"
+
+msgid ""
+"Your Box is about to go into DeepStandby, continue?\n"
+" Select no to delay one hour"
+msgstr ""
+"Din boks vil snart gå i Dvale, fortsæt?\n"
+" Vælg Nej for at udsætte en time."
+
+msgid ""
+"Your Box is about to go into E2 Restart, continue?\n"
+" Select no to delay one hour"
+msgstr ""
+"Din boks vil snart udføre en E2 Genstart, fortsæt?\n"
+" Vælg Nej for at udsætte en time."
+
+msgid ""
+"Your Box is about to go into Reboot, continue?\n"
+" Select no to delay one hour"
+msgstr ""
+"Din boks vil snart udføre en Genstart, fortsæt?\n"
+" Vælg Nej for at udsætte en time."
+
+msgid ""
+"Your Box is about to go into Standby, continue?\n"
+" Select no to delay one hour"
+msgstr ""
+"Din boks vil snart gå i Standby, fortsæt?\n"
+" Vælg Nej for at udsætte en time."
+
+msgid "Zap to channel after record EOF"
+msgstr "Zap til kanal efter optagelse EOF"
+
+msgid "after reload list"
+msgstr "efter liste genindlæsning"
+
+msgid "after standby"
+msgstr "efter standby"
+
+msgid "all"
+msgstr "Alt"
+
+msgid "always"
+msgstr "Altid"
+
+msgid "always hide"
+msgstr "Skjul altid"
+
+msgid "auto-start is currently not active."
+msgstr "auto-start er for øjeblikket ikke aktiv."
+
+msgid "auto-start window begin"
+msgstr "auto-start vindue start"
+
+msgid "auto-start window end"
+msgstr "auto-start vindue stop"
+
+msgid "center"
+msgstr "Centrer"
+
+msgid "configuration"
+msgstr "konfiguration"
+
+msgid "covers in"
+msgstr "omslag i"
+
+msgid "csfd.cz"
+msgstr "csfd.cz"
+
+msgid "daily auto-start"
+msgstr "Daglig auto-start"
+
+msgid "down"
+msgstr "Ned"
+
+msgid "every single one"
+msgstr "hver enkelt"
+
+msgid "forward to the next chapter"
+msgstr "frem til næste kapitel"
+
+msgid "found"
+msgstr "Fundet"
+
+msgid "from"
+msgstr "Fra"
+
+msgid "hide live TV"
+msgstr "Skjul Live TV"
+
+msgid "hide live TV and timeshift"
+msgstr "Skjul Live TV og Timeshift"
+
+msgid "hide playback"
+msgstr "Skjul Afspilning"
+
+msgid "imdb.com"
+msgstr "imdb.com"
+
+msgid "jump back to the previous title"
+msgstr "hop tilbage til forrige titel"
+
+msgid "jump forward to the next title"
+msgstr "hop frem til næste titel"
+
+msgid "jump to next marked position"
+msgstr "spring til næste markerede position"
+
+msgid "jump to previous marked position"
+msgstr "spring til forrige markerede position"
+
+msgid "left"
+msgstr "Venstre"
+
+msgid "left from Name"
+msgstr "Venstre for navn"
+
+msgid "movie manipulation list"
+msgstr "Film manipulationsliste"
+
+msgid "movies in"
+msgstr "Film i"
+
+msgid "never hide"
+msgstr "Skjul aldrig"
+
+msgid "no"
+msgstr "Nej"
+
+msgid "no limit"
+msgstr "Ingen grænse"
+
+msgid "off"
+msgstr "Fra"
+
+msgid "only initially"
+msgstr "Kun første gang"
+
+msgid "overall"
+msgstr "Overalt"
+
+msgid "rewind to the previous chapter"
+msgstr "kør tilbage til forrige kapitel"
+
+msgid "right"
+msgstr "Højre"
+
+msgid "right from Name"
+msgstr "Højre for navn"
+
+msgid "sec"
+msgstr "sek"
+
+msgid "sec found. Avg. Speed:"
+msgstr ""
+
+msgid "sec."
+msgstr "sek."
+
+msgid "show DVD main menu"
+msgstr "vis DVD hoved menu"
+
+msgid "single pixel TV, muted"
+msgstr "Enkelt pixel TV, lydløs"
+
+msgid "standard cover"
+msgstr "standardomslag"
+
+msgid "stop service"
+msgstr "Stop kanal"
+
+msgid "switch to the next angle"
+msgstr "skift til næste vinkel"
+
+msgid "switch to the next audio track"
+msgstr "skift til næste lydspor"
+
+msgid "switch to the next subtitle language"
+msgstr "skift til næste undertekstsprog"
+
+msgid "themoviedb.org"
+msgstr "themoviedb.org"
+
+msgid "themoviedb.org + thetvdb.com"
+msgstr "themoviedb.org + thetvdb.com"
+
+msgid "themoviedb.org + thetvdb.com + imdb.com"
+msgstr "themoviedb.org + thetvdb.com + imdb.com"
+
+msgid ""
+"themoviedb.org for movies + thetvdb.com for series (e.g. 'S01E01' in title)"
+msgstr ""
+"themoviedb.org til film + thetvdb.com til serier (f.eks. 'S01E01' i titel)"
+
+msgid "thetvdb cover number (standard cover):"
+msgstr "thetvdb omslagsnummer (standard omslag):"
+
+msgid "thetvdb cover range per title:"
+msgstr "thetvdb omslagsområde per titel:"
+
+msgid "thetvdb.com"
+msgstr "thetvdb.com"
+
+msgid "three contiguous"
+msgstr "tilstødende tre"
+
+msgid "toggle a cut mark at the current position"
+msgstr "Tænd/sluk en klippemarkering ved nuværende position"
+
+msgid "trashcan"
+msgstr "Skraldespand"
+
+msgid "two contiguous"
+msgstr "tilstødende to"
+
+msgid "type 1 - OSD + black (#00000000)"
+msgstr "type 1 - OSD + sort (#00000000)"
+
+msgid "type 2 - transparent + white (#FFFFFFFF)"
+msgstr "type 2 - gennemsigtig + hvid (#FFFFFFFF)"
+
+msgid "type 3 - OSD + black (#00FFFFFF)"
+msgstr "type 3 - OSD + sort (#00FFFFFF)"
+
+msgid "type 4 - transparent + black (#FF000000)"
+msgstr "type 4 - gennemsigtig + sort (#FF000000)"
+
+msgid "unknown"
+msgstr "ukendt"
+
+msgid "up/down"
+msgstr "Op/Ned"
+
+msgid "view extensions..."
+msgstr "Se udvidelser..."
+
+msgid "yes"
+msgstr "Ja"
