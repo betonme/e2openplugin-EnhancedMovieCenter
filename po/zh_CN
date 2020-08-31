@@ -1,0 +1,2511 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-08-11 23:09+0200\n"
+"PO-Revision-Date: 2020-08-27 16:47+0800\n"
+"Last-Translator: 孤独之剑 <haotzyy1970@163.com>\n"
+"Language-Team: \n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Poedit-Basepath: ..\n"
+"X-Generator: Poedit 2.1\n"
+"X-Poedit-SearchPath-0: src\n"
+
+msgid " "
+msgstr " "
+
+msgid " (P)"
+msgstr " (P)"
+
+msgid " - "
+msgstr " - "
+
+msgid ""
+" Deleting remotely recorded and it will display an rec-error dialog on the "
+"other DB."
+msgstr " 删除远程记录，它将显示另一个数据库的记录错误对话框."
+
+msgid " all selected video files?"
+msgstr "所有选定的视频文件吗?"
+
+msgid ""
+" all selected video files? The currently playing movie is also one of the "
+"selections and its playback will be stopped."
+msgstr " 所有选定的视频文件？当前播放的电影也是其中的选择和它的播放将被停止."
+
+msgid " currently played?"
+msgstr " 目前播放?"
+
+msgid " files\n"
+msgstr " 文件夹\n"
+
+msgid ""
+" movies found!\n"
+"Information of the best match\n"
+"\n"
+"\""
+msgstr ""
+" 电影发现!\n"
+"最佳匹配信息\n"
+"\n"
+"\""
+
+msgid " permanently"
+msgstr "永久"
+
+msgid "%d second"
+msgid_plural "%d seconds"
+msgstr[0] "%d 秒"
+
+msgid "%s removed."
+msgstr "%s删除."
+
+msgid "( # )"
+msgstr "( # )"
+
+msgid "( # / GB )"
+msgstr "( # / GB )"
+
+msgid "( GB )"
+msgstr "( GB )"
+
+msgid "(Un-)Lock Directory"
+msgstr "(Un-)锁定目录"
+
+msgid "(show optional DVD audio menu)"
+msgstr "(显示可选DVD音频菜单)"
+
+msgid "*** Multiselection active ***"
+msgstr "*** 多选应用 ***"
+
+msgid "<DUMMY CONFIGSECTION>"
+msgstr "<虚拟配置>"
+
+msgid ""
+"ATTENTION\n"
+"\n"
+"This option will move all finished movies in Movie Home automatically to "
+"Your trashcan at the given time.\n"
+"At next trashcan cleanup all movies will be deleted.\n"
+"\n"
+"Confirm this with the blue key followed by the green key."
+msgstr ""
+"注意\n"
+"\n"
+"此选项将所有已完成的电影在电影家自动到你的垃圾桶在给定的时间.\n"
+"在下一个垃圾箱的清理所有的电影都将被删除.\n"
+"\n"
+"确认键，然后用蓝色和绿色的按钮."
+
+msgid "AUTOSTART"
+msgstr "自动启动"
+
+msgid "About"
+msgstr "关于"
+
+msgid "Add directory to E2 Bookmarks"
+msgstr "添加目录到E2书签"
+
+msgid "Add directory to EMC Bookmarks"
+msgstr "添加目录到EMC书签"
+
+msgid "Add to Playlist"
+msgstr "添加到播放列表"
+
+msgid "Add to current Playlist"
+msgstr "添加到当前播放列表"
+
+msgid "After file OPs only re-scan affected dirs"
+msgstr "文件操作只影响后重新扫描目录"
+
+msgid "Age of finished movies in movie folder (days)"
+msgstr "在电影文件夹（天）完成电影"
+
+msgid "Album:"
+msgstr "专辑:"
+
+msgid "Alpha sort"
+msgstr "按字母顺序分类"
+
+msgid "Alpha sort ascending (AZ)"
+msgstr "升序排序（AZ）"
+
+msgid "Alpha sort ascending with meta (AZM)"
+msgstr "字母分类的元数据（AZM）"
+
+msgid "Alpha sort ascending with meta, Date descending (AZMD-)"
+msgstr "字母升序，降序(AZMD-)"
+
+msgid "Alpha sort ascending, Date descending (AZD-)"
+msgstr "分类按字母顺序升序，降序日期(AZD-)"
+
+msgid "Alpha sort date newest"
+msgstr "字母排序的日期最新"
+
+msgid "Alpha sort descending (ZA)"
+msgstr "分类按字母顺序降序（ZA）"
+
+msgid "Alpha sort descending with meta (ZAM)"
+msgstr "按字母顺序排列(ZAM)"
+
+msgid "Alpha sort descending with meta, Date ascending (ZAMD+)"
+msgstr "按字母顺序排列(ZAMD+)"
+
+msgid "Alpha sort descending, Date ascending (ZAD+)"
+msgstr "分类按字母顺序升序降序 (ZAD+)"
+
+msgid "Alpha sort meta"
+msgstr "字母分类的元数据"
+
+msgid "Alpha sort meta date newest"
+msgstr "日期最新排序"
+
+msgid "Always save current Playlist"
+msgstr "始终保存当前播放列表"
+
+msgid "Always save last played progress as marker"
+msgstr "始终保存上次播放的进度作为标记"
+
+msgid "An error occured! Internet connection broken?"
+msgstr "发生错误！互联网连接断了？"
+
+msgid "Artist:"
+msgstr "艺术家:"
+
+msgid "Automatic timers list cleaning"
+msgstr "自动定时器列表清洗"
+
+msgid "Available plugins menu"
+msgstr "可用的插件菜单"
+
+msgid "Blue"
+msgstr "蓝色"
+
+msgid "Black"
+msgstr "黑色"
+
+msgid "Blue button function"
+msgstr "蓝色按钮的功能"
+
+msgid "Bookmark"
+msgstr "书签"
+
+msgid "Both"
+msgstr "两个"
+
+msgid "Bouquet buttons behaviour"
+msgstr "书签键行为"
+
+msgid "Button disabled"
+msgstr "按钮禁用"
+
+msgid "CSFD"
+msgstr "CSFD"
+
+msgid "CSFD Info"
+msgstr "CSFD信息"
+
+msgid "Can not save "
+msgstr "无法保存 "
+
+msgid "Can not save Cover in "
+msgstr "无法保存覆盖 "
+
+msgid "Can not save current Playlist!"
+msgstr "无法保存当前播放列表!"
+
+msgid ""
+"Can not write Movie Information File\n"
+"\n"
+"%s"
+msgstr ""
+"不能写电影信息文件\n"
+"\n"
+"%s"
+
+msgid ""
+"Can not write Movie Information and Cover File\n"
+"\n"
+"%s\n"
+"%s"
+msgstr ""
+"不能写电影信息和封面文件\n"
+"\n"
+"%s\n"
+"%s"
+
+msgid "Cancel"
+msgstr "取消"
+
+msgid "Cannot delete the parent directory."
+msgstr "无法删除父目录."
+
+msgid "Change File/Moviename and/or Description"
+msgstr "更改文件/电影名称和/或说明"
+
+msgid "Change Folder"
+msgstr "更改文件夹"
+
+msgid "Change Foldername"
+msgstr "改变相似"
+
+msgid "Change the filename to save current Playlist:"
+msgstr "更改文件名以保存当前播放列表:"
+
+msgid "Chap."
+msgstr "章."
+
+msgid "Chapter"
+msgstr "章"
+
+msgid "Chinese"
+msgstr "中文"
+
+msgid "Check for dead links"
+msgstr "检查死链接"
+
+msgid "Choose Directory:"
+msgstr "选择目录:"
+
+msgid "Choose bookmark"
+msgstr "选择书签"
+
+msgid "Choose directory"
+msgstr "选择目录"
+
+msgid "Choose operation"
+msgstr "选择运行"
+
+msgid "Choose plugin"
+msgstr "选择插件"
+
+msgid "Choose script"
+msgstr "选择脚本"
+
+msgid "Close EMC"
+msgstr "关闭EMC"
+
+msgid "Collection"
+msgstr "收藏"
+
+msgid "Configured directories at the top of movielist"
+msgstr "在电影列表顶部配置的目录"
+
+msgid "Content:"
+msgstr "内容:"
+
+msgid "Copy File"
+msgstr "复制文件"
+
+msgid "Copy Files"
+msgstr "复制文件"
+
+msgid "Copy file(s):"
+msgstr "复制文件(s):"
+
+msgid "Copy selected movie(s)"
+msgstr "复制选定的电影(s)"
+
+msgid ""
+"Cover %s exists!\n"
+"\n"
+"Do you want to replace the existing cover?"
+msgstr ""
+"封面 %s 存在!\n"
+"\n"
+"您想要替换现有的封面吗?"
+
+msgid "Cover Search"
+msgstr "封面搜索"
+
+msgid "Cover background"
+msgstr "封面背景"
+
+msgid "Cover delay in ms"
+msgstr "封面的延迟毫秒"
+
+msgid "Cover disabled in EMC-Setup"
+msgstr "电磁兼容设置禁用"
+
+msgid "Cover is Saved."
+msgstr "保存封面."
+
+msgid "Cover search"
+msgstr "封面搜索"
+
+msgid ""
+"Cover search with all Files in Subdirectories?\n"
+"\n"
+"This may take a while on huge Disks, or Directories!"
+msgstr ""
+"覆盖在子目录中的文件检索?\n"
+"\n"
+"这可能需要很长的时间在巨大的驱动器或文件夹!"
+
+msgid "Coversize"
+msgstr "封面尺寸"
+
+msgid "Create Link"
+msgstr "创建链接"
+
+msgid "Create Link: Choose directory"
+msgstr "创建链接：选择目录"
+
+msgid "Create directory"
+msgstr "创建目录"
+
+msgid "Create link"
+msgstr "创建链接"
+
+msgid "Creating Search List.."
+msgstr "创建搜索列表..."
+
+msgid "Current Playlist saved successfully!"
+msgstr "当前播放列表保存成功!"
+
+msgid "Cursor predictive move after selection"
+msgstr "选择后光标预测移动"
+
+msgid "Custom"
+msgstr "自定义"
+
+msgid "DD.MM HH:MM"
+msgstr "DD.MM HH:MM"
+
+msgid "DD.MM. HH:MM"
+msgstr "DD.MM. HH:MM"
+
+msgid "DD.MM.YYYY"
+msgstr "DD.MM.YYYY"
+
+msgid "DD.MM.YYYY HH:MM"
+msgstr "DD.MM.YYYY HH:MM"
+
+msgid "DEBUG"
+msgstr "调试"
+
+msgid "DELAYS"
+msgstr "延迟"
+
+msgid "DISPLAY-SETTINGS"
+msgstr "显示设置"
+
+msgid "DUMMY CONFIGSECTION"
+msgstr "虚拟配置"
+
+msgid "DVD / BLU-RAY / FOLDERS"
+msgstr "DVD/蓝光/文件夹"
+
+msgid "Daily cleanup time"
+msgstr "日常清理时间"
+
+msgid "Date format"
+msgstr "日期格式"
+
+msgid "Date sort"
+msgstr "日期排序"
+
+msgid "Date sort ascending (D+)"
+msgstr "日期排序升序（D +）"
+
+msgid "Date sort descending (D-)"
+msgstr "日期排序降序（D -）"
+
+msgid "Day"
+msgstr "天"
+
+msgid "Days"
+msgstr "天"
+
+msgid "Dark green"
+msgstr "深绿色"
+
+msgid "Dark red"
+msgstr "深红色"
+
+msgid "Dark orange"
+msgstr "深橙色"
+
+msgid "Dark grey"
+msgstr "深灰色"
+
+msgid "Debug output file name"
+msgstr "调试输出文件名"
+
+msgid "DeepStandby"
+msgstr "深待机"
+
+msgid "Default"
+msgstr "默认"
+
+msgid ""
+"Default Playlist is not empty!\n"
+"\n"
+"Save default Playlist?"
+msgstr ""
+"默认播放列表不是空的!\n"
+"\n"
+"保存默认播放列表?"
+
+msgid "Default Playlist name"
+msgstr "默认播放列表名称"
+
+msgid "Default Playlist path"
+msgstr "默认的播放路径"
+
+msgid "Default color for highlighted movie"
+msgstr "高亮电影的默认颜色"
+
+msgid "Default color for partially watched movie"
+msgstr "部分观看电影的默认颜色"
+
+msgid "Default color for recording movie"
+msgstr "录制电影的默认颜色"
+
+msgid "Default color for unwatched movie"
+msgstr "未受监控电影的默认颜色"
+
+msgid "Default color for watched movie"
+msgstr "观看电影的默认颜色"
+
+msgid "Default sort mode"
+msgstr "默认排序方式"
+
+msgid "Delay of 10 sec. due the search flooding.."
+msgstr "延迟10秒.由于搜索泛滥..."
+
+msgid "Delete"
+msgstr "删除"
+
+msgid "Delete All"
+msgstr "删除全部"
+
+msgid "Delete Entry"
+msgstr "删除条目"
+
+msgid "Delete current Playlist"
+msgstr "删除当前播放列表"
+
+msgid "Delete cut file(s)"
+msgstr "删除剪切文件(s)"
+
+msgid "Delete error:\n"
+msgstr "删除错误:\n"
+
+msgid ""
+"Delete failed because the trashcan directory does not exist. Attempt to "
+"create it now?"
+msgstr "删除失败,垃圾桶目录不存在.现在尝试创建它吗？"
+
+msgid "Delete failed!"
+msgstr "删除失败!"
+
+msgid "Delete file or empty dir"
+msgstr "删除文件或空目录"
+
+msgid "Delete permanently"
+msgstr "永久删除"
+
+msgid "Delete validation"
+msgstr "确认删除"
+
+msgid "Description"
+msgstr "描述"
+
+msgid "Description field update delay"
+msgstr "描述字段更新延迟"
+
+msgid "Description:"
+msgstr "描述:"
+
+msgid "Directory"
+msgstr "目录"
+
+msgid "Directory "
+msgstr "目录 "
+
+msgid "Directory %s already exists!"
+msgstr "目录 %s 已经存在!"
+
+msgid "Directory back"
+msgstr "返回目录"
+
+msgid "Directory forward"
+msgstr "文件向前"
+
+msgid "Directory is not empty! Do you really want to delete it?"
+msgstr "目录不是空的！你真的想删除它吗？"
+
+msgid "Directory is not empty."
+msgstr "目录不是空的."
+
+msgid "Directory up"
+msgstr "路径"
+
+msgid "Directory-Cover search"
+msgstr "搜索目录封面"
+
+msgid "Disable EMC"
+msgstr "禁用EMC"
+
+msgid "Display directory reading text"
+msgstr "显示目录读取文本"
+
+msgid ""
+"Do you really want to delete the cut file?\n"
+"If you have selected a directory, all cut files within the folder and its "
+"subfolders will be deleted!"
+msgstr ""
+"你真的想删除剪切文件吗?\n"
+"如果你选择了一个目录，把文件内的所有文件夹及其子文件夹将被删除！"
+
+msgid "Do you really want to lock the directory %s and all its subfolders?"
+msgstr "你真的想要锁定目录及其所有子文件夹吗？"
+
+msgid ""
+"Do you really want to remove your bookmark\n"
+"%s?"
+msgstr ""
+"您真的要删除您的书签\n"
+"%s?"
+
+msgid ""
+"Do you really want to remove your directory\n"
+"%s?"
+msgstr ""
+"您真的要删除目录\n"
+"%s?"
+
+msgid ""
+"Do you really want to remove your link\n"
+"%s?"
+msgstr ""
+"你真的想删除你的链接\n"
+"%s?"
+
+msgid "Do you want to resume this playback?"
+msgstr "要恢复此播放吗？"
+
+msgid "Does not contain any scripts."
+msgstr "不包含任何脚本."
+
+msgid "Don't auto scan size of dirs from emc-noscan.cfg"
+msgstr "不要自动扫描尺寸从emc-noscan.cfg目录"
+
+msgid "Download Movie Info"
+msgstr "下载电影信息"
+
+msgid "Download Movie Information"
+msgstr "电影下载信息"
+
+msgid "Download Mutagen-package for audio metadata"
+msgstr "Download Mutagen包的音频元数据"
+
+msgid "Download cutlist from Cutlist.at"
+msgstr "从Cutlist.at cutlist下载"
+
+msgid "Download: %s"
+msgstr "下载: %s"
+
+msgid "E2 Bookmark"
+msgstr "E2书签"
+
+msgid "E2 Bookmarks"
+msgstr "E2书签"
+
+msgid "E2 Restart"
+msgstr "E2重启"
+
+msgid ""
+"EMC\n"
+"Zap to Live TV of record"
+msgstr ""
+"EMC\n"
+"切换为录制电视节目"
+
+msgid "EMC Bookmarks"
+msgstr "EMC书签"
+
+msgid "EMC Cover Selecter"
+msgstr "EMC盖选择器"
+
+msgid "EMC Cover search"
+msgstr "EMC覆盖搜索"
+
+msgid "EMC Cover search setup"
+msgstr "EMC覆盖搜索设置"
+
+msgid "EMC Filebrowser"
+msgstr "EMC文件"
+
+msgid "EMC Playlist"
+msgstr "EMC播放列表"
+
+msgid "EMC Playlist - current playlist"
+msgstr "EMC播放列表-当前播放列表"
+
+msgid "EMC Playlist Menu"
+msgstr "EMC播放列表菜单"
+
+msgid "EMC Playlist Setup"
+msgstr "EMC播放列表设置"
+
+msgid "EMC Setup"
+msgstr "EMC设置"
+
+msgid "EMC Trashcan Cleanup failed!"
+msgstr "EMC垃圾清理失败!"
+
+msgid "EMC always reload after open"
+msgstr "EMC总是刷新后重新加载"
+
+msgid "EMC output directory"
+msgstr "EMC输出目录"
+
+msgid "EMC path access limit"
+msgstr "路径访问限制"
+
+msgid "EMC re-open list after Movie end"
+msgstr "EMC重新打开列表后，电影结束"
+
+msgid "EMC re-open list after STOP-press"
+msgstr "EMC重新打开列表后停机"
+
+msgid "EMC-TMDB Info"
+msgstr "emc-tmdb信息"
+
+msgid ""
+"EMC: Skipping Trashcan Cleanup\n"
+"Movie Home Path is equal to or a subfolder of the Trashcan"
+msgstr ""
+"EMC：跳过垃圾桶清理\n"
+"电影家路径等于或者Trashcan子文件夹"
+
+msgid "Empty trashcan"
+msgstr "清空垃圾桶"
+
+msgid "Enable EMC debug output"
+msgstr "启用EMC调试输出"
+
+msgid "Enable daily trashcan cleanup"
+msgstr "日常垃圾清理"
+
+msgid "Enable playback AC3-track first"
+msgstr "激活第一承载的AC3"
+
+msgid "Enable playback auto-language selection"
+msgstr "启用播放自动语言选择"
+
+msgid "Enable playback auto-subtitling"
+msgstr "启用自动字幕播放"
+
+msgid "Enable remote recordings"
+msgstr "启用远程录像"
+
+msgid "English"
+msgstr "英语"
+
+msgid "Enigma daily auto-restart"
+msgstr "Enigma每日自动重启"
+
+msgid "Enter Name for Playlist"
+msgstr "输入播放列表名称"
+
+msgid "Enter name for new directory:"
+msgstr "输入新目录的名称:"
+
+msgid "Exist"
+msgstr "存在"
+
+msgid "Exist: %s"
+msgstr "存在: %s"
+
+msgid "Extra support for language"
+msgstr "额外支持语言"
+
+msgid "File added to current Playlist."
+msgstr "添加到当前播放列表中的文件."
+
+msgid "File exists in current Playlist."
+msgstr "文件存在于当前播放列表中."
+
+msgid "File not available."
+msgstr "文件不可用."
+
+msgid "File order reverse"
+msgstr "文件顺序反向"
+
+msgid "Filename:"
+msgstr "文件名:"
+
+msgid "Files added to current Playlist."
+msgstr "添加到当前播放列表中的文件."
+
+msgid ""
+"Files added to current Playlist:\n"
+"%s\n"
+"\n"
+"Files exists in current Playlist:\n"
+"%s"
+msgstr ""
+"添加到当前播放列表中的文件:\n"
+"%s\n"
+"\n"
+"当前播放列表中存在文件:\n"
+"%s"
+
+msgid ""
+"Files exists in current Playlist:\n"
+"%s"
+msgstr ""
+"当前播放列表中存在文件:\n"
+"%s"
+
+msgid "Finished watching percent"
+msgstr "完成率监测"
+
+msgid "Foldername:"
+msgstr "文件夹名称:"
+
+msgid "Force standby after auto-restart"
+msgstr "自动重启后强制待机"
+
+msgid "Format AVSwitch"
+msgstr "格式AVSwitch"
+
+msgid ""
+"Found rogue files:\n"
+"\n"
+msgstr ""
+"发现恶意文件:\n"
+"\n"
+
+msgid "GENERAL"
+msgstr "常规"
+
+msgid "Genre:"
+msgstr "类型:"
+
+msgid "German"
+msgstr "德语"
+
+msgid "Given path %s does not exist. Please change."
+msgstr "指定路径 %s 不存在.请更改."
+
+msgid "Go to trashcan"
+msgstr "转到垃圾桶"
+
+msgid "Green"
+msgstr "绿色"
+
+msgid "Green button function"
+msgstr "绿色按钮的功能"
+
+msgid "Grey"
+msgstr "灰色"
+
+msgid "HELP_About"
+msgstr "关于帮助"
+
+msgid "HELP_Advanced Skin options separator"
+msgstr "帮助_高级皮肤选项分离器"
+
+msgid "HELP_Advanced audio metadata options separator"
+msgstr "帮助_高级音频元数据选项分隔符"
+
+msgid "HELP_Advanced options separator"
+msgstr "帮助_高级选项分离器"
+
+msgid "HELP_After file OPs only re-scan affected dirs"
+msgstr "帮助_文件操作只影响后重新扫描目录"
+
+msgid "HELP_Age of finished movies in movie folder (days)"
+msgstr "帮助_在电影文件夹（天）完成电影的年龄"
+
+msgid "HELP_Always save last played progress as marker"
+msgstr "帮助_始终保存上次播放的进度作为标记"
+
+msgid "HELP_Automatic timers list cleaning"
+msgstr "帮助_自动定时器列表清洗"
+
+msgid "HELP_Blue button function"
+msgstr "帮助_蓝色按钮功能"
+
+msgid "HELP_Bouquet buttons behaviour"
+msgstr "帮助_花束按钮行为"
+
+msgid "HELP_Check for dead links"
+msgstr "帮助_检查死链接"
+
+msgid "HELP_Configure in etc\\enigma2\\emc-topdir.cfg"
+msgstr "帮助_在enigma2配置etcemc-topdir.cfg"
+
+msgid "HELP_Cover background"
+msgstr "帮助_封面背景"
+
+msgid "HELP_Cover delay in ms"
+msgstr "帮助_覆盖延迟"
+
+msgid "HELP_Cursor predictive move after selection"
+msgstr "帮助_光标移动选择的预测"
+
+msgid "HELP_Daily auto-start"
+msgstr "帮助_每日自动启动"
+
+msgid "HELP_Daily cleanup time"
+msgstr "帮助_每日清理时间"
+
+msgid "HELP_Date format"
+msgstr "帮助_日期格式"
+
+msgid "HELP_Debug output file name"
+msgstr "帮助_调试输出文件的名称"
+
+msgid "HELP_Default color highlighted"
+msgstr "帮助_突出显示默认颜色"
+
+msgid "HELP_Default color partially watched"
+msgstr "帮助_默认颜色部分观看"
+
+msgid "HELP_Default color recording"
+msgstr "帮助_默认颜色录制"
+
+msgid "HELP_Default color unwatched"
+msgstr "帮助_默认颜色未监视"
+
+msgid "HELP_Default color watched"
+msgstr "帮助_默认颜色观看"
+
+msgid "HELP_Delete validation"
+msgstr "帮助_删除验证"
+
+msgid "HELP_Description field update delay"
+msgstr "帮助_描述场的更新延迟"
+
+msgid "HELP_Disable EMC"
+msgstr "帮助_禁用EMC"
+
+msgid "HELP_Display directory reading text"
+msgstr "目录阅读显示帮助文本"
+
+msgid "HELP_Don't auto scan size of dirs from emc-noscan.cfg"
+msgstr "帮助_不要自动扫描尺寸从emc-noscan.cfg目录"
+
+msgid "HELP_Download Mutagen-package for audio metadata"
+msgstr "帮助_诱变剂包下载的音频元数据"
+
+msgid "HELP_Download cutlist from Cutlist.at"
+msgstr "从cutlist.at cutlist _下载帮助"
+
+msgid "HELP_Dynamic trashcan"
+msgstr "帮助_动态的垃圾箱"
+
+msgid "HELP_EMC always reload after open"
+msgstr "帮助_EMC总是刷新后重新加载"
+
+msgid "HELP_EMC output directory"
+msgstr "帮助_emc输出目录"
+
+msgid "HELP_EMC path access limit"
+msgstr "帮助_emc路径访问限制"
+
+msgid "HELP_EMC re-open list after Movie end"
+msgstr "帮助_ EMC电影结束后重新开放"
+
+msgid "HELP_EMC re-open list after STOP-press"
+msgstr "帮助_emc重新打开列表后停机"
+
+msgid "HELP_Enable EMC debug output"
+msgstr "帮助_启用EMC调试输出"
+
+msgid "HELP_Enable daily trashcan cleanup"
+msgstr "帮助_日常垃圾清理"
+
+msgid "HELP_Enable playback AC3-track first"
+msgstr "帮助_播放AC3轨道优先"
+
+msgid "HELP_Enable playback auto-language selection"
+msgstr "帮助_启用回放自动语言选择"
+
+msgid "HELP_Enable playback auto-subtitling"
+msgstr "帮助_启用自动字幕播放"
+
+msgid "HELP_Enable remote recordings"
+msgstr "帮助_启用远程录像"
+
+msgid "HELP_Enigma daily auto-restart"
+msgstr "帮助_enigma每日自动重启"
+
+msgid "HELP_Extra support for selected language"
+msgstr "帮助_对选定语言的额外支持"
+
+msgid "HELP_Fallback Cover"
+msgstr "帮助_回退覆盖"
+
+msgid "HELP_File order reverse"
+msgstr "帮助_文件顺序反向"
+
+msgid "HELP_Finished watching percent"
+msgstr "帮助_观看完成百分之"
+
+msgid "HELP_Force standby after auto-start"
+msgstr "帮助_自动启动后强制备用"
+
+msgid "HELP_Green button function"
+msgstr "帮助_绿色按钮功能"
+
+msgid "HELP_Hide movies being deleted"
+msgstr "帮助_隐藏被删除的电影"
+
+msgid "HELP_Hide movies being moved"
+msgstr "帮助_电影移动隐藏"
+
+msgid "HELP_Horizontal alignment for count / size"
+msgstr "帮助_水平对齐数/大小"
+
+msgid "HELP_Horizontal alignment for date"
+msgstr "帮助_水平对齐日期"
+
+msgid "HELP_How many days files may remain in trashcan"
+msgstr "帮助_多少天可以保持在垃圾桶"
+
+msgid "HELP_Icon shown for initially unknown count / size"
+msgstr "帮助_图标显示为未知的尺寸/计数"
+
+msgid "HELP_Jump to first mark when playing movie"
+msgstr "帮助_过渡到第一射手在播放影片"
+
+msgid "HELP_Key assignment Separator"
+msgstr "帮助_分离器按钮"
+
+msgid "HELP_Key period value (50-900)"
+msgstr "帮助_密钥周期值(50-900)"
+
+msgid "HELP_Key repeat value (250-900)"
+msgstr "帮助_密钥重复值 (250-900)"
+
+msgid "HELP_Language Separator"
+msgstr "帮助_语言分离器"
+
+msgid "HELP_Latest Recordings directory limit"
+msgstr "帮助_l最新录制目录限制"
+
+msgid "HELP_Latest Recordings directory use emc-noscan.cfg"
+msgstr "帮助_新的唱片目录使用emc-noscan.cf"
+
+msgid "HELP_Leave Movie with Exit"
+msgstr "帮助_离开电影和退出"
+
+msgid "HELP_Limit file operations in dirs from emc-noscan.cfg"
+msgstr "从emc-noscan.cfg在目录help_limit文件操作"
+
+msgid "HELP_List entries to skip"
+msgstr "帮助_列表条目跳过"
+
+msgid "HELP_Listbox is skin able"
+msgstr "帮助_l列表框可以是皮肤"
+
+msgid "HELP_Load all for non showing titles from .meta files"
+msgstr "帮助_加载所有非显示标题meta文件"
+
+msgid "HELP_Long Blue button function"
+msgstr "帮助_长按蓝色按钮功能"
+
+msgid "HELP_Long Red button function"
+msgstr "帮助_长按红色按钮功能"
+
+msgid "HELP_Long Yellow button function"
+msgstr "帮助_l长按黄色按钮功能"
+
+msgid "HELP_LongInfo Button"
+msgstr "帮助_长按信息按钮"
+
+msgid "HELP_Mark new recordings with a star"
+msgstr "帮助_mark新录音与明星"
+
+msgid "HELP_Minimum file cache limit"
+msgstr "帮助_缓存最小极限"
+
+msgid "HELP_Move finished movies in trashcan"
+msgstr "帮助_将完成的电影在垃圾桶"
+
+msgid "HELP_Movie home at start"
+msgstr "帮助_电影开始中央文件"
+
+msgid "HELP_Movie home home path"
+msgstr "帮助_电影家路径"
+
+msgid "HELP_Movie preview delay in ms"
+msgstr "帮助_延迟MS的预览"
+
+msgid "HELP_Movie preview offset in seconds"
+msgstr "帮助_偏移到电影预览"
+
+msgid "HELP_No resume below 10 seconds"
+msgstr "帮助_不低于10秒恢复服务"
+
+msgid "HELP_Own Path to movie picons"
+msgstr "帮助_电影picons自己的路径"
+
+msgid "HELP_Path to movie picons"
+msgstr "帮助_电影picons路径"
+
+msgid "HELP_Position movie picons"
+msgstr "帮助_电影picons位置"
+
+msgid "HELP_Preferred EPG language"
+msgstr "帮助_EPG语言优先"
+
+msgid "HELP_Primary playback audio language"
+msgstr "帮助_原发性播放音频语言"
+
+msgid "HELP_Primary playback subtitle language"
+msgstr "帮助_原播放字幕语言"
+
+msgid "HELP_Red button function"
+msgstr "帮助_红色按钮的功能"
+
+msgid "HELP_Replace special chars in title"
+msgstr "帮助_替换标题中的特殊字符"
+
+msgid "HELP_Resolve links and show real path"
+msgstr "帮助_解析链接并显示真实路径"
+
+msgid "HELP_Rewind finished movies before playing"
+msgstr "帮助_播放前完成电影"
+
+msgid "HELP_Scan for DVD structures"
+msgstr "帮助_扫描DVD结构"
+
+msgid "HELP_Scan for bluray structures"
+msgstr "帮助_扫描蓝光结构"
+
+msgid "HELP_Scan for bluray structures in .iso"
+msgstr "帮助_扫描蓝光ISO结构"
+
+msgid "HELP_Scan for movie structures"
+msgstr "帮助_扫描电影结构"
+
+msgid "HELP_Secondary playback audio language"
+msgstr "帮助_二次播放音频语言"
+
+msgid "HELP_Secondary playback subtitle language"
+msgstr "帮助_二次播放字幕语言"
+
+msgid "HELP_Short watching percent"
+msgstr "帮助_短率监测"
+
+msgid "HELP_Show Bookmarks in movielist"
+msgstr "帮助_在电影节目书签列表"
+
+msgid "HELP_Show Cover"
+msgstr "帮助_显示封面"
+
+msgid "HELP_Show Cut-Nr if exist"
+msgstr "帮助_显示削减NR如果存在"
+
+msgid "HELP_Show E2 Bookmarks in movielist"
+msgstr "帮助_在影片列表中显示E2书签"
+
+msgid "HELP_Show EMC in extensions menu"
+msgstr "帮助_在扩展菜单中显示EMC"
+
+msgid "HELP_Show EMC in main menu"
+msgstr "帮助_在主菜单中显示EMC"
+
+msgid "HELP_Show Latest Recordings directory"
+msgstr "帮助_显示最新录制目录"
+
+msgid "HELP_Show Movie Format"
+msgstr "帮助_显示的电影格式"
+
+msgid "HELP_Show Path if no extended description available"
+msgstr "帮助_显示路径，如果没有扩展描述可用"
+
+msgid "HELP_Show VLC directory"
+msgstr "帮助_显示VLC目录"
+
+msgid "HELP_Show audio metadata"
+msgstr "帮助_显示音频元数据"
+
+msgid "HELP_Show audio metadata (needs skin-changes)"
+msgstr "帮助_显示音频元数据（需要更改皮肤）"
+
+msgid "HELP_Show directories"
+msgstr "帮助_显示目录"
+
+msgid "HELP_Show directories information"
+msgstr "帮助_显示目录信息"
+
+msgid "HELP_Show directories within movielist"
+msgstr "帮助_在电影列表中显示目录"
+
+msgid "HELP_Show directory size in skin"
+msgstr "帮助_在皮肤中显示目录大小"
+
+msgid "HELP_Show experimental options"
+msgstr "帮助_实验选择的外观"
+
+msgid "HELP_Show link arrow"
+msgstr "帮助_显示链接的箭头"
+
+msgid "HELP_Show message if file added to playlist"
+msgstr "帮助_如果文件添加到播放列表中显示消息"
+
+msgid "HELP_Show movie icons"
+msgstr "帮助_电影图标显示"
+
+msgid "HELP_Show movie picons"
+msgstr "帮助_电影picons显示"
+
+msgid "HELP_Show movie preview"
+msgstr "帮助_显示电影预告"
+
+msgid "HELP_Show movie preview delay"
+msgstr "帮助_显示电影预览延迟"
+
+msgid "HELP_Show movie progress"
+msgstr "帮助_显示电影的进展"
+
+msgid "HELP_Show plugin config in extensions menu"
+msgstr "帮助_在扩展菜单中显示插件配置"
+
+msgid "HELP_Show real length of running records"
+msgstr "帮助_显示运行记录的实际长度"
+
+msgid "HELP_Show symlinks"
+msgstr "帮助_显示符号链接"
+
+msgid "HELP_Show trashcan directory"
+msgstr "帮助_显示垃圾桶目录"
+
+msgid "HELP_Sort mode at startup"
+msgstr "帮助_启动时排序模式"
+
+msgid "HELP_Start EMC with"
+msgstr "帮助_EMC与启动"
+
+msgid "HELP_Style for original EMC-skin (needs reopen)"
+msgstr "帮助_针对原始EMC皮肤的样式(需要重新打开)"
+
+msgid "HELP_Tertiary playback audio language"
+msgstr "帮助_第三语言播放音频"
+
+msgid "HELP_Tertiary playback subtitle language"
+msgstr "ΒΟΗΘΕΙΑ_播放第三字幕语言"
+
+msgid "HELP_Text shown for initially unknown count and size"
+msgstr "帮助_计数和显示的文本的大小未知"
+
+msgid "HELP_Text shown for initially unknown directory size"
+msgstr "帮助_文本显示为未知的目录的大小"
+
+msgid "HELP_Text shown for initially unknown file count"
+msgstr "帮助_文本显示为未知的文件计数"
+
+msgid "HELP_Trashcan enable"
+msgstr "帮助_垃圾箱启用"
+
+msgid "HELP_Trashcan path"
+msgstr "帮助_垃圾桶路径"
+
+msgid "HELP_Try to load extra title and more from .meta files"
+msgstr "帮助_尝试从.meta文件中加载标题和更多内容"
+
+msgid "HELP_Try to load titles from .eit files"
+msgstr "帮助_尝试加载标题从EIT文件"
+
+msgid "HELP_Try to load titles from .meta files"
+msgstr "帮助_尝试从meta文件加载标"
+
+msgid "HELP_Upgrade/Download Mutagen v1.28(experimental)"
+msgstr "帮助_升级/ 下载Mutagen V1.28┊（实验）"
+
+msgid "HELP_Use Toggle Cover Button"
+msgstr "帮助_使用封面按钮开关"
+
+msgid "HELP_Use cache for files and directories"
+msgstr "帮助_使用文件和目录缓存"
+
+msgid "HELP_Use original EMC-skin (needs reopen)"
+msgstr "帮助_使用原EMC皮肤（需要重新打开）"
+
+msgid "HELP_Wake device when entering dir from emc-noscan.cfg"
+msgstr "帮助_当进入目录从emc-noscan.cfg唤醒设备"
+
+msgid "HELP_Yellow button function"
+msgstr "帮助_黄色按钮的功能"
+
+msgid "HELP_Zap to channel after record EOF"
+msgstr "帮助_切换在EOF通道记录"
+
+msgid "HELP_auto-start window begin"
+msgstr "帮助_自动启动窗口开始"
+
+msgid "HELP_auto-start window end"
+msgstr "帮助_自动启动窗口结束"
+
+msgid "HELP_cfghide_enable"
+msgstr "帮助_激活隐藏"
+
+msgid "HELP_cfgscan_suppress"
+msgstr "帮助_抑制检测CFG"
+
+msgid "HELP_hide_MiniTV"
+msgstr "帮助_隐藏迷你电视"
+
+msgid "HELP_hide_MiniTV cover"
+msgstr "帮助_mintv封面隐藏"
+
+msgid "HELP_hide_MiniTV_method"
+msgstr "帮助_mintv隐藏方法"
+
+msgid "HELP_hide_miniTV"
+msgstr "帮助_minitv隐藏"
+
+msgid "HELP_hide_miniTV_method"
+msgstr "帮助_minitv隐藏方法"
+
+msgid "HELP_scan_linked"
+msgstr "帮助_扫描_联系"
+
+msgid "HELP_separator_Trashcan settings"
+msgstr "帮助_CAN设置垃圾分离器"
+
+msgid "HELP_separator_hide&performance"
+msgstr "帮助_分离和性能_隐藏"
+
+msgid "Hide Cover"
+msgstr "隐藏封面"
+
+msgid "Hide MiniTV"
+msgstr "隐藏迷你电视"
+
+msgid "Hide MiniTV if Cover is shown"
+msgstr "如果显示封面则隐藏MILTIV"
+
+msgid "Hide configured entries"
+msgstr "隐藏配置项"
+
+msgid "Hide mini TV"
+msgstr "隐藏迷你电视"
+
+msgid "Hide movies being deleted"
+msgstr "隐藏被删除的电影"
+
+msgid "Hide movies being moved"
+msgstr "隐藏电影被移动"
+
+msgid "HomeEnd"
+msgstr "主页结束"
+
+msgid "Horizontal alignment for count / size"
+msgstr "计数/尺寸的水平对齐"
+
+msgid "Horizontal alignment for date"
+msgstr "水平对齐日期"
+
+msgid "How many days files may remain in trashcan"
+msgstr "多少天的文件可能仍然在垃圾桶"
+
+msgid ""
+"How to copy files:\n"
+"Select some movies with the VIDEO-button, move the cursor on top of the "
+"destination directory and press yellow long."
+msgstr ""
+"如何复制文件:\n"
+"选择一些电影与视频按钮，移动光标顶部的目标目录和长按黄色键."
+
+msgid ""
+"How to move files:\n"
+"Select some movies with the VIDEO-button, move the cursor on top of the "
+"destination directory and press yellow."
+msgstr ""
+"如何移动文件:\n"
+"如何移动文件 选择一些电影与视频按钮，移动光标顶部的目标目录，并按下黄色键."
+
+msgid "IMDBSearch / EMC-TMDBInfo / TMDBInfo / TMBDInfo / CSFDInfo"
+msgstr "IMDB搜索/ EMC - tmdb信息/ csfd tmbdinfo tmdb"
+
+msgid "IMDb"
+msgstr "IMDb"
+
+msgid "IMDb Search"
+msgstr "IMDB搜索"
+
+msgid "Icon shown for initially unknown count / size"
+msgstr "图标显示最初未知的计数/大小"
+
+msgid "Information"
+msgstr "信息"
+
+msgid "Install Mutagen-package"
+msgstr "Mutagen的安装包"
+
+msgid "Jump to first mark when playing movie"
+msgstr "跳到第一个标记时播放电影"
+
+msgid "KEYMAPPING"
+msgstr "键盘映射"
+
+msgid "Key period value (50-900)"
+msgstr "密钥的周期值 (50-900)"
+
+msgid "Key repeat value (250-900)"
+msgstr "密钥重复值(250-900)"
+
+msgid "LANGUAGE"
+msgstr "语言"
+
+msgid "Language:"
+msgstr "语言:"
+
+msgid "Last played movie/playlist not available..."
+msgstr "上次播放的电影/播放列表不可用..."
+
+msgid "Latest"
+msgstr "最新"
+
+msgid "Latest Recordings"
+msgstr "最新录像"
+
+msgid "Latest Recordings directory limit"
+msgstr "最新的REC次序目录限制"
+
+msgid "Latest Recordings directory use emc-noscan.cfg"
+msgstr "使用最新的recordings emc-noscan.cfg目录"
+
+msgid "Leave Movie with Exit"
+msgstr "离开电影退出"
+
+msgid "Limit file operations in dirs from emc-noscan.cfg"
+msgstr "从emc-noscan.cfg限制在目录文件操作"
+
+msgid "Link"
+msgstr "链接"
+
+msgid "Light green"
+msgstr "浅绿色"
+
+msgid "Light red"
+msgstr "浅红色"
+
+msgid "Light orange"
+msgstr "浅橙色"
+
+msgid "Light grey"
+msgstr "浅灰色"
+
+msgid "List entries to skip"
+msgstr "跳过列表条目"
+
+msgid "Listbox is skin able"
+msgstr "列表框是皮肤"
+
+msgid "Load Genre:"
+msgstr "负载类型:"
+
+msgid "Load Production Countries:"
+msgstr "负荷生产国:"
+
+msgid "Load Release Date:"
+msgstr "负载发布日期:"
+
+msgid "Load Runtime:"
+msgstr "负荷运行:"
+
+msgid "Load Vote:"
+msgstr "负载投票:"
+
+msgid "Load all for non showing titles from .meta files"
+msgstr "加载所有非显示标题从元文件"
+
+msgid "Load default settings will overwrite all settings, really load them?"
+msgstr "加载默认设置将覆盖所有设置，真的加载它们吗？"
+
+msgid ""
+"Locate rogue files and remove them? (permanently if no trashcan available, "
+"may take a minute or so)"
+msgstr "找到流氓文件并删除它们？（永久如果没有垃圾桶，可能需要一分钟左右）"
+
+msgid "Location:"
+msgstr "位置:"
+
+msgid "Long Blue button function"
+msgstr "长按蓝色按钮功能"
+
+msgid "Long Red button function"
+msgstr "长按红色按钮功能"
+
+msgid "Long Yellow button function"
+msgstr "长按黄色按钮功能"
+
+msgid "LongInfo Button"
+msgstr "长按信息按钮"
+
+msgid "MM/DD HH:MM"
+msgstr "MM/DD HH:MM"
+
+msgid "Manage Cover"
+msgstr "管理封面"
+
+msgid "Mark all movies"
+msgstr "标记所有电影"
+
+msgid "Mark new recordings with a star"
+msgstr "品牌与明星的新记录"
+
+msgid "Method of hiding MiniTV"
+msgstr "隐藏迷你电视的方法"
+
+msgid "Method of hiding mini TV"
+msgstr "隐藏微型电视的方法"
+
+msgid "Minimum file cache limit (0=cache everything)"
+msgstr "最小文件缓存限制（0 =缓存所有）"
+
+msgid "Minutes"
+msgstr "分钟"
+
+msgid "Month"
+msgstr "月"
+
+msgid "Months"
+msgstr "月"
+
+msgid "Move"
+msgstr "移动"
+
+msgid "Move Cover to:"
+msgstr "移动覆盖:"
+
+msgid "Move Directory:"
+msgstr "移动目录:"
+
+msgid "Move File"
+msgstr "移动文件"
+
+msgid "Move Files"
+msgstr "移动文件"
+
+msgid "Move cursor down"
+msgstr "移动光标到"
+
+msgid "Move cursor page down"
+msgstr "向下移动光标"
+
+msgid "Move cursor page up"
+msgstr "移动光标页"
+
+msgid ""
+"Move cursor to the end / Move cursor x entries down / Switch Folders in "
+"Movie Home (down)"
+msgstr "移动光标到结束/移动光标X条目下来/开关文件夹在电影首页（下）"
+
+msgid ""
+"Move cursor to the top / Move cursor x entries up / Switch Folders in Movie "
+"Home (up)"
+msgstr "移动光标到顶部/移动光标X条目/开关文件夹在电影首页（上）"
+
+msgid "Move cursor up"
+msgstr "移动光标到 "
+
+msgid "Move file(s):"
+msgstr "移动文件（s）："
+
+msgid "Move finished movies in trashcan"
+msgstr "将完成的电影在垃圾桶"
+
+msgid "Move selected movie(s)"
+msgstr "移动选定的电影（s）"
+
+msgid "Movie Color"
+msgstr "电影颜色"
+
+msgid ""
+"Movie Cover downloaded successfully!\n"
+"\n"
+"Can not write Movie Information File\n"
+"\n"
+"%s"
+msgstr ""
+"成功下载电影封面!\n"
+"\n"
+"不能写电影信息文件\n"
+"\n"
+"%s"
+
+msgid "Movie Info"
+msgstr "电影信息"
+
+msgid "Movie Information Download (TMDb)"
+msgstr "电影下载资料（TMDB）"
+
+msgid "Movie Information Download Setup"
+msgstr "电影信息下载设置"
+
+msgid "Movie Information Preview"
+msgstr "影片信息预览"
+
+msgid "Movie Information Preview for:"
+msgstr "电影信息预览:"
+
+msgid "Movie Information TMDb"
+msgstr "电影信息TMDB"
+
+msgid "Movie Information and Cover downloaded successfully!"
+msgstr "成功下载电影信息和封面!"
+
+msgid "Movie Information downloaded successfully!"
+msgstr "成功下载电影信息!"
+
+msgid ""
+"Movie Information downloaded successfully!\n"
+"\n"
+"Can not write Movie Cover File\n"
+"\n"
+"%s"
+msgstr ""
+"成功下载电影信息!\n"
+"\n"
+"不能写电影封面文件\n"
+"\n"
+"%s"
+
+msgid "Movie Selection Menu"
+msgstr "电影选择菜单"
+
+msgid "Movie home"
+msgstr "家庭影院"
+
+msgid ""
+"Movie home / Play last / Move file / Download Movie Information "
+"(configurable)"
+msgstr "电影家/播放上/移动/下载文件的信息（可配置）"
+
+msgid "Movie home at start"
+msgstr "电影首页开始"
+
+msgid "Movie home home path"
+msgstr "家庭影院路径"
+
+msgid "Movie information"
+msgstr "影片信息"
+
+msgid "Movie preview delay in ms"
+msgstr "电影预览延迟毫秒"
+
+msgid "Movies"
+msgstr "影视"
+
+msgid "Movietitle:"
+msgstr "电影名称:"
+
+msgid "N/A"
+msgstr "不适用"
+
+msgid "Next auto-start in "
+msgstr "下一个自动启动 "
+
+msgid "No"
+msgstr "无"
+
+msgid "No Cover: %s"
+msgstr "没有覆盖: %s"
+
+msgid "No DVD-Player found!"
+msgstr "发现没有DVD播放器 !"
+
+msgid "No Movies found!"
+msgstr "没有发现电影!"
+
+msgid "No functionality set..."
+msgstr "无功能设定..."
+
+msgid "No limit"
+msgstr "没有限制"
+
+msgid "No override"
+msgstr "没有覆盖"
+
+msgid "No resume below 10 seconds"
+msgstr "没有恢复低于10秒"
+
+msgid "No rogue files found."
+msgstr "没有发现恶意文件."
+
+msgid "No script operation for VLC streams."
+msgstr "VLC流无脚本运行."
+
+msgid "Not stopping any repeating timers. Modify them with the timer editor."
+msgstr "不停止任何重复定时器.用定时器编辑器修改它们."
+
+msgid "Nothing found for %s"
+msgstr "什么也没发现 %s"
+
+msgid "Nothing was found !"
+msgstr "什么也没发现 !"
+
+msgid "OK"
+msgstr "ΟΚ"
+
+msgid "OTHER"
+msgstr "其他"
+
+msgid "Off"
+msgstr "关闭"
+
+msgid "Open"
+msgstr "开"
+
+msgid "Open E2 Bookmark path"
+msgstr "打开E2书签路径"
+
+msgid "Open E2 bookmarks"
+msgstr "打开E2书签"
+
+msgid "Open EMC Bookmark path"
+msgstr "打开EMC书签路径"
+
+msgid "Open Timer List"
+msgstr "打开定时器列表"
+
+msgid "Open menu"
+msgstr "打开菜单"
+
+msgid "Orange"
+msgstr "橙色"
+
+msgid "Own Path to movie picons"
+msgstr "电影picons的路径"
+
+msgid "Path to movie picons"
+msgstr "电影picons路径"
+
+msgid "Percent (%)"
+msgstr "百分比 (%)"
+
+msgid "Performance"
+msgstr "性能"
+
+msgid "Permanently delete all files in trashcan?"
+msgstr "永久删除所有文件在垃圾桶？"
+
+msgid "Play All"
+msgstr "播放所有"
+
+msgid "Play All starting"
+msgstr "播放所有的开始"
+
+msgid "Play current Playlist"
+msgstr "播放当前播放列表"
+
+msgid "Play last"
+msgstr "持续播放"
+
+msgid "Play last movie starting"
+msgstr "播放最后一部电影"
+
+msgid "Play random current Playlist"
+msgstr "播放随机播放列表"
+
+msgid "Play selected movie(s)"
+msgstr "播放选定的电影（s）"
+
+msgid "Playlist Options"
+msgstr "播放列表选项"
+
+msgid "Playlist Setup"
+msgstr "播放列表设置"
+
+msgid "Playlist open"
+msgstr "打开播放列表"
+
+msgid ""
+"Playlist with same name exists!\n"
+"\n"
+"Try to save the Playlist with another name?"
+msgstr ""
+"同名播放列表存在!\n"
+"\n"
+"试着用另一个名字保存播放列表吗？"
+
+msgid "Position movie picons"
+msgstr "电影picons位置"
+
+msgid "Preferred EPG language"
+msgstr "EPG语言优先"
+
+msgid "Press green button to start search"
+msgstr "按绿色按钮开始搜索"
+
+msgid "Primary playback audio language"
+msgstr "原发性播放音频语言"
+
+msgid "Primary playback subtitle language"
+msgstr "原发性播放字幕语言"
+
+msgid "Production Countries:"
+msgstr "生产国家:"
+
+msgid "Progress sort"
+msgstr "进行分类"
+
+msgid "Progress sort ascending (P+)"
+msgstr "升序排序（P +）"
+
+msgid "Progress sort descending (P-)"
+msgstr "降序排序（P -）"
+
+msgid "ProgressBar"
+msgstr "进度条"
+
+msgid "Quick-button"
+msgstr "快捷按钮"
+
+msgid "Radio-button"
+msgstr "单选按钮"
+
+msgid "Reading directory..."
+msgstr "阅读目录..."
+
+msgid "Really close without saving settings?"
+msgstr "真的关闭而不保存设置？"
+
+msgid "Reboot"
+msgstr "重新启动"
+
+msgid "Red"
+msgstr "红色"
+
+msgid "Red button function"
+msgstr "红色按钮的功能"
+
+msgid "Release Date:"
+msgstr "发布日期:"
+
+msgid "Reload current directory"
+msgstr "重新加载当前目录"
+
+msgid "Reload movie file list"
+msgstr "加载电影文件列表"
+
+msgid "Remove all cut file marker permanently?"
+msgstr "永久删除所有切割文件标记？"
+
+msgid "Remove all marker permanently?"
+msgstr "永久删除所有标记？"
+
+msgid "Remove cut list marker"
+msgstr "删除切割列表标记"
+
+msgid "Remove directory from E2 Bookmarks"
+msgstr "从E2书签删除目录"
+
+msgid "Remove directory from EMC Bookmarks"
+msgstr "从EMC书签删除目录"
+
+msgid "Remove permanent sort"
+msgstr "删除永久性排序"
+
+msgid "Remove permanent sort from parent"
+msgstr "从父移除永久排序"
+
+msgid "Remove rogue files"
+msgstr "删除流氓文件"
+
+msgid "Remove selected E2 Bookmark"
+msgstr "删除选定的E2书签"
+
+msgid "Remove selected EMC Bookmark"
+msgstr "删除选定的EMC书签"
+
+msgid "Remove service selection"
+msgstr "删除服务选择"
+
+msgid "Rename selected movie(s)"
+msgstr "重命名选定的电影（s）"
+
+msgid "Replace special chars in title"
+msgstr "替换标题中的特殊字符"
+
+msgid "Reset marker from selected movie(s)"
+msgstr "从选定的电影（S）重置标记"
+
+msgid "Resolve links and show real path"
+msgstr "解析链接并显示真实路径"
+
+msgid "Resume position at %s"
+msgstr "恢复位置 %s"
+
+msgid "Resuming playback"
+msgstr "继续播放"
+
+msgid "Rewind finished movies before playing"
+msgstr "播放前完成电影"
+
+msgid "Runtime:"
+msgstr "运行时间:"
+
+msgid "Runtime: unknown"
+msgstr "运行时间:未知"
+
+msgid "SKIN-SETTINGS"
+msgstr "皮肤设置"
+
+msgid "Save"
+msgstr "保存"
+
+msgid "Save Cover"
+msgstr "保存封面"
+
+msgid "Save current Playlist"
+msgstr "保存当前播放列表"
+
+msgid "Save description to movie.txt file:"
+msgstr "描述movie.txt文件保存:"
+
+msgid "Scan for DVD structures"
+msgstr "扫描DVD结构"
+
+msgid "Scan for bluray structures"
+msgstr "扫描蓝光结构"
+
+msgid "Scan for bluray structures in .iso"
+msgstr "扫描蓝光ISO结构"
+
+msgid "Scan for movie structures"
+msgstr "扫描电影结构"
+
+msgid "Scan linked folders"
+msgstr "扫描链接文件夹"
+
+msgid "Search"
+msgstr "搜索"
+
+msgid "Search Site:"
+msgstr "搜索网站:"
+
+msgid "Search results for:"
+msgstr "搜索结果:"
+
+msgid "Search site set to: %s"
+msgstr "搜索站点设置为: %s"
+
+msgid "Searching for %s"
+msgstr "搜索 %s"
+
+msgid "Searching.."
+msgstr "搜索.."
+
+msgid "Searching..."
+msgstr "搜索..."
+
+msgid "Secondary playback audio language"
+msgstr "播放第二音频语言"
+
+msgid "Secondary playback subtitle language"
+msgstr "播放第二字幕语言"
+
+msgid "Seek backward"
+msgstr "后退"
+
+msgid "Seek forward"
+msgstr "寻找"
+
+msgid "Select Location"
+msgstr "选择位置"
+
+msgid "Set permanent sort"
+msgstr "设置永久性排序"
+
+msgid "Setup"
+msgstr "设置"
+
+msgid "Setup open"
+msgstr "设置打开"
+
+msgid "Short watching percent"
+msgstr "短的随访率"
+
+msgid "Show Bookmarks in movielist"
+msgstr "在电影列表中显示书签"
+
+msgid "Show Cover"
+msgstr "显示封面"
+
+msgid "Show Cut-Nr if exist"
+msgstr "显示削减NR如果存在"
+
+msgid "Show E2 Bookmarks in movielist"
+msgstr "在影片列表中显示E2书签"
+
+msgid "Show EMC in extensions menu"
+msgstr "在扩展菜单中显示EMC"
+
+msgid "Show EMC in main menu"
+msgstr "在主菜单中显示EMC"
+
+msgid "Show Latest Recordings directory"
+msgstr "显示最新录制目录"
+
+msgid "Show Movie Format"
+msgstr "显示电影格式"
+
+msgid "Show Path if no extended description available"
+msgstr "显示路径，如果没有扩展描述可用"
+
+msgid "Show VLC directory"
+msgstr "显示VLC目录"
+
+msgid "Show audio metadata"
+msgstr "显示音频元数据"
+
+msgid "Show audio metadata (needs skin-changes)"
+msgstr "显示音频元数据（需要更改皮肤）"
+
+msgid "Show current Playlist"
+msgstr "显示当前播放列表"
+
+msgid "Show directories"
+msgstr "显示目录"
+
+msgid "Show directories information"
+msgstr "显示目录信息"
+
+msgid "Show directories within movielist"
+msgstr "在电影列表中显示目录"
+
+msgid "Show directory size in skin"
+msgstr "在皮肤中显示目录大小"
+
+msgid "Show event info"
+msgstr "显示事件信息"
+
+msgid "Show experimental options"
+msgstr "显示实验选项"
+
+msgid "Show fallback cover"
+msgstr "显示后备封面"
+
+msgid "Show info at the bottom"
+msgstr "在底部显示信息"
+
+msgid "Show info at the bottom (with MiniTV)"
+msgstr "在底部显示信息 (带迷你电视)"
+
+msgid "Show info on the left"
+msgstr "在左侧显示信息"
+
+msgid "Show info on the left (with MiniTV)"
+msgstr "在左侧显示信息（带迷你电视）"
+
+msgid "Show link arrow"
+msgstr "显示链接箭头"
+
+msgid "Show message if file added to playlist"
+msgstr "如果文件添加到播放列表中显示消息"
+
+msgid "Show movie icons"
+msgstr "显示电影图标"
+
+msgid "Show movie picons"
+msgstr "显示电影picons"
+
+msgid "Show movie progress"
+msgstr "展示电影的进展"
+
+msgid "Show new Skin Version"
+msgstr "显示新皮肤版本"
+
+msgid "Show plugin config in extensions menu"
+msgstr "在扩展菜单中显示插件配置"
+
+msgid "Show real length of running records"
+msgstr "显示运行记录的实际长度"
+
+msgid "Show symlinks"
+msgstr "显示符号链接"
+
+msgid "Show trashcan directory"
+msgstr "显示垃圾桶目录"
+
+msgid "Show trashcan information"
+msgstr "显示垃圾信息"
+
+msgid "Shuffle All"
+msgstr "把所有"
+
+msgid "Shuffle All starting"
+msgstr "将所有启动"
+
+msgid "Single Search:"
+msgstr "单个搜索:"
+
+msgid "Single search"
+msgstr "单个搜索"
+
+msgid "Skip"
+msgstr "跳过"
+
+msgid ""
+"Skipping movie, the file does not exist.\n"
+"\n"
+msgstr ""
+"跳过电影，文件不存在ι.\n"
+"\n"
+
+msgid "Some settings changes require GUI restart to take effect."
+msgstr "一些设置更改需要GUI重新启动以生效."
+
+msgid "Sort Mode"
+msgstr "排序模式"
+
+msgid "Sort Options"
+msgstr "排序选项"
+
+msgid "Sort Order"
+msgstr "排序顺序"
+
+msgid "Sort file A to Z at startup"
+msgstr "排序文件A到Z的启动"
+
+msgid "Standby"
+msgstr "待机状态"
+
+msgid "Start / end multiselection"
+msgstr "开始/结束多选"
+
+msgid "Start EMC with"
+msgstr "EMC与启动"
+
+msgid "Start movie preview before last position"
+msgstr "在最后位置前开始电影预览"
+
+msgid "Stop ongoing recording?\n"
+msgstr "停止正在进行的记录?\n"
+
+msgid "Stop playback"
+msgstr "停止播放"
+
+msgid "Style for original EMC-skin (needs reopen)"
+msgstr "原始EMC皮肤样式(需要重新打开)"
+
+msgid "Suppress scan in selected folders"
+msgstr "在选定文件夹中抑制扫描"
+
+msgid "Switch complete to new Version"
+msgstr "切换到新的完整版"
+
+msgid "TMBD Info"
+msgstr "TMBD信息"
+
+msgid "TMDB Info"
+msgstr "TMDB信息"
+
+msgid "TMDb"
+msgstr "TMDb"
+
+msgid "TRASHCAN"
+msgstr "垃圾桶"
+
+msgid "TV Shows"
+msgstr "电视节目"
+
+msgid "TV-button"
+msgstr "电视按钮"
+
+msgid "Tertiary playback audio language"
+msgstr "第三语言的音频播放"
+
+msgid "Tertiary playback subtitle language"
+msgstr "第三字幕语言播放"
+
+msgid "Text shown for initially unknown count and size"
+msgstr "最初未知的计数和大小显示的文本"
+
+msgid "Text shown for initially unknown directory size"
+msgstr "初始未知目录大小的文本"
+
+msgid "Text shown for initially unknown file count"
+msgstr "初始未知文件计数所显示的文本"
+
+msgid ""
+"The directory %s is already locked. Do you want to unlock it and all its "
+"subfolders?"
+msgstr "该目录 %s 已锁定.你想打开它和它的所有子文件夹吗？"
+
+msgid ""
+"The following files are used for other entrys in List !\n"
+"\n"
+"Also delete these files?\n"
+"\n"
+"%s"
+msgstr ""
+"以下文件是用于在列表中的其他任务 !\n"
+"\n"
+"还删除这些文件？\n"
+"\n"
+"%s"
+
+msgid "This element belongs to a locked folder and cannot be deleted!"
+msgstr "此元素属于锁定文件夹，无法删除!"
+
+msgid "This folder is locked or contains a locked subfolder, unlock it first!"
+msgstr "此文件夹包含子文件夹锁定或锁定，解锁第一!"
+
+msgid "Timeshift-button"
+msgstr "时移按钮"
+
+msgid "Title"
+msgstr "标题"
+
+msgid "Toggle Cover Button"
+msgstr "封面按钮切换"
+
+msgid "Toggle Cover Mini-TV"
+msgstr "切换封面迷你电视"
+
+msgid "Toggle service selection"
+msgstr "切换服务选择"
+
+msgid "Toggle sort order"
+msgstr "切换排序顺序"
+
+msgid "Toggle viewed / not viewed"
+msgstr "切换查看/不查看"
+
+msgid "Total"
+msgstr "总"
+
+msgid "Total: %s - Exist: %s - N/A: %s"
+msgstr "总: %s - 存在: %s -N/A: %s"
+
+msgid "Trashcan"
+msgstr "垃圾桶"
+
+msgid "Trashcan create failed. Check mounts and permissions."
+msgstr "垃圾桶创建失败.检查安装和权限."
+
+msgid "Trashcan enable"
+msgstr "启用垃圾桶"
+
+msgid "Trashcan path"
+msgstr "垃圾桶路径"
+
+msgid "Try to load extra title and more from .meta files"
+msgstr "尝试从.meta文件中加载额外的标题和更多的标题"
+
+msgid "Try to load titles from .eit files"
+msgstr "尝试加载标题从EIT文件"
+
+msgid "Try to load titles from .meta files"
+msgstr "尝试从meta文件加载标题"
+
+msgid "UNKNOWN"
+msgstr "未知"
+
+msgid "Up"
+msgstr "启动"
+
+msgid "Upgrade/Download Mutagen v1.28(experimental)"
+msgstr "升级/下载mutagen V1.28┊（实验）"
+
+msgid "Use cache for files and directories"
+msgstr "使用文件和目录缓存"
+
+msgid "Use original EMC-skin (needs reopen)"
+msgstr "使用原EMC皮肤（需要重新打开）"
+
+msgid "VLC"
+msgstr "VLC"
+
+msgid "VLC Server not reachable"
+msgstr "VLC服务器无法访问"
+
+msgid "VLC-Dir"
+msgstr "VLC目录"
+
+msgid "VLC-Server"
+msgstr "VLC服务器"
+
+msgid "Video-button"
+msgstr "视频按钮"
+
+msgid "Vote:"
+msgstr "投票:"
+
+msgid "Wake device when entering dir from emc-noscan.cfg"
+msgstr "当进入目录从emc-noscan.cfg唤醒设备"
+
+msgid "Week"
+msgstr "周"
+
+msgid "Weeks"
+msgstr "周"
+
+msgid "White"
+msgstr "白色"
+
+msgid "YYYY/MM/DD"
+msgstr "YYYY/MM/DD"
+
+msgid "YYYY/MM/DD HH:MM"
+msgstr "YYYY/MM/DD HH:MM"
+
+msgid "Yellow"
+msgstr "黄色"
+
+msgid "Yellow button function"
+msgstr "黄色按钮功能"
+
+msgid "Yes"
+msgstr "是"
+
+msgid "Yes, with Message"
+msgstr "是的,有消息"
+
+msgid "Yes, everything"
+msgstr "是的,全部"
+
+msgid "Yes, only extra title"
+msgstr "是的,只有额外的标题"
+
+msgid "Yes, without Message"
+msgstr "是的,没有消息"
+
+msgid ""
+"Your Box is about to go into DeepStandby, continue?\n"
+" Select no to delay one hour"
+msgstr ""
+"你的盒子即将进入深度待机状态，继续吗？ \n"
+"选择NO延迟1小时"
+
+msgid ""
+"Your Box is about to go into E2 Restart, continue?\n"
+" Select no to delay one hour"
+msgstr ""
+"您的盒子即将进入E2重新启动，继续吗？\n"
+"选择NO延迟1小时"
+
+msgid ""
+"Your Box is about to go into Reboot, continue?\n"
+" Select no to delay one hour"
+msgstr ""
+"您的盒子即将进入重新启动，继续吗？\n"
+"选择NO延迟1小时"
+
+msgid ""
+"Your Box is about to go into Standby, continue?\n"
+" Select no to delay one hour"
+msgstr ""
+"你的盒子即将进入待机状态，继续吗？\n"
+"选择NO延迟1小时"
+
+msgid "Zap to channel after record EOF"
+msgstr "切换在EOF通道记录"
+
+msgid "after reload list"
+msgstr "刷新列表"
+
+msgid "after standby"
+msgstr "在待机状态"
+
+msgid "all"
+msgstr "全部"
+
+msgid "always"
+msgstr "总是"
+
+msgid "always hide"
+msgstr "总是隐藏"
+
+msgid "auto-start is currently not active."
+msgstr "自动启动当前不活动."
+
+msgid "auto-start window begin"
+msgstr "自动启动窗口开始"
+
+msgid "auto-start window end"
+msgstr "自动启动窗口结束"
+
+msgid "center"
+msgstr "中心"
+
+msgid "configuration"
+msgstr "配置"
+
+msgid "covers"
+msgstr "封面"
+
+msgid "covers in"
+msgstr "覆盖"
+
+msgid "csfd.cz"
+msgstr "csfd.cz"
+
+msgid "customizable buttonblue "
+msgstr "可定制的蓝色按钮 "
+
+msgid "customizable green button"
+msgstr "可定制的绿色按钮"
+
+msgid "customizable long blue button"
+msgstr "自定义长按蓝色按钮"
+
+msgid "customizable long yellow button"
+msgstr "可定制长按黄色按钮"
+
+msgid "customizable yellow button"
+msgstr "可定制的黄色按钮"
+
+msgid "daily auto-start"
+msgstr "每日自动启动"
+
+msgid "down"
+msgstr "向下"
+
+msgid "exception "
+msgstr "例外 "
+
+msgid "forward to the next chapter"
+msgstr "转下一章"
+
+msgid "found"
+msgstr "发现"
+
+msgid "found %s covers in %.1f sec"
+msgstr "发现 %s 覆盖 %.1F秒"
+
+msgid "from"
+msgstr "从"
+
+msgid "hide live TV"
+msgstr "隐藏电视直播"
+
+msgid "hide live TV and timeshift"
+msgstr "隐藏的电视直播和时移"
+
+msgid "hide playback"
+msgstr "隐藏播放"
+
+msgid "imdb.de"
+msgstr "imdb.de"
+
+msgid "jump back to the previous title"
+msgstr "跳转到以前的标题"
+
+msgid "jump forward to the next title"
+msgstr "跳转到下一个标题"
+
+msgid "jump to next marked position"
+msgstr "跳转到下一个标记位置"
+
+msgid "jump to previous marked position"
+msgstr "跳转到先前标记位置"
+
+msgid "left from Name"
+msgstr "名称左"
+
+msgid "movie manipulation list"
+msgstr "电影操作列表"
+
+msgid "movies found!"
+msgstr "电影发现!"
+
+msgid "movies in"
+msgstr "电影"
+
+msgid "never hide"
+msgstr "永远隐藏"
+
+msgid "no"
+msgstr "无"
+
+msgid "ofdb.de"
+msgstr "ofdb.de"
+
+msgid "off"
+msgstr "关"
+
+msgid "only initially"
+msgstr "只有最初"
+
+msgid "rewind to the previous chapter"
+msgstr "回到前一章"
+
+msgid "right"
+msgstr "右"
+
+msgid "right from Name"
+msgstr "名称右"
+
+msgid "sec"
+msgstr "秒"
+
+msgid "sec found. Avg. Speed:"
+msgstr "秒.被发现.平均速度"
+
+msgid "sec."
+msgstr "秒."
+
+msgid "show DVD main menu"
+msgstr "显示DVD主菜单"
+
+msgid "single pixel TV, muted"
+msgstr "单像素电视，静音"
+
+msgid "stop service"
+msgstr "停止服务"
+
+msgid "switch to the next angle"
+msgstr "切换到下一个角度"
+
+msgid "switch to the next audio track"
+msgstr "切换到下一个音轨"
+
+msgid "switch to the next subtitle language"
+msgstr "切换到下一个字幕语言"
+
+msgid "themoviedb cover resolution:"
+msgstr "电影封面分辨率:"
+
+msgid "themoviedb.org"
+msgstr "themoviedb.org"
+
+msgid "thetvdb.com"
+msgstr "thetvdb.com"
+
+msgid "toggle a cut mark at the current position"
+msgstr "切换一个切割标记当前位置"
+
+msgid "trashcan"
+msgstr "垃圾桶"
+
+msgid "type 1 - OSD + black (#00000000)"
+msgstr "1型OSD +黑色（# 00000000）"
+
+msgid "type 2 - transparent + white (#FFFFFFFF)"
+msgstr "2型透明+白色（# ffffffff）"
+
+msgid "type 3 - OSD + black (#00FFFFFF)"
+msgstr "3型OSD +黑色（# 00ffffff）"
+
+msgid "type 4 - transparent + black (#FF000000)"
+msgstr "4型透明+黑色（# ff000000）"
+
+msgid "unknown"
+msgstr "未知"
+
+msgid "up/down"
+msgstr "向上/向下"
+
+msgid "view extensions..."
+msgstr "查看扩展..."
+
+msgid "yes"
+msgstr "是"
