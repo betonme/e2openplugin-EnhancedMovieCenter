@@ -142,14 +142,16 @@ class Autoselect639Language(ISO639Language):
 			defaults.append("en")
 		return (choices_dict, choices_list, defaults)
 
+def langListEPG():
+	list = language.getLanguageList()
+	newlist = []
+	for item in list:
+		newlist.append((item[0][:5], item[1][0]))
+	return newlist
+
 def langList():
 	iso639 = Autoselect639Language()
 	newlist = iso639.getTranslatedChoicesDictAndSortedListAndDefaults()[1]
-	return newlist
-
-def langListSel():
-	iso639 = Autoselect639Language()
-	newlist = iso639.getTranslatedChoicesDictAndSortedListAndDefaults()[0]
 	return newlist
 
 launch_choices = [	("None",		_("No override")),
@@ -296,7 +298,7 @@ config.EMC.needsreload               = ConfigYesNo(default = False)
 config.EMC.extmenu_plugin            = ConfigYesNo(default = False)
 config.EMC.mainmenu_list             = ConfigYesNo(default = False)
 config.EMC.extmenu_list              = ConfigYesNo(default = False)
-config.EMC.epglang                   = ConfigSelection(default = language.getActiveLanguage(), choices                    = langList())
+config.EMC.epglang                   = ConfigSelection(default = language.getActiveLanguage(), choices                    = langListEPG())
 config.EMC.sublang1                  = ConfigSelection(default = language.lang[language.getActiveLanguage()][0], choices  = langList())
 config.EMC.sublang2                  = ConfigSelection(default = language.lang[language.getActiveLanguage()][0], choices  = langList())
 config.EMC.sublang3                  = ConfigSelection(default = language.lang[language.getActiveLanguage()][0], choices  = langList())
