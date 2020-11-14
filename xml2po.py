@@ -1,4 +1,6 @@
 #!/usr/bin/python
+# -*- coding: utf-8 -*-
+from __future__ import print_function
 import sys
 import os
 import string
@@ -51,14 +53,14 @@ for arg in sys.argv[1:]:
 	attrlist.sort(key=lambda a: a[0])
 
 	for (k,c) in attrlist:
-		print
-		print '#: ' + arg
+		print('')
+		print('#: ' + arg)
 		string.replace(k, "\\n", "\"\n\"")
 		if c:
 			for l in c.split('\n'):
-				print "#. ", l
+				print("#. ", l)
 		if str(k).strip() != "":
-			print 'msgid "' + str(k) + '"'
-			print 'msgstr ""'
+			print('msgid "' + str(k) + '"')
+			print('msgstr ""')
 
 	attrlist = set()
