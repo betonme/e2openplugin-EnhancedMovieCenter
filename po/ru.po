@@ -1,0 +1,3278 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: EMC V.4.0.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: litvcom\n"
+"Language-Team: \n"
+"Language: ru_RU\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n"
+"%100>=20) ? 1 : 2);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Generator: Poedit 2.4.2\n"
+
+#: src/EMCCoverSearch.py:47
+msgid "themoviedb.org for movies + thetvdb.com for series (e.g. 'S01E01' in title)"
+msgstr "themoviedb.org для фильмов + thetvdb.com для сериалов (напр. 'S01E01' в названии)"
+
+#: src/EMCCoverSearch.py:48 src/EMCCoverSearch.py:52
+msgid "overall"
+msgstr "в целом"
+
+#: src/EMCCoverSearch.py:48 src/EMCCoverSearch.py:52
+msgid "two contiguous"
+msgstr "два смежных"
+
+#: src/EMCCoverSearch.py:48 src/EMCCoverSearch.py:52
+msgid "three contiguous"
+msgstr "три смежных"
+
+#: src/EMCCoverSearch.py:51
+msgid "imdb.com"
+msgstr "imdb.com"
+
+#: src/EMCCoverSearch.py:51
+msgid "thetvdb.com"
+msgstr "thetvdb.com"
+
+#: src/EMCCoverSearch.py:51
+msgid "csfd.cz"
+msgstr "csfd.cz"
+
+#: src/EMCCoverSearch.py:51
+msgid "all"
+msgstr "Все"
+
+#: src/EMCCoverSearch.py:51
+msgid "themoviedb.org"
+msgstr "themoviedb.org"
+
+#: src/EMCCoverSearch.py:51
+msgid "themoviedb.org + thetvdb.com"
+msgstr "themoviedb.org + thetvdb.com"
+
+#: src/EMCCoverSearch.py:51
+msgid "themoviedb.org + thetvdb.com + imdb.com"
+msgstr "themoviedb.org + thetvdb.com + imdb.com"
+
+#: src/EMCCoverSearch.py:52
+msgid "every single one"
+msgstr "каждый"
+
+#: src/EMCCoverSearch.py:53 src/EMCCoverSearch.py:54
+msgid "no limit"
+msgstr "без ограничений"
+
+#: src/EMCCoverSearch.py:54
+msgid "standard cover"
+msgstr "стандартная обложка"
+
+#: src/EMCCoverSearch.py:55
+msgid ".../foldername/foldername.jpg"
+msgstr ".../foldername/foldername.jpg"
+
+#: src/EMCCoverSearch.py:55
+msgid ".../foldername.jpg"
+msgstr ".../foldername.jpg"
+
+#: src/EMCCoverSearch.py:55
+msgid ".../foldername/folder.jpg"
+msgstr ".../foldername/folder.jpg"
+
+#: src/EMCCoverSearch.py:177
+msgid "Search"
+msgstr "Поиск"
+
+#: src/EMCCoverSearch.py:179 src/MovieSelection.py:2482 src/MovieSelectionMenu.py:112
+#: src/MovieSelectionMenu.py:114 src/plugin.py:203 src/plugin.py:224
+msgid "Delete"
+msgstr "Удалить"
+
+#: src/EMCCoverSearch.py:189
+msgid "Press green button to start search"
+msgstr "Нажмите зеленую кнопку, чтобы начать поиск"
+
+#: src/EMCCoverSearch.py:191
+msgid "Manage Cover"
+msgstr "Управление обложкой"
+
+#: src/EMCCoverSearch.py:192 src/EnhancedMovieCenter.py:253 src/MovieInfo.py:322 src/plugin.py:569
+msgid "Setup"
+msgstr "Настройки"
+
+#: src/EMCCoverSearch.py:193
+msgid "Single search"
+msgstr "Простой поиск"
+
+#: src/EMCCoverSearch.py:210
+msgid "EMC Cover search"
+msgstr "Поиск обложки"
+
+#: src/EMCCoverSearch.py:240 src/EMCCoverSearch.py:250 src/EMCCoverSearch.py:308
+#: src/EMCCoverSearch.py:633
+msgid "Exist"
+msgstr "Существует"
+
+#: src/EMCCoverSearch.py:243 src/EMCCoverSearch.py:250 src/EMCCoverSearch.py:370
+#: src/EMCCoverSearch.py:395 src/EMCCoverSearch.py:633
+msgid "N/A"
+msgstr "Нет данных"
+
+#: src/EMCCoverSearch.py:250
+msgid "Total"
+msgstr "Всего"
+
+#: src/EMCCoverSearch.py:288 src/EMCCoverSearch.py:311 src/EMCCoverSearch.py:400
+#, python-format
+msgid "Exist: %s"
+msgstr "Существует: %s"
+
+#: src/EMCCoverSearch.py:289 src/EMCCoverSearch.py:310 src/EMCCoverSearch.py:399
+#, python-format
+msgid "No Cover: %s"
+msgstr "Нет обложки: %s"
+
+#: src/EMCCoverSearch.py:290 src/EMCCoverSearch.py:312 src/EMCCoverSearch.py:401
+#, python-format
+msgid "Download: %s"
+msgstr "Загрузить: %s"
+
+#: src/EMCCoverSearch.py:291
+msgid "Searching..."
+msgstr "Поиск..."
+
+#: src/EMCCoverSearch.py:297
+msgid "Creating Search List.."
+msgstr "Создание списка поиска..."
+
+#: src/EMCCoverSearch.py:339
+msgid "No Movies found!"
+msgstr "Фильмы не найдены!"
+
+#: src/EMCCoverSearch.py:397
+msgid "from"
+msgstr "из"
+
+#: src/EMCCoverSearch.py:410
+msgid "movies in"
+msgstr "Фильмы в"
+
+#: src/EMCCoverSearch.py:410
+msgid "sec found. Avg. Speed:"
+msgstr "сек. найдено. Средняя скорость:"
+
+#: src/EMCCoverSearch.py:410
+msgid "sec."
+msgstr "сек."
+
+#: src/EMCCoverSearch.py:463
+#, python-format
+msgid "%s removed."
+msgstr "%s удален."
+
+#: src/EMCCoverSearch.py:465
+#, python-format
+msgid "%s not removed. Write protect?"
+msgstr "%s не удалось удалить. Защита от записи?"
+
+#: src/EMCCoverSearch.py:507
+msgid "Settings have been Saved."
+msgstr "Настройки сохранены."
+
+#: src/EMCCoverSearch.py:515
+msgid "Cover is Saved."
+msgstr "Обложка сохранена."
+
+#: src/EMCCoverSearch.py:690
+msgid "EMC Cover search setup"
+msgstr "Настройки поиска обложки"
+
+#: src/EMCCoverSearch.py:692 src/EMCPlayList.py:132 src/EMCPlayList.py:457 src/EMCPlayList.py:542
+#: src/EnhancedMovieCenter.py:269 src/MovieInfo.py:637 src/MovieRetitle.py:32
+msgid "Cancel"
+msgstr "Отменить"
+
+#: src/EMCCoverSearch.py:693 src/EMCPlayList.py:131 src/EMCPlayList.py:458
+#: src/EnhancedMovieCenter.py:270 src/MovieInfo.py:324 src/MovieRetitle.py:31
+msgid "Save"
+msgstr "Сохранить"
+
+#: src/EMCCoverSearch.py:710
+msgid "Search Site:"
+msgstr "Поиск по сайту:"
+
+#: src/EMCCoverSearch.py:711 src/EMCCoverSearch.py:716
+msgid "Search filter for matching existing terms in the title:"
+msgstr "Фильтр поиска совпадений по терминам в заголовке:"
+
+#: src/EMCCoverSearch.py:712
+msgid "thetvdb cover number (standard cover):"
+msgstr "число обложек thetvdb (по умолчанию):"
+
+#: src/EMCCoverSearch.py:713
+msgid "Preferred cover resolution (if possible):"
+msgstr "Предпочтительное разрешение обложки (если возможно):"
+
+#: src/EMCCoverSearch.py:714
+msgid "Save description to movie.txt file:"
+msgstr "Сохранить описание в файл movie.txt:"
+
+#: src/EMCCoverSearch.py:715
+msgid "Single Search:"
+msgstr "Простой поиск:"
+
+#: src/EMCCoverSearch.py:720
+msgid " (without counting cover range)"
+msgstr " (без учета диапазона обложек)"
+
+#: src/EMCCoverSearch.py:721
+msgid "thetvdb cover range per title:"
+msgstr "диапазон обложек thetvdb для заголовка:"
+
+#: src/EMCCoverSearch.py:722
+#, python-format
+msgid "Search Results per Search Site%s:"
+msgstr "Результаты на странице поиска %s:"
+
+#: src/EMCCoverSearch.py:723
+msgid "Set path to save the folder Cover:"
+msgstr "Задать путь для каталога обложек:"
+
+#: src/EMCCoverSearch.py:783
+#, python-format
+msgid "Searching for %s"
+msgstr "Поиск %s"
+
+#: src/EMCCoverSearch.py:800
+msgid "EMC Cover Selecter"
+msgstr "Выбор обложки"
+
+#: src/EMCCoverSearch.py:1081
+msgid "found"
+msgstr "Найден"
+
+#: src/EMCCoverSearch.py:1081
+msgid "covers in"
+msgstr "Обложки в"
+
+#: src/EMCCoverSearch.py:1081
+msgid "sec"
+msgstr "сек."
+
+#: src/EMCCoverSearch.py:1157
+msgid "Can not save "
+msgstr "Не удалось сохранить "
+
+#: src/EMCCoverSearch.py:1171
+msgid "Can not save Cover in "
+msgstr "Не удалось сохранить обложку в "
+
+#: src/EMCCoverSearch.py:1191
+msgid "Move Cover to:"
+msgstr "Переместить обложку в:"
+
+#: src/EMCCoverSearch.py:1192 src/EMCPlayList.py:470 src/EnhancedMovieCenter.py:752
+#: src/MovieSelection.py:3057 src/MovieSelection.py:3099 src/MovieSelection.py:3133
+#: src/MovieSelection.py:3175 src/MovieSelection.py:3202 src/MovieSelectionMenu.py:299
+msgid "Choose directory"
+msgstr "Выберите каталог"
+
+#: src/EMCMediaCenter.py:179 src/EMCMediaCenter.py:184
+msgid "Stop playback"
+msgstr "Остановить воспроизведение"
+
+#: src/EMCMediaCenter.py:189
+msgid "show DVD main menu"
+msgstr "Показать главное меню DVD"
+
+#: src/EMCMediaCenter.py:191
+msgid "forward to the next chapter"
+msgstr "Перейти к следующей главе"
+
+#: src/EMCMediaCenter.py:192
+msgid "rewind to the previous chapter"
+msgstr "Перейти к предыдущей главе"
+
+#: src/EMCMediaCenter.py:193 src/EMCMediaCenter.py:221
+msgid "jump forward to the next title"
+msgstr "Перейти к следующему заголовку"
+
+#: src/EMCMediaCenter.py:194 src/EMCMediaCenter.py:222
+msgid "jump back to the previous title"
+msgstr "Перейти к предыдущему заголовку"
+
+#: src/EMCMediaCenter.py:195
+msgid "(show optional DVD audio menu)"
+msgstr "(Показывать аудио меню DVD)"
+
+#: src/EMCMediaCenter.py:196
+msgid "switch to the next audio track"
+msgstr "Перейти к следующей звуковой дорожке"
+
+#: src/EMCMediaCenter.py:197
+msgid "switch to the next subtitle language"
+msgstr "Переключить на следующий язык субтитров"
+
+#: src/EMCMediaCenter.py:198
+msgid "switch to the next angle"
+msgstr "Переключить на след. ракурс"
+
+#: src/EMCMediaCenter.py:217
+msgid "view extensions..."
+msgstr "Открыть меню дополнений"
+
+#: src/EMCMediaCenter.py:218
+msgid "Format AVSwitch"
+msgstr "Переключить AV-формат"
+
+#: src/EMCMediaCenter.py:219
+msgid "Seek forward"
+msgstr "Перемотка вперед"
+
+#: src/EMCMediaCenter.py:220
+msgid "Seek backward"
+msgstr "Перемотка назад"
+
+#: src/EMCMediaCenter.py:223
+msgid "Movie information"
+msgstr "Сведения о фильме"
+
+#: src/EMCMediaCenter.py:429
+msgid "No DVD-Player found!"
+msgstr "DVD-плеер не найден!"
+
+#: src/EMCMediaCenter.py:483
+msgid ""
+"Skipping movie, the file does not exist.\n"
+"\n"
+msgstr ""
+"Пропуск фильма, файл не существует.\n"
+"\n"
+
+#: src/EMCMediaCenter.py:523
+msgid ""
+"EMC\n"
+"Zap to Live TV of record"
+msgstr ""
+"EMC\n"
+"Переключить на прямую трансляцию этой записи."
+
+#: src/EMCMediaCenter.py:1026
+msgid "Chap."
+msgstr "Глава"
+
+#: src/EMCMediaCenter.py:1027
+msgid "Chapter"
+msgstr "Глава"
+
+#: src/EMCMediaCenter.py:1028
+msgid "Title"
+msgstr "Название"
+
+#: src/EMCPlayList.py:133
+msgid "Delete Entry"
+msgstr "Удалить записи"
+
+#: src/EMCPlayList.py:134
+msgid "Delete All"
+msgstr "Удалить все"
+
+#: src/EMCPlayList.py:154
+msgid "EMC Playlist - current playlist"
+msgstr "Список воспроизведения - текущий список"
+
+#: src/EMCPlayList.py:161
+msgid "EMC Playlist Menu"
+msgstr "Меню списка воспроизведения"
+
+#: src/EMCPlayList.py:162
+msgid "Playlist open"
+msgstr "Открыть список воспроизведения"
+
+#: src/EMCPlayList.py:163
+msgid "Setup open"
+msgstr "Открыть настройки"
+
+#: src/EMCPlayList.py:171
+msgid ""
+"Default Playlist is not empty!\n"
+"\n"
+"Save default Playlist?"
+msgstr ""
+"Список воспроизведения не пуст!\n"
+"\n"
+"Сохранить текущий список воспроизведения?"
+
+#: src/EMCPlayList.py:233
+msgid ""
+"Playlist with same name exists!\n"
+"\n"
+"Try to save the Playlist with another name?"
+msgstr ""
+"Список воспроизведения с таким названием существует!\n"
+"\n"
+"Вы хотите сохранить список воспроизведения под другим именем?"
+
+#: src/EMCPlayList.py:237
+msgid "Change the filename to save current Playlist:"
+msgstr "Изменить имя файла для сохранения текущего списка воспроизведения:"
+
+#: src/EMCPlayList.py:237
+msgid "Save current Playlist"
+msgstr "Сохранить текущий список воспроизведения"
+
+#: src/EMCPlayList.py:255
+msgid "Current Playlist saved successfully!"
+msgstr "Текущий список воспроизведения успешно сохранен!"
+
+#: src/EMCPlayList.py:258
+msgid "Can not save current Playlist!"
+msgstr "Не удалось сохранить текущий список воспроизведения!"
+
+#: src/EMCPlayList.py:445
+msgid "Default Playlist path"
+msgstr "Путь списка воспроизведения по умолчанию"
+
+#: src/EMCPlayList.py:446
+msgid "Default Playlist name"
+msgstr "Название списка воспроизведения по умолчанию"
+
+#: src/EMCPlayList.py:447
+msgid "Always save current Playlist"
+msgstr "Всегда сохранять текущий список воспроизведения"
+
+#: src/EMCPlayList.py:462
+msgid "EMC Playlist Setup"
+msgstr "Настройки списка воспроизведения"
+
+#: src/EMCPlayList.py:469
+msgid "Choose Directory:"
+msgstr "Выберите каталог:"
+
+#: src/EMCPlayList.py:486
+msgid "Enter Name for Playlist"
+msgstr "Введите имя списка воспроизведения"
+
+#: src/EMCPlayList.py:543
+msgid "Open"
+msgstr "Открыть"
+
+#: src/EMCPlayList.py:557
+msgid "EMC Filebrowser"
+msgstr "Файловый браузер"
+
+#: src/EMCTasker.py:201
+msgid "Next auto-start in "
+msgstr "Перезагрузка через "
+
+#: src/EMCTasker.py:203
+msgid "auto-start is currently not active."
+msgstr "Автоматический перезапуск в настоящее время не активен"
+
+#: src/EMCTasker.py:215
+msgid ""
+"Your Box is about to go into Standby, continue?\n"
+" Select no to delay one hour"
+msgstr ""
+"EMC: Ваш ресивер перейдет в режим ожидания. Продолжить?\n"
+" Выберите 'Нет', чтобы отложить на час."
+
+#: src/EMCTasker.py:217
+msgid ""
+"Your Box is about to go into DeepStandby, continue?\n"
+" Select no to delay one hour"
+msgstr ""
+"EMC: Ваш ресивер будет выключен. Продолжить?\n"
+" Выберите 'Нет', чтобы отложить на час."
+
+#: src/EMCTasker.py:219
+msgid ""
+"Your Box is about to go into Reboot, continue?\n"
+" Select no to delay one hour"
+msgstr ""
+"EMC: Ваш ресивер будет перезагружен. Продолжить?\n"
+" Выберите 'Нет', чтобы отложить на час."
+
+#: src/EMCTasker.py:221
+msgid ""
+"Your Box is about to go into E2 Restart, continue?\n"
+" Select no to delay one hour"
+msgstr ""
+"EMC: Интерфейс будет перезагружен. Продолжить?\n"
+" Выберите 'Нет', чтобы отложить на час."
+
+#: src/EnhancedMovieCenter.py:175 src/EnhancedMovieCenter.py:197
+msgid "Custom"
+msgstr "Пользовательский"
+
+#: src/EnhancedMovieCenter.py:176
+msgid "Default"
+msgstr "По умолчанию"
+
+#: src/EnhancedMovieCenter.py:177
+msgid "Performance"
+msgstr "Воспроизведение"
+
+#: src/EnhancedMovieCenter.py:178
+msgid "Information"
+msgstr "Сведения"
+
+#: src/EnhancedMovieCenter.py:333
+msgid "GENERAL"
+msgstr "ОБЩИЕ УСТАНОВКИ"
+
+#: src/EnhancedMovieCenter.py:334
+msgid "About"
+msgstr "О плагине"
+
+#: src/EnhancedMovieCenter.py:334
+msgid "HELP_About"
+msgstr "Информацией о плагине."
+
+#: src/EnhancedMovieCenter.py:335
+msgid "Disable EMC"
+msgstr "Отключить EMC"
+
+#: src/EnhancedMovieCenter.py:335
+msgid "HELP_Disable EMC"
+msgstr ""
+"Отключает EMC, но некоторые функции продолжат работать в фоновом режиме. Например, \"Очистка "
+"таймеров\", \"Очистка корзины\" и \"Перезагрузка\"."
+
+#: src/EnhancedMovieCenter.py:336
+msgid "Start EMC with"
+msgstr "Запустить EMC кнопкой"
+
+#: src/EnhancedMovieCenter.py:336
+msgid "HELP_Start EMC with"
+msgstr "Укажите кнопку пульта для запуска EMC."
+
+#: src/EnhancedMovieCenter.py:337
+msgid "Show plugin config in extensions menu"
+msgstr "Показать \"Настройки EMC\" в меню дополнений"
+
+#: src/EnhancedMovieCenter.py:337
+msgid "HELP_Show plugin config in extensions menu"
+msgstr ""
+"Показывает \"Настройки EMC\" в меню дополнений.\n"
+"Меню дополнений обычно вызывается нажатием на синюю кнопку."
+
+#: src/EnhancedMovieCenter.py:338
+msgid "Show EMC in main menu"
+msgstr "Показать EMC в главном меню"
+
+#: src/EnhancedMovieCenter.py:338
+msgid "HELP_Show EMC in main menu"
+msgstr "Показывает EMC в главном меню."
+
+#: src/EnhancedMovieCenter.py:339
+msgid "Show EMC in extensions menu"
+msgstr "Показать EMC в меню дополнений"
+
+#: src/EnhancedMovieCenter.py:339
+msgid "HELP_Show EMC in extensions menu"
+msgstr ""
+"Показывает EMC в меню дополнений.\n"
+"Меню дополнений обычно вызывается нажатием на синюю кнопку."
+
+#: src/EnhancedMovieCenter.py:341
+msgid "KEYMAPPING"
+msgstr "КНОПКИ"
+
+#: src/EnhancedMovieCenter.py:342
+msgid "Bouquet buttons behaviour"
+msgstr "Функция кнопок 'Букет'"
+
+#: src/EnhancedMovieCenter.py:342
+msgid "HELP_Bouquet buttons behaviour"
+msgstr "Переход к началу/концу списка или пропуск определенного количества записей"
+
+#: src/EnhancedMovieCenter.py:343
+msgid "List entries to skip"
+msgstr "Пропустить каталог"
+
+#: src/EnhancedMovieCenter.py:343
+msgid "HELP_List entries to skip"
+msgstr "Количество элементов в списке для пропуска при нажатии кнопки 'Букет'."
+
+#: src/EnhancedMovieCenter.py:344
+msgid "Red button function"
+msgstr "Красная кнопка"
+
+#: src/EnhancedMovieCenter.py:344
+msgid "HELP_Red button function"
+msgstr "Укажите действие для нажатия на красную кнопку."
+
+#: src/EnhancedMovieCenter.py:345
+msgid "Long Red button function"
+msgstr "Красная кнопка (долгое нажатие)"
+
+#: src/EnhancedMovieCenter.py:345
+msgid "HELP_Long Red button function"
+msgstr "Укажите действие для долгого нажатия на красную кнопку."
+
+#: src/EnhancedMovieCenter.py:347
+msgid "Yellow button function"
+msgstr "Желтая кнопка"
+
+#: src/EnhancedMovieCenter.py:347
+msgid "HELP_Yellow button function"
+msgstr "Укажите действие для нажатия на желтую кнопку."
+
+#: src/EnhancedMovieCenter.py:348
+msgid "Long Yellow button function"
+msgstr "Желтая кнопка (долгое нажатие)"
+
+#: src/EnhancedMovieCenter.py:348
+msgid "HELP_Long Yellow button function"
+msgstr "Укажите действие для долгого нажатия на желтую кнопку."
+
+#: src/EnhancedMovieCenter.py:349
+msgid "Blue button function"
+msgstr "Синяя кнопка"
+
+#: src/EnhancedMovieCenter.py:349
+msgid "HELP_Blue button function"
+msgstr "Укажите действие для нажатия на синюю кнопку."
+
+#: src/EnhancedMovieCenter.py:350
+msgid "Long Blue button function"
+msgstr "Синяя кнопка (долгое нажатие)"
+
+#: src/EnhancedMovieCenter.py:350
+msgid "HELP_Long Blue button function"
+msgstr "Укажите действие для долгого нажатия на синюю кнопку."
+
+#: src/EnhancedMovieCenter.py:351
+msgid "LongInfo Button"
+msgstr "Кнопка 'Инфо' (долгое нажатие)"
+
+#: src/EnhancedMovieCenter.py:351
+msgid "HELP_LongInfo Button"
+msgstr "Укажите действие для долгого нажатия на кнопку 'Инфо'."
+
+#: src/EnhancedMovieCenter.py:353
+msgid "AUTOSTART"
+msgstr "АВТОЗАПУСК"
+
+#: src/EnhancedMovieCenter.py:354
+msgid "daily auto-start"
+msgstr "Ежедневный запуск"
+
+#: src/EnhancedMovieCenter.py:354
+msgid "HELP_Daily auto-start"
+msgstr "Настройте ежедневный запуск."
+
+#: src/EnhancedMovieCenter.py:355
+msgid "auto-start window begin"
+msgstr "Начало автозапуска"
+
+#: src/EnhancedMovieCenter.py:355
+msgid "HELP_auto-start window begin"
+msgstr "Установите время начала."
+
+#: src/EnhancedMovieCenter.py:356
+msgid "auto-start window end"
+msgstr "Конец автозапуска"
+
+#: src/EnhancedMovieCenter.py:356
+msgid "HELP_auto-start window end"
+msgstr "Установите время окончания."
+
+#: src/EnhancedMovieCenter.py:357
+msgid "Force standby after auto-restart"
+msgstr "Режим ожидания после перезагрузки"
+
+#: src/EnhancedMovieCenter.py:357
+msgid "HELP_Force standby after auto-start"
+msgstr "После автоматической перезагрузки перевести ресивер в режим ожидания."
+
+#: src/EnhancedMovieCenter.py:360
+msgid "Movie home at start"
+msgstr "\"Домой\" при запуске"
+
+#: src/EnhancedMovieCenter.py:360
+msgid "HELP_Movie home at start"
+msgstr "При запуске EMC открывает каталог \"Домой\"."
+
+#: src/EnhancedMovieCenter.py:361
+msgid "Default sort mode"
+msgstr "Сортировка по умолчанию"
+
+#: src/EnhancedMovieCenter.py:361
+msgid "HELP_Sort mode at startup"
+msgstr "Укажите режим сортировки списка фильмов при запуске EMC."
+
+#: src/EnhancedMovieCenter.py:363
+msgid "Movie home home path"
+msgstr "Каталог \"Домой\""
+
+#: src/EnhancedMovieCenter.py:363
+msgid "HELP_Movie home home path"
+msgstr "Укажите путь для каталога \"Домой\"."
+
+#: src/EnhancedMovieCenter.py:364
+msgid "EMC path access limit"
+msgstr "Ограничение доступа к каталогам"
+
+#: src/EnhancedMovieCenter.py:364
+msgid "HELP_EMC path access limit"
+msgstr ""
+"Ограничение доступа за пределами каталога \"Домой\". Данные ограничения не накладываются на "
+"кнопки '<' '>' возле кнопки '0'."
+
+#: src/EnhancedMovieCenter.py:366
+msgid "Cursor predictive move after selection"
+msgstr "Переместить курсор после выбора"
+
+#: src/EnhancedMovieCenter.py:366
+msgid "HELP_Cursor predictive move after selection"
+msgstr ""
+"При выборе кнопкой 'Видео/Запись' курсор продолжит движение в заданном направлении.\n"
+"Кнопки 'Вверх/Вниз' передвигают курсор в заданном направлении."
+
+#: src/EnhancedMovieCenter.py:368
+msgid "DISPLAY-SETTINGS"
+msgstr "УСТАНОВКИ ОТОБРАЖЕНИЯ"
+
+#: src/EnhancedMovieCenter.py:369
+msgid "Show symlinks"
+msgstr "Показать ссылки"
+
+#: src/EnhancedMovieCenter.py:369
+msgid "HELP_Show symlinks"
+msgstr "Показывает ссылки."
+
+#: src/EnhancedMovieCenter.py:370
+msgid "Show directories"
+msgstr "Показать каталоги"
+
+#: src/EnhancedMovieCenter.py:370
+msgid "HELP_Show directories"
+msgstr "Показывает каталоги."
+
+#: src/EnhancedMovieCenter.py:371
+msgid "Show directories within movielist"
+msgstr "Показать каталоги в списке фильмов"
+
+#: src/EnhancedMovieCenter.py:371
+msgid "HELP_Show directories within movielist"
+msgstr "Показывает каталоги в списке фильмов."
+
+#: src/EnhancedMovieCenter.py:372
+msgid "Configured directories at the top of movielist"
+msgstr "Показывать добавленные каталоги вверху списка"
+
+#: src/EnhancedMovieCenter.py:372
+msgid "HELP_Configure in etc\\enigma2\\emc-topdir.cfg"
+msgstr "Каталоги, перечисленные в emc-topdir.cfg, отображаются вверху списка."
+
+#: src/EnhancedMovieCenter.py:373
+msgid "Show directories information"
+msgstr "Показать информацию каталогов"
+
+#: src/EnhancedMovieCenter.py:373
+msgid "HELP_Show directories information"
+msgstr "Показывает информацию каталогов."
+
+#: src/EnhancedMovieCenter.py:374
+msgid "Text shown for initially unknown file count"
+msgstr "Текст для первоначально неизвестного количества файлов"
+
+#: src/EnhancedMovieCenter.py:374
+msgid "HELP_Text shown for initially unknown file count"
+msgstr "Определите, как отображается текст при поиске каталогов с неизвестным количеством файлов."
+
+#: src/EnhancedMovieCenter.py:375
+msgid "Text shown for initially unknown count and size"
+msgstr "Текст для первоначально неизвестных счетчиков и размеров"
+
+#: src/EnhancedMovieCenter.py:375
+msgid "HELP_Text shown for initially unknown count and size"
+msgstr ""
+"Определите, как отображается текст при поиске каталогов с неизвестным количеством и размером "
+"файлов."
+
+#: src/EnhancedMovieCenter.py:376
+msgid "Text shown for initially unknown directory size"
+msgstr "Текст для первоначально неизвестных размеров каталогов"
+
+#: src/EnhancedMovieCenter.py:376
+msgid "HELP_Text shown for initially unknown directory size"
+msgstr "Определите, как отображается текст при поиске каталогов с неизвестным размером."
+
+#: src/EnhancedMovieCenter.py:377
+msgid "Icon shown for initially unknown count / size"
+msgstr "Значок отображается для изначально неизвестного количества/размера"
+
+#: src/EnhancedMovieCenter.py:377
+msgid "HELP_Icon shown for initially unknown count / size"
+msgstr ""
+"Показывает символ каталога, когда изначально количество файлов и/или используемого дискового "
+"пространства - неизвестно."
+
+#: src/EnhancedMovieCenter.py:378
+msgid "Show directory size in skin"
+msgstr "Показать размер каталога в области уведомлений"
+
+#: src/EnhancedMovieCenter.py:378
+msgid "HELP_Show directory size in skin"
+msgstr "Показывает размер каталога в области состояния при навигации по списку."
+
+#: src/EnhancedMovieCenter.py:380
+msgid "Show Latest Recordings directory"
+msgstr "Показать каталог \"Последние записи\""
+
+#: src/EnhancedMovieCenter.py:380
+msgid "HELP_Show Latest Recordings directory"
+msgstr ""
+"Последние записи будут сгруппированы в виртуальном каталоге, который будет отображаться в "
+"каталоге \"Домой\" и в его подкаталогах."
+
+#: src/EnhancedMovieCenter.py:381
+msgid "Latest Recordings directory limit"
+msgstr "Ограничения на каталог \"Последние записи\""
+
+#: src/EnhancedMovieCenter.py:381
+msgid "HELP_Latest Recordings directory limit"
+msgstr "Позволяет задать ограничения для каталога записей."
+
+#: src/EnhancedMovieCenter.py:382
+msgid "Latest Recordings directory use emc-noscan.cfg"
+msgstr "Использовать 'emc-noscan.cfg' для \"Последние записи\""
+
+#: src/EnhancedMovieCenter.py:382
+msgid "HELP_Latest Recordings directory use emc-noscan.cfg"
+msgstr "Использование файла 'emc-noscan.cfg' для каталога \"Последние записи\"."
+
+#: src/EnhancedMovieCenter.py:383
+msgid "Show VLC directory"
+msgstr "Показать каталог \"VLC\""
+
+#: src/EnhancedMovieCenter.py:383
+msgid "HELP_Show VLC directory"
+msgstr ""
+"Если установлено дополнение \"VLCPlayerExtended\", то в списке фильмов можно показать "
+"виртуальный каталог \"VLC\"."
+
+#: src/EnhancedMovieCenter.py:384
+msgid "Show Bookmarks in movielist"
+msgstr "Показать закладки в списке фильмов"
+
+#: src/EnhancedMovieCenter.py:384
+msgid "HELP_Show Bookmarks in movielist"
+msgstr "Показывает закладки в списке фильмов."
+
+#: src/EnhancedMovieCenter.py:385
+msgid "Use cache for files and directories"
+msgstr "Использовать кэш для файлов и каталогов"
+
+#: src/EnhancedMovieCenter.py:385
+msgid "HELP_Use cache for files and directories"
+msgstr "Использование кэша для файлов и каталогов."
+
+#: src/EnhancedMovieCenter.py:386
+msgid "Minimum file cache limit (0=cache everything)"
+msgstr "Минимальный размер кэша (0=кэшировать все)"
+
+#: src/EnhancedMovieCenter.py:386
+msgid "HELP_Minimum file cache limit"
+msgstr "Укажите минимальный размер кэша."
+
+#: src/EnhancedMovieCenter.py:387
+msgid "Show experimental options"
+msgstr "Показать экспериментальные опции"
+
+#: src/EnhancedMovieCenter.py:387
+msgid "HELP_Show experimental options"
+msgstr ""
+"Показывает экспериментальные опции.\n"
+"Могут быть использованы для предотвращения пробуждения дисков и/или сетевых хранилищ."
+
+#: src/EnhancedMovieCenter.py:388
+msgid "Don't auto scan size of dirs from emc-noscan.cfg"
+msgstr "Не определять размеры каталогов 'emc-noscan.cfg'"
+
+#: src/EnhancedMovieCenter.py:388
+msgid "HELP_Don't auto scan size of dirs from emc-noscan.cfg"
+msgstr "Не выполнять автоматическое сканирование размера каталогов 'emc-noscan.cfg'."
+
+#: src/EnhancedMovieCenter.py:389
+msgid "Limit file operations in dirs from emc-noscan.cfg"
+msgstr "Ограничить операций с каталогами 'emc-noscan.cfg'"
+
+#: src/EnhancedMovieCenter.py:389
+msgid "HELP_Limit file operations in dirs from emc-noscan.cfg"
+msgstr "Ограничить файловые операции с каталогами 'emc-noscan.cfg'."
+
+#: src/EnhancedMovieCenter.py:390
+msgid "After file OPs only re-scan affected dirs"
+msgstr "Сканировать только измененные каталоги"
+
+#: src/EnhancedMovieCenter.py:390
+msgid "HELP_After file OPs only re-scan affected dirs"
+msgstr ""
+"После добавления или удаления файлов пересканированы будут только каталоги, в которых произошли "
+"изменения."
+
+#: src/EnhancedMovieCenter.py:391
+msgid "Wake device when entering dir from emc-noscan.cfg"
+msgstr "Пробуждать диск при входе в каталоги 'emc-noscan.cfg'"
+
+#: src/EnhancedMovieCenter.py:391
+msgid "HELP_Wake device when entering dir from emc-noscan.cfg"
+msgstr "Вывести диск из режима сна при входе в каталог, указанный в 'emc-noscan.cfg'."
+
+#: src/EnhancedMovieCenter.py:392
+msgid "Check for dead links"
+msgstr "Проверять мертвые ссылки"
+
+#: src/EnhancedMovieCenter.py:392
+msgid "HELP_Check for dead links"
+msgstr ""
+"'Только в первый раз' поможет сохранять внешний диск в режиме ожидания, однако файлы с "
+"отключенных томов могут отображаться."
+
+#: src/EnhancedMovieCenter.py:394
+msgid "DVD / BLU-RAY / FOLDERS"
+msgstr "DVD / BLU-RAY / КАТАЛОГИ"
+
+#: src/EnhancedMovieCenter.py:395
+msgid "Hide configured entries"
+msgstr "Скрыть настроенные файлы и каталоги"
+
+#: src/EnhancedMovieCenter.py:395
+msgid "HELP_cfghide_enable"
+msgstr ""
+"Не показывает файлы и каталоги, указанные в 'emc-hide.cfg'\n"
+"Потребуется перезагрузка Enigma2!"
+
+#: src/EnhancedMovieCenter.py:396
+msgid "Scan for DVD structures"
+msgstr "Поиск структур DVD"
+
+#: src/EnhancedMovieCenter.py:396
+msgid "HELP_Scan for DVD structures"
+msgstr ""
+"Поиск структур DVD в каталогах можно отключить. Это предотвращает нежелательное пробуждение "
+"жестких дисков или сетевых хранилищ."
+
+#: src/EnhancedMovieCenter.py:397
+msgid "Scan for movie structures"
+msgstr "Поиск структур фильма"
+
+#: src/EnhancedMovieCenter.py:397
+msgid "HELP_Scan for movie structures"
+msgstr ""
+"Поиск структур фильмов в каталогах можно отключить. Это предотвращает нежелательное пробуждение "
+"жестких дисков или сетевых хранилищ."
+
+#: src/EnhancedMovieCenter.py:398
+msgid "Scan for bluray structures"
+msgstr "Поиск структур Blu-ray"
+
+#: src/EnhancedMovieCenter.py:398
+msgid "HELP_Scan for bluray structures"
+msgstr ""
+"Поиск структур Blu-ray в каталогах можно отключить. Это предотвращает нежелательное пробуждение "
+"жестких дисков или сетевых хранилищ."
+
+#: src/EnhancedMovieCenter.py:399
+msgid "Scan for bluray structures in .iso"
+msgstr "Поиск структур Blu-ray в ISO"
+
+#: src/EnhancedMovieCenter.py:399
+msgid "HELP_Scan for bluray structures in .iso"
+msgstr ""
+"Поиск структур Blu-ray в ISO-файлах каталогов можно отключить. Это предотвращает нежелательное "
+"пробуждение жестких дисков или сетевых хранилищ."
+
+#: src/EnhancedMovieCenter.py:400
+msgid "Suppress scan in selected folders"
+msgstr "Запретить поиск в выбранных каталогах"
+
+#: src/EnhancedMovieCenter.py:400
+msgid "HELP_cfgscan_suppress"
+msgstr ""
+"Не искать структуры в каталогах (и их подкаталогах), указанных в 'emc-noscan.cfg'. Это "
+"предотвращает нежелательное пробуждение жестких дисков или сетевых хранилищ.\n"
+"Потребуется перезагрузка Enigma2!"
+
+#: src/EnhancedMovieCenter.py:401
+msgid "Scan linked folders"
+msgstr "Искать структуры в ссылках на каталоги"
+
+#: src/EnhancedMovieCenter.py:401
+msgid "HELP_scan_linked"
+msgstr ""
+"Не искать структуры в ссылках, указывающих на каталоги. Это предотвращает нежелательное "
+"пробуждение жестких дисков или сетевых хранилищ."
+
+#: src/EnhancedMovieCenter.py:403
+msgid "OTHER"
+msgstr "ДРУГОЕ"
+
+#: src/EnhancedMovieCenter.py:404
+msgid "Try to load titles from .meta files"
+msgstr "Загружать названия из .META-файлов"
+
+#: src/EnhancedMovieCenter.py:404
+msgid "HELP_Try to load titles from .meta files"
+msgstr ""
+"Название записи будет загружено из вспомогательного .META-файла, если это возможно. В противном "
+"случае название будет сформировано на основании имени файла. (Если загрузка разрешена, имеет "
+"преимущество)."
+
+#: src/EnhancedMovieCenter.py:405
+msgid "Try to load extra title and more from .meta files"
+msgstr "Загружать доп. сведения из .META-файлов"
+
+#: src/EnhancedMovieCenter.py:405
+msgid "HELP_Try to load extra title and more from .meta files"
+msgstr ""
+"Попытаться загружать дополнительные сведения, например, названия эпизодов и пр. из .META-файлов."
+
+#: src/EnhancedMovieCenter.py:406
+msgid "Try to load titles from .eit files"
+msgstr "Загружать названия из .EIT-файлов"
+
+#: src/EnhancedMovieCenter.py:406
+msgid "HELP_Try to load titles from .eit files"
+msgstr ""
+"Название записи будет загружено из вспомогательного .EIT-файла, если это возможно. В противном "
+"случае название будет сформировано на основании имени файла. (Если загрузка разрешена, имеет "
+"преимущество)."
+
+#: src/EnhancedMovieCenter.py:407
+msgid "Replace special chars in title"
+msgstr "Заменить специальные символы в названии"
+
+#: src/EnhancedMovieCenter.py:407
+msgid "HELP_Replace special chars in title"
+msgstr "В списке фильмов, символы подчеркивания и точки в имени файла будут пробелами."
+
+#: src/EnhancedMovieCenter.py:408
+msgid "Show Movie Format"
+msgstr "Показать формат видео"
+
+#: src/EnhancedMovieCenter.py:408
+msgid "HELP_Show Movie Format"
+msgstr ""
+"Показывает расширение файла, будет добавлено к названию. (Например: \".avi\", \".mkv\", \".ts\", "
+"и т.д.)"
+
+#: src/EnhancedMovieCenter.py:409
+msgid "Show Cut-Nr if exist"
+msgstr "Показать Cut-Nr, если существуют"
+
+#: src/EnhancedMovieCenter.py:409
+msgid "HELP_Show Cut-Nr if exist"
+msgstr ""
+"Если во время записи произойдет перегрузка Enigma2, запись автоматически будет продолжена. При "
+"этом к имени нового файла будет добавлен числовой индекс."
+
+#: src/EnhancedMovieCenter.py:410
+msgid "Resolve links and show real path"
+msgstr "Распознавать ссылки и показывать реальный путь"
+
+#: src/EnhancedMovieCenter.py:410
+msgid "HELP_Resolve links and show real path"
+msgstr ""
+"Вместо ссылок будут отображены реальные пути.\n"
+"При возникновении проблем со спинером или пробуждением сетевых хранилищ отключите опцию."
+
+#: src/EnhancedMovieCenter.py:411
+msgid "Show Path if no extended description available"
+msgstr "Показать путь при отсутствие подробного описания"
+
+#: src/EnhancedMovieCenter.py:411
+msgid "HELP_Show Path if no extended description available"
+msgstr "Показывает путь к файлу, если расширенное описание отсутствует."
+
+#: src/EnhancedMovieCenter.py:417
+msgid "Show message if file added to playlist"
+msgstr "Показать \"Добавлено в список воспроизведения\""
+
+#: src/EnhancedMovieCenter.py:417
+msgid "HELP_Show message if file added to playlist"
+msgstr "Показывает сообщение о том, что файл быть добавлен в список воспроизведения."
+
+#: src/EnhancedMovieCenter.py:418
+msgid "No resume below 10 seconds"
+msgstr "Не продолжать, если прошло менее 10 сек."
+
+#: src/EnhancedMovieCenter.py:418
+msgid "HELP_No resume below 10 seconds"
+msgstr ""
+"Если просмотр остановлен в течение первых 10 секунд, то при следующем сеансе не предлагать "
+"продолжить с последней сохраненной позиции."
+
+#: src/EnhancedMovieCenter.py:419
+msgid "Jump to first mark when playing movie"
+msgstr "Автоматический переход к первой метке"
+
+#: src/EnhancedMovieCenter.py:419
+msgid "HELP_Jump to first mark when playing movie"
+msgstr ""
+"Автоматический переход на первую метку в начале записи, если таковая имеется, может помочь для "
+"автоматического пропуска \"хвоста\" предыдущей передачи."
+
+#: src/EnhancedMovieCenter.py:420
+msgid "Rewind finished movies before playing"
+msgstr "Перед воспроизведением перейти в начало"
+
+#: src/EnhancedMovieCenter.py:420
+msgid "HELP_Rewind finished movies before playing"
+msgstr "Повторное воспроизведение фильма или записи со статусом \"Просмотрено\" начинать с начала."
+
+#: src/EnhancedMovieCenter.py:421
+msgid "Always save last played progress as marker"
+msgstr "Всегда сохранять последнюю позицию воспроизведения"
+
+#: src/EnhancedMovieCenter.py:421
+msgid "HELP_Always save last played progress as marker"
+msgstr ""
+"При остановке воспроизведения, текущее положение сохраняется как маркер.\n"
+"После возобновления воспроизведения кнопки '<' и '>' выполняют переход к этому положению вне "
+"зависимости от значения функции \"Возобновление воспроизведения\"."
+
+#: src/EnhancedMovieCenter.py:422
+msgid "Zap to channel after record EOF"
+msgstr "Перейти на канал после просмотра записи"
+
+#: src/EnhancedMovieCenter.py:422
+msgid "HELP_Zap to channel after record EOF"
+msgstr ""
+"Закрыть EMC и переключить на записываемый канал, если при воспроизведении активной (записываемой "
+"в настоящий момент) записи был достигнут конец файла (посредством перемотки или быстрого "
+"перехода)."
+
+#: src/EnhancedMovieCenter.py:423
+msgid "Show real length of running records"
+msgstr "Показать фактическую продолжительность записи"
+
+#: src/EnhancedMovieCenter.py:423
+msgid "HELP_Show real length of running records"
+msgstr "Показывает фактическую продолжительность записи."
+
+#: src/EnhancedMovieCenter.py:428
+msgid "Download cutlist from Cutlist.at"
+msgstr "Загрузить список вырезок с Cutlist.at"
+
+#: src/EnhancedMovieCenter.py:428
+msgid "HELP_Download cutlist from Cutlist.at"
+msgstr ""
+"Название загружается, если эта услуга предоставляется. В противном случае название загружается "
+"из имени файла."
+
+#: src/EnhancedMovieCenter.py:432
+msgid "TRASHCAN"
+msgstr "КОРЗИНА"
+
+#: src/EnhancedMovieCenter.py:433
+msgid "Trashcan enable"
+msgstr "Включить корзину"
+
+#: src/EnhancedMovieCenter.py:433
+msgid "HELP_Trashcan enable"
+msgstr "Если включено, вместо немедленного удаления, файлы будут перемещены в корзину."
+
+#: src/EnhancedMovieCenter.py:434
+msgid "Trashcan path"
+msgstr "Каталог \"Корзина\""
+
+#: src/EnhancedMovieCenter.py:434
+msgid "HELP_Trashcan path"
+msgstr "Укажите каталог, используемый для корзины."
+
+#: src/EnhancedMovieCenter.py:435
+msgid "Show trashcan directory"
+msgstr "Показать каталог \"Корзина\""
+
+#: src/EnhancedMovieCenter.py:435
+msgid "HELP_Show trashcan directory"
+msgstr ""
+"Показывает каталог \"Корзина\" в EMC. Добраться до корзины можно через меню EMC даже если она "
+"скрыта."
+
+#: src/EnhancedMovieCenter.py:436
+msgid "Show trashcan information"
+msgstr "Показать информацию о корзине"
+
+#: src/EnhancedMovieCenter.py:436
+msgid "HELP_Dynamic trashcan"
+msgstr "Показывает количество записей в корзине и/или занятое корзиной дисковое пространство."
+
+#: src/EnhancedMovieCenter.py:437
+msgid "Delete validation"
+msgstr "Подтверждение удаления с активной корзиной"
+
+#: src/EnhancedMovieCenter.py:437
+msgid "HELP_Delete validation"
+msgstr "Если включено и задействована корзина, EMC не спрашивает подтверждения на удаление."
+
+#: src/EnhancedMovieCenter.py:439
+msgid "Enable daily trashcan cleanup"
+msgstr "Ежедневная очистка корзины"
+
+#: src/EnhancedMovieCenter.py:439
+msgid "HELP_Enable daily trashcan cleanup"
+msgstr "Позволяет EMC очищать корзину от старых файлов, время хранения которых истекло."
+
+#: src/EnhancedMovieCenter.py:440
+msgid "Daily cleanup time"
+msgstr "Время ежедневной очистки корзины/списка записей"
+
+#: src/EnhancedMovieCenter.py:440
+msgid "HELP_Daily cleanup time"
+msgstr "Укажите время ежедневной очистки корзины."
+
+#: src/EnhancedMovieCenter.py:441
+msgid "How many days files may remain in trashcan"
+msgstr "Сколько дней файлы могут оставаться в корзине"
+
+#: src/EnhancedMovieCenter.py:441
+msgid "HELP_How many days files may remain in trashcan"
+msgstr ""
+"Сколько дней файл может находиться в корзине, пока не будет удален навсегда.\n"
+"Если установлено \"0\", то файл будет удален немедленно."
+
+#: src/EnhancedMovieCenter.py:442
+msgid "Move finished movies in trashcan"
+msgstr "Перемесить просмотренные записи в корзину"
+
+#: src/EnhancedMovieCenter.py:442
+msgid "HELP_Move finished movies in trashcan"
+msgstr ""
+"По мере устаревания просмотренные записи из каталога \"Домой\" будут перемещены в корзину\"."
+
+#: src/EnhancedMovieCenter.py:443
+msgid "Age of finished movies in movie folder (days)"
+msgstr "Возраст просмотренных записей в каталоге записей (дни)"
+
+#: src/EnhancedMovieCenter.py:443
+msgid "HELP_Age of finished movies in movie folder (days)"
+msgstr "Записи старше указанных, помеченные как \"просмотренные\", будут перемещены в корзину."
+
+#: src/EnhancedMovieCenter.py:446
+msgid "Display directory reading text"
+msgstr "Показать текст чтения каталога"
+
+#: src/EnhancedMovieCenter.py:446
+msgid "HELP_Display directory reading text"
+msgstr "Показывает сообщение \"Читаю каталог...\" во время чтения каталога."
+
+#: src/EnhancedMovieCenter.py:447
+msgid "EMC always reload after open"
+msgstr "Обновление каталога после открытия"
+
+#: src/EnhancedMovieCenter.py:447
+msgid "HELP_EMC always reload after open"
+msgstr ""
+"Каталог обновляется с каждым запуском EMC. В противном случае при втором и последующих запусках "
+"содержимое каталога считывается из кэша."
+
+#: src/EnhancedMovieCenter.py:448
+msgid "EMC re-open list after STOP-press"
+msgstr "Открыть список после нажатия 'Стоп'"
+
+#: src/EnhancedMovieCenter.py:448
+msgid "HELP_EMC re-open list after STOP-press"
+msgstr ""
+"Если воспроизведение остановлено кнопкой 'Стоп', то снова откроется список фильмов. В противном "
+"случае откроется телеканал."
+
+#: src/EnhancedMovieCenter.py:449
+msgid "EMC re-open list after Movie end"
+msgstr "Открыть список по завершению просмотра"
+
+#: src/EnhancedMovieCenter.py:449
+msgid "HELP_EMC re-open list after Movie end"
+msgstr ""
+"Если воспроизведение завершилось, то снова откроется список фильмов. В противном случае "
+"откроется телеканал."
+
+#: src/EnhancedMovieCenter.py:451
+msgid "Leave Movie with Exit"
+msgstr "Закончить воспроизведение кнопкой 'Выход'"
+
+#: src/EnhancedMovieCenter.py:451
+msgid "HELP_Leave Movie with Exit"
+msgstr ""
+"Воспроизведение записи может быть остановлено кнопкой 'Выход' в дополнение к кнопке 'Стоп'."
+
+#: src/EnhancedMovieCenter.py:453
+msgid "Hide movies being moved"
+msgstr "Скрывать записи во время перемещения"
+
+#: src/EnhancedMovieCenter.py:453
+msgid "HELP_Hide movies being moved"
+msgstr ""
+"Переносимые записи сначала будут удалены из списка фильмов.\n"
+"Процесс переноса продолжится в фоновом режиме."
+
+#: src/EnhancedMovieCenter.py:454
+msgid "Hide movies being deleted"
+msgstr "Скрывать записи во время удаления"
+
+#: src/EnhancedMovieCenter.py:454
+msgid "HELP_Hide movies being deleted"
+msgstr ""
+"Удаляемые записи сначала будут удалены из списка фильмов.\n"
+"Процесс удаления продолжится в фоновом режиме."
+
+#: src/EnhancedMovieCenter.py:456
+msgid "Enable remote recordings"
+msgstr "Удаленные записи"
+
+#: src/EnhancedMovieCenter.py:456
+msgid "HELP_Enable remote recordings"
+msgstr ""
+"Обнаружение записи с другого ресивера на общий диск.\n"
+"Такая запись получит специальную иконку."
+
+#: src/EnhancedMovieCenter.py:457
+msgid "Automatic timers list cleaning"
+msgstr "Очистка списка автоматических таймеров"
+
+#: src/EnhancedMovieCenter.py:457
+msgid "HELP_Automatic timers list cleaning"
+msgstr "По завершению таймер автоматически будет удален из списка."
+
+#: src/EnhancedMovieCenter.py:459
+msgid "LANGUAGE"
+msgstr "ЯЗЫК"
+
+#: src/EnhancedMovieCenter.py:460
+msgid "Preferred EPG language"
+msgstr "Предпочитаемый язык EPG"
+
+#: src/EnhancedMovieCenter.py:460
+msgid "HELP_Preferred EPG language"
+msgstr "Укажите предпочтительный язык для телегида."
+
+#: src/EnhancedMovieCenter.py:461
+msgid "Enable playback auto-subtitling"
+msgstr "Автоматическое включение субтитров"
+
+#: src/EnhancedMovieCenter.py:461
+msgid "HELP_Enable playback auto-subtitling"
+msgstr "Автоматический выбор субтитров."
+
+#: src/EnhancedMovieCenter.py:462
+msgid "Primary playback subtitle language"
+msgstr "Выбор языка субтитров 1"
+
+#: src/EnhancedMovieCenter.py:462
+msgid "HELP_Primary playback subtitle language"
+msgstr "Настройка первого языка субтитров (высокий приоритет)."
+
+#: src/EnhancedMovieCenter.py:463
+msgid "Secondary playback subtitle language"
+msgstr "Выбор языка субтитров 2"
+
+#: src/EnhancedMovieCenter.py:463
+msgid "HELP_Secondary playback subtitle language"
+msgstr "Настройка второго языка субтитров."
+
+#: src/EnhancedMovieCenter.py:464
+msgid "Tertiary playback subtitle language"
+msgstr "Выбор языка субтитров 3"
+
+#: src/EnhancedMovieCenter.py:464
+msgid "HELP_Tertiary playback subtitle language"
+msgstr "Настройка третьего языка субтитров."
+
+#: src/EnhancedMovieCenter.py:465
+msgid "Enable playback auto-language selection"
+msgstr "Автоматический выбор звуковой дорожки"
+
+#: src/EnhancedMovieCenter.py:465
+msgid "HELP_Enable playback auto-language selection"
+msgstr "Включение автоматического выбора звуковой дорожки."
+
+#: src/EnhancedMovieCenter.py:466
+msgid "Enable playback AC3-track first"
+msgstr "Приоритет дорожки AC3"
+
+#: src/EnhancedMovieCenter.py:466
+msgid "HELP_Enable playback AC3-track first"
+msgstr "При наличии дорожки AC3 начать воспроизведение с нее."
+
+#: src/EnhancedMovieCenter.py:467
+msgid "Primary playback audio language"
+msgstr "Выбор языка аудио 1"
+
+#: src/EnhancedMovieCenter.py:467
+msgid "HELP_Primary playback audio language"
+msgstr "Настройка первого языка аудио (высокий приоритет)."
+
+#: src/EnhancedMovieCenter.py:468
+msgid "Secondary playback audio language"
+msgstr "Выбор языка аудио 2"
+
+#: src/EnhancedMovieCenter.py:468
+msgid "HELP_Secondary playback audio language"
+msgstr "Настройка второго языка аудио."
+
+#: src/EnhancedMovieCenter.py:469
+msgid "Tertiary playback audio language"
+msgstr "Выбор языка аудио 3"
+
+#: src/EnhancedMovieCenter.py:469
+msgid "HELP_Tertiary playback audio language"
+msgstr "Настройка третьего языка аудио."
+
+#: src/EnhancedMovieCenter.py:471
+msgid "DELAYS"
+msgstr "ЗАДЕРЖКИ"
+
+#: src/EnhancedMovieCenter.py:472
+msgid "Description field update delay"
+msgstr "Задержка перед отображением описания"
+
+#: src/EnhancedMovieCenter.py:472
+msgid "HELP_Description field update delay"
+msgstr ""
+"Задержка перед отображением описания в списке фильмов.\n"
+"Ускоряет навигацию по списку при многочисленных нажатиях кнопок 'Вверх/Вниз', поскольку описание "
+"загружается только после заданной задержки."
+
+#: src/EnhancedMovieCenter.py:473
+msgid "Key period value (50-900)"
+msgstr "Время кнопок (50-900)"
+
+#: src/EnhancedMovieCenter.py:473
+msgid "HELP_Key period value (50-900)"
+msgstr "Время до повторной передачи, когда кнопка удерживается нажатой."
+
+#: src/EnhancedMovieCenter.py:474
+msgid "Key repeat value (250-900)"
+msgstr "Скорость кнопок (250-900)"
+
+#: src/EnhancedMovieCenter.py:474
+msgid "HELP_Key repeat value (250-900)"
+msgstr "Скорость повторной передачи, когда кнопка удерживается нажатой."
+
+#: src/EnhancedMovieCenter.py:476
+msgid "SKIN-SETTINGS"
+msgstr "УСТАНОВКИ СКИНА"
+
+#: src/EnhancedMovieCenter.py:477
+msgid "Use original EMC-skin (needs reopen)"
+msgstr "Использовать оригинальный скин EMC"
+
+#: src/EnhancedMovieCenter.py:477
+msgid "HELP_Use original EMC-skin (needs reopen)"
+msgstr "Включите оригинальный скин EMC. (Требуется перезапуск EMC)."
+
+#: src/EnhancedMovieCenter.py:478
+msgid "Style for original EMC-skin (needs reopen)"
+msgstr "Стиль оригинального скина EMC"
+
+#: src/EnhancedMovieCenter.py:478
+msgid "HELP_Style for original EMC-skin (needs reopen)"
+msgstr ""
+"Выберите стиль для оригинального скина EMC, который будет использоваться. (Требуется перезапуск "
+"EMC)."
+
+#: src/EnhancedMovieCenter.py:480
+msgid "Listbox is skin able"
+msgstr "Использовать системный интерфейс для списка фильмов"
+
+#: src/EnhancedMovieCenter.py:480
+msgid "HELP_Listbox is skin able"
+msgstr ""
+"Позволяет использовать системный интерфейс для списка фильмов, если это возможно.\n"
+"В противном случае использует заданный в настройках EMC."
+
+#: src/EnhancedMovieCenter.py:482
+msgid "Date format"
+msgstr "Формат даты"
+
+#: src/EnhancedMovieCenter.py:482
+msgid "HELP_Date format"
+msgstr "Формат даты и времени, отображаемых рядом с именем файла."
+
+#: src/EnhancedMovieCenter.py:483
+msgid "Horizontal alignment for date"
+msgstr "Горизонтальное выравнивание даты"
+
+#: src/EnhancedMovieCenter.py:483
+msgid "HELP_Horizontal alignment for date"
+msgstr ""
+"Здесь может быть определено горизонтальное выравнивание текста для даты. Показывать по центру, "
+"выровнять вправо или влево."
+
+#: src/EnhancedMovieCenter.py:484
+msgid "Horizontal alignment for count / size"
+msgstr "Горизонтальное выравнивание счетчиков и размеров"
+
+#: src/EnhancedMovieCenter.py:484
+msgid "HELP_Horizontal alignment for count / size"
+msgstr ""
+"Здесь может быть определено горизонтальное выравнивание текста для счетчиков и размеров. "
+"Показывать по центру или выровнять вправо."
+
+#: src/EnhancedMovieCenter.py:486
+msgid "Show movie icons"
+msgstr "Показать иконки фильмов"
+
+#: src/EnhancedMovieCenter.py:486
+msgid "HELP_Show movie icons"
+msgstr "В списке фильмов перед каждой записью или фильмом будет отображена соответствующая иконка."
+
+#: src/EnhancedMovieCenter.py:487
+msgid "Show link arrow"
+msgstr "Показать ссылку стрелкой"
+
+#: src/EnhancedMovieCenter.py:487
+msgid "HELP_Show link arrow"
+msgstr "Показывает ссылку стрелкой."
+
+#: src/EnhancedMovieCenter.py:489
+msgid "Show movie picons"
+msgstr "Показать пиконы фильмов"
+
+#: src/EnhancedMovieCenter.py:489
+msgid "HELP_Show movie picons"
+msgstr "Показывает пикон рядом с названием фильма."
+
+#: src/EnhancedMovieCenter.py:490
+msgid "Position movie picons"
+msgstr "Разместите пиконы фильмов"
+
+#: src/EnhancedMovieCenter.py:490
+msgid "HELP_Position movie picons"
+msgstr "Укажите, где отображается пикон фильма."
+
+#: src/EnhancedMovieCenter.py:491
+msgid "Own Path to movie picons"
+msgstr "Свой каталог для пикон фильмов"
+
+#: src/EnhancedMovieCenter.py:491
+msgid "HELP_Own Path to movie picons"
+msgstr "Использовать свой каталог с пиконами для фильмов."
+
+#: src/EnhancedMovieCenter.py:492
+msgid "Path to movie picons"
+msgstr "Каталог пикон для фильмов"
+
+#: src/EnhancedMovieCenter.py:492
+msgid "HELP_Path to movie picons"
+msgstr "Укажите каталог с пиконами для фильмов."
+
+#: src/EnhancedMovieCenter.py:494
+msgid "Show movie progress"
+msgstr "Показать прогресс просмотра"
+
+#: src/EnhancedMovieCenter.py:494
+msgid "HELP_Show movie progress"
+msgstr "Показать прогресс просмотра перед именем файла в списке фильмов."
+
+#: src/EnhancedMovieCenter.py:495
+msgid "Short watching percent"
+msgstr "Предварительный просмотр (%)"
+
+#: src/EnhancedMovieCenter.py:495
+msgid "HELP_Short watching percent"
+msgstr ""
+"Укажите, на какой стадии просмотра (%) отмечать запись \"Просматриваемой\".\n"
+"Индикатор просмотра изменит цвет на синий."
+
+#: src/EnhancedMovieCenter.py:496
+msgid "Finished watching percent"
+msgstr "Просмотр окончен после (%)"
+
+#: src/EnhancedMovieCenter.py:496
+msgid "HELP_Finished watching percent"
+msgstr ""
+"Указывает, на какой стадии просмотра (%) отмечать запись \"Просмотренной\".\n"
+"Цвет индикатора просмотра станет зеленым."
+
+#: src/EnhancedMovieCenter.py:497
+msgid "Default color for unwatched movie"
+msgstr "Цвет для непросмотенных фильмов"
+
+#: src/EnhancedMovieCenter.py:497
+msgid "HELP_Default color unwatched"
+msgstr "Задайте цвет по умолчанию для непросмотенных фильмов."
+
+#: src/EnhancedMovieCenter.py:498
+msgid "Default color for partially watched movie"
+msgstr "Цвет для частично просмотренных фильмов"
+
+#: src/EnhancedMovieCenter.py:498
+msgid "HELP_Default color partially watched"
+msgstr "Задайте цвет по умолчанию для частично просмотренных фильмов."
+
+#: src/EnhancedMovieCenter.py:499
+msgid "Default color for watched movie"
+msgstr "Цвет для просмотренных фильмов"
+
+#: src/EnhancedMovieCenter.py:499
+msgid "HELP_Default color watched"
+msgstr "Задайте цвет по умолчания для просмотренных фильмов."
+
+#: src/EnhancedMovieCenter.py:500
+msgid "Default color for recording movie"
+msgstr "Цвет для записываемых фильмов"
+
+#: src/EnhancedMovieCenter.py:500
+msgid "HELP_Default color recording"
+msgstr "Задайте цвет по умолчания для записываемых фильмов."
+
+#: src/EnhancedMovieCenter.py:501
+msgid "Default color for highlighted movie"
+msgstr "Цвет для выделенного фильма"
+
+#: src/EnhancedMovieCenter.py:501
+msgid "HELP_Default color highlighted"
+msgstr "Задайте цвет по умолчанию для выделенного фильма."
+
+#: src/EnhancedMovieCenter.py:502
+msgid "Mark new recordings with a star"
+msgstr "Отмечать новые записи звездочкой"
+
+#: src/EnhancedMovieCenter.py:502
+msgid "HELP_Mark new recordings with a star"
+msgstr "Новые записи будут выделяться звездочкой."
+
+#: src/EnhancedMovieCenter.py:503 src/MovieSelection.py:1935 src/MovieSelection.py:1951
+#: src/MovieSelection.py:1967
+msgid "Show Cover"
+msgstr "Показать обложку"
+
+#: src/EnhancedMovieCenter.py:503
+msgid "HELP_Show Cover"
+msgstr "Показывает обложку, если она существует."
+
+#: src/EnhancedMovieCenter.py:504 src/MovieInfo.py:628
+msgid "Cover delay in ms"
+msgstr "Задержка перед отображением обложки (мс)"
+
+#: src/EnhancedMovieCenter.py:504
+msgid "HELP_Cover delay in ms"
+msgstr ""
+"Если отображение обложки включено, то здесь может быть указано время задержки перед "
+"отображением. Это предотвращает немедленное отображение обложки при переключениях в списке "
+"фильмов."
+
+#: src/EnhancedMovieCenter.py:506
+msgid "Show fallback cover"
+msgstr "Показать фон обложки, если обложка отсутствует"
+
+#: src/EnhancedMovieCenter.py:506
+msgid "HELP_Fallback Cover"
+msgstr "Если отключено, то фон обложки отображается, только если обложка присутствует."
+
+#: src/EnhancedMovieCenter.py:513
+msgid "Cover background"
+msgstr "Фон обложки"
+
+#: src/EnhancedMovieCenter.py:513
+msgid "HELP_Cover background"
+msgstr "Укажите фон обложки."
+
+#: src/EnhancedMovieCenter.py:519
+msgid "Show movie preview"
+msgstr "Показать трейлер"
+
+#: src/EnhancedMovieCenter.py:519
+msgid "HELP_Show movie preview"
+msgstr "Включите предварительный просмотр по истечении установленного времени задержки."
+
+#: src/EnhancedMovieCenter.py:520
+msgid "Movie preview delay in ms"
+msgstr "Задержка перед пред. просмотром фильма (мс)"
+
+#: src/EnhancedMovieCenter.py:520
+msgid "HELP_Movie preview delay in ms"
+msgstr ""
+"Задержка перед предварительным просмотром. Это предотвращает предварительный просмотр фильма при "
+"быстром переключении по списку фильмов."
+
+#: src/EnhancedMovieCenter.py:521
+msgid "Start movie preview before last position"
+msgstr "Запустить пред. просмотр фильма до последней позиции (сек)"
+
+#: src/EnhancedMovieCenter.py:521
+msgid "HELP_Movie preview offset in seconds"
+msgstr ""
+"Предварительный просмотр фильма начинается за указанное количество секунд перед последней "
+"позицией воспроизведения."
+
+#: src/EnhancedMovieCenter.py:522
+msgid "Hide MiniTV"
+msgstr "Скрыть PiG"
+
+#: src/EnhancedMovieCenter.py:522
+msgid "HELP_hide_MiniTV"
+msgstr "Скрывает PiG."
+
+#: src/EnhancedMovieCenter.py:523
+msgid "Hide MiniTV if Cover is shown"
+msgstr "Скрыть PiG при отображение обложки"
+
+#: src/EnhancedMovieCenter.py:523
+msgid "HELP_hide_MiniTV cover"
+msgstr "Скрыть обложку PiG"
+
+#: src/EnhancedMovieCenter.py:530
+msgid "Method of hiding MiniTV"
+msgstr "Способ скрыть PiG"
+
+#: src/EnhancedMovieCenter.py:530
+msgid "HELP_hide_MiniTV_method"
+msgstr "Выберите способ скрывания PiG"
+
+#: src/EnhancedMovieCenter.py:536
+msgid "AUDIO METADATA"
+msgstr "АУДИО МЕТАДАННЫЕ"
+
+#: src/EnhancedMovieCenter.py:543
+msgid "Install Mutagen-package for audio metadata"
+msgstr "Установить пакет Mutagen для аудио метаданных"
+
+#: src/EnhancedMovieCenter.py:543
+msgid "HELP_Install Mutagen-package for audio metadata"
+msgstr "Загрузите и установите пакет Mutagen для звуковых метаданных."
+
+#: src/EnhancedMovieCenter.py:550
+msgid "Show audio metadata"
+msgstr "Показать метаданные аудио"
+
+#: src/EnhancedMovieCenter.py:550
+msgid "HELP_Show audio metadata"
+msgstr "Показывает метаданные звука."
+
+#: src/EnhancedMovieCenter.py:556
+msgid "DEBUG"
+msgstr "ОТЛАДКА"
+
+#: src/EnhancedMovieCenter.py:557
+msgid "Enable EMC debug output"
+msgstr "Отладка EMC"
+
+#: src/EnhancedMovieCenter.py:557
+msgid "HELP_Enable EMC debug output"
+msgstr ""
+"Включает отладку EMC. Журнал будет сохранен в каталоге \"Каталог вывода\"\n"
+"ВКЛЮЧАЙТЕ ТОЛЬКО В СЛУЧАЕ ПРОБЛЕМ!"
+
+#: src/EnhancedMovieCenter.py:558
+msgid "EMC output directory"
+msgstr "Каталог для журнала"
+
+#: src/EnhancedMovieCenter.py:558
+msgid "HELP_EMC output directory"
+msgstr "Задайте каталог для журнала (.log файлов)."
+
+#: src/EnhancedMovieCenter.py:559
+msgid "Debug output file name"
+msgstr "Имя файла журнала"
+
+#: src/EnhancedMovieCenter.py:559
+msgid "HELP_Debug output file name"
+msgstr "Задайте имя файла журнала отладки."
+
+#: src/EnhancedMovieCenter.py:569 src/EnhancedMovieCenter.py:571
+msgid "Installing Mutagen-package"
+msgstr "Установка пакета Mutagen"
+
+#: src/EnhancedMovieCenter.py:573
+msgid "The python-mutagen package is not available on the feed."
+msgstr "Пакет 'python-mutagen' не доступен на фиде."
+
+#: src/EnhancedMovieCenter.py:644
+msgid "Load default settings will overwrite all settings, really load them?"
+msgstr ""
+"Загрузка настроек по умолчанию удалит все текущие настройки.\n"
+"Загрузить?"
+
+#: src/EnhancedMovieCenter.py:720
+msgid "Some settings changes require GUI restart to take effect."
+msgstr ""
+"Для вступления в силу некоторых изменений настроек требуется перезапуск графического интерфейса."
+
+#: src/EnhancedMovieCenter.py:751
+msgid "Select Location"
+msgstr "Выбрать расположение"
+
+#: src/EnhancedMovieCenter.py:770
+#, python-format
+msgid "Given path %s does not exist. Please change."
+msgstr "Указанный путь %s не существует. Пожалуйста, измените."
+
+#: src/EnhancedMovieCenter.py:778 src/MovieSelection.py:3265
+msgid "Trashcan create failed. Check mounts and permissions."
+msgstr "Не удалось создать корзину. Проверьте точки монтирования и права."
+
+#: src/InfoBarSupport.py:126
+msgid "jump to previous marked position"
+msgstr "Перейти к предыдущему маркеру"
+
+#: src/InfoBarSupport.py:127
+msgid "jump to next marked position"
+msgstr "Перейти к следующему маркеру"
+
+#: src/InfoBarSupport.py:128
+msgid "toggle a cut mark at the current position"
+msgstr "Переместить метку разреза в текущую позицию"
+
+#: src/InfoBarSupport.py:174 src/InfoBarSupport.py:176
+msgid "Do you want to resume this playback?"
+msgstr "Возобновить воспроизведение?"
+
+#: src/InfoBarSupport.py:174 src/InfoBarSupport.py:176
+#, python-format
+msgid "Resume position at %s"
+msgstr "%s продолжить?"
+
+#: src/InfoBarSupport.py:178
+msgid "Resuming playback"
+msgstr "Возобновление воспроизведения"
+
+#: src/MovieCenter.py:878
+msgid "OSError - please reload list (EMC menu)"
+msgstr "Ошибка - обновите список (меню EMC)"
+
+#: src/MovieCenter.py:1094 src/MovieSelection.py:1497
+msgid "trashcan"
+msgstr "Корзина"
+
+#: src/MovieCenter.py:1099 src/MovieSelection.py:1496
+msgid "Latest Recordings"
+msgstr "Последние записи"
+
+#: src/MovieCenter.py:2436
+msgid "VLC"
+msgstr "VLC"
+
+#: src/MovieCenter.py:2442
+msgid "VLC-Server"
+msgstr "VLC-сервер"
+
+#: src/MovieCenter.py:2448
+msgid "VLC-Dir"
+msgstr "VLC-каталог"
+
+#: src/MovieCenter.py:2454
+msgid "Latest"
+msgstr "Последний"
+
+#: src/MovieCenter.py:2460
+msgid "Up"
+msgstr "Вверх"
+
+#: src/MovieCenter.py:2466 src/MovieCenter.py:2472
+msgid "Bookmark"
+msgstr "Закладки"
+
+#: src/MovieCenter.py:2505
+msgid "UNKNOWN"
+msgstr "НЕИЗВЕСТНО"
+
+#: src/MovieCenter.py:2643 src/MovieCenter.py:2666
+msgid "Trashcan"
+msgstr "Корзина"
+
+#: src/MovieCenter.py:2657 src/MovieCenter.py:2668
+msgid "Directory"
+msgstr "Каталог"
+
+#: src/MovieCenter.py:2659
+msgid "Link"
+msgstr "Ссылка"
+
+#: src/MovieCenter.py:2661
+msgid "Collection"
+msgstr "Коллекция"
+
+#: src/MovieInfo.py:30
+msgid "English"
+msgstr "Английский"
+
+#: src/MovieInfo.py:30
+msgid "German"
+msgstr "Немецкий"
+
+#: src/MovieInfo.py:30
+msgid "Italian"
+msgstr "Итальянский"
+
+#: src/MovieInfo.py:30
+msgid "Spanish"
+msgstr "Испанский"
+
+#: src/MovieInfo.py:30
+msgid "French"
+msgstr "Французский"
+
+#: src/MovieInfo.py:30
+msgid "Portuguese"
+msgstr "Португальский"
+
+#: src/MovieInfo.py:31 src/MovieInfo.py:32 src/MovieInfo.py:33 src/MovieInfo.py:34
+#: src/MovieInfo.py:35 src/plugin.py:328
+msgid "Yes"
+msgstr "Да"
+
+#: src/MovieInfo.py:31 src/MovieInfo.py:32 src/MovieInfo.py:33 src/MovieInfo.py:34
+#: src/MovieInfo.py:35 src/plugin.py:251 src/plugin.py:256 src/plugin.py:328 src/plugin.py:357
+#: src/plugin.py:361
+msgid "No"
+msgstr "Нет"
+
+#: src/MovieInfo.py:51
+msgid "Movies"
+msgstr "Фильмы"
+
+#: src/MovieInfo.py:55
+msgid "TV Shows"
+msgstr "Сериалы"
+
+#: src/MovieInfo.py:136 src/MovieInfo.py:191
+msgid "Content:"
+msgstr "Содержание:"
+
+#: src/MovieInfo.py:136 src/MovieInfo.py:191 src/MovieInfo.py:403 src/MovieSelection.py:397
+msgid "Runtime:"
+msgstr "Длительность:"
+
+#: src/MovieInfo.py:136 src/MovieInfo.py:191 src/MovieInfo.py:429
+msgid "Minutes"
+msgstr "Минуты"
+
+#: src/MovieInfo.py:136 src/MovieInfo.py:191 src/MovieInfo.py:404 src/MovieSelection.py:395
+msgid "Genre:"
+msgstr "Жанр:"
+
+#: src/MovieInfo.py:136 src/MovieInfo.py:191 src/MovieInfo.py:405
+msgid "Production Countries:"
+msgstr "Страна-производитель:"
+
+#: src/MovieInfo.py:136 src/MovieInfo.py:191 src/MovieInfo.py:406
+msgid "Release Date:"
+msgstr "Дата выхода:"
+
+#: src/MovieInfo.py:136 src/MovieInfo.py:191 src/MovieInfo.py:407
+msgid "Vote:"
+msgstr "Рейтинг:"
+
+#: src/MovieInfo.py:153
+msgid "unknown"
+msgstr "неизвестно"
+
+#: src/MovieInfo.py:332 src/MovieInfo.py:344 src/MovieInfo.py:568
+msgid "Search results for:"
+msgstr "Результаты поиска для:"
+
+#: src/MovieInfo.py:342 src/MovieInfo.py:527
+msgid "Movie Information Preview for:"
+msgstr "Предварительный просмотр сведений о фильме:"
+
+#: src/MovieInfo.py:345
+msgid "Nothing was found !"
+msgstr "Ничего не найдено!"
+
+#: src/MovieInfo.py:380
+msgid "Movie Information TMDb"
+msgstr "Сведения о фильме TMDb"
+
+#: src/MovieInfo.py:455
+msgid "Movie Information and Cover downloaded successfully!"
+msgstr "Сведения о фильме и обложка успешно загружены!"
+
+#: src/MovieInfo.py:459 src/MovieInfo.py:463
+msgid "Movie Information downloaded successfully!"
+msgstr "Сведения о фильме успешно загружена!"
+
+#: src/MovieInfo.py:461
+#, python-format
+msgid ""
+"Movie Information downloaded successfully!\n"
+"\n"
+"Can not write Movie Cover File\n"
+"\n"
+"%s"
+msgstr ""
+"Информация о фильме успешно загружена!\n"
+"\n"
+"Не удалось сохранить обложку в файл\n"
+"\n"
+"%s"
+
+#: src/MovieInfo.py:465
+#, python-format
+msgid ""
+"Movie Cover downloaded successfully!\n"
+"\n"
+"Can not write Movie Information File\n"
+"\n"
+"%s"
+msgstr ""
+"Обложка успешно загружена!\n"
+"\n"
+"Информация о фильме не может быть сохранена\n"
+"\n"
+"%s"
+
+#: src/MovieInfo.py:467
+#, python-format
+msgid ""
+"Can not write Movie Information and Cover File\n"
+"\n"
+"%(info)s\n"
+"%(file)s"
+msgstr ""
+"Не удалось сохранить сведения о фильме и файл обложки\n"
+"\n"
+"%(info)s\n"
+"%(file)s"
+
+#: src/MovieInfo.py:469
+#, python-format
+msgid ""
+"Can not write Movie Information File\n"
+"\n"
+"%s"
+msgstr ""
+"Информация о фильме не может быть сохранена\n"
+"\n"
+"%s"
+
+#: src/MovieInfo.py:492
+#, python-format
+msgid ""
+"Cover %s exists!\n"
+"\n"
+"Do you want to replace the existing cover?"
+msgstr ""
+"Обложка % s уже существует!\n"
+"\n"
+"Хотите заменить существующую обложку?"
+
+#: src/MovieInfo.py:620
+msgid "Language:"
+msgstr "Язык:"
+
+#: src/MovieInfo.py:621
+msgid "Load Runtime:"
+msgstr "Загрузить длительность:"
+
+#: src/MovieInfo.py:622
+msgid "Load Genre:"
+msgstr "Загрузить жанр:"
+
+#: src/MovieInfo.py:623
+msgid "Load Production Countries:"
+msgstr "Загрузить страны-производители:"
+
+#: src/MovieInfo.py:624
+msgid "Load Release Date:"
+msgstr "Загрузить дату выпуска:"
+
+#: src/MovieInfo.py:625
+msgid "Load Vote:"
+msgstr "Загрузить рейтинг:"
+
+#: src/MovieInfo.py:626
+msgid "Save Cover"
+msgstr "Сохранить обложку"
+
+#: src/MovieInfo.py:627
+msgid "Coversize"
+msgstr "Размер обложки"
+
+#: src/MovieInfo.py:638
+msgid "OK"
+msgstr "OK"
+
+#: src/MovieInfo.py:642
+msgid "Movie Information Download Setup"
+msgstr "Настройка загрузки сведений о фильме"
+
+#: src/MovieRetitle.py:27 src/MovieRetitle.py:63
+msgid "Location:"
+msgstr "Расположение:"
+
+#: src/MovieRetitle.py:82
+msgid "Foldername:"
+msgstr "Имя каталога:"
+
+#: src/MovieRetitle.py:84
+msgid "Filename:"
+msgstr "Имя файла:"
+
+#: src/MovieRetitle.py:85
+msgid "Movietitle:"
+msgstr "Название:"
+
+#: src/MovieRetitle.py:86
+msgid "Description:"
+msgstr "Описание:"
+
+#: src/MovieRetitle.py:105
+msgid "Change Foldername"
+msgstr "Изменить имя папки"
+
+#: src/MovieRetitle.py:107
+msgid "Change File/Moviename and/or Description"
+msgstr "Измените имя файла, название фильма и описание"
+
+#: src/MovieSelection.py:116
+msgid ""
+"EMC: Skipping Trashcan Cleanup\n"
+"Movie Home Path is equal to or a subfolder of the Trashcan"
+msgstr ""
+"EMC: Пропустить очистку корзины\n"
+"Каталог \"Домой\" совпадает с каталогом \"Корзина\" или находится внутри каталога \"Корзина\""
+
+#: src/MovieSelection.py:154
+msgid "EMC Trashcan Cleanup failed!"
+msgstr "Не удалось очистить корзину EMC!"
+
+#: src/MovieSelection.py:391
+msgid "Artist:"
+msgstr "Артист:"
+
+#: src/MovieSelection.py:393
+msgid "Album:"
+msgstr "Альбом:"
+
+#: src/MovieSelection.py:659 src/MovieSelection.py:1875
+msgid "Reading directory..."
+msgstr "Чтение каталога..."
+
+#: src/MovieSelection.py:678
+msgid "Play selected movie(s)"
+msgstr "Воспроизвести выбранные фильмы"
+
+#: src/MovieSelection.py:680 src/MovieSelectionMenu.py:103
+msgid "Play All"
+msgstr "Воспроизвести все"
+
+#: src/MovieSelection.py:681 src/MovieSelectionMenu.py:104
+msgid "Shuffle All"
+msgstr "Воспроизвусти все в случайном порядке"
+
+#: src/MovieSelection.py:682
+msgid "Close EMC"
+msgstr "Закрыть EMC"
+
+#: src/MovieSelection.py:683
+msgid "Close EMC and do power button action"
+msgstr "Закрыть EMC и выполнить действие кнопки питания"
+
+#: src/MovieSelection.py:684
+msgid "Open menu"
+msgstr "Открыть меню"
+
+#: src/MovieSelection.py:685
+msgid "Show event info"
+msgstr "Показать сведения о событии"
+
+#: src/MovieSelection.py:686
+msgid "IMDBSearch / EMC-TMDBInfo / TMDBInfo / TMBDInfo / CSFDInfo"
+msgstr "IMDBSearch / EMC-TMDBInfo / TMDBInfo / TMBDInfo / CSFDInfo"
+
+#: src/MovieSelection.py:700
+msgid "Move cursor page up"
+msgstr "Курсор вверх на одну страницу"
+
+#: src/MovieSelection.py:701
+msgid "Move cursor page down"
+msgstr "Курсор вниз на одну страницу"
+
+#: src/MovieSelection.py:702
+msgid "Move cursor up"
+msgstr "Курсор вверх"
+
+#: src/MovieSelection.py:703
+msgid "Move cursor down"
+msgstr "Курсор вниз"
+
+#: src/MovieSelection.py:704
+msgid "Move cursor to the top / Move cursor x entries up / Switch Folders in Movie Home (up)"
+msgstr ""
+"Переместить курсор в начало / Переместить курсор на X позиций вверх / Переключить каталог в "
+"каталоге \"Домой\" (вверх)"
+
+#: src/MovieSelection.py:705
+msgid "Move cursor to the end / Move cursor x entries down / Switch Folders in Movie Home (down)"
+msgstr ""
+"Переместить курсор в конец / Переместить курсор на X позиций вниз / Переключить каталог в "
+"каталоге \"Домой\" (вниз)"
+
+#: src/MovieSelection.py:706
+msgid "Directory forward"
+msgstr "Вперед"
+
+#: src/MovieSelection.py:708
+msgid "Directory back"
+msgstr "Назад"
+
+#: src/MovieSelection.py:710
+msgid "Toggle service selection"
+msgstr "Переключить выбор услуги"
+
+#: src/MovieSelection.py:711
+msgid "Remove service selection"
+msgstr "Снять выделение"
+
+#: src/MovieSelection.py:712 src/MovieSelection.py:714
+msgid "Available plugins menu"
+msgstr "Меню плагинов"
+
+#: src/MovieSelection.py:715
+msgid "Reload movie file list"
+msgstr "Обновить список фильмов"
+
+#: src/MovieSelection.py:716
+msgid "Open Timer List"
+msgstr "Открыть список таймеров"
+
+#: src/MovieSelection.py:717
+msgid "Toggle viewed / not viewed"
+msgstr "Отметить просмотрено/непросмотрено"
+
+#: src/MovieSelection.py:719
+msgid "Start / end multiselection"
+msgstr "Начало/конец множественного выбора"
+
+#: src/MovieSelection.py:721 src/MovieSelection.py:1498 src/MovieSelectionMenu.py:88
+#: src/plugin.py:202 src/plugin.py:223
+msgid "Movie home"
+msgstr "Домой"
+
+#: src/MovieSelection.py:1201
+msgid "E2 Bookmark"
+msgstr "Закладки E2"
+
+#: src/MovieSelection.py:1202 src/MovieSelectionMenu.py:170
+msgid "Open E2 Bookmark path"
+msgstr "Открыть закладку E2"
+
+#: src/MovieSelection.py:1316
+msgid "No script operation for VLC streams."
+msgstr "Нет операций сценария для потоков VLC."
+
+#: src/MovieSelection.py:1333
+msgid "Does not contain any scripts."
+msgstr "Не содержит никаких сценариев."
+
+#: src/MovieSelection.py:1338
+msgid "Choose script"
+msgstr "Выберите сценарий"
+
+#: src/MovieSelection.py:1359
+msgid ""
+"Cover search with all Files in Subdirectories?\n"
+"\n"
+"This may take a while on huge Disks, or Directories!"
+msgstr ""
+"Поиск обложки среди всех файлов и подкаталогов?\n"
+"\n"
+"Это может занять некоторое время на больших дисках или каталогах!"
+
+#: src/MovieSelection.py:1397
+msgid "No functionality set..."
+msgstr "Функция не назначена..."
+
+#: src/MovieSelection.py:1489
+msgid "*** Multiselection active ***"
+msgstr "*** Мультивыбор ***"
+
+#: src/MovieSelection.py:1519 src/MovieSelection.py:1521 src/MovieSelection.py:1523
+msgid "Free: "
+msgstr "Свободно: "
+
+#: src/MovieSelection.py:1908
+msgid "Sort Mode"
+msgstr "Режим сортировки"
+
+#: src/MovieSelection.py:1909
+msgid "Sort Order"
+msgstr "Порядок сортировки"
+
+#: src/MovieSelection.py:1933 src/MovieSelection.py:1949 src/MovieSelection.py:1965
+msgid "Hide Cover"
+msgstr "Скрыть обложку"
+
+#: src/MovieSelection.py:1937 src/MovieSelection.py:1953 src/MovieSelection.py:1969
+#: src/plugin.py:212 src/plugin.py:233
+msgid "Button disabled"
+msgstr "Кнопка отключена"
+
+#: src/MovieSelection.py:1938 src/MovieSelection.py:1954 src/MovieSelection.py:1970
+msgid "Cover disabled in EMC-Setup"
+msgstr "Обложка отключена в настройках EMC"
+
+#: src/MovieSelection.py:2125
+msgid "File not available."
+msgstr "Файл не существует."
+
+#: src/MovieSelection.py:2182
+msgid "File added to current Playlist."
+msgstr "Файл добавлен в текущий список воспроизведения."
+
+#: src/MovieSelection.py:2184
+msgid "File exists in current Playlist."
+msgstr "Файл уже в текущем списке воспроизведения."
+
+#: src/MovieSelection.py:2187
+msgid "Files added to current Playlist."
+msgstr "Файлы добавлены в текущий список воспроизведения."
+
+#: src/MovieSelection.py:2189
+#, python-format
+msgid ""
+"Files added to current Playlist:\n"
+"%(add)s\n"
+"\n"
+"Files exists in current Playlist:\n"
+"%(exist)s"
+msgstr ""
+"Файлы будут добавлены в текущий список воспроизведения:\n"
+"%(add)s\n"
+"\n"
+"Существующие файлы:\n"
+"%(exist)s"
+
+#: src/MovieSelection.py:2191
+#, python-format
+msgid ""
+"Files exists in current Playlist:\n"
+"%s"
+msgstr ""
+"Файлы уже в текущем списке воспроизведения:\n"
+"%s"
+
+#: src/MovieSelection.py:2235
+msgid "Last played movie/playlist not available..."
+msgstr "Последняя запись или список воспроизведения отсутствует..."
+
+#: src/MovieSelection.py:2239
+msgid "Play last movie starting"
+msgstr "Запуск воспроизведения последнего видео"
+
+#: src/MovieSelection.py:2258
+msgid "Play All starting"
+msgstr "Воспроизвести все"
+
+#: src/MovieSelection.py:2277
+msgid "Shuffle All starting"
+msgstr "Начать воспроизведение в случайном порядке"
+
+#: src/MovieSelection.py:2317
+msgid "Not all timers have been stopped. Modify them with the timer editor."
+msgstr "Не все таймеры остановлены. Измените их в редакторе таймеров."
+
+#: src/MovieSelection.py:2333
+msgid "Stop ongoing recording?\n"
+msgstr "Остановить текущую запись?\n"
+
+#: src/MovieSelection.py:2386
+#, python-format
+msgid ""
+"Do you really want to remove your link\n"
+"%s?"
+msgstr ""
+"Вы действительно хотите удалить ссылку?\n"
+"\n"
+"%s"
+
+#: src/MovieSelection.py:2388
+#, python-format
+msgid ""
+"Do you really want to remove your directory\n"
+"%s?"
+msgstr ""
+"Вы действительно хотите удалить каталог?\n"
+"\n"
+"%s"
+
+#: src/MovieSelection.py:2433 src/MovieSelection.py:2456 src/MovieSelectionMenu.py:454
+#: src/MovieSelectionMenu.py:486
+#, python-format
+msgid ""
+"Do you really want to remove your bookmark\n"
+"%s?"
+msgstr ""
+"Вы действительно хотите удалить закладку?\n"
+"\n"
+"%s"
+
+#: src/MovieSelection.py:2476
+msgid " Deleting remotely recorded and it will display an rec-error dialog on the other DB."
+msgstr " Удаление удаленной записи, ошибка записи будет отображаться на другом ресивере."
+
+#: src/MovieSelection.py:2482
+msgid " permanently"
+msgstr " навсегда"
+
+#: src/MovieSelection.py:2501
+msgid " currently played?"
+msgstr " Проигрываемый сейчас?"
+
+#: src/MovieSelection.py:2522
+msgid " all selected video files?"
+msgstr " Все выбранные видеофайлы?"
+
+#: src/MovieSelection.py:2531
+msgid ""
+" all selected video files? The currently playing movie is also one of the selections and its "
+"playback will be stopped."
+msgstr ""
+" Все выбранные файлы? Просматриваемая запись также будет удалена, а ее воспроизведение "
+"остановлено."
+
+#: src/MovieSelection.py:2535
+msgid "Delete error:\n"
+msgstr "Не удалось удалить:\n"
+
+#: src/MovieSelection.py:2574 src/MovieSelection.py:2618
+#, python-format
+msgid ""
+"The following files are used for other entrys in List !\n"
+"\n"
+"Also delete these files?\n"
+"\n"
+"%s"
+msgstr ""
+"Следующие файлы используются другими записями в списке!\n"
+"\n"
+"Также удалить эти файлы?\n"
+"\n"
+"%s"
+
+#: src/MovieSelection.py:2665
+msgid "This element belongs to a locked folder and cannot be deleted!"
+msgstr "Этот элемент принадлежит заблокированной папке и не может быть удален!"
+
+#: src/MovieSelection.py:2677
+msgid "Delete failed because the trashcan directory does not exist. Attempt to create it now?"
+msgstr "Не удалось удалить, потому что каталог корзины не существует. Создать его сейчас?"
+
+#: src/MovieSelection.py:2702
+msgid "This folder is locked or contains a locked subfolder, unlock it first!"
+msgstr "Эта папка заблокирована или содержит заблокированную подпапку, сначала разблокируйте ее!"
+
+#: src/MovieSelection.py:2723
+msgid "Directory is not empty! Do you really want to delete it?"
+msgstr "Каталог не пустой! Вы действительно хотите его удалить?"
+
+#: src/MovieSelection.py:2729
+msgid "Cannot delete the parent directory."
+msgstr "Не удалось удалить родительский каталог."
+
+#: src/MovieSelection.py:2810 src/MovieSelection.py:2893
+msgid "Delete failed!"
+msgstr "Удалить не удалось!"
+
+#: src/MovieSelection.py:3056 src/MovieSelection.py:3098
+msgid "Move file(s):"
+msgstr "Переместить файл(ы):"
+
+#: src/MovieSelection.py:3085 src/MovieSelection.py:3108
+msgid ""
+"How to move files:\n"
+"Select some movies with the VIDEO-button, move the cursor on top of the destination directory "
+"and press yellow."
+msgstr ""
+"Как перемещать файлы:\n"
+"Выберите несколько записей кнопкой Видео, переместите курсор на каталог назначения и нажмите "
+"желтую кнопку."
+
+#: src/MovieSelection.py:3132 src/MovieSelection.py:3174
+msgid "Copy file(s):"
+msgstr "Копировать файл(ы):"
+
+#: src/MovieSelection.py:3161 src/MovieSelection.py:3184
+msgid ""
+"How to copy files:\n"
+"Select some movies with the VIDEO-button, move the cursor on top of the destination directory "
+"and press yellow long."
+msgstr ""
+"Как копировать файлы:\n"
+"Выберите несколько записей кнопкой Видео, переместите курсор на каталог назначения и зажмите не "
+"отпуская желтую кнопку."
+
+#: src/MovieSelection.py:3201
+msgid "Move Directory:"
+msgstr "Переместить каталог:"
+
+#: src/MovieSelection.py:3275 src/MovieSelection.py:3281
+msgid "IMDb"
+msgstr "IMDb"
+
+#: src/MovieSelection.py:3277
+msgid "TMDb"
+msgstr "TMDb"
+
+#: src/MovieSelection.py:3279
+msgid "CSFD"
+msgstr "CSFD"
+
+#: src/MovieSelectionMenu.py:85
+msgid "Choose operation"
+msgstr "Выберите действие"
+
+#: src/MovieSelectionMenu.py:91
+msgid "Directory up"
+msgstr "Наверх"
+
+#: src/MovieSelectionMenu.py:93
+msgid "Reload current directory"
+msgstr "Обновить текущий каталог"
+
+#: src/MovieSelectionMenu.py:95 src/MovieSelectionMenu.py:213
+msgid "Playlist Options"
+msgstr "Параметры списка воспроизведения"
+
+#: src/MovieSelectionMenu.py:99 src/MovieSelectionMenu.py:218
+msgid "Add to current Playlist"
+msgstr "Добавить в текущий список воспроизведения"
+
+#: src/MovieSelectionMenu.py:101 src/plugin.py:206 src/plugin.py:227
+msgid "Play last"
+msgstr "Воспроизвести последний фильм"
+
+#: src/MovieSelectionMenu.py:106
+msgid "Cover search"
+msgstr "Поиск обложки"
+
+#: src/MovieSelectionMenu.py:110
+msgid "Directory-Cover search"
+msgstr "Поиск каталога обложек"
+
+#: src/MovieSelectionMenu.py:119 src/MovieSelectionMenu.py:121
+msgid "Delete permanently"
+msgstr "Удалить навсегда"
+
+#: src/MovieSelectionMenu.py:122
+msgid "Empty trashcan"
+msgstr "Очистить корзину"
+
+#: src/MovieSelectionMenu.py:123
+msgid "Go to trashcan"
+msgstr "Перейти в корзину"
+
+#: src/MovieSelectionMenu.py:125
+msgid "Mark all movies"
+msgstr "Отметить все записи"
+
+#: src/MovieSelectionMenu.py:126
+msgid "Remove rogue files"
+msgstr "Удалить поврежденные файлы"
+
+#: src/MovieSelectionMenu.py:128
+msgid "Delete cut file(s)"
+msgstr "Удалить .cut-файлы"
+
+#: src/MovieSelectionMenu.py:130 src/MovieSelectionMenu.py:298
+msgid "Create link"
+msgstr "Создать ссылку"
+
+#: src/MovieSelectionMenu.py:131 src/MovieSelectionMenu.py:252
+msgid "Create directory"
+msgstr "Создать каталог"
+
+#: src/MovieSelectionMenu.py:133
+msgid "(Un-)Lock Directory"
+msgstr "Разблокировать/заблокировать каталог"
+
+#: src/MovieSelectionMenu.py:140
+msgid "Copy Files"
+msgstr "Копировать"
+
+#: src/MovieSelectionMenu.py:141
+msgid "Move Files"
+msgstr "Переместить"
+
+#: src/MovieSelectionMenu.py:143 src/plugin.py:209 src/plugin.py:230
+msgid "Copy File"
+msgstr "Копировать"
+
+#: src/MovieSelectionMenu.py:144 src/plugin.py:204 src/plugin.py:225
+msgid "Move File"
+msgstr "Переместить"
+
+#: src/MovieSelectionMenu.py:148
+msgid "Download Movie Information"
+msgstr "Загрузить информацию о фильме"
+
+#: src/MovieSelectionMenu.py:152
+msgid "Rename selected movie(s)"
+msgstr "Переименовать выбранные фильмы"
+
+#: src/MovieSelectionMenu.py:153
+msgid "Remove cut list marker"
+msgstr "Удалить маркер текущей записи"
+
+#: src/MovieSelectionMenu.py:154
+msgid "Reset marker from selected movie(s)"
+msgstr "Удалить маркер в выбранных фильмов"
+
+#: src/MovieSelectionMenu.py:172
+msgid "Add directory to E2 Bookmarks"
+msgstr "Добавить каталог в закладки E2"
+
+#: src/MovieSelectionMenu.py:174
+msgid "Remove directory from E2 Bookmarks"
+msgstr "Удалить каталог из закладок E2"
+
+#: src/MovieSelectionMenu.py:177
+msgid "Remove selected E2 Bookmark"
+msgstr "Удалить выбранную закладку E2"
+
+#: src/MovieSelectionMenu.py:179
+msgid "Open EMC Bookmark path"
+msgstr "Открыть закладку EMC"
+
+#: src/MovieSelectionMenu.py:181
+msgid "Add directory to EMC Bookmarks"
+msgstr "Добавить каталог в закладки EMC"
+
+#: src/MovieSelectionMenu.py:183
+msgid "Remove directory from EMC Bookmarks"
+msgstr "Удалить каталог из закладок EMC"
+
+#: src/MovieSelectionMenu.py:186
+msgid "Remove selected EMC Bookmark"
+msgstr "Удалить выбранную закладку EMC"
+
+#: src/MovieSelectionMenu.py:188
+msgid "Set permanent sort"
+msgstr "Установить постоянную сортировку"
+
+#: src/MovieSelectionMenu.py:190
+msgid "Remove permanent sort"
+msgstr "Удалить постоянную сортировку"
+
+#: src/MovieSelectionMenu.py:194
+msgid "Remove permanent sort from parent"
+msgstr "Удалить постоянную сортировку из родительского"
+
+#: src/MovieSelectionMenu.py:197
+msgid "EMC Setup"
+msgstr "Настройки EMC"
+
+#: src/MovieSelectionMenu.py:200
+msgid "Choose plugin"
+msgstr "Выберите дополниние"
+
+#: src/MovieSelectionMenu.py:206
+msgid "Choose bookmark"
+msgstr "Выберите закладку"
+
+#: src/MovieSelectionMenu.py:214
+msgid "Show current Playlist"
+msgstr "Показать текущий список воспроизведения"
+
+#: src/MovieSelectionMenu.py:220
+msgid "Play current Playlist"
+msgstr "Воспроизвести текущий список"
+
+#: src/MovieSelectionMenu.py:221
+msgid "Play random current Playlist"
+msgstr "Воспроизвести текущий список в случайном порядке"
+
+#: src/MovieSelectionMenu.py:222
+msgid "Delete current Playlist"
+msgstr "Удалить текущий список воспроизведения"
+
+#: src/MovieSelectionMenu.py:223
+msgid "Playlist Setup"
+msgstr "Настройки списка воспроизведения"
+
+#: src/MovieSelectionMenu.py:251
+msgid "Enter name for new directory:"
+msgstr "Введите имя нового каталога:"
+
+#: src/MovieSelectionMenu.py:258
+#, python-format
+msgid "Directory %s already exists!"
+msgstr "Каталог %s существует!"
+
+#: src/MovieSelectionMenu.py:272
+#, python-format
+msgid "Do you really want to lock the directory %s and all its subfolders?"
+msgstr "Вы действительно хотите заблокировать каталог %s и все его подкаталоги?"
+
+#: src/MovieSelectionMenu.py:274
+#, python-format
+msgid "The directory %s is already locked. Do you want to unlock it and all its subfolders?"
+msgstr "Каталог %s уже заблокирован. Хотите разблокировать его и все подкаталоги?"
+
+#: src/MovieSelectionMenu.py:329
+msgid "Permanently delete all files in trashcan?"
+msgstr "Удалить все файлы из корзины навсегда?"
+
+#: src/MovieSelectionMenu.py:341
+msgid "Movie Selection Menu"
+msgstr "Меню выбора фильма"
+
+#: src/MovieSelectionMenu.py:358
+msgid ""
+"Locate rogue files and remove them? (permanently if no trashcan available, may take a minute or "
+"so)"
+msgstr ""
+"Найти и удалить поврежденные файлы? (Навсегда, если корзина недоступна. Это может занять "
+"некоторое время.)"
+
+#: src/MovieSelectionMenu.py:375
+msgid "Remove all cut file marker permanently?"
+msgstr "Удалить все маркеры из .cut-файла навсегда?"
+
+#: src/MovieSelectionMenu.py:389
+msgid "Remove all marker permanently?"
+msgstr "Удалить все маркеры навсегда?"
+
+#: src/MovieSelectionMenu.py:522
+msgid ""
+"Do you really want to delete the cut file?\n"
+"If you have selected a directory, all cut files within the folder and its subfolders will be "
+"deleted!"
+msgstr ""
+"Вы действительно хотите удалить .cut-файл?\n"
+"Если выбран каталог, то все .cut-файлы внутри каталога и его подкаталогов будут удалены!"
+
+#: src/RogueFileCheck.py:42
+msgid " files\n"
+msgstr " файлы\n"
+
+#: src/RogueFileCheck.py:43
+msgid "No rogue files found."
+msgstr "Поврежденных файлов не найдено."
+
+#: src/RogueFileCheck.py:44
+msgid ""
+"Found rogue files:\n"
+"\n"
+msgstr ""
+"Найдены поврежденные файлы:\n"
+"\n"
+
+#: src/VlcPluginInterface.py:156
+msgid "VLC Server not reachable"
+msgstr "VLC-сервер не доступен"
+
+#: src/configlistext.py:324
+msgid "Really close without saving settings?"
+msgstr "Закрыть без сохранения настроек?"
+
+#: src/plugin.py:55
+msgid "no"
+msgstr "Нет"
+
+#: src/plugin.py:55
+msgid "yes"
+msgstr "Да"
+
+#: src/plugin.py:155
+msgid "No override"
+msgstr "Не перезаписывать"
+
+#: src/plugin.py:156
+msgid "Video-button"
+msgstr "Видео"
+
+#: src/plugin.py:157
+msgid "TV-button"
+msgstr "ТВ"
+
+#: src/plugin.py:158
+msgid "Radio-button"
+msgstr "Радио"
+
+#: src/plugin.py:159
+msgid "Quick-button"
+msgstr "Быстрого доступа"
+
+#: src/plugin.py:160
+msgid "Timeshift-button"
+msgstr "Таймшифт"
+
+#: src/plugin.py:163 src/plugin.py:183 src/plugin.py:192
+msgid "Off"
+msgstr "Выкл."
+
+#: src/plugin.py:164
+msgid "DD.MM.YYYY"
+msgstr "ДД.ММ.ГГГГ"
+
+#: src/plugin.py:165
+msgid "WD DD.MM.YYYY"
+msgstr "День ДД.ММ.ГГГГ"
+
+#: src/plugin.py:167
+msgid "DD.MM.YYYY HH:MM"
+msgstr "ДД.ММ.ГГГГ ЧЧ:ММ"
+
+#: src/plugin.py:168
+msgid "WD DD.MM.YYYY HH:MM"
+msgstr "День ДД.ММ.ГГГГ ЧЧ:ММ"
+
+#: src/plugin.py:170
+msgid "DD.MM. HH:MM"
+msgstr "ДД.ММ. ЧЧ:ММ"
+
+#: src/plugin.py:171
+msgid "WD DD.MM. HH:MM"
+msgstr "День ДД.ММ. ЧЧ:ММ"
+
+#: src/plugin.py:173
+msgid "YYYY/MM/DD"
+msgstr "ГГГГ/ММ/ДД"
+
+#: src/plugin.py:174
+msgid "WD YYYY/MM/DD"
+msgstr "День ГГГГ/ММ/ДД"
+
+#: src/plugin.py:176
+msgid "YYYY/MM/DD HH:MM"
+msgstr "ГГГГ/ММ/ДД ЧЧ:ММ"
+
+#: src/plugin.py:177
+msgid "WD YYYY/MM/DD HH:MM"
+msgstr "День ГГГГ/ММ/ДД ЧЧ:ММ"
+
+#: src/plugin.py:179
+msgid "MM/DD HH:MM"
+msgstr "ММ/ДД ЧЧ:ММ"
+
+#: src/plugin.py:180
+msgid "WD MM/DD HH:MM"
+msgstr "День ММ/ДД ЧЧ:ММ"
+
+#: src/plugin.py:184
+msgid "Description"
+msgstr "Описание"
+
+#: src/plugin.py:185
+msgid "( # )"
+msgstr "( # )"
+
+#: src/plugin.py:186
+msgid "( # / GB )"
+msgstr "( # / Гбайт )"
+
+#: src/plugin.py:187
+msgid "( GB )"
+msgstr "( Гб )"
+
+#: src/plugin.py:189
+msgid "ProgressBar"
+msgstr "Ход события"
+
+#: src/plugin.py:190
+msgid "Percent (%)"
+msgstr "Проценты (%)"
+
+#: src/plugin.py:191
+msgid "Movie Color"
+msgstr "Цвет записи"
+
+#: src/plugin.py:205 src/plugin.py:226
+msgid "Add to Playlist"
+msgstr "Добавить в список воспроизведения"
+
+#: src/plugin.py:207 src/plugin.py:228
+msgid "Cover Search"
+msgstr "Поиск обложки"
+
+#: src/plugin.py:208 src/plugin.py:229
+msgid "Download Movie Info"
+msgstr "Загрузить информацию о фильме"
+
+#: src/plugin.py:210 src/plugin.py:231
+msgid "Open E2 bookmarks"
+msgstr "Открыть закладки E2"
+
+#: src/plugin.py:211
+msgid "Toggle Cover Button"
+msgstr "Переключить кнопку обложки"
+
+#: src/plugin.py:216
+msgid "Sort Options"
+msgstr "Параметры сортировки"
+
+#: src/plugin.py:242
+msgid "down"
+msgstr "Вниз"
+
+#: src/plugin.py:243
+msgid "up/down"
+msgstr "Вверх/Вниз"
+
+#: src/plugin.py:244
+msgid "off"
+msgstr "Выкл."
+
+#: src/plugin.py:246
+msgid "type 1 - OSD + black (#00000000)"
+msgstr "Вид 1 - OSD и черный (#00000000)"
+
+#: src/plugin.py:247
+msgid "type 2 - transparent + white (#FFFFFFFF)"
+msgstr "Вид 2 - прозрачный и белый (#FFFFFFFF)"
+
+#: src/plugin.py:248
+msgid "type 3 - OSD + black (#00FFFFFF)"
+msgstr "Вид 3 - OSD и черный (#00FFFFFF)"
+
+#: src/plugin.py:249
+msgid "type 4 - transparent + black (#FF000000)"
+msgstr "Вид 4 - прозрачный и черный (#FF000000)"
+
+#: src/plugin.py:252
+msgid "E2 Bookmarks"
+msgstr "Закладки E2"
+
+#: src/plugin.py:253
+msgid "EMC Bookmarks"
+msgstr "Закладки EMC"
+
+#: src/plugin.py:254
+msgid "Both"
+msgstr "Закладки E2 и EMC"
+
+#: src/plugin.py:257
+msgid "Standby"
+msgstr "Режим ожидания"
+
+#: src/plugin.py:258
+msgid "DeepStandby"
+msgstr "Выключить"
+
+#: src/plugin.py:259
+msgid "Reboot"
+msgstr "Перегрузить"
+
+#: src/plugin.py:260
+msgid "E2 Restart"
+msgstr "Перегрузить GUI"
+
+#: src/plugin.py:262
+msgid "HomeEnd"
+msgstr "Начало/Конец"
+
+#: src/plugin.py:263
+msgid "Skip"
+msgstr "Пропустить"
+
+#: src/plugin.py:264
+msgid "Change Folder"
+msgstr "Сменить каталог"
+
+#: src/plugin.py:268
+msgid "Date sort descending (D-)"
+msgstr "По дате, по убыванию (D-)"
+
+#: src/plugin.py:268 src/plugin.py:274
+msgid "Date sort"
+msgstr "Хронологически"
+
+#: src/plugin.py:269
+msgid "Alpha sort ascending (AZ)"
+msgstr "По алфавиту, по возрастанию (AZ)"
+
+#: src/plugin.py:269 src/plugin.py:275
+msgid "Alpha sort"
+msgstr "А-Я"
+
+#: src/plugin.py:270
+msgid "Alpha sort ascending, Date descending (AZD-)"
+msgstr "По алфавиту, по возрастанию. Новые сверху (AZD-)"
+
+#: src/plugin.py:270 src/plugin.py:276
+msgid "Alpha sort date newest"
+msgstr "А-Я+ДАТА"
+
+#: src/plugin.py:271
+msgid "Alpha sort ascending with meta (AZM)"
+msgstr "По алфавиту, с учетом метаданных (AZM)"
+
+#: src/plugin.py:271 src/plugin.py:277
+msgid "Alpha sort meta"
+msgstr "А-Я+МЕТА"
+
+#: src/plugin.py:272
+msgid "Alpha sort ascending with meta, Date descending (AZMD-)"
+msgstr "По алфавиту, с учетом метаданных. Новые сверху (AZMD-)"
+
+#: src/plugin.py:272 src/plugin.py:278
+msgid "Alpha sort meta date newest"
+msgstr "А-Я+МЕТА+ДАТА-"
+
+#: src/plugin.py:273
+msgid "Progress sort ascending (P+)"
+msgstr "Сортировка по возрастанию прогресса (P+)"
+
+#: src/plugin.py:273 src/plugin.py:279
+msgid "Progress sort"
+msgstr "Сортировка прогресса"
+
+#: src/plugin.py:274
+msgid "Date sort ascending (D+)"
+msgstr "По дате, по возрастанию (D+)"
+
+#: src/plugin.py:275
+msgid "Alpha sort descending (ZA)"
+msgstr "По алфавиту, по убыванию (ZA)"
+
+#: src/plugin.py:276
+msgid "Alpha sort descending, Date ascending (ZAD+)"
+msgstr "По алфавиту, по убыванию. Старые сверху (ZAD+)"
+
+#: src/plugin.py:277
+msgid "Alpha sort descending with meta (ZAM)"
+msgstr "По алфавиту, с учетом метаданных (ZAM)"
+
+#: src/plugin.py:278
+msgid "Alpha sort descending with meta, Date ascending (ZAMD+)"
+msgstr "По алфавиту, с учетом метаданных. Старые сверху (ZAMD+)"
+
+#: src/plugin.py:279
+msgid "Progress sort descending (P-)"
+msgstr "Сортировка по убыванию прогресса (P-)"
+
+#: src/plugin.py:328
+msgid "after standby"
+msgstr "После режима ожидания"
+
+#: src/plugin.py:337
+msgid "never hide"
+msgstr "Никогда не скрывать"
+
+#: src/plugin.py:337
+msgid "hide live TV"
+msgstr "Скрыть трансляцию"
+
+#: src/plugin.py:337
+msgid "hide live TV and timeshift"
+msgstr "Скрыть трансляцию и таймшифт"
+
+#: src/plugin.py:337
+msgid "hide playback"
+msgstr "Скрыть воспроизведение"
+
+#: src/plugin.py:337
+msgid "always hide"
+msgstr "Всегда скрывать"
+
+#: src/plugin.py:339
+msgid "stop service"
+msgstr "Остановить прием сигнала"
+
+#: src/plugin.py:339
+msgid "single pixel TV, muted"
+msgstr "Свернуть изображение и отключить звук"
+
+#: src/plugin.py:341
+msgid "Show info on the left"
+msgstr "Показать сведения слева"
+
+#: src/plugin.py:341
+msgid "Show info on the left (with MiniTV)"
+msgstr "Показать сведения слева (с PiG)"
+
+#: src/plugin.py:341
+msgid "Show info at the bottom"
+msgstr "Показать сведения снизу"
+
+#: src/plugin.py:341
+msgid "Show info at the bottom (with MiniTV)"
+msgstr "Показать сведения снизу (с PiG)"
+
+#: src/plugin.py:345
+msgid "left from Name"
+msgstr "Слева от имени"
+
+#: src/plugin.py:345
+msgid "right from Name"
+msgstr "Справа от имени"
+
+#: src/plugin.py:352 src/plugin.py:400
+msgid "center"
+msgstr "В центре"
+
+#: src/plugin.py:352 src/plugin.py:400
+msgid "right"
+msgstr "Справа"
+
+#: src/plugin.py:352 src/plugin.py:400
+msgid "left"
+msgstr "Слева"
+
+#: src/plugin.py:357
+msgid "Yes, without Message"
+msgstr "Да, без уведомления"
+
+#: src/plugin.py:357
+msgid "Yes, with Message"
+msgstr "Да, с уведомлением"
+
+#: src/plugin.py:361
+msgid "Yes, only extra title"
+msgstr "Да, только доп. заголовки"
+
+#: src/plugin.py:361
+msgid "Yes, everything"
+msgstr "Да, все"
+
+#: src/plugin.py:379
+msgid ""
+"ATTENTION\n"
+"\n"
+"This option will move all finished movies in Movie Home automatically to Your trashcan at the "
+"given time.\n"
+"At next trashcan cleanup all movies will be deleted.\n"
+"\n"
+"Confirm this with the blue key followed by the green key."
+msgstr ""
+"ВНИМАНИЕ\n"
+"\n"
+"Все просмотренные видео в каталоге \"Домой\" в заданное время будут перемещены в корзину. \n"
+"При следующей очистки корзины все видеофайлы будут удалены.\n"
+"\n"
+"Подтвердите выбор последовательным нажатием синей и зеленой кнопок."
+
+#: src/plugin.py:394
+msgid "always"
+msgstr "Всегда"
+
+#: src/plugin.py:394
+msgid "after reload list"
+msgstr "После обновления списка"
+
+#: src/plugin.py:394
+msgid "only initially"
+msgstr "Только в первый раз"
+
+#: src/plugin.py:402 src/plugin.py:406
+msgid "White"
+msgstr "Белый"
+
+#: src/plugin.py:402 src/plugin.py:406
+msgid "Light grey"
+msgstr "Светло-серый"
+
+#: src/plugin.py:402 src/plugin.py:406
+msgid "Grey"
+msgstr "Серый"
+
+#: src/plugin.py:402 src/plugin.py:406
+msgid "Dark grey"
+msgstr "Темно-серый"
+
+#: src/plugin.py:402 src/plugin.py:406
+msgid "Black"
+msgstr "Черный"
+
+#: src/plugin.py:403
+msgid "Orange"
+msgstr "Оранжевый"
+
+#: src/plugin.py:403
+msgid "Light orange"
+msgstr "Светло-оранжевый"
+
+#: src/plugin.py:403
+msgid "Dark orange"
+msgstr "Темно-оранжевый"
+
+#: src/plugin.py:404
+msgid "Green"
+msgstr "Зеленый"
+
+#: src/plugin.py:404
+msgid "Light green"
+msgstr "Светло-зеленый"
+
+#: src/plugin.py:404
+msgid "Dark green"
+msgstr "Темно-зеленый"
+
+#: src/plugin.py:405
+msgid "Red"
+msgstr "Красный"
+
+#: src/plugin.py:405
+msgid "Light red"
+msgstr "Светло-красный"
+
+#: src/plugin.py:405
+msgid "Dark red"
+msgstr "Темно-красный"
+
+#: src/plugin.py:410
+#, python-format
+msgid "%d second"
+msgid_plural "%d seconds"
+msgstr[0] "%d секунда"
+msgstr[1] "%d секунды"
+msgstr[2] "%d секунд"
+
+#: src/plugin.py:419
+msgid "Day"
+msgstr "День"
+
+#: src/plugin.py:422
+msgid "Days"
+msgstr "Дн."
+
+#: src/plugin.py:427
+msgid "Week"
+msgstr "Неделя"
+
+#: src/plugin.py:430
+msgid "Weeks"
+msgstr "Нед."
+
+#: src/plugin.py:435
+msgid "Month"
+msgstr "Месяц"
+
+#: src/plugin.py:438
+msgid "Months"
+msgstr "Месяцы"
+
+#: src/plugin.py:444
+msgid "No limit"
+msgstr "Без ограничений"
+
+#: src/plugin.py:474
+msgid "IMDb Search"
+msgstr "IMDb поиск"
+
+#: src/plugin.py:474
+msgid "EMC-TMDB Info"
+msgstr "Описание в EMC-TMDB"
+
+#: src/plugin.py:474
+msgid "TMDB Info"
+msgstr "Описание в TMDB"
+
+#: src/plugin.py:474
+msgid "TMBD Info"
+msgstr "Описание в TMBD"
+
+#: src/plugin.py:474
+msgid "CSFD Info"
+msgstr "Описание в CSFD"
+
+#: src/plugin.py:569
+msgid "configuration"
+msgstr "настройки"
+
+#: src/plugin.py:572 src/plugin.py:575
+msgid "movie manipulation list"
+msgstr "Список манипуляций"
