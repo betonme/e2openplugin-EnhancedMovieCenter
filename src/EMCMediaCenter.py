@@ -315,22 +315,22 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarTimeshift, InfoBar
 				entry = idx, x
 				choices.append(entry)
 			f.close()
-		act = open("/proc/stb/video/policy").read()[:-1]
-		for x in choices:
-			if act == x[1]:
-				actIdx = x[0]
-		if actIdx == len(choices):
-			actIdx = 0
-		for x in choices:
-			if x[0] == actIdx + 1:
-				newChoice = x[1]
-		try:
 			if os.path.exists("/proc/stb/video/policy"):
-				f = open("/proc/stb/video/policy", "w")
-				f.write(newChoice)
-				f.close()
-		except Exception, e:
-			print("[EMCMediaCenter] CoolAVSwitch exception:" + str(e))
+				act = open("/proc/stb/video/policy").read()[:-1]
+				for x in choices:
+					if act == x[1]:
+						actIdx = x[0]
+				if actIdx == len(choices):
+					actIdx = 0
+				for x in choices:
+					if x[0] == actIdx + 1:
+						newChoice = x[1]
+				try:
+					f = open("/proc/stb/video/policy", "w")
+					f.write(newChoice)
+					f.close()
+				except Exception, e:
+					print("[EMCMediaCenter] CoolAVSwitch exception:" + str(e))
 
 	def getCurrentEvent(self):
 		service = self.currentlyPlayedMovie()
