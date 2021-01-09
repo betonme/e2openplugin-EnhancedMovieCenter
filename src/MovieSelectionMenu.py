@@ -197,7 +197,7 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 
 			#self.menu.append((_("Open shell script menu"), boundFunction(self.close, "oscripts")))
 			self.menu.append((_("EMC Setup"), boundFunction(self.execPlugin, emcsetup)))
-			self.menu.append((_("EMC Help"), boundFunction(self.execPlugin, 'emchelp')))
+			self.menu.append((_("EMC Help"), boundFunction(self.execPlugin, None, True)))
 
 		elif menumode == "plugins":
 			self["title"] = StaticText(_("Choose plugin"))
@@ -429,8 +429,8 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 	def renameMovies(self):
 		self.close("rename")
 
-	def execPlugin(self, plugin):
-		if plugin == "emchelp":
+	def execPlugin(self, plugin, help=False):
+		if help:
 			self.session.open(HelpMenu, self._helplist)
 		else:
 			# Very bad but inspect.getargspec won't work
