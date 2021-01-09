@@ -32,6 +32,7 @@ from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Screens.InputBox import InputBox
 from Screens.LocationBox import LocationBox
+from Screens.HelpMenu import HelpMenu
 from Tools.BoundFunction import boundFunction
 from Tools.Notifications import AddPopup
 from enigma import getDesktop
@@ -69,7 +70,7 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 		</widget>
 	</screen>"""
 
-	def __init__(self, session, menumode, mselection, mlist, service, selections, currentPath, playlist=False):
+	def __init__(self, session, menumode, mselection, mlist, service, selections, currentPath, playlist=False, _helplist=None):
 		Screen.__init__(self, session)
 		self.mode = menumode
 		self.mselection = mselection
@@ -79,6 +80,7 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 		self.currentPath = currentPath
 		self.plist = playlist
 		self.reloadafterclose = False
+		self._helplist = _helplist
 
 		self.menu = []
 		if menumode == "normal":
@@ -195,6 +197,7 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 
 			#self.menu.append((_("Open shell script menu"), boundFunction(self.close, "oscripts")))
 			self.menu.append((_("EMC Setup"), boundFunction(self.execPlugin, emcsetup)))
+			self.menu.append((_("EMC Help"), boundFunction(self.execPlugin, 'emchelp')))
 
 		elif menumode == "plugins":
 			self["title"] = StaticText(_("Choose plugin"))
@@ -427,14 +430,16 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 		self.close("rename")
 
 	def execPlugin(self, plugin):
-		# Very bad but inspect.getargspec won't work
-		# Plugins should always be designed to accept additional parameters!
-		try:
-			plugin(self.session, self.service, self.selections)
-		except:
-			plugin(session=self.session, service=self.service)
-
-		#self.close("reload")
+		if plugin == "emchelp":
+			self.session.open(HelpMenu, self._helplist)
+		else:
+			# Very bad but inspect.getargspec won't work
+			# Plugins should always be designed to accept additional parameters!
+			try:
+				plugin(self.session, self.service, self.selections)
+			except:
+				plugin(session=self.session, service=self.service)
+			#self.close("reload")
 
 	def addDirToE2Bookmarks(self, path):
 		if path and self.addE2Bookmark( path ) \

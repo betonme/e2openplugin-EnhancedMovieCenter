@@ -673,6 +673,8 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 
 		helptext = self.initButtons()
 
+		self._helplist = []
+
 		self["actions"] = HelpableActionMap(self, "PluginMovieSelectionActions",
 			{
 				"EMCOK":		(self.entrySelected,		_("Play selected movie(s)")),
@@ -726,6 +728,40 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			}, prio=-3)
 			# give them a little more priority to win over baseclass buttons
 		self["actions"].csel = self
+
+		self._helplist.append((self["actions"], "PluginMovieSelectionActions", [("EMCOK",		_("Play selected movie(s)"))]))
+		self._helplist.append((self["actions"], "PluginMovieSelectionActions", [("EMCPLAY",		_("Play All"))]))
+		self._helplist.append((self["actions"], "PluginMovieSelectionActions", [("EMCSHUFFLE",		_("Shuffle All"))]))
+		self._helplist.append((self["actions"], "PluginMovieSelectionActions", [("EMCEXIT",		_("Close EMC"))]))
+		self._helplist.append((self["actions"], "PluginMovieSelectionActions", [("EMCEXITpowerdown",	_("Close EMC and do power button action"))]))
+		self._helplist.append((self["actions"], "PluginMovieSelectionActions", [("EMCMENU",		_("Open menu"))]))
+		self._helplist.append((self["actions"], "PluginMovieSelectionActions", [("EMCINFO",		_("Show event info"))]))
+		self._helplist.append((self["actions"], "PluginMovieSelectionActions", [("EMCINFOL",		_("IMDBSearch / EMC-TMDBInfo / TMDBInfo / TMBDInfo / CSFDInfo"))]))
+		self._helplist.append((self["actions"], "PluginMovieSelectionActions", [("EMCRed",		helptext[0])]))	#redhelptext
+		self._helplist.append((self["actions"], "PluginMovieSelectionActions", [("EMCGREEN",		helptext[2])]))	#greenhelptext
+		self._helplist.append((self["actions"], "PluginMovieSelectionActions", [("EMCYELLOW",		helptext[4])]))	#yellowhelptext
+		self._helplist.append((self["actions"], "PluginMovieSelectionActions", [("EMCBLUE",		helptext[6])]))	#bluehelptext
+		self._helplist.append((self["actions"], "PluginMovieSelectionActions", [("EMCREDL",		helptext[1])]))	#redlonghelptext
+		self._helplist.append((self["actions"], "PluginMovieSelectionActions", [("EMCGREENL",		helptext[3])]))	#greenlonghelptext
+		self._helplist.append((self["actions"], "PluginMovieSelectionActions", [("EMCYELLOWL",		helptext[5])]))	#yellowlonghelptext
+		self._helplist.append((self["actions"], "PluginMovieSelectionActions", [("EMCBlueL",		helptext[7])]))	#bluelonghelptext
+		self._helplist.append((self["actions"], "PluginMovieSelectionActions", [("EMCLeft",		_("Move cursor page up"))]))
+		self._helplist.append((self["actions"], "PluginMovieSelectionActions", [("EMCRight",		_("Move cursor page down"))]))
+		self._helplist.append((self["actions"], "PluginMovieSelectionActions", [("EMCUp",		_("Move cursor up"))]))
+		self._helplist.append((self["actions"], "PluginMovieSelectionActions", [("EMCDown",		_("Move cursor down"))]))
+		self._helplist.append((self["actions"], "PluginMovieSelectionActions", [("EMCBqtPlus",		_("Move cursor to the top / Move cursor x entries up / Switch Folders in Movie Home (up)"))]))
+		self._helplist.append((self["actions"], "PluginMovieSelectionActions", [("EMCBqtMnus",		_("Move cursor to the end / Move cursor x entries down / Switch Folders in Movie Home (down)"))]))
+		self._helplist.append((self["actions"], "PluginMovieSelectionActions", [("EMCArrowNext",	_("Directory forward"))]))
+		self._helplist.append((self["actions"], "PluginMovieSelectionActions", [("EMCArrowPrevious",	_("Directory back"))]))
+		self._helplist.append((self["actions"], "PluginMovieSelectionActions", [("EMCVIDEOB",		_("Toggle service selection"))]))
+		self._helplist.append((self["actions"], "PluginMovieSelectionActions", [("EMCVIDEOL",		_("Remove service selection"))]))
+		self._helplist.append((self["actions"], "PluginMovieSelectionActions", [("EMCAUDIO",		_("Available plugins menu"))]))
+		self._helplist.append((self["actions"], "PluginMovieSelectionActions", [("EMCMENUL",		_("Available plugins menu"))]))
+		self._helplist.append((self["actions"], "PluginMovieSelectionActions", [("EMCTV",		_("Reload movie file list"))]))
+		self._helplist.append((self["actions"], "PluginMovieSelectionActions", [("EMCTVL",		_("Open Timer List"))]))
+		self._helplist.append((self["actions"], "PluginMovieSelectionActions", [("EMCRADIO",		_("Toggle viewed / not viewed"))]))
+		self._helplist.append((self["actions"], "PluginMovieSelectionActions", [("EMCTEXT",		_("Start / end multiselection"))]))
+		self._helplist.append((self["actions"], "PluginMovieSelectionActions", [("0",			_("Movie home"))]))
 
 		HelpableScreen.__init__(self)
 
@@ -1297,7 +1333,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		self.savedIndex = self.getCurrentIndex()
 		#if not self["list"].currentSelIsPlayable(): current = None
 		self.checkHideMiniTV_beforeFullscreen()
-		self.session.openWithCallback(self.menuCallback, MovieMenu, "normal", self, self["list"], current, self["list"].makeSelectionList(), self.currentPath, playlist)
+		self.session.openWithCallback(self.menuCallback, MovieMenu, "normal", self, self["list"], current, self["list"].makeSelectionList(), self.currentPath, playlist, self._helplist)
 
 	def openMenuPlugins(self):
 		# first we check if playlist exists

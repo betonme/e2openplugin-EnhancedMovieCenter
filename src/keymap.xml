@@ -74,19 +74,18 @@
 		<key id="KEY_BLUE" mapto="EMCBLUE" flags="b" />
 		<key id="KEY_BLUE" mapto="EMCBlueL" flags="l" />
 
-		<key id="KEY_MEDIA" mapto="EMCVIDEOB" flags="b" />
 		<key id="KEY_VIDEO" mapto="EMCVIDEOB" flags="b" />
+		<key id="KEY_MEDIA" mapto="EMCVIDEOB" flags="b" />
 		<key id="KEY_PVR" mapto="EMCVIDEOB" flags="b" />
 		<key id="KEY_FILE" mapto="EMCVIDEOB" flags="m" />
-		<key id="KEY_MEDIA" mapto="EMCVIDEOL" flags="l" />
 		<key id="KEY_VIDEO" mapto="EMCVIDEOL" flags="l" />
+		<key id="KEY_MEDIA" mapto="EMCVIDEOL" flags="l" />
 		<key id="KEY_PVR" mapto="EMCVIDEOL" flags="l" />
 		<key id="KEY_AUDIO" mapto="EMCAUDIO" flags="m" />
 		<key id="KEY_STOP" mapto="EMCAUDIO" flags="m" />
 		<key id="KEY_TV" mapto="EMCTV" flags="b" />
 		<key id="KEY_TV" mapto="EMCTVL" flags="l" />
-		<key id="KEY_RADIO" mapto="EMCRADIO" flags="m" />
-		<key id="KEY_SUBTITLE" mapto="EMCRADIO" flags="m" />
+		<key id="KEY_RECORD" mapto="EMCRADIO" flags="m" />
 		<key id="KEY_TEXT" mapto="EMCTEXT" flags="m" />
 		<key id="KEY_LEFT" mapto="EMCLeft" flags="mr" />
 		<key id="KEY_RIGHT" mapto="EMCRight" flags="mr" />
