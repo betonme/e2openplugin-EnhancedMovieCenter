@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: EMC - betonme git\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-04-02 23:08+0200\n"
-"PO-Revision-Date: 2018-03-13 08:28+0200\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2021-01-24 15:11+0200\n"
 "Last-Translator: Vytenis P. <vyteniui@gmail.com>\n"
 "Language-Team: Vytenis P. <vyteniui@gmail.com>\n"
 "Language: lt\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.0.6\n"
+"X-Generator: Poedit 2.4.2\n"
 "X-Poedit-KeywordsList: _;gettext;gettext_noop;_\n"
 "X-Poedit-Basepath: ..\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n"
@@ -18,339 +18,348 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: src\n"
 
-#: EMCCoverSearch.py:48
+#: src/EMCCoverSearch.py:47
 msgid ""
 "themoviedb.org for movies + thetvdb.com for series (e.g. 'S01E01' in title)"
 msgstr ""
 "themoviedb.org - filmams, thetvdb.com - serialams (pvz. 'S01E01' pavadinime)"
 
-#: EMCCoverSearch.py:49 EMCCoverSearch.py:53
+#: src/EMCCoverSearch.py:48 src/EMCCoverSearch.py:52
 msgid "overall"
 msgstr "visuotinis"
 
-#: EMCCoverSearch.py:49 EMCCoverSearch.py:53
+#: src/EMCCoverSearch.py:48 src/EMCCoverSearch.py:52
 msgid "two contiguous"
 msgstr "du gretutiniai"
 
-#: EMCCoverSearch.py:49 EMCCoverSearch.py:53
+#: src/EMCCoverSearch.py:48 src/EMCCoverSearch.py:52
 msgid "three contiguous"
 msgstr "trys gretutiniai"
 
-#: EMCCoverSearch.py:52
+#: src/EMCCoverSearch.py:51
 msgid "imdb.com"
 msgstr "imdb.com"
 
-#: EMCCoverSearch.py:52
+#: src/EMCCoverSearch.py:51
 msgid "thetvdb.com"
 msgstr "thetvdb.com"
 
-#: EMCCoverSearch.py:52
+#: src/EMCCoverSearch.py:51
 msgid "csfd.cz"
 msgstr "csfd.cz"
 
-#: EMCCoverSearch.py:52
+#: src/EMCCoverSearch.py:51
 msgid "all"
 msgstr "visi"
 
-#: EMCCoverSearch.py:52
+#: src/EMCCoverSearch.py:51
 msgid "themoviedb.org"
 msgstr "themoviedb.org"
 
-#: EMCCoverSearch.py:52
+#: src/EMCCoverSearch.py:51
 msgid "themoviedb.org + thetvdb.com"
 msgstr "themoviedb.org + thetvdb.com"
 
-#: EMCCoverSearch.py:52
+#: src/EMCCoverSearch.py:51
 msgid "themoviedb.org + thetvdb.com + imdb.com"
 msgstr "themoviedb.org + thetvdb.com + imdb.com"
 
-#: EMCCoverSearch.py:53
+#: src/EMCCoverSearch.py:52
 msgid "every single one"
 msgstr "kiekvienas atskiras"
 
-#: EMCCoverSearch.py:54 EMCCoverSearch.py:55
+#: src/EMCCoverSearch.py:53 src/EMCCoverSearch.py:54
 msgid "no limit"
 msgstr "neribojant"
 
-#: EMCCoverSearch.py:55
+#: src/EMCCoverSearch.py:54
 msgid "standard cover"
 msgstr "paprastas viršelis"
 
-#: EMCCoverSearch.py:56
+#: src/EMCCoverSearch.py:55
 msgid ".../foldername/foldername.jpg"
 msgstr ".../katalogo_pavad/katalogo_pavad.jpg"
 
-#: EMCCoverSearch.py:56
+#: src/EMCCoverSearch.py:55
 msgid ".../foldername.jpg"
 msgstr ".../katalogo_pavad.jpg"
 
-#: EMCCoverSearch.py:56
+#: src/EMCCoverSearch.py:55
 msgid ".../foldername/folder.jpg"
 msgstr ".../katalogo_pavad/katlogas.jpg"
 
-#: EMCCoverSearch.py:209
+#: src/EMCCoverSearch.py:177
 msgid "Search"
 msgstr "Paieška"
 
-#: EMCCoverSearch.py:211 MovieSelection.py:2358 MovieSelectionMenu.py:108
-#: MovieSelectionMenu.py:110 plugin.py:170 plugin.py:191
+#: src/EMCCoverSearch.py:179 src/MovieSelection.py:2482
+#: src/MovieSelectionMenu.py:112 src/MovieSelectionMenu.py:114
+#: src/plugin.py:203 src/plugin.py:224
 msgid "Delete"
 msgstr "Pašalinti"
 
-#: EMCCoverSearch.py:221
+#: src/EMCCoverSearch.py:189
 msgid "Press green button to start search"
 msgstr "Paieškai pradėti, spauskite 'ŽALIĄ' mygtuką"
 
-#: EMCCoverSearch.py:223
+#: src/EMCCoverSearch.py:191
 msgid "Manage Cover"
 msgstr "Tvarkyti viršelius"
 
-#: EMCCoverSearch.py:224 MovieInfo.py:270 MovieInfo.py:439
+#: src/EMCCoverSearch.py:192 src/EnhancedMovieCenter.py:253
+#: src/MovieInfo.py:322 src/plugin.py:569
 msgid "Setup"
 msgstr "Sąranka"
 
-#: EMCCoverSearch.py:225
+#: src/EMCCoverSearch.py:193
 msgid "Single search"
 msgstr "Atskira paieška"
 
-#: EMCCoverSearch.py:241
+#: src/EMCCoverSearch.py:210
 msgid "EMC Cover search"
 msgstr "EMC viršelių paieška"
 
-#: EMCCoverSearch.py:271 EMCCoverSearch.py:281 EMCCoverSearch.py:339
-#: EMCCoverSearch.py:664
+#: src/EMCCoverSearch.py:240 src/EMCCoverSearch.py:250
+#: src/EMCCoverSearch.py:308 src/EMCCoverSearch.py:633
 msgid "Exist"
 msgstr "Yra"
 
-#: EMCCoverSearch.py:274 EMCCoverSearch.py:281 EMCCoverSearch.py:401
-#: EMCCoverSearch.py:426 EMCCoverSearch.py:664
+#: src/EMCCoverSearch.py:243 src/EMCCoverSearch.py:250
+#: src/EMCCoverSearch.py:370 src/EMCCoverSearch.py:395
+#: src/EMCCoverSearch.py:633
 msgid "N/A"
 msgstr "N/D"
 
-#: EMCCoverSearch.py:281
+#: src/EMCCoverSearch.py:250
 msgid "Total"
 msgstr "Iš viso"
 
-#: EMCCoverSearch.py:319 EMCCoverSearch.py:342 EMCCoverSearch.py:431
+#: src/EMCCoverSearch.py:288 src/EMCCoverSearch.py:311
+#: src/EMCCoverSearch.py:400
 #, python-format
 msgid "Exist: %s"
 msgstr "Yra: %s"
 
-#: EMCCoverSearch.py:320 EMCCoverSearch.py:341 EMCCoverSearch.py:430
+#: src/EMCCoverSearch.py:289 src/EMCCoverSearch.py:310
+#: src/EMCCoverSearch.py:399
 #, python-format
 msgid "No Cover: %s"
 msgstr "Nėra viršelio: %s"
 
-#: EMCCoverSearch.py:321 EMCCoverSearch.py:343 EMCCoverSearch.py:432
+#: src/EMCCoverSearch.py:290 src/EMCCoverSearch.py:312
+#: src/EMCCoverSearch.py:401
 #, python-format
 msgid "Download: %s"
 msgstr "Parsisiųsti: %s"
 
-#: EMCCoverSearch.py:322
+#: src/EMCCoverSearch.py:291
 msgid "Searching..."
 msgstr "Ieškoma..."
 
-#: EMCCoverSearch.py:328
+#: src/EMCCoverSearch.py:297
 msgid "Creating Search List.."
 msgstr "Kuriamas paieškos sąrašas..."
 
-#: EMCCoverSearch.py:370
+#: src/EMCCoverSearch.py:339
 msgid "No Movies found!"
 msgstr "Filmų nerasta!"
 
-#: EMCCoverSearch.py:428
+#: src/EMCCoverSearch.py:397
 msgid "from"
 msgstr "iš"
 
-#: EMCCoverSearch.py:441
+#: src/EMCCoverSearch.py:410
 msgid "movies in"
 msgstr "filmai"
 
-#: EMCCoverSearch.py:441
+#: src/EMCCoverSearch.py:410
 msgid "sec found. Avg. Speed:"
 msgstr "sek. rasta. Vid. greitis:"
 
-#: EMCCoverSearch.py:441
+#: src/EMCCoverSearch.py:410
 msgid "sec."
 msgstr "sek."
 
-#: EMCCoverSearch.py:494
+#: src/EMCCoverSearch.py:463
 #, python-format
 msgid "%s removed."
 msgstr "%s pašalinta."
 
-#: EMCCoverSearch.py:496
+#: src/EMCCoverSearch.py:465
 #, python-format
 msgid "%s not removed. Write protect?"
-msgstr "%s nepašalinta. Uždrausta redaguoti?"
+msgstr "%s nepašalinta. Rašymo apsauga?"
 
-#: EMCCoverSearch.py:538
+#: src/EMCCoverSearch.py:507
 msgid "Settings have been Saved."
 msgstr "Nustatymai išsaugoti."
 
-#: EMCCoverSearch.py:546
+#: src/EMCCoverSearch.py:515
 msgid "Cover is Saved."
 msgstr "Viršelis išsaugotas."
 
-#: EMCCoverSearch.py:701
+#: src/EMCCoverSearch.py:690
 msgid "EMC Cover search setup"
 msgstr "EMC viršelių paieškos sąranka"
 
-#: EMCCoverSearch.py:703 EMCPlayList.py:132 EMCPlayList.py:483
-#: EMCPlayList.py:556 EnhancedMovieCenter.py:278 MovieInfo.py:736
-#: MovieRetitle.py:32
+#: src/EMCCoverSearch.py:692 src/EMCPlayList.py:132 src/EMCPlayList.py:457
+#: src/EMCPlayList.py:542 src/EnhancedMovieCenter.py:269 src/MovieInfo.py:637
+#: src/MovieRetitle.py:32
 msgid "Cancel"
 msgstr "Atšaukti"
 
-#: EMCCoverSearch.py:704 MovieInfo.py:737
-msgid "OK"
-msgstr "Gerai"
+#: src/EMCCoverSearch.py:693 src/EMCPlayList.py:131 src/EMCPlayList.py:458
+#: src/EnhancedMovieCenter.py:270 src/MovieInfo.py:324 src/MovieRetitle.py:31
+msgid "Save"
+msgstr "Išsaugoti"
 
-#: EMCCoverSearch.py:717
+#: src/EMCCoverSearch.py:710
 msgid "Search Site:"
 msgstr "Ieškoti svetainėje:"
 
-#: EMCCoverSearch.py:718 EMCCoverSearch.py:723
+#: src/EMCCoverSearch.py:711 src/EMCCoverSearch.py:716
 msgid "Search filter for matching existing terms in the title:"
-msgstr "Terminų pavadinime atitikimo filtras:"
+msgstr "Terminų pavadinime atitikimo paieškos filtras:"
 
-#: EMCCoverSearch.py:719
+#: src/EMCCoverSearch.py:712
 msgid "thetvdb cover number (standard cover):"
 msgstr "thetvdb viršelių skaičius (įprastiniai viršeliai):"
 
-#: EMCCoverSearch.py:720
+#: src/EMCCoverSearch.py:713
 msgid "Preferred cover resolution (if possible):"
 msgstr "Pageidautina viršelių rezoliucija (jei galima):"
 
-#: EMCCoverSearch.py:721
+#: src/EMCCoverSearch.py:714
 msgid "Save description to movie.txt file:"
 msgstr "Išsaugoti aprašymą movie.txt faile:"
 
-#: EMCCoverSearch.py:722
+#: src/EMCCoverSearch.py:715
 msgid "Single Search:"
 msgstr "Atskira paieška:"
 
-#: EMCCoverSearch.py:727
+#: src/EMCCoverSearch.py:720
 msgid " (without counting cover range)"
 msgstr " (neskaitant viršelių grupės)"
 
-#: EMCCoverSearch.py:728
+#: src/EMCCoverSearch.py:721
 msgid "thetvdb cover range per title:"
 msgstr "thetvdb viršelių apimtis kūriniui:"
 
-#: EMCCoverSearch.py:729
+#: src/EMCCoverSearch.py:722
 #, python-format
 msgid "Search Results per Search Site%s:"
 msgstr "Paieškos rezultatai svetainėje %s:"
 
-#: EMCCoverSearch.py:730
+#: src/EMCCoverSearch.py:723
 msgid "Set path to save the folder Cover:"
-msgstr "Nurodykite kelią į viršelių katalogą:"
+msgstr "Nurodykite kelią į katalogą viršeliams:"
 
-#: EMCCoverSearch.py:787
+#: src/EMCCoverSearch.py:783
 #, python-format
 msgid "Searching for %s"
 msgstr "Ieškoma  %s"
 
-#: EMCCoverSearch.py:803
+#: src/EMCCoverSearch.py:800
 msgid "EMC Cover Selecter"
 msgstr "EMC viršelių parinkimas"
 
-#: EMCCoverSearch.py:1084
+#: src/EMCCoverSearch.py:1081
 msgid "found"
 msgstr "rasta"
 
-#: EMCCoverSearch.py:1084
+#: src/EMCCoverSearch.py:1081
 msgid "covers in"
 msgstr "viršeliai"
 
-#: EMCCoverSearch.py:1084
+#: src/EMCCoverSearch.py:1081
 msgid "sec"
 msgstr "sek."
 
-#: EMCCoverSearch.py:1156
+#: src/EMCCoverSearch.py:1157
 msgid "Can not save "
 msgstr "Nepavyksta išsaugoti "
 
-#: EMCCoverSearch.py:1170
+#: src/EMCCoverSearch.py:1171
 msgid "Can not save Cover in "
 msgstr "Nepavyksta išsaugoti viršelio į "
 
-#: EMCCoverSearch.py:1190
+#: src/EMCCoverSearch.py:1191
 msgid "Move Cover to:"
 msgstr "Perkelti viršelį į:"
 
-#: EMCCoverSearch.py:1191 EMCPlayList.py:496 EnhancedMovieCenter.py:773
-#: MovieSelection.py:2922 MovieSelection.py:2964 MovieSelection.py:2998
-#: MovieSelection.py:3040 MovieSelection.py:3067 MovieSelectionMenu.py:295
+#: src/EMCCoverSearch.py:1192 src/EMCPlayList.py:470
+#: src/EnhancedMovieCenter.py:752 src/MovieSelection.py:3057
+#: src/MovieSelection.py:3099 src/MovieSelection.py:3133
+#: src/MovieSelection.py:3175 src/MovieSelection.py:3202
+#: src/MovieSelectionMenu.py:299
 msgid "Choose directory"
 msgstr "Pasirinkite katalogą"
 
-#: EMCMediaCenter.py:151 EMCMediaCenter.py:156
+#: src/EMCMediaCenter.py:179 src/EMCMediaCenter.py:184
 msgid "Stop playback"
 msgstr "Stabdyti atkūrimą"
 
-#: EMCMediaCenter.py:161
+#: src/EMCMediaCenter.py:189
 msgid "show DVD main menu"
 msgstr "rodyti pagrindinį DVD meniu"
 
-#: EMCMediaCenter.py:163
+#: src/EMCMediaCenter.py:191
 msgid "forward to the next chapter"
-msgstr "pirmyn, į kitą skyrių"
+msgstr "pereiti į kitą skyrių"
 
-#: EMCMediaCenter.py:164
+#: src/EMCMediaCenter.py:192
 msgid "rewind to the previous chapter"
 msgstr "atsukti į ankstesnį skyrių"
 
-#: EMCMediaCenter.py:165 EMCMediaCenter.py:193
+#: src/EMCMediaCenter.py:193 src/EMCMediaCenter.py:221
 msgid "jump forward to the next title"
 msgstr "peršokti į sekantį pavadinimą"
 
-#: EMCMediaCenter.py:166 EMCMediaCenter.py:194
+#: src/EMCMediaCenter.py:194 src/EMCMediaCenter.py:222
 msgid "jump back to the previous title"
 msgstr "peršokti į ankstesnį pavadinimą"
 
-#: EMCMediaCenter.py:167
+#: src/EMCMediaCenter.py:195
 msgid "(show optional DVD audio menu)"
 msgstr "(rodyti pasirinktinį DVD garso meniu)"
 
-#: EMCMediaCenter.py:168
+#: src/EMCMediaCenter.py:196
 msgid "switch to the next audio track"
 msgstr "perjungti į kitą garso takelį"
 
-#: EMCMediaCenter.py:169
+#: src/EMCMediaCenter.py:197
 msgid "switch to the next subtitle language"
 msgstr "perjungti į kitą subtitrų kalbą"
 
-#: EMCMediaCenter.py:170
+#: src/EMCMediaCenter.py:198
 msgid "switch to the next angle"
 msgstr "perjungti į kitą kampą"
 
-#: EMCMediaCenter.py:189
+#: src/EMCMediaCenter.py:217
 msgid "view extensions..."
 msgstr "rodyti plėtinius..."
 
-#: EMCMediaCenter.py:190
+#: src/EMCMediaCenter.py:218
 msgid "Format AVSwitch"
 msgstr "Vaizdo/garso formatų perjungimas"
 
-#: EMCMediaCenter.py:191
+#: src/EMCMediaCenter.py:219
 msgid "Seek forward"
 msgstr "Ieškoti pirmyn"
 
-#: EMCMediaCenter.py:192
+#: src/EMCMediaCenter.py:220
 msgid "Seek backward"
 msgstr "Ieškoti atgal"
 
-#: EMCMediaCenter.py:195
+#: src/EMCMediaCenter.py:223
 msgid "Movie information"
 msgstr "Filmo informacija"
 
-#: EMCMediaCenter.py:384
+#: src/EMCMediaCenter.py:429
 msgid "No DVD-Player found!"
 msgstr "DVD grotuvo nerasta!"
 
-#: EMCMediaCenter.py:438
+#: src/EMCMediaCenter.py:483
 msgid ""
 "Skipping movie, the file does not exist.\n"
 "\n"
@@ -358,7 +367,7 @@ msgstr ""
 "Filmas praleidžiamas, tokio failo nėra.\n"
 "\n"
 
-#: EMCMediaCenter.py:478
+#: src/EMCMediaCenter.py:523
 msgid ""
 "EMC\n"
 "Zap to Live TV of record"
@@ -366,48 +375,43 @@ msgstr ""
 "EMC\n"
 "Įrašymui perjungti į tiesioginę TV"
 
-#: EMCMediaCenter.py:918
+#: src/EMCMediaCenter.py:1026
 msgid "Chap."
 msgstr "Skyr."
 
-#: EMCMediaCenter.py:919
+#: src/EMCMediaCenter.py:1027
 msgid "Chapter"
 msgstr "Skyrius"
 
-#: EMCMediaCenter.py:920
+#: src/EMCMediaCenter.py:1028
 msgid "Title"
 msgstr "Pavadinimas"
 
-#: EMCPlayList.py:131 EMCPlayList.py:484 EnhancedMovieCenter.py:279
-#: MovieInfo.py:271 MovieInfo.py:441 MovieRetitle.py:31
-msgid "Save"
-msgstr "Išsaugoti"
-
-#: EMCPlayList.py:133
+#: src/EMCPlayList.py:133
 msgid "Delete Entry"
-msgstr "Šalinti įrašą"
+msgstr "Pašalinti įrašą"
 
-#: EMCPlayList.py:134
+#: src/EMCPlayList.py:134
 msgid "Delete All"
-msgstr "šalinti viską"
+msgstr "Pašalinti viską"
 
-#: EMCPlayList.py:154
+#: src/EMCPlayList.py:154
 msgid "EMC Playlist - current playlist"
 msgstr "EMC grojaraštis - dabartinis grojaraštis"
 
-#: EMCPlayList.py:161
+#: src/EMCPlayList.py:161
 msgid "EMC Playlist Menu"
 msgstr "EMC grojaraščio meniu"
 
-#: EMCPlayList.py:162
+#: src/EMCPlayList.py:162
 msgid "Playlist open"
 msgstr "Atverti grojaraštį"
 
-#: EMCPlayList.py:163
+#: src/EMCPlayList.py:163
 msgid "Setup open"
 msgstr "Atverti sąranką"
 
-#: EMCPlayList.py:171
+#: src/EMCPlayList.py:171
 msgid ""
 "Default Playlist is not empty!\n"
 "\n"
@@ -417,7 +421,7 @@ msgstr ""
 "\n"
 "Išsaugoti numatytąjį grojaraštį?"
 
-#: EMCPlayList.py:233
+#: src/EMCPlayList.py:233
 msgid ""
 "Playlist with same name exists!\n"
 "\n"
@@ -427,63 +431,63 @@ msgstr ""
 "\n"
 "Išsaugoti grojaraštį kitu pavadinimu?"
 
-#: EMCPlayList.py:237
+#: src/EMCPlayList.py:237
 msgid "Change the filename to save current Playlist:"
 msgstr "Išsaugant šį grojaraštį, pervadinti failą:"
 
-#: EMCPlayList.py:237
+#: src/EMCPlayList.py:237
 msgid "Save current Playlist"
 msgstr "Išsaugoti šį grojaraštį"
 
-#: EMCPlayList.py:255
+#: src/EMCPlayList.py:255
 msgid "Current Playlist saved successfully!"
 msgstr "Šis grojaraštis sėkmingai išsaugotas!"
 
-#: EMCPlayList.py:258
+#: src/EMCPlayList.py:258
 msgid "Can not save current Playlist!"
 msgstr "Išsaugoti šio grojaraščio nepavyksta!"
 
-#: EMCPlayList.py:472
+#: src/EMCPlayList.py:445
 msgid "Default Playlist path"
 msgstr "Kelias į numatytąjį grojaraštį"
 
-#: EMCPlayList.py:473
+#: src/EMCPlayList.py:446
 msgid "Default Playlist name"
 msgstr "Numatytojo grojaraščio pavadinimas"
 
-#: EMCPlayList.py:474
+#: src/EMCPlayList.py:447
 msgid "Always save current Playlist"
 msgstr "Visada išsaugoti dabartinį grojaraštį"
 
-#: EMCPlayList.py:488
+#: src/EMCPlayList.py:462
 msgid "EMC Playlist Setup"
 msgstr "EMC grojaraščio sąranka"
 
-#: EMCPlayList.py:495
+#: src/EMCPlayList.py:469
 msgid "Choose Directory:"
 msgstr "Pasirinkite katalogą:"
 
-#: EMCPlayList.py:512
+#: src/EMCPlayList.py:486
 msgid "Enter Name for Playlist"
 msgstr "Įrašykite grojaraščio pavadinimą"
 
-#: EMCPlayList.py:557
+#: src/EMCPlayList.py:543
 msgid "Open"
 msgstr "Atverti"
 
-#: EMCPlayList.py:571
+#: src/EMCPlayList.py:557
 msgid "EMC Filebrowser"
 msgstr "EMC failų naršyklė"
 
-#: EMCTasker.py:201
+#: src/EMCTasker.py:201
 msgid "Next auto-start in "
 msgstr "Kitas autopaleidimas už "
 
-#: EMCTasker.py:203
+#: src/EMCTasker.py:203
 msgid "auto-start is currently not active."
 msgstr "autopaleidimas šiuo metu neįjungtas."
 
-#: EMCTasker.py:215
+#: src/EMCTasker.py:215
 msgid ""
 "Your Box is about to go into Standby, continue?\n"
 " Select no to delay one hour"
@@ -491,7 +495,7 @@ msgstr ""
 "Aparatas ruošiasi pereiti į budėjimo būseną, tęsti?\n"
 "Pasirinkite, kad valandą nelauktų"
 
-#: EMCTasker.py:217
+#: src/EMCTasker.py:217
 msgid ""
 "Your Box is about to go into DeepStandby, continue?\n"
 " Select no to delay one hour"
@@ -499,7 +503,7 @@ msgstr ""
 "Aparatas ruošiasi išsijungti, tęsti?\n"
 "Pasirinkite, kad valandą nelauktų"
 
-#: EMCTasker.py:219
+#: src/EMCTasker.py:219
 msgid ""
 "Your Box is about to go into Reboot, continue?\n"
 " Select no to delay one hour"
@@ -507,7 +511,7 @@ msgstr ""
 "Aparatas ruošiasi pasileisti iš naujo, tęsti?\n"
 "Pasirinkite, kad valandą nelauktų"
 
-#: EMCTasker.py:221
+#: src/EMCTasker.py:221
 msgid ""
 "Your Box is about to go into E2 Restart, continue?\n"
 " Select no to delay one hour"
@@ -515,496 +519,508 @@ msgstr ""
 "Aparatas ruošiasi grafinę aplinką paleisti iš naujo, tęsti?\n"
 "Pasirinkite, kad valandą nelauktų"
 
-#: EnhancedMovieCenter.py:215 EnhancedMovieCenter.py:237
+#: src/EnhancedMovieCenter.py:175 src/EnhancedMovieCenter.py:197
 msgid "Custom"
 msgstr "Pasirinktinis"
 
-#: EnhancedMovieCenter.py:216
+#: src/EnhancedMovieCenter.py:176
 msgid "Default"
 msgstr "Numatytasis"
 
-#: EnhancedMovieCenter.py:217
+#: src/EnhancedMovieCenter.py:177
 msgid "Performance"
 msgstr "Našumas"
 
-#: EnhancedMovieCenter.py:218
+#: src/EnhancedMovieCenter.py:178
 msgid "Information"
 msgstr "Informacija"
 
-#: EnhancedMovieCenter.py:339
+#: src/EnhancedMovieCenter.py:333
+msgid "GENERAL"
+msgstr "BENDRIEJI"
+
+#: src/EnhancedMovieCenter.py:334
 msgid "About"
 msgstr "Apie"
 
-#: EnhancedMovieCenter.py:339
+#: src/EnhancedMovieCenter.py:334
 msgid "HELP_About"
 msgstr "Atidaro įskiepį aprašantį langą."
 
-#: EnhancedMovieCenter.py:341
+#: src/EnhancedMovieCenter.py:335
 msgid "Disable EMC"
 msgstr "Išjungti EMC"
 
-#: EnhancedMovieCenter.py:341
+#: src/EnhancedMovieCenter.py:335
 msgid "HELP_Disable EMC"
 msgstr ""
-"Visiškai išjungs EMC, išskyrus kelias specialias funkcijas. Tokias, kaip "
-"laikmačių išvalymas ir automatinis paleidimas iš naujo, kurios išliks "
-"galimos."
+"Visiškai išjungs EMC, išskyrus kelias specialias funkcijas, kaip laikmačių "
+"išvalymas ir auto matinis paleidimas iš naujo, kurios išliks aktyvios fone."
 
-#: EnhancedMovieCenter.py:343
+#: src/EnhancedMovieCenter.py:336
 msgid "Start EMC with"
 msgstr "EMC atverti su"
 
-#: EnhancedMovieCenter.py:343
+#: src/EnhancedMovieCenter.py:336
 msgid "HELP_Start EMC with"
 msgstr "Nustatykite EMC tiesioginio paleidimo mygtuką."
 
-#: EnhancedMovieCenter.py:344
+#: src/EnhancedMovieCenter.py:337
 msgid "Show plugin config in extensions menu"
 msgstr "Rodyti įskiepio konfigūravimą plėtinių meniu"
 
-#: EnhancedMovieCenter.py:344
+#: src/EnhancedMovieCenter.py:337
 msgid "HELP_Show plugin config in extensions menu"
 msgstr ""
-"Pasirinkite, rodyti EMC konfigūravimą plėtinių meniu lange, ar ne.\n"
+"Pasirinkite, rodyti, ar ne įskiepio konfigūravimą plėtinių meniu lange.\n"
 "Šis meniu paprastai atsidaro 'MĖLYNO' mygtuko paspaudimu."
 
-#: EnhancedMovieCenter.py:345
+#: src/EnhancedMovieCenter.py:338
+msgid "Show EMC in main menu"
+msgstr "Rodyti EMC pagrindiniame meniu"
+
+#: src/EnhancedMovieCenter.py:338
+msgid "HELP_Show EMC in main menu"
+msgstr ""
+"Pasirinkite, rodyti, ar ne EMC paleidimą plėtinių meniu lange.\n"
+"Šis meniu paprastai atsidaro 'MĖLYNO' mygtuko paspaudimu."
+
+#: src/EnhancedMovieCenter.py:339
 msgid "Show EMC in extensions menu"
 msgstr "Rodyti EMC plėtinių meniu lange"
 
-#: EnhancedMovieCenter.py:345
+#: src/EnhancedMovieCenter.py:339
 msgid "HELP_Show EMC in extensions menu"
 msgstr ""
-"Pasirinkite, rodyti EMC paleidimą plėtinių meniu lange, ar ne.\n"
+"Pasirinkite, rodyti, ar ne EMC paleidimą plėtinių meniu lange.\n"
 "Šis meniu paprastai atsidaro 'MĖLYNO' mygtuko paspaudimu."
 
-#: EnhancedMovieCenter.py:347
-msgid "HELP_Key assignment Separator"
-msgstr "Funkcinių mygtukų priskyrimas."
+#: src/EnhancedMovieCenter.py:341
+msgid "KEYMAPPING"
+msgstr "MYGTUKŲ IŠDĖSTYMAS"
 
-#: EnhancedMovieCenter.py:348
+#: src/EnhancedMovieCenter.py:342
 msgid "Bouquet buttons behaviour"
 msgstr "'Bukietų' mygtuko elgesys"
 
-#: EnhancedMovieCenter.py:348
+#: src/EnhancedMovieCenter.py:342
 msgid "HELP_Bouquet buttons behaviour"
 msgstr "Nustatykite, kas vyks, paspaudus 'Bouquet' mygtuką."
 
-#: EnhancedMovieCenter.py:349
+#: src/EnhancedMovieCenter.py:343
 msgid "List entries to skip"
 msgstr "Įrašai, kuriuos praleisti"
 
-#: EnhancedMovieCenter.py:349
+#: src/EnhancedMovieCenter.py:343
 msgid "HELP_List entries to skip"
 msgstr "Praleidžiamų , ignoruojamų sąrašas."
 
-#: EnhancedMovieCenter.py:350
+#: src/EnhancedMovieCenter.py:344
 msgid "Red button function"
 msgstr "'RAUDONO' mygtuko funkcija"
 
-#: EnhancedMovieCenter.py:350
+#: src/EnhancedMovieCenter.py:344
 msgid "HELP_Red button function"
 msgstr "Nustatykite, kas vyks, paspaudus 'RAUDONĄ' mygtuką."
 
-#: EnhancedMovieCenter.py:351
+#: src/EnhancedMovieCenter.py:345
 msgid "Long Red button function"
 msgstr "'RAUDONO' mygtuko ilgas paspaudimas"
 
-#: EnhancedMovieCenter.py:351
+#: src/EnhancedMovieCenter.py:345
 msgid "HELP_Long Red button function"
 msgstr "Nustatykite, kas vyks, ilgai spaudžiant 'RAUDONĄ' mygtuką."
 
-#: EnhancedMovieCenter.py:354
+#: src/EnhancedMovieCenter.py:347
 msgid "Yellow button function"
 msgstr "'GELTONO' mygtuko funkcija"
 
-#: EnhancedMovieCenter.py:354
+#: src/EnhancedMovieCenter.py:347
 msgid "HELP_Yellow button function"
 msgstr "Nustatykite, kas vyks, paspaudus 'GELTONĄ' mygtuką."
 
-#: EnhancedMovieCenter.py:355
+#: src/EnhancedMovieCenter.py:348
 msgid "Long Yellow button function"
 msgstr "'GELTONO' mygtuko ilgas paspaudimas"
 
-#: EnhancedMovieCenter.py:355
+#: src/EnhancedMovieCenter.py:348
 msgid "HELP_Long Yellow button function"
 msgstr "Nustatykite, kas vyks, ilgai spaudžiant 'GELTONĄ' mygtuką."
 
-#: EnhancedMovieCenter.py:356
+#: src/EnhancedMovieCenter.py:349
 msgid "Blue button function"
 msgstr "'MĖLYNO' mygtuko funkcija"
 
-#: EnhancedMovieCenter.py:356
+#: src/EnhancedMovieCenter.py:349
 msgid "HELP_Blue button function"
 msgstr "Nustatykite, kas vyks, paspaudus 'MĖLYNĄ' mygtuką."
 
-#: EnhancedMovieCenter.py:357
+#: src/EnhancedMovieCenter.py:350
 msgid "Long Blue button function"
 msgstr "'MĖLYNO' mygtuko ilgas paspaudimas"
 
-#: EnhancedMovieCenter.py:357
+#: src/EnhancedMovieCenter.py:350
 msgid "HELP_Long Blue button function"
 msgstr "Nustatykite, kas vyks, ilgai spaudžiant 'MĖLYNĄ' mygtuką."
 
-#: EnhancedMovieCenter.py:359 EnhancedMovieCenter.py:366
-#: EnhancedMovieCenter.py:375 EnhancedMovieCenter.py:413
-#: EnhancedMovieCenter.py:423 EnhancedMovieCenter.py:459
-#: EnhancedMovieCenter.py:487
-msgid " "
-msgstr " "
-
-#: EnhancedMovieCenter.py:360
-msgid "daily auto-start"
-msgstr "Kasdienis autopaleidimas"
-
-#: EnhancedMovieCenter.py:360
-msgid "HELP_Daily auto-start"
-msgstr "Leidžia kasdieną atlikti operacijas joms numatytu metu."
-
-#: EnhancedMovieCenter.py:361
-msgid "auto-start window begin"
-msgstr "autopaleidimo pradžios langas"
-
-#: EnhancedMovieCenter.py:361
-msgid "HELP_auto-start window begin"
-msgstr "Langų autopaleidimo pradžios laikas."
-
-#: EnhancedMovieCenter.py:362
-msgid "auto-start window end"
-msgstr "autopaleidimo pabaigos langas"
-
-#: EnhancedMovieCenter.py:362
-msgid "HELP_auto-start window end"
-msgstr "Langų autopaleidimo pabaigos laikas."
-
-#: EnhancedMovieCenter.py:363
-msgid "Force standby after auto-restart"
-msgstr "Po autopaleidimo iš naujo, į budėjimo būseną"
-
-#: EnhancedMovieCenter.py:363
-msgid "HELP_Force standby after auto-start"
-msgstr "Po autopaleidimo iš naujo, imtuvas bus perjungtas į budėjimo būseną."
-
-#: EnhancedMovieCenter.py:364
+#: src/EnhancedMovieCenter.py:351
 msgid "LongInfo Button"
 msgstr "'INFO' mygtuko ilgas paspaudimas"
 
-#: EnhancedMovieCenter.py:364
+#: src/EnhancedMovieCenter.py:351
 msgid "HELP_LongInfo Button"
 msgstr "Nustatykite, kas vyks, ilgai spaudžiant 'INFO' mygtuką."
 
-#: EnhancedMovieCenter.py:367
-msgid "Movie home at start"
-msgstr "Filmų katalogas, paleidžiant"
+#: src/EnhancedMovieCenter.py:353
+msgid "AUTOSTART"
+msgstr "AUTOPALEIDIMAS"
 
-#: EnhancedMovieCenter.py:367
+#: src/EnhancedMovieCenter.py:354
+msgid "daily auto-start"
+msgstr "Kasdienis autopaleidimas"
+
+#: src/EnhancedMovieCenter.py:354
+msgid "HELP_Daily auto-start"
+msgstr "Leidžia kasdieną atlikti operacijas joms numatytu metu."
+
+#: src/EnhancedMovieCenter.py:355
+msgid "auto-start window begin"
+msgstr "autopaleidimo pradžios langas"
+
+#: src/EnhancedMovieCenter.py:355
+msgid "HELP_auto-start window begin"
+msgstr "Langų autopaleidimo pradžios laikas."
+
+#: src/EnhancedMovieCenter.py:356
+msgid "auto-start window end"
+msgstr "autopaleidimo pabaigos langas"
+
+#: src/EnhancedMovieCenter.py:356
+msgid "HELP_auto-start window end"
+msgstr "Langų autopaleidimo pabaigos laikas."
+
+#: src/EnhancedMovieCenter.py:357
+msgid "Force standby after auto-restart"
+msgstr "Po autopaleidimo iš naujo į budėjimo būseną"
+
+#: src/EnhancedMovieCenter.py:357
+msgid "HELP_Force standby after auto-start"
+msgstr "Po autopaleidimo iš naujo imtuvas bus perjungtas į budėjimo būseną."
+
+#: src/EnhancedMovieCenter.py:360
+msgid "Movie home at start"
+msgstr "Filmų namų katalogas paleidžiant"
+
+#: src/EnhancedMovieCenter.py:360
 msgid "HELP_Movie home at start"
 msgstr ""
-"EMC visada pirmiausiai atveria \"Filmų namų\" katalogą.\n"
-"Žemiau galite pasirinkti pageidaujamą \"Filmų namų\" katalogą."
+"EMC visada pirmiausiai atveria \"Filmų katalogą\".\n"
+"(Žemiau galite pasirinkti pageidaujamą \"Filmų katalogą\")."
 
-#: EnhancedMovieCenter.py:368
+#: src/EnhancedMovieCenter.py:361
 msgid "Default sort mode"
-msgstr "Numatytasis rūšiavimas"
+msgstr "Numatytasis rūšiavimo būdas"
 
-#: EnhancedMovieCenter.py:368
+#: src/EnhancedMovieCenter.py:361
 msgid "HELP_Sort mode at startup"
-msgstr "Nustatykite, kokia tvarka bus surūšiuotas filmų sąrašas, atvėrus EMC."
+msgstr ""
+"Nustatykite, kokia tvarka bus surūšiuotas filmų sąrašas, paleidžiant EMC."
 
-#: EnhancedMovieCenter.py:370
+#: src/EnhancedMovieCenter.py:363
 msgid "Movie home home path"
 msgstr "Kelias į filmų namų katalogą"
 
-#: EnhancedMovieCenter.py:370
+#: src/EnhancedMovieCenter.py:363
 msgid "HELP_Movie home home path"
 msgstr "Kelio į \"Filmų namų\" katalogą nustatymas."
 
-#: EnhancedMovieCenter.py:371
+#: src/EnhancedMovieCenter.py:364
 msgid "EMC path access limit"
 msgstr "EMC kelio prieigos apribojimas"
 
-#: EnhancedMovieCenter.py:371
+#: src/EnhancedMovieCenter.py:364
 msgid "HELP_EMC path access limit"
 msgstr ""
 "Čia galite apriboti, kiek giliai galima nueiti \"Filmų namų\" "
 "pakatalogiais.\n"
 "'<' ir '>' mygtukais (šalia '0' mygtuko) šį limitą galima peržengti."
 
-#: EnhancedMovieCenter.py:373
+#: src/EnhancedMovieCenter.py:366
 msgid "Cursor predictive move after selection"
 msgstr "Žymeklio nuspėjamas judėjimas po pasirinkimo"
 
-#: EnhancedMovieCenter.py:373
+#: src/EnhancedMovieCenter.py:366
 msgid "HELP_Cursor predictive move after selection"
 msgstr ""
 "Pasirinkus 'VIDEO/PVR' mygtuku, žymeklis judės nurodyta kryptimi.\n"
 "Su 'Aukštyn/Žemyn' mygtuku, žymeklis judės paskutine nustatyta kryptimi."
 
-#: EnhancedMovieCenter.py:376
+#: src/EnhancedMovieCenter.py:368
+msgid "DISPLAY-SETTINGS"
+msgstr "EKRANO NUSTATYMAI"
+
+#: src/EnhancedMovieCenter.py:369
 msgid "Show symlinks"
 msgstr "Rodyti nuorodas"
 
-#: EnhancedMovieCenter.py:376
+#: src/EnhancedMovieCenter.py:369
 msgid "HELP_Show symlinks"
-msgstr "Nustatykite, rodyti simbolines nuorodas, ar ne."
+msgstr "Rodyti/nerodyti simbolines nuorodas."
 
-#: EnhancedMovieCenter.py:378
+#: src/EnhancedMovieCenter.py:370
 msgid "Show directories"
 msgstr "Rodyti katalogus filmų sąraše"
 
-#: EnhancedMovieCenter.py:378
+#: src/EnhancedMovieCenter.py:370
 msgid "HELP_Show directories"
-msgstr "Nustatykite, rodyti filmų sąraše katalogus, ar ne."
+msgstr "Filmų sąraše rodyti/nerodyti katalogus."
 
-#: EnhancedMovieCenter.py:379
+#: src/EnhancedMovieCenter.py:371
 msgid "Show directories within movielist"
 msgstr "Rodyti katalogus sąrašo viduje"
 
-#: EnhancedMovieCenter.py:379
+#: src/EnhancedMovieCenter.py:371
 msgid "HELP_Show directories within movielist"
-msgstr "Nustatykite, rodyti filmų sąrašo viduje katalogus, ar ne."
+msgstr "Filmų sąrašo viduje rodyti/nerodyti katalogus."
 
-#: EnhancedMovieCenter.py:380
+#: src/EnhancedMovieCenter.py:372
 msgid "Configured directories at the top of movielist"
 msgstr "Sukonfigūruoti katalogai filmų sąrašo viršuje"
 
-#: EnhancedMovieCenter.py:380
+#: src/EnhancedMovieCenter.py:372
 msgid "HELP_Configure in etc\\enigma2\\emc-topdir.cfg"
 msgstr "Kelias į /etc/enigma2/emc-topdir.cfg konfigūravimo failą."
 
-#: EnhancedMovieCenter.py:381
+#: src/EnhancedMovieCenter.py:373
 msgid "Show directories information"
 msgstr "Rodyti katalogų informaciją"
 
-#: EnhancedMovieCenter.py:381
+#: src/EnhancedMovieCenter.py:373
 msgid "HELP_Show directories information"
-msgstr ""
-"Nustatykite, ar rodyti informaciją apie įrašus, jų trukmę ir užimamą vietą "
-"diske."
+msgstr "Rodyti informaciją apie įrašus, jų trukmę ir užimamą vietą diske."
 
-#: EnhancedMovieCenter.py:382
+#: src/EnhancedMovieCenter.py:374
 msgid "Text shown for initially unknown file count"
 msgstr "Tekstas, rodomas iš pradžių nežinomam failų skaičiui"
 
-#: EnhancedMovieCenter.py:382
+#: src/EnhancedMovieCenter.py:374
 msgid "HELP_Text shown for initially unknown file count"
 msgstr ""
 "Ši funkcija nustato, koks tekstas bus prie katalogų su iš anksto nežinomu "
 "failų skaičiumi."
 
-#: EnhancedMovieCenter.py:383
+#: src/EnhancedMovieCenter.py:375
 msgid "Text shown for initially unknown count and size"
 msgstr "Tekstas, rodomas iš pradžių nežinomam skaičiui ir dydžiui"
 
-#: EnhancedMovieCenter.py:383
+#: src/EnhancedMovieCenter.py:375
 msgid "HELP_Text shown for initially unknown count and size"
 msgstr ""
 "Ši funkcija nustato, koks tekstas bus prie katalogų su iš anksto nežinomais "
 "failų skaičiumi ir jų dydžiu."
 
-#: EnhancedMovieCenter.py:384
+#: src/EnhancedMovieCenter.py:376
 msgid "Text shown for initially unknown directory size"
 msgstr "Tekstas, rodomas iš pradžių nežinomam katalogo dydžiui"
 
-#: EnhancedMovieCenter.py:384
+#: src/EnhancedMovieCenter.py:376
 msgid "HELP_Text shown for initially unknown directory size"
 msgstr ""
 "Ši funkcija nustato, koks tekstas bus prie katalogų su iš anksto nežinomu jų "
 "dydžiu."
 
-#: EnhancedMovieCenter.py:385
+#: src/EnhancedMovieCenter.py:377
 msgid "Icon shown for initially unknown count / size"
 msgstr "Piktograma, rodoma iš pradžių nežinomam skaičiui / dydžiui"
 
-#: EnhancedMovieCenter.py:385
+#: src/EnhancedMovieCenter.py:377
 msgid "HELP_Icon shown for initially unknown count / size"
 msgstr ""
-"Nustatykite, ar bus rodoma piktograma, esant iš anksto nežinomam skaičiui / "
-"dydžiui."
+"Ar bus rodoma piktograma, esant iš anksto nežinomam skaičiui / dydžiui."
 
-#: EnhancedMovieCenter.py:387
+#: src/EnhancedMovieCenter.py:378
 msgid "Show directory size in skin"
 msgstr "Temoje rodyti katalogo dydį"
 
-#: EnhancedMovieCenter.py:387
+#: src/EnhancedMovieCenter.py:378
 msgid "HELP_Show directory size in skin"
 msgstr "Rodyti vartotojo aplinkos temoje numatytą dydį."
 
-#: EnhancedMovieCenter.py:389
+#: src/EnhancedMovieCenter.py:380
 msgid "Show Latest Recordings directory"
 msgstr "Rodyti naujausių įrašų katalogą"
 
-#: EnhancedMovieCenter.py:389
+#: src/EnhancedMovieCenter.py:380
 msgid "HELP_Show Latest Recordings directory"
 msgstr ""
 "\"Filmų namų\" kataloge (ir pakatalogiuose) rodyti virtualų \"Naujausių įrašų"
 "\" katalogą."
 
-#: EnhancedMovieCenter.py:390
+#: src/EnhancedMovieCenter.py:381
 msgid "Latest Recordings directory limit"
 msgstr "Naujausių įrašų katalogo apribojimas"
 
-#: EnhancedMovieCenter.py:390
+#: src/EnhancedMovieCenter.py:381
 msgid "HELP_Latest Recordings directory limit"
 msgstr ""
 "Nustatykite virtualaus \"Naujausių įrašų\" katalogo apribojimus.\n"
 "VTI galimi apribojimai dienomis."
 
-#: EnhancedMovieCenter.py:391
+#: src/EnhancedMovieCenter.py:382
 msgid "Latest Recordings directory use emc-noscan.cfg"
 msgstr "Naujausių įrašų katalogui naudoti emc-noscan.cfg"
 
-#: EnhancedMovieCenter.py:391
+#: src/EnhancedMovieCenter.py:382
 msgid "HELP_Latest Recordings directory use emc-noscan.cfg"
 msgstr "\"Naujausių įrašų\" katalogo nustatymams naudoti emc-noscan.cfg."
 
-#: EnhancedMovieCenter.py:392
+#: src/EnhancedMovieCenter.py:383
 msgid "Show VLC directory"
 msgstr "Rodyti VLC katalogą"
 
-#: EnhancedMovieCenter.py:392
+#: src/EnhancedMovieCenter.py:383
 msgid "HELP_Show VLC directory"
-msgstr "Rodyti, VLC katalogą, ar ne (kai įdiegtas VLC išplėstinis įskiepis)."
+msgstr "Rodyti/nerodyti VLC katalogą (kai įdiegtas VLC išplėstinis įskiepis)."
 
-#: EnhancedMovieCenter.py:393
+#: src/EnhancedMovieCenter.py:384
 msgid "Show Bookmarks in movielist"
 msgstr "Filmų sąraše rodyti žymeles"
 
-#: EnhancedMovieCenter.py:393
+#: src/EnhancedMovieCenter.py:384
 msgid "HELP_Show Bookmarks in movielist"
-msgstr "Nustatykite, ar filmų sąraše bus rodomos žymelės."
+msgstr "Filmų sąraše rodyti/nerodyti žymeles."
 
-#: EnhancedMovieCenter.py:394
+#: src/EnhancedMovieCenter.py:385
 msgid "Use cache for files and directories"
 msgstr "Failams ir katalogams naudoti podėlį"
 
-#: EnhancedMovieCenter.py:394
+#: src/EnhancedMovieCenter.py:385
 msgid "HELP_Use cache for files and directories"
-msgstr "Nustatykite, ar failams ir katalogams naudoti atminties podėlį."
+msgstr "Failams ir katalogams naudoti atminties podėlį."
 
-#: EnhancedMovieCenter.py:395
+#: src/EnhancedMovieCenter.py:386
 msgid "Minimum file cache limit (0=cache everything)"
 msgstr "Minimalus failų podėlio limitas (0 = viską į podėlį)"
 
-#: EnhancedMovieCenter.py:395
+#: src/EnhancedMovieCenter.py:386
 msgid "HELP_Minimum file cache limit"
 msgstr "Nustatykite minimalų failams naudojamos atminties podėlio dydį."
 
-#: EnhancedMovieCenter.py:396
+#: src/EnhancedMovieCenter.py:387
 msgid "Show experimental options"
 msgstr "Rodyti eksperimentines parinktis"
 
-#: EnhancedMovieCenter.py:396
+#: src/EnhancedMovieCenter.py:387
 msgid "HELP_Show experimental options"
-msgstr "Rodyti ir eksperimentines, EMC parinktis."
+msgstr "Rodyti ir eksperimentines EMC parinktis."
 
-#: EnhancedMovieCenter.py:397
+#: src/EnhancedMovieCenter.py:388
 msgid "Don't auto scan size of dirs from emc-noscan.cfg"
 msgstr "Nenuskaityti automatiškai emc-noscan.cfg katalogų dydžio"
 
-#: EnhancedMovieCenter.py:397
+#: src/EnhancedMovieCenter.py:388
 msgid "HELP_Don't auto scan size of dirs from emc-noscan.cfg"
 msgstr "Nenuskaityti automatiškai dydžio katalogų, įtrauktų į emc-noscan.cfg."
 
-#: EnhancedMovieCenter.py:398
+#: src/EnhancedMovieCenter.py:389
 msgid "Limit file operations in dirs from emc-noscan.cfg"
 msgstr "Apriboti operacijas su failais emc-noscan.cfg kataloguose"
 
-#: EnhancedMovieCenter.py:398
+#: src/EnhancedMovieCenter.py:389
 msgid "HELP_Limit file operations in dirs from emc-noscan.cfg"
 msgstr ""
 "Įjungus čia, atvertas EMC vengs operacijų su failais kataloguose, "
 "esančiuose /etc/enigma2/emc-noscan.cfg."
 
-#: EnhancedMovieCenter.py:399
+#: src/EnhancedMovieCenter.py:390
 msgid "After file OPs only re-scan affected dirs"
 msgstr "Po operacijų su failais, perskenuoti tik susijusius katalogus"
 
-#: EnhancedMovieCenter.py:399
+#: src/EnhancedMovieCenter.py:390
 msgid "HELP_After file OPs only re-scan affected dirs"
 msgstr ""
-"Po operacijų su failais, bus perskenuoti tik su jomis susiję katalogai."
+"Po operacijų su failais, perskenuoti tik su jomis susijusius katalogus."
 
-#: EnhancedMovieCenter.py:400
+#: src/EnhancedMovieCenter.py:391
 msgid "Wake device when entering dir from emc-noscan.cfg"
 msgstr "Prižadinti, atveriant katalogą iš emc-noscan.cfg"
 
-#: EnhancedMovieCenter.py:400
+#: src/EnhancedMovieCenter.py:391
 msgid "HELP_Wake device when entering dir from emc-noscan.cfg"
 msgstr ""
 "Prižadinti prietaisą, kai atveriamas katalogas, esantis /etc/enigma2/emc-"
 "noscan.cfg."
 
-#: EnhancedMovieCenter.py:401
+#: src/EnhancedMovieCenter.py:392
 msgid "Check for dead links"
 msgstr "Tikrinti, ar yra neveikiančių nuorodų"
 
-#: EnhancedMovieCenter.py:401
+#: src/EnhancedMovieCenter.py:392
 msgid "HELP_Check for dead links"
 msgstr ""
 "Kadangi daugelis nuorodų būna į nešiojamas/atjungiamas/tinklines laikmenas, "
 "kurios bet kada gali būti atjungtos, tokios nuorodos dažnai keičiasi.\n"
-"Ši funkcija ir skirta patikrinti, ar jos vis dar galioja."
+"Ši funkcija ir skirta patikrinti, ar jos dar galioja."
 
-#: EnhancedMovieCenter.py:404
-msgid "HELP_separator_hide&performance"
-msgstr "Nustatymas nerodyti failų/katalogų ir našumo."
+#: src/EnhancedMovieCenter.py:394
+msgid "DVD / BLU-RAY / FOLDERS"
+msgstr "DVD / BLU-RAY / APLANKAI"
 
-#: EnhancedMovieCenter.py:405
+#: src/EnhancedMovieCenter.py:395
 msgid "Hide configured entries"
 msgstr "Slėpti nustatymų įrašus"
 
-#: EnhancedMovieCenter.py:405
+#: src/EnhancedMovieCenter.py:395
 msgid "HELP_cfghide_enable"
 msgstr ""
 "Slėpti failus ir katalogus, įtrauktus į /etc/enigma2/emc-hide.cfg.\n"
 "Pakeitus šį nustatymą, būtina grafinę aplinką paleisti iš naujo!"
 
-#: EnhancedMovieCenter.py:406
+#: src/EnhancedMovieCenter.py:396
 msgid "Scan for DVD structures"
 msgstr "Nuskaityti DVD struktūrą"
 
-#: EnhancedMovieCenter.py:406
+#: src/EnhancedMovieCenter.py:396
 msgid "HELP_Scan for DVD structures"
 msgstr ""
 "Leidžia išjungti DVD struktūros nuskaitymą visuose kataloguose.\n"
 "Išjungus, išvengiama nepageidaujamų (tinklo) diskų pabudimų."
 
-#: EnhancedMovieCenter.py:407
+#: src/EnhancedMovieCenter.py:397
 msgid "Scan for movie structures"
 msgstr "Nuskaityti filmo struktūrą"
 
-#: EnhancedMovieCenter.py:407
+#: src/EnhancedMovieCenter.py:397
 msgid "HELP_Scan for movie structures"
 msgstr ""
 "Leidžia išjungti filmų struktūros nuskaitymą kataloguose.\n"
 "Išjungus, išvengiama nepageidaujamų (tinklo) diskų pabudimų."
 
-#: EnhancedMovieCenter.py:408
+#: src/EnhancedMovieCenter.py:398
 msgid "Scan for bluray structures"
 msgstr "Nuskaityti Blu-ray struktūrą"
 
-#: EnhancedMovieCenter.py:408
+#: src/EnhancedMovieCenter.py:398
 msgid "HELP_Scan for bluray structures"
 msgstr ""
 "Leidžia išjungti Blu-ray diskų struktūros nuskaitymą.\n"
 "Išjungus, išvengiama nepageidaujamų (tinklo) diskų pabudimų."
 
-#: EnhancedMovieCenter.py:409
+#: src/EnhancedMovieCenter.py:399
 msgid "Scan for bluray structures in .iso"
 msgstr "Nuskaityti Blu-ray struktūrą ISO faile"
 
-#: EnhancedMovieCenter.py:409
+#: src/EnhancedMovieCenter.py:399
 msgid "HELP_Scan for bluray structures in .iso"
 msgstr ""
 "Leidžia išjungti Blu-ray diskų struktūros nuskaitymą ISO faile.\n"
 "Išjungus, išvengiama nepageidaujamų (tinklo) diskų pabudimų."
 
-#: EnhancedMovieCenter.py:410
+#: src/EnhancedMovieCenter.py:400
 msgid "Suppress scan in selected folders"
-msgstr "Kataloguose, esančiuose emc-noscan.cfg, išjungti paiešką"
+msgstr "Kataloguose iš emc-noscan.cfg išjungti paiešką"
 
-#: EnhancedMovieCenter.py:410
+#: src/EnhancedMovieCenter.py:400
 msgid "HELP_cfgscan_suppress"
 msgstr ""
 "Kataloguose, išvardintuose /etc/enigma2/emc-noscan.cfg, stabdyti DVD "
@@ -1012,69 +1028,74 @@ msgstr ""
 "pabudimų.\n"
 "Pakeitus šį nustatymą, būtina grafinę aplinką paleisti iš naujo!"
 
-#: EnhancedMovieCenter.py:411
+#: src/EnhancedMovieCenter.py:401
 msgid "Scan linked folders"
 msgstr "Nuskaityti pakatalogių nuorodas"
 
-#: EnhancedMovieCenter.py:411
+#: src/EnhancedMovieCenter.py:401
 msgid "HELP_scan_linked"
 msgstr ""
 "Išjungti DVD struktūros nuskaitymą pagal pakatalogių simbolines nuorodas. "
 "Taip išvengiama nepageidaujamų (tinklo) diskų pabudimų."
 
-#: EnhancedMovieCenter.py:414
+#: src/EnhancedMovieCenter.py:403
+msgid "OTHER"
+msgstr "KITA"
+
+#: src/EnhancedMovieCenter.py:404
 msgid "Try to load titles from .meta files"
 msgstr "Bandyti įkelti pavadinimus iš .meta failų"
 
-#: EnhancedMovieCenter.py:414
+#: src/EnhancedMovieCenter.py:404
 msgid "HELP_Try to load titles from .meta files"
 msgstr ""
 "Pavadinimus bus bandoma įkelti iš .meta failų. Nepavykus, pavadinimas bus "
 "imamas iš failo pavadinimo (jei aktyvūs ir .meta, ir .eit, pirmiausiai bus "
 "skaitoma iš .meta)."
 
-#: EnhancedMovieCenter.py:415
-msgid "Load all for non showing titles from .meta files"
-msgstr "Įkelti visus nerodomus .meta failuose pavadinimus"
+#: src/EnhancedMovieCenter.py:405
+msgid "Try to load extra title and more from .meta files"
+msgstr "Bandyti įkelti pavadinimus iš .meta failų"
 
-#: EnhancedMovieCenter.py:415
-msgid "HELP_Load all for non showing titles from .meta files"
+#: src/EnhancedMovieCenter.py:405
+msgid "HELP_Try to load extra title and more from .meta files"
 msgstr ""
-"Kai pavadinimas negali būti paimtas iš .meta failo, bus bandoma paimti "
-"kitais būdais, kad atvaizduoti pavadinimą."
+"Pavadinimus bus bandoma įkelti iš .meta failų. Nepavykus, pavadinimas bus "
+"imamas iš failo pavadinimo (jei aktyvūs ir .meta, ir .eit, pirmiausiai bus "
+"skaitoma iš .meta)."
 
-#: EnhancedMovieCenter.py:416
+#: src/EnhancedMovieCenter.py:406
 msgid "Try to load titles from .eit files"
 msgstr "Bandyti įkelti pavadinimus iš .eit failų"
 
-#: EnhancedMovieCenter.py:416
+#: src/EnhancedMovieCenter.py:406
 msgid "HELP_Try to load titles from .eit files"
 msgstr ""
 "Pavadinimus bus bandoma įkelti iš .eit failų. Jei nepavyks, pavadinimas bus "
 "imamas iš failo pavadinimo.\n"
 "(Jei aktyvūs ir .meta, ir .eit, pirmiausiai bus skaitoma iš .meta)"
 
-#: EnhancedMovieCenter.py:417
+#: src/EnhancedMovieCenter.py:407
 msgid "Replace special chars in title"
 msgstr "Pakeisti specialius simbolius pavadinime"
 
-#: EnhancedMovieCenter.py:417
+#: src/EnhancedMovieCenter.py:407
 msgid "HELP_Replace special chars in title"
 msgstr "Pabraukimai ir taškai pavadinimuose bus pakeičiami tarpais."
 
-#: EnhancedMovieCenter.py:418
+#: src/EnhancedMovieCenter.py:408
 msgid "Show Movie Format"
 msgstr "Rodyti filmo formatą"
 
-#: EnhancedMovieCenter.py:418
+#: src/EnhancedMovieCenter.py:408
 msgid "HELP_Show Movie Format"
-msgstr "Prie filmo failo pavadinimo bus rodomas ir jo plėtinys."
+msgstr "Prie failo pavadinimo bus rodomas ir jo plėtinys."
 
-#: EnhancedMovieCenter.py:419
+#: src/EnhancedMovieCenter.py:409
 msgid "Show Cut-Nr if exist"
 msgstr "Jei yra, rodyti kirpimo Nr."
 
-#: EnhancedMovieCenter.py:419
+#: src/EnhancedMovieCenter.py:409
 msgid "HELP_Show Cut-Nr if exist"
 msgstr ""
 "Jei įrašymo metu Enigma2 pasileis iš naujo, įrašymas bus tęsiamas "
@@ -1082,945 +1103,971 @@ msgstr ""
 "Kitaip sakant, čia įjungus, prie pavadinimo, nutraukus ir vėliau pratęsus "
 "įrašą, bus pridedamas skaičius."
 
-#: EnhancedMovieCenter.py:420
+#: src/EnhancedMovieCenter.py:410
 msgid "Resolve links and show real path"
 msgstr "Atsekti nuorodas ir rodyti tikrąjį kelią"
 
-#: EnhancedMovieCenter.py:420
+#: src/EnhancedMovieCenter.py:410
 msgid "HELP_Resolve links and show real path"
 msgstr ""
 "Bus tikrinami nuorodų keliai.\n"
 "Ilgai rodant suktuką, ar esant NAS prisijungimo problemų, išjunkite šią "
 "parinktį. Kelias bus rodomas, kaip \"Išplėstinis aprašymas\"."
 
-#: EnhancedMovieCenter.py:421
+#: src/EnhancedMovieCenter.py:411
 msgid "Show Path if no extended description available"
 msgstr "Jei nėra išplėstinio aprašymo, rodyti kelią"
 
-#: EnhancedMovieCenter.py:421
+#: src/EnhancedMovieCenter.py:411
 msgid "HELP_Show Path if no extended description available"
 msgstr "Jei nėra išplėstinio aprašymo, vietoje jo bus rodomas kelias į failą."
 
-#: EnhancedMovieCenter.py:424
-msgid "Listbox is skin able"
-msgstr "Sąrašo langas pritaikytinas temai"
+#: src/EnhancedMovieCenter.py:417
+msgid "Show message if file added to playlist"
+msgstr "Rodyti žinutę, jei failas pridėtas į grojaraštį"
 
-#: EnhancedMovieCenter.py:424
-msgid "HELP_Listbox is skin able"
-msgstr ""
-"Jei įmanoma, naudojama filmų sąrašo vizualizacija iš vartotojo temos (tiktai "
-"<widget name=\"list\"). Jei ne, tada, kaip nurodyta EMC sąrankoje."
+#: src/EnhancedMovieCenter.py:417
+msgid "HELP_Show message if file added to playlist"
+msgstr "Rodyti ar nerodyti pranešimą, kai failas pridėtas į grojaraštį."
 
-#: EnhancedMovieCenter.py:426
-msgid "Date format"
-msgstr "Datos formatas"
-
-#: EnhancedMovieCenter.py:426
-msgid "HELP_Date format"
-msgstr "Pasirinkite datos ir laiko, kurie bus rodomi prie failo, formatą."
-
-#: EnhancedMovieCenter.py:427
-msgid "Horizontal alignment for date"
-msgstr "Horizontalus lygiavimas pagal datą"
-
-#: EnhancedMovieCenter.py:427
-msgid "HELP_Horizontal alignment for date"
-msgstr "Horizontalus teksto išdėstymas pagal žinomas datas."
-
-#: EnhancedMovieCenter.py:428
-msgid "Horizontal alignment for count / size"
-msgstr "Horizontalus lygiavimas pagal skaičių/dydį"
-
-#: EnhancedMovieCenter.py:428
-msgid "HELP_Horizontal alignment for count / size"
-msgstr "Horizontalus teksto išdėstymas pagal žinomus skaičių/dydį."
-
-#: EnhancedMovieCenter.py:430
-msgid "Show movie icons"
-msgstr "Rodyti filmų turinio piktogramas"
-
-#: EnhancedMovieCenter.py:430
-msgid "HELP_Show movie icons"
-msgstr "Filmų sąraše bus rodomos filmo turinį atitinkančios piktogramos."
-
-#: EnhancedMovieCenter.py:431
-msgid "Show link arrow"
-msgstr "Rodyti krypties rodyklę"
-
-#: EnhancedMovieCenter.py:431
-msgid "HELP_Show link arrow"
-msgstr "Prie simbolinių nuorodų rodyti krypties rodyklę."
-
-#: EnhancedMovieCenter.py:433
-msgid "Show movie picons"
-msgstr "Rodyti filmų piktogramas"
-
-#: EnhancedMovieCenter.py:433
-msgid "HELP_Show movie picons"
-msgstr "Prie filmų pavadinimų bus rodomos filmų piktogramos."
-
-#: EnhancedMovieCenter.py:435
-msgid "Position movie picons"
-msgstr "Filmų piktogramos vieta"
-
-#: EnhancedMovieCenter.py:435
-msgid "HELP_Position movie picons"
-msgstr "Pasirinkite, kur bus filmų piktogramų vieta."
-
-#: EnhancedMovieCenter.py:436
-msgid "Own Path to movie picons"
-msgstr "Pasirinktinis kelias į filmų piktogramas"
-
-#: EnhancedMovieCenter.py:436
-msgid "HELP_Own Path to movie picons"
-msgstr "Čia galite nurodyti savo kelią į filmų piktogramas."
-
-#: EnhancedMovieCenter.py:437
-msgid "Path to movie picons"
-msgstr "Kelias į filmų piktogramas"
-
-#: EnhancedMovieCenter.py:437
-msgid "HELP_Path to movie picons"
-msgstr "Numatytasis kelias į filmų piktogramas."
-
-#: EnhancedMovieCenter.py:439
-msgid "Show movie progress"
-msgstr "Rodyti filmo eigą"
-
-#: EnhancedMovieCenter.py:439
-msgid "HELP_Show movie progress"
-msgstr ""
-"Filmų sąraše prieš filmą bus rodoma eigos juosta, arba procentai. Įrašymo "
-"režimas identifikuojamas pagal piktogramos, arba šrifto spalvą (spalvos "
-"rodymą galima atjungti aplinkos temos nustatymuose)."
-
-#: EnhancedMovieCenter.py:440
-msgid "Short watching percent"
-msgstr "Trumpai žiūrėtas, kai peržiūrėta %"
-
-#: EnhancedMovieCenter.py:440
-msgid "HELP_Short watching percent"
-msgstr ""
-"Galite nurodyti, kiek procentų peržiūrėjus, įrašas bus skaitomas, kaip "
-"\"trumpai žiūrėtas\".\n"
-"Eigos juosta pasikeis į mėlyną."
-
-#: EnhancedMovieCenter.py:441
-msgid "Finished watching percent"
-msgstr "Peržiūrėtas, kai peržiūrėta %"
-
-#: EnhancedMovieCenter.py:441
-msgid "HELP_Finished watching percent"
-msgstr ""
-"Galite nurodyti, kiek procentų peržiūrėjus, įrašas bus skaitomas, kaip "
-"\"peržiūrėtas\".\n"
-"Eigos juosta pasikeis į žalią."
-
-#: EnhancedMovieCenter.py:442
-msgid "Mark new recordings with a star"
-msgstr "Naujus įrašus pažymėti žvaigždute"
-
-#: EnhancedMovieCenter.py:442
-msgid "HELP_Mark new recordings with a star"
-msgstr "Visi nauji įrašai bus pažymėti žvaigždute."
-
-#: EnhancedMovieCenter.py:443 MovieSelection.py:1839 MovieSelection.py:1855
-#: MovieSelection.py:1871
-msgid "Show Cover"
-msgstr "Rodyti viršelį"
-
-#: EnhancedMovieCenter.py:443
-msgid "HELP_Show Cover"
-msgstr "Jei viršelis prieinamas, tada jis bus parodytas."
-
-#: EnhancedMovieCenter.py:444 MovieInfo.py:724
-msgid "Cover delay in ms"
-msgstr "Viršelio rodymo trukmė (ms)"
-
-#: EnhancedMovieCenter.py:444
-msgid "HELP_Cover delay in ms"
-msgstr "Kai pasirinkta rodyti viršelį, čia galite nustatyti jo rodymo trukmę."
-
-#: EnhancedMovieCenter.py:445
-msgid "Cover background"
-msgstr "Viršelio fonas"
-
-#: EnhancedMovieCenter.py:445
-msgid "HELP_Cover background"
-msgstr "Čia galite pasirinkti viršelio fono spalvą."
-
-#: EnhancedMovieCenter.py:446
-msgid "Show fallback cover"
-msgstr "Rodyti fono viršelį"
-
-#: EnhancedMovieCenter.py:446
-msgid "HELP_Fallback Cover"
-msgstr ""
-"Pasirinkus 'Ne\", fono paveikslėlis rodomas tik tada, kai yra pagrindinis "
-"viršelis."
-
-#: EnhancedMovieCenter.py:448
-msgid "Show movie preview"
-msgstr "Rodyti filmo peržiūrą"
-
-#: EnhancedMovieCenter.py:448
-msgid "HELP_Show movie preview"
-msgstr ""
-"Užlaikius kursorių ties filmu, po nurodyto laiko rodomas MiniTV filmo "
-"fragmentas."
-
-#: EnhancedMovieCenter.py:449
-msgid "Movie preview delay in ms"
-msgstr "Filmo peržiūros atvėrimo delsa (ms)"
-
-#: EnhancedMovieCenter.py:449
-msgid "HELP_Movie preview delay in ms"
-msgstr ""
-"Jeigu aukščiau pasirinkta rodyti filmo peržiūrą, čia galite nustatyti "
-"uždelsimą (ms), reikalingą pradėti peržiūrai. Tai apsaugo nuo atsitiktinių "
-"peržiūrų įsijungimo, slenkant sąrašu."
-
-#: EnhancedMovieCenter.py:450
-msgid "Start movie preview before last position"
-msgstr "Pradėti filmo peržiūrą prieš paskutinę poziciją (sek.)"
-
-#: EnhancedMovieCenter.py:450
-msgid "HELP_Movie preview offset in seconds"
-msgstr ""
-"Paleidžia peržiūrą nurodytą sekundžių skaičių anksčiau, nei paskutinė "
-"atkūrimo pozicija."
-
-#: EnhancedMovieCenter.py:451
-msgid "Hide MiniTV"
-msgstr "Slėpti mažąjį TV"
-
-#: EnhancedMovieCenter.py:451
-msgid "HELP_hide_MiniTV"
-msgstr "Nurodo situacijas, kada turi būti paslėptas mažasis TV ekranas."
-
-#: EnhancedMovieCenter.py:455
-msgid "Method of hiding MiniTV"
-msgstr "Mažojo TV slėpimo būdas"
-
-#: EnhancedMovieCenter.py:455
-msgid "HELP_hide_MiniTV_method"
-msgstr ""
-"Pasirenkamas mažojo ekrano slėpimo būdas.\n"
-"Panaudotinas, pvz., kai Gigablue Quad iškraipo teisingą kraštinių santykį. "
-"Tiesioginė transliacija nebus nutraukta, bet MiniTV alternatyviai sumažins "
-"pikselių skaičių."
-
-#: EnhancedMovieCenter.py:460
+#: src/EnhancedMovieCenter.py:418
 msgid "No resume below 10 seconds"
 msgstr "Mažiau 10 sek. nepratęsti"
 
-#: EnhancedMovieCenter.py:460
+#: src/EnhancedMovieCenter.py:418
 msgid "HELP_No resume below 10 seconds"
 msgstr ""
 "Trumpesnės, kaip 10 sek. paleidimo žymės bus ignoruojamos.\n"
 "Jeigu atkūrimas sustabdytas per pirmąsias 10 sekundžių, paleidus iš naujo, "
 "pratęsti siūloma nebus."
 
-#: EnhancedMovieCenter.py:461
+#: src/EnhancedMovieCenter.py:419
 msgid "Jump to first mark when playing movie"
 msgstr "Atkuriant filmą, pereiti į pirmą žymę"
 
-#: EnhancedMovieCenter.py:461
+#: src/EnhancedMovieCenter.py:419
 msgid "HELP_Jump to first mark when playing movie"
 msgstr ""
-"Kai įmanoma, automatiškai pereis prie pirmos įrašo žymės.\n"
-"(padeda automatiškai praleisti pradinio laiko intarpus)."
+"Automatiškai pereis prie pirmos įrašo žymės, jei tai įmanoma.\n"
+"(gali padėti automatiškai praleisti pradinio laiko intarpus)."
 
-#: EnhancedMovieCenter.py:462
+#: src/EnhancedMovieCenter.py:420
 msgid "Rewind finished movies before playing"
-msgstr "Peržiūrėtus filmus rodyti iš pradžios"
+msgstr "Atsukti baigtus filmus prieš juos rodant"
 
-#: EnhancedMovieCenter.py:462
+#: src/EnhancedMovieCenter.py:420
 msgid "HELP_Rewind finished movies before playing"
 msgstr ""
-"Jeu įrašas, ar filmas su žyme \"peržiūrėtas\" paleidžiamas iš naujo, jis bus "
-"rodomas iš pradžios."
+"Jeu įrašas su žyme \"peržiūrėtas\" paleidžiamas iš naujo, jis bus rodomas iš "
+"pradžios."
 
-#: EnhancedMovieCenter.py:463
+#: src/EnhancedMovieCenter.py:421
 msgid "Always save last played progress as marker"
 msgstr "Visada išsaugoti paskutinį atkūrimo stovį, kaip žymę"
 
-#: EnhancedMovieCenter.py:463
+#: src/EnhancedMovieCenter.py:421
 msgid "HELP_Always save last played progress as marker"
 msgstr ""
 "Pasirinkus 'Taip', žymė nustatoma kiekvienąkart, sustabdžius atkūrimą.\n"
-"Tęsiant atkūrimą, mygtukais '<' ir '>' galima šokinėti per šias žymes, "
-"nepriklausomai nuo pratęsimo vietos."
+"Tęsiant atkūrimą, mygtukais '<' ir '>' galima šokinėti per šias žymes "
+"(nepriklausomai nuo pratęsimo vietos)."
 
-#: EnhancedMovieCenter.py:464
+#: src/EnhancedMovieCenter.py:422
 msgid "Zap to channel after record EOF"
 msgstr "Priėjus įrašo pabaigą, įjungti TV kanalą"
 
-#: EnhancedMovieCenter.py:464
+#: src/EnhancedMovieCenter.py:422
 msgid "HELP_Zap to channel after record EOF"
 msgstr ""
 "Kai grotuvas pasiekia vykdomo įrašo pabaigą (greit persukant, ar peršokant), "
-"įrašas bus nutrauktas, EMC užsidarys ir bus atverta įrašomo kanalo "
-"tiesioginė TV transliacija."
+"uždaryti EMC ir atverti įrašomą kanalą tiesioginės TV transliacijos lange."
 
-#: EnhancedMovieCenter.py:465
+#: src/EnhancedMovieCenter.py:423
 msgid "Show real length of running records"
 msgstr "Rodyti vykdomų įrašų tikrąjį dydį"
 
-#: EnhancedMovieCenter.py:465
+#: src/EnhancedMovieCenter.py:423
 msgid "HELP_Show real length of running records"
 msgstr "Bus rodomas faktiškas vykdomų įrašų dydis."
 
-#: EnhancedMovieCenter.py:470
+#: src/EnhancedMovieCenter.py:428
 msgid "Download cutlist from Cutlist.at"
 msgstr "Parsisiųsti iškarpų sąrašą iš Cutlist.at"
 
-#: EnhancedMovieCenter.py:470
+#: src/EnhancedMovieCenter.py:428
 msgid "HELP_Download cutlist from Cutlist.at"
 msgstr "Parsisiųsti iškarpų sąrašą iš Cutlist.at, jei toks ten yra."
 
-#: EnhancedMovieCenter.py:474
-msgid "HELP_separator_Trashcan settings"
-msgstr "Šiukšliadėžės ir jos automatinio išvalymo funkcijų nuostatos."
+#: src/EnhancedMovieCenter.py:432
+msgid "TRASHCAN"
+msgstr "ŠIUKŠLIADĖŽĖ"
 
-#: EnhancedMovieCenter.py:475
+#: src/EnhancedMovieCenter.py:433
 msgid "Trashcan enable"
-msgstr "Naudoti šiukšliadėžę"
+msgstr "Įjungti šiukšliadėžę"
 
-#: EnhancedMovieCenter.py:475
+#: src/EnhancedMovieCenter.py:433
 msgid "HELP_Trashcan enable"
 msgstr ""
-"Čia galite įjungti-išjungti šiukšliadėžės naudojimą.\n"
+"Čia galite įjungti-išjungti šiukšliadėžę.\n"
 "Išjungus, šalinamas turinys bus ištrintas iškart po užklausimo."
 
-#: EnhancedMovieCenter.py:476
+#: src/EnhancedMovieCenter.py:434
 msgid "Trashcan path"
-msgstr "Kelias į šiukšliadėžę"
+msgstr "Kelias į  šiukšliadėžę"
 
-#: EnhancedMovieCenter.py:476
+#: src/EnhancedMovieCenter.py:434
 msgid "HELP_Trashcan path"
 msgstr ""
 "Nurodykite kelią į šiukšliadėžę. Šalinami failai bus perkelti į šį katalogą, "
 "o ne trinami iš karto."
 
-#: EnhancedMovieCenter.py:477
+#: src/EnhancedMovieCenter.py:435
 msgid "Show trashcan directory"
 msgstr "Rodyti šiukšliadėžės katalogą"
 
-#: EnhancedMovieCenter.py:477
+#: src/EnhancedMovieCenter.py:435
 msgid "HELP_Show trashcan directory"
 msgstr ""
 "Šiukšliadėžės katalogą rodyti EMC\n"
 "(kai šiukšliadėžė nerodoma, ją galite atsidaryti EMC paspaudę 'MENU')."
 
-#: EnhancedMovieCenter.py:478
+#: src/EnhancedMovieCenter.py:436
 msgid "Show trashcan information"
 msgstr "Rodyti šiukšliadėžės informaciją"
 
-#: EnhancedMovieCenter.py:478
+#: src/EnhancedMovieCenter.py:436
 msgid "HELP_Dynamic trashcan"
 msgstr ""
 "Rodyti šiukšliadėžėje esančių įrašų kiekį ir/arba jų užimamos vietos dydį."
 
-#: EnhancedMovieCenter.py:479
+#: src/EnhancedMovieCenter.py:437
 msgid "Delete validation"
 msgstr "Pašalinimo patvirtinimas"
 
-#: EnhancedMovieCenter.py:479
+#: src/EnhancedMovieCenter.py:437
 msgid "HELP_Delete validation"
 msgstr ""
 "Kai naudojama šiukšliadėžė, EMC klaus, arba neklaus pašalinimo patvirtinimo."
 
-#: EnhancedMovieCenter.py:481
+#: src/EnhancedMovieCenter.py:439
 msgid "Enable daily trashcan cleanup"
 msgstr "Šiukšliadėžės kasdienis ištuštinimas"
 
-#: EnhancedMovieCenter.py:481
+#: src/EnhancedMovieCenter.py:439
 msgid "HELP_Enable daily trashcan cleanup"
 msgstr ""
 "EMC ištrins senus failus iš šiukšliadėžės, kai jie pasieks žemiau nurodytą "
 "laiko limitą."
 
-#: EnhancedMovieCenter.py:482
+#: src/EnhancedMovieCenter.py:440
 msgid "Daily cleanup time"
 msgstr "Kasdienio ištuštinimo laikas"
 
-#: EnhancedMovieCenter.py:482
+#: src/EnhancedMovieCenter.py:440
 msgid "HELP_Daily cleanup time"
-msgstr "Laikas, kuriam praėjus EMC ištrins failus iš šiukšliadėžės."
+msgstr "Laikas, kuriam praėjus EMC ištrins visus failus iš šiukšlinės."
 
-#: EnhancedMovieCenter.py:483
+#: src/EnhancedMovieCenter.py:441
 msgid "How many days files may remain in trashcan"
 msgstr "Kiek dienų failai išbus šiukšliadėžėje"
 
-#: EnhancedMovieCenter.py:483
+#: src/EnhancedMovieCenter.py:441
 msgid "HELP_How many days files may remain in trashcan"
 msgstr ""
 "Nustatykite, kiek dienų failai turi išbūti šiukšliadėžėje, kol EMC juos "
 "ištrins galutinai.\n"
 "Kai pasirinkta [0], failai visada bus trinami iškart."
 
-#: EnhancedMovieCenter.py:484
+#: src/EnhancedMovieCenter.py:442
 msgid "Move finished movies in trashcan"
-msgstr "Peržiūrėtus filmus perkelti į šiukšliadėžę"
+msgstr "Pabaigtus filmus perkelti į šiukšliadėžę"
 
-#: EnhancedMovieCenter.py:484
+#: src/EnhancedMovieCenter.py:442
 msgid "HELP_Move finished movies in trashcan"
 msgstr ""
-"Visus peržiūrėtus filmus iš \"Filmų namų\" perkelti į šiukšliadėžę, kai jie "
-"pasieks žemiau nurodytą laiko limitą."
+"Visus pabaigtus (peržiūrėtus) filmus iš \"Filmų namų\" perkelti į "
+"šiukšliadėžę, kai jie pasieks žemiau nurodytą laiko limitą."
 
-#: EnhancedMovieCenter.py:485
+#: src/EnhancedMovieCenter.py:443
 msgid "Age of finished movies in movie folder (days)"
 msgstr "Pabaigtų filmų, esančių filmų kataloge, amžius (dienų)"
 
-#: EnhancedMovieCenter.py:485
+#: src/EnhancedMovieCenter.py:443
 msgid "HELP_Age of finished movies in movie folder (days)"
 msgstr ""
 "Nustatykite, kiek dienų pabaigti (peržiūrėti) įrašai turi būti saugomi "
 "\"Filmų namų\" kataloge, prieš perkeliant į šiukšliadėžę."
 
-#: EnhancedMovieCenter.py:488
+#: src/EnhancedMovieCenter.py:446
 msgid "Display directory reading text"
 msgstr "Rodyti 'Katalogas skaitomas...' pranešimą"
 
-#: EnhancedMovieCenter.py:488
+#: src/EnhancedMovieCenter.py:446
 msgid "HELP_Display directory reading text"
 msgstr ""
 "Bus rodomas \"Katalogas skaitomas...\" pranešimas, kol skaitomas to katalogo "
 "turinys."
 
-#: EnhancedMovieCenter.py:489
+#: src/EnhancedMovieCenter.py:447
 msgid "EMC always reload after open"
 msgstr "Atvėrus EMC, visada katalogą įkelti iš naujo"
 
-#: EnhancedMovieCenter.py:489
+#: src/EnhancedMovieCenter.py:447
 msgid "HELP_EMC always reload after open"
 msgstr ""
 "Atidarant EMC, katalogo turinys kiekvienąkart bus perskaitomas iš naujo.\n"
 "Jei ne, paleidžiant EMC antrąkart, katalogo turinys bus skaitomas iš "
 "atminties podėlio."
 
-#: EnhancedMovieCenter.py:490
+#: src/EnhancedMovieCenter.py:448
 msgid "EMC re-open list after STOP-press"
 msgstr "Paspaudus 'STOP', EMC atverti filmų sąrašą"
 
-#: EnhancedMovieCenter.py:490
+#: src/EnhancedMovieCenter.py:448
 msgid "HELP_EMC re-open list after STOP-press"
 msgstr ""
 "Kai atkūrimas sustabdytas, bus atvertas EMC įrašų sąrašas.\n"
 "Jei ne, vėl įjungiamas ankstesnės TV transliacijos režimas."
 
-#: EnhancedMovieCenter.py:491
+#: src/EnhancedMovieCenter.py:449
 msgid "EMC re-open list after Movie end"
 msgstr "Pasibaigus filmui, EMC atverti filmų sąrašą"
 
-#: EnhancedMovieCenter.py:491
+#: src/EnhancedMovieCenter.py:449
 msgid "HELP_EMC re-open list after Movie end"
 msgstr ""
 "Kai filmas pasibaigia, bus atveriamas EMC įrašų sąrašas.\n"
 "Jei ne, vėl įjungiamas ankstesnės TV transliacijos režimas."
 
-#: EnhancedMovieCenter.py:493
+#: src/EnhancedMovieCenter.py:451
 msgid "Leave Movie with Exit"
 msgstr "Užverti filmą 'EXIT' mygtuku"
 
-#: EnhancedMovieCenter.py:493
+#: src/EnhancedMovieCenter.py:451
 msgid "HELP_Leave Movie with Exit"
 msgstr "Atkūrimas gali būti sustabdytas ne tik 'STOP', bet ir 'EXIT' mygtuku."
 
-#: EnhancedMovieCenter.py:495
+#: src/EnhancedMovieCenter.py:453
 msgid "Hide movies being moved"
 msgstr "Slėpti perkeliamus filmus"
 
-#: EnhancedMovieCenter.py:495
+#: src/EnhancedMovieCenter.py:453
 msgid "HELP_Hide movies being moved"
 msgstr ""
 "Įrašas bus paslėptas, t.y. perkėlimo metu filmų sąraše nebus rodomas\n"
 "(bet kokiu atveju, perkėlimas vis tiek vyks fono režime)."
 
-#: EnhancedMovieCenter.py:496
+#: src/EnhancedMovieCenter.py:454
 msgid "Hide movies being deleted"
 msgstr "Slėpti šalinamus filmus"
 
-#: EnhancedMovieCenter.py:496
+#: src/EnhancedMovieCenter.py:454
 msgid "HELP_Hide movies being deleted"
 msgstr ""
 "Įrašas bus paslėptas, t.y. šalinimo metu filmų sąraše nebus rodomas\n"
 "(bet kokiu atveju, šalinimas vis tiek vyks fono režime)."
 
-#: EnhancedMovieCenter.py:498
+#: src/EnhancedMovieCenter.py:456
 msgid "Enable remote recordings"
 msgstr "Atpažinti nutolusį įrašymą"
 
-#: EnhancedMovieCenter.py:498
+#: src/EnhancedMovieCenter.py:456
 msgid "HELP_Enable remote recordings"
 msgstr ""
 "Atpažinti įrašus, darytus kitų aparatų į bendrą laikmeną.\n"
 "Šie įrašai pažymimi specialia piktograma."
 
-#: EnhancedMovieCenter.py:499
+#: src/EnhancedMovieCenter.py:457
 msgid "Automatic timers list cleaning"
 msgstr "Automatinis laikmačių sąrašo valymas"
 
-#: EnhancedMovieCenter.py:499
+#: src/EnhancedMovieCenter.py:457
 msgid "HELP_Automatic timers list cleaning"
 msgstr ""
 "Baigti vykdyti laikmačiai iš laikmačių sąrašo bus šalinami automatiškai."
 
-#: EnhancedMovieCenter.py:501
-msgid "HELP_Language Separator"
-msgstr "Kalbos nustatymai."
+#: src/EnhancedMovieCenter.py:459
+msgid "LANGUAGE"
+msgstr "KALBA"
 
-#: EnhancedMovieCenter.py:502
+#: src/EnhancedMovieCenter.py:460
 msgid "Preferred EPG language"
 msgstr "Pageidaujama EPG kalba"
 
-#: EnhancedMovieCenter.py:502
+#: src/EnhancedMovieCenter.py:460
 msgid "HELP_Preferred EPG language"
 msgstr "Čia galite nurodyti pageidaujamą EPG kalbą."
 
-#: EnhancedMovieCenter.py:503
-msgid "Extra support for language"
-msgstr "Išplėstinis kalbos palaikymas"
-
-#: EnhancedMovieCenter.py:503
-msgid "HELP_Extra support for selected language"
-msgstr "Čia galite įjungti pasirinktos papildomos kalbos palaikymą."
-
-#: EnhancedMovieCenter.py:504
+#: src/EnhancedMovieCenter.py:461
 msgid "Enable playback auto-subtitling"
 msgstr "Įjungti automatinius subtitrus"
 
-#: EnhancedMovieCenter.py:504
+#: src/EnhancedMovieCenter.py:461
 msgid "HELP_Enable playback auto-subtitling"
 msgstr "Čia galite įjungti automatinį subtitrų kalbos parinkimą."
 
-#: EnhancedMovieCenter.py:505
+#: src/EnhancedMovieCenter.py:462
 msgid "Primary playback subtitle language"
 msgstr "Pagrindinė subtitrų kalba"
 
-#: EnhancedMovieCenter.py:505
+#: src/EnhancedMovieCenter.py:462
 msgid "HELP_Primary playback subtitle language"
 msgstr ""
 "Pagrindinė subtitrų kalba, kuri turėtų būti parenkama, jei yra tokios kalbos "
 "subtitrai."
 
-#: EnhancedMovieCenter.py:506
+#: src/EnhancedMovieCenter.py:463
 msgid "Secondary playback subtitle language"
 msgstr "Antroji subtitrų kalba"
 
-#: EnhancedMovieCenter.py:506
+#: src/EnhancedMovieCenter.py:463
 msgid "HELP_Secondary playback subtitle language"
 msgstr ""
 "Antroji subtitrų kalba, kuri turėtų būti parenkama, jei yra tokios kalbos "
 "subtitrai."
 
-#: EnhancedMovieCenter.py:507
+#: src/EnhancedMovieCenter.py:464
 msgid "Tertiary playback subtitle language"
 msgstr "Trečioji subtitrų kalba"
 
-#: EnhancedMovieCenter.py:507
+#: src/EnhancedMovieCenter.py:464
 msgid "HELP_Tertiary playback subtitle language"
 msgstr ""
 "Trečioji subtitrų kalba, kuri turėtų būti parenkama, jei yra tokios kalbos "
 "subtitrai."
 
-#: EnhancedMovieCenter.py:508
+#: src/EnhancedMovieCenter.py:465
 msgid "Enable playback auto-language selection"
 msgstr "Įjungti automatinį kalbos parinkimą"
 
-#: EnhancedMovieCenter.py:508
+#: src/EnhancedMovieCenter.py:465
 msgid "HELP_Enable playback auto-language selection"
 msgstr "Įjungti automatinį atkuriamos kalbos parinkimą."
 
-#: EnhancedMovieCenter.py:509
+#: src/EnhancedMovieCenter.py:466
 msgid "Enable playback AC3-track first"
 msgstr "Pirmenybė AC3 takeliui"
 
-#: EnhancedMovieCenter.py:509
+#: src/EnhancedMovieCenter.py:466
 msgid "HELP_Enable playback AC3-track first"
 msgstr "Jei yra galimybė, pirmenybę teikti AC3 garso takeliui."
 
-#: EnhancedMovieCenter.py:510
+#: src/EnhancedMovieCenter.py:467
 msgid "Primary playback audio language"
 msgstr "Pagrindinė garso takelio kalba"
 
-#: EnhancedMovieCenter.py:510
+#: src/EnhancedMovieCenter.py:467
 msgid "HELP_Primary playback audio language"
 msgstr ""
 "Pagrindinė garso takelio kalba, kuri turėtų būti parenkama, jei yra tokia "
 "galimybė."
 
-#: EnhancedMovieCenter.py:511
+#: src/EnhancedMovieCenter.py:468
 msgid "Secondary playback audio language"
 msgstr "Antroji garso takelio kalba"
 
-#: EnhancedMovieCenter.py:511
+#: src/EnhancedMovieCenter.py:468
 msgid "HELP_Secondary playback audio language"
 msgstr ""
-"Antroji garso takelio kalba, kuri turėtų būti parenkama, jei yra tokia "
+"Antroji garso takelio kalba, kuri turėtų būti parenkama, jei būtų tokia "
 "galimybė."
 
-#: EnhancedMovieCenter.py:512
+#: src/EnhancedMovieCenter.py:469
 msgid "Tertiary playback audio language"
 msgstr "Trečioji garso takelio kalba"
 
-#: EnhancedMovieCenter.py:512
+#: src/EnhancedMovieCenter.py:469
 msgid "HELP_Tertiary playback audio language"
 msgstr ""
 "Trečioji garso takelio kalba, kuri turėtų būti parenkama, jei yra tokia "
 "galimybė."
 
-#: EnhancedMovieCenter.py:514 EnhancedMovieCenter.py:519
-#: EnhancedMovieCenter.py:545
-msgid "HELP_Advanced options separator"
-msgstr "Išplėstinės EMC parinktys."
+#: src/EnhancedMovieCenter.py:471
+msgid "DELAYS"
+msgstr "DELSOS"
 
-#: EnhancedMovieCenter.py:515
+#: src/EnhancedMovieCenter.py:472
 msgid "Description field update delay"
 msgstr "Aprašymo lango atvaizdavimo delsa"
 
-#: EnhancedMovieCenter.py:515
+#: src/EnhancedMovieCenter.py:472
 msgid "HELP_Description field update delay"
 msgstr ""
 "Aprašymo lango filmų sąraše atvaizdavimo delsa.\n"
 "(pagreitina navigaciją filmų sąrašu aukštyn/žemyn mygtukais, nes aprašymas "
 "parodomas tik po pasirinkto uždelsimo)."
 
-#: EnhancedMovieCenter.py:516
+#: src/EnhancedMovieCenter.py:473
 msgid "Key period value (50-900)"
 msgstr "Mygtuko nuspaudimo trukmė (50-900)"
 
-#: EnhancedMovieCenter.py:516
+#: src/EnhancedMovieCenter.py:473
 msgid "HELP_Key period value (50-900)"
 msgstr ""
 "Laikotarpis, iki komanda pakartojama, jei mygtukas laikomas nuspaustas."
 
-#: EnhancedMovieCenter.py:517
+#: src/EnhancedMovieCenter.py:474
 msgid "Key repeat value (250-900)"
 msgstr "Mygtuko kartojimo trukmė (250-900)"
 
-#: EnhancedMovieCenter.py:517
+#: src/EnhancedMovieCenter.py:474
 msgid "HELP_Key repeat value (250-900)"
 msgstr "Komandos kartojimo greitis, jei mygtukas laikomas nuspaustas."
 
-#: EnhancedMovieCenter.py:520
-msgid "Show message if file added to playlist"
-msgstr "Rodyti žinutę, jei failas pridėtas į grojaraštį"
+#: src/EnhancedMovieCenter.py:476
+msgid "SKIN-SETTINGS"
+msgstr "IŠVAIZDOS NUSTATYMAI"
 
-#: EnhancedMovieCenter.py:520
-msgid "HELP_Show message if file added to playlist"
-msgstr "Rodyti ar nerodyti pranešimą, kai failas pridėtas į grojaraštį."
-
-#: EnhancedMovieCenter.py:522
-msgid "HELP_Advanced Skin options separator"
-msgstr "EMC vartotojo aplinkos temos parametrai."
-
-#: EnhancedMovieCenter.py:523
+#: src/EnhancedMovieCenter.py:477
 msgid "Use original EMC-skin (needs reopen)"
 msgstr "Naudoti originalią EMC aplinkos temą (reikės paleisti iš naujo)"
 
-#: EnhancedMovieCenter.py:523
+#: src/EnhancedMovieCenter.py:477
 msgid "HELP_Use original EMC-skin (needs reopen)"
 msgstr ""
 "Įjungti originalią EMC vartotojo aplinkos temą (reikės EMC paleisti iš "
 "naujo)."
 
-#: EnhancedMovieCenter.py:526
-msgid "HELP_Advanced audio metadata options separator"
-msgstr "Išplėstinės garso metaduomenų parinktys."
+#: src/EnhancedMovieCenter.py:478
+msgid "Style for original EMC-skin (needs reopen)"
+msgstr "Naudoti originalią EMC aplinkos temą (reikės paleisti iš naujo)"
 
-#: EnhancedMovieCenter.py:532
-msgid "Download Mutagen-package for audio metadata"
-msgstr "Parsisiųsti garso metaduomenų paketą Mutagen"
-
-#: EnhancedMovieCenter.py:532
-msgid "HELP_Download Mutagen-package for audio metadata"
+#: src/EnhancedMovieCenter.py:478
+msgid "HELP_Style for original EMC-skin (needs reopen)"
 msgstr ""
-"Galima parsisiųsti garso metaduomenų paketą Mutagen.\n"
+"Įjungti originalią EMC vartotojo aplinkos temą (reikės EMC paleisti iš "
+"naujo)."
+
+#: src/EnhancedMovieCenter.py:480
+msgid "Listbox is skin able"
+msgstr "Sąrašo langas pritaikytinas temai"
+
+#: src/EnhancedMovieCenter.py:480
+msgid "HELP_Listbox is skin able"
+msgstr ""
+"Jei įmanoma, naudojama filmų sąrašo vizualizacija iš vartotojo temos (tiktai "
+"<widget name=\"list\"). Jei ne, tada, kaip nurodyta EMC sąrankoje."
+
+#: src/EnhancedMovieCenter.py:482
+msgid "Date format"
+msgstr "Datos formatas"
+
+#: src/EnhancedMovieCenter.py:482
+msgid "HELP_Date format"
+msgstr "Pasirinkite datos ir laiko, kurie bus rodomi prie failo, formatą."
+
+#: src/EnhancedMovieCenter.py:483
+msgid "Horizontal alignment for date"
+msgstr "Horizontalus lygiavimas pagal datą"
+
+#: src/EnhancedMovieCenter.py:483
+msgid "HELP_Horizontal alignment for date"
+msgstr "Horizontalus teksto išdėstymas pagal žinomas datas."
+
+#: src/EnhancedMovieCenter.py:484
+msgid "Horizontal alignment for count / size"
+msgstr "Horizontalus lygiavimas pagal skaičių / dydį"
+
+#: src/EnhancedMovieCenter.py:484
+msgid "HELP_Horizontal alignment for count / size"
+msgstr "Horizontalus teksto išdėstymas pagal žinomus skaičių/dydį."
+
+#: src/EnhancedMovieCenter.py:486
+msgid "Show movie icons"
+msgstr "Rodyti filmų turinio piktogramas"
+
+#: src/EnhancedMovieCenter.py:486
+msgid "HELP_Show movie icons"
+msgstr "Filmų sąraše bus rodomos filmo turinį atitinkančios piktogramos."
+
+#: src/EnhancedMovieCenter.py:487
+msgid "Show link arrow"
+msgstr "Rodyti krypties rodyklę"
+
+#: src/EnhancedMovieCenter.py:487
+msgid "HELP_Show link arrow"
+msgstr "Prie simbolinių nuorodų rodyti krypties rodyklę."
+
+#: src/EnhancedMovieCenter.py:489
+msgid "Show movie picons"
+msgstr "Rodyti filmų piktogramas"
+
+#: src/EnhancedMovieCenter.py:489
+msgid "HELP_Show movie picons"
+msgstr "Prie filmų pavadinimų bus rodomos filmų piktogramos."
+
+#: src/EnhancedMovieCenter.py:490
+msgid "Position movie picons"
+msgstr "Filmų piktogramos vieta"
+
+#: src/EnhancedMovieCenter.py:490
+msgid "HELP_Position movie picons"
+msgstr "Pasirinkite, kur bus filmų piktogramų vieta."
+
+#: src/EnhancedMovieCenter.py:491
+msgid "Own Path to movie picons"
+msgstr "Pasirinktinis kelias į filmų piktogramas"
+
+#: src/EnhancedMovieCenter.py:491
+msgid "HELP_Own Path to movie picons"
+msgstr "Čia galite nurodyti savo kelią į filmų piktogramas."
+
+#: src/EnhancedMovieCenter.py:492
+msgid "Path to movie picons"
+msgstr "Kelias į filmų piktogramas"
+
+#: src/EnhancedMovieCenter.py:492
+msgid "HELP_Path to movie picons"
+msgstr "Standartinis kelias į filmų piktogramas."
+
+#: src/EnhancedMovieCenter.py:494
+msgid "Show movie progress"
+msgstr "Rodyti filmo eigą"
+
+#: src/EnhancedMovieCenter.py:494
+msgid "HELP_Show movie progress"
+msgstr ""
+"Filmų sąraše prieš filmą bus rodoma eigos juosta, arba procentai. Įrašymo "
+"režimas identifikuojamas pagal piktogramos, arba šrifto spalvą (spalvos "
+"rodymą galima atjungti aplinkos temos nustatymuose)."
+
+#: src/EnhancedMovieCenter.py:495
+msgid "Short watching percent"
+msgstr "Trumpai žiūrėtas, kai peržiūrėta %"
+
+#: src/EnhancedMovieCenter.py:495
+msgid "HELP_Short watching percent"
+msgstr ""
+"Galite nurodyti, kiek procentų peržiūrėjus, įrašas bus skaitomas, kaip "
+"\"trumpai žiūrėtas\".\n"
+"Eigos juosta pasikeis į mėlyną."
+
+#: src/EnhancedMovieCenter.py:496
+msgid "Finished watching percent"
+msgstr "Peržiūrėtas, kai peržiūrėta %"
+
+#: src/EnhancedMovieCenter.py:496
+msgid "HELP_Finished watching percent"
+msgstr ""
+"Galite nurodyti, kiek procentų peržiūrėjus, įrašas bus skaitomas, kaip "
+"\"peržiūrėtas\".\n"
+"Eigos juosta pasikeis į žalią."
+
+#: src/EnhancedMovieCenter.py:497
+msgid "Default color for unwatched movie"
+msgstr "Numatytoji spalva nežiūrėtam filmui"
+
+#: src/EnhancedMovieCenter.py:497
+msgid "HELP_Default color unwatched"
+msgstr "Pasirinkite numatytąją spalvą dar nežiūrėtiems filmams."
+
+#: src/EnhancedMovieCenter.py:498
+msgid "Default color for partially watched movie"
+msgstr "Numatytoji spalva iš dalies žiūrėtam filmui"
+
+#: src/EnhancedMovieCenter.py:498
+msgid "HELP_Default color partially watched"
+msgstr "Pasirinkite numatytąją spalvą dalinai žiūrėtiems filmams."
+
+#: src/EnhancedMovieCenter.py:499
+msgid "Default color for watched movie"
+msgstr "Numatytoji spalva žiūrėtam filmui"
+
+#: src/EnhancedMovieCenter.py:499
+msgid "HELP_Default color watched"
+msgstr "Pasirinkite numatytąją spalvą jau žiūrėtiems filmams."
+
+#: src/EnhancedMovieCenter.py:500
+msgid "Default color for recording movie"
+msgstr "Numatytoji spalva įrašomiems filmams"
+
+#: src/EnhancedMovieCenter.py:500
+msgid "HELP_Default color recording"
+msgstr "Pasirinkite numatytąją spalvą įrašomiems filmams."
+
+#: src/EnhancedMovieCenter.py:501
+msgid "Default color for highlighted movie"
+msgstr "Numatytoji spalva pažymėtam filmui"
+
+#: src/EnhancedMovieCenter.py:501
+msgid "HELP_Default color highlighted"
+msgstr "Pasirinkite numatytąją spalvą pažymėtam filmui"
+
+#: src/EnhancedMovieCenter.py:502
+msgid "Mark new recordings with a star"
+msgstr "Naujus įrašus pažymėti žvaigždute"
+
+#: src/EnhancedMovieCenter.py:502
+msgid "HELP_Mark new recordings with a star"
+msgstr "Visi nauji įrašai bus pažymėti žvaigždute."
+
+#: src/EnhancedMovieCenter.py:503 src/MovieSelection.py:1935
+#: src/MovieSelection.py:1951 src/MovieSelection.py:1967
+msgid "Show Cover"
+msgstr "Rodyti viršelį"
+
+#: src/EnhancedMovieCenter.py:503
+msgid "HELP_Show Cover"
+msgstr "Jei viršelis prieinamas, tada jis bus parodytas."
+
+#: src/EnhancedMovieCenter.py:504 src/MovieInfo.py:628
+msgid "Cover delay in ms"
+msgstr "Viršelio rodymo trukmė (ms)"
+
+#: src/EnhancedMovieCenter.py:504
+msgid "HELP_Cover delay in ms"
+msgstr "Kai pasirinkta rodyti viršelį, čia galite nustatyti jo rodymo trukmę."
+
+#: src/EnhancedMovieCenter.py:506
+msgid "Show fallback cover"
+msgstr "Rodyti fono viršelį"
+
+#: src/EnhancedMovieCenter.py:506
+msgid "HELP_Fallback Cover"
+msgstr ""
+"Pasirinkus 'Ne\", fono paveikslėlis rodomas tik tada, kai yra pagrindinis "
+"viršelis."
+
+#: src/EnhancedMovieCenter.py:513
+msgid "Cover background"
+msgstr "Viršelio fonas"
+
+#: src/EnhancedMovieCenter.py:513
+msgid "HELP_Cover background"
+msgstr "Čia galite pasirinkti viršelio fono spalvą."
+
+#: src/EnhancedMovieCenter.py:519
+msgid "Show movie preview"
+msgstr "Rodyti filmo peržiūrą"
+
+#: src/EnhancedMovieCenter.py:519
+msgid "HELP_Show movie preview"
+msgstr ""
+"Užlaikius kursorių ties filmu, po nurodyto laiko rodomas PiG filmo "
+"fragmentas."
+
+#: src/EnhancedMovieCenter.py:520
+msgid "Movie preview delay in ms"
+msgstr "Filmo peržiūros atvėrimo delsa (ms)"
+
+#: src/EnhancedMovieCenter.py:520
+msgid "HELP_Movie preview delay in ms"
+msgstr ""
+"Jeigu aukščiau pasirinkta rodyti filmo peržiūrą, čia galite nustatyti "
+"uždelsimą (ms), reikalingą pradėti peržiūrai. Tai apsaugo nuo atsitiktinių "
+"peržiūrų įsijungimo, slenkant sąrašu."
+
+#: src/EnhancedMovieCenter.py:521
+msgid "Start movie preview before last position"
+msgstr "Pradėti filmo peržiūrą prieš paskutinę poziciją (sek.)"
+
+#: src/EnhancedMovieCenter.py:521
+msgid "HELP_Movie preview offset in seconds"
+msgstr ""
+"Paleidžia peržiūrą nurodytą sekundžių skaičių anksčiau, nei paskutinė "
+"atkūrimo pozicija."
+
+#: src/EnhancedMovieCenter.py:522
+msgid "Hide MiniTV"
+msgstr "Nurodo situacijas, kada turi būti paslėptas mini TV ekranas"
+
+#: src/EnhancedMovieCenter.py:522
+msgid "HELP_hide_MiniTV"
+msgstr "Nurodo situacijas, kada turi būti paslėptas mini TV ekranas"
+
+#: src/EnhancedMovieCenter.py:523
+msgid "Hide MiniTV if Cover is shown"
+msgstr "Slėpti mini TV, jei rodomas viršelis"
+
+#: src/EnhancedMovieCenter.py:523
+msgid "HELP_hide_MiniTV cover"
+msgstr "Nurodo situacijas, kada turi būti paslėptas mini TV ekranas."
+
+#: src/EnhancedMovieCenter.py:530
+msgid "Method of hiding MiniTV"
+msgstr "mini TV slėpimo būdas"
+
+#: src/EnhancedMovieCenter.py:530
+msgid "HELP_hide_MiniTV_method"
+msgstr ""
+"Pasirenkamas mažojo ekrano slėpimo būdas. Panaudotinas, pvz., kai Gigablue "
+"Quad iškraipo teisingą kraštinių santykį.\n"
+"Tiesioginė transliacija nebus nutraukta, bet mini TV alternatyviai sumažins "
+"pikselių skaičių."
+
+#: src/EnhancedMovieCenter.py:536
+msgid "AUDIO METADATA"
+msgstr "GARSO DUOMENYS"
+
+#: src/EnhancedMovieCenter.py:543
+msgid "Install Mutagen-package for audio metadata"
+msgstr "Įdiekite Mutagen paketą garso meta duomenims"
+
+#: src/EnhancedMovieCenter.py:543
+msgid "HELP_Install Mutagen-package for audio metadata"
+msgstr ""
+"Galite parsisiųsti garso metaduomenų paketą Mutagen.\n"
 "Parsisiuntę, turėsite jį įsidiegti."
 
-#: EnhancedMovieCenter.py:538
-msgid "Show audio metadata (needs skin-changes)"
+#: src/EnhancedMovieCenter.py:550
+msgid "Show audio metadata"
 msgstr "Rodyti garso metaduomenis (reikės pakeitimų temoje)"
 
-#: EnhancedMovieCenter.py:538
-msgid "HELP_Show audio metadata (needs skin-changes)"
+#: src/EnhancedMovieCenter.py:550
+msgid "HELP_Show audio metadata"
 msgstr ""
 "Rodyti garso metaduomenis filmų sąraše.\n"
 "Kad jie būtų korektiškai atvaizduojami, reikės atlikti pakeitimus EMC "
 "aplinkos temoje."
 
-#: EnhancedMovieCenter.py:543
-msgid "Upgrade/Download Mutagen v1.28(experimental)"
-msgstr "Parsisiųsti/atnaujinti Mutagen v1.28 (eksperimentinis)"
+#: src/EnhancedMovieCenter.py:556
+msgid "DEBUG"
+msgstr "KLAIDŲ ŠALINIMAS"
 
-#: EnhancedMovieCenter.py:543
-msgid "HELP_Upgrade/Download Mutagen v1.28(experimental)"
-msgstr ""
-"Parsisiųsti, arba atnaujinti esamą Mutagen į v1.28 (eksperimentinė versija)."
-
-#: EnhancedMovieCenter.py:546
+#: src/EnhancedMovieCenter.py:557
 msgid "Enable EMC debug output"
 msgstr "Įjungti EMC klaidų derinimo išvestį"
 
-#: EnhancedMovieCenter.py:546
+#: src/EnhancedMovieCenter.py:557
 msgid "HELP_Enable EMC debug output"
 msgstr ""
 "Įjungti EMC klaidų derinimo žurnalą. Klaidų žurnalo failas bus išsaugotas "
 "EMC išvesties kataloge.\n"
 "!!! ĮJUNKITE ČIA TIK TADA, KAI TURITE PROBLEMŲ SU EMC !!!"
 
-#: EnhancedMovieCenter.py:547
+#: src/EnhancedMovieCenter.py:558
 msgid "EMC output directory"
 msgstr "EMC išvesties katalogas"
 
-#: EnhancedMovieCenter.py:547
+#: src/EnhancedMovieCenter.py:558
 msgid "HELP_EMC output directory"
 msgstr ""
 "EMC išvesties katalogas, kuriame bus saugomas klaidų derinimo žurnalo failas."
 
-#: EnhancedMovieCenter.py:548
+#: src/EnhancedMovieCenter.py:559
 msgid "Debug output file name"
 msgstr "Klaidų derinimo išvesties failo pavadinimas"
 
-#: EnhancedMovieCenter.py:548
+#: src/EnhancedMovieCenter.py:559
 msgid "HELP_Debug output file name"
 msgstr "Klaidų derinimo žurnalo išvesties failo pavadinimas."
 
-#: EnhancedMovieCenter.py:584 EnhancedMovieCenter.py:586
-msgid "Install Mutagen-package"
-msgstr "Įdiegti Mutagen paketą"
+#: src/EnhancedMovieCenter.py:569 src/EnhancedMovieCenter.py:571
+msgid "Installing Mutagen-package"
+msgstr "Diegiamas Mutagen paketas"
 
-#: EnhancedMovieCenter.py:646
+#: src/EnhancedMovieCenter.py:573
+msgid "The python-mutagen package is not available on the feed."
+msgstr "Python-mutagen paketo šaltiniuose nėra."
+
+#: src/EnhancedMovieCenter.py:644
 msgid "Load default settings will overwrite all settings, really load them?"
 msgstr ""
 "Numatytieji nustatymai perrašys dabartinius, tikrai įkelti numatytuosius?"
 
-#: EnhancedMovieCenter.py:736
+#: src/EnhancedMovieCenter.py:720
 msgid "Some settings changes require GUI restart to take effect."
 msgstr ""
 "Kad įsigaliotų parametrų pakeitimai, reikia grafinę aplinką paleisti iš "
 "naujo."
 
-#: EnhancedMovieCenter.py:754
-msgid "Really close without saving settings?"
-msgstr "Ar tikrai uždaryti langą neišsaugant nustatymų?"
-
-#: EnhancedMovieCenter.py:772
+#: src/EnhancedMovieCenter.py:751
 msgid "Select Location"
 msgstr "Pasirinkite vietą"
 
-#: EnhancedMovieCenter.py:791
+#: src/EnhancedMovieCenter.py:770
 #, python-format
 msgid "Given path %s does not exist. Please change."
 msgstr "Nurodytas kelias %s neegzistuoja. Pakeiskite jį."
 
-#: EnhancedMovieCenter.py:799 MovieSelection.py:3130
+#: src/EnhancedMovieCenter.py:778 src/MovieSelection.py:3265
 msgid "Trashcan create failed. Check mounts and permissions."
 msgstr "Šiukšliadėžės sukurti nepavyko. Tikrinkite pajungimus ir leidimų lygį."
 
-#: InfoBarSupport.py:128
+#: src/InfoBarSupport.py:126
 msgid "jump to previous marked position"
 msgstr "peršokti į ankstesnę pažymėtą poziciją"
 
-#: InfoBarSupport.py:129
+#: src/InfoBarSupport.py:127
 msgid "jump to next marked position"
 msgstr "peršokti į sekančią pažymėtą poziciją"
 
-#: InfoBarSupport.py:130
+#: src/InfoBarSupport.py:128
 msgid "toggle a cut mark at the current position"
 msgstr "perkelti iškirpimo žymeklį į šią poziciją"
 
-#: InfoBarSupport.py:176 InfoBarSupport.py:178
+#: src/InfoBarSupport.py:174 src/InfoBarSupport.py:176
 msgid "Do you want to resume this playback?"
 msgstr "Ar norite pratęsti šį atkūrimą?"
 
-#: InfoBarSupport.py:176 InfoBarSupport.py:178
+#: src/InfoBarSupport.py:174 src/InfoBarSupport.py:176
 #, python-format
 msgid "Resume position at %s"
 msgstr "Tęsti nuo %s pozicijos"
 
-#: InfoBarSupport.py:180
+#: src/InfoBarSupport.py:178
 msgid "Resuming playback"
 msgstr "Atkūrimas tęsiamas"
 
-#: MovieCenter.py:843
+#: src/MovieCenter.py:878
 msgid "OSError - please reload list (EMC menu)"
 msgstr "OS klaida - įkelkite sąrašą iš naujo (per EMC meniu)"
 
-#: MovieCenter.py:1059
+#: src/MovieCenter.py:1094 src/MovieSelection.py:1497
 msgid "trashcan"
 msgstr "šiukšliadėžė"
 
-#: MovieCenter.py:1064
+#: src/MovieCenter.py:1099 src/MovieSelection.py:1496
 msgid "Latest Recordings"
 msgstr "Naujausi įrašai"
 
-#: MovieCenter.py:2382
+#: src/MovieCenter.py:2436
 msgid "VLC"
 msgstr "VLC"
 
-#: MovieCenter.py:2388
+#: src/MovieCenter.py:2442
 msgid "VLC-Server"
 msgstr "VLC serveris"
 
-#: MovieCenter.py:2394
+#: src/MovieCenter.py:2448
 msgid "VLC-Dir"
 msgstr "VLC katalogas"
 
-#: MovieCenter.py:2400
+#: src/MovieCenter.py:2454
 msgid "Latest"
 msgstr "Naujausi"
 
-#: MovieCenter.py:2406
+#: src/MovieCenter.py:2460
 msgid "Up"
 msgstr "Aukštyn"
 
-#: MovieCenter.py:2412 MovieCenter.py:2418
+#: src/MovieCenter.py:2466 src/MovieCenter.py:2472
 msgid "Bookmark"
 msgstr "Žymelė"
 
-#: MovieCenter.py:2451
+#: src/MovieCenter.py:2505
 msgid "UNKNOWN"
 msgstr "NEŽINOMA"
 
-#: MovieCenter.py:2586 MovieCenter.py:2609
+#: src/MovieCenter.py:2643 src/MovieCenter.py:2666
 msgid "Trashcan"
 msgstr "Šiukšliadėžė"
 
-#: MovieCenter.py:2600 MovieCenter.py:2611
+#: src/MovieCenter.py:2657 src/MovieCenter.py:2668
 msgid "Directory"
 msgstr "Katalogas"
 
-#: MovieCenter.py:2602
+#: src/MovieCenter.py:2659
 msgid "Link"
 msgstr "Nuoroda"
 
-#: MovieCenter.py:2604
+#: src/MovieCenter.py:2661
 msgid "Collection"
 msgstr "Rinkinys"
 
-#: MovieInfo.py:30
-msgid "German"
-msgstr "Vokiečių"
-
-#: MovieInfo.py:30
+#: src/MovieInfo.py:30
 msgid "English"
 msgstr "Anglų"
 
-#: MovieInfo.py:31 MovieInfo.py:32 MovieInfo.py:33 MovieInfo.py:34
-#: MovieInfo.py:35 plugin.py:300
+#: src/MovieInfo.py:30
+msgid "German"
+msgstr "Vokiečių"
+
+#: src/MovieInfo.py:30
+msgid "Italian"
+msgstr "Italų"
+
+#: src/MovieInfo.py:30
+msgid "Spanish"
+msgstr "Ispanų"
+
+#: src/MovieInfo.py:30
+msgid "French"
+msgstr "Prancūzų"
+
+#: src/MovieInfo.py:30
+msgid "Portuguese"
+msgstr "Portugalų"
+
+#: src/MovieInfo.py:31 src/MovieInfo.py:32 src/MovieInfo.py:33
+#: src/MovieInfo.py:34 src/MovieInfo.py:35 src/plugin.py:328
 msgid "Yes"
 msgstr "taip"
 
-#: MovieInfo.py:31 MovieInfo.py:32 MovieInfo.py:33 MovieInfo.py:34
-#: MovieInfo.py:35 plugin.py:218 plugin.py:223 plugin.py:233 plugin.py:300
-#: plugin.py:327
+#: src/MovieInfo.py:31 src/MovieInfo.py:32 src/MovieInfo.py:33
+#: src/MovieInfo.py:34 src/MovieInfo.py:35 src/plugin.py:251 src/plugin.py:256
+#: src/plugin.py:328 src/plugin.py:357 src/plugin.py:361
 msgid "No"
 msgstr "ne"
 
-#: MovieInfo.py:62
+#: src/MovieInfo.py:51
 msgid "Movies"
 msgstr "Filmai"
 
-#: MovieInfo.py:62 MovieInfo.py:66
-msgid " - "
-msgstr " - "
-
-#: MovieInfo.py:66
+#: src/MovieInfo.py:55
 msgid "TV Shows"
 msgstr "Pramoginės TV laidos"
 
-#: MovieInfo.py:147 MovieInfo.py:202
+#: src/MovieInfo.py:136 src/MovieInfo.py:191
 msgid "Content:"
 msgstr "Turinys:"
 
-#: MovieInfo.py:147 MovieInfo.py:202 MovieInfo.py:518 MovieSelection.py:346
+#: src/MovieInfo.py:136 src/MovieInfo.py:191 src/MovieInfo.py:403
+#: src/MovieSelection.py:397
 msgid "Runtime:"
 msgstr "Darbo trukmė:"
 
-#: MovieInfo.py:147 MovieInfo.py:202 MovieInfo.py:544
+#: src/MovieInfo.py:136 src/MovieInfo.py:191 src/MovieInfo.py:429
 msgid "Minutes"
 msgstr "min."
 
-#: MovieInfo.py:147 MovieInfo.py:202 MovieInfo.py:519 MovieSelection.py:344
+#: src/MovieInfo.py:136 src/MovieInfo.py:191 src/MovieInfo.py:404
+#: src/MovieSelection.py:395
 msgid "Genre:"
 msgstr "Žanras:"
 
-#: MovieInfo.py:147 MovieInfo.py:202 MovieInfo.py:520
+#: src/MovieInfo.py:136 src/MovieInfo.py:191 src/MovieInfo.py:405
 msgid "Production Countries:"
 msgstr "Šalys gamintojos:"
 
-#: MovieInfo.py:147 MovieInfo.py:202 MovieInfo.py:521
+#: src/MovieInfo.py:136 src/MovieInfo.py:191 src/MovieInfo.py:406
 msgid "Release Date:"
 msgstr "Išleidimo data:"
 
-#: MovieInfo.py:147 MovieInfo.py:202 MovieInfo.py:522
+#: src/MovieInfo.py:136 src/MovieInfo.py:191 src/MovieInfo.py:407
 msgid "Vote:"
 msgstr "Balsuoti:"
 
-#: MovieInfo.py:164
+#: src/MovieInfo.py:153
 msgid "unknown"
 msgstr "nežinoma"
 
-#: MovieInfo.py:269 MovieInfo.py:449 MovieInfo.py:461 MovieInfo.py:683
+#: src/MovieInfo.py:332 src/MovieInfo.py:344 src/MovieInfo.py:568
 msgid "Search results for:"
 msgstr "Ieškoti rezultatų:"
 
-#: MovieInfo.py:272
-msgid "Movie Info"
-msgstr "Filmo informacija"
-
-#: MovieInfo.py:277
-msgid "movies found!"
-msgstr "rasti filmai!"
-
-#: MovieInfo.py:280 MovieInfo.py:303 MovieInfo.py:335
-msgid "An error occured! Internet connection broken?"
-msgstr "Įvyko klaida! Neveikia interneto ryšys?"
-
-#: MovieInfo.py:283
-msgid "Movie Information Download (TMDb)"
-msgstr "Filmo informacijos parsiuntimas iš TMDb"
-
-#: MovieInfo.py:297 MovieInfo.py:574 MovieInfo.py:578
-msgid "Movie Information downloaded successfully!"
-msgstr "Filmo informacija parsiųsta sėkmingai!"
-
-#: MovieInfo.py:308 MovieInfo.py:607
-#, python-format
-msgid ""
-"Cover %s exists!\n"
-"\n"
-"Do you want to replace the existing cover?"
-msgstr ""
-"Viršelis %s jau yra!\n"
-"\n"
-"Ar norite pakeisti turimą viršelį?"
-
-#: MovieInfo.py:352 MovieInfo.py:459 MovieInfo.py:642
+#: src/MovieInfo.py:342 src/MovieInfo.py:527
 msgid "Movie Information Preview for:"
 msgstr "Filmo informacijos peržiūra:"
 
-#: MovieInfo.py:366
-msgid "Movie Information Preview"
-msgstr "Filmo informacijos peržiūra"
-
-#: MovieInfo.py:462
+#: src/MovieInfo.py:345
 msgid "Nothing was found !"
 msgstr "Nieko nerasta!"
 
-#: MovieInfo.py:495
+#: src/MovieInfo.py:380
 msgid "Movie Information TMDb"
 msgstr "Filmo informacija TMDb"
 
-#: MovieInfo.py:570
+#: src/MovieInfo.py:455
 msgid "Movie Information and Cover downloaded successfully!"
 msgstr "Filmo informacija ir viršelis parsiųsti sėkmingai!"
 
-#: MovieInfo.py:576
+#: src/MovieInfo.py:459 src/MovieInfo.py:463
+msgid "Movie Information downloaded successfully!"
+msgstr "Filmo informacija parsiųsta sėkmingai!"
+
+#: src/MovieInfo.py:461
 #, python-format
 msgid ""
 "Movie Information downloaded successfully!\n"
@@ -2035,7 +2082,7 @@ msgstr ""
 "\n"
 "%s"
 
-#: MovieInfo.py:580
+#: src/MovieInfo.py:465
 #, python-format
 msgid ""
 "Movie Cover downloaded successfully!\n"
@@ -2050,20 +2097,20 @@ msgstr ""
 "\n"
 "%s"
 
-#: MovieInfo.py:582
+#: src/MovieInfo.py:467
 #, python-format
 msgid ""
 "Can not write Movie Information and Cover File\n"
 "\n"
-"%s\n"
-"%s"
+"%(info)s\n"
+"%(file)s"
 msgstr ""
 "Nepavyksta įrašyti filmo informacijos ir viršelio failo\n"
 "\n"
-"%s\n"
-"%s"
+"%(info)s\n"
+"%(file)s"
 
-#: MovieInfo.py:584
+#: src/MovieInfo.py:469
 #, python-format
 msgid ""
 "Can not write Movie Information File\n"
@@ -2074,76 +2121,86 @@ msgstr ""
 "\n"
 "%s"
 
-#: MovieInfo.py:715
+#: src/MovieInfo.py:492
+#, python-format
+msgid ""
+"Cover %s exists!\n"
+"\n"
+"Do you want to replace the existing cover?"
+msgstr ""
+"Viršelis %s jau yra!\n"
+"\n"
+"Ar norite pakeisti turimą viršelį?"
+
+#: src/MovieInfo.py:620
 msgid "Language:"
 msgstr "Kalba:"
 
-#: MovieInfo.py:716
+#: src/MovieInfo.py:621
 msgid "Load Runtime:"
 msgstr "Trukmė:"
 
-#: MovieInfo.py:717
+#: src/MovieInfo.py:622
 msgid "Load Genre:"
 msgstr "Žanras:"
 
-#: MovieInfo.py:718
+#: src/MovieInfo.py:623
 msgid "Load Production Countries:"
 msgstr "Šalys gamintojos:"
 
-#: MovieInfo.py:719
+#: src/MovieInfo.py:624
 msgid "Load Release Date:"
 msgstr "Išleidimo data:"
 
-#: MovieInfo.py:720
+#: src/MovieInfo.py:625
 msgid "Load Vote:"
 msgstr "Atsiliepimai:"
 
-#: MovieInfo.py:721
+#: src/MovieInfo.py:626
 msgid "Save Cover"
 msgstr "Išsaugoti viršelį"
 
-#: MovieInfo.py:722
+#: src/MovieInfo.py:627
 msgid "Coversize"
 msgstr "Viršelio dydis"
 
-# MovieInfo.py
-#: MovieInfo.py:723
-msgid "Switch complete to new Version"
-msgstr "Pilnai pereiti į naują versiją"
+#: src/MovieInfo.py:638
+msgid "OK"
+msgstr "Gerai"
 
-#: MovieInfo.py:741
+#: src/MovieInfo.py:642
 msgid "Movie Information Download Setup"
 msgstr "Filmo informacijos parsiuntimo sąranka"
 
-#: MovieRetitle.py:27 MovieRetitle.py:65
+#: src/MovieRetitle.py:27 src/MovieRetitle.py:63
 msgid "Location:"
 msgstr "Vieta:"
 
-#: MovieRetitle.py:80
+#: src/MovieRetitle.py:82
 msgid "Foldername:"
 msgstr "Katalogo pavadinimas:"
 
-#: MovieRetitle.py:82
+#: src/MovieRetitle.py:84
 msgid "Filename:"
 msgstr "Failas:"
 
-#: MovieRetitle.py:83
+#: src/MovieRetitle.py:85
 msgid "Movietitle:"
 msgstr "Filmo pavadinimas:"
 
-#: MovieRetitle.py:84
+#: src/MovieRetitle.py:86
 msgid "Description:"
 msgstr "Aprašymas:"
 
-#: MovieRetitle.py:114
+#: src/MovieRetitle.py:105
 msgid "Change Foldername"
 msgstr "Pervadinti katalogą"
 
-#: MovieRetitle.py:116
+#: src/MovieRetitle.py:107
 msgid "Change File/Moviename and/or Description"
 msgstr "Pakeisti failo/filmo pavadinimą ir/arba aprašymą"
 
-#: MovieSelection.py:108
+#: src/MovieSelection.py:116
 msgid ""
 "EMC: Skipping Trashcan Cleanup\n"
 "Movie Home Path is equal to or a subfolder of the Trashcan"
@@ -2152,67 +2209,71 @@ msgstr ""
 "Filmų namų katalogo kelias toks pat, kaip šiukšliadėžės, arba yra jos "
 "pakatalogis"
 
-#: MovieSelection.py:146
+#: src/MovieSelection.py:154
 msgid "EMC Trashcan Cleanup failed!"
 msgstr "EMC šiukšliadėžės ištuštinti nepavyko!"
 
-#: MovieSelection.py:340
+#: src/MovieSelection.py:391
 msgid "Artist:"
 msgstr "Atlikėjas:"
 
-#: MovieSelection.py:342
+#: src/MovieSelection.py:393
 msgid "Album:"
 msgstr "Albumas:"
 
-#: MovieSelection.py:585 MovieSelection.py:1779
+#: src/MovieSelection.py:659 src/MovieSelection.py:1875
 msgid "Reading directory..."
 msgstr "Katalogas skaitomas..."
 
-#: MovieSelection.py:603
+#: src/MovieSelection.py:678
 msgid "Play selected movie(s)"
 msgstr "Atkurti pasirinktus filmus"
 
-#: MovieSelection.py:605 MovieSelectionMenu.py:99
+#: src/MovieSelection.py:680 src/MovieSelectionMenu.py:103
 msgid "Play All"
 msgstr "Atkurti viską"
 
-#: MovieSelection.py:606 MovieSelectionMenu.py:100
+#: src/MovieSelection.py:681 src/MovieSelectionMenu.py:104
 msgid "Shuffle All"
 msgstr "Sumaišyti"
 
-#: MovieSelection.py:607
+#: src/MovieSelection.py:682
 msgid "Close EMC"
 msgstr "Uždaryti EMC"
 
-#: MovieSelection.py:608
+#: src/MovieSelection.py:683
+msgid "Close EMC and do power button action"
+msgstr "Uždarykite EMC ir nustatykite maitinimo mygtuko veiksmą"
+
+#: src/MovieSelection.py:684
 msgid "Open menu"
 msgstr "Atverti meniu"
 
-#: MovieSelection.py:609
+#: src/MovieSelection.py:685
 msgid "Show event info"
 msgstr "Rodyti informaciją apie įvykį"
 
-#: MovieSelection.py:610
+#: src/MovieSelection.py:686
 msgid "IMDBSearch / EMC-TMDBInfo / TMDBInfo / TMBDInfo / CSFDInfo"
 msgstr "IMDB paieška / EMC-TMDB info / TMDB info / TMBD info / CSFD info"
 
-#: MovieSelection.py:624
+#: src/MovieSelection.py:700
 msgid "Move cursor page up"
-msgstr "Perkelti žymeklį puslapį aukštyn"
+msgstr "Perkelti žymeklį per puslapį aukštyn"
 
-#: MovieSelection.py:625
+#: src/MovieSelection.py:701
 msgid "Move cursor page down"
-msgstr "Perkelti žymeklį puslapį žemyn"
+msgstr "Perkelti žymeklį per puslapį žemyn"
 
-#: MovieSelection.py:626
+#: src/MovieSelection.py:702
 msgid "Move cursor up"
 msgstr "Traukti žymeklį aukštyn"
 
-#: MovieSelection.py:627
+#: src/MovieSelection.py:703
 msgid "Move cursor down"
 msgstr "Traukti žymeklį žemyn"
 
-#: MovieSelection.py:628
+#: src/MovieSelection.py:704
 msgid ""
 "Move cursor to the top / Move cursor x entries up / Switch Folders in Movie "
 "Home (up)"
@@ -2220,7 +2281,7 @@ msgstr ""
 "Perkelti žymeklį į pradžią / perkelti žymeklį X įrašų aukštyn / Perkelti "
 "filmų namų katalogus (aukštyn)"
 
-#: MovieSelection.py:629
+#: src/MovieSelection.py:705
 msgid ""
 "Move cursor to the end / Move cursor x entries down / Switch Folders in "
 "Movie Home (down)"
@@ -2228,63 +2289,68 @@ msgstr ""
 "Perkelti žymeklį į pabaigą / perkelti žymeklį X įrašų žemyn / Perkelti filmų "
 "namų katalogus (žemyn)"
 
-#: MovieSelection.py:630
+#: src/MovieSelection.py:706
 msgid "Directory forward"
 msgstr "Pakatalogis"
 
-#: MovieSelection.py:632
+#: src/MovieSelection.py:708
 msgid "Directory back"
 msgstr "Virškatalogis"
 
-#: MovieSelection.py:634
+#: src/MovieSelection.py:710
 msgid "Toggle service selection"
 msgstr "Sukeisti kanalų pasirinkimą"
 
-#: MovieSelection.py:635
+#: src/MovieSelection.py:711
 msgid "Remove service selection"
 msgstr "Pašalinti kanalų pasirinkimą"
 
-#: MovieSelection.py:636 MovieSelection.py:638
+#: src/MovieSelection.py:712 src/MovieSelection.py:714
 msgid "Available plugins menu"
 msgstr "Prieinamas įskiepių meniu"
 
-#: MovieSelection.py:639
+#: src/MovieSelection.py:715
 msgid "Reload movie file list"
 msgstr "Filmų failų sąrašą įkelti iš naujo"
 
-#: MovieSelection.py:640
+#: src/MovieSelection.py:716
 msgid "Open Timer List"
 msgstr "Atidaryti laikmačių sąrašą"
 
-#: MovieSelection.py:641
+#: src/MovieSelection.py:717
 msgid "Toggle viewed / not viewed"
 msgstr "Sukeisti  žiūrėtus / nežiūrėtus"
 
-#: MovieSelection.py:643
+#: src/MovieSelection.py:719
 msgid "Start / end multiselection"
 msgstr "Pradėti / baigti multipasirinkimą"
 
-#: MovieSelection.py:1116
+#: src/MovieSelection.py:721 src/MovieSelection.py:1498
+#: src/MovieSelectionMenu.py:88 src/plugin.py:202 src/plugin.py:223
+msgid "Movie home"
+msgstr "Filmų katalogas"
+
+#: src/MovieSelection.py:1201
 msgid "E2 Bookmark"
 msgstr "E2 žymelė"
 
-#: MovieSelection.py:1117 MovieSelectionMenu.py:166
+#: src/MovieSelection.py:1202 src/MovieSelectionMenu.py:170
 msgid "Open E2 Bookmark path"
 msgstr "Atidaryti E2 žymelės kelią"
 
-#: MovieSelection.py:1231
+#: src/MovieSelection.py:1316
 msgid "No script operation for VLC streams."
 msgstr "Jokių scenarijų veiksmų VLC srautams."
 
-#: MovieSelection.py:1248
+#: src/MovieSelection.py:1333
 msgid "Does not contain any scripts."
 msgstr "Čia nėra jokių scenarijų."
 
-#: MovieSelection.py:1253
+#: src/MovieSelection.py:1338
 msgid "Choose script"
 msgstr "Pasirinkite scenarijų"
 
-#: MovieSelection.py:1274
+#: src/MovieSelection.py:1359
 msgid ""
 "Cover search with all Files in Subdirectories?\n"
 "\n"
@@ -2294,67 +2360,74 @@ msgstr ""
 "\n"
 "Dideliuose diskuose, ar kataloguose tai gali užtrukti!"
 
-#: MovieSelection.py:1312
+#: src/MovieSelection.py:1397
 msgid "No functionality set..."
 msgstr "Funkcionalumas nenustatytas..."
 
-#: MovieSelection.py:1404
+#: src/MovieSelection.py:1489
 msgid "*** Multiselection active ***"
 msgstr "*** Įjungtas daugiapasirinkiminis režimas ***"
 
-#: MovieSelection.py:1812
+#: src/MovieSelection.py:1519 src/MovieSelection.py:1521
+#: src/MovieSelection.py:1523
+msgid "Free: "
+msgstr "Laisva: "
+
+#: src/MovieSelection.py:1908
 msgid "Sort Mode"
 msgstr "Rūšiavimo būdas"
 
-#: MovieSelection.py:1813
+#: src/MovieSelection.py:1909
 msgid "Sort Order"
 msgstr "Rūšiavimo tvarka"
 
-#: MovieSelection.py:1837 MovieSelection.py:1853 MovieSelection.py:1869
+#: src/MovieSelection.py:1933 src/MovieSelection.py:1949
+#: src/MovieSelection.py:1965
 msgid "Hide Cover"
 msgstr "Slėpti viršelį"
 
-#: MovieSelection.py:1841 MovieSelection.py:1857 MovieSelection.py:1873
-#: plugin.py:179 plugin.py:200
+#: src/MovieSelection.py:1937 src/MovieSelection.py:1953
+#: src/MovieSelection.py:1969 src/plugin.py:212 src/plugin.py:233
 msgid "Button disabled"
 msgstr "Mygtukas išjungtas"
 
-#: MovieSelection.py:1842 MovieSelection.py:1858 MovieSelection.py:1874
+#: src/MovieSelection.py:1938 src/MovieSelection.py:1954
+#: src/MovieSelection.py:1970
 msgid "Cover disabled in EMC-Setup"
 msgstr "Viršeliai išjungti EMC sąrankoje"
 
-#: MovieSelection.py:2020
+#: src/MovieSelection.py:2125
 msgid "File not available."
 msgstr "Šis failas neprieinamas."
 
-#: MovieSelection.py:2077
+#: src/MovieSelection.py:2182
 msgid "File added to current Playlist."
 msgstr "Failas, įtrauktas į šį grojaraštį."
 
-#: MovieSelection.py:2079
+#: src/MovieSelection.py:2184
 msgid "File exists in current Playlist."
 msgstr "Failas jau yra šiame grojaraštyje."
 
-#: MovieSelection.py:2082
+#: src/MovieSelection.py:2187
 msgid "Files added to current Playlist."
 msgstr "Failai, įtraukti į šį grojaraštį."
 
-#: MovieSelection.py:2084
+#: src/MovieSelection.py:2189
 #, python-format
 msgid ""
 "Files added to current Playlist:\n"
-"%s\n"
+"%(add)s\n"
 "\n"
 "Files exists in current Playlist:\n"
-"%s"
+"%(exist)s"
 msgstr ""
 "Failai, įtraukti į šį grojaraštį:\n"
-"%s\n"
+"%(add)s\n"
 "\n"
 "Failai jau yra šiame grojaraštyje:\n"
-"%s"
+"%(exist)s"
 
-#: MovieSelection.py:2086
+#: src/MovieSelection.py:2191
 #, python-format
 msgid ""
 "Files exists in current Playlist:\n"
@@ -2363,33 +2436,31 @@ msgstr ""
 "Failai jau yra šiame grojaraštyje:\n"
 "%s"
 
-#: MovieSelection.py:2130
+#: src/MovieSelection.py:2235
 msgid "Last played movie/playlist not available..."
 msgstr "Paskutinis žiūrėtas filmas/grojaraštis neprieinamas..."
 
-#: MovieSelection.py:2134
+#: src/MovieSelection.py:2239
 msgid "Play last movie starting"
 msgstr "Pradedamas rodyti paskutinis filmas"
 
-#: MovieSelection.py:2153
+#: src/MovieSelection.py:2258
 msgid "Play All starting"
 msgstr "Pradedami rodyti visi filmai"
 
-#: MovieSelection.py:2172
+#: src/MovieSelection.py:2277
 msgid "Shuffle All starting"
 msgstr "Sumaišomi visi"
 
-#: MovieSelection.py:2205
-msgid "Not stopping any repeating timers. Modify them with the timer editor."
-msgstr ""
-"Pasikartojantys laikmačiai nestabdomi. Redaguokite juos laikmačių "
-"redaktoriuje."
+#: src/MovieSelection.py:2317
+msgid "Not all timers have been stopped. Modify them with the timer editor."
+msgstr "Sustabdyt ne visi laikmačiai. Redaguokite juos laikmačių redaktoriumi."
 
-#: MovieSelection.py:2213
+#: src/MovieSelection.py:2333
 msgid "Stop ongoing recording?\n"
 msgstr "Sustabdyti įrašymą?\n"
 
-#: MovieSelection.py:2266
+#: src/MovieSelection.py:2386
 #, python-format
 msgid ""
 "Do you really want to remove your link\n"
@@ -2398,7 +2469,7 @@ msgstr ""
 "Ar tikrai norite pašalinti nuorodą\n"
 "%s?"
 
-#: MovieSelection.py:2268
+#: src/MovieSelection.py:2388
 #, python-format
 msgid ""
 "Do you really want to remove your directory\n"
@@ -2407,8 +2478,8 @@ msgstr ""
 "Ar tikrai norite pašalinti katalogą\n"
 "%s?"
 
-#: MovieSelection.py:2310 MovieSelection.py:2333 MovieSelectionMenu.py:450
-#: MovieSelectionMenu.py:482
+#: src/MovieSelection.py:2433 src/MovieSelection.py:2456
+#: src/MovieSelectionMenu.py:454 src/MovieSelectionMenu.py:486
 #, python-format
 msgid ""
 "Do you really want to remove your bookmark\n"
@@ -2417,26 +2488,26 @@ msgstr ""
 "Ar tikrai norite pašalinti žymelę\n"
 "%s?"
 
-#: MovieSelection.py:2352
+#: src/MovieSelection.py:2476
 msgid ""
 " Deleting remotely recorded and it will display an rec-error dialog on the "
 "other DB."
 msgstr ""
 " Nuotolinių įrašų pašalinimas ir kitoje DB parodys REC klaidos pranešimą."
 
-#: MovieSelection.py:2358
+#: src/MovieSelection.py:2482
 msgid " permanently"
-msgstr " galutinai"
+msgstr " nuolat"
 
-#: MovieSelection.py:2377
+#: src/MovieSelection.py:2501
 msgid " currently played?"
 msgstr " dabar žiūrėtą?"
 
-#: MovieSelection.py:2398
+#: src/MovieSelection.py:2522
 msgid " all selected video files?"
 msgstr " visus pasirinktus vaizdo failus?"
 
-#: MovieSelection.py:2404
+#: src/MovieSelection.py:2531
 msgid ""
 " all selected video files? The currently playing movie is also one of the "
 "selections and its playback will be stopped."
@@ -2444,11 +2515,11 @@ msgstr ""
 " visus pasirinktus vaizdo failus? Šiuo metu demonstruojamas įrašas taip pat "
 "tarp pasirinktų ir jo atkūrimas bus nutrauktas."
 
-#: MovieSelection.py:2407
+#: src/MovieSelection.py:2535
 msgid "Delete error:\n"
 msgstr "Šalinimo klaida:\n"
 
-#: MovieSelection.py:2439 MovieSelection.py:2483
+#: src/MovieSelection.py:2574 src/MovieSelection.py:2618
 #, python-format
 msgid ""
 "The following files are used for other entrys in List !\n"
@@ -2463,43 +2534,43 @@ msgstr ""
 "\n"
 "%s"
 
-#: MovieSelection.py:2530
+#: src/MovieSelection.py:2665
 msgid "This element belongs to a locked folder and cannot be deleted!"
 msgstr "Šis elementas yra užrakintame kataloge ir negali būti pašalintas!"
 
-#: MovieSelection.py:2542
+#: src/MovieSelection.py:2677
 msgid ""
 "Delete failed because the trashcan directory does not exist. Attempt to "
 "create it now?"
 msgstr ""
-"Pašalinti nepavyko, nes nėra šiukšliadėžės katalogo. Pabandyti jį sukurti "
-"dabar?"
+"Pašalinti nepavyko, nes nėra šiukšliadėžės katalogas neegzistuoja. Bandymas "
+"jį sukurti dabar?"
 
-#: MovieSelection.py:2567
+#: src/MovieSelection.py:2702
 msgid "This folder is locked or contains a locked subfolder, unlock it first!"
 msgstr ""
 "Šis katalogas yra užrakintas, arba jame yra užrakintas pakatalogis. "
 "Pirmiausiai atrakinkite!"
 
-#: MovieSelection.py:2588
+#: src/MovieSelection.py:2723
 msgid "Directory is not empty! Do you really want to delete it?"
 msgstr ""
 "Katalogas netuščias!\n"
 "Ar tikrai norite jį pašalinti?"
 
-#: MovieSelection.py:2594
+#: src/MovieSelection.py:2729
 msgid "Cannot delete the parent directory."
 msgstr "Negalite pašalinti aukštesniojo katalogo."
 
-#: MovieSelection.py:2675 MovieSelection.py:2758
+#: src/MovieSelection.py:2810 src/MovieSelection.py:2893
 msgid "Delete failed!"
 msgstr "Pašalinti nepavyko!"
 
-#: MovieSelection.py:2921 MovieSelection.py:2963
+#: src/MovieSelection.py:3056 src/MovieSelection.py:3098
 msgid "Move file(s):"
 msgstr "Perkelti failą(us):"
 
-#: MovieSelection.py:2950 MovieSelection.py:2973
+#: src/MovieSelection.py:3085 src/MovieSelection.py:3108
 msgid ""
 "How to move files:\n"
 "Select some movies with the VIDEO-button, move the cursor on top of the "
@@ -2509,11 +2580,11 @@ msgstr ""
 "pasirinkite reikiamus filmus 'VIDEO' mygtuku, perkelkite žymeklį ant "
 "paskirties katalogo ir paspauskite 'GELTONĄ' mygtuką."
 
-#: MovieSelection.py:2997 MovieSelection.py:3039
+#: src/MovieSelection.py:3132 src/MovieSelection.py:3174
 msgid "Copy file(s):"
 msgstr "Kopijuoti failą(us):"
 
-#: MovieSelection.py:3026 MovieSelection.py:3049
+#: src/MovieSelection.py:3161 src/MovieSelection.py:3184
 msgid ""
 "How to copy files:\n"
 "Select some movies with the VIDEO-button, move the cursor on top of the "
@@ -2523,213 +2594,209 @@ msgstr ""
 "pasirinkite reikiamus filmus 'VIDEO' mygtuku, perkelkite žymeklį ant "
 "paskirties katalogo ir ilgai spauskite 'GELTONĄ' mygtuką."
 
-#: MovieSelection.py:3066
+#: src/MovieSelection.py:3201
 msgid "Move Directory:"
 msgstr "Perkelti katalogą:"
 
-#: MovieSelection.py:3162 MovieSelection.py:3168
+#: src/MovieSelection.py:3275 src/MovieSelection.py:3281
 msgid "IMDb"
 msgstr "IMDb"
 
-#: MovieSelection.py:3164
+#: src/MovieSelection.py:3277
 msgid "TMDb"
 msgstr "TMDb"
 
-#: MovieSelection.py:3166
+#: src/MovieSelection.py:3279
 msgid "CSFD"
 msgstr "CSFD"
 
-#: MovieSelectionMenu.py:81
+#: src/MovieSelectionMenu.py:85
 msgid "Choose operation"
 msgstr "Pasirinkite veiksmą"
 
-#: MovieSelectionMenu.py:84 plugin.py:169 plugin.py:190
-msgid "Movie home"
-msgstr "Filmų katalogas"
-
-#: MovieSelectionMenu.py:87
+#: src/MovieSelectionMenu.py:91
 msgid "Directory up"
 msgstr "Aukštesnis katalogas"
 
-#: MovieSelectionMenu.py:89
+#: src/MovieSelectionMenu.py:93
 msgid "Reload current directory"
 msgstr "Įkelti šį katalogą iš naujo"
 
-#: MovieSelectionMenu.py:91 MovieSelectionMenu.py:209
+#: src/MovieSelectionMenu.py:95 src/MovieSelectionMenu.py:213
 msgid "Playlist Options"
 msgstr "Grojaraščio parinktys"
 
-#: MovieSelectionMenu.py:95 MovieSelectionMenu.py:214
+#: src/MovieSelectionMenu.py:99 src/MovieSelectionMenu.py:218
 msgid "Add to current Playlist"
 msgstr "Įtraukti į šį grojaraštį"
 
-#: MovieSelectionMenu.py:97 plugin.py:173 plugin.py:194
+#: src/MovieSelectionMenu.py:101 src/plugin.py:206 src/plugin.py:227
 msgid "Play last"
 msgstr "Rodyti paskutinį žiūrėtą"
 
-#: MovieSelectionMenu.py:102
+#: src/MovieSelectionMenu.py:106
 msgid "Cover search"
 msgstr "Viršelių paieška"
 
-#: MovieSelectionMenu.py:106
+#: src/MovieSelectionMenu.py:110
 msgid "Directory-Cover search"
 msgstr "Katalogas - viršelių paieška"
 
-#: MovieSelectionMenu.py:115 MovieSelectionMenu.py:117
+#: src/MovieSelectionMenu.py:119 src/MovieSelectionMenu.py:121
 msgid "Delete permanently"
 msgstr "Ištrinti negrąžinamai"
 
-#: MovieSelectionMenu.py:118
+#: src/MovieSelectionMenu.py:122
 msgid "Empty trashcan"
 msgstr "Ištuštinti šiukšliadėžę"
 
-#: MovieSelectionMenu.py:119
+#: src/MovieSelectionMenu.py:123
 msgid "Go to trashcan"
 msgstr "Į šiukšliadėžę"
 
-#: MovieSelectionMenu.py:121
+#: src/MovieSelectionMenu.py:125
 msgid "Mark all movies"
 msgstr "Pažymėti visus filmus"
 
-#: MovieSelectionMenu.py:122
+#: src/MovieSelectionMenu.py:126
 msgid "Remove rogue files"
 msgstr "Pašalinti neteisingus failus"
 
-#: MovieSelectionMenu.py:124
+#: src/MovieSelectionMenu.py:128
 msgid "Delete cut file(s)"
 msgstr "Šalinti iškirptą(us) failą(us)"
 
-#: MovieSelectionMenu.py:126
+#: src/MovieSelectionMenu.py:130 src/MovieSelectionMenu.py:298
 msgid "Create link"
 msgstr "Sukurti nuorodą"
 
-#: MovieSelectionMenu.py:127 MovieSelectionMenu.py:248
+#: src/MovieSelectionMenu.py:131 src/MovieSelectionMenu.py:252
 msgid "Create directory"
 msgstr "Sukurti katalogą"
 
-#: MovieSelectionMenu.py:129
+#: src/MovieSelectionMenu.py:133
 msgid "(Un-)Lock Directory"
-msgstr "(At-)Blokuoti katalogą"
+msgstr "(At-)Užblokuoti katalogą"
 
-#: MovieSelectionMenu.py:136
+#: src/MovieSelectionMenu.py:140
 msgid "Copy Files"
 msgstr "Kopijuoti failus"
 
-#: MovieSelectionMenu.py:137
+#: src/MovieSelectionMenu.py:141
 msgid "Move Files"
 msgstr "Perkelti failus"
 
-#: MovieSelectionMenu.py:139 plugin.py:176 plugin.py:197
+#: src/MovieSelectionMenu.py:143 src/plugin.py:209 src/plugin.py:230
 msgid "Copy File"
 msgstr "Kopijuoti failą"
 
-#: MovieSelectionMenu.py:140 plugin.py:171 plugin.py:192
+#: src/MovieSelectionMenu.py:144 src/plugin.py:204 src/plugin.py:225
 msgid "Move File"
 msgstr "Perkelti failą"
 
-#: MovieSelectionMenu.py:144
+#: src/MovieSelectionMenu.py:148
 msgid "Download Movie Information"
 msgstr "Parsisiųsti informaciją apie filmą"
 
-#: MovieSelectionMenu.py:148
+#: src/MovieSelectionMenu.py:152
 msgid "Rename selected movie(s)"
 msgstr "Pervadinti pasirinktus filmus"
 
-#: MovieSelectionMenu.py:149
+#: src/MovieSelectionMenu.py:153
 msgid "Remove cut list marker"
 msgstr "Pašalinti iškirpimo žymeklį"
 
-#: MovieSelectionMenu.py:150
+#: src/MovieSelectionMenu.py:154
 msgid "Reset marker from selected movie(s)"
 msgstr "Išvalyti žymeklius pasirinktuose filmuose"
 
-#: MovieSelectionMenu.py:168
+#: src/MovieSelectionMenu.py:172
 msgid "Add directory to E2 Bookmarks"
 msgstr "Įtraukti katalogą į E2 žymeles"
 
-#: MovieSelectionMenu.py:170
+#: src/MovieSelectionMenu.py:174
 msgid "Remove directory from E2 Bookmarks"
 msgstr "Pašalinti katalogą iš E2 žymelių"
 
-#: MovieSelectionMenu.py:173
+#: src/MovieSelectionMenu.py:177
 msgid "Remove selected E2 Bookmark"
 msgstr "Pašalinti pasirinktą iš E2 žymelių"
 
-#: MovieSelectionMenu.py:175
+#: src/MovieSelectionMenu.py:179
 msgid "Open EMC Bookmark path"
 msgstr "Atidaryti EMC žymelių kelią"
 
-#: MovieSelectionMenu.py:177
+#: src/MovieSelectionMenu.py:181
 msgid "Add directory to EMC Bookmarks"
 msgstr "Įtraukti katalogą į EMC žymeles"
 
-#: MovieSelectionMenu.py:179
+#: src/MovieSelectionMenu.py:183
 msgid "Remove directory from EMC Bookmarks"
 msgstr "Pašalinti katalogą iš EMC žymelių"
 
-#: MovieSelectionMenu.py:182
+#: src/MovieSelectionMenu.py:186
 msgid "Remove selected EMC Bookmark"
 msgstr "Pašalinti pasirinktą iš EMC žymelių"
 
-#: MovieSelectionMenu.py:184
+#: src/MovieSelectionMenu.py:188
 msgid "Set permanent sort"
 msgstr "Nustatyti pastovų rūšiavimą"
 
-#: MovieSelectionMenu.py:186
+#: src/MovieSelectionMenu.py:190
 msgid "Remove permanent sort"
 msgstr "Pašalinti pastovų rūšiavimą"
 
-#: MovieSelectionMenu.py:190
+#: src/MovieSelectionMenu.py:194
 msgid "Remove permanent sort from parent"
 msgstr "Pašalinti pastovų rūšiavimą nuo pirminio katalogo"
 
-#: MovieSelectionMenu.py:193
+#: src/MovieSelectionMenu.py:197
 msgid "EMC Setup"
 msgstr "EMC sąranka"
 
-#: MovieSelectionMenu.py:196
+#: src/MovieSelectionMenu.py:200
 msgid "Choose plugin"
 msgstr "Pasirinkite įskiepį"
 
-#: MovieSelectionMenu.py:202
+#: src/MovieSelectionMenu.py:206
 msgid "Choose bookmark"
 msgstr "Pasirinkite žymelę"
 
-#: MovieSelectionMenu.py:210
+#: src/MovieSelectionMenu.py:214
 msgid "Show current Playlist"
 msgstr "Rodyti dabartinį grojaraštį"
 
-#: MovieSelectionMenu.py:216
+#: src/MovieSelectionMenu.py:220
 msgid "Play current Playlist"
 msgstr "Paleisti dabartinį grojaraštį"
 
-#: MovieSelectionMenu.py:217
+#: src/MovieSelectionMenu.py:221
 msgid "Play random current Playlist"
 msgstr "Paleisti atsitiktinį dabartinį grojaraštį"
 
-#: MovieSelectionMenu.py:218
+#: src/MovieSelectionMenu.py:222
 msgid "Delete current Playlist"
 msgstr "Pašalinti šį grojaraštį"
 
-#: MovieSelectionMenu.py:219
+#: src/MovieSelectionMenu.py:223
 msgid "Playlist Setup"
 msgstr "Grojaraščio sąranka"
 
-#: MovieSelectionMenu.py:247
+#: src/MovieSelectionMenu.py:251
 msgid "Enter name for new directory:"
 msgstr "Įrašykite naujojo katalogo pavadinimą:"
 
-#: MovieSelectionMenu.py:254
+#: src/MovieSelectionMenu.py:258
 #, python-format
 msgid "Directory %s already exists!"
 msgstr "Katalogas %s jau yra!"
 
-#: MovieSelectionMenu.py:268
+#: src/MovieSelectionMenu.py:272
 #, python-format
 msgid "Do you really want to lock the directory %s and all its subfolders?"
 msgstr "Ar tikrai norite užrakinti katalogą %s kartu su visais pakatalogiais?"
 
-#: MovieSelectionMenu.py:270
+#: src/MovieSelectionMenu.py:274
 #, python-format
 msgid ""
 "The directory %s is already locked. Do you want to unlock it and all its "
@@ -2738,23 +2805,15 @@ msgstr ""
 "Katalogas %s jau užrakintas. Ar norite atrakinti jį kartu su visais "
 "pakatalogiais?"
 
-#: MovieSelectionMenu.py:294
-msgid "Create Link"
-msgstr "Sukurti nuorodą"
-
-#: MovieSelectionMenu.py:325
+#: src/MovieSelectionMenu.py:329
 msgid "Permanently delete all files in trashcan?"
 msgstr "Negrįžtamai pašalinti visus įrašus iš šiukšliadėžės?"
 
-#: MovieSelectionMenu.py:337
+#: src/MovieSelectionMenu.py:341
 msgid "Movie Selection Menu"
 msgstr "Filmo pasirinkimo meniu"
 
-#: MovieSelectionMenu.py:345
-msgid "exception "
-msgstr "išimtis "
-
-#: MovieSelectionMenu.py:354
+#: src/MovieSelectionMenu.py:358
 msgid ""
 "Locate rogue files and remove them? (permanently if no trashcan available, "
 "may take a minute or so)"
@@ -2762,15 +2821,15 @@ msgstr ""
 "Nustatyti neteisingus failus ir pašalinti? (visiškai, jei negalima į "
 "šiukšliadėžę. Tai užtruks apie minutę)"
 
-#: MovieSelectionMenu.py:371
+#: src/MovieSelectionMenu.py:375
 msgid "Remove all cut file marker permanently?"
 msgstr "Galutinai pašalinti visus kirpimo žymeklius?"
 
-#: MovieSelectionMenu.py:385
+#: src/MovieSelectionMenu.py:389
 msgid "Remove all marker permanently?"
 msgstr "Galutinai pašalinti visus žymeklius?"
 
-#: MovieSelectionMenu.py:518
+#: src/MovieSelectionMenu.py:522
 msgid ""
 "Do you really want to delete the cut file?\n"
 "If you have selected a directory, all cut files within the folder and its "
@@ -2780,342 +2839,390 @@ msgstr ""
 "Jeigu pasirinkote katalogą, visi iškirpti failai, esantys šiame kataloge ir "
 "jo pakatalogiuose bus ištrinti!"
 
-#: RogueFileCheck.py:42
+#: src/RogueFileCheck.py:42
 msgid " files\n"
 msgstr " failai\n"
 
-#: RogueFileCheck.py:43
+#: src/RogueFileCheck.py:43
 msgid "No rogue files found."
 msgstr "Neteisingų failų nėra."
 
-#: RogueFileCheck.py:44
+#: src/RogueFileCheck.py:44
 msgid ""
 "Found rogue files:\n"
 "\n"
 msgstr "Rasti neteisingi failai:\n"
 
-#: VlcPluginInterface.py:156
+#: src/VlcPluginInterface.py:156
 msgid "VLC Server not reachable"
 msgstr "VLC serveris nepasiekiamas"
 
-#: plugin.py:55
+#: src/configlistext.py:324
+msgid "Really close without saving settings?"
+msgstr "Ar tikrai uždaryti langą neišsaugant nuostatų?"
+
+#: src/plugin.py:55
 msgid "no"
 msgstr "ne"
 
-#: plugin.py:55
+#: src/plugin.py:55
 msgid "yes"
 msgstr "taip"
 
 # No overwrite?
-#: plugin.py:133
+#: src/plugin.py:155
 msgid "No override"
 msgstr "Neperrašyti"
 
-#: plugin.py:134
+#: src/plugin.py:156
 msgid "Video-button"
 msgstr "'VIDEO' mygtukas"
 
-#: plugin.py:135
+#: src/plugin.py:157
 msgid "TV-button"
 msgstr "'TV' mygtukas"
 
-#: plugin.py:136
+#: src/plugin.py:158
 msgid "Radio-button"
 msgstr "'RADIO' mygtukas"
 
-#: plugin.py:137
+#: src/plugin.py:159
 msgid "Quick-button"
 msgstr "Greitasis mygtukas"
 
-#: plugin.py:138
+#: src/plugin.py:160
 msgid "Timeshift-button"
 msgstr "Laiko poslinkio mygtukas"
 
-#: plugin.py:141 plugin.py:150 plugin.py:159
+#: src/plugin.py:163 src/plugin.py:183 src/plugin.py:192
 msgid "Off"
 msgstr "išjungta"
 
-#: plugin.py:142
+#: src/plugin.py:164
 msgid "DD.MM.YYYY"
 msgstr "YYYY.MM.DD"
 
-#: plugin.py:143
+#: src/plugin.py:165
+msgid "WD DD.MM.YYYY"
+msgstr "YYYY.MM.DD WD"
+
+#: src/plugin.py:167
 msgid "DD.MM.YYYY HH:MM"
 msgstr "YYYY.MM.DD HH:MM"
 
-#: plugin.py:144
-msgid "DD.MM HH:MM"
-msgstr "MM.DD HH:MM"
+#: src/plugin.py:168
+msgid "WD DD.MM.YYYY HH:MM"
+msgstr "YYYY.MM.DD HH:MM WD"
 
-#: plugin.py:145
+#: src/plugin.py:170
 msgid "DD.MM. HH:MM"
 msgstr "MM.DD HH:MM"
 
-#: plugin.py:146
+#: src/plugin.py:171
+msgid "WD DD.MM. HH:MM"
+msgstr "MM.DD HH:MM WD"
+
+#: src/plugin.py:173
 msgid "YYYY/MM/DD"
 msgstr "YYYY/MM/DD"
 
-#: plugin.py:147
+#: src/plugin.py:174
+msgid "WD YYYY/MM/DD"
+msgstr "YYYY/MM/DD WD"
+
+#: src/plugin.py:176
 msgid "YYYY/MM/DD HH:MM"
 msgstr "YYYY/MM/DD HH:MM"
 
-#: plugin.py:148
+#: src/plugin.py:177
+msgid "WD YYYY/MM/DD HH:MM"
+msgstr "YYYY/MM/DD HH:MM WD "
+
+#: src/plugin.py:179
 msgid "MM/DD HH:MM"
 msgstr "MM/DD HH:MM"
 
-#: plugin.py:151
+#: src/plugin.py:180
+msgid "WD MM/DD HH:MM"
+msgstr "MM/DD HH:MM WD"
+
+#: src/plugin.py:184
 msgid "Description"
 msgstr "aprašymas"
 
-#: plugin.py:152
+#: src/plugin.py:185
 msgid "( # )"
 msgstr "( # )"
 
-#: plugin.py:153
+#: src/plugin.py:186
 msgid "( # / GB )"
 msgstr "( # / GB )"
 
-#: plugin.py:154
+#: src/plugin.py:187
 msgid "( GB )"
 msgstr "( GB )"
 
-#: plugin.py:156
+#: src/plugin.py:189
 msgid "ProgressBar"
 msgstr "eigos juosta"
 
-#: plugin.py:157
+#: src/plugin.py:190
 msgid "Percent (%)"
 msgstr "procentai (%)"
 
-#: plugin.py:158
+#: src/plugin.py:191
 msgid "Movie Color"
 msgstr "filmo spalva"
 
-#: plugin.py:172 plugin.py:193
+#: src/plugin.py:205 src/plugin.py:226
 msgid "Add to Playlist"
 msgstr "Įtraukti į grojaraštį"
 
-#: plugin.py:174 plugin.py:195
+#: src/plugin.py:207 src/plugin.py:228
 msgid "Cover Search"
 msgstr "Viršelių paieška"
 
-#: plugin.py:175 plugin.py:196
+#: src/plugin.py:208 src/plugin.py:229
 msgid "Download Movie Info"
 msgstr "Parsisiųsti informaciją apie filmą"
 
-#: plugin.py:177 plugin.py:198
+#: src/plugin.py:210 src/plugin.py:231
 msgid "Open E2 bookmarks"
 msgstr "Atverti E2 žymeles"
 
-#: plugin.py:178
+#: src/plugin.py:211
 msgid "Toggle Cover Button"
 msgstr "Viršelių perjungimo mygtukas"
 
-#: plugin.py:183
+#: src/plugin.py:216
 msgid "Sort Options"
 msgstr "Rūšiavimo parinktys"
 
-#: plugin.py:209
+#: src/plugin.py:242
 msgid "down"
 msgstr "žemyn"
 
-#: plugin.py:210
+#: src/plugin.py:243
 msgid "up/down"
 msgstr "aukštyn/žemyn"
 
-#: plugin.py:211
+#: src/plugin.py:244
 msgid "off"
 msgstr "išjungti"
 
-#: plugin.py:213
+#: src/plugin.py:246
 msgid "type 1 - OSD + black (#00000000)"
 msgstr "tipas 1 - OSD + juoda (#00000000)"
 
-#: plugin.py:214
+#: src/plugin.py:247
 msgid "type 2 - transparent + white (#FFFFFFFF)"
 msgstr "tipas 2 - skaidri + balta (#FFFFFFFF)"
 
-#: plugin.py:215
+#: src/plugin.py:248
 msgid "type 3 - OSD + black (#00FFFFFF)"
 msgstr "tipas 3 - OSD + juoda (#00FFFFFF)"
 
-#: plugin.py:216
+#: src/plugin.py:249
 msgid "type 4 - transparent + black (#FF000000)"
 msgstr "tipas 4 - skaidri + juoda (#FF000000)"
 
-#: plugin.py:219
+#: src/plugin.py:252
 msgid "E2 Bookmarks"
 msgstr "E2 žymelės"
 
-#: plugin.py:220
+#: src/plugin.py:253
 msgid "EMC Bookmarks"
 msgstr "EMC žymelės"
 
-#: plugin.py:221
+#: src/plugin.py:254
 msgid "Both"
 msgstr "Abu"
 
-#: plugin.py:224
+#: src/plugin.py:257
 msgid "Standby"
 msgstr "Budintis režimas"
 
-#: plugin.py:225
+#: src/plugin.py:258
 msgid "DeepStandby"
-msgstr "Gilus budėjimas"
+msgstr "Išjungti"
 
-#: plugin.py:226
+#: src/plugin.py:259
 msgid "Reboot"
 msgstr "Paleisti iš naujo"
 
-#: plugin.py:227
+#: src/plugin.py:260
 msgid "E2 Restart"
 msgstr "Paleisti grafinę aplinką iš naujo"
 
-#: plugin.py:229
+#: src/plugin.py:262
 msgid "HomeEnd"
 msgstr "Sąrašo pabaiga"
 
-#: plugin.py:230
+#: src/plugin.py:263
 msgid "Skip"
 msgstr "Praleisti"
 
-#: plugin.py:231
+#: src/plugin.py:264
 msgid "Change Folder"
 msgstr "Pakeisti katalogą"
 
-#: plugin.py:239
+#: src/plugin.py:268
 msgid "Date sort descending (D-)"
 msgstr "pagal datą mažėjančiai (D-)"
 
-#: plugin.py:239 plugin.py:245
+#: src/plugin.py:268 src/plugin.py:274
 msgid "Date sort"
 msgstr "pagal datą"
 
-#: plugin.py:240
+#: src/plugin.py:269
 msgid "Alpha sort ascending (AZ)"
 msgstr "pagal pavadinimą A>Ž"
 
-#: plugin.py:240 plugin.py:246
+#: src/plugin.py:269 src/plugin.py:275
 msgid "Alpha sort"
 msgstr "pagal pavadinimą"
 
-#: plugin.py:241
+#: src/plugin.py:270
 msgid "Alpha sort ascending, Date descending (AZD-)"
 msgstr "pagal pavad. A>Ž, mažėj. data (AŽD-)"
 
-#: plugin.py:241 plugin.py:247
+#: src/plugin.py:270 src/plugin.py:276
 msgid "Alpha sort date newest"
 msgstr "pagal naujumą"
 
-#: plugin.py:242
+#: src/plugin.py:271
 msgid "Alpha sort ascending with meta (AZM)"
 msgstr "pagal pavad. A>Ž, su metaduom. (AŽM)"
 
-#: plugin.py:242 plugin.py:248
+#: src/plugin.py:271 src/plugin.py:277
 msgid "Alpha sort meta"
 msgstr "pagal metaduomenis"
 
-#: plugin.py:243
+#: src/plugin.py:272
 msgid "Alpha sort ascending with meta, Date descending (AZMD-)"
 msgstr "pagal pavad. A>Ž, su metaduom., mažėj. data (AŽMD-)"
 
-#: plugin.py:243 plugin.py:249
+#: src/plugin.py:272 src/plugin.py:278
 msgid "Alpha sort meta date newest"
 msgstr "pagal metaduomenis, naujumą"
 
-#: plugin.py:244
+#: src/plugin.py:273
 msgid "Progress sort ascending (P+)"
 msgstr "pagal progresą didėjančiai (P+)"
 
-#: plugin.py:244 plugin.py:250
+#: src/plugin.py:273 src/plugin.py:279
 msgid "Progress sort"
 msgstr "pagal progresą"
 
-#: plugin.py:245
+#: src/plugin.py:274
 msgid "Date sort ascending (D+)"
 msgstr "pagal datą didėjančiai (D+)"
 
-#: plugin.py:246
+#: src/plugin.py:275
 msgid "Alpha sort descending (ZA)"
 msgstr "pagal pavadinimą Ž>A"
 
-#: plugin.py:247
+#: src/plugin.py:276
 msgid "Alpha sort descending, Date ascending (ZAD+)"
 msgstr "pagal pavad. Ž>A, didėj. data (ŽAD+)"
 
-#: plugin.py:248
+#: src/plugin.py:277
 msgid "Alpha sort descending with meta (ZAM)"
 msgstr "pagal pavad. Ž>A, su metaduom. (ŽAM)"
 
-#: plugin.py:249
+#: src/plugin.py:278
 msgid "Alpha sort descending with meta, Date ascending (ZAMD+)"
 msgstr "pagal pavad. Ž>A, su metaduom.,didėj. data (ŽAMD+)"
 
-#: plugin.py:250
+#: src/plugin.py:279
 msgid "Progress sort descending (P-)"
 msgstr "pagal progresą mažėjančiai (P-)"
 
-#: plugin.py:300
+#: src/plugin.py:328
 msgid "after standby"
 msgstr "po budėjimo režimo"
 
-#: plugin.py:309
+#: src/plugin.py:337
 msgid "never hide"
 msgstr "visada rodyti"
 
-#: plugin.py:309
+#: src/plugin.py:337
 msgid "hide live TV"
 msgstr "nerodyti tiesioginės TV"
 
-#: plugin.py:309
+#: src/plugin.py:337
 msgid "hide live TV and timeshift"
 msgstr "nerodyti tiesioginės TV ir laiko poslinkio"
 
-#: plugin.py:309
+#: src/plugin.py:337
 msgid "hide playback"
 msgstr "nerodyti įrašų atkūrimo"
 
-#: plugin.py:309
+#: src/plugin.py:337
 msgid "always hide"
 msgstr "nerodyti niekada"
 
-#: plugin.py:310
+#: src/plugin.py:339
 msgid "stop service"
 msgstr "išjungti kanalą"
 
-#: plugin.py:310
+#: src/plugin.py:339
 msgid "single pixel TV, muted"
 msgstr "vieno pikselio TV, be garso"
 
-#: plugin.py:315
+#: src/plugin.py:341
+msgid "Show info on the left"
+msgstr "Rodyti informaciją kairėje"
+
+#: src/plugin.py:341
+msgid "Show info on the left (with MiniTV)"
+msgstr "Rodyti informaciją kairėje (mini TV)"
+
+#: src/plugin.py:341
+msgid "Show info at the bottom"
+msgstr "Rodyti informaciją apačioje"
+
+#: src/plugin.py:341
+msgid "Show info at the bottom (with MiniTV)"
+msgstr "Rodyti informaciją apačioje (mini TV)"
+
+#: src/plugin.py:345
 msgid "left from Name"
 msgstr "pavadinimo kairėje"
 
-#: plugin.py:315
+#: src/plugin.py:345
 msgid "right from Name"
 msgstr "pavadinimo dešinėje"
 
-#: plugin.py:322 plugin.py:370
+#: src/plugin.py:352 src/plugin.py:400
 msgid "center"
 msgstr "centre"
 
-#: plugin.py:322 plugin.py:370
+#: src/plugin.py:352 src/plugin.py:400
 msgid "right"
 msgstr "dešinėje"
 
-#: plugin.py:322 plugin.py:370
+#: src/plugin.py:352 src/plugin.py:400
 msgid "left"
 msgstr "kairėje"
 
-#: plugin.py:327
+#: src/plugin.py:357
 msgid "Yes, without Message"
 msgstr "taip, be pranešimo"
 
-#: plugin.py:327
+#: src/plugin.py:357
 msgid "Yes, with Message"
 msgstr "taip, su pranešimu"
 
-#: plugin.py:349
+#: src/plugin.py:361
+msgid "Yes, only extra title"
+msgstr "Taip, tik papildomą pavadinimą"
+
+#: src/plugin.py:361
+msgid "Yes, everything"
+msgstr "Taip, viskam"
+
+#: src/plugin.py:379
 msgid ""
 "ATTENTION\n"
 "\n"
@@ -3133,19 +3240,75 @@ msgstr ""
 "\n"
 "Patvirtinkite tai 'MĖLYNU' mygtuku, po 'ŽALIOJO' paspaudimo."
 
-#: plugin.py:364
+#: src/plugin.py:394
 msgid "always"
 msgstr "visada"
 
-#: plugin.py:364
+#: src/plugin.py:394
 msgid "after reload list"
 msgstr "įkėlus sąrašą iš naujo"
 
-#: plugin.py:364
+#: src/plugin.py:394
 msgid "only initially"
 msgstr "tik iš pradžių"
 
-#: plugin.py:375
+#: src/plugin.py:402 src/plugin.py:406
+msgid "White"
+msgstr "balta"
+
+#: src/plugin.py:402 src/plugin.py:406
+msgid "Light grey"
+msgstr "šviesiai pilka"
+
+#: src/plugin.py:402 src/plugin.py:406
+msgid "Grey"
+msgstr "pilka"
+
+#: src/plugin.py:402 src/plugin.py:406
+msgid "Dark grey"
+msgstr "tamsiai pilka"
+
+#: src/plugin.py:402 src/plugin.py:406
+msgid "Black"
+msgstr "juoda"
+
+#: src/plugin.py:403
+msgid "Orange"
+msgstr "oranžinė"
+
+#: src/plugin.py:403
+msgid "Light orange"
+msgstr "šviesiai oranžinė"
+
+#: src/plugin.py:403
+msgid "Dark orange"
+msgstr "tamsiai oranžinė"
+
+#: src/plugin.py:404
+msgid "Green"
+msgstr "žalia"
+
+#: src/plugin.py:404
+msgid "Light green"
+msgstr "šviesiai žalia"
+
+#: src/plugin.py:404
+msgid "Dark green"
+msgstr "tamsiai žalia"
+
+#: src/plugin.py:405
+msgid "Red"
+msgstr "raudona"
+
+#: src/plugin.py:405
+msgid "Light red"
+msgstr "šviesiai raudona"
+
+#: src/plugin.py:405
+msgid "Dark red"
+msgstr "tamsiai raudona"
+
+#: src/plugin.py:410
 #, python-format
 msgid "%d second"
 msgid_plural "%d seconds"
@@ -3153,89 +3316,186 @@ msgstr[0] "%d sekundė"
 msgstr[1] "%d sekundės"
 msgstr[2] "%d sekundžių"
 
-#: plugin.py:384
+#: src/plugin.py:419
 msgid "Day"
 msgstr "diena"
 
-#: plugin.py:387
+#: src/plugin.py:422
 msgid "Days"
 msgstr "dienos"
 
-#: plugin.py:392
+#: src/plugin.py:427
 msgid "Week"
 msgstr "savaitė"
 
-#: plugin.py:395
+#: src/plugin.py:430
 msgid "Weeks"
 msgstr "savaitės"
 
-#: plugin.py:400
+#: src/plugin.py:435
 msgid "Month"
 msgstr "mėnuo"
 
-#: plugin.py:403
+#: src/plugin.py:438
 msgid "Months"
 msgstr "mėnesiai"
 
-#: plugin.py:408
+#: src/plugin.py:444
 msgid "No limit"
 msgstr "neribojant"
 
-#: plugin.py:439
+#: src/plugin.py:474
 msgid "IMDb Search"
 msgstr "IMDb paieška"
 
-#: plugin.py:439
+#: src/plugin.py:474
 msgid "EMC-TMDB Info"
 msgstr "EMC TMDb informacija"
 
-#: plugin.py:439
+#: src/plugin.py:474
 msgid "TMDB Info"
 msgstr "TMDb informacija"
 
-#: plugin.py:439
+#: src/plugin.py:474
 msgid "TMBD Info"
 msgstr "TMBD informacija"
 
-#: plugin.py:439
+#: src/plugin.py:474
 msgid "CSFD Info"
 msgstr "CSFD informacija"
 
-#: plugin.py:529
+#: src/plugin.py:569
 msgid "configuration"
 msgstr "konfigūracija"
 
-#: plugin.py:532
+#: src/plugin.py:572 src/plugin.py:575
 msgid "movie manipulation list"
 msgstr "filmų manipuliavimo sąrašas"
 
-msgid "HELP_Sort file A to Z at startup"
-msgstr "Atveriant, filmų sąrašas bus surūšiuotas pagal abėcėlę."
+#: EnhancedMovieCenter.py:347
+msgid "HELP_Key assignment Separator"
+msgstr "Funkcinių mygtukų priskyrimas."
 
-msgid "HELP_File order reverse"
+#: EnhancedMovieCenter.py:404
+msgid "HELP_separator_hide&performance"
+msgstr "Nustatymas nerodyti failų/katalogų ir našumo."
+
+#: EnhancedMovieCenter.py:415
+msgid "Load all for non showing titles from .meta files"
+msgstr "Įkelti visus nerodomus .meta failuose pavadinimus"
+
+#: EnhancedMovieCenter.py:415
+msgid "HELP_Load all for non showing titles from .meta files"
 msgstr ""
-"Filmų sąrašas bus surūšiuotas atvirkštine tvarka.\n"
-"Nesvarbu, ar pasirinkta rodyti pagal chronologiją, ar pagal abėcėlę."
+"Kai pavadinimas negali būti paimtas iš .meta failo, bus bandoma paimti "
+"kitais būdais, kad atvaizduoti pavadinimą."
 
-msgid "HELP_Show E2 Bookmarks in movielist"
+#: EnhancedMovieCenter.py:474
+msgid "HELP_separator_Trashcan settings"
+msgstr "Šiukšliadėžės ir automatinio išvalymo funkcijų nuostatos."
+
+#: EnhancedMovieCenter.py:501
+msgid "HELP_Language Separator"
+msgstr "Kalbos nustatymai."
+
+#: EnhancedMovieCenter.py:503
+msgid "Extra support for language"
+msgstr "Išplėstinis kalbos palaikymas"
+
+#: EnhancedMovieCenter.py:503
+msgid "HELP_Extra support for selected language"
+msgstr "Čia galite įjungti pasirinktos papildomos kalbos palaikymą."
+
+#: EnhancedMovieCenter.py:514 EnhancedMovieCenter.py:519
+#: EnhancedMovieCenter.py:545
+msgid "HELP_Advanced options separator"
+msgstr "Išplėstinės EMC parinktys."
+
+#: EnhancedMovieCenter.py:522
+msgid "HELP_Advanced Skin options separator"
+msgstr "EMC vartotojo aplinkos temos parametrai."
+
+#: EnhancedMovieCenter.py:526
+msgid "HELP_Advanced audio metadata options separator"
+msgstr "Išplėstinės garso metaduomenų parinktys."
+
+#: EnhancedMovieCenter.py:543
+msgid "Upgrade/Download Mutagen v1.28(experimental)"
+msgstr "Parsisiųsti/atnaujinti Mutagen v1.28 (eksperimentinis)"
+
+#: EnhancedMovieCenter.py:543
+msgid "HELP_Upgrade/Download Mutagen v1.28(experimental)"
 msgstr ""
-"'Filmų namuose' rodyti virtualius katalogus, atitinkančius Enigma2 žymes."
+"Parsisiųsti, arba atnaujinti esamą Mutagen į v1.28 (eksperimentinė versija)."
 
-msgid "HELP_Enigma daily auto-restart"
-msgstr "Enigma2 kas nurodytą laiko tarpą bus paleidžiama iš naujo."
+#: MovieInfo.py:62 MovieInfo.py:66
+msgid " - "
+msgstr " - "
 
-msgid "HELP_Enigma auto-restart window begin"
-msgstr "Enigma2 automatinio paleidimo iš naujo laikotarpio pradžia."
+#: MovieInfo.py:272
+msgid "Movie Info"
+msgstr "Filmo informacija"
 
-msgid "HELP_Enigma auto-restart window end"
-msgstr "Enigma2 automatinio paleidimo iš naujo laikotarpio pabaiga."
+#: MovieInfo.py:277
+msgid "movies found!"
+msgstr "rasti filmai!"
 
-msgid "HELP_Force standby after auto-restart"
-msgstr ""
-"Po Enigma2 automatinio paleidimo iš naujo Vu+ bus perjungtas į budėjimo "
-"būseną."
+#: MovieInfo.py:280 MovieInfo.py:303 MovieInfo.py:335
+msgid "An error occured! Internet connection broken?"
+msgstr "Įvyko klaida! Neveikia interneto ryšys?"
 
-msgid "HELP_Scan for Movie Structures"
-msgstr ""
-"Leidžia išjungti filmų struktūros nuskaitymą visuose kataloguose.\n"
-"Išjungus, išvengiama nepageidaujamų (tinklo) diskų prižadinimų."
+#: MovieInfo.py:283
+msgid "Movie Information Download (TMDb)"
+msgstr "Filmo informacijos parsiuntimas (TMDb)"
+
+#: MovieInfo.py:366
+msgid "Movie Information Preview"
+msgstr "Filmo informacijos peržiūra"
+
+#: MovieInfo.py:723
+msgid "Switch complete to new Version"
+msgstr "Pilnai pereiti į naują versiją"
+
+#: MovieSelectionMenu.py:294
+msgid "Create Link"
+msgstr "Sukurti nuorodą"
+
+#: MovieSelectionMenu.py:345
+msgid "exception "
+msgstr "išimtis "
+
+#: plugin.py:144
+msgid "DD.MM HH:MM"
+msgstr "MM.DD HH:MM"
+
+#~ msgid "HELP_Sort file A to Z at startup"
+#~ msgstr "Atveriant, filmų sąrašas bus surūšiuotas pagal abėcėlę"
+
+#~ msgid "HELP_File order reverse"
+#~ msgstr ""
+#~ "Filmų sąrašas bus surūšiuotas atvirkštine tvarka.\n"
+#~ "Nesvarbu, ar pasirinkta rodyti pagal chronologiją, ar pagal abėcėlę."
+
+#~ msgid "HELP_Show E2 Bookmarks in movielist"
+#~ msgstr ""
+#~ "Display virtual folders in your \"Movie home\" representing your Enigma2 "
+#~ "Bookmarks."
+
+#~ msgid "HELP_Enigma daily auto-restart"
+#~ msgstr "Enigma2 will be restarted daily during the defined time frame."
+
+#~ msgid "HELP_Enigma auto-restart window begin"
+#~ msgstr "Start of the time frame for the automatic Enigma2 restart."
+
+#~ msgid "HELP_Enigma auto-restart window end"
+#~ msgstr "End of the time frame for the automatic Enigma2 restart."
+
+#~ msgid "HELP_Force standby after auto-restart"
+#~ msgstr ""
+#~ "After the automatic Enigma2 restart, the Dreambox will be switched to "
+#~ "Standby."
+
+#~ msgid "HELP_Scan for Movie Structures"
+#~ msgstr ""
+#~ "Disable the parsing for Movie-structures in all directories.\n"
+#~ "This avoids unwanted wake up of (network)disks."
