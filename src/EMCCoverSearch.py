@@ -35,6 +35,7 @@ from enigma import eListboxPythonMultiContent, eListbox, gFont, getDesktop, load
 from Tools.BoundFunction import boundFunction
 from DelayedFunction import DelayedFunction
 from time import time
+from urllib import quote
 
 from MovieCenter import getMovieNameWithoutExt, getMovieNameWithoutPhrases, getNoPosterPath
 
@@ -233,7 +234,7 @@ class EMCImdbScan(Screen):
 					path = path + os.sep + 'folder.jpg'
 				else:
 					path = path + os.sep + title + '.jpg'
-			#title = getMovieNameWithoutPhrases(getMovieNameWithoutExt(title))
+			title = getMovieNameWithoutPhrases(getMovieNameWithoutExt(title))
 			path = re.sub(self.file_format + "$", '.jpg', path, flags=re.IGNORECASE)
 			if os.path.exists(path):
 				count_existing += 1
@@ -315,7 +316,14 @@ class EMCImdbScan(Screen):
 					self.check = True
 					print "EMC iMDB: Cover vorhanden - %s" % title
 				else:
-					#title = getMovieNameWithoutPhrases(getMovieNameWithoutExt(title))
+					try:
+						title.decode('utf-8')
+					except UnicodeDecodeError:
+						try:
+							title = title.decode("cp1252").encode("utf-8")
+						except UnicodeDecodeError:
+							title = title.decode("iso-8859-1").encode("utf-8")
+					title = getMovieNameWithoutPhrases(getMovieNameWithoutExt(title))
 					s_title = getSearchList(title, None)[0]
 					m_title = getSearchList(title, config.EMC.imdb.search_filter.value)[0]
 					if re.search('[Ss][0-9]+[Ee][0-9]+', s_title) is not None:
@@ -325,10 +333,10 @@ class EMCImdbScan(Screen):
 						if seasonEpisode:
 							(season, episode) = seasonEpisode[0]
 						name2 = re.sub('[Ss][0-9]+[Ee][0-9]+.*[a-zA-Z0-9_]+','', s_title, flags=re.S|re.I)
-						url = 'https://thetvdb.com/api/GetSeries.php?seriesname=%s&language=de' % name2.replace(' ','%20')
+						url = 'https://thetvdb.com/api/GetSeries.php?seriesname=%s&language=de' % quote(str(name2))
 						urls.append(("serie", title, url, cover_path, season, episode))
 					else:
-						url = 'http://api.themoviedb.org/3/search/movie?api_key=8789cfd3fbab7dccf1269c3d7d867aff&query=%s&language=de' % m_title.replace(' ','%20')
+						url = 'http://api.themoviedb.org/3/search/movie?api_key=8789cfd3fbab7dccf1269c3d7d867aff&query=%s&language=de' % quote(str(m_title))
 						urls.append(("movie", title, url, cover_path, None, None))
 
 			if len(urls) != 0:
@@ -348,9 +356,9 @@ class EMCImdbScan(Screen):
 		self.start_time = time.clock()
 		if type == "movie":
 			list = []
-			list = re.findall('"poster_path":"\\\(.*?)".*?"original_title":"(.*?)"', data, re.S)
+			list = re.findall('"poster_path":"(.*?)".*?"original_title":"(.*?)"', data, re.S)
 			if list:
-				purl = "http://image.tmdb.org/t/p/%s%s" % (config.EMC.imdb.preferred_coversize.value, list[0][0])
+				purl = "https://image.tmdb.org/t/p/%s/%s" % (config.EMC.imdb.preferred_coversize.value, str(list[0][0]).strip('/'))
 				self.counter_download += 1
 				self.end_time = time.clock()
 				elapsed = (self.end_time - self.start_time) * 1000
@@ -363,7 +371,7 @@ class EMCImdbScan(Screen):
 					idx = []
 					idx = re.findall('"id":(.*?),', data, re.S)
 					if idx:
-						iurl = "http://api.themoviedb.org/3/movie/%s?api_key=8789cfd3fbab7dccf1269c3d7d867aff&language=de" % idx[0]
+						iurl = "http://api.themoviedb.org/3/movie/%s?api_key=8789cfd3fbab7dccf1269c3d7d867aff&language=de" % str(idx[0])
 						getPage(iurl, headers={'Content-Type':'application/x-www-form-urlencoded'}).addCallback(self.getInfos, id, type, cover_path).addErrback(self.dataError)
 			else:
 				self.counter_no_poster += 1
@@ -374,10 +382,10 @@ class EMCImdbScan(Screen):
 			list = re.findall('<seriesid>(.*?)</seriesid>', data, re.S)
 			if list:
 				x = config.EMC.imdb.thetvdb_standardcover.value
-				purl = "https://www.thetvdb.com/banners/_cache/posters/%s-%s.jpg" % (list[0], x)
+				purl = "https://artworks.thetvdb.com/banners/posters/%s-%s.jpg" % (str(list[0]), x)
 				if x > 1 and not urlExist(purl):
 					x = 1
-					purl = "https://www.thetvdb.com/banners/_cache/posters/%s-%s.jpg" % (list[0], x)
+					purl = "https://artworks.thetvdb.com/banners/posters/%s-%s.jpg" % (str(list[0]), x)
 				self.counter_download += 1
 				self.end_time = time.clock()
 				elapsed = (self.end_time - self.start_time) * 1000
@@ -388,7 +396,7 @@ class EMCImdbScan(Screen):
 				# get description
 				if config.EMC.imdb.savetotxtfile.value:
 					if season and episode:
-						iurl = "https://www.thetvdb.com/api/2AAF0562E31BCEEC/series/%s/default/%s/%s/de.xml" % (list[0], str(int(season)), str(int(episode)))
+						iurl = "https://www.thetvdb.com/api/2AAF0562E31BCEEC/series/%s/default/%s/%s/de.xml" % (str(list[0]), str(int(season)), str(int(episode)))
 						getPage(iurl, headers={'Content-Type':'application/x-www-form-urlencoded'}).addCallback(self.getInfos, id, type, cover_path).addErrback(self.dataError)
 			else:
 				self.counter_no_poster += 1
@@ -891,10 +899,10 @@ class getCover(Screen):
 			for item in part:
 				if finish:
 					break
-				url = 'http://api.themoviedb.org/3/search/movie?api_key=8789cfd3fbab7dccf1269c3d7d867aff&query=%s&language=de' % item.replace(' ','%20')
+				url = 'http://api.themoviedb.org/3/search/movie?api_key=8789cfd3fbab7dccf1269c3d7d867aff&query=%s&language=de' % quote(str(item))
 				data = yield getPage(url).addErrback(self.errorLoad, title)
 				if data:
-					bild = re.findall('"poster_path":"\\\(.*?)".*?"original_title":"(.*?)"', data, re.S)
+					bild = re.findall('"poster_path":"(.*?)".*?"original_title":"(.*?)"', data, re.S)
 					if bild:
 						for each in bild:
 							m_cover = each[0]
@@ -903,7 +911,7 @@ class getCover(Screen):
 								continue
 							coverlist.append(m_cover)
 							self.cover_count += 1
-							tmdb_url = "http://image.tmdb.org/t/p/%s%s" % (coversize, m_cover)
+							tmdb_url = "https://image.tmdb.org/t/p/%s/%s" % (coversize, str(m_cover).strip('/'))
 							templist.append(self.showCoverlist(m_title, tmdb_url, self.o_path, "tmdb: "))
 							if siteresults and len(coverlist) >= siteresults:
 								finish = True
@@ -913,10 +921,10 @@ class getCover(Screen):
 			#self["info"].setText((_("found") + " %s " + _("covers")) % (self.cover_count))
 		else:
 			part = getSearchList(title, config.EMC.imdb.singlesearch_filter.value)[0]
-			url = 'http://api.themoviedb.org/3/search/movie?api_key=8789cfd3fbab7dccf1269c3d7d867aff&query=%s&language=de' % part.replace(' ','%20')
+			url = 'http://api.themoviedb.org/3/search/movie?api_key=8789cfd3fbab7dccf1269c3d7d867aff&query=%s&language=de' % quote(str(part))
 			data = yield getPage(url).addErrback(self.errorLoad, title)
 			if data:
-				bild = re.findall('"poster_path":"\\\(.*?)".*?"original_title":"(.*?)"', data, re.S)
+				bild = re.findall('"poster_path":"(.*?)".*?"original_title":"(.*?)"', data, re.S)
 				if bild:
 					for each in bild:
 						m_cover = each[0]
@@ -925,7 +933,7 @@ class getCover(Screen):
 							continue
 						coverlist.append(m_cover)
 						self.cover_count += 1
-						tmdb_url = "http://image.tmdb.org/t/p/%s%s" % (coversize, m_cover)
+						tmdb_url = "https://image.tmdb.org/t/p/%s/%s" % (coversize, str(m_cover).strip('/'))
 						templist.append(self.showCoverlist(m_title, tmdb_url, self.o_path, "tmdb: "))
 			templist.sort()
 			self.menulist.extend(templist)
@@ -949,7 +957,7 @@ class getCover(Screen):
 			for item in part:
 				if finish:
 					break
-				url = "https://www.thetvdb.com/api/GetSeries.php?seriesname=%s&language=de" % item.replace(' ','%20')
+				url = "https://www.thetvdb.com/api/GetSeries.php?seriesname=%s&language=de" % quote(str(item))
 				data = yield getPage(url).addErrback(self.errorLoad, title)
 				if data:
 					id = re.findall('<seriesid>(.*?)</seriesid>.*?<SeriesName>(.*?)</SeriesName>', data, re.S)
@@ -964,17 +972,17 @@ class getCover(Screen):
 							coverlist.append(m_cover)
 							if coverrange == 1:
 								x = standardcover
-								tvdb_url = "https://www.thetvdb.com/banners/_cache/posters/%s-%s.jpg" % (m_cover, x)
+								tvdb_url = "https://artworks.thetvdb.com/banners/posters/%s-%s.jpg" % (str(m_cover), x)
 								if x > 1 and not urlExist(tvdb_url):
 									x = 1
-									tvdb_url = "https://www.thetvdb.com/banners/_cache/posters/%s-%s.jpg" % (m_cover, x)
+									tvdb_url = "https://artworks.thetvdb.com/banners/posters/%s-%s.jpg" % (str(m_cover), x)
 								self.cover_count += 1
 								templist.append(self.showCoverlist(m_title, tvdb_url, self.o_path, "tvdb: cover-%s : " %x))
 							else:
 								x = 0
 								while True:
 									x += 1
-									tvdb_url = "https://www.thetvdb.com/banners/_cache/posters/%s-%s.jpg" % (m_cover, x)
+									tvdb_url = "https://artworks.thetvdb.com/banners/posters/%s-%s.jpg" % (str(m_cover), x)
 									if x > 1 and (coverrange and x > coverrange or not urlExist(tvdb_url)):
 										break
 									self.cover_count += 1
@@ -986,7 +994,7 @@ class getCover(Screen):
 			#self["info"].setText((_("found") + " %s " + _("covers")) % (self.cover_count))
 		else:
 			part = getSearchList(title, config.EMC.imdb.singlesearch_filter.value)[0]
-			url = "https://www.thetvdb.com/api/GetSeries.php?seriesname=%s&language=de" % part.replace(' ','%20')
+			url = "https://www.thetvdb.com/api/GetSeries.php?seriesname=%s&language=de" % quote(str(part))
 			data = yield getPage(url).addErrback(self.errorLoad, title)
 			if data:
 				id = re.findall('<seriesid>(.*?)</seriesid>.*?<SeriesName>(.*?)</SeriesName>', data, re.S)
@@ -998,10 +1006,10 @@ class getCover(Screen):
 							continue
 						coverlist.append(m_cover)
 						x = standardcover
-						tvdb_url = "https://www.thetvdb.com/banners/_cache/posters/%s-%s.jpg" % (m_cover, x)
+						tvdb_url = "https://artworks.thetvdb.com/banners/posters/%s-%s.jpg" % (str(m_cover), x)
 						if x > 1 and not urlExist(tvdb_url):
 							x = 1
-							tvdb_url = "https://www.thetvdb.com/banners/_cache/posters/%s-%s.jpg" % (m_cover, x)
+							tvdb_url = "https://artworks.thetvdb.com/banners/posters/%s-%s.jpg" % (str(m_cover), x)
 						self.cover_count += 1
 						templist.append(self.showCoverlist(m_title, tvdb_url, self.o_path, "tvdb: "))
 			templist.sort()
@@ -1025,19 +1033,19 @@ class getCover(Screen):
 			for item in part:
 				if finish:
 					break
-				url = 'http://m.imdb.com/find?q=%s' % item.replace(' ','%20')
+				url = 'http://m.imdb.com/find?q=%s' % quote(str(item))
 				data = yield getPage(url).addErrback(self.errorLoad, title)
 				if data:
-					bild = re.findall('<div class="poster.*?<img src="https://images-na.ssl-images-amazon.com/images(.*?)V1.*?<a href="/title/.*?">(.*?)</a>', data, re.S)
+					bild = re.findall('<div class="media.*?<img src="https://m.media-amazon.com/images(.*?)V1.*?<span class="h3">(.*?)</span>', data, re.S)
 					if bild:
 						for each in bild:
 							m_cover = each[0]
-							m_title = each[1]
+							m_title = each[1].strip()
 							if m_cover in coverlist:
 								continue
 							coverlist.append(m_cover)
 							self.cover_count += 1
-							imdb_url = "https://images-na.ssl-images-amazon.com/images%sV1_%s.jpg" % (m_cover, coversize)
+							imdb_url = "https://m.media-amazon.com/images%sV1_%s.jpg" % (str(m_cover), coversize)
 							templist.append(self.showCoverlist(m_title, imdb_url, self.o_path, "imdb: "))
 							if siteresults and len(coverlist) >= siteresults:
 								finish = True
@@ -1047,19 +1055,19 @@ class getCover(Screen):
 			#self["info"].setText((_("found") + " %s " + _("covers")) % (self.cover_count))
 		else:
 			part = getSearchList(title, config.EMC.imdb.singlesearch_filter.value)[0]
-			url = 'http://m.imdb.com/find?q=%s' % part.replace(' ','%20')
+			url = 'http://m.imdb.com/find?q=%s' % quote(str(part))
 			data = yield getPage(url).addErrback(self.errorLoad, title)
 			if data:
-				bild = re.findall('<div class="poster.*?<img src="https://images-na.ssl-images-amazon.com/images(.*?)V1.*?<a href="/title/.*?">(.*?)</a>', data, re.S)
+				bild = re.findall('<div class="media.*?<img src="https://m.media-amazon.com/images(.*?)V1.*?<span class="h3">(.*?)</span>', data, re.S)
 				if bild:
 					for each in bild:
 						m_cover = each[0]
-						m_title = each[1]
+						m_title = each[1].strip()
 						if m_cover in coverlist:
 							continue
 						coverlist.append(m_cover)
 						self.cover_count += 1
-						imdb_url = "https://images-na.ssl-images-amazon.com/images%sV1_%s.jpg" % (m_cover, coversize)
+						imdb_url = "https://m.media-amazon.com/images%sV1_%s.jpg" % (str(m_cover), coversize)
 						templist.append(self.showCoverlist(m_title, imdb_url, self.o_path, "imdb: "))
 			templist.sort()
 			self.menulist.extend(templist)
