@@ -78,10 +78,10 @@ from EMCPlayList import emcplaylist, EMCPlaylistScreen, EMCPlaylistSetup
 #from MetaSupport import MetaList
 from MetaSupport import getInfoFile
 
-from MovieCenter import extList, extVideo, extMedia, extDir, plyAll, plyDVD, cmtBME2, cmtBMEMC, cmtDir, plyDVB, extPlaylist, extAudio
+from MovieCenter import extList, extVideo, extMedia, extDir, plyAll, plyDVD, plyVideo, cmtBME2, cmtBMEMC, cmtDir, plyDVB, extPlaylist, extAudio
 from MovieCenter import getMovieNameWithoutExt, getMovieNameWithoutPhrases, getNoPosterPath, getPosterPath
 
-global extList, extVideo, extMedia, extDir, plyAll, plyDVD, cmtBME2, cmtBMEMC, cmtDir, plyDVB, extPlaylist, extAudio
+global extList, extVideo, extMedia, extDir, plyAll, plyDVD, plyVideo, cmtBME2, cmtBMEMC, cmtDir, plyDVB, extPlaylist, extAudio
 
 # we try to get mutagen if is installed
 isMutagen = False
@@ -1365,9 +1365,9 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			# Simulate a recursive reload to get all files and titles
 			# walk through entire tree below current path. Might take a bit long on huge disks...
 			selectedlist = self["list"].reload(self.currentPath, simulate=True, recursive=True)
-			filelist = [ (title , path ) for (service, sorttitle, date, title, path, selnum, length, ext, cutnr, sorteventtitle, eventtitle, piconpath, sortyear, sortmonth, sortday, sorthour, sortmin) in selectedlist ]
+			filelist = [ (title , path ) for (service, sorttitle, date, title, path, selnum, length, ext, cutnr, sorteventtitle, eventtitle, piconpath, sortyear, sortmonth, sortday, sorthour, sortmin) in selectedlist if ext in plyVideo ]
 		else:
-			filelist = [ (title , path ) for (service, sorttitle, date, title, path, selnum, length, ext, cutnr, sorteventtitle, eventtitle, piconpath, sortyear, sortmonth, sortday, sorthour, sortmin) in self["list"].getList() if ext in plyAll ]
+			filelist = [ (title , path ) for (service, sorttitle, date, title, path, selnum, length, ext, cutnr, sorteventtitle, eventtitle, piconpath, sortyear, sortmonth, sortday, sorthour, sortmin) in self["list"].getList() if ext in plyVideo ]
 
 		# Collect imdb data
 		self.checkHideMiniTV_beforeFullscreen()
