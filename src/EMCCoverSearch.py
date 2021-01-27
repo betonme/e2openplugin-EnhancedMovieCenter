@@ -45,10 +45,11 @@ import re, urllib, urllib2, os, time, shutil, requests
 
 config.EMC.imdb = ConfigSubsection()
 #search/automatic
+config.EMC.imdb.language = ConfigSelection(default='en', choices=[('en', _('English')), ('de', _('German')), ('it', _('Italian')), ('es', _('Spanish')), ('fr', _('French')), ('pt', _('Portuguese'))])
 config.EMC.imdb.search_filter = ConfigSelection(default='3', choices=[('0', _('overall')), ('2', _('two contiguous')), ('3', _('three contiguous'))])
 config.EMC.imdb.savetotxtfile = ConfigYesNo(default = False)
 #single/manually
-config.EMC.imdb.singlesearch = ConfigSelection(default='6', choices=[('0', _('imdb.com')), ('1', _('thetvdb.com')), ('3', _('all')), ('4', _('themoviedb.org')), ('5', _('themoviedb.org + thetvdb.com'))])
+config.EMC.imdb.singlesearch = ConfigSelection(default='3', choices=[('0', _('imdb.com')), ('1', _('thetvdb.com')), ('3', _('all')), ('4', _('themoviedb.org')), ('5', _('themoviedb.org + thetvdb.com'))])
 config.EMC.imdb.singlesearch_filter = ConfigSelection(default='2', choices=[('0', _('overall')), ('1', _('every single one')), ('2', _('two contiguous')), ('3', _('three contiguous'))])
 config.EMC.imdb.singlesearch_siteresults = ConfigSelection(default='3', choices=[('0', _('no limit')),'3', '5', '10', '25', '50', '100'])
 config.EMC.imdb.singlesearch_tvdbcoverrange = ConfigSelection(default='1', choices = [('0', _('no limit')), ('1', _('standard cover')), '3', '5', '10', '25'])
@@ -204,6 +205,7 @@ class EMCImdbScan(Screen):
 		self.showSearchSiteName = "TMDb+TVDb"
 
 	def layoutFinished(self):
+		self.lang = config.EMC.imdb.language.value
 		self.listWidth = self["menulist"].instance.size().width()
 		self.listHeight = self["menulist"].instance.size().height()
 		self.itemHeight = self["menulist"].l.getItemSize().height()
@@ -333,14 +335,14 @@ class EMCImdbScan(Screen):
 							(season, episode) = seasonEpisode[0]
 						name2 = getMovieNameWithoutPhrases(s_title)
 						name2 = re.sub('[Ss][0-9]+[Ee][0-9]+.*[a-zA-Z0-9_]+','', name2, flags=re.S|re.I)
-						url = 'http://thetvdb.com/api/GetSeries.php?seriesname=%s&language=de' % quote(str(name2))
+						url = 'http://thetvdb.com/api/GetSeries.php?seriesname=%s&language=%s' % (quote(str(name2)), self.lang)
 						urls.append(("serie", title, url, cover_path, season, episode))
 					else:
-						url = 'http://api.themoviedb.org/3/search/movie?api_key=8789cfd3fbab7dccf1269c3d7d867aff&query=%s&language=de' % quote(str(m_title))
+						url = 'http://api.themoviedb.org/3/search/movie?api_key=8789cfd3fbab7dccf1269c3d7d867aff&query=%s&language=%s' % (quote(str(m_title)), self.lang)
 						urls.append(("movie", title, url, cover_path, None, None))
 
 			if len(urls) != 0:
-				ds = defer.DeferredSemaphore(tokens=2)
+				ds = defer.DeferredSemaphore(tokens=3)
 				downloads = [ds.run(self.download, url).addCallback(self.parseWebpage, type, title, url, cover_path, season, episode).addErrback(self.dataError) for type, title, url, cover_path, season, episode in urls]
 				finished = defer.DeferredList(downloads).addErrback(self.dataError2)
 			else:
@@ -370,7 +372,7 @@ class EMCImdbScan(Screen):
 					idx = []
 					idx = re.findall('"id":(.*?),', data, re.S)
 					if idx:
-						iurl = "http://api.themoviedb.org/3/movie/%s?api_key=8789cfd3fbab7dccf1269c3d7d867aff&language=de" % str(idx[0])
+						iurl = "http://api.themoviedb.org/3/movie/%s?api_key=8789cfd3fbab7dccf1269c3d7d867aff&language=%s" % (str(idx[0]), self.lang)
 						getPage(iurl, headers={'Content-Type':'application/x-www-form-urlencoded'}).addCallback(self.getInfos, id, type, cover_path).addErrback(self.dataError)
 			else:
 				self.counter_no_poster += 1
@@ -394,7 +396,7 @@ class EMCImdbScan(Screen):
 				# get description
 				if config.EMC.imdb.savetotxtfile.value:
 					if season and episode:
-						iurl = "http://www.thetvdb.com/api/2AAF0562E31BCEEC/series/%s/default/%s/%s/de.xml" % (str(list[0]), str(int(season)), str(int(episode)))
+						iurl = "http://www.thetvdb.com/api/2AAF0562E31BCEEC/series/%s/default/%s/%s/%s.xml" % (str(list[0]), str(int(season)), str(int(episode)), self.lang)
 						getPage(iurl, headers={'Content-Type':'application/x-www-form-urlencoded'}).addCallback(self.getInfos, id, type, cover_path).addErrback(self.dataError)
 			else:
 				self.counter_no_poster += 1
@@ -709,6 +711,7 @@ class imdbSetup(Screen, ConfigListScreenExt):
 
 	def _getConfig(self):
 		self.configlist = []
+		self.configlist.append(getConfigListEntry(_("Language:"), config.EMC.imdb.language))
 		self.configlist.append(getConfigListEntry(_("Search filter for matching existing terms in the title:"), config.EMC.imdb.search_filter, False))
 		self.configlist.append(getConfigListEntry(_("thetvdb cover number (standard cover):"), config.EMC.imdb.thetvdb_standardcover, False))
 		self.configlist.append(getConfigListEntry(_("Preferred cover resolution (if possible):"), config.EMC.imdb.preferred_coversize, False))
@@ -794,6 +797,7 @@ class getCover(Screen):
 		self.onLayoutFinish.append(self.layoutFinished)
 
 	def layoutFinished(self):
+		self.lang = config.EMC.imdb.language.value
 		self.listWidth = self["menulist"].instance.size().width()
 		self.listHeight = self["menulist"].instance.size().height()
 		self.itemHeight = self["menulist"].l.getItemSize().height()
@@ -825,7 +829,7 @@ class getCover(Screen):
 		for item in part:
 			if finish:
 				break
-			url = 'http://api.themoviedb.org/3/search/movie?api_key=8789cfd3fbab7dccf1269c3d7d867aff&query=%s&language=de' % quote(str(item))
+			url = 'http://api.themoviedb.org/3/search/movie?api_key=8789cfd3fbab7dccf1269c3d7d867aff&query=%s&language=%s' % (quote(str(item)), self.lang)
 			data = yield getPage(url).addErrback(self.errorLoad, title)
 			if data:
 				bild = re.findall('"poster_path":"(.*?)".*?"original_title":"(.*?)"', data, re.S)
@@ -863,7 +867,7 @@ class getCover(Screen):
 		for item in part:
 			if finish:
 				break
-			url = "http://www.thetvdb.com/api/GetSeries.php?seriesname=%s&language=de" % quote(str(item))
+			url = "http://www.thetvdb.com/api/GetSeries.php?seriesname=%s&language=%s" % (quote(str(item)), self.lang)
 			data = yield getPage(url).addErrback(self.errorLoad, title)
 			if data:
 				id = re.findall('<seriesid>(.*?)</seriesid>.*?<SeriesName>(.*?)</SeriesName>', data, re.S)
