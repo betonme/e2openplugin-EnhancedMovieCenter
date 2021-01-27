@@ -121,12 +121,13 @@ extBlu      = frozenset([".bdmv"])
 # mimetype("video/x-bluray") ext (".bdmv")
 
 # Player types
-plyDVB      = extTS																										# ServiceDVB
-plyM2TS     = extM2ts																									# ServiceM2TS
-plyDVD      = extDvd																									# ServiceDVD
+plyDVB      = extTS											# ServiceDVB
+plyM2TS     = extM2ts											# ServiceM2TS
+plyDVD      = extDvd											# ServiceDVD
 plyMP3      = extMedia - plyDVB - plyM2TS - plyDVD - extBlu						# ServiceMP3 GStreamer
-plyVLC      = extVLC																									# VLC Plugin
-#plyBLU      = extBlu | extIso																				# BludiscPlayer Plugin
+plyVideo    = extMedia - extAudio
+plyVLC      = extVLC											# VLC Plugin
+#plyBLU      = extBlu | extIso										# BludiscPlayer Plugin
 plyAll      = plyDVB | plyM2TS | plyDVD | plyMP3 | plyVLC | extBlu
 
 
@@ -134,12 +135,12 @@ plyAll      = plyDVB | plyM2TS | plyDVD | plyMP3 | plyVLC | extBlu
 
 # Service ID types for E2 service identification
 sidDVB      = eServiceReference.idDVB									# eServiceFactoryDVB::id   enum { id = 0x1 };
-sidDVD      = 4369 																		# eServiceFactoryDVD::id   enum { id = 0x1111 };
-sidMP3      = 4097																		# eServiceFactoryMP3::id   enum { id = 0x1001 };
+sidDVD      = 4369 											# eServiceFactoryDVD::id   enum { id = 0x1111 };
+sidMP3      = 4097											# eServiceFactoryMP3::id   enum { id = 0x1001 };
 # For later purpose
-sidM2TS     = 3 																			# eServiceFactoryM2TS::id  enum { id = 0x3 };
+sidM2TS     = 3 											# eServiceFactoryM2TS::id  enum { id = 0x3 };
 #TODO
-#sidXINE = 4112										# eServiceFactoryXine::id  enum { id = 0x1010 };
+#sidXINE = 4112												# eServiceFactoryXine::id  enum { id = 0x1010 };
 #additionalExtensions = "4098:m3u 4098:e2pls 4098:pls"
 
 # Grouped service ids
@@ -178,10 +179,10 @@ def getPosterPath(searchPath):
 	foldercoverconfig = config.EMC.imdb.singlesearch_foldercoverpath.value
 
 	if os.path.isfile(searchPath):
-		paths.extend([searchname])											# /dir/mediafolder/mediafile.ext
+		paths.extend([searchname])									# /dir/mediafolder/mediafile.ext
 		basedircover = os.path.dirname(searchname)							# /dir/mediafolder.ext
 	else:
-		basedircover = searchname											# /dir/mediafolder.ext
+		basedircover = searchname									# /dir/mediafolder.ext
 
 	# bluray structures
 	if basedircover.lower().endswith("/bdmv"):
@@ -198,8 +199,8 @@ def getPosterPath(searchPath):
 	elif basedircover.lower().endswith("/dvd"):
 		basedircover = basedircover[:-4]
 
-	filedircover = basedircover + os.sep + os.path.basename(basedircover) 	# /dir/mediafolder/mediafolder.ext
-	foldercover = basedircover + os.sep + 'folder'							# /dir/mediafolder/folder.ext
+	filedircover = basedircover + os.sep + os.path.basename(basedircover) 					# /dir/mediafolder/mediafolder.ext
+	foldercover = basedircover + os.sep + 'folder'								# /dir/mediafolder/folder.ext
 
 	if foldercoverconfig == '1':
 		paths.extend([basedircover, foldercover, filedircover])
