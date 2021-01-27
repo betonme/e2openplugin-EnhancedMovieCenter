@@ -546,7 +546,7 @@ class MovieInfoTMDb(Screen):
 	def showPreviewCoverCB(self, picInfo=None):
 		ptr = self.picload.getData()
 		if ptr != None:
-			self["previewcover"].instance.setPixmap(ptr.__deref__())
+			self["previewcover"].instance.setPixmap(ptr)
 			if self.page == 0:
 				self["previewcover"].show()
 		else:
