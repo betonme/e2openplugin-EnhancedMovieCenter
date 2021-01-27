@@ -488,17 +488,14 @@ class EMCImdbScan(Screen):
 			size = self["poster"].instance.size()
 			self.picload.setPara((size.width(), size.height(), scale[0], scale[1], False, 1, "#00000000"))
 			if isDreamOS:
-				if self.picload.startDecode(poster_path, False) == 0:
-					ptr = self.picload.getData()
-					if ptr != None:
-						self["poster"].instance.setPixmap(ptr)
-						self["poster"].show()
+				result = self.picload.startDecode(poster_path, False)
 			else:
-				if self.picload.startDecode(poster_path, 0, 0, False) == 0:
-					ptr = self.picload.getData()
-					if ptr != None:
-						self["poster"].instance.setPixmap(ptr)
-						self["poster"].show()
+				result = self.picload.startDecode(poster_path, 0, 0, False)
+			if result == 0:
+				ptr = self.picload.getData()
+				if ptr != None:
+					self["poster"].instance.setPixmap(ptr)
+					self["poster"].show()
 
 	def config(self):
 		self.session.openWithCallback(self.setupFinished, imdbSetup)
