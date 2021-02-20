@@ -354,9 +354,9 @@ class EMCImdbScan(Screen):
 		self.counting += 1
 		self.start_time = time.clock()
 		if type == "movie":
-			list = re.findall('"poster_path":"(.*?)".*?"original_title":"(.*?)"', data, re.S)
+			list = re.findall('original_title":"(.*?)".*?"poster_path":"(.*?)"', data, re.S)
 			if list:
-				purl = "http://image.tmdb.org/t/p/%s/%s" % (config.EMC.imdb.preferred_coversize.value, str(list[0][0]).strip('/'))
+				purl = "http://image.tmdb.org/t/p/%s/%s" % (config.EMC.imdb.preferred_coversize.value, str(list[0][1]).strip('/'))
 				self.counter_download += 1
 				self.end_time = time.clock()
 				elapsed = (self.end_time - self.start_time) * 1000
@@ -819,11 +819,11 @@ class getCover(Screen):
 			url = 'http://api.themoviedb.org/3/search/movie?api_key=8789cfd3fbab7dccf1269c3d7d867aff&query=%s&language=%s' % (quote(str(item)), self.lang)
 			data = yield getPage(url, agent=agent).addErrback(self.errorLoad, title)
 			if data:
-				bild = re.findall('"poster_path":"(.*?)".*?"original_title":"(.*?)"', data, re.S)
+				bild = re.findall('original_title":"(.*?)".*?"poster_path":"(.*?)"', data, re.S)
 				if bild:
 					for each in bild:
-						m_cover = each[0]
-						m_title = each[1]
+						m_cover = each[1]
+						m_title = each[0]
 						if m_cover in coverlist:
 							continue
 						coverlist.append(m_cover)
