@@ -133,14 +133,12 @@ class InfoBarSupport(	InfoBarBase,
 		self.resume_point = 0
 
 		if hasmkvcuesheetsupport:
-			self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
-				{
+			self.__event_tracker = ServiceEventTracker(screen=self, eventmap={
 					iPlayableService.evStart: self.__serviceStarted,
 					iPlayableService.evCuesheetChanged: self.downloadCuesheet,
 				})
 		else:
-			self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
-				{
+			self.__event_tracker = ServiceEventTracker(screen=self, eventmap={
 					iPlayableService.evStart: self.__serviceStarted,
 				})
 

@@ -50,7 +50,7 @@ def getAudioMetaData(service, ext):
 		path = service.getPath()
 		if ext.lower() == ".mp3":
 			try:
-				audio = MP3(os.path.join(path), ID3 = EasyID3)
+				audio = MP3(os.path.join(path), ID3=EasyID3)
 			except:
 				audio = None
 		elif ext.lower() == ".flac":

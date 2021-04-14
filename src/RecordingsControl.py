@@ -204,7 +204,7 @@ class RecordingsControl:
 							timer.enable()
 							timer_afterEvent = timer.afterEvent
 							timer.afterEvent = AFTEREVENT.NONE
-							timer.processRepeated(findRunningEvent = False)
+							timer.processRepeated(findRunningEvent=False)
 							NavigationInstance.instance.RecordTimer.doActivate(timer)
 							timer.afterEvent = timer_afterEvent
 							NavigationInstance.instance.RecordTimer.timeChanged(timer)

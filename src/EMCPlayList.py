@@ -31,9 +31,9 @@ sz_w = getDesktop(0).size().width()
 global plyDVB
 
 config.EMC.playlist = ConfigSubsection()
-config.EMC.playlist.default_playlist_path = ConfigDirectory(default = "/media/hdd/")
-config.EMC.playlist.default_playlist_name = ConfigText(default = "EmcPlaylist")
-config.EMC.playlist.save_default_list = ConfigYesNo(default = False)
+config.EMC.playlist.default_playlist_path = ConfigDirectory(default="/media/hdd/")
+config.EMC.playlist.default_playlist_name = ConfigText(default="EmcPlaylist")
+config.EMC.playlist.save_default_list = ConfigYesNo(default=False)
 
 
 def readPlaylist(path):
@@ -234,7 +234,7 @@ class EMCPlaylistScreen(Screen):
 
 	def showMessageCB(self, result):
 		if result:
-			self.session.openWithCallback(self.checkPlaylistExist, InputBox, title=_("Change the filename to save current Playlist:"), windowTitle = _("Save current Playlist"), text=self.spath)
+			self.session.openWithCallback(self.checkPlaylistExist, InputBox, title=_("Change the filename to save current Playlist:"), windowTitle=_("Save current Playlist"), text=self.spath)
 		else:
 			return
 
@@ -272,7 +272,7 @@ class EMCPlaylistScreen(Screen):
 		self["playlist"].refreshList()
 
 class PlayList(GUIComponent):
-	def __init__(self, enableWrapAround = True):
+	def __init__(self, enableWrapAround=True):
 		GUIComponent.__init__(self)
 
 		self.screenwidth = getDesktop(0).size().width()
@@ -466,14 +466,14 @@ class EMCPlaylistSetup(Screen, ConfigListScreenExt):
 			self.session.openWithCallback(
 				self.openDirectoryBrowserCB,
 				LocationBox,
-					windowTitle = _("Choose Directory:"),
-					text = _("Choose directory"),
-					currDir = str(path),
-					bookmarks = config.movielist.videodirs,
-					autoAdd = False,
-					editDir = True,
-					inhibitDirs = ["/bin", "/boot", "/dev", "/etc", "/home", "/lib", "/proc", "/run", "/sbin", "/sys", "/usr", "/var"],
-					minFree = 15 )
+					windowTitle=_("Choose Directory:"),
+					text=_("Choose directory"),
+					currDir=str(path),
+					bookmarks=config.movielist.videodirs,
+					autoAdd=False,
+					editDir=True,
+					inhibitDirs=["/bin", "/boot", "/dev", "/etc", "/home", "/lib", "/proc", "/run", "/sbin", "/sys", "/usr", "/var"],
+					minFree=15 )
 		except Exception, e:
 			print('[EMCPlayList] openDirectoryBrowser get failed: ', str(e))
 
@@ -483,11 +483,11 @@ class EMCPlaylistSetup(Screen, ConfigListScreenExt):
 
 	def openVirtualKeyboard(self, name):
 		try:
-			self.session.openWithCallback(lambda x : self.openVirtualKeyboardCB(x, 'playlist_name'), VirtualKeyBoard, title = (_('Enter Name for Playlist')), text = name)
+			self.session.openWithCallback(lambda x : self.openVirtualKeyboardCB(x, 'playlist_name'), VirtualKeyBoard, title=(_('Enter Name for Playlist')), text=name)
 		except Exception, e:
 			print('[EMCPlayList] openVirtualKeyboard get failed: ', str(e))
 
-	def openVirtualKeyboardCB(self, callback = None, entry = None):
+	def openVirtualKeyboardCB(self, callback=None, entry=None):
 		if callback is not None and len(callback) and entry is not None and len(entry):
 			if entry == 'playlist_name':
 				config.EMC.playlist.default_playlist_name.setValue(callback)

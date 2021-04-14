@@ -53,16 +53,16 @@ config.EMC.imdb = ConfigSubsection()
 #search/automatic
 config.EMC.imdb.language = ConfigSelection(default='en', choices=[('en', _('English')), ('de', _('German')), ('it', _('Italian')), ('es', _('Spanish')), ('fr', _('French')), ('pt', _('Portuguese'))])
 config.EMC.imdb.search_filter = ConfigSelection(default='3', choices=[('0', _('overall')), ('2', _('two contiguous')), ('3', _('three contiguous'))])
-config.EMC.imdb.savetotxtfile = ConfigYesNo(default = False)
+config.EMC.imdb.savetotxtfile = ConfigYesNo(default=False)
 #single/manually
 config.EMC.imdb.singlesearch = ConfigSelection(default='3', choices=[('0', _('imdb.com')), ('1', _('thetvdb.com')), ('3', _('all')), ('4', _('themoviedb.org')), ('5', _('themoviedb.org + thetvdb.com'))])
 config.EMC.imdb.singlesearch_filter = ConfigSelection(default='2', choices=[('0', _('overall')), ('1', _('every single one')), ('2', _('two contiguous')), ('3', _('three contiguous'))])
 config.EMC.imdb.singlesearch_siteresults = ConfigSelection(default='3', choices=[('0', _('no limit')),'3', '5', '10', '25', '50', '100'])
-config.EMC.imdb.singlesearch_tvdbcoverrange = ConfigSelection(default='1', choices = [('0', _('no limit')), ('1', _('standard cover')), '3', '5', '10', '25'])
+config.EMC.imdb.singlesearch_tvdbcoverrange = ConfigSelection(default='1', choices=[('0', _('no limit')), ('1', _('standard cover')), '3', '5', '10', '25'])
 config.EMC.imdb.singlesearch_foldercoverpath = ConfigSelection(default='0', choices=[('0', _('.../foldername/foldername.jpg')), ('1', _('.../foldername.jpg')), ('2', _('.../foldername/folder.jpg'))])
 #common
-config.EMC.imdb.preferred_coversize = ConfigSelection(default="w185", choices = ["w92", "w154", "w185", "w300", "w320", "w342", "w500", "w780", "original"])
-config.EMC.imdb.thetvdb_standardcover = ConfigSelectionNumber(default = 1, stepwidth = 1, min = 1, max = 30, wraparound = True)
+config.EMC.imdb.preferred_coversize = ConfigSelection(default="w185", choices=["w92", "w154", "w185", "w300", "w320", "w342", "w500", "w780", "original"])
+config.EMC.imdb.thetvdb_standardcover = ConfigSelectionNumber(default=1, stepwidth=1, min=1, max=30, wraparound=True)
 
 agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.141 Safari/537.36"
 
@@ -692,7 +692,7 @@ class imdbSetup(Screen, ConfigListScreenExt):
 
 		self.configlist = []
 
-		ConfigListScreenExt.__init__(self, self.configlist, on_change = self._onKeyChange)
+		ConfigListScreenExt.__init__(self, self.configlist, on_change=self._onKeyChange)
 
 		self._getConfig()
 
@@ -1040,14 +1040,14 @@ class getCover(Screen):
 			self.session.openWithCallback(
 					self.moveCoverTo,
 					LocationBox,
-						windowTitle = _("Move Cover to:"),
-						text = _("Choose directory"),
-						currDir = str(choosePath)+"/",
-						bookmarks = config.movielist.videodirs,
-						autoAdd = False,
-						editDir = True,
-						inhibitDirs = ["/bin", "/boot", "/dev", "/etc", "/home", "/lib", "/proc", "/run", "/sbin", "/sys", "/usr", "/var"],
-						minFree = 100 )
+						windowTitle=_("Move Cover to:"),
+						text=_("Choose directory"),
+						currDir=str(choosePath)+"/",
+						bookmarks=config.movielist.videodirs,
+						autoAdd=False,
+						editDir=True,
+						inhibitDirs=["/bin", "/boot", "/dev", "/etc", "/home", "/lib", "/proc", "/run", "/sbin", "/sys", "/usr", "/var"],
+						minFree=100 )
 
 	def moveCoverTo(self, targetPath):
 		if targetPath is not None:

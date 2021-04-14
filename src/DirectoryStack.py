@@ -31,7 +31,7 @@ class DirectoryStack():
 
 	def __init__(self):
 		self.__stackForward = deque()
-		self.__stackBackward = deque( maxlen = 10 )
+		self.__stackBackward = deque( maxlen=10 )
 
 	def isStackForwardAvailable(self):
 		return len(self.__stackForward) > 0

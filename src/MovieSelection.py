@@ -235,7 +235,7 @@ class SelectionEventInfo:
 		self["Service"] = EMCServiceEvent(ServiceCenter.getInstance())
 		# Movie preview
 		desktopSize = getDesktop(0).size()
-		self["Video"] = VideoWindow(decoder = 0, fb_width=desktopSize.width(), fb_height=desktopSize.height())
+		self["Video"] = VideoWindow(decoder=0, fb_width=desktopSize.width(), fb_height=desktopSize.height())
 		# Movie Cover
 		self["Cover"] = Pixmap()
 		self["CoverBg"] = Pixmap()
@@ -776,7 +776,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		self.onClose.append(self.cancelThreadMsg)
 
 		try:
-			config.misc.standbyCounter.addNotifier(self._onStandby, initial_call = False)
+			config.misc.standbyCounter.addNotifier(self._onStandby, initial_call=False)
 		except:
 			print'[EMCMovieSelection] failed in config.misc.standbyCounter.addNotifier(self._onStandby, initial_call = False)'
 
@@ -1077,7 +1077,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			# Move cursor to top of the list
 			self.moveTop()
 
-	def setNextPath(self, nextdir = None, service = None):
+	def setNextPath(self, nextdir=None, service=None):
 		if nextdir == ".." or nextdir is None or nextdir.endswith(".."):
 			if self.currentPath != "" and self.currentPath != "/":
 				# Open Parent folder
@@ -1202,14 +1202,14 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		self.session.openWithCallback(
 			self.openBookmarksCB,
 			LocationBox,
-				windowTitle = _("E2 Bookmark"),
-				text = _("Open E2 Bookmark path"),
-				currDir = str(self.currentPath)+"/",
-				bookmarks = config.movielist.videodirs,
-				autoAdd = False,
-				editDir = True,
-				inhibitDirs = ["/bin", "/boot", "/dev", "/etc", "/lib", "/proc", "/sbin", "/sys", "/usr", "/var"],
-				minFree = 0 )
+				windowTitle=_("E2 Bookmark"),
+				text=_("Open E2 Bookmark path"),
+				currDir=str(self.currentPath)+"/",
+				bookmarks=config.movielist.videodirs,
+				autoAdd=False,
+				editDir=True,
+				inhibitDirs=["/bin", "/boot", "/dev", "/etc", "/lib", "/proc", "/sbin", "/sys", "/usr", "/var"],
+				minFree=0 )
 
 	def openEMCBookmarks(self):
 		#TODO Use a choicebox or a LocationBox with simulated bookmarks
@@ -3097,14 +3097,14 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 				self.session.openWithCallback(
 					self.mvDirSelected,
 					LocationBox,
-						windowTitle = _("Move file(s):"),
-						text = _("Choose directory"),
-						currDir = str(self.currentPath)+"/",
-						bookmarks = config.movielist.videodirs,
-						autoAdd = False,
-						editDir = True,
-						inhibitDirs = ["/bin", "/boot", "/dev", "/etc", "/lib", "/proc", "/sbin", "/sys", "/usr", "/var"],
-						minFree = 100 )
+						windowTitle=_("Move file(s):"),
+						text=_("Choose directory"),
+						currDir=str(self.currentPath)+"/",
+						bookmarks=config.movielist.videodirs,
+						autoAdd=False,
+						editDir=True,
+						inhibitDirs=["/bin", "/boot", "/dev", "/etc", "/lib", "/proc", "/sbin", "/sys", "/usr", "/var"],
+						minFree=100 )
 			except Exception, e:
 				emcDebugOut("[EMCMS] moveMovie exception failure: ", str(e))
 		else:
@@ -3140,14 +3140,14 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 						self.session.openWithCallback(
 							self.mvDirSelected,
 							LocationBox,
-								windowTitle = _("Move file(s):"),
-								text = _("Choose directory"),
-								currDir = str(self.currentPath)+"/",
-								bookmarks = config.movielist.videodirs,
-								autoAdd = False,
-								editDir = True,
-								inhibitDirs = ["/bin", "/boot", "/dev", "/etc", "/lib", "/proc", "/sbin", "/sys", "/usr", "/var"],
-								minFree = 100 )
+								windowTitle=_("Move file(s):"),
+								text=_("Choose directory"),
+								currDir=str(self.currentPath)+"/",
+								bookmarks=config.movielist.videodirs,
+								autoAdd=False,
+								editDir=True,
+								inhibitDirs=["/bin", "/boot", "/dev", "/etc", "/lib", "/proc", "/sbin", "/sys", "/usr", "/var"],
+								minFree=100 )
 					except:
 						self.checkHideMiniTV_beforeFullscreen()
 						self.session.open(MessageBox, _("How to move files:\nSelect some movies with the VIDEO-button, move the cursor on top of the destination directory and press yellow."), MessageBox.TYPE_ERROR, 10)
@@ -3175,14 +3175,14 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 				self.session.openWithCallback(
 					self.cpDirSelected,
 					LocationBox,
-						windowTitle = _("Copy file(s):"),
-						text = _("Choose directory"),
-						currDir = str(self.currentPath)+"/",
-						bookmarks = config.movielist.videodirs,
-						autoAdd = False,
-						editDir = True,
-						inhibitDirs = ["/bin", "/boot", "/dev", "/etc", "/lib", "/proc", "/sbin", "/sys", "/usr", "/var"],
-						minFree = 100 )
+						windowTitle=_("Copy file(s):"),
+						text=_("Choose directory"),
+						currDir=str(self.currentPath)+"/",
+						bookmarks=config.movielist.videodirs,
+						autoAdd=False,
+						editDir=True,
+						inhibitDirs=["/bin", "/boot", "/dev", "/etc", "/lib", "/proc", "/sbin", "/sys", "/usr", "/var"],
+						minFree=100 )
 			except Exception, e:
 				emcDebugOut("[EMCMS] copyMovie exception failure: ", str(e))
 		else:
@@ -3218,14 +3218,14 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 						self.session.openWithCallback(
 							self.cpDirSelected,
 							LocationBox,
-								windowTitle = _("Copy file(s):"),
-								text = _("Choose directory"),
-								currDir = str(self.currentPath)+"/",
-								bookmarks = config.movielist.videodirs,
-								autoAdd = False,
-								editDir = True,
-								inhibitDirs = ["/bin", "/boot", "/dev", "/etc", "/lib", "/proc", "/sbin", "/sys", "/usr", "/var"],
-								minFree = 100 )
+								windowTitle=_("Copy file(s):"),
+								text=_("Choose directory"),
+								currDir=str(self.currentPath)+"/",
+								bookmarks=config.movielist.videodirs,
+								autoAdd=False,
+								editDir=True,
+								inhibitDirs=["/bin", "/boot", "/dev", "/etc", "/lib", "/proc", "/sbin", "/sys", "/usr", "/var"],
+								minFree=100 )
 					except:
 						self.checkHideMiniTV_beforeFullscreen()
 						self.session.open(MessageBox, _("How to copy files:\nSelect some movies with the VIDEO-button, move the cursor on top of the destination directory and press yellow long."), MessageBox.TYPE_ERROR, 10)
@@ -3245,14 +3245,14 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			self.session.openWithCallback(
 				self.mvDirectorySelected,
 				LocationBox,
-					windowTitle = _("Move Directory:"),
-					text = _("Choose directory"),
-					currDir = str(self.currentPath)+"/",
-					bookmarks = config.movielist.videodirs,
-					autoAdd = False,
-					editDir = True,
-					inhibitDirs = ["/bin", "/boot", "/dev", "/etc", "/home", "/lib", "/proc", "/run", "/sbin", "/sys", "/usr", "/var"],
-					minFree = 100 )
+					windowTitle=_("Move Directory:"),
+					text=_("Choose directory"),
+					currDir=str(self.currentPath)+"/",
+					bookmarks=config.movielist.videodirs,
+					autoAdd=False,
+					editDir=True,
+					inhibitDirs=["/bin", "/boot", "/dev", "/etc", "/home", "/lib", "/proc", "/run", "/sbin", "/sys", "/usr", "/var"],
+					minFree=100 )
 		except Exception, e:
 			print('[EMC] moveDirectory get failed: ', str(e))
 		emcDebugOut("[EMCMS] moveDirectory")

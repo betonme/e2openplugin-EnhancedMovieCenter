@@ -299,14 +299,14 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 		self.session.openWithCallback(
 				boundFunction( self.createLinkCB, path ),
 				LocationBox,
-					windowTitle = _("Create link"),
-					text = _("Choose directory"),
-					currDir = str(path)+"/",
-					bookmarks = config.movielist.videodirs,
-					autoAdd = False,
-					editDir = True,
-					inhibitDirs = ["/bin", "/boot", "/dev", "/etc", "/lib", "/proc", "/sbin", "/sys", "/usr", "/var"],
-					minFree = 0 )
+					windowTitle=_("Create link"),
+					text=_("Choose directory"),
+					currDir=str(path)+"/",
+					bookmarks=config.movielist.videodirs,
+					autoAdd=False,
+					editDir=True,
+					inhibitDirs=["/bin", "/boot", "/dev", "/etc", "/lib", "/proc", "/sbin", "/sys", "/usr", "/var"],
+					minFree=0 )
 
 	def createLinkCB(self, currentPath, linkPath):
 		if currentPath == linkPath or linkPath == None:
@@ -516,7 +516,7 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 		self.close("updatetitle")
 
 	# Overwrite Screen close function
-	def close(self, parameter = None, selections = None):
+	def close(self, parameter=None, selections=None):
 		if parameter is None:
 			if self.reloadafterclose:
 				parameter = "reload"

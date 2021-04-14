@@ -14,7 +14,7 @@ except:
 	isDreamOS = False
 
 class ConfigListExt(HTMLComponent, GUIComponent, object):
-	def __init__(self, list, session = None):
+	def __init__(self, list, session=None):
 		GUIComponent.__init__(self)
 		self.l = eListboxPythonConfigContent()
 		try:
@@ -185,7 +185,7 @@ class ConfigListExt(HTMLComponent, GUIComponent, object):
 		return is_changed
 
 class ConfigListScreenExt:
-	def __init__(self, list, session = None, on_change = None):
+	def __init__(self, list, session=None, on_change=None):
 		self["config_actions"] = NumberActionMap(["SetupActions", "InputAsciiActions", "KeyboardInputActions"],
 		{
 			"gotAsciiCode": self.keyGotAscii,
@@ -219,7 +219,7 @@ class ConfigListScreenExt:
 		}, -2)
 		self["VirtualKB"].setEnabled(False)
 
-		self["config"] = ConfigListExt(list, session = session)
+		self["config"] = ConfigListExt(list, session=session)
 
 		if on_change is not None:
 			self.__changed = on_change
@@ -244,9 +244,9 @@ class ConfigListScreenExt:
 			self["VirtualKB"].setEnabled(False)
 
 	def KeyText(self):
-		self.session.openWithCallback(self.VirtualKeyBoardCallback, VirtualKeyBoard, title = self["config"].getCurrent()[0], text = self["config"].getCurrent()[1].getValue())
+		self.session.openWithCallback(self.VirtualKeyBoardCallback, VirtualKeyBoard, title=self["config"].getCurrent()[0], text=self["config"].getCurrent()[1].getValue())
 
-	def VirtualKeyBoardCallback(self, callback = None):
+	def VirtualKeyBoardCallback(self, callback=None):
 		if callback is not None and len(callback):
 			self["config"].getCurrent()[1].setValue(callback)
 			self["config"].invalidate(self["config"].getCurrent())

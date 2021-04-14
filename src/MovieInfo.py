@@ -35,9 +35,9 @@ config.EMC.movieinfo.ldcountries = ConfigSelection(default='1', choices=[('1', _
 config.EMC.movieinfo.ldreleasedate = ConfigSelection(default='1', choices=[('1', _('Yes')), ('0', _('No'))])
 config.EMC.movieinfo.ldvote = ConfigSelection(default='1', choices=[('1', _('Yes')), ('0', _('No'))])
 config.EMC.movieinfo.ldgenre = ConfigSelection(default='1', choices=[('1', _('Yes')), ('0', _('No'))])
-config.EMC.movieinfo.coversave = ConfigYesNo(default = False)
-config.EMC.movieinfo.coversize = ConfigSelection(default="w185", choices = ["w92", "w185", "w500", "original"])
-config.EMC.movieinfo.cover_delay = ConfigSelectionNumber(50, 60000, 50, default= 500)
+config.EMC.movieinfo.coversave = ConfigYesNo(default=False)
+config.EMC.movieinfo.coversize = ConfigSelection(default="w185", choices=["w92", "w185", "w500", "original"])
+config.EMC.movieinfo.cover_delay = ConfigSelectionNumber(50, 60000, 50, default=500)
 
 sz_w = getDesktop(0).size().width()
 

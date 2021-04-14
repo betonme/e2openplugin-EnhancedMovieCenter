@@ -127,8 +127,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarTimeshift, InfoBar
 
 		# Events
 		if isDreamOS:
-			self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
-				{
+			self.__event_tracker = ServiceEventTracker(screen=self, eventmap={
 					iPlayableService.evEnd: self.__serviceStopped,
 					iPlayableService.evStopped: self.__serviceStopped,
 					iPlayableService.evAudioListChanged: self.__osdAudioInfoAvail,
@@ -142,8 +141,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarTimeshift, InfoBar
 					iPlayableService.evUser+10: self.__menuClosed
 				})
 		else:
-			self.__event_tracker = ServiceEventTracker(screen=self, eventmap=
-				{
+			self.__event_tracker = ServiceEventTracker(screen=self, eventmap={
 					# Disabled for tests
 					# If we enable them, the sound will be delayed for about 2 seconds ?
 					iPlayableService.evStart: self.__serviceStarted,
