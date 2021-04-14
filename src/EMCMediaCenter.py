@@ -19,8 +19,10 @@
 #	<http://www.gnu.org/licenses/>.
 #
 
-import os, re
-import sys, traceback
+import os
+import re
+import sys
+import traceback
 from time import time
 
 from Components.config import *

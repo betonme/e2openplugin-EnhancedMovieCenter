@@ -20,7 +20,8 @@
 #	<http://www.gnu.org/licenses/>.
 #
 
-import os, re
+import os
+import re
 
 from datetime import datetime
 

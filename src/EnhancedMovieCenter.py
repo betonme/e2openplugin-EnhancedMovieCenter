@@ -36,7 +36,8 @@ from Screens.ServiceScan import *
 import Screens.Standby
 from Tools import Notifications
 from enigma import eServiceEvent, eActionMap, eTimer, getDesktop
-import os, struct
+import os
+import struct
 import NavigationInstance
 
 from itertools import cycle

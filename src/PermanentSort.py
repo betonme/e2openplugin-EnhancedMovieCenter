@@ -20,7 +20,8 @@
 #	<http://www.gnu.org/licenses/>.
 #
 
-import os, pickle
+import os
+import pickle
 
 from collections import defaultdict
 

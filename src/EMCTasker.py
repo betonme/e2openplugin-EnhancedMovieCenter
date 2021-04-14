@@ -23,7 +23,9 @@ from enigma import eTimer, eConsoleAppContainer
 from Components.config import *
 from Screens.Standby import *
 import Screens.Standby
-import os, sys, traceback
+import os
+import sys
+import traceback
 from collections import Callable, deque
 from pipes import quote
 from itertools import izip_longest

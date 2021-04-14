@@ -19,7 +19,8 @@
 #	<http://www.gnu.org/licenses/>.
 #
 
-import pickle, os
+import pickle
+import os
 from collections import defaultdict
 
 from Components.config import config

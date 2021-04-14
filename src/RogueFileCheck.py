@@ -19,7 +19,8 @@
 #	<http://www.gnu.org/licenses/>.
 #
 
-import os, sys
+import os
+import sys
 
 from glob import glob
 from Components.config import *

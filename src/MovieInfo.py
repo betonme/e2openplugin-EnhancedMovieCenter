@@ -14,7 +14,9 @@ from configlistext import ConfigListScreenExt
 
 from MovieCenter import getMovieNameWithoutExt, getMovieNameWithoutPhrases, getNoPosterPath
 
-import json, os, re
+import json
+import os
+import re
 from urllib import quote
 from urllib2 import Request, urlopen
 from twisted.web.client import downloadPage

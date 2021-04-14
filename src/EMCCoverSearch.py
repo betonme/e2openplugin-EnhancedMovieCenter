@@ -41,7 +41,13 @@ from MovieCenter import getMovieNameWithoutExt, getMovieNameWithoutPhrases, getN
 
 sz_w = getDesktop(0).size().width()
 
-import re, urllib, urllib2, os, time, shutil, requests
+import re
+import urllib
+import urllib2
+import os
+import time
+import shutil
+import requests
 
 config.EMC.imdb = ConfigSubsection()
 #search/automatic
