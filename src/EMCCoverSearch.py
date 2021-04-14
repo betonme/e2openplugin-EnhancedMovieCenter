@@ -79,11 +79,11 @@ def getSearchList(title, option):
 	if option == '1':
 		slist = s
 	elif option == '2':
-		for x in range(len(s)-1):
-			slist.append(s[x] + ' ' + s[x+1])
+		for x in range(len(s) - 1):
+			slist.append(s[x] + ' ' + s[x + 1])
 	elif option == '3':
-		for x in range(len(s)-2):
-			slist.append(s[x] + ' ' + s[x+1] + ' ' + s[x+2])
+		for x in range(len(s) - 2):
+			slist.append(s[x] + ' ' + s[x + 1] + ' ' + s[x + 2])
 	if not slist:
 		slist = [' '.join(s)]
 	return slist
@@ -172,13 +172,13 @@ class EMCImdbScan(Screen):
 		self.isFolder = folder
 		self["actions"] = HelpableActionMap(self, "EMCimdb",
 		{
-			"EMCEXIT":	self.exit,
-			"EMCOK":	self.ok,
-			"EMCGreen":	self.imdb,
-			"EMCRed":	self.red,
-			"EMCYellow":	self.verwaltung,
-			"EMCRedLong":	self.redLong,
-			"EMCMenu":	self.config,
+			"EMCEXIT": self.exit,
+			"EMCOK": self.ok,
+			"EMCGreen": self.imdb,
+			"EMCRed": self.red,
+			"EMCYellow": self.verwaltung,
+			"EMCRedLong": self.redLong,
+			"EMCMenu": self.config,
 		}, -1)
 
 		self["ButtonGreen"] = Pixmap()
@@ -333,11 +333,11 @@ class EMCImdbScan(Screen):
 					if re.search('[Ss][0-9]+[Ee][0-9]+', s_title) is not None:
 						season = None
 						episode = None
-						seasonEpisode = re.findall('.*?[Ss]([0-9]+)[Ee]([0-9]+)', s_title, re.S|re.I)
+						seasonEpisode = re.findall('.*?[Ss]([0-9]+)[Ee]([0-9]+)', s_title, re.S | re.I)
 						if seasonEpisode:
 							(season, episode) = seasonEpisode[0]
 						name2 = getMovieNameWithoutPhrases(s_title)
-						name2 = re.sub('[Ss][0-9]+[Ee][0-9]+.*[a-zA-Z0-9_]+','', name2, flags=re.S|re.I)
+						name2 = re.sub('[Ss][0-9]+[Ee][0-9]+.*[a-zA-Z0-9_]+','', name2, flags=re.S | re.I)
 						url = 'http://thetvdb.com/api/GetSeries.php?seriesname=%s&language=%s' % (quote(str(name2)), self.lang)
 						urls.append(("serie", title, url, cover_path, season, episode))
 					else:
@@ -366,7 +366,7 @@ class EMCImdbScan(Screen):
 				self.counter_download += 1
 				self.end_time = time.clock()
 				elapsed = (self.end_time - self.start_time) * 1000
-				self.menulist.append(self.imdb_show(title, cover_path, '%.1f' %elapsed, "", title))
+				self.menulist.append(self.imdb_show(title, cover_path, '%.1f' % elapsed, "", title))
 				if not fileExists(cover_path):
 					downloadPage(purl, cover_path).addErrback(self.dataError)
 
@@ -396,7 +396,7 @@ class EMCImdbScan(Screen):
 					self.counter_download += 1
 					self.end_time = time.clock()
 					elapsed = (self.end_time - self.start_time) * 1000
-					self.menulist.append(self.imdb_show(title, cover_path, '%.1f' %elapsed, "", title))
+					self.menulist.append(self.imdb_show(title, cover_path, '%.1f' % elapsed, "", title))
 					if not fileExists(cover_path):
 						downloadPage(purl, cover_path).addErrback(self.dataError)
 
@@ -628,16 +628,16 @@ class EMCImdbScan(Screen):
 
 	def imdb_show(self, title, pp, elapsed, genre, search_title):
 		res = [(title, pp, elapsed, genre, search_title)]
-		s1=_("Exist") + "|" + _("N/A")
+		s1 = _("Exist") + "|" + _("N/A")
 		if not re.match('.*?(' + s1 + ')', elapsed):
 			elapsed = "%s ms" % elapsed
 
 		if getDesktop(0).size().width() == 1920:
-			f=1.5
-			gF=6
+			f = 1.5
+			gF = 6
 		else:
-			f=1
-			gF=4
+			f = 1
+			gF = 4
 
 		h = self.itemHeight
 		if self.count_movies * h > self.listHeight:
@@ -645,8 +645,8 @@ class EMCImdbScan(Screen):
 		else:
 			w = self.listWidth
 
-		res.append(MultiContentEntryText(pos=(5, 0), size=(w, h), font=gF, text=search_title, flags=RT_HALIGN_LEFT|RT_VALIGN_CENTER))
-		res.append(MultiContentEntryText(pos=(w-150*f, 0), size=(140*f, h), font=gF, text=elapsed, flags=RT_HALIGN_RIGHT|RT_VALIGN_CENTER))
+		res.append(MultiContentEntryText(pos=(5, 0), size=(w, h), font=gF, text=search_title, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
+		res.append(MultiContentEntryText(pos=(w - 150 * f, 0), size=(140 * f, h), font=gF, text=elapsed, flags=RT_HALIGN_RIGHT | RT_VALIGN_CENTER))
 		return res
 
 class imdbSetup(Screen, ConfigListScreenExt):
@@ -698,9 +698,9 @@ class imdbSetup(Screen, ConfigListScreenExt):
 
 		self["actions"] = ActionMap(["SetupActions", "OkCancelActions", "EMCConfigActions"],
 		{
-			"cancel":	self.keyCancel,
-			"red":		self.keyCancel,
-			"green":	self.keySave
+			"cancel": self.keyCancel,
+			"red": self.keyCancel,
+			"green": self.keySave
 		}, -2)
 
 	def _getConfig(self):
@@ -718,7 +718,7 @@ class imdbSetup(Screen, ConfigListScreenExt):
 		if config.EMC.imdb.singlesearch.value not in ('0','4'):
 			itext = _(" (without counting cover range)")
 			self.configlist.append(getConfigListEntry(_("thetvdb cover range per title:"), config.EMC.imdb.singlesearch_tvdbcoverrange, False))
-		self.configlist.append(getConfigListEntry(_("Search Results per Search Site%s:") %itext, config.EMC.imdb.singlesearch_siteresults, False))
+		self.configlist.append(getConfigListEntry(_("Search Results per Search Site%s:") % itext, config.EMC.imdb.singlesearch_siteresults, False))
 		self.configlist.append(getConfigListEntry(_("Set path to save the folder Cover:"), config.EMC.imdb.singlesearch_foldercoverpath, False))
 
 		self["config"].list = self.configlist
@@ -734,7 +734,7 @@ class imdbSetup(Screen, ConfigListScreenExt):
 
 	def keySave(self):
 		for x in self["config"].list:
-			if len(x)>1:
+			if len(x) > 1:
 				x[1].save()
 		configfile.save()
 		self.close(True)
@@ -767,8 +767,8 @@ class getCover(Screen):
 
 		self["actions"] = HelpableActionMap(self, "EMCimdb",
 		{
-			"EMCEXIT":	self.exit,
-			"EMCOK":	self.ok,
+			"EMCEXIT": self.exit,
+			"EMCOK": self.ok,
 		}, -1)
 
 		(title, o_path) = data.pop()
@@ -879,7 +879,7 @@ class getCover(Screen):
 								tvdb_url = "https://artworks.thetvdb.com/banners/posters/%s-%s.jpg" % (str(m_cover), x)
 							if urlExist(tvdb_url):
 								self.cover_count += 1
-								templist.append(self.showCoverlist(m_title, tvdb_url, self.o_path, "tvdb: cover-%s : " %x))
+								templist.append(self.showCoverlist(m_title, tvdb_url, self.o_path, "tvdb: cover-%s : " % x))
 						else:
 							x = 0
 							while True:
@@ -888,7 +888,7 @@ class getCover(Screen):
 								if x > 1 and (coverrange and x > coverrange or not urlExist(tvdb_url)):
 									break
 								self.cover_count += 1
-								templist.append(self.showCoverlist(m_title, tvdb_url, self.o_path, "tvdb: cover-%s : " %x))
+								templist.append(self.showCoverlist(m_title, tvdb_url, self.o_path, "tvdb: cover-%s : " % x))
 						if siteresults and len(coverlist) >= siteresults:
 							finish = True
 							break
@@ -1042,7 +1042,7 @@ class getCover(Screen):
 					LocationBox,
 						windowTitle=_("Move Cover to:"),
 						text=_("Choose directory"),
-						currDir=str(choosePath)+"/",
+						currDir =str(choosePath) + "/",
 						bookmarks=config.movielist.videodirs,
 						autoAdd=False,
 						editDir=True,
@@ -1067,11 +1067,11 @@ class getCover(Screen):
 		title = art + title
 
 		if getDesktop(0).size().width() == 1920:
-			f=1.5
-			gF=6
+			f = 1.5
+			gF = 6
 		else:
-			f=1
-			gF=4
+			f = 1
+			gF = 4
 
 		h = self.itemHeight
 		if self.cover_count * h > self.listHeight:
@@ -1079,5 +1079,5 @@ class getCover(Screen):
 		else:
 			w = self.listWidth
 
-		res.append(MultiContentEntryText(pos=(0, 0), size=(w, h), font=gF, text=title, flags=RT_HALIGN_LEFT|RT_VALIGN_CENTER))
+		res.append(MultiContentEntryText(pos=(0, 0), size=(w, h), font=gF, text=title, flags=RT_HALIGN_LEFT | RT_VALIGN_CENTER))
 		return res

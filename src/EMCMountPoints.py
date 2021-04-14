@@ -40,7 +40,7 @@ class EMCMountPoints:
 	def mountpoint(self, path, first=True):
 		if first:
 			path = os.path.realpath(path)
-		if os.path.ismount(path) or len(path)==0:
+		if os.path.ismount(path) or len(path) == 0:
 			return path
 		return self.mountpoint(os.path.dirname(path), False)
 
@@ -70,7 +70,7 @@ class EMCMountPoints:
 
 	def postWakeHDDtimerStart(self, path):
 		self.postWakeHDDtimer.stop()
-		self.postWakeHDDtimer.start(500*int(config.usage.hdd_standby.value),True) # within 50% of the configured standby time after waking the HDD, this timer indicates that the HDD is active (we know it better than the harddiskmanager)
+		self.postWakeHDDtimer.start(500 * int(config.usage.hdd_standby.value),True) # within 50% of the configured standby time after waking the HDD, this timer indicates that the HDD is active (we know it better than the harddiskmanager)
 		self.postWakeHDDtimerActive = True
 		self.postWakeHDDtimerDevice = self.getMountPointDeviceCached(path)
 

@@ -39,16 +39,16 @@ def parseMJD(MJD):
 	# as per DVB-SI spec
 	# returning year,month,day
 	YY = int((MJD - 15078.2) / 365.25)
-	MM = int((MJD - 14956.1 - int(YY*365.25)) / 30.6001)
-	D  = MJD - 14956 - int(YY*365.25) - int(MM * 30.6001)
-	K=0
+	MM = int((MJD - 14956.1 - int(YY * 365.25)) / 30.6001)
+	D = MJD - 14956 - int(YY * 365.25) - int(MM * 30.6001)
+	K = 0
 	if MM == 14 or MM == 15:
-		K=1
+		K = 1
 
-	return (1900 + YY+K), (MM-1-K*12), D
+	return (1900 + YY + K), (MM - 1 - K * 12), D
 
 def unBCD(byte):
-	return (byte>>4)*10 + (byte & 0xf)
+	return (byte >> 4) * 10 + (byte & 0xf)
 
 from Tools.ISO639 import LanguageCodes
 def language_iso639_2to3(alpha2):
@@ -154,10 +154,10 @@ class EitList():
 	def getEitLengthInSeconds(self):
 		length = self.eit.get('duration', "")
 		#TODO Is there another fast and safe way to get the length
-		if len(length)>2:
-			return self.__mk_int((length[0]*60 + length[1])*60 + length[2])
-		elif len(length)>1:
-			return self.__mk_int(length[0]*60 + length[1])
+		if len(length) > 2:
+			return self.__mk_int((length[0] * 60 + length[1]) * 60 + length[2])
+		elif len(length) > 1:
+			return self.__mk_int(length[0] * 60 + length[1])
 		else:
 			return self.__mk_int(length)
 
@@ -202,13 +202,13 @@ class EitList():
 				if data and 12 <= len(data):
 					# go through events
 					pos = 0
-					e = struct.unpack(">HHBBBBBBH", data[pos:pos+12])
+					e = struct.unpack(">HHBBBBBBH", data[pos:pos + 12])
 					event_id = e[0]
-					date     = parseMJD(e[1])                         # Y, M, D
-					time     = unBCD(e[2]), unBCD(e[3]), unBCD(e[4])  # HH, MM, SS
+					date = parseMJD(e[1])                         # Y, M, D
+					time = unBCD(e[2]), unBCD(e[3]), unBCD(e[4])  # HH, MM, SS
 					duration = unBCD(e[5]), unBCD(e[6]), unBCD(e[7])  # HH, MM, SS
-					running_status  = (e[8] & 0xe000) >> 13
-					free_CA_mode    = e[8] & 0x1000
+					running_status = (e[8] & 0xe000) >> 13
+					free_CA_mode = e[8] & 0x1000
 					descriptors_len = e[8] & 0x0fff
 
 					if running_status in [1,2]:
@@ -239,85 +239,85 @@ class EitList():
 					prev2_ISO_639_language_code = "x"
 					while pos < endpos:
 						rec = ord(data[pos])
-						if pos+1>=endpos:
+						if pos + 1 >= endpos:
 							break
-						length = ord(data[pos+1]) + 2
+						length = ord(data[pos + 1]) + 2
 						#if pos+length>=endpos:
 						#	break
 						if rec == 0x4D:
-							descriptor_tag = ord(data[pos+1])
-							descriptor_length = ord(data[pos+2])
-							ISO_639_language_code = str(data[pos+2:pos+5]).upper()
-							event_name_length = ord(data[pos+5])
+							descriptor_tag = ord(data[pos + 1])
+							descriptor_length = ord(data[pos + 2])
+							ISO_639_language_code = str(data[pos + 2:pos + 5]).upper()
+							event_name_length = ord(data[pos + 5])
 							name_event_description = ""
-							for i in range(pos+6,pos+6+event_name_length):
+							for i in range(pos + 6,pos + 6 + event_name_length):
 								try:
-									if str(ord(data[i]))=="10" or int(str(ord(data[i])))>31:
+									if str(ord(data[i])) == "10" or int(str(ord(data[i]))) > 31:
 										name_event_description += data[i]
 								except IndexError, e:
 									emcDebugOut("[META] Exception in readEitFile: " + str(e))
 							if not name_event_codepage:
 								try:
-									byte1 = str(ord(data[pos+6]))
+									byte1 = str(ord(data[pos + 6]))
 								except:
 									byte1 = ''
-								if byte1=="1":
+								if byte1 == "1":
 									name_event_codepage = 'iso-8859-5'
-								elif byte1=="2":
+								elif byte1 == "2":
 									name_event_codepage = 'iso-8859-6'
-								elif byte1=="3":
+								elif byte1 == "3":
 									name_event_codepage = 'iso-8859-7'
-								elif byte1=="4":
+								elif byte1 == "4":
 									name_event_codepage = 'iso-8859-8'
-								elif byte1=="5":
+								elif byte1 == "5":
 									name_event_codepage = 'iso-8859-9'
-								elif byte1=="6":
+								elif byte1 == "6":
 									name_event_codepage = 'iso-8859-10'
-								elif byte1=="7":
+								elif byte1 == "7":
 									name_event_codepage = 'iso-8859-11'
-								elif byte1=="9":
+								elif byte1 == "9":
 									name_event_codepage = 'iso-8859-13'
-								elif byte1=="10":
+								elif byte1 == "10":
 									name_event_codepage = 'iso-8859-14'
-								elif byte1=="11":
+								elif byte1 == "11":
 									name_event_codepage = 'iso-8859-15'
-								elif byte1=="21":
+								elif byte1 == "21":
 									name_event_codepage = 'utf-8'
 								if name_event_codepage:
 									emcDebugOut("[META] Found name_event encoding-type: " + name_event_codepage)
 							short_event_description = ""
 							if not short_event_codepage:
 								try:
-									byte1 = str(ord(data[pos+7+event_name_length]))
+									byte1 = str(ord(data[pos + 7 + event_name_length]))
 								except:
 									byte1 = ''
-								if byte1=="1":
+								if byte1 == "1":
 									short_event_codepage = 'iso-8859-5'
-								elif byte1=="2":
+								elif byte1 == "2":
 									short_event_codepage = 'iso-8859-6'
-								elif byte1=="3":
+								elif byte1 == "3":
 									short_event_codepage = 'iso-8859-7'
-								elif byte1=="4":
+								elif byte1 == "4":
 									short_event_codepage = 'iso-8859-8'
-								elif byte1=="5":
+								elif byte1 == "5":
 									short_event_codepage = 'iso-8859-9'
-								elif byte1=="6":
+								elif byte1 == "6":
 									short_event_codepage = 'iso-8859-10'
-								elif byte1=="7":
+								elif byte1 == "7":
 									short_event_codepage = 'iso-8859-11'
-								elif byte1=="9":
+								elif byte1 == "9":
 									short_event_codepage = 'iso-8859-13'
-								elif byte1=="10":
+								elif byte1 == "10":
 									short_event_codepage = 'iso-8859-14'
-								elif byte1=="11":
+								elif byte1 == "11":
 									short_event_codepage = 'iso-8859-15'
-								elif byte1=="21":
+								elif byte1 == "21":
 									short_event_codepage = 'utf-8'
 								if short_event_codepage:
 									emcDebugOut("[META] Found short_event encoding-type: " + short_event_codepage)
-							for i in range(pos+7+event_name_length,pos+length):
+							for i in range(pos + 7 + event_name_length,pos + length):
 								try:
-									if str(ord(data[i]))=="10" or int(str(ord(data[i])))>31:
+									if str(ord(data[i])) == "10" or int(str(ord(data[i]))) > 31:
 										short_event_description += data[i]
 								except IndexError, e:
 									emcDebugOut("[META] Exception in readEitFile: " + str(e))
@@ -333,42 +333,42 @@ class EitList():
 							prev1_ISO_639_language_code = ISO_639_language_code
 						elif rec == 0x4E:
 							ISO_639_language_code = ""
-							for i in range(pos+3,pos+6):
+							for i in range(pos + 3,pos + 6):
 								ISO_639_language_code += data[i]
 							ISO_639_language_code = ISO_639_language_code.upper()
 							extended_event_description = ""
 							if not extended_event_codepage:
 								try:
-									byte1 = str(ord(data[pos+8]))
+									byte1 = str(ord(data[pos + 8]))
 								except:
 									byte1 = ''
-								if byte1=="1":
+								if byte1 == "1":
 									extended_event_codepage = 'iso-8859-5'
-								elif byte1=="2":
+								elif byte1 == "2":
 									extended_event_codepage = 'iso-8859-6'
-								elif byte1=="3":
+								elif byte1 == "3":
 									extended_event_codepage = 'iso-8859-7'
-								elif byte1=="4":
+								elif byte1 == "4":
 									extended_event_codepage = 'iso-8859-8'
-								elif byte1=="5":
+								elif byte1 == "5":
 									extended_event_codepage = 'iso-8859-9'
-								elif byte1=="6":
+								elif byte1 == "6":
 									extended_event_codepage = 'iso-8859-10'
-								elif byte1=="7":
+								elif byte1 == "7":
 									extended_event_codepage = 'iso-8859-11'
-								elif byte1=="9":
+								elif byte1 == "9":
 									extended_event_codepage = 'iso-8859-13'
-								elif byte1=="10":
+								elif byte1 == "10":
 									extended_event_codepage = 'iso-8859-14'
-								elif byte1=="11":
+								elif byte1 == "11":
 									extended_event_codepage = 'iso-8859-15'
-								elif byte1=="21":
+								elif byte1 == "21":
 									extended_event_codepage = 'utf-8'
 								if extended_event_codepage:
 									emcDebugOut("[META] Found extended_event encoding-type: " + extended_event_codepage)
-							for i in range(pos+8,pos+length):
+							for i in range(pos + 8,pos + length):
 								try:
-									if str(ord(data[i]))=="10" or int(str(ord(data[i])))>31:
+									if str(ord(data[i])) == "10" or int(str(ord(data[i]))) > 31:
 										extended_event_description += data[i]
 								except IndexError, e:
 									emcDebugOut("[META] Exception in readEitFile: " + str(e))
@@ -380,13 +380,13 @@ class EitList():
 								extended_event_descriptor_multi.append("\n\n" + extended_event_description)
 							prev2_ISO_639_language_code = ISO_639_language_code
 						elif rec == 0x50:
-							component_descriptor.append(data[pos+8:pos+length])
+							component_descriptor.append(data[pos + 8:pos + length])
 						elif rec == 0x54:
-							content_descriptor.append(data[pos+8:pos+length])
+							content_descriptor.append(data[pos + 8:pos + length])
 						elif rec == 0x4A:
-							linkage_descriptor.append(data[pos+8:pos+length])
+							linkage_descriptor.append(data[pos + 8:pos + length])
 						elif rec == 0x55:
-							parental_rating_descriptor.append(data[pos+2:pos+length])
+							parental_rating_descriptor.append(data[pos + 2:pos + length])
 						else:
 #							print "unsupported descriptor: %x %x" %(rec, pos + 12)
 #							print data[pos:pos+length]

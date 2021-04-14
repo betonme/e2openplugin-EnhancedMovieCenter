@@ -41,7 +41,7 @@ from DelayedFunction import DelayedFunction
 
 from MovieCenter import sidDVD, sidDVB
 
-SeekbarPlg = "%s%s"%(resolveFilename(SCOPE_PLUGINS), "Extensions/Seekbar/plugin.py")
+SeekbarPlg = "%s%s" % (resolveFilename(SCOPE_PLUGINS), "Extensions/Seekbar/plugin.py")
 
 try:
 	from boxbranding import getImageDistro
@@ -70,14 +70,14 @@ def EMCkeyOK(self):
 			if newPosition > oldPosition:
 				pts = newPosition - oldPosition
 			else:
-				pts = -1*(oldPosition - newPosition)
+				pts = -1 * (oldPosition - newPosition)
 			from EMCMediaCenter import EMCMediaCenter
 			EMCMediaCenter.doSeekRelative(self.infobarInstance, pts)
 			self.exit()
 	elif sel == self.minuteInput:
 		pts = self.minuteInput.value * 60 * 90000
 		if self.fwd == False:
-			pts = -1*pts
+			pts = -1 * pts
 		from EMCMediaCenter import EMCMediaCenter
 		EMCMediaCenter.doSeekRelative(self.infobarInstance, pts)
 		self.exit()
@@ -106,7 +106,7 @@ class InfoBarSupport(	InfoBarBase,
 		self.allowPiP = True         # both are needed here !
 		self.allowPiPSwap = False    # this is needed for vti-images
 
-		for x in	InfoBarShowHide, InfoBarMenu, \
+		for x in InfoBarShowHide, InfoBarMenu, \
 				InfoBarBase, InfoBarSeek, InfoBarShowMovies, \
 				InfoBarAudioSelection, InfoBarSimpleEventView, \
 				InfoBarServiceNotifications, InfoBarPVRState, \
@@ -169,9 +169,9 @@ class InfoBarSupport(	InfoBarBase,
 				l = last / 90000
 				val = config.usage.on_movie_start.value
 				if val == "ask" or val == "ask yes":
-					Notifications.AddNotificationWithCallback(self.playLastCB, MessageBox, _("Do you want to resume this playback?") + "\n" + (_("Resume position at %s") % ("%d:%02d:%02d" % (l/3600, l%3600/60, l%60))), timeout=10, default=True)
+					Notifications.AddNotificationWithCallback(self.playLastCB, MessageBox, _("Do you want to resume this playback?") + "\n" + (_("Resume position at %s") % ("%d:%02d:%02d" % (l / 3600, l % 3600 / 60, l % 60))), timeout=10, default=True)
 				elif val == "ask no":
-					Notifications.AddNotificationWithCallback(self.playLastCB, MessageBox, _("Do you want to resume this playback?") + "\n" + (_("Resume position at %s") % ("%d:%02d:%02d" % (l/3600, l%3600/60, l%60))), timeout=10, default=False)
+					Notifications.AddNotificationWithCallback(self.playLastCB, MessageBox, _("Do you want to resume this playback?") + "\n" + (_("Resume position at %s") % ("%d:%02d:%02d" % (l / 3600, l % 3600 / 60, l % 60))), timeout=10, default=False)
 				elif val == "resume":
 					Notifications.AddNotificationWithCallback(self.playLastCB, MessageBox, _("Resuming playback"), timeout=2, type=MessageBox.TYPE_INFO)
 			elif config.EMC.movie_jump_first_mark.value == True:
@@ -204,10 +204,10 @@ class InfoBarSupport(	InfoBarBase,
 		firstMark = None
 		current_pos = self.cueGetCurrentPosition() or 0
 		# Increase current_pos by 2 seconds to make sure we get the correct mark
-		current_pos = current_pos+180000
+		current_pos = current_pos + 180000
 		# EMC enhancement: increase recording margin to make sure we get the correct mark
-		margin = config.recording.margin_before.value*60*90000 *2 or 20*60*90000
-		middle = (self.getSeekLength() or 90*60*90000) / 2
+		margin = config.recording.margin_before.value * 60 * 90000 * 2 or 20 * 60 * 90000
+		middle = (self.getSeekLength() or 90 * 60 * 90000) / 2
 
 		for (pts, what) in self.cut_list:
 			if what == self.CUT_TYPE_MARK:
@@ -223,7 +223,7 @@ class InfoBarSupport(	InfoBarBase,
 				self.doSeek(self.start_point)
 
 	def jumpNextMark(self):
-		if not self.jumpPreviousNextMark(lambda x: x-90000):
+		if not self.jumpPreviousNextMark(lambda x: x - 90000):
 			# There is no further mark
 			self.doSeekEOF()
 		else:
@@ -234,7 +234,7 @@ class InfoBarSupport(	InfoBarBase,
 	# InfoBarSeek
 	# Seekbar workaround
 	def seekFwdManual(self):
-		if fileExists("%so"%SeekbarPlg) or fileExists("%sc"%SeekbarPlg):
+		if fileExists("%so" % SeekbarPlg) or fileExists("%sc" % SeekbarPlg):
 			from Plugins.Extensions.Seekbar.plugin import Seekbar, seekbar
 			Seekbar.keyOK = EMCkeyOK
 			seekbar(self)
@@ -245,7 +245,7 @@ class InfoBarSupport(	InfoBarBase,
 
 	# Seekbar workaround
 	def seekBackManual(self):
-		if fileExists("%so"%SeekbarPlg) or fileExists("%sc"%SeekbarPlg):
+		if fileExists("%so" % SeekbarPlg) or fileExists("%sc" % SeekbarPlg):
 			from Plugins.Extensions.Seekbar.plugin import Seekbar, seekbarBack
 			Seekbar.keyOK = EMCkeyOK
 			seekbarBack(self)

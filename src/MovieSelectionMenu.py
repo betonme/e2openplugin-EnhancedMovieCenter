@@ -228,9 +228,9 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 		self["menu"] = List(self.menu)
 		self["actions"] = ActionMap(["OkCancelActions", "ColorActions"],
 			{
-				"ok":       self.okButton,
-				"cancel":   self.close,
-				"red":      self.redButton,
+				"ok": self.okButton,
+				"cancel": self.close,
+				"red": self.redButton,
 			})
 		self.onShow.append(self.onDialogShow)
 
@@ -285,7 +285,7 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 				for root, dirs, files in os.walk(currentPath):
 					for dir in dirs:
 						movieFileCache.delPathFromCache(root + '/' + dir)
-						emcTasker.shellExecute('touch "' + root + '/' + dir +  '/dir.lock"')
+						emcTasker.shellExecute('touch "' + root + '/' + dir + '/dir.lock"')
 		else:
 			if confirmed:
 				emcTasker.shellExecute('rm -f "' + currentPath + '/dir.lock"')
@@ -293,7 +293,7 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 				for root, dirs, files in os.walk(currentPath):
 					for dir in dirs:
 						movieFileCache.delPathFromCache(root + '/' + dir)
-						emcTasker.shellExecute('rm -rf "' + root + '/' + dir +  '/dir.lock"')
+						emcTasker.shellExecute('rm -rf "' + root + '/' + dir + '/dir.lock"')
 
 	def createLink(self, path):
 		self.session.openWithCallback(
@@ -301,7 +301,7 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 				LocationBox,
 					windowTitle=_("Create link"),
 					text=_("Choose directory"),
-					currDir=str(path)+"/",
+					currDir =str(path) + "/",
 					bookmarks=config.movielist.videodirs,
 					autoAdd=False,
 					editDir=True,
@@ -316,7 +316,7 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 				movieFileCache.delPathFromCache(currentPath)
 				movieFileCache.delPathFromCache(linkPath)
 				name = os.path.basename(linkPath.rstrip('/'))
-				cmd = 'ln -s "'+ linkPath +'" "'+ os.path.join(currentPath, name) +'"'
+				cmd = 'ln -s "' + linkPath + '" "' + os.path.join(currentPath, name) + '"'
 				if cmd != "":
 					association = []
 					association.append((self.mselection.reloadList))	# Force list reload after creating the link

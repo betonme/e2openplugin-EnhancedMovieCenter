@@ -135,13 +135,13 @@ class EMCPlaylistScreen(Screen):
 
 		self["actions"] = HelpableActionMap(self, "PluginMovieSelectionActions",
 		{
-			"EMCOK":	self.keyOk,
-			"EMCEXIT":	self.keyRed,
-			"EMCMENU":	self.keySetup,
-			"EMCRed":	self.keyRed,
-			"EMCGREEN":	self.keyGreen,
-			"EMCYELLOW":	self.keyYellow,
-			"EMCBLUE":	self.keyBlue,
+			"EMCOK": self.keyOk,
+			"EMCEXIT": self.keyRed,
+			"EMCMENU": self.keySetup,
+			"EMCRed": self.keyRed,
+			"EMCGREEN": self.keyGreen,
+			"EMCYELLOW": self.keyYellow,
+			"EMCBLUE": self.keyBlue,
 		}, -1)
 
 		self.onClose.append(self.__closed)
@@ -386,10 +386,10 @@ class PlayList(GUIComponent):
 				if metastring != "":
 					name = name + " - " + metastring
 		if self.screenwidth and self.screenwidth == 1920:
-			entrys.append((eListboxPythonMultiContent.TYPE_TEXT, 5, 1, self.posWidth, 34, 0, RT_VALIGN_CENTER|RT_HALIGN_RIGHT, pos, self.posColor, self.posColorSel))
+			entrys.append((eListboxPythonMultiContent.TYPE_TEXT, 5, 1, self.posWidth, 34, 0, RT_VALIGN_CENTER | RT_HALIGN_RIGHT, pos, self.posColor, self.posColorSel))
 			entrys.append((eListboxPythonMultiContent.TYPE_TEXT,5 + self.posWidth + 30, 1, self.nameWidth, 34, 1, RT_VALIGN_CENTER, name, self.nameColor, self.nameColorSel))
 		else:
-			entrys.append((eListboxPythonMultiContent.TYPE_TEXT, 5, 2, self.posWidth, 26, 0, RT_VALIGN_CENTER|RT_HALIGN_RIGHT, pos, self.posColor, self.posColorSel))
+			entrys.append((eListboxPythonMultiContent.TYPE_TEXT, 5, 2, self.posWidth, 26, 0, RT_VALIGN_CENTER | RT_HALIGN_RIGHT, pos, self.posColor, self.posColorSel))
 			entrys.append((eListboxPythonMultiContent.TYPE_TEXT,5 + self.posWidth + 20, 2, self.nameWidth, 26, 1, RT_VALIGN_CENTER, name, self.nameColor, self.nameColorSel))
 		return entrys
 

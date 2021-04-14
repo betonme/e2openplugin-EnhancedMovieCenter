@@ -80,15 +80,15 @@ class RogueFileCheck:
 	def getDelFilesScript(self):
 		strg = ""
 		for file in self.files:
-			strg += "rm \"" +file+ "\"\n"
+			strg += "rm \"" + file + "\"\n"
 		return strg
 
 	def getScript(self, path):
 		strg = ""
 		if path and os.path.exists(path):
 			for file in self.files:
-				strg += "\nmv \"" +file+ "\" \"" +path+ "\""
+				strg += "\nmv \"" + file + "\" \"" + path + "\""
 		else:
 			for file in self.files:
-				strg += "\nrm -f \"" +file+ "\""
+				strg += "\nrm -f \"" + file + "\""
 		return strg[1:]

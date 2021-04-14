@@ -61,7 +61,7 @@ from EMCTasker import emcTasker, emcDebugOut
 sz_w = getDesktop(0).size().width()
 
 EMCVersion = "git20210126"
-EMCAbout = "Enhanced Movie Center " +EMCVersion+ "\n\n(c) 2012-2021 by\nCoolman, betonme, Swiss-MAD & the many other volunteers."
+EMCAbout = "Enhanced Movie Center " + EMCVersion + "\n\n(c) 2012-2021 by\nCoolman, betonme, Swiss-MAD & the many other volunteers."
 
 def setEPGLanguage(dummyself=None, dummy=None):
 	if config.EMC.epglang.value:
@@ -127,27 +127,27 @@ def cleanupSetup(dummy=None):
 			rec_time = NavigationInstance.instance.RecordTimer.getNextRecordingTime()
 			cltime = config.EMC.movie_trashcan_ctime.value
 			lotime = localtime()
-			ltime = lotime[3]*60 + lotime[4]
-			ctime = cltime[0]*60 + cltime[1]
+			ltime = lotime[3] * 60 + lotime[4]
+			ctime = cltime[0] * 60 + cltime[1]
 			seconds = 60 * (ctime - ltime)
 			if recordings or rec_time > 0 and (rec_time - time()) < 600: # no more recordings exist
 				DelayedFunction(1800000, cleanupSetup)
-				emcDebugOut("recordings exist... so next trashcan cleanup in " + str(seconds/60) + " minutes")
+				emcDebugOut("recordings exist... so next trashcan cleanup in " + str(seconds / 60) + " minutes")
 			else:
 				if seconds <= 0:
 					seconds += 86400	# 24*60*60
 				# Recall setup funktion
-				trashCleanCall = DelayedFunction(1000*seconds, cleanupSetup)
+				trashCleanCall = DelayedFunction(1000 * seconds, cleanupSetup)
 				# Execute trash cleaning
 				from MovieSelection import purgeExpired
 				DelayedFunction(2000, purgeExpired)
-				emcDebugOut("Next trashcan cleanup in " + str(seconds/60) + " minutes")
+				emcDebugOut("Next trashcan cleanup in " + str(seconds / 60) + " minutes")
 	except Exception, e:
 		emcDebugOut("[sp] cleanupSetup exception:\n" + str(e))
 
 
 def EMCStartup(session):
-	emcDebugOut("+++ EMC "+EMCVersion+" startup")
+	emcDebugOut("+++ EMC " + EMCVersion + " startup")
 
 	if config.EMC.epglang.value:
 		eServiceEvent.setEPGLanguage(config.EMC.epglang.value)
@@ -255,16 +255,16 @@ class EnhancedMovieCenterMenu(ConfigListScreenExt, Screen):
 
 		self["actions"] = ActionMap(["SetupActions", "OkCancelActions", "EMCConfigActions"],
 		{
-			"ok":		self.keyOK,
-			"cancel":	self.keyCancel,
-			"red":		self.keyCancel,
-			"up":		self.keyUp,
-			"down":		self.keyDown,
-			"green": 	self.keySaveNew,
-			"blueshort": 	self.loadPredefinedSettings,
-			"bluelong":	self.loadDefaultSettings,
-			"nextBouquet":	self.keyPreviousSection,
-			"prevBouquet":	self.keyNextSection,
+			"ok": self.keyOK,
+			"cancel": self.keyCancel,
+			"red": self.keyCancel,
+			"up": self.keyUp,
+			"down": self.keyDown,
+			"green": self.keySaveNew,
+			"blueshort": self.loadPredefinedSettings,
+			"bluelong": self.loadDefaultSettings,
+			"nextBouquet": self.keyPreviousSection,
+			"prevBouquet": self.keyNextSection,
 		}, -2) # higher priority
 
 		self["key_red"] = Button(_("Cancel"))
@@ -316,7 +316,7 @@ class EnhancedMovieCenterMenu(ConfigListScreenExt, Screen):
 
 	def defineConfig(self):
 
-		self.section = 400*"¯"
+		self.section = 400 * "¯"
 
 		#          _config list entry
 		#          _                                                  , config element
@@ -393,7 +393,7 @@ class EnhancedMovieCenterMenu(ConfigListScreenExt, Screen):
 			(_("Limit file operations in dirs from emc-noscan.cfg"), config.EMC.limit_fileops_noscan, None, None, 0, [-2], _("HELP_Limit file operations in dirs from emc-noscan.cfg"), None, False),
 			(_("After file OPs only re-scan affected dirs"), config.EMC.rescan_only_affected_dirs, None, None, 0, [-3], _("HELP_After file OPs only re-scan affected dirs"), None, False),
 			(_("Wake device when entering dir from emc-noscan.cfg"), config.EMC.noscan_wake_on_entry, None, None, 0, [-4], _("HELP_Wake device when entering dir from emc-noscan.cfg"), None, False),
-			(_("Check for dead links"),                           config.EMC.check_dead_links, None, None, 0, [-5], _("HELP_Check for dead links"), None, None),
+			(_("Check for dead links"), config.EMC.check_dead_links, None, None, 0, [-5], _("HELP_Check for dead links"), None, None),
 
 			(self.section, _("DVD / BLU-RAY / FOLDERS"), None, None, 1, [], "", None, None),
 			(_("Hide configured entries"), config.EMC.cfghide_enable, None, None, 1, [], _("HELP_cfghide_enable"), True, True),
@@ -593,10 +593,10 @@ class EnhancedMovieCenterMenu(ConfigListScreenExt, Screen):
 				# Parent entries must be true
 				for parent in conf[5]:
 					if parent < 0:
-						if not self.EMCConfig[i+parent][1].value:
+						if not self.EMCConfig[i + parent][1].value:
 							break
 					elif parent > 0:
-						if self.EMCConfig[i-parent][1].value:
+						if self.EMCConfig[i - parent][1].value:
 							break
 				else:
 					# Loop fell through without a break
@@ -711,9 +711,9 @@ class EnhancedMovieCenterMenu(ConfigListScreenExt, Screen):
 					# Check parent entries
 					for parent in entry[5]:
 						try:
-							if self.list[i+parent][2] is not None:
+							if self.list[i + parent][2] is not None:
 								# execute parent value changed -function
-								if self.list[i+parent][2](self.EMCConfig[i+parent][1]) is not None:
+								if self.list[i + parent][2](self.EMCConfig[i + parent][1]) is not None:
 									# Stop exiting, user has to correct the config
 									config.EMC.movie_finished_clean.addNotifier(self.changedEntry, initial_call=False, immediate_feedback=True)
 									return
@@ -755,7 +755,7 @@ class EnhancedMovieCenterMenu(ConfigListScreenExt, Screen):
 					LocationBox,
 						windowTitle=_("Select Location"),
 						text=_("Choose directory"),
-						currDir=str(path)+"/",
+						currDir =str(path) + "/",
 						bookmarks=config.movielist.videodirs,
 						autoAdd=False,
 						editDir=True,

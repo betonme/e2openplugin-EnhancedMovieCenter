@@ -101,12 +101,12 @@ def getMovieInfo(id, cat, getAll=True, onlyPoster=False):
 			else:
 				runtime = ""
 
-			if config.EMC.movieinfo.ldreleasedate.value  == '1':
+			if config.EMC.movieinfo.ldreleasedate.value == '1':
 				releasedate = str(response["release_date"]).encode('utf-8')
 			else:
 				releasedate = ""
 
-			if config.EMC.movieinfo.ldvote.value  == '1':
+			if config.EMC.movieinfo.ldvote.value == '1':
 				vote = str(response["vote_average"]).encode('utf-8')
 			else:
 				vote = ""
@@ -123,9 +123,9 @@ def getMovieInfo(id, cat, getAll=True, onlyPoster=False):
 			else:
 				genres = ""
 
-			if config.EMC.movieinfo.ldcountries.value  == '1':
+			if config.EMC.movieinfo.ldcountries.value == '1':
 				countrylist = response["production_countries"]
-				countries  = ""
+				countries = ""
 				for i in countrylist:
 					if countries == "":
 						countries = i["name"]
@@ -156,12 +156,12 @@ def getMovieInfo(id, cat, getAll=True, onlyPoster=False):
 			else:
 				runtime = ""
 
-			if config.EMC.movieinfo.ldreleasedate.value  == '1':
+			if config.EMC.movieinfo.ldreleasedate.value == '1':
 				releasedate = str(response1["first_air_date"]).encode('utf-8')
 			else:
 				releasedate = ""
 
-			if config.EMC.movieinfo.ldvote.value  == '1':
+			if config.EMC.movieinfo.ldvote.value == '1':
 				vote = str(response1["vote_average"]).encode('utf-8')
 			else:
 				vote = ""
@@ -178,9 +178,9 @@ def getMovieInfo(id, cat, getAll=True, onlyPoster=False):
 			else:
 				genres = ""
 
-			if config.EMC.movieinfo.ldcountries.value  == '1':
+			if config.EMC.movieinfo.ldcountries.value == '1':
 				countrylist = response1["origin_country"]
-				countries  = ""
+				countries = ""
 				for i in countrylist:
 					if countries == "":
 						countries = i
@@ -356,12 +356,12 @@ class MovieInfoTMDb(Screen):
 		self.onLayoutFinish.append(self.layoutFinished)
 		self["actions"] = HelpableActionMap(self, "EMCMovieInfo",
 		{
-			"EMCEXIT":	self.exit,
-			"EMCUp":	self.pageUp,
-			"EMCDown":	self.pageDown,
-			"EMCOK":	self.ok,
-			"EMCGreen":	self.save,
-			"EMCMenu":	self.setup,
+			"EMCEXIT": self.exit,
+			"EMCUp": self.pageUp,
+			"EMCDown": self.pageDown,
+			"EMCOK": self.ok,
+			"EMCGreen": self.save,
+			"EMCMenu": self.setup,
 			#"EMCINFO":	self.info,
 			#"EMCRed":	self.red,
 		}, -1)
@@ -436,7 +436,7 @@ class MovieInfoTMDb(Screen):
 				self["releasetxt"].setText(release)
 				if vote:
 					self["ratingtxt"].setText(vote.replace('\n','') + " / 10")
-					self.ratingstars = int(10*round(float(vote.replace(',','.')),1))
+					self.ratingstars = int(10 * round(float(vote.replace(',','.')),1))
 					if self.ratingstars > 0:
 						self["starsbg"].show()
 						self["stars"].show()
@@ -632,9 +632,9 @@ class MovieInfoSetup(Screen, ConfigListScreenExt):
 		ConfigListScreenExt.__init__(self, self.list, session)
 		self["actions"] = HelpableActionMap(self, "EMCMovieInfo",
 		{
-			"EMCEXIT":		self.keyCancel,
-			"EMCGreen":		self.keySave,
-			"EMCRed":		self.keyCancel,
+			"EMCEXIT": self.keyCancel,
+			"EMCGreen": self.keySave,
+			"EMCRed": self.keyCancel,
 		}, -1)
 		self["key_red"] = Button(_("Cancel"))
 		self["key_green"] = Button(_("OK"))

@@ -101,44 +101,44 @@ global sidDVB, sidDVD, sidMP3
 # Set definitions
 
 # Media types
-extAudio    = frozenset([".ac3", ".dts", ".flac", ".m4a", ".mp2", ".mp3", ".ogg", ".wav", ".wma", ".aac"])
-extVideo    = frozenset([".ts", ".trp", ".avi", ".divx", ".f4v", ".flv", ".img", ".ifo", ".iso", ".m2ts", ".m4v", ".mkv", ".mov", ".mp4", ".mpeg", ".mpg", ".mts", ".vob", ".wmv", ".bdmv", ".asf", ".stream", ".webm"])
+extAudio = frozenset([".ac3", ".dts", ".flac", ".m4a", ".mp2", ".mp3", ".ogg", ".wav", ".wma", ".aac"])
+extVideo = frozenset([".ts", ".trp", ".avi", ".divx", ".f4v", ".flv", ".img", ".ifo", ".iso", ".m2ts", ".m4v", ".mkv", ".mov", ".mp4", ".mpeg", ".mpg", ".mts", ".vob", ".wmv", ".bdmv", ".asf", ".stream", ".webm"])
 extPlaylist = frozenset([".m3u", ".e2pls"])#, ".pls"])
-extMedia    = extAudio | extVideo | extPlaylist
-extDir      = frozenset([""])
-extList     = extMedia | extDir
+extMedia = extAudio | extVideo | extPlaylist
+extDir = frozenset([""])
+extList = extMedia | extDir
 
 # Additional file types
-extTS       = frozenset([".ts", ".trp"])
-extM2ts     = frozenset([".m2ts"])
+extTS = frozenset([".ts", ".trp"])
+extM2ts = frozenset([".m2ts"])
 #extDvd      = frozenset([".iso", ".img", ".ifo"])
-extIfo      = frozenset([".ifo"])
-extIso      = frozenset([".iso", ".img"])
-extDvd      = extIfo | extIso
-extVLC      = frozenset([vlcFil])
-extBlu      = frozenset([".bdmv"])
+extIfo = frozenset([".ifo"])
+extIso = frozenset([".iso", ".img"])
+extDvd = extIfo | extIso
+extVLC = frozenset([vlcFil])
+extBlu = frozenset([".bdmv"])
 # blue disk movie
 # mimetype("video/x-bluray") ext (".bdmv")
 
 # Player types
-plyDVB      = extTS											# ServiceDVB
-plyM2TS     = extM2ts											# ServiceM2TS
-plyDVD      = extDvd											# ServiceDVD
-plyMP3      = extMedia - plyDVB - plyM2TS - plyDVD - extBlu						# ServiceMP3 GStreamer
-plyVideo    = extMedia - extAudio
-plyVLC      = extVLC											# VLC Plugin
+plyDVB = extTS											# ServiceDVB
+plyM2TS = extM2ts											# ServiceM2TS
+plyDVD = extDvd											# ServiceDVD
+plyMP3 = extMedia - plyDVB - plyM2TS - plyDVD - extBlu						# ServiceMP3 GStreamer
+plyVideo = extMedia - extAudio
+plyVLC = extVLC											# VLC Plugin
 #plyBLU      = extBlu | extIso										# BludiscPlayer Plugin
-plyAll      = plyDVB | plyM2TS | plyDVD | plyMP3 | plyVLC | extBlu
+plyAll = plyDVB | plyM2TS | plyDVD | plyMP3 | plyVLC | extBlu
 
 
 # Type definitions
 
 # Service ID types for E2 service identification
-sidDVB      = eServiceReference.idDVB									# eServiceFactoryDVB::id   enum { id = 0x1 };
-sidDVD      = 4369 											# eServiceFactoryDVD::id   enum { id = 0x1111 };
-sidMP3      = 4097											# eServiceFactoryMP3::id   enum { id = 0x1001 };
+sidDVB = eServiceReference.idDVB									# eServiceFactoryDVB::id   enum { id = 0x1 };
+sidDVD = 4369 											# eServiceFactoryDVD::id   enum { id = 0x1111 };
+sidMP3 = 4097											# eServiceFactoryMP3::id   enum { id = 0x1001 };
 # For later purpose
-sidM2TS     = 3 											# eServiceFactoryM2TS::id  enum { id = 0x3 };
+sidM2TS = 3 											# eServiceFactoryM2TS::id  enum { id = 0x3 };
 #TODO
 #sidXINE = 4112												# eServiceFactoryXine::id  enum { id = 0x1010 };
 #additionalExtensions = "4098:m3u 4098:e2pls 4098:pls"
@@ -148,20 +148,20 @@ sidsCuts = frozenset([sidDVB, sidDVD])
 
 # Custom types: Used by EMC internally for sorting and type identification
 
-cmtUp      = "0"
-cmtTrash   = "1"
-cmtLRec    = "2"
-cmtBME2    = "BE2"
-cmtBMEMC   = "BEMC"
-cmtDir     = "D"
-cmtVLC     = "V"
+cmtUp = "0"
+cmtTrash = "1"
+cmtLRec = "2"
+cmtBME2 = "BE2"
+cmtBMEMC = "BEMC"
+cmtDir = "D"
+cmtVLC = "V"
 
 substitutelist = [("."," "), ("_"," "), ("-"," "), ("1080p",""), ("720p",""), ("x264",""), ("h264",""), ("1080i",""), ("AC3","")]
 
 # Grouped custom types
-virVLC     = frozenset([cmtVLC, vlcSrv, vlcDir])
-virAll     = frozenset([cmtBME2, cmtBMEMC, cmtVLC, cmtLRec, cmtTrash, cmtUp, cmtDir, vlcSrv, vlcDir])
-virToE     = frozenset([cmtBME2, cmtBMEMC, cmtVLC, cmtLRec, cmtTrash, cmtUp, vlcSrv, vlcDir])
+virVLC = frozenset([cmtVLC, vlcSrv, vlcDir])
+virAll = frozenset([cmtBME2, cmtBMEMC, cmtVLC, cmtLRec, cmtTrash, cmtUp, cmtDir, vlcSrv, vlcDir])
+virToE = frozenset([cmtBME2, cmtBMEMC, cmtVLC, cmtLRec, cmtTrash, cmtUp, vlcSrv, vlcDir])
 
 if config.EMC.directories_ontop.value:
 	virToD = virToE
@@ -314,8 +314,8 @@ def getMovieNameWithoutExt(moviename=""):
 				break
 		for rem in extVideo:
 			rem = rem.replace(".","")
-			if moviename.lower().endswith("["+rem+"]"):
-				moviename = moviename[:-len("["+rem+"]")].strip()
+			if moviename.lower().endswith("[" + rem + "]"):
+				moviename = moviename[:-len("[" + rem + "]")].strip()
 				break
 	return moviename
 
@@ -413,8 +413,8 @@ def toggleProgressService(service, preparePlayback, forceProgress=-1, first=Fals
 
 	# Only for compatibilty reasons
 	# Should be removed anytime
-	cuts  = path +".cuts"
-	cutsr = path +".cutsr"
+	cuts = path + ".cuts"
+	cutsr = path + ".cutsr"
 	if os.path.exists(cutsr) and not os.path.exists(cuts):
 		# Rename file - to catch all old EMC revisions
 		try:
@@ -537,7 +537,7 @@ def detectBLUISO(checkPath):
 	random.seed()
 	mountdir = '/tmp/EMCISO' + str(random.getrandbits(16))
 	dir, fileext = os.path.splitext(checkPath)
-	if fileext =='.iso':
+	if fileext == '.iso':
 		if not os.path.exists(mountdir):
 			os.system('mkdir ' + mountdir)
 		else:
@@ -1174,7 +1174,7 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 				subdirlist = self.createVlcServerList(currentPath)
 				customlist = self.createCustomList(currentPath, extend=False)
 
-			elif currentPath.find("VLC servers")>-1:
+			elif currentPath.find("VLC servers") > -1:
 				emcDebugOut("[EMC] VLC Files")
 				subdirlist, filelist = self.createVlcFileList(currentPath)
 
@@ -1320,7 +1320,7 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 						# Skip service_name, extract name
 						split = title.find(" - ")
 						if split > 0:
-							title = title[3+split:]
+							title = title[3 + split:]
 
 					elif title[8:11] == " - ":
 						# Short Composition: filename = YYYYMMDD - name
@@ -1331,7 +1331,7 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 						dtime = int(date[9:13] or 2000)
 						date = int(date[0:8] or 0)
 						try:
-							date = datetime(date/10000, date%10000/100, date%100, dtime/100, dtime%100)
+							date = datetime(date / 10000, date % 10000 / 100, date % 100, dtime / 100, dtime % 100)
 						except ValueError, e:
 							date = datetime.fromtimestamp(0)
 
@@ -1419,10 +1419,10 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 				# combine information regarding the emc config
 				if movie_show_cutnr:
 					if not cutnr == "":
-						title += " "+cutnr
+						title += " " + cutnr
 
 				if movie_show_format:
-					title += " ["+ext[1:] + "]"
+					title += " [" + ext[1:] + "]"
 
 				# Get player service and set formatted title
 				service = getPlayerService(path, title, ext)
@@ -1556,7 +1556,7 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 			# Cursor marks a movie
 			length = len(self.list)
 			for i in xrange(length):
-				entry = self.list[(i+idx)%length]
+				entry = self.list[(i + idx) % length]
 				if entry and entry[7] in plyAll:
 					# Entry is no directory
 					service = entry[0]
@@ -1702,7 +1702,7 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 				for i in self.list:
 					if i[5] > entry[5]:
 						l = list(i)
-						l[5] = i[5]-1
+						l[5] = i[5] - 1
 						self.list[count] = tuple(l)
 						invalidateFunction and invalidateFunction(count) # force redraw
 					count += 1
@@ -1738,24 +1738,24 @@ def loadPix(name):
  if sz_w == 1920:
 	plugindir = '/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/'
 	if config.EMC.use_orig_skin.value:
-		pic = LoadPixmap(cached=True, path=plugindir+name)
+		pic = LoadPixmap(cached=True, path=plugindir + name)
 		return pic
 	else:
-		if fileExists(resolveFilename(SCOPE_CURRENT_SKIN, 'emc/'+name)):
-			pic = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'emc/'+name))
+		if fileExists(resolveFilename(SCOPE_CURRENT_SKIN, 'emc/' + name)):
+			pic = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'emc/' + name))
 		else:
-			pic = LoadPixmap(cached=True, path=plugindir+name)
+			pic = LoadPixmap(cached=True, path=plugindir + name)
 		return pic
  else:
 	plugindir = '/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/'
 	if config.EMC.use_orig_skin.value:
-		pic = LoadPixmap(cached=True, path=plugindir+name)
+		pic = LoadPixmap(cached=True, path=plugindir + name)
 		return pic
 	else:
-		if fileExists(resolveFilename(SCOPE_CURRENT_SKIN, 'emc/'+name)):
-			pic = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'emc/'+name))
+		if fileExists(resolveFilename(SCOPE_CURRENT_SKIN, 'emc/' + name)):
+			pic = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'emc/' + name))
 		else:
-			pic = LoadPixmap(cached=True, path=plugindir+name)
+			pic = LoadPixmap(cached=True, path=plugindir + name)
 		return pic
 
 moviecenter = None
@@ -1856,35 +1856,35 @@ class MovieCenter(GUIComponent):
 		self.l.setBuildFunc(self.buildMovieCenterEntry)
 		self.l.setItemHeight(28)
 
-		self.pic_back            = loadPix('back.png')
-		self.pic_directory       = loadPix('dir.png')
-		self.pic_directory_locked= loadPix('dir_locked.png')
-		self.pic_directory_search= loadPix('dir_search.png')
-		self.pic_movie_default   = loadPix('movie_default.png')
+		self.pic_back = loadPix('back.png')
+		self.pic_directory = loadPix('dir.png')
+		self.pic_directory_locked = loadPix('dir_locked.png')
+		self.pic_directory_search = loadPix('dir_search.png')
+		self.pic_movie_default = loadPix('movie_default.png')
 		self.pic_movie_unwatched = loadPix('movie_unwatched.png')
-		self.pic_movie_watching  = loadPix('movie_watching.png')
-		self.pic_movie_finished  = loadPix('movie_finished.png')
-		self.pic_movie_rec       = loadPix('movie_rec.png')
-		self.pic_movie_recrem    = loadPix('movie_recrem.png')
-		self.pic_movie_cut       = loadPix('movie_cut.png')
-		self.pic_e2bookmark      = loadPix('e2bookmark.png')
-		self.pic_emcbookmark     = loadPix('emcbookmark.png')
-		self.pic_trashcan        = loadPix('trashcan.png')
-		self.pic_trashcan_full   = loadPix('trashcan_full.png')
-		self.pic_mp3             = loadPix('music.png')
-		self.pic_dvd_default     = loadPix('dvd_default.png')
-		self.pic_dvd_watching    = loadPix('dvd_watching.png')
-		self.pic_dvd_finished    = loadPix('dvd_finished.png')
-		self.pic_brd_default     = loadPix('brd_default.png')
+		self.pic_movie_watching = loadPix('movie_watching.png')
+		self.pic_movie_finished = loadPix('movie_finished.png')
+		self.pic_movie_rec = loadPix('movie_rec.png')
+		self.pic_movie_recrem = loadPix('movie_recrem.png')
+		self.pic_movie_cut = loadPix('movie_cut.png')
+		self.pic_e2bookmark = loadPix('e2bookmark.png')
+		self.pic_emcbookmark = loadPix('emcbookmark.png')
+		self.pic_trashcan = loadPix('trashcan.png')
+		self.pic_trashcan_full = loadPix('trashcan_full.png')
+		self.pic_mp3 = loadPix('music.png')
+		self.pic_dvd_default = loadPix('dvd_default.png')
+		self.pic_dvd_watching = loadPix('dvd_watching.png')
+		self.pic_dvd_finished = loadPix('dvd_finished.png')
+		self.pic_brd_default = loadPix('brd_default.png')
 		# TODO: Progress.value for blue structure
 		#self.pic_brd_watching    = loadPix('brd_watching.png')
 		#self.pic_brd_finished    = loadPix('brd_finished.png')
-		self.pic_playlist        = loadPix('playlist.png')
-		self.pic_vlc             = loadPix('vlc.png')
-		self.pic_vlc_dir         = loadPix('vlcdir.png')
-		self.pic_link            = loadPix('link.png')
-		self.pic_latest          = loadPix('virtual.png')
-		self.pic_col_dir         = loadPix('coldir.png')
+		self.pic_playlist = loadPix('playlist.png')
+		self.pic_vlc = loadPix('vlc.png')
+		self.pic_vlc_dir = loadPix('vlcdir.png')
+		self.pic_link = loadPix('link.png')
+		self.pic_latest = loadPix('virtual.png')
+		self.pic_col_dir = loadPix('coldir.png')
 
 		self.onSelectionChanged = []
 
@@ -2041,7 +2041,7 @@ class MovieCenter(GUIComponent):
 							bluiso = True
 
 				# Playable files
-				latest = date and (datetime.today()-date).days < 1
+				latest = date and (datetime.today() - date).days < 1
 
 				# Check for recording only if date is within the last day
 				if latest and self.recControl.isRecording(path):
@@ -2079,8 +2079,8 @@ class MovieCenter(GUIComponent):
 						if updlen:
 							self.updateLength(service, updlen)
 						movieUnwatched = config.EMC.movie_progress.value and progress < int(config.EMC.movie_watching_percent.value)
-						movieWatching  = config.EMC.movie_progress.value and progress >= int(config.EMC.movie_watching_percent.value) and progress < int(config.EMC.movie_finished_percent.value)
-						movieFinished  = config.EMC.movie_progress.value and progress >= int(config.EMC.movie_finished_percent.value)
+						movieWatching = config.EMC.movie_progress.value and progress >= int(config.EMC.movie_watching_percent.value) and progress < int(config.EMC.movie_finished_percent.value)
+						movieFinished = config.EMC.movie_progress.value and progress >= int(config.EMC.movie_finished_percent.value)
 					else:
 						progress = 0
 						movieUnwatched = False
@@ -2306,13 +2306,13 @@ class MovieCenter(GUIComponent):
 
 					if CoolBarPos != -1:
 						if config.EMC.movie_icons.value:
-							append(MultiContentEntryProgress(pos=(CoolBarPos, self.CoolBarHPos -2), size=(self.CoolBarSizeSa.width(), self.CoolBarSizeSa.height()), percent=progress, borderWidth=1, foreColor=color, foreColorSelected=colorhighlight, backColor=self.BackColor, backColorSelected=None))
+							append(MultiContentEntryProgress(pos=(CoolBarPos, self.CoolBarHPos - 2), size=(self.CoolBarSizeSa.width(), self.CoolBarSizeSa.height()), percent=progress, borderWidth=1, foreColor=color, foreColorSelected=colorhighlight, backColor=self.BackColor, backColorSelected=None))
 						else:
 							if self.CoolBarPos < self.CoolMoviePos:
 								iconsub = self.CoolIconSize.width()
 							else:
 								iconsub = 0
-							append(MultiContentEntryProgress(pos=(CoolBarPos - iconsub, self.CoolBarHPos -2), size=(self.CoolBarSizeSa.width(), self.CoolBarSizeSa.height()), percent=progress, borderWidth=1, foreColor=color, foreColorSelected=colorhighlight, backColor=self.BackColor, backColorSelected=None))
+							append(MultiContentEntryProgress(pos=(CoolBarPos - iconsub, self.CoolBarHPos - 2), size=(self.CoolBarSizeSa.width(), self.CoolBarSizeSa.height()), percent=progress, borderWidth=1, foreColor=color, foreColorSelected=colorhighlight, backColor=self.BackColor, backColorSelected=None))
 					if CoolProgressPos != -1:
 						if config.EMC.movie_icons.value:
 							append(MultiContentEntryText(pos=(CoolProgressPos, self.CoolMovieHPos), size=(progressWidth, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text="%d%%" % (progress), color=colortitle, color_sel=colorhighlight))
@@ -2650,7 +2650,7 @@ class MovieCenter(GUIComponent):
 					if self.startWorker:
 						self.addCountsizeworker(path)
 					if size >= 100:
-						datetext = "( %.2f TB )" % (size/1024.0)
+						datetext = "( %.2f TB )" % (size / 1024.0)
 					else:
 						datetext = "( %.2f GB )" % (size)
 				else:
@@ -2940,7 +2940,7 @@ class MovieCenter(GUIComponent):
 		if mode in modes:
 			# Get next sorting mode
 			idx = modes.index(mode)
-			mode = modes[(idx+1) % len(modes)]
+			mode = modes[(idx + 1) % len(modes)]
 		else:
 			# Fallback
 			mode = modes[0]
@@ -2962,7 +2962,7 @@ class MovieCenter(GUIComponent):
 			if current is not None:
 				# Force copy of selectedlist
 				selectedlist = self.makeSelectionList()[:]
-				if len(selectedlist)>1:
+				if len(selectedlist) > 1:
 					first = True
 				for service in selectedlist:
 					progress = toggleProgressService(service, False, forceProgress, first)

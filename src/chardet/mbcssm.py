@@ -65,7 +65,7 @@ BIG5_CLS = (
 )
 
 BIG5_ST = (
-    MachineState.ERROR,MachineState.START,MachineState.START,     3,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,#00-07
+    MachineState.ERROR,MachineState.START,MachineState.START, 3,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,#00-07
     MachineState.ERROR,MachineState.ERROR,MachineState.ITS_ME,MachineState.ITS_ME,MachineState.ITS_ME,MachineState.ITS_ME,MachineState.ITS_ME,MachineState.ERROR,#08-0f
     MachineState.ERROR,MachineState.START,MachineState.START,MachineState.START,MachineState.START,MachineState.START,MachineState.START,MachineState.START#10-17
 )
@@ -80,7 +80,7 @@ BIG5_SM_MODEL = {'class_table': BIG5_CLS,
 
 # CP949
 
-CP949_CLS  = (
+CP949_CLS = (
     1,1,1,1,1,1,1,1, 1,1,1,1,1,1,0,0,  # 00 - 0f
     1,1,1,1,1,1,1,1, 1,1,1,0,1,1,1,1,  # 10 - 1f
     1,1,1,1,1,1,1,1, 1,1,1,1,1,1,1,1,  # 20 - 2f
@@ -101,7 +101,7 @@ CP949_CLS  = (
 
 CP949_ST = (
 #cls=    0      1      2      3      4      5      6      7      8      9  # previous state =
-    MachineState.ERROR,MachineState.START,     3,MachineState.ERROR,MachineState.START,MachineState.START,     4,     5,MachineState.ERROR,     6, # MachineState.START
+    MachineState.ERROR,MachineState.START, 3,MachineState.ERROR,MachineState.START,MachineState.START, 4, 5,MachineState.ERROR, 6, # MachineState.START
     MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR, # MachineState.ERROR
     MachineState.ITS_ME,MachineState.ITS_ME,MachineState.ITS_ME,MachineState.ITS_ME,MachineState.ITS_ME,MachineState.ITS_ME,MachineState.ITS_ME,MachineState.ITS_ME,MachineState.ITS_ME,MachineState.ITS_ME, # MachineState.ITS_ME
     MachineState.ERROR,MachineState.ERROR,MachineState.START,MachineState.START,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.START,MachineState.START,MachineState.START, # 3
@@ -156,10 +156,10 @@ EUCJP_CLS = (
 )
 
 EUCJP_ST = (
-          3,     4,     3,     5,MachineState.START,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,#00-07
+          3, 4, 3, 5,MachineState.START,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,#00-07
      MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.ITS_ME,MachineState.ITS_ME,MachineState.ITS_ME,MachineState.ITS_ME,#08-0f
      MachineState.ITS_ME,MachineState.ITS_ME,MachineState.START,MachineState.ERROR,MachineState.START,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,#10-17
-     MachineState.ERROR,MachineState.ERROR,MachineState.START,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,     3,MachineState.ERROR,#18-1f
+     MachineState.ERROR,MachineState.ERROR,MachineState.START,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR, 3,MachineState.ERROR,#18-1f
           3,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.START,MachineState.START,MachineState.START,MachineState.START#20-27
 )
 
@@ -173,7 +173,7 @@ EUCJP_SM_MODEL = {'class_table': EUCJP_CLS,
 
 # EUC-KR
 
-EUCKR_CLS  = (
+EUCKR_CLS = (
     1,1,1,1,1,1,1,1,  # 00 - 07
     1,1,1,1,1,1,0,0,  # 08 - 0f
     1,1,1,1,1,1,1,1,  # 10 - 17
@@ -209,7 +209,7 @@ EUCKR_CLS  = (
 )
 
 EUCKR_ST = (
-    MachineState.ERROR,MachineState.START,     3,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,#00-07
+    MachineState.ERROR,MachineState.START, 3,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,#00-07
     MachineState.ITS_ME,MachineState.ITS_ME,MachineState.ITS_ME,MachineState.ITS_ME,MachineState.ERROR,MachineState.ERROR,MachineState.START,MachineState.START #08-0f
 )
 
@@ -259,7 +259,7 @@ EUCTW_CLS = (
 )
 
 EUCTW_ST = (
-    MachineState.ERROR,MachineState.ERROR,MachineState.START,     3,     3,     3,     4,MachineState.ERROR,#00-07
+    MachineState.ERROR,MachineState.ERROR,MachineState.START, 3, 3, 3, 4,MachineState.ERROR,#00-07
     MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.ITS_ME,MachineState.ITS_ME,#08-0f
     MachineState.ITS_ME,MachineState.ITS_ME,MachineState.ITS_ME,MachineState.ITS_ME,MachineState.ITS_ME,MachineState.ERROR,MachineState.START,MachineState.ERROR,#10-17
     MachineState.START,MachineState.START,MachineState.START,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,#18-1f
@@ -313,11 +313,11 @@ GB2312_CLS = (
 )
 
 GB2312_ST = (
-    MachineState.ERROR,MachineState.START,MachineState.START,MachineState.START,MachineState.START,MachineState.START,     3,MachineState.ERROR,#00-07
+    MachineState.ERROR,MachineState.START,MachineState.START,MachineState.START,MachineState.START,MachineState.START, 3,MachineState.ERROR,#00-07
     MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.ITS_ME,MachineState.ITS_ME,#08-0f
     MachineState.ITS_ME,MachineState.ITS_ME,MachineState.ITS_ME,MachineState.ITS_ME,MachineState.ITS_ME,MachineState.ERROR,MachineState.ERROR,MachineState.START,#10-17
          4,MachineState.ERROR,MachineState.START,MachineState.START,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,#18-1f
-    MachineState.ERROR,MachineState.ERROR,     5,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.ITS_ME,MachineState.ERROR,#20-27
+    MachineState.ERROR,MachineState.ERROR, 5,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.ITS_ME,MachineState.ERROR,#20-27
     MachineState.ERROR,MachineState.ERROR,MachineState.START,MachineState.START,MachineState.START,MachineState.START,MachineState.START,MachineState.START #28-2f
 )
 
@@ -374,7 +374,7 @@ SJIS_CLS = (
 
 
 SJIS_ST = (
-    MachineState.ERROR,MachineState.START,MachineState.START,     3,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,#00-07
+    MachineState.ERROR,MachineState.START,MachineState.START, 3,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,#00-07
     MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.ITS_ME,MachineState.ITS_ME,MachineState.ITS_ME,MachineState.ITS_ME,#08-0f
     MachineState.ITS_ME,MachineState.ITS_ME,MachineState.ERROR,MachineState.ERROR,MachineState.START,MachineState.START,MachineState.START,MachineState.START #10-17
 )
@@ -424,14 +424,14 @@ UCS2BE_CLS = (
     0,0,0,0,0,0,4,5   # f8 - ff
 )
 
-UCS2BE_ST  = (
-          5,     7,     7,MachineState.ERROR,     4,     3,MachineState.ERROR,MachineState.ERROR,#00-07
+UCS2BE_ST = (
+          5, 7, 7,MachineState.ERROR, 4, 3,MachineState.ERROR,MachineState.ERROR,#00-07
      MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.ITS_ME,MachineState.ITS_ME,MachineState.ITS_ME,MachineState.ITS_ME,#08-0f
-     MachineState.ITS_ME,MachineState.ITS_ME,     6,     6,     6,     6,MachineState.ERROR,MachineState.ERROR,#10-17
-          6,     6,     6,     6,     6,MachineState.ITS_ME,     6,     6,#18-1f
-          6,     6,     6,     6,     5,     7,     7,MachineState.ERROR,#20-27
-          5,     8,     6,     6,MachineState.ERROR,     6,     6,     6,#28-2f
-          6,     6,     6,     6,MachineState.ERROR,MachineState.ERROR,MachineState.START,MachineState.START #30-37
+     MachineState.ITS_ME,MachineState.ITS_ME, 6, 6, 6, 6,MachineState.ERROR,MachineState.ERROR,#10-17
+          6, 6, 6, 6, 6,MachineState.ITS_ME, 6, 6,#18-1f
+          6, 6, 6, 6, 5, 7, 7,MachineState.ERROR,#20-27
+          5, 8, 6, 6,MachineState.ERROR, 6, 6, 6,#28-2f
+          6, 6, 6, 6,MachineState.ERROR,MachineState.ERROR,MachineState.START,MachineState.START #30-37
 )
 
 UCS2BE_CHAR_LEN_TABLE = (2, 2, 2, 0, 2, 2)
@@ -480,13 +480,13 @@ UCS2LE_CLS = (
 )
 
 UCS2LE_ST = (
-          6,     6,     7,     6,     4,     3,MachineState.ERROR,MachineState.ERROR,#00-07
+          6, 6, 7, 6, 4, 3,MachineState.ERROR,MachineState.ERROR,#00-07
      MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.ITS_ME,MachineState.ITS_ME,MachineState.ITS_ME,MachineState.ITS_ME,#08-0f
-     MachineState.ITS_ME,MachineState.ITS_ME,     5,     5,     5,MachineState.ERROR,MachineState.ITS_ME,MachineState.ERROR,#10-17
-          5,     5,     5,MachineState.ERROR,     5,MachineState.ERROR,     6,     6,#18-1f
-          7,     6,     8,     8,     5,     5,     5,MachineState.ERROR,#20-27
-          5,     5,     5,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,     5,     5,#28-2f
-          5,     5,     5,MachineState.ERROR,     5,MachineState.ERROR,MachineState.START,MachineState.START #30-37
+     MachineState.ITS_ME,MachineState.ITS_ME, 5, 5, 5,MachineState.ERROR,MachineState.ITS_ME,MachineState.ERROR,#10-17
+          5, 5, 5,MachineState.ERROR, 5,MachineState.ERROR, 6, 6,#18-1f
+          7, 6, 8, 8, 5, 5, 5,MachineState.ERROR,#20-27
+          5, 5, 5,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR, 5, 5,#28-2f
+          5, 5, 5,MachineState.ERROR, 5,MachineState.ERROR,MachineState.START,MachineState.START #30-37
 )
 
 UCS2LE_CHAR_LEN_TABLE = (2, 2, 2, 2, 2, 2)
@@ -535,29 +535,29 @@ UTF8_CLS = (
 )
 
 UTF8_ST = (
-    MachineState.ERROR,MachineState.START,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,     12,   10,#00-07
-         9,     11,     8,     7,     6,     5,     4,    3,#08-0f
+    MachineState.ERROR,MachineState.START,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR, 12, 10,#00-07
+         9, 11, 8, 7, 6, 5, 4, 3,#08-0f
     MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,#10-17
     MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,#18-1f
     MachineState.ITS_ME,MachineState.ITS_ME,MachineState.ITS_ME,MachineState.ITS_ME,MachineState.ITS_ME,MachineState.ITS_ME,MachineState.ITS_ME,MachineState.ITS_ME,#20-27
     MachineState.ITS_ME,MachineState.ITS_ME,MachineState.ITS_ME,MachineState.ITS_ME,MachineState.ITS_ME,MachineState.ITS_ME,MachineState.ITS_ME,MachineState.ITS_ME,#28-2f
-    MachineState.ERROR,MachineState.ERROR,     5,     5,     5,     5,MachineState.ERROR,MachineState.ERROR,#30-37
+    MachineState.ERROR,MachineState.ERROR, 5, 5, 5, 5,MachineState.ERROR,MachineState.ERROR,#30-37
     MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,#38-3f
-    MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,     5,     5,     5,MachineState.ERROR,MachineState.ERROR,#40-47
+    MachineState.ERROR,MachineState.ERROR,MachineState.ERROR, 5, 5, 5,MachineState.ERROR,MachineState.ERROR,#40-47
     MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,#48-4f
-    MachineState.ERROR,MachineState.ERROR,     7,     7,     7,     7,MachineState.ERROR,MachineState.ERROR,#50-57
+    MachineState.ERROR,MachineState.ERROR, 7, 7, 7, 7,MachineState.ERROR,MachineState.ERROR,#50-57
     MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,#58-5f
-    MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,     7,     7,MachineState.ERROR,MachineState.ERROR,#60-67
+    MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR, 7, 7,MachineState.ERROR,MachineState.ERROR,#60-67
     MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,#68-6f
-    MachineState.ERROR,MachineState.ERROR,     9,     9,     9,     9,MachineState.ERROR,MachineState.ERROR,#70-77
+    MachineState.ERROR,MachineState.ERROR, 9, 9, 9, 9,MachineState.ERROR,MachineState.ERROR,#70-77
     MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,#78-7f
-    MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,     9,MachineState.ERROR,MachineState.ERROR,#80-87
+    MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR, 9,MachineState.ERROR,MachineState.ERROR,#80-87
     MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,#88-8f
-    MachineState.ERROR,MachineState.ERROR,    12,    12,    12,    12,MachineState.ERROR,MachineState.ERROR,#90-97
+    MachineState.ERROR,MachineState.ERROR, 12, 12, 12, 12,MachineState.ERROR,MachineState.ERROR,#90-97
     MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,#98-9f
-    MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,    12,MachineState.ERROR,MachineState.ERROR,#a0-a7
+    MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR, 12,MachineState.ERROR,MachineState.ERROR,#a0-a7
     MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,#a8-af
-    MachineState.ERROR,MachineState.ERROR,    12,    12,    12,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,#b0-b7
+    MachineState.ERROR,MachineState.ERROR, 12, 12, 12,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,#b0-b7
     MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,#b8-bf
     MachineState.ERROR,MachineState.ERROR,MachineState.START,MachineState.START,MachineState.START,MachineState.START,MachineState.ERROR,MachineState.ERROR,#c0-c7
     MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR,MachineState.ERROR #c8-cf

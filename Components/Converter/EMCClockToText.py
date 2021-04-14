@@ -60,10 +60,10 @@ class EMCClockToText(Converter, object):
 				return strftime("%A %B %d, %Y", t)
 		elif self.type == self.FORMAT:
 			spos = self.fmt_string.find('%')
-			if spos >-1:
+			if spos > -1:
 				s1 = self.fmt_string[:spos]
 				s2 = strftime(self.fmt_string[spos:], t)
-				return str(s1+s2)
+				return str(s1 + s2)
 			else:
 				return strftime(self.fmt_string, t)
 		else:

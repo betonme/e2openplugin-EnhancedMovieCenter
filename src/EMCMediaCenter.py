@@ -70,7 +70,7 @@ from MovieCenter import sidDVD, sidDVB, toggleProgressService, getPosterPath
 from RecordingsControl import getRecording
 import NavigationInstance
 
-dvdPlayerPlg = "%s%s"%(resolveFilename(SCOPE_PLUGINS), "Extensions/DVDPlayer/plugin.py")
+dvdPlayerPlg = "%s%s" % (resolveFilename(SCOPE_PLUGINS), "Extensions/DVDPlayer/plugin.py")
 
 class EMCMoviePlayerSummary(Screen):
 	def __init__(self, session, parent):
@@ -132,13 +132,13 @@ class EMCMediaCenter(CutList, Screen, HelpableScreen, InfoBarTimeshift, InfoBarS
 					iPlayableService.evStopped: self.__serviceStopped,
 					iPlayableService.evAudioListChanged: self.__osdAudioInfoAvail,
 					iPlayableService.evSubtitleListChanged: self.__osdSubtitleInfoAvail,
-					iPlayableService.evUser+3: self.__osdFFwdInfoAvail,
-					iPlayableService.evUser+4: self.__osdFBwdInfoAvail,
-					iPlayableService.evUser+6: self.__osdAngleInfoAvail,
-					iPlayableService.evUser+7: self.__chapterUpdated,
-					iPlayableService.evUser+8: self.__titleUpdated,
-					iPlayableService.evUser+9: self.__menuOpened,
-					iPlayableService.evUser+10: self.__menuClosed
+					iPlayableService.evUser + 3: self.__osdFFwdInfoAvail,
+					iPlayableService.evUser + 4: self.__osdFBwdInfoAvail,
+					iPlayableService.evUser + 6: self.__osdAngleInfoAvail,
+					iPlayableService.evUser + 7: self.__chapterUpdated,
+					iPlayableService.evUser + 8: self.__titleUpdated,
+					iPlayableService.evUser + 9: self.__menuOpened,
+					iPlayableService.evUser + 10: self.__menuClosed
 				})
 		else:
 			self.__event_tracker = ServiceEventTracker(screen=self, eventmap={
@@ -151,16 +151,16 @@ class EMCMediaCenter(CutList, Screen, HelpableScreen, InfoBarTimeshift, InfoBarS
 					#iPlayableService.evUser: self.__timeUpdated,
 					#iPlayableService.evUser+1: self.__statePlay,
 					#iPlayableService.evUser+2: self.__statePause,
-					iPlayableService.evUser+3: self.__osdFFwdInfoAvail,
-					iPlayableService.evUser+4: self.__osdFBwdInfoAvail,
+					iPlayableService.evUser + 3: self.__osdFFwdInfoAvail,
+					iPlayableService.evUser + 4: self.__osdFBwdInfoAvail,
 					#iPlayableService.evUser+5: self.__osdStringAvail,
-					iPlayableService.evUser+6: self.__osdAudioInfoAvail,
-					iPlayableService.evUser+7: self.__osdSubtitleInfoAvail,
-					iPlayableService.evUser+8: self.__chapterUpdated,
-					iPlayableService.evUser+9: self.__titleUpdated,
-					iPlayableService.evUser+11: self.__menuOpened,
-					iPlayableService.evUser+12: self.__menuClosed,
-					iPlayableService.evUser+13: self.__osdAngleInfoAvail
+					iPlayableService.evUser + 6: self.__osdAudioInfoAvail,
+					iPlayableService.evUser + 7: self.__osdSubtitleInfoAvail,
+					iPlayableService.evUser + 8: self.__chapterUpdated,
+					iPlayableService.evUser + 9: self.__titleUpdated,
+					iPlayableService.evUser + 11: self.__menuOpened,
+					iPlayableService.evUser + 12: self.__menuClosed,
+					iPlayableService.evUser + 13: self.__osdAngleInfoAvail
 				})
 
 			# Keymap
@@ -176,12 +176,12 @@ class EMCMediaCenter(CutList, Screen, HelpableScreen, InfoBarTimeshift, InfoBarS
 		if config.EMC.movie_exit.value:
 			self["actions"] = HelpableActionMap(self, "CoolPlayerActions",
 				{
-					"leavePlayer":	(self.leavePlayer, 		_("Stop playback")),
+					"leavePlayer": (self.leavePlayer, _("Stop playback")),
 				},-1)
 		else:
 			self["actions"] = HelpableActionMap(self, "CoolPlayerActions2",
 				{
-					"leavePlayer":	(self.leavePlayer, 		_("Stop playback")),
+					"leavePlayer": (self.leavePlayer, _("Stop playback")),
 				},-1)
 
 		self["DVDPlayerPlaybackActions"] = HelpableActionMap(self, "EMCDVDPlayerActions",
@@ -215,7 +215,7 @@ class EMCMediaCenter(CutList, Screen, HelpableScreen, InfoBarTimeshift, InfoBarS
 		self["GeneralPlayerPlaybackActions"] = HelpableActionMap(self, "EMCGeneralPlayerActions",
 			{
 				"showExtensions": (self.openExtensions, _("view extensions...")),
-				"EMCGreen":	(self.CoolAVSwitch, _("Format AVSwitch")),
+				"EMCGreen": (self.CoolAVSwitch, _("Format AVSwitch")),
 				"seekFwd": (self.seekFwd, _("Seek forward")),
 				"seekBack": (self.seekBack, _("Seek backward")),
 				"nextTitle": (self.nextTitle, _("jump forward to the next title")),
@@ -417,7 +417,7 @@ class EMCMediaCenter(CutList, Screen, HelpableScreen, InfoBarTimeshift, InfoBarS
 
 				if service and service.type == sidDVD:
 					# Only import DVDPlayer, if we want to play a DVDPlayer format
-					if fileExists("%so"%dvdPlayerPlg) or fileExists("%sc"%dvdPlayerPlg):
+					if fileExists("%so" % dvdPlayerPlg) or fileExists("%sc" % dvdPlayerPlg):
 						try:
 							from Plugins.Extensions.DVDPlayer import servicedvd # load c++ part of dvd player plugin
 						except:
@@ -538,7 +538,7 @@ class EMCMediaCenter(CutList, Screen, HelpableScreen, InfoBarTimeshift, InfoBarS
 		# Always make a backup-copy when recording is running and we stopped the playback
 		if self.stopped:
 			if self.service and self.service.type == sidDVB:
-				recFileName=self.service.getPath()
+				recFileName = self.service.getPath()
 				record = getRecording(recFileName)
 				if record:
 					cutspath = recFileName + '.cuts'
@@ -772,7 +772,7 @@ class EMCMediaCenter(CutList, Screen, HelpableScreen, InfoBarTimeshift, InfoBarS
 				from enigma import iSubtitleType_ENUMS
 				from Screens.AudioSelection import SUB_FORMATS, GST_SUB_FORMATS
 				self.sub_format_dict = {}
-				self.gstsub_format_dict= {}
+				self.gstsub_format_dict = {}
 				for idx, (short, text, rank) in sorted(SUB_FORMATS.items(), key=lambda x: x[1][2]):
 					if rank > 0:
 						self.sub_format_dict[idx] = short
@@ -850,30 +850,30 @@ class EMCMediaCenter(CutList, Screen, HelpableScreen, InfoBarTimeshift, InfoBarS
 		self.sendKey(iServiceKeys.keyUser)
 
 	def nextSubtitleTrack(self):
-		self.sendKey(iServiceKeys.keyUser+1)
+		self.sendKey(iServiceKeys.keyUser + 1)
 		if self.dvdScreen:
 			# Force show dvd screen
 			#self.dvdScreen.hide()
 			self.dvdScreen.show()
 
 	def enterDVDAudioMenu(self):
-		self.sendKey(iServiceKeys.keyUser+2)
+		self.sendKey(iServiceKeys.keyUser + 2)
 
 	def nextChapter(self):
-		if self.sendKey(iServiceKeys.keyUser+3):
+		if self.sendKey(iServiceKeys.keyUser + 3):
 			if config.usage.show_infobar_on_skip.value:
 				# InfoBarSeek
 				self.showAfterSeek()
 
 	def prevChapter(self):
-		if self.sendKey(iServiceKeys.keyUser+4):
+		if self.sendKey(iServiceKeys.keyUser + 4):
 			if config.usage.show_infobar_on_skip.value:
 				# InfoBarSeek
 				self.showAfterSeek()
 
 	def nextTitle(self):
 		if self.dvdScreen:
-			if self.sendKey(iServiceKeys.keyUser+5):
+			if self.sendKey(iServiceKeys.keyUser + 5):
 				if config.usage.show_infobar_on_skip.value:
 					# InfoBarSeek
 					self.showAfterSeek()
@@ -883,7 +883,7 @@ class EMCMediaCenter(CutList, Screen, HelpableScreen, InfoBarTimeshift, InfoBarS
 
 	def prevTitle(self):
 		if self.dvdScreen:
-			if self.sendKey(iServiceKeys.keyUser+6):
+			if self.sendKey(iServiceKeys.keyUser + 6):
 				if config.usage.show_infobar_on_skip.value:
 					# InfoBarSeek
 					self.showAfterSeek()
@@ -896,10 +896,10 @@ class EMCMediaCenter(CutList, Screen, HelpableScreen, InfoBarTimeshift, InfoBarS
 					self.evEOF(False)
 
 	def enterDVDMenu(self):
-		self.sendKey(iServiceKeys.keyUser+7)
+		self.sendKey(iServiceKeys.keyUser + 7)
 
 	def nextAngle(self):
-		self.sendKey(iServiceKeys.keyUser+8)
+		self.sendKey(iServiceKeys.keyUser + 8)
 
 	def sendKey(self, key):
 		if self.service and self.service.type != sidDVD:
@@ -941,7 +941,7 @@ class EMCMediaCenter(CutList, Screen, HelpableScreen, InfoBarTimeshift, InfoBarS
 
 	def __osdAudioInfoAvail(self):
 		info = self.getServiceInterface("info")
-		audioTuple = info and info.getInfoObject(iServiceInformation.sUser+6)
+		audioTuple = info and info.getInfoObject(iServiceInformation.sUser + 6)
 		if audioTuple:
 			audioString = "%d: %s (%s)" % (audioTuple[0],audioTuple[1],audioTuple[2])
 			self["audioLabel"].setText(audioString)
@@ -951,7 +951,7 @@ class EMCMediaCenter(CutList, Screen, HelpableScreen, InfoBarTimeshift, InfoBarS
 
 	def __osdSubtitleInfoAvail(self):
 		info = self.getServiceInterface("info")
-		subtitleTuple = info and info.getInfoObject(iServiceInformation.sUser+7)
+		subtitleTuple = info and info.getInfoObject(iServiceInformation.sUser + 7)
 		if subtitleTuple:
 			subtitleString = ""
 			if subtitleTuple[0] is not 0:
@@ -963,7 +963,7 @@ class EMCMediaCenter(CutList, Screen, HelpableScreen, InfoBarTimeshift, InfoBarS
 
 	def __osdAngleInfoAvail(self):
 		info = self.getServiceInterface("info")
-		angleTuple = info and info.getInfoObject(iServiceInformation.sUser+8)
+		angleTuple = info and info.getInfoObject(iServiceInformation.sUser + 8)
 		if angleTuple:
 			angleString = ""
 			if angleTuple[1] > 1:
@@ -1023,7 +1023,7 @@ class EMCMediaCenter(CutList, Screen, HelpableScreen, InfoBarTimeshift, InfoBarS
 			self["SeekActions"].setEnabled(True)
 
 	def createSummary(self):
-		if self.service and self.service.type == sidDVD and (fileExists("%so"%dvdPlayerPlg) or fileExists("%sc"%dvdPlayerPlg)):
+		if self.service and self.service.type == sidDVD and (fileExists("%so" % dvdPlayerPlg) or fileExists("%sc" % dvdPlayerPlg)):
 			from Plugins.Extensions.DVDPlayer.plugin import DVDSummary
 			return DVDSummary
 		else:
@@ -1087,7 +1087,7 @@ class EMCMediaCenter(CutList, Screen, HelpableScreen, InfoBarTimeshift, InfoBarS
 	# InfoBarNumberZap
 	def keyNumberGlobal(self, number):
 		if self.service and self.service.type == sidDVD:
-			if fileExists("%so"%dvdPlayerPlg) or fileExists("%sc"%dvdPlayerPlg):
+			if fileExists("%so" % dvdPlayerPlg) or fileExists("%sc" % dvdPlayerPlg):
 				if fileExists('/usr/lib/enigma2/python/Screens/DVD.pyo') or fileExists('/usr/lib/enigma2/python/Screens/DVD.pyc'):
 					from Screens.DVD import ChapterZap
 					self.session.openWithCallback(self.numberEntered, ChapterZap, "0")

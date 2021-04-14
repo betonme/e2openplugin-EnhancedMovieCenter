@@ -353,7 +353,7 @@ class CutList():
 		if self.cut_list:
 			for (clpts, clwhat) in self.cut_list[:]:
 				if clwhat == what:
-					if clpts-self.INSORT_SCOPE < pts < clpts+self.INSORT_SCOPE:
+					if clpts - self.INSORT_SCOPE < pts < clpts + self.INSORT_SCOPE:
 						# Found a conflicting entry, replace it to avoid doubles and short jumps
 						self.cut_list.remove((clpts, clwhat))
 			insort(self.cut_list, (pts, what))
@@ -426,9 +426,9 @@ class CutList():
 				# Parse and unpack data
 				if data:
 					pos = 0
-					while pos+12 <= len(data):
+					while pos + 12 <= len(data):
 						# Unpack
-						(pts, what) = struct.unpack('>QI', data[pos:pos+12])
+						(pts, what) = struct.unpack('>QI', data[pos:pos + 12])
 						self.__insort(long(pts), what)
 						# Next cut_list entry
 						pos += 12
@@ -463,7 +463,7 @@ class CutList():
 			# [Cutlist.Workaround]
 			# Always make a backup-copy when recording, it will be merged with enigma-cutfile after recording
 			if DO_CUTLIST_WORKAROUND:
-				recFileName=self.cut_file[:-5]
+				recFileName = self.cut_file[:-5]
 				record = getRecording(recFileName)
 				if record:
 					savepath = self.cut_file + ".save"

@@ -199,7 +199,7 @@ class RecordingsControl:
 					filename = filename[:-3]
 			if filename in self.recDict:
 				for timer in NavigationInstance.instance.RecordTimer.timer_list:
-					if timer.isRunning() and not timer.justplay and timer.Filename.find(filename)>=0:
+					if timer.isRunning() and not timer.justplay and timer.Filename.find(filename) >= 0:
 						if timer.repeated:
 							timer.enable()
 							timer_afterEvent = timer.afterEvent
@@ -222,7 +222,7 @@ class RecordingsControl:
 	def isCutting(self, filename):
 		try:
 			if filename.lower().endswith("_.ts"):
-				if not os.path.exists(filename[:-2]+"eit"):
+				if not os.path.exists(filename[:-2] + "eit"):
 					return True
 			return False
 		except Exception, e:
@@ -239,7 +239,7 @@ class RecordingsControl:
 			for timer in NavigationInstance.instance.RecordTimer.timer_list:
 				if timer.isRunning() and not timer.justplay and timer.Filename == old:
 					timer.dirname = os.path.dirname(new) + "/"
-					timer.fixMoveCmd = 'mv "'+ timer.Filename +'."* "'+ timer.dirname +'"'
+					timer.fixMoveCmd = 'mv "' + timer.Filename + '."* "' + timer.dirname + '"'
 					timer.Filename = new
 					emcDebugOut("[emcRC] fixed path: " + new)
 					break
@@ -251,7 +251,7 @@ class RecordingsControl:
 			if not os.path.exists(config.EMC.folder.value):
 				emcTasker.shellExecute("mkdir " + config.EMC.folder.value)
 			if ip is not None:
-				rec = "/db_%s.rec" %str(ip).replace(", ", ".")[1:-1]
+				rec = "/db_%s.rec" % str(ip).replace(", ", ".")[1:-1]
 				self.recFile = os.path.join(config.EMC.folder.value, rec)
 		except Exception, e:
 			emcDebugOut("[emcRC] remoteInit exception:\n" + str(e))

@@ -38,11 +38,11 @@ def emcDebugOut(outtxt, outfile=None, fmode="aw", forced=False):
 			if outfile is None:
 				outfile = os.path.join(config.EMC.folder.value, config.EMC.debugfile.value)
 				ltim = localtime()
-				headerstr = "%04d%02d%02d %02d:%02d " %(ltim[0],ltim[1],ltim[2],ltim[3],ltim[4])
+				headerstr = "%04d%02d%02d %02d:%02d " % (ltim[0],ltim[1],ltim[2],ltim[3],ltim[4])
 				outtxt = headerstr + outtxt
 			deb = open(outfile, fmode)
 			deb.write(outtxt + "\n")
-		print "EMC: %s" %(outtxt)
+		print "EMC: %s" % (outtxt)
 		# Print detailed informationon error
 		if sys.exc_info()[0]:
 			print "Unexpected error:", sys.exc_info()[0]
@@ -72,7 +72,7 @@ class EMCExecutioner:
 		self.returnData = ""
 
 	def isIdle(self):
-		return len(self.script)==0
+		return len(self.script) == 0
 
 	def shellExecute(self, script, associated=None, sync=False):
 		# Parameters:
@@ -121,7 +121,7 @@ class EMCExecutioner:
 	def runFinished(self, retval=None):
 		try:
 			associated = self.associated.popleft()
-			emcDebugOut("[emcTasker] sh exec %s finished, return status = %s %s" %(self.executing, str(retval), self.returnData))
+			emcDebugOut("[emcTasker] sh exec %s finished, return status = %s %s" % (self.executing, str(retval), self.returnData))
 			if associated:
 				#P3 for foo, bar, *other in tuple:
 				for fargs in associated:
@@ -201,7 +201,7 @@ class EMCTasker:
 		if self.timerActive:
 			mints = self.minutes % 60
 			hours = self.minutes / 60
-			self.session.open(MessageBox, _("Next auto-start in ")+ str(hours) +" h "+ str(mints) +" min", MessageBox.TYPE_INFO, 4)
+			self.session.open(MessageBox, _("Next auto-start in ") + str(hours) + " h " + str(mints) + " min", MessageBox.TYPE_INFO, 4)
 		else:
 			self.session.open(MessageBox, _("auto-start is currently not active."), MessageBox.TYPE_INFO, 4)
 
@@ -254,29 +254,29 @@ class EMCTasker:
 			lotime = localtime()
 			wbegin = config.EMC.restart_begin.value
 			wend = config.EMC.restart_end.value
-			xtimem = lotime[3]*60 + lotime[4]
-			ytimem = wbegin[0]*60 + wbegin[1]
-			ztimem = wend[0]*60 + wend[1]
+			xtimem = lotime[3] * 60 + lotime[4]
+			ytimem = wbegin[0] * 60 + wbegin[1]
+			ztimem = wend[0] * 60 + wend[1]
 
 			if ytimem > ztimem:
-				ztimem += 12*60
-			emcDebugOut("+++ Local time is " +str(lotime[3:5]) + ", auto-start window is %s - %s" %(str(wbegin), str(wend)))
+				ztimem += 12 * 60
+			emcDebugOut("+++ Local time is " + str(lotime[3:5]) + ", auto-start window is %s - %s" % (str(wbegin), str(wend)))
 
 			if postponeDelay > 0:
 				self.restartTimer.start(postponeDelay * 60000, False)
 				self.timerActive = True
 				mints = postponeDelay % 60
 				hours = postponeDelay / 60
-				emcDebugOut("+++ User postponed auto-start by " +str(hours)+ "h " +str(mints)+ "min")
+				emcDebugOut("+++ User postponed auto-start by " + str(hours) + "h " + str(mints) + "min")
 				return
 
 			minsToGo = ytimem - xtimem
 			if xtimem > ztimem:
-				minsToGo += 24*60
+				minsToGo += 24 * 60
 
 			if initializing or minsToGo > 0:
 				if minsToGo < 0:		# if initializing
-					minsToGo += 24*60	# today's window already passed
+					minsToGo += 24 * 60	# today's window already passed
 				elif minsToGo == 0:
 					minsToGo = 1
 				self.restartTimer.start(minsToGo * 60000, False)
@@ -284,7 +284,7 @@ class EMCTasker:
 				self.minutes = minsToGo
 				mints = self.minutes % 60
 				hours = self.minutes / 60
-				emcDebugOut("+++ Auto start rescheduled in " +str(hours)+ "h " +str(mints)+ "min")
+				emcDebugOut("+++ Auto start rescheduled in " + str(hours) + "h " + str(mints) + "min")
 			else:
 				recordings = len(self.session.nav.getRecordings())
 				next_rec_time = self.session.nav.RecordTimer.getNextRecordingTime()
@@ -294,7 +294,7 @@ class EMCTasker:
 				else:
 					emcDebugOut("+++ REC in progress, auto restart rescheduled in 15 min")
 					self.minutes = 15
-					self.restartTimer.start(15*60*1000, False)
+					self.restartTimer.start(15 * 60 * 1000, False)
 					self.timerActive = True
 		except Exception, e:
 			emcDebugOut("[emcTasker] RestartTimerStart exception:\n" + str(e))

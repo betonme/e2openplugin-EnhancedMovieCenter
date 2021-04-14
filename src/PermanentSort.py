@@ -61,7 +61,7 @@ class PermanentSort():
 
 	def hasParentPermanentSort(self, path):
 		path = os.path.normpath(path).decode('utf-8')
-		while len(path)>1:
+		while len(path) > 1:
 			path = os.path.dirname(path).decode('utf-8')
 			if path in self.__permanentSort:
 				return path
@@ -74,7 +74,7 @@ class PermanentSort():
 
 	def getPermanentSort(self, path):
 		path = os.path.normpath(path).decode('utf-8')
-		while len(path)>1:
+		while len(path) > 1:
 			if path in self.__permanentSort:
 				sort, order = self.__permanentSort[path]
 				return sort, order
@@ -123,7 +123,7 @@ class PermanentSort():
 			list = ['<?xml version="1.0" ?>\n']
 			list.append('<PermanentSort>\n')
 			for key, value in data.items():
-				modestring = [k for k,v in sort_modes.items() if v[1]==value][0]
+				modestring = [k for k,v in sort_modes.items() if v[1] == value][0]
 				list.append('<entry')
 				list.append(' key="' + stringToXML(str(key)) + '"')
 				list.append(' modestring="' + str(modestring) + '"')

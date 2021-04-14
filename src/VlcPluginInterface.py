@@ -28,9 +28,9 @@ from Screens.MessageBox import MessageBox
 global vlcSrv, vlcDir, vlcFil
 
 # VLC types
-vlcSrv  = "VLC"
-vlcDir  = "VLCD"
-vlcFil  = "VLCF"
+vlcSrv = "VLC"
+vlcDir = "VLCD"
+vlcFil = "VLCF"
 
 def isValidServiceId(id):
 	testSRef = eServiceReference(id, 0, "Just a TestReference")
@@ -128,10 +128,10 @@ class VlcPluginInterfaceList():
 		vlcfilelist = []
 		# Extract server/dir/name/
 		#TODO Find a more stable variant
-		vlcPath = loadPath[loadPath.find("VLC servers/")+12:]
+		vlcPath = loadPath[loadPath.find("VLC servers/") + 12:]
 		serverName = vlcPath.split("/")[0]
-		vlcPath = vlcPath[len(serverName)+1:]
-		emcDebugOut("[EMC_VLC] path on %s = %s" %(serverName, vlcPath))
+		vlcPath = vlcPath[len(serverName) + 1:]
+		emcDebugOut("[EMC_VLC] path on %s = %s" % (serverName, vlcPath))
 		server = None
 		self.vlcServer = None
 		if self.vlcServers:

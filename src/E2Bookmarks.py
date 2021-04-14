@@ -33,8 +33,8 @@ class E2Bookmarks():
 	# Is the E2 bookmarks as a list
 	def isE2Bookmark(self, path):
 		if path and config.movielist and config.movielist.videodirs:
-			bookmark = os.path.normpath(path)+"/"
-			bookmarks = [os.path.normpath(e2bm)+"/" for e2bm in config.movielist.videodirs.value]
+			bookmark = os.path.normpath(path) + "/"
+			bookmarks = [os.path.normpath(e2bm) + "/" for e2bm in config.movielist.videodirs.value]
 			if bookmark in bookmarks:
 				return True
 		return False
@@ -51,8 +51,8 @@ class E2Bookmarks():
 	# Returns False on already in bookmarklist or failure
 	def addE2Bookmark(self, path):
 		if path and config.movielist and config.movielist.videodirs:
-			bookmark = os.path.normpath(path)+"/"
-			bookmarks = [os.path.normpath(e2bm)+"/" for e2bm in config.movielist.videodirs.value]
+			bookmark = os.path.normpath(path) + "/"
+			bookmarks = [os.path.normpath(e2bm) + "/" for e2bm in config.movielist.videodirs.value]
 			if bookmark not in bookmarks:
 				bookmarks.append(bookmark)
 				bookmarks.sort()
@@ -66,8 +66,8 @@ class E2Bookmarks():
 	# Returns False on already in bookmarklist or failure
 	def removeE2Bookmark(self, path):
 		if path and config.movielist and config.movielist.videodirs:
-			bookmark = os.path.normpath(path)+"/"
-			bookmarks = [os.path.normpath(e2bm)+"/" for e2bm in config.movielist.videodirs.value]
+			bookmark = os.path.normpath(path) + "/"
+			bookmarks = [os.path.normpath(e2bm) + "/" for e2bm in config.movielist.videodirs.value]
 			if bookmark in bookmarks:
 				# Adapted from LocationBox
 				bookmarks.remove(bookmark)

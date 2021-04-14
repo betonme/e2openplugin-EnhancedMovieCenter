@@ -148,8 +148,8 @@ class MetaList():
 		title = ""
 		desc = self.getMetaDescription()
 		try:
-			x1 = len(desc.split(',', -1)) -1
-			x2 = x1 -1
+			x1 = len(desc.split(',', -1)) - 1
+			x2 = x1 - 1
 			title = desc.replace(desc.split(',', -1)[x1], '').replace(desc.split(',', -1)[x2], '').replace(',,', '')
 			if title == ",":
 				if re.match('(\w+(?:/\w+|)(?:/\w+|)(?:/\w+|)(?:/\w+|)\s\d{4})', desc.rsplit(',', 1)[1].strip(), re.S):
