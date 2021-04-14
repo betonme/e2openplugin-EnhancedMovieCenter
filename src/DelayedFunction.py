@@ -43,7 +43,7 @@ class DelayedFunction:
 					self.timer.timeout.get().append(self.timerLaunch)
 				self.timer.start(delay, False)
 		except Exception, e:
-			emcDebugOut("[spDF] __init__ exception:\n%s:%s" % (str(self.function),str(e)))
+			emcDebugOut("[spDF] __init__ exception:\n%s:%s" % (str(self.function), str(e)))
 
 	def cancel(self):
 		try:
@@ -56,7 +56,7 @@ class DelayedFunction:
 				self.timer.timeout.get().remove(self.timerLaunch)
 			self.timer = None
 		except Exception, e:
-			emcDebugOut("[spDF] timer cancel exception:\n%s:%s" % (str(self.function),str(e)))
+			emcDebugOut("[spDF] timer cancel exception:\n%s:%s" % (str(self.function), str(e)))
 
 	def timerLaunch(self):
 		try:
@@ -70,7 +70,7 @@ class DelayedFunction:
 			self.timer = None
 			self.function(*self.params)
 		except Exception, e:
-			emcDebugOut("[spDF] timerLaunch exception:\n%s:%s" % (str(self.function),str(e)))
+			emcDebugOut("[spDF] timerLaunch exception:\n%s:%s" % (str(self.function), str(e)))
 
 	def exists(self):
 		global instanceTab

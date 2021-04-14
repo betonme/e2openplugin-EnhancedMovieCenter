@@ -74,7 +74,7 @@ class NetworkAwareness:
 		file.close()
 		self.ip = [int(a) for a in myip.split(".")]
 		if len(self.ip) != 4:
-			self.ip = [0,0,0,0]
+			self.ip = [0, 0, 0, 0]
 		else:
 			self.initialized = True
 		emcDebugOut("[spNET] IP = " + str(self.ip).replace(", ", ".")[1:-1])

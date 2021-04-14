@@ -204,7 +204,7 @@ def getTempTxt(txt):
 	if txt is not None:
 		try:
 			txtpath = "/tmp/previewTxt.txt"
-			file(txtpath,'w').write(txt)
+			file(txtpath, 'w').write(txt)
 		except Exception, e:
 			print('[EMC] MovieInfo getTempTxt exception failure: ', str(e))
 
@@ -435,8 +435,8 @@ class MovieInfoTMDb(Screen):
 				self["countrytxt"].setText(countries)
 				self["releasetxt"].setText(release)
 				if vote:
-					self["ratingtxt"].setText(vote.replace('\n','') + " / 10")
-					self.ratingstars = int(10 * round(float(vote.replace(',','.')),1))
+					self["ratingtxt"].setText(vote.replace('\n', '') + " / 10")
+					self.ratingstars = int(10 * round(float(vote.replace(',', '.')), 1))
 					if self.ratingstars > 0:
 						self["starsbg"].show()
 						self["stars"].show()
@@ -466,7 +466,7 @@ class MovieInfoTMDb(Screen):
 		elif self.jpgsaved and not self.txtsaved:
 			msg = (_('Movie Cover downloaded successfully!\n\nCan not write Movie Information File\n\n%s') % (self.mpath + ".txt"))
 		elif not self.jpgsaved and not self.txtsaved:
-			msg = (_('Can not write Movie Information and Cover File\n\n%(info)s\n%(file)s') % {'info':self.mpath + ".txt", 'file':self.mpath + ".jpg"})
+			msg = (_('Can not write Movie Information and Cover File\n\n%(info)s\n%(file)s') % {'info': self.mpath + ".txt", 'file': self.mpath + ".jpg"})
 		elif not self.txtsaved and not config.EMC.movieinfo.coversave.value:
 			msg = (_('Can not write Movie Information File\n\n%s') % (self.mpath + ".txt"))
 

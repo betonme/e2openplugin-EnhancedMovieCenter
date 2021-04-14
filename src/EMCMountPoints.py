@@ -70,7 +70,7 @@ class EMCMountPoints:
 
 	def postWakeHDDtimerStart(self, path):
 		self.postWakeHDDtimer.stop()
-		self.postWakeHDDtimer.start(500 * int(config.usage.hdd_standby.value),True) # within 50% of the configured standby time after waking the HDD, this timer indicates that the HDD is active (we know it better than the harddiskmanager)
+		self.postWakeHDDtimer.start(500 * int(config.usage.hdd_standby.value), True) # within 50% of the configured standby time after waking the HDD, this timer indicates that the HDD is active (we know it better than the harddiskmanager)
 		self.postWakeHDDtimerActive = True
 		self.postWakeHDDtimerDevice = self.getMountPointDeviceCached(path)
 
@@ -94,7 +94,7 @@ class EMCMountPoints:
 
 	def wakeHDD(self, path, postWakeCommand):
 		association = []
-		association.append((postWakeCommand,path))
+		association.append((postWakeCommand, path))
 		#wake the device a path is residing on by reading a random sector
 		emcTasker.shellExecute("dd if=`df " + path + " | awk 'NR == 2 {print $1}'` bs=4096 count=1 of=/dev/null skip=$[($[RANDOM] + 32768*$[RANDOM]) % 1048576];echo 'wakeDevice finished'", association, False)
 

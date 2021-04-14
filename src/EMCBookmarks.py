@@ -53,7 +53,7 @@ class EMCBookmarks():
 			finally:
 				if f is not None:
 					f.close()
-			bm = map(lambda b:b.strip(), bm)
+			bm = map(lambda b: b.strip(), bm)
 		return bm
 
 	# Writes the EMC bookmark file

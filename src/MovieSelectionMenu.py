@@ -352,7 +352,7 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 			import os
 			import sys
 			import traceback
-			print "exception ",str(e)
+			print "exception ", str(e)
 			exc_type, exc_value, exc_traceback = sys.exc_info()
 			traceback.print_exception(exc_type, exc_value, exc_traceback, file=sys.stdout)
 

@@ -44,7 +44,7 @@ class MetaList():
 	def __init__(self, path=None):
 		self.meta_file = None
 		self.meta_mtime = 0
-		self.meta = ["","","","","","",""]
+		self.meta = ["", "", "", "", "", "", ""]
 		self.iso = None
 
 		self.__newPath(path)
@@ -204,15 +204,15 @@ class MetaList():
 					# Strip lines and extract information
 					lines = [l.strip() for l in lines]
 					le = len(lines)
-					self.meta = ["","","","","","",""]
+					self.meta = ["", "", "", "", "", "", ""]
 					self.meta[0:le] = lines[0:le]
 				else:
 					# No date clear all
-					self.meta = ["","","","","","",""]
+					self.meta = ["", "", "", "", "", "", ""]
 
 		else:
 			# No path or no file clear all
-			self.meta = ["","","","","","",""]
+			self.meta = ["", "", "", "", "", "", ""]
 
 def getInfoFile(path, exts=""):
 	from MovieCenter import extMedia

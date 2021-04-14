@@ -156,7 +156,7 @@ cmtBMEMC = "BEMC"
 cmtDir = "D"
 cmtVLC = "V"
 
-substitutelist = [("."," "), ("_"," "), ("-"," "), ("1080p",""), ("720p",""), ("x264",""), ("h264",""), ("1080i",""), ("AC3","")]
+substitutelist = [(".", " "), ("_", " "), ("-", " "), ("1080p", ""), ("720p", ""), ("x264", ""), ("h264", ""), ("1080i", ""), ("AC3", "")]
 
 # Grouped custom types
 virVLC = frozenset([cmtVLC, vlcSrv, vlcDir])
@@ -286,7 +286,7 @@ def getPlayerService(path, name="", ext=None):
 		if service:
 			# Copied from dvd player
 			if path.lower().endswith("/video_ts") or path.endswith("/"):
-				names = service.toString().rsplit("/",3)
+				names = service.toString().rsplit("/", 3)
 				if names[2].startswith("Disk ") or names[2].startswith("DVD "):
 					#TEST name = str(names[1]) + " - " + str(names[2])
 					name = names[1] + " - " + names[2]
@@ -295,7 +295,7 @@ def getPlayerService(path, name="", ext=None):
 	elif ext in plyM2TS:
 		service = eServiceReference(sidM2TS, 0, path)
 	else:
-		path = path.replace(":","") # because of VLC player
+		path = path.replace(":", "") # because of VLC player
 		#service = eServiceReference("2:0:1:0:0:0:0:0:0:0:" + path)
 		service = eServiceReference(ENIGMA_SERVICE_ID, 0, path)
 		print "[EMC] service valid=", service.valid()
@@ -308,12 +308,12 @@ def getPlayerService(path, name="", ext=None):
 def getMovieNameWithoutExt(moviename=""):
 	if config.EMC.movie_show_format.value:
 		for rem in extVideo:
-			rem = rem.replace("."," ")
+			rem = rem.replace(".", " ")
 			if moviename.lower().endswith(rem):
 				moviename = moviename[:-len(rem)]
 				break
 		for rem in extVideo:
-			rem = rem.replace(".","")
+			rem = rem.replace(".", "")
 			if moviename.lower().endswith("[" + rem + "]"):
 				moviename = moviename[:-len("[" + rem + "]")].strip()
 				break
@@ -324,8 +324,8 @@ def getMovieNameWithoutPhrases(moviename=""):
 	moviename = re.sub(r'\[.*\]', "", moviename)
 	moviename = re.sub(r'\(.*\)', "", moviename)
 	moviename = re.sub(r' S\d\dE\d\d .*', "", moviename)
-	for (phrase,sub) in substitutelist:
-		moviename = moviename.replace(phrase,sub)
+	for (phrase, sub) in substitutelist:
+		moviename = moviename.replace(phrase, sub)
 	return moviename
 
 def getProgress(service, length=0, last=0, forceRecalc=False, cuts=None):
@@ -693,7 +693,7 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 		# Extract list items to be sorted
 		sortlist = [i for i in sortlist if i not in tmplist]
 		# Always sort via extension and sorttitle and never reversed
-		tmplist.sort(key=lambda x: (x[7],x[1]))
+		tmplist.sort(key=lambda x: (x[7], x[1]))
 
 		# Sort list, same algorithm for both implementations
 		# Using itemgetter is slightly faster but not as flexible
@@ -713,38 +713,38 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 		if mode == "D":	# Date sort
 			if not order:
 				if movie_metaload:
-					sortlist.sort(key=lambda x: (-x[12],-x[13],-x[14],-x[15],-x[16],x[1],x[9],-x[8]))
+					sortlist.sort(key=lambda x: (-x[12], -x[13], -x[14], -x[15], -x[16], x[1], x[9], -x[8]))
 				else:
-					sortlist.sort(key=lambda x: (-x[12],-x[13],-x[14],-x[15],-x[16],x[1],-x[8]))
+					sortlist.sort(key=lambda x: (-x[12], -x[13], -x[14], -x[15], -x[16], x[1], -x[8]))
 			else:
 				if movie_metaload:
-					sortlist.sort(key=lambda x: (x[12],x[13],x[14],x[15],x[16], x[1], x[9], x[8]), reverse=True)
+					sortlist.sort(key=lambda x: (x[12], x[13], x[14], x[15], x[16], x[1], x[9], x[8]), reverse=True)
 				else:
-					sortlist.sort(key=lambda x: (x[12],x[13],x[14],x[15],x[16], x[1], x[8]), reverse=True)
+					sortlist.sort(key=lambda x: (x[12], x[13], x[14], x[15], x[16], x[1], x[8]), reverse=True)
 
 		elif mode == "A":	# Alpha sort
 			if not order:
-				sortlist.sort(key=lambda x: (x[1],x[12],x[13],x[14],x[15],x[16],x[8]))
+				sortlist.sort(key=lambda x: (x[1], x[12], x[13], x[14], x[15], x[16], x[8]))
 			else:
-				sortlist.sort(key=lambda x: (x[1],-x[12],-x[13],-x[14],-x[15],-x[16],-x[8]))
+				sortlist.sort(key=lambda x: (x[1], -x[12], -x[13], -x[14], -x[15], -x[16], -x[8]))
 
 		elif mode == "ADN":	# Alpha sort with new date, newest first
 			if not order:
-				sortlist.sort(key=lambda x: (x[1],-x[12],-x[13],-x[14],-x[15],-x[16],x[8]))
+				sortlist.sort(key=lambda x: (x[1], -x[12], -x[13], -x[14], -x[15], -x[16], x[8]))
 			else:
-				sortlist.sort(key=lambda x: (x[1],x[12],x[13],x[14],x[15],x[16],-x[8]))
+				sortlist.sort(key=lambda x: (x[1], x[12], x[13], x[14], x[15], x[16], -x[8]))
 
 		elif mode == "AM":	# Alpha sort with meta
 			if not order:
-				sortlist.sort(key=lambda x: (x[1],x[9],x[12],x[13],x[14],x[15],x[16],x[8]))
+				sortlist.sort(key=lambda x: (x[1], x[9], x[12], x[13], x[14], x[15], x[16], x[8]))
 			else:
-				sortlist.sort(key=lambda x: (x[1],x[9],-x[12],-x[13],-x[14],-x[15],-x[16],-x[8]))
+				sortlist.sort(key=lambda x: (x[1], x[9], -x[12], -x[13], -x[14], -x[15], -x[16], -x[8]))
 
 		elif mode == "AMDN":	# Alpha sort with meta and new date, newest first
 			if not order:
-				sortlist.sort(key=lambda x: (x[1],x[9],-x[12],-x[13],-x[14],-x[15],-x[16],x[8]))
+				sortlist.sort(key=lambda x: (x[1], x[9], -x[12], -x[13], -x[14], -x[15], -x[16], x[8]))
 			else:
-				sortlist.sort(key=lambda x: (x[1],x[9],x[12],x[13],x[14],x[15],x[16],-x[8]))
+				sortlist.sort(key=lambda x: (x[1], x[9], x[12], x[13], x[14], x[15], x[16], -x[8]))
 
 		elif mode == "P":	# Progress
 			if not order:
@@ -902,7 +902,7 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 					walk_dirs.append(walk_name)
 				else:
 					walk_files.append(walk_name)
-			for root, dirs, files in [(path,walk_dirs,walk_files)]:
+			for root, dirs, files in [(path, walk_dirs, walk_files)]:
 
 				for file in files:
 
@@ -1021,7 +1021,7 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 							dappend(d)
 
 					# Store the media files
-					fextend([(p,f,e) for p,f,e in subfilelist if e in extTS])
+					fextend([(p, f, e) for p, f, e in subfilelist if e in extTS])
 
 		val = int(config.EMC.latest_recordings_limit.value)
 		if val != -1:
@@ -1183,7 +1183,7 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 				filelist = self.createLatestRecordingsList()
 				customlist = self.createCustomList(currentPath, extend=False)
 				# Set date descending as next sort mode
-				nextSort = ("D",False)
+				nextSort = ("D", False)
 
 			else:
 				# No changes done
@@ -1223,8 +1223,8 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 
 				# Replace special chars with spaces
 				if title_replace_special_chars:
-					title = title.replace("_"," ")
-					title = title.replace("."," ")
+					title = title.replace("_", " ")
+					title = title.replace(".", " ")
 
 				# Very bad but there can be both encodings
 				# E2 recordings are always in utf8
@@ -1284,7 +1284,7 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 				eventtitle = ""
 				piconpath = ""
 				sortyear, sortmonth, sortday, sorthour, sortmin = "", "", "", "", ""
-				isExtHDDSleeping = config.EMC.limit_fileops_noscan.value and mountPoints.isExtHDDSleeping(str(currentPath),self)
+				isExtHDDSleeping = config.EMC.limit_fileops_noscan.value and mountPoints.isExtHDDSleeping(str(currentPath), self)
 
 				# Remove extension
 				if not ext:
@@ -1303,8 +1303,8 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 
 				# Replace special chars with spaces
 				if title_replace_special_chars:
-					title = title.replace("_"," ")
-					title = title.replace("."," ")
+					title = title.replace("_", " ")
+					title = title.replace(".", " ")
 
 				# Derived from RecordTimer
 				# This is everywhere so test it first
@@ -1790,9 +1790,9 @@ class MovieCenter(GUIComponent):
 
 		self.serviceHandler = ServiceCenter.getInstance()
 
-		self.CoolFont = parseFont("Regular;20", ((1,1),(1,1)))
-		self.CoolSelectFont = parseFont("Regular;20", ((1,1),(1,1)))
-		self.CoolDateFont = parseFont("Regular;20", ((1,1),(1,1)))
+		self.CoolFont = parseFont("Regular;20", ((1, 1), (1, 1)))
+		self.CoolSelectFont = parseFont("Regular;20", ((1, 1), (1, 1)))
+		self.CoolDateFont = parseFont("Regular;20", ((1, 1), (1, 1)))
 
 		#IDEA self.CoolIconPos
 		self.CoolMoviePos = 100
@@ -1818,12 +1818,12 @@ class MovieCenter(GUIComponent):
 		# self.CoolIconPos = parsePosition("5,2", ((1,1),(1,1)))
 		# self.CoolIconSize = parseSize("24,24", ((1,1),(1,1)))
 		self.CoolIconPos = 5
-		self.CoolIconSize = parseSize("24,24", ((1,1),(1,1)))
+		self.CoolIconSize = parseSize("24,24", ((1, 1), (1, 1)))
 
 		self.CoolSelNumTxtWidth = 26
 
-		self.CoolBarSize = parseSize("55,10", ((1,1),(1,1)))
-		self.CoolBarSizeSa = parseSize("55,10", ((1,1),(1,1)))
+		self.CoolBarSize = parseSize("55,10", ((1, 1), (1, 1)))
+		self.CoolBarSizeSa = parseSize("55,10", ((1, 1), (1, 1)))
 
 		self.CoolMoviePiconPos = -1
 		self.CoolMoviePiconSize = -1
@@ -1895,13 +1895,13 @@ class MovieCenter(GUIComponent):
 		if self.skinAttributes is not None:
 			for (attrib, value) in self.skinAttributes:
 				if attrib == "CoolFont":
-					self.CoolFont = parseFont(value, ((1,1),(1,1)))
+					self.CoolFont = parseFont(value, ((1, 1), (1, 1)))
 					self.l.setFont(1, self.CoolFont)
 				elif attrib == "CoolSelectFont":
-					self.CoolSelectFont = parseFont(value, ((1,1),(1,1)))
+					self.CoolSelectFont = parseFont(value, ((1, 1), (1, 1)))
 					self.l.setFont(3, self.CoolSelectFont)
 				elif attrib == "CoolDateFont":
-					self.CoolDateFont = parseFont(value, ((1,1),(1,1)))
+					self.CoolDateFont = parseFont(value, ((1, 1), (1, 1)))
 					self.l.setFont(4, self.CoolDateFont)
 				elif attrib == "CoolDirPos":
 					pass
@@ -1921,7 +1921,7 @@ class MovieCenter(GUIComponent):
 				elif attrib == "CoolIconPos":
 					self.CoolIconPos = int(value)
 				elif attrib == "CoolIconSize":
-					self.CoolIconSize = parseSize(value, ((1,1),(1,1)))
+					self.CoolIconSize = parseSize(value, ((1, 1), (1, 1)))
 
 				elif attrib == "CoolFolderSize":
 					self.CoolFolderSize = int(value)
@@ -1957,9 +1957,9 @@ class MovieCenter(GUIComponent):
 				elif attrib == "CoolBarHPos":
 					self.CoolBarHPos = int(value)
 				elif attrib == "CoolBarSize":
-					self.CoolBarSize = parseSize(value, ((1,1),(1,1)))
+					self.CoolBarSize = parseSize(value, ((1, 1), (1, 1)))
 				elif attrib == "CoolBarSizeSa":
-					self.CoolBarSizeSa = parseSize(value, ((1,1),(1,1)))
+					self.CoolBarSizeSa = parseSize(value, ((1, 1), (1, 1)))
 				elif attrib == "CoolPiconPos":
 					self.CoolPiconPos = int(value)
 				elif attrib == "CoolPiconHPos":
@@ -2016,7 +2016,7 @@ class MovieCenter(GUIComponent):
 			append = res.append
 
 			isLink = movieFileCache.isLink(path)
-			isExtHDDSleeping = config.EMC.limit_fileops_noscan.value and mountPoints.isExtHDDSleeping(path,self)
+			isExtHDDSleeping = config.EMC.limit_fileops_noscan.value and mountPoints.isExtHDDSleeping(path, self)
 			#usedFont = int(config.EMC.skin_able.value)
 			if int(config.EMC.skin_able.value):
 				usedFont = 1
@@ -2167,10 +2167,10 @@ class MovieCenter(GUIComponent):
 						else:
 							selPic = pixmap
 						if not config.EMC.skin_able.value:
-							append(MultiContentEntryPixmapAlphaBlend(pos=(5,2), size=(24,24), png=selPic, **{}))
+							append(MultiContentEntryPixmapAlphaBlend(pos=(5, 2), size=(24, 24), png=selPic, **{}))
 							offset = 35
 						else:
-							append(MultiContentEntryPixmapAlphaBlend(pos=(self.CoolIconPos,self.CoolIconHPos), size=(self.CoolIconSize.width(),self.CoolIconSize.height()), png=selPic, **{}))
+							append(MultiContentEntryPixmapAlphaBlend(pos=(self.CoolIconPos, self.CoolIconHPos), size=(self.CoolIconSize.width(), self.CoolIconSize.height()), png=selPic, **{}))
 							offset = self.CoolIconPos + self.CoolIconSize.width() + 5
 					else:
 						offset = 5
@@ -2492,7 +2492,7 @@ class MovieCenter(GUIComponent):
 
 				elif ext == cmtTrash:
 					if config.EMC.movie_trashcan_enable.value:
-						(count, size, datetext, datepic, dummy_pixmap) = self.getValues_startWorker(path,config.EMC.movie_trashcan_info.value,datetext,datepic,pixmap,isLink,True,title)
+						(count, size, datetext, datepic, dummy_pixmap) = self.getValues_startWorker(path, config.EMC.movie_trashcan_info.value, datetext, datepic, pixmap, isLink, True, title)
 						if count:
 							# Trashcan contains garbage
 							pixmap = self.pic_trashcan_full
@@ -2514,7 +2514,7 @@ class MovieCenter(GUIComponent):
 					if config.EMC.directories_ontop.value and title not in self.topdirlist:
 						pixmap = self.pic_col_dir
 
-					(count, size, datetext, datepic, pixmap) = self.getValues_startWorker(path,config.EMC.directories_info.value,datetext,datepic,pixmap,isLink,False,title)
+					(count, size, datetext, datepic, pixmap) = self.getValues_startWorker(path, config.EMC.directories_info.value, datetext, datepic, pixmap, isLink, False, title)
 
 				else:
 					# Should never happen
@@ -2532,9 +2532,9 @@ class MovieCenter(GUIComponent):
 					else:
 						dirPic = pixmap
 					if not config.EMC.skin_able.value:
-						append(MultiContentEntryPixmapAlphaBlend(pos=(5,2), size=(24,24), png=dirPic, **{}))
+						append(MultiContentEntryPixmapAlphaBlend(pos=(5, 2), size=(24, 24), png=dirPic, **{}))
 					else:
-						append(MultiContentEntryPixmapAlphaBlend(pos=(self.CoolIconPos,self.CoolIconHPos), size=(self.CoolIconSize.width(),self.CoolIconSize.height()), png=dirPic, **{}))
+						append(MultiContentEntryPixmapAlphaBlend(pos=(self.CoolIconPos, self.CoolIconHPos), size=(self.CoolIconSize.width(), self.CoolIconSize.height()), png=dirPic, **{}))
 
 				# Directory left side
 				if not config.EMC.skin_able.value:
@@ -2614,7 +2614,7 @@ class MovieCenter(GUIComponent):
 		except Exception, e:
 			emcDebugOut("[EMCMS] build exception:\n" + str(e))
 
-	def getValues_startWorker(self,path,config_EMC_info_value,datetext,datepic,pixmap,isLink,is_trashcan,title):
+	def getValues_startWorker(self, path, config_EMC_info_value, datetext, datepic, pixmap, isLink, is_trashcan, title):
 		count, size = 0, 0
 		self.CoolCSWidth = 110
 		getValues = movieFileCache.getCountSizeFromCache(path)
@@ -2702,7 +2702,7 @@ class MovieCenter(GUIComponent):
 
 		return (count, size, datetext, datepic, pixmap)
 
-	def addCountsizeworker(self,path):
+	def addCountsizeworker(self, path):
 		if config.EMC.dir_info_usenoscan.value:
 			if self.checkNoScanPath(self.currentPath): #always scan sub-dirs of active no-scan dir
 				countsizeworker.add(path)

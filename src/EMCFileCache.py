@@ -64,7 +64,7 @@ class EMCFileCache():
 		self.cacheCountSizeList = {}
 		print "EMC delete cacheCountSizeList", self.cacheCountSizeList
 
-	def delcacheCountSizeListEntriesOnFileOp(self,path):
+	def delcacheCountSizeListEntriesOnFileOp(self, path):
 		#print "EMC delcacheCountSizeListEntriesOnFileOp",path
 		rescanPaths = []
 		if path:
@@ -239,19 +239,19 @@ class EMCFileCache():
 	def debugPrintFileCache(self):
 		print "cacheFileList:"
 		for p in self.cacheFileList:
-			print p,self.cacheFileList[p]
+			print p, self.cacheFileList[p]
 		print ""
 
 	def debugPrintDirCache(self):
 		print "cacheDirectoryList:"
 		for p in self.cacheDirectoryList:
-			print p,self.cacheDirectoryList[p]
+			print p, self.cacheDirectoryList[p]
 		print ""
 
 	def debugPrintFileAttributeCache(self):
 		print "cacheAttributeList:"
 		for p in self.cacheAttributeList:
-			print p,self.cacheAttributeList[p]
+			print p, self.cacheAttributeList[p]
 		print ""
 
 	def deleteAssociatedListEntries(self, list):

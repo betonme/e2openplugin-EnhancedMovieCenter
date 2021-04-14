@@ -57,7 +57,7 @@ config.EMC.imdb.savetotxtfile = ConfigYesNo(default=False)
 #single/manually
 config.EMC.imdb.singlesearch = ConfigSelection(default='3', choices=[('0', _('imdb.com')), ('1', _('thetvdb.com')), ('3', _('all')), ('4', _('themoviedb.org')), ('5', _('themoviedb.org + thetvdb.com'))])
 config.EMC.imdb.singlesearch_filter = ConfigSelection(default='2', choices=[('0', _('overall')), ('1', _('every single one')), ('2', _('two contiguous')), ('3', _('three contiguous'))])
-config.EMC.imdb.singlesearch_siteresults = ConfigSelection(default='3', choices=[('0', _('no limit')),'3', '5', '10', '25', '50', '100'])
+config.EMC.imdb.singlesearch_siteresults = ConfigSelection(default='3', choices=[('0', _('no limit')), '3', '5', '10', '25', '50', '100'])
 config.EMC.imdb.singlesearch_tvdbcoverrange = ConfigSelection(default='1', choices=[('0', _('no limit')), ('1', _('standard cover')), '3', '5', '10', '25'])
 config.EMC.imdb.singlesearch_foldercoverpath = ConfigSelection(default='0', choices=[('0', _('.../foldername/foldername.jpg')), ('1', _('.../foldername.jpg')), ('2', _('.../foldername/folder.jpg'))])
 #common
@@ -75,7 +75,7 @@ def urlExist(url):
 
 def getSearchList(title, option):
 	slist = []
-	s = title.replace('.',' ').replace('_',' ').replace('-',' ').replace('+', ' ').split()
+	s = title.replace('.', ' ').replace('_', ' ').replace('-', ' ').replace('+', ' ').split()
 	if option == '1':
 		slist = s
 	elif option == '2':
@@ -337,7 +337,7 @@ class EMCImdbScan(Screen):
 						if seasonEpisode:
 							(season, episode) = seasonEpisode[0]
 						name2 = getMovieNameWithoutPhrases(s_title)
-						name2 = re.sub('[Ss][0-9]+[Ee][0-9]+.*[a-zA-Z0-9_]+','', name2, flags=re.S | re.I)
+						name2 = re.sub('[Ss][0-9]+[Ee][0-9]+.*[a-zA-Z0-9_]+', '', name2, flags=re.S | re.I)
 						url = 'http://thetvdb.com/api/GetSeries.php?seriesname=%s&language=%s' % (quote(str(name2)), self.lang)
 						urls.append(("serie", title, url, cover_path, season, episode))
 					else:
@@ -442,8 +442,8 @@ class EMCImdbScan(Screen):
 
 	def writeTofile(self, text, cover_path):
 		print cover_path
-		if not fileExists(cover_path.replace('.jpg','.txt')):
-			wFile = open(cover_path.replace('.jpg','.txt'),"w")
+		if not fileExists(cover_path.replace('.jpg', '.txt')):
+			wFile = open(cover_path.replace('.jpg', '.txt'), "w")
 			wFile.write(text)
 			wFile.close()
 
@@ -524,106 +524,106 @@ class EMCImdbScan(Screen):
 			self["done_msg"].setText(_("Cover is Saved."))
 
 	def decodeHtml(self, text):
-		text = text.replace('&auml;','ä')
-		text = text.replace('\u00e4','ä')
-		text = text.replace('&#228;','ä')
+		text = text.replace('&auml;', 'ä')
+		text = text.replace('\u00e4', 'ä')
+		text = text.replace('&#228;', 'ä')
 
-		text = text.replace('&Auml;','Ä')
-		text = text.replace('\u00c4','Ä')
-		text = text.replace('&#196;','Ä')
+		text = text.replace('&Auml;', 'Ä')
+		text = text.replace('\u00c4', 'Ä')
+		text = text.replace('&#196;', 'Ä')
 
-		text = text.replace('&ouml;','ö')
-		text = text.replace('\u00f6','ö')
-		text = text.replace('&#246;','ö')
+		text = text.replace('&ouml;', 'ö')
+		text = text.replace('\u00f6', 'ö')
+		text = text.replace('&#246;', 'ö')
 
-		text = text.replace('&ouml;','Ö')
-		text = text.replace('&Ouml;','Ö')
-		text = text.replace('\u00d6','Ö')
-		text = text.replace('&#214;','Ö')
+		text = text.replace('&ouml;', 'Ö')
+		text = text.replace('&Ouml;', 'Ö')
+		text = text.replace('\u00d6', 'Ö')
+		text = text.replace('&#214;', 'Ö')
 
-		text = text.replace('&uuml;','ü')
-		text = text.replace('\u00fc','ü')
-		text = text.replace('&#252;','ü')
+		text = text.replace('&uuml;', 'ü')
+		text = text.replace('\u00fc', 'ü')
+		text = text.replace('&#252;', 'ü')
 
-		text = text.replace('&Uuml;','Ü')
-		text = text.replace('\u00dc','Ü')
-		text = text.replace('&#220;','Ü')
+		text = text.replace('&Uuml;', 'Ü')
+		text = text.replace('\u00dc', 'Ü')
+		text = text.replace('&#220;', 'Ü')
 
-		text = text.replace('&szlig;','ß')
-		text = text.replace('\u00df','ß')
-		text = text.replace('&#223;','ß')
+		text = text.replace('&szlig;', 'ß')
+		text = text.replace('\u00df', 'ß')
+		text = text.replace('&#223;', 'ß')
 
-		text = text.replace('&amp;','&')
-		text = text.replace('&quot;','\"')
-		text = text.replace('&gt;','>')
-		text = text.replace('&apos;',"'")
-		text = text.replace('&acute;','\'')
-		text = text.replace('&ndash;','-')
-		text = text.replace('&bdquo;','"')
-		text = text.replace('&rdquo;','"')
-		text = text.replace('&ldquo;','"')
-		text = text.replace('&lsquo;','\'')
-		text = text.replace('&rsquo;','\'')
-		text = text.replace('&#034;','"')
-		text = text.replace('&#34;','"')
-		text = text.replace('&#038;','&')
-		text = text.replace('&#039;','\'')
-		text = text.replace('&#39;','\'')
-		text = text.replace('&#160;',' ')
-		text = text.replace('\u00a0',' ')
-		text = text.replace('\u00b4','\'')
-		text = text.replace('\u003d','=')
-		text = text.replace('\u0026','&')
-		text = text.replace('&#174;','')
-		text = text.replace('&#225;','a')
-		text = text.replace('&#233;','e')
-		text = text.replace('&#243;','o')
-		text = text.replace('&#8211;',"-")
-		text = text.replace('&#8212;',"—")
-		text = text.replace('&mdash;','—')
-		text = text.replace('\u2013',"–")
-		text = text.replace('&#8216;',"'")
-		text = text.replace('&#8217;',"'")
-		text = text.replace('&#8220;',"'")
-		text = text.replace('&#8221;','"')
-		text = text.replace('&#8222;',',')
-		text = text.replace('\u014d','o')
-		text = text.replace('\u016b','u')
-		text = text.replace('\u201a','\"')
-		text = text.replace('\u2018','\"')
-		text = text.replace('\u201e','\"')
-		text = text.replace('\u201c','\"')
-		text = text.replace('\u201d','\'')
-		text = text.replace('\u2019s','’')
-		text = text.replace('\u00e0','à')
-		text = text.replace('\u00e7','ç')
-		text = text.replace('\u00e8','é')
-		text = text.replace('\u00e9','é')
-		text = text.replace('\u00c1','Á')
-		text = text.replace('\u00c6','Æ')
-		text = text.replace('\u00e1','á')
+		text = text.replace('&amp;', '&')
+		text = text.replace('&quot;', '\"')
+		text = text.replace('&gt;', '>')
+		text = text.replace('&apos;', "'")
+		text = text.replace('&acute;', '\'')
+		text = text.replace('&ndash;', '-')
+		text = text.replace('&bdquo;', '"')
+		text = text.replace('&rdquo;', '"')
+		text = text.replace('&ldquo;', '"')
+		text = text.replace('&lsquo;', '\'')
+		text = text.replace('&rsquo;', '\'')
+		text = text.replace('&#034;', '"')
+		text = text.replace('&#34;', '"')
+		text = text.replace('&#038;', '&')
+		text = text.replace('&#039;', '\'')
+		text = text.replace('&#39;', '\'')
+		text = text.replace('&#160;', ' ')
+		text = text.replace('\u00a0', ' ')
+		text = text.replace('\u00b4', '\'')
+		text = text.replace('\u003d', '=')
+		text = text.replace('\u0026', '&')
+		text = text.replace('&#174;', '')
+		text = text.replace('&#225;', 'a')
+		text = text.replace('&#233;', 'e')
+		text = text.replace('&#243;', 'o')
+		text = text.replace('&#8211;', "-")
+		text = text.replace('&#8212;', "—")
+		text = text.replace('&mdash;', '—')
+		text = text.replace('\u2013', "–")
+		text = text.replace('&#8216;', "'")
+		text = text.replace('&#8217;', "'")
+		text = text.replace('&#8220;', "'")
+		text = text.replace('&#8221;', '"')
+		text = text.replace('&#8222;', ',')
+		text = text.replace('\u014d', 'o')
+		text = text.replace('\u016b', 'u')
+		text = text.replace('\u201a', '\"')
+		text = text.replace('\u2018', '\"')
+		text = text.replace('\u201e', '\"')
+		text = text.replace('\u201c', '\"')
+		text = text.replace('\u201d', '\'')
+		text = text.replace('\u2019s', '’')
+		text = text.replace('\u00e0', 'à')
+		text = text.replace('\u00e7', 'ç')
+		text = text.replace('\u00e8', 'é')
+		text = text.replace('\u00e9', 'é')
+		text = text.replace('\u00c1', 'Á')
+		text = text.replace('\u00c6', 'Æ')
+		text = text.replace('\u00e1', 'á')
 
-		text = text.replace('&#xC4;','Ä')
-		text = text.replace('&#xD6;','Ö')
-		text = text.replace('&#xDC;','Ü')
-		text = text.replace('&#xE4;','ä')
-		text = text.replace('&#xF6;','ö')
-		text = text.replace('&#xFC;','ü')
-		text = text.replace('&#xDF;','ß')
-		text = text.replace('&#xE9;','é')
-		text = text.replace('&#xB7;','·')
-		text = text.replace("&#x27;","'")
-		text = text.replace("&#x26;","&")
-		text = text.replace("&#xFB;","û")
-		text = text.replace("&#xF8;","ø")
-		text = text.replace("&#x21;","!")
-		text = text.replace("&#x3f;","?")
+		text = text.replace('&#xC4;', 'Ä')
+		text = text.replace('&#xD6;', 'Ö')
+		text = text.replace('&#xDC;', 'Ü')
+		text = text.replace('&#xE4;', 'ä')
+		text = text.replace('&#xF6;', 'ö')
+		text = text.replace('&#xFC;', 'ü')
+		text = text.replace('&#xDF;', 'ß')
+		text = text.replace('&#xE9;', 'é')
+		text = text.replace('&#xB7;', '·')
+		text = text.replace("&#x27;", "'")
+		text = text.replace("&#x26;", "&")
+		text = text.replace("&#xFB;", "û")
+		text = text.replace("&#xF8;", "ø")
+		text = text.replace("&#x21;", "!")
+		text = text.replace("&#x3f;", "?")
 
-		text = text.replace('&#8230;','...')
-		text = text.replace('\u2026','...')
-		text = text.replace('&hellip;','...')
+		text = text.replace('&#8230;', '...')
+		text = text.replace('\u2026', '...')
+		text = text.replace('&hellip;', '...')
 
-		text = text.replace('&#8234;','')
+		text = text.replace('&#8234;', '')
 		return text
 
 	def imdb_show(self, title, pp, elapsed, genre, search_title):
@@ -715,7 +715,7 @@ class imdbSetup(Screen, ConfigListScreenExt):
 		self.configlist.append(getConfigListEntry(_("Single Search:"), config.EMC.imdb.singlesearch, True))
 		self.configlist.append(getConfigListEntry(_("Search filter for matching existing terms in the title:"), config.EMC.imdb.singlesearch_filter, False))
 		itext = ""
-		if config.EMC.imdb.singlesearch.value not in ('0','4'):
+		if config.EMC.imdb.singlesearch.value not in ('0', '4'):
 			itext = _(" (without counting cover range)")
 			self.configlist.append(getConfigListEntry(_("thetvdb cover range per title:"), config.EMC.imdb.singlesearch_tvdbcoverrange, False))
 		self.configlist.append(getConfigListEntry(_("Search Results per Search Site%s:") % itext, config.EMC.imdb.singlesearch_siteresults, False))
@@ -902,7 +902,7 @@ class getCover(Screen):
 		print "EMC IMDB: Cover Select - %s" % title
 		templist = []
 		coverlist = []
-		coversize = config.EMC.imdb.preferred_coversize.value.replace('w','SX')
+		coversize = config.EMC.imdb.preferred_coversize.value.replace('w', 'SX')
 		finish = False
 		siteresults = int(config.EMC.imdb.singlesearch_siteresults.value)
 		part = getSearchList(title, config.EMC.imdb.singlesearch_filter.value)
@@ -953,7 +953,7 @@ class getCover(Screen):
 				print "EMC iMDB: Download Poster - %s" % m_url
 				try:
 					req = requests.session()
-					r = req.get(m_url, headers={'User-Agent':agent})
+					r = req.get(m_url, headers={'User-Agent': agent})
 					f = open(self.path, 'wb')
 					for chunk in r.iter_content(chunk_size=512 * 1024):
 						if chunk:
@@ -1014,7 +1014,7 @@ class getCover(Screen):
 		if result:
 			movie_homepath = os.path.realpath(config.EMC.movie_homepath.value)
 			try:
-				shutil.move(self.path, movie_homepath + "/" + self.o_path.replace(self.o_path[:-len(self.o_path) + self.o_path.rfind('/') + 1],''))
+				shutil.move(self.path, movie_homepath + "/" + self.o_path.replace(self.o_path[:-len(self.o_path) + self.o_path.rfind('/') + 1], ''))
 				self.check = False
 				self.close(True)
 			except Exception, e:
@@ -1052,7 +1052,7 @@ class getCover(Screen):
 	def moveCoverTo(self, targetPath):
 		if targetPath is not None:
 			try:
-				shutil.move(self.path, targetPath + "/" + self.o_path.replace(self.o_path[:-len(self.o_path) + self.o_path.rfind('/') + 1],''))
+				shutil.move(self.path, targetPath + "/" + self.o_path.replace(self.o_path[:-len(self.o_path) + self.o_path.rfind('/') + 1], ''))
 				self.check = False
 				self.close(True)
 			except Exception, e:

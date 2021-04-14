@@ -76,10 +76,10 @@ class ConfigListExt(HTMLComponent, GUIComponent, object):
 	GUI_WIDGET = eListbox
 
 	def selectionChanged(self):
-		if isinstance(self.current,tuple) and len(self.current) > 1:
+		if isinstance(self.current, tuple) and len(self.current) > 1:
 			self.current[1].onDeselect(self.session)
 		self.current = self.getCurrent()
-		if isinstance(self.current,tuple) and len(self.current) > 1:
+		if isinstance(self.current, tuple) and len(self.current) > 1:
 			self.current[1].onSelect(self.session)
 		else:
 			return
@@ -94,7 +94,7 @@ class ConfigListExt(HTMLComponent, GUIComponent, object):
 		instance.setContent(self.l)
 
 	def preWidgetRemove(self, instance):
-		if isinstance(self.current,tuple) and len(self.current) > 1:
+		if isinstance(self.current, tuple) and len(self.current) > 1:
 			self.current[1].onDeselect(self.session)
 		if isDreamOS:
 			self.selectionChanged_conn = None
@@ -237,7 +237,7 @@ class ConfigListScreenExt:
 					if self["config"].getCurrent()[1].help_window.instance is not None:
 						helpwindowpos = self["HelpWindow"].getPosition()
 						from enigma import ePoint
-						self["config"].getCurrent()[1].help_window.instance.move(ePoint(helpwindowpos[0],helpwindowpos[1]))
+						self["config"].getCurrent()[1].help_window.instance.move(ePoint(helpwindowpos[0], helpwindowpos[1]))
 			else:
 				self["VirtualKB"].setEnabled(False)
 		else:

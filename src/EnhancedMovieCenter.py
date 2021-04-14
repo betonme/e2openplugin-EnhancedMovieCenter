@@ -173,17 +173,17 @@ def EMCStartup(session):
 #                       None stands for not specified, will be ignored
 #			Name (Button),	Column,	ID (Title)
 from collections import OrderedDict
-predefined_settings = OrderedDict([	(_("Custom"),(None, "")),
-					(_("Default"),(None, "D")),
-					(_("Performance"),(7, "P")),
-					(_("Information"),(8, "I"))
+predefined_settings = OrderedDict([	(_("Custom"), (None, "")),
+					(_("Default"), (None, "D")),
+					(_("Performance"), (7, "P")),
+					(_("Information"), (8, "I"))
 				])
 
 def get_predefined_columns():
-	return [v[0] for k,v in predefined_settings.iteritems() if v[0] is not None]
+	return [v[0] for k, v in predefined_settings.iteritems() if v[0] is not None]
 
 def get_predefined_nameid(column):
-	for k,v in predefined_settings.iteritems():
+	for k, v in predefined_settings.iteritems():
 		if v[0] == column:
 			return k, v[1]
 
@@ -373,12 +373,12 @@ class EnhancedMovieCenterMenu(ConfigListScreenExt, Screen):
 			(_("Show symlinks"), config.EMC.symlinks_show, None, None, 0, [], _("HELP_Show symlinks"), None, True),
 			(_("Show directories"), config.EMC.directories_show, None, None, 0, [], _("HELP_Show directories"), None, True),
 			(_("Show directories within movielist"), config.EMC.directories_ontop, None, None, 0, [-1], _("HELP_Show directories within movielist"), False, True),
-			(_("Configured directories at the top of movielist"), config.EMC.cfgtopdir_enable, None, None, 0, [-2,-1], _("HELP_Configure in etc\enigma2\emc-topdir.cfg"), False, True),
+			(_("Configured directories at the top of movielist"), config.EMC.cfgtopdir_enable, None, None, 0, [-2, -1], _("HELP_Configure in etc\enigma2\emc-topdir.cfg"), False, True),
 			(_("Show directories information"), config.EMC.directories_info, None, None, 0, [-3], _("HELP_Show directories information"), "", "CS"),
-			(_("Text shown for initially unknown file count"), config.EMC.count_default_text, None, None, 0, [-4,-1], _("HELP_Text shown for initially unknown file count"), None, None),
-			(_("Text shown for initially unknown count and size"), config.EMC.count_size_default_text, None, None, 0, [-5,-2], _("HELP_Text shown for initially unknown count and size"), None, None),
-			(_("Text shown for initially unknown directory size"), config.EMC.size_default_text, None, None, 0, [-6,-3], _("HELP_Text shown for initially unknown directory size"), None, None),
-			(_("Icon shown for initially unknown count / size"), config.EMC.count_size_default_icon, None, None, 0, [-7,-4], _("HELP_Icon shown for initially unknown count / size"), None, None),
+			(_("Text shown for initially unknown file count"), config.EMC.count_default_text, None, None, 0, [-4, -1], _("HELP_Text shown for initially unknown file count"), None, None),
+			(_("Text shown for initially unknown count and size"), config.EMC.count_size_default_text, None, None, 0, [-5, -2], _("HELP_Text shown for initially unknown count and size"), None, None),
+			(_("Text shown for initially unknown directory size"), config.EMC.size_default_text, None, None, 0, [-6, -3], _("HELP_Text shown for initially unknown directory size"), None, None),
+			(_("Icon shown for initially unknown count / size"), config.EMC.count_size_default_icon, None, None, 0, [-7, -4], _("HELP_Icon shown for initially unknown count / size"), None, None),
 			(_("Show directory size in skin"), config.EMC.directories_size_skin, None, None, 0, [], _("HELP_Show directory size in skin"), None, None),
 
 			(_("Show Latest Recordings directory"), config.EMC.latest_recordings, None, None, 0, [], _("HELP_Show Latest Recordings directory"), None, True),
@@ -437,14 +437,14 @@ class EnhancedMovieCenterMenu(ConfigListScreenExt, Screen):
 			(_("Trashcan enable"), config.EMC.movie_trashcan_enable, None, self.openLocationBox, 0, [], _("HELP_Trashcan enable"), None, None),
 			(_("Trashcan path"), config.EMC.movie_trashcan_path, self.validatePath, self.openLocationBox, 0, [-1], _("HELP_Trashcan path"), None, None),
 			(_("Show trashcan directory"), config.EMC.movie_trashcan_show, None, None, 0, [-2], _("HELP_Show trashcan directory"), None, True),
-			(_("Show trashcan information"), config.EMC.movie_trashcan_info, None, None, 0, [-3,-1], _("HELP_Dynamic trashcan"), "", "CS"),
+			(_("Show trashcan information"), config.EMC.movie_trashcan_info, None, None, 0, [-3, -1], _("HELP_Dynamic trashcan"), "", "CS"),
 			(_("Delete validation"), config.EMC.movie_delete_validation, None, None, 0, [-4], _("HELP_Delete validation"), None, None),
 
 			(_("Enable daily trashcan cleanup"), config.EMC.movie_trashcan_clean, self.trashCleanupSetup, None, 0, [-5], _("HELP_Enable daily trashcan cleanup"), None, None),
-			(_("Daily cleanup time"), config.EMC.movie_trashcan_ctime, None, None, 0, [-6,-1], _("HELP_Daily cleanup time"), None, None),
-			(_("How many days files may remain in trashcan"), config.EMC.movie_trashcan_limit, None, None, 0, [-7,-2], _("HELP_How many days files may remain in trashcan"), None, None),
-			(_("Move finished movies in trashcan"), config.EMC.movie_finished_clean, None, None, 2, [-8,-3], _("HELP_Move finished movies in trashcan"), None, None),
-			(_("Age of finished movies in movie folder (days)"), config.EMC.movie_finished_limit, None, None, 2, [-9,-4,-1], _("HELP_Age of finished movies in movie folder (days)"), None, None),
+			(_("Daily cleanup time"), config.EMC.movie_trashcan_ctime, None, None, 0, [-6, -1], _("HELP_Daily cleanup time"), None, None),
+			(_("How many days files may remain in trashcan"), config.EMC.movie_trashcan_limit, None, None, 0, [-7, -2], _("HELP_How many days files may remain in trashcan"), None, None),
+			(_("Move finished movies in trashcan"), config.EMC.movie_finished_clean, None, None, 2, [-8, -3], _("HELP_Move finished movies in trashcan"), None, None),
+			(_("Age of finished movies in movie folder (days)"), config.EMC.movie_finished_limit, None, None, 2, [-9, -4, -1], _("HELP_Age of finished movies in movie folder (days)"), None, None),
 
 			(self.section, "", None, None, 0, [], "", None, None),
 			(_("Display directory reading text"), config.EMC.moviecenter_loadtext, None, None, 1, [], _("HELP_Display directory reading text"), None, None),
@@ -491,9 +491,9 @@ class EnhancedMovieCenterMenu(ConfigListScreenExt, Screen):
 			(_("Show link arrow"), config.EMC.link_icons, None, None, 0, [-1], _("HELP_Show link arrow"), False, True),
 
 			(_("Show movie picons"), config.EMC.movie_picons, None, None, 0, [], _("HELP_Show movie picons"), None, None),
-			(_("Position movie picons"), config.EMC.movie_picons_pos, None, None, 0, [7,-1], _("HELP_Position movie picons"), None, None),
+			(_("Position movie picons"), config.EMC.movie_picons_pos, None, None, 0, [7, -1], _("HELP_Position movie picons"), None, None),
 			(_("Own Path to movie picons"), config.EMC.movie_picons_path_own, None, None, 0, [-2], _("HELP_Own Path to movie picons"), None, None),
-			(_("Path to movie picons"), config.EMC.movie_picons_path, None, self.openLocationBox, 0, [-3,-1], _("HELP_Path to movie picons"), None, None),
+			(_("Path to movie picons"), config.EMC.movie_picons_path, None, self.openLocationBox, 0, [-3, -1], _("HELP_Path to movie picons"), None, None),
 
 			(_("Show movie progress"), config.EMC.movie_progress, None, None, 0, [], _("HELP_Show movie progress"), "", "PB"),
 			(_("Short watching percent"), config.EMC.movie_watching_percent, None, None, 0, [-1], _("HELP_Short watching percent"), None, None),
@@ -612,7 +612,7 @@ class EnhancedMovieCenterMenu(ConfigListScreenExt, Screen):
 					else:
 						list.append(getConfigListEntry(conf[0], conf[1], conf[2], conf[3], conf[4], conf[5], conf[6])) # not needed conf[7], conf[8]
 					# Check for predefined config match
-					for i,pd in enumerate(pds[:]):
+					for i, pd in enumerate(pds[:]):
 						if conf[pd] is not None:
 							#print conf[1].value, conf[pd]
 							if conf[1].value != conf[pd]:

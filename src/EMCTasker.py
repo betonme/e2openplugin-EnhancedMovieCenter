@@ -38,7 +38,7 @@ def emcDebugOut(outtxt, outfile=None, fmode="aw", forced=False):
 			if outfile is None:
 				outfile = os.path.join(config.EMC.folder.value, config.EMC.debugfile.value)
 				ltim = localtime()
-				headerstr = "%04d%02d%02d %02d:%02d " % (ltim[0],ltim[1],ltim[2],ltim[3],ltim[4])
+				headerstr = "%04d%02d%02d %02d:%02d " % (ltim[0], ltim[1], ltim[2], ltim[3], ltim[4])
 				outtxt = headerstr + outtxt
 			deb = open(outfile, fmode)
 			deb.write(outtxt + "\n")
@@ -157,7 +157,7 @@ class EMCExecutioner:
 			emcDebugOut("[emcTasker] runFinished exception:\n" + str(e))
 
 	def dataAvail(self, string):
-		self.returnData += "\n" + string.replace("\n","")
+		self.returnData += "\n" + string.replace("\n", "")
 
 
 class EMCTasker:

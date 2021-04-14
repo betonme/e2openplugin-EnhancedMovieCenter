@@ -123,7 +123,7 @@ class PermanentSort():
 			list = ['<?xml version="1.0" ?>\n']
 			list.append('<PermanentSort>\n')
 			for key, value in data.items():
-				modestring = [k for k,v in sort_modes.items() if v[1] == value][0]
+				modestring = [k for k, v in sort_modes.items() if v[1] == value][0]
 				list.append('<entry')
 				list.append(' key="' + stringToXML(str(key)) + '"')
 				list.append(' modestring="' + str(modestring) + '"')

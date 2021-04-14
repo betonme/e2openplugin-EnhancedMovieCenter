@@ -94,7 +94,7 @@ class MovieRetitle(Screen, ConfigListScreenExt):
 					if self["config"].getCurrent()[1].help_window.instance is not None:
 						helpwindowpos = self["HelpWindow"].getPosition()
 						from enigma import ePoint
-						self["config"].getCurrent()[1].help_window.instance.move(ePoint(helpwindowpos[0],helpwindowpos[1]))
+						self["config"].getCurrent()[1].help_window.instance.move(ePoint(helpwindowpos[0], helpwindowpos[1]))
 			else:
 				self["VirtualKB"].setEnabled(False)
 		else:
