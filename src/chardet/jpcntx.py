@@ -232,5 +232,3 @@ class EUCJPContextAnalysis(JapaneseContextAnalysis):
                 return second_char - 0xA1, char_len
 
         return -1, char_len
-
-
