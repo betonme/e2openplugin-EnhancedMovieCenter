@@ -21,7 +21,7 @@ class MovieRetitle(Screen, ConfigListScreenExt):
 		Screen.__init__(self, session)
 
 		self.skinName = ["MovieRetitle", "Setup"]
-		self.list = [ ]
+		self.list = []
 		ConfigListScreenExt.__init__(self, self.list, session)
 
 		self["Path"] = Label(_("Location:"))# + ' ' + os.path.dirname(os.path.splitext(path)[0]))

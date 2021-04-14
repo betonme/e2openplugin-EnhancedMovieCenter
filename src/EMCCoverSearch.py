@@ -627,7 +627,7 @@ class EMCImdbScan(Screen):
 		return text
 
 	def imdb_show(self, title, pp, elapsed, genre, search_title):
-		res = [ (title, pp, elapsed, genre, search_title) ]
+		res = [(title, pp, elapsed, genre, search_title)]
 		s1=_("Exist") + "|" + _("N/A")
 		if not re.match('.*?(' + s1 + ')', elapsed):
 			elapsed = "%s ms" % elapsed
@@ -1047,7 +1047,7 @@ class getCover(Screen):
 						autoAdd=False,
 						editDir=True,
 						inhibitDirs=["/bin", "/boot", "/dev", "/etc", "/home", "/lib", "/proc", "/run", "/sbin", "/sys", "/usr", "/var"],
-						minFree=100 )
+						minFree=100)
 
 	def moveCoverTo(self, targetPath):
 		if targetPath is not None:
@@ -1063,7 +1063,7 @@ class getCover(Screen):
 			self.close(False)
 
 	def showCoverlist(self, title, url, path, art):
-		res = [ (title, url, path) ]
+		res = [(title, url, path)]
 		title = art + title
 
 		if getDesktop(0).size().width() == 1920:

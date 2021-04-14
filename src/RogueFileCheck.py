@@ -66,7 +66,7 @@ class RogueFileCheck:
 					# Maybe we can use a dict e.x.: .ap = .ts.ap
 					filepath, ext = os.path.splitext(fullpath)
 					if ext.lower() in extRogue:
-						for f in glob( filepath + '*'):
+						for f in glob(filepath + '*'):
 							if os.path.splitext(f)[1].lower() in extMedia:
 								break
 						else:

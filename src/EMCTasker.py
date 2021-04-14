@@ -90,12 +90,12 @@ class EMCExecutioner:
 		#    False = All callbacks are executed at the end
 		if not sync or not isinstance(script, list):
 			# Single command execution
-			self.script.append( script )
-			self.associated.append( associated )
+			self.script.append(script)
+			self.associated.append(associated)
 		else:
 			for s, a in izip_longest(script, associated):
-				self.script.append( s )
-				self.associated.append( [a] )
+				self.script.append(s)
+				self.associated.append([a])
 
 		if self.executing == "":
 			emcDebugOut("[emcTasker] Run script")
@@ -108,11 +108,11 @@ class EMCExecutioner:
 			script = self.script.popleft()
 			if script:
 				if isinstance(script, list):
-					script = '; '.join( script )
+					script = '; '.join(script)
 
-				self.executing = quote( script )
-				self.container.execute( "sh -c " + self.executing )
-				emcDebugOut("[emcTasker] executing: " + self.executing )
+				self.executing = quote(script)
+				self.container.execute("sh -c " + self.executing)
+				emcDebugOut("[emcTasker] executing: " + self.executing)
 			else:
 				self.runFinished()
 		except Exception, e:
@@ -171,9 +171,9 @@ class EMCTasker:
 		self.timerActive = False
 		self.executioners = []
 		#TODO instantiate the executioner as we need them
-		self.executioners.append( EMCExecutioner("A") )
-		self.executioners.append( EMCExecutioner("B") )
-		self.executioners.append( EMCExecutioner("C") )
+		self.executioners.append(EMCExecutioner("A"))
+		self.executioners.append(EMCExecutioner("B"))
+		self.executioners.append(EMCExecutioner("C"))
 
 	def shellExecute(self, script, associated=None, sync=False):
 		for x in self.executioners:
@@ -182,7 +182,7 @@ class EMCTasker:
 				return
 		# all were busy, just append to any task list randomly
 		import random
-		self.executioners[ random.randint(0, 2) ].shellExecute(script, associated, sync)
+		self.executioners[random.randint(0, 2)].shellExecute(script, associated, sync)
 
 	def Initialize(self, session):
 		self.session = session
@@ -260,7 +260,7 @@ class EMCTasker:
 
 			if ytimem > ztimem:
 				ztimem += 12*60
-			emcDebugOut("+++ Local time is " +str(lotime[3:5]) + ", auto-start window is %s - %s" %(str(wbegin), str(wend)) )
+			emcDebugOut("+++ Local time is " +str(lotime[3:5]) + ", auto-start window is %s - %s" %(str(wbegin), str(wend)))
 
 			if postponeDelay > 0:
 				self.restartTimer.start(postponeDelay * 60000, False)

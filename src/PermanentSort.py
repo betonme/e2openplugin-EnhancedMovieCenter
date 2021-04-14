@@ -43,10 +43,10 @@ class PermanentSort():
 	def __init__(self, path=None):
 		self.__permanentSort = defaultdict(list)
 		if os.path.exists(XML_FILE):
-			self.__permanentSort.update( self.__readPermanentSortXmlFile() )
+			self.__permanentSort.update(self.__readPermanentSortXmlFile())
 		else:
 			#read old format and convert to xml
-			self.__permanentSort.update( self.__readPermanentSortCfgFile() )
+			self.__permanentSort.update(self.__readPermanentSortCfgFile())
 			self.__writePermanentSortXmlFile(self.__permanentSort)
 
 	def hasPermanentSort(self, path):
@@ -162,7 +162,7 @@ class PermanentSort():
 						# There is only the sorting stored, add the default order
 						#data[key] = (value, config.EMC.moviecenter_sort.value[1])
 						from Plugins.Extensions.EnhancedMovieCenter.plugin import sort_modes
-						data[key] = (value, sort_modes.get( config.EMC.moviecenter_sort.value )[1][1])
+						data[key] = (value, sort_modes.get(config.EMC.moviecenter_sort.value)[1][1])
 			except Exception, e:
 				emcDebugOut("[EMC] Exception in readPermanentSortCfgFile Parse: " + str(e))
 

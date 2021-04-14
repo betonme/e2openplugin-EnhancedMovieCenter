@@ -100,7 +100,7 @@ class InfoBarSupport(	InfoBarBase,
 			InfoBarPlugins,
 			InfoBarNumberZap,
 			InfoBarPiP,
-			InfoBarEPG ):
+			InfoBarEPG):
 
 	def __init__(self):
 		self.allowPiP = True         # both are needed here !
@@ -128,7 +128,7 @@ class InfoBarSupport(	InfoBarBase,
 				"toggleMark": (self.toggleMark, _("toggle a cut mark at the current position"))
 			}, prio=1)
 
-		self.cut_list = [ ]
+		self.cut_list = []
 		self.is_closing = False
 		self.resume_point = 0
 
@@ -211,7 +211,7 @@ class InfoBarSupport(	InfoBarBase,
 
 		for (pts, what) in self.cut_list:
 			if what == self.CUT_TYPE_MARK:
-				if pts != None and ( current_pos < pts and pts < margin and pts < middle ):
+				if pts != None and (current_pos < pts and pts < margin and pts < middle):
 					if firstMark == None or pts < firstMark:
 						firstMark = pts
 		if firstMark is not None:

@@ -118,7 +118,7 @@ class VlcPluginInterfaceList():
 				for srv in self.vlcServers:
 					srvName = srv.getName()
 					emcDebugOut("[EMC_VLC] srvName = " + str(srvName))
-					vlcserverlist.append( (os.path.join(loadPath, srvName), srvName, vlcSrv) )
+					vlcserverlist.append((os.path.join(loadPath, srvName), srvName, vlcSrv))
 			return vlcserverlist
 		except:
 			pass
@@ -158,7 +158,7 @@ class VlcPluginInterfaceList():
 				if vlcDirs:
 					for name, path in vlcDirs:
 						emcDebugOut("[EMC_VLC] dir = " + str(name))
-						vlcdirlist.append( (os.path.join(loadPath, name), name, vlcDir) )
+						vlcdirlist.append((os.path.join(loadPath, name), name, vlcDir))
 						#vlcdirlist.append( (os.path.join(loadPath, path), name, vlcDir) )
 						#vlcdirlist.append( (path, name, vlcDir) )
 				if vlcFiles:
@@ -169,7 +169,7 @@ class VlcPluginInterfaceList():
 						if MEDIA_EXTENSIONS.has_key(ext):
 							# Maybe later return real file extension
 							emcDebugOut("[EMC_VLC] media file = " + str(name))
-							vlcfilelist.append( (path, name, vlcFil) )
+							vlcfilelist.append((path, name, vlcFil))
 						else:
 							emcDebugOut("[EMC_VLC] file = " + str(name))
 			except Exception, e:

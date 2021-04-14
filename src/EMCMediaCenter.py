@@ -95,7 +95,7 @@ class InfoBarTimeshift:
 	def startTimeshift(self):
 		pass
 
-class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarTimeshift, InfoBarSupport ):
+class EMCMediaCenter(CutList, Screen, HelpableScreen, InfoBarTimeshift, InfoBarSupport):
 
 	ENABLE_RESUME_SUPPORT = True
 	ALLOW_SUSPEND = True
@@ -377,7 +377,7 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarTimeshift, InfoBar
 						self.playcount -= 1
 				else:
 					if self.playcount == -1:
-						self.playlist = [ self.playall.next() ]
+						self.playlist = [self.playall.next()]
 					elif (self.playcount + 1) == len(self.playlist):
 						self.playlist.append(self.playall.next())
 						if len(self.playlist) > 25:
@@ -621,11 +621,11 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarTimeshift, InfoBar
 		callEOF = False
 		for x in deletedlist:
 			#TEST
-			xp = os.path.basename( x.getPath() )
-			if xp == os.path.basename( self.service.getPath() ):
+			xp = os.path.basename(x.getPath())
+			if xp == os.path.basename(self.service.getPath()):
 				callEOF = True
 			for p in self.playlist:
-				if xp == os.path.basename( p.getPath() ):
+				if xp == os.path.basename(p.getPath()):
 					self.playlist.remove(p)
 		if callEOF:
 			self.playcount -= 1	# need to go one back since the current was removed
@@ -809,9 +809,9 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarTimeshift, InfoBar
 				if subs:
 					print "############################subs"
 					print subs.getSubtitleList()
-					lt = [ (e, (e[0] == 0 and "DVB" or e[0] == 1 and "TXT" or "???")) for e in (subs and subs.getSubtitleList() or []) ]
+					lt = [(e, (e[0] == 0 and "DVB" or e[0] == 1 and "TXT" or "???")) for e in (subs and subs.getSubtitleList() or [])]
 					if lt:
-						l = [ [e[0], e[1], langC.has_key(e[0][4]) and langC[e[0][4]][0] or e[0][4] ] for e in lt ]
+						l = [[e[0], e[1], langC.has_key(e[0][4]) and langC[e[0][4]][0] or e[0][4]] for e in lt]
 						if l:
 							print l
 							for sublang in [config.EMC.sublang1.value, config.EMC.sublang2.value, config.EMC.sublang3.value]:
@@ -1165,11 +1165,11 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarTimeshift, InfoBar
 	def makeUpdateCutList(self):
 		if self.getSeekPlayPosition() == 0:
 			if self.realSeekLength is not None:
-				self.updateCutList( self.realSeekLength, self.realSeekLength )
+				self.updateCutList(self.realSeekLength, self.realSeekLength)
 			else:
-				self.updateCutList( self.getSeekLength(), self.getSeekLength() )
+				self.updateCutList(self.getSeekLength(), self.getSeekLength())
 		else:
-			self.updateCutList( self.getSeekPlayPosition(), self.getSeekLength() )
+			self.updateCutList(self.getSeekPlayPosition(), self.getSeekLength())
 
 	##############################################################################
 	## Oozoon image specific and make now the PiPzap possible

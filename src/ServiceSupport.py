@@ -209,7 +209,7 @@ class Info:
 		d = self.__mtime and datetime.fromtimestamp(self.__mtime)
 		if d:
 			if config.EMC.movie_date_format.value:
-				return d.strftime( config.EMC.movie_date_format.value )
+				return d.strftime(config.EMC.movie_date_format.value)
 			else:
 				return d.strftime("%d.%m.%Y %H:%M")
 		else:

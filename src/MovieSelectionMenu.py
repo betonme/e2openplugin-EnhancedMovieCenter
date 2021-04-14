@@ -253,7 +253,7 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 				boundFunction(self.createDirCB, currentPath),
 				InputBox,
 				title=_("Enter name for new directory:"),
-				windowTitle=_("Create directory") )
+				windowTitle=_("Create directory"))
 
 	def createDirCB(self, currentPath, name):
 		if name is not None:
@@ -297,7 +297,7 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 
 	def createLink(self, path):
 		self.session.openWithCallback(
-				boundFunction( self.createLinkCB, path ),
+				boundFunction(self.createLinkCB, path),
 				LocationBox,
 					windowTitle=_("Create link"),
 					text=_("Choose directory"),
@@ -306,7 +306,7 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 					autoAdd=False,
 					editDir=True,
 					inhibitDirs=["/bin", "/boot", "/dev", "/etc", "/lib", "/proc", "/sbin", "/sys", "/usr", "/var"],
-					minFree=0 )
+					minFree=0)
 
 	def createLinkCB(self, currentPath, linkPath):
 		if currentPath == linkPath or linkPath == None:
@@ -331,7 +331,7 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 				self.emptyTrashCB,
 				MessageBox,
 				_("Permanently delete all files in trashcan?"),
-				MessageBox.TYPE_YESNO )
+				MessageBox.TYPE_YESNO)
 
 	def emptyTrashCB(self, confirmed):
 		if confirmed:
@@ -362,14 +362,14 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 				self.remRogueFilesCB,
 				MessageBox,
 				_("Locate rogue files and remove them? (permanently if no trashcan available, may take a minute or so)"),
-				MessageBox.TYPE_YESNO )
+				MessageBox.TYPE_YESNO)
 
 	def remRogueFilesCB(self, confirmed):
 		if confirmed:
 			movieFileCache.delPathFromCache(self.currentPath)
 			check = RogueFileCheck(self.currentPath)
 			path = config.EMC.movie_trashcan_enable.value and config.EMC.movie_trashcan_path.value
-			emcTasker.shellExecute( check.getScript(path) )
+			emcTasker.shellExecute(check.getScript(path))
 			self.session.open(MessageBox, check.getStatistics(), MessageBox.TYPE_INFO)
 		self.close(None)
 
@@ -379,7 +379,7 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 				self.remCutListMarkerCB,
 				MessageBox,
 				_("Remove all cut file marker permanently?"),
-				MessageBox.TYPE_YESNO )
+				MessageBox.TYPE_YESNO)
 
 	def remCutListMarkerCB(self, confirm):
 		if confirm:
@@ -393,7 +393,7 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 				self.resMarkerCB,
 				MessageBox,
 				_("Remove all marker permanently?"),
-				MessageBox.TYPE_YESNO )
+				MessageBox.TYPE_YESNO)
 
 	def resMarkerCB(self, confirm):
 		if confirm:
@@ -445,7 +445,7 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 			#self.close("reload")
 
 	def addDirToE2Bookmarks(self, path):
-		if path and self.addE2Bookmark( path ) \
+		if path and self.addE2Bookmark(path) \
 			and (config.EMC.bookmarks.value == "Both" or config.EMC.bookmarks.value == "E2") \
 			and path == config.EMC.movie_homepath.value:
 			#TODO Avoid reload
@@ -459,7 +459,7 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 			self.session.openWithCallback(
 					boundFunction(self.removeDirFromE2BookmarksConfirmed, path),
 					MessageBox,
-					_("Do you really want to remove your bookmark\n%s?") % (path) )
+					_("Do you really want to remove your bookmark\n%s?") % (path))
 		else:
 			self.removeDirFromE2BookmarksConfirmed(path, True)
 
@@ -476,7 +476,7 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 			self.close(None)
 
 	def addDirToEMCBookmarks(self, path):
-		if path and self.addEMCBookmark( path ) \
+		if path and self.addEMCBookmark(path) \
 			and (config.EMC.bookmarks.value == "Both" or config.EMC.bookmarks.value == "EMC") \
 			and path == config.EMC.movie_homepath.value:
 			#TODO Avoid reload
@@ -491,7 +491,7 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 			self.session.openWithCallback(
 					boundFunction(self.removeDirFromEMCBookmarksConfirmed, path),
 					MessageBox,
-					_("Do you really want to remove your bookmark\n%s?") % (path) )
+					_("Do you really want to remove your bookmark\n%s?") % (path))
 		else:
 			self.removeDirFromEMCBookmarksConfirmed(path, True)
 

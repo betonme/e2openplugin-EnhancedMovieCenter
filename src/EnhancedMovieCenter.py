@@ -173,14 +173,14 @@ def EMCStartup(session):
 #                       None stands for not specified, will be ignored
 #			Name (Button),	Column,	ID (Title)
 from collections import OrderedDict
-predefined_settings = OrderedDict([	(_("Custom"),( None, "" )),
-					(_("Default"),( None, "D" )),
-					(_("Performance"),( 7, "P" )),
-					(_("Information"),( 8, "I" ))
+predefined_settings = OrderedDict([	(_("Custom"),(None, "")),
+					(_("Default"),(None, "D")),
+					(_("Performance"),(7, "P")),
+					(_("Information"),(8, "I"))
 				])
 
 def get_predefined_columns():
-	return [ v[0] for k,v in predefined_settings.iteritems() if v[0] is not None ]
+	return [v[0] for k,v in predefined_settings.iteritems() if v[0] is not None]
 
 def get_predefined_nameid(column):
 	for k,v in predefined_settings.iteritems():
@@ -191,7 +191,7 @@ def get_predefined_value(key):
 	if key in predefined_settings:
 		return predefined_settings[key]
 	else:
-		return predefined_settings[ next_predefined_settings() ]
+		return predefined_settings[next_predefined_settings()]
 
 def next_predefined_settings(key=""):
 	if key not in predefined_settings:
@@ -334,233 +334,233 @@ class EnhancedMovieCenterMenu(ConfigListScreenExt, Screen):
 		#          _                                                  ,                                     ,                       ,                       ,       ,             ,                                                          ,                   , information value
 		#          _ 0                                                , 1                                   , 2                     , 3                     , 4     , 5           , 6                                                        , 7                 , 8
 		self.EMCConfig = [
-			(  self.section                                       , _("GENERAL")                        , None                  , None                  , 0     , []          , ""                                                       , None              , None ),
-			(  _("About")                                         , config.EMC.fake_entry               , None                  , self.showInfo         , 0     , []          , _("HELP_About")                                          , None              , None ),
-			(  _("Disable EMC")                                   , config.EMC.ml_disable               , self.needsRestart     , None                  , 1     , []          , _("HELP_Disable EMC")                                    , None              , None ),
-			(  _("Start EMC with")                                , config.EMC.movie_launch             , self.launchListSet    , None                  , 0     , []          , _("HELP_Start EMC with")                                 , None              , None ),
-			(  _("Show plugin config in extensions menu")         , config.EMC.extmenu_plugin           , self.needsRestart     , None                  , 0     , []          , _("HELP_Show plugin config in extensions menu")          , None              , None ),
-			(  _("Show EMC in main menu")                         , config.EMC.mainmenu_list            , self.needsRestart     , None                  , 0     , []          , _("HELP_Show EMC in main menu")                   	     , None              , None ),
-			(  _("Show EMC in extensions menu")                   , config.EMC.extmenu_list             , self.needsRestart     , None                  , 0     , []          , _("HELP_Show EMC in extensions menu")                    , None              , None ),
+			(self.section, _("GENERAL"), None, None, 0, [], "", None, None),
+			(_("About"), config.EMC.fake_entry, None, self.showInfo, 0, [], _("HELP_About"), None, None),
+			(_("Disable EMC"), config.EMC.ml_disable, self.needsRestart, None, 1, [], _("HELP_Disable EMC"), None, None),
+			(_("Start EMC with"), config.EMC.movie_launch, self.launchListSet, None, 0, [], _("HELP_Start EMC with"), None, None),
+			(_("Show plugin config in extensions menu"), config.EMC.extmenu_plugin, self.needsRestart, None, 0, [], _("HELP_Show plugin config in extensions menu"), None, None),
+			(_("Show EMC in main menu"), config.EMC.mainmenu_list, self.needsRestart, None, 0, [], _("HELP_Show EMC in main menu"), None, None),
+			(_("Show EMC in extensions menu"), config.EMC.extmenu_list, self.needsRestart, None, 0, [], _("HELP_Show EMC in extensions menu"), None, None),
 
-			(  self.section                                       , _("KEYMAPPING")                     , None                  , None                  , 0     , []          , ""                                                       , None              , None ),
-			(  _("Bouquet buttons behaviour")                     , config.EMC.bqt_keys                 , None                  , None                  , 0     , []          , _("HELP_Bouquet buttons behaviour")                      , None              , None ),
-			(  _("List entries to skip")                          , config.EMC.list_skip_size           , None                  , None                  , 0     , []          , _("HELP_List entries to skip")                           , None              , None ),
-			(  _("Red button function")                           , config.EMC.movie_redfunc            , None                  , None                  , 0     , []          , _("HELP_Red button function")                            , None              , None ),
-			(  _("Long Red button function")                      , config.EMC.movie_longredfunc        , None                  , None                  , 0     , []          , _("HELP_Long Red button function")                       , None              , None ),
+			(self.section, _("KEYMAPPING"), None, None, 0, [], "", None, None),
+			(_("Bouquet buttons behaviour"), config.EMC.bqt_keys, None, None, 0, [], _("HELP_Bouquet buttons behaviour"), None, None),
+			(_("List entries to skip"), config.EMC.list_skip_size, None, None, 0, [], _("HELP_List entries to skip"), None, None),
+			(_("Red button function"), config.EMC.movie_redfunc, None, None, 0, [], _("HELP_Red button function"), None, None),
+			(_("Long Red button function"), config.EMC.movie_longredfunc, None, None, 0, [], _("HELP_Long Red button function"), None, None),
 			#(  _("Green button function")                         , config.EMC.movie_greenfunc          , None                  , None                  , 0     , []          , _("HELP_Green button function")                          , None              , None ),
-			(  _("Yellow button function")                        , config.EMC.movie_yellowfunc         , None                  , None                  , 0     , []          , _("HELP_Yellow button function")                         , None              , None ),
-			(  _("Long Yellow button function")                   , config.EMC.movie_longyellowfunc     , None                  , None                  , 0     , []          , _("HELP_Long Yellow button function")                    , None              , None ),
-			(  _("Blue button function")                          , config.EMC.movie_bluefunc           , None                  , None                  , 0     , []          , _("HELP_Blue button function")                           , None              , None ),
-			(  _("Long Blue button function")                     , config.EMC.movie_longbluefunc       , None                  , None                  , 0     , []          , _("HELP_Long Blue button function")                      , None              , None ),
-			(  _("LongInfo Button")                               , config.EMC.InfoLong                 , None                  , None                  , 0     , []          , _("HELP_LongInfo Button")                                , None              , None ),
+			(_("Yellow button function"), config.EMC.movie_yellowfunc, None, None, 0, [], _("HELP_Yellow button function"), None, None),
+			(_("Long Yellow button function"), config.EMC.movie_longyellowfunc, None, None, 0, [], _("HELP_Long Yellow button function"), None, None),
+			(_("Blue button function"), config.EMC.movie_bluefunc, None, None, 0, [], _("HELP_Blue button function"), None, None),
+			(_("Long Blue button function"), config.EMC.movie_longbluefunc, None, None, 0, [], _("HELP_Long Blue button function"), None, None),
+			(_("LongInfo Button"), config.EMC.InfoLong, None, None, 0, [], _("HELP_LongInfo Button"), None, None),
 
-			(  self.section                                       , _("AUTOSTART")                      , None                  , None                  , 0     , []          , ""                                                       , None              , None ),
-			(  _("daily auto-start")                              , config.EMC.restart                  , self.autoRestartInfo  , self.autoRestartInfo  , 1     , []          , _("HELP_Daily auto-start")                               , None              , None ),
-			(  _("auto-start window begin")                       , config.EMC.restart_begin            , None                  , None                  , 1     , [-1]        , _("HELP_auto-start window begin")                        , None              , None ),
-			(  _("auto-start window end")                         , config.EMC.restart_end              , None                  , None                  , 1     , [-2]        , _("HELP_auto-start window end")                          , None              , None ),
-			(  _("Force standby after auto-restart")              , config.EMC.restart_stby             , None                  , None                  , 1     , [-3]        , _("HELP_Force standby after auto-start")                 , None              , None ),
+			(self.section, _("AUTOSTART"), None, None, 0, [], "", None, None),
+			(_("daily auto-start"), config.EMC.restart, self.autoRestartInfo, self.autoRestartInfo, 1, [], _("HELP_Daily auto-start"), None, None),
+			(_("auto-start window begin"), config.EMC.restart_begin, None, None, 1, [-1], _("HELP_auto-start window begin"), None, None),
+			(_("auto-start window end"), config.EMC.restart_end, None, None, 1, [-2], _("HELP_auto-start window end"), None, None),
+			(_("Force standby after auto-restart"), config.EMC.restart_stby, None, None, 1, [-3], _("HELP_Force standby after auto-start"), None, None),
 
-			(  self.section                                       , ""                                  , None                  , None                  , 0     , []          , ""                                                       , None              , None ),
-			(  _("Movie home at start")                           , config.EMC.CoolStartHome            , None                  , None                  , 0     , []          , _("HELP_Movie home at start")                            , "false"           , None ),
-			(  _("Default sort mode")                             , config.EMC.moviecenter_sort         , None                  , None                  , 0     , []          , _("HELP_Sort mode at startup")                           , None              , None ),
+			(self.section, "", None, None, 0, [], "", None, None),
+			(_("Movie home at start"), config.EMC.CoolStartHome, None, None, 0, [], _("HELP_Movie home at start"), "false", None),
+			(_("Default sort mode"), config.EMC.moviecenter_sort, None, None, 0, [], _("HELP_Sort mode at startup"), None, None),
 
-			(  _("Movie home home path")                          , config.EMC.movie_homepath           , self.validatePath     , self.openLocationBox  , 0     , []          , _("HELP_Movie home home path")                           , None              , None ),
-			(  _("EMC path access limit")                         , config.EMC.movie_pathlimit          , self.validatePath     , self.openLocationBox  , 1     , []          , _("HELP_EMC path access limit")                          , None              , None ),
+			(_("Movie home home path"), config.EMC.movie_homepath, self.validatePath, self.openLocationBox, 0, [], _("HELP_Movie home home path"), None, None),
+			(_("EMC path access limit"), config.EMC.movie_pathlimit, self.validatePath, self.openLocationBox, 1, [], _("HELP_EMC path access limit"), None, None),
 
-			(  _("Cursor predictive move after selection")        , config.EMC.moviecenter_selmove      , None                  , None                  , 0     , []          , _("HELP_Cursor predictive move after selection")         , None              , None ),
+			(_("Cursor predictive move after selection"), config.EMC.moviecenter_selmove, None, None, 0, [], _("HELP_Cursor predictive move after selection"), None, None),
 
-			(  self.section                                       , _("DISPLAY-SETTINGS")               , None                  , None                  , 0     , []          , ""                                                       , None              , None ),
-			(  _("Show symlinks")                                 , config.EMC.symlinks_show            , None                  , None                  , 0     , []          , _("HELP_Show symlinks")                                  , None              , True ),
-			(  _("Show directories")                              , config.EMC.directories_show         , None                  , None                  , 0     , []          , _("HELP_Show directories")                               , None              , True ),
-			(  _("Show directories within movielist")             , config.EMC.directories_ontop        , None                  , None                  , 0     , [-1]        , _("HELP_Show directories within movielist")              , False             , True ),
-			(  _("Configured directories at the top of movielist"), config.EMC.cfgtopdir_enable         , None                  , None                  , 0     , [-2,-1]     , _("HELP_Configure in etc\enigma2\emc-topdir.cfg")        , False             , True ),
-			(  _("Show directories information")                  , config.EMC.directories_info         , None                  , None                  , 0     , [-3]        , _("HELP_Show directories information")                   , ""                , "CS" ),
-			(  _("Text shown for initially unknown file count")   , config.EMC.count_default_text       , None                  , None                  , 0     , [-4,-1]     , _("HELP_Text shown for initially unknown file count")    , None              , None ),
-			(  _("Text shown for initially unknown count and size"), config.EMC.count_size_default_text , None                  , None                  , 0     , [-5,-2]     , _("HELP_Text shown for initially unknown count and size"), None              , None ),
-			(  _("Text shown for initially unknown directory size"), config.EMC.size_default_text       , None                  , None                  , 0     , [-6,-3]     , _("HELP_Text shown for initially unknown directory size"), None              , None ),
-			(  _("Icon shown for initially unknown count / size") , config.EMC.count_size_default_icon  , None                  , None                  , 0     , [-7,-4]     , _("HELP_Icon shown for initially unknown count / size")  , None              , None ),
-			(  _("Show directory size in skin")                   , config.EMC.directories_size_skin    , None                  , None                  , 0     , []          , _("HELP_Show directory size in skin")                    , None              , None ),
+			(self.section, _("DISPLAY-SETTINGS"), None, None, 0, [], "", None, None),
+			(_("Show symlinks"), config.EMC.symlinks_show, None, None, 0, [], _("HELP_Show symlinks"), None, True),
+			(_("Show directories"), config.EMC.directories_show, None, None, 0, [], _("HELP_Show directories"), None, True),
+			(_("Show directories within movielist"), config.EMC.directories_ontop, None, None, 0, [-1], _("HELP_Show directories within movielist"), False, True),
+			(_("Configured directories at the top of movielist"), config.EMC.cfgtopdir_enable, None, None, 0, [-2,-1], _("HELP_Configure in etc\enigma2\emc-topdir.cfg"), False, True),
+			(_("Show directories information"), config.EMC.directories_info, None, None, 0, [-3], _("HELP_Show directories information"), "", "CS"),
+			(_("Text shown for initially unknown file count"), config.EMC.count_default_text, None, None, 0, [-4,-1], _("HELP_Text shown for initially unknown file count"), None, None),
+			(_("Text shown for initially unknown count and size"), config.EMC.count_size_default_text, None, None, 0, [-5,-2], _("HELP_Text shown for initially unknown count and size"), None, None),
+			(_("Text shown for initially unknown directory size"), config.EMC.size_default_text, None, None, 0, [-6,-3], _("HELP_Text shown for initially unknown directory size"), None, None),
+			(_("Icon shown for initially unknown count / size"), config.EMC.count_size_default_icon, None, None, 0, [-7,-4], _("HELP_Icon shown for initially unknown count / size"), None, None),
+			(_("Show directory size in skin"), config.EMC.directories_size_skin, None, None, 0, [], _("HELP_Show directory size in skin"), None, None),
 
-			(  _("Show Latest Recordings directory")              , config.EMC.latest_recordings        , None                  , None                  , 0     , []          , _("HELP_Show Latest Recordings directory")               , None              , True ),
-			(  _("Latest Recordings directory limit")             , config.EMC.latest_recordings_limit  , None                  , None                  , 0     , [-1]        , _("HELP_Latest Recordings directory limit")              , None              , True ),
-			(  _("Latest Recordings directory use emc-noscan.cfg"), config.EMC.latest_recordings_noscan , None                  , None                  , 0     , [-2]        , _("HELP_Latest Recordings directory use emc-noscan.cfg") , None              , True ),
-			(  _("Show VLC directory")                            , config.EMC.vlc                      , None                  , None                  , 0     , []          , _("HELP_Show VLC directory")                             , None              , True ),
-			(  _("Show Bookmarks in movielist")                   , config.EMC.bookmarks                , None                  , None                  , 0     , []          , _("HELP_Show Bookmarks in movielist")                    , "No"              , "Both" ),
-			(  _("Use cache for files and directories")           , config.EMC.files_cache              , None                  , None                  , 0     , []          , _("HELP_Use cache for files and directories")            , True              , None ),
-			(  _("Minimum file cache limit (0=cache everything)") , config.EMC.min_file_cache_limit     , None                  , None                  , 0     , [-1]        , _("HELP_Minimum file cache limit")                       , None              , False ),
-			(  _("Show experimental options")                     , config.EMC.show_experimental_options, None                  , None                  , 0     , []          , _("HELP_Show experimental options")                      , None              , False ),
-			(  _("Don't auto scan size of dirs from emc-noscan.cfg") , config.EMC.dir_info_usenoscan    , None                  , None                  , 0     , [-1]        , _("HELP_Don't auto scan size of dirs from emc-noscan.cfg"), None             , False ),
-			(  _("Limit file operations in dirs from emc-noscan.cfg") , config.EMC.limit_fileops_noscan , None                  , None                  , 0     , [-2]        , _("HELP_Limit file operations in dirs from emc-noscan.cfg"), None            , False ),
-			(  _("After file OPs only re-scan affected dirs")     , config.EMC.rescan_only_affected_dirs, None                  , None                  , 0     , [-3]        , _("HELP_After file OPs only re-scan affected dirs")      , None              , False ),
-			(  _("Wake device when entering dir from emc-noscan.cfg"), config.EMC.noscan_wake_on_entry  , None                  , None                  , 0     , [-4]        , _("HELP_Wake device when entering dir from emc-noscan.cfg"), None            , False ),
-			(  _("Check for dead links"),                           config.EMC.check_dead_links         , None                  , None                  , 0     , [-5]        , _("HELP_Check for dead links")                           , None              , None ),
+			(_("Show Latest Recordings directory"), config.EMC.latest_recordings, None, None, 0, [], _("HELP_Show Latest Recordings directory"), None, True),
+			(_("Latest Recordings directory limit"), config.EMC.latest_recordings_limit, None, None, 0, [-1], _("HELP_Latest Recordings directory limit"), None, True),
+			(_("Latest Recordings directory use emc-noscan.cfg"), config.EMC.latest_recordings_noscan, None, None, 0, [-2], _("HELP_Latest Recordings directory use emc-noscan.cfg"), None, True),
+			(_("Show VLC directory"), config.EMC.vlc, None, None, 0, [], _("HELP_Show VLC directory"), None, True),
+			(_("Show Bookmarks in movielist"), config.EMC.bookmarks, None, None, 0, [], _("HELP_Show Bookmarks in movielist"), "No", "Both"),
+			(_("Use cache for files and directories"), config.EMC.files_cache, None, None, 0, [], _("HELP_Use cache for files and directories"), True, None),
+			(_("Minimum file cache limit (0=cache everything)"), config.EMC.min_file_cache_limit, None, None, 0, [-1], _("HELP_Minimum file cache limit"), None, False),
+			(_("Show experimental options"), config.EMC.show_experimental_options, None, None, 0, [], _("HELP_Show experimental options"), None, False),
+			(_("Don't auto scan size of dirs from emc-noscan.cfg"), config.EMC.dir_info_usenoscan, None, None, 0, [-1], _("HELP_Don't auto scan size of dirs from emc-noscan.cfg"), None, False),
+			(_("Limit file operations in dirs from emc-noscan.cfg"), config.EMC.limit_fileops_noscan, None, None, 0, [-2], _("HELP_Limit file operations in dirs from emc-noscan.cfg"), None, False),
+			(_("After file OPs only re-scan affected dirs"), config.EMC.rescan_only_affected_dirs, None, None, 0, [-3], _("HELP_After file OPs only re-scan affected dirs"), None, False),
+			(_("Wake device when entering dir from emc-noscan.cfg"), config.EMC.noscan_wake_on_entry, None, None, 0, [-4], _("HELP_Wake device when entering dir from emc-noscan.cfg"), None, False),
+			(_("Check for dead links"),                           config.EMC.check_dead_links, None, None, 0, [-5], _("HELP_Check for dead links"), None, None),
 
-			(  self.section                                       , _("DVD / BLU-RAY / FOLDERS")        , None                  , None                  , 1     , []          , ""                                                       , None              , None ),
-			(  _("Hide configured entries")                       , config.EMC.cfghide_enable           , None                  , None                  , 1     , []          , _("HELP_cfghide_enable")                                 , True              , True ),
-			(  _("Scan for DVD structures")                       , config.EMC.check_dvdstruct          , None                  , None                  , 1     , []          , _("HELP_Scan for DVD structures")                        , False             , True ),
-			(  _("Scan for movie structures")                     , config.EMC.check_moviestruct        , None                  , None                  , 1     , []          , _("HELP_Scan for movie structures")                      , False             , True ),
-			(  _("Scan for bluray structures")                    , config.EMC.check_blustruct          , None                  , None                  , 1     , []          , _("HELP_Scan for bluray structures")                     , False             , True ),
-			(  _("Scan for bluray structures in .iso")            , config.EMC.check_blustruct_iso      , None                  , None                  , 0     , []          , _("HELP_Scan for bluray structures in .iso")             , False             , True ),
-			(  _("Suppress scan in selected folders")             , config.EMC.cfgscan_suppress         , None                  , None                  , 1     , []          , _("HELP_cfgscan_suppress")                               , True              , True ),
-			(  _("Scan linked folders")                           , config.EMC.scan_linked              , None                  , None                  , 1     , []          , _("HELP_scan_linked")                                    , False             , True ),
+			(self.section, _("DVD / BLU-RAY / FOLDERS"), None, None, 1, [], "", None, None),
+			(_("Hide configured entries"), config.EMC.cfghide_enable, None, None, 1, [], _("HELP_cfghide_enable"), True, True),
+			(_("Scan for DVD structures"), config.EMC.check_dvdstruct, None, None, 1, [], _("HELP_Scan for DVD structures"), False, True),
+			(_("Scan for movie structures"), config.EMC.check_moviestruct, None, None, 1, [], _("HELP_Scan for movie structures"), False, True),
+			(_("Scan for bluray structures"), config.EMC.check_blustruct, None, None, 1, [], _("HELP_Scan for bluray structures"), False, True),
+			(_("Scan for bluray structures in .iso"), config.EMC.check_blustruct_iso, None, None, 0, [], _("HELP_Scan for bluray structures in .iso"), False, True),
+			(_("Suppress scan in selected folders"), config.EMC.cfgscan_suppress, None, None, 1, [], _("HELP_cfgscan_suppress"), True, True),
+			(_("Scan linked folders"), config.EMC.scan_linked, None, None, 1, [], _("HELP_scan_linked"), False, True),
 
-			(  self.section                                       , _("OTHER")                          , None                  , None                  , 0     , []          , ""                                                       , None              , None ),
-			(  _("Try to load titles from .meta files")           , config.EMC.movie_metaload           , None                  , None                  , 0     , []          , _("HELP_Try to load titles from .meta files")            , False             , True ),
-			(  _("Try to load extra title and more from .meta files"), config.EMC.movie_metaload_all    , None                  , None                  , 0     , [-1]        , _("HELP_Try to load extra title and more from .meta files"), "no"             , "title" ),
-			(  _("Try to load titles from .eit files")            , config.EMC.movie_eitload            , None                  , None                  , 0     , []          , _("HELP_Try to load titles from .eit files")             , False             , True ),
-			(  _("Replace special chars in title")                , config.EMC.replace_specialchars     , None                  , None                  , 2     , []          , _("HELP_Replace special chars in title")                 , False             , None ),
-			(  _("Show Movie Format")                             , config.EMC.movie_show_format        , None                  , None                  , 0     , []          , _("HELP_Show Movie Format")                              , False             , True ),
-			(  _("Show Cut-Nr if exist")                          , config.EMC.movie_show_cutnr         , None                  , None                  , 0     , []          , _("HELP_Show Cut-Nr if exist")                           , False             , True ),
-			(  _("Resolve links and show real path")              , config.EMC.movie_real_path          , None                  , None                  , 0     , []          , _("HELP_Resolve links and show real path")               , False             , True ),
-			(  _("Show Path if no extended description available"), config.EMC.show_path_extdescr       , None                  , None                  , 0     , []          , _("HELP_Show Path if no extended description available") , False             , True ),
+			(self.section, _("OTHER"), None, None, 0, [], "", None, None),
+			(_("Try to load titles from .meta files"), config.EMC.movie_metaload, None, None, 0, [], _("HELP_Try to load titles from .meta files"), False, True),
+			(_("Try to load extra title and more from .meta files"), config.EMC.movie_metaload_all, None, None, 0, [-1], _("HELP_Try to load extra title and more from .meta files"), "no", "title"),
+			(_("Try to load titles from .eit files"), config.EMC.movie_eitload, None, None, 0, [], _("HELP_Try to load titles from .eit files"), False, True),
+			(_("Replace special chars in title"), config.EMC.replace_specialchars, None, None, 2, [], _("HELP_Replace special chars in title"), False, None),
+			(_("Show Movie Format"), config.EMC.movie_show_format, None, None, 0, [], _("HELP_Show Movie Format"), False, True),
+			(_("Show Cut-Nr if exist"), config.EMC.movie_show_cutnr, None, None, 0, [], _("HELP_Show Cut-Nr if exist"), False, True),
+			(_("Resolve links and show real path"), config.EMC.movie_real_path, None, None, 0, [], _("HELP_Resolve links and show real path"), False, True),
+			(_("Show Path if no extended description available"), config.EMC.show_path_extdescr, None, None, 0, [], _("HELP_Show Path if no extended description available"), False, True),
 		]
 
 		self.EMCConfig.extend(
 		[
-			(  self.section                                       , ""                                  , None                  , None                  , 0     , []          , ""                                                       , None              , None ),
-			(  _("Show message if file added to playlist")        , config.EMC.playlist_message         , None                  , None                  , 0     , []          , _("HELP_Show message if file added to playlist")         , None              , None ),
-			(  _("No resume below 10 seconds")                    , config.EMC.movie_ignore_firstcuts   , None                  , None                  , 1     , []          , _("HELP_No resume below 10 seconds")                     , None              , None ),
-			(  _("Jump to first mark when playing movie")         , config.EMC.movie_jump_first_mark    , None                  , None                  , 1     , []          , _("HELP_Jump to first mark when playing movie")          , None              , None ),
-			(  _("Rewind finished movies before playing")         , config.EMC.movie_rewind_finished    , None                  , None                  , 1     , []          , _("HELP_Rewind finished movies before playing")          , None              , None ),
-			(  _("Always save last played progress as marker")    , config.EMC.movie_save_lastplayed    , None                  , None                  , 1     , []          , _("HELP_Always save last played progress as marker")     , None              , None ),
-			(  _("Zap to channel after record EOF")               , config.EMC.record_eof_zap           , None                  , None                  , 1     , []          , _("HELP_Zap to channel after record EOF")                , None              , None ),
-			(  _("Show real length of running records")           , config.EMC.record_show_real_length  , None                  , None                  , 1     , []          , _("HELP_Show real length of running records")            , None              , True ),
+			(self.section, "", None, None, 0, [], "", None, None),
+			(_("Show message if file added to playlist"), config.EMC.playlist_message, None, None, 0, [], _("HELP_Show message if file added to playlist"), None, None),
+			(_("No resume below 10 seconds"), config.EMC.movie_ignore_firstcuts, None, None, 1, [], _("HELP_No resume below 10 seconds"), None, None),
+			(_("Jump to first mark when playing movie"), config.EMC.movie_jump_first_mark, None, None, 1, [], _("HELP_Jump to first mark when playing movie"), None, None),
+			(_("Rewind finished movies before playing"), config.EMC.movie_rewind_finished, None, None, 1, [], _("HELP_Rewind finished movies before playing"), None, None),
+			(_("Always save last played progress as marker"), config.EMC.movie_save_lastplayed, None, None, 1, [], _("HELP_Always save last played progress as marker"), None, None),
+			(_("Zap to channel after record EOF"), config.EMC.record_eof_zap, None, None, 1, [], _("HELP_Zap to channel after record EOF"), None, None),
+			(_("Show real length of running records"), config.EMC.record_show_real_length, None, None, 1, [], _("HELP_Show real length of running records"), None, True),
 		]
 		)
 		if hasCutlistDownloader:
 			self.EMCConfig.append(
-			(  _("Download cutlist from Cutlist.at")              , config.EMC.cutlist_at_download      , None                  , None                  , 1     , []          , _("HELP_Download cutlist from Cutlist.at")               , False             , True ),
+			(_("Download cutlist from Cutlist.at"), config.EMC.cutlist_at_download, None, None, 1, [], _("HELP_Download cutlist from Cutlist.at"), False, True),
 		)
 		self.EMCConfig.extend(
 		[
-			(  self.section                                       , _("TRASHCAN")                       , None                  , None                  , 0     , []          , ""                                                       , None              , None ),
-			(  _("Trashcan enable")                               , config.EMC.movie_trashcan_enable    , None                  , self.openLocationBox  , 0     , []          , _("HELP_Trashcan enable")                                , None              , None ),
-			(  _("Trashcan path")                                 , config.EMC.movie_trashcan_path      , self.validatePath     , self.openLocationBox  , 0     , [-1]        , _("HELP_Trashcan path")                                  , None              , None ),
-			(  _("Show trashcan directory")                       , config.EMC.movie_trashcan_show      , None                  , None                  , 0     , [-2]        , _("HELP_Show trashcan directory")                        , None              , True ),
-			(  _("Show trashcan information")                     , config.EMC.movie_trashcan_info      , None                  , None                  , 0     , [-3,-1]     , _("HELP_Dynamic trashcan")                               , ""                , "CS" ),
-			(  _("Delete validation")                             , config.EMC.movie_delete_validation  , None                  , None                  , 0     , [-4]        , _("HELP_Delete validation")                              , None              , None ),
+			(self.section, _("TRASHCAN"), None, None, 0, [], "", None, None),
+			(_("Trashcan enable"), config.EMC.movie_trashcan_enable, None, self.openLocationBox, 0, [], _("HELP_Trashcan enable"), None, None),
+			(_("Trashcan path"), config.EMC.movie_trashcan_path, self.validatePath, self.openLocationBox, 0, [-1], _("HELP_Trashcan path"), None, None),
+			(_("Show trashcan directory"), config.EMC.movie_trashcan_show, None, None, 0, [-2], _("HELP_Show trashcan directory"), None, True),
+			(_("Show trashcan information"), config.EMC.movie_trashcan_info, None, None, 0, [-3,-1], _("HELP_Dynamic trashcan"), "", "CS"),
+			(_("Delete validation"), config.EMC.movie_delete_validation, None, None, 0, [-4], _("HELP_Delete validation"), None, None),
 
-			(  _("Enable daily trashcan cleanup")                 , config.EMC.movie_trashcan_clean     , self.trashCleanupSetup, None                  , 0     , [-5]        , _("HELP_Enable daily trashcan cleanup")                  , None              , None ),
-			(  _("Daily cleanup time")                            , config.EMC.movie_trashcan_ctime     , None                  , None                  , 0     , [-6,-1]     , _("HELP_Daily cleanup time")                             , None              , None ),
-			(  _("How many days files may remain in trashcan")    , config.EMC.movie_trashcan_limit     , None                  , None                  , 0     , [-7,-2]     , _("HELP_How many days files may remain in trashcan")     , None              , None ),
-			(  _("Move finished movies in trashcan")              , config.EMC.movie_finished_clean     , None                  , None                  , 2     , [-8,-3]     , _("HELP_Move finished movies in trashcan")               , None              , None ),
-			(  _("Age of finished movies in movie folder (days)") , config.EMC.movie_finished_limit     , None                  , None                  , 2     , [-9,-4,-1]  , _("HELP_Age of finished movies in movie folder (days)")  , None              , None ),
+			(_("Enable daily trashcan cleanup"), config.EMC.movie_trashcan_clean, self.trashCleanupSetup, None, 0, [-5], _("HELP_Enable daily trashcan cleanup"), None, None),
+			(_("Daily cleanup time"), config.EMC.movie_trashcan_ctime, None, None, 0, [-6,-1], _("HELP_Daily cleanup time"), None, None),
+			(_("How many days files may remain in trashcan"), config.EMC.movie_trashcan_limit, None, None, 0, [-7,-2], _("HELP_How many days files may remain in trashcan"), None, None),
+			(_("Move finished movies in trashcan"), config.EMC.movie_finished_clean, None, None, 2, [-8,-3], _("HELP_Move finished movies in trashcan"), None, None),
+			(_("Age of finished movies in movie folder (days)"), config.EMC.movie_finished_limit, None, None, 2, [-9,-4,-1], _("HELP_Age of finished movies in movie folder (days)"), None, None),
 
-			(  self.section                                       , ""                                  , None                  , None                  , 0     , []          , ""                                                       , None              , None ),
-			(  _("Display directory reading text")                , config.EMC.moviecenter_loadtext     , None                  , None                  , 1     , []          , _("HELP_Display directory reading text")                 , None              , None ),
-			(  _("EMC always reload after open")                  , config.EMC.movie_reload             , None                  , None                  , 1     , []          , _("HELP_EMC always reload after open")                   , False             , None ),
-			(  _("EMC re-open list after STOP-press")             , config.EMC.movie_reopen             , None                  , None                  , 1     , []          , _("HELP_EMC re-open list after STOP-press")              , None              , None ),
-			(  _("EMC re-open list after Movie end")              , config.EMC.movie_reopenEOF          , None                  , None                  , 1     , []          , _("HELP_EMC re-open list after Movie end")               , None              , None ),
+			(self.section, "", None, None, 0, [], "", None, None),
+			(_("Display directory reading text"), config.EMC.moviecenter_loadtext, None, None, 1, [], _("HELP_Display directory reading text"), None, None),
+			(_("EMC always reload after open"), config.EMC.movie_reload, None, None, 1, [], _("HELP_EMC always reload after open"), False, None),
+			(_("EMC re-open list after STOP-press"), config.EMC.movie_reopen, None, None, 1, [], _("HELP_EMC re-open list after STOP-press"), None, None),
+			(_("EMC re-open list after Movie end"), config.EMC.movie_reopenEOF, None, None, 1, [], _("HELP_EMC re-open list after Movie end"), None, None),
 
-			(  _("Leave Movie with Exit")                         , config.EMC.movie_exit               , None                  , None                  , 0     , []          , _("HELP_Leave Movie with Exit")                          , None              , None ),
+			(_("Leave Movie with Exit"), config.EMC.movie_exit, None, None, 0, [], _("HELP_Leave Movie with Exit"), None, None),
 
-			(  _("Hide movies being moved")                       , config.EMC.movie_hide_mov           , None                  , None                  , 1     , []          , _("HELP_Hide movies being moved")                        , None              , None ),
-			(  _("Hide movies being deleted")                     , config.EMC.movie_hide_del           , None                  , None                  , 1     , []          , _("HELP_Hide movies being deleted")                      , None              , None ),
+			(_("Hide movies being moved"), config.EMC.movie_hide_mov, None, None, 1, [], _("HELP_Hide movies being moved"), None, None),
+			(_("Hide movies being deleted"), config.EMC.movie_hide_del, None, None, 1, [], _("HELP_Hide movies being deleted"), None, None),
 
-			(  _("Enable remote recordings")                      , config.EMC.remote_recordings        , None                  , None                  , 1     , []          , _("HELP_Enable remote recordings")                       , False             , None ),
-			(  _("Automatic timers list cleaning")                , config.EMC.timer_autocln            , None                  , None                  , 1     , []          , _("HELP_Automatic timers list cleaning")                 , None              , None ),
+			(_("Enable remote recordings"), config.EMC.remote_recordings, None, None, 1, [], _("HELP_Enable remote recordings"), False, None),
+			(_("Automatic timers list cleaning"), config.EMC.timer_autocln, None, None, 1, [], _("HELP_Automatic timers list cleaning"), None, None),
 
-			(  self.section                                       , _("LANGUAGE")                       , None                  , None                  , 1     , []          , ""                                                       , None              , None ),
-			(  _("Preferred EPG language")                        , config.EMC.epglang                  , setEPGLanguage        , None                  , 1     , []          , _("HELP_Preferred EPG language")                         , None              , None ),
-			(  _("Enable playback auto-subtitling")               , config.EMC.autosubs                 , None                  , None                  , 1     , []          , _("HELP_Enable playback auto-subtitling")                , None              , None ),
-			(  _("Primary playback subtitle language")            , config.EMC.sublang1                 , None                  , None                  , 1     , [-1]        , _("HELP_Primary playback subtitle language")             , None              , None ),
-			(  _("Secondary playback subtitle language")          , config.EMC.sublang2                 , None                  , None                  , 1     , [-2]        , _("HELP_Secondary playback subtitle language")           , None              , None ),
-			(  _("Tertiary playback subtitle language")           , config.EMC.sublang3                 , None                  , None                  , 1     , [-3]        , _("HELP_Tertiary playback subtitle language")            , None              , None ),
-			(  _("Enable playback auto-language selection")       , config.EMC.autoaudio                , None                  , None                  , 1     , []          , _("HELP_Enable playback auto-language selection")        , None              , None ),
-			(  _("Enable playback AC3-track first")               , config.EMC.autoaudio_ac3            , None                  , None                  , 1     , [-1]        , _("HELP_Enable playback AC3-track first")                , None              , None ),
-			(  _("Primary playback audio language")               , config.EMC.audlang1                 , None                  , None                  , 1     , [-2]        , _("HELP_Primary playback audio language")                , None              , None ),
-			(  _("Secondary playback audio language")             , config.EMC.audlang2                 , None                  , None                  , 1     , [-3]        , _("HELP_Secondary playback audio language")              , None              , None ),
-			(  _("Tertiary playback audio language")              , config.EMC.audlang3                 , None                  , None                  , 1     , [-4]        , _("HELP_Tertiary playback audio language")               , None              , None ),
+			(self.section, _("LANGUAGE"), None, None, 1, [], "", None, None),
+			(_("Preferred EPG language"), config.EMC.epglang, setEPGLanguage, None, 1, [], _("HELP_Preferred EPG language"), None, None),
+			(_("Enable playback auto-subtitling"), config.EMC.autosubs, None, None, 1, [], _("HELP_Enable playback auto-subtitling"), None, None),
+			(_("Primary playback subtitle language"), config.EMC.sublang1, None, None, 1, [-1], _("HELP_Primary playback subtitle language"), None, None),
+			(_("Secondary playback subtitle language"), config.EMC.sublang2, None, None, 1, [-2], _("HELP_Secondary playback subtitle language"), None, None),
+			(_("Tertiary playback subtitle language"), config.EMC.sublang3, None, None, 1, [-3], _("HELP_Tertiary playback subtitle language"), None, None),
+			(_("Enable playback auto-language selection"), config.EMC.autoaudio, None, None, 1, [], _("HELP_Enable playback auto-language selection"), None, None),
+			(_("Enable playback AC3-track first"), config.EMC.autoaudio_ac3, None, None, 1, [-1], _("HELP_Enable playback AC3-track first"), None, None),
+			(_("Primary playback audio language"), config.EMC.audlang1, None, None, 1, [-2], _("HELP_Primary playback audio language"), None, None),
+			(_("Secondary playback audio language"), config.EMC.audlang2, None, None, 1, [-3], _("HELP_Secondary playback audio language"), None, None),
+			(_("Tertiary playback audio language"), config.EMC.audlang3, None, None, 1, [-4], _("HELP_Tertiary playback audio language"), None, None),
 
-			(  self.section                                       , _("DELAYS")                         , None                  , None                  , 2     , []          , ""                                                       , None              , None ),
-			(  _("Description field update delay")                , config.EMC.movie_descdelay          , None                  , None                  , 2     , []          , _("HELP_Description field update delay")                 , None              , None ),
-			(  _("Key period value (50-900)")                     , config.EMC.key_period               , setupKeyResponseValues, None                  , 2     , []          , _("HELP_Key period value (50-900)")                      , None              , None ),
-			(  _("Key repeat value (250-900)")                    , config.EMC.key_repeat               , setupKeyResponseValues, None                  , 2     , []          , _("HELP_Key repeat value (250-900)")                     , None              , None ),
+			(self.section, _("DELAYS"), None, None, 2, [], "", None, None),
+			(_("Description field update delay"), config.EMC.movie_descdelay, None, None, 2, [], _("HELP_Description field update delay"), None, None),
+			(_("Key period value (50-900)"), config.EMC.key_period, setupKeyResponseValues, None, 2, [], _("HELP_Key period value (50-900)"), None, None),
+			(_("Key repeat value (250-900)"), config.EMC.key_repeat, setupKeyResponseValues, None, 2, [], _("HELP_Key repeat value (250-900)"), None, None),
 
-			(  self.section                                       , _("SKIN-SETTINGS")                  , None                  , None                  , 0     , []          , ""                                                       , None              , None ),
-			(  _("Use original EMC-skin (needs reopen)")          , config.EMC.use_orig_skin            , None                  , None                  , 0     , []          , _("HELP_Use original EMC-skin (needs reopen)")           , None              , None ),
-			(  _("Style for original EMC-skin (needs reopen)")    , config.EMC.skinstyle                , None                  , None                  , 0     , [-1]        , _("HELP_Style for original EMC-skin (needs reopen)")     , None              , None ),
+			(self.section, _("SKIN-SETTINGS"), None, None, 0, [], "", None, None),
+			(_("Use original EMC-skin (needs reopen)"), config.EMC.use_orig_skin, None, None, 0, [], _("HELP_Use original EMC-skin (needs reopen)"), None, None),
+			(_("Style for original EMC-skin (needs reopen)"), config.EMC.skinstyle, None, None, 0, [-1], _("HELP_Style for original EMC-skin (needs reopen)"), None, None),
 
-			(  _("Listbox is skin able")                          , config.EMC.skin_able                , None                  , None                  , 0     , []          , _("HELP_Listbox is skin able")                           , None              , None ),
+			(_("Listbox is skin able"), config.EMC.skin_able, None, None, 0, [], _("HELP_Listbox is skin able"), None, None),
 
-			(  _("Date format")                                   , config.EMC.movie_date_format        , None                  , None                  , 0     , []          , _("HELP_Date format")                                    , None              , None ),
-			(  _("Horizontal alignment for date")                 , config.EMC.movie_date_position      , None                  , None                  , 0     , []          , _("HELP_Horizontal alignment for date")                  , None              , None ),
-			(  _("Horizontal alignment for count / size")         , config.EMC.count_size_position      , None                  , None                  , 0     , []          , _("HELP_Horizontal alignment for count / size")          , None              , None ),
+			(_("Date format"), config.EMC.movie_date_format, None, None, 0, [], _("HELP_Date format"), None, None),
+			(_("Horizontal alignment for date"), config.EMC.movie_date_position, None, None, 0, [], _("HELP_Horizontal alignment for date"), None, None),
+			(_("Horizontal alignment for count / size"), config.EMC.count_size_position, None, None, 0, [], _("HELP_Horizontal alignment for count / size"), None, None),
 
-			(  _("Show movie icons")                              , config.EMC.movie_icons              , None                  , None                  , 0     , []          , _("HELP_Show movie icons")                               , False             , True ),
-			(  _("Show link arrow")                               , config.EMC.link_icons               , None                  , None                  , 0     , [-1]        , _("HELP_Show link arrow")                                , False             , True ),
+			(_("Show movie icons"), config.EMC.movie_icons, None, None, 0, [], _("HELP_Show movie icons"), False, True),
+			(_("Show link arrow"), config.EMC.link_icons, None, None, 0, [-1], _("HELP_Show link arrow"), False, True),
 
-			(  _("Show movie picons")                             , config.EMC.movie_picons             , None                  , None                  , 0     , []          , _("HELP_Show movie picons")                              , None              , None ),
-			(  _("Position movie picons")                         , config.EMC.movie_picons_pos         , None                  , None                  , 0     , [7,-1]      , _("HELP_Position movie picons")                          , None              , None ),
-			(  _("Own Path to movie picons")                      , config.EMC.movie_picons_path_own    , None                  , None                  , 0     , [-2]        , _("HELP_Own Path to movie picons")                       , None              , None ),
-			(  _("Path to movie picons")                          , config.EMC.movie_picons_path        , None                  , self.openLocationBox  , 0     , [-3,-1]     , _("HELP_Path to movie picons")                           , None              , None ),
+			(_("Show movie picons"), config.EMC.movie_picons, None, None, 0, [], _("HELP_Show movie picons"), None, None),
+			(_("Position movie picons"), config.EMC.movie_picons_pos, None, None, 0, [7,-1], _("HELP_Position movie picons"), None, None),
+			(_("Own Path to movie picons"), config.EMC.movie_picons_path_own, None, None, 0, [-2], _("HELP_Own Path to movie picons"), None, None),
+			(_("Path to movie picons"), config.EMC.movie_picons_path, None, self.openLocationBox, 0, [-3,-1], _("HELP_Path to movie picons"), None, None),
 
-			(  _("Show movie progress")                           , config.EMC.movie_progress           , None                  , None                  , 0     , []          , _("HELP_Show movie progress")                            , ""                , "PB" ),
-			(  _("Short watching percent")                        , config.EMC.movie_watching_percent   , None                  , None                  , 0     , [-1]        , _("HELP_Short watching percent")                         , None              , None ),
-			(  _("Finished watching percent")                     , config.EMC.movie_finished_percent   , None                  , None                  , 0     , [-2]        , _("HELP_Finished watching percent")                      , None              , None ),
-			(  _("Default color for unwatched movie")             , config.EMC.color_unwatched          , None                  , None                  , 0     , [-3]        , _("HELP_Default color unwatched")                        , None              , None ),
-			(  _("Default color for partially watched movie")     , config.EMC.color_watching           , None                  , None                  , 0     , [-4]        , _("HELP_Default color partially watched")                , None              , None ),
-			(  _("Default color for watched movie")               , config.EMC.color_finished           , None                  , None                  , 0     , [-5]        , _("HELP_Default color watched")                          , None              , None ),
-			(  _("Default color for recording movie")             , config.EMC.color_recording          , None                  , None                  , 0     , [-6]        , _("HELP_Default color recording")                        , None              , None ),
-			(  _("Default color for highlighted movie")           , config.EMC.color_highlight          , None                  , None                  , 0     , [-7]        , _("HELP_Default color highlighted")                      , None              , None ),
-			(  _("Mark new recordings with a star")               , config.EMC.mark_latest_files        , None                  , None                  , 0     , []          , _("HELP_Mark new recordings with a star")                , False             , True ),
-			(  _("Show Cover")                                    , config.EMC.movie_cover              , None                  , None                  , 0     , []          , _("HELP_Show Cover")                                     , False             , None ),
-			(  _("Cover delay in ms")                             , config.EMC.movie_cover_delay        , None                  , None                  , 0     , [-1]        , _("HELP_Cover delay in ms")                              , 1000              , None ),
+			(_("Show movie progress"), config.EMC.movie_progress, None, None, 0, [], _("HELP_Show movie progress"), "", "PB"),
+			(_("Short watching percent"), config.EMC.movie_watching_percent, None, None, 0, [-1], _("HELP_Short watching percent"), None, None),
+			(_("Finished watching percent"), config.EMC.movie_finished_percent, None, None, 0, [-2], _("HELP_Finished watching percent"), None, None),
+			(_("Default color for unwatched movie"), config.EMC.color_unwatched, None, None, 0, [-3], _("HELP_Default color unwatched"), None, None),
+			(_("Default color for partially watched movie"), config.EMC.color_watching, None, None, 0, [-4], _("HELP_Default color partially watched"), None, None),
+			(_("Default color for watched movie"), config.EMC.color_finished, None, None, 0, [-5], _("HELP_Default color watched"), None, None),
+			(_("Default color for recording movie"), config.EMC.color_recording, None, None, 0, [-6], _("HELP_Default color recording"), None, None),
+			(_("Default color for highlighted movie"), config.EMC.color_highlight, None, None, 0, [-7], _("HELP_Default color highlighted"), None, None),
+			(_("Mark new recordings with a star"), config.EMC.mark_latest_files, None, None, 0, [], _("HELP_Mark new recordings with a star"), False, True),
+			(_("Show Cover"), config.EMC.movie_cover, None, None, 0, [], _("HELP_Show Cover"), False, None),
+			(_("Cover delay in ms"), config.EMC.movie_cover_delay, None, None, 0, [-1], _("HELP_Cover delay in ms"), 1000, None),
 
-			(  _("Show fallback cover")                           , config.EMC.movie_cover_fallback     , None                  , None                  , 0     , [-2]        , _("HELP_Fallback Cover")                                 , None              , None ),
+			(_("Show fallback cover"), config.EMC.movie_cover_fallback, None, None, 0, [-2], _("HELP_Fallback Cover"), None, None),
 		]
 		)
 
 		if not isDreamOS:
 			self.EMCConfig.extend(
 		[
-			(  _("Cover background")                              , config.EMC.movie_cover_background   , None                  , None                  , 0     , [-3]        , _("HELP_Cover background")                               , None              , None ),
+			(_("Cover background"), config.EMC.movie_cover_background, None, None, 0, [-3], _("HELP_Cover background"), None, None),
 		]
 		)
 
 		self.EMCConfig.extend(
 		[
-			(  _("Show movie preview")                            , config.EMC.movie_preview            , None                  , None                  , 0     , []          , _("HELP_Show movie preview")                             , False             , None ),
-			(  _("Movie preview delay in ms")                     , config.EMC.movie_preview_delay      , None                  , None                  , 0     , [-1]        , _("HELP_Movie preview delay in ms")                      , 3000              , None ),
-			(  _("Start movie preview before last position")      , config.EMC.movie_preview_offset     , None                  , None                  , 0     , [-2]        , _("HELP_Movie preview offset in seconds")                , None              , None ),
-			(  _("Hide MiniTV")                                   , config.EMC.hide_miniTV              , None                  , None                  , 0     , []          , _("HELP_hide_MiniTV")                                    , "never"           , "never" ),
-			(  _("Hide MiniTV if Cover is shown")                 , config.EMC.hide_miniTV_cover        , None                  , None                  , 0     , []          , _("HELP_hide_MiniTV cover")                              , None              , None ),
+			(_("Show movie preview"), config.EMC.movie_preview, None, None, 0, [], _("HELP_Show movie preview"), False, None),
+			(_("Movie preview delay in ms"), config.EMC.movie_preview_delay, None, None, 0, [-1], _("HELP_Movie preview delay in ms"), 3000, None),
+			(_("Start movie preview before last position"), config.EMC.movie_preview_offset, None, None, 0, [-2], _("HELP_Movie preview offset in seconds"), None, None),
+			(_("Hide MiniTV"), config.EMC.hide_miniTV, None, None, 0, [], _("HELP_hide_MiniTV"), "never", "never"),
+			(_("Hide MiniTV if Cover is shown"), config.EMC.hide_miniTV_cover, None, None, 0, [], _("HELP_hide_MiniTV cover"), None, None),
 		]
 		)
 
 		if not isDreamOS:
 			self.EMCConfig.extend(
 		[
-			(  _("Method of hiding MiniTV")                       , config.EMC.hide_miniTV_method       , None                  , None                  , 0     , []          , _("HELP_hide_MiniTV_method")                             , "stopService"     , "stopService" ),
+			(_("Method of hiding MiniTV"), config.EMC.hide_miniTV_method, None, None, 0, [], _("HELP_hide_MiniTV_method"), "stopService", "stopService"),
 		]
 		)
 
 		self.EMCConfig.extend(
 		[
-			(  self.section                                       , _("AUDIO METADATA")                 , None                  , None                  , 0     , []          , ""                                                       , None              , None ),
+			(self.section, _("AUDIO METADATA"), None, None, 0, [], "", None, None),
 		]
 		)
 
 		if not hasMutagen():
 			self.EMCConfig.extend(
 		[
-			(  _("Install Mutagen-package for audio metadata")    , config.EMC.mutagen_install          , self.installMutagen   , None                  , 0     , []          , _("HELP_Install Mutagen-package for audio metadata")     , None              , None ),
+			(_("Install Mutagen-package for audio metadata"), config.EMC.mutagen_install, self.installMutagen, None, 0, [], _("HELP_Install Mutagen-package for audio metadata"), None, None),
 		]
 		)
 
 		if hasMutagen():
 			self.EMCConfig.extend(
 		[
-			(  _("Show audio metadata")                           , config.EMC.mutagen_show             , None                  , None                  , 0     , []          , _("HELP_Show audio metadata")                            , None              , None ),
+			(_("Show audio metadata"), config.EMC.mutagen_show, None, None, 0, [], _("HELP_Show audio metadata"), None, None),
 		]
 		)
 
 		self.EMCConfig.extend(
 		[
-			(  self.section                                       , _("DEBUG")                          , None                  , None                  , 2     , []          , ""                                                       , None              , None ),
-			(  _("Enable EMC debug output")                       , config.EMC.debug                    , self.dbgChange        , None                  , 2     , []          , _("HELP_Enable EMC debug output")                        , False             , None ),
-			(  _("EMC output directory")                          , config.EMC.folder                   , self.validatePath     , self.openLocationBox  , 2     , [-1]        , _("HELP_EMC output directory")                           , None              , None ),
-			(  _("Debug output file name")                        , config.EMC.debugfile                , self.validatePath     , None                  , 2     , [-2]        , _("HELP_Debug output file name")                         , None              , None ),
+			(self.section, _("DEBUG"), None, None, 2, [], "", None, None),
+			(_("Enable EMC debug output"), config.EMC.debug, self.dbgChange, None, 2, [], _("HELP_Enable EMC debug output"), False, None),
+			(_("EMC output directory"), config.EMC.folder, self.validatePath, self.openLocationBox, 2, [-1], _("HELP_EMC output directory"), None, None),
+			(_("Debug output file name"), config.EMC.debugfile, self.validatePath, None, 2, [-2], _("HELP_Debug output file name"), None, None),
 		]
 		)
 
@@ -580,7 +580,7 @@ class EnhancedMovieCenterMenu(ConfigListScreenExt, Screen):
 		list = []
 		pds = get_predefined_columns()
 		pdname = ""
-		for i, conf in enumerate( self.EMCConfig ):
+		for i, conf in enumerate(self.EMCConfig):
 			# 0 entry text
 			# 1 variable
 			# 2 validation
@@ -610,7 +610,7 @@ class EnhancedMovieCenterMenu(ConfigListScreenExt, Screen):
 						if not isDreamOS:
 							list.append(getConfigListEntry(conf[0], ))
 					else:
-						list.append( getConfigListEntry( conf[0], conf[1], conf[2], conf[3], conf[4], conf[5], conf[6] ) ) # not needed conf[7], conf[8]
+						list.append(getConfigListEntry(conf[0], conf[1], conf[2], conf[3], conf[4], conf[5], conf[6])) # not needed conf[7], conf[8]
 					# Check for predefined config match
 					for i,pd in enumerate(pds[:]):
 						if conf[pd] is not None:
@@ -622,18 +622,18 @@ class EnhancedMovieCenterMenu(ConfigListScreenExt, Screen):
 		self.list = list
 		self["config"].setList(self.list)
 		if pds:
-			pdname, id = get_predefined_nameid( pds[0] )
-			self.setTitle( self.screenTitle + " <" + id + ">")
+			pdname, id = get_predefined_nameid(pds[0])
+			self.setTitle(self.screenTitle + " <" + id + ">")
 		else:
-			self.setTitle( self.screenTitle)
-		self["key_blue"].setText( next_predefined_settings( pdname ) )
+			self.setTitle(self.screenTitle)
+		self["key_blue"].setText(next_predefined_settings(pdname))
 
 	def loadPredefinedSettings(self):
 		#WORKAROUND E2 doesn't send dedicated short or long pressed key events
 		if self.keylong:
 			self.keylong = False
 		# Load next predefined values, Button text indicates already the next values
-		column, id = get_predefined_value( self["key_blue"].getText() )
+		column, id = get_predefined_value(self["key_blue"].getText())
 		# Refresh is done implizit on change
 		for conf in self.EMCConfig:
 			#print conf
@@ -675,13 +675,13 @@ class EnhancedMovieCenterMenu(ConfigListScreenExt, Screen):
 
 	def dirSelected(self, res):
 		if res is not None:
-			res = os.path.normpath( res )
+			res = os.path.normpath(res)
 			self["config"].getCurrent()[1].value = res
 
 	def keyOK(self):
 		try:
 			current = self["config"].getCurrent()
-			current and current[3]( current[1] )
+			current and current[3](current[1])
 		except:
 			pass
 
@@ -689,17 +689,17 @@ class EnhancedMovieCenterMenu(ConfigListScreenExt, Screen):
 		config.EMC.needsreload.value = True
 
 		if isinstance(config.EMC.movie_finished_clean.notifiers, dict):
-			if hasattr( config.EMC.movie_finished_clean, "clearNotifiers" ):
+			if hasattr(config.EMC.movie_finished_clean, "clearNotifiers"):
 				config.EMC.movie_finished_clean.clearNotifiers()
 			else:
-				config.EMC.movie_finished_clean.notifiers = { }
+				config.EMC.movie_finished_clean.notifiers = {}
 		elif isinstance(config.EMC.movie_finished_clean.notifiers, list):
-			if hasattr( config.EMC.movie_finished_clean, "clearNotifiers" ):
+			if hasattr(config.EMC.movie_finished_clean, "clearNotifiers"):
 				config.EMC.movie_finished_clean.clearNotifiers()
 			else:
-				config.EMC.movie_finished_clean.notifiers = [ ]
+				config.EMC.movie_finished_clean.notifiers = []
 
-		for i, entry in enumerate( self.list ):
+		for i, entry in enumerate(self.list):
 			if len(entry) > 1:
 				if entry[1].isChanged():
 					if entry[2] is not None:
@@ -730,9 +730,9 @@ class EnhancedMovieCenterMenu(ConfigListScreenExt, Screen):
 			return
 
 		if isinstance(config.EMC.movie_finished_clean.notifiers, dict):
-			config.EMC.movie_finished_clean.notifiers = { }
+			config.EMC.movie_finished_clean.notifiers = {}
 		elif isinstance(config.EMC.movie_finished_clean.notifiers, list):
-			config.EMC.movie_finished_clean.notifiers = [ ]
+			config.EMC.movie_finished_clean.notifiers = []
 
 		for x in self["config"].list:
 			if len(x) > 1:
@@ -749,7 +749,7 @@ class EnhancedMovieCenterMenu(ConfigListScreenExt, Screen):
 	def openLocationBox(self, element):
 		try:
 			if element:
-				path = os.path.normpath( element.value )
+				path = os.path.normpath(element.value)
 				self.session.openWithCallback(
 					self.dirSelected,
 					LocationBox,
@@ -760,7 +760,7 @@ class EnhancedMovieCenterMenu(ConfigListScreenExt, Screen):
 						autoAdd=False,
 						editDir=True,
 						inhibitDirs=["/bin", "/boot", "/dev", "/etc", "/lib", "/proc", "/sbin", "/sys", "/var"],
-						minFree=100 )
+						minFree=100)
 		except:
 			pass
 
@@ -771,7 +771,7 @@ class EnhancedMovieCenterMenu(ConfigListScreenExt, Screen):
 		self.session.open(MessageBox, EMCAbout, MessageBox.TYPE_INFO)
 
 	def validatePath(self, element):
-		element.value = os.path.normpath( element.value )
+		element.value = os.path.normpath(element.value)
 		if not os.path.exists(element.value):
 			self.session.open(MessageBox, _("Given path %s does not exist. Please change." % str(element.value)), MessageBox.TYPE_ERROR)
 			return False

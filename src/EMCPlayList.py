@@ -245,7 +245,7 @@ class EMCPlaylistScreen(Screen):
 			for x in plist:
 				tmplist.append(emcplaylist.getCurrentPlaylistEntry(x))
 
-			tmplist.sort( key=lambda x: (x[0]) )
+			tmplist.sort(key=lambda x: (x[0]))
 
 			try:
 				file = open(filename + ".e2pls", "w")
@@ -360,7 +360,7 @@ class PlayList(GUIComponent):
 			for x in emcplaylist.getCurrentPlaylist():
 				tmpplaylist.append(emcplaylist.getCurrentPlaylistEntry(x))
 
-			tmpplaylist.sort( key=lambda x: (x[0]) )
+			tmpplaylist.sort(key=lambda x: (x[0]))
 
 			for x in tmpplaylist:
 				pos += 1
@@ -374,7 +374,7 @@ class PlayList(GUIComponent):
 		return eventtitle
 
 	def playlistEntrys(self, pos, name, service):
-		entrys = [ service ]
+		entrys = [service]
 		pos = str(pos)
 		metastring = ""
 		movie_metaload = config.EMC.movie_metaload.value
@@ -473,7 +473,7 @@ class EMCPlaylistSetup(Screen, ConfigListScreenExt):
 					autoAdd=False,
 					editDir=True,
 					inhibitDirs=["/bin", "/boot", "/dev", "/etc", "/home", "/lib", "/proc", "/run", "/sbin", "/sys", "/usr", "/var"],
-					minFree=15 )
+					minFree=15)
 		except Exception, e:
 			print('[EMCPlayList] openDirectoryBrowser get failed: ', str(e))
 
@@ -483,7 +483,7 @@ class EMCPlaylistSetup(Screen, ConfigListScreenExt):
 
 	def openVirtualKeyboard(self, name):
 		try:
-			self.session.openWithCallback(lambda x : self.openVirtualKeyboardCB(x, 'playlist_name'), VirtualKeyBoard, title=(_('Enter Name for Playlist')), text=name)
+			self.session.openWithCallback(lambda x: self.openVirtualKeyboardCB(x, 'playlist_name'), VirtualKeyBoard, title=(_('Enter Name for Playlist')), text=name)
 		except Exception, e:
 			print('[EMCPlayList] openVirtualKeyboard get failed: ', str(e))
 

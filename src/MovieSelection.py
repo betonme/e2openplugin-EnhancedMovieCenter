@@ -525,7 +525,7 @@ class SelectionEventInfo:
 						if what == 3: #CUT_TYPE_LAST:
 							if pts != None:
 								# Start preview x seconds before last position
-								jumpto = int(pts) - ( int(config.EMC.movie_preview_offset.value) * 90000 )
+								jumpto = int(pts) - (int(config.EMC.movie_preview_offset.value) * 90000)
 								break
 					if jumpto is not None and jumpto > 0:
 						# Jump to first mark
@@ -611,9 +611,9 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			setattr(EMCSelection, attr, value)
 		return set_any
 
-	returnService = property( fget=attrgetter('_returnService'), fset=attrsetter('_returnService'))
-	currentPath   = property( fget=attrgetter('_currentPath', config.EMC.movie_homepath.value), fset=attrsetter('_currentPath'))
-	lastPlayed    = property( fget=attrgetter('_lastPlayed'), fset=attrsetter('_lastPlayed'))
+	returnService = property(fget=attrgetter('_returnService'), fset=attrsetter('_returnService'))
+	currentPath   = property(fget=attrgetter('_currentPath', config.EMC.movie_homepath.value), fset=attrsetter('_currentPath'))
+	lastPlayed    = property(fget=attrgetter('_lastPlayed'), fset=attrsetter('_lastPlayed'))
 
 	def __init__(self, session, returnService=None, playerInstance=None):
 		Screen.__init__(self, session)
@@ -1045,11 +1045,11 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 
 	def CoolKey0(self):
 		# Movie home
-		self.setStackNextDirectory( self.currentPath, self["list"].getCurrent() )
+		self.setStackNextDirectory(self.currentPath, self["list"].getCurrent())
 		self.changeDir(config.EMC.movie_homepath.value)
 
 	def CoolForward(self):
-		path, service = self.goForward( self.currentPath, self["list"].getCurrent() )
+		path, service = self.goForward(self.currentPath, self["list"].getCurrent())
 		if path and service:
 			# Actually we are in a history folder - go forward
 			self.changeDir(path, service)
@@ -1059,7 +1059,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			self.moveTop()
 
 	def CoolBack(self):
-		path, service = self.goBackward( self.currentPath, self["list"].getCurrent() )
+		path, service = self.goBackward(self.currentPath, self["list"].getCurrent())
 		if path and service:
 			# History folder is available - go back
 			self.changeDir(path, service)
@@ -1090,7 +1090,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			# Open folder nextdir and select given or first entry
 			pass
 
-		self.setStackNextDirectory( self.currentPath, self["list"].getCurrent() )
+		self.setStackNextDirectory(self.currentPath, self["list"].getCurrent())
 		self.changeDir(nextdir, service)
 
 	def getCurrent(self):
@@ -1156,7 +1156,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 				# Start new list with first selected item index
 				self.multiSelectIdx = [index]
 				# Toggle the first selected item
-				self["list"].toggleSelection( index=index )
+				self["list"].toggleSelection(index=index)
 			else:
 				# User stops multiselect
 				# All items are already toggled
@@ -1168,8 +1168,8 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 				firstIndex = self.multiSelectIdx[0]
 				lastIndex = self.multiSelectIdx[-1]
 				# Calculate step : selection and range step +1/-1 -> indicates the direction
-				selStep = 1 - 2 * ( firstIndex > lastIndex)  # >=
-				rngStep = 1 - 2 * ( lastIndex > index )
+				selStep = 1 - 2 * (firstIndex > lastIndex)  # >=
+				rngStep = 1 - 2 * (lastIndex > index)
 				if selStep == rngStep or firstIndex == lastIndex:
 					start = lastIndex + rngStep
 					end = index + rngStep
@@ -1188,10 +1188,10 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 						# Append index
 						self.multiSelectIdx.append(i)
 						# Toggle
-						self["list"].toggleSelection( index=i )
+						self["list"].toggleSelection(index=i)
 					else:
 						# Untoggle
-						self["list"].toggleSelection( index=i )
+						self["list"].toggleSelection(index=i)
 						# Remove index
 						self.multiSelectIdx.remove(i)
 			else:
@@ -1209,7 +1209,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 				autoAdd=False,
 				editDir=True,
 				inhibitDirs=["/bin", "/boot", "/dev", "/etc", "/lib", "/proc", "/sbin", "/sys", "/usr", "/var"],
-				minFree=0 )
+				minFree=0)
 
 	def openEMCBookmarks(self):
 		#TODO Use a choicebox or a LocationBox with simulated bookmarks
@@ -1222,7 +1222,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 				self["list"],
 				None,
 				self["list"].makeSelectionList(),
-				self.currentPath )
+				self.currentPath)
 
 	def openBookmarksCB(self, path=None):
 		if path is not None:
@@ -1384,7 +1384,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		selectedlist = self["list"].makeSelectionList(False)
 		if selectedlist:
 			# The selectedList only contains the services
-			filelist = [ (service.getName() , service.getPath() ) for service in selectedlist ]
+			filelist = [(service.getName(), service.getPath()) for service in selectedlist]
 			# Collect imdb data
 			self.checkHideMiniTV_beforeFullscreen()
 			self.session.open(EMCImdbScan, filelist)
@@ -1401,9 +1401,9 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			# Simulate a recursive reload to get all files and titles
 			# walk through entire tree below current path. Might take a bit long on huge disks...
 			selectedlist = self["list"].reload(self.currentPath, simulate=True, recursive=True)
-			filelist = [ (title , path ) for (service, sorttitle, date, title, path, selnum, length, ext, cutnr, sorteventtitle, eventtitle, piconpath, sortyear, sortmonth, sortday, sorthour, sortmin) in selectedlist if ext in plyVideo ]
+			filelist = [(title, path) for (service, sorttitle, date, title, path, selnum, length, ext, cutnr, sorteventtitle, eventtitle, piconpath, sortyear, sortmonth, sortday, sorthour, sortmin) in selectedlist if ext in plyVideo]
 		else:
-			filelist = [ (title , path ) for (service, sorttitle, date, title, path, selnum, length, ext, cutnr, sorteventtitle, eventtitle, piconpath, sortyear, sortmonth, sortday, sorthour, sortmin) in self["list"].getList() if ext in plyVideo ]
+			filelist = [(title, path) for (service, sorttitle, date, title, path, selnum, length, ext, cutnr, sorteventtitle, eventtitle, piconpath, sortyear, sortmonth, sortday, sorthour, sortmin) in self["list"].getList() if ext in plyVideo]
 
 		# Collect imdb data
 		self.checkHideMiniTV_beforeFullscreen()
@@ -1416,7 +1416,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		self.moveToIndex(self.savedIndex) # workaround for wrong index when play a movie (index is from the movie, not from the folder)
 		if self["list"].currentSelIsDirectory():
 			current = self.getCurrent()
-			filelist = [ (self["list"].getCurrentSelName() , current.getPath() ) ]
+			filelist = [(self["list"].getCurrentSelName(), current.getPath())]
 
 		# Collect imdb data
 		self.checkHideMiniTV_beforeFullscreen()
@@ -1425,8 +1425,8 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		self.moveToIndex(0)
 
 	def markAll(self):
-		for i in xrange( len (self["list"]) ):
-			self["list"].toggleSelection( index=i )
+		for i in xrange(len(self["list"])):
+			self["list"].toggleSelection(index=i)
 
 	def unUsed(self):
 		self.checkHideMiniTV_beforeFullscreen()
@@ -1450,7 +1450,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 
 	def selectionChanged(self):
 		if self.multiSelectIdx:
-			self.multiSelect( self.getCurrentIndex() )
+			self.multiSelect(self.getCurrentIndex())
 		self.updateInfo()
 
 	def updateInfo(self, immediately=False):
@@ -1484,7 +1484,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		self.updateTitle()
 		current = self.getCurrent()
 		if current and not self["list"].serviceMoving(current) and not self["list"].serviceDeleting(current):
-			self.updateEventInfo( current )
+			self.updateEventInfo(current)
 			#OE2.0 Bug start_new_thread
 			#t = Thread(target=self.updateEventInfo, args=(current,))
 			#t.start()
@@ -1512,12 +1512,12 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 
 	def showCoverDelayed(self):
 		#print "EMC showCoverDelayed"
-		self.showCover( self.getCurrent() )
+		self.showCover(self.getCurrent())
 
 	def showPreviewDelayed(self):
 		# Avoid movie preview if player is running
 		#print "EMC showPreviewDelayed"
-		self.showPreview( self.getCurrent() )
+		self.showPreview(self.getCurrent())
 
 	def updateTitle(self):
 		from EnhancedMovieCenter import EMCVersion
@@ -1630,9 +1630,9 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			# Move cursor
 			if config.EMC.moviecenter_selmove.value != "o":
 				if self.cursorDir == -1 and config.EMC.moviecenter_selmove.value == "b":
-					self.moveToIndex( max(self.getCurrentIndex()-1, 0) )
+					self.moveToIndex(max(self.getCurrentIndex()-1, 0))
 				else:
-					self.moveToIndex( min(self.getCurrentIndex()+1, len(self["list"])-1) )
+					self.moveToIndex(min(self.getCurrentIndex()+1, len(self["list"])-1))
 
 	def resetSelectionList(self):
 		if self.multiSelectIdx:
@@ -1721,7 +1721,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		self.session.openWithCallback(
 							self.reloadListWithoutCache,
 							MovieRetitle,
-							self["list"].makeSelectionList() or self.getCurrent() )
+							self["list"].makeSelectionList() or self.getCurrent())
 
 	def showEventInformation(self):
 		from ServiceReference import ServiceReference
@@ -1910,7 +1910,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 	def loading(self, loading=True):
 		if loading:
 			self["list"].hide()
-			self["wait"].setText( _("Reading directory...") )
+			self["wait"].setText(_("Reading directory..."))
 			self["wait"].show()
 		else:
 			self["wait"].hide()
@@ -1925,20 +1925,20 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		# Display the next sorting state
 		from Plugins.Extensions.EnhancedMovieCenter.plugin import sort_modes
 		#sorts = list( set( [sort for sort, desc in sort_choices] ) )
-		sorts = [ v[1] for v in sort_modes.values() ]
+		sorts = [v[1] for v in sort_modes.values()]
 		#print sorts
 		# Toggle the mode
 		mode, order = self["list"].getSorting()
 		# Get all sorting modes as a list of unique ids
-		modes = list( set( [m for m, o in sorts] ) )
+		modes = list(set([m for m, o in sorts]))
 		#print modes
 		if mode in modes:
 			# Get next sorting mode
 			idx = modes.index(mode)
-			mode = modes[ (idx+1) % len(modes) ]
+			mode = modes[(idx+1) % len(modes)]
 		else:
 			# Fallback
-			mode = modes[ 0 ]
+			mode = modes[0]
 		#print mode
 
 		# Green button
@@ -2130,10 +2130,10 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 
 			elif self["list"].currentSelIsVirtual():
 				# Open folder and reload movielist
-				self.setNextPath( self["list"].getCurrentSelDir() )
+				self.setNextPath(self["list"].getCurrentSelDir())
 			elif self.browsingVLC():
 				# TODO full integration of the VLC Player
-				entry = self["list"].list[ self.getCurrentIndex() ]
+				entry = self["list"].list[self.getCurrentIndex()]
 				self.miniTV_unmute()
 				self.vlcMovieSelected(entry)
 			elif os.path.splitext(path)[1] in extPlaylist:
@@ -2237,7 +2237,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 			for x in emcplaylist.getCurrentPlaylist():
 				tmpplaylist.append(emcplaylist.getCurrentPlaylistEntry(x))
 
-			tmpplaylist.sort( key=lambda x: (x[0]) )
+			tmpplaylist.sort(key=lambda x: (x[0]))
 
 			for x in tmpplaylist:
 				playlist.append(x[2])
@@ -2274,7 +2274,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		else:
 			self.busy = True
 			# Show a notification to indicate the Play function
-			self["wait"].setText( _("Play last movie starting") )
+			self["wait"].setText(_("Play last movie starting"))
 			self["wait"].show()
 			#DelayedFunction(1000, self.loading, False)
 			DelayedFunction(1000, self.openPlayer, self.lastPlayed)
@@ -2293,7 +2293,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		playlist = [service]
 		playall = self["list"].getNextService(service)
 		# Show a notification to indicate the Play function
-		self["wait"].setText( _("Play All starting") )
+		self["wait"].setText(_("Play All starting"))
 		self["wait"].show()
 		#DelayedFunction(1000, self.loading, False)
 		DelayedFunction(1000, self.openPlayer, playlist, playall)
@@ -2312,7 +2312,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		playlist = [service]
 		shuffleall = self["list"].getRandomService(service)
 		# Show a notification to indicate the Shuffle function
-		self["wait"].setText( _("Shuffle All starting") )
+		self["wait"].setText(_("Shuffle All starting"))
 		self["wait"].show()
 		#DelayedFunction(1000, self.loading, False)
 		DelayedFunction(1000, self.openPlayer, playlist, shuffleall)
@@ -2392,7 +2392,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		if current is not None:
 			selectedlist = self["list"].makeSelectionList()[:]
 			for service in selectedlist:
-				cuts = CutList( service.getPath() )
+				cuts = CutList(service.getPath())
 				cuts.removeMarksCutList()
 				self["list"].unselectService(service)
 			emcDebugOut("[EMCMS] cut list marker removed permanently")
@@ -2431,7 +2431,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 					self.session.openWithCallback(
 							boundFunction(self.delPathSelConfirmed, current),
 							MessageBox,
-							msg )
+							msg)
 				else:
 					self.delPathSelConfirmed(current, True)
 
@@ -2472,7 +2472,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 					self.session.openWithCallback(
 							boundFunction(self.deleteE2BookmarkConfirmed, service),
 							MessageBox,
-							_("Do you really want to remove your bookmark\n%s?") % (path) )
+							_("Do you really want to remove your bookmark\n%s?") % (path))
 				else:
 					self.deleteE2BookmarkConfirmed(service, True)
 
@@ -2495,7 +2495,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 					self.session.openWithCallback(
 							boundFunction(self.deleteEMCBookmarkConfirmed, service),
 							MessageBox,
-							_("Do you really want to remove your bookmark\n%s?") % (path) )
+							_("Do you really want to remove your bookmark\n%s?") % (path))
 				else:
 					self.deleteEMCBookmarkConfirmed(service, True)
 
@@ -2532,7 +2532,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 								self.checkExt,
 								MessageBox,
 								delStr + "?\n" + rm_add + name,
-								MessageBox.TYPE_YESNO )
+								MessageBox.TYPE_YESNO)
 					else:
 						self.checkExt(True)
 				else:
@@ -2541,7 +2541,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 							self.checkExt,
 							MessageBox,
 							delStr + _(" currently played?") + "\n" + rm_add + name,
-							MessageBox.TYPE_YESNO )
+							MessageBox.TYPE_YESNO)
 			else:
 				if entrycount > 1:
 					movienames = ""
@@ -2562,7 +2562,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 									self.checkExt,
 									MessageBox,
 									delStr + _(" all selected video files?") + "\n" + rm_add + movienames,
-									MessageBox.TYPE_YESNO )
+									MessageBox.TYPE_YESNO)
 						else:
 							self.checkExt(True)
 					else:
@@ -2595,7 +2595,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 				if entrycount == 1:
 					nameCount = 0
 					service = self.tmpSelList[0]
-					path = os.path.splitext( service.getPath() )[0]
+					path = os.path.splitext(service.getPath())[0]
 					# before we go, let us check if other mediafiles with the same name exists
 					# if they dont exists, we go directly to delete with all others files they need it
 					for x in extVideo:
@@ -2626,7 +2626,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 
 					for service in self.tmpSelList:
 						nameCount = 0
-						path = os.path.splitext( service.getPath() )[0]
+						path = os.path.splitext(service.getPath())[0]
 						# before we go, let us check if other mediafiles with the same name exists
 						# if they dont exists, we go directly to delete with all others files they need it
 						for x in extVideo:
@@ -2644,7 +2644,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 
 					if self.tmpSelListOther is not None:
 						for x in self.tmpSelListOther:
-							path = os.path.splitext( x.getPath() )[0]
+							path = os.path.splitext(x.getPath())[0]
 							extsOther = [".eit", ".jpg", ".txt", ".poster.jpg", ".backdrop.jpg"]
 							for x in extsOther:
 								f = path + str(x)
@@ -2666,7 +2666,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 
 	def deleteOtherQ(self, otherMes):
 		self.checkHideMiniTV_beforeFullscreen()
-		self.session.openWithCallback(self.deleteOtherConfimation, MessageBox, otherMes, MessageBox.TYPE_YESNO )
+		self.session.openWithCallback(self.deleteOtherConfimation, MessageBox, otherMes, MessageBox.TYPE_YESNO)
 
 	def deleteOtherConfimation(self, confirmed):
 		if confirmed:
@@ -2677,7 +2677,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 
 	def deleteOtherListQ(self, otherMes):
 		self.checkHideMiniTV_beforeFullscreen()
-		self.session.openWithCallback(self.deleteOtherListConfimation, MessageBox, otherMes, MessageBox.TYPE_YESNO )
+		self.session.openWithCallback(self.deleteOtherListConfimation, MessageBox, otherMes, MessageBox.TYPE_YESNO)
 
 	def deleteOtherListConfimation(self, confirmed):
 		if confirmed:
@@ -2830,8 +2830,8 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		# can we make one way for both Lists ?
 		if self.tmpSelListOther is not None:
 			for x in self.tmpSelListOther:
-				ext = os.path.splitext( x.getPath() )[1]
-				path = os.path.splitext( x.getPath() )[0]
+				ext = os.path.splitext(x.getPath())[1]
+				path = os.path.splitext(x.getPath())[0]
 				movieFileCache.delPathFromCache(os.path.dirname(x.getPath()))
 				if path is not None:
 					if op=="delete":	# target == trashcan
@@ -2856,16 +2856,16 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 									self.removeService(x)
 									self.setReturnCursor()
 									path = path.replace("'","\'")
-									c.append( 'rm -f "'+ path +'."*' )
-									cmd.append( c )
+									c.append('rm -f "'+ path +'."*')
+									cmd.append(c)
 									dest_path = path
 							else:
 								path = x.getPath()
 								self.removeService(x)
 								self.setReturnCursor()
 								path = path.rsplit(".",1)[0]
-								c.append( 'rm -f "'+ path +'."*' )
-								cmd.append( c )
+								c.append('rm -f "'+ path +'."*')
+								cmd.append(c)
 								dest_path = path
 						#TEST_E2DELETE
 						else:
@@ -2876,41 +2876,41 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 									for x in extsOther:
 										f = path + str(x)
 										if fileExists(f):
-											c.append( 'touch "'+ f +'"' )
-											c.append( 'mv "'+ f +'" "'+ targetPath +'/"' )
+											c.append('touch "'+ f +'"')
+											c.append('mv "'+ f +'" "'+ targetPath +'/"')
 								# create a time stamp with touch
-								c.append( 'touch "'+ path + str(ext) +'"' )
-								c.append( 'touch "'+ path + str(ext) +'."*' )
+								c.append('touch "'+ path + str(ext) +'"')
+								c.append('touch "'+ path + str(ext) +'."*')
 								# move movie into the trashcan
-								c.append( 'mv "'+ path + str(ext) +'" "'+ targetPath +'/"' )
-								c.append( 'mv "'+ path + str(ext) +'."* "'+ targetPath +'/"' )
+								c.append('mv "'+ path + str(ext) +'" "'+ targetPath +'/"')
+								c.append('mv "'+ path + str(ext) +'."* "'+ targetPath +'/"')
 							else:
 								if self.deleteAllOtherList:
 									extsOther = [".eit", ".jpg", ".txt", ".poster.jpg", ".backdrop.jpg"]
 									for x in extsOther:
 										f = path + str(x)
 										if fileExists(f):
-											c.append( 'touch "'+ f +'"' )
-											c.append( 'mv "'+ f +'" "'+ targetPath +'/"' )
+											c.append('touch "'+ f +'"')
+											c.append('mv "'+ f +'" "'+ targetPath +'/"')
 								f = path + str(ext)
 								if fileExists(f):
-									c.append( 'touch "'+ f +'"' )
-									c.append( 'mv "'+ f +'" "'+ targetPath +'/"' )
+									c.append('touch "'+ f +'"')
+									c.append('mv "'+ f +'" "'+ targetPath +'/"')
 								cuts = path + str(ext) + ".cuts"
 								if fileExists(cuts):
-									c.append( 'touch "'+ cuts +'"' )
-									c.append( 'mv "'+ cuts +'" "'+ targetPath +'/"' )
+									c.append('touch "'+ cuts +'"')
+									c.append('mv "'+ cuts +'" "'+ targetPath +'/"')
 
 							#TEST_E2DELETE <- decrement indent
-							cmd.append( c )
+							cmd.append(c)
 							source_path = path
 							dest_path = targetPath
 
 		for service in selectedlist:
 			#path = os.path.splitext( self["list"].getFilePathOfService(service) )[0]
 			# first we need the file-extension
-			ext = os.path.splitext( service.getPath() )[1]
-			path = os.path.splitext( service.getPath() )[0]
+			ext = os.path.splitext(service.getPath())[1]
+			path = os.path.splitext(service.getPath())[0]
 			movieFileCache.delPathFromCache(os.path.dirname(service.getPath()))
 			if self.tmpSelListOther is not None:
 				for x in self.tmpSelListOther:
@@ -2939,16 +2939,16 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 								self.removeService(service)
 								self.setReturnCursor()
 								path = path.replace("'","\'")
-								c.append( 'rm -f "'+ path +'."*' )
-								cmd.append( c )
+								c.append('rm -f "'+ path +'."*')
+								cmd.append(c)
 								dest_path = path
 						else:
 							path = service.getPath()
 							self.removeService(service)
 							self.setReturnCursor()
 							path = path.rsplit(".",1)[0]
-							c.append( 'rm -f "'+ path +'."*' )
-							cmd.append( c )
+							c.append('rm -f "'+ path +'."*')
+							cmd.append(c)
 							dest_path = path
 					#TEST_E2DELETE
 					else:
@@ -2959,36 +2959,36 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 								for x in extsOther:
 									f = path + str(x)
 									if fileExists(f):
-										c.append( 'touch "'+ f +'"' )
-										c.append( 'mv "'+ f +'" "'+ targetPath +'/"' )
+										c.append('touch "'+ f +'"')
+										c.append('mv "'+ f +'" "'+ targetPath +'/"')
 							# create a time stamp with touch
-							c.append( 'touch "'+ path + str(ext) +'"' )
-							c.append( 'touch "'+ path + str(ext) +'."*' )
+							c.append('touch "'+ path + str(ext) +'"')
+							c.append('touch "'+ path + str(ext) +'."*')
 							# move movie into the trashcan
-							c.append( 'mv "'+ path + str(ext) +'" "'+ targetPath +'/"' )
-							c.append( 'mv "'+ path + str(ext) +'."* "'+ targetPath +'/"' )
+							c.append('mv "'+ path + str(ext) +'" "'+ targetPath +'/"')
+							c.append('mv "'+ path + str(ext) +'."* "'+ targetPath +'/"')
 						else:
 							if self.deleteAllOther:
 								extsOther = [".eit", ".jpg", ".txt", ".poster.jpg", ".backdrop.jpg"]
 								for x in extsOther:
 									f = path + str(x)
 									if fileExists(f):
-										c.append( 'touch "'+ f +'"' )
-										c.append( 'mv "'+ f +'" "'+ targetPath +'/"' )
+										c.append('touch "'+ f +'"')
+										c.append('mv "'+ f +'" "'+ targetPath +'/"')
 							f = path + str(ext)
 							if fileExists(f):
-								c.append( 'touch "'+ f +'"' )
-								c.append( 'mv "'+ f +'" "'+ targetPath +'/"' )
+								c.append('touch "'+ f +'"')
+								c.append('mv "'+ f +'" "'+ targetPath +'/"')
 							cuts = path + str(ext) + ".cuts"
 							if fileExists(cuts):
-								c.append( 'touch "'+ cuts +'"' )
-								c.append( 'mv "'+ cuts +'" "'+ targetPath +'/"' )
+								c.append('touch "'+ cuts +'"')
+								c.append('mv "'+ cuts +'" "'+ targetPath +'/"')
 
 						#TEST_E2DELETE <- decrement indent
-						cmd.append( c )
+						cmd.append(c)
 						source_path = path
 						dest_path = targetPath
-						association.append( (self.delCB, service) )	# put in a callback for this particular movie
+						association.append((self.delCB, service))	# put in a callback for this particular movie
 						self["list"].highlightService(True, "del", service)
 						#TEST_E2DELETE
 						if config.EMC.movie_hide_del.value:
@@ -3006,12 +3006,12 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 						tfile = "\""+ targetPath + "/owner_test" + "\""
 						path = path.replace("'","\'")
 						sfile = "\""+ path +".\"*"
-						c.append( "touch %s;ls -l %s | while read flags i owner group crap;do chown $owner:$group %s;done;rm %s" %(tfile,tfile,sfile,tfile) )
-					c.append( 'mv "'+ path +'."* "'+ targetPath +'/"' )
+						c.append("touch %s;ls -l %s | while read flags i owner group crap;do chown $owner:$group %s;done;rm %s" %(tfile,tfile,sfile,tfile))
+					c.append('mv "'+ path +'."* "'+ targetPath +'/"')
 					source_path = path
 					dest_path = targetPath
-					cmd.append( c )
-					association.append( (self.moveCB, service) )	# put in a callback for this particular movie
+					cmd.append(c)
+					association.append((self.moveCB, service))	# put in a callback for this particular movie
 					self["list"].highlightService(True, "move", service)
 					if config.EMC.movie_hide_mov.value:
 						self.removeService(service)
@@ -3029,11 +3029,11 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 						tfile = "\""+ targetPath + "/owner_test" + "\""
 						path = path.replace("'","\'")
 						sfile = "\""+ path +".\"*"
-						c.append( "touch %s;ls -l %s | while read flags i owner group crap;do chown $owner:$group %s;done;rm %s" %(tfile,tfile,sfile,tfile) )
-					c.append( 'cp "'+ path +'."* "'+ targetPath +'/"' )
+						c.append("touch %s;ls -l %s | while read flags i owner group crap;do chown $owner:$group %s;done;rm %s" %(tfile,tfile,sfile,tfile))
+					c.append('cp "'+ path +'."* "'+ targetPath +'/"')
 					dest_path = targetPath
-					cmd.append( c )
-					association.append( (self.copyCB, service) )	# put in a callback for this particular movie
+					cmd.append(c)
+					association.append((self.copyCB, service))	# put in a callback for this particular movie
 					self["list"].highlightService(True, "copy", service)
 					#if config.EMC.movie_hide_mov.value:
 					#	self.removeService(service)
@@ -3104,7 +3104,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 						autoAdd=False,
 						editDir=True,
 						inhibitDirs=["/bin", "/boot", "/dev", "/etc", "/lib", "/proc", "/sbin", "/sys", "/usr", "/var"],
-						minFree=100 )
+						minFree=100)
 			except Exception, e:
 				emcDebugOut("[EMCMS] moveMovie exception failure: ", str(e))
 		else:
@@ -3147,7 +3147,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 								autoAdd=False,
 								editDir=True,
 								inhibitDirs=["/bin", "/boot", "/dev", "/etc", "/lib", "/proc", "/sbin", "/sys", "/usr", "/var"],
-								minFree=100 )
+								minFree=100)
 					except:
 						self.checkHideMiniTV_beforeFullscreen()
 						self.session.open(MessageBox, _("How to move files:\nSelect some movies with the VIDEO-button, move the cursor on top of the destination directory and press yellow."), MessageBox.TYPE_ERROR, 10)
@@ -3182,7 +3182,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 						autoAdd=False,
 						editDir=True,
 						inhibitDirs=["/bin", "/boot", "/dev", "/etc", "/lib", "/proc", "/sbin", "/sys", "/usr", "/var"],
-						minFree=100 )
+						minFree=100)
 			except Exception, e:
 				emcDebugOut("[EMCMS] copyMovie exception failure: ", str(e))
 		else:
@@ -3225,7 +3225,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 								autoAdd=False,
 								editDir=True,
 								inhibitDirs=["/bin", "/boot", "/dev", "/etc", "/lib", "/proc", "/sbin", "/sys", "/usr", "/var"],
-								minFree=100 )
+								minFree=100)
 					except:
 						self.checkHideMiniTV_beforeFullscreen()
 						self.session.open(MessageBox, _("How to copy files:\nSelect some movies with the VIDEO-button, move the cursor on top of the destination directory and press yellow long."), MessageBox.TYPE_ERROR, 10)
@@ -3252,7 +3252,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 					autoAdd=False,
 					editDir=True,
 					inhibitDirs=["/bin", "/boot", "/dev", "/etc", "/home", "/lib", "/proc", "/run", "/sbin", "/sys", "/usr", "/var"],
-					minFree=100 )
+					minFree=100)
 		except Exception, e:
 			print('[EMC] moveDirectory get failed: ', str(e))
 		emcDebugOut("[EMCMS] moveDirectory")
@@ -3283,7 +3283,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 				movieFileCache.delPathFromCache(targetPath)
 				movieFileCache.delPathFromCache(self.tmpSelPath)
 				movieFileCache.delPathFromCache(self.currentPath)
-				cmd.append( 'mv "'+ self.tmpSelPath +'" "'+ targetPath +'"' )
+				cmd.append('mv "'+ self.tmpSelPath +'" "'+ targetPath +'"')
 				try:
 					if cmd:
 						association.append((self.initCursor, False)) # Set new Cursor position

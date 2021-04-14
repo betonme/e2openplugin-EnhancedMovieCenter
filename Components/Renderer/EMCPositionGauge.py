@@ -3,7 +3,7 @@
 class EMCPositionGauge(PositionGauge):
 	def __init__(self):
 		PositionGauge.__init__(self)
-		self.__cutlist = [ ]
+		self.__cutlist = []
 
 	def getCutlist(self):
 		return self.__cutlist

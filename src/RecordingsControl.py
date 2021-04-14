@@ -72,12 +72,12 @@ class NetworkAwareness:
 		file = open("/tmp/myip")
 		myip = file.read()
 		file.close()
-		self.ip = [ int(a) for a in myip.split(".") ]
+		self.ip = [int(a) for a in myip.split(".")]
 		if len(self.ip) != 4:
 			self.ip = [0,0,0,0]
 		else:
 			self.initialized = True
-		emcDebugOut( "[spNET] IP = " + str(self.ip).replace(", ", ".")[1:-1] )
+		emcDebugOut("[spNET] IP = " + str(self.ip).replace(", ", ".")[1:-1])
 
 spNET = NetworkAwareness()
 
@@ -260,7 +260,7 @@ class RecordingsControl:
 		recf = None
 		try:
 			if self.recFile is None:
-				self.remoteInit( spNET.whatIsMyIP() )
+				self.remoteInit(spNET.whatIsMyIP())
 			if self.recFile is None:
 				return	# was not able to get IP
 			recf = open(self.recFile, "wb")
@@ -283,7 +283,7 @@ class RecordingsControl:
 				for x in os.listdir(config.EMC.folder.value):
 					path = os.path.join(config.EMC.folder.value, x)
 					if x.lower().endswith(".rec") and path != self.recFile:
-						recf = open( path, "rb" )
+						recf = open(path, "rb")
 						self.recRemoteList += pickle.load(recf)
 		except Exception, e:
 			emcDebugOut("[emcRC] recFilesRead exception:\n" + str(e))

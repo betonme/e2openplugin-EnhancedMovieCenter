@@ -65,7 +65,7 @@ class EMCBookmarks():
 		f = None
 		try:
 			bmfile = open(CFG_FILE, "w")
-			bmfile.writelines([ p + "\n" for p in bm ])
+			bmfile.writelines([p + "\n" for p in bm])
 			bmfile.close()
 			result = True
 		except Exception, e:

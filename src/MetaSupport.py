@@ -126,22 +126,22 @@ class MetaList():
 
 	def getMetaRecordingTime(self):
 		# Time in seconds since 1970
-		return self.__mk_int( self.meta[self.RECTIME] )
+		return self.__mk_int(self.meta[self.RECTIME])
 
 	def getMetaTags(self):
 		return self.meta[self.TAGS]
 
 	def getMetaLength(self):
 		#TODO calculate during read on init
-		return self.__ptsToSeconds( self.__mk_int( self.meta[self.LENGTH] ) )
+		return self.__ptsToSeconds(self.__mk_int(self.meta[self.LENGTH]))
 
 	def getMetaFileSize(self):
-		return self.__mk_int( self.meta[self.FILESIZE] )
+		return self.__mk_int(self.meta[self.FILESIZE])
 
 	# Wrapper
 	def getMetaDate(self):
 		#TODO transform during read on init
-		return self.__secondsToDate( self.getMetaRecordingTime() )
+		return self.__secondsToDate(self.getMetaRecordingTime())
 
 	def getMetaTitle(self):
 		#TODO make it better and --> for example get the right title from other meta like "title only"
