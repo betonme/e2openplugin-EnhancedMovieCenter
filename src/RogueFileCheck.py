@@ -31,6 +31,7 @@ global extRogue
 
 extRogue = frozenset([".ap", ".cuts", ".cutsr", ".meta", ".sc", ".eit", ".ts_mp.jpg", ".gm", "dvd.cuts"])
 
+
 class RogueFileCheck:
 	def __init__(self, path, avoid=""):
 		self.found = {}

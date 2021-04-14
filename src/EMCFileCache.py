@@ -35,6 +35,7 @@ idx_Date = 3
 idx_realpath = 4
 idx_num = 5
 
+
 class EMCFileCache():
 	def __init__(self):
 		self.cacheDirectoryList = {}
@@ -258,5 +259,6 @@ class EMCFileCache():
 		for p, n, e in list:
 			if p in self.cacheAttributeList and (config.EMC.check_dead_links.value != "only_initially"):
 				del self.cacheAttributeList[p]
+
 
 movieFileCache = EMCFileCache()

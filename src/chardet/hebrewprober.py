@@ -125,6 +125,7 @@ from .enums import ProbingState
 # model probers scores. The answer is returned in the form of the name of the
 # charset identified, either "windows-1255" or "ISO-8859-8".
 
+
 class HebrewProber(CharSetProber):
     # windows-1255 / ISO-8859-8 code points of interest
     FINAL_KAF = 0xea

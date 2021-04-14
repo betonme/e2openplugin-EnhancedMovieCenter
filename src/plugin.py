@@ -42,6 +42,7 @@ from ISO639 import ISO639Language
 from EMCTasker import emcTasker, emcDebugOut
 import copy
 
+
 class ConfigTextWOHelp(ConfigText):
 	def __init__(self, default="", fixed_size=True, visible_width=False):
 		ConfigText.__init__(self, default, fixed_size, visible_width)
@@ -52,11 +53,14 @@ class ConfigTextWOHelp(ConfigText):
 	def onDeselect(self, session):
 		ConfigText.onDeselect(self, None)
 
+
 yes_no_descriptions = {False: _("no"), True: _("yes")}
+
 
 class ConfigYesNo(ConfigBoolean):
         def __init__(self, default=False):
                 ConfigBoolean.__init__(self, default=default, descriptions=yes_no_descriptions)
+
 
 class ConfigYesNoConfirm(ConfigBoolean):
 	def __init__(self, text, key1, key2, default=False):
@@ -88,6 +92,7 @@ class ConfigYesNoConfirm(ConfigBoolean):
 		if self.value != answer:
 			self.value = answer
 
+
 class ConfirmBox(MessageBox):
 	def __init__(self, session, text, key1, key2, type):
 		MessageBox.__init__(self, session, text=text, type=type, enable_input=False)
@@ -113,6 +118,7 @@ class ConfirmBox(MessageBox):
 
 	def closeConfirmBox(self, answer):
 		self.close(answer)
+
 
 class Autoselect639Language(ISO639Language):
 
@@ -142,6 +148,7 @@ class Autoselect639Language(ISO639Language):
 			defaults.append("en")
 		return (choices_dict, choices_list, defaults)
 
+
 def langListEPG():
 	list = language.getLanguageList()
 	newlist = []
@@ -149,10 +156,12 @@ def langListEPG():
 		newlist.append((item[0][:5], item[1][0]))
 	return newlist
 
+
 def langList():
 	iso639 = Autoselect639Language()
 	newlist = iso639.getTranslatedChoicesDictAndSortedListAndDefaults()[1]
 	return newlist
+
 
 launch_choices = [	("None", _("No override")),
 			("showMovies", _("Video-button")),
@@ -475,6 +484,7 @@ config.EMC.use_orig_skin = ConfigYesNo(default=True)
 
 config.EMC.InfoLong = ConfigSelection(choices=[("IMDbSearch", _("IMDb Search")), ("EMC-TMDBInfo", _("EMC-TMDB Info")), ("TMDBInfo", _("TMDB Info")), ("TMBDInfo", _("TMBD Info")), ('CSFDInfo', _('CSFD Info'))], default="IMDbSearch")
 
+
 def checkList(cfg):
 	for choices in cfg.choices.choices:
 		if cfg.value == choices[0]:
@@ -484,6 +494,7 @@ def checkList(cfg):
 			cfg.value = cfg.default
 			return
 	cfg.value = cfg.choices.choices[0][0]
+
 
 checkList(config.EMC.epglang)
 checkList(config.EMC.sublang1)
@@ -495,6 +506,7 @@ checkList(config.EMC.audlang3)
 
 gSession = None
 
+
 def showMoviesNew(dummy_self=None):
 	try:
 		global gSession
@@ -502,6 +514,7 @@ def showMoviesNew(dummy_self=None):
 		gSession.openWithCallback(showMoviesCallback, EMCSelection)
 	except Exception, e:
 		emcDebugOut("[showMoviesNew] exception:\n" + str(e))
+
 
 def showMoviesCallback(*args):
 	try:
@@ -512,9 +525,11 @@ def showMoviesCallback(*args):
 	except Exception, e:
 		emcDebugOut("[showMoviesCallback] exception:\n" + str(e))
 
+
 def playerCallback(reopen=False, *args):
 	if reopen:
 		showMoviesNew(*args)
+
 
 def autostart(reason, **kwargs):
 	if reason == 0: # start
@@ -548,6 +563,7 @@ def autostart(reason, **kwargs):
 				#except Exception, e:
 				#	emcDebugOut("[spStartup] instantiateDialog exception:\n" + str(e))
 
+
 def pluginOpen(session, *args, **kwargs):
 	try:
 		from EnhancedMovieCenter import EnhancedMovieCenterMenu
@@ -555,14 +571,17 @@ def pluginOpen(session, *args, **kwargs):
 	except Exception, e:
 		emcDebugOut("[pluginOpen] exception:\n" + str(e))
 
+
 def recordingsOpen(session, *args, **kwargs):
 	from MovieSelection import EMCSelection
 	session.openWithCallback(showMoviesCallback, EMCSelection)
+
 
 def menu_recordingsOpen(menuid, **kwargs):
     if menuid == "mainmenu":
 	return [("Enhanced Movie Center", recordingsOpen, "emc", 20)]
     return []
+
 
 def Plugins(**kwargs):
 	from EnhancedMovieCenter import EMCVersion

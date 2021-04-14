@@ -24,6 +24,7 @@ from enigma import eTimer
 from Components.config import config
 from EMCTasker import emcTasker
 
+
 class EMCMountPoints:
 	def __init__(self):
 		self.mountPointDeviceCache = {}
@@ -97,6 +98,7 @@ class EMCMountPoints:
 		association.append((postWakeCommand, path))
 		#wake the device a path is residing on by reading a random sector
 		emcTasker.shellExecute("dd if=`df " + path + " | awk 'NR == 2 {print $1}'` bs=4096 count=1 of=/dev/null skip=$[($[RANDOM] + 32768*$[RANDOM]) % 1048576];echo 'wakeDevice finished'", association, False)
+
 
 mountPoints = EMCMountPoints()
 

@@ -36,6 +36,7 @@ try:
 except:
 	isDreamOS = False
 
+
 def getRecording(filename):
 	try:
 		if filename[0] == "/":
@@ -55,6 +56,7 @@ def getRecording(filename):
 	except Exception, e:
 		emcDebugOut("[emcRC] getRecording exception:\n" + str(e))
 	return None
+
 
 class NetworkAwareness:
 	def __init__(self):
@@ -79,7 +81,9 @@ class NetworkAwareness:
 			self.initialized = True
 		emcDebugOut("[spNET] IP = " + str(self.ip).replace(", ", ".")[1:-1])
 
+
 spNET = NetworkAwareness()
+
 
 class RecordEventObserver:
 	def __init__(self, callback):
@@ -97,6 +101,8 @@ class RecordEventObserver:
 			emcDebugOut("[spRO] recEvent exception:\n" + str(e))
 
 #TODO RecControl should be a separate global instance
+
+
 class RecordingsControl:
 	def __init__(self, recStateChange):
 		self.recStateChange = recStateChange

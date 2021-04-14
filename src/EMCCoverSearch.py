@@ -66,12 +66,14 @@ config.EMC.imdb.thetvdb_standardcover = ConfigSelectionNumber(default=1, stepwid
 
 agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.141 Safari/537.36"
 
+
 def urlExist(url):
 	try:
 		urllib2.urlopen(urllib2.Request(url))
 		return True
 	except:
 		return False
+
 
 def getSearchList(title, option):
 	slist = []
@@ -88,11 +90,13 @@ def getSearchList(title, option):
 		slist = [' '.join(s)]
 	return slist
 
+
 try:
 	from enigma import eMediaDatabase
 	isDreamOS = True
 except:
 	isDreamOS = False
+
 
 class imdblist(MenuList):
 	def __init__(self, list):
@@ -105,6 +109,7 @@ class imdblist(MenuList):
 		self.l.setFont(5, gFont("Regular", 24))
 		self.l.setFont(6, gFont("Regular", 28))
 		self.l.setFont(7, gFont("Regular", 54))
+
 
 class EMCImdbScan(Screen):
 	if sz_w == 1920:
@@ -649,6 +654,7 @@ class EMCImdbScan(Screen):
 		res.append(MultiContentEntryText(pos=(w - 150 * f, 0), size=(140 * f, h), font=gF, text=elapsed, flags=RT_HALIGN_RIGHT | RT_VALIGN_CENTER))
 		return res
 
+
 class imdbSetup(Screen, ConfigListScreenExt):
 	if sz_w == 1920:
 		skin = """
@@ -741,6 +747,7 @@ class imdbSetup(Screen, ConfigListScreenExt):
 
 	def keyClose(self):
 		self.close()
+
 
 class getCover(Screen):
 	if sz_w == 1920:

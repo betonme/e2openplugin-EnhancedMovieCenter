@@ -53,6 +53,7 @@ def readPlaylist(path):
 				overview.append(name)
 		return overview
 
+
 class EMCPlaylist():
 	def __init__(self):
 		self.currentPlaylist = {}
@@ -91,7 +92,9 @@ class EMCPlaylist():
 		self.currentPlaylist = {}
 		print "EMC delete currentPlaylist"
 
+
 emcplaylist = EMCPlaylist()
+
 
 class EMCPlaylistScreen(Screen):
 	if sz_w == 1920:
@@ -161,6 +164,7 @@ class EMCPlaylistScreen(Screen):
 		text = _("EMC Playlist Menu")
 		menu.append((_("Playlist open"), self.openPlaylistCheck))
 		menu.append((_("Setup open"), self.showSetup))
+
 		def boxAction(choice):
 			if choice:
 				choice[1]()
@@ -270,6 +274,7 @@ class EMCPlaylistScreen(Screen):
 		self["playlist"].resetList()
 		self["playlist"].readPlaylist()
 		self["playlist"].refreshList()
+
 
 class PlayList(GUIComponent):
 	def __init__(self, enableWrapAround=True):
@@ -408,6 +413,7 @@ class PlayList(GUIComponent):
 	def setItemHeight(self):
 		self.l.setItemHeight(self.itemHeight)
 
+
 class EMCPlaylistSetup(Screen, ConfigListScreenExt):
 	if sz_w == 1920:
 		skin = """
@@ -503,6 +509,7 @@ class EMCPlaylistSetup(Screen, ConfigListScreenExt):
 			x[1].save()
 		configfile.save()
 		self.close()
+
 
 class EMCFileBrowser(Screen, HelpableScreen):
 	if sz_w == 1920:

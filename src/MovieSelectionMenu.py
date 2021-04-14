@@ -52,6 +52,7 @@ cutsParser = struct.Struct('>QI') # big-endian, 64-bit PTS and 32-bit type
 
 sz_w = getDesktop(0).size().width()
 
+
 class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 	if sz_w == 1920:
 		skin = """

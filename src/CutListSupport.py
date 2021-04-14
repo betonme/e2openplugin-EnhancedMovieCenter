@@ -51,6 +51,8 @@ DO_CUTLIST_WORKAROUND = True
 # Cut File support class
 # Description
 # http://git.opendreambox.org/?p=enigma2.git;a=blob;f=doc/FILEFORMAT
+
+
 class CutList():
 
 	# InfoBarCueSheetSupport types

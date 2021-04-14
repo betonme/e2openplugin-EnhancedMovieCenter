@@ -23,6 +23,7 @@
 from Components.Converter.ServicePosition import ServicePosition
 from Components.Element import cached
 
+
 class EMCServicePosition(ServicePosition):
 	def __init__(self, type):
 		ServicePosition.__init__(self, type)

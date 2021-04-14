@@ -41,6 +41,7 @@ config.EMC.movieinfo.cover_delay = ConfigSelectionNumber(50, 60000, 50, default=
 
 sz_w = getDesktop(0).size().width()
 
+
 def getMovieList(moviename):
 	response = fetchdata("http://api.themoviedb.org/3/search/movie?api_key=8789cfd3fbab7dccf1269c3d7d867aff&query=" + quote(moviename))
 	response1 = fetchdata("http://api.themoviedb.org/3/search/tv?api_key=8789cfd3fbab7dccf1269c3d7d867aff&query=" + quote(moviename))
@@ -60,6 +61,7 @@ def getMovieList(moviename):
 
         return movielist, idx
 
+
 def fetchdata(url):
 	try:
 		headers = {"Accept": "application/json"}
@@ -69,6 +71,7 @@ def fetchdata(url):
 		return response
 	except:
 		return None
+
 
 def getMovieInfo(id, cat, getAll=True, onlyPoster=False):
 	lang = config.EMC.movieinfo.language.value
@@ -200,6 +203,7 @@ def getMovieInfo(id, cat, getAll=True, onlyPoster=False):
 		else:
 			return None
 
+
 def getTempTxt(txt):
 	if txt is not None:
 		try:
@@ -207,6 +211,7 @@ def getTempTxt(txt):
 			file(txtpath, 'w').write(txt)
 		except Exception, e:
 			print('[EMC] MovieInfo getTempTxt exception failure: ', str(e))
+
 
 def getTempCover(posterUrl):
 	if posterUrl is not None:
@@ -219,8 +224,10 @@ def getTempCover(posterUrl):
 		except Exception, e:
 			print('[EMC] MovieInfo getTempCover exception failure: ', str(e))
 
+
 def dataError(error):
 	print "[EMC] MovieInfo ERROR:", error
+
 
 class MovieInfoTMDb(Screen):
 	if sz_w == 1920:
@@ -584,6 +591,7 @@ class MovieInfoTMDb(Screen):
 
 	def setup(self):
 		self.session.open(MovieInfoSetup)
+
 
 class MovieInfoSetup(Screen, ConfigListScreenExt):
 	if sz_w == 1920:

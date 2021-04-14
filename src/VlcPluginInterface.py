@@ -32,10 +32,12 @@ vlcSrv = "VLC"
 vlcDir = "VLCD"
 vlcFil = "VLCF"
 
+
 def isValidServiceId(id):
 	testSRef = eServiceReference(id, 0, "Just a TestReference")
 	info = eServiceCenter.getInstance().info(testSRef)
 	return info is not None
+
 
 try:
 	from VlcPlayer import DEFAULT_VIDEO_PID, DEFAULT_AUDIO_PID, ENIGMA_SERVICE_ID
@@ -73,13 +75,17 @@ except:
 	DEFAULT_VIDEO_PID = 0x44
 	DEFAULT_AUDIO_PID = 0x45
 
+
 class VlcFileListWrapper:
 	def __init__(self):
 		pass
+
 	def getNextFile(self):
 		return None, None
+
 	def getPrevFile(self):
 		return None, None
+
 
 class VlcPluginInterfaceSel():
 	def __init__(self):
@@ -101,6 +107,7 @@ class VlcPluginInterfaceSel():
 				self.close()
 		except Exception, e:
 			emcDebugOut("[EMC_VLC] vlcMovieSelected exception:\n" + str(e))
+
 
 class VlcPluginInterfaceList():
 	def __init__(self):

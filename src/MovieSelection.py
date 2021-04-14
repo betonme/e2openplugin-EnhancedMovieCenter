@@ -104,6 +104,8 @@ except:
 	boxmodel = ''
 
 # Move all trashcan operations to a separate file / class
+
+
 def purgeExpired(currentPath=None, postFileOp=None, emptyTrash=False):
 	try:
 		movie_trashpath = config.EMC.movie_trashcan_path.value
@@ -215,6 +217,7 @@ def purgeExpired(currentPath=None, postFileOp=None, emptyTrash=False):
 	except Exception, e:
 		emcDebugOut("[EMCMS] purgeExpired exception:\n" + str(e))
 
+
 if isDreamOS:
 	from enigma import eWindowAnimationSet, eWindowAnimationManager, eLinearInterpolator, eFloatAnimation
 	from Components.GUIComponent import GUIComponent
@@ -229,6 +232,7 @@ if isDreamOS:
 			animation.setAlpha(eFloatAnimation.create(200, 0.0, 1.0, False, eLinearInterpolator.create()))
 			eWindowAnimationManager.setAnimationSet(animation)
 			self.instance.setShowHideAnimation("emc_crossfade_pixmap")
+
 
 class SelectionEventInfo:
 	def __init__(self):
@@ -567,10 +571,12 @@ class SelectionEventInfo:
 			infobar.pauseService()
 			infobar.unPauseService()
 
+
 class EMCSelectionSummary(Screen):
 	def __init__(self, session, parent):
 		Screen.__init__(self, session, parent)
 		self.skinName = ["EMCSelectionSummary"]
+
 
 def getSkin():
 	skin = None
@@ -595,7 +601,9 @@ def getSkin():
 			skin = "/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/CoolSkin/EMCSelection_bottom_pig_1080.xml"
 	return skin
 
+
 last_currentPath = ""
+
 
 class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfaceSel, DirectoryStack, E2Bookmarks, EMCBookmarks, ProtectedScreen):
 
@@ -606,6 +614,7 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		def get_any(self):
 			return getattr(EMCSelection, attr, default)
 		return get_any
+
 	def attrsetter(attr):
 		def set_any(self, value):
 			setattr(EMCSelection, attr, value)
@@ -3314,6 +3323,8 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 
 #****************************************************************************************
 # add possibility to call IMDb/TMDB/CSFD from movie detail via blue key
+
+
 class IMDbEventViewSimple(EventViewSimple):
 	def __init__(self, session, Event, Ref, callback=None, similarEPGCB=None):
 		EventViewSimple.__init__(self, session, Event, Ref, callback, similarEPGCB)

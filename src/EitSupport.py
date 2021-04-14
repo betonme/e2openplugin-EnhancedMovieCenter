@@ -34,6 +34,7 @@ from IsoFileSupport import IsoSupport
 
 from MetaSupport import getInfoFile
 
+
 def parseMJD(MJD):
 	# Parse 16 bit unsigned int containing Modified Julian Date,
 	# as per DVB-SI spec
@@ -47,10 +48,14 @@ def parseMJD(MJD):
 
 	return (1900 + YY + K), (MM - 1 - K * 12), D
 
+
 def unBCD(byte):
 	return (byte >> 4) * 10 + (byte & 0xf)
 
+
 from Tools.ISO639 import LanguageCodes
+
+
 def language_iso639_2to3(alpha2):
 	ret = alpha2
 	if alpha2 in LanguageCodes:
@@ -64,6 +69,8 @@ def language_iso639_2to3(alpha2):
 # Eit File support class
 # Description
 # http://de.wikipedia.org/wiki/Event_Information_Table
+
+
 class EitList():
 
 	EIT_SHORT_EVENT_DESCRIPTOR = 0x4d

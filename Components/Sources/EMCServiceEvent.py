@@ -22,6 +22,7 @@
 from Components.Element import cached
 from Components.Sources.ServiceEvent import ServiceEvent
 
+
 class EMCServiceEvent(ServiceEvent):
 	def __init__(self, servicecenter):
 		ServiceEvent.__init__(self)

@@ -24,6 +24,7 @@ from Components.Converter.Converter import Converter
 from Components.Converter.MovieInfo import MovieInfo
 from Components.Element import cached, ElementError
 
+
 class EMCMovieInfo(MovieInfo):
 	def __init__(self, type):
 		MovieInfo.__init__(self, type)

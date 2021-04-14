@@ -171,6 +171,8 @@ else:
 #-------------------------------------------------
 # func: getPosterPath( path )
 #-------------------------------------------------
+
+
 def getPosterPath(searchPath):
 	ret = ""
 	paths = []
@@ -222,6 +224,8 @@ def getPosterPath(searchPath):
 #-------------------------------------------------
 # func: getNoPosterPath()
 #-------------------------------------------------
+
+
 def getNoPosterPath():
  if sz_w == 1920:
 	if config.EMC.use_orig_skin.value:
@@ -248,6 +252,8 @@ def getNoPosterPath():
 # Reads the lines of a file in a list. Empty lines
 # or lines beginnig with '#' will be ignored.
 #-------------------------------------------------
+
+
 def readBasicCfgFile(file):
 	data = []
 	if not os.path.exists(file):
@@ -275,6 +281,8 @@ def readBasicCfgFile(file):
 #
 # Determine the service of a media file
 #-------------------------------------------------
+
+
 def getPlayerService(path, name="", ext=None):
 	if ext in plyDVB:
 		service = eServiceReference(sidDVB, 0, path)
@@ -305,6 +313,7 @@ def getPlayerService(path, name="", ext=None):
 		service.setName(name)
 	return service
 
+
 def getMovieNameWithoutExt(moviename=""):
 	if config.EMC.movie_show_format.value:
 		for rem in extVideo:
@@ -319,6 +328,7 @@ def getMovieNameWithoutExt(moviename=""):
 				break
 	return moviename
 
+
 def getMovieNameWithoutPhrases(moviename=""):
 	# Remove phrases which are encapsulated in [*] or (*) from the movietitle
 	moviename = re.sub(r'\[.*\]', "", moviename)
@@ -327,6 +337,7 @@ def getMovieNameWithoutPhrases(moviename=""):
 	for (phrase, sub) in substitutelist:
 		moviename = moviename.replace(phrase, sub)
 	return moviename
+
 
 def getProgress(service, length=0, last=0, forceRecalc=False, cuts=None):
 	# All calculations are done in seconds
@@ -373,6 +384,7 @@ def getProgress(service, length=0, last=0, forceRecalc=False, cuts=None):
 		progress = 0
 	return progress, length
 
+
 def getRecordProgress(path):
 	# The progress of all recordings is updated
 	# - on show dialog
@@ -389,6 +401,7 @@ def getRecordProgress(path):
 	else:
 		return 0
 
+
 def calculateProgress(last, length):
 	progress = 0
 	if length:
@@ -403,6 +416,7 @@ def calculateProgress(last, length):
 		elif progress > 100:
 			progress = 100
 	return progress
+
 
 def toggleProgressService(service, preparePlayback, forceProgress=-1, first=False):
 	if service is None:
@@ -459,6 +473,7 @@ def toggleProgressService(service, preparePlayback, forceProgress=-1, first=Fals
 
 	return progress
 
+
 def dirInfo(folder, bsize=False):
 	#TODO Improve performance
 	count = 0
@@ -492,6 +507,7 @@ def dirInfo(folder, bsize=False):
 		movieFileCache.addCountSizeToCache(folder, count, size)
 	return count, size
 
+
 def detectDVDStructure(checkPath):
 	if not os.path.isdir(checkPath):
 		return None
@@ -508,6 +524,7 @@ def detectDVDStructure(checkPath):
 		return dvdpath
 	return None
 
+
 def detectMOVStructure(checkPath):
 	if not os.path.isdir(checkPath):
 		return None
@@ -519,6 +536,7 @@ def detectMOVStructure(checkPath):
 		if fileExists(movpath):
 			return movpath
 	return None
+
 
 def detectBLUStructure(checkPath):
 	if not os.path.isdir(checkPath):
@@ -532,6 +550,7 @@ def detectBLUStructure(checkPath):
 	if fileExists(blupath):
 		return blupath
 	return None
+
 
 def detectBLUISO(checkPath):
 	random.seed()
@@ -552,11 +571,15 @@ def detectBLUISO(checkPath):
 	return False
 
 # muss drinnen bleiben sonst crashed es bei foreColorSelected
+
+
 def MultiContentEntryProgress(pos=(0, 0), size=(0, 0), percent=None, borderWidth=None, foreColor=None, foreColorSelected=None, backColor=None, backColorSelected=None):
 	return (eListboxPythonMultiContent.TYPE_PROGRESS, pos[0], pos[1], size[0], size[1], percent, borderWidth, foreColor, foreColorSelected, backColor, backColorSelected)
 
+
 THREAD_WORKING = 1
 THREAD_FINISHED = 2
+
 
 class CountSizeWorker(Thread):
 	def __init__(self):
@@ -621,9 +644,11 @@ class CountSizeWorker(Thread):
 		self.__running = False
 		Thread.__init__(self)
 
+
 countsizeworker = CountSizeWorker()
 
 moviecenterdata = None
+
 
 class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBookmarks):
 
@@ -1734,6 +1759,7 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 				if service in self.highlightsCpy:
 					self.highlightsCpy.remove(service)
 
+
 def loadPix(name):
  if sz_w == 1920:
 	plugindir = '/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/'
@@ -1758,7 +1784,9 @@ def loadPix(name):
 			pic = LoadPixmap(cached=True, path=plugindir + name)
 		return pic
 
+
 moviecenter = None
+
 
 class MovieCenter(GUIComponent):
 

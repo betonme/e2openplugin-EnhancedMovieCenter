@@ -24,6 +24,7 @@ from Components.Converter.Converter import Converter
 from Components.Converter.ServiceTime import ServiceTime
 from Components.Element import cached, ElementError
 
+
 class EMCServiceTime(ServiceTime):
 	def __init__(self, type):
 		ServiceTime.__init__(self, type)

@@ -72,11 +72,13 @@ import NavigationInstance
 
 dvdPlayerPlg = "%s%s" % (resolveFilename(SCOPE_PLUGINS), "Extensions/DVDPlayer/plugin.py")
 
+
 class EMCMoviePlayerSummary(Screen):
 	def __init__(self, session, parent):
 		Screen.__init__(self, session, parent)
 		self.skinName = "EMCMoviePlayerSummary"
 		self["Service"] = EMCCurrentService(session.nav, parent)
+
 
 def getSkin():
 	skin = None
@@ -88,12 +90,15 @@ def getSkin():
 	return skin
 
 # Just a dummy to prevent crash
+
+
 class InfoBarTimeshift:
 	def __init__(self):
 		pass
 
 	def startTimeshift(self):
 		pass
+
 
 class EMCMediaCenter(CutList, Screen, HelpableScreen, InfoBarTimeshift, InfoBarSupport):
 

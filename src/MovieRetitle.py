@@ -16,6 +16,7 @@ from enigma import eServiceReference, iServiceInformation, getDesktop, ePoint
 # Plugin internal
 from ServiceSupport import ServiceCenter
 
+
 class MovieRetitle(Screen, ConfigListScreenExt):
 	def __init__(self, session, services):
 		Screen.__init__(self, session)

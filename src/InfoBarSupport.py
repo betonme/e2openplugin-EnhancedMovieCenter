@@ -60,6 +60,8 @@ except:
 	isDreamOS = False
 
 # Overwrite Seekbar
+
+
 def EMCkeyOK(self):
 	sel = self["config"].getCurrent()[1]
 	if sel == self.positionEntry:
@@ -81,6 +83,7 @@ def EMCkeyOK(self):
 		from EMCMediaCenter import EMCMediaCenter
 		EMCMediaCenter.doSeekRelative(self.infobarInstance, pts)
 		self.exit()
+
 
 class InfoBarSupport(	InfoBarBase,
 			InfoBarNotifications,

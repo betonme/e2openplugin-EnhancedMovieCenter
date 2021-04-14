@@ -22,6 +22,7 @@
 from Components.Element import cached
 from Components.Sources.CurrentService import CurrentService
 
+
 class EMCCurrentService(CurrentService):
 	def __init__(self, navcore, player):
 		CurrentService.__init__(self, navcore)

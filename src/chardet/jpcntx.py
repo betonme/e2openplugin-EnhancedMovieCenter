@@ -113,6 +113,7 @@ jp2CharContext = (
 (0, 4, 0, 3, 0, 3, 0, 3, 0, 3, 5, 5, 3, 3, 3, 3, 4, 3, 4, 3, 3, 3, 4, 4, 4, 3, 3, 3, 3, 4, 3, 5, 3, 3, 1, 3, 2, 4, 5, 5, 5, 5, 4, 3, 4, 5, 5, 3, 2, 2, 3, 3, 3, 3, 2, 3, 3, 1, 2, 3, 2, 4, 3, 3, 3, 4, 0, 4, 0, 2, 0, 4, 3, 2, 2, 1, 2, 0, 3, 0, 0, 4, 1),
 )
 
+
 class JapaneseContextAnalysis(object):
     NUM_OF_CATEGORY = 6
     DONT_KNOW = -1
@@ -180,6 +181,7 @@ class JapaneseContextAnalysis(object):
     def get_order(self, byte_str):
         return -1, 1
 
+
 class SJISContextAnalysis(JapaneseContextAnalysis):
     def __init__(self):
         super(SJISContextAnalysis, self).__init__()
@@ -208,6 +210,7 @@ class SJISContextAnalysis(JapaneseContextAnalysis):
                 return second_char - 0x9F, char_len
 
         return -1, char_len
+
 
 class EUCJPContextAnalysis(JapaneseContextAnalysis):
     def get_order(self, byte_str):

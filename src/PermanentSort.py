@@ -38,6 +38,8 @@ global XML_FILE
 XML_FILE = "/etc/enigma2/emc-permsort.xml"
 
 # PermanentSort class
+
+
 class PermanentSort():
 
 	def __init__(self, path=None):
