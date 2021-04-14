@@ -235,7 +235,8 @@ class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
 		self.onShow.append(self.onDialogShow)
 
 	def redButton(self):
-		if self.mode != "emcBookmarks": return
+		if self.mode != "emcBookmarks":
+			return
 		current = self["menu"].getCurrent()
 		path = current and current[0]
 		if path and self.removeEMCBookmark(path):

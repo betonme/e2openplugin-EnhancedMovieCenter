@@ -38,8 +38,10 @@ class EMCMountPoints:
 		self.postWakeHDDtimerDevice = ""
 
 	def mountpoint(self, path, first=True):
-		if first: path = os.path.realpath(path)
-		if os.path.ismount(path) or len(path)==0: return path
+		if first:
+			path = os.path.realpath(path)
+		if os.path.ismount(path) or len(path)==0:
+			return path
 		return self.mountpoint(os.path.dirname(path), False)
 
 	def getMountPointDevice(self, path):

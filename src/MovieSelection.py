@@ -825,19 +825,22 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		try:
 			from Plugins.Extensions.CoolTVGuide.plugin import main
 			main(self.session)
-		except: return
+		except:
+			return
 
 	def CoolSingleGuide(self):
 		try:
 			from Plugins.Extensions.CoolTVGuide.CoolSingleGuide import CSGmain
 			CSGmain(self.session)
-		except: return
+		except:
+			return
 
 	def CoolEasyGuide(self):
 		try:
 			from Plugins.Extensions.CoolTVGuide.CoolEasyGuide import CEGmain
 			CEGmain(self.session)
-		except: return
+		except:
+			return
 
 	def CoolTimerList(self):
 		from Screens.TimerEdit import TimerEditList
@@ -1142,7 +1145,8 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		self.updateAfterKeyPress()
 
 	def multiSelect(self, index=-1):
-		if self.browsingVLC(): return
+		if self.browsingVLC():
+			return
 
 		if index == -1:
 			# User pressed the multiselect key
@@ -1226,17 +1230,28 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 
 	def menuCallback(self, parameter=None, selection=None):
 		if parameter is not None:
-			if parameter == "Play last": self.playLast()
-			elif parameter == "emcPlaylist": self.openPlaylistOptions()
-			elif parameter == "addPlaylist": self.addPlaylist()
-			elif parameter == "setupPlaylist": self.setupPlaylist()
-			elif parameter == "playPlaylist": self.playPlaylist()
-			elif parameter == "playPlaylistRandom": self.playPlaylist(True)
-			elif parameter == "showPlaylist": self.showPlaylist()
-			elif parameter == "delPlaylist": self.delPlaylist()
-			elif parameter == "playall": self.playAll()
-			elif parameter == "shuffleall": self.shuffleAll()
-			elif parameter == "Movie home": self.changeDir(config.EMC.movie_homepath.value)
+			if parameter == "Play last":
+				self.playLast()
+			elif parameter == "emcPlaylist":
+				self.openPlaylistOptions()
+			elif parameter == "addPlaylist":
+				self.addPlaylist()
+			elif parameter == "setupPlaylist":
+				self.setupPlaylist()
+			elif parameter == "playPlaylist":
+				self.playPlaylist()
+			elif parameter == "playPlaylistRandom":
+				self.playPlaylist(True)
+			elif parameter == "showPlaylist":
+				self.showPlaylist()
+			elif parameter == "delPlaylist":
+				self.delPlaylist()
+			elif parameter == "playall":
+				self.playAll()
+			elif parameter == "shuffleall":
+				self.shuffleAll()
+			elif parameter == "Movie home":
+				self.changeDir(config.EMC.movie_homepath.value)
 			elif parameter == "Copy Movie":
 				if selection is not None:
 					self.copyMovie(selection)
@@ -1247,12 +1262,18 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 					self.moveMovie(selection)
 				else:
 					self.moveMovie()
-			elif parameter == "Movie Information": self.EMCTMDBInfo()
-			elif parameter == "reload": self.initList()
-			elif parameter == "plugin": self.onDialogShow()
-			elif parameter == "setup": self.onDialogShow()
-			elif parameter == "ctrash": purgeExpired(self.currentPath,self.postFileOp)
-			elif parameter == "trash": self.changeDir(config.EMC.movie_trashcan_path.value)
+			elif parameter == "Movie Information":
+				self.EMCTMDBInfo()
+			elif parameter == "reload":
+				self.initList()
+			elif parameter == "plugin":
+				self.onDialogShow()
+			elif parameter == "setup":
+				self.onDialogShow()
+			elif parameter == "ctrash":
+				purgeExpired(self.currentPath,self.postFileOp)
+			elif parameter == "trash":
+				self.changeDir(config.EMC.movie_trashcan_path.value)
 			elif parameter == "del":
 				if selection is not None:
 					self.deleteFile(False, selection)
@@ -1263,21 +1284,36 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 					self.deleteFile(True, selection)
 				else:
 					self.deleteFile(True)
-			elif parameter == "cutlistmarker": self.removeCutListMarker()
-			elif parameter == "resMarker": self.resetMarker()
-			elif parameter == "openE2Bookmarks": self.openE2Bookmarks()
-			elif parameter == "removeE2Bookmark": self.deleteE2Bookmark(parameter)
-			elif parameter == "openEMCBookmarks": self.openEMCBookmarks()
-			elif parameter == "removeEMCBookmark": self.deleteEMCBookmark(parameter)
-			elif parameter == "dirup": self.directoryUp()
-			elif parameter == "oscripts": self.openScriptMenu()
-			elif parameter == "markall": self.markAll()
-			elif parameter == "updatetitle": self.updateTitle()
-			elif parameter == "imdb": self.imdb()
-			elif parameter == "imdbdirectory": self.imdbDirectory()
-			elif parameter == "rename": self.rename()
-			elif parameter == "emptytrash": purgeExpired(self.currentPath,self.postFileOp,emptyTrash=True)
-			elif parameter == "reloadwithoutcache": self.reloadListWithoutCache()
+			elif parameter == "cutlistmarker":
+				self.removeCutListMarker()
+			elif parameter == "resMarker":
+				self.resetMarker()
+			elif parameter == "openE2Bookmarks":
+				self.openE2Bookmarks()
+			elif parameter == "removeE2Bookmark":
+				self.deleteE2Bookmark(parameter)
+			elif parameter == "openEMCBookmarks":
+				self.openEMCBookmarks()
+			elif parameter == "removeEMCBookmark":
+				self.deleteEMCBookmark(parameter)
+			elif parameter == "dirup":
+				self.directoryUp()
+			elif parameter == "oscripts":
+				self.openScriptMenu()
+			elif parameter == "markall":
+				self.markAll()
+			elif parameter == "updatetitle":
+				self.updateTitle()
+			elif parameter == "imdb":
+				self.imdb()
+			elif parameter == "imdbdirectory":
+				self.imdbDirectory()
+			elif parameter == "rename":
+				self.rename()
+			elif parameter == "emptytrash":
+				purgeExpired(self.currentPath,self.postFileOp,emptyTrash=True)
+			elif parameter == "reloadwithoutcache":
+				self.reloadListWithoutCache()
 
 	def openPlaylistOptions(self):
 		# first we check if playlist exists
@@ -1557,7 +1593,8 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		self.initButtons()
 
 	def toggleSortMode(self):
-		if self.browsingVLC(): return
+		if self.browsingVLC():
+			return
 		#WORKAROUND E2 doesn't send dedicated short or long pressed key events
 		if self.toggle == False:
 			self.toggle = True
@@ -1570,7 +1607,8 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		self.updateInfo()
 
 	def toggleSortOrder(self):
-		if self.browsingVLC(): return
+		if self.browsingVLC():
+			return
 		self.toggle = False
 		service = self.getNextSelectedService(self.getCurrent())
 		self.returnService = service
@@ -2300,7 +2338,8 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 	#		return False
 
 	def stopRecordConfirmation(self, confirmed):
-		if not confirmed: return
+		if not confirmed:
+			return
 		# send as a list?
 		stoppedAll=True
 		filenames = "\n"
@@ -2347,7 +2386,8 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 	#TODO Move all file operation functions to a separate class
 	#
 	def removeCutListMarker(self):
-		if self.browsingVLC(): return
+		if self.browsingVLC():
+			return
 		current = self.getCurrent()	# make sure there is atleast one entry in the list
 		if current is not None:
 			selectedlist = self["list"].makeSelectionList()[:]
@@ -2364,7 +2404,8 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		if self.multiSelectIdx:
 			self.multiSelectIdx = None
 			self.updateTitle()
-		if self.browsingVLC(): return
+		if self.browsingVLC():
+			return
 		movieFileCache.delPathFromCache(self.currentPath)
 		self.permanentDel  = permanently or not config.EMC.movie_trashcan_enable.value
 		self.permanentDel |= self.currentPath == config.EMC.movie_trashcan_path.value
@@ -2402,7 +2443,8 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 				self.deleteEMCBookmark(current)
 
 			else:
-				if self["list"].serviceBusy(selectedlist[0]): return
+				if self["list"].serviceBusy(selectedlist[0]):
+					return
 				if selectedlist and len(selectedlist)>0:
 					self.recsToStop = []
 					self.remRecsToStop = False
@@ -2729,7 +2771,8 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 				self.session.open(MessageBox, _("Cannot delete the parent directory."), MessageBox.TYPE_ERROR, 10)
 
 	def scriptCB(self, result=None):
-		if result is None: return
+		if result is None:
+			return
 
 		env = "export EMC_OUTDIR=%s"%config.EMC.folder.value
 		env += " EMC_HOME=%s"%config.EMC.movie_homepath.value
@@ -3044,7 +3087,8 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		if self.multiSelectIdx:
 			self.multiSelectIdx = None
 			self.updateTitle()
-		if self.browsingVLC() or self["list"].getCurrentSelDir() == "VLC servers": return
+		if self.browsingVLC() or self["list"].getCurrentSelDir() == "VLC servers":
+			return
 		# move way over menu and selected files
 		if selection is not None:
 			try:
@@ -3089,7 +3133,8 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 					dialog = True
 				if dialog:
 					try:
-						if len(selectedlist)==1 and self["list"].serviceBusy(selectedlist[0]): return
+						if len(selectedlist)==1 and self["list"].serviceBusy(selectedlist[0]):
+							return
 						self.tmpSelList = selectedlist[:]
 						self.checkHideMiniTV_beforeFullscreen()
 						self.session.openWithCallback(
@@ -3120,7 +3165,8 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 		if self.multiSelectIdx:
 			self.multiSelectIdx = None
 			self.updateTitle()
-		if self.browsingVLC() or self["list"].getCurrentSelDir() == "VLC servers": return
+		if self.browsingVLC() or self["list"].getCurrentSelDir() == "VLC servers":
+			return
 		# copy way over menu and selected files
 		if selection is not None:
 			try:
@@ -3165,7 +3211,8 @@ class EMCSelection(Screen, HelpableScreen, SelectionEventInfo, VlcPluginInterfac
 					dialog = True
 				if dialog:
 					try:
-						if len(selectedlist)==1 and self["list"].serviceBusy(selectedlist[0]): return
+						if len(selectedlist)==1 and self["list"].serviceBusy(selectedlist[0]):
+							return
 						self.tmpSelList = selectedlist[:]
 						self.checkHideMiniTV_beforeFullscreen()
 						self.session.openWithCallback(

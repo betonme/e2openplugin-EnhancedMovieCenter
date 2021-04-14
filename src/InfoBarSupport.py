@@ -82,24 +82,24 @@ def EMCkeyOK(self):
 		EMCMediaCenter.doSeekRelative(self.infobarInstance, pts)
 		self.exit()
 
-class InfoBarSupport(	InfoBarBase, \
-			InfoBarNotifications, \
-			InfoBarSeek, \
-			InfoBarShowHide, \
-			InfoBarMenu, \
-			InfoBarShowMovies, \
-			InfoBarAudioSelection, \
-			InfoBarSimpleEventView, \
-			InfoBarServiceNotifications, \
-			InfoBarPVRState, \
-			InfoBarCueSheetSupport, \
-			InfoBarSubtitleSupport, \
-			InfoBarTeletextPlugin, \
-			InfoBarServiceErrorPopupSupport, \
-			InfoBarExtensions, \
-			InfoBarPlugins, \
-			InfoBarNumberZap, \
-			InfoBarPiP, \
+class InfoBarSupport(	InfoBarBase,
+			InfoBarNotifications,
+			InfoBarSeek,
+			InfoBarShowHide,
+			InfoBarMenu,
+			InfoBarShowMovies,
+			InfoBarAudioSelection,
+			InfoBarSimpleEventView,
+			InfoBarServiceNotifications,
+			InfoBarPVRState,
+			InfoBarCueSheetSupport,
+			InfoBarSubtitleSupport,
+			InfoBarTeletextPlugin,
+			InfoBarServiceErrorPopupSupport,
+			InfoBarExtensions,
+			InfoBarPlugins,
+			InfoBarNumberZap,
+			InfoBarPiP,
 			InfoBarEPG ):
 
 	def __init__(self):

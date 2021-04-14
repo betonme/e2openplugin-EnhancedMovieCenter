@@ -45,8 +45,10 @@ def getRecording(filename):
 				filename = filename[:-3]
 
 		for timer in NavigationInstance.instance.RecordTimer.timer_list:
-			try: timer.Filename
-			except: timer.calculateFilename()
+			try:
+				timer.Filename
+			except:
+				timer.calculateFilename()
 			if filename == os.path.basename(timer.Filename):
 				return timer.begin, timer.end, timer.service_ref.ref
 
@@ -61,7 +63,8 @@ class NetworkAwareness:
 		self.initialized = False
 
 	def whatIsMyIP(self):
-		if not self.initialized: self.ipLookup()
+		if not self.initialized:
+			self.ipLookup()
 		return self.ip
 
 	def ipLookup(self):
@@ -108,13 +111,17 @@ class RecordingsControl:
 	def recEvent(self, timer):
 		# StateWaiting=0, StatePrepared=1, StateRunning=2, StateEnded=3
 		try:
-			if timer.justplay: return
+			if timer.justplay:
+				return
 			inform = False
-			try: timer.Filename
-			except: timer.calculateFilename()
+			try:
+				timer.Filename
+			except:
+				timer.calculateFilename()
 
 			filename = os.path.basename(timer.Filename)
-			if timer.state == timer.StatePrepared:	pass
+			if timer.state == timer.StatePrepared:
+				pass
 			elif timer.state == timer.StateRunning:	# timer.isRunning()
 				if config.EMC.files_cache.value:
 					cutfilename = "/" + filename
@@ -142,7 +149,8 @@ class RecordingsControl:
 						if hasattr(timer, "fixMoveCmd"):
 							emcTasker.shellExecute(timer.fixMoveCmd)
 							emcDebugOut("[emcRC] File had been moved while recording was in progress, moving left over files..")
-					except: pass
+					except:
+						pass
 				if config.EMC.timer_autocln.value:
 					DelayedFunction(2000, self.timerCleanup)	# postpone to avoid crash in basic timer delete by user
 			if inform:
@@ -160,7 +168,8 @@ class RecordingsControl:
 
 	def isRecording(self, filename):
 		try:
-			if filename[0] == "/": 			filename = os.path.basename(filename)
+			if filename[0] == "/":
+				filename = os.path.basename(filename)
 			if not isDreamOS:
 				if filename.lower().endswith(".ts"):
 					filename = filename[:-3]
@@ -171,7 +180,8 @@ class RecordingsControl:
 
 	def isRemoteRecording(self, filename):
 		try:
-			if filename[0] == "/": 			filename = os.path.basename(filename)
+			if filename[0] == "/":
+				filename = os.path.basename(filename)
 			if not isDreamOS:
 				if filename.lower().endswith(".ts"):
 					filename = filename[:-3]
@@ -182,7 +192,8 @@ class RecordingsControl:
 
 	def stopRecording(self, filename):
 		try:
-			if filename[0] == "/":			filename = os.path.basename(filename)
+			if filename[0] == "/":
+				filename = os.path.basename(filename)
 			if not isDreamOS:
 				if filename.lower().endswith(".ts"):
 					filename = filename[:-3]
@@ -221,8 +232,10 @@ class RecordingsControl:
 	def fixTimerPath(self, old, new):
 		try:
 			if not isDreamOS:
-				if old.lower().endswith(".ts"):	old = old[:-3]
-				if new.lower().endswith(".ts"):	new = new[:-3]
+				if old.lower().endswith(".ts"):
+					old = old[:-3]
+				if new.lower().endswith(".ts"):
+					new = new[:-3]
 			for timer in NavigationInstance.instance.RecordTimer.timer_list:
 				if timer.isRunning() and not timer.justplay and timer.Filename == old:
 					timer.dirname = os.path.dirname(new) + "/"
@@ -246,8 +259,10 @@ class RecordingsControl:
 	def recFileUpdate(self):
 		recf = None
 		try:
-			if self.recFile is None: self.remoteInit( spNET.whatIsMyIP() )
-			if self.recFile is None: return	# was not able to get IP
+			if self.recFile is None:
+				self.remoteInit( spNET.whatIsMyIP() )
+			if self.recFile is None:
+				return	# was not able to get IP
 			recf = open(self.recFile, "wb")
 			pickle.dump(self.recDict.keys(), recf)
 		except Exception, e:
@@ -257,8 +272,10 @@ class RecordingsControl:
 				recf.close()
 
 	def recFilesRead(self):
-		if self.recFile is None: self.recFileUpdate()
-		if self.recFile is None: return
+		if self.recFile is None:
+			self.recFileUpdate()
+		if self.recFile is None:
+			return
 		self.recRemoteList = []
 		recf = None
 		try:

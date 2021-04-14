@@ -228,10 +228,12 @@ def getInfoFile(path, exts=""):
 	elif os.path.isdir(path):
 		if path.lower().endswith("/bdmv"):			# bluray structures
 			dir = path[:-5]
-			if dir.lower().endswith("/brd"): dir = dir[:-4]
+			if dir.lower().endswith("/brd"):
+				dir = dir[:-4]
 		elif path.lower().endswith("video_ts"):			# DVD structures
 			dir = path[:-9]
-			if dir.lower().endswith("/dvd"): dir = dir[:-4]
+			if dir.lower().endswith("/dvd"):
+				dir = dir[:-4]
 		else:							# folders
 			dir = path
 			p2 = os.path.join(dir, "folder")		# "folder.ext"
@@ -244,6 +246,8 @@ def getInfoFile(path, exts=""):
 	for p in pathes:
 		for ext in exts:
 			fpath = p + ext
-			if os.path.exists(fpath): break
-		if os.path.exists(fpath): break
+			if os.path.exists(fpath):
+				break
+		if os.path.exists(fpath):
+			break
 	return (p1, fpath)

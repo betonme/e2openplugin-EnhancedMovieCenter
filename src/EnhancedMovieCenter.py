@@ -295,16 +295,19 @@ class EnhancedMovieCenterMenu(ConfigListScreenExt, Screen):
 				if self["config"].current:
 					try:
 						self["config"].current[1].onDeselect(self.session)
-					except: pass
+					except:
+						pass
 				if current:
 					try:
 						current[1].onSelect(self.session)
-					except: pass
+					except:
+						pass
 				self["config"].current = current
 			for x in self["config"].onSelectionChanged:
 				try:
 					x()
-				except: pass
+				except:
+					pass
 		self["config"].selectionChanged = selectionChanged
 		self["config"].onSelectionChanged.append(self.updateHelp)
 
@@ -679,7 +682,8 @@ class EnhancedMovieCenterMenu(ConfigListScreenExt, Screen):
 		try:
 			current = self["config"].getCurrent()
 			current and current[3]( current[1] )
-		except: pass
+		except:
+			pass
 
 	def keySaveNew(self):
 		config.EMC.needsreload.value = True
@@ -757,7 +761,8 @@ class EnhancedMovieCenterMenu(ConfigListScreenExt, Screen):
 						editDir = True,
 						inhibitDirs = ["/bin", "/boot", "/dev", "/etc", "/lib", "/proc", "/sbin", "/sys", "/var"],
 						minFree = 100 )
-		except: pass
+		except:
+			pass
 
 	def showRestart(self):
 		emcTasker.ShowAutoRestartInfo()

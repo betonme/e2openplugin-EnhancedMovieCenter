@@ -40,20 +40,26 @@ class RogueFileCheck:
 
 	def getStatistics(self):
 		strg = ""
-		for key in self.found:	strg += key + ": " + str(self.found[key]) + _(" files\n")
-		if strg == "":	strg = _("No rogue files found.")
-		else:			strg = _("Found rogue files:\n\n") + strg
+		for key in self.found:
+			strg += key + ": " + str(self.found[key]) + _(" files\n")
+		if strg == "":
+			strg = _("No rogue files found.")
+		else:
+			strg = _("Found rogue files:\n\n") + strg
 		return strg
 
 	def checkPath(self, path, avoid=""):
 		from MovieCenter import extMedia
 		#TODO check performance
-		if not os.path.exists(path) or path is avoid: return
+		if not os.path.exists(path) or path is avoid:
+			return
 		for p in os.listdir(path):
 			fullpath = os.path.join(path, p)
 			if os.path.isdir(fullpath):
-				try: self.checkPath(fullpath)
-				except: pass
+				try:
+					self.checkPath(fullpath)
+				except:
+					pass
 			else:
 				if os.path.exists(fullpath):
 					# Is there an alternative to avoid a for loop in a for loop
@@ -65,8 +71,10 @@ class RogueFileCheck:
 								break
 						else:
 							# No matching media file found
-							try:    self.found[ext] += 1
-							except: self.found[ext] = 1
+							try:
+								self.found[ext] += 1
+							except:
+								self.found[ext] = 1
 							self.files.append(fullpath)
 
 	def getDelFilesScript(self):

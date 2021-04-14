@@ -49,7 +49,8 @@ def emcDebugOut(outtxt, outfile=None, fmode="aw", forced=False):
 			traceback.print_exc(file=sys.stdout)
 			traceback.print_exc(file=deb)
 		deb.close()
-	except: pass
+	except:
+		pass
 
 
 class EMCExecutioner:
@@ -234,9 +235,12 @@ class EMCTasker:
 			if config.EMC.restart.value == "0": # Standby
 				self.session.open(Standby)
 				return "true"
-			elif config.EMC.restart.value == "1": CoolRestart = 1 # DeepStandby
-			elif config.EMC.restart.value == "2": CoolRestart = 2 # Reboot
-			else: CoolRestart = 3 # E2 Restart
+			elif config.EMC.restart.value == "1":
+				CoolRestart = 1 # DeepStandby
+			elif config.EMC.restart.value == "2":
+				CoolRestart = 2 # Reboot
+			else:
+				CoolRestart = 3 # E2 Restart
 			self.session.open(TryQuitMainloop, CoolRestart)
 			# this means that we're going to be re-instantiated after Enigma has restarted
 		else:
@@ -254,7 +258,8 @@ class EMCTasker:
 			ytimem = wbegin[0]*60 + wbegin[1]
 			ztimem = wend[0]*60 + wend[1]
 
-			if ytimem > ztimem:	ztimem += 12*60
+			if ytimem > ztimem:
+				ztimem += 12*60
 			emcDebugOut("+++ Local time is " +str(lotime[3:5]) + ", auto-start window is %s - %s" %(str(wbegin), str(wend)) )
 
 			if postponeDelay > 0:
@@ -266,7 +271,8 @@ class EMCTasker:
 				return
 
 			minsToGo = ytimem - xtimem
-			if xtimem > ztimem:	minsToGo += 24*60
+			if xtimem > ztimem:
+				minsToGo += 24*60
 
 			if initializing or minsToGo > 0:
 				if minsToGo < 0:		# if initializing

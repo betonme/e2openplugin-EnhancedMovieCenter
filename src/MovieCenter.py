@@ -398,8 +398,10 @@ def calculateProgress(last, length):
 		# Calculate progress and round up
 		progress = int( math.ceil ( float(last) / float(adjlength) * 100.0 ) )
 		# Normalize progress
-		if progress < 0: progress = 0
-		elif progress > 100: progress = 100
+		if progress < 0:
+			progress = 0
+		elif progress > 100:
+			progress = 100
 	return progress
 
 def toggleProgressService(service, preparePlayback, forceProgress=-1, first=False):
@@ -427,8 +429,10 @@ def toggleProgressService(service, preparePlayback, forceProgress=-1, first=Fals
 
 	if not preparePlayback:
 		if first:
-			if progress < 100: forceProgress = 50		# force next state 100
-			else: forceProgress = 100 							# force next state 0
+			if progress < 100:
+				forceProgress = 50		# force next state 100
+			else:
+				forceProgress = 100 							# force next state 0
 		if forceProgress > -1:
 			progress = forceProgress
 
@@ -592,7 +596,8 @@ class CountSizeWorker(Thread):
 
 	def run(self):
 		while not self.__list.empty():
-			if not self.__running: break
+			if not self.__running:
+				break
 
 			item = self.__list.pop()
 #			print'[EMC] CountSizeWorker processing: ', item
@@ -1314,7 +1319,8 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 						# Standard: filename = YYYYMMDD TIME - service_name - name
 						# Skip service_name, extract name
 						split = title.find(" - ")
-						if split > 0: title = title[3+split:]
+						if split > 0:
+							title = title[3+split:]
 
 					elif title[8:11] == " - ":
 						# Short Composition: filename = YYYYMMDD - name
@@ -1495,14 +1501,16 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 			global moviecenter
 			if moviecenter:
 				moviecenter.reload( arg )
-		except: pass
+		except:
+			pass
 
 	def globalRefresh(self):
 		try:
 			global moviecenter
 			if moviecenter:
 				moviecenter.refreshList()
-		except: pass
+		except:
+			pass
 
 	def recStateChange(self, timer):
 		if timer:
@@ -1675,7 +1683,8 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 			self.selectionList = []
 		newselnum = entry[5]	# init with old selection number
 		if overrideNum == None:
-			if self.serviceBusy(entry[0]): return	# no toggle if file being operated on
+			if self.serviceBusy(entry[0]):
+				return	# no toggle if file being operated on
 			# basic selection toggle
 			if newselnum == 0:
 				# was not selected
@@ -2141,10 +2150,14 @@ class MovieCenter(GUIComponent):
 					colorhighlight = self.FrontColorSel
 
 				# Get entry selection number
-				if service in self.highlightsMov: selnumtxt = "-->"
-				elif service in self.highlightsDel: selnumtxt = "X"
-				elif service in self.highlightsCpy: selnumtxt = "+"
-				elif selnum > 0: selnumtxt = "%02d" % selnum
+				if service in self.highlightsMov:
+					selnumtxt = "-->"
+				elif service in self.highlightsDel:
+					selnumtxt = "X"
+				elif service in self.highlightsCpy:
+					selnumtxt = "+"
+				elif selnum > 0:
+					selnumtxt = "%02d" % selnum
 
 				if selnumtxt is None:
 					if config.EMC.movie_icons.value:
@@ -2773,7 +2786,8 @@ class MovieCenter(GUIComponent):
 
 	def invalidateService(self, service):
 		idx = self.getIndexOfService(service)
-		if idx < 0: return
+		if idx < 0:
+			return
 		self.l.invalidateEntry( idx ) # force redraw of the item
 
 	def refreshList(self, worker=False):
@@ -2829,41 +2843,59 @@ class MovieCenter(GUIComponent):
 				self.instance.moveSelectionTo(index)
 
 	def currentSelIsPlayable(self):
-		try:	return self.getTypeOfIndex(self.getCurrentIndex()) in extMedia
-		except:	return False
+		try:
+			return self.getTypeOfIndex(self.getCurrentIndex()) in extMedia
+		except:
+			return False
 
 	def currentSelIsDirectory(self):
-		try:	return self.getTypeOfIndex(self.getCurrentIndex()) == cmtDir
-		except:	return False
+		try:
+			return self.getTypeOfIndex(self.getCurrentIndex()) == cmtDir
+		except:
+			return False
 
 	def currentSelIsVirtual(self):
-		try:	return self.getTypeOfIndex(self.getCurrentIndex()) in virAll
-		except:	return False
+		try:
+			return self.getTypeOfIndex(self.getCurrentIndex()) in virAll
+		except:
+			return False
 
 	def currentSelIsE2Bookmark(self):
-		try:	return self.getTypeOfIndex(self.getCurrentIndex()) == cmtBME2
-		except:	return False
+		try:
+			return self.getTypeOfIndex(self.getCurrentIndex()) == cmtBME2
+		except:
+			return False
 
 	def currentSelIsEMCBookmark(self):
-		try:	return self.getTypeOfIndex(self.getCurrentIndex()) == cmtBMEMC
-		except:	return False
+		try:
+			return self.getTypeOfIndex(self.getCurrentIndex()) == cmtBMEMC
+		except:
+			return False
 
 	def indexIsDirectory(self, index):
-		try:	return self.getTypeOfIndex(index) == cmtDir
-		except:	return False
+		try:
+			return self.getTypeOfIndex(index) == cmtDir
+		except:
+			return False
 
 	def indexIsPlayable(self, index):
-		try:	return self.getTypeOfIndex(index) in extMedia
-		except:	return False
+		try:
+			return self.getTypeOfIndex(index) in extMedia
+		except:
+			return False
 
 	def getCurrentSelDir(self):
 		self.startWorker = True
-		try: return self.getListEntry(self.getCurrentIndex())[4]
-		except: return False
+		try:
+			return self.getListEntry(self.getCurrentIndex())[4]
+		except:
+			return False
 
 	def getCurrentSelName(self):
-		try: return self.getListEntry(self.getCurrentIndex())[3]
-		except: return "none"
+		try:
+			return self.getListEntry(self.getCurrentIndex())[3]
+		except:
+			return "none"
 
 	def highlightService(self, enable, mode, service):
 		if enable:
@@ -2876,7 +2908,8 @@ class MovieCenter(GUIComponent):
 		entry = None
 		if service is None:
 			if index == -1:
-				if self.l.getCurrentSelection() is None: return
+				if self.l.getCurrentSelection() is None:
+					return
 				index = self.getCurrentIndex()
 			entry = self.list[index]
 		else:
@@ -2886,10 +2919,12 @@ class MovieCenter(GUIComponent):
 					entry = e
 					break
 				index += 1
-		if entry is None: return
+		if entry is None:
+			return
 
 		# We have entry, index, overrideNum
-		if not self.indexIsPlayable(index): return
+		if not self.indexIsPlayable(index):
+			return
 		self.toggleSelectionInternal(entry, index, overrideNum, self.l.invalidateEntry)
 
 	def toggleSortingMode(self):
@@ -2964,9 +2999,12 @@ class MovieCenter(GUIComponent):
 			# Get first and last selected item indexes
 			for sel in selectedlist:
 				idx = self.getIndexOfService(sel)
-				if idx < 0: idx = 0
-				if idx < first_sel_idx: first_sel_idx = idx
-				if idx > last_sel_idx:  last_sel_idx = idx
+				if idx < 0:
+					idx = 0
+				if idx < first_sel_idx:
+					first_sel_idx = idx
+				if idx > last_sel_idx:
+					last_sel_idx = idx
 
 			# Calculate previous and next item indexes
 			prev_idx = first_sel_idx - 1

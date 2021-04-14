@@ -655,11 +655,13 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarTimeshift, InfoBar
 	def setAudioTrack(self):
 		try:
 			print "###############################################audio"
-			if not config.EMC.autoaudio.value: return
+			if not config.EMC.autoaudio.value:
+				return
 			service = self.session.nav.getCurrentService()
 			tracks = service and self.getServiceInterface("audioTracks")
 			nTracks = tracks and tracks.getNumberOfTracks() or 0
-			if not nTracks: return
+			if not nTracks:
+				return
 			idx = 0
 			trackList = []
 			for i in xrange(nTracks):
@@ -686,16 +688,20 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarTimeshift, InfoBar
 			useAc3 = config.EMC.autoaudio_ac3.value	# emc has new value, in some images it gives different values for that
 			if useAc3:
 				matchedAc3 = self.tryAudioTrack(tracks, audiolang, trackList, seltrack, useAc3)
-				if matchedAc3: return
+				if matchedAc3:
+					return
 				matchedMpeg = self.tryAudioTrack(tracks, audiolang, trackList, seltrack, False)
-				if matchedMpeg: return
+				if matchedMpeg:
+					return
 				tracks.selectTrack(0)		# fallback to track 1(0)
 				return
 			else:
 				matchedMpeg = self.tryAudioTrack(tracks, audiolang, trackList, seltrack, False)
-				if matchedMpeg:	return
+				if matchedMpeg:
+					return
 				matchedAc3 = self.tryAudioTrack(tracks, audiolang, trackList, seltrack, useAc3)
-				if matchedAc3: return
+				if matchedAc3:
+					return
 				tracks.selectTrack(0)		# fallback to track 1(0)
 			print "###############################################audio1"
 		except Exception, e:
@@ -757,7 +763,8 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarTimeshift, InfoBar
 
 	def setSubtitleState(self, enabled):
 		try:
-			if not config.EMC.autosubs.value or not enabled: return
+			if not config.EMC.autosubs.value or not enabled:
+				return
 
 			if isDreamOS:
 				subs = isinstance(self, InfoBarSubtitleSupport) and self.getCurrentServiceSubtitle() or None
@@ -797,7 +804,8 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarTimeshift, InfoBar
 						if l:
 							print l
 							for sublang in [config.EMC.sublang1.value, config.EMC.sublang2.value, config.EMC.sublang3.value]:
-								if self.trySubEnable(l, sublang): break
+								if self.trySubEnable(l, sublang):
+									break
 			else:
 				subs = self.getCurrentServiceSubtitle() or self.getServiceInterface("subtitle")
 				if subs:
@@ -809,7 +817,8 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarTimeshift, InfoBar
 						if l:
 							print l
 							for sublang in [config.EMC.sublang1.value, config.EMC.sublang2.value, config.EMC.sublang3.value]:
-								if self.trySubEnable(l, sublang): break
+								if self.trySubEnable(l, sublang):
+									break
 		except Exception, e:
 			emcDebugOut("[EMCPlayer] setSubtitleState exception:\n" + str(e))
 
@@ -895,7 +904,8 @@ class EMCMediaCenter( CutList, Screen, HelpableScreen, InfoBarTimeshift, InfoBar
 		self.sendKey(iServiceKeys.keyUser+8)
 
 	def sendKey(self, key):
-		if self.service and self.service.type != sidDVD: return None
+		if self.service and self.service.type != sidDVD:
+			return None
 		keys = self.getServiceInterface("keys")
 		if keys:
 			keys.keyPressed(key)

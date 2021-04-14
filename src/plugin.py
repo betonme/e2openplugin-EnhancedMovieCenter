@@ -529,11 +529,16 @@ def autostart(reason, **kwargs):
 				try:
 					from Screens.InfoBar import InfoBar
 					value = config.EMC.movie_launch.value
-					if value == "showMovies":		InfoBar.showMovies = showMoviesNew
-					elif value == "showTv":			InfoBar.showTv = showMoviesNew
-					elif value == "showRadio":		InfoBar.showRadio = showMoviesNew
-					elif value == "openQuickbutton":	InfoBar.openQuickbutton = showMoviesNew
-					elif value == "timeshiftStart":		InfoBar.startTimeshift = showMoviesNew
+					if value == "showMovies":
+						InfoBar.showMovies = showMoviesNew
+					elif value == "showTv":
+						InfoBar.showTv = showMoviesNew
+					elif value == "showRadio":
+						InfoBar.showRadio = showMoviesNew
+					elif value == "openQuickbutton":
+						InfoBar.openQuickbutton = showMoviesNew
+					elif value == "timeshiftStart":
+						InfoBar.startTimeshift = showMoviesNew
 				except Exception, e:
 					emcDebugOut("[spStartup] MovieCenter launch override exception:\n" + str(e))
 
