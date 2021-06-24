@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: \n"
+"Project-Id-Version: EMC\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2021-06-03 01:45+0300\n"
+"PO-Revision-Date: 2021-06-23 20:22+0300\n"
 "Last-Translator: tomppaa www.huoltovalikko.com\n"
 "Language-Team: \n"
 "Language: fi\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-Basepath: ..\n"
-"X-Generator: Poedit 2.4.3\n"
+"X-Generator: Poedit 3.0\n"
 "POT-Creation-Date: \n"
 "X-Poedit-SearchPath-0: src\n"
 
@@ -191,6 +191,9 @@ msgstr "Päivittäisen siivoamisen ajankohta"
 msgid "Date format"
 msgstr "Päivämäärän muoto"
 
+msgid "HELP_Date format"
+msgstr "Piilota päivämäärä tai valitse päivämäärä, joka näytetään tallennus listan jokaiselle tallenukselle."
+
 msgid "Day"
 msgstr "Päivä"
 
@@ -307,6 +310,14 @@ msgstr "Roskakorin päivittäinen siivoaminen"
 
 msgid "Enable remote recordings"
 msgstr "Salli etätallennukset"
+
+msgid "HELP_Enable remote recordings"
+msgstr ""
+"Tunnistaa, kun jaettua vastaanotinta käytetään, kun toinen vastaanotin tallentaa.\n"
+"Nauhoituksella on oma kuvake tämän aikana."
+
+msgid "HELP_Automatic timers list cleaning"
+msgstr "Valmiit ajastukset poistetaan automaattisesti ajastinluettelosta."
 
 msgid "English"
 msgstr "Englanti"
@@ -574,7 +585,7 @@ msgid "Long Yellow button function"
 msgstr "Keltainen näppäin (pitkä)"
 
 msgid "LongInfo Button"
-msgstr "Info-näppäin (pitkä)"
+msgstr "Info näppäin (pitkä)"
 
 msgid "Manage Cover"
 msgstr "Hallitse kuvia"
@@ -762,6 +773,9 @@ msgstr "Uudelleennimeä valitut tallenteet"
 msgid "Replace special chars in title"
 msgstr "Korvaa erikoismerkit tallenteiden otsikoissa"
 
+msgid "HELP_Replace special chars in title"
+msgstr "Korvaa tallennus luettelossa alaviivat ja pisteet tiedostonimessä"
+
 msgid "Rewind finished movies before playing"
 msgstr "Kelaa katsotut tallenteet alkuun ennen toistoa"
 
@@ -780,8 +794,22 @@ msgstr "Tallenna nykyinen soittolista"
 msgid "Save description to movie.txt file:"
 msgstr "Tallenna ohjelmakuvaus movie.txt tiedostoon"
 
+msgid "Suppress scan in selected folders"
+msgstr "Estä skannaus valituissa hakemistoissa "
+
+msgid "HELP_cfgscan_suppress"
+msgstr ""
+"Jos ne on aktivoitu, ne luetellaan hakemistossa /etc/enigma2/emc-noscan.cfg\n"
+"Hakemistoista ei ole tarkistettu mediarakenteita (esim. DVD). \n"
+"Tämä voi Estä tahattomien kiintolevyjen tai verkkoasemien herääminen."
+
 msgid "Scan linked folders"
 msgstr "Skannaa linkitetyt hakemistot"
+
+msgid "HELP_scan_linked"
+msgstr ""
+"Symboli linkin alihakemistot tallennetaan myös mediarakenteisiin (esim. DVD)\n"
+"Tämä voi Estä tahattomien kiintolevyjen tai verkkoasemien herääminen."
 
 msgid "Search"
 msgstr "Hae"
@@ -868,7 +896,10 @@ msgid "Show movie progress"
 msgstr "Tallenneluettelon tilakuvakkeet"
 
 msgid "Show plugin config in extensions menu"
-msgstr "Näytä 'EMC asetukset' laajennusvalikossa"
+msgstr "Näytä EMC asetukset laajennusvalikossa"
+
+msgid "HELP_Show plugin config in extensions menu"
+msgstr "Näytä asetukset laajennus valikossa."
 
 msgid "Show trashcan directory"
 msgstr "Näytä roskakorin hakemisto"
@@ -945,11 +976,27 @@ msgstr "Roskakori"
 msgid "Trashcan enable"
 msgstr "Ota roskakori käyttöön"
 
+msgid "HELP_Trashcan directory"
+msgstr ""
+"Aseta roskakorin polku.\n"
+"Jos roskakori on aktivoitu, kaikki tiedostot siirretään tänne, ennen kuin ne poistetaan."
+
 msgid "Trashcan path"
 msgstr "Roskakorin hakemisto"
 
 msgid "Try to load titles from .eit files"
 msgstr "Yritä ladata tallenteiden otsikot .eit tiedostoista"
+
+msgid "HELP_Try to load titles from .eit files"
+msgstr ""
+"Otsikko ladataan .eit-tiedostosta, jos se on käytettävissä. \n"
+"Muuten otsikko puretaan tiedostonimestä. \n"
+"(Jos .meta ja .eit on aktivoitu, luetaan ensin .meta)"
+
+msgid "HELP_Show trashcan directory"
+msgstr ""
+"Näyttää roskakorin tallenusluottelossa.\n"
+"(Roskakori voidaan aina avata myös valikon kautta kun se on piilotettu.)"
 
 msgid "Try to load titles from .meta files"
 msgstr "Yritä ladata tallenteiden otsikot .meta tiedostoista"
@@ -1208,9 +1255,6 @@ msgstr "Pakota valmiustila automaattisen uudelleenkäynnistyksen jälkeen"
 msgid "HELP_Force standby after auto-start"
 msgstr "Automaattisen uudelleenkäynnistyksen jälkeen vastaanotin siirtyy valmiustilaan"
 
-msgid "DUMMY CONFIGSECTION"
-msgstr "Määrittelä lisäasetukset"
-
 msgid "No limit"
 msgstr "Ei rajoitettu"
 
@@ -1222,7 +1266,7 @@ msgid "HELP_Latest Recordings directory use emc-noscan.cfg"
 msgstr "Viimeisimpien tallenteiden hakemistossa emc-noscan.cfg"
 
 msgid "DVD / BLU-RAY / FOLDERS"
-msgstr "DVD / BLU-RAY / KANSIOT"
+msgstr "DVD / BLU-RAY / Kansiot"
 
 msgid "Hide configured entries"
 msgstr "Piilota määritetyt tiedostot ja hakemistot"
@@ -1339,7 +1383,7 @@ msgstr ""
 "(kun sitä poistettaan taustalla.)"
 
 msgid "LANGUAGE"
-msgstr "KIELI"
+msgstr "Valitse Kieli"
 
 msgid "Finnish"
 msgstr "Suomi"
@@ -1358,7 +1402,7 @@ msgid "HELP_Enable playback auto-language selection"
 msgstr "Valitsee ääniraita automaattisen kielen valinnan mukaan."
 
 msgid "DELAYS"
-msgstr "VIIVEET"
+msgstr "Viive"
 
 msgid "Description field update delay"
 msgstr "Päivitä viive kuvauskenttä"
@@ -1382,7 +1426,7 @@ msgid "HELP_Key repeat value (250-900)"
 msgstr "Aika, kunnes näppäin lähetetään toistuvasti, jos sitä pidetään painettuna."
 
 msgid "SKIN-SETTINGS"
-msgstr "TEEMA ASETUKSET"
+msgstr "Teema asetukset"
 
 msgid "Performance"
 msgstr "Suorituskyky"
@@ -1401,9 +1445,8 @@ msgstr "Teema tallenneluettolossa"
 
 msgid "HELP_Listbox is skin able"
 msgstr ""
-"Das Aussehen der Filmliste wird - wenn vorhanden - aus dem verwendeten Skin genommen (nur <widget name=\"list\").\n"
-"Ansonsten wie im EMC-Setup eingestellt.Tallennelistan ulkonäkö on - jos saatavilla - käytetystä teemastaotettu (vain <widgetin nimi = \"luettelo\").\n"
-"Muuten EMC-asetusten mukaisesti."
+"Tallennelistan ulkonäkö on - jos saatavilla - käytetystä teemastaotettu (vain <widgetin nimi = \"luettelo\").\n"
+"Muuten EMC asetusten mukaisesti."
 
 msgid "Horizontal alignment for date"
 msgstr "Päivämäärän vaakasuuntainen tasaus"
@@ -1425,7 +1468,7 @@ msgstr "Numeron, koon ja kuvauksen vaakasuora kohdistus"
 
 msgid "HELP_Horizontal alignment for count / size"
 msgstr ""
-"Tässä tekstin vaakasuuntainen tasaus lukuun, kokoon taiMääritettävän hakemiston ja roskakorin tiedot.\n"
+"Tässä tekstin vaakasuuntainen tasaus lukuun, kokoon tai Määritettävän hakemiston ja roskakorin tiedot.\n"
 "Näytetäänkö näyttö vasemmalla, keskellä vai oikealla."
 
 msgid "Show link arrow"
@@ -1532,6 +1575,9 @@ msgstr "Oletus väri kun korostettu tallenne on merkattu"
 msgid "Hide MiniTV"
 msgstr "Piilota PieniTV"
 
+msgid "HELP_hide_MiniTV"
+msgstr "Määrittää, missä tilanteissa PieniTV pitäisi piilottaa."
+
 msgid "never hide"
 msgstr "Älä koskaan piilota"
 
@@ -1556,11 +1602,13 @@ msgstr "Määrittää, pitäisikö PieniTV piilottaa taustalla, kun lista näyte
 msgid "Method of hiding MiniTV"
 msgstr "Menetelmä piilottaa PieniTV"
 
-#: EnhancedMovieCenter.py:530
 msgid "HELP_hide_MiniTV_method"
 msgstr ""
 "Tallenteen toistoa vastaan ​​vääristynyt kuvasuhde (esim. Gigablue Quad)\n"
 "Älä lopeta suoraa televisiota, sen sijaan pienennä PieniTV"
+
+msgid "DEBUG"
+msgstr "Debug Virheenkorjaustila"
 
 msgid "stop service"
 msgstr "lopeta toisto"
@@ -1569,16 +1617,13 @@ msgid "single pixel TV, muted"
 msgstr "1 Pixel Tv, vaimennettu"
 
 msgid "AUDIO METADATA"
-msgstr "ÄÄNI METATIETO"
+msgstr "Ääni metatieto"
 
 msgid "Show audio metadata"
 msgstr "Näytä äänen metatiedot"
 
 msgid "HELP_Show audio metadata"
 msgstr "Näytä äänen metatiedot tallenne listassa."
-
-msgid "DEBUG"
-msgstr "DEBUG"
 
 msgid "Enable EMC debug output"
 msgstr "Aktivoi virheenkorjaus käyttöön"
