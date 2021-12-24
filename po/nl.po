@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-Basepath: ..\n"
-"X-Generator: Poedit 2.2.1\n"
+"X-Generator: Poedit 3.0\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SearchPath-0: src\n"
 
@@ -3001,7 +3001,7 @@ msgstr "type 4 - transparant + zwart (#FF000000)"
 
 #: src/plugin.py:252
 msgid "E2 Bookmarks"
-msgstr "E2 baldwijzers"
+msgstr "E2 bladwijzers"
 
 #: src/plugin.py:253
 msgid "EMC Bookmarks"
