@@ -60,6 +60,45 @@ def language_iso639_2to3(alpha2):
 					return alpha
 	return ret
 
+def getEventCodePage(data):
+	encoding = None
+	try:
+		if len(data) > 0:
+			byte1 = ord(data[0])			
+			if byte1 == 0x01: encoding = 'iso-8859-5'
+			elif byte1 == 0x02: encoding = 'iso-8859-6'
+			elif byte1 == 0x03: encoding = 'iso-8859-7'
+			elif byte1 == 0x04: encoding = 'iso-8859-8'
+			elif byte1 == 0x05: encoding = 'iso-8859-9'
+			elif byte1 == 0x06: encoding = 'iso-8859-10'
+			elif byte1 == 0x07: encoding = 'iso-8859-11'
+			elif byte1 == 0x09: encoding = 'iso-8859-13'
+			elif byte1 == 0x0A: encoding = 'iso-8859-14'
+			elif byte1 == 0x0B: encoding = 'iso-8859-15'
+			elif byte1 == 0x15: encoding = 'utf-8'
+			elif byte1 == 0x10 and len(data) > 2:
+				byte2 = ord(data[1])
+				byte3 = ord(data[2])
+				if byte2 == 0x00:
+					if byte3 == 0x01: encoding = 'iso-8859-1'
+					elif byte3 == 0x02: encoding = 'iso-8859-2'
+					elif byte3 == 0x03: encoding = 'iso-8859-3'
+					elif byte3 == 0x04: encoding = 'iso-8859-4'
+					elif byte3 == 0x05: encoding = 'iso-8859-5'
+					elif byte3 == 0x06: encoding = 'iso-8859-6'
+					elif byte3 == 0x07: encoding = 'iso-8859-7'
+					elif byte3 == 0x08: encoding = 'iso-8859-8'
+					elif byte3 == 0x09: encoding = 'iso-8859-9'
+					elif byte3 == 0x0A: encoding = 'iso-8859-10'
+					elif byte3 == 0x0B: encoding = 'iso-8859-11'
+					elif byte3 == 0x0D: encoding = 'iso-8859-13'
+					elif byte3 == 0x0E: encoding = 'iso-8859-14'
+					elif byte3 == 0x0F: encoding = 'iso-8859-15'
+	except:
+		encoding = None
+	
+	return encoding
+	
 # Eit File support class
 # Description
 # http://de.wikipedia.org/wiki/Event_Information_Table
@@ -256,40 +295,14 @@ class EitList():
 								except IndexError, e:
 									emcDebugOut("[META] Exception in readEitFile: " + str(e))
 							if not name_event_codepage:
-								try:
-									byte1 = str(ord(data[pos+6]))
-								except:
-									byte1 = ''
-								if byte1=="1": name_event_codepage = 'iso-8859-5'
-								elif byte1=="2": name_event_codepage = 'iso-8859-6'
-								elif byte1=="3": name_event_codepage = 'iso-8859-7'
-								elif byte1=="4": name_event_codepage = 'iso-8859-8'
-								elif byte1=="5": name_event_codepage = 'iso-8859-9'
-								elif byte1=="6": name_event_codepage = 'iso-8859-10'
-								elif byte1=="7": name_event_codepage = 'iso-8859-11'
-								elif byte1=="9": name_event_codepage = 'iso-8859-13'
-								elif byte1=="10": name_event_codepage = 'iso-8859-14'
-								elif byte1=="11": name_event_codepage = 'iso-8859-15'
-								elif byte1=="21": name_event_codepage = 'utf-8'
+								idx = pos+6
+								name_event_codepage = getEventCodePage(data[idx:idx+3])
 								if name_event_codepage:
 									emcDebugOut("[META] Found name_event encoding-type: " + name_event_codepage)
 							short_event_description = ""
 							if not short_event_codepage:
-								try:
-									byte1 = str(ord(data[pos+7+event_name_length]))
-								except:
-									byte1 = ''
-								if byte1=="1": short_event_codepage = 'iso-8859-5'
-								elif byte1=="2": short_event_codepage = 'iso-8859-6'
-								elif byte1=="3": short_event_codepage = 'iso-8859-7'
-								elif byte1=="4": short_event_codepage = 'iso-8859-8'
-								elif byte1=="5": short_event_codepage = 'iso-8859-9'
-								elif byte1=="6": short_event_codepage = 'iso-8859-10'
-								elif byte1=="7": short_event_codepage = 'iso-8859-11'
-								elif byte1=="9": short_event_codepage = 'iso-8859-13'
-								elif byte1=="10": short_event_codepage = 'iso-8859-14'
-								elif byte1=="11": short_event_codepage = 'iso-8859-15'
-								elif byte1=="21": short_event_codepage = 'utf-8'
+								idx = pos+7+event_name_length
+								short_event_codepage = getEventCodePage(data[idx:idx+3])
 								if short_event_codepage:
 									emcDebugOut("[META] Found short_event encoding-type: " + short_event_codepage)
 							for i in range (pos+7+event_name_length,pos+length):
@@ -315,21 +328,8 @@ class EitList():
 							ISO_639_language_code = ISO_639_language_code.upper()
 							extended_event_description = ""
 							if not extended_event_codepage:
-								try:
-									byte1 = str(ord(data[pos+8]))
-								except:
-									byte1 = ''
-								if byte1=="1": extended_event_codepage = 'iso-8859-5'
-								elif byte1=="2": extended_event_codepage = 'iso-8859-6'
-								elif byte1=="3": extended_event_codepage = 'iso-8859-7'
-								elif byte1=="4": extended_event_codepage = 'iso-8859-8'
-								elif byte1=="5": extended_event_codepage = 'iso-8859-9'
-								elif byte1=="6": extended_event_codepage = 'iso-8859-10'
-								elif byte1=="7": extended_event_codepage = 'iso-8859-11'
-								elif byte1=="9": extended_event_codepage = 'iso-8859-13'
-								elif byte1=="10": extended_event_codepage = 'iso-8859-14'
-								elif byte1=="11": extended_event_codepage = 'iso-8859-15'
-								elif byte1=="21": extended_event_codepage = 'utf-8'
+								idx = pos+8
+								extended_event_codepage = getEventCodePage(data[idx:idx+3])
 								if extended_event_codepage:
 									emcDebugOut("[META] Found extended_event encoding-type: " + extended_event_codepage)
 							for i in range (pos+8,pos+length):
