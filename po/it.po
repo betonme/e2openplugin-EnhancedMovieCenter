@@ -1,22 +1,21 @@
-# Signed-off-by: Dario Croci <spaeleus@croci.org>
-#
+# Massimo Pissarello <mapi68@gmail.com>, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: EnhancedMovieCenterReport-Msgid-Bugs-To:\n"
 "POT-Creation-Date: 2019-12-14 08:37+0100\n"
-"PO-Revision-Date: 2021-12-18 11:34+0100\n"
-"Last-Translator: Dario Croci <spaeleus@croci.org>\n"
-"Language-Team: Dario Croci <spaeleus@croci.org>\n"
+"PO-Revision-Date: 2022-11-12 04:26+0100\n"
+"Last-Translator: Massimo Pissarello <mapi68@gmail.com>\n"
+"Language-Team: Italian <>\n"
 "Language: it_IT\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.0\n"
+"X-Generator: Lokalize 22.08.3\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 msgid " (without counting cover range)"
-msgstr " (senza contare il range della cover)"
+msgstr " (senza contare l'intervallo della cover)"
 
 msgid " - "
 msgstr " - "
@@ -68,13 +67,13 @@ msgid "( GB )"
 msgstr "( GB )"
 
 msgid "(Un-)Lock Directory"
-msgstr "Bloccare/Sbloccare directory"
+msgstr "Blocca/Sblocca directory"
 
 msgid "(show optional DVD audio menu)"
-msgstr "(mostrare il menu audio DVD opzionale)"
+msgstr "(mostra il menu audio DVD opzionale)"
 
 msgid "*** Multiselection active ***"
-msgstr "*** Multi selezione attiva ***"
+msgstr "*** Multiselezione attiva ***"
 
 msgid ".../foldername.jpg"
 msgstr ".../foldername.jpg"
@@ -96,41 +95,38 @@ msgid ""
 msgstr ""
 "ATTENZIONE\n"
 "\n"
-"Quest'opzione, all'orario stabilito, sposterà automaticamente nel cestino "
-"tutti i filmati riprodotti interamente dalla directory predefinita.\n"
-"Alla prossima pulizia del cestino tutti i filmati contenuti saranno "
-"rimossi.\n"
+"Questa opzione sposterà automaticamente tutti i film visti in Movie Home nel "
+"tuo cestino all'ora stabilita.\n"
+"Alla successiva pulizia del cestino tutti i film verranno eliminati.\n"
 "\n"
-"Per confermare premere il tasto BLU e poi il tasto VERDE."
+"Confermalo con il tasto BLU seguito dal tasto VERDE."
 
 msgid "AUDIO METADATA"
 msgstr "METADATI AUDIO"
 
 msgid "AUTOSTART"
-msgstr "RIAVVIO AUTOMATICO"
+msgstr "AVVIO AUTOMATICO"
 
 msgid "About"
-msgstr "Informazioni su EMC"
+msgstr "Informazioni su"
 
 msgid "Add directory to E2 Bookmarks"
-msgstr "Aggiungere la directory ai segnalibri di sistema"
+msgstr "Aggiungi directory ai segnalibri E2"
 
 msgid "Add directory to EMC Bookmarks"
-msgstr "Aggiungere la directory ai segnalibri di EMC"
+msgstr "Aggiungi directory ai segnalibri EMC"
 
 msgid "Add to Playlist"
-msgstr "Aggiungere alla playlist"
+msgstr "Aggiungi a playlist"
 
 msgid "Add to current Playlist"
-msgstr "Aggiungere alla playlist corrente"
+msgstr "Aggiungi alla playlist corrente"
 
 msgid "After file OPs only re-scan affected dirs"
-msgstr ""
-"Dopo operazioni sui file eseguire la scansione solo delle directory "
-"interessate"
+msgstr "Dopo operazioni sui file riesamina solo le directory interessate"
 
 msgid "Age of finished movies in movie folder (days)"
-msgstr "Permanenza dei filmati riprodotti nella cartella (giorni)"
+msgstr "Età dei film visti nella cartella film (giorni)"
 
 msgid "Album:"
 msgstr "Album:"
@@ -139,31 +135,31 @@ msgid "Alpha sort"
 msgstr "Ordine alfabetico"
 
 msgid "Alpha sort ascending (AZ)"
-msgstr "Alfabetico crescente (AZ)"
+msgstr "Alfabetico ascendente (AZ)"
 
 msgid "Alpha sort ascending with meta (AZM)"
-msgstr "Alfabetico crescente + meta(AZM)"
+msgstr "Alfabetico ascendente + meta (AZM)"
 
 msgid "Alpha sort ascending with meta, Date descending (AZMD-)"
-msgstr "Alfabetico crescente + meta, data decrescente (AZMD-)"
+msgstr "Alfabetico ascendente + meta, data discendente (AZMD-)"
 
 msgid "Alpha sort ascending, Date descending (AZD-)"
-msgstr "Alfabetico crescente, data decrescente (AZD-)"
+msgstr "Alfabetico ascendente, data discendente (AZD-)"
 
 msgid "Alpha sort date newest"
 msgstr "Alfabetico, data più recente"
 
 msgid "Alpha sort descending (ZA)"
-msgstr "Alfabetico decrescente (ZA)"
+msgstr "Alfabetico discendente (ZA)"
 
 msgid "Alpha sort descending with meta (ZAM)"
-msgstr "Alfabetico decrescente + meta (ZAM)"
+msgstr "Alfabetico discendente + meta (ZAM)"
 
 msgid "Alpha sort descending with meta, Date ascending (ZAMD+)"
-msgstr "Alfabetico decrescente + meta, data crescente (ZAMD+)"
+msgstr "Alfabetico discendente + meta, data ascendente (ZAMD+)"
 
 msgid "Alpha sort descending, Date ascending (ZAD+)"
-msgstr "Alfabetico decrescente, data crescente (ZAD+)"
+msgstr "Alfabetico discendente, data ascendente (ZAD+)"
 
 msgid "Alpha sort meta"
 msgstr "Alfabetico meta"
@@ -172,14 +168,13 @@ msgid "Alpha sort meta date newest"
 msgstr "Alfabetico meta, data più recente"
 
 msgid "Always save current Playlist"
-msgstr "Salvare sempre la playlist corrente"
+msgstr "Salva sempre la playlist corrente"
 
 msgid "Always save last played progress as marker"
-msgstr ""
-"Salvare sempre la posizione nell'ultimo file riprodotto come contrassegno"
+msgstr "Salvare sempre la posizione nell'ultimo file riprodotto come marcatore"
 
 msgid "An error occured! Internet connection broken?"
-msgstr "Si è verificato un errore: connessione internet assente?"
+msgstr "Si è verificato un errore! Connessione Internet interrotta?"
 
 msgid "Artist:"
 msgstr "Artista:"
@@ -194,7 +189,7 @@ msgid "Black"
 msgstr "Nero"
 
 msgid "Blue button function"
-msgstr "Funzione del tasto BLU"
+msgstr "Funzione tasto BLU"
 
 msgid "Bookmark"
 msgstr "Segnalibro"
@@ -203,7 +198,7 @@ msgid "Both"
 msgstr "Entrambi"
 
 msgid "Bouquet buttons behaviour"
-msgstr "Comportamento del tasto Bouquet"
+msgstr "Comportamento del tasto bouquet"
 
 msgid "Button disabled"
 msgstr "Tasto disabilitato"
@@ -218,17 +213,17 @@ msgid "Can not save "
 msgstr "Impossibile salvare "
 
 msgid "Can not save Cover in "
-msgstr "Impossibile salvare la cover in "
+msgstr "Impossibile salvare cover in "
 
 msgid "Can not save current Playlist!"
-msgstr "Impossibile salvare la playlist corrente."
+msgstr "Impossibile salvare playlist corrente!"
 
 msgid ""
 "Can not write Movie Information File\n"
 "\n"
 "%s"
 msgstr ""
-"Impossibile scrivere il file informazioni del filmato\n"
+"Impossibile scrivere file di informazioni sul film\n"
 "\n"
 "%s"
 
@@ -238,28 +233,28 @@ msgid ""
 "%(info)s\n"
 "%(file)s"
 msgstr ""
-"Impossibile scrivere file informazioni e cover del filmato\n"
+"Impossibile scrivere informazioni sul film e file della cover\n"
 "\n"
 "%(info)s\n"
 "%(file)s"
 
 msgid "Cancel"
-msgstr "Annullare"
+msgstr "Annulla"
 
 msgid "Cannot delete the parent directory."
-msgstr "Non è possibile eliminare la directory padre."
+msgstr "Impossibile eliminare la directory principale."
 
 msgid "Change File/Moviename and/or Description"
-msgstr "Cambiare il nome del file (o del filmato) e/o la sua descrizione"
+msgstr "Modifica nome del file/film e/o la descrizione"
 
 msgid "Change Folder"
-msgstr "Cambiare directory"
+msgstr "Cambia cartella"
 
 msgid "Change Foldername"
-msgstr "Cambiare il nome della directory"
+msgstr "Cambia nome cartella"
 
 msgid "Change the filename to save current Playlist:"
-msgstr "Cambiare il nome del file per salvare la playlist corrente:"
+msgstr "Cambia nome del file per salvare la playlist corrente:"
 
 msgid "Chap."
 msgstr "Cap."
@@ -268,46 +263,46 @@ msgid "Chapter"
 msgstr "Capitolo"
 
 msgid "Check for dead links"
-msgstr "Controllare i link non funzionanti"
+msgstr "Controlla i link non funzionanti"
 
 msgid "Choose Directory:"
-msgstr "Selezionare la directory:"
+msgstr "Scegli directory:"
 
 msgid "Choose bookmark"
-msgstr "Selezionare il segnalibro"
+msgstr "Scegli segnalibro"
 
 msgid "Choose directory"
-msgstr "Selezionare la directory"
+msgstr "Scegli directory"
 
 msgid "Choose operation"
-msgstr "Selezionare l'operazione"
+msgstr "Scegli operazione"
 
 msgid "Choose plugin"
-msgstr "Selezionare il plugin"
+msgstr "Scegli plugin"
 
 msgid "Choose script"
-msgstr "Selezionare script"
+msgstr "Scegli script"
 
 msgid "Close EMC"
-msgstr "Chiudere EMC"
+msgstr "Chiudi EMC"
 
 msgid "Close EMC and do power button action"
-msgstr "Chiudere EMC e azionare il pulsante di accensione"
+msgstr "Chiudi EMC e aziona il pulsante di accensione"
 
 msgid "Collection"
-msgstr "Raccolta"
+msgstr "Collezione"
 
 msgid "Configured directories at the top of movielist"
-msgstr "Directory personalizzate in cima all'elenco filmati"
+msgstr "Directory configurate in cima all'elenco dei film"
 
 msgid "Content:"
 msgstr "Contenuto:"
 
 msgid "Copy File"
-msgstr "Copiare il file"
+msgstr "Copia file"
 
 msgid "Copy Files"
-msgstr "Copiare i file"
+msgstr "Copia i file"
 
 msgid "Copy file(s):"
 msgstr "Copia il/i file:"
@@ -317,12 +312,12 @@ msgid ""
 "\n"
 "Do you want to replace the existing cover?"
 msgstr ""
-"Cover %s già presente.\n"
+"La cover %s esiste!\n"
 "\n"
-"Ripristinare la cover esistente?"
+"Vuoi sostituire la cover esistente?"
 
 msgid "Cover Search"
-msgstr "Ricercare cover"
+msgstr "Ricerca cover"
 
 msgid "Cover background"
 msgstr "Sfondo cover"
@@ -334,7 +329,7 @@ msgid "Cover disabled in EMC-Setup"
 msgstr "Cover disabilitate nelle impostazioni di EMC"
 
 msgid "Cover is Saved."
-msgstr "La cover è stata salvata."
+msgstr "Cover salvata."
 
 msgid "Cover search"
 msgstr "Ricerca cover"
@@ -344,30 +339,31 @@ msgid ""
 "\n"
 "This may take a while on huge Disks, or Directories!"
 msgstr ""
-"Ricercare la cover in tutti i file nelle sottocartelle?\n"
+"Ricercare cover anche nei file delle sottodirectory?\n"
 "\n"
-"Potrebbe richiedere molto tempo su dischi/directory di grandi dimensioni."
+"Questo potrebbe richiedere molto tempo su dischi o directory di grandi "
+"dimensioni!"
 
 msgid "Coversize"
 msgstr "Dimensioni cover"
 
 msgid "Create Link"
-msgstr "Creare link"
+msgstr "Crea collegamento"
 
 msgid "Create directory"
-msgstr "Creare directory"
+msgstr "Crea directory"
 
 msgid "Create link"
-msgstr "Creare link"
+msgstr "Crea collegamento"
 
 msgid "Creating Search List.."
-msgstr "Creazione “Elenco di ricerca” in corso..."
+msgstr "Creazione elenco di ricerca..."
 
 msgid "Current Playlist saved successfully!"
-msgstr "Playlist corrente salvata con successo."
+msgstr "Playlist corrente salvata con successo!"
 
 msgid "Cursor predictive move after selection"
-msgstr "Movimento predittivo cursore dopo la selezione"
+msgstr "Spostamento predittivo cursore dopo la selezione"
 
 msgid "Custom"
 msgstr "Personalizzato"
@@ -391,10 +387,10 @@ msgid "DISPLAY-SETTINGS"
 msgstr "IMPOSTAZIONI DISPLAY"
 
 msgid "DVD / BLU-RAY / FOLDERS"
-msgstr "DIRECTORY DVD/BLURAY"
+msgstr "CARTELLE DVD / BLU-RAY"
 
 msgid "Daily cleanup time"
-msgstr "Ora di pulizia quotidiana"
+msgstr "Orario pulizia quotidiana"
 
 msgid "Dark green"
 msgstr "Verde scuro"
@@ -412,13 +408,13 @@ msgid "Date format"
 msgstr "Formato data"
 
 msgid "Date sort"
-msgstr "Ordine per data"
+msgstr "Ordinamento per data"
 
 msgid "Date sort ascending (D+)"
-msgstr "Per data crescente (D+)"
+msgstr "Per data ascendente (D+)"
 
 msgid "Date sort descending (D-)"
-msgstr "Per data decrescente (D-)"
+msgstr "Per data discendente (D-)"
 
 msgid "Day"
 msgstr "Giorno"
@@ -427,10 +423,10 @@ msgid "Days"
 msgstr "Giorni"
 
 msgid "Debug output file name"
-msgstr "Nome del file di output di debug"
+msgstr "Nome file in uscita di debug"
 
 msgid "DeepStandby"
-msgstr "DeepStandby"
+msgstr "Spento"
 
 msgid "Default"
 msgstr "Predefinito"
@@ -440,7 +436,7 @@ msgid ""
 "\n"
 "Save default Playlist?"
 msgstr ""
-"La playlist predefinita non è vuota.\n"
+"La playlist predefinita non è vuota!\n"
 "\n"
 "Salvare la playlist predefinita?"
 
@@ -451,60 +447,62 @@ msgid "Default Playlist path"
 msgstr "Percorso playlist predefinita"
 
 msgid "Default color for highlighted movie"
-msgstr "Colore predefinito per i filmati evidenziati"
+msgstr "Colore predefinito per i film evidenziati"
 
 msgid "Default color for partially watched movie"
-msgstr "Colore predefinito per i filmati riprodotti parzialmente"
+msgstr "Colore predefinito per i film riprodotti parzialmente"
 
 msgid "Default color for recording movie"
-msgstr "Colore predefinito per i filmati in registrazione"
+msgstr "Colore predefinito per i film in registrazione"
 
 msgid "Default color for unwatched movie"
-msgstr "Colore predefinito per i filmati non riprodotti"
+msgstr "Colore predefinito per i film non visti"
 
 msgid "Default color for watched movie"
-msgstr "Colore predefinito per i filmati riprodotti integralmente"
+msgstr "Colore predefinito per i film visti integralmente"
 
 msgid "Default sort mode"
-msgstr "Ordinamento predefinito"
+msgstr "Modalità di ordinamento predefinita"
 
 msgid "Delete"
-msgstr "Rimuovere"
+msgstr "Rimuovi"
 
 msgid "Delete All"
-msgstr "Rimuovere  tutto"
+msgstr "Rimuovi tutto"
 
 msgid "Delete Entry"
-msgstr "Rimuovere la voce"
+msgstr "Elimina voce"
 
 msgid "Delete current Playlist"
-msgstr "Rimuovere la playlist corrente"
+msgstr "Elimina playlist corrente"
 
 msgid "Delete cut file(s)"
-msgstr "Rimuovere file di taglio (.cuts)"
+msgstr "Elimina file di taglio (.cuts)"
 
 msgid "Delete error:\n"
-msgstr "Errore in rimozione:\n"
+msgstr "Errore di eliminazione:\n"
 
 msgid ""
 "Delete failed because the trashcan directory does not exist. Attempt to "
 "create it now?"
-msgstr "Rimozione fallita. La directory cestino non esiste. Crearla ora?"
+msgstr ""
+"Eliminazione non riuscita perché la directory del cestino non esiste. Provo "
+"a crearla adesso?"
 
 msgid "Delete failed!"
-msgstr "Rimozione fallita."
+msgstr "Eliminazione fallita!"
 
 msgid "Delete permanently"
-msgstr "Rimuovere definitivamente"
+msgstr "Elimina definitivamente"
 
 msgid "Delete validation"
-msgstr "Confermare la rimozione"
+msgstr "Convalida eliminazione"
 
 msgid "Description"
 msgstr "Descrizione"
 
 msgid "Description field update delay"
-msgstr "Ritardo aggiornamento campo descrizione"
+msgstr "Campo descrizione ritardo aggiornamento"
 
 msgid "Description:"
 msgstr "Descrizione:"
@@ -513,7 +511,7 @@ msgid "Directory"
 msgstr "Directory"
 
 msgid "Directory %s already exists!"
-msgstr "Directory %s già presente."
+msgstr "La directory %s esiste già!"
 
 msgid "Directory back"
 msgstr "Directory precedente"
@@ -522,94 +520,94 @@ msgid "Directory forward"
 msgstr "Directory successiva"
 
 msgid "Directory is not empty! Do you really want to delete it?"
-msgstr "La directory non è vuota. Eliminarla?"
+msgstr "La directory non è vuota! Vuoi davvero eliminarla?"
 
 msgid "Directory up"
-msgstr "Directory superiore"
+msgstr "Directory su"
 
 msgid "Directory-Cover search"
 msgstr "Ricerca per directory-cover"
 
 msgid "Disable EMC"
-msgstr "Disabilitare EMC"
+msgstr "Disabilita EMC"
 
 msgid "Display directory reading text"
-msgstr "Mostrare il testo durante la lettura della directory"
+msgstr "Visualizza testo durante lettura della directory"
 
 msgid ""
 "Do you really want to delete the cut file?\n"
 "If you have selected a directory, all cut files within the folder and its "
 "subfolders will be deleted!"
 msgstr ""
-"Eliminare il file cut?\n"
-"Se è stata selezionata una directory, tutti i file cut (anche nelle relative "
-"sottodirectory) saranno eliminati."
+"Vuoi davvero eliminare il file di taglio?\n"
+"Se hai selezionato una directory, tutti i file di taglio all'interno della "
+"cartella e le sue sottocartelle verranno eliminati!"
 
 msgid "Do you really want to lock the directory %s and all its subfolders?"
-msgstr "Bloccare la directory %s e tutte le sue sottodirectory?"
+msgstr "Vuoi davvero bloccare la directory %s e tutte le sue sottocartelle?"
 
 msgid ""
 "Do you really want to remove your bookmark\n"
 "%s?"
 msgstr ""
-"Rimuovere i segnalibri\n"
+"Vuoi davvero rimuovere il tuo segnalibro\n"
 "%s?"
 
 msgid ""
 "Do you really want to remove your directory\n"
 "%s?"
 msgstr ""
-"Rimuovere la directory\n"
+"Vuoi davvero rimuovere la tua directory\n"
 "%s?"
 
 msgid ""
 "Do you really want to remove your link\n"
 "%s?"
 msgstr ""
-"Rimuovere il link\n"
+"Vuoi davvero rimuovere il tuo collegamento\n"
 "%s?"
 
 msgid "Do you want to resume this playback?"
-msgstr "Riprendere la riproduzione?"
+msgstr "Vuoi riprendere questa riproduzione?"
 
 msgid "Does not contain any scripts."
 msgstr "Non contiene alcuno script."
 
 msgid "Don't auto scan size of dirs from emc-noscan.cfg"
 msgstr ""
-"Non analizzare automaticamente le dimensioni delle directory inserite in emc-"
-"noscan.cfg"
+"Non scansionare automaticamente le dimensioni delle directory da emc-noscan."
+"cfg"
 
 msgid "Download Movie Info"
-msgstr "Scaricare informazioni sul filmato"
+msgstr "Scarica informazioni sul film"
 
 msgid "Download Movie Information"
-msgstr "Scaricare informazioni sul filmato"
+msgstr "Scarica informazioni sul film"
 
 msgid "Download Mutagen-package for audio metadata"
-msgstr "Scaricare il pacchetto Mutagen per i metadata audio"
+msgstr "Scarica pacchetto Mutagen per i metadati audio"
 
 msgid "Download cutlist from Cutlist.at"
-msgstr "Scaricare la lista tagli da Cutlist.at"
+msgstr "Scarica lista tagli da Cutlist.at"
 
 msgid "Download: %s"
 msgstr "Download: %s"
 
 msgid "E2 Bookmark"
-msgstr "Segnalibro di sistema"
+msgstr "Segnalibro E2"
 
 msgid "E2 Bookmarks"
-msgstr "Segnalibri di sistema"
+msgstr "Segnalibri E2"
 
 msgid "E2 Restart"
-msgstr "Riavviare E2"
+msgstr "Riavvia E2"
 
 msgid ""
 "EMC\n"
 "Zap to Live TV of record"
 msgstr ""
 "EMC\n"
-"Passare alla diretta della registrazione"
+"Passa alla TV in diretta della registrazione"
 
 msgid "EMC Bookmarks"
 msgstr "Segnalibri EMC"
@@ -624,7 +622,7 @@ msgid "EMC Cover search setup"
 msgstr "Impostazioni ricerca cover EMC"
 
 msgid "EMC Filebrowser"
-msgstr "Filebrowser EMC"
+msgstr "Browser file EMC"
 
 msgid "EMC Playlist - current playlist"
 msgstr "Playlist EMC - playlist corrente"
@@ -639,22 +637,22 @@ msgid "EMC Setup"
 msgstr "Impostazioni EMC"
 
 msgid "EMC Trashcan Cleanup failed!"
-msgstr "Pulizia del cestino di EMC fallita."
+msgstr "Pulizia del cestino EMC non riuscita!"
 
 msgid "EMC always reload after open"
-msgstr "Ricaricare sempre l'elenco all'avvio"
+msgstr "EMC ricarica sempre dopo l'apertura"
 
 msgid "EMC output directory"
-msgstr "Directory di output EMC"
+msgstr "Directory di uscita EMC"
 
 msgid "EMC path access limit"
-msgstr "Limiti di accesso al percorso di EMC"
+msgstr "Limiti accesso al percorso di EMC"
 
 msgid "EMC re-open list after Movie end"
-msgstr "Riaprire l'elenco delle registrazioni a fine riproduzione"
+msgstr "Riapri elenco registrazioni a fine riproduzione"
 
 msgid "EMC re-open list after STOP-press"
-msgstr "Riaprire l'elenco delle registrazioni dopo STOP"
+msgstr "Riapri elenco registrazioni dopo STOP"
 
 msgid "EMC-TMDB Info"
 msgstr "Informazioni EMC-TMDB"
@@ -663,44 +661,44 @@ msgid ""
 "EMC: Skipping Trashcan Cleanup\n"
 "Movie Home Path is equal to or a subfolder of the Trashcan"
 msgstr ""
-"Saltare la pulizia del cestino\n"
-"Il percorso Home dei filmati è il cestino o una sua sottocartella"
+"EMC: salta la pulizia del cestino\n"
+"Il percorso Home dei film è uguale o una sottocartella del cestino"
 
 msgid "Empty trashcan"
-msgstr "Svuotare il cestino"
+msgstr "Svuota cestino"
 
 msgid "Enable EMC debug output"
-msgstr "Abilitare l'output di debug di EMC"
+msgstr "Abilita output di debug EMC"
 
 msgid "Enable daily trashcan cleanup"
-msgstr "Abilitare la pulizia quotidiana del cestino"
+msgstr "Abilita pulizia quotidiana del cestino"
 
 msgid "Enable playback AC3-track first"
-msgstr "Preferire la traccia AC3"
+msgstr "Abilita prima la riproduzione della traccia AC3"
 
 msgid "Enable playback auto-language selection"
-msgstr "Abilitare la selezione automatica della lingua"
+msgstr "Abilita selezione automatica lingua di riproduzione"
 
 msgid "Enable playback auto-subtitling"
-msgstr "Abilitare la riproduzione automatica dei sottotitoli"
+msgstr "Abilita riproduzione automatica sottotitoli"
 
 msgid "Enable remote recordings"
-msgstr "Abilitare le registrazioni remote"
+msgstr "Abilita registrazioni remote"
 
 msgid "English"
 msgstr "Inglese"
 
 msgid "Enter Name for Playlist"
-msgstr "Inserire un nome per la playlist"
+msgstr "Inserisci il nome per la playlist"
 
 msgid "Enter name for new directory:"
-msgstr "Inserire un nome per la nuova directory:"
+msgstr "Inserisci il nome per la nuova directory:"
 
 msgid "Exist"
-msgstr "Trovato"
+msgstr "Esiste"
 
 msgid "Exist: %s"
-msgstr "Trovate: %s"
+msgstr "Esiste: %s"
 
 msgid "Extra support for language"
 msgstr "Supporto extra per la lingua"
@@ -709,7 +707,7 @@ msgid "File added to current Playlist."
 msgstr "File aggiunto alla playlist corrente."
 
 msgid "File exists in current Playlist."
-msgstr "File già esistente nella playlist corrente."
+msgstr "Il file esiste già nella playlist corrente."
 
 msgid "File not available."
 msgstr "File non disponibile."
@@ -741,13 +739,13 @@ msgstr ""
 "%s"
 
 msgid "Finished watching percent"
-msgstr "Classificare un filmato come visto quando riprodotto almeno per il (%)"
+msgstr "Classifica un film come visto quando riprodotto almeno per il (%)"
 
 msgid "Foldername:"
-msgstr "Nome directory:"
+msgstr "Nome cartella:"
 
 msgid "Force standby after auto-restart"
-msgstr "Forzare lo standby dopo un riavvio automatico"
+msgstr "Forza standby dopo riavvio automatico"
 
 msgid "Format AVSwitch"
 msgstr "Formato AVSwitch"
@@ -775,10 +773,10 @@ msgid "German"
 msgstr "Tedesco"
 
 msgid "Given path %s does not exist. Please change."
-msgstr "Il percorso %s non esiste. Modificarlo."
+msgstr "Il percorso dato %s non esiste. Per favore cambia."
 
 msgid "Go to trashcan"
-msgstr "Andare al cestino"
+msgstr "Vai al cestino"
 
 msgid "Green"
 msgstr "Verde"
@@ -806,7 +804,7 @@ msgstr ""
 
 msgid "HELP_Age of finished movies in movie folder (days)"
 msgstr ""
-"Impostare la permanenza dei filmati già visti nella cartella \" Movie home\""
+"Impostare la permanenza dei film già visti nella cartella \" Movie home\""
 
 msgid "HELP_Always save last played progress as marker"
 msgstr ""
@@ -831,8 +829,8 @@ msgstr "Verificare i collegamenti inesistenti"
 
 msgid "HELP_Configure in etc\\enigma2\\emc-topdir.cfg"
 msgstr ""
-"Visualizzare in cima all'elenco filmati le directory elencate in /etc/"
-"enigma2/emc-topdir.cfg"
+"Visualizzare in cima all'elenco film le directory elencate in /etc/enigma2/"
+"emc-topdir.cfg"
 
 msgid "HELP_Cover background"
 msgstr "Impostare uno sfondo per le cover"
@@ -864,20 +862,19 @@ msgid "HELP_Debug output file name"
 msgstr "Impostare un nome per il file di output di debug"
 
 msgid "HELP_Default color highlighted"
-msgstr "Impostare il colore predefinito per i filmati evidenziati"
+msgstr "Impostare il colore predefinito per i film evidenziati"
 
 msgid "HELP_Default color partially watched"
-msgstr "Impostare il colore predefinito per i filmati riprodotti parzialmente"
+msgstr "Impostare il colore predefinito per i film riprodotti parzialmente"
 
 msgid "HELP_Default color recording"
-msgstr "Impostare il colore predefinito per i filmati in fase di registrazione"
+msgstr "Impostare il colore predefinito per i film in fase di registrazione"
 
 msgid "HELP_Default color unwatched"
-msgstr "Impostare il colore predefinito per i filmati ancora non riprodotti"
+msgstr "Impostare il colore predefinito per i film ancora non riprodotti"
 
 msgid "HELP_Default color watched"
-msgstr ""
-"Impostare il colore predefinito per i filmati già riprodotti interamente"
+msgstr "Impostare il colore predefinito per i film già riprodotti interamente"
 
 msgid "HELP_Delete validation"
 msgstr ""
@@ -886,7 +883,7 @@ msgstr ""
 
 msgid "HELP_Description field update delay"
 msgstr ""
-"Impostare un ritardo nella visualizzazione delle descrizioni dei filmati in "
+"Impostare un ritardo nella visualizzazione delle descrizioni dei film in "
 "elenco.\n"
 "Aumenterà la velocità di navigazione quando vengono premuti ripetutamente i "
 "tasti SU/GIÙ perché la descrizione verrà caricata solo trascorso il ritardo "
@@ -894,8 +891,8 @@ msgstr ""
 
 msgid "HELP_Disable EMC"
 msgstr ""
-"Determinare se disabilitare completamente l'interfaccia \"Elenco filmati\" "
-"di EMC.\n"
+"Determinare se disabilitare completamente l'interfaccia \"Elenco film\" di "
+"EMC.\n"
 "Alcune funzioni speciali come [Pulizia lista Timer],[Pulizia cestino] e "
 "[Auto riavvio] rimarranno comunque attive in background"
 
@@ -917,7 +914,7 @@ msgstr "Determinare se scaricare l'elenco tagli da Cutlist.at"
 
 msgid "HELP_Dynamic trashcan"
 msgstr ""
-"Determinare se mostra il numero di filmati presenti nel cestino, il relativo "
+"Determinare se mostra il numero di film presenti nel cestino, il relativo "
 "spazio utilizzato o entrambi"
 
 msgid "HELP_EMC always reload after open"
@@ -931,7 +928,7 @@ msgstr "Determinare la directory di destinazione del debug di EMC"
 msgid "HELP_EMC path access limit"
 msgstr ""
 "Impostare un limite alla possibilità di navigare all'indietro nelle "
-"directory, a partire dalla home filmati.\n"
+"directory, a partire dalla home film.\n"
 "Tuttavia, tramite \"Menu\" >> \"Directory superiore\" sarà possibile "
 "continuare a navigare all'indietro, superando il limite impostato"
 
@@ -999,12 +996,12 @@ msgstr ""
 
 msgid "HELP_Hide movies being deleted"
 msgstr ""
-"Determinare se mostrare in elenco i filmati mentre vengono rimossi.\n"
+"Determinare se mostrare in elenco i film mentre vengono rimossi.\n"
 "Nel caso si scelga di nasconderli la rimozione avverrà in background"
 
 msgid "HELP_Hide movies being moved"
 msgstr ""
-"Determinare se mostrare in elenco i filmati mentre vengono spostati.\n"
+"Determinare se mostrare in elenco i film mentre vengono spostati.\n"
 "Nel caso si scelga di nasconderli lo spostamento avverrà in background"
 
 msgid "HELP_Horizontal alignment for count / size"
@@ -1084,7 +1081,7 @@ msgstr ""
 msgid "HELP_Listbox is skin able"
 msgstr ""
 "Determinare se debbano essere usate le impostazioni della skin in uso (se "
-"disponibili) per la visualizzazione dell'elenco filmati.n\n"
+"disponibili) per la visualizzazione dell'elenco film.n\n"
 "(solo <widget name=\"list\"). Se non presenti saranno applicate le "
 "impostazioni di EMC"
 
@@ -1121,28 +1118,28 @@ msgstr "Impostare il limite minimo della cache dei file (0=cache tutto)"
 
 msgid "HELP_Move finished movies in trashcan"
 msgstr ""
-"Determinare se spostare automaticamente nel cestino tutti i filmati "
-"riprodotti integralmente\n"
+"Determinare se spostare automaticamente nel cestino tutti i film riprodotti "
+"integralmente\n"
 "quando raggiungono il limite di permanenza impostato nella voce successiva"
 
 msgid "HELP_Movie home at start"
 msgstr ""
 "Determinare se l'avvio di EMC debba sempre avvenire dalla directory \"home\" "
-"dei filmati, che potrà essere personalizzata nelle voci successive di "
+"dei film, che potrà essere personalizzata nelle voci successive di "
 "configurazione"
 
 msgid "HELP_Movie home home path"
-msgstr "Impostare il percorso della cartella “Home\" dei filmati"
+msgstr "Impostare il percorso della cartella “Home\" dei film"
 
 msgid "HELP_Movie preview delay in ms"
 msgstr ""
-"Se l'anteprima filmati è attiva, determinare il ritardo di avvio della "
+"Se l'anteprima film è attiva, determinare il ritardo di avvio della "
 "riproduzione per impedirne la visualizzazione durante lo zapping nell'elenco "
-"filmati o il caricamento di una cover"
+"film o il caricamento di una cover"
 
 msgid "HELP_Movie preview offset in seconds"
 msgstr ""
-"Impostare l'offset dell'anteprima dei filmati in secondi.\n"
+"Impostare l'offset dell'anteprima dei film in secondi.\n"
 "La riproduzione dell'anteprima inizierà x secondi prima dell'ultima "
 "posizione di riproduzione marcata"
 
@@ -1161,8 +1158,7 @@ msgstr "Impostare il percorso per i picon video"
 
 msgid "HELP_Position movie picons"
 msgstr ""
-"Determinare la posizione in cui i picon dei filmati devono essere "
-"visualizzati"
+"Determinare la posizione in cui i picon dei film devono essere visualizzati"
 
 msgid "HELP_Preferred EPG language"
 msgstr "Impostare la lingua preferita per l'EPG"
@@ -1214,8 +1210,8 @@ msgstr ""
 
 msgid "HELP_Scan for movie structures"
 msgstr ""
-"Determinare se disattivare la scansione delle strutture dei filmati per "
-"evitare risvegli inaspettati di dischi di rete"
+"Determinare se disattivare la scansione delle strutture dei film per evitare "
+"risvegli inaspettati di dischi di rete"
 
 msgid "HELP_Secondary playback audio language"
 msgstr ""
@@ -1277,15 +1273,15 @@ msgstr ""
 "VlcPlayerExtended risulti installato"
 
 msgid "HELP_Show audio metadata"
-msgstr "Determinare se mostrare i metadati audio nell'elenco filmati"
+msgstr "Determinare se mostrare i metadati audio nell'elenco film"
 
 msgid "HELP_Show audio metadata (needs skin-changes)"
 msgstr ""
-"Determinare se mostrare i metadati audio nell'elenco filmati (la skin "
+"Determinare se mostrare i metadati audio nell'elenco film (la skin "
 "richiederà modifiche)"
 
 msgid "HELP_Show directories"
-msgstr "Determinare se mostrare/nascondere le directory nell'elenco filmati"
+msgstr "Determinare se mostrare/nascondere le directory nell'elenco film"
 
 msgid "HELP_Show directories information"
 msgstr ""
@@ -1313,21 +1309,21 @@ msgstr ""
 
 msgid "HELP_Show movie icons"
 msgstr ""
-"Determinare se nell'elenco filmati ogni registrazione debba essere preceduta "
-"da un'icona appropriata"
+"Determinare se nell'elenco film ogni registrazione debba essere preceduta da "
+"un'icona appropriata"
 
 msgid "HELP_Show movie picons"
 msgstr "Determinare se mostrare i picon dei video"
 
 msgid "HELP_Show movie preview"
 msgstr ""
-"Determinare se riprodurre automaticamente i filmati dopo un tempo di "
-"permanenza del cursore sulla voce"
+"Determinare se riprodurre automaticamente i film dopo un tempo di permanenza "
+"del cursore sulla voce"
 
 msgid "HELP_Show movie progress"
 msgstr ""
 "Determinare se visualizzare una barra di avanzamento/percentuale davanti "
-"alle voci in elenco filmati\n"
+"alle voci in elenco film\n"
 "Lo stato del filmato sarà riconoscibile dai colori delle icone e del testo. "
 "La colorazione del testo potrà essere disattivata tramite la skin"
 
@@ -1393,8 +1389,8 @@ msgstr ""
 msgid "HELP_Trashcan path"
 msgstr ""
 "Determinare il percorso del cestino.\n"
-"Selezionando \"Rimuovere\" dal menu i filmati verranno spostati nel cestino "
-"(se attivo) invece di essere eliminati immediatamente"
+"Selezionando \"Rimuovere\" dal menu i film verranno spostati nel cestino (se "
+"attivo) invece di essere eliminati immediatamente"
 
 msgid "HELP_Try to load extra title and more from .meta files"
 msgstr ""
@@ -1474,7 +1470,7 @@ msgstr ""
 msgid "HELP_hide_MiniTV_method"
 msgstr ""
 "Determinare il metodo utilizzato per nascondere la MiniTV.\n"
-"Può essere utile nel caso di filmati con aspect ratio distorto (per esempio "
+"Può essere utile nel caso di film con aspect ratio distorto (per esempio "
 "Gigablue Quad)"
 
 msgid "HELP_scan_linked"
@@ -1489,22 +1485,22 @@ msgid "HELP_separator_hide&performance"
 msgstr "Impostazioni per nascondere file (o directory) e prestazioni"
 
 msgid "Hide Cover"
-msgstr "Nascondere la cover"
+msgstr "Nascondi cover"
 
 msgid "Hide MiniTV"
-msgstr "Nascondere la MiniTV"
+msgstr "Nascondi MiniTV"
 
 msgid "Hide MiniTV if Cover is shown"
-msgstr "Nascondere la MiniTV se è presente la cover"
+msgstr "Nascondi MiniTV se viene visualizzata la cover"
 
 msgid "Hide configured entries"
 msgstr "Nascondere file e directory configurati"
 
 msgid "Hide movies being deleted"
-msgstr "Nascondere i filmati in corso di rimozione"
+msgstr "Nascondi film in fase di eliminazione"
 
 msgid "Hide movies being moved"
-msgstr "Nascondere i filmati in corso di spostamento"
+msgstr "Nascondere film in fase di spostamento"
 
 msgid "HomeEnd"
 msgstr "Inizio/fine elenco"
@@ -1523,10 +1519,9 @@ msgid ""
 "Select some movies with the VIDEO-button, move the cursor on top of the "
 "destination directory and press yellow long."
 msgstr ""
-"Per copiare file:\n"
-"Selezionare i filmati con il tasto [VIDEO], spostare il cursore sulla "
-"directory di destinazione ed effettuare una pressione prolungata del tasto "
-"[GIALLO]."
+"Per copiare file:\nSeleziona i film con il tasto [VIDEO], sposta il cursore"
+" sulla directory di destinazione ed effettua una pressione prolungata del"
+" tasto [GIALLO]."
 
 msgid ""
 "How to move files:\n"
@@ -1534,8 +1529,8 @@ msgid ""
 "destination directory and press yellow."
 msgstr ""
 "Per spostare file:\n"
-"Selezionare i filmati con il tasto [VIDEO], spostare il cursore sulla "
-"directory di destinazione e premere il tasto [GIALLO]."
+"Seleziona i film con il tasto [VIDEO], sposta il cursore sulla directory "
+"di destinazione e premi il tasto [GIALLO]."
 
 msgid "IMDBSearch / EMC-TMDBInfo / TMDBInfo / TMBDInfo / CSFDInfo"
 msgstr "IMDBSearch / EMC-TMDBInfo / TMDBInfo / TMBDInfo / CSFDInfo"
@@ -1544,26 +1539,26 @@ msgid "IMDb"
 msgstr "IMDb"
 
 msgid "IMDb Search"
-msgstr "Ricercare in IMDb"
+msgstr "Ricerca IMDb"
 
 msgid "Icon shown for initially unknown count / size"
 msgstr ""
-"Visualizzare un'icona se numero file/dimensioni sono inizialmente sconosciuti"
+"Visualizza icona se numero file/dimensioni sono inizialmente sconosciuti "
 
 msgid "Information"
 msgstr "Informazioni"
 
 msgid "Install Mutagen-package for audio metadata"
-msgstr "Installare il pacchetto Mutagen per i metadati audio"
+msgstr "Installa pacchetto Mutagen per i metadati audio"
 
 msgid "Installing Mutagen-package"
-msgstr "Installazione del pacchetto Mutagen in corso"
+msgstr "Installazione del pacchetto Mutagen"
 
 msgid "Italian"
 msgstr "Italiano"
 
 msgid "Jump to first mark when playing movie"
-msgstr "Passare al primo contrassegno quando viene riprodotto un filmato"
+msgstr "Passa al primo marcatore durante la riproduzione del film"
 
 msgid "KEYMAPPING"
 msgstr "MAPPATURA TASTI"
@@ -1581,7 +1576,7 @@ msgid "Language:"
 msgstr "Lingua:"
 
 msgid "Last played movie/playlist not available..."
-msgstr "Ultimo filmato/playlist non disponibile..."
+msgstr "Ultimo film/playlist riprodotto non disponibile..."
 
 msgid "Latest"
 msgstr "Recenti"
@@ -1593,10 +1588,10 @@ msgid "Latest Recordings directory limit"
 msgstr "Limite temporale di appartenenza alla cartella “Registrazioni recenti”"
 
 msgid "Latest Recordings directory use emc-noscan.cfg"
-msgstr "Usare emc-noscan.cfg per la cartella “Registrazioni recenti”"
+msgstr "La directory delle registrazioni recenti utilizza emc-noscan.cfg"
 
 msgid "Leave Movie with Exit"
-msgstr "Abbandonare la riproduzione con [EXIT]"
+msgstr "Abbandona riproduzione con [EXIT]"
 
 msgid "Light green"
 msgstr "Verde chiaro"
@@ -1611,48 +1606,46 @@ msgid "Light red"
 msgstr "Rosa"
 
 msgid "Limit file operations in dirs from emc-noscan.cfg"
-msgstr ""
-"Limitare le operazioni sui file nelle directory indicate in emc-noscan.cfg"
+msgstr "Limita operazioni sui file nelle directory indicate in emc-noscan.cfg"
 
 msgid "Link"
 msgstr "Link"
 
 msgid "List entries to skip"
-msgstr "Passo di avanzamento dei tasti [BOUQUET] (in voci)"
+msgstr "Elenca voci da saltare"
 
 msgid "Listbox is skin able"
-msgstr "L'elenco filmati può utilizzare la skin"
+msgstr "L'elenco film può utilizzare la skin"
 
 msgid "Load Genre:"
-msgstr "Caricare il genere:"
+msgstr "Carica genere:"
 
 msgid "Load Production Countries:"
-msgstr "Carica i Paesi di produzione:"
+msgstr "Carica paesi di produzione:"
 
 msgid "Load Release Date:"
-msgstr "Carica la data di uscita:"
+msgstr "Carica data di uscita:"
 
 msgid "Load Runtime:"
-msgstr "Carica la durata:"
+msgstr "Carica durata:"
 
 msgid "Load Vote:"
-msgstr "Carica la valutazione:"
+msgstr "Carica valutazione:"
 
 msgid "Load all for non showing titles from .meta files"
-msgstr "Se il titolo non risulta presente, caricare tutto dal file .meta"
+msgstr "Carica tutto per i titoli non visualizzati dai file .meta"
 
 msgid "Load default settings will overwrite all settings, really load them?"
 msgstr ""
-"Il caricamento delle configurazioni predefinite sovrascriverà tutte le "
-"impostazioni presenti: confermare?"
+"Il caricamento delle impostazioni predefinite sovrascriverà tutte le"
+" impostazioni, carico davvero?"
 
 msgid ""
 "Locate rogue files and remove them? (permanently if no trashcan available, "
 "may take a minute or so)"
 msgstr ""
-"Cercare e rimuovere i file orfani ? (In assenza di un cestino, i file "
-"verranno rimossi immediatamente, e l'operazione potrebbe richiedere del "
-"tempo)."
+"Individuare i file orfani e rimuoverli permanentemente se non c'è un cestino"
+" disponibile? Potrebbe volerci un minuto circa"
 
 msgid "Location:"
 msgstr "Posizione:"
@@ -1673,19 +1666,19 @@ msgid "MM/DD HH:MM"
 msgstr "MM/GG HH:MM"
 
 msgid "Manage Cover"
-msgstr "Gestire le cover"
+msgstr "Gestione cover"
 
 msgid "Mark all movies"
-msgstr "Marcare tutti i filmati"
+msgstr "Marca tutti i film"
 
 msgid "Mark new recordings with a star"
-msgstr "Marcare le nuove registrazioni con una stella"
+msgstr "Marca nuove registrazioni con una stella"
 
 msgid "Method of hiding MiniTV"
 msgstr "Metodo per nascondere la MiniTV"
 
 msgid "Minimum file cache limit (0=cache everything)"
-msgstr "Limite minimo della cache file (0=tutto in cache)"
+msgstr "Limite minimo cache dei file (0=tutto nella cache)"
 
 msgid "Minutes"
 msgstr "Minuti"
@@ -1697,19 +1690,19 @@ msgid "Months"
 msgstr "Mesi"
 
 msgid "Move Cover to:"
-msgstr "Spostare la cover in:"
+msgstr "Sposta cover in:"
 
 msgid "Move Directory:"
-msgstr "Spostare la directory:"
+msgstr "Sposta directory:"
 
 msgid "Move File"
-msgstr "Spostare il file"
+msgstr "Sposta file"
 
 msgid "Move Files"
-msgstr "Spostare i file"
+msgstr "Sposta file"
 
 msgid "Move cursor down"
-msgstr "Cursore GIÙ"
+msgstr "Sposta cursore in basso"
 
 msgid "Move cursor page down"
 msgstr "Cursore a pag. successiva"
@@ -1721,15 +1714,15 @@ msgid ""
 "Move cursor to the end / Move cursor x entries down / Switch Folders in "
 "Movie Home (down)"
 msgstr ""
-"Spostare il cursore alla fine/Spostare il cursore alla voce successiva/"
-"Passare alla cartella Home filmati (GIÙ)"
+"Sposta cursore alla fine/Sposta il cursore alla voce successiva/Passa alla"
+" cartella Home film (GIÙ)"
 
 msgid ""
 "Move cursor to the top / Move cursor x entries up / Switch Folders in Movie "
 "Home (up)"
 msgstr ""
-"Spostare il cursore in cima/Spostare il cursore alla voce precedente/Passare "
-"alla cartella Home filmati (SU)"
+"Sposta il cursore in cima/Sposta il cursore alla voce precedente/Passa alla"
+" cartella Home film (SU)"
 
 msgid "Move cursor up"
 msgstr "Cursore SU"
@@ -1738,10 +1731,10 @@ msgid "Move file(s):"
 msgstr "Sposta file:"
 
 msgid "Move finished movies in trashcan"
-msgstr "Spostare i filmati riprodotti nel cestino"
+msgstr "Sposta film riprodotti nel cestino"
 
 msgid "Movie Color"
-msgstr "Colore filmati"
+msgstr "Colore film"
 
 msgid ""
 "Movie Cover downloaded successfully!\n"
@@ -1750,17 +1743,14 @@ msgid ""
 "\n"
 "%s"
 msgstr ""
-"Cover del filmato scaricata correttamente.\n"
-"\n"
-"Impossibile scrivere il file delle informazioni sul video\n"
-"\n"
-"%s"
+"Cover del film scaricata correttamente.\n\nImpossibile scrivere il file delle"
+" informazioni sul video\n\n%s"
 
 msgid "Movie Info"
-msgstr "Informazioni filmato"
+msgstr "Informazioni film"
 
 msgid "Movie Information Download (TMDb)"
-msgstr "Scaricare Informazioni sul film (TMDb)"
+msgstr "Scarica informazioni sul film (TMDb)"
 
 msgid "Movie Information Download Setup"
 msgstr "Impostazioni download informazioni sui film"
@@ -1775,10 +1765,10 @@ msgid "Movie Information TMDb"
 msgstr "Informazioni sul film da TMDb"
 
 msgid "Movie Information and Cover downloaded successfully!"
-msgstr "Informazioni sul film e cover scaricati correttamente."
+msgstr "Informazioni sul film e cover scaricati correttamente!"
 
 msgid "Movie Information downloaded successfully!"
-msgstr "Informazioni sul film scaricate correttamente."
+msgstr "Informazioni sul film scaricate correttamente!"
 
 msgid ""
 "Movie Information downloaded successfully!\n"
@@ -1787,29 +1777,26 @@ msgid ""
 "\n"
 "%s"
 msgstr ""
-"Informazioni sul film scaricate correttamente.\n"
-"\n"
-"Impossibile salvare il file della cover del film\n"
-"\n"
-"%s"
+"Informazioni sul film scaricate correttamente!\n\nImpossibile salvare il file"
+" della cover del film\n\n%s"
 
 msgid "Movie Selection Menu"
-msgstr "Menu selezione filmati"
+msgstr "Menu selezione film"
 
 msgid "Movie home"
-msgstr "“Home” filmati"
+msgstr "Home film"
 
 msgid "Movie home at start"
-msgstr "Avviare dalla directory “Home\" dei filmati"
+msgstr "Avvia da Home film"
 
 msgid "Movie home home path"
-msgstr "Percorso della directory “Home\" dei filmati"
+msgstr "Percorso directory Home film"
 
 msgid "Movie information"
 msgstr "Informazione sul film"
 
 msgid "Movie preview delay in ms"
-msgstr "Ritardo delle anteprime dei film in ms"
+msgstr "Ritardo anteprime dei film in ms"
 
 msgid "Movies"
 msgstr "Film"
@@ -1821,7 +1808,7 @@ msgid "N/A"
 msgstr "N/A"
 
 msgid "Next auto-start in "
-msgstr "Prossimo riavvio automatico tra "
+msgstr "Prossimo avvio automatico tra "
 
 msgid "No"
 msgstr "No"
@@ -1830,13 +1817,13 @@ msgid "No Cover: %s"
 msgstr "Nessuna cover: %s"
 
 msgid "No DVD-Player found!"
-msgstr "Player DVD non disponibile."
+msgstr "Nessun lettore DVD trovato!"
 
 msgid "No Movies found!"
-msgstr "Nessun filmato trovato."
+msgstr "Nessun film trovato!"
 
 msgid "No functionality set..."
-msgstr "Nessuna funzione associata..."
+msgstr "Nessuna funzionalità impostata..."
 
 msgid "No limit"
 msgstr "Nessun limite"
@@ -1845,29 +1832,29 @@ msgid "No override"
 msgstr "Non sovrascrivere"
 
 msgid "No resume below 10 seconds"
-msgstr "Ignorare i contrassegni di avvio sotto i 10 secondi"
+msgstr "Nessun ripristino inferiore a 10 secondi"
 
 msgid "No rogue files found."
-msgstr "Nessun file orfano individuato."
+msgstr "Nessun file orfano trovato."
 
 msgid "No script operation for VLC streams."
-msgstr "Nessuna operazione da script per i flussi VLC."
+msgstr "Nessuna operazione con script per i flussi VLC."
 
 msgid "Not all timers have been stopped. Modify them with the timer editor."
-msgstr "Non tutti i timer sono stati arrestati. Modificarli con timer editor."
+msgstr ""
+"Non tutti i timer sono stati fermati. Modificali con l'editor del timer."
 
 msgid "Not stopping any repeating timers. Modify them with the timer editor."
-msgstr ""
-"Non arrestare i timer ripetuti. Modificarli attraverso il timer editor."
+msgstr "Non fermare i timer ripetitivi. Modificali con l'editor del timer."
 
 msgid "Nothing was found !"
-msgstr "Non è stato trovato nulla."
+msgstr "Non è stato trovato nulla!"
 
 msgid "OK"
 msgstr "OK"
 
 msgid "OSError - please reload list (EMC menu)"
-msgstr "Errore OS - Ricaricare l'elenco (Menu EMC)"
+msgstr "OSError - si prega di ricaricare l'elenco (menu EMC)"
 
 msgid "OTHER"
 msgstr "ALTRO"
@@ -1876,31 +1863,31 @@ msgid "Off"
 msgstr "Off"
 
 msgid "Open"
-msgstr "Aprire"
+msgstr "Apri"
 
 msgid "Open E2 Bookmark path"
-msgstr "Aprire il percorso segnalibri di sistema"
+msgstr "Apri percorso segnalibro E2"
 
 msgid "Open E2 bookmarks"
-msgstr "Aprire i segnalibri di Sistema"
+msgstr "Apri segnalibri E2"
 
 msgid "Open EMC Bookmark path"
-msgstr "Aprire il percorso segnalibri EMC"
+msgstr "Apri percorso segnalibro EMC"
 
 msgid "Open Timer List"
-msgstr "Aprire la Lista Timer"
+msgstr "Apri elenco timer"
 
 msgid "Open menu"
-msgstr "Aprire il menu"
+msgstr "Apri menu"
 
 msgid "Orange"
 msgstr "Arancione"
 
 msgid "Own Path to movie picons"
-msgstr "Percorso personalizzato per i picon dei film"
+msgstr "Proprio percorso ai picon dei film"
 
 msgid "Path to movie picons"
-msgstr "Percorso dei picon dei filmati"
+msgstr "Percorso ai picon dei film"
 
 msgid "Percent (%)"
 msgstr "Percentuale (%)"
@@ -1909,97 +1896,96 @@ msgid "Performance"
 msgstr "Prestazione"
 
 msgid "Permanently delete all files in trashcan?"
-msgstr "Rimuovere definitivamente i file nel cestino?"
+msgstr "Eliminare definitivamente tutti i file nel cestino?"
 
 msgid "Play All"
-msgstr "Riprodurre tutto"
+msgstr "Riproduci tutto"
 
 msgid "Play All starting"
-msgstr "Riprodurre tutto all'avvio"
+msgstr "Riproduci tutto all'avvio"
 
 msgid "Play current Playlist"
-msgstr "Riprodurre la playlist corrente"
+msgstr "Riproduci playlist corrente"
 
 msgid "Play last"
-msgstr "Riprodurre l'ultimo"
+msgstr "Riproduci ultimo"
 
 msgid "Play last movie starting"
-msgstr "Riprodurre l'ultimo filmato all'avvio"
+msgstr "Riproduci ultimo film all'avvio"
 
 msgid "Play random current Playlist"
-msgstr "Riprodurre casualmente dalla playlist corrente"
+msgstr "Riproduci casualmente dalla playlist corrente"
 
 msgid "Play selected movie(s)"
-msgstr "Riprodurre il filmato selezionato"
+msgstr "Riproduci film selezionato(i)"
 
 msgid "Playlist Options"
-msgstr "Opzioni della playlist"
+msgstr "Opzioni playlist"
 
 msgid "Playlist Setup"
-msgstr "Impostazioni della playlist"
+msgstr "Impostazioni playlist"
 
 msgid "Playlist open"
-msgstr "Aprire la playlist"
+msgstr "Apri playlist"
 
 msgid ""
 "Playlist with same name exists!\n"
 "\n"
 "Try to save the Playlist with another name?"
 msgstr ""
-"Una playlist con lo stesso nome è già presente.\n"
-"\n"
-"Tentare un salvataggio della playlist con un nome diverso?"
+"Esiste una playlist con lo stesso nome!\n\nProvare a salvare la playlist con"
+" un altro nome?"
 
 msgid "Portuguese"
 msgstr "Portoghese"
 
 msgid "Position movie picons"
-msgstr "Posizione dei picon dei film"
+msgstr "Posizione picon dei film"
 
 msgid "Preferred EPG language"
 msgstr "Lingua EPG preferita"
 
 msgid "Preferred cover resolution (if possible):"
-msgstr "Risoluzione preferita per le cover (se utilizzabile):"
+msgstr "Risoluzione cover preferita (se possibile):"
 
 msgid "Press green button to start search"
-msgstr "Premere il pulsante [VERDE] per avviare la ricerca"
+msgstr "Premi il pulsante VERDE per avviare la ricerca"
 
 msgid "Primary playback audio language"
-msgstr "Lingua audio: opzione preferenziale"
+msgstr "Lingua primaria per riproduzione audio"
 
 msgid "Primary playback subtitle language"
-msgstr "Lingua sottotitoli: opzione preferenziale"
+msgstr "Lingua primaria per riproduzione sottotitoli"
 
 msgid "Production Countries:"
 msgstr "Paesi di produzione:"
 
 msgid "Progress sort"
-msgstr "Ordine per avanzamento"
+msgstr "Ordina per avanzamento"
 
 msgid "Progress sort ascending (P+)"
-msgstr "Ordinare per avanzamento crescente (P+)"
+msgstr "Ordina per avanzamento ascendente (P+)"
 
 msgid "Progress sort descending (P-)"
-msgstr "Ordinare per avanzamento decrescente (P-)"
+msgstr "Ordina per avanzamento discendente (P-)"
 
 msgid "ProgressBar"
-msgstr "ProgressBar"
+msgstr "Barra di avanzamento"
 
 msgid "Quick-button"
-msgstr "Quick-button"
+msgstr "Pulsante rapido"
 
 msgid "Radio-button"
-msgstr "Tasto [RADIO]"
+msgstr "Pulsante Radio"
 
 msgid "Reading directory..."
-msgstr "Lettura directory in corso…"
+msgstr "Lettura directory..."
 
 msgid "Really close without saving settings?"
-msgstr "Chiudere senza salvare le impostazioni?"
+msgstr "Chiudere davvero senza salvare le impostazioni?"
 
 msgid "Reboot"
-msgstr "Riavviare"
+msgstr "Riavvia"
 
 msgid "Red"
 msgstr "Rosso"
@@ -2011,64 +1997,64 @@ msgid "Release Date:"
 msgstr "Data di uscita:"
 
 msgid "Reload current directory"
-msgstr "Ricaricare la directory corrente"
+msgstr "Ricarica directory corrente"
 
 msgid "Reload movie file list"
-msgstr "Ricaricare l'elenco filmati"
+msgstr "Ricarica elenco film"
 
 msgid "Remove all cut file marker permanently?"
-msgstr "Rimuovere definitivamente i contrassegni di taglio?"
+msgstr "Rimuovere definitivamente tutti i marcatori di taglio?"
 
 msgid "Remove all marker permanently?"
-msgstr "Rimuovere definitivamente tutti i contrassegni?"
+msgstr "Rimuovere definitivamente tutti i marcatori?"
 
 msgid "Remove cut list marker"
-msgstr "Rimuovere i contrassegni di taglio"
+msgstr "Rimuovi marcatori di taglio"
 
 msgid "Remove directory from E2 Bookmarks"
-msgstr "Rimuovere la directory dai segnalibri di sistema"
+msgstr "Rimuovi directory dai segnalibri E2"
 
 msgid "Remove directory from EMC Bookmarks"
-msgstr "Rimuovere la directory dai segnalibri di EMC"
+msgstr "Rimuovi directory dai segnalibri EMC"
 
 msgid "Remove permanent sort"
-msgstr "Rimuovere l'ordinamento permanente"
+msgstr "Rimuovi ordinamento permanente"
 
 msgid "Remove permanent sort from parent"
-msgstr "Rimuovere l'ordinamento permanente dalla directory padre"
+msgstr "Rimuovi ordinamento permanente dalla directory principale"
 
 msgid "Remove rogue files"
-msgstr "Rimuovere i file orfani"
+msgstr "Rimuovi file orfani"
 
 msgid "Remove selected E2 Bookmark"
-msgstr "Rimuovere i segnalibri di sistema selezionati"
+msgstr "Rimuovi segnalibro E2 selezionato"
 
 msgid "Remove selected EMC Bookmark"
-msgstr "Rimuovere i segnalibri di EMC selezionati"
+msgstr "Rimuovi segnalibro EMC selezionato"
 
 msgid "Remove service selection"
-msgstr "Rimuovere la selezione canali"
+msgstr "Rimuovi selezione dei servizi"
 
 msgid "Rename selected movie(s)"
-msgstr "Rinominare i filmati selezionati"
+msgstr "Rinomina film selezionato(i)"
 
 msgid "Replace special chars in title"
-msgstr "Sostituire i caratteri speciali nel titolo"
+msgstr "Sostituisci caratteri speciali nel titolo"
 
 msgid "Reset marker from selected movie(s)"
-msgstr "Azzerare i contrassegni dai filmati selezionati"
+msgstr "Reimposta marcatore dai film selezionati"
 
 msgid "Resolve links and show real path"
-msgstr "Risolvere i link  e mostrare il percorso reale"
+msgstr "Risolvi collegamenti e mostra percorso reale"
 
 msgid "Resume position at %s"
-msgstr "Riprendere dalla posizione %s"
+msgstr "Riprendi da posizione %s"
 
 msgid "Resuming playback"
-msgstr "Ripresa playback"
+msgstr "Ripresa riproduzione"
 
 msgid "Rewind finished movies before playing"
-msgstr "Riprendere dall'inizio i filmati riprodotti interamente"
+msgstr "Riavvolgi film riprodotti interamente prima di riprodurli"
 
 msgid "Runtime:"
 msgstr "Durata:"
@@ -2077,74 +2063,74 @@ msgid "SKIN-SETTINGS"
 msgstr "IMPOSTAZIONI SKIN"
 
 msgid "Save"
-msgstr "Salvare"
+msgstr "Salva"
 
 msgid "Save Cover"
-msgstr "Salvare la cover"
+msgstr "Salva cover"
 
 msgid "Save current Playlist"
-msgstr "Salvare la playlist corrente"
+msgstr "Salva playlist corrente"
 
 msgid "Save description to movie.txt file:"
-msgstr "Salvare la descrizione nel file movie.txt:"
+msgstr "Salva descrizione nel file movie.txt:"
 
 msgid "Scan for DVD structures"
-msgstr "Analizzare le strutture DVD"
+msgstr "Cerca strutture DVD"
 
 msgid "Scan for bluray structures"
-msgstr "Analizzare le strutture bluray"
+msgstr "Cerca strutture bluray"
 
 msgid "Scan for bluray structures in .iso"
-msgstr "Analizzare le strutture bluray in .iso"
+msgstr "Cerca strutture bluray in .iso"
 
 msgid "Scan for movie structures"
-msgstr "Analizzare le strutture del filmati"
+msgstr "Cerca strutture dei film"
 
 msgid "Scan linked folders"
-msgstr ""
-"Analizzare le strutture multimediali nelle directory con link simbolici"
+msgstr "Scansiona cartelle collegate"
 
 msgid "Search"
-msgstr "Cercare"
+msgstr "Cerca"
 
 msgid "Search Results per Search Site%s:"
-msgstr "Risultati per pagina di ricerca %s:"
+msgstr "Risultati per motore di ricerca %s:"
 
 msgid "Search Site:"
-msgstr "Sito di ricerca:"
+msgstr "Motore di ricerca:"
 
 msgid "Search filter for matching existing terms in the title:"
-msgstr "Filtro di ricerca per il confronto dei termini nel titolo:"
+msgstr ""
+"Filtro di ricerca per la corrispondenza dei termini esistenti nel titolo:"
 
 msgid "Search results for:"
-msgstr "Risultati della ricerca per:"
+msgstr "Cerca risultati per:"
 
 msgid "Searching for %s"
-msgstr "Ricerca per %s in corso"
+msgstr "Ricerca di %s"
 
 msgid "Searching..."
-msgstr "Ricerca in corso..."
+msgstr "Ricerca..."
 
 msgid "Secondary playback audio language"
-msgstr "Lingua audio: opzione secondaria"
+msgstr "Lingua secondaria per riproduzione audio"
 
 msgid "Secondary playback subtitle language"
-msgstr "Lingua sottotitoli: opzione secondaria"
+msgstr "Lingua secondaria per riproduzione sottotitoli"
 
 msgid "Seek backward"
-msgstr "Cercare all'indietro"
+msgstr "Cerca indietro"
 
 msgid "Seek forward"
-msgstr "Cercare in avanti"
+msgstr "Cerca avanti"
 
 msgid "Select Location"
-msgstr "Selezionare la posizione"
+msgstr "Seleziona posizione"
 
 msgid "Set path to save the folder Cover:"
-msgstr "Impostare il percorso per la directory delle cover:"
+msgstr "Imposta percorso per la cartella delle cover:"
 
 msgid "Set permanent sort"
-msgstr "Impostare un ordinamento permanente"
+msgstr "Imposta ordinamento permanente"
 
 msgid "Settings have been Saved."
 msgstr "Le impostazioni sono state salvate."
@@ -2153,118 +2139,118 @@ msgid "Setup"
 msgstr "Impostazioni"
 
 msgid "Setup open"
-msgstr "Aprire le Impostazioni"
+msgstr "Apri Impostazioni"
 
 msgid "Short watching percent"
-msgstr "Classificare un filmato come \"In visione\" a partire dal (%)"
+msgstr "Classifica film In visione a partire dal (%)"
 
 msgid "Show Bookmarks in movielist"
-msgstr "Mostrare i segnalibri nell'elenco dei filmati"
+msgstr "Mostra segnalibri nell'elenco dei film"
 
 msgid "Show Cover"
-msgstr "Mostrare la cover"
+msgstr "Mostra cover"
 
 msgid "Show Cut-Nr if exist"
-msgstr "Mostrare il Cut-NR, se esiste"
+msgstr "Mostra Cut-NR, se esiste"
 
 msgid "Show EMC in extensions menu"
-msgstr "Mostrare EMC nel menu estensioni"
+msgstr "Mostra EMC nel menu estensioni"
 
 msgid "Show EMC in main menu"
-msgstr "Mostrare EMC nel menu principale"
+msgstr "Mostra EMC nel menu principale"
 
 msgid "Show Latest Recordings directory"
-msgstr "Mostrare la directory “Registrazioni recenti”"
+msgstr "Mostra directory Registrazioni recenti"
 
 msgid "Show Movie Format"
-msgstr "Mostrare il formato del filmato"
+msgstr "Mostra formato film"
 
 msgid "Show Path if no extended description available"
-msgstr "Mostrare il percorso se non è disponibile la descrizione estesa"
+msgstr "Mostra percorso se non è disponibile la descrizione estesa"
 
 msgid "Show VLC directory"
-msgstr "Mostrare la cartella VLC"
+msgstr "Mostra directory VLC"
 
 msgid "Show audio metadata"
-msgstr "Mostrare i metadati audio"
+msgstr "Mostra metadati audio"
 
 msgid "Show audio metadata (needs skin-changes)"
-msgstr "Mostrare i metadata audio (la skin richiederà modifiche)"
+msgstr "Mostra metadati audio (richiede modifiche alla skin)"
 
 msgid "Show current Playlist"
-msgstr "Mostrare la playlist corrente"
+msgstr "Mostra playlist corrente"
 
 msgid "Show directories"
-msgstr "Mostrare le directory"
+msgstr "Mostra directory"
 
 msgid "Show directories information"
-msgstr "Mostrare le informazioni sulla directory"
+msgstr "Mostra informazioni sulle directory"
 
 msgid "Show directories within movielist"
-msgstr "Mostrare le directory all'interno dell'elenco filmati"
+msgstr "Mostra directory all'interno dell'elenco film"
 
 msgid "Show directory size in skin"
-msgstr "Mostrare le dimensioni delle directory nella skin"
+msgstr "Mostra dimensioni delle directory nella skin"
 
 msgid "Show event info"
-msgstr "Mostrare le informazioni sull'evento"
+msgstr "Mostra informazioni sull'evento"
 
 msgid "Show experimental options"
-msgstr "Mostrare le opzioni sperimentali"
+msgstr "Mostra opzioni sperimentali"
 
 msgid "Show fallback cover"
-msgstr "Mostrare la cover di riserva"
+msgstr "Mostra cover di riserva"
 
 msgid "Show info at the bottom"
-msgstr "Mostrare le informazioni in basso"
+msgstr "Mostra informazioni in basso"
 
 msgid "Show info at the bottom (with MiniTV)"
-msgstr "Mostrare le informazioni in basso con la MiniTV"
+msgstr "Mostra informazioni in basso con la MiniTV"
 
 msgid "Show info on the left"
-msgstr "Mostrare le informazioni a sinistra"
+msgstr "Mostra informazioni a sinistra"
 
 msgid "Show info on the left (with MiniTV)"
-msgstr "Mostrare le informazioni a sinistra con la MiniTV"
+msgstr "Mostra informazioni a sinistra con la MiniTV"
 
 msgid "Show link arrow"
-msgstr "Mostrare la freccia sui link simbolici"
+msgstr "Mostra freccia sui collegamenti"
 
 msgid "Show message if file added to playlist"
-msgstr "Mostrare un messaggio se un file viene aggiunto alla playlist"
+msgstr "Mostra messaggio se un file viene aggiunto alla playlist"
 
 msgid "Show movie icons"
-msgstr "Mostrare le icone dei filmati"
+msgstr "Mostra icone dei film"
 
 msgid "Show movie picons"
-msgstr "Mostrare i picon dei filmati"
+msgstr "Mostra picon dei film"
 
 msgid "Show movie preview"
-msgstr "Mostrare le anteprime dei filmati"
+msgstr "Mostra anteprime dei film"
 
 msgid "Show movie progress"
-msgstr "Mostrare il progresso della riproduzione"
+msgstr "Mostra avanzamento del film"
 
 msgid "Show plugin config in extensions menu"
-msgstr "Mostrare \"Impostazioni EMC\" nel menu estensioni"
+msgstr "Mostra configurazione del plugin nel menu estensioni"
 
 msgid "Show real length of running records"
-msgstr "Mostrare la durata reale delle registrazioni in riproduzione"
+msgstr "Mostra durata reale delle registrazioni in riproduzione"
 
 msgid "Show symlinks"
-msgstr "Mostrare i link simbolici"
+msgstr "Mostra link simbolici"
 
 msgid "Show trashcan directory"
-msgstr "Mostrare la cartella del cestino"
+msgstr "Mostra directory del cestino"
 
 msgid "Show trashcan information"
-msgstr "Mostrare le informazioni sul cestino"
+msgstr "Mostra informazioni sul cestino"
 
 msgid "Shuffle All"
-msgstr "Riprodurre tutto casualmente"
+msgstr "Mescola tutto"
 
 msgid "Shuffle All starting"
-msgstr "Riproduzione casuale all'avvio"
+msgstr "Mescola tutto all'avvio"
 
 msgid "Single Search:"
 msgstr "Ricerca singola:"
@@ -2273,21 +2259,20 @@ msgid "Single search"
 msgstr "Ricerca singola"
 
 msgid "Skip"
-msgstr "Saltare"
+msgstr "Salta"
 
 msgid ""
 "Skipping movie, the file does not exist.\n"
 "\n"
-msgstr ""
-"Filmato saltato: il file non esiste.\n"
-"\n"
+msgstr "Saltando il film, il file non esiste.\n\n"
 
 msgid "Some settings changes require GUI restart to take effect."
 msgstr ""
-"Per applicare le impostazioni modificate è necessario riavviare la GUI."
+"Alcune modifiche alle impostazioni richiedono il riavvio della GUI per avere"
+" effetto."
 
 msgid "Sort Mode"
-msgstr "Metodo di ordinamento"
+msgstr "Modalità di ordinamento"
 
 msgid "Sort Options"
 msgstr "Opzioni di ordinamento"
@@ -2302,25 +2287,23 @@ msgid "Standby"
 msgstr "Standby"
 
 msgid "Start / end multiselection"
-msgstr "Selezione multipla on/off"
+msgstr "Inizio/fine multiselezione"
 
 msgid "Start EMC with"
-msgstr "Avviare EMC con"
+msgstr "Avvia EMC con"
 
 msgid "Start movie preview before last position"
 msgstr ""
-"Avviare l'anteprima del filmato con un anticipo sull'ultima posizione di "
-"(secondi)"
+"Avvia anteprima del film con un anticipo sull'ultima posizione di (secondi)"
 
 msgid "Stop ongoing recording?\n"
-msgstr "Arrestare la registrazione in corso?\n"
+msgstr "Interrompere la registrazione in corso?\n"
 
 msgid "Stop playback"
-msgstr "Arrestare la riproduzione"
+msgstr "Arresta riproduzione"
 
 msgid "Style for original EMC-skin (needs reopen)"
-msgstr ""
-"Utilizzare lo stile skin EMC originale. (Sarà necessario il riavvio di EMC)"
+msgstr "Stile per skin EMC originale (necessario riavvio di EMC)"
 
 msgid "Suppress scan in selected folders"
 msgstr "Non analizzare le directory selezionate"
@@ -2341,16 +2324,16 @@ msgid "TRASHCAN"
 msgstr "CESTINO"
 
 msgid "TV Shows"
-msgstr "Trasmissioni"
+msgstr "Programmi TV"
 
 msgid "TV-button"
 msgstr "Tasto [TV]"
 
 msgid "Tertiary playback audio language"
-msgstr "Lingua audio: terza opzione"
+msgstr "Lingua terziaria per riproduzione audio"
 
 msgid "Tertiary playback subtitle language"
-msgstr "Lingua sottotitoli: terza opzione"
+msgstr "Lingua terziaria per riproduzione sottotitoli"
 
 msgid "Text shown for initially unknown count and size"
 msgstr "Indicatore visualizzato se il numero file e le dimensioni sono ignoti"
@@ -2365,8 +2348,8 @@ msgid ""
 "The directory %s is already locked. Do you want to unlock it and all its "
 "subfolders?"
 msgstr ""
-"La directory %s è già bloccata. Sbloccarla insieme alle relative "
-"sottodirectory?"
+"La directory %s è già bloccata. Sbloccarla insieme alle relative"
+" sottocartelle?"
 
 msgid ""
 "The following files are used for other entrys in List !\n"
@@ -2375,24 +2358,20 @@ msgid ""
 "\n"
 "%s"
 msgstr ""
-"I file seguenti sono usati per altri voci dell'elenco.\n"
-"\n"
-"Eliminare anche questi file?\n"
-"\n"
-"%s"
+"I seguenti file sono usati per altri voci dell'elenco.\n\nEliminare anche"
+" questi file?\n\n%s"
 
 msgid "The python-mutagen package is not available on the feed."
 msgstr "Il pacchetto python-mutagen non è disponibile nel feed."
 
 msgid "This element belongs to a locked folder and cannot be deleted!"
 msgstr ""
-"Questo elemento appartiene a una directory bloccata e non può essere "
-"eliminato."
+"Questo elemento appartiene a una cartella bloccata e non può essere eliminato!"
 
 msgid "This folder is locked or contains a locked subfolder, unlock it first!"
 msgstr ""
-"Questa directory è bloccata o contiene sottodirectory bloccate: occorre "
-"prima sbloccarle."
+"Questa cartella è bloccata o contiene una sottocartella bloccata, sbloccala"
+" prima!"
 
 msgid "Timeshift-button"
 msgstr "Tasto timeshift"
@@ -2401,13 +2380,13 @@ msgid "Title"
 msgstr "Titolo"
 
 msgid "Toggle Cover Button"
-msgstr "Commutare il tasto cover"
+msgstr "Attiva/disattiva pulsante cover"
 
 msgid "Toggle service selection"
-msgstr "Commutare la selezione canali"
+msgstr "Attiva/disattiva selezione servizio"
 
 msgid "Toggle viewed / not viewed"
-msgstr "Commutare visto/non visto"
+msgstr "Attiva/disattiva visto/non visto"
 
 msgid "Total"
 msgstr "Totale"
@@ -2416,22 +2395,22 @@ msgid "Trashcan"
 msgstr "Cestino"
 
 msgid "Trashcan create failed. Check mounts and permissions."
-msgstr "Creazione del cestino fallita. Controllare mount e permessi."
+msgstr "Creazione cestino non riuscita. Controlla montaggi e autorizzazioni."
 
 msgid "Trashcan enable"
-msgstr "Abilitare il cestino"
+msgstr "Abilita cestino"
 
 msgid "Trashcan path"
-msgstr "Percorso del cestino"
+msgstr "Percorso cestino"
 
 msgid "Try to load extra title and more from .meta files"
-msgstr "Tentare di caricare informazioni extra dai file .meta"
+msgstr "Prova a caricare titoli extra e altro da file .meta"
 
 msgid "Try to load titles from .eit files"
-msgstr "Tentare di caricare i titoli dai file .eit"
+msgstr "Prova a caricare titoli da file .eit"
 
 msgid "Try to load titles from .meta files"
-msgstr "Tentare di caricare i titoli dai file .meta"
+msgstr "Prova a caricare titoli da file .meta"
 
 msgid "UNKNOWN"
 msgstr "SCONOSCIUTO"
@@ -2440,19 +2419,19 @@ msgid "Up"
 msgstr "Su"
 
 msgid "Upgrade/Download Mutagen v1.28(experimental)"
-msgstr "Aggiornare/Scaricare Mutagen v1.28 (sperimentale)"
+msgstr "Aggiorna/scarica Mutagen v1.28 (sperimentale)"
 
 msgid "Use cache for files and directories"
-msgstr "Usare la cache per file e directory"
+msgstr "Usa cache per file e directory"
 
 msgid "Use original EMC-skin (needs reopen)"
-msgstr "Usare la skin integrata di EMC. (Sarà necessario il riavvio di EMC)"
+msgstr "Utilizza skin EMC originale (necessario riavvio di EMC)"
 
 msgid "VLC"
 msgstr "VLC"
 
 msgid "VLC Server not reachable"
-msgstr "Il server VLC non è raggiungibile"
+msgstr "Server VLC non raggiungibile"
 
 msgid "VLC-Dir"
 msgstr "Directory VLC"
@@ -2464,7 +2443,7 @@ msgid "Video-button"
 msgstr "Tasto [VIDEO]"
 
 msgid "Vote:"
-msgstr "Voto:"
+msgstr "Votazione:"
 
 msgid "WD DD.MM. HH:MM"
 msgstr "Giorno GG.MM. HH:MM"
@@ -2486,8 +2465,8 @@ msgstr "Giorno AAAA/MM/GG HH:MM"
 
 msgid "Wake device when entering dir from emc-noscan.cfg"
 msgstr ""
-"Riattivare un dispositivo navigando in una directory inserita nel file emc-"
-"noscan.cfg"
+"Riattiva il dispositivo quando si accede alla directory inserita nel file"
+" emc-noscan.cfg"
 
 msgid "Week"
 msgstr "Settimana"
@@ -2508,80 +2487,80 @@ msgid "Yellow button function"
 msgstr "Funzione assegnata al tasto [GIALLO]"
 
 msgid "Yes"
-msgstr "Si"
+msgstr "Sì"
 
 msgid "Yes, everything"
 msgstr "Sì, tutto"
 
 msgid "Yes, only extra title"
-msgstr "Sì, solo i titoli extra"
+msgstr "Sì, solo titolo extra"
 
 msgid "Yes, with Message"
-msgstr "Si, con conferma"
+msgstr "Sì, con conferma"
 
 msgid "Yes, without Message"
-msgstr "Si, senza conferma"
+msgstr "Sì, senza conferma"
 
 msgid ""
 "Your Box is about to go into DeepStandby, continue?\n"
 " Select no to delay one hour"
 msgstr ""
-"Il box sta per andare in DeepStandby: confermare?\n"
-" Selezionare NO per rinviare di un'ora"
+"Il tuo ricevitore sta per spegnersi, continuare?\nSeleziona no per ritardare"
+" di un'ora"
 
 msgid ""
 "Your Box is about to go into E2 Restart, continue?\n"
 " Select no to delay one hour"
 msgstr ""
-"Il sistema sta per essere riavviato: confermare?\n"
-" Selezionare NO per rinviare di un'ora"
+"Il tuo ricevitore sta per riavviare E2, continuare?\nSeleziona no per"
+" ritardare di un'ora"
 
 msgid ""
 "Your Box is about to go into Reboot, continue?\n"
 " Select no to delay one hour"
 msgstr ""
-"Il box sta per essere riavviato: confermare?\n"
-" Selezionare NO per rinviare di un'ora"
+"Il tuo ricevitore sta per riavviarsi, continuare?\nSeleziona no per ritardare"
+" di un'ora"
 
 msgid ""
 "Your Box is about to go into Standby, continue?\n"
 " Select no to delay one hour"
 msgstr ""
-"Il box sta per andare in Standby: confermare?\n"
-" Selezionare NO per rinviare di un’ora"
+"Il tuo ricevitore sta per andare in standby, continuare?\nSeleziona no per"
+" ritardare di un'ora"
 
 msgid "Zap to channel after record EOF"
-msgstr "Tornare al canale TV alla fine della riproduzione"
+msgstr "Zap sul canale dopo la registrazione EOF"
 
 msgid "after reload list"
-msgstr "Dopo aver ricaricato l'elenco"
+msgstr "dopo aver ricaricato l'elenco"
 
 msgid "after standby"
-msgstr "Dopo lo Standby"
+msgstr "dopo lo standby"
 
 msgid "all"
-msgstr "Tutti"
+msgstr "tutti"
 
 msgid "always"
-msgstr "Sempre"
+msgstr "sempre"
 
 msgid "always hide"
-msgstr "Nascondere sempre"
+msgstr "nascondi sempre"
 
 msgid "auto-start is currently not active."
-msgstr "Avvio automatico attualmente non attivo."
+msgstr "avvio automatico non è attualmente attivo."
 
 msgid "auto-start window begin"
-msgstr "Finestra di riavvio automatico: inizio"
+msgstr "inizia la finestra di avvio automatico"
 
 msgid "auto-start window end"
-msgstr "Finestra di riavvio automatico: fine"
+msgstr "termina la finestra di avvio automatico"
 
 msgid "center"
-msgstr "Centro"
+msgstr "centro"
 
 msgid "configuration"
-msgstr "Impostazioni"
+msgstr "configurazione"
 
 msgid "covers in"
 msgstr "cover in"
@@ -2590,91 +2569,91 @@ msgid "csfd.cz"
 msgstr "csfd.cz"
 
 msgid "daily auto-start"
-msgstr "Riavvio quotidiano automatico"
+msgstr "avvio automatico giornaliero"
 
 msgid "down"
-msgstr "GIÙ"
+msgstr "giù"
 
 msgid "every single one"
-msgstr "Ogni singolo"
+msgstr "ognuno"
 
 msgid "exception "
-msgstr "Eccezione "
+msgstr "eccezione"
 
 msgid "forward to the next chapter"
-msgstr "Passare al capitolo successivo"
+msgstr "passa al capitolo successivo"
 
 msgid "found"
-msgstr "Trovato"
+msgstr "trovato"
 
 msgid "from"
-msgstr "Da"
+msgstr "da"
 
 msgid "hide live TV"
-msgstr "Nascondere la live TV"
+msgstr "nascondi live TV"
 
 msgid "hide live TV and timeshift"
-msgstr "Nascondere la live TV e timeshift"
+msgstr "nascondi live TV e timeshift"
 
 msgid "hide playback"
-msgstr "Nascondere la riproduzione"
+msgstr "nascondi riproduzione"
 
 msgid "imdb.com"
 msgstr "imdb.com"
 
 msgid "jump back to the previous title"
-msgstr "Tornare al titolo precedente"
+msgstr "torna al titolo precedente"
 
 msgid "jump forward to the next title"
-msgstr "Passare al titolo successivo"
+msgstr "passa al titolo successivo"
 
 msgid "jump to next marked position"
-msgstr "Passare  al contrassegno successivo"
+msgstr "passa al marcatore successivo"
 
 msgid "jump to previous marked position"
-msgstr "Tornare al contrassegno precedente"
+msgstr "torna al marcatore precedente"
 
 msgid "left"
-msgstr "Sinistra"
+msgstr "sinistra"
 
 msgid "left from Name"
-msgstr "A sinistra del nome"
+msgstr "a sinistra del nome"
 
 msgid "movie manipulation list"
-msgstr "Elenco gestione filmati"
+msgstr "manipolazione elenco film"
 
 msgid "movies found!"
-msgstr "Trovati filmati."
+msgstr "film trovati!"
 
 msgid "movies in"
-msgstr "filmati trovati in"
+msgstr "film in"
 
 msgid "never hide"
-msgstr "Non nascondere mai"
+msgstr "non nascondere mai"
 
 msgid "no"
-msgstr "No"
+msgstr "no"
 
 msgid "no limit"
-msgstr "Nessun limite"
+msgstr "nessun limite"
 
 msgid "off"
-msgstr "Off"
+msgstr "off"
 
 msgid "only initially"
-msgstr "Solo inizialmente"
+msgstr "solo inizialmente"
 
 msgid "overall"
-msgstr "Complessivo"
+msgstr "complessivo"
 
 msgid "rewind to the previous chapter"
-msgstr "Tornare al capitolo precedente"
+msgstr "torna al capitolo precedente"
 
 msgid "right"
-msgstr "Destra"
+msgstr "destra"
 
 msgid "right from Name"
-msgstr "A destra del nome"
+msgstr "a destra del nome"
 
 msgid "sec"
 msgstr "sec"
@@ -2686,25 +2665,25 @@ msgid "sec."
 msgstr "sec."
 
 msgid "show DVD main menu"
-msgstr "Mostrare il menu principale DVD"
+msgstr "mostra menu principale del DVD"
 
 msgid "single pixel TV, muted"
-msgstr "Single pixel TV, silenziata"
+msgstr "TV a pixel singolo, muta"
 
 msgid "standard cover"
-msgstr "Cover standard"
+msgstr "cover standard"
 
 msgid "stop service"
-msgstr "Arrestare la ricezione del canale"
+msgstr "interrompi il servizio"
 
 msgid "switch to the next angle"
-msgstr "Passare all'angolo successivo"
+msgstr "passa all'angolo successivo"
 
 msgid "switch to the next audio track"
-msgstr "Passare alla traccia audio successiva"
+msgstr "passa alla traccia audio successiva"
 
 msgid "switch to the next subtitle language"
-msgstr "Passare alla lingua sottotitoli successiva"
+msgstr "passa alla lingua dei sottotitoli successiva"
 
 msgid "themoviedb.org"
 msgstr "themoviedb.org"
@@ -2718,59 +2697,58 @@ msgstr "themoviedb.org + thetvdb.com + imdb.com"
 msgid ""
 "themoviedb.org for movies + thetvdb.com for series (e.g. 'S01E01' in title)"
 msgstr ""
-"themoviedb.org per i film + thetvdb.com per le serie (es. 'S01E01' nel "
-"titolo)"
+"themoviedb.org per i film + thetvdb.com per le serie (es. 'S01E01' nel titolo)"
 
 msgid "thetvdb cover number (standard cover):"
-msgstr "Numero cover “thetvdb” (cover standard):"
+msgstr "numero cover thetvdb (cover standard):"
 
 msgid "thetvdb cover range per title:"
-msgstr "Gamma di cover thetvdb per titolo:"
+msgstr "intervallo di cover thetvdb per titolo:"
 
 msgid "thetvdb.com"
 msgstr "thetvdb.com"
 
 msgid "three contiguous"
-msgstr "Tre contigui"
+msgstr "tre contigui"
 
 msgid "toggle a cut mark at the current position"
-msgstr "Commutare un contrassegno di taglio alla posizione corrente"
+msgstr "alternare un marcatore di taglio nella posizione corrente"
 
 msgid "trashcan"
-msgstr "Cestino"
+msgstr "cestino"
 
 msgid "two contiguous"
-msgstr "Due contigui"
+msgstr "due contigui"
 
 msgid "type 1 - OSD + black (#00000000)"
-msgstr "Tipo 1 - OSD + nero (#00000000)"
+msgstr "tipo 1 - OSD + nero (#00000000)"
 
 msgid "type 2 - transparent + white (#FFFFFFFF)"
-msgstr "Tipo 2 - trasparente + bianco (#FFFFFFFF)"
+msgstr "tipo 2 - trasparente + bianco (#FFFFFFFF)"
 
 msgid "type 3 - OSD + black (#00FFFFFF)"
-msgstr "Tipo 3-OSD+nero (#00FFFFFF)"
+msgstr "tipo 3 - OSD + nero (#00FFFFFF)"
 
 msgid "type 4 - transparent + black (#FF000000)"
-msgstr "Tipo 4 - trasparente + nero (#FF000000)"
+msgstr "tipo 4 - trasparente + nero (#FF000000)"
 
 msgid "unknown"
-msgstr "Sconosciuto"
+msgstr "sconosciuto"
 
 msgid "up/down"
-msgstr "SU/GIÙ"
+msgstr "su/giù"
 
 msgid "view extensions..."
-msgstr "Visualizzare le estensioni..."
+msgstr "visualizza estensioni..."
 
 msgid "yes"
-msgstr "Sì"
+msgstr "sì"
 
 msgid "search EPG"
-msgstr "Ricerca EPG"
+msgstr "cerca EPG"
 
 msgid "search EPG from history..."
-msgstr "Ricerca EPG nella cronologia"
+msgstr "cerca EPG dalla cronologia..."
 
 msgid "IMDb search..."
 msgstr "Ricerca IMDb..."
