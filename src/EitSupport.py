@@ -32,8 +32,8 @@ from datetime import datetime
 from Components.config import config
 from Components.Language import language
 from .EMCTasker import emcDebugOut
+from .FreesatHuffmanDecoder import FreesatHuffmanDecoder
 from .IsoFileSupport import IsoSupport
-
 from .MetaSupport import getInfoFile
 
 
@@ -70,134 +70,11 @@ def language_iso639_2to3(alpha2):
 
 
 def _ord(val):
-	if six.PY3:
-		return val
-	else:
-		return ord(val)
+	return val if six.PY3 else ord(val)
 
 
-# Convert string to bytes without encoding
-def encode_binary(input):
-    output = bytes([ord(char) for char in input])
-    return output
-
-
-# Get encoding
-def getEventEncoding(data):
-	encoding = None
-	try:
-		if len(data) > 0:
-			byte1 = _ord(data[0])			
-			if byte1 == 0x01:
-				encoding = 'iso-8859-5'
-			elif byte1 == 0x02:
-				encoding = 'iso-8859-6'
-			elif byte1 == 0x03:
-				encoding = 'iso-8859-7'
-			elif byte1 == 0x04:
-				encoding = 'iso-8859-8'
-			elif byte1 == 0x05:
-				encoding = 'iso-8859-9'
-			elif byte1 == 0x06:
-				encoding = 'iso-8859-10'
-			elif byte1 == 0x07:
-				encoding = 'iso-8859-11'
-			elif byte1 == 0x09:
-				encoding = 'iso-8859-13'
-			elif byte1 == 0x0A:
-				encoding = 'iso-8859-14'
-			elif byte1 == 0x0B:
-				encoding = 'iso-8859-15'
-			elif byte1 == 0x15:
-				encoding = 'utf-8'
-			elif byte1 == 0x10 and len(data) > 2:
-				byte2 = _ord(data[1])
-				if byte2 == 0x00:
-					byte3 = _ord(data[2])
-					if byte3 == 0x01:
-						encoding = 'iso-8859-1'
-					elif byte3 == 0x02:
-						encoding = 'iso-8859-2'
-					elif byte3 == 0x03:
-						encoding = 'iso-8859-3'
-					elif byte3 == 0x04:
-						encoding = 'iso-8859-4'
-					elif byte3 == 0x05:
-						encoding = 'iso-8859-5'
-					elif byte3 == 0x06:
-						encoding = 'iso-8859-6'
-					elif byte3 == 0x07:
-						encoding = 'iso-8859-7'
-					elif byte3 == 0x08:
-						encoding = 'iso-8859-8'
-					elif byte3 == 0x09:
-						encoding = 'iso-8859-9'
-					elif byte3 == 0x0A:
-						encoding = 'iso-8859-10'
-					elif byte3 == 0x0B:
-						encoding = 'iso-8859-11'
-					elif byte3 == 0x0D:
-						encoding = 'iso-8859-13'
-					elif byte3 == 0x0E:
-						encoding = 'iso-8859-14'
-					elif byte3 == 0x0F:
-						encoding = 'iso-8859-15'			
-			elif byte1 >= 0x20 and byte1 <= 0xFF:
-				encoding = 'iso6937'
-			#elif byte1 >= 0x11 and byte <= 0x14:	### not supported now
-			#	encoding = None
-	except:
-		encoding = None
-	return encoding
-
-
-# Read event data and decode it
-def readEventData(data, index, name):
-	description = ""
-	length = _ord(data[index])
-	if length > 0:
-		encoding = getEventEncoding(data[index + 1:index + 4])
-		if encoding:
-			emcDebugOut("[META] Found " + name + " encoding-type: " + encoding)			
-		for i in list(range(index + 1, index + length + 1)):
-			try:
-				if _ord(data[i]) == 0x0A or _ord(data[i]) > 0x1F:
-					if six.PY3:
-						description += chr(data[i])
-					else:
-						description += data[i]
-			except IndexError as e:
-				emcDebugOut("[META] Exception in readEitFile: " + str(e))
-
-		if description:
-			try:
-				if encoding:
-					if encoding != 'iso6937':
-						if six.PY3:
-							description = encode_binary(description).decode(encoding)
-						elif encoding != 'utf-8':
-							description = description.decode(encoding).encode("utf-8")
-					elif not six.PY3:
-						description = description.decode('cp1252').encode("utf-8")
-				else:
-					description = encode_binary(description)
-					encdata = chardet.detect(description)
-					enc = encdata['encoding'].lower()
-					confidence = str(encdata['confidence'])
-					emcDebugOut("[META] Detected " + name + " encoding-type: " + enc + " (" + confidence + ")")
-					description = six.ensure_str(description, enc)
-			except (UnicodeDecodeError, AttributeError) as e:
-				emcDebugOut("[META] Exception in readEitFile: " + str(e))
-	return length + 1, description
-
-
-def addDescriptionToList(description, descriptionList, pluginLanguage, eventLanguage, prevEventLanguage, newLine = True):
-	if eventLanguage == pluginLanguage:
-		descriptionList[0].append(description)
-	if (eventLanguage == prevEventLanguage) or (prevEventLanguage == "x"):
-		descriptionList[1].append(description)
-	else:
-		descriptionList[1].append("\n\n" if newLine else "  " + description)
+# Global variable for special decoders
+_decoders = {}
 
 
 # Eit File support class
@@ -259,6 +136,12 @@ class EitList():
 				return None
 		else:
 			return None
+
+	def __bytes2string(self, bytes):
+		result = ""
+		for b in bytes:
+			result += chr(b)
+		return result;
 
 	##############################################################################
 	## Get Functions
@@ -343,7 +226,8 @@ class EitList():
 				if data and 12 <= len(data):
 					# go through events
 					pos = 0
-					e = struct.unpack(">HHBBBBBBH", data[pos:pos + 12])
+					memdata = memoryview(data)
+					e = struct.unpack(">HHBBBBBBH", memdata[pos:pos + 12])
 					event_id = e[0]
 					date = parseMJD(e[1])                         # Y, M, D
 					time = unBCD(e[2]), unBCD(e[3]), unBCD(e[4])  # HH, MM, SS
@@ -379,22 +263,20 @@ class EitList():
 							break
 						length = _ord(data[pos + 1]) + 2
 						idx = pos
-						#if pos+length>=endpos:
-						#	break
 						if rec == 0x4D:
 							ISO_639_language_code = six.ensure_str(data[idx + 2:idx + 5]).upper()
 							idx += 5
 
 							### section name
-							(offset, name_event_description) = readEventData(data, idx, "name_event")
-							if offset > 0:
-								addDescriptionToList(name_event_description, name_event_descriptors, lang, ISO_639_language_code, prev1_ISO_639_language_code, False)
+							(offset, name_event_description) = self.__readEventData(memdata, idx, "name_event")
+							if offset > 1:
+								self.__addDescriptionToList(name_event_description, name_event_descriptors, lang, ISO_639_language_code, prev1_ISO_639_language_code, False)
 							idx += offset
-							
+
 							### section description
-							(offset, short_event_description) = readEventData(data, idx, "short_event")
-							if offset > 0:
-								addDescriptionToList(short_event_description, short_event_descriptors, lang, ISO_639_language_code, prev1_ISO_639_language_code)
+							(offset, short_event_description) = self.__readEventData(memdata, idx, "short_event")
+							if offset > 1:
+								self.__addDescriptionToList(short_event_description, short_event_descriptors, lang, ISO_639_language_code, prev1_ISO_639_language_code)
 
 							prev1_ISO_639_language_code = ISO_639_language_code							
 						elif rec == 0x4E:
@@ -408,23 +290,23 @@ class EitList():
 								idx_items = idx + 1
 								while curlen < length_of_items:
 									### item description
-									(offset, item_description_text) = readEventData(data, idx_items, "extended_event_item_description")
+									(offset, item_description_text) = self.__readEventData(memdata, idx_items, "extended_event_item_description")
 									idx_items += offset
 									curlen += offset
 
 									### item text
-									(offset, item_text) = readEventData(data, idx_items, "extended_event_item_text")
+									(offset, item_text) = self.__readEventData(memdata, idx_items, "extended_event_item_text")
 									idx_items += offset
 									curlen += offset
 									extended_event_item = "\n" + item_description_text + ": " + item_text
-									addDescriptionToList(extended_event_item, extended_event_items, lang, ISO_639_language_code, prev2_ISO_639_language_code)									
+									self.__addDescriptionToList(extended_event_item, extended_event_items, lang, ISO_639_language_code, prev2_ISO_639_language_code)									
 								idx += length_of_items
 							idx += 1
 
 							### section event text
-							(offset, extended_event_description) = readEventData(data, idx, "extended_event")							
-							if len(extended_event_description) > 0:
-								addDescriptionToList(extended_event_description, extended_event_descriptors, lang, ISO_639_language_code, prev2_ISO_639_language_code)
+							(offset, extended_event_description) = self.__readEventData(memdata, idx, "extended_event")							
+							if offset > 1:
+								self.__addDescriptionToList(extended_event_description, extended_event_descriptors, lang, ISO_639_language_code, prev2_ISO_639_language_code)
 
 							prev2_ISO_639_language_code = ISO_639_language_code
 						elif rec == 0x50:
@@ -483,7 +365,172 @@ class EitList():
 				else:
 					# No date clear all
 					self.eit = {}
-
 		else:
 			# No path or no file clear all
 			self.eit = {}
+
+	# Read event data and decode it
+	def __readEventData(self, data, index, name):
+		description = ""
+		length = _ord(data[index])
+		if length > 0:
+			(encoding, binary) = self.__getEventEncoding(data[index + 1:index + 4])
+			if encoding:
+				emcDebugOut("[META] Found " + name + " encoding-type: " + encoding)
+			buffer = bytearray(b'\x00') * length
+			bufferLen = 0
+			for i in list(range(index + 1, index + length + 1)):
+				try:
+					byte = _ord(data[i])
+					if binary or byte == 0x0A or byte > 0x1F:
+						buffer[bufferLen] = byte
+						bufferLen += 1
+				except IndexError as e:
+					emcDebugOut("[META] Exception in readEitFile: " + str(e))
+
+			if bufferLen > 0:
+				try:
+					if (bufferLen) < len(buffer):
+						buffer = buffer[:bufferLen]
+						
+					if encoding:
+						if encoding == 'custom':
+							description = self.__decodeCustomEncoding(buffer)
+						elif encoding != 'default':
+							if six.PY3:
+								description = buffer.decode(encoding)
+							elif encoding != 'utf-8':
+								description = buffer.decode(encoding).encode('utf-8')
+							else:
+								description = str(buffer)
+						elif not six.PY3:
+							description = buffer.decode('iso-8859-1').encode('utf-8')
+						else:
+							description = self.__bytes2string(buffer)
+					else:
+						description = six.ensure_binary(self.__bytes2string(buffer))
+						encdata = chardet.detect(description)
+						enc = encdata['encoding']
+						if enc != None:
+							enc = encdata['encoding'].lower()
+							confidence = str(encdata['confidence'])
+							emcDebugOut("[META] Detected " + name + " encoding-type: " + enc + " (" + confidence + ")")
+							description = six.ensure_str(description, enc)
+						else:
+							emcDebugOut("[META] Encoding for " + name + " could not be detected")
+				except (UnicodeDecodeError, AttributeError) as e:
+					emcDebugOut("[META] Exception in readEitFile: " + str(e))
+		return length + 1, description
+
+	# Get encoding
+	def __getEventEncoding(self, data):
+		encoding = None
+		binary = False
+		try:
+			if len(data) > 0:
+				byte1 = _ord(data[0])			
+				if byte1 == 0x01:
+					encoding = 'iso-8859-5'
+				elif byte1 == 0x02:
+					encoding = 'iso-8859-6'
+				elif byte1 == 0x03:
+					encoding = 'iso-8859-7'
+				elif byte1 == 0x04:
+					encoding = 'iso-8859-8'
+				elif byte1 == 0x05:
+					encoding = 'iso-8859-9'
+				elif byte1 == 0x06:
+					encoding = 'iso-8859-10'
+				elif byte1 == 0x07:
+					encoding = 'iso-8859-11'
+				elif byte1 == 0x09:
+					encoding = 'iso-8859-13'
+				elif byte1 == 0x0A:
+					encoding = 'iso-8859-14'
+				elif byte1 == 0x0B:
+					encoding = 'iso-8859-15'
+				elif byte1 == 0x15:
+					encoding = 'utf-8'
+				elif byte1 == 0x10 and len(data) > 2:
+					byte2 = _ord(data[1])
+					if byte2 == 0x00:
+						byte3 = _ord(data[2])
+						if byte3 == 0x01:
+							encoding = 'iso-8859-1'
+						elif byte3 == 0x02:
+							encoding = 'iso-8859-2'
+						elif byte3 == 0x03:
+							encoding = 'iso-8859-3'
+						elif byte3 == 0x04:
+							encoding = 'iso-8859-4'
+						elif byte3 == 0x05:
+							encoding = 'iso-8859-5'
+						elif byte3 == 0x06:
+							encoding = 'iso-8859-6'
+						elif byte3 == 0x07:
+							encoding = 'iso-8859-7'
+						elif byte3 == 0x08:
+							encoding = 'iso-8859-8'
+						elif byte3 == 0x09:
+							encoding = 'iso-8859-9'
+						elif byte3 == 0x0A:
+							encoding = 'iso-8859-10'
+						elif byte3 == 0x0B:
+							encoding = 'iso-8859-11'
+						elif byte3 == 0x0D:
+							encoding = 'iso-8859-13'
+						elif byte3 == 0x0E:
+							encoding = 'iso-8859-14'
+						elif byte3 == 0x0F:
+							encoding = 'iso-8859-15'
+				#elif byte1 in { 0x11, 0x12, 0x13, 0x14 }:	### not supported now
+				#	encoding = None							
+				elif byte1 == 0x1F:
+					encoding = 'custom'
+					binary = True
+				elif byte1 >= 0x20 and byte1 <= 0xFF:
+					encoding = 'default'
+		except:
+			encoding = None
+		return (encoding, binary)
+
+	def __addDescriptionToList(self, description, descriptionList, pluginLanguage, eventLanguage, prevEventLanguage, newLine = True):
+		if eventLanguage == pluginLanguage:
+			descriptionList[0].append(description)
+		if (eventLanguage == prevEventLanguage) or (prevEventLanguage == "x"):
+			descriptionList[1].append(description)
+		else:
+			descriptionList[1].append("\n\n" if newLine else "  " + description)
+ 
+	def __decodeCustomEncoding(self, data):
+		global _decoders
+		result = ""
+		decoderName = None
+		
+		if len(data) > 1:
+			if data[0] == 0x1F:
+				if data[1] in { 0x01, 0x02 }:
+					decoderName = 'freesat-huffman'					
+		if decoderName:
+			try:
+				decoder = _decoders.get(decoderName) # get instance if already exists
+				if not decoder:
+					decoder = self.__decoderFactory(decoderName)
+					if decoder:
+						_decoders[decoderName] = decoder # add new instance 
+				if decoder:
+					result = decoder.decode(data)
+				else:
+					emcDebugOut("[META] Missing decoder for encoding-type: " + decoderName)
+			except Exception as e:
+				emcDebugOut("[META] Exception on decodeCustomEncoding: " + str(e))
+		else:
+			emcDebugOut("[META] Unsupported custom encoding")
+		return result
+
+	# Initialize a custom decoder (ready for further encodings)
+	def __decoderFactory(self, decoderName):
+		decoder = None
+		if decoderName == 'freesat-huffman':
+			decoder = FreesatHuffmanDecoder()
+		return decoder
