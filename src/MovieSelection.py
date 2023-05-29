@@ -574,17 +574,17 @@ class EMCSelectionSummary(Screen):
 
 def getSkin():
 	skin = None
-	CoolWide = getDesktop(0).size().width()
-	if CoolWide == 1280:
+	screen_height = getDesktop(0).size().height()
+	if screen_height == 1440:
 		if config.EMC.skinstyle.value == "left":
-			skin = "/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/CoolSkin/EMCSelection_left.xml"
+			skin = "/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/CoolSkin/EMCSelection_left_1440.xml"
 		elif config.EMC.skinstyle.value == "leftpig":
-			skin = "/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/CoolSkin/EMCSelection_left_pig.xml"
+			skin = "/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/CoolSkin/EMCSelection_left_pig_1440.xml"
 		elif config.EMC.skinstyle.value == "bottom":
-			skin = "/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/CoolSkin/EMCSelection_bottom.xml"
+			skin = "/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/CoolSkin/EMCSelection_bottom_1440.xml"
 		else:
-			skin = "/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/CoolSkin/EMCSelection_bottom_pig.xml"
-	elif CoolWide == 1920:
+			skin = "/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/CoolSkin/EMCSelection_bottom_pig_1440.xml"
+	elif screen_height == 1080:
 		if config.EMC.skinstyle.value == "left":
 			skin = "/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/CoolSkin/EMCSelection_left_1080.xml"
 		elif config.EMC.skinstyle.value == "leftpig":
@@ -593,6 +593,15 @@ def getSkin():
 			skin = "/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/CoolSkin/EMCSelection_bottom_1080.xml"
 		else:
 			skin = "/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/CoolSkin/EMCSelection_bottom_pig_1080.xml"
+	else:
+		if config.EMC.skinstyle.value == "left":
+			skin = "/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/CoolSkin/EMCSelection_left.xml"
+		elif config.EMC.skinstyle.value == "leftpig":
+			skin = "/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/CoolSkin/EMCSelection_left_pig.xml"
+		elif config.EMC.skinstyle.value == "bottom":
+			skin = "/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/CoolSkin/EMCSelection_bottom.xml"
+		else:
+			skin = "/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/CoolSkin/EMCSelection_bottom_pig.xml"
 	return skin
 
 last_currentPath = ""

@@ -37,7 +37,7 @@ config.EMC.movieinfo.coversave = ConfigYesNo(default = False)
 config.EMC.movieinfo.coversize = ConfigSelection(default="w185", choices = ["w92", "w185", "w500", "original"])
 config.EMC.movieinfo.cover_delay = ConfigSelectionNumber(50, 60000, 50, default= 500)
 
-sz_w = getDesktop(0).size().width()
+screen_height = getDesktop(0).size().height()
 
 def getMovieList(moviename):
 	response = fetchdata("http://api.themoviedb.org/3/search/movie?api_key=8789cfd3fbab7dccf1269c3d7d867aff&query=" + quote(moviename))
@@ -221,7 +221,34 @@ def dataError(error):
 	print "[EMC] MovieInfo ERROR:", error
 
 class MovieInfoTMDb(Screen):
-	if sz_w == 1920:
+	if screen_height == 1440:
+		skin = """
+		<screen name="MovieInfoTMDb" position="center,170" size="1200,820" title="Movie Information TMDb">
+		<widget name="movie_name" position="10,5" size="1180,80" font="Regular;35" halign="center" valign="center" foregroundColor="yellow"/>
+		<eLabel backgroundColor="#818181" position="10,90" size="1180,1" />
+		<widget name="previewlist" enableWrapAround="1" position="340,100" size="850,630" itemHeight="45" scrollbarMode="showOnDemand" />
+		<widget name="previewcover" position="20,100" size="300,451" alphatest="blend"/>
+		<widget name="contenttxt" position="340,100" size="850,460" font="Regular;30" />
+		<widget name="runtime" position="20,590" size="160,35" font="Regular;28" foregroundColor="#000066FF" />
+		<widget name="runtimetxt" position="190,590" size="330,35" font="Regular;28" />
+		<widget name="genre" position="20,640" size="160,35" font="Regular;28" foregroundColor="#000066FF" />
+		<widget name="genretxt" position="190,640" size="330,35" font="Regular;28" />
+		<widget name="country" position="550,590" size="290,35" font="Regular;28" foregroundColor="#000066FF" />
+		<widget name="countrytxt" position="850,590" size="340,35" font="Regular;28" />
+		<widget name="release" position="550,640" size="290,35" font="Regular;28" foregroundColor="#000066FF" />
+		<widget name="releasetxt" position="850,640" size="340,35" font="Regular;28" />
+		<widget name="rating" position="20,690" size="160,35" font="Regular;28" foregroundColor="#000066FF" />
+		<widget name="ratingtxt" position="190,690" size="330,35" font="Regular;28" />
+		<widget name="starsbg" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/starsbar_empty.png" position="550,690" size="300,30" alphatest="blend"/>
+		<widget name="stars" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/starsbar_filled.png" position="550,690" size="300,30" transparent="1" zPosition="1"/>
+		<eLabel backgroundColor="#818181" position="10,740" size="1180,1" />
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/menu.png" position="10,770" size="80,40" alphatest="blend"/>
+		<widget name="setup" position="110,772" size="380,40" font="Regular;30" valign="center" />
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/ok.png" position="510,770" size="80,40" zPosition="1" alphatest="blend"/>
+		<widget name="key_green" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/key_green.png" position="510,770" size="80,40" zPosition="2" alphatest="blend"/>
+		<widget name="save" position="620,772" size="290,40" font="Regular;30" valign="center" />
+		</screen>"""
+	elif screen_height == 1080:
 		skin = """
 		<screen name="MovieInfoTMDb" position="center,170" size="1200,820" title="Movie Information TMDb">
 		<widget name="movie_name" position="10,5" size="1180,80" font="Regular;35" halign="center" valign="center" foregroundColor="yellow"/>
@@ -584,7 +611,23 @@ class MovieInfoTMDb(Screen):
 		self.session.open(MovieInfoSetup)
 
 class MovieInfoSetup(Screen, ConfigListScreenExt):
-	if sz_w == 1920:
+	if screen_height == 1440:
+		skin = """
+		<screen name="EMCMovieInfoSetup" position="center,170" size="1200,820" title="Movie Information Download Setup">
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/red.png" position="10,5" size="300,70" alphatest="blend"/>
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/green.png" position="310,5" size="300,70" alphatest="blend"/>
+		<widget backgroundColor="#9f1313" font="Regular;30" halign="center" name="key_red" position="10,5" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" size="300,70" transparent="1" valign="center" zPosition="1" />
+		<widget backgroundColor="#1f771f" font="Regular;30" halign="center" name="key_green" position="310,5" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" size="300,70" transparent="1" valign="center" zPosition="1" />
+		<widget font="Regular;34" halign="right" position="1050,25" render="Label" size="120,40" source="global.CurrentTime">
+			<convert type="ClockToText">Default</convert>
+		</widget>
+		<widget font="Regular;34" halign="right" position="800,25" render="Label" size="240,40" source="global.CurrentTime">
+			<convert type="ClockToText">Date</convert>
+		</widget>
+		<eLabel backgroundColor="#818181" position="10,80" size="1180,1" />
+		<widget enableWrapAround="1" name="config" position="10,90" itemHeight="45" scrollbarMode="showOnDemand" size="1180,720" />
+		</screen>"""
+	elif screen_height == 1080:
 		skin = """
 		<screen name="EMCMovieInfoSetup" position="center,170" size="1200,820" title="Movie Information Download Setup">
 		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/red.png" position="10,5" size="300,70" alphatest="blend"/>

@@ -62,7 +62,7 @@ try:
 except:
 	isDreamOS = False
 
-sz_w = getDesktop(0).size().width()
+screen_height = getDesktop(0).size().height()
 
 # Check if image is vti or dream, is needed for build entrys in MovieCenter with picons
 try:
@@ -223,24 +223,33 @@ def getPosterPath(searchPath):
 # func: getNoPosterPath()
 #-------------------------------------------------
 def getNoPosterPath():
- if sz_w == 1920:
-	if config.EMC.use_orig_skin.value:
-		return "/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/no_poster.png"
-	else:
-		img = resolveFilename(SCOPE_CURRENT_SKIN, 'emc/no_poster.png')
-		if fileExists(img):
-			return img
+	if screen_height == 1440:
+		if config.EMC.use_orig_skin.value:
+			return "/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_wqhd/no_poster.png"
 		else:
-			return "/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/no_poster.png"
- else:
-	if config.EMC.use_orig_skin.value:
-		return "/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/no_poster.png"
-	else:
-		img = resolveFilename(SCOPE_CURRENT_SKIN, 'emc/no_poster.png')
-		if fileExists(img):
-			return img
+			img = resolveFilename(SCOPE_CURRENT_SKIN, 'emc/no_poster.png')
+			if fileExists(img):
+				return img
+			else:
+				return "/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_wqhd/no_poster.png"
+	elif screen_height == 1080:
+		if config.EMC.use_orig_skin.value:
+			return "/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_wqhd/no_poster.png"
 		else:
+			img = resolveFilename(SCOPE_CURRENT_SKIN, 'emc/no_poster.png')
+			if fileExists(img):
+				return img
+			else:
+				return "/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/no_poster.png"
+	else:
+		if config.EMC.use_orig_skin.value:
 			return "/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/no_poster.png"
+		else:
+			img = resolveFilename(SCOPE_CURRENT_SKIN, 'emc/no_poster.png')
+			if fileExists(img):
+				return img
+			else:
+				return "/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/no_poster.png"
 
 #-------------------------------------------------
 # func: readBasicCfgFile( file )
@@ -1726,28 +1735,39 @@ class MovieCenterData(VlcPluginInterfaceList, PermanentSort, E2Bookmarks, EMCBoo
 					self.highlightsCpy.remove(service)
 
 def loadPix(name):
- if sz_w == 1920:
-	plugindir = '/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/'
-	if config.EMC.use_orig_skin.value:
-		pic = LoadPixmap(cached=True, path=plugindir+name)
-		return pic
-	else:
-		if fileExists(resolveFilename(SCOPE_CURRENT_SKIN, 'emc/'+name)):
-			pic = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'emc/'+name))
-		else:
+	if screen_height == 1440:
+		plugindir = '/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_wqhd/'
+		if config.EMC.use_orig_skin.value:
 			pic = LoadPixmap(cached=True, path=plugindir+name)
-		return pic
- else:
-	plugindir = '/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/'
-	if config.EMC.use_orig_skin.value:
-		pic = LoadPixmap(cached=True, path=plugindir+name)
-		return pic
-	else:
-		if fileExists(resolveFilename(SCOPE_CURRENT_SKIN, 'emc/'+name)):
-			pic = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'emc/'+name))
+			return pic
 		else:
+			if fileExists(resolveFilename(SCOPE_CURRENT_SKIN, 'emc/'+name)):
+				pic = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'emc/'+name))
+			else:
+				pic = LoadPixmap(cached=True, path=plugindir+name)
+			return pic
+	elif screen_height == 1080:
+		plugindir = '/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/'
+		if config.EMC.use_orig_skin.value:
 			pic = LoadPixmap(cached=True, path=plugindir+name)
-		return pic
+			return pic
+		else:
+			if fileExists(resolveFilename(SCOPE_CURRENT_SKIN, 'emc/'+name)):
+				pic = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'emc/'+name))
+			else:
+				pic = LoadPixmap(cached=True, path=plugindir+name)
+			return pic
+	else:
+		plugindir = '/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/'
+		if config.EMC.use_orig_skin.value:
+			pic = LoadPixmap(cached=True, path=plugindir+name)
+			return pic
+		else:
+			if fileExists(resolveFilename(SCOPE_CURRENT_SKIN, 'emc/'+name)):
+				pic = LoadPixmap(cached=True, path=resolveFilename(SCOPE_CURRENT_SKIN, 'emc/'+name))
+			else:
+				pic = LoadPixmap(cached=True, path=plugindir+name)
+			return pic
 
 moviecenter = None
 
@@ -1771,11 +1791,7 @@ class MovieCenter(GUIComponent):
 		global moviecenter
 		moviecenter = self
 
-		screenwidth = getDesktop(0).size().width()
-		if screenwidth and screenwidth == 1920:
-			self.fullhd = True
-		else:
-			self.fullhd = False
+		screen_height = getDesktop(0).size().height()
 
 		self.startWorker = False
 
@@ -2542,7 +2558,15 @@ class MovieCenter(GUIComponent):
 				# TODO: Directory left side - skin able
 				#append(MultiContentEntryText(pos=(self.CoolMoviePos, 0), size=(self.CoolFolderSize, globalHeight), font=usedFont, flags=RT_HALIGN_LEFT, text=title))
 				# Directory right side
-				if self.fullhd:
+				if screen_height == 1440:
+					if not config.EMC.skin_able.value:
+						CoolCSWidth = int(self.CoolCSWidth * 2)
+					else:
+						if self.CoolDirInfoWidth != -1:
+							CoolCSWidth = self.CoolDirInfoWidth
+						else:
+							CoolCSWidth = int(self.CoolCSWidth * 1.5)
+				elif screen_height == 1080:
 					if not config.EMC.skin_able.value:
 						CoolCSWidth = int(self.CoolCSWidth * 1.5)
 					else:

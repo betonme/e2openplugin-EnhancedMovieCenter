@@ -26,7 +26,7 @@ from skin import parseColor, parseFont
 from MetaSupport import MetaList
 from MovieCenter import plyDVB
 
-sz_w = getDesktop(0).size().width()
+screen_height = getDesktop(0).size().height()
 
 global plyDVB
 
@@ -94,7 +94,21 @@ class EMCPlaylist():
 emcplaylist = EMCPlaylist()
 
 class EMCPlaylistScreen(Screen):
-	if sz_w == 1920:
+	if screen_height == 1440:
+		skin = """
+		<screen position="center,170" size="1200,820" title="EMC Playlist" >
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/red.png" position="10,5" size="295,70" alphatest="blend"/>
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/green.png" position="305,5" size="295,70" alphatest="blend"/>
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/yellow.png" position="600,5" size="295,70" alphatest="blend"/>
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/blue.png" position="895,5" size="295,70" alphatest="blend"/>
+		<widget backgroundColor="#9f1313" font="Regular;30" halign="center" name="cancel" position="10,5" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" size="295,70" transparent="1" valign="center" zPosition="1" />
+		<widget backgroundColor="#1f771f" font="Regular;30" halign="center" name="save" position="305,5" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" size="295,70" transparent="1" valign="center" zPosition="1" />
+		<widget backgroundColor="#a08500" font="Regular;30" halign="center" name="delete" position="600,5" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" size="295,70" transparent="1" valign="center" zPosition="1" />
+		<widget backgroundColor="#18188b" font="Regular;30" halign="center" name="deleteall" position="895,5" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" size="295,70" transparent="1" valign="center" zPosition="1" />
+		<eLabel backgroundColor="#818181" position="10,80" size="1180,1" />
+		<widget enableWrapAround="1" name="playlist" position="10,90" scrollbarMode="showOnDemand" posWidth="70" nameWidth="1100" posColor="foreground" posColorSel="#bababa" nameColor="foreground" nameColorSel="#bababa" size="1180,720" />
+		</screen>"""
+	elif screen_height == 1080:
 		skin = """
 		<screen position="center,170" size="1200,820" title="EMC Playlist" >
 		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/red.png" position="10,5" size="295,70" alphatest="blend"/>
@@ -275,8 +289,11 @@ class PlayList(GUIComponent):
 	def __init__(self, enableWrapAround = True):
 		GUIComponent.__init__(self)
 
-		self.screenwidth = getDesktop(0).size().width()
-		if self.screenwidth and self.screenwidth == 1920:
+		if screen_height == 1440:
+			self.posFont = parseFont("Regular;40", ((1,1),(1,1)))
+			self.nameFont = parseFont("Regular;40", ((1,1),(1,1)))
+			self.itemHeight = 40
+		elif screen_height == 1080:
 			self.posFont = parseFont("Regular;30", ((1,1),(1,1)))
 			self.nameFont = parseFont("Regular;30", ((1,1),(1,1)))
 			self.itemHeight = 40
@@ -385,7 +402,10 @@ class PlayList(GUIComponent):
 				metastring = self.getMetaInfos(path)
 				if metastring != "":
 					name = name + " - " + metastring
-		if self.screenwidth and self.screenwidth == 1920:
+		if screen_height == 1440:
+			entrys.append((eListboxPythonMultiContent.TYPE_TEXT, 5, 2, self.posWidth, 52, 0, RT_VALIGN_CENTER|RT_HALIGN_RIGHT, pos, self.posColor, self.posColorSel))
+			entrys.append((eListboxPythonMultiContent.TYPE_TEXT,5 + self.posWidth + 40, 2, self.nameWidth, 52, 1, RT_VALIGN_CENTER, name, self.nameColor, self.nameColorSel))
+		elif screen_height == 1080:
 			entrys.append((eListboxPythonMultiContent.TYPE_TEXT, 5, 1, self.posWidth, 34, 0, RT_VALIGN_CENTER|RT_HALIGN_RIGHT, pos, self.posColor, self.posColorSel))
 			entrys.append((eListboxPythonMultiContent.TYPE_TEXT,5 + self.posWidth + 30, 1, self.nameWidth, 34, 1, RT_VALIGN_CENTER, name, self.nameColor, self.nameColorSel))
 		else:
@@ -409,7 +429,23 @@ class PlayList(GUIComponent):
 		self.l.setItemHeight(self.itemHeight)
 
 class EMCPlaylistSetup(Screen, ConfigListScreenExt):
-	if sz_w == 1920:
+	if screen_height == 1440:
+		skin = """
+		<screen position="center,170" size="1200,820" title="EMC Playlist Setup">
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/red.png" position="10,5" size="300,70" alphatest="blend"/>
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/green.png" position="310,5" size="300,70" alphatest="blend"/>
+		<widget backgroundColor="#9f1313" font="Regular;30" halign="center" name="cancel" position="10,5" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" size="300,70" transparent="1" valign="center" zPosition="1" />
+		<widget backgroundColor="#1f771f" font="Regular;30" halign="center" name="save" position="310,5" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" size="300,70" transparent="1" valign="center" zPosition="1" />
+		<widget font="Regular;34" halign="right" position="1050,25" render="Label" size="120,40" source="global.CurrentTime">
+			<convert type="ClockToText">Default</convert>
+		</widget>
+		<widget font="Regular;34" halign="right" position="800,25" render="Label" size="240,40" source="global.CurrentTime">
+			<convert type="ClockToText">Date</convert>
+		</widget>
+		<eLabel backgroundColor="#818181" position="10,80" size="1180,1" />
+		<widget enableWrapAround="1" name="config" itemHeight="45" position="10,90" scrollbarMode="showOnDemand" size="1180,720" />
+		</screen>"""
+	elif screen_height == 1080:
 		skin = """
 		<screen position="center,170" size="1200,820" title="EMC Playlist Setup">
 		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/red.png" position="10,5" size="300,70" alphatest="blend"/>
@@ -505,7 +541,23 @@ class EMCPlaylistSetup(Screen, ConfigListScreenExt):
 		self.close()
 
 class EMCFileBrowser(Screen, HelpableScreen):
-	if sz_w == 1920:
+	if screen_height == 1440:
+		skin = """
+		<screen name="EMCFilebrowser" position="center,170" size="1200,820" title="EMC Filebrowser">
+    		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/red.png" position="10,5" size="300,70" alphatest="blend"/>
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/green.png" position="310,5" size="300,70" alphatest="blend"/>
+		<widget backgroundColor="#9f1313" font="Regular;30" halign="center" name="cancel" position="10,5" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" size="300,70" transparent="1" valign="center" zPosition="1" />
+		<widget backgroundColor="#1f771f" font="Regular;30" halign="center" name="open" position="310,5" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" size="300,70" transparent="1" valign="center" zPosition="1" />
+		<widget font="Regular;34" halign="right" position="1050,25" render="Label" size="120,40" source="global.CurrentTime">
+			<convert type="ClockToText">Default</convert>
+		</widget>
+		<widget font="Regular;34" halign="right" position="800,25" render="Label" size="240,40" source="global.CurrentTime">
+			<convert type="ClockToText">Date</convert>
+		</widget>
+		<eLabel backgroundColor="#818181" position="10,80" size="1180,1" />
+		<widget enableWrapAround="1" name="filelist" itemHeight="45" position="10,90" scrollbarMode="showOnDemand" size="1180,720" />
+		</screen>"""
+	elif screen_height == 1080:
 		skin = """
 		<screen name="EMCFilebrowser" position="center,170" size="1200,820" title="EMC Filebrowser">
     		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/red.png" position="10,5" size="300,70" alphatest="blend"/>

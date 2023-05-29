@@ -39,7 +39,7 @@ from urllib import quote
 
 from MovieCenter import getMovieNameWithoutExt, getMovieNameWithoutPhrases, getNoPosterPath
 
-sz_w = getDesktop(0).size().width()
+screen_height = getDesktop(0).size().height()
 
 import re, urllib, urllib2, os, time, shutil, requests
 
@@ -99,9 +99,39 @@ class imdblist(MenuList):
 		self.l.setFont(5, gFont("Regular", 24))
 		self.l.setFont(6, gFont("Regular", 28))
 		self.l.setFont(7, gFont("Regular", 54))
+		self.l.setFont(8, gFont("Regular", 36))
 
 class EMCImdbScan(Screen):
-	if sz_w == 1920:
+	if screen_height == 1440:
+		skin = """
+			<screen position="center,110" size="1800,930" title="EMC Cover search">
+				<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/red.png" position="10,5" size="300,70" alphatest="blend"/>
+				<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/green.png" position="310,5" size="300,70" alphatest="blend"/>
+				<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/yellow.png" position="610,5" size="300,70" alphatest="blend"/>
+				<widget backgroundColor="#9f1313" font="Regular;30" halign="center" name="ButtonRedText" position="10,5" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" size="300,70" transparent="1" valign="center" zPosition="1" />
+				<widget backgroundColor="#1f771f" font="Regular;30" halign="center" name="ButtonGreenText" position="310,5" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" size="300,70" transparent="1" valign="center" zPosition="1" />
+				<widget backgroundColor="#a08500" font="Regular;30" halign="center" name="Manage Cover" position="610,5" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" size="300,70" transparent="1" valign="center" zPosition="1" />
+				<widget font="Regular;34" halign="right" position="1650,25" render="Label" size="120,40" source="global.CurrentTime">
+				    <convert type="ClockToText">Default</convert>
+				</widget>
+				<widget font="Regular;34" halign="right" position="1240,25" render="Label" size="400,40" source="global.CurrentTime" >
+				    <convert type="ClockToText">Date</convert>
+				</widget>
+				<eLabel backgroundColor="#818181" position="10,80" size="1780,1" />
+				<widget name="info" position="10,90" size="400,32" halign="center" font="Regular;28"/>
+				<widget name="poster" position="10,130" size="400,600" alphatest="blend"/>
+				<widget name="m_info" position="440,90" size="1350,40" font="Regular;34" halign="center" valign="center" foregroundColor="yellow"/>
+				<widget name="menulist" position="440,140" size="1350,675" itemHeight="45" scrollbarMode="showOnDemand" enableWrapAround="1"/>
+				<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/menu.png" position="10,880" size="80,40" alphatest="blend"/>
+				<widget name="Setup" position="110,882" size="380,40" font="Regular;30" valign="center" />
+				<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/ok.png" position="510,880" size="80,40" alphatest="blend"/>
+				<widget name="Single search" position="610,882" size="280,40" font="Regular;30" valign="center" />
+				<widget name="exist" position="10,740" size="400,35" font="Regular;30"/>
+				<widget name="no_poster" position="10,780" size="400,35" font="Regular;30"/>
+				<widget name="download" position="10,820" size="400,35" font="Regular;30"/>
+				<widget name="done_msg" position="930,850" size="860,70" font="Regular;30" halign="right" foregroundColor="yellow" valign="bottom"/>
+			</screen>"""
+	elif screen_height == 1080:
 		skin = """
 			<screen position="center,110" size="1800,930" title="EMC Cover search">
 				<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/red.png" position="10,5" size="300,70" alphatest="blend"/>
@@ -626,7 +656,10 @@ class EMCImdbScan(Screen):
 		if not re.match('.*?(' + s1 + ')', elapsed):
 			elapsed = "%s ms" % elapsed
 
-		if getDesktop(0).size().width() == 1920:
+		if getDesktop(0).size().height() == 1440:
+			f=2
+			gF=8
+		elif getDesktop(0).size().height() == 1080:
 			f=1.5
 			gF=6
 		else:
@@ -644,7 +677,23 @@ class EMCImdbScan(Screen):
 		return res
 
 class imdbSetup(Screen, ConfigListScreenExt):
-	if sz_w == 1920:
+	if screen_height == 1440:
+		skin = """
+		<screen position="center,110" size="1800,930" title="EMC Cover search setup">
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/red.png" position="10,5" size="300,70" alphatest="blend"/>
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/green.png" position="310,5" size="300,70" alphatest="blend"/>
+		<widget backgroundColor="#9f1313" font="Regular;30" halign="center" name="key_red" position="10,5" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" size="300,70" transparent="1" valign="center" zPosition="1" />
+		<widget backgroundColor="#1f771f" font="Regular;30" halign="center" name="key_green" position="310,5" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" size="300,70" transparent="1" valign="center" zPosition="1" />
+		<widget font="Regular;34" halign="right" position="1650,25" render="Label" size="120,40" source="global.CurrentTime">
+			<convert type="ClockToText">Default</convert>
+		</widget>
+		<widget font="Regular;34" halign="right" position="1240,25" render="Label" size="400,40" source="global.CurrentTime" >
+			<convert type="ClockToText">Date</convert>
+		</widget>
+		<eLabel backgroundColor="#818181" position="10,80" size="1780,1" />
+		<widget enableWrapAround="1" name="config" position="10,90" itemHeight="45" scrollbarMode="showOnDemand" size="1780,810" />
+		</screen>"""
+	elif screen_height == 1080:
 		skin = """
 		<screen position="center,110" size="1800,930" title="EMC Cover search setup">
 		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/red.png" position="10,5" size="300,70" alphatest="blend"/>
@@ -737,7 +786,16 @@ class imdbSetup(Screen, ConfigListScreenExt):
 		self.close()
 
 class getCover(Screen):
-	if sz_w == 1920:
+	if screen_height == 1440:
+		skin = """
+		<screen position="center,110" size="1800,930" title="EMC Cover Selecter">
+		<widget name="m_info" position="10,10" size="1780,40" font="Regular;35" halign="center" foregroundColor="yellow"/>
+		<eLabel backgroundColor="#818181" position="10,60" size="1780,1" />
+		<widget name="poster" position="10,80" size="400,600" alphatest="blend"/>
+		<widget name="menulist" position="440,80" size="1350,810" itemHeight="45" scrollbarMode="showOnDemand" enableWrapAround="1"/>
+		<widget name="info" position="10,700" size="400,140" font="Regular;30" halign="center" valign="center" foregroundColor="yellow"/>
+		</screen>"""
+	elif screen_height == 1080:
 		skin = """
 		<screen position="center,110" size="1800,930" title="EMC Cover Selecter">
 		<widget name="m_info" position="10,10" size="1780,40" font="Regular;35" halign="center" foregroundColor="yellow"/>
@@ -1060,7 +1118,10 @@ class getCover(Screen):
 		res = [ (title, url, path) ]
 		title = art + title
 
-		if getDesktop(0).size().width() == 1920:
+		if getDesktop(0).size().height() == 1440:
+			f=2
+			gF=8
+		elif getDesktop(0).size().height() == 1080:
 			f=1.5
 			gF=6
 		else:

@@ -50,25 +50,33 @@ global extTS
 
 cutsParser = struct.Struct('>QI') # big-endian, 64-bit PTS and 32-bit type
 
-sz_w = getDesktop(0).size().width()
+screen_height = getDesktop(0).size().height()
 
 class MovieMenu(Screen, E2Bookmarks, EMCBookmarks):
-	if sz_w == 1920:
+	if screen_height == 1440:
 		skin = """
 		<screen name="EMCMenu" position="center,center" size="840,730" title="EMC menu">
-    	<widget source="title" render="Label" position="10,10" size="820,40" font="Regular;35" />
+		<widget source="title" render="Label" position="10,10" size="820,40" font="Regular;35" />
 		<widget enableWrapAround="1" position="10,80" render="Listbox" itemHeight="45" scrollbarMode="showOnDemand" size="820,630" source="menu">
-            <convert type="StringList" />
-        </widget>
-	</screen>"""
+			<convert type="StringList" />
+		</widget>
+		</screen>"""
+	elif screen_height == 1080:
+		skin = """
+		<screen name="EMCMenu" position="center,center" size="840,730" title="EMC menu">
+		<widget source="title" render="Label" position="10,10" size="820,40" font="Regular;35" />
+		<widget enableWrapAround="1" position="10,80" render="Listbox" itemHeight="45" scrollbarMode="showOnDemand" size="820,630" source="menu">
+			<convert type="StringList" />
+		</widget>
+		</screen>"""
 	else:
 		skin = """
 		<screen name="EMCMenu" position="center,120" size="620,520" title="EMC menu">
-    	<widget source="title" render="Label" position="10,10" size="600,30" font="Regular;24" />
+		<widget source="title" render="Label" position="10,10" size="600,30" font="Regular;24" />
 		<widget source="menu" render="Listbox" position="10,60" size="600,450" itemHeight="30" enableWrapAround="1" scrollbarMode="showOnDemand">
 			<convert type="StringList" />
 		</widget>
-	</screen>"""
+		</screen>"""
 
 	def __init__(self, session, menumode, mselection, mlist, service, selections, currentPath, playlist=False, _helplist=None):
 		Screen.__init__(self, session)

@@ -78,11 +78,13 @@ class EMCMoviePlayerSummary(Screen):
 
 def getSkin():
 	skin = None
-	CoolWide = getDesktop(0).size().width()
-	if CoolWide == 1280:
-		skin = "/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/CoolSkin/EMCMediaCenter.xml"
-	elif CoolWide == 1920:
+	screen_height = getDesktop(0).size().height()
+	if screen_height == 1440:
+		skin = "/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/CoolSkin/EMCMediaCenter_1440.xml"
+	elif screen_height == 1080:
 		skin = "/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/CoolSkin/EMCMediaCenter_1080.xml"
+	else:
+		skin = "/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/CoolSkin/EMCMediaCenter.xml"
 	return skin
 
 # Just a dummy to prevent crash

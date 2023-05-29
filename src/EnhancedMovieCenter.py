@@ -57,10 +57,10 @@ except:
 from DelayedFunction import DelayedFunction
 from EMCTasker import emcTasker, emcDebugOut
 
-sz_w = getDesktop(0).size().width()
+screen_height = getDesktop(0).size().height()
 
-EMCVersion = "git20210126"
-EMCAbout = "Enhanced Movie Center " +EMCVersion+ "\n\n(c) 2012-2021 by\nCoolman, betonme, Swiss-MAD & the many other volunteers."
+EMCVersion = "git20230529"
+EMCAbout = "Enhanced Movie Center " +EMCVersion+ "\n\n(c) 2012-2023 by\nCoolman, betonme, Swiss-MAD & the many other volunteers."
 
 def setEPGLanguage(dummyself=None, dummy=None):
 	if config.EMC.epglang.value:
@@ -205,7 +205,27 @@ def next_predefined_settings(key=""):
 				return k
 
 class EnhancedMovieCenterMenu(ConfigListScreenExt, Screen):
-	if sz_w == 1920:
+	if screen_height == 1440:
+		skin = """
+		<screen name="EnhancedMovieCenterMenu" position="center,110" size="1800,930" title="EnhancedMovieCenterMenu">
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/red.png" position="10,5" size="300,70" alphatest="blend"/>
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/green.png" position="310,5" size="300,70" alphatest="blend"/>
+		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/blue.png" position="610,5" size="300,70" alphatest="blend"/>
+		<widget backgroundColor="#9f1313" font="Regular;30" halign="center" name="key_red" position="10,5" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" size="300,70" transparent="1" valign="center" zPosition="1" />
+		<widget backgroundColor="#1f771f" font="Regular;30" halign="center" name="key_green" position="310,5" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" size="300,70" transparent="1" valign="center" zPosition="1" />
+		<widget backgroundColor="#18188b" font="Regular;30" halign="center" name="key_blue" position="610,5" foregroundColor="white" shadowColor="black" shadowOffset="-2,-2" size="300,70" transparent="1" valign="center" zPosition="1" />
+		<widget font="Regular;34" halign="right" position="1650,25" render="Label" size="120,40" source="global.CurrentTime">
+			<convert type="ClockToText">Default</convert>
+		</widget>
+		<widget font="Regular;34" halign="right" position="1240,25" render="Label" size="400,40" source="global.CurrentTime" >
+			<convert type="ClockToText">Date</convert>
+		</widget>
+		<eLabel backgroundColor="#818181" position="10,80" size="1780,1" />
+		<widget enableWrapAround="1" name="config" itemHeight="45" position="10,90" scrollbarMode="showOnDemand" size="1780,630" />
+		<eLabel backgroundColor="#818181" position="10,730" size="1780,1" />
+		<widget font="Regular;32" halign="center" position="10,740" render="Label" size="1780,180" source="help" valign="center" />
+		</screen>"""
+	elif screen_height == 1080:
 		skin = """
 		<screen name="EnhancedMovieCenterMenu" position="center,110" size="1800,930" title="EnhancedMovieCenterMenu">
 		<ePixmap pixmap="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img_fhd/red.png" position="10,5" size="300,70" alphatest="blend"/>

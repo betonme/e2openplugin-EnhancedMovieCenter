@@ -21,7 +21,7 @@
         <widget source="Service" render="Label" position="550,170" size="200,26" font="Regular;22" foregroundColor="yellow" halign="center" >
             <convert type="EMCServicePosition">Length,ShowHours</convert>
 		</widget>
-		<eLabel position="290,158" size="820,2" backgroundColor="#818181" />
+		<eLabel position="290,158" size="840,2" backgroundColor="#818181" />
 		<widget source="Service" render="EMCPositionGauge" position="290,155" size="840,8" zPosition="1" pointer="/usr/lib/enigma2/python/Plugins/Extensions/EnhancedMovieCenter/img/progress_rec.png:840,0" transparent="1">
             <convert type="EMCRecordPosition">Gauge</convert>
 		</widget>
