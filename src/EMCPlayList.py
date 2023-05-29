@@ -290,9 +290,9 @@ class PlayList(GUIComponent):
 		GUIComponent.__init__(self)
 
 		if screen_height == 1440:
-			self.posFont = parseFont("Regular;40", ((1,1),(1,1)))
-			self.nameFont = parseFont("Regular;40", ((1,1),(1,1)))
-			self.itemHeight = 40
+			self.posFont = parseFont("Regular;36", ((1,1),(1,1)))
+			self.nameFont = parseFont("Regular;36", ((1,1),(1,1)))
+			self.itemHeight = 50
 		elif screen_height == 1080:
 			self.posFont = parseFont("Regular;30", ((1,1),(1,1)))
 			self.nameFont = parseFont("Regular;30", ((1,1),(1,1)))
