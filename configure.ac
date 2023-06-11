@@ -10,6 +10,7 @@ src/Makefile
 src/script/Makefile
 src/img/Makefile
 src/img_fhd/Makefile
+src/img_wqhd/Makefile
 src/CoolSkin/Makefile
 src/chardet/Makefile
 Components/Makefile
