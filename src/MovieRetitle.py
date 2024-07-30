@@ -57,9 +57,10 @@ class MovieRetitle(Screen, ConfigListScreenExt):
 
 	def buildSetup(self, service):
 		self.service = service
-		self.is_dir = service.flags & eServiceReference.mustDescent
 		info = self.serviceHandler.info(service)
 		path = service.getPath()
+		# self.is_dir = service.flags & eServiceReference.mustDescent  # old
+		self.is_dir = os.path.isdir(path)  # new
 		self["Path"] = Label(_("Location:") + ' ' + os.path.dirname(os.path.splitext(path)[0]))
 		if self.is_dir:
 			self.original_file = service.getName()
